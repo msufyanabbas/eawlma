@@ -33,6 +33,9 @@ import { AuditModule } from './modules/audit/audit.module';
 import { SubscriptionsModule } from './modules/subscriptions/subscriptions.module';
 import { PaymentsModule } from './modules/payments/payments.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { AiModule } from './modules/ai/ai.module';
+import { StorageModule } from './modules/storage/storage.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -84,6 +87,9 @@ import { AnalyticsModule } from './modules/analytics/analytics.module';
     SubscriptionsModule,
     PaymentsModule,
     AnalyticsModule,
+    AiModule,
+    StorageModule,
+    AdminModule,
   ],
   controllers: [HealthController],
   providers: [

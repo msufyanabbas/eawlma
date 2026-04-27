@@ -10,6 +10,12 @@ export const servicesConfig = registerAs('services', () => ({
     fromEmail: process.env.SES_FROM_EMAIL ?? 'no-reply@aqarat.sa',
     replyTo: process.env.SES_REPLY_TO ?? 'support@aqarat.sa',
   },
+  s3: {
+    bucket: process.env.S3_BUCKET ?? '',
+    region: process.env.S3_REGION ?? process.env.AWS_REGION ?? 'me-south-1',
+    presignExpiresSeconds: parseInt(process.env.S3_PRESIGN_EXPIRES_SECONDS ?? '900', 10),
+    cloudfrontUrl: process.env.CLOUDFRONT_URL ?? '',
+  },
   openai: {
     apiKey: process.env.OPENAI_API_KEY ?? '',
     model: process.env.OPENAI_MODEL ?? 'gpt-4o',

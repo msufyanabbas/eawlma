@@ -236,6 +236,10 @@ export class ListingsService {
     const listing = await this.findByIdOrFail(id);
     this.assertCanModify(listing, actor);
 
+    const previousStatus = listing.status;
+    const previousTitle = listing.title;
+    const previousDescription = listing.description;
+
     if (dto.status && dto.status !== listing.status) {
       this.assertOwnerCanTransition(listing.status, dto.status, actor);
       listing.status = dto.status;
@@ -296,7 +300,49 @@ export class ListingsService {
     if (dto.agencyId !== undefined) listing.agencyId = dto.agencyId ?? null;
 
     await this.listings.save(listing);
+
+    // Emit lifecycle events for downstream consumers (analytics, AI translation).
+    const changedFields: string[] = [];
+    if (listing.title !== previousTitle) changedFields.push('title');
+    if (listing.description !== previousDescription) changedFields.push('description');
+    if (changedFields.length > 0) {
+      void this.publishLifecycleEvent('listing.updated', listing, { changedFields });
+    }
+    if (listing.status === ListingStatus.ACTIVE && previousStatus !== ListingStatus.ACTIVE) {
+      void this.publishLifecycleEvent('listing.published', listing);
+    }
+
     return this.findByIdOrFail(id);
+  }
+
+  /** Internal: publishes a listing lifecycle event to the listing-events topic. */
+  async publishLifecycleEvent(
+    eventType: 'listing.published' | 'listing.updated' | 'listing.unpublished',
+    listing: ListingEntity,
+    extras: Record<string, unknown> = {},
+  ): Promise<void> {
+    const topic =
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+    try {
+      await this.kafkaService.publish({
+        topic,
+        key: listing.id,
+        value: {
+          eventType,
+          eventId: `${eventType}_${listing.id}_${Date.now()}`,
+          occurredAt: new Date().toISOString(),
+          listingId: listing.id,
+          referenceCode: listing.referenceCode,
+          ownerId: listing.ownerId,
+          status: listing.status,
+          sourceLocale: listing.sourceLocale,
+          ...extras,
+        },
+        headers: { 'x-event-type': eventType },
+      });
+    } catch (err) {
+      this.logger.warn(`failed to publish ${eventType}: ${(err as Error).message}`);
+    }
   }
 
   async submitForReview(id: string, actor: RequestUser): Promise<ListingEntity> {

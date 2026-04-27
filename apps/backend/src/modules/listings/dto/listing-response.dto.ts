@@ -3,7 +3,6 @@ import {
   ListingFurnishing,
   ListingStatus,
   ListingType,
-  Locale,
   MediaType,
   PropertyType,
   RentPeriod,
@@ -40,7 +39,7 @@ export class ListingMediaResponseDto {
 
 export class ListingTranslationResponseDto {
   @ApiProperty() id: string;
-  @ApiProperty({ enum: Locale }) locale: Locale;
+  @ApiProperty({ example: 'fr' }) locale: string;
   @ApiProperty() title: string;
   @ApiProperty() description: string;
   @ApiProperty() isMachineTranslated: boolean;
