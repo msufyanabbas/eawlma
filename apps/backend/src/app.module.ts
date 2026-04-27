@@ -18,10 +18,16 @@ import { winstonOptionsFactory } from './config/winston.config';
 import { typeOrmOptionsFactory } from './database/typeorm.options';
 
 import { HealthController } from './common/health/health.controller';
+import { RedisModule } from './common/redis/redis.module';
+import { EmailModule } from './common/email/email.module';
+import { KafkaModule } from './common/kafka/kafka.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { ListingsModule } from './modules/listings/listings.module';
 import { SearchModule } from './modules/search/search.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { InquiriesModule } from './modules/inquiries/inquiries.module';
+import { MessagingModule } from './modules/messaging/messaging.module';
 
 @Module({
   imports: [
@@ -58,10 +64,16 @@ import { SearchModule } from './modules/search/search.module';
     EventEmitterModule.forRoot({ wildcard: true, maxListeners: 32 }),
     TerminusModule,
 
+    RedisModule,
+    EmailModule,
+    KafkaModule,
     AuthModule,
     UsersModule,
     ListingsModule,
     SearchModule,
+    NotificationsModule,
+    InquiriesModule,
+    MessagingModule,
   ],
   controllers: [HealthController],
   providers: [

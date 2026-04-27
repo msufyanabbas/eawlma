@@ -10,6 +10,9 @@ export interface Inquiry {
   message: string;
   status: InquiryStatus;
   agentNotes: string | null;
+  nextAction: string | null;
+  nextActionAt: string | null;
+  preferredContactMethod: 'phone' | 'email' | 'whatsapp' | null;
   respondedAt: string | null;
   createdAt: string;
   updatedAt: string;
@@ -28,4 +31,6 @@ export interface CreateInquiryRequest {
 export interface UpdateInquiryRequest {
   status?: InquiryStatus;
   agentNotes?: string;
+  nextAction?: string;
+  nextActionAt?: string | null;
 }

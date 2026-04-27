@@ -87,8 +87,8 @@ export enum InquiryStatus {
   NEW = 'new',
   CONTACTED = 'contacted',
   QUALIFIED = 'qualified',
-  WON = 'won',
-  LOST = 'lost',
+  UNQUALIFIED = 'unqualified',
+  CLOSED = 'closed',
 }
 
 export enum NotificationType {

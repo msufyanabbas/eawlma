@@ -173,7 +173,10 @@ This repository is being built incrementally. Current state:
 - [x] Backend: **Search** module — `q` (FTS via Postgres `to_tsvector` + `plainto_tsquery`), 18 filters (type, property types, city, price/area/bed/bath ranges, furnishing, amenities, agency, agent, featured), bounding-box + radius (haversine) geo, 5 sort fields with featured-pinning; smoke-tested green
 - [x] AddListings migration generated + applied (incl. `listings_reference_seq`, GIN FTS indexes)
 - [x] Security fix: registration blocks self-promotion to admin/moderator/agency_admin
-- [ ] Backend: Inquiries, Messaging, Notifications, Analytics, Payments, Moderation, Admin
+- [x] Backend: **Notifications** module (in-app, with channel/type enum); **Inquiries** module with status FSM (new → contacted → qualified → unqualified → closed) + side-effects fan-out: SES email to agent, SES confirmation to buyer, persistent in-app notification, Kafka `inquiry.created` event on `aqarat.listing.events`; **Messaging** module — Conversation + Message entities, REST endpoints, Socket.IO gateway on `/messaging` with JWT-handshake middleware, Redis adapter for horizontal scaling, per-conversation unread counter via Redis, presence/typing/read receipts; smoke-tested green
+- [x] Shared infra: `RedisModule` (pub + sub + default ioredis clients), `EmailModule` (SES wrapper, no-op fallback when AWS creds absent), `KafkaModule` (KafkaJS producer with lazy connect, errors logged not thrown)
+- [x] AddInquiriesAndMessaging migration applied (incl. GIN indexes on `participant_ids` and `read_by`)
+- [ ] Backend: Analytics, Payments, Moderation, Admin
 - [ ] Frontend: Home, Search, Listing detail, Agent dashboard, Admin panel
 
 ## License
