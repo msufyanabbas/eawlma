@@ -1,0 +1,32 @@
+import { registerAs } from '@nestjs/config';
+
+export const servicesConfig = registerAs('services', () => ({
+  aws: {
+    region: process.env.AWS_REGION ?? 'me-south-1',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? '',
+  },
+  ses: {
+    fromEmail: process.env.SES_FROM_EMAIL ?? 'no-reply@aqarat.sa',
+    replyTo: process.env.SES_REPLY_TO ?? 'support@aqarat.sa',
+  },
+  openai: {
+    apiKey: process.env.OPENAI_API_KEY ?? '',
+    model: process.env.OPENAI_MODEL ?? 'gpt-4o',
+    maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS ?? '2000', 10),
+  },
+  authentica: {
+    apiKey: process.env.AUTHENTICA_API_KEY ?? '',
+    baseUrl: process.env.AUTHENTICA_BASE_URL ?? 'https://api.authentica.sa',
+  },
+  moyasar: {
+    secretKey: process.env.MOYASAR_SECRET_KEY ?? '',
+    publishableKey: process.env.MOYASAR_PUBLISHABLE_KEY ?? '',
+    webhookSecret: process.env.MOYASAR_WEBHOOK_SECRET ?? '',
+    apiUrl: process.env.MOYASAR_API_URL ?? 'https://api.moyasar.com/v1',
+  },
+  google: {
+    mapsApiKey: process.env.GOOGLE_MAPS_API_KEY ?? '',
+    geocodingApiKey: process.env.GOOGLE_GEOCODING_API_KEY ?? process.env.GOOGLE_MAPS_API_KEY ?? '',
+  },
+}));

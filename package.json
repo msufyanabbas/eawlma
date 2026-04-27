@@ -1,0 +1,33 @@
+{
+  "name": "aqarat",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Aqarat — Saudi/GCC real estate platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:types": "npm run build -w @aqarat/shared-types",
+    "build:backend": "npm run build -w @aqarat/backend",
+    "build:frontend": "npm run build -w @aqarat/frontend",
+    "build": "npm run build:types && npm run build:backend && npm run build:frontend",
+    "dev:backend": "npm run start:dev -w @aqarat/backend",
+    "dev:frontend": "npm run dev -w @aqarat/frontend",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/node": "^20.12.7",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

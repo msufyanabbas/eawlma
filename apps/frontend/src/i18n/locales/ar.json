@@ -1,0 +1,87 @@
+{
+  "app": {
+    "name": "عقارات",
+    "tagline": "اكتشف عقارك المثالي في المملكة العربية السعودية"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "search": "البحث",
+    "buy": "للبيع",
+    "rent": "للإيجار",
+    "agents": "الوسطاء",
+    "favorites": "المفضلة",
+    "myListings": "إعلاناتي",
+    "messages": "الرسائل",
+    "notifications": "الإشعارات",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "loginTitle": "أهلاً بعودتك",
+    "loginSubtitle": "سجل الدخول للمتابعة إلى حسابك",
+    "registerTitle": "إنشاء حساب جديد",
+    "registerSubtitle": "انضم إلى عقارات وابدأ رحلتك العقارية",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "noAccount": "ليس لديك حساب؟",
+    "hasAccount": "لديك حساب بالفعل؟",
+    "createAccount": "أنشئ حسابًا",
+    "signIn": "دخول",
+    "signUp": "تسجيل",
+    "iAmA": "أنا",
+    "roleUser": "باحث عن عقار",
+    "roleAgent": "وسيط عقاري",
+    "agreeTerms": "بإنشاء الحساب فإنك توافق على الشروط وسياسة الخصوصية",
+    "loginSuccess": "تم تسجيل الدخول بنجاح",
+    "registerSuccess": "تم إنشاء حسابك بنجاح",
+    "logoutSuccess": "تم تسجيل الخروج"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "emailInvalid": "البريد الإلكتروني غير صالح",
+    "phoneInvalid": "رقم الجوال غير صالح",
+    "passwordMin": "يجب ألا تقل كلمة المرور عن {{min}} أحرف",
+    "passwordWeak": "يجب أن تحتوي كلمة المرور على حرف صغير وحرف كبير ورقم",
+    "passwordsMismatch": "كلمتا المرور غير متطابقتين",
+    "tooShort": "قصير جدًا",
+    "tooLong": "طويل جدًا"
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ",
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "search": "بحث",
+    "filter": "تصفية",
+    "language": "اللغة",
+    "arabic": "العربية",
+    "english": "English",
+    "back": "رجوع"
+  },
+  "home": {
+    "heroTitle": "اعثر على منزلك المثالي",
+    "heroSubtitle": "آلاف العقارات للبيع والإيجار في جميع أنحاء المملكة",
+    "searchPlaceholder": "ابحث بالمدينة أو الحي أو رقم الإعلان",
+    "searchCta": "ابحث الآن",
+    "exploreSale": "استكشف العقارات للبيع",
+    "exploreRent": "استكشف العقارات للإيجار"
+  },
+  "errors": {
+    "generic": "حدث خطأ غير متوقع",
+    "network": "خطأ في الاتصال — يرجى المحاولة مرة أخرى",
+    "unauthorized": "يجب تسجيل الدخول للمتابعة",
+    "forbidden": "ليس لديك صلاحية للوصول",
+    "notFound": "العنصر المطلوب غير موجود"
+  }
+}

@@ -1,0 +1,112 @@
+# -----------------------------------------------------------------------------
+# Aqarat — Local development stack
+# Brings up PostgreSQL, Redis, Kafka (KRaft, no Zookeeper)
+# Run:   docker compose up -d
+# Stop:  docker compose down
+# Wipe:  docker compose down -v
+#
+# Host-side port mapping uses non-standard ports to avoid clashes with other
+# local stacks. Update apps/backend/.env to match if you change these.
+# -----------------------------------------------------------------------------
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: aqarat-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-aqarat}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aqarat_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-aqarat}
+    ports:
+      - "${POSTGRES_PORT:-5532}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aqarat} -d ${POSTGRES_DB:-aqarat}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: aqarat-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "${REDIS_PORT:-6479}:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Apache Kafka in KRaft (no Zookeeper) single-node mode for local dev.
+  # 9092 is the in-Docker-network listener and is NOT exposed to the host.
+  # Apps running on the host connect via 9094 (advertised as localhost:9094).
+  kafka:
+    image: apache/kafka:3.9.2
+    container_name: aqarat-kafka
+    restart: unless-stopped
+    ports:
+      - "9094:9094"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      CLUSTER_ID: aqarat-local-cluster
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: aqarat-kafka-ui
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    ports:
+      - "8095:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: aqarat-local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      DYNAMIC_CONFIG_ENABLED: "true"
+
+  # EMQX (MQTT broker) is optional and only needed for IoT device signals.
+  # Enable with:  docker compose --profile iot up -d
+  emqx:
+    image: emqx/emqx:5.4
+    container_name: aqarat-emqx
+    restart: unless-stopped
+    profiles: ["iot"]
+    ports:
+      - "11883:1883"
+      - "18093:8083"
+      - "18094:8084"
+      - "18883:8883"
+      - "18093:18083"
+    volumes:
+      - emqx-data:/opt/emqx/data
+      - emqx-log:/opt/emqx/log
+
+volumes:
+  postgres-data:
+  redis-data:
+  kafka-data:
+  emqx-data:
+  emqx-log:
+
+networks:
+  default:
+    name: aqarat-network
