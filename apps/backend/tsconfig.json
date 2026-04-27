@@ -12,12 +12,19 @@
     "emitDecoratorMetadata": true,
     "declaration": false,
     "incremental": true,
-    "tsBuildInfoFile": ".tsbuildinfo",
+    // Co-locate the incremental buildinfo with the emit output so that
+    // `deleteOutDir: true` in nest-cli.json wipes both atomically. Otherwise
+    // `nest build` deletes `dist/` but leaves `.tsbuildinfo` at the project
+    // root, and the next tsc run reads the buildinfo, decides nothing has
+    // changed, and emits nothing — leaving `dist/main.js` missing.
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]
     }
   },
-  "include": ["src/**/*", "test/**/*"],
-  "exclude": ["node_modules", "dist"]
+  // Only `src/` contains TypeScript. `test/` holds .mjs smoke-test scripts
+  // (apps/backend/test/ws-smoke.mjs etc.) which tsc shouldn't try to compile.
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test"]
 }
