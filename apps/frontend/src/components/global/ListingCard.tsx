@@ -26,8 +26,10 @@ interface ListingCardProps {
   listing: Listing;
   /** Active locale for translation lookup; defaults to current i18n language. */
   locale?: string;
+  /** When provided, the heart icon reflects this state instead of reading the store directly. */
   saved?: boolean;
-  onToggleSave?: (listingId: string) => void;
+  /** Receives the listing id when toggled. Promise return is awaited for optimistic-UI rollback. */
+  onToggleSave?: (listingId: string) => void | Promise<void>;
 }
 
 /** Picks the best title/description for the active locale, with fallbacks. */

@@ -9,6 +9,8 @@ import { UserRole } from '@aqarat/shared-types';
 
 import { AppShell } from './components/Layout/AppShell';
 import { NotificationToaster } from './components/global/NotificationToaster';
+import { SavedListingsHydrator } from './components/global/SavedListingsHydrator';
+import { ErrorBoundary } from './components/global/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
 import { SearchPage } from './pages/SearchPage';
 import { ListingDetailPage } from './pages/ListingDetailPage';
@@ -64,10 +66,11 @@ const requireRole = (allowed: UserRole[]) => {
 
 const rootRoute = createRootRoute({
   component: () => (
-    <>
+    <ErrorBoundary>
       <Outlet />
       <NotificationToaster />
-    </>
+      <SavedListingsHydrator />
+    </ErrorBoundary>
   ),
   notFoundComponent: NotFoundPage,
 });

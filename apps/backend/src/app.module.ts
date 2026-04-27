@@ -36,6 +36,7 @@ import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { AiModule } from './modules/ai/ai.module';
 import { StorageModule } from './modules/storage/storage.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { SavedListingsModule } from './modules/saved-listings/saved-listings.module';
 
 @Module({
   imports: [
@@ -90,6 +91,7 @@ import { AdminModule } from './modules/admin/admin.module';
     AiModule,
     StorageModule,
     AdminModule,
+    SavedListingsModule,
   ],
   controllers: [HealthController],
   providers: [

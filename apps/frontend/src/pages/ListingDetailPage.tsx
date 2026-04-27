@@ -44,6 +44,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ListingType, MediaType } from '@aqarat/shared-types';
 
+import confetti from 'canvas-confetti';
 import { listingsApi } from '@/api/listings.api';
 import { searchApi } from '@/api/search.api';
 import { inquiriesApi } from '@/api/inquiries.api';
@@ -139,6 +140,19 @@ export function ListingDetailPage() {
     onSuccess: () => {
       setInqSuccess(true);
       setInqMessage('');
+      // Celebrate the lead 🎉 — fires a brief confetti burst from both edges
+      // of the viewport, then a centered burst, then resolves itself.
+      const fire = (originX: number) =>
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { x: originX, y: 0.5 },
+          colors: ['#1B4FD8', '#F59E0B', '#10B981', '#3B6CE0'],
+          disableForReducedMotion: true,
+        });
+      fire(0.1);
+      fire(0.9);
+      setTimeout(() => fire(0.5), 250);
     },
   });
 
@@ -507,10 +521,39 @@ export function ListingDetailPage() {
 
               {/* Inquiry form */}
               <Paper sx={{ p: 3 }}>
+                {inqSuccess ? (
+                  <Stack spacing={2} alignItems="center" sx={{ py: 2, textAlign: 'center' }}>
+                    <Box
+                      sx={{
+                        width: 64,
+                        height: 64,
+                        borderRadius: '50%',
+                        bgcolor: 'success.light',
+                        color: 'success.contrastText',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 32,
+                      }}
+                    >
+                      ✓
+                    </Box>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                      Your inquiry has been sent!
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      The agent will contact you shortly. You'll also receive a confirmation
+                      email at the address you provided.
+                    </Typography>
+                    <Button variant="outlined" onClick={() => setInqSuccess(false)}>
+                      Send another inquiry
+                    </Button>
+                  </Stack>
+                ) : (
+                  <>
                 <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
                   {t('listing.scheduleTour')}
                 </Typography>
-                {inqSuccess && <Alert severity="success" sx={{ mb: 2 }}>We've sent your message to the agent.</Alert>}
                 {!isAuthenticated && (
                   <Stack spacing={1.5} sx={{ mb: 1.5 }}>
                     <TextField size="small" label="Your name" value={inqName} onChange={(e) => setInqName(e.target.value)} />
@@ -572,6 +615,8 @@ export function ListingDetailPage() {
                     {t('listing.callAgent')}
                   </Button>
                 </Stack>
+                  </>
+                )}
               </Paper>
             </Box>
           </Grid>

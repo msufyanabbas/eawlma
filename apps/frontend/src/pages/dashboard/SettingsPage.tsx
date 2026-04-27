@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 
 import { usersApi } from '@/api/users.api';
 import { authApi } from '@/api/auth.api';
+import { authenticaApi } from '@/api/authentica.api';
 import { storageApi } from '@/api/storage.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
@@ -89,6 +90,26 @@ export function SettingsPage() {
         identityVerified: data.identityVerificationStatus === 'verified',
       });
       void qc.invalidateQueries({ queryKey: ['users', 'me'] });
+    },
+  });
+
+  // Authentica.sa identity verification
+  const [nationalId, setNationalId] = useState('');
+  const [authenticaPhone, setAuthenticaPhone] = useState('');
+  const verifyMutation = useMutation({
+    mutationFn: () =>
+      authenticaApi.init(
+        nationalId.trim(),
+        authenticaPhone.trim() || phone,
+        window.location.href,
+      ),
+    onSuccess: (resp) => {
+      if (resp.redirectUrl) {
+        // The agent must complete the flow on Authentica.sa.
+        window.location.href = resp.redirectUrl;
+      } else {
+        void qc.invalidateQueries({ queryKey: ['users', 'me'] });
+      }
     },
   });
 
@@ -186,6 +207,90 @@ export function SettingsPage() {
           <Grid item xs={12} md={3}><TextField fullWidth label="License number" disabled /></Grid>
           <Grid item xs={12} md={3}><TextField fullWidth label="Registration number" disabled /></Grid>
         </Grid>
+      </Paper>
+
+      {/* Identity verification (Authentica.sa) */}
+      <Paper sx={{ p: 3 }}>
+        <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>Identity verification</Typography>
+          {me?.identityVerificationStatus === 'verified' && (
+            <Box
+              sx={{
+                px: 1.25,
+                py: 0.25,
+                borderRadius: 999,
+                bgcolor: 'success.light',
+                color: 'success.contrastText',
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: 0.4,
+                textTransform: 'uppercase',
+              }}
+            >
+              Verified ✓
+            </Box>
+          )}
+          {me?.identityVerificationStatus === 'pending' && (
+            <Box sx={{ px: 1.25, py: 0.25, borderRadius: 999, bgcolor: 'warning.light', color: 'warning.contrastText', fontSize: 12, fontWeight: 700 }}>
+              Pending
+            </Box>
+          )}
+        </Stack>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Verify with Saudi national ID or Iqama via Authentica.sa to earn the
+          gold verified badge on your public profile. Listings from verified
+          agents convert significantly better.
+        </Typography>
+        {me?.identityVerificationStatus === 'verified' ? (
+          <Alert severity="success">Your identity is verified.</Alert>
+        ) : (
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="National ID / Iqama (10 digits)"
+                value={nationalId}
+                onChange={(e) => setNationalId(e.target.value.replace(/\D/g, '').slice(0, 10))}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label={t('auth.phone')}
+                placeholder="+9665XXXXXXXX"
+                value={authenticaPhone}
+                onChange={(e) => setAuthenticaPhone(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                color="success"
+                disabled={verifyMutation.isPending || nationalId.length !== 10}
+                onClick={() => verifyMutation.mutate()}
+              >
+                {verifyMutation.isPending ? t('common.loading') : 'Verify Identity'}
+              </Button>
+              {verifyMutation.isError && (
+                <Alert severity="error" sx={{ mt: 2 }}>{extractErrorMessage(verifyMutation.error)}</Alert>
+              )}
+              {verifyMutation.isSuccess && !verifyMutation.data?.live && (
+                <Alert severity="info" sx={{ mt: 2 }}>
+                  Authentica.sa API key isn't configured on the server — your verification has been
+                  recorded as <strong>pending</strong> for testing. Set <code>AUTHENTICA_API_KEY</code>
+                  in the backend to use the live flow.
+                </Alert>
+              )}
+              {verifyMutation.isSuccess && verifyMutation.data?.live && (
+                <Alert severity="info" sx={{ mt: 2 }}>
+                  Verification started. {verifyMutation.data.redirectUrl
+                    ? <>Redirecting to Authentica.sa…</>
+                    : <>You'll receive an OTP shortly to complete verification.</>}
+                </Alert>
+              )}
+            </Grid>
+          </Grid>
+        )}
       </Paper>
 
       {/* Notification preferences */}

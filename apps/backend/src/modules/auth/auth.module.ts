@@ -7,18 +7,21 @@ import { APP_GUARD } from '@nestjs/core';
 
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { UsersModule } from '../users/users.module';
+import { UserEntity } from '../users/entities/user.entity';
 
 import { RefreshTokenEntity } from './entities/refresh-token.entity';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { AuthenticaController } from './authentica.controller';
+import { AuthenticaClient } from './authentica.client';
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
-    TypeOrmModule.forFeature([RefreshTokenEntity]),
+    TypeOrmModule.forFeature([RefreshTokenEntity, UserEntity]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -36,9 +39,10 @@ import { AuthController } from './auth.controller';
     AuthService,
     JwtStrategy,
     JwtRefreshStrategy,
+    AuthenticaClient,
     { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],
-  controllers: [AuthController],
-  exports: [AuthService, JwtModule],
+  controllers: [AuthController, AuthenticaController],
+  exports: [AuthService, JwtModule, AuthenticaClient],
 })
 export class AuthModule {}

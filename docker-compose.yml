@@ -1,15 +1,28 @@
 # -----------------------------------------------------------------------------
-# Aqarat — Local development stack
-# Brings up PostgreSQL, Redis, Kafka (KRaft, no Zookeeper)
-# Run:   docker compose up -d
-# Stop:  docker compose down
-# Wipe:  docker compose down -v
+# Aqarat — Local development + production-shaped stack.
 #
-# Host-side port mapping uses non-standard ports to avoid clashes with other
-# local stacks. Update apps/backend/.env to match if you change these.
+# Services:
+#   postgres   — primary DB
+#   redis      — sessions, pub/sub, real-time presence, query cache
+#   kafka      — event streaming (KRaft, no Zookeeper)
+#   kafka-ui   — browser UI on :8095
+#   emqx       — optional MQTT broker (profile: iot)
+#   backend    — NestJS API (built from apps/backend/Dockerfile)
+#   frontend   — Vite SPA served by nginx, reverse-proxies /api → backend
+#                (built from apps/frontend/Dockerfile)
+#
+# Bring up just the infra stack (no app containers):
+#   docker compose up -d postgres redis kafka kafka-ui
+#
+# Bring up the full prod-shaped stack:
+#   docker compose --profile app up -d --build
+#
+# Wipe all data:
+#   docker compose down -v
 # -----------------------------------------------------------------------------
 
 services:
+  # ─── Postgres ────────────────────────────────────────────────────────────
   postgres:
     image: postgres:16-alpine
     container_name: aqarat-postgres
@@ -28,6 +41,7 @@ services:
       timeout: 5s
       retries: 5
 
+  # ─── Redis ──────────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
     container_name: aqarat-redis
@@ -43,9 +57,9 @@ services:
       timeout: 5s
       retries: 5
 
-  # Apache Kafka in KRaft (no Zookeeper) single-node mode for local dev.
-  # 9092 is the in-Docker-network listener and is NOT exposed to the host.
-  # Apps running on the host connect via 9094 (advertised as localhost:9094).
+  # ─── Kafka (KRaft single-node) ──────────────────────────────────────────
+  # In-network listener is 9092; only 9094 is exposed to the host so this
+  # stack coexists with other local Kafka instances.
   kafka:
     image: apache/kafka:3.9.2
     container_name: aqarat-kafka
@@ -69,6 +83,12 @@ services:
       CLUSTER_ID: aqarat-local-cluster
     volumes:
       - kafka-data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
@@ -83,8 +103,7 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       DYNAMIC_CONFIG_ENABLED: "true"
 
-  # EMQX (MQTT broker) is optional and only needed for IoT device signals.
-  # Enable with:  docker compose --profile iot up -d
+  # ─── EMQX (optional MQTT broker for IoT signals) ────────────────────────
   emqx:
     image: emqx/emqx:5.4
     container_name: aqarat-emqx
@@ -95,10 +114,96 @@ services:
       - "18093:8083"
       - "18094:8084"
       - "18883:8883"
-      - "18093:18083"
+      - "18083:18083"
     volumes:
       - emqx-data:/opt/emqx/data
       - emqx-log:/opt/emqx/log
+
+  # ─── Backend (NestJS API) ───────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    image: aqarat-backend:latest
+    container_name: aqarat-backend
+    restart: unless-stopped
+    profiles: ["app"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis:    { condition: service_healthy }
+      kafka:    { condition: service_started }
+    environment:
+      NODE_ENV: production
+      BACKEND_PORT: 3000
+      APP_URL:    ${APP_URL:-http://localhost}
+      API_URL:    ${API_URL:-http://localhost/api}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost,http://localhost:5173}
+      JWT_ACCESS_SECRET:  ${JWT_ACCESS_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN:-15m}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER:     ${POSTGRES_USER:-aqarat}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aqarat_dev_password}
+      POSTGRES_DB:       ${POSTGRES_DB:-aqarat}
+      POSTGRES_SSL:      ${POSTGRES_SSL:-false}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_BROKERS: kafka:9092
+      AWS_REGION:            ${AWS_REGION:-me-south-1}
+      AWS_ACCESS_KEY_ID:     ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      SES_FROM_EMAIL:        ${SES_FROM_EMAIL:-no-reply@aqarat.sa}
+      SES_REPLY_TO:          ${SES_REPLY_TO:-support@aqarat.sa}
+      S3_BUCKET:             ${S3_BUCKET:-}
+      S3_REGION:             ${S3_REGION:-me-south-1}
+      CLOUDFRONT_URL:        ${CLOUDFRONT_URL:-}
+      OPENAI_API_KEY:        ${OPENAI_API_KEY:-}
+      OPENAI_MODEL:          ${OPENAI_MODEL:-gpt-4o}
+      AUTHENTICA_API_KEY:    ${AUTHENTICA_API_KEY:-}
+      AUTHENTICA_BASE_URL:   ${AUTHENTICA_BASE_URL:-https://api.authentica.sa}
+      AUTHENTICA_WEBHOOK_SECRET: ${AUTHENTICA_WEBHOOK_SECRET:-}
+      MOYASAR_SECRET_KEY:      ${MOYASAR_SECRET_KEY:-}
+      MOYASAR_PUBLISHABLE_KEY: ${MOYASAR_PUBLISHABLE_KEY:-}
+      MOYASAR_WEBHOOK_SECRET:  ${MOYASAR_WEBHOOK_SECRET:-}
+      GOOGLE_MAPS_API_KEY:     ${GOOGLE_MAPS_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/v1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    expose:
+      - "3000"
+    ports:
+      - "${BACKEND_PORT:-3000}:3000"
+
+  # ─── Frontend (Vite SPA + nginx reverse proxy) ──────────────────────────
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        VITE_API_URL:                ${PUBLIC_API_URL:-/}
+        VITE_SOCKET_URL:             ${PUBLIC_SOCKET_URL:-/}
+        VITE_GOOGLE_MAPS_API_KEY:    ${GOOGLE_MAPS_API_KEY:-}
+        VITE_MOYASAR_PUBLISHABLE_KEY: ${MOYASAR_PUBLISHABLE_KEY:-}
+        VITE_DEFAULT_LOCALE:         ${DEFAULT_LOCALE:-ar}
+        VITE_SUPPORTED_LOCALES:      ${SUPPORTED_LOCALES:-ar,en}
+    image: aqarat-frontend:latest
+    container_name: aqarat-frontend
+    restart: unless-stopped
+    profiles: ["app"]
+    depends_on:
+      backend: { condition: service_started }
+    ports:
+      - "${FRONTEND_PORT:-8088}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
 volumes:
   postgres-data:
