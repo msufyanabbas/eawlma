@@ -4,10 +4,10 @@ import * as Joi from 'joi';
 export const appConfig = registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV ?? 'development',
   name: process.env.APP_NAME ?? 'Aqarat',
-  port: parseInt(process.env.BACKEND_PORT ?? '3000', 10),
+  port: parseInt(process.env.BACKEND_PORT ?? '3010', 10),
   apiPrefix: process.env.API_PREFIX ?? 'api',
   appUrl: process.env.APP_URL ?? 'http://localhost:5173',
-  apiUrl: process.env.API_URL ?? 'http://localhost:3000',
+  apiUrl: process.env.API_URL ?? 'http://localhost:3010',
   corsOrigins: (process.env.CORS_ORIGINS ?? process.env.APP_URL ?? 'http://localhost:5173')
     .split(',')
     .map((s) => s.trim())
