@@ -8,6 +8,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, In, Repository } from 'typeorm';
 import {
@@ -545,6 +546,31 @@ export class ListingsService {
       throw new BadRequestException('One or more tagIds are invalid');
     }
     return found;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Scheduled jobs
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Hourly sweep that transitions ACTIVE listings whose `expiresAt` has passed
+   * into EXPIRED status. Owners can re-submit them for review afterward.
+   */
+  @Cron(CronExpression.EVERY_HOUR)
+  async expireListingsJob(): Promise<void> {
+    const now = new Date();
+    const result = await this.listings
+      .createQueryBuilder()
+      .update(ListingEntity)
+      .set({ status: ListingStatus.EXPIRED })
+      .where('status = :active', { active: ListingStatus.ACTIVE })
+      .andWhere('expires_at IS NOT NULL')
+      .andWhere('expires_at < :now', { now })
+      .execute();
+
+    if (result.affected && result.affected > 0) {
+      this.logger.log(`Auto-expired ${result.affected} listings whose expires_at has passed`);
+    }
   }
 
   /**

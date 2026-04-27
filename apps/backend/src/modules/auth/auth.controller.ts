@@ -27,6 +27,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import {
   ChangePasswordDto,
+  ForgotPasswordDto,
   LoginDto,
   LogoutDto,
   RefreshTokenDto,
@@ -95,6 +96,18 @@ export class AuthController {
   @ApiOperation({ summary: 'Revoke a refresh token (sign out this device)' })
   async logout(@Body() dto: LogoutDto): Promise<void> {
     await this.authService.logout(dto.refreshToken);
+  }
+
+  @Public()
+  @Post('forgot-password')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Begin password-reset flow (always returns ok to prevent user enumeration)',
+  })
+  @ApiOkResponse({ schema: { properties: { ok: { type: 'boolean' } } } })
+  async forgotPassword(@Body() dto: ForgotPasswordDto): Promise<{ ok: true }> {
+    await this.authService.beginPasswordReset(dto.email);
+    return { ok: true };
   }
 
   @ApiBearerAuth('access-token')

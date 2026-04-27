@@ -13,6 +13,7 @@ import { JwtPayload, UserStatus } from '@aqarat/shared-types';
 
 import { UsersService } from '../users/users.service';
 import { UserEntity } from '../users/entities/user.entity';
+import { EmailService } from '../../common/email/email.service';
 import { RefreshTokenEntity } from './entities/refresh-token.entity';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -44,6 +45,7 @@ export class AuthService {
     private readonly config: ConfigService,
     @InjectRepository(RefreshTokenEntity)
     private readonly refreshRepo: Repository<RefreshTokenEntity>,
+    private readonly emailService: EmailService,
   ) {}
 
   // ---------------------------------------------------------------------------
@@ -145,6 +147,40 @@ export class AuthService {
 
   async logoutAll(userId: string): Promise<void> {
     await this.revokeAllForUser(userId);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Password reset (begin)
+  //
+  // Always succeeds from the caller's perspective so we don't leak whether the
+  // email is registered. If the user exists we mint a short-lived signed token
+  // and email a deep link; the actual reset endpoint will verify the token.
+  // ---------------------------------------------------------------------------
+
+  async beginPasswordReset(email: string): Promise<void> {
+    const user = await this.usersService.findByEmailWithPassword(email);
+    if (!user) {
+      // Silent no-op — preserves caller-visible timing as best effort
+      return;
+    }
+
+    const token = await this.jwtService.signAsync(
+      { sub: user.id, purpose: 'password-reset' },
+      {
+        secret: this.config.getOrThrow<string>('jwt.accessSecret'),
+        expiresIn: '30m',
+      },
+    );
+
+    const appUrl = this.config.get<string>('appUrl', 'http://localhost:5173');
+    const link = `${appUrl}/auth/reset?token=${encodeURIComponent(token)}`;
+
+    await this.emailService.send({
+      to: user.email,
+      subject: 'Reset your Aqarat password',
+      html: `<p>Click the link below to reset your password (valid for 30 minutes):</p><p><a href="${link}">${link}</a></p>`,
+      text: `Reset your password: ${link}`,
+    });
   }
 
   // ---------------------------------------------------------------------------

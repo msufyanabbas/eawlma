@@ -41,3 +41,10 @@ export class ChangePasswordDto {
   @MaxLength(72)
   newPassword: string;
 }
+
+export class ForgotPasswordDto {
+  @ApiProperty({ example: 'fatima@example.com' })
+  @IsEmail()
+  @MaxLength(320)
+  email: string;
+}
