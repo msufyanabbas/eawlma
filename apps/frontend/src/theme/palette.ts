@@ -1,17 +1,30 @@
 import { PaletteOptions } from '@mui/material/styles';
 
+// Brand palette
+//   primary   #1B4FD8  — confident blue
+//   secondary #F59E0B  — warm amber
+//   accent    #10B981  — emerald (used as `success` so MUI utilities pick it up)
+//   hero bg   #0F172A  — slate-900 — used for dark hero sections
+//   surface   #F8FAFC  — slate-50 — page background in light mode
+
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#0F766E',
-    light: '#14B8A6',
-    dark: '#115E59',
+    main: '#1B4FD8',
+    light: '#3B6CE0',
+    dark: '#143CA8',
     contrastText: '#FFFFFF',
   },
   secondary: {
-    main: '#1E3A8A',
-    light: '#3B82F6',
-    dark: '#1E40AF',
+    main: '#F59E0B',
+    light: '#FBBF24',
+    dark: '#B45309',
+    contrastText: '#0F172A',
+  },
+  success: {
+    main: '#10B981',
+    light: '#34D399',
+    dark: '#047857',
     contrastText: '#FFFFFF',
   },
   error: {
@@ -20,64 +33,102 @@ export const lightPalette: PaletteOptions = {
     dark: '#991B1B',
   },
   warning: {
-    main: '#D97706',
-    light: '#F59E0B',
-    dark: '#92400E',
+    main: '#F59E0B',
+    light: '#FBBF24',
+    dark: '#B45309',
   },
   info: {
-    main: '#0284C7',
-    light: '#0EA5E9',
-    dark: '#075985',
-  },
-  success: {
-    main: '#059669',
-    light: '#10B981',
-    dark: '#047857',
+    main: '#0EA5E9',
+    light: '#38BDF8',
+    dark: '#0369A1',
   },
   grey: {
-    50: '#FAFAFA',
-    100: '#F4F4F5',
-    200: '#E4E4E7',
-    300: '#D4D4D8',
-    400: '#A1A1AA',
-    500: '#71717A',
-    600: '#52525B',
-    700: '#3F3F46',
-    800: '#27272A',
-    900: '#18181B',
+    50: '#F8FAFC',
+    100: '#F1F5F9',
+    200: '#E2E8F0',
+    300: '#CBD5E1',
+    400: '#94A3B8',
+    500: '#64748B',
+    600: '#475569',
+    700: '#334155',
+    800: '#1E293B',
+    900: '#0F172A',
   },
   background: {
-    default: '#FAFAFA',
+    default: '#F8FAFC',
     paper: '#FFFFFF',
   },
   text: {
-    primary: '#18181B',
-    secondary: '#52525B',
-    disabled: '#A1A1AA',
+    primary: '#0F172A',
+    secondary: '#475569',
+    disabled: '#94A3B8',
   },
-  divider: '#E4E4E7',
+  divider: '#E2E8F0',
 };
 
 export const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#2DD4BF',
-    light: '#5EEAD4',
-    dark: '#0F766E',
-    contrastText: '#0B1418',
+    main: '#3B6CE0',
+    light: '#7B9EF5',
+    dark: '#1B4FD8',
+    contrastText: '#FFFFFF',
   },
   secondary: {
-    main: '#60A5FA',
-    light: '#93C5FD',
-    dark: '#1E40AF',
+    main: '#FBBF24',
+    light: '#FCD34D',
+    dark: '#B45309',
+    contrastText: '#0F172A',
+  },
+  success: {
+    main: '#34D399',
+    light: '#6EE7B7',
+    dark: '#10B981',
+    contrastText: '#0F172A',
+  },
+  error: {
+    main: '#F87171',
+    light: '#FCA5A5',
+    dark: '#DC2626',
+  },
+  warning: {
+    main: '#FBBF24',
+    light: '#FCD34D',
+    dark: '#B45309',
+  },
+  info: {
+    main: '#38BDF8',
+    light: '#7DD3FC',
+    dark: '#0369A1',
+  },
+  grey: {
+    50: '#F8FAFC',
+    100: '#F1F5F9',
+    200: '#E2E8F0',
+    300: '#CBD5E1',
+    400: '#94A3B8',
+    500: '#64748B',
+    600: '#475569',
+    700: '#334155',
+    800: '#1E293B',
+    900: '#0F172A',
   },
   background: {
-    default: '#0B1418',
-    paper: '#111B21',
+    default: '#0F172A',
+    paper: '#1E293B',
   },
   text: {
-    primary: '#F4F4F5',
-    secondary: '#A1A1AA',
+    primary: '#F8FAFC',
+    secondary: '#CBD5E1',
+    disabled: '#64748B',
   },
-  divider: '#27272A',
+  divider: '#334155',
 };
+
+// Branded "hero" surface and accent — exposed via the theme so components can
+// reach in via `theme.aqarat.hero` etc.
+export const aqaratBrand = {
+  hero: '#0F172A',
+  surface: '#F8FAFC',
+  accent: '#10B981',
+} as const;

@@ -2,25 +2,28 @@ import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { useEffect, useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { buildTheme, type Direction, type Mode } from './index';
+import { buildTheme, type Direction } from './index';
 import { createEmotionCache } from './emotion-cache';
+import { useUiStore } from '@/store/ui.store';
 
-interface AqaratThemeProviderProps {
-  children: ReactNode;
-  mode?: Mode;
-}
-
-export function AqaratThemeProvider({ children, mode = 'light' }: AqaratThemeProviderProps) {
+/**
+ * Theme + cache provider. Direction follows the active i18n language; mode
+ * follows the persisted uiStore.themeMode. Both update the document root
+ * (dir / data-theme) so global CSS can style accordingly.
+ */
+export function AqaratThemeProvider({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
-  const direction: Direction = i18n.language === 'ar' ? 'rtl' : 'ltr';
+  const themeMode = useUiStore((s) => s.themeMode);
+  const direction: Direction = i18n.language?.startsWith('ar') ? 'rtl' : 'ltr';
 
   const cache = useMemo(() => createEmotionCache(direction), [direction]);
-  const theme = useMemo(() => buildTheme(mode, direction), [mode, direction]);
+  const theme = useMemo(() => buildTheme(themeMode, direction), [themeMode, direction]);
 
   useEffect(() => {
     document.documentElement.dir = direction;
     document.documentElement.lang = i18n.language;
-  }, [direction, i18n.language]);
+    document.documentElement.dataset.theme = themeMode;
+  }, [direction, i18n.language, themeMode]);
 
   return (
     <CacheProvider value={cache}>

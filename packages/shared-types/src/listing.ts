@@ -58,23 +58,55 @@ export interface ListingFeatures {
   isCornerUnit: boolean;
 }
 
+/** Wire shape of a listing, mirroring the backend's ListingResponseDto.
+ *  Feature and address fields are denormalised onto the listing for cheap
+ *  table/card rendering; the original `address` JSONB is also carried as
+ *  `address` for richer detail-page display.
+ */
 export interface Listing {
   id: string;
   referenceCode: string;
   type: ListingType;
   propertyType: PropertyType;
   status: ListingStatus;
+  sourceLocale: string;
   title: string;
   description: string;
   price: number;
   currency: string;
   rentPeriod: RentPeriod | null;
   isNegotiable: boolean;
-  features: ListingFeatures;
-  address: Address;
-  location: GeoPoint;
-  amenityIds: string[];
-  tagIds: string[];
+
+  // ---- Features (flat) ----
+  bedrooms: number | null;
+  bathrooms: number | null;
+  area: number | null;
+  landArea: number | null;
+  parkingSpaces: number | null;
+  floors: number | null;
+  floorNumber: number | null;
+  yearBuilt: number | null;
+  furnishing: ListingFurnishing | null;
+  hasElevator: boolean;
+  hasPool: boolean;
+  hasGarden: boolean;
+  hasGym: boolean;
+  hasMaidRoom: boolean;
+  hasDriverRoom: boolean;
+  hasCentralAC: boolean;
+  hasKitchenAppliances: boolean;
+  hasSecurity: boolean;
+  isCornerUnit: boolean;
+
+  // ---- Address (flat for filtering + nested for display) ----
+  country: string;
+  region: string;
+  city: string;
+  district: string | null;
+  address: Address | Record<string, unknown>;
+  lat: number;
+  lng: number;
+
   ownerId: string;
   agencyId: string | null;
   isFeatured: boolean;
@@ -84,10 +116,13 @@ export interface Listing {
   saveCount: number;
   publishedAt: string | null;
   expiresAt: string | null;
+  rejectionReason: string | null;
   createdAt: string;
   updatedAt: string;
   media: ListingMedia[];
   translations: ListingTranslation[];
+  amenityIds: string[];
+  tagIds: string[];
 }
 
 export interface CreateListingRequest {
