@@ -37,12 +37,12 @@ async function bootstrap(): Promise<void> {
   const corsOrigins = configService.get<string[]>('app.corsOrigins', []);
   const isProduction = configService.get<string>('app.nodeEnv') === 'production';
 
-  // Dev-only S3 fallback. When AWS creds aren't configured, StorageService
-  // hands the browser an upload URL pointing back here at
-  // `/storage/dev-upload/<objectKey>`. The static mount at `/uploads/*`
-  // makes the resulting files reachable for <img src> / <video src>.
-  // Implemented as plain Express middleware (not a Nest controller) so we
-  // don't have to fight global prefix/versioning to keep the URL clean.
+  // Dev-only S3 fallback. The PUT sink mirrors the S3 presigned-PUT endpoint
+  // so the browser can upload binary bodies directly to our backend without
+  // AWS credentials. The matching `/uploads/*` static mount is registered
+  // LATER (after helmet) so CORP + CORS headers are applied to the response
+  // — modern Chromium/Firefox won't render cross-origin <img> from a host
+  // that doesn't send `Cross-Origin-Resource-Policy: cross-origin`.
   if (!isProduction) {
     mkdirSync(DEV_UPLOADS_ROOT, { recursive: true });
     const storageService = app.get(StorageService);
@@ -66,8 +66,6 @@ async function bootstrap(): Promise<void> {
         res.status(400).json({ error: (err as Error).message });
       }
     });
-
-    app.use('/uploads', express.static(DEV_UPLOADS_ROOT, { fallthrough: false }));
   }
 
   app.setGlobalPrefix(apiPrefix, { exclude: ['/'] });
@@ -97,6 +95,24 @@ async function bootstrap(): Promise<void> {
   );
   app.use(compression());
   app.use(cookieParser());
+
+  // Mount the dev uploads directory AFTER helmet + cors so the response gets
+  // `Cross-Origin-Resource-Policy: cross-origin` (helmet) and `Access-Control-
+  // Allow-Origin` (cors) — without these the SPA at :5173 can't render images
+  // hosted on the API origin :3000. The explicit `setHeaders` is a belt-and-
+  // braces guarantee even if middleware order is changed in future.
+  if (!isProduction) {
+    app.use(
+      '/uploads',
+      express.static(DEV_UPLOADS_ROOT, {
+        fallthrough: false,
+        setHeaders: (res) => {
+          res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+          res.setHeader('Access-Control-Allow-Origin', '*');
+        },
+      }),
+    );
+  }
   app.use(
     morgan(isProduction ? 'combined' : 'dev', {
       stream: { write: (msg: string) => logger.log(msg.trim(), 'HTTP') },

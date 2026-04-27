@@ -214,7 +214,9 @@ export function ListingWizardPage() {
     }
   }, [editQuery.data]);
 
-  const update = (patch: Partial<WizardState>) => setState((s) => ({ ...s, ...patch }));
+  const update = (
+    patch: Partial<WizardState> | ((prev: WizardState) => Partial<WizardState>),
+  ) => setState((s) => ({ ...s, ...(typeof patch === 'function' ? patch(s) : patch) }));
 
   // Determine source locale + payload locale-aware values
   const sourceLocale: Locale = state.titleAr ? Locale.AR : Locale.EN;
@@ -417,7 +419,7 @@ function validateStep(step: number, s: WizardState): string | null {
 
 interface StepProps {
   state: WizardState;
-  update: (patch: Partial<WizardState>) => void;
+  update: (patch: Partial<WizardState> | ((prev: WizardState) => Partial<WizardState>)) => void;
 }
 
 function BasicInfoStep({ state, update }: StepProps) {
@@ -582,7 +584,7 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
             type: MediaType.IMAGE,
             url: uploaded.publicUrl,
             objectKey: uploaded.objectKey,
-            position: state.media.length,
+            position: 0, // re-numbered below from the latest media list
           };
           if (listingId) {
             const persisted = await listingsApi.addMedia(listingId, {
@@ -592,7 +594,11 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
             });
             newItem.id = persisted.id;
           }
-          update({ media: [...state.media, newItem] });
+          // Functional update so concurrent uploads in the same drop don't
+          // clobber each other via a stale `state.media` closure.
+          update((s) => ({
+            media: [...s.media, { ...newItem, position: s.media.length }],
+          }));
         } catch (err) {
           setUploadError((err as Error).message);
         } finally {
@@ -723,12 +729,23 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
                   }}
                 >
                   <Box
+                    component="img"
+                    src={m.url}
+                    alt={m.caption ?? 'Listing photo'}
+                    loading="lazy"
+                    onError={(e) => {
+                      // Surface broken-image URLs in the dev console so it's
+                      // obvious when a publicUrl returns 404 / wrong CORS.
+                      // eslint-disable-next-line no-console
+                      console.error('[ListingWizard] image failed to load:', m.url, e);
+                    }}
                     sx={{
+                      position: 'absolute',
+                      inset: 0,
                       width: '100%',
                       height: '100%',
-                      backgroundImage: `url(${m.url})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      objectFit: 'cover',
+                      display: 'block',
                     }}
                   />
                   <Stack direction="row" spacing={0.5} sx={{ position: 'absolute', top: 4, insetInlineEnd: 4 }}>
