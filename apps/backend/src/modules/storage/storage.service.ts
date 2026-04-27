@@ -13,13 +13,19 @@ import {
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { randomUUID } from 'crypto';
-import { extname } from 'path';
+import { mkdir, writeFile } from 'fs/promises';
+import { dirname, extname, join, resolve } from 'path';
 import {
   PresignedUrlRequestDto,
   PresignedUrlResponseDto,
   StorageFileType,
   StorageFolder,
 } from './dto/storage.dto';
+
+/** Where the dev-stub fallback writes uploaded files (apps/backend/uploads).
+ *  Resolved from `process.cwd()`, which is the backend's package root when
+ *  started via `nest start` / `npm start`. */
+export const DEV_UPLOADS_ROOT = resolve(process.cwd(), 'uploads');
 
 interface FileTypePolicy {
   /** Allowed MIME-type prefixes (e.g. "image/") or full types. */
@@ -147,11 +153,25 @@ export class StorageService implements OnModuleInit {
     ].join('/');
 
     if (!this.s3) {
+      // Dev-stub fallback: route uploads to our own backend so they actually
+      // land somewhere the browser can fetch from. The express middleware in
+      // `main.ts` handles `/storage/dev-upload/<key>` (raw binary PUT) and
+      // serves the resulting files statically at `/uploads/...`.
+      //
+      // Both routes are mounted at the server root, OUTSIDE the `/api`
+      // versioned prefix — so we use only the origin of `app.apiUrl`.
+      const apiUrl = this.config.get<string>('app.apiUrl') ?? 'http://localhost:3010';
+      let origin: string;
+      try {
+        origin = new URL(apiUrl).origin;
+      } catch {
+        origin = 'http://localhost:3010';
+      }
       const expiresAt = new Date(Date.now() + this.presignTtlSeconds * 1000).toISOString();
       return {
-        uploadUrl: `https://dev-stub.local/${this.bucket || 'aqarat-stub'}/${objectKey}?X-Stub=1`,
+        uploadUrl: `${origin}/storage/dev-upload/${objectKey}`,
         objectKey,
-        publicUrl: this.publicUrl(objectKey),
+        publicUrl: `${origin}/uploads/${objectKey}`,
         expiresAt,
         maxSizeBytes: policy.maxSizeBytes,
         contentType: dto.mimeType,
@@ -202,6 +222,26 @@ export class StorageService implements OnModuleInit {
       this.logger.error(`Failed to delete ${objectKey}: ${(err as Error).message}`);
       throw new ServiceUnavailableException('Storage delete failed');
     }
+  }
+
+  /**
+   * Dev-stub upload sink. Writes the raw bytes the client PUT to
+   * `/storage/dev-upload/<objectKey>` to disk under `apps/backend/uploads/`.
+   * Path-traversal is rejected via `isSafeObjectKey` before we touch the FS.
+   */
+  async saveDevUpload(objectKey: string, body: Buffer): Promise<void> {
+    if (!isSafeObjectKey(objectKey)) {
+      throw new BadRequestException('Invalid objectKey');
+    }
+    const filePath = join(DEV_UPLOADS_ROOT, objectKey);
+    // Defence in depth: ensure the resolved path is inside the uploads root,
+    // even though `isSafeObjectKey` already blocks `..` and absolute keys.
+    if (!filePath.startsWith(DEV_UPLOADS_ROOT)) {
+      throw new BadRequestException('Invalid objectKey');
+    }
+    await mkdir(dirname(filePath), { recursive: true });
+    await writeFile(filePath, body);
+    this.logger.log(`[storage-stub] PUT ${objectKey} (${body.length} bytes)`);
   }
 
   /** Returns the CDN-prefixed URL for an object key, or a default S3 URL. */

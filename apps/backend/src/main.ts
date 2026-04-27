@@ -3,10 +3,14 @@ import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { ValidationPipe, VersioningType, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import express from 'express';
+import type { Request, Response } from 'express';
+import { mkdirSync } from 'fs';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 import { AppModule } from './app.module';
@@ -15,9 +19,10 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { ActorContextInterceptor } from './common/interceptors/actor-context.interceptor';
 import { RequestContextService } from './common/context/request-context.service';
+import { DEV_UPLOADS_ROOT, StorageService } from './modules/storage/storage.service';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     bufferLogs: true,
     cors: false,
     rawBody: true, // Moyasar webhook needs the raw bytes for HMAC verification
@@ -31,6 +36,39 @@ async function bootstrap(): Promise<void> {
   const apiPrefix = configService.get<string>('app.apiPrefix', 'api');
   const corsOrigins = configService.get<string[]>('app.corsOrigins', []);
   const isProduction = configService.get<string>('app.nodeEnv') === 'production';
+
+  // Dev-only S3 fallback. When AWS creds aren't configured, StorageService
+  // hands the browser an upload URL pointing back here at
+  // `/storage/dev-upload/<objectKey>`. The static mount at `/uploads/*`
+  // makes the resulting files reachable for <img src> / <video src>.
+  // Implemented as plain Express middleware (not a Nest controller) so we
+  // don't have to fight global prefix/versioning to keep the URL clean.
+  if (!isProduction) {
+    mkdirSync(DEV_UPLOADS_ROOT, { recursive: true });
+    const storageService = app.get(StorageService);
+
+    app.use(
+      '/storage/dev-upload',
+      express.raw({ type: () => true, limit: '500mb' }),
+    );
+    const expressApp = app.getHttpAdapter().getInstance() as express.Express;
+    expressApp.put('/storage/dev-upload/*', async (req: Request, res: Response) => {
+      try {
+        const objectKey = (req.params as Record<string, string>)['0'];
+        const body = req.body as Buffer | undefined;
+        if (!body || !Buffer.isBuffer(body) || body.length === 0) {
+          res.status(400).json({ error: 'Empty or non-binary upload body' });
+          return;
+        }
+        await storageService.saveDevUpload(objectKey, body);
+        res.status(200).json({ ok: true, bytes: body.length });
+      } catch (err) {
+        res.status(400).json({ error: (err as Error).message });
+      }
+    });
+
+    app.use('/uploads', express.static(DEV_UPLOADS_ROOT, { fallthrough: false }));
+  }
 
   app.setGlobalPrefix(apiPrefix, { exclude: ['/'] });
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });

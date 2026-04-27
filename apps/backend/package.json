@@ -21,7 +21,8 @@
     "migration:create": "typeorm-ts-node-commonjs migration:create",
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
-    "schema:sync": "npm run typeorm -- schema:sync"
+    "schema:sync": "npm run typeorm -- schema:sync",
+    "seed": "ts-node -r tsconfig-paths/register src/database/seed.ts"
   },
   "dependencies": {
     "@aqarat/shared-types": "*",

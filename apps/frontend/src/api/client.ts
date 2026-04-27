@@ -64,7 +64,21 @@ async function tryRefresh(): Promise<string | null> {
 }
 
 apiClient.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    // The backend's TransformInterceptor wraps every non-binary response as
+    // `{ data, timestamp }`. Unwrap once at the boundary so every callsite
+    // sees the actual payload (paginated shape, AuthResponse, listing, etc.).
+    const body = res.data;
+    if (
+      body &&
+      typeof body === 'object' &&
+      'data' in body &&
+      'timestamp' in body
+    ) {
+      res.data = (body as { data: unknown }).data;
+    }
+    return res;
+  },
   async (error: AxiosError) => {
     const original = error.config as RetriableConfig | undefined;
     const status = error.response?.status;
