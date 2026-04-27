@@ -5,10 +5,10 @@ import {
   Outlet,
   redirect,
 } from '@tanstack/react-router';
-import type { ReactNode } from 'react';
 import { UserRole } from '@aqarat/shared-types';
 
 import { AppShell } from './components/Layout/AppShell';
+import { NotificationToaster } from './components/global/NotificationToaster';
 import { HomePage } from './pages/HomePage';
 import { SearchPage } from './pages/SearchPage';
 import { ListingDetailPage } from './pages/ListingDetailPage';
@@ -27,159 +27,169 @@ import { ListingAnalyticsPage } from './pages/dashboard/ListingAnalyticsPage';
 import { InquiriesPage } from './pages/dashboard/InquiriesPage';
 import { SubscriptionPage } from './pages/dashboard/SubscriptionPage';
 import { SettingsPage } from './pages/dashboard/SettingsPage';
+import { MessagesPage } from './pages/dashboard/MessagesPage';
+import { NotificationsPage } from './pages/dashboard/NotificationsPage';
+import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
+import { ModerationPage } from './pages/admin/ModerationPage';
+import { AdminUsersPage } from './pages/admin/AdminUsersPage';
+import { AuditLogPage } from './pages/admin/AuditLogPage';
 import { useAuthStore } from './store/auth.store';
 
 // ----- Helpers ---------------------------------------------------------
 
 const DASHBOARD_ROLES: UserRole[] = [UserRole.AGENT, UserRole.AGENCY_ADMIN, UserRole.ADMIN];
+const ADMIN_ROLES: UserRole[] = [UserRole.ADMIN];
 
-/** Throws a redirect when the current user is missing or not in the allowed list. */
+const requireAuth = () => {
+  if (!useAuthStore.getState().isAuthenticated) throw redirect({ to: '/auth/login' });
+};
+
 const requireRole = (allowed: UserRole[]) => {
   return () => {
     const { isAuthenticated, user } = useAuthStore.getState();
-    if (!isAuthenticated || !user) {
-      throw redirect({ to: '/auth/login' });
-    }
-    if (!allowed.includes(user.role as UserRole)) {
-      throw redirect({ to: '/' });
-    }
+    if (!isAuthenticated || !user) throw redirect({ to: '/auth/login' });
+    if (!allowed.includes(user.role as UserRole)) throw redirect({ to: '/' });
   };
 };
 
-// ----- Root + layouts --------------------------------------------------
+// ----- Root: bare passthrough + global side-effects -------------------
+//
+// The root route used to render `<AppShell>` directly, which meant /auth
+// and /dashboard pages stacked the marketing Navbar on top of their own
+// chrome. This version keeps the root pure — each section opts into the
+// layout it wants via a parent layout-route below.
+//
+// `NotificationToaster` is mounted here so it shows on every authenticated
+// page (it self-disables when unauthenticated).
 
 const rootRoute = createRootRoute({
+  component: () => (
+    <>
+      <Outlet />
+      <NotificationToaster />
+    </>
+  ),
+  notFoundComponent: NotFoundPage,
+});
+
+// ----- Layout routes --------------------------------------------------
+
+const marketingShellRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  id: 'marketing-shell',
   component: () => (
     <AppShell>
       <Outlet />
     </AppShell>
   ),
-  notFoundComponent: NotFoundPage,
 });
-
-// `BareLayout` skips the marketing navbar/footer (used by /auth + /dashboard
-// — dashboard pages mount DashboardLayout themselves).
-const BareLayout = ({ children }: { children: ReactNode }) => <>{children}</>;
 
 const authShellRoute = createRoute({
   getParentRoute: () => rootRoute,
   id: 'auth-shell',
-  component: () => (
-    <BareLayout>
-      <Outlet />
-    </BareLayout>
-  ),
+  component: () => <Outlet />, // pages bring their own AuthLayout
 });
 
 const dashboardShellRoute = createRoute({
   getParentRoute: () => rootRoute,
   id: 'dashboard-shell',
   beforeLoad: requireRole(DASHBOARD_ROLES),
-  component: () => (
-    <BareLayout>
-      <Outlet />
-    </BareLayout>
-  ),
+  component: () => <Outlet />, // pages bring their own DashboardLayout
+});
+
+const adminShellRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  id: 'admin-shell',
+  beforeLoad: requireRole(ADMIN_ROLES),
+  component: () => <Outlet />, // pages bring their own AdminLayout
 });
 
 // ----- Public marketing routes ----------------------------------------
 
-const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: HomePage });
+const indexRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/', component: HomePage });
 const searchRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => marketingShellRoute,
   path: '/search',
   validateSearch: (search): Record<string, unknown> => search as Record<string, unknown>,
   component: SearchPage,
 });
-const listingDetailRoute = createRoute({
-  getParentRoute: () => rootRoute, path: '/listings/$id', component: ListingDetailPage,
-});
-const agentProfileRoute = createRoute({
-  getParentRoute: () => rootRoute, path: '/agents/$id', component: AgentProfilePage,
-});
-const savedRoute = createRoute({
-  getParentRoute: () => rootRoute, path: '/saved', component: SavedPropertiesPage,
+const listingDetailRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/listings/$id', component: ListingDetailPage });
+const agentProfileRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/agents/$id', component: AgentProfilePage });
+const savedRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/saved', component: SavedPropertiesPage });
+const profileRoute = createRoute({
+  getParentRoute: () => marketingShellRoute,
+  path: '/profile',
+  beforeLoad: requireAuth,
+  component: ProfilePage,
 });
 
-// ----- Auth routes ----------------------------------------------------
+// ----- Auth routes -----------------------------------------------------
 
-const authLoginRoute = createRoute({
-  getParentRoute: () => authShellRoute, path: '/auth/login', component: LoginPage,
-});
-const authRegisterRoute = createRoute({
-  getParentRoute: () => authShellRoute, path: '/auth/register', component: RegisterPage,
-});
-const authVerifyRoute = createRoute({
-  getParentRoute: () => authShellRoute, path: '/auth/verify', component: VerifyOtpPage,
-});
-const authForgotRoute = createRoute({
-  getParentRoute: () => authShellRoute, path: '/auth/forgot-password', component: ForgotPasswordPage,
-});
+const authLoginRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/login', component: LoginPage });
+const authRegisterRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/register', component: RegisterPage });
+const authVerifyRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/verify', component: VerifyOtpPage });
+const authForgotRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/forgot-password', component: ForgotPasswordPage });
 
 // ----- Legacy redirects ------------------------------------------------
 
 const legacyLoginRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/login',
+  getParentRoute: () => rootRoute, path: '/login',
   beforeLoad: () => { throw redirect({ to: '/auth/login' }); },
   component: LoginPage,
 });
 const legacyRegisterRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/register',
+  getParentRoute: () => rootRoute, path: '/register',
   beforeLoad: () => { throw redirect({ to: '/auth/register' }); },
   component: RegisterPage,
 });
 
-// ----- User-side authenticated routes ---------------------------------
+// ----- Dashboard routes ------------------------------------------------
 
-const profileRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/profile',
-  beforeLoad: () => {
-    if (!useAuthStore.getState().isAuthenticated) throw redirect({ to: '/auth/login' });
-  },
-  component: ProfilePage,
+const dashboardHomeRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard', component: DashboardHomePage });
+const dashboardListingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings', component: MyListingsPage });
+const dashboardListingNewRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/new', component: ListingWizardPage });
+const dashboardListingEditRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/edit', component: ListingWizardPage });
+const dashboardListingAnalyticsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/analytics', component: ListingAnalyticsPage });
+const dashboardInquiriesRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/inquiries', component: InquiriesPage });
+const dashboardMessagesRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/messages', component: MessagesPage });
+const dashboardNotificationsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/notifications', component: NotificationsPage });
+const dashboardSubscriptionRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/subscription', component: SubscriptionPage });
+const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', component: SettingsPage });
+
+// `/messages` (top-level) is a friendlier alias for the same page — Navbar
+// links to it from the public chat icon. It mounts under the dashboard
+// shell so the role guard still applies.
+const dashboardMessagesAliasRoute = createRoute({
+  getParentRoute: () => dashboardShellRoute,
+  path: '/messages',
+  component: MessagesPage,
+});
+const userNotificationsAliasRoute = createRoute({
+  getParentRoute: () => dashboardShellRoute,
+  path: '/notifications',
+  component: NotificationsPage,
 });
 
-// ----- Dashboard routes (agent / agency_admin / admin) ----------------
+// ----- Admin routes ---------------------------------------------------
 
-const dashboardHomeRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard', component: DashboardHomePage,
-});
-const dashboardListingsRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings', component: MyListingsPage,
-});
-const dashboardListingNewRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/new', component: ListingWizardPage,
-});
-const dashboardListingEditRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/edit', component: ListingWizardPage,
-});
-const dashboardListingAnalyticsRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/analytics', component: ListingAnalyticsPage,
-});
-const dashboardInquiriesRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/inquiries', component: InquiriesPage,
-});
-const dashboardSubscriptionRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/subscription', component: SubscriptionPage,
-});
-const dashboardSettingsRoute = createRoute({
-  getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', component: SettingsPage,
-});
+const adminHomeRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin', component: AdminDashboardPage });
+const adminModerationRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/moderation', component: ModerationPage });
+const adminUsersRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/users', component: AdminUsersPage });
+const adminAuditRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/audit', component: AuditLogPage });
 
 // ----- Tree -----------------------------------------------------------
 
 const routeTree = rootRoute.addChildren([
-  indexRoute,
-  searchRoute,
-  listingDetailRoute,
-  agentProfileRoute,
-  savedRoute,
-  profileRoute,
   legacyLoginRoute,
   legacyRegisterRoute,
+  marketingShellRoute.addChildren([
+    indexRoute,
+    searchRoute,
+    listingDetailRoute,
+    agentProfileRoute,
+    savedRoute,
+    profileRoute,
+  ]),
   authShellRoute.addChildren([
     authLoginRoute,
     authRegisterRoute,
@@ -193,8 +203,18 @@ const routeTree = rootRoute.addChildren([
     dashboardListingEditRoute,
     dashboardListingAnalyticsRoute,
     dashboardInquiriesRoute,
+    dashboardMessagesRoute,
+    dashboardNotificationsRoute,
     dashboardSubscriptionRoute,
     dashboardSettingsRoute,
+    dashboardMessagesAliasRoute,
+    userNotificationsAliasRoute,
+  ]),
+  adminShellRoute.addChildren([
+    adminHomeRoute,
+    adminModerationRoute,
+    adminUsersRoute,
+    adminAuditRoute,
   ]),
 ]);
 

@@ -12,20 +12,20 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from '@tanstack/react-router';
+import OverviewIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import GavelIcon from '@mui/icons-material/Gavel';
 import PeopleIcon from '@mui/icons-material/PeopleAltOutlined';
 import HistoryIcon from '@mui/icons-material/History';
-import AssessmentIcon from '@mui/icons-material/AssessmentOutlined';
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
 
 const SIDEBAR_WIDTH = 248;
 
 const ITEMS = [
-  { to: '/admin', i18nKey: 'admin.moderationQueue', icon: <GavelIcon /> },
+  { to: '/admin', i18nKey: 'dashboard.overview', icon: <OverviewIcon /> },
+  { to: '/admin/moderation', i18nKey: 'admin.moderationQueue', icon: <GavelIcon /> },
   { to: '/admin/users', i18nKey: 'admin.users', icon: <PeopleIcon /> },
   { to: '/admin/audit', i18nKey: 'admin.audit', icon: <HistoryIcon /> },
-  { to: '/admin/reports', i18nKey: 'admin.reports', icon: <AssessmentIcon /> },
 ];
 
 export function AdminLayout({ children }: { children: ReactNode }) {
