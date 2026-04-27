@@ -176,7 +176,10 @@ This repository is being built incrementally. Current state:
 - [x] Backend: **Notifications** module (in-app, with channel/type enum); **Inquiries** module with status FSM (new → contacted → qualified → unqualified → closed) + side-effects fan-out: SES email to agent, SES confirmation to buyer, persistent in-app notification, Kafka `inquiry.created` event on `aqarat.listing.events`; **Messaging** module — Conversation + Message entities, REST endpoints, Socket.IO gateway on `/messaging` with JWT-handshake middleware, Redis adapter for horizontal scaling, per-conversation unread counter via Redis, presence/typing/read receipts; smoke-tested green
 - [x] Shared infra: `RedisModule` (pub + sub + default ioredis clients), `EmailModule` (SES wrapper, no-op fallback when AWS creds absent), `KafkaModule` (KafkaJS producer with lazy connect, errors logged not thrown)
 - [x] AddInquiriesAndMessaging migration applied (incl. GIN indexes on `participant_ids` and `read_by`)
-- [ ] Backend: Analytics, Payments, Moderation, Admin
+- [x] Backend: **Audit** module (entity + diff-capturing TypeORM subscriber on `listings` + admin filtering + CSV streaming export); **Subscriptions** module (Plan reference table seeded with Free/Starter/Pro/Enterprise + Subscription FSM + per-plan listing-quota guard wired into `submitForReview`); **Payments** module (Moyasar HTTP client with dev-stub mode + HMAC webhook verification + payment FSM + side-effects: featured listing activation / subscription upgrade / notifications + on-the-fly PDF invoice via pdfkit); **Analytics** module (per-listing daily metrics with UPSERT + jsonb merge for sources/devices, KafkaJS consumer subscribed to `aqarat.listing.events` + `aqarat.analytics.events`, Redis-cached read endpoints (5-min TTL), agent-dashboard summary, RBAC); **AsyncLocalStorage** request-context propagated to the audit subscriber; smoke-tested green
+- [x] Wired `listing.viewed` (Listings module) + `search.performed` (Search module) Kafka publishers feeding the analytics consumer
+- [x] AddAuditPaymentsAnalytics migration applied (audit_logs, plans, subscriptions, payments, listing_daily_metrics)
+- [ ] Backend: Moderation queue, Admin operator endpoints
 - [ ] Frontend: Home, Search, Listing detail, Agent dashboard, Admin panel
 
 ## License

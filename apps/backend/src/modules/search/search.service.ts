@@ -1,4 +1,5 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import {
@@ -9,15 +10,20 @@ import {
 
 import { ListingEntity } from '../listings/entities/listing.entity';
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
+import { KafkaService } from '../../common/kafka/kafka.service';
 import { SearchListingsDto } from './dto/search-listings.dto';
 
 const EARTH_RADIUS_KM = 6371;
 
 @Injectable()
 export class SearchService {
+  private readonly logger = new Logger(SearchService.name);
+
   constructor(
     @InjectRepository(ListingEntity)
     private readonly listings: Repository<ListingEntity>,
+    private readonly kafkaService: KafkaService,
+    private readonly config: ConfigService,
   ) {}
 
   async searchListings(
@@ -40,7 +46,42 @@ export class SearchService {
     qb.skip((page - 1) * limit).take(limit);
 
     const [data, total] = await qb.getManyAndCount();
+
+    // Emit a search.performed event for analytics. Fire-and-forget so the
+    // request response time never depends on Kafka.
+    void this.publishSearchEvent(dto, data.map((d) => d.id), total).catch((err: Error) =>
+      this.logger.warn(`failed to publish search.performed: ${err.message}`),
+    );
+
     return new PaginatedResultDto(data, total, page, limit);
+  }
+
+  private async publishSearchEvent(
+    dto: SearchListingsDto,
+    matchedListingIds: string[],
+    total: number,
+  ): Promise<void> {
+    const topic =
+      this.config.get<string>('kafka.topics.analyticsEvents') ?? 'aqarat.analytics.events';
+    await this.kafkaService.publish({
+      topic,
+      key: dto.q ?? dto.city ?? 'global',
+      value: {
+        eventType: 'search.performed',
+        eventId: `search_${Date.now()}`,
+        occurredAt: new Date().toISOString(),
+        query: dto.q ?? null,
+        type: dto.type ?? null,
+        city: dto.city ?? null,
+        district: dto.district ?? null,
+        propertyTypes: dto.propertyTypes ?? null,
+        minPrice: dto.minPrice ?? null,
+        maxPrice: dto.maxPrice ?? null,
+        totalMatches: total,
+        matchedListingIds: matchedListingIds.slice(0, 50),
+      },
+      headers: { 'x-event-type': 'search.performed' },
+    });
   }
 
   // ---------------------------------------------------------------------------

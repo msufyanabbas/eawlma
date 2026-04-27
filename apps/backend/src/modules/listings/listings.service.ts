@@ -1,10 +1,13 @@
 import {
   BadRequestException,
   ForbiddenException,
+  forwardRef,
+  Inject,
   Injectable,
   Logger,
   NotFoundException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, In, Repository } from 'typeorm';
 import {
@@ -18,6 +21,8 @@ import {
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
+import { KafkaService } from '../../common/kafka/kafka.service';
+import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 
 import { ListingEntity } from './entities/listing.entity';
 import { ListingMediaEntity } from './entities/listing-media.entity';
@@ -60,6 +65,10 @@ export class ListingsService {
     @InjectRepository(TagEntity)
     private readonly tags: Repository<TagEntity>,
     private readonly dataSource: DataSource,
+    private readonly kafkaService: KafkaService,
+    private readonly config: ConfigService,
+    @Inject(forwardRef(() => SubscriptionsService))
+    private readonly subscriptionsService: SubscriptionsService,
   ) {}
 
   // ---------------------------------------------------------------------------
@@ -183,6 +192,38 @@ export class ListingsService {
     await this.listings.increment({ id }, 'viewCount', 1);
   }
 
+  /**
+   * Records a listing view: bumps the on-row counter AND publishes a
+   * `listing.viewed` Kafka event so downstream analytics consumers can fold
+   * it into per-day aggregates.
+   */
+  async recordView(
+    id: string,
+    ctx: { source?: string | null; device?: string | null; viewerId?: string | null },
+  ): Promise<void> {
+    await this.incrementViewCount(id);
+    const topic =
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+    void this.kafkaService
+      .publish({
+        topic,
+        key: id,
+        value: {
+          eventType: 'listing.viewed',
+          eventId: `view_${id}_${Date.now()}`,
+          occurredAt: new Date().toISOString(),
+          listingId: id,
+          viewerId: ctx.viewerId ?? null,
+          source: ctx.source ?? null,
+          device: ctx.device ?? null,
+        },
+        headers: { 'x-event-type': 'listing.viewed' },
+      })
+      .catch((err: Error) =>
+        this.logger.warn(`failed to publish listing.viewed: ${err.message}`),
+      );
+  }
+
   // ---------------------------------------------------------------------------
   // Update
   // ---------------------------------------------------------------------------
@@ -267,6 +308,9 @@ export class ListingsService {
     if ((listing.media ?? []).length === 0) {
       throw new BadRequestException('At least one media item is required before submitting');
     }
+    // Enforce the active subscription's listing quota for the owner. Throws
+    // 403 with an upgrade prompt when the agent is at their plan limit.
+    await this.subscriptionsService.assertCanPublishListing(listing.ownerId);
     listing.status = ListingStatus.PENDING_REVIEW;
     await this.listings.save(listing);
     return this.findByIdOrFail(id);

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ListingEntity } from './entities/listing.entity';
@@ -9,6 +9,7 @@ import { TagEntity } from './entities/tag.entity';
 
 import { ListingsService } from './listings.service';
 import { ListingsController } from './listings.controller';
+import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ListingsController } from './listings.controller';
       AmenityEntity,
       TagEntity,
     ]),
+    forwardRef(() => SubscriptionsModule),
   ],
   providers: [ListingsService],
   controllers: [ListingsController],

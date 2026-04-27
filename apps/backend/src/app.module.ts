@@ -21,6 +21,7 @@ import { HealthController } from './common/health/health.controller';
 import { RedisModule } from './common/redis/redis.module';
 import { EmailModule } from './common/email/email.module';
 import { KafkaModule } from './common/kafka/kafka.module';
+import { RequestContextModule } from './common/context/request-context.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { ListingsModule } from './modules/listings/listings.module';
@@ -28,6 +29,10 @@ import { SearchModule } from './modules/search/search.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { InquiriesModule } from './modules/inquiries/inquiries.module';
 import { MessagingModule } from './modules/messaging/messaging.module';
+import { AuditModule } from './modules/audit/audit.module';
+import { SubscriptionsModule } from './modules/subscriptions/subscriptions.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
 
 @Module({
   imports: [
@@ -67,6 +72,7 @@ import { MessagingModule } from './modules/messaging/messaging.module';
     RedisModule,
     EmailModule,
     KafkaModule,
+    RequestContextModule,
     AuthModule,
     UsersModule,
     ListingsModule,
@@ -74,6 +80,10 @@ import { MessagingModule } from './modules/messaging/messaging.module';
     NotificationsModule,
     InquiriesModule,
     MessagingModule,
+    AuditModule,
+    SubscriptionsModule,
+    PaymentsModule,
+    AnalyticsModule,
   ],
   controllers: [HealthController],
   providers: [

@@ -44,6 +44,32 @@ import {
   ListingTranslationResponseDto,
 } from './dto/listing-response.dto';
 
+function classifySource(referer: string | null): string {
+  if (!referer) return 'direct';
+  try {
+    const host = new URL(referer).hostname.toLowerCase();
+    if (host.includes('google')) return 'google';
+    if (host.includes('bing')) return 'bing';
+    if (host.includes('facebook')) return 'facebook';
+    if (host.includes('twitter') || host === 't.co' || host.includes('x.com')) return 'twitter';
+    if (host.includes('instagram')) return 'instagram';
+    if (host.includes('snapchat')) return 'snapchat';
+    if (host.includes('tiktok')) return 'tiktok';
+    return host;
+  } catch {
+    return 'direct';
+  }
+}
+
+function classifyDevice(ua: string): string {
+  const lower = ua.toLowerCase();
+  if (!lower) return 'unknown';
+  if (/bot|crawl|spider|slurp/.test(lower)) return 'bot';
+  if (/ipad|tablet/.test(lower)) return 'tablet';
+  if (/iphone|android|mobile/.test(lower)) return 'mobile';
+  return 'desktop';
+}
+
 @ApiTags('listings')
 @Controller({ path: 'listings', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -109,12 +135,20 @@ export class ListingsController {
     @Req() req: Request,
   ): Promise<ListingResponseDto> {
     const listing = await this.listingsService.findPublicById(id, viewer);
-    // Increment view counter only for public viewers (not the owner browsing their own page)
+    // Record view counter + analytics event, but only for public viewers
+    // (not the owner browsing their own page). Fire-and-forget — view counts
+    // aren't part of the read transaction.
     if (!viewer || viewer.id !== listing.ownerId) {
-      // fire-and-forget — counter accuracy isn't transactional with the read
-      void this.listingsService.incrementViewCount(id).catch(() => undefined);
+      const ua = (req.headers['user-agent'] as string | undefined) ?? '';
+      const referer = (req.headers['referer'] as string | undefined) ?? null;
+      void this.listingsService
+        .recordView(id, {
+          source: classifySource(referer),
+          device: classifyDevice(ua),
+          viewerId: viewer?.id ?? null,
+        })
+        .catch(() => undefined);
     }
-    void req; // reserved for future referrer/IP analytics
     return ListingResponseDto.fromEntity(listing);
   }
 

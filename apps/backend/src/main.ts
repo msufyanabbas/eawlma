@@ -13,11 +13,14 @@ import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
+import { ActorContextInterceptor } from './common/interceptors/actor-context.interceptor';
+import { RequestContextService } from './common/context/request-context.service';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
     cors: false,
+    rawBody: true, // Moyasar webhook needs the raw bytes for HMAC verification
   });
 
   const configService = app.get(ConfigService);
@@ -64,7 +67,12 @@ async function bootstrap(): Promise<void> {
 
   const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
-  app.useGlobalInterceptors(new LoggingInterceptor(), new TransformInterceptor());
+  const contextService = app.get(RequestContextService);
+  app.useGlobalInterceptors(
+    new LoggingInterceptor(),
+    new ActorContextInterceptor(contextService),
+    new TransformInterceptor(),
+  );
 
   app.enableShutdownHooks();
 
