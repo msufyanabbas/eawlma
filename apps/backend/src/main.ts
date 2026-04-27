@@ -35,8 +35,18 @@ async function bootstrap(): Promise<void> {
   app.setGlobalPrefix(apiPrefix, { exclude: ['/'] });
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
 
+  // CORS — in development we mirror back any Origin so browsers loading the
+  // SPA from `localhost`, `127.0.0.1`, or any LAN IP (e.g. testing on a phone
+  // at `http://192.168.1.125:5173`) all work without curating an allow-list.
+  // In production we honour the explicit `CORS_ORIGINS` env list and also
+  // accept any 192.168.x.x:5173 origin so on-prem demos work out-of-the-box.
+  const lanRegex = /^http:\/\/192\.168\.\d{1,3}\.\d{1,3}:5173$/;
   app.enableCors({
-    origin: corsOrigins.length > 0 ? corsOrigins : true,
+    origin: isProduction
+      ? corsOrigins.length > 0
+        ? [...corsOrigins, lanRegex]
+        : [lanRegex]
+      : true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   });
