@@ -83,7 +83,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     e.preventDefault();
     const q = searchValue.trim();
     if (!q) return;
-    void navigate({ to: '/search' as never, search: { q } as never });
+    void navigate({ to: '/search', search: { q } as never });
   };
 
   const isAgent =

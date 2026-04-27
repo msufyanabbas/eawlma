@@ -35,6 +35,10 @@ export default defineConfig(({ mode }) => {
     build: {
       target: 'es2022',
       sourcemap: mode !== 'production',
+      // Maps + Framer Motion together push the main chunk past 500 KiB. Splitting
+      // them into their own chunks keeps the initial bundle lean and lets the
+      // browser cache them independently across page navigations.
+      chunkSizeWarningLimit: 800,
       rollupOptions: {
         output: {
           manualChunks: {
@@ -42,6 +46,10 @@ export default defineConfig(({ mode }) => {
             'mui-vendor': ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
             'router-vendor': ['@tanstack/react-router'],
             'query-vendor': ['@tanstack/react-query', 'axios'],
+            'maps-vendor': ['@react-google-maps/api'],
+            'motion-vendor': ['framer-motion'],
+            'forms-vendor': ['react-hook-form', '@hookform/resolvers', 'zod'],
+            'i18n-vendor': ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
           },
         },
       },
