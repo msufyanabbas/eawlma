@@ -40,15 +40,13 @@ interface NavItem {
 }
 
 const ITEMS: NavItem[] = [
-  { to: '/agent', i18nKey: 'dashboard.overview', icon: <OverviewIcon /> },
-  { to: '/agent/listings', i18nKey: 'dashboard.listings', icon: <ListingsIcon /> },
-  { to: '/agent/listings/new', i18nKey: 'dashboard.newListing', icon: <AddIcon /> },
-  { to: '/agent/inquiries', i18nKey: 'dashboard.inquiries', icon: <InquiryIcon /> },
+  { to: '/dashboard', i18nKey: 'dashboard.overview', icon: <OverviewIcon /> },
+  { to: '/dashboard/listings', i18nKey: 'dashboard.listings', icon: <ListingsIcon /> },
+  { to: '/dashboard/listings/new', i18nKey: 'dashboard.newListing', icon: <AddIcon /> },
+  { to: '/dashboard/inquiries', i18nKey: 'dashboard.inquiries', icon: <InquiryIcon /> },
   { to: '/messages', i18nKey: 'dashboard.messages', icon: <MessagesIcon /> },
-  { to: '/agent/analytics', i18nKey: 'dashboard.analytics', icon: <AnalyticsIcon /> },
-  { to: '/agent/subscription', i18nKey: 'dashboard.subscription', icon: <SubscriptionIcon /> },
-  { to: '/agent/payments', i18nKey: 'dashboard.payments', icon: <PaymentsIcon /> },
-  { to: '/agent/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
+  { to: '/dashboard/subscription', i18nKey: 'dashboard.subscription', icon: <SubscriptionIcon /> },
+  { to: '/dashboard/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
 ];
 
 export function DashboardLayout({ children }: { children: ReactNode }) {
@@ -106,7 +104,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
           <List sx={{ p: 1 }}>
             {ITEMS.map((item) => {
               const active = location.pathname === item.to ||
-                (item.to !== '/agent' && location.pathname.startsWith(item.to));
+                (item.to !== '/dashboard' && location.pathname.startsWith(item.to));
               return (
                 <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
                   <ListItemButton

@@ -46,7 +46,10 @@ export interface Subscription {
   id: string;
   userId: string;
   agencyId: string | null;
-  plan: SubscriptionPlan;
+  /** FK to the catalog row in `plans` */
+  planId: string;
+  /** Stable plan identifier (free/starter/pro/enterprise) — denormalised from the plan row. */
+  planKey: SubscriptionPlan;
   status: SubscriptionStatus;
   currentPeriodStart: string;
   currentPeriodEnd: string;
@@ -55,4 +58,5 @@ export interface Subscription {
   listingQuota: number;
   featuredQuota: number;
   createdAt: string;
+  updatedAt: string;
 }

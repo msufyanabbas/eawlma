@@ -228,7 +228,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
                   </MenuItem>
                   {isAgent && (
                     <MenuItem
-                      onClick={() => { setUserAnchor(null); void navigate({ to: '/agent' as never }); }}
+                      onClick={() => { setUserAnchor(null); void navigate({ to: '/dashboard' as never }); }}
                     >
                       <DashboardIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('nav.dashboard')}
                     </MenuItem>

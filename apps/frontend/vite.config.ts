@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => {
             'query-vendor': ['@tanstack/react-query', 'axios'],
             'maps-vendor': ['@react-google-maps/api'],
             'motion-vendor': ['framer-motion'],
+            'charts-vendor': ['recharts'],
             'forms-vendor': ['react-hook-form', '@hookform/resolvers', 'zod'],
             'i18n-vendor': ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
           },
