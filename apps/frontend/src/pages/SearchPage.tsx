@@ -1,9 +1,14 @@
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Button,
+  Checkbox,
   Chip,
   Container,
   Drawer,
+  FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -14,19 +19,21 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Typography,
+  alpha,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListViewIcon from '@mui/icons-material/ViewList';
 import MapViewIcon from '@mui/icons-material/Map';
-import FilterIcon from '@mui/icons-material/FilterList';
+import FilterIcon from '@mui/icons-material/Tune';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import {
@@ -57,8 +64,11 @@ interface SearchPageSearch {
   minPrice?: number;
   maxPrice?: number;
   minBedrooms?: number;
+  minBathrooms?: number;
   minArea?: number;
+  maxArea?: number;
   propertyTypes?: string;
+  amenities?: string;
   isFeatured?: boolean;
   sortField?: string;
   sortOrder?: 'ASC' | 'DESC';
@@ -67,6 +77,16 @@ interface SearchPageSearch {
 
 const PAGE_SIZE = 12;
 const PRICE_BOUNDS: [number, number] = [0, 5_000_000];
+const AREA_BOUNDS: [number, number] = [0, 2000];
+
+const AMENITY_OPTIONS = [
+  { key: 'hasPool', labelKey: 'amenityPool', defaultLabel: 'Pool' },
+  { key: 'hasGym', labelKey: 'amenityGym', defaultLabel: 'Gym' },
+  { key: 'hasGarden', labelKey: 'amenityGarden', defaultLabel: 'Garden' },
+  { key: 'hasElevator', labelKey: 'amenityElevator', defaultLabel: 'Elevator' },
+  { key: 'hasSecurity', labelKey: 'amenitySecurity', defaultLabel: 'Security' },
+  { key: 'hasCentralAC', labelKey: 'amenityAc', defaultLabel: 'Central AC' },
+] as const;
 
 export function SearchPage() {
   const { t, i18n } = useTranslation();
@@ -86,13 +106,22 @@ export function SearchPage() {
     Number(search.minPrice ?? PRICE_BOUNDS[0]),
     Number(search.maxPrice ?? PRICE_BOUNDS[1]),
   ]);
+  const [areaRange, setAreaRange] = useState<[number, number]>([
+    Number(search.minArea ?? AREA_BOUNDS[0]),
+    Number(search.maxArea ?? AREA_BOUNDS[1]),
+  ]);
   const [minBedrooms, setMinBedrooms] = useState<string>(
     search.minBedrooms ? String(search.minBedrooms) : '',
   );
-  const [minArea, setMinArea] = useState<string>(search.minArea ? String(search.minArea) : '');
+  const [minBathrooms, setMinBathrooms] = useState<string>(
+    search.minBathrooms ? String(search.minBathrooms) : '',
+  );
   const [verifiedOnly, setVerifiedOnly] = useState(Boolean(search.isFeatured));
   const [propertyTypes, setPropertyTypes] = useState<PropertyType[]>(
     search.propertyTypes ? (search.propertyTypes.split(',') as PropertyType[]) : [],
+  );
+  const [amenities, setAmenities] = useState<string[]>(
+    search.amenities ? search.amenities.split(',') : [],
   );
   const [sort, setSort] = useState<string>(search.sortField ?? 'createdAt');
   const [view, setView] = useState<ViewMode>((search.view as ViewMode) ?? 'grid');
@@ -107,17 +136,23 @@ export function SearchPage() {
       district: district || undefined,
       minPrice: priceRange[0] > PRICE_BOUNDS[0] ? priceRange[0] : undefined,
       maxPrice: priceRange[1] < PRICE_BOUNDS[1] ? priceRange[1] : undefined,
+      minArea: areaRange[0] > AREA_BOUNDS[0] ? areaRange[0] : undefined,
+      maxArea: areaRange[1] < AREA_BOUNDS[1] ? areaRange[1] : undefined,
       minBedrooms: minBedrooms ? Number(minBedrooms) : undefined,
-      minArea: minArea ? Number(minArea) : undefined,
+      minBathrooms: minBathrooms ? Number(minBathrooms) : undefined,
       isFeatured: verifiedOnly ? 'true' : undefined,
       propertyTypes: propertyTypes.length > 0 ? propertyTypes.join(',') : undefined,
+      amenities: amenities.length > 0 ? amenities.join(',') : undefined,
       sortField: sort !== 'createdAt' ? sort : undefined,
       view: view !== 'grid' ? view : undefined,
     };
     Object.keys(next).forEach((k) => next[k] === undefined && delete next[k]);
     navigate({ to: '/search' as never, search: next as never, replace: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q, type, city, district, priceRange, minBedrooms, minArea, verifiedOnly, propertyTypes, sort, view]);
+  }, [
+    q, type, city, district, priceRange, areaRange,
+    minBedrooms, minBathrooms, verifiedOnly, propertyTypes, amenities, sort, view,
+  ]);
 
   // ----- query --------------------------------------------------------
   const buildParams = (page: number): FlatSearchParams => ({
@@ -128,7 +163,7 @@ export function SearchPage() {
     minPrice: priceRange[0] > PRICE_BOUNDS[0] ? priceRange[0] : undefined,
     maxPrice: priceRange[1] < PRICE_BOUNDS[1] ? priceRange[1] : undefined,
     minBedrooms: minBedrooms ? Number(minBedrooms) : undefined,
-    minArea: minArea ? Number(minArea) : undefined,
+    minArea: areaRange[0] > AREA_BOUNDS[0] ? areaRange[0] : undefined,
     propertyTypes: propertyTypes.length > 0 ? propertyTypes : undefined,
     isFeatured: verifiedOnly || undefined,
     sortField: sort,
@@ -137,8 +172,11 @@ export function SearchPage() {
   });
 
   const queryKey = useMemo(
-    () => ['search', { q, type, city, district, priceRange, minBedrooms, minArea, propertyTypes, verifiedOnly, sort }],
-    [q, type, city, district, priceRange, minBedrooms, minArea, propertyTypes, verifiedOnly, sort],
+    () => [
+      'search',
+      { q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort },
+    ],
+    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort],
   );
 
   const infiniteQuery = useInfiniteQuery({
@@ -168,33 +206,51 @@ export function SearchPage() {
     observer.observe(node);
   };
 
-  // ----- active filter chips ------------------------------------------
-  const activeChips = buildActiveChips({ q, type, city, district, priceRange, minBedrooms, minArea, propertyTypes, verifiedOnly }, t);
   const clearFilters = () => {
     setQ(''); setType(''); setCity(''); setDistrict('');
-    setPriceRange(PRICE_BOUNDS); setMinBedrooms(''); setMinArea('');
-    setPropertyTypes([]); setVerifiedOnly(false);
+    setPriceRange(PRICE_BOUNDS); setAreaRange(AREA_BOUNDS);
+    setMinBedrooms(''); setMinBathrooms('');
+    setPropertyTypes([]); setAmenities([]); setVerifiedOnly(false);
+  };
+
+  const activeChips = buildActiveChips({
+    q, type, city, district, priceRange, areaRange,
+    minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly,
+  });
+
+  // --- shared filter panel props ---
+  const filterPanelProps = {
+    type, setType,
+    propertyTypes, setPropertyTypes,
+    priceRange, setPriceRange,
+    areaRange, setAreaRange,
+    minBedrooms, setMinBedrooms,
+    minBathrooms, setMinBathrooms,
+    amenities, setAmenities,
+    verifiedOnly, setVerifiedOnly,
+    city, setCity,
+    district, setDistrict,
   };
 
   return (
-    <Box>
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
       <Helmet>
         <title>{t('nav.search')} — {t('app.name')}</title>
       </Helmet>
 
-      {/* ---------------- Sticky filter bar ---------------- */}
+      {/* ============ Top search bar (slim) ============ */}
       <Box
         sx={{
-          position: 'sticky',
-          top: 64,
-          zIndex: 4,
           bgcolor: 'background.paper',
           borderBottom: 1,
           borderColor: 'divider',
-          py: 2,
+          py: 1.75,
+          position: 'sticky',
+          top: 64,
+          zIndex: 10,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Stack direction="row" spacing={1.5} alignItems="center">
             <TextField
               size="small"
@@ -202,113 +258,188 @@ export function SearchPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               InputProps={{
-                startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment>,
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon fontSize="small" />
+                  </InputAdornment>
+                ),
               }}
-              sx={{ flex: 1, maxWidth: 380 }}
+              sx={{ flex: 1, maxWidth: 480 }}
             />
             {!isDesktop && (
-              <Button startIcon={<FilterIcon />} onClick={() => setFilterDrawerOpen(true)} variant="outlined">
+              <Button
+                startIcon={<FilterIcon />}
+                onClick={() => setFilterDrawerOpen(true)}
+                variant="outlined"
+                size="small"
+              >
                 {t('search.filters')}
+                {activeChips.length > 0 && (
+                  <Box
+                    sx={{
+                      ml: 1, minWidth: 20, height: 20, px: 0.75,
+                      borderRadius: 999, bgcolor: 'primary.main',
+                      color: 'common.white', fontSize: 11, fontWeight: 700,
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    }}
+                  >
+                    {activeChips.length}
+                  </Box>
+                )}
               </Button>
             )}
-            <Box sx={{ flex: 1 }} />
-            <TextField
-              select
-              size="small"
-              label={t('search.sortBy')}
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-              sx={{ minWidth: 160 }}
-            >
-              <MenuItem value="createdAt">{t('search.newest')}</MenuItem>
-              <MenuItem value="price">{t('search.priceAsc')}</MenuItem>
-              <MenuItem value="popularity">{t('search.popular')}</MenuItem>
-              <MenuItem value="area">{t('search.areaDesc')}</MenuItem>
-              <MenuItem value="relevance">{t('search.popular')}</MenuItem>
-            </TextField>
-            <ToggleButtonGroup
-              value={view}
-              exclusive
-              size="small"
-              onChange={(_, v) => v && setView(v as ViewMode)}
-              aria-label="view mode"
-            >
-              <ToggleButton value="grid"><GridViewIcon fontSize="small" /></ToggleButton>
-              <ToggleButton value="list"><ListViewIcon fontSize="small" /></ToggleButton>
-              <ToggleButton value="map"><MapViewIcon fontSize="small" /></ToggleButton>
-            </ToggleButtonGroup>
           </Stack>
-
-          {/* Active filter chips */}
-          {activeChips.length > 0 && (
-            <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', rowGap: 1 }}>
-              {activeChips.map((c) => (
-                <Chip
-                  key={c.key}
-                  label={c.label}
-                  onDelete={c.onClear}
-                  size="small"
-                  color="primary"
-                  variant="filled"
-                />
-              ))}
-              <Button size="small" onClick={clearFilters} sx={{ ml: 1 }}>
-                {t('search.clearFilters')}
-              </Button>
-            </Stack>
-          )}
         </Container>
       </Box>
 
-      {/* ---------------- Body ---------------- */}
-      <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
-        <Grid container spacing={4}>
-          {/* Sidebar filters (desktop) */}
+      {/* ============ Body: sidebar + results ============ */}
+      <Container maxWidth="xl" sx={{ py: { xs: 2, md: 3 } }}>
+        <Grid container spacing={3}>
+          {/* ---- LEFT SIDEBAR (desktop only) ---- */}
           {isDesktop && (
-            <Grid item xs={12} md={3}>
-              <FilterPanel
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-                propertyTypes={propertyTypes}
-                setPropertyTypes={setPropertyTypes}
-                city={city}
-                setCity={setCity}
-                district={district}
-                setDistrict={setDistrict}
-                minBedrooms={minBedrooms}
-                setMinBedrooms={setMinBedrooms}
-                minArea={minArea}
-                setMinArea={setMinArea}
-                verifiedOnly={verifiedOnly}
-                setVerifiedOnly={setVerifiedOnly}
-                type={type}
-                setType={setType}
-              />
+            <Grid item md={3}>
+              <Box
+                sx={{
+                  position: 'sticky',
+                  top: 132,
+                  bgcolor: 'background.paper',
+                  border: 1,
+                  borderColor: 'divider',
+                  borderRadius: 2,
+                  overflow: 'hidden',
+                  maxHeight: 'calc(100vh - 152px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  sx={{
+                    px: 2, py: 1.5,
+                    borderBottom: 1, borderColor: 'divider',
+                  }}
+                >
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <FilterIcon fontSize="small" sx={{ color: 'primary.main' }} />
+                    <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
+                      {t('search.filters')}
+                    </Typography>
+                  </Stack>
+                  {activeChips.length > 0 && (
+                    <Button size="small" onClick={clearFilters} sx={{ fontSize: 12 }}>
+                      {t('search.clearFilters')}
+                    </Button>
+                  )}
+                </Stack>
+                <Box sx={{ overflowY: 'auto', flex: 1 }}>
+                  <FilterPanel {...filterPanelProps} />
+                </Box>
+              </Box>
             </Grid>
           )}
 
-          {/* Results */}
-          <Grid item xs={12} md={isDesktop ? 9 : 12}>
-            <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: 2 }}>
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                {total > 0 ? `${total.toLocaleString(i18n.language)} ${t('search.results')}` : t('common.search')}
-              </Typography>
-            </Stack>
+          {/* ---- MAIN CONTENT ---- */}
+          <Grid item xs={12} md={9}>
+            {/* Top toolbar */}
+            <Box
+              sx={{
+                bgcolor: 'background.paper',
+                border: 1,
+                borderColor: 'divider',
+                borderRadius: 2,
+                p: { xs: 1.25, md: 1.5 },
+                mb: 2,
+              }}
+            >
+              <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={1.5}
+                alignItems={{ xs: 'stretch', sm: 'center' }}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 700, color: 'text.primary', flexShrink: 0 }}>
+                  {total > 0
+                    ? `${total.toLocaleString(i18n.language)} ${t('search.results')}`
+                    : t('common.search')}
+                </Typography>
+                <Box sx={{ flex: 1 }} />
+                <TextField
+                  select
+                  size="small"
+                  label={t('search.sortBy')}
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                  sx={{ minWidth: 170 }}
+                >
+                  <MenuItem value="createdAt">{t('search.newest')}</MenuItem>
+                  <MenuItem value="price">{t('search.priceAsc')}</MenuItem>
+                  <MenuItem value="popularity">{t('search.popular')}</MenuItem>
+                  <MenuItem value="area">{t('search.areaDesc')}</MenuItem>
+                </TextField>
+                <ToggleButtonGroup
+                  value={view}
+                  exclusive
+                  size="small"
+                  onChange={(_, v) => v && setView(v as ViewMode)}
+                  aria-label="view mode"
+                  sx={{
+                    '& .MuiToggleButton-root': {
+                      px: 1.25,
+                      '&.Mui-selected': {
+                        bgcolor: alpha(theme.palette.primary.main, 0.12),
+                        color: 'primary.dark',
+                      },
+                    },
+                  }}
+                >
+                  <ToggleButton value="grid"><GridViewIcon fontSize="small" /></ToggleButton>
+                  <ToggleButton value="list"><ListViewIcon fontSize="small" /></ToggleButton>
+                  <ToggleButton value="map"><MapViewIcon fontSize="small" /></ToggleButton>
+                </ToggleButtonGroup>
+              </Stack>
 
+              {/* Active filter chips */}
+              {activeChips.length > 0 && (
+                <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: 'wrap', rowGap: 0.75 }}>
+                  {activeChips.map((c) => (
+                    <Chip
+                      key={c.key}
+                      label={c.label}
+                      size="small"
+                      sx={{
+                        bgcolor: alpha(theme.palette.primary.main, 0.1),
+                        color: 'primary.dark',
+                        fontWeight: 600,
+                        border: 'none',
+                      }}
+                    />
+                  ))}
+                </Stack>
+              )}
+            </Box>
+
+            {/* Results */}
             {view === 'map' ? (
               <MapView listings={listings} />
             ) : infiniteQuery.isLoading ? (
-              <Grid container spacing={3}>
+              <Grid container spacing={view === 'grid' ? 2 : 1.5}>
                 {Array.from({ length: 6 }).map((_, i) => (
-                  <Grid key={i} item xs={12} sm={6} lg={view === 'grid' ? 4 : 12}>
+                  <Grid key={i} item xs={12} sm={view === 'grid' ? 6 : 12} lg={view === 'grid' ? 4 : 12}>
                     <SkeletonCard />
                   </Grid>
                 ))}
               </Grid>
             ) : listings.length === 0 ? (
-              <EmptyState title={t('search.noResults')} ctaLabel={t('search.clearFilters')} onCta={clearFilters} />
+              <Box sx={{ bgcolor: 'background.paper', border: 1, borderColor: 'divider', borderRadius: 2, p: 4 }}>
+                <EmptyState
+                  title={t('search.noResults')}
+                  ctaLabel={t('search.clearFilters')}
+                  onCta={clearFilters}
+                />
+              </Box>
             ) : view === 'grid' ? (
-              <Grid container spacing={3}>
+              <Grid container spacing={2}>
                 {listings.map((listing) => (
                   <Grid key={listing.id} item xs={12} sm={6} lg={4}>
                     <ListingCard
@@ -320,7 +451,7 @@ export function SearchPage() {
                 ))}
               </Grid>
             ) : (
-              <Stack spacing={2}>
+              <Stack spacing={1.5}>
                 {listings.map((listing) => (
                   <ListingCard
                     key={listing.id}
@@ -332,7 +463,6 @@ export function SearchPage() {
               </Stack>
             )}
 
-            {/* Infinite scroll sentinel */}
             <Box ref={sentinelRef} sx={{ height: 24, mt: 4 }} />
             {infiniteQuery.isFetchingNextPage && (
               <Stack alignItems="center" sx={{ py: 3 }}>
@@ -343,39 +473,57 @@ export function SearchPage() {
         </Grid>
       </Container>
 
-      {/* ---------------- Mobile filter drawer ---------------- */}
+      {/* ============ Mobile bottom-sheet drawer ============ */}
       <Drawer
         anchor="bottom"
         open={filterDrawerOpen}
         onClose={() => setFilterDrawerOpen(false)}
-        PaperProps={{ sx: { borderTopLeftRadius: 16, borderTopRightRadius: 16, maxHeight: '85vh' } }}
+        PaperProps={{
+          sx: { borderTopLeftRadius: 18, borderTopRightRadius: 18, maxHeight: '88vh' },
+        }}
       >
-        <Box sx={{ p: 3 }}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
-            <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('search.filters')}</Typography>
-            <IconButton onClick={() => setFilterDrawerOpen(false)}><CloseIcon /></IconButton>
+        <Box sx={{ display: 'flex', flexDirection: 'column', maxHeight: '88vh' }}>
+          {/* drag handle */}
+          <Box sx={{ pt: 1.25, pb: 0.5, display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ width: 36, height: 4, bgcolor: 'grey.300', borderRadius: 2 }} />
+          </Box>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ px: 2, pb: 1.25, borderBottom: 1, borderColor: 'divider' }}
+          >
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+              {t('search.filters')}
+            </Typography>
+            <IconButton size="small" onClick={() => setFilterDrawerOpen(false)}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
           </Stack>
-          <FilterPanel
-            priceRange={priceRange}
-            setPriceRange={setPriceRange}
-            propertyTypes={propertyTypes}
-            setPropertyTypes={setPropertyTypes}
-            city={city}
-            setCity={setCity}
-            district={district}
-            setDistrict={setDistrict}
-            minBedrooms={minBedrooms}
-            setMinBedrooms={setMinBedrooms}
-            minArea={minArea}
-            setMinArea={setMinArea}
-            verifiedOnly={verifiedOnly}
-            setVerifiedOnly={setVerifiedOnly}
-            type={type}
-            setType={setType}
-          />
-          <Button fullWidth variant="contained" sx={{ mt: 3 }} onClick={() => setFilterDrawerOpen(false)}>
-            {t('common.confirm')}
-          </Button>
+
+          <Box sx={{ overflowY: 'auto', flex: 1 }}>
+            <FilterPanel {...filterPanelProps} />
+          </Box>
+
+          <Stack
+            direction="row"
+            spacing={1.25}
+            sx={{ p: 2, borderTop: 1, borderColor: 'divider', bgcolor: 'background.paper' }}
+          >
+            <Button fullWidth variant="outlined" onClick={clearFilters}>
+              {t('search.clearFilters')}
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={() => setFilterDrawerOpen(false)}
+              sx={{ background: theme.aqarat.gradient }}
+            >
+              {total > 0
+                ? `${t('common.confirm')} (${total.toLocaleString(i18n.language)})`
+                : t('common.confirm')}
+            </Button>
+          </Stack>
         </Box>
       </Drawer>
     </Box>
@@ -383,26 +531,30 @@ export function SearchPage() {
 }
 
 // ------------------------------------------------------------------
-// FilterPanel
+// FilterPanel — collapsible accordion sections (Haraj-style)
 // ------------------------------------------------------------------
 
 interface FilterPanelProps {
-  priceRange: [number, number];
-  setPriceRange: (v: [number, number]) => void;
+  type: ListingType | '';
+  setType: (v: ListingType | '') => void;
   propertyTypes: PropertyType[];
   setPropertyTypes: (v: PropertyType[]) => void;
+  priceRange: [number, number];
+  setPriceRange: (v: [number, number]) => void;
+  areaRange: [number, number];
+  setAreaRange: (v: [number, number]) => void;
+  minBedrooms: string;
+  setMinBedrooms: (v: string) => void;
+  minBathrooms: string;
+  setMinBathrooms: (v: string) => void;
+  amenities: string[];
+  setAmenities: (v: string[]) => void;
+  verifiedOnly: boolean;
+  setVerifiedOnly: (v: boolean) => void;
   city: string;
   setCity: (v: string) => void;
   district: string;
   setDistrict: (v: string) => void;
-  minBedrooms: string;
-  setMinBedrooms: (v: string) => void;
-  minArea: string;
-  setMinArea: (v: string) => void;
-  verifiedOnly: boolean;
-  setVerifiedOnly: (v: boolean) => void;
-  type: ListingType | '';
-  setType: (v: ListingType | '') => void;
 }
 
 function FilterPanel(props: FilterPanelProps) {
@@ -417,73 +569,114 @@ function FilterPanel(props: FilterPanelProps) {
     PropertyType.PENTHOUSE,
     PropertyType.TOWNHOUSE,
   ];
+
   return (
-    <Stack spacing={3}>
-      <Stack spacing={1}>
-        <Typography variant="subtitle2">{t('search.type')}</Typography>
+    <Box>
+      {/* Listing type — always visible at top, no accordion */}
+      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
         <ToggleButtonGroup
           fullWidth
           exclusive
           size="small"
           value={props.type}
           onChange={(_, v) => props.setType((v ?? '') as ListingType | '')}
+          sx={{
+            '& .MuiToggleButton-root': {
+              fontWeight: 600,
+              fontSize: 12,
+              py: 0.75,
+              '&.Mui-selected': {
+                bgcolor: 'primary.main',
+                color: 'common.white',
+                '&:hover': { bgcolor: 'primary.dark' },
+              },
+            },
+          }}
         >
           <ToggleButton value="">{t('common.viewAll')}</ToggleButton>
           <ToggleButton value={ListingType.SALE}>{t('listing.forSale')}</ToggleButton>
           <ToggleButton value={ListingType.RENT}>{t('listing.forRent')}</ToggleButton>
         </ToggleButtonGroup>
-      </Stack>
+      </Box>
 
-      <Stack spacing={1}>
-        <Typography variant="subtitle2">{t('search.propertyType')}</Typography>
-        <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
+      <FilterSection title={t('search.propertyType')} defaultExpanded>
+        <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 0.75 }}>
           {propTypeOptions.map((pt) => {
             const selected = props.propertyTypes.includes(pt);
             return (
               <Chip
                 key={pt}
-                label={pt}
+                label={t(`listing.${pt}`, { defaultValue: pt })}
                 size="small"
-                color={selected ? 'primary' : 'default'}
-                variant={selected ? 'filled' : 'outlined'}
-                onClick={() => {
+                onClick={() =>
                   props.setPropertyTypes(
                     selected ? props.propertyTypes.filter((x) => x !== pt) : [...props.propertyTypes, pt],
-                  );
+                  )
+                }
+                sx={{
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  bgcolor: selected ? 'primary.main' : 'transparent',
+                  color: selected ? 'common.white' : 'text.primary',
+                  border: '1px solid',
+                  borderColor: selected ? 'primary.main' : 'divider',
+                  '&:hover': {
+                    bgcolor: selected ? 'primary.dark' : 'action.hover',
+                  },
                 }}
               />
             );
           })}
         </Stack>
-      </Stack>
+      </FilterSection>
 
-      <Stack spacing={1}>
-        <Typography variant="subtitle2">{t('search.city')}</Typography>
-        <TextField size="small" value={props.city} onChange={(e) => props.setCity(e.target.value)} />
-        <TextField
-          size="small"
-          placeholder={t('search.district')}
-          value={props.district}
-          onChange={(e) => props.setDistrict(e.target.value)}
-        />
-      </Stack>
+      <FilterSection
+        title={`${t('listing.price')} (${t('listing.currency')})`}
+        defaultExpanded
+      >
+        <Box sx={{ px: 0.5 }}>
+          <Slider
+            value={props.priceRange}
+            onChange={(_, value) => props.setPriceRange(value as [number, number])}
+            min={PRICE_BOUNDS[0]}
+            max={PRICE_BOUNDS[1]}
+            step={50_000}
+            valueLabelDisplay="auto"
+            valueLabelFormat={(v) => `${(v / 1000).toLocaleString()}K`}
+          />
+          <Stack direction="row" justifyContent="space-between" sx={{ mt: 0.5 }}>
+            <Typography variant="caption" color="text.secondary">
+              {props.priceRange[0].toLocaleString()}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              {props.priceRange[1].toLocaleString()}
+            </Typography>
+          </Stack>
+        </Box>
+      </FilterSection>
 
-      <Stack spacing={1}>
-        <Typography variant="subtitle2">
-          {t('listing.price')} ({props.priceRange[0].toLocaleString()} – {props.priceRange[1].toLocaleString()} {t('listing.currency')})
-        </Typography>
-        <Slider
-          value={props.priceRange}
-          onChange={(_, value) => props.setPriceRange(value as [number, number])}
-          min={PRICE_BOUNDS[0]}
-          max={PRICE_BOUNDS[1]}
-          step={50_000}
-          valueLabelDisplay="auto"
-        />
-      </Stack>
+      <FilterSection title={`${t('listing.area')} (${t('listing.areaUnit')})`}>
+        <Box sx={{ px: 0.5 }}>
+          <Slider
+            value={props.areaRange}
+            onChange={(_, value) => props.setAreaRange(value as [number, number])}
+            min={AREA_BOUNDS[0]}
+            max={AREA_BOUNDS[1]}
+            step={10}
+            valueLabelDisplay="auto"
+          />
+          <Stack direction="row" justifyContent="space-between" sx={{ mt: 0.5 }}>
+            <Typography variant="caption" color="text.secondary">
+              {props.areaRange[0]}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              {props.areaRange[1]}
+            </Typography>
+          </Stack>
+        </Box>
+      </FilterSection>
 
-      <Stack spacing={1}>
-        <Typography variant="subtitle2">{t('search.minBedrooms')}</Typography>
+      <FilterSection title={t('search.minBedrooms')}>
         <ToggleButtonGroup
           fullWidth
           exclusive
@@ -492,29 +685,133 @@ function FilterPanel(props: FilterPanelProps) {
           onChange={(_, v) => props.setMinBedrooms((v ?? '') as string)}
         >
           {['', '1', '2', '3', '4', '5'].map((v) => (
-            <ToggleButton key={v} value={v}>{v === '' ? '—' : `${v}+`}</ToggleButton>
+            <ToggleButton key={v} value={v} sx={{ fontWeight: 600, fontSize: 12 }}>
+              {v === '' ? '—' : `${v}+`}
+            </ToggleButton>
           ))}
         </ToggleButtonGroup>
-      </Stack>
+      </FilterSection>
 
-      <TextField
-        size="small"
-        type="number"
-        label={`${t('search.minArea')} (${t('listing.areaUnit')})`}
-        value={props.minArea}
-        onChange={(e) => props.setMinArea(e.target.value)}
-      />
+      <FilterSection title={t('search.minBathrooms', { defaultValue: 'Min bathrooms' })}>
+        <ToggleButtonGroup
+          fullWidth
+          exclusive
+          size="small"
+          value={props.minBathrooms}
+          onChange={(_, v) => props.setMinBathrooms((v ?? '') as string)}
+        >
+          {['', '1', '2', '3', '4', '5'].map((v) => (
+            <ToggleButton key={v} value={v} sx={{ fontWeight: 600, fontSize: 12 }}>
+              {v === '' ? '—' : `${v}+`}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+      </FilterSection>
 
-      <Stack direction="row" spacing={1} alignItems="center">
+      <FilterSection title={t('listing.amenities')}>
+        <Stack spacing={0.25}>
+          {AMENITY_OPTIONS.map((a) => {
+            const checked = props.amenities.includes(a.key);
+            return (
+              <FormControlLabel
+                key={a.key}
+                control={
+                  <Checkbox
+                    size="small"
+                    checked={checked}
+                    onChange={() =>
+                      props.setAmenities(
+                        checked ? props.amenities.filter((x) => x !== a.key) : [...props.amenities, a.key],
+                      )
+                    }
+                  />
+                }
+                label={
+                  <Typography variant="body2">
+                    {t(`listing.${a.labelKey}`, { defaultValue: a.defaultLabel })}
+                  </Typography>
+                }
+              />
+            );
+          })}
+        </Stack>
+      </FilterSection>
+
+      <FilterSection title={t('search.city')}>
+        <Stack spacing={1}>
+          <TextField
+            size="small"
+            placeholder={t('search.city')}
+            value={props.city}
+            onChange={(e) => props.setCity(e.target.value)}
+          />
+          <TextField
+            size="small"
+            placeholder={t('search.district')}
+            value={props.district}
+            onChange={(e) => props.setDistrict(e.target.value)}
+          />
+        </Stack>
+      </FilterSection>
+
+      <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>
         <Chip
           icon={<VerifiedIcon fontSize="small" />}
           label={t('listing.featured')}
-          color={props.verifiedOnly ? 'primary' : 'default'}
-          variant={props.verifiedOnly ? 'filled' : 'outlined'}
           onClick={() => props.setVerifiedOnly(!props.verifiedOnly)}
+          sx={{
+            cursor: 'pointer',
+            fontWeight: 700,
+            bgcolor: props.verifiedOnly ? 'primary.main' : 'transparent',
+            color: props.verifiedOnly ? 'common.white' : 'text.primary',
+            border: '1px solid',
+            borderColor: props.verifiedOnly ? 'primary.main' : 'divider',
+            '& .MuiChip-icon': {
+              color: props.verifiedOnly ? 'common.white' : 'primary.main',
+            },
+          }}
         />
-      </Stack>
-    </Stack>
+      </Box>
+    </Box>
+  );
+}
+
+function FilterSection({
+  title,
+  children,
+  defaultExpanded = false,
+}: {
+  title: string;
+  children: ReactNode;
+  defaultExpanded?: boolean;
+}) {
+  return (
+    <Accordion
+      defaultExpanded={defaultExpanded}
+      disableGutters
+      elevation={0}
+      square
+      sx={{
+        '&::before': { display: 'none' },
+        borderBottom: 1,
+        borderColor: 'divider',
+        bgcolor: 'transparent',
+      }}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon fontSize="small" />}
+        sx={{
+          px: 2,
+          minHeight: 44,
+          '& .MuiAccordionSummary-content': { my: 1 },
+        }}
+      >
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: 13 }}>
+          {title}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails sx={{ px: 2, pt: 0, pb: 1.75 }}>{children}</AccordionDetails>
+    </Accordion>
   );
 }
 
@@ -540,7 +837,7 @@ function MapView({ listings }: { listings: Listing[] }) {
     return <EmptyState title="Failed to load map" description={(loadError as Error).message} />;
   }
   if (!isLoaded) {
-    return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 3 }} />;
+    return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 2 }} />;
   }
 
   const active = listings.find((l) => l.id === activeId);
@@ -549,7 +846,7 @@ function MapView({ listings }: { listings: Listing[] }) {
     : MAP_DEFAULT_CENTER;
 
   return (
-    <Box sx={{ borderRadius: 3, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
+    <Box sx={{ borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
       <GoogleMap
         center={center}
         zoom={11}
@@ -569,7 +866,7 @@ function MapView({ listings }: { listings: Listing[] }) {
                     text: priceLabel(l),
                     fontSize: '11px',
                     fontWeight: '700',
-                    color: '#0F172A',
+                    color: '#1A1A2E',
                   }}
                 />
               ))}
@@ -617,29 +914,39 @@ function priceLabel(l: Listing): string {
 interface ChipDef {
   key: string;
   label: string;
-  onClear: () => void;
 }
 
 function buildActiveChips(state: {
-  q: string; type: ListingType | ''; city: string; district: string;
-  priceRange: [number, number]; minBedrooms: string; minArea: string;
-  propertyTypes: PropertyType[]; verifiedOnly: boolean;
-}, _t: (k: string) => string): ChipDef[] {
+  q: string;
+  type: ListingType | '';
+  city: string;
+  district: string;
+  priceRange: [number, number];
+  areaRange: [number, number];
+  minBedrooms: string;
+  minBathrooms: string;
+  propertyTypes: PropertyType[];
+  amenities: string[];
+  verifiedOnly: boolean;
+}): ChipDef[] {
   const out: ChipDef[] = [];
-  if (state.q) out.push({ key: 'q', label: `"${state.q}"`, onClear: () => undefined });
-  if (state.type) out.push({ key: 'type', label: state.type, onClear: () => undefined });
-  if (state.city) out.push({ key: 'city', label: state.city, onClear: () => undefined });
-  if (state.district) out.push({ key: 'district', label: state.district, onClear: () => undefined });
+  if (state.q) out.push({ key: 'q', label: `"${state.q}"` });
+  if (state.type) out.push({ key: 'type', label: state.type });
+  if (state.city) out.push({ key: 'city', label: state.city });
+  if (state.district) out.push({ key: 'district', label: state.district });
   if (state.priceRange[0] > PRICE_BOUNDS[0] || state.priceRange[1] < PRICE_BOUNDS[1]) {
     out.push({
       key: 'price',
       label: `${state.priceRange[0].toLocaleString()} – ${state.priceRange[1].toLocaleString()}`,
-      onClear: () => undefined,
     });
   }
-  if (state.minBedrooms) out.push({ key: 'beds', label: `${state.minBedrooms}+ 🛏`, onClear: () => undefined });
-  if (state.minArea) out.push({ key: 'area', label: `≥${state.minArea} m²`, onClear: () => undefined });
-  for (const pt of state.propertyTypes) out.push({ key: `pt-${pt}`, label: pt, onClear: () => undefined });
-  if (state.verifiedOnly) out.push({ key: 'featured', label: '★ featured', onClear: () => undefined });
+  if (state.areaRange[0] > AREA_BOUNDS[0] || state.areaRange[1] < AREA_BOUNDS[1]) {
+    out.push({ key: 'area', label: `${state.areaRange[0]}–${state.areaRange[1]} m²` });
+  }
+  if (state.minBedrooms) out.push({ key: 'beds', label: `${state.minBedrooms}+ 🛏` });
+  if (state.minBathrooms) out.push({ key: 'baths', label: `${state.minBathrooms}+ 🛁` });
+  for (const pt of state.propertyTypes) out.push({ key: `pt-${pt}`, label: pt });
+  for (const a of state.amenities) out.push({ key: `am-${a}`, label: a.replace(/^has/, '') });
+  if (state.verifiedOnly) out.push({ key: 'featured', label: '★ featured' });
   return out;
 }

@@ -1,25 +1,27 @@
 import { PaletteOptions } from '@mui/material/styles';
 
-// Brand palette
-//   primary   #1B4FD8  — confident blue
-//   secondary #F59E0B  — warm amber
-//   accent    #10B981  — emerald (used as `success` so MUI utilities pick it up)
-//   hero bg   #0F172A  — slate-900 — used for dark hero sections
-//   surface   #F8FAFC  — slate-50 — page background in light mode
+// Brand palette — Saudi Lavender
+//   primary       #6C63A6  — Saudi Lavender
+//   primary dark  #4A4080  — Deep Lavender (gradient end)
+//   primary light #9B94C9  — Light Lavender
+//   secondary     #D4A843  — Warm Gold
+//   accent        #2BBFBF  — Teal (exposed via theme.aqarat.accent)
+//   hero bg       #1A1A2E  — Midnight (used for dark hero sections)
+//   surface       #FAFAF8  — Warm White (page background in light mode)
 
 export const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {
-    main: '#1B4FD8',
-    light: '#3B6CE0',
-    dark: '#143CA8',
+    main: '#6C63A6',
+    light: '#9B94C9',
+    dark: '#4A4080',
     contrastText: '#FFFFFF',
   },
   secondary: {
-    main: '#F59E0B',
-    light: '#FBBF24',
-    dark: '#B45309',
-    contrastText: '#0F172A',
+    main: '#D4A843',
+    light: '#E5BF6B',
+    dark: '#A8842F',
+    contrastText: '#1A1A2E',
   },
   success: {
     main: '#10B981',
@@ -28,107 +30,109 @@ export const lightPalette: PaletteOptions = {
     contrastText: '#FFFFFF',
   },
   error: {
-    main: '#DC2626',
-    light: '#EF4444',
-    dark: '#991B1B',
+    main: '#EF4444',
+    light: '#F87171',
+    dark: '#B91C1C',
   },
   warning: {
-    main: '#F59E0B',
-    light: '#FBBF24',
-    dark: '#B45309',
+    main: '#D4A843',
+    light: '#E5BF6B',
+    dark: '#A8842F',
   },
   info: {
-    main: '#0EA5E9',
-    light: '#38BDF8',
-    dark: '#0369A1',
+    main: '#2BBFBF',
+    light: '#5BCFCF',
+    dark: '#1F8C8C',
   },
   grey: {
-    50: '#F8FAFC',
-    100: '#F1F5F9',
-    200: '#E2E8F0',
-    300: '#CBD5E1',
-    400: '#94A3B8',
-    500: '#64748B',
-    600: '#475569',
-    700: '#334155',
-    800: '#1E293B',
-    900: '#0F172A',
+    50: '#FAFAF8',
+    100: '#F2F2EE',
+    200: '#E5E5DF',
+    300: '#D1D1C9',
+    400: '#9CA3AF',
+    500: '#6B7280',
+    600: '#4B5563',
+    700: '#374151',
+    800: '#1F2937',
+    900: '#1A1A2E',
   },
   background: {
-    default: '#F8FAFC',
+    default: '#FAFAF8',
     paper: '#FFFFFF',
   },
   text: {
-    primary: '#0F172A',
-    secondary: '#475569',
-    disabled: '#94A3B8',
+    primary: '#1A1A2E',
+    secondary: '#6B7280',
+    disabled: '#9CA3AF',
   },
-  divider: '#E2E8F0',
+  divider: '#E5E5DF',
 };
 
 export const darkPalette: PaletteOptions = {
   mode: 'dark',
   primary: {
-    main: '#3B6CE0',
-    light: '#7B9EF5',
-    dark: '#1B4FD8',
-    contrastText: '#FFFFFF',
+    main: '#9B94C9',
+    light: '#BDB7DD',
+    dark: '#6C63A6',
+    contrastText: '#1A1A2E',
   },
   secondary: {
-    main: '#FBBF24',
-    light: '#FCD34D',
-    dark: '#B45309',
-    contrastText: '#0F172A',
+    main: '#E5BF6B',
+    light: '#EFD191',
+    dark: '#D4A843',
+    contrastText: '#1A1A2E',
   },
   success: {
     main: '#34D399',
     light: '#6EE7B7',
     dark: '#10B981',
-    contrastText: '#0F172A',
+    contrastText: '#1A1A2E',
   },
   error: {
     main: '#F87171',
     light: '#FCA5A5',
-    dark: '#DC2626',
+    dark: '#EF4444',
   },
   warning: {
-    main: '#FBBF24',
-    light: '#FCD34D',
-    dark: '#B45309',
+    main: '#E5BF6B',
+    light: '#EFD191',
+    dark: '#D4A843',
   },
   info: {
-    main: '#38BDF8',
-    light: '#7DD3FC',
-    dark: '#0369A1',
+    main: '#5BCFCF',
+    light: '#8EDFDF',
+    dark: '#2BBFBF',
   },
   grey: {
-    50: '#F8FAFC',
-    100: '#F1F5F9',
-    200: '#E2E8F0',
-    300: '#CBD5E1',
-    400: '#94A3B8',
-    500: '#64748B',
-    600: '#475569',
-    700: '#334155',
-    800: '#1E293B',
-    900: '#0F172A',
+    50: '#FAFAF8',
+    100: '#F2F2EE',
+    200: '#E5E5DF',
+    300: '#D1D1C9',
+    400: '#9CA3AF',
+    500: '#6B7280',
+    600: '#4B5563',
+    700: '#374151',
+    800: '#1F2937',
+    900: '#1A1A2E',
   },
   background: {
-    default: '#0F172A',
-    paper: '#1E293B',
+    default: '#1A1A2E',
+    paper: '#272741',
   },
   text: {
-    primary: '#F8FAFC',
-    secondary: '#CBD5E1',
-    disabled: '#64748B',
+    primary: '#FAFAF8',
+    secondary: '#D1D1C9',
+    disabled: '#6B7280',
   },
-  divider: '#334155',
+  divider: '#374151',
 };
 
 // Branded "hero" surface and accent — exposed via the theme so components can
 // reach in via `theme.aqarat.hero` etc.
 export const aqaratBrand = {
-  hero: '#0F172A',
-  surface: '#F8FAFC',
-  accent: '#10B981',
+  hero: '#1A1A2E',
+  surface: '#FAFAF8',
+  accent: '#2BBFBF',
+  gold: '#D4A843',
+  gradient: 'linear-gradient(135deg, #6C63A6 0%, #4A4080 100%)',
 } as const;

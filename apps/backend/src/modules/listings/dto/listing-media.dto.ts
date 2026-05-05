@@ -18,13 +18,13 @@ export class CreateListingMediaDto {
   type: MediaType;
 
   @ApiProperty({ description: 'Public URL to the asset (CDN, S3, etc.)' })
-  @IsUrl({ protocols: ['http', 'https'], require_protocol: true })
+  @IsUrl({ protocols: ['http', 'https'], require_protocol: true, require_tld: false })
   @Length(8, 1024)
   url: string;
 
   @ApiPropertyOptional({ description: 'Smaller preview/thumbnail URL' })
   @IsOptional()
-  @IsUrl({ protocols: ['http', 'https'], require_protocol: true })
+  @IsUrl({ protocols: ['http', 'https'], require_protocol: true, require_tld: false })
   @Length(8, 1024)
   thumbnailUrl?: string;
 

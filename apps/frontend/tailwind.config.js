@@ -10,32 +10,61 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Saudi Lavender brand
         brand: {
-          50: '#EEF2FF',
-          100: '#DBE6FF',
-          200: '#B4C7FF',
-          300: '#7B9EF5',
-          400: '#3B6CE0',
-          500: '#1B4FD8',
-          600: '#143CA8',
-          700: '#0E2D80',
-          800: '#0A205C',
-          900: '#06143A',
+          50: '#F2F0F8',
+          100: '#E0DCEC',
+          200: '#C6BFDD',
+          300: '#9B94C9', // Light Lavender
+          400: '#8079B6',
+          500: '#6C63A6', // Primary
+          600: '#5B5396',
+          700: '#4A4080', // Deep Lavender
+          800: '#372E60',
+          900: '#1A1A2E', // Hero / midnight
         },
+        // Warm Gold (secondary)
+        gold: {
+          50: '#FAF5E6',
+          100: '#F2E5BA',
+          200: '#E9D38B',
+          300: '#E0C25C',
+          400: '#D8B14F',
+          500: '#D4A843', // Secondary
+          600: '#B89033',
+          700: '#A8842F',
+          800: '#7A5F22',
+          900: '#4C3B15',
+        },
+        // Teal accent
         accent: {
-          50: '#ECFDF5',
+          50: '#E6FAFA',
+          400: '#5BCFCF',
+          500: '#2BBFBF', // Accent
+          600: '#1F8C8C',
+        },
+        success: {
           400: '#34D399',
           500: '#10B981',
           600: '#047857',
         },
-        amber: {
-          400: '#FBBF24',
-          500: '#F59E0B',
-          600: '#B45309',
+        danger: {
+          400: '#F87171',
+          500: '#EF4444',
+          600: '#B91C1C',
         },
-        slate: {
-          50: '#F8FAFC',
-          900: '#0F172A',
+        // Warm neutrals
+        ink: {
+          50: '#FAFAF8',
+          100: '#F2F2EE',
+          200: '#E5E5DF',
+          300: '#D1D1C9',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#1A1A2E',
         },
       },
       fontFamily: {
@@ -49,9 +78,14 @@ export default {
         '3xl': '20px',
       },
       boxShadow: {
-        soft: '0 1px 3px rgba(15,23,42,0.04), 0 1px 2px rgba(15,23,42,0.06)',
-        card: '0 14px 28px rgba(15,23,42,0.06)',
-        hero: '0 30px 60px rgba(15,23,42,0.18)',
+        soft: '0 1px 3px rgba(26,26,46,0.04), 0 1px 2px rgba(26,26,46,0.06)',
+        card: '0 14px 28px rgba(26,26,46,0.06)',
+        hero: '0 30px 60px rgba(26,26,46,0.18)',
+        lavender: '0 10px 24px rgba(108,99,166,0.22)',
+      },
+      backgroundImage: {
+        'brand-gradient': 'linear-gradient(135deg, #6C63A6 0%, #4A4080 100%)',
+        'brand-gradient-soft': 'linear-gradient(135deg, rgba(108,99,166,0.12) 0%, rgba(74,64,128,0.18) 100%)',
       },
     },
   },

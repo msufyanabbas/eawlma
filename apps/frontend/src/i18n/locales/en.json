@@ -158,12 +158,18 @@
     "heroTitle": "Find your perfect home",
     "heroSubtitle": "Thousands of properties for sale and rent across the Kingdom",
     "searchPlaceholder": "Search by city, district, or reference",
-    "searchCta": "Search now",
+    "searchCta": "Search",
     "exploreSale": "Explore properties for sale",
     "exploreRent": "Explore properties for rent",
     "featuredListings": "Featured listings",
     "popularCities": "Popular cities",
-    "becomeAgent": "Are you an agent? Join Aqarat"
+    "becomeAgent": "Are you an agent? Join Aqarat",
+    "tabBuy": "Buy",
+    "tabRent": "Rent",
+    "tabCommercial": "Commercial",
+    "popularInCity": "Popular in",
+    "viewMore": "View more",
+    "trustedBy": "Trusted across the Kingdom"
   },
   "empty": {
     "noListings": "No listings yet",

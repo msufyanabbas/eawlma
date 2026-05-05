@@ -4,25 +4,23 @@ import {
   Chip,
   Container,
   Grid,
-  IconButton,
+  InputAdornment,
   MenuItem,
   Stack,
+  Tab,
+  Tabs,
   TextField,
   Typography,
   alpha,
   useTheme,
 } from '@mui/material';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import VillaIcon from '@mui/icons-material/Villa';
-import OfficeIcon from '@mui/icons-material/CorporateFare';
-import LandIcon from '@mui/icons-material/Terrain';
-import StoreIcon from '@mui/icons-material/Storefront';
 import SearchIcon from '@mui/icons-material/Search';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LocationCityIcon from '@mui/icons-material/LocationCityOutlined';
+import VerifiedIcon from '@mui/icons-material/VerifiedOutlined';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import StarIcon from '@mui/icons-material/Star';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
-import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from '@tanstack/react-router';
@@ -40,36 +38,15 @@ import { useSavedStore } from '@/store/saved.store';
 // Constants
 // ------------------------------------------------------------------
 
-const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=80',
-  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80',
-  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80',
-];
+type SearchTab = 'buy' | 'rent' | 'commercial';
 
-const PROPERTY_TYPE_CHIPS: Array<{ key: PropertyType; icon: ReactNode; labelKey: string }> = [
-  { key: PropertyType.APARTMENT, icon: <ApartmentIcon />, labelKey: 'apartment' },
-  { key: PropertyType.VILLA, icon: <VillaIcon />, labelKey: 'villa' },
-  { key: PropertyType.OFFICE, icon: <OfficeIcon />, labelKey: 'office' },
-  { key: PropertyType.LAND, icon: <LandIcon />, labelKey: 'land' },
-  { key: PropertyType.COMMERCIAL, icon: <StoreIcon />, labelKey: 'commercial' },
-];
-
-const CITY_SPOTLIGHT = [
-  {
-    nameAr: 'الرياض',
-    nameEn: 'Riyadh',
-    image: 'https://images.unsplash.com/photo-1577147443647-81856d5151af?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    nameAr: 'جدة',
-    nameEn: 'Jeddah',
-    image: 'https://images.unsplash.com/photo-1601651128268-d5a9b3a0d8a9?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    nameAr: 'الدمام',
-    nameEn: 'Dammam',
-    image: 'https://images.unsplash.com/photo-1542295669297-4d352b042bca?auto=format&fit=crop&w=1200&q=80',
-  },
+// City quick-pick chips — matches Aqar.com top 5
+const CITY_CHIPS: Array<{ en: string; ar: string }> = [
+  { en: 'Riyadh', ar: 'الرياض' },
+  { en: 'Jeddah', ar: 'جدة' },
+  { en: 'Dammam', ar: 'الدمام' },
+  { en: 'Mecca', ar: 'مكة المكرمة' },
+  { en: 'Medina', ar: 'المدينة المنورة' },
 ];
 
 // ------------------------------------------------------------------
@@ -83,13 +60,6 @@ export function HomePage() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const savedIds = useSavedStore((s) => s.ids);
   const toggleSaved = useSavedStore((s) => s.toggle);
-
-  // ----- hero carousel ------------------------------------------------
-  const [heroIdx, setHeroIdx] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setHeroIdx((i) => (i + 1) % HERO_IMAGES.length), 6000);
-    return () => clearInterval(id);
-  }, []);
 
   // ----- featured listings -------------------------------------------
   const featuredQuery = useQuery({
@@ -118,7 +88,8 @@ export function HomePage() {
     .slice(0, 4);
 
   // ----- search form --------------------------------------------------
-  const [searchType, setSearchType] = useState<ListingType | ''>('');
+  const [searchTab, setSearchTab] = useState<SearchTab>('buy');
+  const [searchQ, setSearchQ] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [searchMaxPrice, setSearchMaxPrice] = useState<string>('');
   const [searchBedrooms, setSearchBedrooms] = useState<string>('');
@@ -126,12 +97,20 @@ export function HomePage() {
   const onSearch = (e: FormEvent) => {
     e.preventDefault();
     const search: Record<string, string | number> = {};
-    if (searchType) search.type = searchType;
+    if (searchTab === 'buy') search.type = ListingType.SALE;
+    if (searchTab === 'rent') search.type = ListingType.RENT;
+    if (searchTab === 'commercial') {
+      search.propertyTypes = `${PropertyType.OFFICE},${PropertyType.COMMERCIAL}`;
+    }
+    if (searchQ.trim()) search.q = searchQ.trim();
     if (searchCity.trim()) search.city = searchCity.trim();
     if (searchMaxPrice) search.maxPrice = Number(searchMaxPrice);
     if (searchBedrooms) search.minBedrooms = Number(searchBedrooms);
     void navigate({ to: '/search' as never, search: search as never });
   };
+
+  const goToCity = (city: string) =>
+    void navigate({ to: '/search' as never, search: { city } as never });
 
   return (
     <Box>
@@ -140,58 +119,43 @@ export function HomePage() {
         <meta name="description" content={t('app.tagline')} />
       </Helmet>
 
-      {/* ---------------- HERO ---------------- */}
+      {/* ============================== HERO ============================== */}
       <Box
         sx={{
           position: 'relative',
-          height: { xs: 640, md: 720 },
-          overflow: 'hidden',
           color: 'common.white',
+          // Dark midnight base + lavender gradient accent + subtle photo overlay
+          background: `linear-gradient(135deg, ${alpha('#1A1A2E', 0.92)} 0%, ${alpha('#1A1A2E', 0.86)} 55%, ${alpha('#4A4080', 0.75)} 100%), url(https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=80)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          py: { xs: 7, md: 11 },
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: -160,
+            insetInlineEnd: -160,
+            width: 480,
+            height: 480,
+            borderRadius: '50%',
+            background: `radial-gradient(circle, ${alpha('#9B94C9', 0.35)} 0%, transparent 70%)`,
+            pointerEvents: 'none',
+          },
         }}
       >
-        {/* Crossfading background images */}
-        {HERO_IMAGES.map((src, i) => (
-          <Box
-            key={src}
-            component={motion.div}
-            initial={false}
-            animate={{ opacity: i === heroIdx ? 1 : 0, scale: i === heroIdx ? 1.04 : 1 }}
-            transition={{ opacity: { duration: 1.4 }, scale: { duration: 8, ease: 'linear' } }}
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: `linear-gradient(120deg, rgba(15,23,42,0.65), rgba(15,23,42,0.45)), url(${src})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-        ))}
-
-        {/* Hero content */}
-        <Container
-          maxWidth="lg"
-          sx={{
-            position: 'relative',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            zIndex: 2,
-          }}
-        >
+        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.55 }}
           >
             <Typography
               variant="h1"
               sx={{
-                fontSize: { xs: '2.25rem', md: '3.75rem' },
+                fontSize: { xs: '2rem', sm: '2.6rem', md: '3.4rem' },
                 fontWeight: 800,
                 letterSpacing: '-0.02em',
                 lineHeight: 1.1,
-                maxWidth: 760,
                 mb: 1.5,
               }}
             >
@@ -199,169 +163,273 @@ export function HomePage() {
             </Typography>
             <Typography
               variant="h6"
-              sx={{ opacity: 0.92, fontWeight: 400, maxWidth: 620, mb: 4 }}
+              sx={{
+                opacity: 0.9,
+                fontWeight: 400,
+                mb: { xs: 3, md: 4 },
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+              }}
             >
               {t('home.heroSubtitle')}
             </Typography>
           </motion.div>
 
-          {/* Glassmorphism search bar */}
+          {/* ----- Property type tabs (Buy | Rent | Commercial) ----- */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1.5 }}>
+            <Tabs
+              value={searchTab}
+              onChange={(_, v: SearchTab) => setSearchTab(v)}
+              textColor="inherit"
+              TabIndicatorProps={{ sx: { display: 'none' } }}
+              sx={{
+                minHeight: 'auto',
+                '& .MuiTabs-flexContainer': {
+                  bgcolor: alpha('#FFFFFF', 0.1),
+                  borderRadius: 999,
+                  p: 0.5,
+                  backdropFilter: 'blur(10px)',
+                },
+                '& .MuiTab-root': {
+                  minHeight: 38,
+                  px: { xs: 2.5, sm: 4 },
+                  py: 1,
+                  fontWeight: 700,
+                  fontSize: 14,
+                  color: alpha('#FFFFFF', 0.75),
+                  borderRadius: 999,
+                  transition: 'all 200ms ease',
+                  '&.Mui-selected': {
+                    color: 'primary.dark',
+                    bgcolor: 'common.white',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                  },
+                },
+              }}
+            >
+              <Tab value="buy" label={t('home.tabBuy')} />
+              <Tab value="rent" label={t('home.tabRent')} />
+              <Tab value="commercial" label={t('home.tabCommercial')} />
+            </Tabs>
+          </Box>
+
+          {/* ----- Centered search bar ----- */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            transition={{ duration: 0.55, delay: 0.12 }}
           >
             <Box
               component="form"
               onSubmit={onSearch}
               sx={{
-                p: { xs: 2, md: 2.5 },
-                borderRadius: 4,
-                backgroundColor: alpha('#FFFFFF', 0.16),
-                backdropFilter: 'blur(18px) saturate(150%)',
-                WebkitBackdropFilter: 'blur(18px) saturate(150%)',
-                border: '1px solid rgba(255,255,255,0.22)',
-                boxShadow: '0 30px 60px rgba(15,23,42,0.32)',
-                maxWidth: 980,
+                bgcolor: 'common.white',
+                borderRadius: { xs: 3, md: 999 },
+                p: { xs: 1.5, md: 1 },
+                pl: { xs: 1.5, md: 3 },
+                boxShadow: '0 20px 50px rgba(26,26,46,0.4)',
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: 1, md: 0 },
+                alignItems: 'stretch',
+                maxWidth: 880,
+                mx: 'auto',
               }}
             >
-              <Grid container spacing={1.5} alignItems="center">
-                <Grid item xs={12} md={2.5}>
-                  <TextField
-                    select
-                    fullWidth
-                    size="small"
-                    label={t('search.type')}
-                    value={searchType}
-                    onChange={(e) => setSearchType(e.target.value as ListingType | '')}
-                    sx={glassFieldSx}
-                  >
-                    <MenuItem value="">{t('common.viewAll')}</MenuItem>
-                    <MenuItem value={ListingType.SALE}>{t('listing.forSale')}</MenuItem>
-                    <MenuItem value={ListingType.RENT}>{t('listing.forRent')}</MenuItem>
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    label={t('search.city')}
-                    value={searchCity}
-                    onChange={(e) => setSearchCity(e.target.value)}
-                    sx={glassFieldSx}
-                  />
-                </Grid>
-                <Grid item xs={6} md={2.5}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    type="number"
-                    label={t('search.maxPrice')}
-                    value={searchMaxPrice}
-                    onChange={(e) => setSearchMaxPrice(e.target.value)}
-                    sx={glassFieldSx}
-                  />
-                </Grid>
-                <Grid item xs={6} md={2}>
-                  <TextField
-                    select
-                    fullWidth
-                    size="small"
-                    label={t('search.minBedrooms')}
-                    value={searchBedrooms}
-                    onChange={(e) => setSearchBedrooms(e.target.value)}
-                    sx={glassFieldSx}
-                  >
-                    <MenuItem value="">—</MenuItem>
-                    {[1, 2, 3, 4, 5].map((n) => (
-                      <MenuItem key={n} value={String(n)}>{n}+</MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} md={2}>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<SearchIcon />}
-                    sx={{ height: 40 }}
-                  >
-                    {t('home.searchCta')}
-                  </Button>
-                </Grid>
-              </Grid>
+              <TextField
+                placeholder={t('home.searchPlaceholder')}
+                value={searchQ}
+                onChange={(e) => setSearchQ(e.target.value)}
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon sx={{ color: 'text.secondary' }} />
+                    </InputAdornment>
+                  ),
+                  sx: { fontSize: 15, color: 'text.primary' },
+                }}
+                sx={{
+                  flex: { md: 1.4 },
+                  px: { xs: 1, md: 0 },
+                  py: { xs: 0.5, md: 0 },
+                }}
+              />
+              <Box
+                sx={{
+                  width: { xs: '100%', md: 1 },
+                  height: { xs: 1, md: 28 },
+                  bgcolor: 'divider',
+                  alignSelf: 'center',
+                  display: { xs: 'none', md: 'block' },
+                }}
+              />
+              <TextField
+                placeholder={t('search.city')}
+                value={searchCity}
+                onChange={(e) => setSearchCity(e.target.value)}
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                  sx: { fontSize: 15, color: 'text.primary' },
+                }}
+                sx={{ flex: { md: 0.9 }, px: { xs: 1, md: 1.75 }, py: { xs: 0.5, md: 0 } }}
+              />
+              <Box
+                sx={{
+                  width: { xs: '100%', md: 1 },
+                  height: { xs: 1, md: 28 },
+                  bgcolor: 'divider',
+                  alignSelf: 'center',
+                  display: { xs: 'none', md: 'block' },
+                }}
+              />
+              <TextField
+                select
+                value={searchBedrooms}
+                onChange={(e) => setSearchBedrooms(e.target.value)}
+                variant="standard"
+                SelectProps={{ displayEmpty: true, IconComponent: () => null }}
+                InputProps={{ disableUnderline: true, sx: { fontSize: 14, color: 'text.primary' } }}
+                sx={{ flex: { md: 0.6 }, px: { xs: 1, md: 1.75 }, py: { xs: 0.5, md: 0 } }}
+              >
+                <MenuItem value="">{t('search.minBedrooms')}</MenuItem>
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <MenuItem key={n} value={String(n)}>{n}+</MenuItem>
+                ))}
+              </TextField>
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                startIcon={<SearchIcon />}
+                sx={{
+                  borderRadius: 999,
+                  px: { xs: 3, md: 4 },
+                  py: { xs: 1.25, md: 1.4 },
+                  fontWeight: 700,
+                  fontSize: 15,
+                  background: theme.aqarat.gradient,
+                  whiteSpace: 'nowrap',
+                  '&:hover': {
+                    background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
+                  },
+                }}
+              >
+                {t('home.searchCta')}
+              </Button>
             </Box>
           </motion.div>
+
+          {/* ----- City quick chips ----- */}
+          <Stack
+            direction="row"
+            spacing={1.25}
+            justifyContent="center"
+            useFlexGap
+            sx={{
+              mt: 3,
+              flexWrap: 'wrap',
+              rowGap: 1,
+            }}
+          >
+            {CITY_CHIPS.map((c) => {
+              const label = i18n.language === 'ar' ? c.ar : c.en;
+              return (
+                <Chip
+                  key={c.en}
+                  icon={<LocationCityIcon sx={{ fontSize: 16, color: 'inherit !important' }} />}
+                  label={label}
+                  onClick={() => goToCity(c.en)}
+                  sx={{
+                    bgcolor: alpha('#FFFFFF', 0.12),
+                    color: 'common.white',
+                    border: `1px solid ${alpha('#FFFFFF', 0.22)}`,
+                    fontWeight: 600,
+                    fontSize: 13,
+                    height: 32,
+                    px: 0.5,
+                    backdropFilter: 'blur(8px)',
+                    cursor: 'pointer',
+                    transition: 'all 180ms ease',
+                    '&:hover': {
+                      bgcolor: alpha('#FFFFFF', 0.22),
+                      borderColor: alpha('#FFFFFF', 0.4),
+                    },
+                  }}
+                />
+              );
+            })}
+          </Stack>
         </Container>
       </Box>
 
-      {/* ---------------- PROPERTY TYPE QUICK CHIPS ---------------- */}
-      <Container maxWidth="lg" sx={{ mt: { xs: -3, md: -4 }, position: 'relative', zIndex: 3 }}>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 1.5,
-            overflowX: 'auto',
-            pb: 1,
-            pt: 0.5,
-          }}
-          className="scrollbar-hide"
-        >
-          {PROPERTY_TYPE_CHIPS.map((p) => (
-            <Chip
-              key={p.key}
-              icon={p.icon as React.ReactElement}
-              label={i18n.language === 'ar' ? arabicPropertyType(p.key) : englishPropertyType(p.key)}
-              onClick={() =>
-                navigate({ to: '/search' as never, search: { propertyTypes: p.key } as never })
-              }
-              sx={{
-                bgcolor: 'background.paper',
-                border: 1,
-                borderColor: 'divider',
-                px: 1.5,
-                height: 44,
-                fontWeight: 600,
-                fontSize: 14,
-                boxShadow: '0 1px 2px rgba(15,23,42,0.04)',
-                '&:hover': { bgcolor: 'primary.50', borderColor: 'primary.main' },
-                cursor: 'pointer',
-                flexShrink: 0,
-              }}
-            />
-          ))}
-        </Box>
-      </Container>
+      {/* ============================== STATS (compact) ============================== */}
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          borderBottom: 1,
+          borderColor: 'divider',
+        }}
+      >
+        <Container maxWidth="lg" sx={{ py: { xs: 3, md: 3.5 } }}>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} md={3}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <VerifiedIcon sx={{ color: 'primary.main', fontSize: 22 }} />
+                <Typography variant="body2" sx={{ fontWeight: 700, color: 'text.primary' }}>
+                  {t('home.trustedBy')}
+                </Typography>
+              </Stack>
+            </Grid>
+            <Grid item xs={4} md={3}>
+              <StatBlock label={t('search.results')} value={10000} suffix="+" />
+            </Grid>
+            <Grid item xs={4} md={3}>
+              <StatBlock label={t('nav.agents')} value={500} suffix="+" />
+            </Grid>
+            <Grid item xs={4} md={3}>
+              <StatBlock label={t('home.popularCities')} value={12} suffix="+" />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
 
-      {/* ---------------- FEATURED LISTINGS ---------------- */}
-      <Section title={t('home.featuredListings')}>
-        <HorizontalScroller>
+      {/* ============================== FEATURED LISTINGS GRID ============================== */}
+      <Container maxWidth="lg" sx={{ mt: { xs: 5, md: 7 } }}>
+        <SectionHeader
+          title={t('home.featuredListings')}
+          actionLabel={t('home.viewMore')}
+          onAction={() =>
+            void navigate({ to: '/search' as never, search: { isFeatured: true } as never })
+          }
+        />
+        <Grid container spacing={{ xs: 2, md: 3 }}>
           {featuredQuery.isLoading
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <Box key={i} sx={cardWrapperSx}>
+            ? Array.from({ length: 8 }).map((_, i) => (
+                <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
                   <SkeletonCard />
-                </Box>
+                </Grid>
               ))
-            : (featuredQuery.data?.data ?? []).map((listing) => (
-                <Box key={listing.id} sx={cardWrapperSx}>
+            : (featuredQuery.data?.data ?? []).slice(0, 8).map((listing) => (
+                <Grid key={listing.id} item xs={12} sm={6} md={4} lg={3}>
                   <ListingCard
                     listing={listing}
                     saved={savedIds.includes(listing.id)}
                     onToggleSave={toggleSaved}
                   />
-                </Box>
+                </Grid>
               ))}
-        </HorizontalScroller>
-      </Section>
+        </Grid>
+      </Container>
 
-      {/* ---------------- RECOMMENDATIONS (auth only) ---------------- */}
+      {/* ============================== RECOMMENDATIONS (auth only) ============================== */}
       {isAuthenticated && recommendedListings.length > 0 && (
-        <Section title={`${t('home.featuredListings')} — ${t('search.popular')}`}>
-          <Grid container spacing={3}>
+        <Container maxWidth="lg" sx={{ mt: { xs: 5, md: 7 } }}>
+          <SectionHeader title={t('search.popular')} />
+          <Grid container spacing={{ xs: 2, md: 3 }}>
             {recommendedListings.map((listing) => (
-              <Grid key={listing.id} item xs={12} sm={6} md={3}>
+              <Grid key={listing.id} item xs={12} sm={6} md={4} lg={3}>
                 <ListingCard
                   listing={listing}
                   saved={savedIds.includes(listing.id)}
@@ -370,54 +438,52 @@ export function HomePage() {
               </Grid>
             ))}
           </Grid>
-        </Section>
+        </Container>
       )}
 
-      {/* ---------------- ANIMATED STATS ---------------- */}
-      <Box sx={{ bgcolor: theme.aqarat.hero, color: 'common.white', py: { xs: 6, md: 10 }, mt: 6 }}>
-        <Container maxWidth="lg">
-          <Grid container spacing={4}>
-            <StatBlock label={t('search.results')} value={10000} suffix="+" />
-            <StatBlock label={t('common.language')} value={30} suffix="+" />
-            <StatBlock label={t('nav.agents')} value={500} suffix="+" />
-            <StatBlock label={t('home.popularCities')} value={12} suffix="+" />
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* ---------------- CITY SPOTLIGHT ---------------- */}
-      <Section title={t('home.popularCities')}>
-        <Grid container spacing={3}>
-          {CITY_SPOTLIGHT.map((c) => {
-            const name = i18n.language === 'ar' ? c.nameAr : c.nameEn;
+      {/* ============================== CITY SPOTLIGHT ============================== */}
+      <Container maxWidth="lg" sx={{ mt: { xs: 5, md: 7 } }}>
+        <SectionHeader title={t('home.popularCities')} />
+        <Grid container spacing={2.5}>
+          {CITY_CHIPS.slice(0, 5).map((c) => {
+            const label = i18n.language === 'ar' ? c.ar : c.en;
             return (
-              <Grid key={c.nameEn} item xs={12} sm={4}>
+              <Grid key={c.en} item xs={6} sm={4} md={2.4}>
                 <Box
-                  onClick={() =>
-                    navigate({ to: '/search' as never, search: { city: c.nameEn } as never })
-                  }
+                  onClick={() => goToCity(c.en)}
                   sx={{
                     position: 'relative',
                     aspectRatio: '4 / 5',
-                    borderRadius: 3,
+                    borderRadius: 2.5,
                     overflow: 'hidden',
                     cursor: 'pointer',
-                    boxShadow: 4,
-                    '& img': { transition: 'transform 600ms ease' },
-                    '&:hover img': { transform: 'scale(1.08)' },
-                    '&::after': {
+                    border: 1,
+                    borderColor: 'divider',
+                    transition: 'transform 250ms ease, box-shadow 250ms ease',
+                    '&:hover': {
+                      transform: 'translateY(-3px)',
+                      boxShadow: `0 12px 24px ${alpha(theme.palette.primary.main, 0.18)}`,
+                    },
+                    '&::before': {
                       content: '""',
                       position: 'absolute',
                       inset: 0,
-                      background:
-                        'linear-gradient(180deg, rgba(15,23,42,0) 40%, rgba(15,23,42,0.85) 100%)',
+                      background: `linear-gradient(180deg, transparent 40%, ${alpha('#1A1A2E', 0.85)} 100%)`,
+                      zIndex: 1,
                     },
                   }}
                 >
-                  <img
-                    src={c.image}
-                    alt={name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  <Box
+                    component="img"
+                    src={`https://picsum.photos/seed/${c.en}/600/750`}
+                    alt={label}
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 600ms ease',
+                      '*:hover > &': { transform: 'scale(1.06)' },
+                    }}
                     loading="lazy"
                   />
                   <Box
@@ -425,16 +491,16 @@ export function HomePage() {
                       position: 'absolute',
                       bottom: 0,
                       insetInline: 0,
-                      p: 3,
+                      p: 1.5,
                       color: 'common.white',
                       zIndex: 2,
                     }}
                   >
-                    <Typography variant="h4" sx={{ fontWeight: 800 }}>
-                      {name}
+                    <Typography variant="subtitle1" sx={{ fontWeight: 700, lineHeight: 1.2 }}>
+                      {label}
                     </Typography>
-                    <Typography variant="body2" sx={{ opacity: 0.85 }}>
-                      {t('home.exploreSale')}
+                    <Typography variant="caption" sx={{ opacity: 0.85 }}>
+                      {t('home.popularInCity')}
                     </Typography>
                   </Box>
                 </Box>
@@ -442,67 +508,65 @@ export function HomePage() {
             );
           })}
         </Grid>
-      </Section>
+      </Container>
 
-      {/* ---------------- FEATURED AGENTS ---------------- */}
-      <Section title={t('nav.agents')}>
-        <HorizontalScroller>
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Box
-              key={i}
-              sx={{
-                ...cardWrapperSx,
-                width: { xs: 240, sm: 260 },
-              }}
-            >
+      {/* ============================== FEATURED AGENTS ============================== */}
+      <Container maxWidth="lg" sx={{ mt: { xs: 5, md: 7 }, mb: { xs: 6, md: 8 } }}>
+        <SectionHeader title={t('nav.agents')} />
+        <Grid container spacing={2}>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Grid key={i} item xs={6} sm={4} md={2}>
               <Box
                 sx={{
                   bgcolor: 'background.paper',
                   border: 1,
                   borderColor: 'divider',
-                  borderRadius: 3,
-                  p: 3,
+                  borderRadius: 2.5,
+                  p: 2,
                   textAlign: 'center',
-                  transition: 'transform 200ms ease',
-                  '&:hover': { transform: 'translateY(-3px)' },
+                  cursor: 'pointer',
+                  transition: 'all 200ms ease',
+                  '&:hover': {
+                    borderColor: 'primary.main',
+                    transform: 'translateY(-2px)',
+                    boxShadow: `0 8px 18px ${alpha(theme.palette.primary.main, 0.12)}`,
+                  },
                 }}
               >
                 <Box
                   sx={{
-                    width: 80,
-                    height: 80,
+                    width: 56,
+                    height: 56,
                     borderRadius: '50%',
-                    bgcolor: 'primary.main',
-                    color: 'primary.contrastText',
-                    fontSize: 28,
+                    background: theme.aqarat.gradient,
+                    color: 'common.white',
+                    fontSize: 22,
                     fontWeight: 800,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     mx: 'auto',
-                    mb: 2,
+                    mb: 1.25,
                   }}
                 >
                   {String.fromCharCode(65 + (i % 26))}
                 </Box>
-                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  Aqarat Agent {i + 1}
+                <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.25 }}>
+                  Agent {i + 1}
                 </Typography>
-                <Stack direction="row" spacing={0.5} justifyContent="center" sx={{ mt: 0.5, mb: 1 }}>
+                <Stack direction="row" spacing={0.25} justifyContent="center" sx={{ mb: 0.5 }}>
                   {[1, 2, 3, 4, 5].map((n) => (
-                    <StarIcon key={n} sx={{ color: 'warning.main', fontSize: 16 }} />
+                    <StarIcon key={n} sx={{ color: theme.aqarat.gold, fontSize: 13 }} />
                   ))}
                 </Stack>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="text.secondary" sx={{ fontSize: 11 }}>
                   {(i % 24) + 6} {t('search.results')}
                 </Typography>
               </Box>
-            </Box>
+            </Grid>
           ))}
-        </HorizontalScroller>
-      </Section>
-
-      <Box sx={{ height: 64 }} />
+        </Grid>
+      </Container>
     </Box>
   );
 }
@@ -511,86 +575,35 @@ export function HomePage() {
 // Helpers
 // ------------------------------------------------------------------
 
-const glassFieldSx = {
-  '& .MuiOutlinedInput-root': {
-    bgcolor: 'rgba(255,255,255,0.92)',
-    color: 'text.primary',
-    '& fieldset': { borderColor: 'rgba(255,255,255,0)' },
-    '&:hover fieldset': { borderColor: 'primary.light' },
-    '&.Mui-focused fieldset': { borderColor: 'primary.main' },
-  },
-  '& .MuiInputLabel-root': { color: 'text.secondary' },
-};
-
-const cardWrapperSx = {
-  flex: '0 0 auto',
-  width: { xs: 280, sm: 300, md: 320 },
-};
-
-function Section({ title, children }: { title: string; children: ReactNode }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+function SectionHeader({
+  title,
+  actionLabel,
+  onAction,
+}: {
+  title: string;
+  actionLabel?: string;
+  onAction?: () => void;
+}) {
   return (
-    <Container maxWidth="lg" sx={{ mt: { xs: 6, md: 10 } }}>
-      <Box
-        ref={ref}
-        component={motion.div}
-        initial={{ opacity: 0, y: 24 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Typography variant="h4" sx={{ fontWeight: 800, mb: 3 }}>
-          {title}
-        </Typography>
-        {children}
-      </Box>
-    </Container>
-  );
-}
-
-function HorizontalScroller({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const scroll = (delta: number) => {
-    if (ref.current) ref.current.scrollBy({ left: delta, behavior: 'smooth' });
-  };
-  return (
-    <Box sx={{ position: 'relative' }}>
-      <Box
-        ref={ref}
-        className="scrollbar-hide"
-        sx={{ display: 'flex', gap: 3, overflowX: 'auto', scrollSnapType: 'x mandatory', pb: 1 }}
-      >
-        {children}
-      </Box>
-      <IconButton
-        onClick={() => scroll(-340)}
-        sx={{
-          position: 'absolute',
-          insetInlineStart: -8,
-          top: '40%',
-          bgcolor: 'background.paper',
-          boxShadow: 2,
-          display: { xs: 'none', md: 'inline-flex' },
-        }}
-        aria-label="scroll left"
-      >
-        <ChevronLeftIcon />
-      </IconButton>
-      <IconButton
-        onClick={() => scroll(340)}
-        sx={{
-          position: 'absolute',
-          insetInlineEnd: -8,
-          top: '40%',
-          bgcolor: 'background.paper',
-          boxShadow: 2,
-          display: { xs: 'none', md: 'inline-flex' },
-        }}
-        aria-label="scroll right"
-      >
-        <ChevronRightIcon />
-      </IconButton>
-    </Box>
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      sx={{ mb: { xs: 2, md: 3 } }}
+    >
+      <Typography variant="h5" sx={{ fontWeight: 800, letterSpacing: '-0.01em' }}>
+        {title}
+      </Typography>
+      {actionLabel && onAction && (
+        <Button
+          onClick={onAction}
+          endIcon={<ArrowForwardIcon sx={{ transform: 'var(--rtl-flip, none)' }} />}
+          sx={{ fontWeight: 700, color: 'primary.dark' }}
+        >
+          {actionLabel}
+        </Button>
+      )}
+    </Stack>
   );
 }
 
@@ -612,28 +625,21 @@ function StatBlock({ label, value, suffix = '' }: { label: string; value: number
   }, [inView, value, motionValue, rounded]);
 
   return (
-    <Grid item xs={6} md={3} ref={ref}>
-      <Typography variant="h2" sx={{ fontWeight: 800, mb: 1 }}>
+    <Box ref={ref}>
+      <Typography
+        variant="h5"
+        sx={{ fontWeight: 800, color: 'primary.dark', lineHeight: 1.1, mb: 0.25 }}
+      >
         {display.toLocaleString()}
         {suffix}
       </Typography>
-      <Typography variant="body2" sx={{ opacity: 0.8, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+      <Typography
+        variant="caption"
+        sx={{ color: 'text.secondary', textTransform: 'uppercase', letterSpacing: 0.4, fontSize: 11 }}
+      >
         {label}
       </Typography>
-    </Grid>
+    </Box>
   );
 }
 
-function arabicPropertyType(t: PropertyType): string {
-  switch (t) {
-    case PropertyType.APARTMENT: return 'شقة';
-    case PropertyType.VILLA: return 'فيلا';
-    case PropertyType.OFFICE: return 'مكتب';
-    case PropertyType.LAND: return 'أرض';
-    case PropertyType.COMMERCIAL: return 'تجاري';
-    default: return t;
-  }
-}
-function englishPropertyType(t: PropertyType): string {
-  return t.charAt(0).toUpperCase() + t.slice(1);
-}

@@ -10,6 +10,8 @@ declare module '@mui/material/styles' {
       hero: string;
       surface: string;
       accent: string;
+      gold: string;
+      gradient: string;
     };
   }
   interface ThemeOptions {
@@ -17,6 +19,8 @@ declare module '@mui/material/styles' {
       hero?: string;
       surface?: string;
       accent?: string;
+      gold?: string;
+      gradient?: string;
     };
   }
 }
@@ -215,6 +219,8 @@ export const buildTheme = (mode: Mode, direction: Direction) =>
       hero: aqaratBrand.hero,
       surface: aqaratBrand.surface,
       accent: aqaratBrand.accent,
+      gold: aqaratBrand.gold,
+      gradient: aqaratBrand.gradient,
     },
   });
 

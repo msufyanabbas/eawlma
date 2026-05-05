@@ -158,12 +158,18 @@
     "heroTitle": "اعثر على منزلك المثالي",
     "heroSubtitle": "آلاف العقارات للبيع والإيجار في جميع أنحاء المملكة",
     "searchPlaceholder": "ابحث بالمدينة أو الحي أو رقم الإعلان",
-    "searchCta": "ابحث الآن",
+    "searchCta": "بحث",
     "exploreSale": "استكشف العقارات للبيع",
     "exploreRent": "استكشف العقارات للإيجار",
     "featuredListings": "إعلانات مميزة",
     "popularCities": "أكثر المدن شعبية",
-    "becomeAgent": "هل أنت وسيط؟ انضم إلينا"
+    "becomeAgent": "هل أنت وسيط؟ انضم إلينا",
+    "tabBuy": "للبيع",
+    "tabRent": "للإيجار",
+    "tabCommercial": "تجاري",
+    "popularInCity": "الأكثر شعبية في",
+    "viewMore": "عرض المزيد",
+    "trustedBy": "موثوق في جميع أنحاء المملكة"
   },
   "empty": {
     "noListings": "لا توجد إعلانات بعد",

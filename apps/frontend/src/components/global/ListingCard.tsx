@@ -9,14 +9,17 @@ import {
   Stack,
   Tooltip,
   Typography,
+  alpha,
+  useTheme,
 } from '@mui/material';
 import BedIcon from '@mui/icons-material/KingBedOutlined';
 import BathIcon from '@mui/icons-material/BathtubOutlined';
 import AreaIcon from '@mui/icons-material/SquareFootOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import VerifiedIcon from '@mui/icons-material/VerifiedOutlined';
+import VerifiedIcon from '@mui/icons-material/Verified';
 import StarIcon from '@mui/icons-material/Star';
+import PlaceIcon from '@mui/icons-material/PlaceOutlined';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import { ListingType, type Listing } from '@aqarat/shared-types';
@@ -30,9 +33,10 @@ interface ListingCardProps {
   saved?: boolean;
   /** Receives the listing id when toggled. Promise return is awaited for optimistic-UI rollback. */
   onToggleSave?: (listingId: string) => void | Promise<void>;
+  /** Pass `true` to surface the verified-agent badge on the agent strip. */
+  agentVerified?: boolean;
 }
 
-/** Picks the best title/description for the active locale, with fallbacks. */
 function localized(listing: Listing, locale: string) {
   const tr = listing.translations?.find((t) => t.locale === locale);
   return {
@@ -41,13 +45,17 @@ function localized(listing: Listing, locale: string) {
   };
 }
 
-export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCardProps) {
+export function ListingCard({ listing, locale, saved, onToggleSave, agentVerified }: ListingCardProps) {
   const { t, i18n } = useTranslation();
+  const theme = useTheme();
   const activeLocale = locale ?? i18n.language;
   const { title } = localized(listing, activeLocale);
   const cover = listing.media?.[0];
   const agentInitials = `${listing.ownerId.slice(0, 1).toUpperCase()}`;
   const isSale = listing.type === ListingType.SALE;
+  // Featured listings come from owners who already passed the publish gate, so
+  // we treat them as verified by default unless the parent overrides.
+  const showVerified = agentVerified ?? listing.isFeatured;
 
   const handleSaveClick = (e: MouseEvent) => {
     e.preventDefault();
@@ -56,7 +64,19 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
   };
 
   return (
-    <Card sx={{ overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Card
+      sx={{
+        overflow: 'hidden',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        borderColor: 'divider',
+        '&:hover': {
+          borderColor: alpha(theme.palette.primary.main, 0.4),
+          boxShadow: `0 12px 28px ${alpha(theme.palette.primary.main, 0.12)}`,
+        },
+      }}
+    >
       <CardActionArea component={Link} to={`/listings/${listing.id}` as never} sx={{ flex: 1 }}>
         {/* Cover */}
         <Box sx={{ position: 'relative', aspectRatio: '4 / 3', bgcolor: 'grey.100' }}>
@@ -83,21 +103,35 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
             </Box>
           )}
 
-          {/* Top-left: type chip */}
-          <Stack direction="row" spacing={1} sx={{ position: 'absolute', top: 12, insetInlineStart: 12 }}>
+          {/* Top-left: type + (gold) featured chip */}
+          <Stack direction="row" spacing={0.75} sx={{ position: 'absolute', top: 10, insetInlineStart: 10 }}>
             <Chip
               size="small"
               variant="filled"
-              color={isSale ? 'primary' : 'success'}
               label={isSale ? t('listing.forSale') : t('listing.forRent')}
-              sx={{ fontWeight: 700 }}
+              sx={{
+                height: 24,
+                fontWeight: 700,
+                fontSize: 11,
+                bgcolor: 'rgba(255,255,255,0.95)',
+                color: 'text.primary',
+                border: 'none',
+              }}
             />
             {listing.isFeatured && (
               <Chip
                 size="small"
-                color="secondary"
-                icon={<StarIcon sx={{ fontSize: 14 }} />}
+                icon={<StarIcon sx={{ fontSize: 13, color: '#1A1A2E !important' }} />}
                 label={t('listing.featured')}
+                sx={{
+                  height: 24,
+                  fontWeight: 700,
+                  fontSize: 11,
+                  bgcolor: theme.aqarat.gold,
+                  color: '#1A1A2E',
+                  border: 'none',
+                  '& .MuiChip-icon': { ml: 0.5, mr: -0.25 },
+                }}
               />
             )}
           </Stack>
@@ -109,7 +143,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
                 onClick={handleSaveClick}
                 size="small"
                 sx={{
-                  bgcolor: 'rgba(255,255,255,0.92)',
+                  bgcolor: 'rgba(255,255,255,0.95)',
                   '&:hover': { bgcolor: 'common.white' },
                 }}
                 aria-label="save listing"
@@ -123,23 +157,23 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
             </Tooltip>
           </Box>
 
-          {/* Bottom-left: price badge */}
+          {/* Bottom-left: lavender price badge */}
           <Box
             sx={{
               position: 'absolute',
-              bottom: 12,
-              insetInlineStart: 12,
-              bgcolor: 'rgba(15,23,42,0.85)',
+              bottom: 10,
+              insetInlineStart: 10,
+              background: theme.aqarat.gradient,
               color: 'common.white',
               px: 1.5,
-              py: 0.75,
+              py: 0.6,
               borderRadius: 999,
-              backdropFilter: 'blur(4px)',
+              boxShadow: '0 6px 14px rgba(74,64,128,0.35)',
             }}
           >
-            <Typography variant="subtitle2" sx={{ fontWeight: 800 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 800, lineHeight: 1.2 }}>
               {Number(listing.price).toLocaleString(activeLocale)}
-              <Typography component="span" variant="caption" sx={{ ml: 0.5, opacity: 0.8 }}>
+              <Typography component="span" variant="caption" sx={{ ml: 0.5, opacity: 0.92 }}>
                 {t('listing.currency')}
                 {!isSale && listing.rentPeriod ? rentSuffix(t, listing.rentPeriod) : ''}
               </Typography>
@@ -147,15 +181,20 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
           </Box>
         </Box>
 
-        {/* Body */}
-        <CardContent sx={{ pb: 2 }}>
-          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 0.5 }}>
-            <Chip
-              variant="outlined"
-              size="small"
-              label={t(`listing.${listing.propertyType}`, { defaultValue: listing.propertyType })}
-              sx={{ height: 22, fontSize: 11 }}
-            />
+        {/* Body — tighter padding for compactness */}
+        <CardContent sx={{ p: 1.75, '&:last-child': { pb: 1.5 } }}>
+          <Stack direction="row" alignItems="center" spacing={0.75} sx={{ mb: 0.5 }}>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 700,
+                color: 'primary.dark',
+                textTransform: 'uppercase',
+                letterSpacing: 0.4,
+              }}
+            >
+              {t(`listing.${listing.propertyType}`, { defaultValue: listing.propertyType })}
+            </Typography>
             <Typography variant="caption" color="text.secondary">
               · {listing.referenceCode}
             </Typography>
@@ -165,41 +204,55 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
             variant="subtitle1"
             sx={{
               fontWeight: 700,
-              lineHeight: 1.35,
+              lineHeight: 1.3,
               display: '-webkit-box',
               WebkitLineClamp: 2,
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
-              minHeight: '2.7em',
+              minHeight: '2.6em',
               mb: 0.5,
             }}
           >
             {title}
           </Typography>
 
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
-            {listing.district ? `${listing.district}, ` : ''}
-            {listing.city}
-          </Typography>
+          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 1.25, color: 'text.secondary' }}>
+            <PlaceIcon sx={{ fontSize: 14 }} />
+            <Typography variant="body2" sx={{ fontSize: 13 }}>
+              {listing.district ? `${listing.district}, ` : ''}
+              {listing.city}
+            </Typography>
+          </Stack>
 
-          {/* Feature row */}
-          <Stack direction="row" spacing={2.5} sx={{ color: 'text.secondary' }}>
+          {/* Compact feature row */}
+          <Stack
+            direction="row"
+            spacing={2}
+            divider={
+              <Box sx={{ width: '1px', height: 14, bgcolor: 'divider', alignSelf: 'center' }} />
+            }
+            sx={{ color: 'text.primary' }}
+          >
             {listing.bedrooms !== null && listing.bedrooms !== undefined && (
               <Stack direction="row" spacing={0.5} alignItems="center">
-                <BedIcon fontSize="small" />
-                <Typography variant="body2">{listing.bedrooms}</Typography>
+                <BedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
+                  {listing.bedrooms}
+                </Typography>
               </Stack>
             )}
             {listing.bathrooms !== null && listing.bathrooms !== undefined && (
               <Stack direction="row" spacing={0.5} alignItems="center">
-                <BathIcon fontSize="small" />
-                <Typography variant="body2">{listing.bathrooms}</Typography>
+                <BathIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
+                  {listing.bathrooms}
+                </Typography>
               </Stack>
             )}
             {listing.area !== null && listing.area !== undefined && (
               <Stack direction="row" spacing={0.5} alignItems="center">
-                <AreaIcon fontSize="small" />
-                <Typography variant="body2">
+                <AreaIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
                   {Number(listing.area).toLocaleString(activeLocale)} {t('listing.areaUnit')}
                 </Typography>
               </Stack>
@@ -208,16 +261,56 @@ export function ListingCard({ listing, locale, saved, onToggleSave }: ListingCar
         </CardContent>
       </CardActionArea>
 
-      {/* Footer: agent strip */}
-      <Box sx={{ px: 2, pb: 2, pt: 0 }}>
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Avatar sx={{ width: 28, height: 28, fontSize: 12 }}>{agentInitials}</Avatar>
-          <Typography variant="caption" color="text.secondary" sx={{ flex: 1 }}>
-            {t('listing.agent')}
-          </Typography>
-          <VerifiedIcon fontSize="small" sx={{ color: 'success.main' }} />
-        </Stack>
-      </Box>
+      {/* Footer: agent strip (only if verified, otherwise drop the chrome) */}
+      {showVerified && (
+        <Box
+          sx={{
+            px: 1.75,
+            pb: 1.5,
+            pt: 1,
+            borderTop: '1px dashed',
+            borderColor: 'divider',
+            mt: 0.5,
+          }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Avatar
+              sx={{
+                width: 24,
+                height: 24,
+                fontSize: 11,
+                bgcolor: alpha(theme.palette.primary.main, 0.12),
+                color: 'primary.dark',
+                fontWeight: 700,
+              }}
+            >
+              {agentInitials}
+            </Avatar>
+            <Typography variant="caption" color="text.secondary" sx={{ flex: 1 }}>
+              {t('listing.agent')}
+            </Typography>
+            <Tooltip title={t('listing.featured')}>
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={0.4}
+                sx={{
+                  bgcolor: alpha(theme.aqarat.accent, 0.14),
+                  color: theme.aqarat.accent,
+                  px: 0.75,
+                  py: 0.2,
+                  borderRadius: 999,
+                }}
+              >
+                <VerifiedIcon sx={{ fontSize: 14 }} />
+                <Typography variant="caption" sx={{ fontWeight: 700, fontSize: 10.5 }}>
+                  {t('listing.verified', { defaultValue: 'Verified' })}
+                </Typography>
+              </Stack>
+            </Tooltip>
+          </Stack>
+        </Box>
+      )}
     </Card>
   );
 }
