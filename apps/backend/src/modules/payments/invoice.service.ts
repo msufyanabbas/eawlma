@@ -35,7 +35,7 @@ export class InvoiceService {
       doc
         .fillColor('#52525B')
         .fontSize(10)
-        .text('eawlma — Saudi Real Estate Marketplace', { align: 'left' })
+        .text('Eawlma — Saudi Real Estate Marketplace', { align: 'left' })
         .text('https://eawlma.sa', { link: 'https://eawlma.sa', underline: true })
         .moveDown(2);
 
@@ -77,7 +77,7 @@ export class InvoiceService {
         .strokeColor('#E4E4E7')
         .stroke();
 
-      const desc = payment.description ?? `eawlma ${payment.purpose}`;
+      const desc = payment.description ?? `Eawlma ${payment.purpose}`;
       const lineY = tableTop + 28;
       doc
         .fillColor('#52525B')
@@ -115,7 +115,7 @@ export class InvoiceService {
           780,
           { align: 'center', width: 490 },
         )
-        .text('Thank you for using eawlma.', { align: 'center', width: 490 });
+        .text('Thank you for using Eawlma.', { align: 'center', width: 490 });
 
       doc.end();
     });

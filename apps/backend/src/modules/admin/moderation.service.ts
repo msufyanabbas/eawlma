@@ -147,7 +147,7 @@ export class ModerationService {
     const isApproved = decision === 'approved';
     const title = isApproved ? 'Your listing has been approved' : 'Your listing was rejected';
     const body = isApproved
-      ? `${listing.title} (${listing.referenceCode}) is now live on eawlma.`
+      ? `${listing.title} (${listing.referenceCode}) is now live on Eawlma.`
       : `${listing.title} (${listing.referenceCode}) was not approved. Reason: ${reason}`;
 
     void this.notificationsService

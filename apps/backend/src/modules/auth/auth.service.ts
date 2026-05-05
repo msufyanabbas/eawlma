@@ -177,7 +177,7 @@ export class AuthService {
 
     await this.emailService.send({
       to: user.email,
-      subject: 'Reset your eawlma password',
+      subject: 'Reset your Eawlma password',
       html: `<p>Click the link below to reset your password (valid for 30 minutes):</p><p><a href="${link}">${link}</a></p>`,
       text: `Reset your password: ${link}`,
     });

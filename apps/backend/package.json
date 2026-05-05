@@ -2,7 +2,7 @@
   "name": "@eawlma/backend",
   "version": "0.1.0",
   "private": true,
-  "description": "eawlma backend (NestJS)",
+  "description": "Eawlma backend (NestJS)",
   "main": "dist/main.js",
   "scripts": {
     "prebuild": "rimraf dist",

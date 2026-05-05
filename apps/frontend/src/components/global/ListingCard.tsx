@@ -25,6 +25,7 @@ import { Link } from '@tanstack/react-router';
 import { ListingType, type Listing } from '@eawlma/shared-types';
 import { type MouseEvent } from 'react';
 import { listingCoverUrl } from '@/utils/listingImages';
+import { getListingTitle, getListingLocation } from '@/utils/listingText';
 
 interface ListingCardProps {
   listing: Listing;
@@ -38,39 +39,13 @@ interface ListingCardProps {
   agentVerified?: boolean;
 }
 
-// Backend ships machine-translation stubs that prepend "[xx] " to the source
-// string when no real translation exists yet. Treat those as missing so we
-// fall through to the next preference rather than rendering "[en] فيلا …".
-const STUB_PREFIX_RE = /^\s*\[[a-z][a-zA-Z-]+]\s/;
-
-function bestText(value: string | undefined): string | undefined {
-  if (!value) return undefined;
-  if (STUB_PREFIX_RE.test(value)) return undefined;
-  return value;
-}
-
-function localized(listing: Listing, locale: string) {
-  const tr = listing.translations?.find((t) => t.locale === locale);
-  // Preference: real translation in the active locale → source string →
-  // any real (non-stub) translation we can find → raw source as last resort.
-  const sourceTitle = listing.title;
-  const sourceDesc = listing.description;
-  const fallbackTr = listing.translations?.find(
-    (t) => bestText(t.title) && t.locale !== listing.sourceLocale,
-  );
-  return {
-    title:
-      bestText(tr?.title) ?? sourceTitle ?? bestText(fallbackTr?.title) ?? 'Untitled',
-    description:
-      bestText(tr?.description) ?? sourceDesc ?? bestText(fallbackTr?.description) ?? '',
-  };
-}
 
 export function ListingCard({ listing, locale, saved, onToggleSave, agentVerified }: ListingCardProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const activeLocale = locale ?? i18n.language;
-  const { title } = localized(listing, activeLocale);
+  const title = getListingTitle(listing, activeLocale);
+  const location = getListingLocation(listing);
   const coverUrl = listingCoverUrl(listing);
   const agentInitials = `${listing.ownerId.slice(0, 1).toUpperCase()}`;
   const isSale = listing.type === ListingType.SALE;
@@ -92,12 +67,12 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
         display: 'flex',
         flexDirection: 'column',
         borderColor: 'divider',
-        transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease',
+        boxShadow: '0 2px 8px rgba(108,99,166,0.08)',
+        transition: 'all 0.25s ease',
         '&:hover': {
           transform: 'translateY(-4px)',
           borderColor: alpha(theme.palette.primary.main, 0.4),
-          // Lavender-tinted glass shimmer
-          boxShadow: '0 20px 40px rgba(108,99,166,0.15)',
+          boxShadow: '0 12px 32px rgba(108,99,166,0.18)',
         },
       }}
     >
@@ -228,8 +203,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
           <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 1.25, color: 'text.secondary' }}>
             <PlaceIcon sx={{ fontSize: 14 }} />
             <Typography variant="body2" sx={{ fontSize: 13 }}>
-              {listing.district ? `${listing.district}, ` : ''}
-              {listing.city}
+              {location}
             </Typography>
           </Stack>
 

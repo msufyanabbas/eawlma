@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "eawlma",
+    "name": "Eawlma",
     "tagline": "Discover your perfect property in Saudi Arabia"
   },
   "nav": {
@@ -49,7 +49,7 @@
     "loginTitle": "Welcome back",
     "loginSubtitle": "Sign in to continue to your account",
     "registerTitle": "Create your account",
-    "registerSubtitle": "Join eawlma and start your property journey",
+    "registerSubtitle": "Join Eawlma and start your property journey",
     "email": "Email",
     "phone": "Phone number",
     "password": "Password",
@@ -152,7 +152,8 @@
     "minPrice": "Min price",
     "maxPrice": "Max price",
     "minBedrooms": "Min bedrooms",
-    "minArea": "Min area"
+    "minArea": "Min area",
+    "applyFilters": "Apply filters"
   },
   "home": {
     "heroTitle": "Find your perfect home",
@@ -163,7 +164,7 @@
     "exploreRent": "Explore properties for rent",
     "featuredListings": "Featured listings",
     "popularCities": "Popular cities",
-    "becomeAgent": "Are you an agent? Join eawlma",
+    "becomeAgent": "Are you an agent? Join Eawlma",
     "tabBuy": "Buy",
     "tabRent": "Rent",
     "tabCommercial": "Commercial",
@@ -181,7 +182,7 @@
     "noResults": "No results"
   },
   "footer": {
-    "tagline": "eawlma is the trusted real estate marketplace of the Kingdom — discover, list, and lease properties across Saudi Arabia with confidence.",
+    "tagline": "Eawlma is the trusted real estate marketplace of the Kingdom — discover, list, and lease properties across Saudi Arabia with confidence.",
     "company": "Company",
     "about": "About",
     "contact": "Contact",

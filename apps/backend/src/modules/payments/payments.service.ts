@@ -99,7 +99,7 @@ export class PaymentsService {
     }
 
     const amount = Math.round(Number(plan.price) * 100); // SAR -> halalas
-    const description = `eawlma ${plan.nameEn} (${plan.billingPeriod})`;
+    const description = `Eawlma ${plan.nameEn} (${plan.billingPeriod})`;
 
     const payment = await this.savePending(userId, {
       amount,

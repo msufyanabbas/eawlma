@@ -37,49 +37,46 @@ const ARGON_OPTIONS: argon2.Options = {
 const RIYADH = { lat: 24.7136, lng: 46.6753 };
 
 // ------------------------------------------------------------------
-// Property-type → curated Unsplash cover image rotation
+// Cover-image map per seeded reference code.
+// Direct, deterministic — no hashing — guarantees the right photo
+// per listing every re-seed.
 // ------------------------------------------------------------------
 
-const COVER_IMAGES_BY_TYPE: Record<string, string[]> = {
-  apartment: [
-    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80',
-    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
-    'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
-  ],
-  villa: [
-    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
-    'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-  ],
-  office: [
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-    'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80',
-  ],
-  land: [
-    'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-  ],
-  townhouse: [
-    'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80',
-    'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
-  ],
-  studio: [
-    'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800&q=80',
-  ],
-  commercial: [
-    'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
-  ],
+const COVER_IMAGE_BY_REF: Record<string, string> = {
+  'EAW-SEED-01': 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80', // apartment
+  'EAW-SEED-02': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', // villa
+  'EAW-SEED-03': 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80', // apartment
+  'EAW-SEED-04': 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80', // office
+  'EAW-SEED-05': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80', // land
+  'EAW-SEED-06': 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80', // villa
+  'EAW-SEED-07': 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80', // apartment
+  'EAW-SEED-08': 'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800&q=80', // studio (was commercial — see spec)
+  'EAW-SEED-09': 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80', // townhouse
+  'EAW-SEED-10': 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80', // office
+};
+
+// Same per-property-type defaults as the frontend listingImages helper —
+// kept in sync so any future seeds without an explicit map entry still get a
+// real-estate image, never a random hashed photo.
+const FALLBACK_BY_TYPE: Record<string, string> = {
+  apartment: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80',
+  villa:     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+  office:    'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+  land:      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
+  townhouse: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80',
+  studio:    'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800&q=80',
+  commercial:'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+  penthouse: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
 };
 
 const DEFAULT_COVER = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80';
 
 function pickCoverImage(propertyType: PropertyType, refCode: string): string {
-  const pool = COVER_IMAGES_BY_TYPE[propertyType] ?? [];
-  if (pool.length === 0) return DEFAULT_COVER;
-  // Hash the ref code so re-seeds always pick the same image per listing.
-  let h = 0;
-  for (let i = 0; i < refCode.length; i++) h = (h * 31 + refCode.charCodeAt(i)) >>> 0;
-  return pool[h % pool.length];
+  return (
+    COVER_IMAGE_BY_REF[refCode] ??
+    FALLBACK_BY_TYPE[propertyType] ??
+    DEFAULT_COVER
+  );
 }
 
 // ------------------------------------------------------------------
@@ -239,12 +236,16 @@ const LISTING_SPECS: SeedListingSpec[] = [
   {
     ref: 'EAW-SEED-08',
     type: ListingType.RENT,
-    propertyType: PropertyType.COMMERCIAL,
-    title: 'محل تجاري في طريق العروبة',
-    description: 'محل بواجهة زجاجية على شارع رئيسي بحركة عالية.',
-    price: 95_000,
-    rentPeriod: RentPeriod.YEARLY,
-    area: 80,
+    propertyType: PropertyType.STUDIO,
+    title: 'استوديو حديث للإيجار في حي العروبة',
+    description: 'استوديو مفروش بتصميم عصري، مدخل مستقل، قريب من المرافق الحيوية.',
+    price: 3_200,
+    rentPeriod: RentPeriod.MONTHLY,
+    bedrooms: 1,
+    bathrooms: 1,
+    area: 45,
+    parkingSpaces: 1,
+    furnishing: ListingFurnishing.FURNISHED,
     district: 'حي العروبة',
     latOffset: -0.008,
     lngOffset: 0.017,
@@ -451,7 +452,7 @@ async function main(): Promise<void> {
     email: 'admin@eawlma.sa',
     phone: '+966500000900',
     firstName: 'Admin',
-    lastName: 'eawlma',
+    lastName: 'Eawlma',
     role: UserRole.ADMIN,
     password: 'Admin123!',
   });

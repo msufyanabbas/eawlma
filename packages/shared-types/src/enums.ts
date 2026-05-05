@@ -1,5 +1,5 @@
 // =============================================================================
-// eawlma — Shared enums (single source of truth between FE & BE)
+// Eawlma — Shared enums (single source of truth between FE & BE)
 // =============================================================================
 
 export enum Locale {

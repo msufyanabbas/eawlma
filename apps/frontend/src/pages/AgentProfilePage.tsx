@@ -15,7 +15,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import StarIcon from '@mui/icons-material/Star';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from '@tanstack/react-router';
+import { useParams, useNavigate } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -24,11 +24,23 @@ import { agentsApi } from '@/api/agents.api';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
+import { useAuthStore } from '@/store/auth.store';
 
 export function AgentProfilePage() {
   const { t } = useTranslation();
   const params = useParams({ strict: false }) as { id?: string };
   const agentId = params.id ?? '';
+  const navigate = useNavigate();
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+
+  const handleMessageAgent = () => {
+    if (!isAuthenticated) {
+      const returnTo = encodeURIComponent(window.location.pathname);
+      void navigate({ to: `/login?returnTo=${returnTo}` as never });
+      return;
+    }
+    void navigate({ to: '/messages' as never });
+  };
 
   const { data: page, isLoading } = useQuery({
     queryKey: ['search', { agentId }],
@@ -50,7 +62,7 @@ export function AgentProfilePage() {
 
   const displayName = useMemo(() => {
     if (agent) return `${agent.firstName} ${agent.lastName}`.trim();
-    return 'eawlma Agent';
+    return 'Eawlma Agent';
   }, [agent]);
 
   const initials = useMemo(() => {
@@ -120,7 +132,7 @@ export function AgentProfilePage() {
               </Stack>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                 <BusinessIcon sx={{ fontSize: 16, mr: 0.5, verticalAlign: 'text-bottom' }} />
-                eawlma Real Estate
+                Eawlma Real Estate
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 720 }}>
                 Bilingual real-estate professional helping buyers and renters find the right home
@@ -129,7 +141,11 @@ export function AgentProfilePage() {
             </Box>
 
             <Stack direction="row" spacing={1}>
-              <Button startIcon={<ChatIcon />} variant="outlined">
+              <Button
+                startIcon={<ChatIcon />}
+                variant="outlined"
+                onClick={handleMessageAgent}
+              >
                 {t('nav.messages')}
               </Button>
               <Button variant="contained" color="primary">

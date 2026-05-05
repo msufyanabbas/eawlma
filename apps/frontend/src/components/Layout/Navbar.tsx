@@ -105,15 +105,16 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     <AppBar
       position="sticky"
       sx={{
-        bgcolor: scrolled ? 'rgba(255,255,255,0.85)' : 'background.paper',
-        backdropFilter: scrolled ? 'saturate(180%) blur(12px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'saturate(180%) blur(12px)' : 'none',
+        bgcolor: scrolled ? 'rgba(255,255,255,0.92)' : 'background.paper',
+        backdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
         borderBottom: 1,
-        borderColor: scrolled ? 'rgba(108,99,166,0.15)' : 'divider',
-        transition: 'background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease',
+        borderColor: scrolled ? 'rgba(108,99,166,0.12)' : 'divider',
+        boxShadow: scrolled ? '0 2px 20px rgba(108,99,166,0.08)' : 'none',
+        transition: 'background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease, box-shadow 220ms ease',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 2, sm: 3, md: 6, lg: 8 } }}>
         <Toolbar disableGutters sx={{ gap: 2, py: 1 }}>
           {/* Mobile hamburger */}
           {!isDesktop && (

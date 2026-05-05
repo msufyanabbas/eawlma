@@ -38,7 +38,7 @@ export function Footer() {
         borderColor: 'divider',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 2, sm: 3, md: 6, lg: 8 } }}>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={{ xs: 5, md: 8 }}

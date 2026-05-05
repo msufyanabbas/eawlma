@@ -14,6 +14,7 @@ import {
   MenuItem,
   Paper,
   Skeleton,
+  Snackbar,
   Stack,
   TextField,
   Tooltip,
@@ -37,7 +38,7 @@ import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useParams, Link } from '@tanstack/react-router';
+import { useParams, Link, useNavigate } from '@tanstack/react-router';
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -54,6 +55,7 @@ import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
+import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 
 // ------------------------------------------------------------------
 // 30 supported translation locales (mirrors backend's TRANSLATION_TARGET_LOCALES)
@@ -92,9 +94,17 @@ export function ListingDetailPage() {
   const isSaved = useSavedStore((s) => s.isSaved(id));
   const toggleSaved = useSavedStore((s) => s.toggle);
 
+  const navigate = useNavigate();
   const [displayLocale, setDisplayLocale] = useState<string>(i18n.language);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryIdx, setGalleryIdx] = useState(0);
+  const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'info' | 'warning' }>({
+    open: false,
+    message: '',
+    severity: 'info',
+  });
+  const showSnackbar = (message: string, severity: 'info' | 'warning' = 'info') =>
+    setSnackbar({ open: true, message, severity });
 
   const listingQuery = useQuery({
     queryKey: ['listings', id],
@@ -114,13 +124,14 @@ export function ListingDetailPage() {
     enabled: Boolean(listing),
   });
 
-  // Pick title/description in the chosen translation locale, with fallbacks.
+  // Pick title/description in the chosen translation locale via the shared
+  // util — handles stub-prefixed translations + mojibake-corrupted seeds.
   const localized = useMemo(() => {
     if (!listing) return { title: '', description: '' };
-    if (displayLocale === listing.sourceLocale)
-      return { title: listing.title, description: listing.description };
-    const tr = listing.translations.find((x) => x.locale === displayLocale);
-    return tr ? { title: tr.title, description: tr.description } : { title: listing.title, description: listing.description };
+    return {
+      title: getListingTitle(listing, displayLocale),
+      description: getListingDescription(listing, displayLocale),
+    };
   }, [listing, displayLocale]);
 
   // Inquiry form state (shared between sticky sidebar + mobile sheet)
@@ -186,8 +197,42 @@ export function ListingDetailPage() {
 
   const isSale = listing.type === ListingType.SALE;
   const whatsappLink = `https://wa.me/?text=${encodeURIComponent(
-    `eawlma — ${localized.title} — ${window.location.href}`,
+    `Eawlma — ${localized.title} — ${window.location.href}`,
   )}`;
+
+  // VR / AR feedback handlers — surface a Snackbar when the listing or the
+  // current device cannot honour the action, so users aren't left wondering.
+  const handleEnterVR = () => {
+    if (!tour360?.url) {
+      showSnackbar(
+        'No virtual tour available for this listing yet. Ask the agent to add one.',
+        'info',
+      );
+      return;
+    }
+    window.open(tour360.url, '_blank', 'noopener');
+  };
+  const handleViewAR = () => {
+    if (!tour360?.url) {
+      showSnackbar('No AR model available for this listing yet.', 'info');
+      return;
+    }
+    if (typeof navigator !== 'undefined' && !('xr' in navigator)) {
+      showSnackbar('AR is not supported on this device/browser.', 'warning');
+      return;
+    }
+    window.open(tour360.url, '_blank', 'noopener');
+  };
+
+  // "Messages" CTA from the agent card — gate by auth and forward returnTo.
+  const handleMessageAgent = () => {
+    if (!isAuthenticated) {
+      const returnTo = encodeURIComponent(window.location.pathname);
+      void navigate({ to: `/login?returnTo=${returnTo}` as never });
+      return;
+    }
+    void navigate({ to: '/messages' as never });
+  };
 
   return (
     <Box>
@@ -196,64 +241,92 @@ export function ListingDetailPage() {
         <meta name="description" content={localized.description.slice(0, 160)} />
       </Helmet>
 
-      {/* ---------------- Image gallery ---------------- */}
+      {/* ---------------- Image gallery — Airbnb 60/40 split ---------------- */}
       <Container maxWidth="lg" sx={{ mt: 3 }}>
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '2fr 1fr 1fr' },
-            gridTemplateRows: { md: '1fr 1fr' },
-            gap: 1,
-            borderRadius: 3,
-            overflow: 'hidden',
-            height: { xs: 320, md: 480 },
-          }}
-        >
+        {images.length <= 1 ? (
+          // Single-image fallback — full-width with a subtle gradient veil
           <Box
             onClick={() => images.length > 0 && (setGalleryIdx(0), setGalleryOpen(true))}
             sx={{
-              gridRow: { md: '1 / span 2' },
-              bgcolor: 'grey.200',
+              position: 'relative',
+              width: '100%',
+              height: { xs: 280, md: 460 },
+              borderRadius: 3,
+              overflow: 'hidden',
+              cursor: cover ? 'pointer' : 'default',
               backgroundImage: cover ? `url(${cover})` : 'none',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              cursor: cover ? 'pointer' : 'default',
+              bgcolor: 'grey.100',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35) 100%)',
+              },
             }}
           />
-          {images.slice(1, 5).map((m, i) => (
+        ) : (
+          <Box
+            sx={{
+              position: 'relative',
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '3fr 1fr 1fr' },
+              gridTemplateRows: { md: '1fr 1fr' },
+              gap: 1,
+              borderRadius: 3,
+              overflow: 'hidden',
+              height: { xs: 320, md: 480 },
+            }}
+          >
             <Box
-              key={m.id}
-              onClick={() => (setGalleryIdx(i + 1), setGalleryOpen(true))}
+              onClick={() => (setGalleryIdx(0), setGalleryOpen(true))}
               sx={{
+                gridRow: { md: '1 / span 2' },
                 bgcolor: 'grey.200',
-                backgroundImage: `url(${m.url})`,
+                backgroundImage: cover ? `url(${cover})` : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                cursor: 'pointer',
-                display: { xs: i < 1 ? 'block' : 'none', md: 'block' },
-                position: 'relative',
+                cursor: cover ? 'pointer' : 'default',
+              }}
+            />
+            {images.slice(1, 5).map((m, i) => (
+              <Box
+                key={m.id}
+                onClick={() => (setGalleryIdx(i + 1), setGalleryOpen(true))}
+                sx={{
+                  bgcolor: 'grey.200',
+                  backgroundImage: `url(${m.url})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  cursor: 'pointer',
+                  display: { xs: i < 1 ? 'block' : 'none', md: 'block' },
+                  position: 'relative',
+                }}
+              />
+            ))}
+
+            {/* "Show all photos" overlay button — bottom-end, always available */}
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => (setGalleryIdx(0), setGalleryOpen(true))}
+              sx={{
+                position: 'absolute',
+                bottom: 16,
+                insetInlineEnd: 16,
+                bgcolor: 'rgba(255,255,255,0.95)',
+                color: 'text.primary',
+                fontWeight: 700,
+                px: 1.75,
+                '&:hover': { bgcolor: '#FFFFFF' },
+                boxShadow: '0 4px 12px rgba(0,0,0,0.18)',
               }}
             >
-              {i === 3 && images.length > 5 && (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    inset: 0,
-                    bgcolor: 'rgba(15,23,42,0.55)',
-                    color: 'common.white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 700,
-                    fontSize: 18,
-                  }}
-                >
-                  +{images.length - 5} more
-                </Box>
-              )}
-            </Box>
-          ))}
-        </Box>
+              {`Show all photos (${images.length})`}
+            </Button>
+          </Box>
+        )}
       </Container>
 
       {/* ---------------- Title + actions ---------------- */}
@@ -275,7 +348,7 @@ export function ListingDetailPage() {
             <Stack direction="row" spacing={0.5} alignItems="center" color="text.secondary">
               <LocationIcon fontSize="small" />
               <Typography variant="body2">
-                {listing.district ? `${listing.district}, ` : ''}{listing.city}, {listing.region}
+                {getListingLocation(listing)}{listing.region ? `, ${listing.region}` : ''}
               </Typography>
             </Stack>
           </Box>
@@ -372,24 +445,30 @@ export function ListingDetailPage() {
 
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ position: 'relative' }}>
                 <Button
-                  variant="contained"
-                  color="secondary"
                   size="large"
                   startIcon={<VrIcon />}
-                  disabled={!tour360}
-                  {...(tour360?.url
-                    ? { href: tour360.url, target: '_blank', rel: 'noopener' }
-                    : {})}
+                  onClick={handleEnterVR}
+                  sx={{
+                    bgcolor: 'rgba(255,255,255,0.2)',
+                    border: '2px solid #FFFFFF',
+                    color: '#FFFFFF',
+                    fontWeight: 700,
+                    px: 3,
+                    '&:hover': { bgcolor: 'rgba(255,255,255,0.32)' },
+                  }}
                 >
                   Enter VR Tour
                 </Button>
                 <Button
-                  variant="outlined"
                   size="large"
+                  onClick={handleViewAR}
                   sx={{
-                    color: 'common.white',
-                    borderColor: 'rgba(255,255,255,0.6)',
-                    '&:hover': { borderColor: 'common.white', bgcolor: 'rgba(255,255,255,0.08)' },
+                    bgcolor: 'rgba(255,255,255,0.08)',
+                    border: '2px solid rgba(255,255,255,0.7)',
+                    color: '#FFFFFF',
+                    fontWeight: 700,
+                    px: 3,
+                    '&:hover': { bgcolor: 'rgba(255,255,255,0.18)', borderColor: '#FFFFFF' },
                   }}
                 >
                   View in AR
@@ -492,12 +571,20 @@ export function ListingDetailPage() {
           </Reveal>
           </Grid>
 
-          {/* ---------------- Sticky inquiry sidebar ---------------- */}
+          {/* ---------------- Sticky inquiry sidebar — lavender accent border ---------------- */}
           <Grid item xs={12} md={4}>
           <Reveal variant="fadeLeft" delay={0.1}>
-            <Box sx={{ position: { md: 'sticky' }, top: { md: 96 } }}>
+            <Box sx={{ position: { md: 'sticky' }, top: 24 }}>
               {/* Agent card */}
-              <Paper sx={{ p: 3, mb: 3 }}>
+              <Paper
+                sx={{
+                  p: 3,
+                  mb: 3,
+                  borderInlineStart: 4,
+                  borderColor: 'primary.main',
+                  boxShadow: '0 6px 20px rgba(108,99,166,0.10)',
+                }}
+              >
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
                   <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', color: 'primary.contrastText', fontWeight: 800 }}>
                     {listing.ownerId.slice(0, 1).toUpperCase()}
@@ -525,14 +612,27 @@ export function ListingDetailPage() {
                   >
                     View profile
                   </Button>
-                  <Button startIcon={<ChatIcon />} fullWidth variant="contained" size="small">
+                  <Button
+                    startIcon={<ChatIcon />}
+                    fullWidth
+                    variant="contained"
+                    size="small"
+                    onClick={handleMessageAgent}
+                  >
                     {t('nav.messages')}
                   </Button>
                 </Stack>
               </Paper>
 
               {/* Inquiry form */}
-              <Paper sx={{ p: 3 }}>
+              <Paper
+                sx={{
+                  p: 3,
+                  borderInlineStart: 4,
+                  borderColor: 'primary.main',
+                  boxShadow: '0 6px 20px rgba(108,99,166,0.10)',
+                }}
+              >
                 {inqSuccess ? (
                   <Stack spacing={2} alignItems="center" sx={{ py: 2, textAlign: 'center' }}>
                     <Box
@@ -605,10 +705,16 @@ export function ListingDetailPage() {
                   <Button
                     fullWidth
                     variant="contained"
-                    color="primary"
                     size="large"
                     disabled={inquiryMutation.isPending || inqMessage.trim().length < 10}
                     onClick={() => inquiryMutation.mutate()}
+                    sx={{
+                      background: theme.eawlma.gradient,
+                      fontWeight: 700,
+                      '&:hover': {
+                        background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
+                      },
+                    }}
                   >
                     {inquiryMutation.isPending ? t('common.loading') : 'Send inquiry'}
                   </Button>
@@ -725,6 +831,23 @@ export function ListingDetailPage() {
           </ImageList>
         </Box>
       </Dialog>
+
+      {/* VR / AR / message feedback snackbar */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={5000}
+        onClose={() => setSnackbar((s) => ({ ...s, open: false }))}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={() => setSnackbar((s) => ({ ...s, open: false }))}
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

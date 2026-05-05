@@ -152,7 +152,8 @@
     "minPrice": "أقل سعر",
     "maxPrice": "أعلى سعر",
     "minBedrooms": "أقل عدد غرف",
-    "minArea": "أقل مساحة"
+    "minArea": "أقل مساحة",
+    "applyFilters": "تطبيق الفلاتر"
   },
   "home": {
     "heroTitle": "اعثر على منزلك المثالي",

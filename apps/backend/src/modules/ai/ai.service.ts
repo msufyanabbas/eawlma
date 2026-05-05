@@ -9,7 +9,7 @@ import { OpenAiService } from './openai.service';
  * The 30 BCP-47 locales we translate listings into. Edit this list to
  * grow / shrink coverage. The set is split between Arab-world languages,
  * GCC-relevant European languages, and major South/East Asian markets so
- * agents can reach buyers across all eawlma target markets.
+ * agents can reach buyers across all Eawlma target markets.
  */
 export const TRANSLATION_TARGET_LOCALES = [
   'en', 'ar', 'fr', 'es', 'de', 'it', 'pt',

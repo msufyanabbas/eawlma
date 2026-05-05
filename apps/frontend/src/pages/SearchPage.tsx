@@ -55,6 +55,7 @@ import { EmptyState } from '@/components/global/EmptyState';
 import { Reveal } from '@/components/global/Reveal';
 import { useSavedStore } from '@/store/saved.store';
 import { listingCoverUrl } from '@/utils/listingImages';
+import { getListingTitle, getListingLocation } from '@/utils/listingText';
 import { Link } from '@tanstack/react-router';
 import BedIcon from '@mui/icons-material/KingBedOutlined';
 import BathIcon from '@mui/icons-material/BathtubOutlined';
@@ -248,78 +249,64 @@ export function SearchPage() {
         <title>{t('nav.search')} — {t('app.name')}</title>
       </Helmet>
 
-      {/* ============ Top search bar (slim) ============ */}
-      <Box
-        sx={{
-          bgcolor: 'background.paper',
-          borderBottom: 1,
-          borderColor: 'divider',
-          py: 1.75,
-          position: 'sticky',
-          top: 64,
-          zIndex: 10,
-        }}
-      >
-        <Container maxWidth="xl">
-          <Stack direction="row" spacing={1.5} alignItems="center">
-            <TextField
+      {/* ============ Mobile filters trigger (no duplicate search bar — navbar handles search) ============ */}
+      {!isDesktop && (
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            borderBottom: 1,
+            borderColor: 'divider',
+            py: 1.5,
+            position: 'sticky',
+            top: 64,
+            zIndex: 10,
+          }}
+        >
+          <Container maxWidth="xl">
+            <Button
+              startIcon={<FilterIcon />}
+              onClick={() => setFilterDrawerOpen(true)}
+              variant="outlined"
               size="small"
-              placeholder={t('nav.searchPlaceholder')}
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{ flex: 1, maxWidth: 480 }}
-            />
-            {!isDesktop && (
-              <Button
-                startIcon={<FilterIcon />}
-                onClick={() => setFilterDrawerOpen(true)}
-                variant="outlined"
-                size="small"
-              >
-                {t('search.filters')}
-                {activeChips.length > 0 && (
-                  <Box
-                    sx={{
-                      ml: 1, minWidth: 20, height: 20, px: 0.75,
-                      borderRadius: 999, bgcolor: 'primary.main',
-                      color: 'common.white', fontSize: 11, fontWeight: 700,
-                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                    }}
-                  >
-                    {activeChips.length}
-                  </Box>
-                )}
-              </Button>
-            )}
-          </Stack>
-        </Container>
-      </Box>
+              fullWidth
+            >
+              {t('search.filters')}
+              {activeChips.length > 0 && (
+                <Box
+                  sx={{
+                    ml: 1, minWidth: 20, height: 20, px: 0.75,
+                    borderRadius: 999, bgcolor: 'primary.main',
+                    color: 'common.white', fontSize: 11, fontWeight: 700,
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  }}
+                >
+                  {activeChips.length}
+                </Box>
+              )}
+            </Button>
+          </Container>
+        </Box>
+      )}
 
-      {/* ============ Body: sidebar + results ============ */}
-      <Container maxWidth="xl" sx={{ py: { xs: 2, md: 3 } }}>
-        <Grid container spacing={3}>
-          {/* ---- LEFT SIDEBAR (desktop only) ---- */}
+      {/* ============ Body: 280px sidebar + flex-1 results ============ */}
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', py: { xs: 2, md: 3 }, px: { xs: 2, sm: 3, md: 6 } }}>
+        <Box sx={{ display: 'flex', gap: { md: 4 }, alignItems: 'flex-start' }}>
+          {/* ---- LEFT SIDEBAR (desktop only, 280px) ---- */}
           {isDesktop && (
-            <Grid item md={3}>
+            <Box sx={{ width: 280, flexShrink: 0 }}>
               <Box
                 sx={{
                   position: 'sticky',
-                  top: 132,
+                  top: 96,
                   bgcolor: 'background.paper',
                   border: 1,
                   borderColor: 'divider',
                   borderRadius: 2,
                   overflow: 'hidden',
-                  maxHeight: 'calc(100vh - 152px)',
+                  maxHeight: 'calc(100vh - 116px)',
                   display: 'flex',
                   flexDirection: 'column',
+                  boxShadow: '0 2px 8px rgba(108,99,166,0.08)',
                 }}
               >
                 <Stack
@@ -327,7 +314,7 @@ export function SearchPage() {
                   alignItems="center"
                   justifyContent="space-between"
                   sx={{
-                    px: 2, py: 1.5,
+                    px: 2, py: 1.75,
                     borderBottom: 1, borderColor: 'divider',
                   }}
                 >
@@ -346,12 +333,26 @@ export function SearchPage() {
                 <Box sx={{ overflowY: 'auto', flex: 1 }}>
                   <FilterPanel {...filterPanelProps} />
                 </Box>
+                {/* Apply filters footer */}
+                <Box sx={{ p: 1.75, borderTop: 1, borderColor: 'divider' }}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    sx={{
+                      background: theme.eawlma.gradient,
+                      fontWeight: 700,
+                    }}
+                    onClick={() => infiniteQuery.refetch()}
+                  >
+                    {t('search.applyFilters', { defaultValue: 'Apply filters' })}
+                  </Button>
+                </Box>
               </Box>
-            </Grid>
+            </Box>
           )}
 
           {/* ---- MAIN CONTENT ---- */}
-          <Grid item xs={12} md={9}>
+          <Box sx={{ flex: 1, minWidth: 0 }}>
             {/* Top toolbar */}
             <Box
               sx={{
@@ -449,7 +450,7 @@ export function SearchPage() {
                 />
               </Box>
             ) : view === 'grid' ? (
-              <Grid container spacing={2}>
+              <Grid container spacing={3}>
                 {listings.map((listing, i) => (
                   <Grid key={listing.id} item xs={12} sm={6} lg={4}>
                     <Reveal delay={Math.min(i, 11) * 0.04}>
@@ -482,8 +483,8 @@ export function SearchPage() {
                 <Typography variant="body2" color="text.secondary">{t('common.loading')}</Typography>
               </Stack>
             )}
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
 
       {/* ============ Mobile bottom-sheet drawer ============ */}
@@ -613,30 +614,30 @@ function FilterPanel(props: FilterPanelProps) {
       </Box>
 
       <FilterSection title={t('search.propertyType')} defaultExpanded>
-        <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 0.75 }}>
+        <Stack spacing={0.25}>
           {propTypeOptions.map((pt) => {
-            const selected = props.propertyTypes.includes(pt);
+            const checked = props.propertyTypes.includes(pt);
             return (
-              <Chip
+              <FormControlLabel
                 key={pt}
-                label={t(`listing.${pt}`, { defaultValue: pt })}
-                size="small"
-                onClick={() =>
-                  props.setPropertyTypes(
-                    selected ? props.propertyTypes.filter((x) => x !== pt) : [...props.propertyTypes, pt],
-                  )
+                control={
+                  <Checkbox
+                    size="small"
+                    checked={checked}
+                    onChange={() =>
+                      props.setPropertyTypes(
+                        checked
+                          ? props.propertyTypes.filter((x) => x !== pt)
+                          : [...props.propertyTypes, pt],
+                      )
+                    }
+                  />
                 }
-                sx={{
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  bgcolor: selected ? 'primary.main' : 'transparent',
-                  color: selected ? 'common.white' : 'text.primary',
-                  border: '1px solid',
-                  borderColor: selected ? 'primary.main' : 'divider',
-                  '&:hover': {
-                    bgcolor: selected ? 'primary.dark' : 'action.hover',
-                  },
-                }}
+                label={
+                  <Typography variant="body2">
+                    {t(`listing.${pt}`, { defaultValue: pt })}
+                  </Typography>
+                }
               />
             );
           })}
@@ -657,13 +658,30 @@ function FilterPanel(props: FilterPanelProps) {
             valueLabelDisplay="auto"
             valueLabelFormat={(v) => `${(v / 1000).toLocaleString()}K`}
           />
-          <Stack direction="row" justifyContent="space-between" sx={{ mt: 0.5 }}>
-            <Typography variant="caption" color="text.secondary">
-              {props.priceRange[0].toLocaleString()}
-            </Typography>
-            <Typography variant="caption" color="text.secondary">
-              {props.priceRange[1].toLocaleString()}
-            </Typography>
+          {/* Min / Max numeric inputs — easier precision than the slider alone */}
+          <Stack direction="row" spacing={1} sx={{ mt: 1.5 }}>
+            <TextField
+              size="small"
+              type="number"
+              label={`Min ${t('listing.currency')}`}
+              value={props.priceRange[0]}
+              onChange={(e) => {
+                const v = Math.max(PRICE_BOUNDS[0], Math.min(Number(e.target.value) || 0, props.priceRange[1]));
+                props.setPriceRange([v, props.priceRange[1]]);
+              }}
+              fullWidth
+            />
+            <TextField
+              size="small"
+              type="number"
+              label={`Max ${t('listing.currency')}`}
+              value={props.priceRange[1]}
+              onChange={(e) => {
+                const v = Math.min(PRICE_BOUNDS[1], Math.max(Number(e.target.value) || 0, props.priceRange[0]));
+                props.setPriceRange([props.priceRange[0], v]);
+              }}
+              fullWidth
+            />
           </Stack>
         </Box>
       </FilterSection>
@@ -875,12 +893,9 @@ function MapView({ listings }: { listings: Listing[] }) {
                   position={{ lat: Number(l.lat), lng: Number(l.lng) }}
                   clusterer={clusterer}
                   onClick={() => setActiveId(l.id)}
-                  label={{
-                    text: priceLabel(l),
-                    fontSize: '11px',
-                    fontWeight: '700',
-                    color: '#1A1A2E',
-                  }}
+                  // Custom SVG: rounded pill, lavender bg, white text. Active
+                  // marker switches to gold to surface the selection.
+                  icon={makeMarkerIcon(priceLabel(l), l.id === activeId)}
                 />
               ))}
             </>
@@ -890,20 +905,39 @@ function MapView({ listings }: { listings: Listing[] }) {
           <InfoWindowF
             position={{ lat: Number(active.lat), lng: Number(active.lng) }}
             onCloseClick={() => setActiveId(null)}
+            options={{ pixelOffset: new google.maps.Size(0, -16) }}
           >
-            <Box sx={{ minWidth: 240, p: 0.5 }}>
-              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>{active.title}</Typography>
-              <Typography variant="body2" color="text.secondary">{active.city}</Typography>
-              <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
+            <Box sx={{ minWidth: 260, maxWidth: 280, p: 0.25 }}>
+              <Box
+                component="img"
+                src={listingCoverUrl(active)}
+                alt={getListingTitle(active, 'en')}
+                sx={{
+                  width: '100%',
+                  height: 130,
+                  objectFit: 'cover',
+                  borderRadius: 1,
+                  display: 'block',
+                  mb: 1,
+                }}
+              />
+              <Typography variant="subtitle2" sx={{ fontWeight: 700, lineHeight: 1.3 }}>
+                {getListingTitle(active, 'en')}
+              </Typography>
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                {getListingLocation(active)}
+              </Typography>
+              <Typography variant="subtitle2" sx={{ mt: 0.5, color: 'primary.dark', fontWeight: 800 }}>
                 {Number(active.price).toLocaleString()} SAR
               </Typography>
               <Button
                 size="small"
                 href={`/listings/${active.id}`}
-                sx={{ mt: 1 }}
+                sx={{ mt: 1, background: 'linear-gradient(135deg, #6C63A6 0%, #4A4080 100%)', color: '#fff' }}
                 variant="contained"
+                fullWidth
               >
-                View Details
+                View details
               </Button>
             </Box>
           </InfoWindowF>
@@ -911,6 +945,24 @@ function MapView({ listings }: { listings: Listing[] }) {
       </GoogleMap>
     </Box>
   );
+}
+
+// Build a rounded-pill SVG marker with the listing's price as a data-URL icon.
+// Lavender by default; gold when the marker corresponds to the active listing.
+function makeMarkerIcon(label: string, active: boolean): google.maps.Icon {
+  const fill = active ? '#D4A843' : '#6C63A6';
+  const textColor = active ? '#1A1A2E' : '#FFFFFF';
+  const width = Math.max(64, label.length * 9 + 22);
+  const svg = `
+    <svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='32' viewBox='0 0 ${width} 32'>
+      <rect x='1' y='1' width='${width - 2}' height='28' rx='14' fill='${fill}' stroke='rgba(0,0,0,0.18)' stroke-width='1'/>
+      <text x='${width / 2}' y='19' font-family='Inter, system-ui, sans-serif' font-size='12' font-weight='700' fill='${textColor}' text-anchor='middle'>${label}</text>
+    </svg>`;
+  return {
+    url: `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
+    scaledSize: new google.maps.Size(width, 32),
+    anchor: new google.maps.Point(width / 2, 16),
+  };
 }
 
 function priceLabel(l: Listing): string {
@@ -978,6 +1030,8 @@ function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const coverUrl = listingCoverUrl(listing);
+  const title = getListingTitle(listing, i18n.language);
+  const location = getListingLocation(listing);
   const isSale = listing.type === ListingType.SALE;
 
   return (
@@ -1014,7 +1068,7 @@ function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
         <Box
           component="img"
           src={coverUrl}
-          alt={listing.title}
+          alt={title}
           sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           loading="lazy"
         />
@@ -1074,12 +1128,12 @@ function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
                 overflow: 'hidden',
               }}
             >
-              {listing.title}
+              {title}
             </Typography>
             <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5, color: 'text.secondary' }}>
               <PlaceIcon sx={{ fontSize: 14 }} />
               <Typography variant="body2" sx={{ fontSize: 13 }}>
-                {listing.district ? `${listing.district}, ` : ''}{listing.city}
+                {location}
               </Typography>
             </Stack>
           </Box>
