@@ -26,6 +26,7 @@ import dataSource from './data-source';
 import { UserEntity } from '../modules/users/entities/user.entity';
 import { ListingEntity } from '../modules/listings/entities/listing.entity';
 import { ListingMediaEntity } from '../modules/listings/entities/listing-media.entity';
+import { ReviewEntity } from '../modules/reviews/entities/review.entity';
 
 const ARGON_OPTIONS: argon2.Options = {
   type: argon2.argon2id,
@@ -479,6 +480,72 @@ async function main(): Promise<void> {
     const l = await upsertListing(spec, owner.id);
     // eslint-disable-next-line no-console
     console.log(`✓ listing ${l.referenceCode}  ${l.propertyType.padEnd(11)} ${l.price.toString().padStart(10)} SAR  → ${owner.firstName}`);
+  }
+
+  // ---- Buyers + reviews ----------------------------------------------------
+  const buyerSpecs: Array<{ email: string; phone: string; firstName: string; lastName: string }> = [
+    { email: 'buyer1@eawlma.sa', phone: '+966500000910', firstName: 'Hala',    lastName: 'Al-Ghamdi' },
+    { email: 'buyer2@eawlma.sa', phone: '+966500000911', firstName: 'Nasser',  lastName: 'Al-Harbi'  },
+    { email: 'buyer3@eawlma.sa', phone: '+966500000912', firstName: 'Reem',    lastName: 'Al-Anazi'  },
+    { email: 'buyer4@eawlma.sa', phone: '+966500000913', firstName: 'Sultan',  lastName: 'Al-Zahrani'},
+    { email: 'buyer5@eawlma.sa', phone: '+966500000914', firstName: 'Lina',    lastName: 'Al-Mansour'},
+  ];
+  const buyers: UserEntity[] = [];
+  for (const b of buyerSpecs) {
+    const u = await upsertUser({
+      email: b.email,
+      phone: b.phone,
+      firstName: b.firstName,
+      lastName: b.lastName,
+      role: UserRole.USER,
+      password: 'Buyer123!',
+    });
+    buyers.push(u);
+    // eslint-disable-next-line no-console
+    console.log(`✓ buyer → ${u.firstName} ${u.lastName}  (${u.email})`);
+  }
+
+  const reviewsRepo = dataSource.getRepository(ReviewEntity);
+  const REVIEW_TEMPLATES = [
+    { rating: 5, comment: 'Mohammed responded within minutes and walked us through three listings the same week. Highly professional, totally bilingual, and never pushy.' },
+    { rating: 5, comment: 'فيصل ساعدنا في شراء فيلتنا الجديدة بكل احترافية، صبور جداً وقدّم لنا تحليل سعري مفصّل قبل التفاوض.' },
+    { rating: 4, comment: 'Solid experience overall — excellent communication and detailed photos. Knocked one star off because of a small scheduling mix-up that was quickly resolved.' },
+    { rating: 5, comment: 'Excellent service from start to close. Negotiated a great deal on the apartment and explained every contract clause clearly.' },
+    { rating: 5, comment: 'سارة محترفة جداً، تتابع كل تفاصيل العقار وتفهم احتياجات العميل، أنصح بها بشدة.' },
+    { rating: 4, comment: 'Khalid was knowledgeable about the area and pricing trends. Would have liked faster follow-up after the first viewing but otherwise great.' },
+    { rating: 5, comment: 'Noura made the leasing process effortless. She handled the paperwork, building visits, and even helped coordinate the move-in date.' },
+    { rating: 5, comment: 'تجربة ممتازة من البداية للنهاية. عبدالله وسيط شفاف وصادق، ولم يضغط علينا في أي مرحلة.' },
+  ];
+
+  for (let i = 0; i < agents.length; i++) {
+    const agent = agents[i];
+    // 4 reviews per agent — pick reviewer/template deterministically.
+    for (let j = 0; j < 4; j++) {
+      const reviewer = buyers[(i + j) % buyers.length];
+      const tpl = REVIEW_TEMPLATES[(i * 4 + j) % REVIEW_TEMPLATES.length];
+      const existing = await reviewsRepo.findOne({
+        where: { agentId: agent.id, reviewerId: reviewer.id },
+      });
+      if (existing) {
+        existing.rating = tpl.rating;
+        existing.comment = tpl.comment;
+        await reviewsRepo.save(existing);
+      } else {
+        await reviewsRepo.save(
+          reviewsRepo.create({
+            agentId: agent.id,
+            reviewerId: reviewer.id,
+            listingId: null,
+            rating: tpl.rating,
+            comment: tpl.comment,
+            reply: null,
+            repliedAt: null,
+          }),
+        );
+      }
+    }
+    // eslint-disable-next-line no-console
+    console.log(`✓ reviews → 4 reviews seeded for ${agent.firstName} ${agent.lastName}`);
   }
 
   await dataSource.destroy();

@@ -291,19 +291,19 @@ export function SearchPage() {
       {/* ============ Body: 280px sidebar + flex-1 results ============ */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', py: { xs: 3, md: 4 }, px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <Box sx={{ display: 'flex', gap: { md: 4 }, alignItems: 'flex-start' }}>
-          {/* ---- LEFT SIDEBAR (desktop only, 300px) ---- */}
+          {/* ---- LEFT SIDEBAR (desktop only, 300px, sticky just below 72px navbar) ---- */}
           {isDesktop && (
             <Box sx={{ width: 300, flexShrink: 0 }}>
               <Box
                 sx={{
                   position: 'sticky',
-                  top: 96,
+                  top: 88, // 72px navbar + 16px breathing room
                   bgcolor: 'background.paper',
                   border: 1,
                   borderColor: 'divider',
                   borderRadius: 2,
                   overflow: 'hidden',
-                  maxHeight: 'calc(100vh - 116px)',
+                  maxHeight: 'calc(100vh - 104px)',
                   display: 'flex',
                   flexDirection: 'column',
                   boxShadow: '0 2px 8px rgba(108,99,166,0.08)',

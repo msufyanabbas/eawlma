@@ -22,6 +22,13 @@ import EmailIcon from '@mui/icons-material/EmailOutlined';
 const SUPPORT_PHONE = '+966 50 000 0000';
 const WHATSAPP_HREF = 'https://wa.me/966500000000';
 
+const SOCIAL_LINKS = {
+  twitter:   'https://twitter.com/eawlma',
+  instagram: 'https://instagram.com/eawlma',
+  facebook:  'https://facebook.com/eawlma',
+  linkedin:  'https://linkedin.com/company/eawlma',
+};
+
 export function Footer() {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -67,7 +74,7 @@ export function Footer() {
                 {t('app.name')}
               </Typography>
             </Stack>
-            <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7, mb: 2.5 }}>
+            <Typography sx={{ fontSize: '1rem', color: 'text.secondary', lineHeight: 1.7, mb: 2.5 }}>
               {t('footer.tagline')}
             </Typography>
 
@@ -99,7 +106,7 @@ export function Footer() {
           {/* Link columns */}
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
-            spacing={{ xs: 3, sm: 6 }}
+            spacing={{ xs: 4, sm: 8 }}
             sx={{ flex: { md: 1 } }}
           >
             <FooterColumn title={t('footer.explore')}>
@@ -148,7 +155,7 @@ export function Footer() {
           justifyContent="space-between"
           spacing={2}
         >
-          <Typography variant="body2" color="text.secondary">
+          <Typography sx={{ fontSize: '0.9rem', color: 'text.secondary' }}>
             © {new Date().getFullYear()} {t('app.name')} — All rights reserved.
           </Typography>
           <Stack direction="row" spacing={0.5}>
@@ -162,16 +169,16 @@ export function Footer() {
             >
               <WhatsAppIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small" aria-label="Twitter / X">
+            <IconButton size="small" aria-label="Twitter / X" href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener">
               <TwitterIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small" aria-label="Facebook">
+            <IconButton size="small" aria-label="Facebook" href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener">
               <FacebookIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small" aria-label="Instagram">
+            <IconButton size="small" aria-label="Instagram" href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener">
               <InstagramIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small" aria-label="LinkedIn">
+            <IconButton size="small" aria-label="LinkedIn" href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener">
               <LinkedInIcon fontSize="small" />
             </IconButton>
           </Stack>
@@ -197,7 +204,12 @@ function FooterColumn({ title, children }: { title: string; children: React.Reac
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} underline="hover" variant="body2" color="text.primary">
+    <Link
+      href={href}
+      underline="hover"
+      color="text.primary"
+      sx={{ fontSize: '0.95rem' }}
+    >
       {children}
     </Link>
   );

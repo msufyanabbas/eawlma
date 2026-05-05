@@ -116,15 +116,15 @@ export const darkPalette: PaletteOptions = {
     900: '#1A1A2E',
   },
   background: {
-    default: '#1A1A2E',
-    paper: '#272741',
+    default: '#0D0C1A',
+    paper: '#1A1928',
   },
   text: {
-    primary: '#FAFAF8',
-    secondary: '#D1D1C9',
+    primary: '#F1F0F8',
+    secondary: '#9E9BB5',
     disabled: '#6B7280',
   },
-  divider: '#374151',
+  divider: '#2A2940',
 };
 
 // Branded "hero" surface and accent — exposed via the theme so components can

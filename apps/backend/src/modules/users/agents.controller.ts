@@ -59,22 +59,5 @@ export class AgentsController {
     return data.map(ListingResponseDto.fromEntity);
   }
 
-  @Public()
-  @Get(':id/reviews')
-  @ApiOperation({
-    summary: 'Reviews for an agent. Returns an empty list for now — a full reviews module is on the roadmap.',
-  })
-  async agentReviews(@Param('id', ParseUUIDPipe) id: string) {
-    void id;
-    // TODO: when the reviews module ships, replace this stub with a query
-    // against a `reviews` table joined with the reviewer profile + rating
-    // distribution + verified-purchase badges. Returning an empty array
-    // keeps the AgentProfilePage rendering "no reviews yet" cleanly.
-    return {
-      averageRating: 0,
-      totalReviews: 0,
-      ratingDistribution: { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 },
-      reviews: [],
-    };
-  }
+  // The reviews endpoint moved to ReviewsController (GET /agents/:id/reviews).
 }

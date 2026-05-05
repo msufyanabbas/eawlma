@@ -185,7 +185,10 @@ export function AuthLayout({ pageTitle, children }: AuthLayoutProps) {
             alignItems: 'center',
             justifyContent: 'center',
             py: { xs: 4, md: 6 },
-            background: 'linear-gradient(160deg, #FAFAF8 0%, #F0EEF8 100%)',
+            background: theme.palette.mode === 'dark'
+              ? 'linear-gradient(160deg, #0D0C1A 0%, #1A1928 100%)'
+              : 'linear-gradient(160deg, #FAFAF8 0%, #F0EEF8 100%)',
+            overflow: 'hidden',
             // Decorative corner cluster — 3 lavender circles at varying opacity
             '&::before': {
               content: '""',
@@ -202,6 +205,31 @@ export function AuthLayout({ pageTitle, children }: AuthLayoutProps) {
             },
           }}
         >
+          {/* Decorative radial blobs — fades nicely on both light + dark */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: -100,
+              insetInlineEnd: -100,
+              width: 400,
+              height: 400,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(108,99,166,0.15) 0%, transparent 70%)',
+              pointerEvents: 'none',
+            }}
+          />
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: -50,
+              insetInlineStart: -50,
+              width: 300,
+              height: 300,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(212,168,67,0.10) 0%, transparent 70%)',
+              pointerEvents: 'none',
+            }}
+          />
           <Container maxWidth="sm" sx={{ position: 'relative' }}>
             <Paper
               sx={{

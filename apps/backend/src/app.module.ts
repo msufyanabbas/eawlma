@@ -37,6 +37,7 @@ import { AiModule } from './modules/ai/ai.module';
 import { StorageModule } from './modules/storage/storage.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { SavedListingsModule } from './modules/saved-listings/saved-listings.module';
+import { ReviewsModule } from './modules/reviews/reviews.module';
 
 @Module({
   imports: [
@@ -92,6 +93,7 @@ import { SavedListingsModule } from './modules/saved-listings/saved-listings.mod
     StorageModule,
     AdminModule,
     SavedListingsModule,
+    ReviewsModule,
   ],
   controllers: [HealthController],
   providers: [

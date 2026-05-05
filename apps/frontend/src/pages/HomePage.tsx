@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Chip,
@@ -30,11 +31,13 @@ import { ListingType, PropertyType } from '@eawlma/shared-types';
 import { searchApi } from '@/api/search.api';
 import { agentsApi } from '@/api/agents.api';
 import { aiApi } from '@/api/ai.api';
+import { listingsApi } from '@/api/listings.api';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
+import { getRecentlyViewed } from '@/utils/recentlyViewed';
 
 // ------------------------------------------------------------------
 // Constants
@@ -46,6 +49,18 @@ type SearchTab = 'buy' | 'rent' | 'commercial';
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80';
 
+// Curated Unsplash portrait photos for the homepage agent strip — assigned
+// deterministically to seeded agent IDs so the same person always shows up
+// for the same agent.
+const AGENT_PHOTOS = [
+  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
+  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
+  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
+  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80',
+];
+
 // City quick-pick chips with curated Unsplash imagery per city.
 const CITY_CHIPS: Array<{ en: string; ar: string; image: string }> = [
   {
@@ -56,22 +71,22 @@ const CITY_CHIPS: Array<{ en: string; ar: string; image: string }> = [
   {
     en: 'Jeddah',
     ar: 'جدة',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1658844239513-6c358c94b9c2?w=800&q=80',
   },
   {
     en: 'Dammam',
     ar: 'الدمام',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=800&q=80',
   },
   {
     en: 'Mecca',
     ar: 'مكة المكرمة',
-    image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1659255068757-259124c6d867?w=800&q=80',
   },
   {
     en: 'Medina',
     ar: 'المدينة المنورة',
-    image: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1646424857576-2a66db82a65c?w=800&q=80',
   },
 ];
 
@@ -153,6 +168,20 @@ export function HomePage() {
     }
     return padded;
   }, [featuredQuery.data, fallbackQuery.data]);
+
+  // ----- Recently viewed (last 5 from localStorage) ------------------
+  const recentIds = useMemo(() => getRecentlyViewed(), []);
+  const recentQueries = useQueries({
+    queries: recentIds.map((id) => ({
+      queryKey: ['listings', id],
+      queryFn: () => listingsApi.getById(id),
+      staleTime: 5 * 60_000,
+      retry: false,
+    })),
+  });
+  const recentlyViewedListings = recentQueries
+    .map((q) => q.data)
+    .filter((l): l is NonNullable<typeof l> => Boolean(l));
 
   // ----- recommendations (auth only) ---------------------------------
   const recCandidatesQuery = useQuery({
@@ -464,9 +493,17 @@ export function HomePage() {
         }}
       >
         <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 }, py: { xs: 8, md: 12 } }}>
-          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: { xs: 3, md: 4 }, justifyContent: 'center' }}>
-            <VerifiedIcon sx={{ color: 'primary.main', fontSize: 22 }} />
-            <Typography variant="body2" sx={{ fontWeight: 700, color: 'text.primary', textTransform: 'uppercase', letterSpacing: 0.6 }}>
+          <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 3, justifyContent: 'center' }}>
+            <VerifiedIcon sx={{ color: 'primary.main', fontSize: 24 }} />
+            <Typography
+              sx={{
+                fontSize: { xs: '0.875rem', md: '1rem' },
+                fontWeight: 700,
+                color: 'primary.main',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+              }}
+            >
               {t('home.trustedBy')}
             </Typography>
           </Stack>
@@ -513,6 +550,31 @@ export function HomePage() {
       </Container>
       </Box>
 
+      {/* ============================== RECENTLY VIEWED (only when >0 in localStorage) ============================== */}
+      {recentlyViewedListings.length > 0 && (
+        <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
+          <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+            <SectionHeader title="Recently viewed" />
+            <Stack
+              direction="row"
+              spacing={3}
+              className="scrollbar-hide"
+              sx={{ overflowX: 'auto', scrollSnapType: 'x mandatory', pb: 1 }}
+            >
+              {recentlyViewedListings.map((listing) => (
+                <Box key={listing.id} sx={{ width: 300, flexShrink: 0, scrollSnapAlign: 'start' }}>
+                  <ListingCard
+                    listing={listing}
+                    saved={savedIds.includes(listing.id)}
+                    onToggleSave={toggleSaved}
+                  />
+                </Box>
+              ))}
+            </Stack>
+          </Container>
+        </Box>
+      )}
+
       {/* ============================== RECOMMENDATIONS (auth only) ============================== */}
       {isAuthenticated && recommendedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 5, md: 7 } }}>
@@ -534,7 +596,13 @@ export function HomePage() {
       )}
 
       {/* ============================== CITY SPOTLIGHT — 5 wide cards 4:3 with light lavender bg ============================== */}
-      <Box sx={{ bgcolor: '#F5F4FA', py: { xs: 8, md: 12 } }}>
+      <Box
+        sx={{
+          // Light lavender wash in light mode; subtle paper variant in dark.
+          bgcolor: theme.palette.mode === 'dark' ? 'background.default' : '#F5F4FA',
+          py: { xs: 8, md: 12 },
+        }}
+      >
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <SectionHeader title={t('home.popularCities')} />
         <Grid container spacing={3}>
@@ -549,6 +617,7 @@ export function HomePage() {
                   sx={{
                     position: 'relative',
                     aspectRatio: '3 / 2',
+                    minHeight: 220,
                     borderRadius: 3,
                     overflow: 'hidden',
                     cursor: 'pointer',
@@ -591,7 +660,7 @@ export function HomePage() {
                       zIndex: 2,
                     }}
                   >
-                    <Typography sx={{ fontSize: '1.5rem', fontWeight: 800, lineHeight: 1.15 }}>
+                    <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, lineHeight: 1.15 }}>
                       {label}
                     </Typography>
                     <Typography sx={{ fontSize: '0.875rem', opacity: 0.85, mt: 0.5, display: 'block', fontWeight: 600 }}>
@@ -613,19 +682,32 @@ export function HomePage() {
       <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <SectionHeader title={t('nav.agents')} />
-        <Grid container spacing={3}>
+        <Stack
+          direction="row"
+          spacing={3}
+          className="scrollbar-hide"
+          sx={{
+            overflowX: 'auto',
+            scrollSnapType: 'x mandatory',
+            pb: 1,
+            // Allow cards to grow proportionally on wide screens
+            justifyContent: { md: 'flex-start' },
+          }}
+        >
           {(featuredAgents.length > 0 ? featuredAgents : []).slice(0, 6).map((agent, idx) => {
             const displayName = `${agent.firstName} ${agent.lastName}`.trim();
             const initials = `${agent.firstName?.[0] ?? 'E'}${agent.lastName?.[0] ?? ''}`.toUpperCase();
+            const photo = AGENT_PHOTOS[idx % AGENT_PHOTOS.length];
             return (
-              <Grid key={agent.id} item xs={12} sm={6} md={4} lg={2}>
-                <Reveal variant="scaleIn" delay={idx * 0.06}>
+              <Reveal key={agent.id} variant="scaleIn" delay={idx * 0.06}>
                 <Box
                   component={Link}
                   to={`/agents/${agent.id}` as never}
                   sx={{
                     display: 'block',
-                    minWidth: 220,
+                    width: 180,
+                    flexShrink: 0,
+                    scrollSnapAlign: 'start',
                     bgcolor: 'background.paper',
                     border: 1,
                     borderColor: 'divider',
@@ -635,64 +717,72 @@ export function HomePage() {
                     cursor: 'pointer',
                     textDecoration: 'none',
                     color: 'inherit',
-                    boxShadow: '0 2px 8px rgba(108,99,166,0.08)',
+                    boxShadow: '0 4px 20px rgba(108,99,166,0.12)',
                     transition: 'all 0.25s ease',
                     '&:hover': {
                       borderColor: 'primary.main',
                       transform: 'translateY(-6px)',
-                      boxShadow: '0 18px 40px rgba(108,99,166,0.22)',
+                      boxShadow: '0 20px 44px rgba(108,99,166,0.22)',
                     },
                   }}
                 >
-                  <Box
+                  <Avatar
+                    src={photo}
+                    alt={displayName}
                     sx={{
-                      width: 72,
-                      height: 72,
-                      borderRadius: '50%',
+                      width: 80,
+                      height: 80,
+                      mx: 'auto',
+                      mb: 1.5,
                       background: theme.eawlma.gradient,
                       color: 'common.white',
-                      fontSize: 24,
+                      fontSize: 22,
                       fontWeight: 800,
                       letterSpacing: 0.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      mx: 'auto',
-                      mb: 1.75,
+                      border: '3px solid',
+                      borderColor: 'background.paper',
+                      boxShadow: '0 4px 12px rgba(108,99,166,0.18)',
+                    }}
+                    imgProps={{
+                      // Hide the broken-image placeholder so the initials show
+                      // through whenever the photo URL fails to load.
+                      onError: (e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      },
                     }}
                   >
                     {initials}
-                  </Box>
+                  </Avatar>
                   <Typography
                     sx={{
-                      fontSize: '1rem',
+                      fontSize: '0.95rem',
                       fontWeight: 700,
+                      mt: 1.5,
                       mb: 0.5,
                       lineHeight: 1.3,
                       display: '-webkit-box',
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
-                      minHeight: '2.6em',
+                      minHeight: '2.5em',
                     }}
                   >
                     {displayName}
                   </Typography>
-                  <Stack direction="row" spacing={0.25} justifyContent="center" sx={{ mb: 0.75 }}>
+                  <Stack direction="row" spacing={0.25} justifyContent="center" sx={{ mb: 0.5 }}>
                     {[1, 2, 3, 4, 5].map((n) => (
-                      <StarIcon key={n} sx={{ color: theme.eawlma.gold, fontSize: '1.1rem' }} />
+                      <StarIcon key={n} sx={{ color: theme.eawlma.gold, fontSize: '1rem' }} />
                     ))}
                   </Stack>
-                  <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
+                  <Typography sx={{ fontSize: '0.8rem', color: 'text.secondary' }}>
                     {agent.identityVerified ? `${t('listing.verified')} • ` : ''}
                     {t('listing.agent')}
                   </Typography>
                 </Box>
-                </Reveal>
-              </Grid>
+              </Reveal>
             );
           })}
-        </Grid>
+        </Stack>
       </Container>
       </Box>
     </Box>
@@ -715,20 +805,18 @@ function SectionHeader({
   onAction?: () => void;
 }) {
   return (
-    <Box sx={{ mb: { xs: 3, md: 4 } }}>
+    <Box sx={{ mb: 4 }}>
       <Stack
         direction="row"
-        alignItems="flex-start"
+        alignItems="center"
         justifyContent="space-between"
         spacing={2}
-        sx={{ mb: subtitle ? 0.75 : 0 }}
       >
         <Typography
           sx={{
             fontWeight: 800,
             letterSpacing: '-0.015em',
             fontSize: { xs: '1.75rem', md: '2.25rem' },
-            mb: 0.25,
           }}
         >
           {title}
@@ -737,7 +825,15 @@ function SectionHeader({
           <Button
             onClick={onAction}
             endIcon={<ArrowForwardIcon sx={{ transform: 'var(--rtl-flip, none)' }} />}
-            sx={{ fontWeight: 700, color: 'primary.dark', flexShrink: 0 }}
+            disableRipple
+            sx={{
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              color: 'primary.main',
+              flexShrink: 0,
+              textTransform: 'none',
+              '&:hover': { color: 'primary.dark', bgcolor: 'transparent', textDecoration: 'none' },
+            }}
           >
             {actionLabel}
           </Button>
@@ -791,7 +887,7 @@ function StatBlock({ label, value, suffix = '' }: { label: string; value: number
           color: 'primary.dark',
           lineHeight: 1.05,
           mb: 0.75,
-          fontSize: { xs: '2rem', md: '2.5rem' },
+          fontSize: { xs: '2.5rem', md: '3.5rem' },
         }}
       >
         {display.toLocaleString()}

@@ -67,8 +67,10 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
     <Stack
       sx={{
         height: '100%',
-        background: 'linear-gradient(180deg, #1A1A2E 0%, #2D2660 100%)',
-        color: 'rgba(255,255,255,0.92)',
+        // Softer lavender-purple sidebar — matches the brand instead of
+        // near-black navy.
+        background: 'linear-gradient(180deg, #2D2650 0%, #3D3570 100%)',
+        color: 'rgba(255,255,255,0.85)',
       }}
     >
       {/* Brand block */}
@@ -211,7 +213,20 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
           {sidebarContent}
         </Drawer>
 
-        <Box component="main" sx={{ flex: 1, p: { xs: 2, md: 4 }, minWidth: 0 }}>
+        <Box
+          component="main"
+          sx={{
+            flex: 1,
+            // Push past the permanent sidebar — MUI's permanent Drawer renders
+            // Paper inline but explicit margin keeps content alignment
+            // deterministic across browsers/RTL.
+            marginInlineStart: { xs: 0, md: 0 },
+            px: { xs: 2, sm: 3, md: 4 },
+            py: { xs: 2, md: 4 },
+            minWidth: 0,
+            width: '100%',
+          }}
+        >
           <Stack spacing={3}>{children}</Stack>
         </Box>
       </Box>

@@ -56,6 +56,7 @@ import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
+import { trackListingView } from '@/utils/recentlyViewed';
 
 // ------------------------------------------------------------------
 // 30 supported translation locales (mirrors backend's TRANSLATION_TARGET_LOCALES)
@@ -113,6 +114,11 @@ export function ListingDetailPage() {
   });
   const listing = listingQuery.data;
 
+  // Track the visit in localStorage for the "Recently viewed" home rail.
+  useEffect(() => {
+    if (id) trackListingView(id);
+  }, [id]);
+
   const similarQuery = useQuery({
     queryKey: ['search', 'similar', listing?.city, listing?.propertyType],
     queryFn: () =>
@@ -169,7 +175,7 @@ export function ListingDetailPage() {
     },
   });
 
-  if (listingQuery.isLoading || !listing) {
+  if (listingQuery.isLoading) {
     return (
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Skeleton variant="rectangular" height={420} sx={{ borderRadius: 3, mb: 3 }} />
@@ -182,8 +188,31 @@ export function ListingDetailPage() {
       </Container>
     );
   }
+  if (!listing) {
+    return (
+      <Container maxWidth="md" sx={{ py: 8 }}>
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            border: 1,
+            borderColor: 'divider',
+            borderRadius: 3,
+            p: 6,
+            textAlign: 'center',
+          }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>Listing not found</Typography>
+          <Typography variant="body2" color="text.secondary">
+            This property may have been removed or the link is no longer valid.
+          </Typography>
+        </Box>
+      </Container>
+    );
+  }
 
-  const realImages = listing.media.filter((m) => m.type === MediaType.IMAGE);
+  // Guard every nested array — media can come back undefined for legacy rows.
+  const allMedia = listing.media ?? [];
+  const realImages = allMedia.filter((m) => m?.type === MediaType.IMAGE);
   // When no agent-uploaded images exist, surface a property-type-aware
   // Unsplash placeholder so the gallery never renders as a blank grey block.
   const fallbackUrl = fallbackImageForPropertyType(listing.propertyType);
@@ -191,8 +220,8 @@ export function ListingDetailPage() {
     realImages.length > 0
       ? realImages
       : [{ id: 'fallback', url: fallbackUrl, thumbnailUrl: fallbackUrl } as unknown as (typeof realImages)[number]];
-  const video = listing.media.find((m) => m.type === MediaType.VIDEO);
-  const tour360 = listing.media.find((m) => m.type === MediaType.TOUR_360);
+  const video = allMedia.find((m) => m?.type === MediaType.VIDEO);
+  const tour360 = allMedia.find((m) => m?.type === MediaType.TOUR_360);
   const cover = images[0]?.url;
 
   const isSale = listing.type === ListingType.SALE;
@@ -342,6 +371,13 @@ export function ListingDetailPage() {
               />
               {listing.isFeatured && <Chip size="small" color="secondary" icon={<StarIcon sx={{ fontSize: 14 }} />} label={t('listing.featured')} />}
               <Typography variant="caption" color="text.secondary">{listing.referenceCode}</Typography>
+              {/* View counter — small badge near reference code */}
+              <Chip
+                size="small"
+                variant="outlined"
+                label={`👁 ${(listing.viewCount ?? 0).toLocaleString(i18n.language)} views`}
+                sx={{ height: 22, fontSize: 11, color: 'text.secondary', bgcolor: 'transparent' }}
+              />
             </Stack>
             <Typography variant="h4" sx={{ fontWeight: 800, mb: 0.5 }}>
               {localized.title}

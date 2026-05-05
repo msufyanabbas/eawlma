@@ -105,11 +105,16 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     <AppBar
       position="sticky"
       sx={{
-        bgcolor: scrolled ? 'rgba(255,255,255,0.92)' : 'background.paper',
+        bgcolor: scrolled
+          ? theme.palette.mode === 'dark'
+            ? 'rgba(15, 14, 30, 0.92)'
+            : 'rgba(255, 255, 255, 0.92)'
+          : 'background.paper',
+        color: theme.palette.mode === 'dark' && scrolled ? 'rgba(255,255,255,0.95)' : 'text.primary',
         backdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
         borderBottom: 1,
-        borderColor: scrolled ? 'rgba(108,99,166,0.12)' : 'divider',
+        borderColor: scrolled ? 'rgba(108,99,166,0.18)' : 'divider',
         boxShadow: scrolled ? '0 2px 20px rgba(108,99,166,0.08)' : 'none',
         transition: 'background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease, box-shadow 220ms ease',
       }}

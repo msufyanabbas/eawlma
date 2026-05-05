@@ -20,6 +20,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import StarIcon from '@mui/icons-material/Star';
 import PlaceIcon from '@mui/icons-material/PlaceOutlined';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import { ListingType, type Listing } from '@eawlma/shared-types';
@@ -58,10 +59,29 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   // we treat them as verified by default unless the parent overrides.
   const showVerified = agentVerified ?? listing.isFeatured;
 
+  // "New" badge if published within the last 7 days.
+  const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+  const publishedAt = listing.publishedAt ? new Date(listing.publishedAt).getTime() : 0;
+  const isNew = publishedAt > 0 && Date.now() - publishedAt < SEVEN_DAYS_MS;
+
+  // Price per square metre (sale only — rent uses /period instead).
+  const pricePerSqm =
+    isSale && listing.area && Number(listing.area) > 0
+      ? Math.round(Number(listing.price) / Number(listing.area))
+      : null;
+
   const handleSaveClick = (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     onToggleSave?.(listing.id);
+  };
+
+  const handleWhatsAppShare = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = `${window.location.origin}/listings/${listing.id}`;
+    const text = `Check this property: ${title} — ${url}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
   };
 
   return (
@@ -94,7 +114,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             loading="lazy"
           />
 
-          {/* Top-left: type + (gold) featured chip */}
+          {/* Top-left: type + (gold) featured chip + green New chip */}
           <Stack direction="row" spacing={0.75} sx={{ position: 'absolute', top: 10, insetInlineStart: 10 }}>
             <Chip
               size="small"
@@ -109,6 +129,20 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 border: 'none',
               }}
             />
+            {isNew && (
+              <Chip
+                size="small"
+                label={t('listing.new', { defaultValue: 'New' })}
+                sx={{
+                  height: 24,
+                  fontWeight: 700,
+                  fontSize: 11,
+                  bgcolor: '#10B981',
+                  color: '#FFFFFF',
+                  border: 'none',
+                }}
+              />
+            )}
             {listing.isFeatured && (
               <Chip
                 size="small"
@@ -127,8 +161,22 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             )}
           </Stack>
 
-          {/* Top-right: favorite */}
-          <Box sx={{ position: 'absolute', top: 8, insetInlineEnd: 8 }}>
+          {/* Top-right: favorite + WhatsApp share */}
+          <Stack direction="row" spacing={0.5} sx={{ position: 'absolute', top: 8, insetInlineEnd: 8 }}>
+            <Tooltip title="Share on WhatsApp">
+              <IconButton
+                onClick={handleWhatsAppShare}
+                size="small"
+                sx={{
+                  bgcolor: 'rgba(255,255,255,0.95)',
+                  color: '#25D366',
+                  '&:hover': { bgcolor: 'common.white' },
+                }}
+                aria-label="share on whatsapp"
+              >
+                <WhatsAppIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
             <Tooltip title={saved ? t('listing.saved') : t('listing.save')}>
               <IconButton
                 onClick={handleSaveClick}
@@ -146,7 +194,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 )}
               </IconButton>
             </Tooltip>
-          </Box>
+          </Stack>
 
           {/* Bottom-left: lavender price badge */}
           <Box
@@ -208,12 +256,17 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             {title}
           </Typography>
 
-          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5, mb: 1, color: 'text.secondary' }}>
+          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5, mb: 0.5, color: 'text.secondary' }}>
             <PlaceIcon sx={{ fontSize: 16 }} />
             <Typography sx={{ fontSize: '0.875rem' }}>
               {location}
             </Typography>
           </Stack>
+          {pricePerSqm && (
+            <Typography sx={{ fontSize: '0.8rem', color: 'text.secondary', mb: 1 }}>
+              {pricePerSqm.toLocaleString(activeLocale)} {t('listing.currency')}/m²
+            </Typography>
+          )}
 
           {/* Feature row — bigger gap + 0.875rem typography */}
           <Stack

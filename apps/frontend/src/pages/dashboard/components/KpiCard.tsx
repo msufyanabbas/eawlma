@@ -5,7 +5,7 @@ import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { useEffect, useState, type ReactNode } from 'react';
 
-export type KpiTone = 'listings' | 'views' | 'inquiries' | 'messages';
+export type KpiTone = 'listings' | 'views' | 'inquiries' | 'messages' | 'plan';
 
 export interface KpiCardProps {
   label: string;
@@ -20,11 +20,14 @@ export interface KpiCardProps {
   loading?: boolean;
 }
 
+// Softer lavender-family gradients — cohesive with the brand instead of
+// jarring near-black darks at the bottom of each tile.
 const TONE_GRADIENTS: Record<KpiTone, string> = {
-  listings:  'linear-gradient(135deg, #6C63A6 0%, #4A4080 100%)',
-  views:     'linear-gradient(135deg, #2BBFBF 0%, #1A9090 100%)',
-  inquiries: 'linear-gradient(135deg, #D4A843 0%, #B8902E 100%)',
-  messages:  'linear-gradient(135deg, #10B981 0%, #0D9268 100%)',
+  listings:  'linear-gradient(135deg, #6C63A6 0%, #8B84C4 100%)',
+  views:     'linear-gradient(135deg, #5B8DB8 0%, #7AAFD4 100%)',
+  inquiries: 'linear-gradient(135deg, #B87B5B 0%, #D4A07A 100%)',
+  messages:  'linear-gradient(135deg, #5BA88B 0%, #7ABFAA 100%)',
+  plan:      'linear-gradient(135deg, #8B63A6 0%, #A884C4 100%)',
 };
 
 /** Smoothly counts from 0 to `value` over 1.2s. Falls back to the raw string

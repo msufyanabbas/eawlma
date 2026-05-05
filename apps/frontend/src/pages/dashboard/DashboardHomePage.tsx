@@ -132,20 +132,39 @@ export function DashboardHomePage() {
         title={`${t('dashboard.overview')}${user ? ` · ${user.firstName}` : ''}`}
         subtitle={`${summary?.rangeStart ?? '—'} – ${summary?.rangeEnd ?? '—'}`}
         action={
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={1.25}>
             <Button
               component={Link}
               to="/dashboard/listings/new"
               variant="contained"
               color="primary"
               startIcon={<AddIcon />}
+              sx={{ borderRadius: 3, fontWeight: 700 }}
             >
               {t('dashboard.newListing')}
             </Button>
-            <Button component={Link} to="/messages" variant="outlined" startIcon={<ChatIcon />}>
+            <Button
+              component={Link}
+              to="/messages"
+              variant="outlined"
+              color="primary"
+              startIcon={<ChatIcon />}
+              sx={{ borderRadius: 3, fontWeight: 600 }}
+            >
               {t('nav.messages')}
             </Button>
-            <Button component={Link} to="/dashboard/subscription" variant="outlined" color="secondary">
+            <Button
+              component={Link}
+              to="/dashboard/subscription"
+              variant="outlined"
+              sx={{
+                borderRadius: 3,
+                fontWeight: 600,
+                borderColor: 'secondary.main',
+                color: 'secondary.main',
+                '&:hover': { borderColor: 'secondary.dark', bgcolor: 'rgba(212,168,67,0.06)' },
+              }}
+            >
               {t('dashboard.subscription')}
             </Button>
           </Stack>
@@ -204,7 +223,7 @@ export function DashboardHomePage() {
             label="Current plan"
             value={(currentPlan.data?.planKey ?? 'free').toString().toUpperCase()}
             icon={<StarIcon />}
-            tone="listings"
+            tone="plan"
             loading={currentPlan.isLoading}
           />
         </Grid>

@@ -1,26 +1,35 @@
 import {
+  Alert,
   Avatar,
   Box,
   Button,
   Chip,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Grid,
   Paper,
+  Rating,
   Skeleton,
+  Snackbar,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material';
 import VerifiedIcon from '@mui/icons-material/VerifiedRounded';
 import BusinessIcon from '@mui/icons-material/Business';
 import StarIcon from '@mui/icons-material/Star';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from '@tanstack/react-router';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { searchApi } from '@/api/search.api';
 import { agentsApi } from '@/api/agents.api';
+import { reviewsApi } from '@/api/reviews.api';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
@@ -76,6 +85,42 @@ export function AgentProfilePage() {
   const memberSinceYear = agent?.memberSince
     ? new Date(agent.memberSince).getFullYear().toString()
     : '—';
+
+  // ----- Reviews (real, paginated, with rating distribution) ---------
+  const qc = useQueryClient();
+  const reviewsQuery = useQuery({
+    queryKey: ['reviews', agentId],
+    queryFn: () => reviewsApi.forAgent(agentId, 1, 50),
+    enabled: Boolean(agentId),
+  });
+  const reviews = reviewsQuery.data?.reviews ?? [];
+  const reviewSummary = reviewsQuery.data;
+
+  const [writeOpen, setWriteOpen] = useState(false);
+  const [draftRating, setDraftRating] = useState<number>(5);
+  const [draftComment, setDraftComment] = useState('');
+  const [reviewToast, setReviewToast] = useState<{ open: boolean; ok: boolean; msg: string }>({
+    open: false, ok: true, msg: '',
+  });
+
+  const createReviewMutation = useMutation({
+    mutationFn: () => reviewsApi.create(agentId, { rating: draftRating, comment: draftComment }),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: ['reviews', agentId] });
+      setReviewToast({ open: true, ok: true, msg: 'Review posted — thank you!' });
+      setWriteOpen(false);
+      setDraftComment('');
+      setDraftRating(5);
+    },
+    onError: (err) => {
+      const e = err as { response?: { data?: { message?: string } }; message?: string };
+      setReviewToast({
+        open: true,
+        ok: false,
+        msg: e.response?.data?.message ?? e.message ?? 'Could not post review',
+      });
+    },
+  });
 
   return (
     <Box>
@@ -194,26 +239,171 @@ export function AgentProfilePage() {
           )}
         </Box>
 
-        {/* Reviews — placeholder until backend reviews land */}
+        {/* Reviews — real data from /agents/:id/reviews */}
         <Box sx={{ mt: 5 }}>
-          <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
-            Reviews
-          </Typography>
-          <Paper sx={{ p: 4, textAlign: 'center' }}>
-            <Stack spacing={1} alignItems="center">
-              <Stack direction="row" spacing={0.5}>
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <StarIcon key={i} sx={{ color: 'warning.main', fontSize: 24 }} />
+          <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
+            <Typography variant="h5" sx={{ fontWeight: 800 }}>
+              Reviews{' '}
+              {reviewSummary && (
+                <Box component="span" sx={{ color: 'text.secondary', fontWeight: 600, fontSize: '1rem' }}>
+                  · {reviewSummary.totalReviews}
+                </Box>
+              )}
+            </Typography>
+            {isAuthenticated && (
+              <Button variant="outlined" onClick={() => setWriteOpen(true)}>
+                Write a review
+              </Button>
+            )}
+          </Stack>
+
+          {reviewsQuery.isLoading ? (
+            <Paper sx={{ p: 4 }}>
+              <Skeleton width="60%" />
+              <Skeleton width="80%" sx={{ mt: 1 }} />
+            </Paper>
+          ) : (reviewSummary?.totalReviews ?? 0) === 0 ? (
+            <Paper sx={{ p: 4, textAlign: 'center' }}>
+              <Stack spacing={1} alignItems="center">
+                <Rating value={0} readOnly />
+                <Typography variant="body2" color="text.secondary">
+                  No reviews yet.
+                  {isAuthenticated ? ' Be the first to share your experience.' : ''}
+                </Typography>
+              </Stack>
+            </Paper>
+          ) : (
+            <>
+              {/* Rating summary */}
+              <Paper sx={{ p: 3, mb: 2 }}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} alignItems={{ sm: 'center' }}>
+                  <Box sx={{ textAlign: 'center', minWidth: 120 }}>
+                    <Typography sx={{ fontSize: '2.5rem', fontWeight: 800, color: 'primary.dark', lineHeight: 1 }}>
+                      {reviewSummary?.averageRating.toFixed(1)}
+                    </Typography>
+                    <Rating value={reviewSummary?.averageRating ?? 0} readOnly precision={0.1} />
+                    <Typography variant="caption" color="text.secondary">
+                      {reviewSummary?.totalReviews} review{(reviewSummary?.totalReviews ?? 0) === 1 ? '' : 's'}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ flex: 1 }}>
+                    {[5, 4, 3, 2, 1].map((star) => {
+                      const count = (reviewSummary?.ratingDistribution[star as 1 | 2 | 3 | 4 | 5] ?? 0);
+                      const pct = (reviewSummary?.totalReviews ?? 0) > 0
+                        ? (count / (reviewSummary?.totalReviews ?? 1)) * 100
+                        : 0;
+                      return (
+                        <Stack key={star} direction="row" spacing={1.5} alignItems="center" sx={{ mb: 0.5 }}>
+                          <Typography sx={{ fontSize: '0.85rem', minWidth: 12 }}>{star}</Typography>
+                          <StarIcon sx={{ fontSize: 14, color: 'warning.main' }} />
+                          <Box sx={{ flex: 1, height: 6, bgcolor: 'action.hover', borderRadius: 1, overflow: 'hidden' }}>
+                            <Box sx={{ width: `${pct}%`, height: '100%', bgcolor: 'primary.main' }} />
+                          </Box>
+                          <Typography sx={{ fontSize: '0.8rem', color: 'text.secondary', minWidth: 24, textAlign: 'end' }}>
+                            {count}
+                          </Typography>
+                        </Stack>
+                      );
+                    })}
+                  </Box>
+                </Stack>
+              </Paper>
+
+              {/* Review list */}
+              <Stack spacing={1.5}>
+                {reviews.map((r) => (
+                  <Paper key={r.id} sx={{ p: 3 }}>
+                    <Stack direction="row" spacing={2} alignItems="flex-start">
+                      <Avatar sx={{ width: 40, height: 40, bgcolor: 'primary.main', color: 'common.white', fontWeight: 700 }}>
+                        {(r.reviewer?.firstName?.[0] ?? '?').toUpperCase()}
+                      </Avatar>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Stack direction="row" justifyContent="space-between" alignItems="baseline" spacing={1}>
+                          <Typography sx={{ fontWeight: 700 }}>
+                            {r.reviewer ? `${r.reviewer.firstName} ${r.reviewer.lastName}` : 'Anonymous'}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary">
+                            {new Date(r.createdAt).toLocaleDateString()}
+                          </Typography>
+                        </Stack>
+                        <Rating value={r.rating} readOnly size="small" sx={{ mt: 0.25 }} />
+                        <Typography sx={{ mt: 1, color: 'text.primary', whiteSpace: 'pre-line' }}>
+                          {r.comment}
+                        </Typography>
+                        {r.reply && (
+                          <Box sx={{ mt: 1.5, p: 2, bgcolor: 'action.hover', borderRadius: 2, borderInlineStart: 3, borderColor: 'primary.main' }}>
+                            <Typography sx={{ fontSize: '0.8rem', fontWeight: 700, color: 'primary.dark', mb: 0.5 }}>
+                              Reply from {agent ? `${agent.firstName} ${agent.lastName}` : 'agent'}
+                            </Typography>
+                            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                              {r.reply}
+                            </Typography>
+                          </Box>
+                        )}
+                      </Box>
+                    </Stack>
+                  </Paper>
                 ))}
               </Stack>
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>4.8 / 5</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Reviews from buyers and renters will appear here.
-              </Typography>
-            </Stack>
-          </Paper>
+            </>
+          )}
         </Box>
       </Container>
+
+      {/* Write review dialog */}
+      <Dialog open={writeOpen} onClose={() => setWriteOpen(false)} fullWidth maxWidth="sm">
+        <DialogTitle sx={{ fontWeight: 700 }}>
+          Write a review for {agent ? `${agent.firstName} ${agent.lastName}` : 'this agent'}
+        </DialogTitle>
+        <DialogContent>
+          <Stack spacing={2.5} sx={{ pt: 1 }}>
+            <Box>
+              <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', mb: 0.5 }}>
+                Your rating
+              </Typography>
+              <Rating value={draftRating} onChange={(_, v) => setDraftRating(v ?? 5)} size="large" />
+            </Box>
+            <TextField
+              label="Your review"
+              multiline
+              minRows={4}
+              value={draftComment}
+              onChange={(e) => setDraftComment(e.target.value)}
+              placeholder="Share what was helpful, professional, or could improve…"
+              fullWidth
+            />
+            {createReviewMutation.isError && (
+              <Alert severity="error">{reviewToast.msg || 'Could not post review'}</Alert>
+            )}
+          </Stack>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2 }}>
+          <Button onClick={() => setWriteOpen(false)}>Cancel</Button>
+          <Button
+            variant="contained"
+            disabled={draftComment.trim().length < 10 || createReviewMutation.isPending}
+            onClick={() => createReviewMutation.mutate()}
+          >
+            {createReviewMutation.isPending ? 'Posting…' : 'Post review'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Snackbar
+        open={reviewToast.open}
+        autoHideDuration={3500}
+        onClose={() => setReviewToast((s) => ({ ...s, open: false }))}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          severity={reviewToast.ok ? 'success' : 'error'}
+          variant="filled"
+          onClose={() => setReviewToast((s) => ({ ...s, open: false }))}
+          sx={{ width: '100%' }}
+        >
+          {reviewToast.msg}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
