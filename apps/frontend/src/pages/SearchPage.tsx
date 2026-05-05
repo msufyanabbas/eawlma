@@ -289,11 +289,11 @@ export function SearchPage() {
       )}
 
       {/* ============ Body: 280px sidebar + flex-1 results ============ */}
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', py: { xs: 2, md: 3 }, px: { xs: 2, sm: 3, md: 6 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', py: { xs: 3, md: 4 }, px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <Box sx={{ display: 'flex', gap: { md: 4 }, alignItems: 'flex-start' }}>
-          {/* ---- LEFT SIDEBAR (desktop only, 280px) ---- */}
+          {/* ---- LEFT SIDEBAR (desktop only, 300px) ---- */}
           {isDesktop && (
-            <Box sx={{ width: 280, flexShrink: 0 }}>
+            <Box sx={{ width: 300, flexShrink: 0 }}>
               <Box
                 sx={{
                   position: 'sticky',
@@ -353,35 +353,28 @@ export function SearchPage() {
 
           {/* ---- MAIN CONTENT ---- */}
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            {/* Top toolbar */}
-            <Box
-              sx={{
-                bgcolor: 'background.paper',
-                border: 1,
-                borderColor: 'divider',
-                borderRadius: 2,
-                p: { xs: 1.25, md: 1.5 },
-                mb: 2,
-              }}
+            {/* Slim breadcrumb — results summary + sort/view toggle */}
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              alignItems={{ xs: 'flex-start', sm: 'center' }}
+              justifyContent="space-between"
+              spacing={1.5}
+              sx={{ mb: 2.5 }}
             >
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={1.5}
-                alignItems={{ xs: 'stretch', sm: 'center' }}
-              >
-                <Typography variant="body2" sx={{ fontWeight: 700, color: 'text.primary', flexShrink: 0 }}>
-                  {total > 0
-                    ? `${total.toLocaleString(i18n.language)} ${t('search.results')}`
-                    : t('common.search')}
-                </Typography>
-                <Box sx={{ flex: 1 }} />
+              <Typography sx={{ fontSize: '0.95rem', color: 'text.secondary' }}>
+                Search results ·{' '}
+                <Box component="span" sx={{ color: 'text.primary', fontWeight: 700 }}>
+                  {total.toLocaleString(i18n.language)} properties found
+                </Box>
+              </Typography>
+              <Stack direction="row" spacing={1.25} alignItems="center">
                 <TextField
                   select
                   size="small"
                   label={t('search.sortBy')}
                   value={sort}
                   onChange={(e) => setSort(e.target.value)}
-                  sx={{ minWidth: 170 }}
+                  sx={{ minWidth: 180 }}
                 >
                   <MenuItem value="createdAt">{t('search.newest')}</MenuItem>
                   <MenuItem value="price">{t('search.priceAsc')}</MenuItem>
@@ -409,26 +402,26 @@ export function SearchPage() {
                   <ToggleButton value="map"><MapViewIcon fontSize="small" /></ToggleButton>
                 </ToggleButtonGroup>
               </Stack>
+            </Stack>
 
-              {/* Active filter chips */}
-              {activeChips.length > 0 && (
-                <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: 'wrap', rowGap: 0.75 }}>
-                  {activeChips.map((c) => (
-                    <Chip
-                      key={c.key}
-                      label={c.label}
-                      size="small"
-                      sx={{
-                        bgcolor: alpha(theme.palette.primary.main, 0.1),
-                        color: 'primary.dark',
-                        fontWeight: 600,
-                        border: 'none',
-                      }}
-                    />
-                  ))}
-                </Stack>
-              )}
-            </Box>
+            {/* Active filter chips */}
+            {activeChips.length > 0 && (
+              <Stack direction="row" spacing={1} sx={{ mb: 2.5, flexWrap: 'wrap', rowGap: 0.75 }}>
+                {activeChips.map((c) => (
+                  <Chip
+                    key={c.key}
+                    label={c.label}
+                    size="small"
+                    sx={{
+                      bgcolor: alpha(theme.palette.primary.main, 0.1),
+                      color: 'primary.dark',
+                      fontWeight: 600,
+                      border: 'none',
+                    }}
+                  />
+                ))}
+              </Stack>
+            )}
 
             {/* Results */}
             {view === 'map' ? (
@@ -634,7 +627,7 @@ function FilterPanel(props: FilterPanelProps) {
                   />
                 }
                 label={
-                  <Typography variant="body2">
+                  <Typography sx={{ fontSize: '1rem' }}>
                     {t(`listing.${pt}`, { defaultValue: pt })}
                   </Typography>
                 }
@@ -758,7 +751,7 @@ function FilterPanel(props: FilterPanelProps) {
                   />
                 }
                 label={
-                  <Typography variant="body2">
+                  <Typography sx={{ fontSize: '1rem' }}>
                     {t(`listing.${a.labelKey}`, { defaultValue: a.defaultLabel })}
                   </Typography>
                 }
@@ -833,15 +826,24 @@ function FilterSection({
         expandIcon={<ExpandMoreIcon fontSize="small" />}
         sx={{
           px: 2,
-          minHeight: 44,
+          py: 0.5,
+          minHeight: 56,
           '& .MuiAccordionSummary-content': { my: 1 },
         }}
       >
-        <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: 13 }}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            fontSize: '0.875rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.08em',
+            color: 'text.secondary',
+          }}
+        >
           {title}
         </Typography>
       </AccordionSummary>
-      <AccordionDetails sx={{ px: 2, pt: 0, pb: 1.75 }}>{children}</AccordionDetails>
+      <AccordionDetails sx={{ px: 2, pt: 0, pb: 2.5 }}>{children}</AccordionDetails>
     </Accordion>
   );
 }

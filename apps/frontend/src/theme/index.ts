@@ -27,7 +27,7 @@ declare module '@mui/material/styles' {
 
 const headingStackLatin = ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'].join(',');
 const bodyStackLatin = ['Inter', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'].join(',');
-const stackArabic = ['"IBM Plex Sans Arabic"', 'Cairo', 'system-ui', 'sans-serif'].join(',');
+const stackArabic = ['Tajawal', '"IBM Plex Sans Arabic"', 'Cairo', 'system-ui', 'sans-serif'].join(',');
 
 const buildTypography = (direction: Direction): ThemeOptions['typography'] => {
   const isRtl = direction === 'rtl';

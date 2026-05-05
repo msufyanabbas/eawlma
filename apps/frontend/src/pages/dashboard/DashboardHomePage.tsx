@@ -154,57 +154,57 @@ export function DashboardHomePage() {
 
       {/* ---------------- KPI row ---------------- */}
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Active listings"
             value={summary?.activeListings ?? 0}
             icon={<HomeIcon />}
-            color="primary"
+            tone="listings"
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Total views (30d)"
-            value={(summary?.totalDetailViews ?? 0).toLocaleString(i18n.language)}
+            value={summary?.totalDetailViews ?? 0}
             icon={<VisibilityIcon />}
-            color="info"
+            tone="views"
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Inquiries (30d)"
-            value={(summary?.totalInquiries ?? 0).toLocaleString(i18n.language)}
+            value={summary?.totalInquiries ?? 0}
             icon={<MailIcon />}
-            color="success"
+            tone="inquiries"
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Conversion"
             value={`${summary?.conversionRate ?? 0}%`}
             icon={<TrendIcon />}
-            color="warning"
+            tone="inquiries"
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Unread messages"
             value={unreadMessages.data ?? 0}
             icon={<ChatIcon />}
-            color="secondary"
+            tone="messages"
             loading={unreadMessages.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Current plan"
             value={(currentPlan.data?.planKey ?? 'free').toString().toUpperCase()}
             icon={<StarIcon />}
-            color="secondary"
+            tone="listings"
             loading={currentPlan.isLoading}
           />
         </Grid>

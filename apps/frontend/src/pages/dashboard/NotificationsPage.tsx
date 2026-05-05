@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   IconButton,
   Pagination,
   Paper,
@@ -30,7 +29,6 @@ import { NotificationType, type Notification } from '@eawlma/shared-types';
 import { notificationsApi } from '@/api/notifications.api';
 import { useUiStore } from '@/store/ui.store';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
-import { PageHeader } from '@/components/global/PageHeader';
 import { EmptyState } from '@/components/global/EmptyState';
 
 const PAGE_SIZE = 20;
@@ -89,24 +87,26 @@ export function NotificationsPage() {
         <title>{t('nav.notifications')} — {t('app.name')}</title>
       </Helmet>
 
-      <Container maxWidth="md" disableGutters>
-        <PageHeader
-          title={t('nav.notifications')}
-          action={
-            <Button
-              startIcon={<DoneAllIcon />}
-              onClick={() => markAllReadMutation.mutate()}
-              disabled={markAllReadMutation.isPending}
-            >
-              Mark all as read
-            </Button>
-          }
-        />
+      <Box sx={{ px: { xs: 2, md: 4 }, width: '100%' }}>
+        {/* Header row: title left, action right */}
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+          <Typography variant="h5" sx={{ fontWeight: 700 }}>
+            {t('nav.notifications')}
+          </Typography>
+          <Button
+            startIcon={<DoneAllIcon />}
+            onClick={() => markAllReadMutation.mutate()}
+            disabled={markAllReadMutation.isPending}
+            variant="outlined"
+          >
+            Mark all as read
+          </Button>
+        </Box>
 
         <Paper sx={{ overflow: 'hidden' }}>
           {listQuery.isLoading ? (
             [...Array(6)].map((_, i) => (
-              <Box key={i} sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
+              <Box key={i} sx={{ py: 2, px: 3, borderBottom: 1, borderColor: 'divider' }}>
                 <Skeleton width="60%" />
                 <Skeleton width="80%" />
               </Box>
@@ -123,21 +123,23 @@ export function NotificationsPage() {
                   onClick={() => onClickNotification(n)}
                   sx={{
                     display: 'flex',
-                    gap: 2,
-                    p: 2,
+                    gap: 2.5,
+                    py: 2,
+                    px: 3,
                     cursor: 'pointer',
                     borderBottom: 1,
                     borderColor: 'divider',
                     borderInlineStart: 4,
                     borderInlineStartColor: unread ? 'primary.main' : 'transparent',
-                    bgcolor: unread ? (theme) => alpha(theme.palette.primary.main, 0.04) : 'background.paper',
+                    bgcolor: unread ? (theme) => alpha(theme.palette.primary.main, 0.06) : 'background.paper',
                     '&:hover': { bgcolor: 'background.default' },
                   }}
                 >
+                  {/* 48px type-coloured circle */}
                   <Box
                     sx={{
-                      width: 40,
-                      height: 40,
+                      width: 48,
+                      height: 48,
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
@@ -145,20 +147,21 @@ export function NotificationsPage() {
                       color: `${meta.color}.main`,
                       bgcolor: (theme) => alpha(theme.palette[meta.color].main, 0.12),
                       flexShrink: 0,
+                      '& svg': { fontSize: 24 },
                     }}
                   >
                     {meta.icon}
                   </Box>
                   <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Stack direction="row" justifyContent="space-between" alignItems="baseline">
-                      <Typography variant="subtitle2" sx={{ fontWeight: unread ? 700 : 600 }}>
+                    <Stack direction="row" justifyContent="space-between" alignItems="baseline" spacing={2}>
+                      <Typography sx={{ fontWeight: unread ? 700 : 600, fontSize: '0.95rem' }}>
                         {n.title}
                       </Typography>
-                      <Typography variant="caption" color="text.secondary">
+                      <Typography variant="caption" color="text.secondary" sx={{ flexShrink: 0 }}>
                         {new Date(n.createdAt).toLocaleString(i18n.language)}
                       </Typography>
                     </Stack>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
                       {n.body}
                     </Typography>
                   </Box>
@@ -185,7 +188,7 @@ export function NotificationsPage() {
             <Pagination page={page} count={totalPages} onChange={(_, p) => setPage(p)} color="primary" />
           </Stack>
         )}
-      </Container>
+      </Box>
     </DashboardLayout>
   );
 }

@@ -5,6 +5,7 @@ import { NotificationChannel, NotificationType } from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { NotificationEntity } from './entities/notification.entity';
+import { UserEntity } from '../users/entities/user.entity';
 
 export interface CreateNotificationInput {
   userId: string;
@@ -22,9 +23,21 @@ export class NotificationsService {
   constructor(
     @InjectRepository(NotificationEntity)
     private readonly notifications: Repository<NotificationEntity>,
+    @InjectRepository(UserEntity)
+    private readonly users: Repository<UserEntity>,
   ) {}
 
-  async create(input: CreateNotificationInput): Promise<NotificationEntity> {
+  /**
+   * Persists a notification — but only if the recipient has not opted out
+   * of this NotificationType in their `notificationPreferences` map. A
+   * missing key is treated as opted-in so we don't accidentally suppress
+   * notifications for users who never visited Settings.
+   */
+  async create(input: CreateNotificationInput): Promise<NotificationEntity | null> {
+    if (!(await this.userAllowsType(input.userId, input.type))) {
+      this.logger.debug(`Skipping ${input.type} for ${input.userId} (opted out)`);
+      return null;
+    }
     const entity = this.notifications.create({
       userId: input.userId,
       type: input.type,
@@ -34,6 +47,18 @@ export class NotificationsService {
       data: input.data ?? {},
     });
     return this.notifications.save(entity);
+  }
+
+  private async userAllowsType(userId: string, type: NotificationType): Promise<boolean> {
+    const user = await this.users.findOne({
+      where: { id: userId },
+      select: { id: true, notificationPreferences: true },
+    });
+    if (!user) return true; // If user is gone, fail open — the row will FK-fail anyway.
+    const prefs = user.notificationPreferences;
+    if (!prefs) return true;
+    // Explicit opt-out only when the value is exactly `false`.
+    return prefs[type] !== false;
   }
 
   async paginate(

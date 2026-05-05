@@ -1,5 +1,14 @@
 import { UserRole, UserStatus, VerificationStatus } from './enums';
 
+/** Per-user notification preferences. Missing keys are treated as opted-in. */
+export interface UserNotificationPrefs {
+  emailOnInquiry?: boolean;
+  emailOnMessage?: boolean;
+  pushNotifications?: boolean;
+  /** Catch-all for new types added later — keyed by NotificationType. */
+  [key: string]: boolean | undefined;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -15,6 +24,7 @@ export interface User {
   phoneVerified: boolean;
   identityVerificationStatus: VerificationStatus;
   agencyId: string | null;
+  notificationPreferences: UserNotificationPrefs | null;
   createdAt: string;
   updatedAt: string;
   lastLoginAt: string | null;
@@ -27,6 +37,7 @@ export interface UpdateProfileRequest {
   bio?: string;
   avatarUrl?: string;
   preferredLocale?: string;
+  notificationPreferences?: UserNotificationPrefs;
 }
 
 export interface UpdateUserStatusRequest {

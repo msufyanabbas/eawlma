@@ -84,6 +84,14 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'timestamptz', name: 'locked_until', nullable: true })
   lockedUntil: Date | null;
 
+  /**
+   * Per-user notification preference map. Keys are NotificationType values
+   * (or shorthand keys like `emailOnInquiry`). A missing key is treated as
+   * opted-in (default true) for backwards compat.
+   */
+  @Column({ type: 'jsonb', name: 'notification_preferences', nullable: true })
+  notificationPreferences: Record<string, boolean> | null;
+
   @OneToMany(() => RefreshTokenEntity, (rt) => rt.user)
   refreshTokens: RefreshTokenEntity[];
 

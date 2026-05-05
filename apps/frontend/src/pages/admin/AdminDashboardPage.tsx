@@ -109,25 +109,25 @@ export function AdminDashboardPage() {
             label="Pending review"
             value={pendingQuery.data?.meta.total ?? 0}
             icon={<GavelIcon />}
-            color="warning"
+            tone="inquiries"
             loading={pendingQuery.isLoading}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Active users"
-            value={(activeUsersQuery.data?.meta.total ?? 0).toLocaleString(i18n.language)}
+            value={activeUsersQuery.data?.meta.total ?? 0}
             icon={<PeopleIcon />}
-            color="primary"
+            tone="listings"
             loading={activeUsersQuery.isLoading}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={2.4}>
           <KpiCard
             label="Total users"
-            value={(usersQuery.data?.meta.total ?? 0).toLocaleString(i18n.language)}
+            value={usersQuery.data?.meta.total ?? 0}
             icon={<HomeIcon />}
-            color="info"
+            tone="views"
             loading={usersQuery.isLoading}
           />
         </Grid>
@@ -136,7 +136,7 @@ export function AdminDashboardPage() {
             label="Inquiry events (audit)"
             value={recentAudit.filter((a) => a.entityType === 'inquiry').length}
             icon={<MailIcon />}
-            color="success"
+            tone="messages"
             loading={auditQuery.isLoading}
           />
         </Grid>
@@ -145,7 +145,7 @@ export function AdminDashboardPage() {
             label="Signups today"
             value={newSignupsToday}
             icon={<MoneyIcon />}
-            color="secondary"
+            tone="listings"
             loading={recentSignupsQuery.isLoading}
           />
         </Grid>

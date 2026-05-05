@@ -132,16 +132,16 @@ export function ListingAnalyticsPage() {
       {/* KPI summary */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <KpiCard label="Impressions" value={(funnel?.impressions ?? 0).toLocaleString()} icon={<HouseIcon />} color="primary" loading={funnelQuery.isLoading} />
+          <KpiCard label="Impressions" value={funnel?.impressions ?? 0} icon={<HouseIcon />} tone="listings" loading={funnelQuery.isLoading} />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <KpiCard label="Detail views" value={(funnel?.detailViews ?? 0).toLocaleString()} icon={<VisibilityIcon />} color="info" loading={funnelQuery.isLoading} />
+          <KpiCard label="Detail views" value={funnel?.detailViews ?? 0} icon={<VisibilityIcon />} tone="views" loading={funnelQuery.isLoading} />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <KpiCard label="Inquiries" value={(funnel?.inquiries ?? 0).toLocaleString()} icon={<MailIcon />} color="success" loading={funnelQuery.isLoading} />
+          <KpiCard label="Inquiries" value={funnel?.inquiries ?? 0} icon={<MailIcon />} tone="messages" loading={funnelQuery.isLoading} />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <KpiCard label="Conversion" value={`${funnel?.conversionRate ?? 0}%`} icon={<TrendIcon />} color="warning" loading={funnelQuery.isLoading} />
+          <KpiCard label="Conversion" value={`${funnel?.conversionRate ?? 0}%`} icon={<TrendIcon />} tone="inquiries" loading={funnelQuery.isLoading} />
         </Grid>
       </Grid>
 

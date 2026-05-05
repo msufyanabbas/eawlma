@@ -19,6 +19,13 @@ export class UserResponseDto {
   @Expose() @ApiProperty() phoneVerified: boolean;
   @Expose() @ApiProperty({ enum: VerificationStatus }) identityVerificationStatus: VerificationStatus;
   @Expose() @ApiProperty({ nullable: true }) agencyId: string | null;
+  @Expose() @ApiProperty({
+    type: 'object',
+    additionalProperties: { type: 'boolean' },
+    nullable: true,
+    example: { emailOnInquiry: true, emailOnMessage: false, pushNotifications: true },
+  })
+  notificationPreferences: Record<string, boolean> | null;
   @Expose() @ApiProperty({ type: String }) createdAt: Date;
   @Expose() @ApiProperty({ type: String }) updatedAt: Date;
   @Expose() @ApiProperty({ type: String, nullable: true }) lastLoginAt: Date | null;
@@ -39,6 +46,7 @@ export class UserResponseDto {
     dto.phoneVerified = user.phoneVerified;
     dto.identityVerificationStatus = user.identityVerificationStatus;
     dto.agencyId = user.agencyId;
+    dto.notificationPreferences = user.notificationPreferences;
     dto.createdAt = user.createdAt;
     dto.updatedAt = user.updatedAt;
     dto.lastLoginAt = user.lastLoginAt;

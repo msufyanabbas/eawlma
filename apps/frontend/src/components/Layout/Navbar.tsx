@@ -115,7 +115,15 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
       }}
     >
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 2, sm: 3, md: 6, lg: 8 } }}>
-        <Toolbar disableGutters sx={{ gap: 2, py: 1 }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            gap: 2,
+            py: 1,
+            minHeight: { xs: 64, md: 72 },
+            justifyContent: 'space-between',
+          }}
+        >
           {/* Mobile hamburger */}
           {!isDesktop && (
             <IconButton edge="start" onClick={onMobileMenuClick} aria-label="menu">
@@ -123,22 +131,23 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
             </IconButton>
           )}
 
-          {/* Brand */}
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Stack direction="row" alignItems="center" spacing={1.25}>
+          {/* Brand — pinned to inline-start */}
+          <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
+            <Stack direction="row" alignItems="center" spacing={1.5}>
               <Box
                 component="img"
                 src={logoUrl}
                 alt={t('app.name')}
-                sx={{ height: 36, width: 36, display: 'block' }}
+                sx={{ height: 44, width: 44, display: 'block', mr: 0.25 }}
               />
               <Typography
-                variant="h6"
                 sx={{
+                  fontSize: '1.5rem',
                   fontWeight: 800,
-                  color: 'text.primary',
-                  letterSpacing: -0.5,
+                  color: 'primary.main',
+                  letterSpacing: '-0.5px',
                   display: { xs: 'none', sm: 'block' },
+                  lineHeight: 1,
                 }}
               >
                 {t('app.name')}
@@ -146,7 +155,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
             </Stack>
           </Link>
 
-          {/* Search bar — centered, max 480px on desktop; icon-only on mobile */}
+          {/* Search bar — centered pill, 560px max; icon-only on mobile */}
           {isDesktop ? (
             <Box
               component="form"
@@ -155,37 +164,41 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
                 flex: 1,
                 display: 'flex',
                 justifyContent: 'center',
-                mx: 2,
+                mx: 4,
               }}
             >
               <TextField
-                size="small"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder={t('nav.searchPlaceholder')}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon fontSize="small" />
+                      <SearchIcon sx={{ color: 'text.secondary' }} />
                     </InputAdornment>
                   ),
                   sx: {
                     borderRadius: 999,
                     bgcolor: 'grey.50',
-                    pl: 0.5,
-                    pr: 1,
-                    height: 40,
+                    pl: 2,
+                    pr: 1.5,
+                    height: 44,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    '& fieldset': { border: 'none' },
+                    '&:hover': { borderColor: 'primary.light' },
+                    '&.Mui-focused': { borderColor: 'primary.main', bgcolor: 'common.white' },
                   },
                 }}
-                sx={{ width: '100%', maxWidth: 480 }}
+                sx={{ width: '100%', maxWidth: 560 }}
               />
             </Box>
           ) : (
             <Box sx={{ flex: 1 }} />
           )}
 
-          {/* Right cluster */}
-          <Stack direction="row" spacing={0.5} alignItems="center" sx={{ ml: 'auto' }}>
+          {/* Right cluster — pinned to inline-end */}
+          <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
             {!isDesktop && (
               <Tooltip title={t('common.search')}>
                 <IconButton

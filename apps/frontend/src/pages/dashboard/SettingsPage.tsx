@@ -7,6 +7,7 @@ import {
   FormControlLabel,
   Grid,
   Paper,
+  Snackbar,
   Stack,
   Switch,
   TextField,
@@ -124,10 +125,40 @@ export function SettingsPage() {
     },
   });
 
-  // Notification preferences (client-side only — backend prefs endpoint TBD)
-  const [emailOnInquiry, setEmailOnInquiry] = useState(true);
-  const [emailOnMessage, setEmailOnMessage] = useState(true);
-  const [pushNotifications, setPushNotifications] = useState(true);
+  // Notification preferences — hydrated from /users/me, persisted via PATCH.
+  const serverPrefs = (meQuery.data as { notificationPreferences?: Record<string, boolean> } | undefined)?.notificationPreferences ?? {};
+  const [emailOnInquiry, setEmailOnInquiry] = useState(serverPrefs.emailOnInquiry !== false);
+  const [emailOnMessage, setEmailOnMessage] = useState(serverPrefs.emailOnMessage !== false);
+  const [pushNotifications, setPushNotifications] = useState(serverPrefs.pushNotifications !== false);
+  const [prefsToast, setPrefsToast] = useState<{ open: boolean; ok: boolean; msg: string }>({
+    open: false, ok: true, msg: '',
+  });
+
+  // Sync local toggles when the server preferences first arrive.
+  useEffect(() => {
+    if (!meQuery.data) return;
+    const sp = (meQuery.data as { notificationPreferences?: Record<string, boolean> }).notificationPreferences ?? {};
+    setEmailOnInquiry(sp.emailOnInquiry !== false);
+    setEmailOnMessage(sp.emailOnMessage !== false);
+    setPushNotifications(sp.pushNotifications !== false);
+  }, [meQuery.data]);
+
+  const persistToggle = async (key: 'emailOnInquiry' | 'emailOnMessage' | 'pushNotifications', value: boolean) => {
+    try {
+      await usersApi.updateMe({
+        notificationPreferences: {
+          emailOnInquiry,
+          emailOnMessage,
+          pushNotifications,
+          [key]: value,
+        },
+      });
+      void qc.invalidateQueries({ queryKey: ['users', 'me'] });
+      setPrefsToast({ open: true, ok: true, msg: 'Preferences saved' });
+    } catch {
+      setPrefsToast({ open: true, ok: false, msg: 'Failed to save preferences' });
+    }
+  };
 
   // Account deletion
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -298,15 +329,39 @@ export function SettingsPage() {
         <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Notification preferences</Typography>
         <Stack>
           <FormControlLabel
-            control={<Switch checked={emailOnInquiry} onChange={(_, v) => setEmailOnInquiry(v)} />}
+            control={
+              <Switch
+                checked={emailOnInquiry}
+                onChange={(_, v) => {
+                  setEmailOnInquiry(v);
+                  void persistToggle('emailOnInquiry', v);
+                }}
+              />
+            }
             label="Email me when I receive a new inquiry"
           />
           <FormControlLabel
-            control={<Switch checked={emailOnMessage} onChange={(_, v) => setEmailOnMessage(v)} />}
+            control={
+              <Switch
+                checked={emailOnMessage}
+                onChange={(_, v) => {
+                  setEmailOnMessage(v);
+                  void persistToggle('emailOnMessage', v);
+                }}
+              />
+            }
             label="Email me when I receive a new message"
           />
           <FormControlLabel
-            control={<Switch checked={pushNotifications} onChange={(_, v) => setPushNotifications(v)} />}
+            control={
+              <Switch
+                checked={pushNotifications}
+                onChange={(_, v) => {
+                  setPushNotifications(v);
+                  void persistToggle('pushNotifications', v);
+                }}
+              />
+            }
             label="Browser push notifications"
           />
         </Stack>
@@ -385,6 +440,22 @@ export function SettingsPage() {
         onConfirm={onDeleteAccount}
         onCancel={() => setConfirmDelete(false)}
       />
+
+      <Snackbar
+        open={prefsToast.open}
+        autoHideDuration={3500}
+        onClose={() => setPrefsToast((s) => ({ ...s, open: false }))}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          severity={prefsToast.ok ? 'success' : 'error'}
+          variant="filled"
+          onClose={() => setPrefsToast((s) => ({ ...s, open: false }))}
+          sx={{ width: '100%' }}
+        >
+          {prefsToast.msg}
+        </Alert>
+      </Snackbar>
     </DashboardLayout>
   );
 }

@@ -1,5 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import {
+  IsObject,
   IsOptional,
   IsString,
   IsUrl,
@@ -44,4 +45,12 @@ export class UpdateProfileDto {
   @IsString()
   @Length(2, 8)
   preferredLocale?: string;
+
+  @ApiPropertyOptional({
+    description: 'Per-user notification preference map. Missing keys are treated as opted-in.',
+    example: { emailOnInquiry: true, emailOnMessage: false, pushNotifications: true },
+  })
+  @IsOptional()
+  @IsObject()
+  notificationPreferences?: Record<string, boolean>;
 }

@@ -463,7 +463,7 @@ export function HomePage() {
           borderColor: 'divider',
         }}
       >
-        <Container maxWidth={false} sx={{ maxWidth: 1400, mx: 'auto', py: { xs: 5, md: 7 } }}>
+        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 }, py: { xs: 8, md: 12 } }}>
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: { xs: 3, md: 4 }, justifyContent: 'center' }}>
             <VerifiedIcon sx={{ color: 'primary.main', fontSize: 22 }} />
             <Typography variant="body2" sx={{ fontWeight: 700, color: 'text.primary', textTransform: 'uppercase', letterSpacing: 0.6 }}>
@@ -481,10 +481,11 @@ export function HomePage() {
       </Reveal>
 
       {/* ============================== FEATURED LISTINGS GRID ============================== */}
-      <Box sx={{ bgcolor: 'background.paper', py: { xs: 7, md: 10 } }}>
-      <Container maxWidth={false} sx={{ maxWidth: 1400, mx: 'auto' }}>
+      <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <SectionHeader
           title={t('home.featuredListings')}
+          subtitle="Handpicked properties across Saudi Arabia"
           actionLabel={t('home.viewMore')}
           onAction={() =>
             void navigate({ to: '/search' as never, search: { isFeatured: true } as never })
@@ -515,7 +516,7 @@ export function HomePage() {
       {/* ============================== RECOMMENDATIONS (auth only) ============================== */}
       {isAuthenticated && recommendedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 5, md: 7 } }}>
-          <Container maxWidth={false} sx={{ maxWidth: 1400, mx: 'auto' }}>
+          <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
             <SectionHeader title={t('search.popular')} />
             <Grid container spacing={{ xs: 2, md: 3 }}>
               {recommendedListings.map((listing) => (
@@ -533,8 +534,8 @@ export function HomePage() {
       )}
 
       {/* ============================== CITY SPOTLIGHT — 5 wide cards 4:3 with light lavender bg ============================== */}
-      <Box sx={{ bgcolor: '#F5F4FA', py: { xs: 7, md: 10 } }}>
-      <Container maxWidth={false} sx={{ maxWidth: 1400, mx: 'auto' }}>
+      <Box sx={{ bgcolor: '#F5F4FA', py: { xs: 8, md: 12 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <SectionHeader title={t('home.popularCities')} />
         <Grid container spacing={3}>
           {CITY_CHIPS.slice(0, 5).map((c, idx) => {
@@ -547,16 +548,16 @@ export function HomePage() {
                   onClick={() => goToCity(c.en)}
                   sx={{
                     position: 'relative',
-                    aspectRatio: '4 / 3',
-                    borderRadius: 2.5,
+                    aspectRatio: '3 / 2',
+                    borderRadius: 3,
                     overflow: 'hidden',
                     cursor: 'pointer',
                     border: 1,
                     borderColor: 'divider',
-                    transition: 'transform 250ms ease, box-shadow 250ms ease',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                     '&:hover': {
-                      transform: 'translateY(-3px)',
-                      boxShadow: `0 12px 24px ${alpha(theme.palette.primary.main, 0.18)}`,
+                      transform: 'scale(1.03)',
+                      boxShadow: `0 18px 36px ${alpha(theme.palette.primary.main, 0.22)}`,
                     },
                     '&::before': {
                       content: '""',
@@ -590,10 +591,10 @@ export function HomePage() {
                       zIndex: 2,
                     }}
                   >
-                    <Typography variant="h6" sx={{ fontWeight: 800, lineHeight: 1.15, mb: 0.25 }}>
+                    <Typography sx={{ fontSize: '1.5rem', fontWeight: 800, lineHeight: 1.15 }}>
                       {label}
                     </Typography>
-                    <Typography variant="body2" sx={{ opacity: 0.9, display: 'block', fontWeight: 600 }}>
+                    <Typography sx={{ fontSize: '0.875rem', opacity: 0.85, mt: 0.5, display: 'block', fontWeight: 600 }}>
                       {typeof cityCount === 'number' && cityCount > 0
                         ? `${cityCount.toLocaleString(i18n.language)} ${t('search.results')}`
                         : `${t('home.viewMore')} →`}
@@ -609,8 +610,8 @@ export function HomePage() {
       </Box>
 
       {/* ============================== FEATURED AGENTS ============================== */}
-      <Box sx={{ bgcolor: 'background.paper', py: { xs: 7, md: 10 } }}>
-      <Container maxWidth={false} sx={{ maxWidth: 1400, mx: 'auto' }}>
+      <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
         <SectionHeader title={t('nav.agents')} />
         <Grid container spacing={3}>
           {(featuredAgents.length > 0 ? featuredAgents : []).slice(0, 6).map((agent, idx) => {
@@ -624,12 +625,12 @@ export function HomePage() {
                   to={`/agents/${agent.id}` as never}
                   sx={{
                     display: 'block',
-                    minWidth: 200,
+                    minWidth: 220,
                     bgcolor: 'background.paper',
                     border: 1,
                     borderColor: 'divider',
                     borderRadius: 3,
-                    p: 2.5,
+                    p: 3,
                     textAlign: 'center',
                     cursor: 'pointer',
                     textDecoration: 'none',
@@ -638,33 +639,33 @@ export function HomePage() {
                     transition: 'all 0.25s ease',
                     '&:hover': {
                       borderColor: 'primary.main',
-                      transform: 'translateY(-4px)',
-                      boxShadow: '0 12px 32px rgba(108,99,166,0.18)',
+                      transform: 'translateY(-6px)',
+                      boxShadow: '0 18px 40px rgba(108,99,166,0.22)',
                     },
                   }}
                 >
                   <Box
                     sx={{
-                      width: 64,
-                      height: 64,
+                      width: 72,
+                      height: 72,
                       borderRadius: '50%',
                       background: theme.eawlma.gradient,
                       color: 'common.white',
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: 800,
                       letterSpacing: 0.5,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       mx: 'auto',
-                      mb: 1.5,
+                      mb: 1.75,
                     }}
                   >
                     {initials}
                   </Box>
                   <Typography
-                    variant="body1"
                     sx={{
+                      fontSize: '1rem',
                       fontWeight: 700,
                       mb: 0.5,
                       lineHeight: 1.3,
@@ -677,12 +678,12 @@ export function HomePage() {
                   >
                     {displayName}
                   </Typography>
-                  <Stack direction="row" spacing={0.25} justifyContent="center" sx={{ mb: 0.5 }}>
+                  <Stack direction="row" spacing={0.25} justifyContent="center" sx={{ mb: 0.75 }}>
                     {[1, 2, 3, 4, 5].map((n) => (
-                      <StarIcon key={n} sx={{ color: theme.eawlma.gold, fontSize: 14 }} />
+                      <StarIcon key={n} sx={{ color: theme.eawlma.gold, fontSize: '1.1rem' }} />
                     ))}
                   </Stack>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontSize: 12 }}>
+                  <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
                     {agent.identityVerified ? `${t('listing.verified')} • ` : ''}
                     {t('listing.agent')}
                   </Typography>
@@ -704,36 +705,50 @@ export function HomePage() {
 
 function SectionHeader({
   title,
+  subtitle,
   actionLabel,
   onAction,
 }: {
   title: string;
+  subtitle?: string;
   actionLabel?: string;
   onAction?: () => void;
 }) {
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      sx={{ mb: { xs: 2, md: 3 } }}
-    >
-      <Typography
-        variant="h4"
-        sx={{ fontWeight: 700, letterSpacing: '-0.01em', fontSize: '1.75rem' }}
+    <Box sx={{ mb: { xs: 3, md: 4 } }}>
+      <Stack
+        direction="row"
+        alignItems="flex-start"
+        justifyContent="space-between"
+        spacing={2}
+        sx={{ mb: subtitle ? 0.75 : 0 }}
       >
-        {title}
-      </Typography>
-      {actionLabel && onAction && (
-        <Button
-          onClick={onAction}
-          endIcon={<ArrowForwardIcon sx={{ transform: 'var(--rtl-flip, none)' }} />}
-          sx={{ fontWeight: 700, color: 'primary.dark' }}
+        <Typography
+          sx={{
+            fontWeight: 800,
+            letterSpacing: '-0.015em',
+            fontSize: { xs: '1.75rem', md: '2.25rem' },
+            mb: 0.25,
+          }}
         >
-          {actionLabel}
-        </Button>
+          {title}
+        </Typography>
+        {actionLabel && onAction && (
+          <Button
+            onClick={onAction}
+            endIcon={<ArrowForwardIcon sx={{ transform: 'var(--rtl-flip, none)' }} />}
+            sx={{ fontWeight: 700, color: 'primary.dark', flexShrink: 0 }}
+          >
+            {actionLabel}
+          </Button>
+        )}
+      </Stack>
+      {subtitle && (
+        <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+          {subtitle}
+        </Typography>
       )}
-    </Stack>
+    </Box>
   );
 }
 

@@ -1,37 +1,31 @@
 import {
+  Avatar,
   Box,
+  Button,
   Drawer,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Stack,
-  Toolbar,
-  Tooltip,
   Typography,
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from '@tanstack/react-router';
+import { Link, useLocation, useNavigate } from '@tanstack/react-router';
 import OverviewIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ListingsIcon from '@mui/icons-material/Apartment';
 import AddIcon from '@mui/icons-material/AddCircleOutline';
 import InquiryIcon from '@mui/icons-material/MailOutline';
 import MessagesIcon from '@mui/icons-material/ChatBubbleOutline';
-import AnalyticsIcon from '@mui/icons-material/InsightsOutlined';
 import SubscriptionIcon from '@mui/icons-material/CardMembershipOutlined';
-import PaymentsIcon from '@mui/icons-material/PaymentOutlined';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LogoutIcon from '@mui/icons-material/Logout';
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
-import { useUiStore } from '@/store/ui.store';
+import { useAuthStore } from '@/store/auth.store';
+import { authApi } from '@/api/auth.api';
 
-const SIDEBAR_WIDTH = 248;
-const SIDEBAR_COLLAPSED_WIDTH = 72;
+import logoUrl from '@/assets/logo.svg';
+
+const SIDEBAR_WIDTH = 240;
 
 interface NavItem {
   to: string;
@@ -53,88 +47,168 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-  const sidebarOpen = useUiStore((s) => s.sidebarOpen);
-  const toggleSidebar = useUiStore((s) => s.toggleSidebar);
-  const location = useLocation();
-
-  const width = sidebarOpen ? SIDEBAR_WIDTH : SIDEBAR_COLLAPSED_WIDTH;
   const isRtl = theme.direction === 'rtl';
+  const location = useLocation();
+  const navigate = useNavigate();
+  const user = useAuthStore((s) => s.user);
+  const clearSession = useAuthStore((s) => s.clearSession);
+  const getRefreshToken = useAuthStore((s) => s.getRefreshToken);
+
+  const handleSignOut = async () => {
+    const rt = getRefreshToken();
+    if (rt) {
+      try { await authApi.logout(rt); } catch { /* best-effort */ }
+    }
+    clearSession();
+    void navigate({ to: '/' });
+  };
+
+  const sidebarContent = (
+    <Stack
+      sx={{
+        height: '100%',
+        background: 'linear-gradient(180deg, #1A1A2E 0%, #2D2660 100%)',
+        color: 'rgba(255,255,255,0.92)',
+      }}
+    >
+      {/* Brand block */}
+      <Stack direction="row" alignItems="center" spacing={1.25} sx={{ py: 3, px: 3 }}>
+        <Box component="img" src={logoUrl} alt="Eawlma" sx={{ height: 36, width: 36, filter: 'brightness(1.1)' }} />
+        <Typography sx={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.4px' }}>
+          Eawlma
+        </Typography>
+      </Stack>
+
+      <Typography
+        sx={{
+          fontSize: '0.7rem',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.4)',
+          px: 3,
+          pt: 3,
+          pb: 1,
+        }}
+      >
+        {t('nav.dashboard')}
+      </Typography>
+
+      {/* Nav items */}
+      <Box component="nav" sx={{ flex: 1, py: 0.5 }}>
+        {ITEMS.map((item) => {
+          const active =
+            location.pathname === item.to ||
+            (item.to !== '/dashboard' && location.pathname.startsWith(item.to));
+          return (
+            <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
+              <Stack
+                direction="row"
+                alignItems="center"
+                sx={{
+                  py: 1.25,
+                  px: 3,
+                  mb: 0.25,
+                  cursor: 'pointer',
+                  color: active ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                  bgcolor: active ? 'rgba(255,255,255,0.12)' : 'transparent',
+                  borderRadius: isRtl ? '24px 0 0 24px' : '0 24px 24px 0',
+                  marginInlineEnd: isRtl ? 0 : 1.5,
+                  marginInlineStart: isRtl ? 1.5 : 0,
+                  fontWeight: active ? 700 : 500,
+                  transition: 'background-color 0.2s ease, color 0.2s ease',
+                  '&:hover': {
+                    bgcolor: active ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.08)',
+                    color: '#FFFFFF',
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 22,
+                    height: 22,
+                    mr: 1.5,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    '& svg': { fontSize: 22 },
+                  }}
+                >
+                  {item.icon}
+                </Box>
+                <Typography sx={{ fontSize: '0.9rem', fontWeight: 'inherit', color: 'inherit' }}>
+                  {t(item.i18nKey)}
+                </Typography>
+              </Stack>
+            </Link>
+          );
+        })}
+      </Box>
+
+      {/* Bottom: user identity + sign out */}
+      {user && (
+        <Box sx={{ p: 2, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 1.5 }}>
+            <Avatar
+              src={user.avatarUrl ?? undefined}
+              sx={{
+                width: 36,
+                height: 36,
+                bgcolor: 'rgba(255,255,255,0.18)',
+                color: '#FFFFFF',
+                fontWeight: 700,
+              }}
+            >
+              {user.firstName?.[0]?.toUpperCase() ?? 'U'}
+            </Avatar>
+            <Box sx={{ minWidth: 0, flex: 1 }}>
+              <Typography sx={{ fontSize: '0.875rem', fontWeight: 700, color: '#FFFFFF' }} noWrap>
+                {user.firstName} {user.lastName}
+              </Typography>
+              <Typography sx={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.55)' }} noWrap>
+                {user.email}
+              </Typography>
+            </Box>
+          </Stack>
+          <Button
+            fullWidth
+            startIcon={<LogoutIcon sx={{ fontSize: 18 }} />}
+            onClick={handleSignOut}
+            sx={{
+              color: 'rgba(255,255,255,0.85)',
+              borderColor: 'rgba(255,255,255,0.18)',
+              border: '1px solid',
+              fontWeight: 600,
+              fontSize: '0.8rem',
+              '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.4)' },
+            }}
+          >
+            {t('nav.logout')}
+          </Button>
+        </Box>
+      )}
+    </Stack>
+  );
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Navbar />
-      <Box sx={{ display: 'flex', minHeight: 'calc(100vh - 64px)' }}>
+      <Box sx={{ display: 'flex', minHeight: 'calc(100vh - 72px)' }}>
         <Drawer
           variant={isDesktop ? 'permanent' : 'temporary'}
           anchor={isRtl ? 'right' : 'left'}
-          open={isDesktop ? true : sidebarOpen}
-          onClose={() => toggleSidebar()}
           sx={{
-            width,
+            width: SIDEBAR_WIDTH,
             flexShrink: 0,
             '& .MuiDrawer-paper': {
-              width,
+              width: SIDEBAR_WIDTH,
               boxSizing: 'border-box',
-              borderRight: isRtl ? 0 : 1,
-              borderLeft: isRtl ? 1 : 0,
-              borderColor: 'divider',
-              top: { md: 64 },
-              height: { md: 'calc(100vh - 64px)' },
-              transition: theme.transitions.create('width', {
-                duration: theme.transitions.duration.standard,
-              }),
-              overflowX: 'hidden',
+              border: 'none',
+              top: { md: 72 },
+              height: { md: 'calc(100vh - 72px)' },
             },
           }}
         >
-          <Toolbar sx={{ px: 1, justifyContent: sidebarOpen ? 'space-between' : 'center', minHeight: 56 }}>
-            {sidebarOpen && (
-              <Typography variant="overline" color="text.secondary" sx={{ pl: 1 }}>
-                {t('nav.dashboard')}
-              </Typography>
-            )}
-            <Tooltip title={sidebarOpen ? '' : t('nav.dashboard')}>
-              <IconButton onClick={toggleSidebar} size="small">
-                {sidebarOpen
-                  ? (isRtl ? <ChevronRightIcon /> : <ChevronLeftIcon />)
-                  : (isRtl ? <ChevronLeftIcon /> : <ChevronRightIcon />)}
-              </IconButton>
-            </Tooltip>
-          </Toolbar>
-          <List sx={{ p: 1 }}>
-            {ITEMS.map((item) => {
-              const active = location.pathname === item.to ||
-                (item.to !== '/dashboard' && location.pathname.startsWith(item.to));
-              return (
-                <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
-                  <ListItemButton
-                    selected={active}
-                    sx={{
-                      borderRadius: 2,
-                      mb: 0.5,
-                      '&.Mui-selected': {
-                        bgcolor: 'primary.main',
-                        color: 'primary.contrastText',
-                        '& .MuiListItemIcon-root': { color: 'primary.contrastText' },
-                        '&:hover': { bgcolor: 'primary.dark' },
-                      },
-                      justifyContent: sidebarOpen ? 'flex-start' : 'center',
-                    }}
-                  >
-                    <ListItemIcon sx={{ minWidth: 36, color: active ? 'inherit' : 'text.secondary' }}>
-                      {item.icon}
-                    </ListItemIcon>
-                    {sidebarOpen && (
-                      <ListItemText
-                        primary={t(item.i18nKey)}
-                        primaryTypographyProps={{ variant: 'body2', fontWeight: active ? 700 : 500 }}
-                      />
-                    )}
-                  </ListItemButton>
-                </Link>
-              );
-            })}
-          </List>
+          {sidebarContent}
         </Drawer>
 
         <Box component="main" sx={{ flex: 1, p: { xs: 2, md: 4 }, minWidth: 0 }}>

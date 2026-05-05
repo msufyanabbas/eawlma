@@ -68,10 +68,12 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
     <Card
       sx={{
         overflow: 'hidden',
+        minHeight: 380,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
         borderColor: 'divider',
+        borderRadius: 4,
         boxShadow: '0 2px 8px rgba(108,99,166,0.08)',
         transition: 'all 0.25s ease',
         '&:hover': {
@@ -82,8 +84,8 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
       }}
     >
       <CardActionArea component={Link} to={`/listings/${listing.id}` as never} sx={{ flex: 1 }}>
-        {/* Cover */}
-        <Box sx={{ position: 'relative', aspectRatio: '4 / 3', bgcolor: 'grey.100' }}>
+        {/* Cover — 200px tall (matches the section spec) */}
+        <Box sx={{ position: 'relative', height: 200, bgcolor: 'grey.100' }}>
           <Box
             component="img"
             src={coverUrl}
@@ -190,8 +192,8 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
           </Stack>
 
           <Typography
-            variant="subtitle1"
             sx={{
+              fontSize: '1.1rem',
               fontWeight: 700,
               lineHeight: 1.3,
               display: '-webkit-box',
@@ -199,20 +201,21 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               minHeight: '2.6em',
+              mt: 1.5,
               mb: 0.5,
             }}
           >
             {title}
           </Typography>
 
-          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 1.25, color: 'text.secondary' }}>
-            <PlaceIcon sx={{ fontSize: 14 }} />
-            <Typography variant="body2" sx={{ fontSize: 13 }}>
+          <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5, mb: 1, color: 'text.secondary' }}>
+            <PlaceIcon sx={{ fontSize: 16 }} />
+            <Typography sx={{ fontSize: '0.875rem' }}>
               {location}
             </Typography>
           </Stack>
 
-          {/* Compact feature row */}
+          {/* Feature row — bigger gap + 0.875rem typography */}
           <Stack
             direction="row"
             spacing={2}
@@ -223,24 +226,24 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
           >
             {listing.bedrooms !== null && listing.bedrooms !== undefined && (
               <Stack direction="row" spacing={0.5} alignItems="center">
-                <BedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
+                <BedIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
+                <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
                   {listing.bedrooms}
                 </Typography>
               </Stack>
             )}
             {listing.bathrooms !== null && listing.bathrooms !== undefined && (
               <Stack direction="row" spacing={0.5} alignItems="center">
-                <BathIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
+                <BathIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
+                <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
                   {listing.bathrooms}
                 </Typography>
               </Stack>
             )}
             {listing.area !== null && listing.area !== undefined && (
               <Stack direction="row" spacing={0.5} alignItems="center">
-                <AreaIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
+                <AreaIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
+                <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>
                   {Number(listing.area).toLocaleString(activeLocale)} {t('listing.areaUnit')}
                 </Typography>
               </Stack>
@@ -249,16 +252,16 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
         </CardContent>
       </CardActionArea>
 
-      {/* Footer: agent strip (only if verified, otherwise drop the chrome) */}
+      {/* Footer: agent strip — solid top border, larger spacing */}
       {showVerified && (
         <Box
           sx={{
             px: 1.75,
             pb: 1.5,
-            pt: 1,
-            borderTop: '1px dashed',
+            pt: 1.5,
+            borderTop: '1px solid',
             borderColor: 'divider',
-            mt: 0.5,
+            mt: 2,
           }}
         >
           <Stack direction="row" alignItems="center" spacing={1}>

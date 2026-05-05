@@ -137,6 +137,10 @@ export class UsersService {
     if (dto.bio !== undefined) user.bio = dto.bio;
     if (dto.avatarUrl !== undefined) user.avatarUrl = dto.avatarUrl;
     if (dto.preferredLocale !== undefined) user.preferredLocale = dto.preferredLocale;
+    if (dto.notificationPreferences !== undefined) {
+      // Merge — preserve any keys we don't have a UI toggle for yet.
+      user.notificationPreferences = { ...(user.notificationPreferences ?? {}), ...dto.notificationPreferences };
+    }
 
     return this.users.save(user);
   }

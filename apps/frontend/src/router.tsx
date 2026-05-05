@@ -12,6 +12,10 @@ import { NotificationToaster } from './components/global/NotificationToaster';
 import { SavedListingsHydrator } from './components/global/SavedListingsHydrator';
 import { ErrorBoundary } from './components/global/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsPage } from './pages/TermsPage';
 import { SearchPage } from './pages/SearchPage';
 import { ListingDetailPage } from './pages/ListingDetailPage';
 import { AgentProfilePage } from './pages/AgentProfilePage';
@@ -126,6 +130,13 @@ const profileRoute = createRoute({
   component: ProfilePage,
 });
 
+// ----- Footer / marketing static pages -------------------------------
+
+const aboutRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/about', component: AboutPage });
+const contactRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/contact', component: ContactPage });
+const privacyRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/privacy', component: PrivacyPolicyPage });
+const termsRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/terms', component: TermsPage });
+
 // ----- Auth routes -----------------------------------------------------
 
 const authLoginRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/login', component: LoginPage });
@@ -192,6 +203,10 @@ const routeTree = rootRoute.addChildren([
     agentProfileRoute,
     savedRoute,
     profileRoute,
+    aboutRoute,
+    contactRoute,
+    privacyRoute,
+    termsRoute,
   ]),
   authShellRoute.addChildren([
     authLoginRoute,

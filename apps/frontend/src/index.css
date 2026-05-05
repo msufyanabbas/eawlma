@@ -19,11 +19,11 @@ body {
 .lang-ar,
 [lang="ar"],
 [dir="rtl"] {
-  font-family: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
+  font-family: 'Tajawal', 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
 }
 
 [dir="rtl"] body {
-  font-family: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
+  font-family: 'Tajawal', 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
 }
 
 [dir="ltr"] body {
