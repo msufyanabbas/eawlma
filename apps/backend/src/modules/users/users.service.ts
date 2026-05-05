@@ -7,7 +7,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import * as argon2 from 'argon2';
-import { UserRole, UserStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus } from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { UserEntity } from './entities/user.entity';

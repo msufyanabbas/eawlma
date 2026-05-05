@@ -42,7 +42,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ListingType, MediaType } from '@aqarat/shared-types';
+import { ListingType, MediaType } from '@eawlma/shared-types';
 
 import confetti from 'canvas-confetti';
 import { listingsApi } from '@/api/listings.api';
@@ -52,6 +52,8 @@ import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
+import { Reveal } from '@/components/global/Reveal';
+import { fallbackImageForPropertyType } from '@/utils/listingImages';
 
 // ------------------------------------------------------------------
 // 30 supported translation locales (mirrors backend's TRANSLATION_TARGET_LOCALES)
@@ -170,14 +172,21 @@ export function ListingDetailPage() {
     );
   }
 
-  const images = listing.media.filter((m) => m.type === MediaType.IMAGE);
+  const realImages = listing.media.filter((m) => m.type === MediaType.IMAGE);
+  // When no agent-uploaded images exist, surface a property-type-aware
+  // Unsplash placeholder so the gallery never renders as a blank grey block.
+  const fallbackUrl = fallbackImageForPropertyType(listing.propertyType);
+  const images =
+    realImages.length > 0
+      ? realImages
+      : [{ id: 'fallback', url: fallbackUrl, thumbnailUrl: fallbackUrl } as unknown as (typeof realImages)[number]];
   const video = listing.media.find((m) => m.type === MediaType.VIDEO);
   const tour360 = listing.media.find((m) => m.type === MediaType.TOUR_360);
   const cover = images[0]?.url;
 
   const isSale = listing.type === ListingType.SALE;
   const whatsappLink = `https://wa.me/?text=${encodeURIComponent(
-    `Aqarat — ${localized.title} — ${window.location.href}`,
+    `eawlma — ${localized.title} — ${window.location.href}`,
   )}`;
 
   return (
@@ -295,6 +304,7 @@ export function ListingDetailPage() {
       <Container maxWidth="lg" sx={{ mt: 4, pb: 8 }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
+          <Reveal variant="fadeRight">
             {/* Quick stats */}
             <Paper sx={{ p: 3, mb: 4 }}>
               <Stack direction="row" spacing={4} flexWrap="wrap" rowGap={2}>
@@ -479,10 +489,12 @@ export function ListingDetailPage() {
               </Typography>
               <ListingMap lat={Number(listing.lat)} lng={Number(listing.lng)} />
             </Box>
+          </Reveal>
           </Grid>
 
           {/* ---------------- Sticky inquiry sidebar ---------------- */}
           <Grid item xs={12} md={4}>
+          <Reveal variant="fadeLeft" delay={0.1}>
             <Box sx={{ position: { md: 'sticky' }, top: { md: 96 } }}>
               {/* Agent card */}
               <Paper sx={{ p: 3, mb: 3 }}>
@@ -619,6 +631,7 @@ export function ListingDetailPage() {
                 )}
               </Paper>
             </Box>
+          </Reveal>
           </Grid>
         </Grid>
 
@@ -635,9 +648,11 @@ export function ListingDetailPage() {
               : (similarQuery.data?.data ?? [])
                   .filter((l) => l.id !== id)
                   .slice(0, 4)
-                  .map((l) => (
+                  .map((l, i) => (
                     <Grid key={l.id} item xs={12} sm={6} md={3}>
-                      <ListingCard listing={l} />
+                      <Reveal delay={i * 0.08}>
+                        <ListingCard listing={l} />
+                      </Reveal>
                     </Grid>
                   ))}
           </Grid>

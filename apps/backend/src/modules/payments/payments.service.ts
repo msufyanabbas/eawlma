@@ -12,7 +12,7 @@ import {
   PaymentPurpose,
   PaymentStatus,
   SubscriptionPlan,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { PaymentEntity } from './entities/payment.entity';
 import { ListingEntity } from '../listings/entities/listing.entity';
@@ -99,7 +99,7 @@ export class PaymentsService {
     }
 
     const amount = Math.round(Number(plan.price) * 100); // SAR -> halalas
-    const description = `Aqarat ${plan.nameEn} (${plan.billingPeriod})`;
+    const description = `eawlma ${plan.nameEn} (${plan.billingPeriod})`;
 
     const payment = await this.savePending(userId, {
       amount,

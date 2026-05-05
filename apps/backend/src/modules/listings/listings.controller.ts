@@ -21,7 +21,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import type { Request } from 'express';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 
 import { CurrentUser, RequestUser } from '../../common/decorators/current-user.decorator';
 import { Public } from '../../common/decorators/public.decorator';

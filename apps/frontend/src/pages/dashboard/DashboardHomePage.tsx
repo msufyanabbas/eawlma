@@ -38,7 +38,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { ListingStatus } from '@aqarat/shared-types';
+import { ListingStatus } from '@eawlma/shared-types';
 
 import { analyticsApi } from '@/api/analytics.api';
 import { listingsApi } from '@/api/listings.api';

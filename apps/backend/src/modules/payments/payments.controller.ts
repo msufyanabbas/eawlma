@@ -120,7 +120,7 @@ export class PaymentsController {
     res.set({
       'Content-Type': 'application/pdf',
       'Content-Length': buf.length.toString(),
-      'Content-Disposition': `inline; filename="aqarat-invoice-${payment.id.slice(0, 8)}.pdf"`,
+      'Content-Disposition': `inline; filename="eawlma-invoice-${payment.id.slice(0, 8)}.pdf"`,
     });
     res.send(buf);
   }
@@ -134,11 +134,11 @@ export class PaymentsController {
   @ApiUnauthorizedResponse({ description: 'Invalid signature' })
   async webhook(
     @Headers('x-moyasar-signature') signature: string | undefined,
-    @Headers('x-aqarat-signature') aqaratSignature: string | undefined,
+    @Headers('x-eawlma-signature') eawlmaSignature: string | undefined,
     @Req() req: RequestWithRawBody,
     @Body() body: Record<string, unknown>,
   ): Promise<{ ok: boolean }> {
-    const provided = signature ?? aqaratSignature;
+    const provided = signature ?? eawlmaSignature;
     const raw = req.rawBody ?? Buffer.from(JSON.stringify(body), 'utf-8');
     const ok = this.moyasar.verifyWebhookSignature(raw, provided);
     if (!ok) return { ok: false };

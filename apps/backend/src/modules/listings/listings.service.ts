@@ -18,7 +18,7 @@ import {
   PropertyType,
   RentPeriod,
   UserRole,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
@@ -204,7 +204,7 @@ export class ListingsService {
   ): Promise<void> {
     await this.incrementViewCount(id);
     const topic =
-      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'eawlma.listing.events';
     void this.kafkaService
       .publish({
         topic,
@@ -323,7 +323,7 @@ export class ListingsService {
     extras: Record<string, unknown> = {},
   ): Promise<void> {
     const topic =
-      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'eawlma.listing.events';
     try {
       await this.kafkaService.publish({
         topic,
@@ -574,7 +574,7 @@ export class ListingsService {
   }
 
   /**
-   * Reference codes look like `AQR-2026-000123`. The numeric suffix is monotonic
+   * Reference codes look like `EAW-2026-000123`. The numeric suffix is monotonic
    * within a calendar year. Uses an advisory-locked sequence for safety under
    * concurrent inserts.
    */
@@ -584,6 +584,6 @@ export class ListingsService {
       SELECT to_char(nextval('listings_reference_seq'), 'FM000000') AS next
     `);
     const seq = result[0]?.next ?? '000001';
-    return `AQR-${year}-${seq}`;
+    return `EAW-${year}-${seq}`;
   }
 }

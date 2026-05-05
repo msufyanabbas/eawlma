@@ -16,9 +16,11 @@ import StarIcon from '@mui/icons-material/Star';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
+import { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { searchApi } from '@/api/search.api';
+import { agentsApi } from '@/api/agents.api';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
@@ -34,8 +36,32 @@ export function AgentProfilePage() {
     enabled: Boolean(agentId),
   });
 
+  // Pull the real agent profile from /agents/:id — gives us first/last name,
+  // avatar, identity verification, and member-since for a personalised header.
+  const { data: agent } = useQuery({
+    queryKey: ['agents', agentId],
+    queryFn: () => agentsApi.getById(agentId),
+    enabled: Boolean(agentId),
+    staleTime: 5 * 60_000,
+    retry: false,
+  });
+
   const listings = page?.data ?? [];
-  const initials = (agentId || 'A').slice(0, 1).toUpperCase();
+
+  const displayName = useMemo(() => {
+    if (agent) return `${agent.firstName} ${agent.lastName}`.trim();
+    return 'eawlma Agent';
+  }, [agent]);
+
+  const initials = useMemo(() => {
+    const first = agent?.firstName?.[0] ?? 'E';
+    const second = agent?.lastName?.[0] ?? '';
+    return `${first}${second}`.toUpperCase();
+  }, [agent]);
+
+  const memberSinceYear = agent?.memberSince
+    ? new Date(agent.memberSince).getFullYear().toString()
+    : '—';
 
   return (
     <Box>
@@ -60,12 +86,17 @@ export function AgentProfilePage() {
             alignItems={{ xs: 'flex-start', md: 'center' }}
           >
             <Avatar
+              src={agent?.avatarUrl ?? undefined}
+              alt={displayName}
               sx={{
                 width: { xs: 96, md: 120 },
                 height: { xs: 96, md: 120 },
-                bgcolor: 'primary.main',
-                color: 'primary.contrastText',
-                fontSize: { xs: 36, md: 48 },
+                background: (theme) =>
+                  `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+                color: 'common.white',
+                fontSize: { xs: 32, md: 44 },
+                fontWeight: 800,
+                letterSpacing: 0.5,
                 border: 4,
                 borderColor: 'background.paper',
                 boxShadow: 4,
@@ -77,7 +108,7 @@ export function AgentProfilePage() {
             <Box sx={{ flex: 1, minWidth: 0 }}>
               <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1, flexWrap: 'wrap' }}>
                 <Typography variant="h4" sx={{ fontWeight: 800 }}>
-                  {t('listing.agent')} #{agentId.slice(0, 8)}
+                  {displayName}
                 </Typography>
                 <Chip
                   size="small"
@@ -89,7 +120,7 @@ export function AgentProfilePage() {
               </Stack>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                 <BusinessIcon sx={{ fontSize: 16, mr: 0.5, verticalAlign: 'text-bottom' }} />
-                Aqarat Real Estate
+                eawlma Real Estate
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 720 }}>
                 Bilingual real-estate professional helping buyers and renters find the right home
@@ -113,7 +144,7 @@ export function AgentProfilePage() {
               label={t('dashboard.listings')}
               value={isLoading ? '—' : String(page?.meta.total ?? listings.length)}
             />
-            <StatCell label="Member since" value="2024" />
+            <StatCell label="Member since" value={memberSinceYear} />
             <StatCell label="Response rate" value="98%" />
             <StatCell label="Rating" value="4.8 / 5" valueIcon={<StarIcon sx={{ color: 'warning.main', fontSize: 18 }} />} />
           </Grid>

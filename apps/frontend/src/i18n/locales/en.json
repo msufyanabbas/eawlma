@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Aqarat",
+    "name": "eawlma",
     "tagline": "Discover your perfect property in Saudi Arabia"
   },
   "nav": {
@@ -49,7 +49,7 @@
     "loginTitle": "Welcome back",
     "loginSubtitle": "Sign in to continue to your account",
     "registerTitle": "Create your account",
-    "registerSubtitle": "Join Aqarat and start your property journey",
+    "registerSubtitle": "Join eawlma and start your property journey",
     "email": "Email",
     "phone": "Phone number",
     "password": "Password",
@@ -163,7 +163,7 @@
     "exploreRent": "Explore properties for rent",
     "featuredListings": "Featured listings",
     "popularCities": "Popular cities",
-    "becomeAgent": "Are you an agent? Join Aqarat",
+    "becomeAgent": "Are you an agent? Join eawlma",
     "tabBuy": "Buy",
     "tabRent": "Rent",
     "tabCommercial": "Commercial",
@@ -179,6 +179,21 @@
     "noNotifications": "No notifications",
     "noMessages": "No conversations",
     "noResults": "No results"
+  },
+  "footer": {
+    "tagline": "eawlma is the trusted real estate marketplace of the Kingdom — discover, list, and lease properties across Saudi Arabia with confidence.",
+    "company": "Company",
+    "about": "About",
+    "contact": "Contact",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "explore": "Explore",
+    "support": "Support",
+    "help": "Help center",
+    "whatsapp": "WhatsApp",
+    "callUs": "Call us",
+    "needHelp": "Need help? Talk to us on WhatsApp."
   },
   "errors": {
     "generic": "An unexpected error occurred",

@@ -10,7 +10,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 
 export class CreateUserDto {
   @ApiProperty({ example: 'fatima@example.com' })

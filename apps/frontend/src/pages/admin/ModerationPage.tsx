@@ -28,7 +28,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
-import { type Listing, MediaType } from '@aqarat/shared-types';
+import { type Listing, MediaType } from '@eawlma/shared-types';
 
 import { adminApi } from '@/api/admin.api';
 import { AdminLayout } from '@/components/Layout/AdminLayout';

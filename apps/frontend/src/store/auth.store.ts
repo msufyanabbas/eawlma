@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { AuthSessionUser } from '@aqarat/shared-types';
+import type { AuthSessionUser } from '@eawlma/shared-types';
 
 interface AuthTokens {
   accessToken: string;
@@ -52,7 +52,7 @@ export const useAuthStore = create<AuthState>()(
       getRefreshToken: () => get().tokens?.refreshToken ?? null,
     }),
     {
-      name: 'aqarat.auth',
+      name: 'eawlma.auth',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ user: state.user, tokens: state.tokens, isAuthenticated: state.isAuthenticated }),
     },

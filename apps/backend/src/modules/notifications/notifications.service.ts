@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, IsNull, Repository } from 'typeorm';
-import { NotificationChannel, NotificationType } from '@aqarat/shared-types';
+import { NotificationChannel, NotificationType } from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { NotificationEntity } from './entities/notification.entity';

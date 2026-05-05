@@ -14,7 +14,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 
 import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';

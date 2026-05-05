@@ -7,8 +7,8 @@ export const servicesConfig = registerAs('services', () => ({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? '',
   },
   ses: {
-    fromEmail: process.env.SES_FROM_EMAIL ?? 'no-reply@aqarat.sa',
-    replyTo: process.env.SES_REPLY_TO ?? 'support@aqarat.sa',
+    fromEmail: process.env.SES_FROM_EMAIL ?? 'no-reply@eawlma.sa',
+    replyTo: process.env.SES_REPLY_TO ?? 'support@eawlma.sa',
   },
   s3: {
     bucket: process.env.S3_BUCKET ?? '',

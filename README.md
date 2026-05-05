@@ -1,4 +1,4 @@
-# Aqarat — Saudi Real Estate Platform
+# eawlma — Saudi Real Estate Platform
 
 Enterprise-grade real estate marketplace for Saudi Arabia, built with the GCC and global expansion in mind.
 
@@ -57,7 +57,7 @@ Enterprise-grade real estate marketplace for Saudi Arabia, built with the GCC an
 ## Project layout
 
 ```
-aqarat/
+eawlma/
 ├── apps/
 │   ├── backend/                          NestJS API
 │   │   ├── src/
@@ -103,7 +103,7 @@ npm run dev:frontend                                 # http://localhost:5173
 
 * Swagger UI — <http://localhost:3000/api/docs>
 * Kafka UI — <http://localhost:8095>
-* Postgres — `localhost:5532` (user / pwd / db = `aqarat`)
+* Postgres — `localhost:5532` (user / pwd / db = `eawlma`)
 * Redis — `localhost:6479`
 * Kafka external listener — `localhost:9094`
 
@@ -188,8 +188,8 @@ Auto-emitted Kafka events:
 
 | Topic | Events |
 |---|---|
-| `aqarat.listing.events` | `listing.viewed` · `listing.published` · `listing.updated` · `inquiry.created` |
-| `aqarat.analytics.events` | `search.performed` |
+| `eawlma.listing.events` | `listing.viewed` · `listing.published` · `listing.updated` · `inquiry.created` |
+| `eawlma.analytics.events` | `search.performed` |
 
 Consumers: AI translation pipeline (`listing.published`, `listing.updated`), analytics aggregator (`listing.viewed`, `inquiry.created`, `search.performed`).
 
@@ -199,7 +199,7 @@ Consumers: AI translation pipeline (`listing.published`, `listing.updated`), ana
 
 1. **Provision** a VPS (Ubuntu 22.04 LTS, ≥ 4 GB RAM). Managed Postgres + Redis are recommended for production traffic; the bundled containers are fine for staging.
 2. **Install Docker + Docker Compose**, clone this repo.
-3. **Place secrets** in `/etc/aqarat/.env` (chmod 600) and reference it from your systemd unit / docker-compose override.
+3. **Place secrets** in `/etc/eawlma/.env` (chmod 600) and reference it from your systemd unit / docker-compose override.
 4. **DNS + TLS**: point your domain at the VPS, run `certbot --nginx` against the host nginx (or use a sidecar like `caddy` / `traefik`) and terminate TLS in front of the `frontend` container.
 5. **Migrations**: run inside the backend container — `docker compose exec backend npm run migration:run`.
 6. **Boot**: `docker compose --profile app up -d --build`. Health checks gate startup; the backend waits on Postgres + Redis to be `healthy`.
@@ -216,7 +216,7 @@ Consumers: AI translation pipeline (`listing.published`, `listing.updated`), ana
 - ✅ Foundation — monorepo + docker-compose + Joi-validated config + base common layer (filters, interceptors, decorators, guards, base entity, request-context via AsyncLocalStorage)
 - ✅ Auth — JWT + refresh-rotation w/ family revocation on reuse, Argon2id passwords, email/phone uniqueness via partial unique indexes, login-throttling lockout, Authentica.sa verification flow
 - ✅ Users — profile CRUD, soft-delete, public agent profile (`/agents/:id` + listings + reviews stub)
-- ✅ Listings — entities, media, translations, amenity/tag taxonomies, status FSM, `AQR-YYYY-NNNNNN` reference codes, RBAC + ownership
+- ✅ Listings — entities, media, translations, amenity/tag taxonomies, status FSM, `EAW-YYYY-NNNNNN` reference codes, RBAC + ownership
 - ✅ Search — Postgres FTS (`tsvector` + `plainto_tsquery`), 18 filters, bounding-box + haversine radius, 5 sort modes, featured-pinning
 - ✅ Saved listings — server-backed favorites with idempotent save/unsave + saveCount denormalisation
 - ✅ Inquiries — anonymous + authenticated, status FSM, fan-out to SES email + in-app notification + Kafka event
@@ -260,4 +260,4 @@ Consumers: AI translation pipeline (`listing.published`, `listing.updated`), ana
 
 ## License
 
-Proprietary © Aqarat.
+Proprietary © eawlma.

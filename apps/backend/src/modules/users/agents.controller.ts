@@ -12,7 +12,7 @@ import {
 } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ListingStatus, UserRole, UserStatus } from '@aqarat/shared-types';
+import { ListingStatus, UserRole, UserStatus } from '@eawlma/shared-types';
 
 import { Public } from '../../common/decorators/public.decorator';
 import { ListingEntity } from '../listings/entities/listing.entity';

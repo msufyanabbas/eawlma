@@ -40,7 +40,7 @@ export const useUiStore = create<UiState>()(
       setUnreadMessageCount: (unreadMessageCount) => set({ unreadMessageCount }),
     }),
     {
-      name: 'aqarat.ui',
+      name: 'eawlma.ui',
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({
         language: s.language,

@@ -21,7 +21,7 @@ import {
   Locale,
   PropertyType,
   RentPeriod,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { AddressDto, FeaturesDto, GeoPointDto } from './address.dto';
 
 export class CreateListingDto {

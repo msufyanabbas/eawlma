@@ -21,7 +21,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { SubscriptionPlan } from '@aqarat/shared-types';
+import { SubscriptionPlan } from '@eawlma/shared-types';
 
 import { subscriptionsApi, type PlanCatalogEntry } from '@/api/subscriptions.api';
 import { paymentsApi } from '@/api/payments.api';

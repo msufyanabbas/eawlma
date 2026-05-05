@@ -25,7 +25,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState, type MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { UserRole, UserStatus, type User } from '@aqarat/shared-types';
+import { UserRole, UserStatus, type User } from '@eawlma/shared-types';
 
 import { adminApi } from '@/api/admin.api';
 import { AdminLayout } from '@/components/Layout/AdminLayout';

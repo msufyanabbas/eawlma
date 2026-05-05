@@ -7,7 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import './i18n';
 import './index.css';
-import { AqaratThemeProvider } from './theme/ThemeProvider';
+import { EawlmaThemeProvider } from './theme/ThemeProvider';
 import { queryClient } from './api/queryClient';
 import { router } from './router';
 
@@ -20,9 +20,9 @@ ReactDOM.createRoot(rootEl).render(
   <React.StrictMode>
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <AqaratThemeProvider>
+        <EawlmaThemeProvider>
           <RouterProvider router={router} />
-        </AqaratThemeProvider>
+        </EawlmaThemeProvider>
         {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
     </HelmetProvider>

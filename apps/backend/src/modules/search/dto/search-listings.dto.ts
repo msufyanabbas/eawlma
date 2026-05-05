@@ -22,7 +22,7 @@ import {
   PropertyType,
   RentPeriod,
   SortOrder,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { PaginationQueryDto } from '../../../common/dto/pagination.dto';
 
 const toArray = (value: unknown): string[] => {

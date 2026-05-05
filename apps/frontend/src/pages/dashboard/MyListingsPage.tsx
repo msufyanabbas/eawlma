@@ -34,7 +34,7 @@ import { Link } from '@tanstack/react-router';
 import { useState, type MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { ListingStatus, type Listing } from '@aqarat/shared-types';
+import { ListingStatus, type Listing } from '@eawlma/shared-types';
 
 import { listingsApi } from '@/api/listings.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';

@@ -1,12 +1,12 @@
 import { alpha, createTheme, ThemeOptions } from '@mui/material/styles';
-import { aqaratBrand, darkPalette, lightPalette } from './palette';
+import { eawlmaBrand, darkPalette, lightPalette } from './palette';
 
 export type Direction = 'ltr' | 'rtl';
 export type Mode = 'light' | 'dark';
 
 declare module '@mui/material/styles' {
   interface Theme {
-    aqarat: {
+    eawlma: {
       hero: string;
       surface: string;
       accent: string;
@@ -15,7 +15,7 @@ declare module '@mui/material/styles' {
     };
   }
   interface ThemeOptions {
-    aqarat?: {
+    eawlma?: {
       hero?: string;
       surface?: string;
       accent?: string;
@@ -215,12 +215,12 @@ export const buildTheme = (mode: Mode, direction: Direction) =>
     typography: buildTypography(direction),
     shape: baseShape,
     components: buildComponents(mode),
-    aqarat: {
-      hero: aqaratBrand.hero,
-      surface: aqaratBrand.surface,
-      accent: aqaratBrand.accent,
-      gold: aqaratBrand.gold,
-      gradient: aqaratBrand.gradient,
+    eawlma: {
+      hero: eawlmaBrand.hero,
+      surface: eawlmaBrand.surface,
+      accent: eawlmaBrand.accent,
+      gold: eawlmaBrand.gold,
+      gradient: eawlmaBrand.gradient,
     },
   });
 

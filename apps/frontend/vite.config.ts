@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
-        '@aqarat/shared-types': resolve(__dirname, '../../packages/shared-types/src'),
+        '@eawlma/shared-types': resolve(__dirname, '../../packages/shared-types/src'),
       },
     },
     server: {

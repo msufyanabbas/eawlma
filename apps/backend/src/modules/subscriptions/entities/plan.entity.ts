@@ -1,5 +1,5 @@
 import { Column, Entity, Index } from 'typeorm';
-import { SubscriptionPlan } from '@aqarat/shared-types';
+import { SubscriptionPlan } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 
 @Entity({ name: 'plans' })

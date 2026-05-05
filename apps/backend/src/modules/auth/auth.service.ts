@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, LessThan, Repository } from 'typeorm';
 import { createHash, randomUUID } from 'crypto';
-import { JwtPayload, UserStatus } from '@aqarat/shared-types';
+import { JwtPayload, UserStatus } from '@eawlma/shared-types';
 
 import { UsersService } from '../users/users.service';
 import { UserEntity } from '../users/entities/user.entity';
@@ -177,7 +177,7 @@ export class AuthService {
 
     await this.emailService.send({
       to: user.email,
-      subject: 'Reset your Aqarat password',
+      subject: 'Reset your eawlma password',
       html: `<p>Click the link below to reset your password (valid for 30 minutes):</p><p><a href="${link}">${link}</a></p>`,
       text: `Reset your password: ${link}`,
     });

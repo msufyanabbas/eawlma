@@ -15,7 +15,7 @@ import {
 import { createAdapter } from '@socket.io/redis-adapter';
 import type Redis from 'ioredis';
 import { Server, Socket } from 'socket.io';
-import { JwtPayload } from '@aqarat/shared-types';
+import { JwtPayload } from '@eawlma/shared-types';
 
 import { REDIS_PUB, REDIS_SUB } from '../../common/redis/redis.module';
 import { MessagingService } from './messaging.service';

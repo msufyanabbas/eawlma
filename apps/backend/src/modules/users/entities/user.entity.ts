@@ -5,7 +5,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { UserRole, UserStatus, VerificationStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus, VerificationStatus } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { RefreshTokenEntity } from '../../auth/entities/refresh-token.entity';
 

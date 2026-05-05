@@ -10,7 +10,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { MediaType } from '@aqarat/shared-types';
+import { MediaType } from '@eawlma/shared-types';
 
 export class CreateListingMediaDto {
   @ApiProperty({ enum: MediaType })

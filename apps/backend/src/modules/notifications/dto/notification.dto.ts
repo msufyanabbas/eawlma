@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ArrayMinSize, IsArray, IsUUID } from 'class-validator';
-import { NotificationChannel, NotificationType } from '@aqarat/shared-types';
+import { NotificationChannel, NotificationType } from '@eawlma/shared-types';
 import { NotificationEntity } from '../entities/notification.entity';
 
 export class MarkNotificationsReadDto {

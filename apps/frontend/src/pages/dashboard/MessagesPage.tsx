@@ -33,7 +33,7 @@ import { useTranslation } from 'react-i18next';
 import {
   type Conversation,
   type Message,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { messagingApi } from '@/api/messaging.api';
 import { listingsApi } from '@/api/listings.api';

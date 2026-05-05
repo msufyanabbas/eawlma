@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# Aqarat — Local development + production-shaped stack.
+# eawlma — Local development + production-shaped stack.
 #
 # Services:
 #   postgres   — primary DB
@@ -25,18 +25,18 @@ services:
   # ─── Postgres ────────────────────────────────────────────────────────────
   postgres:
     image: postgres:16-alpine
-    container_name: aqarat-postgres
+    container_name: eawlma-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-aqarat}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aqarat_dev_password}
-      POSTGRES_DB: ${POSTGRES_DB:-aqarat}
+      POSTGRES_USER: ${POSTGRES_USER:-eawlma}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eawlma_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-eawlma}
     ports:
       - "${POSTGRES_PORT:-5532}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aqarat} -d ${POSTGRES_DB:-aqarat}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-eawlma} -d ${POSTGRES_DB:-eawlma}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -44,7 +44,7 @@ services:
   # ─── Redis ──────────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
-    container_name: aqarat-redis
+    container_name: eawlma-redis
     restart: unless-stopped
     command: redis-server --appendonly yes
     ports:
@@ -62,7 +62,7 @@ services:
   # stack coexists with other local Kafka instances.
   kafka:
     image: apache/kafka:3.9.2
-    container_name: aqarat-kafka
+    container_name: eawlma-kafka
     restart: unless-stopped
     ports:
       - "9094:9094"
@@ -80,7 +80,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-      CLUSTER_ID: aqarat-local-cluster
+      CLUSTER_ID: eawlma-local-cluster
     volumes:
       - kafka-data:/var/lib/kafka/data
     healthcheck:
@@ -92,21 +92,21 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: aqarat-kafka-ui
+    container_name: eawlma-kafka-ui
     restart: unless-stopped
     depends_on:
       - kafka
     ports:
       - "8095:8080"
     environment:
-      KAFKA_CLUSTERS_0_NAME: aqarat-local
+      KAFKA_CLUSTERS_0_NAME: eawlma-local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       DYNAMIC_CONFIG_ENABLED: "true"
 
   # ─── EMQX (optional MQTT broker for IoT signals) ────────────────────────
   emqx:
     image: emqx/emqx:5.4
-    container_name: aqarat-emqx
+    container_name: eawlma-emqx
     restart: unless-stopped
     profiles: ["iot"]
     ports:
@@ -124,8 +124,8 @@ services:
     build:
       context: .
       dockerfile: apps/backend/Dockerfile
-    image: aqarat-backend:latest
-    container_name: aqarat-backend
+    image: eawlma-backend:latest
+    container_name: eawlma-backend
     restart: unless-stopped
     profiles: ["app"]
     depends_on:
@@ -144,9 +144,9 @@ services:
       JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
-      POSTGRES_USER:     ${POSTGRES_USER:-aqarat}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-aqarat_dev_password}
-      POSTGRES_DB:       ${POSTGRES_DB:-aqarat}
+      POSTGRES_USER:     ${POSTGRES_USER:-eawlma}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eawlma_dev_password}
+      POSTGRES_DB:       ${POSTGRES_DB:-eawlma}
       POSTGRES_SSL:      ${POSTGRES_SSL:-false}
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -154,8 +154,8 @@ services:
       AWS_REGION:            ${AWS_REGION:-me-south-1}
       AWS_ACCESS_KEY_ID:     ${AWS_ACCESS_KEY_ID:-}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
-      SES_FROM_EMAIL:        ${SES_FROM_EMAIL:-no-reply@aqarat.sa}
-      SES_REPLY_TO:          ${SES_REPLY_TO:-support@aqarat.sa}
+      SES_FROM_EMAIL:        ${SES_FROM_EMAIL:-no-reply@eawlma.sa}
+      SES_REPLY_TO:          ${SES_REPLY_TO:-support@eawlma.sa}
       S3_BUCKET:             ${S3_BUCKET:-}
       S3_REGION:             ${S3_REGION:-me-south-1}
       CLOUDFRONT_URL:        ${CLOUDFRONT_URL:-}
@@ -191,8 +191,8 @@ services:
         VITE_MOYASAR_PUBLISHABLE_KEY: ${MOYASAR_PUBLISHABLE_KEY:-}
         VITE_DEFAULT_LOCALE:         ${DEFAULT_LOCALE:-ar}
         VITE_SUPPORTED_LOCALES:      ${SUPPORTED_LOCALES:-ar,en}
-    image: aqarat-frontend:latest
-    container_name: aqarat-frontend
+    image: eawlma-frontend:latest
+    container_name: eawlma-frontend
     restart: unless-stopped
     profiles: ["app"]
     depends_on:
@@ -214,4 +214,4 @@ volumes:
 
 networks:
   default:
-    name: aqarat-network
+    name: eawlma-network

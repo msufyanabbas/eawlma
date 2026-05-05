@@ -1,4 +1,4 @@
-import type { Listing } from '@aqarat/shared-types';
+import type { Listing } from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export const savedApi = {

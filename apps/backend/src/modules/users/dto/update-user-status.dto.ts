@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsOptional, IsString, MaxLength } from 'class-validator';
-import { UserRole, UserStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus } from '@eawlma/shared-types';
 
 export class UpdateUserStatusDto {
   @ApiProperty({ enum: UserStatus })

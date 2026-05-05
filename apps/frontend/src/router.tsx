@@ -5,7 +5,7 @@ import {
   Outlet,
   redirect,
 } from '@tanstack/react-router';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 
 import { AppShell } from './components/Layout/AppShell';
 import { NotificationToaster } from './components/global/NotificationToaster';

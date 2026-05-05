@@ -27,7 +27,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { UserStatus } from '@aqarat/shared-types';
+import { UserStatus } from '@eawlma/shared-types';
 
 import { adminApi } from '@/api/admin.api';
 import { AdminLayout } from '@/components/Layout/AdminLayout';

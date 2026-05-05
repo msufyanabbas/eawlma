@@ -25,7 +25,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { NotificationType, type Notification } from '@aqarat/shared-types';
+import { NotificationType, type Notification } from '@eawlma/shared-types';
 
 import { notificationsApi } from '@/api/notifications.api';
 import { useUiStore } from '@/store/ui.store';

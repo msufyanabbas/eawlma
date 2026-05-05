@@ -20,7 +20,7 @@ apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   if (token && !config.headers.Authorization) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  const locale = (typeof window !== 'undefined' && localStorage.getItem('aqarat.locale')) || 'ar';
+  const locale = (typeof window !== 'undefined' && localStorage.getItem('eawlma.locale')) || 'ar';
   config.headers['Accept-Language'] = locale;
   return config;
 });

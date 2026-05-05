@@ -17,7 +17,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { UserRole, UserStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus } from '@eawlma/shared-types';
 
 import { CurrentUser, RequestUser } from '../../common/decorators/current-user.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';

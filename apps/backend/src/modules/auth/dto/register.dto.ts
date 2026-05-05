@@ -10,7 +10,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 
 // Self-registration is allowed only for these roles. ADMIN / MODERATOR /
 // AGENCY_ADMIN must be granted by an existing admin via the users module.

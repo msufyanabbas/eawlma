@@ -6,7 +6,7 @@ import {
   ListingSortField,
   ListingStatus,
   SortOrder,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { ListingEntity } from '../listings/entities/listing.entity';
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
@@ -62,7 +62,7 @@ export class SearchService {
     total: number,
   ): Promise<void> {
     const topic =
-      this.config.get<string>('kafka.topics.analyticsEvents') ?? 'aqarat.analytics.events';
+      this.config.get<string>('kafka.topics.analyticsEvents') ?? 'eawlma.analytics.events';
     await this.kafkaService.publish({
       topic,
       key: dto.q ?? dto.city ?? 'global',

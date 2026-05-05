@@ -28,7 +28,7 @@ import { Link } from '@tanstack/react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { InquiryStatus, type Inquiry } from '@aqarat/shared-types';
+import { InquiryStatus, type Inquiry } from '@eawlma/shared-types';
 
 import { inquiriesApi } from '@/api/inquiries.api';
 import { listingsApi } from '@/api/listings.api';

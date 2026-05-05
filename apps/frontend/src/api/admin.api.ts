@@ -5,7 +5,7 @@ import type {
   User,
   UserRole,
   UserStatus,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 interface UsersFilter extends PaginationParams {

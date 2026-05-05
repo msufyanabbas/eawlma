@@ -25,7 +25,7 @@ void i18n
     interpolation: { escapeValue: false },
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
-      lookupLocalStorage: 'aqarat.locale',
+      lookupLocalStorage: 'eawlma.locale',
       caches: ['localStorage'],
     },
     returnNull: false,

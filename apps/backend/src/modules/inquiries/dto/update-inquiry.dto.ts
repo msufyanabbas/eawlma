@@ -7,7 +7,7 @@ import {
   IsString,
   MaxLength,
 } from 'class-validator';
-import { InquiryStatus } from '@aqarat/shared-types';
+import { InquiryStatus } from '@eawlma/shared-types';
 
 export class UpdateInquiryDto {
   @ApiPropertyOptional({ enum: InquiryStatus })

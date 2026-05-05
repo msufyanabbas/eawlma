@@ -1,4 +1,4 @@
-import type { Subscription } from '@aqarat/shared-types';
+import type { Subscription } from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export interface PlanCatalogEntry {

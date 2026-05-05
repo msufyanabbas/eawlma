@@ -4,7 +4,7 @@ import type {
   PaginatedResponse,
   PaginationParams,
   UpdateInquiryRequest,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export const inquiriesApi = {

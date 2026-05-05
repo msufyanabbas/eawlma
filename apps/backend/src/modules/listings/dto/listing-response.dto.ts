@@ -6,7 +6,7 @@ import {
   MediaType,
   PropertyType,
   RentPeriod,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { ListingEntity } from '../entities/listing.entity';
 import { ListingMediaEntity } from '../entities/listing-media.entity';
 import { ListingTranslationEntity } from '../entities/listing-translation.entity';

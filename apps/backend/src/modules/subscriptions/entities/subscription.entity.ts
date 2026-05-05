@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { SubscriptionPlan, SubscriptionStatus } from '@aqarat/shared-types';
+import { SubscriptionPlan, SubscriptionStatus } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserEntity } from '../../users/entities/user.entity';
 import { PlanEntity } from './plan.entity';

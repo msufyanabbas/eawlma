@@ -1,19 +1,19 @@
 {
-  "name": "aqarat",
+  "name": "eawlma",
   "version": "0.1.0",
   "private": true,
-  "description": "Aqarat — Saudi/GCC real estate platform",
+  "description": "eawlma — Saudi/GCC real estate platform",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "build:types": "npm run build -w @aqarat/shared-types",
-    "build:backend": "npm run build -w @aqarat/backend",
-    "build:frontend": "npm run build -w @aqarat/frontend",
+    "build:types": "npm run build -w @eawlma/shared-types",
+    "build:backend": "npm run build -w @eawlma/backend",
+    "build:frontend": "npm run build -w @eawlma/frontend",
     "build": "npm run build:types && npm run build:backend && npm run build:frontend",
-    "dev:backend": "npm run start:dev -w @aqarat/backend",
-    "dev:frontend": "npm run dev -w @aqarat/frontend",
+    "dev:backend": "npm run start:dev -w @eawlma/backend",
+    "dev:frontend": "npm run dev -w @eawlma/frontend",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "docker:up": "docker-compose up -d",

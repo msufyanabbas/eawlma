@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import type { UserRole } from '@aqarat/shared-types';
+import type { UserRole } from '@eawlma/shared-types';
 
 export interface RequestUser {
   id: string;

@@ -30,9 +30,9 @@ export class AiTranslationConsumer implements OnModuleInit, OnApplicationShutdow
   async onModuleInit(): Promise<void> {
     const brokers = this.config.get<string[]>('kafka.brokers') ?? ['localhost:9094'];
     const clientId =
-      (this.config.get<string>('kafka.clientId') ?? 'aqarat-backend') + '-ai';
+      (this.config.get<string>('kafka.clientId') ?? 'eawlma-backend') + '-ai';
     const groupId =
-      (this.config.get<string>('kafka.groupId') ?? 'aqarat-backend-group') + '-ai';
+      (this.config.get<string>('kafka.groupId') ?? 'eawlma-backend-group') + '-ai';
     const ssl = this.config.get<boolean>('kafka.ssl', false);
     const sasl = this.config.get<SASLOptions | undefined>('kafka.sasl');
 
@@ -48,7 +48,7 @@ export class AiTranslationConsumer implements OnModuleInit, OnApplicationShutdow
     this.consumer = this.kafka.consumer({ groupId });
 
     const listingTopic =
-      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'eawlma.listing.events';
 
     try {
       await this.consumer.connect();

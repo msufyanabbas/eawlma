@@ -5,7 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { MediaType } from '@aqarat/shared-types';
+import { MediaType } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { ListingEntity } from './listing.entity';
 

@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { PaymentPurpose, PaymentStatus } from '@aqarat/shared-types';
+import { PaymentPurpose, PaymentStatus } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserEntity } from '../../users/entities/user.entity';
 

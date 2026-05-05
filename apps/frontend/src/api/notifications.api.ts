@@ -2,7 +2,7 @@ import type {
   Notification,
   PaginatedResponse,
   PaginationParams,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export const notificationsApi = {

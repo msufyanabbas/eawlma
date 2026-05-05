@@ -5,7 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { InquiryStatus } from '@aqarat/shared-types';
+import { InquiryStatus } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { ListingEntity } from '../../listings/entities/listing.entity';
 import { UserEntity } from '../../users/entities/user.entity';

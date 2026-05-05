@@ -13,7 +13,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 

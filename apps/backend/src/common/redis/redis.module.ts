@@ -13,7 +13,7 @@ const buildRedis = (config: ConfigService, role: string): Redis => {
     port: config.get<number>('redis.port', 6379),
     password: config.get<string>('redis.password') || undefined,
     db: config.get<number>('redis.db', 0),
-    keyPrefix: config.get<string>('redis.keyPrefix', 'aqarat:'),
+    keyPrefix: config.get<string>('redis.keyPrefix', 'eawlma:'),
     maxRetriesPerRequest: 3,
     enableReadyCheck: true,
     lazyConnect: false,

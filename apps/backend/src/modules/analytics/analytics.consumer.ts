@@ -21,8 +21,8 @@ export class AnalyticsConsumer implements OnModuleInit, OnApplicationShutdown {
 
   async onModuleInit(): Promise<void> {
     const brokers = this.config.get<string[]>('kafka.brokers') ?? ['localhost:9094'];
-    const clientId = this.config.get<string>('kafka.clientId', 'aqarat-backend') + '-analytics';
-    const groupId = this.config.get<string>('kafka.groupId', 'aqarat-backend-group') + '-analytics';
+    const clientId = this.config.get<string>('kafka.clientId', 'eawlma-backend') + '-analytics';
+    const groupId = this.config.get<string>('kafka.groupId', 'eawlma-backend-group') + '-analytics';
     const ssl = this.config.get<boolean>('kafka.ssl', false);
     const sasl = this.config.get<SASLOptions | undefined>('kafka.sasl');
     this.kafka = new Kafka({
@@ -37,9 +37,9 @@ export class AnalyticsConsumer implements OnModuleInit, OnApplicationShutdown {
     this.consumer = this.kafka.consumer({ groupId });
 
     const listingTopic =
-      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'eawlma.listing.events';
     const analyticsTopic =
-      this.config.get<string>('kafka.topics.analyticsEvents') ?? 'aqarat.analytics.events';
+      this.config.get<string>('kafka.topics.analyticsEvents') ?? 'eawlma.analytics.events';
 
     try {
       await this.consumer.connect();

@@ -1,4 +1,4 @@
-import type { Payment, PaginatedResponse, SubscriptionPlan } from '@aqarat/shared-types';
+import type { Payment, PaginatedResponse, SubscriptionPlan } from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export interface CreatePaymentResponse {

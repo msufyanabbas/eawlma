@@ -11,11 +11,17 @@ body {
   font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F8FAFC;
-  color: #0F172A;
+  background-color: #FAFAF8;
+  color: #1A1A2E;
 }
 
 /* Locale-aware fallback so OS-level Arabic rendering uses our preferred face */
+.lang-ar,
+[lang="ar"],
+[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
+}
+
 [dir="rtl"] body {
   font-family: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
 }
@@ -26,8 +32,8 @@ body {
 
 /* Dark mode page background — applied by ThemeProvider via data-theme="dark" */
 html[data-theme="dark"] body {
-  background-color: #0F172A;
-  color: #F8FAFC;
+  background-color: #1A1A2E;
+  color: #FAFAF8;
 }
 
 /* Smooth scrolling for in-page anchor nav */

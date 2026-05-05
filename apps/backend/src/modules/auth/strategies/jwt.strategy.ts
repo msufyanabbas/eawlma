@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { JwtPayload, UserStatus } from '@aqarat/shared-types';
+import { JwtPayload, UserStatus } from '@eawlma/shared-types';
 
 import { UsersService } from '../../users/users.service';
 import type { RequestUser } from '../../../common/decorators/current-user.decorator';

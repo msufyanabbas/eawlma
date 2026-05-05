@@ -6,7 +6,7 @@ import {
   Length,
   MaxLength,
 } from 'class-validator';
-import { UserRole, UserStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus } from '@eawlma/shared-types';
 import { PaginationQueryDto } from '../../../common/dto/pagination.dto';
 
 export class ApproveListingDto {

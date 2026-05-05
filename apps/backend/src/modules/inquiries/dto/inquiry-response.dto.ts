@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { InquiryStatus } from '@aqarat/shared-types';
+import { InquiryStatus } from '@eawlma/shared-types';
 import { InquiryEntity } from '../entities/inquiry.entity';
 
 export class InquiryResponseDto {

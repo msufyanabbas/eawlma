@@ -17,7 +17,7 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { UserRole, UserStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus } from '@eawlma/shared-types';
 
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';

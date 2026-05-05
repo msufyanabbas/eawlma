@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, Exclude } from 'class-transformer';
-import { UserRole, UserStatus, VerificationStatus } from '@aqarat/shared-types';
+import { UserRole, UserStatus, VerificationStatus } from '@eawlma/shared-types';
 import { UserEntity } from '../entities/user.entity';
 
 @Exclude()

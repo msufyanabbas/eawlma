@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
-import { SortOrder } from '@aqarat/shared-types';
+import { SortOrder } from '@eawlma/shared-types';
 
 export class PaginationQueryDto {
   @ApiPropertyOptional({ minimum: 1, default: 1 })

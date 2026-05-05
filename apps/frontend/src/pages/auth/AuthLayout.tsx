@@ -12,17 +12,21 @@ import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 
+import logoUrl from '@/assets/logo.svg';
+
 interface AuthLayoutProps {
   /** Browser tab title (full title; we don't auto-prefix the brand). */
   pageTitle: string;
   children: ReactNode;
 }
 
+const AUTH_HERO_IMAGE =
+  'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=1200&q=80';
+
 /**
  * Shared shell for /auth/* routes. Renders a centered card on mobile and a
- * two-pane layout on desktop with a brand-gradient sidebar on the left/right
- * (direction-aware) carrying the value proposition. Children are rendered
- * inside the form pane.
+ * two-pane layout on desktop with a luxury Saudi heritage palace image on
+ * the inline-start side carrying the value proposition.
  */
 export function AuthLayout({ pageTitle, children }: AuthLayoutProps) {
   const theme = useTheme();
@@ -46,77 +50,113 @@ export function AuthLayout({ pageTitle, children }: AuthLayoutProps) {
             sx={{
               flex: '0 0 44%',
               position: 'relative',
-              p: 6,
               color: 'common.white',
               overflow: 'hidden',
-              background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 60%, #2563EB 100%)`,
+              backgroundImage: `url(${AUTH_HERO_IMAGE})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            {/* Decorative orbs */}
+            {/* Dark gradient overlay */}
             <Box
               sx={{
                 position: 'absolute',
-                width: 380,
-                height: 380,
-                borderRadius: '50%',
-                top: -120,
-                insetInlineEnd: -120,
-                background: 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%)',
+                inset: 0,
+                background:
+                  'linear-gradient(to bottom, rgba(15,10,40,0.5) 0%, rgba(108,99,166,0.7) 100%)',
               }}
             />
-            <Box
-              sx={{
-                position: 'absolute',
-                width: 280,
-                height: 280,
-                borderRadius: '50%',
-                bottom: -60,
-                insetInlineStart: -80,
-                background: 'radial-gradient(circle, rgba(245,158,11,0.35) 0%, rgba(245,158,11,0) 70%)',
-              }}
-            />
-            <Stack sx={{ position: 'relative', height: '100%' }} spacing={4}>
+
+            {/* Logo top-start */}
+            <Box sx={{ position: 'relative', p: 5, pb: 0 }}>
               <Link to="/" style={{ textDecoration: 'none' }}>
                 <Stack direction="row" alignItems="center" spacing={1.5}>
                   <Box
+                    component="img"
+                    src={logoUrl}
+                    alt={t('app.name')}
                     sx={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 2,
-                      bgcolor: 'rgba(255,255,255,0.18)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      width: 44,
+                      height: 44,
+                      filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.35))',
+                    }}
+                  />
+                  <Typography
+                    variant="h5"
+                    sx={{
                       fontWeight: 800,
-                      fontSize: 16,
+                      color: 'common.white',
+                      letterSpacing: -0.5,
                     }}
                   >
-                    A
-                  </Box>
-                  <Typography variant="h5" sx={{ fontWeight: 800, color: 'common.white' }}>
                     {t('app.name')}
                   </Typography>
                 </Stack>
               </Link>
+            </Box>
 
-              <Box sx={{ mt: 'auto', maxWidth: 460 }}>
-                <Typography
-                  variant="h2"
-                  sx={{ fontWeight: 800, lineHeight: 1.15, mb: 2 }}
-                >
-                  {t('app.tagline')}
-                </Typography>
-                <Typography variant="body1" sx={{ opacity: 0.85 }}>
-                  {t('home.heroSubtitle')}
-                </Typography>
-              </Box>
-
-              <Stack direction="row" spacing={4} sx={{ pt: 2 }}>
-                <Stat label="10,000+" sub={t('nav.search')} />
-                <Stat label="500+" sub={t('nav.agents')} />
-                <Stat label="30+" sub={t('common.language')} />
-              </Stack>
+            {/* Centered headline */}
+            <Stack
+              sx={{
+                position: 'relative',
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                px: 5,
+              }}
+              spacing={1.5}
+            >
+              <Typography
+                lang="ar"
+                dir="rtl"
+                sx={{
+                  fontFamily: '"IBM Plex Sans Arabic", "Cairo", system-ui, sans-serif',
+                  fontWeight: 700,
+                  fontSize: { md: '2.4rem', lg: '2.9rem' },
+                  lineHeight: 1.2,
+                  textShadow: '0 2px 18px rgba(0,0,0,0.35)',
+                }}
+              >
+                اكتشف منزل أحلامك
+              </Typography>
+              <Typography
+                variant="h5"
+                sx={{
+                  opacity: 0.92,
+                  fontWeight: 500,
+                  letterSpacing: -0.3,
+                  textShadow: '0 1px 12px rgba(0,0,0,0.35)',
+                }}
+              >
+                Discover Your Dream Home
+              </Typography>
             </Stack>
+
+            {/* Glass stats bar at bottom */}
+            <Box sx={{ position: 'relative', p: 4 }}>
+              <Stack
+                direction="row"
+                sx={{
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: 3,
+                  px: 2,
+                  py: 2,
+                }}
+                divider={
+                  <Box sx={{ width: '1px', bgcolor: 'rgba(255,255,255,0.22)', mx: 1 }} />
+                }
+              >
+                <Stat label="10,000+" sub="Properties" />
+                <Stat label="500+" sub={t('nav.agents')} />
+                <Stat label="30+" sub="Cities" />
+              </Stack>
+            </Box>
           </Box>
         )}
 
@@ -149,11 +189,19 @@ export function AuthLayout({ pageTitle, children }: AuthLayoutProps) {
 
 function Stat({ label, sub }: { label: string; sub: string }) {
   return (
-    <Box>
-      <Typography variant="h4" sx={{ fontWeight: 800, color: 'common.white' }}>
+    <Box sx={{ flex: 1, textAlign: 'center' }}>
+      <Typography variant="h6" sx={{ fontWeight: 800, color: 'common.white', lineHeight: 1.1 }}>
         {label}
       </Typography>
-      <Typography variant="caption" sx={{ opacity: 0.85, textTransform: 'uppercase' }}>
+      <Typography
+        variant="caption"
+        sx={{
+          opacity: 0.85,
+          textTransform: 'uppercase',
+          letterSpacing: 0.5,
+          color: 'common.white',
+        }}
+      >
         {sub}
       </Typography>
     </Box>

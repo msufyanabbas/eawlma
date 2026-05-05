@@ -5,7 +5,7 @@ import type {
   PaginatedResponse,
   PaginationParams,
   SendMessageRequest,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export const messagingApi = {

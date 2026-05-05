@@ -1,4 +1,4 @@
-import type { User, UpdateProfileRequest } from '@aqarat/shared-types';
+import type { User, UpdateProfileRequest } from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export const usersApi = {

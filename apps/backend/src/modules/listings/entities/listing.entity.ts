@@ -14,7 +14,7 @@ import {
   ListingType,
   PropertyType,
   RentPeriod,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserEntity } from '../../users/entities/user.entity';
 import { AmenityEntity } from './amenity.entity';

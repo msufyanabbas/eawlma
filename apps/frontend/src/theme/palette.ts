@@ -5,7 +5,7 @@ import { PaletteOptions } from '@mui/material/styles';
 //   primary dark  #4A4080  — Deep Lavender (gradient end)
 //   primary light #9B94C9  — Light Lavender
 //   secondary     #D4A843  — Warm Gold
-//   accent        #2BBFBF  — Teal (exposed via theme.aqarat.accent)
+//   accent        #2BBFBF  — Teal (exposed via theme.eawlma.accent)
 //   hero bg       #1A1A2E  — Midnight (used for dark hero sections)
 //   surface       #FAFAF8  — Warm White (page background in light mode)
 
@@ -128,8 +128,8 @@ export const darkPalette: PaletteOptions = {
 };
 
 // Branded "hero" surface and accent — exposed via the theme so components can
-// reach in via `theme.aqarat.hero` etc.
-export const aqaratBrand = {
+// reach in via `theme.eawlma.hero` etc.
+export const eawlmaBrand = {
   hero: '#1A1A2E',
   surface: '#FAFAF8',
   accent: '#2BBFBF',

@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 
 export const appConfig = registerAs('app', () => ({
   nodeEnv: process.env.NODE_ENV ?? 'development',
-  name: process.env.APP_NAME ?? 'Aqarat',
+  name: process.env.APP_NAME ?? 'eawlma',
   port: parseInt(process.env.BACKEND_PORT ?? '3000', 10),
   apiPrefix: process.env.API_PREFIX ?? 'api',
   appUrl: process.env.APP_URL ?? 'http://localhost:5173',
@@ -46,8 +46,8 @@ export const configValidationSchema = Joi.object({
 
   // Kafka
   KAFKA_BROKERS: Joi.string().default('localhost:9092'),
-  KAFKA_CLIENT_ID: Joi.string().default('aqarat-backend'),
-  KAFKA_GROUP_ID: Joi.string().default('aqarat-backend-group'),
+  KAFKA_CLIENT_ID: Joi.string().default('eawlma-backend'),
+  KAFKA_GROUP_ID: Joi.string().default('eawlma-backend-group'),
 
   // External services (optional in dev)
   AWS_REGION: Joi.string().optional(),

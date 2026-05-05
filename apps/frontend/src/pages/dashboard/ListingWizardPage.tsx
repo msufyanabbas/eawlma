@@ -38,7 +38,7 @@ import {
   MediaType,
   PropertyType,
   RentPeriod,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { listingsApi } from '@/api/listings.api';
 import { storageApi } from '@/api/storage.api';

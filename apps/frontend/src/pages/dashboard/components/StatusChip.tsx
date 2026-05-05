@@ -1,5 +1,5 @@
 import { Chip, ChipProps } from '@mui/material';
-import { ListingStatus, InquiryStatus } from '@aqarat/shared-types';
+import { ListingStatus, InquiryStatus } from '@eawlma/shared-types';
 
 const LISTING_COLOR: Record<ListingStatus, ChipProps['color']> = {
   [ListingStatus.DRAFT]: 'default',

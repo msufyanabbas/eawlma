@@ -14,7 +14,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import type { Response } from 'express';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
@@ -56,7 +56,7 @@ export class AuditController {
   @Header('Content-Type', 'text/csv; charset=utf-8')
   @Header(
     'Content-Disposition',
-    `attachment; filename="aqarat-audit-${new Date().toISOString().slice(0, 10)}.csv"`,
+    `attachment; filename="eawlma-audit-${new Date().toISOString().slice(0, 10)}.csv"`,
   )
   @ApiOperation({ summary: 'Stream the filtered audit log as CSV (admin)' })
   async export(@Query() query: AuditQueryDto, @Res({ passthrough: true }) _res: Response) {

@@ -10,7 +10,7 @@ import { Repository } from 'typeorm';
 import {
   ListingStatus,
   NotificationType,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { EmailService } from '../../common/email/email.service';
@@ -147,7 +147,7 @@ export class ModerationService {
     const isApproved = decision === 'approved';
     const title = isApproved ? 'Your listing has been approved' : 'Your listing was rejected';
     const body = isApproved
-      ? `${listing.title} (${listing.referenceCode}) is now live on Aqarat.`
+      ? `${listing.title} (${listing.referenceCode}) is now live on eawlma.`
       : `${listing.title} (${listing.referenceCode}) was not approved. Reason: ${reason}`;
 
     void this.notificationsService
@@ -166,7 +166,7 @@ export class ModerationService {
         this.logger.warn(`failed to write moderation notification: ${err.message}`),
       );
 
-    const appUrl = this.config.get<string>('app.appUrl', 'https://aqarat.sa');
+    const appUrl = this.config.get<string>('app.appUrl', 'https://eawlma.sa');
     const html = isApproved
       ? `
         <h2>Your listing is live ✓</h2>

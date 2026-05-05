@@ -356,7 +356,7 @@ export function SettingsPage() {
       <ConfirmDialog
         open={confirmDelete}
         title="Delete account"
-        description="This will sign you out and remove your access to Aqarat. We'll keep audit/payment records as required by law."
+        description="This will sign you out and remove your access to eawlma. We'll keep audit/payment records as required by law."
         destructive
         confirmLabel="Delete"
         onConfirm={onDeleteAccount}

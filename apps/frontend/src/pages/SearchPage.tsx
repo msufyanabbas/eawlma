@@ -47,12 +47,22 @@ import {
   ListingType,
   PropertyType,
   type Listing,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
+import { Reveal } from '@/components/global/Reveal';
 import { useSavedStore } from '@/store/saved.store';
+import { listingCoverUrl } from '@/utils/listingImages';
+import { Link } from '@tanstack/react-router';
+import BedIcon from '@mui/icons-material/KingBedOutlined';
+import BathIcon from '@mui/icons-material/BathtubOutlined';
+import AreaIcon from '@mui/icons-material/SquareFootOutlined';
+import PlaceIcon from '@mui/icons-material/PlaceOutlined';
+import StarIcon from '@mui/icons-material/Star';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 type ViewMode = 'grid' | 'list' | 'map';
 
@@ -440,25 +450,28 @@ export function SearchPage() {
               </Box>
             ) : view === 'grid' ? (
               <Grid container spacing={2}>
-                {listings.map((listing) => (
+                {listings.map((listing, i) => (
                   <Grid key={listing.id} item xs={12} sm={6} lg={4}>
-                    <ListingCard
-                      listing={listing}
-                      saved={savedIds.includes(listing.id)}
-                      onToggleSave={toggleSaved}
-                    />
+                    <Reveal delay={Math.min(i, 11) * 0.04}>
+                      <ListingCard
+                        listing={listing}
+                        saved={savedIds.includes(listing.id)}
+                        onToggleSave={toggleSaved}
+                      />
+                    </Reveal>
                   </Grid>
                 ))}
               </Grid>
             ) : (
               <Stack spacing={1.5}>
-                {listings.map((listing) => (
-                  <ListingCard
-                    key={listing.id}
-                    listing={listing}
-                    saved={savedIds.includes(listing.id)}
-                    onToggleSave={toggleSaved}
-                  />
+                {listings.map((listing, i) => (
+                  <Reveal key={listing.id} delay={Math.min(i, 11) * 0.04}>
+                    <ListingRow
+                      listing={listing}
+                      saved={savedIds.includes(listing.id)}
+                      onToggleSave={toggleSaved}
+                    />
+                  </Reveal>
                 ))}
               </Stack>
             )}
@@ -517,7 +530,7 @@ export function SearchPage() {
               fullWidth
               variant="contained"
               onClick={() => setFilterDrawerOpen(false)}
-              sx={{ background: theme.aqarat.gradient }}
+              sx={{ background: theme.eawlma.gradient }}
             >
               {total > 0
                 ? `${t('common.confirm')} (${total.toLocaleString(i18n.language)})`
@@ -949,4 +962,198 @@ function buildActiveChips(state: {
   for (const a of state.amenities) out.push({ key: `am-${a}`, label: a.replace(/^has/, '') });
   if (state.verifiedOnly) out.push({ key: 'featured', label: '★ featured' });
   return out;
+}
+
+// ------------------------------------------------------------------
+// ListingRow — full-width row card used by the list-view mode
+// ------------------------------------------------------------------
+
+interface ListingRowProps {
+  listing: Listing;
+  saved?: boolean;
+  onToggleSave?: (listingId: string) => void | Promise<void>;
+}
+
+function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
+  const { t, i18n } = useTranslation();
+  const theme = useTheme();
+  const coverUrl = listingCoverUrl(listing);
+  const isSale = listing.type === ListingType.SALE;
+
+  return (
+    <Box
+      component={Link}
+      to={`/listings/${listing.id}` as never}
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        bgcolor: 'background.paper',
+        border: 1,
+        borderColor: 'divider',
+        borderRadius: 2,
+        overflow: 'hidden',
+        textDecoration: 'none',
+        color: 'inherit',
+        transition: 'border-color 200ms ease, box-shadow 200ms ease',
+        '&:hover': {
+          borderColor: alpha(theme.palette.primary.main, 0.4),
+          boxShadow: `0 8px 20px ${alpha(theme.palette.primary.main, 0.1)}`,
+        },
+      }}
+    >
+      {/* Image — fixed 200px on desktop, full-width 180px on mobile */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: { xs: '100%', sm: 200 },
+          height: { xs: 180, sm: 160 },
+          flexShrink: 0,
+          bgcolor: 'grey.100',
+        }}
+      >
+        <Box
+          component="img"
+          src={coverUrl}
+          alt={listing.title}
+          sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          loading="lazy"
+        />
+        {listing.isFeatured && (
+          <Chip
+            size="small"
+            icon={<StarIcon sx={{ fontSize: 12, color: '#1A1A2E !important' }} />}
+            label={t('listing.featured')}
+            sx={{
+              position: 'absolute',
+              top: 8,
+              insetInlineStart: 8,
+              height: 22,
+              fontWeight: 700,
+              fontSize: 10.5,
+              bgcolor: theme.eawlma.gold,
+              color: '#1A1A2E',
+              border: 'none',
+              '& .MuiChip-icon': { ml: 0.5, mr: -0.25 },
+            }}
+          />
+        )}
+      </Box>
+
+      {/* Content — flex 1, full remaining width */}
+      <Box sx={{ p: { xs: 1.75, sm: 2 }, flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+        <Stack direction="row" alignItems="flex-start" justifyContent="space-between" spacing={1}>
+          <Box sx={{ minWidth: 0, flex: 1 }}>
+            <Stack direction="row" spacing={0.75} alignItems="center" sx={{ mb: 0.25 }}>
+              <Chip
+                size="small"
+                label={isSale ? t('listing.forSale') : t('listing.forRent')}
+                sx={{
+                  height: 20,
+                  fontWeight: 700,
+                  fontSize: 10.5,
+                  bgcolor: alpha(theme.palette.primary.main, 0.1),
+                  color: 'primary.dark',
+                  border: 'none',
+                }}
+              />
+              <Typography variant="caption" sx={{ color: 'primary.dark', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.4 }}>
+                {t(`listing.${listing.propertyType}`, { defaultValue: listing.propertyType })}
+              </Typography>
+              <Typography variant="caption" color="text.secondary">
+                · {listing.referenceCode}
+              </Typography>
+            </Stack>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 700,
+                lineHeight: 1.3,
+                display: '-webkit-box',
+                WebkitLineClamp: 1,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+              }}
+            >
+              {listing.title}
+            </Typography>
+            <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5, color: 'text.secondary' }}>
+              <PlaceIcon sx={{ fontSize: 14 }} />
+              <Typography variant="body2" sx={{ fontSize: 13 }}>
+                {listing.district ? `${listing.district}, ` : ''}{listing.city}
+              </Typography>
+            </Stack>
+          </Box>
+
+          {/* Right column: price + favourite */}
+          <Stack alignItems="flex-end" spacing={0.5} sx={{ flexShrink: 0 }}>
+            <Box
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onToggleSave?.(listing.id);
+              }}
+              sx={{
+                cursor: 'pointer',
+                color: saved ? 'error.main' : 'text.secondary',
+                p: 0.5,
+                borderRadius: 999,
+                '&:hover': { bgcolor: 'action.hover' },
+              }}
+              role="button"
+              aria-label={saved ? t('listing.saved') : t('listing.save')}
+            >
+              {saved ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
+            </Box>
+            <Box
+              sx={{
+                background: theme.eawlma.gradient,
+                color: 'common.white',
+                px: 1.5,
+                py: 0.5,
+                borderRadius: 999,
+                whiteSpace: 'nowrap',
+                boxShadow: '0 6px 14px rgba(74,64,128,0.28)',
+              }}
+            >
+              <Typography variant="subtitle2" sx={{ fontWeight: 800, lineHeight: 1.2 }}>
+                {Number(listing.price).toLocaleString(i18n.language)}
+                <Typography component="span" variant="caption" sx={{ ml: 0.5, opacity: 0.92 }}>
+                  {t('listing.currency')}
+                </Typography>
+              </Typography>
+            </Box>
+          </Stack>
+        </Stack>
+
+        {/* Bottom row: features at-a-glance */}
+        <Stack
+          direction="row"
+          spacing={2}
+          divider={<Box sx={{ width: 1, height: 14, bgcolor: 'divider', alignSelf: 'center' }} />}
+          sx={{ mt: 'auto', pt: 1.25, color: 'text.primary' }}
+        >
+          {listing.bedrooms !== null && listing.bedrooms !== undefined && (
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <BedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+              <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>{listing.bedrooms}</Typography>
+            </Stack>
+          )}
+          {listing.bathrooms !== null && listing.bathrooms !== undefined && (
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <BathIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+              <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>{listing.bathrooms}</Typography>
+            </Stack>
+          )}
+          {listing.area !== null && listing.area !== undefined && (
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <AreaIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+              <Typography variant="body2" sx={{ fontWeight: 600, fontSize: 13 }}>
+                {Number(listing.area).toLocaleString(i18n.language)} {t('listing.areaUnit')}
+              </Typography>
+            </Stack>
+          )}
+        </Stack>
+      </Box>
+    </Box>
+  );
 }

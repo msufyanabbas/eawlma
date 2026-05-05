@@ -22,8 +22,9 @@ import StarIcon from '@mui/icons-material/Star';
 import PlaceIcon from '@mui/icons-material/PlaceOutlined';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import { ListingType, type Listing } from '@aqarat/shared-types';
+import { ListingType, type Listing } from '@eawlma/shared-types';
 import { type MouseEvent } from 'react';
+import { listingCoverUrl } from '@/utils/listingImages';
 
 interface ListingCardProps {
   listing: Listing;
@@ -37,11 +38,31 @@ interface ListingCardProps {
   agentVerified?: boolean;
 }
 
+// Backend ships machine-translation stubs that prepend "[xx] " to the source
+// string when no real translation exists yet. Treat those as missing so we
+// fall through to the next preference rather than rendering "[en] فيلا …".
+const STUB_PREFIX_RE = /^\s*\[[a-z][a-zA-Z-]+]\s/;
+
+function bestText(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  if (STUB_PREFIX_RE.test(value)) return undefined;
+  return value;
+}
+
 function localized(listing: Listing, locale: string) {
   const tr = listing.translations?.find((t) => t.locale === locale);
+  // Preference: real translation in the active locale → source string →
+  // any real (non-stub) translation we can find → raw source as last resort.
+  const sourceTitle = listing.title;
+  const sourceDesc = listing.description;
+  const fallbackTr = listing.translations?.find(
+    (t) => bestText(t.title) && t.locale !== listing.sourceLocale,
+  );
   return {
-    title: tr?.title ?? listing.title,
-    description: tr?.description ?? listing.description,
+    title:
+      bestText(tr?.title) ?? sourceTitle ?? bestText(fallbackTr?.title) ?? 'Untitled',
+    description:
+      bestText(tr?.description) ?? sourceDesc ?? bestText(fallbackTr?.description) ?? '',
   };
 }
 
@@ -50,7 +71,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   const theme = useTheme();
   const activeLocale = locale ?? i18n.language;
   const { title } = localized(listing, activeLocale);
-  const cover = listing.media?.[0];
+  const coverUrl = listingCoverUrl(listing);
   const agentInitials = `${listing.ownerId.slice(0, 1).toUpperCase()}`;
   const isSale = listing.type === ListingType.SALE;
   // Featured listings come from owners who already passed the publish gate, so
@@ -71,37 +92,25 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
         display: 'flex',
         flexDirection: 'column',
         borderColor: 'divider',
+        transition: 'transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease',
         '&:hover': {
+          transform: 'translateY(-4px)',
           borderColor: alpha(theme.palette.primary.main, 0.4),
-          boxShadow: `0 12px 28px ${alpha(theme.palette.primary.main, 0.12)}`,
+          // Lavender-tinted glass shimmer
+          boxShadow: '0 20px 40px rgba(108,99,166,0.15)',
         },
       }}
     >
       <CardActionArea component={Link} to={`/listings/${listing.id}` as never} sx={{ flex: 1 }}>
         {/* Cover */}
         <Box sx={{ position: 'relative', aspectRatio: '4 / 3', bgcolor: 'grey.100' }}>
-          {cover ? (
-            <Box
-              component="img"
-              src={cover.thumbnailUrl ?? cover.url}
-              alt={title}
-              sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              loading="lazy"
-            />
-          ) : (
-            <Box
-              sx={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'text.secondary',
-              }}
-            >
-              <Typography variant="caption">{t('empty.noListings')}</Typography>
-            </Box>
-          )}
+          <Box
+            component="img"
+            src={coverUrl}
+            alt={title}
+            sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            loading="lazy"
+          />
 
           {/* Top-left: type + (gold) featured chip */}
           <Stack direction="row" spacing={0.75} sx={{ position: 'absolute', top: 10, insetInlineStart: 10 }}>
@@ -127,7 +136,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                   height: 24,
                   fontWeight: 700,
                   fontSize: 11,
-                  bgcolor: theme.aqarat.gold,
+                  bgcolor: theme.eawlma.gold,
                   color: '#1A1A2E',
                   border: 'none',
                   '& .MuiChip-icon': { ml: 0.5, mr: -0.25 },
@@ -163,7 +172,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               position: 'absolute',
               bottom: 10,
               insetInlineStart: 10,
-              background: theme.aqarat.gradient,
+              background: theme.eawlma.gradient,
               color: 'common.white',
               px: 1.5,
               py: 0.6,
@@ -295,8 +304,8 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 alignItems="center"
                 spacing={0.4}
                 sx={{
-                  bgcolor: alpha(theme.aqarat.accent, 0.14),
-                  color: theme.aqarat.accent,
+                  bgcolor: alpha(theme.eawlma.accent, 0.14),
+                  color: theme.eawlma.accent,
                   px: 0.75,
                   py: 0.2,
                   borderRadius: 999,

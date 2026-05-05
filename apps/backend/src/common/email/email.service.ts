@@ -23,8 +23,8 @@ export interface SendEmailParams {
 export class EmailService implements OnModuleInit {
   private readonly logger = new Logger(EmailService.name);
   private client: SESClient | null = null;
-  private fromEmail = 'no-reply@aqarat.sa';
-  private replyTo = 'support@aqarat.sa';
+  private fromEmail = 'no-reply@eawlma.sa';
+  private replyTo = 'support@eawlma.sa';
 
   constructor(private readonly config: ConfigService) {}
 

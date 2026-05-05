@@ -1,18 +1,38 @@
-import { Box, Container, Divider, IconButton, Link, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+  alpha,
+  useTheme,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import PhoneIcon from '@mui/icons-material/PhoneOutlined';
+import EmailIcon from '@mui/icons-material/EmailOutlined';
+
+const SUPPORT_PHONE = '+966 50 000 0000';
+const WHATSAPP_HREF = 'https://wa.me/966500000000';
 
 export function Footer() {
   const { t } = useTranslation();
+  const theme = useTheme();
+
   return (
     <Box
       component="footer"
       sx={{
-        py: 6,
-        mt: 6,
+        pt: { xs: 7, md: 9 },
+        pb: 5,
+        mt: 8,
         bgcolor: 'background.paper',
         borderTop: 1,
         borderColor: 'divider',
@@ -21,48 +41,106 @@ export function Footer() {
       <Container maxWidth="lg">
         <Stack
           direction={{ xs: 'column', md: 'row' }}
-          spacing={4}
-          justifyContent="space-between"
+          spacing={{ xs: 5, md: 8 }}
+          alignItems="flex-start"
         >
-          <Box sx={{ maxWidth: 320 }}>
-            <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>
-              {t('app.name')}
+          {/* Brand block */}
+          <Box sx={{ flex: { md: 1.4 }, maxWidth: { md: 380 } }}>
+            <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 2 }}>
+              <Box
+                sx={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 2,
+                  background: theme.eawlma.gradient,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'common.white',
+                  fontWeight: 800,
+                  fontSize: 16,
+                }}
+              >
+                A
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: 800, letterSpacing: -0.4 }}>
+                {t('app.name')}
+              </Typography>
+            </Stack>
+            <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7, mb: 2.5 }}>
+              {t('footer.tagline')}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {t('app.tagline')}
+
+            {/* WhatsApp CTA */}
+            <Button
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener"
+              startIcon={<WhatsAppIcon />}
+              variant="outlined"
+              size="small"
+              sx={{
+                color: '#25D366',
+                borderColor: alpha('#25D366', 0.4),
+                fontWeight: 700,
+                '&:hover': {
+                  borderColor: '#25D366',
+                  bgcolor: alpha('#25D366', 0.06),
+                },
+              }}
+            >
+              {SUPPORT_PHONE}
+            </Button>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+              {t('footer.needHelp')}
             </Typography>
           </Box>
 
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={4}>
-            <Stack spacing={1}>
-              <Typography variant="overline" color="text.secondary">
-                {t('nav.search')}
-              </Typography>
-              <Link href="/search?type=sale" underline="hover" color="text.primary" variant="body2">
-                {t('listing.forSale')}
-              </Link>
-              <Link href="/search?type=rent" underline="hover" color="text.primary" variant="body2">
-                {t('listing.forRent')}
-              </Link>
-              <Link href="/agents" underline="hover" color="text.primary" variant="body2">
-                {t('nav.agents')}
-              </Link>
-            </Stack>
-            <Stack spacing={1}>
-              <Typography variant="overline" color="text.secondary">
-                {t('nav.profile')}
-              </Typography>
-              <Link href="/login" underline="hover" color="text.primary" variant="body2">
-                {t('auth.login')}
-              </Link>
-              <Link href="/register" underline="hover" color="text.primary" variant="body2">
-                {t('auth.register')}
-              </Link>
-            </Stack>
+          {/* Link columns */}
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 3, sm: 6 }}
+            sx={{ flex: { md: 1 } }}
+          >
+            <FooterColumn title={t('footer.explore')}>
+              <FooterLink href="/search?type=sale">{t('listing.forSale')}</FooterLink>
+              <FooterLink href="/search?type=rent">{t('listing.forRent')}</FooterLink>
+              <FooterLink href="/agents">{t('nav.agents')}</FooterLink>
+              <FooterLink href="/search">{t('nav.search')}</FooterLink>
+            </FooterColumn>
+
+            <FooterColumn title={t('footer.company')}>
+              <FooterLink href="/about">{t('footer.about')}</FooterLink>
+              <FooterLink href="/contact">{t('footer.contact')}</FooterLink>
+              <FooterLink href="/help">{t('footer.help')}</FooterLink>
+            </FooterColumn>
+
+            <FooterColumn title={t('footer.legal')}>
+              <FooterLink href="/privacy">{t('footer.privacy')}</FooterLink>
+              <FooterLink href="/terms">{t('footer.terms')}</FooterLink>
+            </FooterColumn>
+
+            <FooterColumn title={t('footer.support')}>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <PhoneIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <Typography variant="body2" color="text.primary">{SUPPORT_PHONE}</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <EmailIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <Link
+                  href="mailto:hello@eawlma.sa"
+                  underline="hover"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  hello@eawlma.sa
+                </Link>
+              </Stack>
+            </FooterColumn>
           </Stack>
         </Stack>
 
-        <Divider sx={{ my: 4 }} />
+        <Divider sx={{ my: 5 }} />
 
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
@@ -73,7 +151,17 @@ export function Footer() {
           <Typography variant="body2" color="text.secondary">
             © {new Date().getFullYear()} {t('app.name')} — All rights reserved.
           </Typography>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={0.5}>
+            <IconButton
+              size="small"
+              aria-label={t('footer.whatsapp')}
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener"
+              sx={{ color: '#25D366' }}
+            >
+              <WhatsAppIcon fontSize="small" />
+            </IconButton>
             <IconButton size="small" aria-label="Twitter / X">
               <TwitterIcon fontSize="small" />
             </IconButton>
@@ -90,5 +178,27 @@ export function Footer() {
         </Stack>
       </Container>
     </Box>
+  );
+}
+
+function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <Stack spacing={1.25} sx={{ minWidth: 140 }}>
+      <Typography
+        variant="overline"
+        sx={{ color: 'text.secondary', fontWeight: 700, letterSpacing: 0.6 }}
+      >
+        {title}
+      </Typography>
+      {children}
+    </Stack>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} underline="hover" variant="body2" color="text.primary">
+      {children}
+    </Link>
   );
 }

@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
-import { NotificationChannel, NotificationType } from '@aqarat/shared-types';
+import { NotificationChannel, NotificationType } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserEntity } from '../../users/entities/user.entity';
 

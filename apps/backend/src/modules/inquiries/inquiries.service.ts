@@ -13,7 +13,7 @@ import {
   ListingStatus,
   NotificationType,
   UserRole,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
@@ -68,7 +68,7 @@ export class InquiriesService {
     private readonly config: ConfigService,
   ) {
     this.inquiryEventsTopic =
-      this.config.get<string>('kafka.topics.listingEvents') ?? 'aqarat.listing.events';
+      this.config.get<string>('kafka.topics.listingEvents') ?? 'eawlma.listing.events';
   }
 
   // ---------------------------------------------------------------------------

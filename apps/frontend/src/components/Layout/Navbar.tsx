@@ -29,10 +29,11 @@ import AdminIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuIcon from '@mui/icons-material/Menu';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
-import { useState, type FormEvent, type MouseEvent } from 'react';
+import { useEffect, useState, type FormEvent, type MouseEvent } from 'react';
+import logoUrl from '@/assets/logo.svg';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';
 import { authApi } from '@/api/auth.api';
@@ -57,11 +58,21 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
   const [langAnchor, setLangAnchor] = useState<HTMLElement | null>(null);
   const [userAnchor, setUserAnchor] = useState<HTMLElement | null>(null);
   const [searchValue, setSearchValue] = useState('');
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Toggle the glass-frosted look once the user scrolls past the hero band.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const switchLanguage = (lng: 'ar' | 'en') => {
     void i18n.changeLanguage(lng);
     setLanguage(lng);
-    localStorage.setItem('aqarat.locale', lng);
+    localStorage.setItem('eawlma.locale', lng);
     setLangAnchor(null);
   };
 
@@ -94,10 +105,12 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     <AppBar
       position="sticky"
       sx={{
-        bgcolor: 'background.paper',
+        bgcolor: scrolled ? 'rgba(255,255,255,0.85)' : 'background.paper',
+        backdropFilter: scrolled ? 'saturate(180%) blur(12px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'saturate(180%) blur(12px)' : 'none',
         borderBottom: 1,
-        borderColor: 'divider',
-        backdropFilter: 'saturate(180%) blur(8px)',
+        borderColor: scrolled ? 'rgba(108,99,166,0.15)' : 'divider',
+        transition: 'background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease',
       }}
     >
       <Container maxWidth="lg">
@@ -111,39 +124,41 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 
           {/* Brand */}
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <Stack direction="row" alignItems="center" spacing={1}>
+            <Stack direction="row" alignItems="center" spacing={1.25}>
               <Box
-                sx={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 2,
-                  background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'common.white',
-                  fontWeight: 800,
-                  fontSize: 14,
-                  letterSpacing: 0.5,
-                }}
-              >
-                A
-              </Box>
+                component="img"
+                src={logoUrl}
+                alt={t('app.name')}
+                sx={{ height: 36, width: 36, display: 'block' }}
+              />
               <Typography
                 variant="h6"
-                sx={{ fontWeight: 800, color: 'text.primary', letterSpacing: -0.5 }}
+                sx={{
+                  fontWeight: 800,
+                  color: 'text.primary',
+                  letterSpacing: -0.5,
+                  display: { xs: 'none', sm: 'block' },
+                }}
               >
                 {t('app.name')}
               </Typography>
             </Stack>
           </Link>
 
-          {/* Search bar — desktop only */}
-          {isDesktop && (
-            <Box component="form" onSubmit={handleSearch} sx={{ flex: 1, mx: 4, maxWidth: 480 }}>
+          {/* Search bar — centered, max 480px on desktop; icon-only on mobile */}
+          {isDesktop ? (
+            <Box
+              component="form"
+              onSubmit={handleSearch}
+              sx={{
+                flex: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                mx: 2,
+              }}
+            >
               <TextField
                 size="small"
-                fullWidth
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder={t('nav.searchPlaceholder')}
@@ -153,14 +168,34 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
                       <SearchIcon fontSize="small" />
                     </InputAdornment>
                   ),
-                  sx: { borderRadius: 999, bgcolor: 'grey.50' },
+                  sx: {
+                    borderRadius: 999,
+                    bgcolor: 'grey.50',
+                    pl: 0.5,
+                    pr: 1,
+                    height: 40,
+                  },
                 }}
+                sx={{ width: '100%', maxWidth: 480 }}
               />
             </Box>
+          ) : (
+            <Box sx={{ flex: 1 }} />
           )}
 
           {/* Right cluster */}
           <Stack direction="row" spacing={0.5} alignItems="center" sx={{ ml: 'auto' }}>
+            {!isDesktop && (
+              <Tooltip title={t('common.search')}>
+                <IconButton
+                  onClick={() => setMobileSearchOpen((v) => !v)}
+                  aria-label="search"
+                >
+                  <SearchIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+
             <Tooltip title={t(themeMode === 'dark' ? 'common.lightMode' : 'common.darkMode')}>
               <IconButton onClick={toggleThemeMode} aria-label="toggle theme">
                 {themeMode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
@@ -262,6 +297,35 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
             )}
           </Stack>
         </Toolbar>
+
+        {/* Mobile expandable search bar */}
+        {!isDesktop && mobileSearchOpen && (
+          <Box
+            component="form"
+            onSubmit={(e: FormEvent) => {
+              handleSearch(e);
+              setMobileSearchOpen(false);
+            }}
+            sx={{ pb: 1.5 }}
+          >
+            <TextField
+              size="small"
+              fullWidth
+              autoFocus
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder={t('nav.searchPlaceholder')}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon fontSize="small" />
+                  </InputAdornment>
+                ),
+                sx: { borderRadius: 999, bgcolor: 'grey.50' },
+              }}
+            />
+          </Box>
+        )}
       </Container>
     </AppBar>
   );

@@ -11,7 +11,7 @@ import { useUiStore } from '@/store/ui.store';
  * follows the persisted uiStore.themeMode. Both update the document root
  * (dir / data-theme) so global CSS can style accordingly.
  */
-export function AqaratThemeProvider({ children }: { children: ReactNode }) {
+export function EawlmaThemeProvider({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
   const themeMode = useUiStore((s) => s.themeMode);
   const direction: Direction = i18n.language?.startsWith('ar') ? 'rtl' : 'ltr';

@@ -11,7 +11,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { SubscriptionPlan } from '@aqarat/shared-types';
+import { SubscriptionPlan } from '@eawlma/shared-types';
 
 export class FeaturedListingPaymentDto {
   @ApiProperty()

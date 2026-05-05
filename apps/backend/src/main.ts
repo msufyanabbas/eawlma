@@ -142,7 +142,7 @@ async function bootstrap(): Promise<void> {
 
   if (!isProduction) {
     const swaggerConfig = new DocumentBuilder()
-      .setTitle('Aqarat API')
+      .setTitle('eawlma API')
       .setDescription('Real estate platform API for Saudi Arabia and the GCC.')
       .setVersion('1.0.0')
       .addBearerAuth(
@@ -170,7 +170,7 @@ async function bootstrap(): Promise<void> {
   }
 
   await app.listen(port, '0.0.0.0');
-  Logger.log(`🚀 Aqarat API listening on http://0.0.0.0:${port}/${apiPrefix}`, 'Bootstrap');
+  Logger.log(`🚀 eawlma API listening on http://0.0.0.0:${port}/${apiPrefix}`, 'Bootstrap');
   if (!isProduction) {
     Logger.log(`📖 Swagger UI:    http://localhost:${port}/${apiPrefix}/docs`, 'Bootstrap');
   }

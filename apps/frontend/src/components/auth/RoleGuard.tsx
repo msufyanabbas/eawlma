@@ -1,6 +1,6 @@
 import { Navigate } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
-import { UserRole } from '@aqarat/shared-types';
+import { UserRole } from '@eawlma/shared-types';
 import { useAuthStore } from '@/store/auth.store';
 
 interface RoleGuardProps {

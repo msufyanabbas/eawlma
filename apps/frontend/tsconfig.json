@@ -20,8 +20,8 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@aqarat/shared-types": ["../../../packages/shared-types/src"],
-      "@aqarat/shared-types/*": ["../../../packages/shared-types/src/*"]
+      "@eawlma/shared-types": ["../../../packages/shared-types/src"],
+      "@eawlma/shared-types/*": ["../../../packages/shared-types/src/*"]
     },
     "types": ["vite/client", "node"]
   },

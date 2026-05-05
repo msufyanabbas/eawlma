@@ -11,7 +11,7 @@ import {
   ListingStatus,
   SubscriptionPlan,
   SubscriptionStatus,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 
 import { ListingEntity } from '../listings/entities/listing.entity';
 import { PlanEntity } from './entities/plan.entity';

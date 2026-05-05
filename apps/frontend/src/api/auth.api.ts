@@ -2,7 +2,7 @@ import type {
   AuthResponse,
   LoginRequest,
   RegisterRequest,
-} from '@aqarat/shared-types';
+} from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
 export const authApi = {

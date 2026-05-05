@@ -19,7 +19,7 @@ import { IsOptional, IsString, IsUrl, Length, Matches } from 'class-validator';
 import type { Request } from 'express';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { VerificationStatus } from '@aqarat/shared-types';
+import { VerificationStatus } from '@eawlma/shared-types';
 
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Public } from '../../common/decorators/public.decorator';

@@ -75,7 +75,7 @@ export const useSavedStore = create<SavedState>()(
       clear: () => set({ ids: [] }),
     }),
     {
-      name: 'aqarat.saved',
+      name: 'eawlma.saved',
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({ ids: s.ids }),
     },

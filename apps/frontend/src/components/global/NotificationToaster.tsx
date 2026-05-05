@@ -15,7 +15,7 @@ import MailIcon from '@mui/icons-material/MailOutline';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
-import { type Notification } from '@aqarat/shared-types';
+import { type Notification } from '@eawlma/shared-types';
 import { notificationsApi } from '@/api/notifications.api';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';

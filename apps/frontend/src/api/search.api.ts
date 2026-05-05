@@ -1,4 +1,4 @@
-import type { Listing, ListingSearchParams, PaginatedResponse } from '@aqarat/shared-types';
+import type { Listing, ListingSearchParams, PaginatedResponse } from '@eawlma/shared-types';
 import { apiClient } from './client';
 
 export interface FlatSearchParams {
