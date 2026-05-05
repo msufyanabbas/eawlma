@@ -81,11 +81,28 @@ export function AuditLogPage() {
       }),
   });
 
-  const envelope = auditQuery.data as { data?: AuditPage } | AuditPage | undefined;
-  const audit: AuditPage =
-    (envelope as { data?: AuditPage })?.data ??
-    (envelope as AuditPage) ??
-    { data: [], meta: { page: 1, limit: PAGE_SIZE, total: 0, totalPages: 0, hasNext: false, hasPrev: false } };
+  // The /admin/audit endpoint is wrapped by the global response interceptor in
+  // `{ data, timestamp }` form, so the inner pagination payload sits at
+  // `auditQuery.data.data`. Some legacy callers (and error responses) may
+  // surface the unwrapped shape directly — guard both, with a safe default
+  // so the table never crashes on undefined `.meta.total`.
+  const envelope = auditQuery.data as
+    | { data?: AuditPage }
+    | AuditPage
+    | undefined;
+  const safeMeta = { page: 1, limit: PAGE_SIZE, total: 0, totalPages: 0, hasNext: false, hasPrev: false };
+  const inner = (envelope as { data?: AuditPage } | undefined)?.data ?? (envelope as AuditPage | undefined);
+  const audit: AuditPage = {
+    data: inner?.data ?? [],
+    meta: {
+      page: inner?.meta?.page ?? safeMeta.page,
+      limit: inner?.meta?.limit ?? safeMeta.limit,
+      total: inner?.meta?.total ?? safeMeta.total,
+      totalPages: inner?.meta?.totalPages ?? safeMeta.totalPages,
+      hasNext: inner?.meta?.hasNext ?? safeMeta.hasNext,
+      hasPrev: inner?.meta?.hasPrev ?? safeMeta.hasPrev,
+    },
+  };
 
   const toggleRow = (id: string) => {
     const next = new Set(expanded);
@@ -111,7 +128,7 @@ export function AuditLogPage() {
 
       <PageHeader
         title={t('admin.audit')}
-        subtitle={`${audit.meta.total.toLocaleString(i18n.language)} entries`}
+        subtitle={`${(audit?.meta?.total ?? 0).toLocaleString(i18n.language)} entries`}
         action={
           <Button
             startIcon={<DownloadIcon />}
@@ -168,10 +185,10 @@ export function AuditLogPage() {
               [...Array(8)].map((_, i) => (
                 <TableRow key={i}><TableCell colSpan={6}><Skeleton /></TableCell></TableRow>
               ))
-            ) : audit.data.length === 0 ? (
+            ) : (audit?.data?.length ?? 0) === 0 ? (
               <TableRow><TableCell colSpan={6} sx={{ py: 4, textAlign: 'center', color: 'text.secondary' }}>No matching audit entries</TableCell></TableRow>
             ) : (
-              audit.data.map((row) => {
+              (audit?.data ?? []).map((row) => {
                 const isOpen = expanded.has(row.id);
                 const summary = Object.keys(row.changedFields ?? {});
                 return (
@@ -189,7 +206,7 @@ export function AuditLogPage() {
         </Table>
       </Paper>
 
-      {audit.meta.totalPages > 1 && (
+      {(audit?.meta?.totalPages ?? 0) > 1 && (
         <Stack alignItems="center" sx={{ mt: 2 }}>
           <Pagination page={page} count={audit.meta.totalPages} onChange={(_, p) => setPage(p)} color="primary" />
         </Stack>

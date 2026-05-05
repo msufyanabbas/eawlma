@@ -47,7 +47,12 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   const title = getListingTitle(listing, activeLocale);
   const location = getListingLocation(listing);
   const coverUrl = listingCoverUrl(listing);
-  const agentInitials = `${listing.ownerId.slice(0, 1).toUpperCase()}`;
+  // The wire-shape Listing carries only `ownerId`. Until the backend bundles
+  // a denormalised `agent.fullName`, fall back to a clean "Verified Agent"
+  // label rather than rendering UUID-character noise like "7" or "F".
+  const agentName = (listing as unknown as { agent?: { fullName?: string } }).agent?.fullName;
+  const agentDisplay = agentName?.trim() || 'Verified Agent';
+  const agentInitials = (agentName?.trim()?.[0] ?? 'A').toUpperCase();
   const isSale = listing.type === ListingType.SALE;
   // Featured listings come from owners who already passed the publish gate, so
   // we treat them as verified by default unless the parent overrides.
@@ -269,8 +274,13 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             >
               {agentInitials}
             </Avatar>
-            <Typography variant="caption" color="text.secondary" sx={{ flex: 1 }}>
-              {t('listing.agent')}
+            <Typography
+              variant="caption"
+              color="text.primary"
+              sx={{ flex: 1, fontWeight: 600 }}
+              noWrap
+            >
+              {agentDisplay}
             </Typography>
             <Tooltip title={t('listing.featured')}>
               <Stack

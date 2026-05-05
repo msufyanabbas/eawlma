@@ -30,7 +30,7 @@ import CopyIcon from '@mui/icons-material/ContentCopy';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { useState, type MouseEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -50,6 +50,7 @@ type StatusFilter = 'all' | ListingStatus;
 
 export function MyListingsPage() {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const qc = useQueryClient();
 
   const [view, setView] = useState<'table' | 'grid'>('table');
@@ -180,7 +181,7 @@ export function MyListingsPage() {
             title={t('empty.noListings')}
             description={t('app.tagline')}
             ctaLabel={t('empty.noListingsCta')}
-            onCta={() => undefined}
+            onCta={() => void navigate({ to: '/dashboard/listings/new' as never })}
           />
         </Paper>
       ) : view === 'table' ? (

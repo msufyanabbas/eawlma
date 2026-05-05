@@ -42,10 +42,34 @@ export function SubscriptionPage() {
     onSuccess: (resp) => {
       void qc.invalidateQueries({ queryKey: ['payments', 'mine'] });
       if (resp.redirectUrl) {
+        // Hand off to Moyasar's hosted checkout — return URL is the current page
         window.location.href = resp.redirectUrl;
       }
+      // If we got here without a redirectUrl the payment record was created
+      // but the provider couldn't mint a checkout URL — usually a missing
+      // MOYASAR_SECRET_KEY. The Alert below surfaces a clear message.
     },
   });
+
+  // Detect a "Moyasar not configured" backend response so the error message
+  // is actionable rather than a generic "could not start the upgrade".
+  const upgradeError = (() => {
+    if (!upgradeMutation.isError) return null;
+    const err = upgradeMutation.error as { response?: { data?: { message?: string }; status?: number }; message?: string };
+    const status = err?.response?.status;
+    const msg = err?.response?.data?.message ?? err?.message ?? '';
+    const looksUnconfigured =
+      status === 503 ||
+      /moyasar/i.test(msg) ||
+      /not configured/i.test(msg) ||
+      /payment.*provider/i.test(msg);
+    if (looksUnconfigured) {
+      return 'Payment integration not configured. Contact support to upgrade.';
+    }
+    return msg || 'Could not reach the payment provider. Please try again in a moment.';
+  })();
+  const upgradeNoRedirect =
+    upgradeMutation.isSuccess && !upgradeMutation.data?.redirectUrl;
 
   const cancelMutation = useMutation({
     mutationFn: () => subscriptionsApi.cancel(),
@@ -123,9 +147,14 @@ export function SubscriptionPage() {
             ))}
           </Grid>
         )}
-        {upgradeMutation.isError && (
-          <Alert severity="error" sx={{ mt: 2 }}>
-            Could not start the upgrade — please try again.
+        {upgradeError && (
+          <Alert severity="warning" sx={{ mt: 2 }}>
+            {upgradeError}
+          </Alert>
+        )}
+        {upgradeNoRedirect && (
+          <Alert severity="info" sx={{ mt: 2 }}>
+            Payment integration not configured. Contact support to upgrade.
           </Alert>
         )}
       </Box>

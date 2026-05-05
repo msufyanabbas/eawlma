@@ -39,7 +39,9 @@ export function AgentProfilePage() {
       void navigate({ to: `/login?returnTo=${returnTo}` as never });
       return;
     }
-    void navigate({ to: '/messages' as never });
+    // Deep-link the dashboard messages page to this agent so it auto-selects
+    // the existing thread (or shows a "Start conversation" prompt if none).
+    void navigate({ to: `/dashboard/messages?agentId=${agentId}` as never });
   };
 
   const { data: page, isLoading } = useQuery({

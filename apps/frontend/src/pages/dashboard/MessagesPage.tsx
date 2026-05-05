@@ -19,7 +19,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import { useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Link } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 import {
   useEffect,
   useLayoutEffect,
@@ -55,6 +55,12 @@ export function MessagesPage() {
   const userId = useAuthStore((s) => s.user?.id);
   const setUnread = useUiStore((s) => s.setUnreadMessageCount);
 
+  // ?agentId=… deep-link from agent profile / listing detail. We auto-select
+  // the conversation that already includes this agent, otherwise we surface
+  // a "Start conversation" prompt so the user knows what's expected.
+  const routeSearch = useSearch({ strict: false }) as { agentId?: string };
+  const requestedAgentId = routeSearch.agentId ?? null;
+
   const [activeId, setActiveId] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [draft, setDraft] = useState('');
@@ -81,12 +87,31 @@ export function MessagesPage() {
 
   const activeConversation = conversations.find((c) => c.id === activeId) ?? null;
 
-  // Default to first conversation on first load
+  // Default to first conversation on first load — but if a deep-link
+  // `?agentId=…` is present, auto-select the conversation that already
+  // includes that agent so the user lands directly in the right thread.
   useEffect(() => {
-    if (!activeId && conversations.length > 0) {
+    if (activeId) return;
+    if (requestedAgentId) {
+      const match = conversations.find((c) => c.participantIds.includes(requestedAgentId));
+      if (match) {
+        setActiveId(match.id);
+        return;
+      }
+      // Otherwise leave activeId null — the "no conversation yet" empty state
+      // renders a Start-conversation prompt below.
+      return;
+    }
+    if (conversations.length > 0) {
       setActiveId(conversations[0].id);
     }
-  }, [activeId, conversations]);
+  }, [activeId, conversations, requestedAgentId]);
+
+  const requestedAgentHasNoThread =
+    Boolean(requestedAgentId) &&
+    !activeId &&
+    !conversationsQuery.isLoading &&
+    !conversations.some((c) => c.participantIds.includes(requestedAgentId!));
 
   // ---- Messages (paginated, oldest-first scroll) ----------------------
   const messagesQuery = useInfiniteQuery({
@@ -338,7 +363,18 @@ export function MessagesPage() {
           }}
         >
           {!activeConversation ? (
-            <EmptyState title={t('empty.noMessages')} description="Pick a conversation on the left to start chatting." />
+            requestedAgentHasNoThread ? (
+              <EmptyState
+                title="Start the conversation"
+                description={`You don't have a thread with this agent yet. Open one of their listings and use the "Send inquiry" form to reach them — your messages will then appear here.`}
+                ctaLabel="Browse this agent's listings"
+                onCta={() =>
+                  (window.location.href = `/agents/${requestedAgentId}`)
+                }
+              />
+            ) : (
+              <EmptyState title={t('empty.noMessages')} description="Pick a conversation on the left to start chatting." />
+            )
           ) : (
             <>
               {/* Header */}

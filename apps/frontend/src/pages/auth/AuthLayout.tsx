@@ -21,7 +21,7 @@ interface AuthLayoutProps {
 }
 
 const AUTH_HERO_IMAGE =
-  'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=1200&q=80';
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80';
 
 /**
  * Shared shell for /auth/* routes. Renders a centered card on mobile and a

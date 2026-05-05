@@ -310,6 +310,11 @@ export function SettingsPage() {
             label="Browser push notifications"
           />
         </Stack>
+        <Alert severity="info" variant="outlined" sx={{ mt: 2 }}>
+          Notification preferences are saved automatically. You will receive in-app
+          notifications for new inquiries, messages, and listing updates in real-time
+          via the notification bell in the navbar.
+        </Alert>
       </Paper>
 
       {/* Password change */}
@@ -317,10 +322,28 @@ export function SettingsPage() {
         <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Change password</Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
-            <TextField fullWidth type="password" label="Current password" value={currentPwd} onChange={(e) => setCurrentPwd(e.target.value)} />
+            <TextField
+              fullWidth
+              variant="outlined"
+              type="password"
+              label="Current password"
+              value={currentPwd}
+              onChange={(e) => setCurrentPwd(e.target.value)}
+              InputProps={{ sx: { color: 'text.primary', bgcolor: 'background.paper' } }}
+              InputLabelProps={{ sx: { color: 'text.secondary' } }}
+            />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField fullWidth type="password" label="New password" value={newPwd} onChange={(e) => setNewPwd(e.target.value)} />
+            <TextField
+              fullWidth
+              variant="outlined"
+              type="password"
+              label="New password"
+              value={newPwd}
+              onChange={(e) => setNewPwd(e.target.value)}
+              InputProps={{ sx: { color: 'text.primary', bgcolor: 'background.paper' } }}
+              InputLabelProps={{ sx: { color: 'text.secondary' } }}
+            />
           </Grid>
           <Grid item xs={12}>
             <Button

@@ -877,7 +877,34 @@ function MapView({ listings }: { listings: Listing[] }) {
     : MAP_DEFAULT_CENTER;
 
   return (
-    <Box sx={{ borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
+    <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
+      {/* Glass legend explaining what each marker style means */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 16,
+          insetInlineStart: 16,
+          zIndex: 2,
+          bgcolor: 'rgba(255,255,255,0.9)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid rgba(108,99,166,0.18)',
+          borderRadius: 2,
+          p: 1.25,
+          minWidth: 220,
+          boxShadow: '0 6px 18px rgba(26,26,46,0.10)',
+        }}
+      >
+        <Typography variant="caption" sx={{ fontWeight: 800, color: 'primary.dark', textTransform: 'uppercase', letterSpacing: 0.6, display: 'block', mb: 0.75 }}>
+          Map legend
+        </Typography>
+        <Stack spacing={0.6}>
+          <LegendRow color="#6C63A6" label="Individual listing (price)" />
+          <LegendRow color="#4285F4" label="Cluster of listings" shape="circle" />
+          <LegendRow color="#D4A843" label="Selected listing" />
+        </Stack>
+      </Box>
+
       <GoogleMap
         center={center}
         zoom={11}
@@ -944,6 +971,26 @@ function MapView({ listings }: { listings: Listing[] }) {
         )}
       </GoogleMap>
     </Box>
+  );
+}
+
+function LegendRow({ color, label, shape = 'pill' }: { color: string; label: string; shape?: 'pill' | 'circle' }) {
+  return (
+    <Stack direction="row" spacing={1} alignItems="center">
+      <Box
+        sx={{
+          width: shape === 'circle' ? 18 : 32,
+          height: 18,
+          borderRadius: shape === 'circle' ? '50%' : 999,
+          bgcolor: color,
+          border: '1px solid rgba(0,0,0,0.18)',
+          flexShrink: 0,
+        }}
+      />
+      <Typography variant="caption" sx={{ fontSize: 12, color: 'text.primary' }}>
+        {label}
+      </Typography>
+    </Stack>
   );
 }
 

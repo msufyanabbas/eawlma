@@ -224,14 +224,15 @@ export function ListingDetailPage() {
     window.open(tour360.url, '_blank', 'noopener');
   };
 
-  // "Messages" CTA from the agent card — gate by auth and forward returnTo.
+  // "Messages" CTA from the agent card — gate by auth, forward returnTo,
+  // and deep-link the dashboard messages page to this listing's owner.
   const handleMessageAgent = () => {
     if (!isAuthenticated) {
       const returnTo = encodeURIComponent(window.location.pathname);
       void navigate({ to: `/login?returnTo=${returnTo}` as never });
       return;
     }
-    void navigate({ to: '/messages' as never });
+    void navigate({ to: `/dashboard/messages?agentId=${listing.ownerId}` as never });
   };
 
   return (
