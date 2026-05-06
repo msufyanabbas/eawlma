@@ -19,6 +19,7 @@ import { TermsPage } from './pages/TermsPage';
 import { SearchPage } from './pages/SearchPage';
 import { ListingDetailPage } from './pages/ListingDetailPage';
 import { AgentProfilePage } from './pages/AgentProfilePage';
+import { AgentsPage } from './pages/AgentsPage';
 import { SavedPropertiesPage } from './pages/SavedPropertiesPage';
 import { ComparePage } from './pages/ComparePage';
 import { LoginPage } from './pages/auth/LoginPage';
@@ -57,6 +58,17 @@ const requireRole = (allowed: UserRole[]) => {
     if (!isAuthenticated || !user) throw redirect({ to: '/auth/login' });
     if (!allowed.includes(user.role as UserRole)) throw redirect({ to: '/' });
   };
+};
+
+// Buyers (USER role) hitting /dashboard get sent to the messages page —
+// the agent-flavoured overview is meaningless to them and the sidebar
+// would only show the buyer-friendly items anyway.
+const dashboardHomeRedirect = () => {
+  const { isAuthenticated, user } = useAuthStore.getState();
+  if (!isAuthenticated || !user) throw redirect({ to: '/auth/login' });
+  if (!DASHBOARD_ROLES.includes(user.role as UserRole)) {
+    throw redirect({ to: '/dashboard/messages' });
+  }
 };
 
 // ----- Root: bare passthrough + global side-effects -------------------
@@ -98,12 +110,18 @@ const authShellRoute = createRoute({
   component: () => <Outlet />, // pages bring their own AuthLayout
 });
 
+// Dashboard shell only requires auth — buyer-only pages like /messages and
+// /notifications mount here too, so we don't lock the entire subtree behind
+// the agent role. Agent-specific routes opt in to the stricter role guard
+// individually below.
 const dashboardShellRoute = createRoute({
   getParentRoute: () => rootRoute,
   id: 'dashboard-shell',
-  beforeLoad: requireRole(DASHBOARD_ROLES),
+  beforeLoad: requireAuth,
   component: () => <Outlet />, // pages bring their own DashboardLayout
 });
+
+const requireAgentRole = requireRole(DASHBOARD_ROLES);
 
 const adminShellRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -122,6 +140,7 @@ const searchRoute = createRoute({
   component: SearchPage,
 });
 const listingDetailRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/listings/$id', component: ListingDetailPage });
+const agentsListRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/agents', component: AgentsPage });
 const agentProfileRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/agents/$id', component: AgentProfilePage });
 const savedRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/saved', component: SavedPropertiesPage });
 const compareRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/compare', component: ComparePage });
@@ -161,16 +180,17 @@ const legacyRegisterRoute = createRoute({
 
 // ----- Dashboard routes ------------------------------------------------
 
-const dashboardHomeRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard', component: DashboardHomePage });
-const dashboardListingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings', component: MyListingsPage });
-const dashboardListingNewRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/new', component: ListingWizardPage });
-const dashboardListingEditRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/edit', component: ListingWizardPage });
-const dashboardListingAnalyticsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/analytics', component: ListingAnalyticsPage });
-const dashboardInquiriesRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/inquiries', component: InquiriesPage });
+const dashboardHomeRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard', beforeLoad: dashboardHomeRedirect, component: DashboardHomePage });
+const dashboardListingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings', beforeLoad: requireAgentRole, component: MyListingsPage });
+const dashboardListingNewRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/new', beforeLoad: requireAgentRole, component: ListingWizardPage });
+const dashboardListingEditRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/edit', beforeLoad: requireAgentRole, component: ListingWizardPage });
+const dashboardListingAnalyticsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/listings/$id/analytics', beforeLoad: requireAgentRole, component: ListingAnalyticsPage });
+const dashboardInquiriesRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/inquiries', beforeLoad: requireAgentRole, component: InquiriesPage });
+// Messages + notifications are open to any authenticated user (buyer or agent).
 const dashboardMessagesRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/messages', component: MessagesPage });
 const dashboardNotificationsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/notifications', component: NotificationsPage });
-const dashboardSubscriptionRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/subscription', component: SubscriptionPage });
-const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', component: SettingsPage });
+const dashboardSubscriptionRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/subscription', beforeLoad: requireAgentRole, component: SubscriptionPage });
+const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', beforeLoad: requireAgentRole, component: SettingsPage });
 
 // `/messages` (top-level) is a friendlier alias for the same page — Navbar
 // links to it from the public chat icon. It mounts under the dashboard
@@ -202,6 +222,7 @@ const routeTree = rootRoute.addChildren([
     indexRoute,
     searchRoute,
     listingDetailRoute,
+    agentsListRoute,
     agentProfileRoute,
     savedRoute,
     compareRoute,

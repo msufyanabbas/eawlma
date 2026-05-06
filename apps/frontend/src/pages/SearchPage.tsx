@@ -55,7 +55,6 @@ import { Reveal } from '@/components/global/Reveal';
 import { useSavedStore } from '@/store/saved.store';
 import { listingCoverUrl } from '@/utils/listingImages';
 import { getListingTitle, getListingLocation } from '@/utils/listingText';
-import { Link } from '@tanstack/react-router';
 import BedIcon from '@mui/icons-material/KingBedOutlined';
 import BathIcon from '@mui/icons-material/BathtubOutlined';
 import AreaIcon from '@mui/icons-material/SquareFootOutlined';
@@ -1067,15 +1066,26 @@ interface ListingRowProps {
 function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
+  const navigate = useNavigate();
   const coverUrl = listingCoverUrl(listing);
   const title = getListingTitle(listing, i18n.language);
   const location = getListingLocation(listing);
   const isSale = listing.type === ListingType.SALE;
+  const goToDetail = () => {
+    void navigate({ to: `/listings/${listing.id}` as never });
+  };
 
   return (
     <Box
-      component={Link}
-      to={`/listings/${listing.id}` as never}
+      onClick={goToDetail}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          goToDetail();
+        }
+      }}
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
@@ -1084,6 +1094,7 @@ function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
         borderColor: 'divider',
         borderRadius: 2,
         overflow: 'hidden',
+        cursor: 'pointer',
         textDecoration: 'none',
         color: 'inherit',
         transition: 'border-color 200ms ease, box-shadow 200ms ease',

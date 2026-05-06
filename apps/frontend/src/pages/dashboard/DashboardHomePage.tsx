@@ -171,9 +171,9 @@ export function DashboardHomePage() {
         }
       />
 
-      {/* ---------------- KPI row — all 6 tiles align on one row at lg ---------------- */}
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+      {/* ---------------- KPI grid — 2 rows of 3 cards on md+, 1 row of 6 on lg ---------------- */}
+      <Grid container spacing={2} sx={{ mb: 3 }}>
+        <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Active listings"
             value={summary?.activeListings ?? 0}
@@ -182,7 +182,7 @@ export function DashboardHomePage() {
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Total views (30d)"
             value={summary?.totalDetailViews ?? 0}
@@ -191,7 +191,7 @@ export function DashboardHomePage() {
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Inquiries (30d)"
             value={summary?.totalInquiries ?? 0}
@@ -200,7 +200,7 @@ export function DashboardHomePage() {
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Conversion"
             value={`${summary?.conversionRate ?? 0}%`}
@@ -209,7 +209,7 @@ export function DashboardHomePage() {
             loading={dashboardSummary.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Unread messages"
             value={unreadMessages.data ?? 0}
@@ -218,7 +218,7 @@ export function DashboardHomePage() {
             loading={unreadMessages.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Current plan"
             value={(currentPlan.data?.planKey ?? 'free').toString().toUpperCase()}

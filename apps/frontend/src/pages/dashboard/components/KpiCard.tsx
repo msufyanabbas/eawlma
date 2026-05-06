@@ -82,7 +82,8 @@ export function KpiCard({
   return (
     <Paper
       sx={{
-        p: 3,
+        p: 2.5,
+        minHeight: 130,
         height: '100%',
         position: 'relative',
         overflow: 'hidden',
@@ -90,43 +91,60 @@ export function KpiCard({
         color: '#FFFFFF',
         boxShadow: '0 8px 24px rgba(26,26,46,0.18)',
         border: 'none',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
-      {/* Top-end icon */}
+      {/* Top-right icon — explicit `right` (not insetInlineEnd) so the icon
+       *  stays put in RTL where the rest of the dashboard chrome is locked
+       *  to LTR layout. */}
       <Box
         sx={{
           position: 'absolute',
-          top: 16,
-          insetInlineEnd: 16,
+          top: 12,
+          right: 12,
           color: '#FFFFFF',
-          opacity: 0.85,
-          '& svg': { fontSize: 32 },
+          opacity: 0.6,
+          '& svg': { fontSize: 24 },
         }}
       >
         {icon}
       </Box>
 
+      <Typography
+        sx={{
+          fontSize: '0.7rem',
+          color: 'rgba(255,255,255,0.9)',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+          fontWeight: 700,
+          mb: 1,
+          pr: 5,
+        }}
+      >
+        {label}
+      </Typography>
+      <Typography
+        sx={{
+          fontSize: '2.25rem',
+          fontWeight: 800,
+          lineHeight: 1,
+          color: '#FFFFFF',
+          mt: 'auto',
+          // Numbers always render LTR even when the page direction flips.
+          direction: 'ltr',
+          unicodeBidi: 'embed',
+        }}
+      >
+        {loading ? (
+          <Skeleton width={96} sx={{ bgcolor: 'rgba(255,255,255,0.18)' }} />
+        ) : isNumeric ? (
+          <Counter value={numericValue} />
+        ) : (
+          value
+        )}
+      </Typography>
       <Stack spacing={1}>
-        <Typography
-          sx={{
-            fontSize: '0.75rem',
-            color: 'rgba(255,255,255,0.85)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            fontWeight: 700,
-          }}
-        >
-          {label}
-        </Typography>
-        <Typography sx={{ fontSize: '2.5rem', fontWeight: 800, lineHeight: 1.05, color: '#FFFFFF' }}>
-          {loading ? (
-            <Skeleton width={96} sx={{ bgcolor: 'rgba(255,255,255,0.18)' }} />
-          ) : isNumeric ? (
-            <Counter value={numericValue} />
-          ) : (
-            value
-          )}
-        </Typography>
         {trend && (
           <Stack direction="row" spacing={0.5} alignItems="center">
             <TrendIcon sx={{ color: trendColor, fontSize: 18 }} />

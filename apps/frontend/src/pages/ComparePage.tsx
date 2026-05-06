@@ -209,7 +209,8 @@ export function ComparePage() {
                 </IconButton>
                 <Box
                   component={Link}
-                  to={`/listings/${l.id}` as never}
+                  to={'/listings/$id' as never}
+                  params={{ id: l.id } as never}
                   sx={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
                 >
                   <Box
@@ -238,7 +239,8 @@ export function ComparePage() {
                   variant="contained"
                   sx={{ mt: 1.5, background: theme.eawlma.gradient, fontWeight: 700 }}
                   component={Link}
-                  to={`/listings/${l.id}` as never}
+                  to={'/listings/$id' as never}
+                  params={{ id: l.id } as never}
                 >
                   Inquire
                 </Button>

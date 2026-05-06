@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Chip,
-  Container,
   Grid,
   InputAdornment,
   MenuItem,
@@ -46,12 +45,16 @@ import { getRecentlyViewed } from '@/utils/recentlyViewed';
 type SearchTab = 'buy' | 'rent' | 'commercial';
 
 // Shared container shape applied to every section on the homepage so the left
-// and right edges line up exactly. Any tweak here is felt globally — keep all
-// sections opting into this rather than reinventing per-section padding.
+// and right edges line up exactly. Used as a plain `<Box>` (not MUI Container)
+// because Container ships its own breakpoint-based padding defaults that
+// fought our sx overrides at md/lg, producing slightly different widths
+// between sections. Plain Box has no such defaults.
 const SECTION_CONTAINER_SX = {
+  width: '100%',
   maxWidth: 1440,
   mx: 'auto',
-  px: { xs: 3, sm: 4, md: 6, lg: 8 },
+  px: { xs: 2, sm: 3, md: 5, lg: 7 },
+  boxSizing: 'border-box',
 } as const;
 
 // Hand-picked Unsplash hero image — luxury Saudi/Gulf villa exterior.
@@ -267,7 +270,7 @@ export function HomePage() {
           },
         }}
       >
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
+        <Box sx={{ position: 'relative', zIndex: 2, textAlign: 'center', width: '100%', maxWidth: 900, mx: 'auto', px: { xs: 3, sm: 4 }, boxSizing: 'border-box' }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -489,7 +492,7 @@ export function HomePage() {
               );
             })}
           </Stack>
-        </Container>
+        </Box>
       </Box>
 
       {/* ============================== STATS — wide, generous spacing ============================== */}
@@ -501,7 +504,7 @@ export function HomePage() {
           borderColor: 'divider',
         }}
       >
-        <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX, py: { xs: 8, md: 12 } }}>
+        <Box sx={{ ...SECTION_CONTAINER_SX, py: { xs: 8, md: 12 } }}>
           <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 3, justifyContent: 'center' }}>
             <VerifiedIcon sx={{ color: 'primary.main', fontSize: 24 }} />
             <Typography
@@ -522,13 +525,13 @@ export function HomePage() {
             <Grid item xs={6} md={3}><StatBlock label={t('home.popularCities')} value={12} suffix="+" /></Grid>
             <Grid item xs={6} md={3}><StatBlock label="Languages" value={30} suffix="+" /></Grid>
           </Grid>
-        </Container>
+        </Box>
       </Box>
       </Reveal>
 
       {/* ============================== FEATURED LISTINGS GRID ============================== */}
       <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
-      <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
+      <Box sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader
           title={t('home.featuredListings')}
           subtitle="Handpicked properties across Saudi Arabia"
@@ -556,13 +559,13 @@ export function HomePage() {
                 </Grid>
               ))}
         </Grid>
-      </Container>
+      </Box>
       </Box>
 
       {/* ============================== RECENTLY VIEWED (only when >0 in localStorage) ============================== */}
       {recentlyViewedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
-          <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
+          <Box sx={{ ...SECTION_CONTAINER_SX }}>
             <SectionHeader title="Recently viewed" />
             <Stack
               direction="row"
@@ -580,14 +583,14 @@ export function HomePage() {
                 </Box>
               ))}
             </Stack>
-          </Container>
+          </Box>
         </Box>
       )}
 
       {/* ============================== RECOMMENDATIONS (auth only) ============================== */}
       {isAuthenticated && recommendedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 5, md: 7 } }}>
-          <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
+          <Box sx={{ ...SECTION_CONTAINER_SX }}>
             <SectionHeader title={t('search.popular')} />
             <Grid container spacing={{ xs: 2, md: 3 }}>
               {recommendedListings.map((listing) => (
@@ -600,7 +603,7 @@ export function HomePage() {
                 </Grid>
               ))}
             </Grid>
-          </Container>
+          </Box>
         </Box>
       )}
 
@@ -612,15 +615,23 @@ export function HomePage() {
           py: { xs: 8, md: 12 },
         }}
       >
-      <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
+      <Box sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader title={t('home.popularCities')} />
-        <Grid container spacing={3}>
+        {/* CSS grid fills the section width evenly across 5 cards on md+,
+         *  collapses to 2 columns on xs so cards never get too narrow. */}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(5, 1fr)' },
+            gap: { xs: 2, md: 3 },
+            width: '100%',
+          }}
+        >
           {CITY_CHIPS.slice(0, 5).map((c, idx) => {
             const label = i18n.language === 'ar' ? c.ar : c.en;
             const cityCount = cityCountQueries[idx]?.data?.meta.total;
             return (
-              <Grid key={c.en} item xs={6} sm={4} md={2.4}>
-                <Reveal delay={idx * 0.07}>
+              <Reveal key={c.en} delay={idx * 0.07}>
                 <Box
                   onClick={() => goToCity(c.en)}
                   sx={{
@@ -679,28 +690,27 @@ export function HomePage() {
                     </Typography>
                   </Box>
                 </Box>
-                </Reveal>
-              </Grid>
+              </Reveal>
             );
           })}
-        </Grid>
-      </Container>
+        </Box>
+      </Box>
       </Box>
 
       {/* ============================== FEATURED AGENTS ============================== */}
       <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
-      <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
+      <Box sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader title={t('nav.agents')} />
-        <Stack
-          direction="row"
-          spacing={3}
-          className="scrollbar-hide"
+        {/* Flex grid fills the section evenly: each card grows to fill space
+         *  with a 220px ceiling so cards don't get visually awkward on a
+         *  4K monitor. Wraps to multiple rows on narrow viewports. */}
+        <Box
           sx={{
-            overflowX: 'auto',
-            scrollSnapType: 'x mandatory',
-            pb: 1,
-            // Allow cards to grow proportionally on wide screens
-            justifyContent: { md: 'flex-start' },
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 2,
+            justifyContent: 'flex-start',
+            width: '100%',
           }}
         >
           {(featuredAgents.length > 0 ? featuredAgents : []).slice(0, 6).map((agent, idx) => {
@@ -714,9 +724,8 @@ export function HomePage() {
                   to={`/agents/${agent.id}` as never}
                   sx={{
                     display: 'block',
-                    width: 180,
-                    flexShrink: 0,
-                    scrollSnapAlign: 'start',
+                    flex: '1 1 160px',
+                    maxWidth: 220,
                     bgcolor: 'background.paper',
                     border: 1,
                     borderColor: 'divider',
@@ -791,8 +800,8 @@ export function HomePage() {
               </Reveal>
             );
           })}
-        </Stack>
-      </Container>
+        </Box>
+      </Box>
       </Box>
     </Box>
   );

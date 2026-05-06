@@ -15,13 +15,18 @@ import ListingsIcon from '@mui/icons-material/Apartment';
 import AddIcon from '@mui/icons-material/AddCircleOutline';
 import InquiryIcon from '@mui/icons-material/MailOutline';
 import MessagesIcon from '@mui/icons-material/ChatBubbleOutline';
+import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 import SubscriptionIcon from '@mui/icons-material/CardMembershipOutlined';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
+import PersonIcon from '@mui/icons-material/PersonOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import type { ReactNode } from 'react';
+import { UserRole } from '@eawlma/shared-types';
 import { Navbar } from './Navbar';
 import { useAuthStore } from '@/store/auth.store';
 import { authApi } from '@/api/auth.api';
+
+const AGENT_ROLES = new Set<UserRole>([UserRole.AGENT, UserRole.AGENCY_ADMIN, UserRole.ADMIN]);
 
 import logoUrl from '@/assets/logo.svg';
 
@@ -31,28 +36,31 @@ interface NavItem {
   to: string;
   i18nKey: string;
   icon: ReactNode;
+  agentOnly?: boolean;
 }
 
 const ITEMS: NavItem[] = [
-  { to: '/dashboard', i18nKey: 'dashboard.overview', icon: <OverviewIcon /> },
-  { to: '/dashboard/listings', i18nKey: 'dashboard.listings', icon: <ListingsIcon /> },
-  { to: '/dashboard/listings/new', i18nKey: 'dashboard.newListing', icon: <AddIcon /> },
-  { to: '/dashboard/inquiries', i18nKey: 'dashboard.inquiries', icon: <InquiryIcon /> },
-  { to: '/messages', i18nKey: 'dashboard.messages', icon: <MessagesIcon /> },
-  { to: '/dashboard/subscription', i18nKey: 'dashboard.subscription', icon: <SubscriptionIcon /> },
+  { to: '/dashboard', i18nKey: 'dashboard.overview', icon: <OverviewIcon />, agentOnly: true },
+  { to: '/dashboard/listings', i18nKey: 'dashboard.listings', icon: <ListingsIcon />, agentOnly: true },
+  { to: '/dashboard/listings/new', i18nKey: 'dashboard.newListing', icon: <AddIcon />, agentOnly: true },
+  { to: '/dashboard/inquiries', i18nKey: 'dashboard.inquiries', icon: <InquiryIcon />, agentOnly: true },
+  { to: '/dashboard/messages', i18nKey: 'dashboard.messages', icon: <MessagesIcon /> },
+  { to: '/dashboard/notifications', i18nKey: 'nav.notifications', icon: <NotificationsIcon /> },
+  { to: '/dashboard/subscription', i18nKey: 'dashboard.subscription', icon: <SubscriptionIcon />, agentOnly: true },
   { to: '/dashboard/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
+  { to: '/profile', i18nKey: 'nav.profile', icon: <PersonIcon /> },
 ];
 
 export function DashboardLayout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-  const isRtl = theme.direction === 'rtl';
   const location = useLocation();
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const clearSession = useAuthStore((s) => s.clearSession);
   const getRefreshToken = useAuthStore((s) => s.getRefreshToken);
+  const isAgent = user ? AGENT_ROLES.has(user.role as UserRole) : false;
 
   const handleSignOut = async () => {
     const rt = getRefreshToken();
@@ -95,9 +103,10 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
         {t('nav.dashboard')}
       </Typography>
 
-      {/* Nav items */}
+      {/* Nav items — buyers see only the public-friendly ones (messages,
+       *  notifications, settings, profile); agents see the full set. */}
       <Box component="nav" sx={{ flex: 1, py: 0.5 }}>
-        {ITEMS.map((item) => {
+        {ITEMS.filter((item) => !item.agentOnly || isAgent).map((item) => {
           const active =
             location.pathname === item.to ||
             (item.to !== '/dashboard' && location.pathname.startsWith(item.to));
@@ -113,9 +122,9 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
                   cursor: 'pointer',
                   color: active ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
                   bgcolor: active ? 'rgba(255,255,255,0.12)' : 'transparent',
-                  borderRadius: isRtl ? '24px 0 0 24px' : '0 24px 24px 0',
-                  marginInlineEnd: isRtl ? 0 : 1.5,
-                  marginInlineStart: isRtl ? 1.5 : 0,
+                  // Dashboard chrome stays LTR-anchored for layout stability.
+                  borderRadius: '0 24px 24px 0',
+                  mr: 1.5,
                   fontWeight: active ? 700 : 500,
                   transition: 'background-color 0.2s ease, color 0.2s ease',
                   '&:hover': {
@@ -191,44 +200,43 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
     </Stack>
   );
 
+  // The dashboard layout intentionally pins the sidebar to the LEFT regardless
+  // of the document direction. RTL flipping with flex + permanent Drawer was
+  // breaking layout in Arabic mode. We render the Drawer with anchor="left"
+  // and explicitly push the main content right with marginLeft (a logical-
+  // property `marginInlineStart` would flip in RTL — `ml` does not).
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Navbar />
-      <Box sx={{ display: 'flex', minHeight: 'calc(100vh - 72px)' }}>
-        <Drawer
-          variant={isDesktop ? 'permanent' : 'temporary'}
-          anchor={isRtl ? 'right' : 'left'}
-          sx={{
+      <Drawer
+        variant={isDesktop ? 'permanent' : 'temporary'}
+        anchor="left"
+        sx={{
+          width: SIDEBAR_WIDTH,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
             width: SIDEBAR_WIDTH,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: SIDEBAR_WIDTH,
-              boxSizing: 'border-box',
-              border: 'none',
-              top: { md: 72 },
-              height: { md: 'calc(100vh - 72px)' },
-            },
-          }}
-        >
-          {sidebarContent}
-        </Drawer>
+            boxSizing: 'border-box',
+            border: 'none',
+            left: 0,
+            top: { md: 72 },
+            height: { md: 'calc(100vh - 72px)' },
+          },
+        }}
+      >
+        {sidebarContent}
+      </Drawer>
 
-        <Box
-          component="main"
-          sx={{
-            flex: 1,
-            // Push past the permanent sidebar — MUI's permanent Drawer renders
-            // Paper inline but explicit margin keeps content alignment
-            // deterministic across browsers/RTL.
-            marginInlineStart: { xs: 0, md: 0 },
-            px: { xs: 2, sm: 3, md: 4 },
-            py: { xs: 2, md: 4 },
-            minWidth: 0,
-            width: '100%',
-          }}
-        >
-          <Stack spacing={3}>{children}</Stack>
-        </Box>
+      <Box
+        component="main"
+        sx={{
+          ml: { xs: 0, md: `${SIDEBAR_WIDTH}px` },
+          p: { xs: 2, md: 3 },
+          minHeight: 'calc(100vh - 72px)',
+          minWidth: 0,
+        }}
+      >
+        <Stack spacing={3}>{children}</Stack>
       </Box>
     </Box>
   );

@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   Card,
-  CardActionArea,
   CardContent,
   Chip,
   IconButton,
@@ -24,7 +23,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { useCompareStore } from '@/store/compare.store';
 import { useTranslation } from 'react-i18next';
-import { Link } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { ListingType, type Listing } from '@eawlma/shared-types';
 import { type MouseEvent } from 'react';
 import { listingCoverUrl } from '@/utils/listingImages';
@@ -46,6 +45,13 @@ interface ListingCardProps {
 export function ListingCard({ listing, locale, saved, onToggleSave, agentVerified }: ListingCardProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
+  const navigate = useNavigate();
+  // Imperative navigation — works without TanStack Router code-gen and avoids
+  // the typed-Link `params` issue. The string interpolation is matched against
+  // the registered '/listings/$id' route at runtime.
+  const goToDetail = () => {
+    void navigate({ to: `/listings/${listing.id}` as never });
+  };
   const activeLocale = locale ?? i18n.language;
   const title = getListingTitle(listing, activeLocale);
   const location = getListingLocation(listing);
@@ -113,7 +119,18 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
         },
       }}
     >
-      <CardActionArea component={Link} to={`/listings/${listing.id}` as never} sx={{ flex: 1 }}>
+      <Box
+        onClick={goToDetail}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            goToDetail();
+          }
+        }}
+        sx={{ flex: 1, cursor: 'pointer', outline: 'none' }}
+      >
         {/* Cover — 200px tall (matches the section spec) */}
         <Box sx={{ position: 'relative', height: 200, bgcolor: 'grey.100' }}>
           <Box
@@ -327,7 +344,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             )}
           </Stack>
         </CardContent>
-      </CardActionArea>
+      </Box>
 
       {/* Footer: agent strip — solid top border, larger spacing */}
       {showVerified && (

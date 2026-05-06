@@ -302,12 +302,12 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
               </>
             ) : (
               <Stack direction="row" spacing={1}>
-                <Link to="/login" style={{ textDecoration: 'none' }}>
+                <Link to="/auth/login" style={{ textDecoration: 'none' }}>
                   <Button color="inherit" sx={{ color: 'text.primary' }}>
                     {t('auth.login')}
                   </Button>
                 </Link>
-                <Link to="/register" style={{ textDecoration: 'none' }}>
+                <Link to="/auth/register" style={{ textDecoration: 'none' }}>
                   <Button variant="contained" color="primary">
                     {t('auth.register')}
                   </Button>

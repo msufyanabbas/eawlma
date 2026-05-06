@@ -336,7 +336,12 @@ export function MessagesPage() {
                 </Box>
               ))
             ) : filteredConversations.length === 0 ? (
-              <EmptyState title={t('empty.noMessages')} />
+              <EmptyState
+                title={t('empty.noMessages')}
+                description="Start a conversation by messaging an agent from any listing page."
+                ctaLabel={t('nav.search')}
+                onCta={() => { window.location.href = '/search'; }}
+              />
             ) : (
               filteredConversations.map((c) => (
                 <ConversationRowItem
@@ -412,7 +417,8 @@ export function MessagesPage() {
                 {listingQuery.data && (
                   <Button
                     component={Link}
-                    to={`/listings/${listingQuery.data.id}` as never}
+                    to={'/listings/$id' as never}
+                    params={{ id: listingQuery.data.id } as never}
                     size="small"
                     variant="outlined"
                   >

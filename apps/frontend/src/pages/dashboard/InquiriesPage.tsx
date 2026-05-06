@@ -260,7 +260,8 @@ function InquiryDrawer({ inquiry, onClose, onUpdated }: InquiryDrawerProps) {
                 </Typography>
                 <Button
                   component={Link}
-                  to={`/listings/${listingQuery.data.id}` as never}
+                  to={'/listings/$id' as never}
+                  params={{ id: listingQuery.data.id } as never}
                   size="small"
                   sx={{ mt: 1 }}
                 >
