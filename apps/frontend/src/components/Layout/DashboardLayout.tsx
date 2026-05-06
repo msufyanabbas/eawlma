@@ -228,6 +228,10 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             left: 0,
             top: { md: 72 },
             height: { md: 'calc(100vh - 72px)' },
+            // Force the dark lavender gradient regardless of the active theme
+            // mode so sidebar text stays legibly white in both light and dark.
+            background: 'linear-gradient(180deg, #2D2650 0%, #3D3570 100%)',
+            color: '#FFFFFF',
           },
         }}
       >

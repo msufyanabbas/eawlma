@@ -247,7 +247,108 @@
     "needHelp": "Need help? Talk to us on WhatsApp.",
     "cr": "Commercial Registration",
     "regaLicensed": "Saudi Real Estate General Authority Licensed",
+    "location": "Riyadh, Saudi Arabia",
     "rights": "All rights reserved"
+  },
+  "about": {
+    "title": "About Eawlma",
+    "subtitle": "Eawlma is the trusted real-estate marketplace of the Kingdom — connecting buyers, renters, and verified agents across Saudi Arabia with a faster, cleaner, and more transparent property experience.",
+    "missionTitle": "Our mission",
+    "missionBody": "We're building the most trusted property platform in Saudi Arabia by combining local expertise with a thoughtful product. Every listing is reviewed for accuracy, every agent is verified, and every conversation between a buyer and an agent happens in a secure, auditable channel.",
+    "kingdomTitle": "Built for the Kingdom",
+    "kingdomBody": "From Riyadh's Olaya district to Jeddah's Corniche and Dammam's waterfront, Eawlma indexes properties across Saudi Arabia's growing cities. The platform is fully bilingual, RTL-first, and respects PDPL data-protection requirements by design.",
+    "teamTitle": "Our team",
+    "teamBody": "A small Riyadh-based team of engineers, designers, and real-estate professionals. We're hiring across product, engineering, and customer success.",
+    "stats": {
+      "properties": "Properties",
+      "agents": "Verified agents",
+      "cities": "Cities",
+      "support": "Support"
+    }
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Our team responds within 24 hours. For urgent listing or account questions, WhatsApp is the fastest channel.",
+    "sendMessage": "Send us a message",
+    "name": "Your name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "message": "Message",
+    "send": "Send message",
+    "sentSuccess": "Thanks! Our team will respond within 24 hours.",
+    "emailUs": "Email us",
+    "emailReplies": "Replies within 24h on weekdays",
+    "whatsapp": "WhatsApp",
+    "whatsappHours": "Sun–Thu, 9:00 – 18:00 (AST)",
+    "office": "Office",
+    "officeAddress": "King Fahd Road, Riyadh",
+    "officePostal": "Saudi Arabia 12345"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated"
+  },
+  "propertyTypes": {
+    "apartment": "Apartment",
+    "villa": "Villa",
+    "office": "Office",
+    "land": "Land",
+    "commercial": "Commercial",
+    "studio": "Studio",
+    "penthouse": "Penthouse",
+    "townhouse": "Townhouse"
+  },
+  "profile": {
+    "personalInformation": "Personal information",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "email": "Email",
+    "saveChanges": "Save changes",
+    "savedProperties": "Saved properties",
+    "viewSaved": "View saved",
+    "recentActivity": "Recent activity",
+    "browseListings": "Browse listings",
+    "profileUpdated": "Profile updated"
+  },
+  "wizard": {
+    "basicInfo": "Basic info",
+    "location": "Location",
+    "media": "Media",
+    "amenities": "Amenities",
+    "compliance": "Compliance",
+    "review": "Review",
+    "saveDraft": "Save draft",
+    "submitForReview": "Submit for review"
+  },
+  "subscription": {
+    "plans": "Plans",
+    "currentPlan": "Current plan",
+    "upgrade": "Upgrade",
+    "monthly": "Monthly",
+    "activeListings": "active listings",
+    "featuredPerMonth": "featured/mo",
+    "agentSeat": "agent seat"
+  },
+  "settings": {
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "changePassword": "Change password",
+    "dangerZone": "Danger zone",
+    "deleteAccount": "Delete account"
+  },
+  "inquiries": {
+    "title": "Inquiries",
+    "noResults": "No inquiries match this filter",
+    "lead": "Lead",
+    "listing": "Listing",
+    "contact": "Contact",
+    "date": "Date",
+    "status": "Status"
   },
   "errors": {
     "generic": "An unexpected error occurred",

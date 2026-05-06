@@ -86,23 +86,25 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
       ? Math.round(Number(listing.price) / Number(listing.area))
       : null;
 
+  // Every action button inside the card stops both the click and the default
+  // so they never bubble up to the card-root navigate handler.
   const handleSaveClick = (e: MouseEvent) => {
-    e.preventDefault();
     e.stopPropagation();
+    e.preventDefault();
     onToggleSave?.(listing.id);
   };
 
   const compareHas = useCompareStore((s) => s.has(listing.id));
   const toggleCompare = useCompareStore((s) => s.toggle);
   const handleCompareClick = (e: MouseEvent) => {
-    e.preventDefault();
     e.stopPropagation();
+    e.preventDefault();
     toggleCompare(listing.id);
   };
 
   const handleWhatsAppShare = (e: MouseEvent) => {
-    e.preventDefault();
     e.stopPropagation();
+    e.preventDefault();
     const url = `${window.location.origin}/listings/${listing.id}`;
     const text = `Check this property: ${title} — ${url}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
@@ -150,8 +152,19 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             loading="lazy"
           />
 
-          {/* Top-left: type + (gold) featured chip + green New chip */}
-          <Stack direction="row" spacing={0.75} sx={{ position: 'absolute', top: 10, insetInlineStart: 10 }}>
+          {/* Top-left: status chips wrap so they never collide with the icon
+           *  column on the right. maxWidth caps growth on narrow cards. */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 12,
+              left: 12,
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 0.5,
+              maxWidth: 'calc(100% - 64px)',
+            }}
+          >
             <Chip
               size="small"
               variant="filled"
@@ -195,10 +208,11 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 }}
               />
             )}
-          </Stack>
+          </Box>
 
-          {/* Top-right: compare + favorite + WhatsApp share */}
-          <Stack direction="row" spacing={0.5} sx={{ position: 'absolute', top: 8, insetInlineEnd: 8 }}>
+          {/* Top-right: stacked column of action icons so they don't crowd the
+           *  status chips even when all three (featured + new + sale) appear. */}
+          <Stack direction="column" spacing={0.5} sx={{ position: 'absolute', top: 8, right: 8 }}>
             <Tooltip title={compareHas ? 'Remove from compare' : 'Add to compare'}>
               <IconButton
                 onClick={handleCompareClick}

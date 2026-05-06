@@ -14,8 +14,10 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import PlaceIcon from '@mui/icons-material/PlaceOutlined';
 import { Helmet } from 'react-helmet-async';
 import { useState, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export function ContactPage() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [sent, setSent] = useState(false);
 
@@ -31,35 +33,34 @@ export function ContactPage() {
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       <Helmet>
-        <title>Contact us — Eawlma</title>
+        <title>{t('contact.title')} — {t('app.name')}</title>
       </Helmet>
 
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 6, md: 10 } }}>
         <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, mb: 1.5 }}>
-          Get in touch
+          {t('contact.title')}
         </Typography>
         <Typography sx={{ color: 'text.secondary', mb: 6, fontSize: '1.05rem', maxWidth: 720 }}>
-          Our team responds within 24 hours. For urgent listing or account questions,
-          WhatsApp is the fastest channel.
+          {t('contact.subtitle')}
         </Typography>
 
         <Grid container spacing={4}>
           <Grid item xs={12} md={7}>
             <Paper sx={{ p: { xs: 3, md: 4 }, borderRadius: 3 }}>
               <Typography sx={{ fontSize: '1.25rem', fontWeight: 700, mb: 3 }}>
-                Send us a message
+                {t('contact.sendMessage')}
               </Typography>
               <Box component="form" onSubmit={onSubmit}>
                 <Stack spacing={2.5}>
                   <TextField
-                    label="Your name"
+                    label={t('contact.name')}
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     required
                     fullWidth
                   />
                   <TextField
-                    label="Email"
+                    label={t('contact.email')}
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -67,14 +68,14 @@ export function ContactPage() {
                     fullWidth
                   />
                   <TextField
-                    label="Phone (optional)"
+                    label={t('contact.phone')}
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     placeholder="+9665XXXXXXXX"
                     fullWidth
                   />
                   <TextField
-                    label="Message"
+                    label={t('contact.message')}
                     multiline
                     minRows={5}
                     value={form.message}
@@ -83,9 +84,7 @@ export function ContactPage() {
                     fullWidth
                   />
                   {sent && (
-                    <Alert severity="success">
-                      Thanks! Our team will respond within 24 hours.
-                    </Alert>
+                    <Alert severity="success">{t('contact.sentSuccess')}</Alert>
                   )}
                   <Box>
                     <Button
@@ -98,7 +97,7 @@ export function ContactPage() {
                         px: 4,
                       }}
                     >
-                      Send message
+                      {t('contact.send')}
                     </Button>
                   </Box>
                 </Stack>
@@ -110,23 +109,23 @@ export function ContactPage() {
             <Stack spacing={2}>
               <ContactCard
                 icon={<EmailIcon sx={{ color: 'primary.main' }} />}
-                title="Email us"
+                title={t('contact.emailUs')}
                 line1="hello@eawlma.sa"
-                line2="Replies within 24h on weekdays"
+                line2={t('contact.emailReplies')}
                 href="mailto:hello@eawlma.sa"
               />
               <ContactCard
                 icon={<WhatsAppIcon sx={{ color: '#25D366' }} />}
-                title="WhatsApp"
+                title={t('contact.whatsapp')}
                 line1="+966 50 000 0000"
-                line2="Sun–Thu, 9:00 – 18:00 (AST)"
+                line2={t('contact.whatsappHours')}
                 href="https://wa.me/966500000000"
               />
               <ContactCard
                 icon={<PlaceIcon sx={{ color: 'primary.main' }} />}
-                title="Office"
-                line1="King Fahd Road, Riyadh"
-                line2="Saudi Arabia 12345"
+                title={t('contact.office')}
+                line1={t('contact.officeAddress')}
+                line2={t('contact.officePostal')}
               />
             </Stack>
           </Grid>

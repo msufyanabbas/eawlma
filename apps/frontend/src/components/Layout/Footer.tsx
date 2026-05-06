@@ -106,13 +106,13 @@ export function Footer() {
              *  CR placeholder with the real registration number when issued. */}
             <Box sx={{ mt: 3 }}>
               <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.8rem' }}>
-                Commercial Registration: XXXX-XXXXXXX
+                {t('footer.cr')}: XXXX-XXXXXXX
               </Typography>
               <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.8rem' }}>
-                Saudi Real Estate General Authority Licensed
+                {t('footer.regaLicensed')}
               </Typography>
               <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.8rem', mt: 0.5 }}>
-                Riyadh, Saudi Arabia
+                {t('footer.location')}
               </Typography>
             </Box>
           </Box>
@@ -170,7 +170,7 @@ export function Footer() {
           spacing={2}
         >
           <Typography sx={{ fontSize: '0.9rem', color: 'text.secondary' }}>
-            © {new Date().getFullYear()} {t('app.name')} — All rights reserved.
+            © {new Date().getFullYear()} {t('app.name')} — {t('footer.rights')}.
           </Typography>
           <Stack direction="row" spacing={0.5}>
             <IconButton

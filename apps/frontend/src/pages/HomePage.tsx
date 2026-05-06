@@ -18,7 +18,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocationCityIcon from '@mui/icons-material/LocationCityOutlined';
 import VerifiedIcon from '@mui/icons-material/VerifiedOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import StarIcon from '@mui/icons-material/Star';
+import IconButton from '@mui/material/IconButton';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -566,13 +569,8 @@ export function HomePage() {
       {recentlyViewedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
           <Box sx={{ ...SECTION_CONTAINER_SX }}>
-            <SectionHeader title="Recently viewed" />
-            <Stack
-              direction="row"
-              spacing={3}
-              className="scrollbar-hide"
-              sx={{ overflowX: 'auto', scrollSnapType: 'x mandatory', pb: 1 }}
-            >
+            <SectionHeader title={t('home.recentlyViewed', { defaultValue: 'Recently viewed' })} />
+            <ScrollCarousel>
               {recentlyViewedListings.map((listing) => (
                 <Box key={listing.id} sx={{ width: 300, flexShrink: 0, scrollSnapAlign: 'start' }}>
                   <ListingCard
@@ -582,7 +580,7 @@ export function HomePage() {
                   />
                 </Box>
               ))}
-            </Stack>
+            </ScrollCarousel>
           </Box>
         </Box>
       )}
@@ -701,15 +699,14 @@ export function HomePage() {
       <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
       <Box sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader title={t('nav.agents')} />
-        {/* Flex grid fills the section evenly: each card grows to fill space
-         *  with a 220px ceiling so cards don't get visually awkward on a
-         *  4K monitor. Wraps to multiple rows on narrow viewports. */}
+        {/* CSS grid auto-fills available width — cards are at least 180px wide
+         *  and stretch to share the row's free space evenly, so the right
+         *  edge always reaches the section edge. */}
         <Box
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
             gap: 2,
-            justifyContent: 'flex-start',
             width: '100%',
           }}
         >
@@ -724,8 +721,8 @@ export function HomePage() {
                   to={`/agents/${agent.id}` as never}
                   sx={{
                     display: 'block',
-                    flex: '1 1 160px',
-                    maxWidth: 220,
+                    width: '100%',
+                    minHeight: 200,
                     bgcolor: 'background.paper',
                     border: 1,
                     borderColor: 'divider',
@@ -803,6 +800,108 @@ export function HomePage() {
         </Box>
       </Box>
       </Box>
+
+      {/* ============================== PARTNERS — auto-scrolling logo strip ============================== */}
+      <Box sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
+        <Box sx={{ ...SECTION_CONTAINER_SX }}>
+          <SectionHeader
+            title={i18n.language === 'ar' ? 'شركاؤنا' : 'Our Partners'}
+            subtitle={
+              i18n.language === 'ar'
+                ? 'نتعاون مع كبرى المؤسسات العقارية والمالية في المملكة'
+                : 'Trusted partnerships with leading Saudi developers and financial institutions'
+            }
+          />
+          <PartnersCarousel />
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+// ------------------------------------------------------------------
+// Partners
+// ------------------------------------------------------------------
+
+const PARTNERS: Array<{ name: string; logo: string }> = [
+  { name: 'Roshn',        logo: 'https://via.placeholder.com/160x60/6C63A6/FFFFFF?text=Roshn' },
+  { name: 'Ajlan & Bros', logo: 'https://via.placeholder.com/160x60/4A4080/FFFFFF?text=Ajlan' },
+  { name: 'Saudi Fransi', logo: 'https://via.placeholder.com/160x60/8B84C4/FFFFFF?text=Fransi' },
+  { name: 'Riyad Bank',   logo: 'https://via.placeholder.com/160x60/D4A843/1A1A2E?text=Riyad' },
+  { name: 'Al Rajhi',     logo: 'https://via.placeholder.com/160x60/6C63A6/FFFFFF?text=Rajhi' },
+  { name: 'CBRE',         logo: 'https://via.placeholder.com/160x60/2BBFBF/FFFFFF?text=CBRE' },
+  { name: 'JLL',          logo: 'https://via.placeholder.com/160x60/4A4080/FFFFFF?text=JLL' },
+];
+
+function PartnersCarousel() {
+  // Render the list twice so the keyframe animation can scroll a full lap
+  // before resetting and looking continuous. Pause-on-hover preserves a11y
+  // for users who want to read a specific logo.
+  return (
+    <Box
+      sx={{
+        overflow: 'hidden',
+        position: 'relative',
+        '&:hover .partners-track': { animationPlayState: 'paused' },
+        '&::before, &::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          width: 80,
+          height: '100%',
+          zIndex: 1,
+          pointerEvents: 'none',
+        },
+        '&::before': {
+          left: 0,
+          background: (t) =>
+            `linear-gradient(90deg, ${t.palette.background.default} 0%, transparent 100%)`,
+        },
+        '&::after': {
+          right: 0,
+          background: (t) =>
+            `linear-gradient(90deg, transparent 0%, ${t.palette.background.default} 100%)`,
+        },
+        '@keyframes partners-scroll': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      }}
+    >
+      <Box
+        className="partners-track"
+        sx={{
+          display: 'flex',
+          gap: { xs: 4, md: 6 },
+          width: 'max-content',
+          animation: 'partners-scroll 32s linear infinite',
+        }}
+      >
+        {[...PARTNERS, ...PARTNERS].map((p, i) => (
+          <Box
+            key={`${p.name}-${i}`}
+            sx={{
+              flex: '0 0 auto',
+              opacity: 0.85,
+              transition: 'opacity 200ms ease',
+              '&:hover': { opacity: 1 },
+            }}
+          >
+            <Box
+              component="img"
+              src={p.logo}
+              alt={p.name}
+              loading="lazy"
+              sx={{
+                height: { xs: 40, md: 56 },
+                width: 'auto',
+                filter: 'grayscale(0.2)',
+                display: 'block',
+              }}
+            />
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 }
@@ -810,6 +909,83 @@ export function HomePage() {
 // ------------------------------------------------------------------
 // Helpers
 // ------------------------------------------------------------------
+
+/**
+ * Horizontal scroll carousel with prev/next chevron buttons. Hides the native
+ * scrollbar, snaps to start, and exposes overlay arrows that scroll by ~one
+ * card-width at a time. The arrows hide automatically when the content fits
+ * the viewport without scrolling.
+ */
+function ScrollCarousel({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [canScroll, setCanScroll] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setCanScroll(el.scrollWidth > el.clientWidth + 2);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const scrollBy = (delta: number) => {
+    ref.current?.scrollBy({ left: delta, behavior: 'smooth' });
+  };
+
+  return (
+    <Box sx={{ position: 'relative' }}>
+      {canScroll && (
+        <IconButton
+          onClick={() => scrollBy(-320)}
+          aria-label="scroll left"
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: -20,
+            transform: 'translateY(-50%)',
+            zIndex: 2,
+            bgcolor: 'background.paper',
+            boxShadow: 3,
+            '&:hover': { bgcolor: 'background.paper' },
+          }}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+      )}
+
+      <Stack
+        ref={ref}
+        direction="row"
+        spacing={3}
+        className="scrollbar-hide"
+        sx={{ overflowX: 'auto', scrollSnapType: 'x mandatory', pb: 1, px: 0.5 }}
+      >
+        {children}
+      </Stack>
+
+      {canScroll && (
+        <IconButton
+          onClick={() => scrollBy(320)}
+          aria-label="scroll right"
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            right: -20,
+            transform: 'translateY(-50%)',
+            zIndex: 2,
+            bgcolor: 'background.paper',
+            boxShadow: 3,
+            '&:hover': { bgcolor: 'background.paper' },
+          }}
+        >
+          <ChevronRightIcon />
+        </IconButton>
+      )}
+    </Box>
+  );
+}
 
 function SectionHeader({
   title,

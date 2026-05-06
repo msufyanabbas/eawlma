@@ -93,7 +93,15 @@ export function ListingDetailPage() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const params = useParams({ strict: false }) as { id?: string };
-  const id = params.id ?? '';
+  // Fallback to the URL pathname when TanStack Router hasn't filled `params`
+  // yet (which happens for the first render after a fresh navigation). Without
+  // this, `id` was briefly empty and an early-return redirect kicked us back
+  // to /search.
+  const pathTail =
+    typeof window !== 'undefined'
+      ? window.location.pathname.split('/').filter(Boolean).pop()
+      : undefined;
+  const id = params.id || pathTail || '';
 
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const isSaved = useSavedStore((s) => s.isSaved(id));
@@ -198,10 +206,6 @@ export function ListingDetailPage() {
     },
   });
 
-  if (!id) {
-    void navigate({ to: '/search' as never });
-    return null;
-  }
   if (listingQuery.isLoading) {
     return (
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: 4 }}>

@@ -1,18 +1,21 @@
 import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
-const STATS = [
-  { value: '10,000+', label: 'Properties' },
-  { value: '500+', label: 'Verified agents' },
-  { value: '30+', label: 'Cities' },
-  { value: '24/7', label: 'Support' },
+const STATS_KEYS: Array<{ value: string; key: string }> = [
+  { value: '10,000+', key: 'about.stats.properties' },
+  { value: '500+',    key: 'about.stats.agents' },
+  { value: '30+',     key: 'about.stats.cities' },
+  { value: '24/7',    key: 'about.stats.support' },
 ];
 
 export function AboutPage() {
+  const { t } = useTranslation();
+
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       <Helmet>
-        <title>About Eawlma — Saudi real estate marketplace</title>
+        <title>{t('about.title')} — {t('app.name')}</title>
       </Helmet>
 
       {/* Hero */}
@@ -25,12 +28,10 @@ export function AboutPage() {
       >
         <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
           <Typography sx={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1, mb: 2 }}>
-            About Eawlma
+            {t('about.title')}
           </Typography>
           <Typography sx={{ fontSize: '1.125rem', opacity: 0.9, maxWidth: 720, lineHeight: 1.6 }}>
-            Eawlma is the trusted real-estate marketplace of the Kingdom — connecting
-            buyers, renters, and verified agents across Saudi Arabia with a faster,
-            cleaner, and more transparent property experience.
+            {t('about.subtitle')}
           </Typography>
         </Container>
       </Box>
@@ -39,21 +40,19 @@ export function AboutPage() {
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 8, md: 12 } }}>
         <Stack spacing={4} sx={{ maxWidth: 920 }}>
           <Box>
-            <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>Our mission</Typography>
+            <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>
+              {t('about.missionTitle')}
+            </Typography>
             <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary', lineHeight: 1.7 }}>
-              We're building the most trusted property platform in Saudi Arabia by combining
-              local expertise with a thoughtful product. Every listing is reviewed for
-              accuracy, every agent is verified, and every conversation between a buyer
-              and an agent happens in a secure, auditable channel.
+              {t('about.missionBody')}
             </Typography>
           </Box>
           <Box>
-            <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>Built for the Kingdom</Typography>
+            <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>
+              {t('about.kingdomTitle')}
+            </Typography>
             <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary', lineHeight: 1.7 }}>
-              From Riyadh's Olaya district to Jeddah's Corniche and Dammam's waterfront,
-              Eawlma indexes properties across Saudi Arabia's growing cities. The platform
-              is fully bilingual, RTL-first, and respects PDPL data-protection requirements
-              by design.
+              {t('about.kingdomBody')}
             </Typography>
           </Box>
         </Stack>
@@ -63,8 +62,8 @@ export function AboutPage() {
       <Box sx={{ bgcolor: '#F5F4FA', py: { xs: 8, md: 10 } }}>
         <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
           <Grid container spacing={{ xs: 3, md: 5 }}>
-            {STATS.map((s) => (
-              <Grid key={s.label} item xs={6} md={3}>
+            {STATS_KEYS.map((s) => (
+              <Grid key={s.key} item xs={6} md={3}>
                 <Box
                   sx={{
                     bgcolor: 'rgba(108,99,166,0.08)',
@@ -80,7 +79,7 @@ export function AboutPage() {
                     {s.value}
                   </Typography>
                   <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', textTransform: 'uppercase', letterSpacing: 0.6 }}>
-                    {s.label}
+                    {t(s.key)}
                   </Typography>
                 </Box>
               </Grid>
@@ -91,10 +90,11 @@ export function AboutPage() {
 
       {/* Team — placeholder */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 8, md: 12 } }}>
-        <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>Our team</Typography>
+        <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>
+          {t('about.teamTitle')}
+        </Typography>
         <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary', maxWidth: 720, lineHeight: 1.7 }}>
-          A small Riyadh-based team of engineers, designers, and real-estate professionals.
-          We're hiring across product, engineering, and customer success — reach us at{' '}
+          {t('about.teamBody')}{' '}
           <Box component="a" href="mailto:hello@eawlma.sa" sx={{ color: 'primary.main', textDecoration: 'none', fontWeight: 700 }}>
             hello@eawlma.sa
           </Box>
