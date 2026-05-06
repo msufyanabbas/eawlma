@@ -38,6 +38,8 @@ import { SubscriptionPage } from './pages/dashboard/SubscriptionPage';
 import { SettingsPage } from './pages/dashboard/SettingsPage';
 import { MessagesPage } from './pages/dashboard/MessagesPage';
 import { NotificationsPage } from './pages/dashboard/NotificationsPage';
+import { CommissionsPage } from './pages/dashboard/CommissionsPage';
+import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { ModerationPage } from './pages/admin/ModerationPage';
 import { AdminUsersPage } from './pages/admin/AdminUsersPage';
@@ -194,6 +196,7 @@ const dashboardNotificationsRoute = createRoute({ getParentRoute: () => dashboar
 const dashboardSubscriptionRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/subscription', beforeLoad: requireAgentRole, component: SubscriptionPage });
 // Settings is open to any authenticated user (buyers and agents alike).
 const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', component: SettingsPage });
+const dashboardCommissionsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/commissions', beforeLoad: requireAgentRole, component: CommissionsPage });
 
 // `/messages` (top-level) is a friendlier alias for the same page — Navbar
 // links to it from the public chat icon. It mounts under the dashboard
@@ -215,6 +218,7 @@ const adminHomeRoute = createRoute({ getParentRoute: () => adminShellRoute, path
 const adminModerationRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/moderation', component: ModerationPage });
 const adminUsersRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/users', component: AdminUsersPage });
 const adminAuditRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/audit', component: AuditLogPage });
+const adminCommissionsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/commissions', component: AdminCommissionsPage });
 
 // ----- Tree -----------------------------------------------------------
 
@@ -253,6 +257,7 @@ const routeTree = rootRoute.addChildren([
     dashboardNotificationsRoute,
     dashboardSubscriptionRoute,
     dashboardSettingsRoute,
+    dashboardCommissionsRoute,
     dashboardMessagesAliasRoute,
     userNotificationsAliasRoute,
   ]),
@@ -261,6 +266,7 @@ const routeTree = rootRoute.addChildren([
     adminModerationRoute,
     adminUsersRoute,
     adminAuditRoute,
+    adminCommissionsRoute,
   ]),
 ]);
 

@@ -35,6 +35,7 @@
     "subscription": "الاشتراك",
     "payments": "المدفوعات",
     "settings": "الإعدادات",
+    "commissions": "العمولات",
     "activeListings": "العقارات النشطة",
     "totalViews": "إجمالي المشاهدات",
     "totalInquiries": "إجمالي الاستفسارات",
@@ -52,7 +53,8 @@
     "rejectionReason": "سبب الرفض",
     "suspend": "تعليق الحساب",
     "reactivate": "إعادة التفعيل",
-    "promote": "ترقية الدور"
+    "promote": "ترقية الدور",
+    "commissions": "العمولات"
   },
   "auth": {
     "login": "تسجيل الدخول",

@@ -16,6 +16,7 @@ import OverviewIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import GavelIcon from '@mui/icons-material/Gavel';
 import PeopleIcon from '@mui/icons-material/PeopleAltOutlined';
 import HistoryIcon from '@mui/icons-material/History';
+import CommissionIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
 
@@ -25,6 +26,7 @@ const ITEMS = [
   { to: '/admin', i18nKey: 'dashboard.overview', icon: <OverviewIcon /> },
   { to: '/admin/moderation', i18nKey: 'admin.moderationQueue', icon: <GavelIcon /> },
   { to: '/admin/users', i18nKey: 'admin.users', icon: <PeopleIcon /> },
+  { to: '/admin/commissions', i18nKey: 'admin.commissions', icon: <CommissionIcon /> },
   { to: '/admin/audit', i18nKey: 'admin.audit', icon: <HistoryIcon /> },
 ];
 

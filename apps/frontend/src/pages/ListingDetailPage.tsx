@@ -57,6 +57,7 @@ import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { MortgageCalculator } from '@/components/global/MortgageCalculator';
+import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
@@ -155,13 +156,20 @@ export function ListingDetailPage() {
     };
   }, [listing, displayLocale]);
 
-  // Inquiry form state (shared between sticky sidebar + mobile sheet)
+  // Inquiry form state (shared between sticky sidebar + mobile sheet) — for
+  // authenticated users we pre-fill from the auth store so the only required
+  // field is the message body. Anonymous visitors still type name/email/phone
+  // by hand.
+  const sessionUser = useAuthStore((s) => s.user);
   const [inqMessage, setInqMessage] = useState('');
-  const [inqName, setInqName] = useState('');
-  const [inqEmail, setInqEmail] = useState('');
+  const [inqName, setInqName] = useState(
+    sessionUser ? `${sessionUser.firstName} ${sessionUser.lastName}`.trim() : '',
+  );
+  const [inqEmail, setInqEmail] = useState(sessionUser?.email ?? '');
   const [inqPhone, setInqPhone] = useState('');
   const [inqMethod, setInqMethod] = useState<'phone' | 'email' | 'whatsapp'>('whatsapp');
   const [inqSuccess, setInqSuccess] = useState(false);
+  const [oathOpen, setOathOpen] = useState(false);
 
   const inquiryMutation = useMutation({
     mutationFn: () =>
@@ -836,8 +844,17 @@ export function ListingDetailPage() {
                     fullWidth
                     variant="contained"
                     size="large"
-                    disabled={inquiryMutation.isPending || inqMessage.trim().length < 10}
-                    onClick={() => inquiryMutation.mutate()}
+                    disabled={inquiryMutation.isPending || inqMessage.trim().length === 0}
+                    onClick={() => {
+                      // Buyers must accept the commission oath before sending
+                      // their first inquiry. The modal records acceptance once
+                      // and we cache it locally so subsequent sends don't gate.
+                      if (!hasLocallyAcceptedOath('buyer_purchase')) {
+                        setOathOpen(true);
+                        return;
+                      }
+                      inquiryMutation.mutate();
+                    }}
                     sx={{
                       background: theme.eawlma.gradient,
                       fontWeight: 700,
@@ -978,6 +995,17 @@ export function ListingDetailPage() {
           {snackbar.message}
         </Alert>
       </Snackbar>
+
+      <CommissionOathModal
+        open={oathOpen}
+        oathType="buyer_purchase"
+        listingId={id}
+        onClose={() => setOathOpen(false)}
+        onAccept={() => {
+          setOathOpen(false);
+          inquiryMutation.mutate();
+        }}
+      />
     </Box>
   );
 }

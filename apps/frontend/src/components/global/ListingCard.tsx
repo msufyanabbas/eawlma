@@ -49,7 +49,15 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   // Imperative navigation — works without TanStack Router code-gen and avoids
   // the typed-Link `params` issue. The string interpolation is matched against
   // the registered '/listings/$id' route at runtime.
-  const goToDetail = () => {
+  // The handler also guards against bubbled clicks from inner buttons / links
+  // (heart, WhatsApp share, compare) so those don't accidentally navigate.
+  const goToDetail = (e?: React.MouseEvent | React.KeyboardEvent) => {
+    if (e) {
+      const target = e.target as HTMLElement | null;
+      if (target?.closest('button, a, [role="button"]:not([data-card-root])')) {
+        return;
+      }
+    }
     void navigate({ to: `/listings/${listing.id}` as never });
   };
   const activeLocale = locale ?? i18n.language;
@@ -120,13 +128,14 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
       }}
     >
       <Box
+        data-card-root
         onClick={goToDetail}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            goToDetail();
+            goToDetail(e);
           }
         }}
         sx={{ flex: 1, cursor: 'pointer', outline: 'none' }}

@@ -35,6 +35,7 @@
     "subscription": "Subscription",
     "payments": "Payments",
     "settings": "Settings",
+    "commissions": "Commissions",
     "activeListings": "Active listings",
     "totalViews": "Total views",
     "totalInquiries": "Total inquiries",
@@ -52,7 +53,8 @@
     "rejectionReason": "Reason for rejection",
     "suspend": "Suspend",
     "reactivate": "Reactivate",
-    "promote": "Change role"
+    "promote": "Change role",
+    "commissions": "Commissions"
   },
   "auth": {
     "login": "Sign in",

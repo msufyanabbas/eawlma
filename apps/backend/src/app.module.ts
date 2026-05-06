@@ -38,6 +38,7 @@ import { StorageModule } from './modules/storage/storage.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { SavedListingsModule } from './modules/saved-listings/saved-listings.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
+import { CommissionsModule } from './modules/commissions/commissions.module';
 
 @Module({
   imports: [
@@ -94,6 +95,7 @@ import { ReviewsModule } from './modules/reviews/reviews.module';
     AdminModule,
     SavedListingsModule,
     ReviewsModule,
+    CommissionsModule,
   ],
   controllers: [HealthController],
   providers: [

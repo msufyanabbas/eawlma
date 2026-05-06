@@ -17,6 +17,7 @@ import InquiryIcon from '@mui/icons-material/MailOutline';
 import MessagesIcon from '@mui/icons-material/ChatBubbleOutline';
 import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 import SubscriptionIcon from '@mui/icons-material/CardMembershipOutlined';
+import CommissionIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import PersonIcon from '@mui/icons-material/PersonOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -47,6 +48,7 @@ const ITEMS: NavItem[] = [
   { to: '/dashboard/messages', i18nKey: 'dashboard.messages', icon: <MessagesIcon /> },
   { to: '/dashboard/notifications', i18nKey: 'nav.notifications', icon: <NotificationsIcon /> },
   { to: '/dashboard/subscription', i18nKey: 'dashboard.subscription', icon: <SubscriptionIcon />, agentOnly: true },
+  { to: '/dashboard/commissions', i18nKey: 'dashboard.commissions', icon: <CommissionIcon />, agentOnly: true },
   { to: '/dashboard/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
   { to: '/profile', i18nKey: 'nav.profile', icon: <PersonIcon /> },
 ];

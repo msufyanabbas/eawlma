@@ -41,6 +41,7 @@ import {
 } from '@eawlma/shared-types';
 
 import { listingsApi } from '@/api/listings.api';
+import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
 import { storageApi } from '@/api/storage.api';
 import { aiApi } from '@/api/ai.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
@@ -170,6 +171,7 @@ export function ListingWizardPage() {
   const [state, setState] = useState<WizardState>(initialState);
   const [error, setError] = useState<string | null>(null);
   const [savedListingId, setSavedListingId] = useState<string | undefined>(editingId);
+  const [oathOpen, setOathOpen] = useState(false);
 
   // Hydrate when editing
   const editQuery = useQuery({
@@ -378,7 +380,16 @@ export function ListingWizardPage() {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => submitMutation.mutate()}
+                onClick={() => {
+                  // Agents must commit to the platform commission before
+                  // pushing a listing live. The modal records the oath, then
+                  // we re-trigger submission.
+                  if (!hasLocallyAcceptedOath('agent_listing')) {
+                    setOathOpen(true);
+                    return;
+                  }
+                  submitMutation.mutate();
+                }}
                 disabled={submitMutation.isPending}
               >
                 {submitMutation.isPending ? t('common.loading') : 'Submit for review'}
@@ -387,6 +398,17 @@ export function ListingWizardPage() {
           </Stack>
         </Stack>
       </Paper>
+
+      <CommissionOathModal
+        open={oathOpen}
+        oathType="agent_listing"
+        listingId={savedListingId}
+        onClose={() => setOathOpen(false)}
+        onAccept={() => {
+          setOathOpen(false);
+          submitMutation.mutate();
+        }}
+      />
     </DashboardLayout>
   );
 }
