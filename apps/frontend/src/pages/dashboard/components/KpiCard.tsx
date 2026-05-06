@@ -5,7 +5,7 @@ import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { useEffect, useState, type ReactNode } from 'react';
 
-export type KpiTone = 'listings' | 'views' | 'inquiries' | 'messages' | 'plan';
+export type KpiTone = 'listings' | 'views' | 'inquiries' | 'messages' | 'plan' | 'conversion';
 
 export interface KpiCardProps {
   label: string;
@@ -20,14 +20,16 @@ export interface KpiCardProps {
   loading?: boolean;
 }
 
-// Softer lavender-family gradients — cohesive with the brand instead of
-// jarring near-black darks at the bottom of each tile.
+// All tones live in the same lavender-blue family — cohesive with the brand
+// and visually consistent across the KPI strip. Subtle hue shifts let the
+// eye distinguish tiles without breaking the palette.
 const TONE_GRADIENTS: Record<KpiTone, string> = {
-  listings:  'linear-gradient(135deg, #6C63A6 0%, #8B84C4 100%)',
-  views:     'linear-gradient(135deg, #5B8DB8 0%, #7AAFD4 100%)',
-  inquiries: 'linear-gradient(135deg, #B87B5B 0%, #D4A07A 100%)',
-  messages:  'linear-gradient(135deg, #5BA88B 0%, #7ABFAA 100%)',
-  plan:      'linear-gradient(135deg, #8B63A6 0%, #A884C4 100%)',
+  listings:   'linear-gradient(135deg, #6C63A6 0%, #9B94C9 100%)',
+  views:      'linear-gradient(135deg, #5B72A6 0%, #8494C9 100%)',
+  inquiries:  'linear-gradient(135deg, #7B63A6 0%, #A494C9 100%)',
+  messages:   'linear-gradient(135deg, #6380A6 0%, #849EC9 100%)',
+  plan:       'linear-gradient(135deg, #8B63A6 0%, #B494C9 100%)',
+  conversion: 'linear-gradient(135deg, #638CA6 0%, #84B0C9 100%)',
 };
 
 /** Smoothly counts from 0 to `value` over 1.2s. Falls back to the raw string

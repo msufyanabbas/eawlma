@@ -23,7 +23,7 @@ export function AboutPage() {
           py: { xs: 8, md: 12 },
         }}
       >
-        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
           <Typography sx={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1, mb: 2 }}>
             About Eawlma
           </Typography>
@@ -36,7 +36,7 @@ export function AboutPage() {
       </Box>
 
       {/* Mission */}
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 }, py: { xs: 8, md: 12 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 8, md: 12 } }}>
         <Stack spacing={4} sx={{ maxWidth: 920 }}>
           <Box>
             <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>Our mission</Typography>
@@ -61,7 +61,7 @@ export function AboutPage() {
 
       {/* Stats — same 4-col glass tiles as the homepage */}
       <Box sx={{ bgcolor: '#F5F4FA', py: { xs: 8, md: 10 } }}>
-        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
           <Grid container spacing={{ xs: 3, md: 5 }}>
             {STATS.map((s) => (
               <Grid key={s.label} item xs={6} md={3}>
@@ -90,7 +90,7 @@ export function AboutPage() {
       </Box>
 
       {/* Team — placeholder */}
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 }, py: { xs: 8, md: 12 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 8, md: 12 } }}>
         <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, mb: 1.5 }}>Our team</Typography>
         <Typography sx={{ fontSize: '1.05rem', color: 'text.secondary', maxWidth: 720, lineHeight: 1.7 }}>
           A small Riyadh-based team of engineers, designers, and real-estate professionals.

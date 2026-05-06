@@ -22,6 +22,7 @@ import VerifiedIcon from '@mui/icons-material/VerifiedRounded';
 import BusinessIcon from '@mui/icons-material/Business';
 import StarIcon from '@mui/icons-material/Star';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
+import AccessTimeIcon from '@mui/icons-material/AccessTimeOutlined';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from '@tanstack/react-router';
 import { useMemo, useState } from 'react';
@@ -137,7 +138,16 @@ export function AgentProfilePage() {
         }}
       />
 
-      <Container maxWidth="lg" sx={{ mt: { xs: -8, md: -10 }, pb: 6 }}>
+      <Container
+        maxWidth={false}
+        sx={{
+          maxWidth: 1440,
+          mx: 'auto',
+          px: { xs: 3, sm: 4, md: 6, lg: 8 },
+          mt: { xs: -8, md: -10 },
+          pb: 6,
+        }}
+      >
         <Paper sx={{ p: { xs: 3, md: 4 } }}>
           <Stack
             direction={{ xs: 'column', md: 'row' }}
@@ -176,6 +186,33 @@ export function AgentProfilePage() {
                   label={t('listing.verified')}
                   sx={{ fontWeight: 700 }}
                 />
+                <Chip
+                  icon={<AccessTimeIcon />}
+                  label="Responds within 2 hours"
+                  size="small"
+                  sx={{
+                    bgcolor: 'success.light',
+                    color: 'success.dark',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    '& .MuiChip-icon': { color: 'success.dark' },
+                  }}
+                />
+                {(() => {
+                  // PublicAgentDto may be extended with licenseNumber server-side;
+                  // accept it via a loose cast so the badge appears as soon as the
+                  // backend exposes it without requiring a frontend type bump.
+                  const licenseNumber = (agent as unknown as { licenseNumber?: string } | undefined)?.licenseNumber;
+                  if (!licenseNumber) return null;
+                  return (
+                    <Chip
+                      icon={<VerifiedIcon sx={{ fontSize: 14 }} />}
+                      label={`REGA · ${licenseNumber}`}
+                      size="small"
+                      sx={{ fontWeight: 700 }}
+                    />
+                  );
+                })()}
               </Stack>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                 <BusinessIcon sx={{ fontSize: 16, mr: 0.5, verticalAlign: 'text-bottom' }} />

@@ -45,7 +45,7 @@ export function Footer() {
         borderColor: 'divider',
       }}
     >
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 2, sm: 3, md: 6, lg: 8 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={{ xs: 5, md: 8 }}
@@ -101,6 +101,20 @@ export function Footer() {
             <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
               {t('footer.needHelp')}
             </Typography>
+
+            {/* Company info — CR, REGA license, location. Owner replaces the
+             *  CR placeholder with the real registration number when issued. */}
+            <Box sx={{ mt: 3 }}>
+              <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.8rem' }}>
+                Commercial Registration: XXXX-XXXXXXX
+              </Typography>
+              <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.8rem' }}>
+                Saudi Real Estate General Authority Licensed
+              </Typography>
+              <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.8rem', mt: 0.5 }}>
+                Riyadh, Saudi Arabia
+              </Typography>
+            </Box>
           </Box>
 
           {/* Link columns */}

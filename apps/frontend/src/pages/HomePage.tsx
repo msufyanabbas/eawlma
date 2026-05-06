@@ -45,6 +45,15 @@ import { getRecentlyViewed } from '@/utils/recentlyViewed';
 
 type SearchTab = 'buy' | 'rent' | 'commercial';
 
+// Shared container shape applied to every section on the homepage so the left
+// and right edges line up exactly. Any tweak here is felt globally — keep all
+// sections opting into this rather than reinventing per-section padding.
+const SECTION_CONTAINER_SX = {
+  maxWidth: 1440,
+  mx: 'auto',
+  px: { xs: 3, sm: 4, md: 6, lg: 8 },
+} as const;
+
 // Hand-picked Unsplash hero image — luxury Saudi/Gulf villa exterior.
 const HERO_IMAGE_URL =
   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80';
@@ -492,7 +501,7 @@ export function HomePage() {
           borderColor: 'divider',
         }}
       >
-        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 }, py: { xs: 8, md: 12 } }}>
+        <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX, py: { xs: 8, md: 12 } }}>
           <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 3, justifyContent: 'center' }}>
             <VerifiedIcon sx={{ color: 'primary.main', fontSize: 24 }} />
             <Typography
@@ -519,7 +528,7 @@ export function HomePage() {
 
       {/* ============================== FEATURED LISTINGS GRID ============================== */}
       <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+      <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader
           title={t('home.featuredListings')}
           subtitle="Handpicked properties across Saudi Arabia"
@@ -553,7 +562,7 @@ export function HomePage() {
       {/* ============================== RECENTLY VIEWED (only when >0 in localStorage) ============================== */}
       {recentlyViewedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
-          <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+          <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
             <SectionHeader title="Recently viewed" />
             <Stack
               direction="row"
@@ -578,7 +587,7 @@ export function HomePage() {
       {/* ============================== RECOMMENDATIONS (auth only) ============================== */}
       {isAuthenticated && recommendedListings.length > 0 && (
         <Box sx={{ bgcolor: 'background.paper', py: { xs: 5, md: 7 } }}>
-          <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+          <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
             <SectionHeader title={t('search.popular')} />
             <Grid container spacing={{ xs: 2, md: 3 }}>
               {recommendedListings.map((listing) => (
@@ -603,7 +612,7 @@ export function HomePage() {
           py: { xs: 8, md: 12 },
         }}
       >
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+      <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader title={t('home.popularCities')} />
         <Grid container spacing={3}>
           {CITY_CHIPS.slice(0, 5).map((c, idx) => {
@@ -680,7 +689,7 @@ export function HomePage() {
 
       {/* ============================== FEATURED AGENTS ============================== */}
       <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
+      <Container maxWidth={false} sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader title={t('nav.agents')} />
         <Stack
           direction="row"

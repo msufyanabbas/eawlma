@@ -20,6 +20,7 @@ import { SearchPage } from './pages/SearchPage';
 import { ListingDetailPage } from './pages/ListingDetailPage';
 import { AgentProfilePage } from './pages/AgentProfilePage';
 import { SavedPropertiesPage } from './pages/SavedPropertiesPage';
+import { ComparePage } from './pages/ComparePage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { VerifyOtpPage } from './pages/auth/VerifyOtpPage';
@@ -123,6 +124,7 @@ const searchRoute = createRoute({
 const listingDetailRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/listings/$id', component: ListingDetailPage });
 const agentProfileRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/agents/$id', component: AgentProfilePage });
 const savedRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/saved', component: SavedPropertiesPage });
+const compareRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/compare', component: ComparePage });
 const profileRoute = createRoute({
   getParentRoute: () => marketingShellRoute,
   path: '/profile',
@@ -202,6 +204,7 @@ const routeTree = rootRoute.addChildren([
     listingDetailRoute,
     agentProfileRoute,
     savedRoute,
+    compareRoute,
     profileRoute,
     aboutRoute,
     contactRoute,

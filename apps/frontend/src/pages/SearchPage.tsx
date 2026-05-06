@@ -6,7 +6,6 @@ import {
   Button,
   Checkbox,
   Chip,
-  Container,
   Drawer,
   FormControlLabel,
   Grid,
@@ -244,7 +243,7 @@ export function SearchPage() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+    <Box sx={{ bgcolor: 'background.default', width: '100%', minHeight: 'calc(100vh - 72px)' }}>
       <Helmet>
         <title>{t('nav.search')} — {t('app.name')}</title>
       </Helmet>
@@ -257,109 +256,100 @@ export function SearchPage() {
             borderBottom: 1,
             borderColor: 'divider',
             py: 1.5,
+            px: { xs: 3, sm: 4 },
             position: 'sticky',
             top: 64,
             zIndex: 10,
           }}
         >
-          <Container maxWidth="xl">
-            <Button
-              startIcon={<FilterIcon />}
-              onClick={() => setFilterDrawerOpen(true)}
-              variant="outlined"
-              size="small"
-              fullWidth
-            >
-              {t('search.filters')}
-              {activeChips.length > 0 && (
-                <Box
-                  sx={{
-                    ml: 1, minWidth: 20, height: 20, px: 0.75,
-                    borderRadius: 999, bgcolor: 'primary.main',
-                    color: 'common.white', fontSize: 11, fontWeight: 700,
-                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  }}
-                >
-                  {activeChips.length}
-                </Box>
-              )}
-            </Button>
-          </Container>
+          <Button
+            startIcon={<FilterIcon />}
+            onClick={() => setFilterDrawerOpen(true)}
+            variant="outlined"
+            size="small"
+            fullWidth
+          >
+            {t('search.filters')}
+            {activeChips.length > 0 && (
+              <Box
+                sx={{
+                  ml: 1, minWidth: 20, height: 20, px: 0.75,
+                  borderRadius: 999, bgcolor: 'primary.main',
+                  color: 'common.white', fontSize: 11, fontWeight: 700,
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                {activeChips.length}
+              </Box>
+            )}
+          </Button>
         </Box>
       )}
 
-      {/* ============ Body: 280px sidebar + flex-1 results ============ */}
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', py: { xs: 3, md: 4 }, px: { xs: 3, sm: 4, md: 8, lg: 10 } }}>
-        <Box sx={{ display: 'flex', gap: { md: 4 }, alignItems: 'flex-start' }}>
-          {/* ---- LEFT SIDEBAR (desktop only, 300px, sticky just below 72px navbar) ---- */}
-          {isDesktop && (
-            <Box sx={{ width: 300, flexShrink: 0 }}>
-              <Box
+      {/* ============ Body: 280px sticky sidebar + flex-1 results — no outer container, edge to edge ============ */}
+      <Box sx={{ display: 'flex', alignItems: 'flex-start', width: '100%' }}>
+        {/* ---- LEFT SIDEBAR (desktop only) — fixed 280px, sticky beneath the 72px navbar, sidebar itself scrolls ---- */}
+        {isDesktop && (
+          <Box
+            sx={{
+              width: 280,
+              flexShrink: 0,
+              position: 'sticky',
+              top: 72,
+              height: 'calc(100vh - 72px)',
+              overflowY: 'auto',
+              bgcolor: 'background.paper',
+              borderInlineEnd: 1,
+              borderColor: 'divider',
+              pt: 3,
+            }}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{ px: 3, mb: 2 }}
+            >
+              <Typography
                 sx={{
-                  position: 'sticky',
-                  top: 88, // 72px navbar + 16px breathing room
-                  bgcolor: 'background.paper',
-                  border: 1,
-                  borderColor: 'divider',
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                  maxHeight: 'calc(100vh - 104px)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  boxShadow: '0 2px 8px rgba(108,99,166,0.08)',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
                 }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  sx={{
-                    px: 2, py: 1.75,
-                    borderBottom: 1, borderColor: 'divider',
-                  }}
-                >
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <FilterIcon fontSize="small" sx={{ color: 'primary.main' }} />
-                    <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
-                      {t('search.filters')}
-                    </Typography>
-                  </Stack>
-                  {activeChips.length > 0 && (
-                    <Button size="small" onClick={clearFilters} sx={{ fontSize: 12 }}>
-                      {t('search.clearFilters')}
-                    </Button>
-                  )}
-                </Stack>
-                <Box sx={{ overflowY: 'auto', flex: 1 }}>
-                  <FilterPanel {...filterPanelProps} />
-                </Box>
-                {/* Apply filters footer */}
-                <Box sx={{ p: 1.75, borderTop: 1, borderColor: 'divider' }}>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    sx={{
-                      background: theme.eawlma.gradient,
-                      fontWeight: 700,
-                    }}
-                    onClick={() => infiniteQuery.refetch()}
-                  >
-                    {t('search.applyFilters', { defaultValue: 'Apply filters' })}
-                  </Button>
-                </Box>
-              </Box>
+                {t('search.filters')}
+              </Typography>
+              {activeChips.length > 0 && (
+                <Button size="small" onClick={clearFilters} sx={{ fontSize: 12, minWidth: 0, p: 0.5 }}>
+                  {t('search.clearFilters')}
+                </Button>
+              )}
+            </Stack>
+            <FilterPanel {...filterPanelProps} />
+            <Box sx={{ p: 3, borderTop: 1, borderColor: 'divider', position: 'sticky', bottom: 0, bgcolor: 'background.paper' }}>
+              <Button
+                fullWidth
+                variant="contained"
+                sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
+                onClick={() => infiniteQuery.refetch()}
+              >
+                {t('search.applyFilters', { defaultValue: 'Apply filters' })}
+              </Button>
             </Box>
-          )}
+          </Box>
+        )}
 
-          {/* ---- MAIN CONTENT ---- */}
-          <Box sx={{ flex: 1, minWidth: 0 }}>
+        {/* ---- MAIN CONTENT ---- */}
+        <Box sx={{ flex: 1, minWidth: 0, px: { xs: 3, sm: 4, md: 4 }, pt: 3, pb: 6 }}>
             {/* Slim breadcrumb — results summary + sort/view toggle */}
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
               alignItems={{ xs: 'flex-start', sm: 'center' }}
               justifyContent="space-between"
               spacing={1.5}
-              sx={{ mb: 2.5 }}
+              sx={{ mb: 3 }}
             >
               <Typography sx={{ fontSize: '0.95rem', color: 'text.secondary' }}>
                 Search results ·{' '}
@@ -406,7 +396,7 @@ export function SearchPage() {
 
             {/* Active filter chips */}
             {activeChips.length > 0 && (
-              <Stack direction="row" spacing={1} sx={{ mb: 2.5, flexWrap: 'wrap', rowGap: 0.75 }}>
+              <Stack direction="row" spacing={1} sx={{ mb: 3, flexWrap: 'wrap', rowGap: 0.75 }}>
                 {activeChips.map((c) => (
                   <Chip
                     key={c.key}
@@ -470,15 +460,14 @@ export function SearchPage() {
               </Stack>
             )}
 
-            <Box ref={sentinelRef} sx={{ height: 24, mt: 4 }} />
-            {infiniteQuery.isFetchingNextPage && (
-              <Stack alignItems="center" sx={{ py: 3 }}>
-                <Typography variant="body2" color="text.secondary">{t('common.loading')}</Typography>
-              </Stack>
-            )}
-          </Box>
+          <Box ref={sentinelRef} sx={{ height: 24, mt: 4 }} />
+          {infiniteQuery.isFetchingNextPage && (
+            <Stack alignItems="center" sx={{ py: 3 }}>
+              <Typography variant="body2" color="text.secondary">{t('common.loading')}</Typography>
+            </Stack>
+          )}
         </Box>
-      </Container>
+      </Box>
 
       {/* ============ Mobile bottom-sheet drawer ============ */}
       <Drawer
@@ -580,7 +569,7 @@ function FilterPanel(props: FilterPanelProps) {
   return (
     <Box>
       {/* Listing type — always visible at top, no accordion */}
-      <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ p: 3, borderBottom: 1, borderColor: 'divider' }}>
         <ToggleButtonGroup
           fullWidth
           exclusive
@@ -778,7 +767,7 @@ function FilterPanel(props: FilterPanelProps) {
         </Stack>
       </FilterSection>
 
-      <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>
+      <Box sx={{ p: 3, borderTop: 1, borderColor: 'divider' }}>
         <Chip
           icon={<VerifiedIcon fontSize="small" />}
           label={t('listing.featured')}
@@ -825,7 +814,7 @@ function FilterSection({
       <AccordionSummary
         expandIcon={<ExpandMoreIcon fontSize="small" />}
         sx={{
-          px: 2,
+          px: 3,
           py: 0.5,
           minHeight: 56,
           '& .MuiAccordionSummary-content': { my: 1 },
@@ -834,16 +823,16 @@ function FilterSection({
         <Typography
           sx={{
             fontWeight: 700,
-            fontSize: '0.875rem',
+            fontSize: '0.75rem',
             textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            color: 'text.secondary',
+            letterSpacing: '0.1em',
+            color: 'primary.main',
           }}
         >
           {title}
         </Typography>
       </AccordionSummary>
-      <AccordionDetails sx={{ px: 2, pt: 0, pb: 2.5 }}>{children}</AccordionDetails>
+      <AccordionDetails sx={{ px: 3, pt: 0, pb: 2.5 }}>{children}</AccordionDetails>
     </Accordion>
   );
 }

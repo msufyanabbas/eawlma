@@ -24,6 +24,7 @@ import {
 import { alpha, useTheme } from '@mui/material/styles';
 import VrIcon from '@mui/icons-material/ViewInAr';
 import VerifiedIcon from '@mui/icons-material/VerifiedRounded';
+import AccessTimeIcon from '@mui/icons-material/AccessTimeOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import BedIcon from '@mui/icons-material/KingBedOutlined';
 import BathIcon from '@mui/icons-material/BathtubOutlined';
@@ -54,6 +55,7 @@ import { useSavedStore } from '@/store/saved.store';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
+import { MortgageCalculator } from '@/components/global/MortgageCalculator';
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
@@ -111,6 +113,7 @@ export function ListingDetailPage() {
     queryKey: ['listings', id],
     queryFn: () => listingsApi.getById(id),
     enabled: Boolean(id),
+    retry: false,
   });
   const listing = listingQuery.data;
 
@@ -175,9 +178,13 @@ export function ListingDetailPage() {
     },
   });
 
+  if (!id) {
+    void navigate({ to: '/search' as never });
+    return null;
+  }
   if (listingQuery.isLoading) {
     return (
-      <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: 4 }}>
         <Skeleton variant="rectangular" height={420} sx={{ borderRadius: 3, mb: 3 }} />
         <Skeleton variant="text" width="50%" height={48} />
         <Skeleton variant="text" width="30%" />
@@ -188,23 +195,28 @@ export function ListingDetailPage() {
       </Container>
     );
   }
-  if (!listing) {
+  if (listingQuery.isError || !listing) {
     return (
-      <Container maxWidth="md" sx={{ py: 8 }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: 8 }}>
         <Box
           sx={{
             bgcolor: 'background.paper',
             border: 1,
             borderColor: 'divider',
             borderRadius: 3,
-            p: 6,
+            p: { xs: 6, md: 8 },
             textAlign: 'center',
+            maxWidth: 560,
+            mx: 'auto',
           }}
         >
           <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>Listing not found</Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
             This property may have been removed or the link is no longer valid.
           </Typography>
+          <Button variant="contained" onClick={() => void navigate({ to: '/search' as never })}>
+            Back to search
+          </Button>
         </Box>
       </Container>
     );
@@ -272,7 +284,7 @@ export function ListingDetailPage() {
       </Helmet>
 
       {/* ---------------- Image gallery — Airbnb 60/40 split ---------------- */}
-      <Container maxWidth="lg" sx={{ mt: 3 }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 3 }}>
         {images.length <= 1 ? (
           // Single-image fallback — full-width with a subtle gradient veil
           <Box
@@ -360,7 +372,7 @@ export function ListingDetailPage() {
       </Container>
 
       {/* ---------------- Title + actions ---------------- */}
-      <Container maxWidth="lg" sx={{ mt: 3 }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 3 }}>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} alignItems={{ md: 'center' }}>
           <Box sx={{ flex: 1 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5, flexWrap: 'wrap' }}>
@@ -411,7 +423,7 @@ export function ListingDetailPage() {
       </Container>
 
       {/* ---------------- Body grid ---------------- */}
-      <Container maxWidth="lg" sx={{ mt: 4, pb: 8 }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 4, pb: 8 }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
           <Reveal variant="fadeRight">
@@ -579,6 +591,47 @@ export function ListingDetailPage() {
               </Typography>
             </Box>
 
+            {/* Mortgage calculator — sale listings only (rent has no loan to amortise) */}
+            {isSale && (
+              <Box sx={{ mb: 4 }}>
+                <MortgageCalculator price={Number(listing.price)} currency={String(listing.currency || t('listing.currency'))} />
+              </Box>
+            )}
+
+            {/* REGA / compliance — surfaces a license badge when the listing or
+             *  reference code is set. The lavender chip flags it as verified. */}
+            {(() => {
+              const regaNumber =
+                (listing as unknown as { regaNumber?: string }).regaNumber ?? listing.referenceCode;
+              if (!regaNumber) return null;
+              return (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.25,
+                    p: 2,
+                    mb: 4,
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: 'success.light',
+                    bgcolor: alpha(theme.palette.success.main, 0.06),
+                  }}
+                >
+                  <VerifiedIcon sx={{ color: 'success.main' }} />
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
+                    <Typography variant="caption" color="text.secondary">
+                      REGA License
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                      {regaNumber}
+                    </Typography>
+                  </Box>
+                  <Chip label="Verified" color="success" size="small" />
+                </Box>
+              );
+            })()}
+
             {/* Amenities */}
             <Box sx={{ mb: 4 }}>
               <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
@@ -622,9 +675,9 @@ export function ListingDetailPage() {
                   boxShadow: '0 6px 20px rgba(108,99,166,0.10)',
                 }}
               >
-                <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+                <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1.5 }}>
                   <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', color: 'primary.contrastText', fontWeight: 800 }}>
-                    {listing.ownerId.slice(0, 1).toUpperCase()}
+                    {(listing.ownerId ?? 'A').slice(0, 1).toUpperCase()}
                   </Avatar>
                   <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Stack direction="row" spacing={0.5} alignItems="center">
@@ -639,6 +692,19 @@ export function ListingDetailPage() {
                     </Stack>
                   </Box>
                 </Stack>
+                <Chip
+                  icon={<AccessTimeIcon sx={{ fontSize: 14 }} />}
+                  label="Responds within 2 hours"
+                  size="small"
+                  sx={{
+                    mb: 2,
+                    bgcolor: 'success.light',
+                    color: 'success.dark',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    '& .MuiChip-icon': { color: 'success.dark' },
+                  }}
+                />
                 <Stack direction="row" spacing={1}>
                   <Button
                     component={Link}

@@ -21,6 +21,8 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import StarIcon from '@mui/icons-material/Star';
 import PlaceIcon from '@mui/icons-material/PlaceOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { useCompareStore } from '@/store/compare.store';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
 import { ListingType, type Listing } from '@eawlma/shared-types';
@@ -74,6 +76,14 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
     e.preventDefault();
     e.stopPropagation();
     onToggleSave?.(listing.id);
+  };
+
+  const compareHas = useCompareStore((s) => s.has(listing.id));
+  const toggleCompare = useCompareStore((s) => s.toggle);
+  const handleCompareClick = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCompare(listing.id);
   };
 
   const handleWhatsAppShare = (e: MouseEvent) => {
@@ -161,8 +171,22 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             )}
           </Stack>
 
-          {/* Top-right: favorite + WhatsApp share */}
+          {/* Top-right: compare + favorite + WhatsApp share */}
           <Stack direction="row" spacing={0.5} sx={{ position: 'absolute', top: 8, insetInlineEnd: 8 }}>
+            <Tooltip title={compareHas ? 'Remove from compare' : 'Add to compare'}>
+              <IconButton
+                onClick={handleCompareClick}
+                size="small"
+                sx={{
+                  bgcolor: compareHas ? 'primary.main' : 'rgba(255,255,255,0.95)',
+                  color: compareHas ? 'common.white' : 'primary.dark',
+                  '&:hover': { bgcolor: compareHas ? 'primary.dark' : 'common.white' },
+                }}
+                aria-label="add to compare"
+              >
+                <CompareArrowsIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Share on WhatsApp">
               <IconButton
                 onClick={handleWhatsAppShare}

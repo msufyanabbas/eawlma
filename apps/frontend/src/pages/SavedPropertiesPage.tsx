@@ -33,7 +33,15 @@ export function SavedPropertiesPage() {
   const listings = savedQuery.data ?? [];
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}>
+    <Container
+      maxWidth={false}
+      sx={{
+        maxWidth: 1440,
+        mx: 'auto',
+        px: { xs: 3, sm: 4, md: 6, lg: 8 },
+        py: { xs: 3, md: 4 },
+      }}
+    >
       <Helmet>
         <title>{t('nav.favorites')} — {t('app.name')}</title>
       </Helmet>

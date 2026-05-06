@@ -4,6 +4,7 @@ import { useLocation } from '@tanstack/react-router';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { PageTransition } from '@/components/global/PageTransition';
+import { CompareBar } from '@/components/global/CompareBar';
 
 /**
  * Public-facing app shell — renders the navbar, page content and footer.
@@ -17,10 +18,18 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar onMobileMenuClick={() => setMobileMenuOpen((v) => !v)} />
-      <Box component="main" sx={{ flex: 1 }}>
+      <Box
+        component="main"
+        sx={{
+          flex: 1,
+          width: '100%',
+          minHeight: 'calc(100vh - 72px)',
+        }}
+      >
         <PageTransition key={location.pathname}>{children}</PageTransition>
       </Box>
       <Footer />
+      <CompareBar />
     </Box>
   );
 }

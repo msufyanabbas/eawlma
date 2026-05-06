@@ -34,7 +34,7 @@ export function ContactPage() {
         <title>Contact us — Eawlma</title>
       </Helmet>
 
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 8, lg: 10 }, py: { xs: 6, md: 10 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 6, md: 10 } }}>
         <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, mb: 1.5 }}>
           Get in touch
         </Typography>
