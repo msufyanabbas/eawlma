@@ -592,6 +592,25 @@ function FilterPanel(props: FilterPanelProps) {
           <ToggleButton value={ListingType.SALE}>{t('listing.forSale')}</ToggleButton>
           <ToggleButton value={ListingType.RENT}>{t('listing.forRent')}</ToggleButton>
         </ToggleButtonGroup>
+        {/* Featured-only toggle lives next to the listing-type pill so the
+         *  whole sidebar ends with the city section + sticky Apply button. */}
+        <Chip
+          icon={<VerifiedIcon fontSize="small" />}
+          label={t('listing.featured')}
+          onClick={() => props.setVerifiedOnly(!props.verifiedOnly)}
+          sx={{
+            mt: 1.5,
+            cursor: 'pointer',
+            fontWeight: 700,
+            bgcolor: props.verifiedOnly ? 'primary.main' : 'transparent',
+            color: props.verifiedOnly ? 'common.white' : 'text.primary',
+            border: '1px solid',
+            borderColor: props.verifiedOnly ? 'primary.main' : 'divider',
+            '& .MuiChip-icon': {
+              color: props.verifiedOnly ? 'common.white' : 'primary.main',
+            },
+          }}
+        />
       </Box>
 
       <FilterSection title={t('search.propertyType')} defaultExpanded>
@@ -766,24 +785,6 @@ function FilterPanel(props: FilterPanelProps) {
         </Stack>
       </FilterSection>
 
-      <Box sx={{ p: 3, borderTop: 1, borderColor: 'divider' }}>
-        <Chip
-          icon={<VerifiedIcon fontSize="small" />}
-          label={t('listing.featured')}
-          onClick={() => props.setVerifiedOnly(!props.verifiedOnly)}
-          sx={{
-            cursor: 'pointer',
-            fontWeight: 700,
-            bgcolor: props.verifiedOnly ? 'primary.main' : 'transparent',
-            color: props.verifiedOnly ? 'common.white' : 'text.primary',
-            border: '1px solid',
-            borderColor: props.verifiedOnly ? 'primary.main' : 'divider',
-            '& .MuiChip-icon': {
-              color: props.verifiedOnly ? 'common.white' : 'primary.main',
-            },
-          }}
-        />
-      </Box>
     </Box>
   );
 }
@@ -868,24 +869,37 @@ function MapView({ listings }: { listings: Listing[] }) {
 
   return (
     <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
-      {/* Glass legend explaining what each marker style means */}
+      {/* Map legend — themed via tokens so it stays legible in both light
+       *  and dark modes without hardcoded white. */}
       <Box
         sx={{
           position: 'absolute',
           bottom: 16,
-          insetInlineStart: 16,
-          zIndex: 2,
-          bgcolor: 'rgba(255,255,255,0.9)',
+          left: 16,
+          zIndex: 10,
+          bgcolor: 'background.paper',
+          color: 'text.primary',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
-          border: '1px solid rgba(108,99,166,0.18)',
+          border: '1px solid',
+          borderColor: 'divider',
           borderRadius: 2,
-          p: 1.25,
+          p: 1.5,
           minWidth: 220,
           boxShadow: '0 6px 18px rgba(26,26,46,0.10)',
         }}
       >
-        <Typography variant="caption" sx={{ fontWeight: 800, color: 'primary.dark', textTransform: 'uppercase', letterSpacing: 0.6, display: 'block', mb: 0.75 }}>
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 700,
+            display: 'block',
+            mb: 1,
+            textTransform: 'uppercase',
+            letterSpacing: 0.6,
+          }}
+        >
           Map legend
         </Typography>
         <Stack spacing={0.6}>

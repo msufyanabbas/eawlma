@@ -49,6 +49,7 @@ import { ListingType, MediaType } from '@eawlma/shared-types';
 import confetti from 'canvas-confetti';
 import { listingsApi } from '@/api/listings.api';
 import { searchApi } from '@/api/search.api';
+import { agentsApi } from '@/api/agents.api';
 import { inquiriesApi } from '@/api/inquiries.api';
 import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
@@ -132,6 +133,17 @@ export function ListingDetailPage() {
       }),
     enabled: Boolean(listing),
   });
+
+  // Fetch the public agent profile for the listing's owner so the agent card
+  // can show the real name + initials instead of the generic "Agent" label.
+  const agentQuery = useQuery({
+    queryKey: ['agents', listing?.ownerId],
+    queryFn: () => agentsApi.getById(listing!.ownerId),
+    enabled: Boolean(listing?.ownerId),
+    staleTime: 5 * 60_000,
+    retry: false,
+  });
+  const agent = agentQuery.data;
 
   // Pick title/description in the chosen translation locale via the shared
   // util — handles stub-prefixed translations + mojibake-corrupted seeds.
@@ -267,10 +279,14 @@ export function ListingDetailPage() {
 
   // "Messages" CTA from the agent card — gate by auth, forward returnTo,
   // and deep-link the dashboard messages page to this listing's owner.
+  // Conversation creation requires an initial message body so we don't try
+  // to auto-create a thread here; MessagesPage shows a friendly Start-
+  // conversation prompt back to this listing's inquiry form when no thread
+  // exists yet.
   const handleMessageAgent = () => {
     if (!isAuthenticated) {
       const returnTo = encodeURIComponent(window.location.pathname);
-      void navigate({ to: `/login?returnTo=${returnTo}` as never });
+      void navigate({ to: `/auth/login?returnTo=${returnTo}` as never });
       return;
     }
     void navigate({ to: `/dashboard/messages?agentId=${listing.ownerId}` as never });
@@ -676,13 +692,24 @@ export function ListingDetailPage() {
                 }}
               >
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1.5 }}>
-                  <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', color: 'primary.contrastText', fontWeight: 800 }}>
-                    {(listing.ownerId ?? 'A').slice(0, 1).toUpperCase()}
+                  <Avatar
+                    src={agent?.avatarUrl ?? undefined}
+                    sx={{ width: 56, height: 56, bgcolor: 'primary.main', color: 'primary.contrastText', fontWeight: 800 }}
+                  >
+                    {agent
+                      ? `${(agent.firstName?.[0] ?? '').toUpperCase()}${(agent.lastName?.[0] ?? '').toUpperCase()}` || 'A'
+                      : 'A'}
                   </Avatar>
                   <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Stack direction="row" spacing={0.5} alignItems="center">
-                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{t('listing.agent')}</Typography>
-                      <VerifiedIcon sx={{ color: 'success.main', fontSize: 18 }} />
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }} noWrap>
+                        {agent
+                          ? `${agent.firstName} ${agent.lastName}`.trim() || t('listing.agent')
+                          : t('listing.agent')}
+                      </Typography>
+                      {agent?.identityVerified && (
+                        <VerifiedIcon sx={{ color: 'success.main', fontSize: 18 }} />
+                      )}
                     </Stack>
                     <Stack direction="row" spacing={0.25} alignItems="center">
                       {[1, 2, 3, 4, 5].map((n) => (

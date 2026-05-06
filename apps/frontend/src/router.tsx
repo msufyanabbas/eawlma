@@ -14,6 +14,7 @@ import { ErrorBoundary } from './components/global/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { HelpPage } from './pages/HelpPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { SearchPage } from './pages/SearchPage';
@@ -155,6 +156,7 @@ const profileRoute = createRoute({
 
 const aboutRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/about', component: AboutPage });
 const contactRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/contact', component: ContactPage });
+const helpRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/help', component: HelpPage });
 const privacyRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/privacy', component: PrivacyPolicyPage });
 const termsRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/terms', component: TermsPage });
 
@@ -190,7 +192,8 @@ const dashboardInquiriesRoute = createRoute({ getParentRoute: () => dashboardShe
 const dashboardMessagesRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/messages', component: MessagesPage });
 const dashboardNotificationsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/notifications', component: NotificationsPage });
 const dashboardSubscriptionRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/subscription', beforeLoad: requireAgentRole, component: SubscriptionPage });
-const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', beforeLoad: requireAgentRole, component: SettingsPage });
+// Settings is open to any authenticated user (buyers and agents alike).
+const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', component: SettingsPage });
 
 // `/messages` (top-level) is a friendlier alias for the same page — Navbar
 // links to it from the public chat icon. It mounts under the dashboard
@@ -229,6 +232,7 @@ const routeTree = rootRoute.addChildren([
     profileRoute,
     aboutRoute,
     contactRoute,
+    helpRoute,
     privacyRoute,
     termsRoute,
   ]),

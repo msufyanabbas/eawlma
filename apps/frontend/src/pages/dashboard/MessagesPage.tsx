@@ -55,11 +55,17 @@ export function MessagesPage() {
   const userId = useAuthStore((s) => s.user?.id);
   const setUnread = useUiStore((s) => s.setUnreadMessageCount);
 
-  // ?agentId=… deep-link from agent profile / listing detail. We auto-select
-  // the conversation that already includes this agent, otherwise we surface
-  // a "Start conversation" prompt so the user knows what's expected.
-  const routeSearch = useSearch({ strict: false }) as { agentId?: string };
+  // Deep-links from agent profile / listing detail / inquiry success:
+  //   ?conversationId=… selects an exact thread by id.
+  //   ?agentId=…       finds the existing thread with this agent.
+  // If the conversation doesn't exist yet we surface a "Start conversation"
+  // prompt so the user knows what's expected.
+  const routeSearch = useSearch({ strict: false }) as {
+    agentId?: string;
+    conversationId?: string;
+  };
   const requestedAgentId = routeSearch.agentId ?? null;
+  const requestedConversationId = routeSearch.conversationId ?? null;
 
   const [activeId, setActiveId] = useState<string | null>(null);
   const [search, setSearch] = useState('');
@@ -87,11 +93,19 @@ export function MessagesPage() {
 
   const activeConversation = conversations.find((c) => c.id === activeId) ?? null;
 
-  // Default to first conversation on first load — but if a deep-link
-  // `?agentId=…` is present, auto-select the conversation that already
-  // includes that agent so the user lands directly in the right thread.
+  // Default to first conversation on first load — but if a deep-link is
+  // present, auto-select the requested thread. ?conversationId wins over
+  // ?agentId when both are set.
   useEffect(() => {
     if (activeId) return;
+    if (requestedConversationId) {
+      const match = conversations.find((c) => c.id === requestedConversationId);
+      if (match) {
+        setActiveId(match.id);
+        return;
+      }
+      return;
+    }
     if (requestedAgentId) {
       const match = conversations.find((c) => c.participantIds.includes(requestedAgentId));
       if (match) {
@@ -105,7 +119,7 @@ export function MessagesPage() {
     if (conversations.length > 0) {
       setActiveId(conversations[0].id);
     }
-  }, [activeId, conversations, requestedAgentId]);
+  }, [activeId, conversations, requestedAgentId, requestedConversationId]);
 
   const requestedAgentHasNoThread =
     Boolean(requestedAgentId) &&

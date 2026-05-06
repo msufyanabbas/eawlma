@@ -1,0 +1,296 @@
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+  alpha,
+  useTheme,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SearchIcon from '@mui/icons-material/Search';
+import HelpIcon from '@mui/icons-material/HelpOutlineOutlined';
+import { useNavigate } from '@tanstack/react-router';
+import { useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface FAQSection {
+  title: string;
+  items: FAQ[];
+}
+
+const FAQ_SECTIONS: FAQSection[] = [
+  {
+    title: 'Getting Started',
+    items: [
+      {
+        question: 'What is Eawlma?',
+        answer:
+          'Eawlma is a Saudi-focused real estate marketplace connecting verified agents with buyers and renters across the Kingdom. Browse properties, save favourites, message agents, and complete transactions transparently.',
+      },
+      {
+        question: 'Do I need an account to browse listings?',
+        answer:
+          'No. Anyone can search and view listings without signing in. Creating a free account lets you save favourites across devices, send inquiries, and message agents directly.',
+      },
+      {
+        question: 'Is Eawlma available in Arabic?',
+        answer:
+          'Yes — the entire platform is fully bilingual with right-to-left support. Use the language toggle in the navbar to switch between Arabic and English at any time.',
+      },
+      {
+        question: 'How are listings verified?',
+        answer:
+          'Every listing goes through moderation before being published. Agents must be verified through the Saudi Real Estate General Authority (REGA) before they can post.',
+      },
+    ],
+  },
+  {
+    title: 'For Buyers',
+    items: [
+      {
+        question: 'How do I search for properties?',
+        answer:
+          'Use the hero search bar on the homepage to filter by city, district, or keyword. The search page lets you refine by price, bedrooms, bathrooms, area, amenities, and more.',
+      },
+      {
+        question: 'How do I save a property to favourites?',
+        answer:
+          'Click the heart icon on any listing card or detail page. Saved listings sync across all your devices when signed in. Anonymous saves are kept locally on the device.',
+      },
+      {
+        question: 'How do I contact an agent?',
+        answer:
+          'On any listing detail page, use the inquiry form to send a message, or click "WhatsApp" to start a chat. You can also use the in-platform Messages feature once signed in.',
+      },
+      {
+        question: 'Can I compare listings side by side?',
+        answer:
+          'Yes. Click the compare icon on any listing card to add it to your compare list (max 3). The comparison page highlights the best value in each row.',
+      },
+    ],
+  },
+  {
+    title: 'For Agents',
+    items: [
+      {
+        question: 'How do I list my first property?',
+        answer:
+          'Sign up as an agent, complete REGA verification, and use the dashboard "New listing" button. The wizard walks you through property details, media upload, and submission for moderation.',
+      },
+      {
+        question: 'How do I manage my listings?',
+        answer:
+          'The "My listings" page in the dashboard shows every listing you own with quick actions to edit, archive, or view analytics. The dashboard home highlights listings that need attention.',
+      },
+      {
+        question: 'How do I upgrade my plan?',
+        answer:
+          'Visit Subscription in the dashboard to compare plans and upgrade. Upgrades unlock more active listings, featured placement, and analytics depth.',
+      },
+      {
+        question: 'How does featured placement work?',
+        answer:
+          'Featured listings appear at the top of search results and on the homepage. Featured slots are part of the Pro and Elite subscription plans.',
+      },
+    ],
+  },
+  {
+    title: 'Payments & Billing',
+    items: [
+      {
+        question: 'How do payments work?',
+        answer:
+          'All subscription billing runs through Moyasar, a Saudi-licensed payment processor that supports mada, Visa, Mastercard, and Apple Pay. Receipts are emailed automatically.',
+      },
+      {
+        question: 'Can I cancel my subscription?',
+        answer:
+          'Yes. You can cancel at any time from the Subscription page. Your plan stays active until the end of the current billing period.',
+      },
+      {
+        question: 'Are refunds available?',
+        answer:
+          'We process refunds for billing errors and accidental upgrades within 14 days. Contact support with your invoice number and we will resolve quickly.',
+      },
+    ],
+  },
+  {
+    title: 'Technical Support',
+    items: [
+      {
+        question: 'I forgot my password — what now?',
+        answer:
+          'Click "Forgot password" on the sign-in page and enter your email. We will send a reset link valid for 30 minutes. Check your spam folder if the email does not arrive.',
+      },
+      {
+        question: 'Why am I not receiving notifications?',
+        answer:
+          'Check Settings → Notifications to make sure email and in-app notifications are enabled for the events you care about. Browser notifications also require permission.',
+      },
+      {
+        question: 'A page is broken or showing an error.',
+        answer:
+          'Try refreshing the page first. If the issue persists, please contact support with the URL, your browser, and a screenshot if possible. We respond within 24 hours.',
+      },
+    ],
+  },
+];
+
+export function HelpPage() {
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+
+  const filteredSections = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return FAQ_SECTIONS;
+    return FAQ_SECTIONS.map((section) => ({
+      ...section,
+      items: section.items.filter(
+        (item) =>
+          item.question.toLowerCase().includes(q) ||
+          item.answer.toLowerCase().includes(q),
+      ),
+    })).filter((section) => section.items.length > 0);
+  }, [query]);
+
+  return (
+    <Box>
+      <Helmet>
+        <title>Help Center — {t('app.name')}</title>
+      </Helmet>
+
+      {/* Hero */}
+      <Box
+        sx={{
+          background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
+          color: 'common.white',
+          py: { xs: 7, md: 10 },
+          textAlign: 'center',
+        }}
+      >
+        <Box sx={{ width: '100%', maxWidth: 900, mx: 'auto', px: { xs: 3, sm: 4 } }}>
+          <HelpIcon sx={{ fontSize: 56, mb: 2, opacity: 0.9 }} />
+          <Typography sx={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 800, lineHeight: 1.1, mb: 1.5 }}>
+            Help Center
+          </Typography>
+          <Typography sx={{ fontSize: '1.05rem', opacity: 0.9, mb: 4, maxWidth: 640, mx: 'auto' }}>
+            Quick answers to common questions about Eawlma — for buyers, agents, and everyone in between.
+          </Typography>
+          <TextField
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for help..."
+            fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: 'text.secondary' }} />
+                </InputAdornment>
+              ),
+              sx: { bgcolor: 'common.white', borderRadius: 999, px: 1.5, py: 0.5, '& fieldset': { border: 'none' } },
+            }}
+            sx={{ maxWidth: 540, mx: 'auto' }}
+          />
+        </Box>
+      </Box>
+
+      {/* FAQs */}
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: 1100,
+          mx: 'auto',
+          px: { xs: 3, sm: 4, md: 6 },
+          py: { xs: 5, md: 7 },
+        }}
+      >
+        {filteredSections.length === 0 ? (
+          <Box sx={{ textAlign: 'center', py: 6 }}>
+            <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+              No matching answers
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+              Try a different keyword, or reach out to our team directly.
+            </Typography>
+          </Box>
+        ) : (
+          <Stack spacing={5}>
+            {filteredSections.map((section) => (
+              <Box key={section.title}>
+                <Typography sx={{ fontSize: '1.5rem', fontWeight: 800, mb: 2, color: 'primary.dark' }}>
+                  {section.title}
+                </Typography>
+                {section.items.map((faq, idx) => (
+                  <Accordion
+                    key={idx}
+                    disableGutters
+                    elevation={0}
+                    sx={{
+                      bgcolor: 'background.paper',
+                      border: 1,
+                      borderColor: 'divider',
+                      borderRadius: 2,
+                      mb: 1.25,
+                      '&::before': { display: 'none' },
+                      '&:hover': { borderColor: alpha(theme.palette.primary.main, 0.4) },
+                    }}
+                  >
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <Typography sx={{ fontWeight: 700 }}>{faq.question}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.7 }}>
+                        {faq.answer}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
+              </Box>
+            ))}
+          </Stack>
+        )}
+
+        {/* Bottom CTA */}
+        <Box
+          sx={{
+            mt: 6,
+            p: { xs: 4, md: 5 },
+            borderRadius: 3,
+            textAlign: 'center',
+            bgcolor: alpha(theme.palette.primary.main, 0.08),
+            border: 1,
+            borderColor: alpha(theme.palette.primary.main, 0.2),
+          }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>
+            Still need help?
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Our team responds within 24 hours.
+          </Typography>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ background: theme.eawlma.gradient, fontWeight: 700, px: 4 }}
+            onClick={() => void navigate({ to: '/contact' })}
+          >
+            Contact us
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+}

@@ -182,15 +182,20 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
           </Stack>
           <Button
             fullWidth
+            variant="outlined"
             startIcon={<LogoutIcon sx={{ fontSize: 18 }} />}
             onClick={handleSignOut}
             sx={{
-              color: 'rgba(255,255,255,0.85)',
-              borderColor: 'rgba(255,255,255,0.18)',
-              border: '1px solid',
+              // Sidebar is always rendered on the dark gradient — force white
+              // so the button stays legible regardless of light/dark theme.
+              color: 'rgba(255,255,255,0.9) !important',
+              borderColor: 'rgba(255,255,255,0.3) !important',
               fontWeight: 600,
               fontSize: '0.8rem',
-              '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.4)' },
+              '&:hover': {
+                borderColor: 'rgba(255,255,255,0.6) !important',
+                bgcolor: 'rgba(255,255,255,0.1)',
+              },
             }}
           >
             {t('nav.logout')}

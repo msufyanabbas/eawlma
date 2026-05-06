@@ -45,15 +45,15 @@ import { getRecentlyViewed } from '@/utils/recentlyViewed';
 type SearchTab = 'buy' | 'rent' | 'commercial';
 
 // Shared container shape applied to every section on the homepage so the left
-// and right edges line up exactly. Used as a plain `<Box>` (not MUI Container)
-// because Container ships its own breakpoint-based padding defaults that
-// fought our sx overrides at md/lg, producing slightly different widths
-// between sections. Plain Box has no such defaults.
+// and right edges line up exactly. Plain `<Box>` (not MUI Container) since
+// Container's breakpoint-based padding defaults fight our overrides. Px
+// values are in explicit pixel strings so the MUI theme spacing scale can't
+// reinterpret them per-section.
 const SECTION_CONTAINER_SX = {
   width: '100%',
-  maxWidth: 1440,
+  maxWidth: '1440px',
   mx: 'auto',
-  px: { xs: 2, sm: 3, md: 5, lg: 7 },
+  px: { xs: '16px', sm: '24px', md: '40px', lg: '56px' },
   boxSizing: 'border-box',
 } as const;
 
@@ -238,7 +238,7 @@ export function HomePage() {
     void navigate({ to: '/search' as never, search: { city } as never });
 
   return (
-    <Box>
+    <Box sx={{ overflowX: 'hidden' }}>
       <Helmet>
         <title>{t('app.name')} — {t('app.tagline')}</title>
         <meta name="description" content={t('app.tagline')} />

@@ -6,6 +6,12 @@ html, body, #root {
   height: 100%;
 }
 
+/* Suppress horizontal scrollbars at the document root. Sections that want
+ * horizontal scrolling (carousels, etc.) opt in locally with overflow-x:auto. */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
