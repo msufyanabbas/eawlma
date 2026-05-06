@@ -216,26 +216,26 @@ export function ProfilePage() {
         {/* ---- Edit form ---- */}
         <Paper sx={{ p: { xs: 3, md: 4 }, borderRadius: 3, mt: 3 }}>
           <Typography variant="h6" sx={{ fontWeight: 800, mb: 3 }}>
-            Personal information
+            {t('profile.personalInfo')}
           </Typography>
           <Grid container spacing={2.5}>
             <Grid item xs={12} sm={6}>
-              <TextField label="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth />
+              <TextField label={t('profile.firstName')} value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField label="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} fullWidth />
+              <TextField label={t('profile.lastName')} value={lastName} onChange={(e) => setLastName(e.target.value)} fullWidth />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField label={t('auth.phone')} value={phone} onChange={(e) => setPhone(e.target.value)} fullWidth placeholder="+9665XXXXXXXX" />
+              <TextField label={t('profile.phone')} value={phone} onChange={(e) => setPhone(e.target.value)} fullWidth placeholder="+9665XXXXXXXX" />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField label={t('auth.email')} value={data?.email ?? ''} fullWidth disabled />
+              <TextField label={t('profile.email')} value={data?.email ?? ''} fullWidth disabled />
             </Grid>
             <Grid item xs={12}>
-              <TextField label="Avatar URL" value={avatarUrl} onChange={(e) => setAvatarUrl(e.target.value)} fullWidth placeholder="https://..." />
+              <TextField label={t('profile.avatar')} value={avatarUrl} onChange={(e) => setAvatarUrl(e.target.value)} fullWidth placeholder="https://..." />
             </Grid>
             <Grid item xs={12}>
-              <TextField label="Bio" value={bio} onChange={(e) => setBio(e.target.value)} multiline minRows={3} fullWidth />
+              <TextField label={t('profile.bio')} value={bio} onChange={(e) => setBio(e.target.value)} multiline minRows={3} fullWidth />
             </Grid>
           </Grid>
           <Stack direction="row" spacing={1.5} sx={{ mt: 3 }}>
@@ -245,7 +245,7 @@ export function ProfilePage() {
               disabled={updateMutation.isPending}
               sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
             >
-              {updateMutation.isPending ? t('common.loading') : 'Save changes'}
+              {updateMutation.isPending ? t('common.loading') : t('profile.saveChanges')}
             </Button>
           </Stack>
         </Paper>
@@ -260,7 +260,7 @@ export function ProfilePage() {
                 </Box>
                 <Box>
                   <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 0.5, fontWeight: 700 }}>
-                    Saved properties
+                    {t('profile.savedProperties')}
                   </Typography>
                   <Typography sx={{ fontSize: '1.5rem', fontWeight: 800 }}>
                     {savedIds.length}
@@ -273,7 +273,7 @@ export function ProfilePage() {
                 fullWidth
                 variant="outlined"
               >
-                View saved
+                {t('profile.viewSaved')}
               </Button>
             </Paper>
           </Grid>
@@ -281,7 +281,7 @@ export function ProfilePage() {
             <Paper sx={{ p: 3, borderRadius: 3 }}>
               <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 2 }}>
                 <HistoryIcon sx={{ color: 'primary.dark' }} />
-                <Typography variant="h6" sx={{ fontWeight: 800 }}>Recent activity</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 800 }}>{t('profile.recentActivity')}</Typography>
               </Stack>
               {recentlyViewed.length === 0 ? (
                 <Stack alignItems="flex-start" spacing={1}>

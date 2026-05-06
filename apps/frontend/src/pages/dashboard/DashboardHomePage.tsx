@@ -235,10 +235,10 @@ export function DashboardHomePage() {
         <Grid item xs={12} md={7}>
           <Paper sx={{ p: 3, height: '100%' }}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
-              Views over time
+              {t('dashboard.viewsOverTime')}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              Last 30 days · {lineSourceListing ? lineSourceListing.referenceCode : 'no active listings'}
+              {t('dashboard.last30Days')} · {lineSourceListing ? lineSourceListing.referenceCode : 'no active listings'}
             </Typography>
             <Box sx={{ height: 280, mt: 2 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -268,10 +268,10 @@ export function DashboardHomePage() {
         <Grid item xs={12} md={5}>
           <Paper sx={{ p: 3, height: '100%' }}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
-              Top listings by inquiries
+              {t('dashboard.topListings')}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              Lifetime totals
+              {t('dashboard.lifetimeTotals')}
             </Typography>
             <Box sx={{ height: 280, mt: 2 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -367,7 +367,7 @@ export function DashboardHomePage() {
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
               <WarningIcon sx={{ color: 'warning.main' }} />
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Listings needing attention
+                {t('dashboard.attention')}
               </Typography>
             </Stack>
             {attention.length === 0 ? (
@@ -382,7 +382,7 @@ export function DashboardHomePage() {
                       ? 'Rejected — needs revision'
                       : l.expiresAt && new Date(l.expiresAt).getTime() - now < SEVEN_DAYS_MS
                         ? `Expires ${new Date(l.expiresAt).toLocaleDateString(i18n.language)}`
-                        : 'Low engagement (< 2 inquiries)';
+                        : t('dashboard.lowEngagement');
                   return (
                     <Box
                       key={l.id}

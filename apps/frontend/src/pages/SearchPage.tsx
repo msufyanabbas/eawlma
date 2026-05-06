@@ -351,9 +351,9 @@ export function SearchPage() {
               sx={{ mb: 3 }}
             >
               <Typography sx={{ fontSize: '0.95rem', color: 'text.secondary' }}>
-                Search results ·{' '}
+                {t('search.searchResults')} ·{' '}
                 <Box component="span" sx={{ color: 'text.primary', fontWeight: 700 }}>
-                  {total.toLocaleString(i18n.language)} properties found
+                  {total.toLocaleString(i18n.language)} {t('search.propertiesFound')}
                 </Box>
               </Typography>
               <Stack direction="row" spacing={1.25} alignItems="center">
@@ -635,7 +635,7 @@ function FilterPanel(props: FilterPanelProps) {
                 }
                 label={
                   <Typography sx={{ fontSize: '1rem' }}>
-                    {t(`listing.${pt}`, { defaultValue: pt })}
+                    {t(`propertyTypes.${pt.toLowerCase()}`, { defaultValue: pt })}
                   </Typography>
                 }
               />

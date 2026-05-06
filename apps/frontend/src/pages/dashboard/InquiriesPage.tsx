@@ -91,11 +91,11 @@ export function InquiriesPage() {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Lead</TableCell>
-              <TableCell>Listing</TableCell>
-              <TableCell>Contact</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell>{t('inquiries.lead')}</TableCell>
+              <TableCell>{t('inquiries.listing')}</TableCell>
+              <TableCell>{t('inquiries.contact')}</TableCell>
+              <TableCell>{t('inquiries.date')}</TableCell>
+              <TableCell>{t('inquiries.status')}</TableCell>
               <TableCell align="right" />
             </TableRow>
           </TableHead>
@@ -110,7 +110,7 @@ export function InquiriesPage() {
                 ? (
                     <TableRow>
                       <TableCell colSpan={6} sx={{ py: 6, textAlign: 'center', color: 'text.secondary' }}>
-                        No inquiries match this filter
+                        {t('inquiries.empty')}
                       </TableCell>
                     </TableRow>
                   )

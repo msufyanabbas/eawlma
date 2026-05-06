@@ -1,20 +1,21 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 export function PrivacyPolicyPage() {
+  const { t } = useTranslation();
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       <Helmet>
-        <title>Privacy Policy — Eawlma</title>
+        <title>{t('privacy.title')} — {t('app.name')}</title>
       </Helmet>
 
       <Container maxWidth="md" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, mb: 1 }}>
-          Privacy Policy
+          {t('privacy.title')}
         </Typography>
         <Typography sx={{ color: 'text.secondary', mb: 4 }}>
-          Effective: 1 January 2026 · Compliant with Saudi Arabia's Personal Data
-          Protection Law (PDPL).
+          {t('privacy.lastUpdated')}: 1 January 2026
         </Typography>
 
         <Stack spacing={4} sx={{ '& p': { color: 'text.secondary', lineHeight: 1.75 } }}>

@@ -1,20 +1,21 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 export function TermsPage() {
+  const { t } = useTranslation();
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       <Helmet>
-        <title>Terms of Service — Eawlma</title>
+        <title>{t('terms.title')} — {t('app.name')}</title>
       </Helmet>
 
       <Container maxWidth="md" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, mb: 1 }}>
-          Terms of Service
+          {t('terms.title')}
         </Typography>
         <Typography sx={{ color: 'text.secondary', mb: 4 }}>
-          Effective: 1 January 2026 · Governed by the laws of the Kingdom of Saudi
-          Arabia.
+          {t('terms.lastUpdated')}: 1 January 2026
         </Typography>
 
         <Stack spacing={4} sx={{ '& p': { color: 'text.secondary', lineHeight: 1.75 } }}>

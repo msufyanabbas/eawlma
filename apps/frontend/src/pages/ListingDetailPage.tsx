@@ -799,9 +799,20 @@ export function ListingDetailPage() {
                       The agent will contact you shortly. You'll also receive a confirmation
                       email at the address you provided.
                     </Typography>
-                    <Button variant="outlined" onClick={() => setInqSuccess(false)}>
-                      Send another inquiry
-                    </Button>
+                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.25} sx={{ width: '100%' }}>
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        startIcon={<ChatIcon />}
+                        onClick={handleMessageAgent}
+                        sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
+                      >
+                        {t('nav.messages')}
+                      </Button>
+                      <Button fullWidth variant="outlined" onClick={() => setInqSuccess(false)}>
+                        Send another inquiry
+                      </Button>
+                    </Stack>
                   </Stack>
                 ) : (
                   <>

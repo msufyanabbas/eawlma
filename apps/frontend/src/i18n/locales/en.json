@@ -41,7 +41,15 @@
     "totalInquiries": "Total inquiries",
     "conversion": "Conversion",
     "unreadMessages": "Unread messages",
-    "currentPlan": "Current plan"
+    "currentPlan": "Current plan",
+    "viewsOverTime": "Views over time",
+    "topListings": "Top listings by inquiries",
+    "last30Days": "Last 30 days",
+    "lifetimeTotals": "Lifetime totals",
+    "attention": "Listings needing attention",
+    "lowEngagement": "Low engagement (< 2 inquiries)",
+    "noListings": "No listings yet",
+    "createFirst": "Create your first listing"
   },
   "admin": {
     "moderationQueue": "Moderation queue",
@@ -167,7 +175,16 @@
     "totalInterest": "Total interest",
     "downPayment": "Down payment",
     "loanTerm": "Loan term",
-    "interestRate": "Interest rate"
+    "interestRate": "Interest rate",
+    "message": "Message",
+    "status": {
+      "active": "Active",
+      "pending": "Pending review",
+      "rejected": "Rejected",
+      "expired": "Expired",
+      "draft": "Draft",
+      "archived": "Archived"
+    }
   },
   "search": {
     "filters": "Filters",
@@ -193,7 +210,10 @@
     "applyFilters": "Apply filters",
     "forSale": "For sale",
     "forRent": "For rent",
-    "viewAll": "All"
+    "viewAll": "All",
+    "price": "Price (SAR)",
+    "propertiesFound": "properties found",
+    "searchResults": "Search results"
   },
   "home": {
     "heroTitle": "Find your perfect home",
@@ -304,15 +324,19 @@
   },
   "profile": {
     "personalInformation": "Personal information",
+    "personalInfo": "Personal information",
     "firstName": "First name",
     "lastName": "Last name",
     "phone": "Phone",
     "email": "Email",
+    "bio": "Bio",
+    "avatar": "Avatar URL",
     "saveChanges": "Save changes",
     "savedProperties": "Saved properties",
     "viewSaved": "View saved",
     "recentActivity": "Recent activity",
     "browseListings": "Browse listings",
+    "goToDashboard": "Go to dashboard",
     "profileUpdated": "Profile updated"
   },
   "wizard": {
@@ -323,32 +347,75 @@
     "compliance": "Compliance",
     "review": "Review",
     "saveDraft": "Save draft",
-    "submitForReview": "Submit for review"
+    "submit": "Submit for review",
+    "submitForReview": "Submit for review",
+    "fields": {
+      "propertyType": "Property type",
+      "transactionType": "Transaction type",
+      "titleAr": "Title (Arabic)",
+      "titleEn": "Title (English)",
+      "descriptionAr": "Description (Arabic)",
+      "descriptionEn": "Description (English)",
+      "price": "Price (SAR)",
+      "area": "Area (m²)",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "parking": "Parking",
+      "yearBuilt": "Year built",
+      "furnishing": "Furnishing"
+    }
   },
   "subscription": {
+    "title": "Subscription",
     "plans": "Plans",
     "currentPlan": "Current plan",
     "upgrade": "Upgrade",
     "monthly": "Monthly",
     "activeListings": "active listings",
     "featuredPerMonth": "featured/mo",
-    "agentSeat": "agent seat"
+    "agentSeat": "agent seat",
+    "billingHistory": "Billing history",
+    "noPayments": "No payments yet"
   },
   "settings": {
+    "title": "Settings",
     "profile": "Profile",
-    "notifications": "Notifications",
+    "notifications": "Notification preferences",
     "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "updatePassword": "Update password",
     "dangerZone": "Danger zone",
-    "deleteAccount": "Delete account"
+    "deleteAccount": "Delete account",
+    "verification": "Identity verification",
+    "verifyIdentity": "Verify identity"
   },
   "inquiries": {
     "title": "Inquiries",
     "noResults": "No inquiries match this filter",
+    "empty": "No inquiries match this filter",
     "lead": "Lead",
     "listing": "Listing",
     "contact": "Contact",
     "date": "Date",
-    "status": "Status"
+    "status": "Status",
+    "statuses": {
+      "new": "New",
+      "contacted": "Contacted",
+      "qualified": "Qualified",
+      "unqualified": "Unqualified",
+      "closed": "Closed"
+    }
+  },
+  "help": {
+    "title": "Help Center",
+    "subtitle": "Quick answers to common questions about Eawlma — for buyers, agents, and everyone in between.",
+    "searchPlaceholder": "Search for help...",
+    "stillNeedHelp": "Still need help?",
+    "contactUs": "Contact us",
+    "noResultsTitle": "No matching answers",
+    "noResultsBody": "Try a different keyword, or reach out to our team directly.",
+    "respondsIn": "Our team responds within 24 hours."
   },
   "errors": {
     "generic": "An unexpected error occurred",

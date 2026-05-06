@@ -41,7 +41,15 @@
     "totalInquiries": "إجمالي الاستفسارات",
     "conversion": "معدل التحويل",
     "unreadMessages": "رسائل غير مقروءة",
-    "currentPlan": "الباقة الحالية"
+    "currentPlan": "الباقة الحالية",
+    "viewsOverTime": "المشاهدات عبر الزمن",
+    "topListings": "أفضل الإعلانات",
+    "last30Days": "آخر 30 يوم",
+    "lifetimeTotals": "الإجمالي الكلي",
+    "attention": "إعلانات تحتاج انتباهاً",
+    "lowEngagement": "تفاعل منخفض (أقل من 2 استفسار)",
+    "noListings": "لا توجد إعلانات بعد",
+    "createFirst": "أنشئ إعلانك الأول"
   },
   "admin": {
     "moderationQueue": "طابور المراجعة",
@@ -167,7 +175,16 @@
     "totalInterest": "إجمالي الفوائد",
     "downPayment": "الدفعة الأولى",
     "loanTerm": "مدة القرض",
-    "interestRate": "معدل الفائدة"
+    "interestRate": "معدل الفائدة",
+    "message": "الرسالة",
+    "status": {
+      "active": "نشط",
+      "pending": "قيد المراجعة",
+      "rejected": "مرفوض",
+      "expired": "منتهي",
+      "draft": "مسودة",
+      "archived": "مؤرشف"
+    }
   },
   "search": {
     "filters": "الفلاتر",
@@ -193,7 +210,10 @@
     "applyFilters": "تطبيق الفلاتر",
     "forSale": "للبيع",
     "forRent": "للإيجار",
-    "viewAll": "الكل"
+    "viewAll": "الكل",
+    "price": "السعر (ر.س)",
+    "propertiesFound": "نتيجة",
+    "searchResults": "نتائج البحث"
   },
   "home": {
     "heroTitle": "اعثر على منزلك المثالي",
@@ -304,51 +324,98 @@
   },
   "profile": {
     "personalInformation": "المعلومات الشخصية",
+    "personalInfo": "المعلومات الشخصية",
     "firstName": "الاسم الأول",
     "lastName": "اسم العائلة",
     "phone": "رقم الجوال",
     "email": "البريد الإلكتروني",
+    "bio": "نبذة شخصية",
+    "avatar": "صورة الملف الشخصي",
     "saveChanges": "حفظ التغييرات",
     "savedProperties": "العقارات المحفوظة",
     "viewSaved": "عرض المحفوظات",
     "recentActivity": "النشاط الأخير",
     "browseListings": "تصفح العقارات",
+    "goToDashboard": "لوحة التحكم",
     "profileUpdated": "تم تحديث الملف"
   },
   "wizard": {
     "basicInfo": "المعلومات الأساسية",
     "location": "الموقع",
-    "media": "الوسائط",
-    "amenities": "المميزات",
+    "media": "الصور والوسائط",
+    "amenities": "المرافق",
     "compliance": "الامتثال",
-    "review": "المراجعة",
-    "saveDraft": "حفظ مسودة",
-    "submitForReview": "تقديم للمراجعة"
+    "review": "مراجعة ونشر",
+    "saveDraft": "حفظ كمسودة",
+    "submit": "تقديم للمراجعة",
+    "submitForReview": "تقديم للمراجعة",
+    "fields": {
+      "propertyType": "نوع العقار",
+      "transactionType": "نوع المعاملة",
+      "titleAr": "العنوان (عربي)",
+      "titleEn": "العنوان (إنجليزي)",
+      "descriptionAr": "الوصف (عربي)",
+      "descriptionEn": "الوصف (إنجليزي)",
+      "price": "السعر (ر.س)",
+      "area": "المساحة (م²)",
+      "bedrooms": "غرف النوم",
+      "bathrooms": "دورات المياه",
+      "parking": "مواقف السيارات",
+      "yearBuilt": "سنة البناء",
+      "furnishing": "التأثيث"
+    }
   },
   "subscription": {
+    "title": "الاشتراك",
     "plans": "الباقات",
     "currentPlan": "الباقة الحالية",
     "upgrade": "ترقية",
     "monthly": "شهرياً",
     "activeListings": "إعلانات نشطة",
     "featuredPerMonth": "مميزة/شهر",
-    "agentSeat": "مقعد وكيل"
+    "agentSeat": "مقعد وكيل",
+    "billingHistory": "سجل المدفوعات",
+    "noPayments": "لا توجد مدفوعات بعد"
   },
   "settings": {
+    "title": "الإعدادات",
     "profile": "الملف الشخصي",
-    "notifications": "الإشعارات",
+    "notifications": "تفضيلات الإشعارات",
     "changePassword": "تغيير كلمة المرور",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة المرور الجديدة",
+    "updatePassword": "تحديث كلمة المرور",
     "dangerZone": "المنطقة الخطرة",
-    "deleteAccount": "حذف الحساب"
+    "deleteAccount": "حذف الحساب",
+    "verification": "التحقق من الهوية",
+    "verifyIdentity": "تحقق من هويتك"
   },
   "inquiries": {
     "title": "الاستفسارات",
     "noResults": "لا توجد استفسارات تطابق هذا الفلتر",
+    "empty": "لا توجد استفسارات تطابق هذا الفلتر",
     "lead": "العميل",
     "listing": "العقار",
     "contact": "التواصل",
     "date": "التاريخ",
-    "status": "الحالة"
+    "status": "الحالة",
+    "statuses": {
+      "new": "جديد",
+      "contacted": "تم التواصل",
+      "qualified": "مؤهل",
+      "unqualified": "غير مؤهل",
+      "closed": "مغلق"
+    }
+  },
+  "help": {
+    "title": "مركز المساعدة",
+    "subtitle": "إجابات سريعة للأسئلة الشائعة عن عَوْلَمَة — للمشترين والوكلاء وكل من بينهم.",
+    "searchPlaceholder": "ابحث عن مساعدة...",
+    "stillNeedHelp": "هل تحتاج مزيداً من المساعدة؟",
+    "contactUs": "تواصل معنا",
+    "noResultsTitle": "لا توجد إجابات مطابقة",
+    "noResultsBody": "جرب كلمة مفتاحية مختلفة، أو تواصل مع فريقنا مباشرة.",
+    "respondsIn": "يستجيب فريقنا خلال 24 ساعة."
   },
   "errors": {
     "generic": "حدث خطأ غير متوقع",

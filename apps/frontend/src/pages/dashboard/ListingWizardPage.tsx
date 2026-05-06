@@ -117,7 +117,14 @@ const AMENITY_OPTIONS = [
   { key: 'corner_unit', label: 'Corner unit' },
 ];
 
-const STEP_LABELS = ['Basic info', 'Location', 'Media', 'Amenities', 'Compliance', 'Review'];
+const STEP_KEYS: Array<'basicInfo' | 'location' | 'media' | 'amenities' | 'compliance' | 'review'> = [
+  'basicInfo',
+  'location',
+  'media',
+  'amenities',
+  'compliance',
+  'review',
+];
 
 const initialState: WizardState = {
   type: ListingType.SALE,
@@ -315,7 +322,7 @@ export function ListingWizardPage() {
       setError(validation);
       return;
     }
-    setStep((s) => Math.min(s + 1, STEP_LABELS.length - 1));
+    setStep((s) => Math.min(s + 1, STEP_KEYS.length - 1));
   };
   const prev = () => setStep((s) => Math.max(s - 1, 0));
 
@@ -337,8 +344,8 @@ export function ListingWizardPage() {
 
       <Paper sx={{ p: 3 }}>
         <Stepper activeStep={step} alternativeLabel sx={{ mb: 4 }}>
-          {STEP_LABELS.map((label) => (
-            <Step key={label}><StepLabel>{label}</StepLabel></Step>
+          {STEP_KEYS.map((key) => (
+            <Step key={key}><StepLabel>{t(`wizard.${key}`)}</StepLabel></Step>
           ))}
         </Stepper>
 
@@ -370,9 +377,9 @@ export function ListingWizardPage() {
               onClick={() => saveDraftMutation.mutate()}
               disabled={saveDraftMutation.isPending}
             >
-              {saveDraftMutation.isPending ? t('common.loading') : 'Save draft'}
+              {saveDraftMutation.isPending ? t('common.loading') : t('wizard.saveDraft')}
             </Button>
-            {step < STEP_LABELS.length - 1 ? (
+            {step < STEP_KEYS.length - 1 ? (
               <Button variant="contained" color="primary" onClick={next}>
                 {t('common.next')}
               </Button>
@@ -392,7 +399,7 @@ export function ListingWizardPage() {
                 }}
                 disabled={submitMutation.isPending}
               >
-                {submitMutation.isPending ? t('common.loading') : 'Submit for review'}
+                {submitMutation.isPending ? t('common.loading') : t('wizard.submit')}
               </Button>
             )}
           </Stack>
