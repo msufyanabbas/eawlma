@@ -615,83 +615,87 @@ export function HomePage() {
       >
       <Box sx={{ ...SECTION_CONTAINER_SX }}>
         <SectionHeader title={t('home.popularCities')} />
-        {/* CSS grid fills the section width evenly across 5 cards on md+,
-         *  collapses to 2 columns on xs so cards never get too narrow. */}
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', md: 'repeat(5, 1fr)' },
-            gap: { xs: 2, md: 3 },
-            width: '100%',
-          }}
-        >
+        {/* Horizontal scroll with prev/next arrows so the right edge never
+         *  clips a card (Medina was getting cut off in the old CSS grid on
+         *  narrow viewports). Each card has a fixed minWidth so the strip
+         *  scrolls predictably across breakpoints. */}
+        <ScrollCarousel>
           {CITY_CHIPS.slice(0, 5).map((c, idx) => {
             const label = i18n.language === 'ar' ? c.ar : c.en;
             const cityCount = cityCountQueries[idx]?.data?.meta.total;
             return (
-              <Reveal key={c.en} delay={idx * 0.07}>
-                <Box
-                  onClick={() => goToCity(c.en)}
-                  sx={{
-                    position: 'relative',
-                    aspectRatio: '3 / 2',
-                    minHeight: 220,
-                    borderRadius: 3,
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    border: 1,
-                    borderColor: 'divider',
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                    '&:hover': {
-                      transform: 'scale(1.03)',
-                      boxShadow: `0 18px 36px ${alpha(theme.palette.primary.main, 0.22)}`,
-                    },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      inset: 0,
-                      background: `linear-gradient(180deg, transparent 40%, ${alpha('#1A1A2E', 0.85)} 100%)`,
-                      zIndex: 1,
-                    },
-                  }}
-                >
+              <Box
+                key={c.en}
+                sx={{
+                  minWidth: { xs: 220, md: 260 },
+                  flexShrink: 0,
+                  scrollSnapAlign: 'start',
+                }}
+              >
+                <Reveal delay={idx * 0.07}>
                   <Box
-                    component="img"
-                    src={c.image}
-                    alt={label}
+                    onClick={() => goToCity(c.en)}
                     sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 600ms ease',
-                      '*:hover > &': { transform: 'scale(1.06)' },
-                    }}
-                    loading="lazy"
-                  />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 0,
-                      insetInline: 0,
-                      p: 1.5,
-                      color: 'common.white',
-                      zIndex: 2,
+                      position: 'relative',
+                      aspectRatio: '3 / 2',
+                      minHeight: 180,
+                      borderRadius: 3,
+                      overflow: 'hidden',
+                      cursor: 'pointer',
+                      border: 1,
+                      borderColor: 'divider',
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                      '&:hover': {
+                        transform: 'scale(1.03)',
+                        boxShadow: `0 18px 36px ${alpha(theme.palette.primary.main, 0.22)}`,
+                      },
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        inset: 0,
+                        background: `linear-gradient(180deg, transparent 40%, ${alpha('#1A1A2E', 0.85)} 100%)`,
+                        zIndex: 1,
+                      },
                     }}
                   >
-                    <Typography sx={{ fontSize: '1.75rem', fontWeight: 800, lineHeight: 1.15 }}>
-                      {label}
-                    </Typography>
-                    <Typography sx={{ fontSize: '0.875rem', opacity: 0.85, mt: 0.5, display: 'block', fontWeight: 600 }}>
-                      {typeof cityCount === 'number' && cityCount > 0
-                        ? `${cityCount.toLocaleString(i18n.language)} ${t('search.results')}`
-                        : `${t('home.viewMore')} →`}
-                    </Typography>
+                    <Box
+                      component="img"
+                      src={c.image}
+                      alt={label}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 600ms ease',
+                        '*:hover > &': { transform: 'scale(1.06)' },
+                      }}
+                      loading="lazy"
+                    />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        insetInline: 0,
+                        p: 1.5,
+                        color: 'common.white',
+                        zIndex: 2,
+                      }}
+                    >
+                      <Typography sx={{ fontSize: '1.5rem', fontWeight: 800, lineHeight: 1.15 }}>
+                        {label}
+                      </Typography>
+                      <Typography sx={{ fontSize: '0.875rem', opacity: 0.85, mt: 0.5, display: 'block', fontWeight: 600 }}>
+                        {typeof cityCount === 'number' && cityCount > 0
+                          ? `${cityCount.toLocaleString(i18n.language)} ${t('search.results')}`
+                          : `${t('home.viewMore')} →`}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              </Reveal>
+                </Reveal>
+              </Box>
             );
           })}
-        </Box>
+        </ScrollCarousel>
       </Box>
       </Box>
 

@@ -154,9 +154,9 @@ export function SettingsPage() {
         },
       });
       void qc.invalidateQueries({ queryKey: ['users', 'me'] });
-      setPrefsToast({ open: true, ok: true, msg: 'Preferences saved' });
+      setPrefsToast({ open: true, ok: true, msg: t('settings.preferencesSaved') });
     } catch {
-      setPrefsToast({ open: true, ok: false, msg: 'Failed to save preferences' });
+      setPrefsToast({ open: true, ok: false, msg: t('settings.preferencesFailed') });
     }
   };
 
@@ -179,7 +179,7 @@ export function SettingsPage() {
 
       {/* Personal info */}
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Personal info</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.personalInfo')}</Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
             <Stack alignItems="center" spacing={1.5}>
@@ -191,7 +191,7 @@ export function SettingsPage() {
                 startIcon={<UploadIcon />}
                 onClick={() => fileInputRef.current?.click()}
               >
-                Change photo
+                {t('settings.changePhoto')}
               </Button>
               <input
                 ref={fileInputRef}
@@ -209,20 +209,20 @@ export function SettingsPage() {
               <Grid item xs={12} sm={6}><TextField fullWidth label={t('auth.lastName')} value={lastName} onChange={(e) => setLastName(e.target.value)} /></Grid>
               <Grid item xs={12} sm={6}><TextField fullWidth label={t('auth.email')} value={me?.email ?? ''} disabled /></Grid>
               <Grid item xs={12} sm={6}><TextField fullWidth label={t('auth.phone')} value={phone} onChange={(e) => setPhone(e.target.value)} /></Grid>
-              <Grid item xs={12}><TextField fullWidth multiline minRows={2} label="Bio" value={bio} onChange={(e) => setBio(e.target.value)} /></Grid>
+              <Grid item xs={12}><TextField fullWidth multiline minRows={2} label={t('profile.bio')} value={bio} onChange={(e) => setBio(e.target.value)} /></Grid>
               <Grid item xs={12}>
                 <Button
                   variant="contained"
                   onClick={() => updateProfileMutation.mutate()}
                   disabled={updateProfileMutation.isPending}
                 >
-                  {updateProfileMutation.isPending ? t('common.loading') : t('common.save')}
+                  {updateProfileMutation.isPending ? t('common.loading') : t('profile.saveChanges')}
                 </Button>
                 {updateProfileMutation.isError && (
                   <Alert severity="error" sx={{ mt: 2 }}>{extractErrorMessage(updateProfileMutation.error)}</Alert>
                 )}
                 {updateProfileMutation.isSuccess && (
-                  <Alert severity="success" sx={{ mt: 2 }}>Profile updated.</Alert>
+                  <Alert severity="success" sx={{ mt: 2 }}>{t('settings.profileUpdated')}</Alert>
                 )}
               </Grid>
             </Grid>
@@ -232,18 +232,18 @@ export function SettingsPage() {
 
       {/* Agency info — placeholder for now */}
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Agency</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.agency')}</Typography>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}><TextField fullWidth label="Agency name" disabled placeholder="Set up by your agency admin" /></Grid>
-          <Grid item xs={12} md={3}><TextField fullWidth label="License number" disabled /></Grid>
-          <Grid item xs={12} md={3}><TextField fullWidth label="Registration number" disabled /></Grid>
+          <Grid item xs={12} md={6}><TextField fullWidth label={t('settings.agencyName')} disabled placeholder={t('settings.agencyNamePlaceholder')} /></Grid>
+          <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.licenseNumber')} disabled /></Grid>
+          <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.registrationNumber')} disabled /></Grid>
         </Grid>
       </Paper>
 
       {/* Identity verification (Authentica.sa) */}
       <Paper sx={{ p: 3 }}>
         <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>Identity verification</Typography>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('settings.verification')}</Typography>
           {me?.identityVerificationStatus === 'verified' && (
             <Box
               sx={{
@@ -258,28 +258,26 @@ export function SettingsPage() {
                 textTransform: 'uppercase',
               }}
             >
-              Verified ✓
+              {t('settings.verified')} ✓
             </Box>
           )}
           {me?.identityVerificationStatus === 'pending' && (
             <Box sx={{ px: 1.25, py: 0.25, borderRadius: 999, bgcolor: 'warning.light', color: 'warning.contrastText', fontSize: 12, fontWeight: 700 }}>
-              Pending
+              {t('settings.pending')}
             </Box>
           )}
         </Stack>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Verify with Saudi national ID or Iqama via Authentica.sa to earn the
-          gold verified badge on your public profile. Listings from verified
-          agents convert significantly better.
+          {t('settings.verificationDescription')}
         </Typography>
         {me?.identityVerificationStatus === 'verified' ? (
-          <Alert severity="success">Your identity is verified.</Alert>
+          <Alert severity="success">{t('settings.verificationVerified')}</Alert>
         ) : (
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="National ID / Iqama (10 digits)"
+                label={t('settings.nationalIdLabel')}
                 value={nationalId}
                 onChange={(e) => setNationalId(e.target.value.replace(/\D/g, '').slice(0, 10))}
               />
@@ -300,23 +298,22 @@ export function SettingsPage() {
                 disabled={verifyMutation.isPending || nationalId.length !== 10}
                 onClick={() => verifyMutation.mutate()}
               >
-                {verifyMutation.isPending ? t('common.loading') : 'Verify Identity'}
+                {verifyMutation.isPending ? t('common.loading') : t('settings.verifyIdentity')}
               </Button>
               {verifyMutation.isError && (
                 <Alert severity="error" sx={{ mt: 2 }}>{extractErrorMessage(verifyMutation.error)}</Alert>
               )}
               {verifyMutation.isSuccess && !verifyMutation.data?.live && (
                 <Alert severity="info" sx={{ mt: 2 }}>
-                  Authentica.sa API key isn't configured on the server — your verification has been
-                  recorded as <strong>pending</strong> for testing. Set <code>AUTHENTICA_API_KEY</code>
-                  in the backend to use the live flow.
+                  {t('settings.verificationNotConfigured')}
                 </Alert>
               )}
               {verifyMutation.isSuccess && verifyMutation.data?.live && (
                 <Alert severity="info" sx={{ mt: 2 }}>
-                  Verification started. {verifyMutation.data.redirectUrl
-                    ? <>Redirecting to Authentica.sa…</>
-                    : <>You'll receive an OTP shortly to complete verification.</>}
+                  {t('settings.verificationStarted')}{' '}
+                  {verifyMutation.data.redirectUrl
+                    ? t('settings.redirectingToAuthentica')
+                    : t('settings.otpComing')}
                 </Alert>
               )}
             </Grid>
@@ -326,7 +323,7 @@ export function SettingsPage() {
 
       {/* Notification preferences */}
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Notification preferences</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.notifications')}</Typography>
         <Stack>
           <FormControlLabel
             control={
@@ -338,7 +335,7 @@ export function SettingsPage() {
                 }}
               />
             }
-            label="Email me when I receive a new inquiry"
+            label={t('settings.notifyOnInquiry')}
           />
           <FormControlLabel
             control={
@@ -350,7 +347,7 @@ export function SettingsPage() {
                 }}
               />
             }
-            label="Email me when I receive a new message"
+            label={t('settings.notifyOnMessage')}
           />
           <FormControlLabel
             control={
@@ -362,26 +359,24 @@ export function SettingsPage() {
                 }}
               />
             }
-            label="Browser push notifications"
+            label={t('settings.browserPush')}
           />
         </Stack>
         <Alert severity="info" variant="outlined" sx={{ mt: 2 }}>
-          Notification preferences are saved automatically. You will receive in-app
-          notifications for new inquiries, messages, and listing updates in real-time
-          via the notification bell in the navbar.
+          {t('settings.preferencesAutoSave')}
         </Alert>
       </Paper>
 
       {/* Password change */}
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Change password</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.changePassword')}</Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
               fullWidth
               variant="outlined"
               type="password"
-              label="Current password"
+              label={t('settings.currentPassword')}
               value={currentPwd}
               onChange={(e) => setCurrentPwd(e.target.value)}
               InputProps={{ sx: { color: 'text.primary', bgcolor: 'background.paper' } }}
@@ -393,7 +388,7 @@ export function SettingsPage() {
               fullWidth
               variant="outlined"
               type="password"
-              label="New password"
+              label={t('settings.newPassword')}
               value={newPwd}
               onChange={(e) => setNewPwd(e.target.value)}
               InputProps={{ sx: { color: 'text.primary', bgcolor: 'background.paper' } }}
@@ -406,13 +401,13 @@ export function SettingsPage() {
               disabled={passwordMutation.isPending || !currentPwd || newPwd.length < 8}
               onClick={() => passwordMutation.mutate()}
             >
-              {passwordMutation.isPending ? t('common.loading') : 'Update password'}
+              {passwordMutation.isPending ? t('common.loading') : t('settings.updatePassword')}
             </Button>
             {passwordMutation.isError && (
               <Alert severity="error" sx={{ mt: 2 }}>{extractErrorMessage(passwordMutation.error)}</Alert>
             )}
             {passwordMutation.isSuccess && (
-              <Alert severity="success" sx={{ mt: 2 }}>Password changed. All other sessions have been signed out.</Alert>
+              <Alert severity="success" sx={{ mt: 2 }}>{t('settings.passwordChanged')}</Alert>
             )}
           </Grid>
         </Grid>
@@ -421,22 +416,22 @@ export function SettingsPage() {
       {/* Danger zone */}
       <Paper sx={{ p: 3, border: 1, borderColor: 'error.light' }}>
         <Typography variant="h6" sx={{ fontWeight: 700, color: 'error.main', mb: 1 }}>
-          Danger zone
+          {t('settings.dangerZone')}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Permanently delete your account and all associated data. This cannot be undone.
+          {t('settings.deleteWarning')}
         </Typography>
         <Button color="error" variant="outlined" onClick={() => setConfirmDelete(true)}>
-          Delete account
+          {t('settings.deleteAccount')}
         </Button>
       </Paper>
 
       <ConfirmDialog
         open={confirmDelete}
-        title="Delete account"
-        description="This will sign you out and remove your access to Eawlma. We'll keep audit/payment records as required by law."
+        title={t('settings.deleteConfirmTitle')}
+        description={t('settings.deleteConfirmDescription')}
         destructive
-        confirmLabel="Delete"
+        confirmLabel={t('settings.deleteLabel')}
         onConfirm={onDeleteAccount}
         onCancel={() => setConfirmDelete(false)}
       />

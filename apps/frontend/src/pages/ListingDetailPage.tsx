@@ -96,12 +96,13 @@ export function ListingDetailPage() {
   // Fallback to the URL pathname when TanStack Router hasn't filled `params`
   // yet (which happens for the first render after a fresh navigation). Without
   // this, `id` was briefly empty and an early-return redirect kicked us back
-  // to /search.
-  const pathTail =
+  // to /search. Regex match is more robust than `.split('/').pop()` against
+  // trailing slashes or query/hash suffixes.
+  const pathMatch =
     typeof window !== 'undefined'
-      ? window.location.pathname.split('/').filter(Boolean).pop()
+      ? window.location.pathname.match(/\/listings\/([^/?#]+)/)?.[1]
       : undefined;
-  const id = params.id || pathTail || '';
+  const id = params.id || pathMatch || '';
 
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const isSaved = useSavedStore((s) => s.isSaved(id));
@@ -206,7 +207,7 @@ export function ListingDetailPage() {
     },
   });
 
-  if (listingQuery.isLoading) {
+  if (listingQuery.isLoading || (id && listingQuery.isFetching && !listing)) {
     return (
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: 4 }}>
         <Skeleton variant="rectangular" height={420} sx={{ borderRadius: 3, mb: 3 }} />
@@ -219,7 +220,9 @@ export function ListingDetailPage() {
       </Container>
     );
   }
-  if (listingQuery.isError || !listing) {
+  // Show not-found UI only when the query has actually failed or no id could
+  // be resolved at all — never auto-redirect, the user can choose to leave.
+  if (!id || listingQuery.isError || !listing) {
     return (
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: 8 }}>
         <Box

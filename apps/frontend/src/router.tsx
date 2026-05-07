@@ -11,6 +11,7 @@ import { AppShell } from './components/Layout/AppShell';
 import { NotificationToaster } from './components/global/NotificationToaster';
 import { SavedListingsHydrator } from './components/global/SavedListingsHydrator';
 import { ErrorBoundary } from './components/global/ErrorBoundary';
+import { ScrollToTop } from './components/global/ScrollToTop';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
@@ -87,6 +88,7 @@ const dashboardHomeRedirect = () => {
 const rootRoute = createRootRoute({
   component: () => (
     <ErrorBoundary>
+      <ScrollToTop />
       <Outlet />
       <NotificationToaster />
       <SavedListingsHydrator />
@@ -273,6 +275,7 @@ const routeTree = rootRoute.addChildren([
 export const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
+  scrollRestoration: false,
 });
 
 declare module '@tanstack/react-router' {

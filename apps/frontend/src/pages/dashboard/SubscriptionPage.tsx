@@ -64,9 +64,9 @@ export function SubscriptionPage() {
       /not configured/i.test(msg) ||
       /payment.*provider/i.test(msg);
     if (looksUnconfigured) {
-      return 'Payment integration not configured. Contact support to upgrade.';
+      return t('subscription.paymentNotConfigured');
     }
-    return msg || 'Could not reach the payment provider. Please try again in a moment.';
+    return msg || t('subscription.upgradeError');
   })();
   const upgradeNoRedirect =
     upgradeMutation.isSuccess && !upgradeMutation.data?.redirectUrl;
@@ -97,25 +97,25 @@ export function SubscriptionPage() {
             <Grid item xs={12} md={5}>
               <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
                 <StarIcon color="secondary" />
-                <Typography variant="overline" color="text.secondary">Current plan</Typography>
+                <Typography variant="overline" color="text.secondary">{t('subscription.currentPlan')}</Typography>
               </Stack>
               <Typography variant="h3" sx={{ fontWeight: 800, textTransform: 'capitalize' }}>{me.planKey}</Typography>
               <Typography variant="body2" color="text.secondary">
-                Renews {new Date(me.currentPeriodEnd).toLocaleDateString(i18n.language)}
+                {t('subscription.renews')} {new Date(me.currentPeriodEnd).toLocaleDateString(i18n.language)}
               </Typography>
               {me.cancelAtPeriodEnd && (
-                <Chip label="Cancels at period end" color="warning" size="small" sx={{ mt: 1 }} />
+                <Chip label={t('subscription.cancelsAtPeriodEnd')} color="warning" size="small" sx={{ mt: 1 }} />
               )}
             </Grid>
             <Grid item xs={12} md={7}>
               <Grid container spacing={2}>
-                <KpiTile label="Listing quota" value={String(me.listingQuota)} />
-                <KpiTile label="Featured quota" value={String(me.featuredQuota)} />
-                <KpiTile label="Status" value={me.status} />
+                <KpiTile label={t('subscription.listingQuota')} value={String(me.listingQuota)} />
+                <KpiTile label={t('subscription.featuredQuota')} value={String(me.featuredQuota)} />
+                <KpiTile label={t('common.status')} value={me.status} />
                 {!me.cancelAtPeriodEnd && me.planKey !== SubscriptionPlan.FREE && (
                   <Grid item xs={12}>
                     <Button color="error" onClick={() => cancelMutation.mutate()} disabled={cancelMutation.isPending}>
-                      Cancel at period end
+                      {t('subscription.cancelAtPeriodEnd')}
                     </Button>
                   </Grid>
                 )}
@@ -127,7 +127,7 @@ export function SubscriptionPage() {
 
       {/* Plan comparison */}
       <Box>
-        <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>Plans</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>{t('subscription.plans')}</Typography>
         {plansQuery.isLoading ? (
           <Grid container spacing={2}>
             {Array.from({ length: 4 }).map((_, i) => (
@@ -154,7 +154,7 @@ export function SubscriptionPage() {
         )}
         {upgradeNoRedirect && (
           <Alert severity="info" sx={{ mt: 2 }}>
-            Payment integration not configured. Contact support to upgrade.
+            {t('subscription.paymentNotConfigured')}
           </Alert>
         )}
       </Box>
@@ -162,16 +162,16 @@ export function SubscriptionPage() {
       {/* Billing history */}
       <Paper sx={{ overflow: 'hidden' }}>
         <Box sx={{ p: 3, borderBottom: 1, borderColor: 'divider' }}>
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>Billing history</Typography>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('subscription.billingHistory')}</Typography>
         </Box>
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Invoice</TableCell>
+              <TableCell>{t('common.date')}</TableCell>
+              <TableCell>{t('common.description')}</TableCell>
+              <TableCell>{t('common.status')}</TableCell>
+              <TableCell align="right">{t('common.amount')}</TableCell>
+              <TableCell align="right">{t('common.invoice')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -180,7 +180,7 @@ export function SubscriptionPage() {
             ) : payments.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} sx={{ py: 4, textAlign: 'center', color: 'text.secondary' }}>
-                  No payments yet
+                  {t('subscription.noPayments')}
                 </TableCell>
               </TableRow>
             ) : (
@@ -233,7 +233,7 @@ function PlanCard({
   onUpgrade: () => void;
   disabled: boolean;
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isFree = plan.key === SubscriptionPlan.FREE;
   return (
     <Grid item xs={12} sm={6} md={3}>
@@ -247,7 +247,7 @@ function PlanCard({
         borderColor: isCurrent ? 'primary.main' : 'divider',
       }}>
         {isCurrent && (
-          <Chip size="small" color="primary" label="Current" sx={{ position: 'absolute', top: 12, insetInlineEnd: 12 }} />
+          <Chip size="small" color="primary" label={t('subscription.current')} sx={{ position: 'absolute', top: 12, insetInlineEnd: 12 }} />
         )}
         <Typography variant="overline" color="text.secondary">{plan.billingPeriod}</Typography>
         <Typography variant="h5" sx={{ fontWeight: 800 }}>
@@ -258,9 +258,13 @@ function PlanCard({
           <Typography variant="caption" color="text.secondary">{plan.currency}/{plan.billingPeriod}</Typography>
         </Stack>
         <Stack spacing={1.25} sx={{ flex: 1 }}>
-          <Feature label={`${plan.listingQuota} active listings`} />
-          <Feature label={`${plan.featuredQuota} featured/mo`} />
-          <Feature label={`${plan.agentSeats} agent seat${plan.agentSeats > 1 ? 's' : ''}`} />
+          <Feature label={`${plan.listingQuota} ${t('subscription.activeListings')}`} />
+          <Feature label={`${plan.featuredQuota} ${t('subscription.featuredPerMonth')}`} />
+          <Feature
+            label={`${plan.agentSeats} ${
+              plan.agentSeats > 1 ? t('subscription.agentSeats') : t('subscription.agentSeat')
+            }`}
+          />
           {plan.features?.map((f) => <Feature key={f} label={f} />)}
         </Stack>
         <Button
@@ -270,7 +274,7 @@ function PlanCard({
           disabled={isCurrent || isFree || disabled}
           onClick={onUpgrade}
         >
-          {isCurrent ? 'Current plan' : isFree ? 'Free plan' : 'Upgrade'}
+          {isCurrent ? t('subscription.currentPlan') : isFree ? t('subscription.freePlan') : t('subscription.upgrade')}
         </Button>
       </Card>
     </Grid>
