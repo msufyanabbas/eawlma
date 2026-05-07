@@ -16,6 +16,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -24,7 +25,7 @@ import EmailIcon from '@mui/icons-material/MailOutline';
 import PhoneIcon from '@mui/icons-material/PhoneOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +33,7 @@ import { InquiryStatus, type Inquiry } from '@eawlma/shared-types';
 
 import { inquiriesApi } from '@/api/inquiries.api';
 import { listingsApi } from '@/api/listings.api';
+import { messagingApi } from '@/api/messaging.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 import { InquiryStatusChip } from './components/StatusChip';
@@ -63,6 +65,41 @@ export function InquiriesPage() {
 
   const inquiries = (inquiriesQuery.data?.data ?? []).filter((i) => filter === 'all' || i.status === filter);
   const active = inquiries.find((i) => i.id === activeId) ?? null;
+
+  // Open (or create) a 1:1 conversation with the inquiry's buyer and jump to
+  // the messages page with that thread auto-selected. Anonymous inquiries
+  // (no userId) can't be messaged — caller is expected to gate with
+  // `Boolean(inquiry.userId)` first.
+  const navigate = useNavigate();
+  const replyMutation = useMutation({
+    mutationFn: async (inquiry: Inquiry) => {
+      if (!inquiry.userId) throw new Error('anonymous-inquiry');
+      const listing = await listingsApi.getById(inquiry.listingId).catch(() => null);
+      const ref = listing?.referenceCode ?? inquiry.listingId.slice(0, 8);
+      return messagingApi.create({
+        recipientId: inquiry.userId,
+        listingId: inquiry.listingId,
+        initialMessage: `Following up on your inquiry about ${ref}.`,
+      });
+    },
+    onSuccess: ({ conversation }) => {
+      void navigate({
+        to: '/dashboard/messages' as never,
+        search: { conversationId: conversation.id } as never,
+      });
+    },
+    onError: (_err, inquiry) => {
+      // Conversation creation failed (e.g. anonymous lead, or recipient was
+      // deleted). Fall back to opening /dashboard/messages with the buyer id
+      // — MessagesPage shows a friendly Start-conversation prompt then.
+      void navigate({
+        to: '/dashboard/messages' as never,
+        search: inquiry.userId
+          ? ({ agentId: inquiry.userId } as never)
+          : ({} as never),
+      });
+    },
+  });
 
   return (
     <DashboardLayout>
@@ -142,9 +179,27 @@ export function InquiriesPage() {
                       <TableCell>{new Date(inq.createdAt).toLocaleDateString(i18n.language)}</TableCell>
                       <TableCell><InquiryStatusChip status={inq.status} /></TableCell>
                       <TableCell align="right">
-                        <Button size="small" component={Link} to="/messages" startIcon={<ChatIcon />}>
-                          Reply
-                        </Button>
+                        <Tooltip
+                          title={
+                            inq.userId
+                              ? ''
+                              : 'Anonymous lead — reply via email or phone'
+                          }
+                        >
+                          <span>
+                            <Button
+                              size="small"
+                              startIcon={<ChatIcon />}
+                              disabled={!inq.userId || replyMutation.isPending}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                replyMutation.mutate(inq);
+                              }}
+                            >
+                              Reply
+                            </Button>
+                          </span>
+                        </Tooltip>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -156,6 +211,8 @@ export function InquiriesPage() {
         inquiry={active}
         onClose={() => setActiveId(null)}
         onUpdated={() => qc.invalidateQueries({ queryKey: ['inquiries', 'mine-agent'] })}
+        onReply={(inq) => replyMutation.mutate(inq)}
+        replyPending={replyMutation.isPending}
       />
     </DashboardLayout>
   );
@@ -169,9 +226,11 @@ interface InquiryDrawerProps {
   inquiry: Inquiry | null;
   onClose: () => void;
   onUpdated: () => void;
+  onReply: (inquiry: Inquiry) => void;
+  replyPending: boolean;
 }
 
-function InquiryDrawer({ inquiry, onClose, onUpdated }: InquiryDrawerProps) {
+function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: InquiryDrawerProps) {
   const { t } = useTranslation();
   const [agentNotes, setAgentNotes] = useState('');
   const [nextAction, setNextAction] = useState('');
@@ -334,15 +393,25 @@ function InquiryDrawer({ inquiry, onClose, onUpdated }: InquiryDrawerProps) {
           <Divider sx={{ my: 3 }} />
 
           <Stack direction="row" spacing={1}>
-            <Button
-              fullWidth
-              variant="contained"
-              startIcon={<ChatIcon />}
-              component={Link}
-              to="/messages"
+            <Tooltip
+              title={
+                inquiry.userId
+                  ? ''
+                  : 'Anonymous lead — reach out via email or phone instead'
+              }
             >
-              Reply via Message
-            </Button>
+              <span style={{ width: '100%' }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  startIcon={<ChatIcon />}
+                  disabled={!inquiry.userId || replyPending}
+                  onClick={() => onReply(inquiry)}
+                >
+                  {replyPending ? t('common.loading') : 'Reply via Message'}
+                </Button>
+              </span>
+            </Tooltip>
             {inquiry.guestPhone && (
               <Button
                 fullWidth
