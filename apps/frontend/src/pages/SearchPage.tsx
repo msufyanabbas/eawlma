@@ -32,7 +32,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useNavigate, useSearch } from '@tanstack/react-router';
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import {
@@ -136,8 +136,18 @@ export function SearchPage() {
   const [view, setView] = useState<ViewMode>((search.view as ViewMode) ?? 'grid');
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
-  // Push filter state back to URL so it's deep-linkable.
+  // Push filter state back to URL so it's deep-linkable. We *skip* the first
+  // run on mount — the local state was just initialised from the URL, so
+  // there's nothing new to push, and an immediate `navigate({ to: '/search', replace: true })`
+  // would race with a card click in flight (the user reported "clicking
+  // listings doesn't navigate to detail" on this page). After mount, the
+  // effect only fires when the user actually changes a filter.
+  const filtersHydratedRef = useRef(false);
   useEffect(() => {
+    if (!filtersHydratedRef.current) {
+      filtersHydratedRef.current = true;
+      return;
+    }
     const next: Record<string, string | number | undefined> = {
       q: q || undefined,
       type: type || undefined,

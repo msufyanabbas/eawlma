@@ -56,6 +56,12 @@ export function SettingsPage() {
   const [bio, setBio] = useState('');
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
+  // Agency-side editable fields (agents only). Hydrated from /users/me;
+  // persisted via PATCH /users/me on the agency Save button.
+  const [agencyName, setAgencyName] = useState('');
+  const [licenseNumber, setLicenseNumber] = useState('');
+  const [registrationNumber, setRegistrationNumber] = useState('');
+
   useEffect(() => {
     if (!me) return;
     setFirstName(me.firstName);
@@ -63,6 +69,9 @@ export function SettingsPage() {
     setPhone(me.phone);
     setBio(me.bio ?? '');
     setAvatarUrl(me.avatarUrl);
+    setAgencyName(me.agencyName ?? '');
+    setLicenseNumber(me.licenseNumber ?? '');
+    setRegistrationNumber(me.registrationNumber ?? '');
   }, [me]);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -101,6 +110,21 @@ export function SettingsPage() {
         phoneVerified: data.phoneVerified,
         identityVerified: data.identityVerificationStatus === 'verified',
       });
+      void qc.invalidateQueries({ queryKey: ['users', 'me'] });
+    },
+  });
+
+  // Agency profile save — separate mutation so the section has its own
+  // success/error indicators and the Save button is independent of personal
+  // info save state.
+  const agencyMutation = useMutation({
+    mutationFn: () =>
+      usersApi.updateMe({
+        agencyName,
+        licenseNumber,
+        registrationNumber,
+      }),
+    onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ['users', 'me'] });
     },
   });
@@ -241,14 +265,58 @@ export function SettingsPage() {
         </Grid>
       </Paper>
 
-      {/* Agency info — placeholder for now (agents only) */}
+      {/* Agency info — agents only */}
       {isAgentLike && (
         <Paper sx={{ p: 3 }}>
           <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.agency')}</Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}><TextField fullWidth label={t('settings.agencyName')} disabled placeholder={t('settings.agencyNamePlaceholder')} /></Grid>
-            <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.licenseNumber')} disabled /></Grid>
-            <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.registrationNumber')} disabled /></Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                fullWidth
+                label={t('settings.agencyName')}
+                value={agencyName}
+                onChange={(e) => setAgencyName(e.target.value)}
+                placeholder={t('settings.agencyNamePlaceholder')}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <TextField
+                fullWidth
+                label={t('settings.licenseNumber')}
+                value={licenseNumber}
+                onChange={(e) => setLicenseNumber(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <TextField
+                fullWidth
+                label={t('settings.registrationNumber')}
+                value={registrationNumber}
+                onChange={(e) => setRegistrationNumber(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="contained"
+                onClick={() => agencyMutation.mutate()}
+                disabled={agencyMutation.isPending}
+                sx={{
+                  bgcolor: 'primary.main',
+                  color: 'common.white',
+                  fontWeight: 700,
+                  '&:hover': { bgcolor: 'primary.dark' },
+                  '&.Mui-disabled': { bgcolor: 'grey.300', color: 'grey.600' },
+                }}
+              >
+                {agencyMutation.isPending ? t('common.loading') : t('profile.saveChanges')}
+              </Button>
+              {agencyMutation.isError && (
+                <Alert severity="error" sx={{ mt: 2 }}>{extractErrorMessage(agencyMutation.error)}</Alert>
+              )}
+              {agencyMutation.isSuccess && (
+                <Alert severity="success" sx={{ mt: 2 }}>{t('settings.profileUpdated')}</Alert>
+              )}
+            </Grid>
           </Grid>
         </Paper>
       )}

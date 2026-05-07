@@ -72,6 +72,20 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'uuid', name: 'agency_id', nullable: true })
   agencyId: string | null;
 
+  /** Agency / brokerage the agent belongs to. Free-text for now — will be
+   *  promoted to a foreign key into the upcoming `agencies` table later. */
+  @Column({ type: 'varchar', length: 200, name: 'agency_name', nullable: true })
+  agencyName: string | null;
+
+  /** REGA broker licence number (e.g. 1100012345). Editable by the agent
+   *  themselves; admin verification of the licence is a separate workflow. */
+  @Column({ type: 'varchar', length: 64, name: 'license_number', nullable: true })
+  licenseNumber: string | null;
+
+  /** Saudi commercial registration number (CR / السجل التجاري). */
+  @Column({ type: 'varchar', length: 64, name: 'registration_number', nullable: true })
+  registrationNumber: string | null;
+
   @Column({ type: 'timestamptz', name: 'last_login_at', nullable: true })
   lastLoginAt: Date | null;
 

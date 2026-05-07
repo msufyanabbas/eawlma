@@ -3,7 +3,6 @@ import {
   IsObject,
   IsOptional,
   IsString,
-  IsUrl,
   Length,
   Matches,
   MaxLength,
@@ -36,7 +35,11 @@ export class UpdateProfileDto {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @IsUrl({ protocols: ['http', 'https'], require_protocol: true })
+  // Permissive HTTP(S) check — class-validator's @IsUrl() rejects hosts that
+  // lack a TLD (e.g. http://localhost:3010/...) which is exactly the shape the
+  // dev S3 stub returns. We only need to guarantee the value is a string with
+  // an http/https protocol; the upload service already controls the URL.
+  @Matches(/^https?:\/\/.+/i, { message: 'avatarUrl must be a URL address' })
   @MaxLength(1024)
   avatarUrl?: string;
 
@@ -53,4 +56,22 @@ export class UpdateProfileDto {
   @IsOptional()
   @IsObject()
   notificationPreferences?: Record<string, boolean>;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(200)
+  agencyName?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(64)
+  licenseNumber?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(64)
+  registrationNumber?: string;
 }

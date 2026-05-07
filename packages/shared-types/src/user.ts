@@ -24,6 +24,9 @@ export interface User {
   phoneVerified: boolean;
   identityVerificationStatus: VerificationStatus;
   agencyId: string | null;
+  agencyName: string | null;
+  licenseNumber: string | null;
+  registrationNumber: string | null;
   notificationPreferences: UserNotificationPrefs | null;
   createdAt: string;
   updatedAt: string;
@@ -38,6 +41,9 @@ export interface UpdateProfileRequest {
   avatarUrl?: string;
   preferredLocale?: string;
   notificationPreferences?: UserNotificationPrefs;
+  agencyName?: string;
+  licenseNumber?: string;
+  registrationNumber?: string;
 }
 
 export interface UpdateUserStatusRequest {

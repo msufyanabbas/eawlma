@@ -141,6 +141,9 @@ export class UsersService {
       // Merge — preserve any keys we don't have a UI toggle for yet.
       user.notificationPreferences = { ...(user.notificationPreferences ?? {}), ...dto.notificationPreferences };
     }
+    if (dto.agencyName !== undefined) user.agencyName = dto.agencyName.trim() || null;
+    if (dto.licenseNumber !== undefined) user.licenseNumber = dto.licenseNumber.trim() || null;
+    if (dto.registrationNumber !== undefined) user.registrationNumber = dto.registrationNumber.trim() || null;
 
     return this.users.save(user);
   }

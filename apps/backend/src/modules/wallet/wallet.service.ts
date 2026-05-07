@@ -53,6 +53,7 @@ export class WalletService {
   // ---------------------------------------------------------------------------
 
   async getOrCreate(userId: string): Promise<WalletEntity> {
+    if (!userId) throw new BadRequestException('userId is required');
     let wallet = await this.wallets.findOne({ where: { userId } });
     if (!wallet) {
       wallet = this.wallets.create({ userId, balance: '0.00', currency: 'SAR' });

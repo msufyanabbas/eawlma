@@ -57,8 +57,22 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
       if (target?.closest('button, a, [role="button"]:not([data-card-root])')) {
         return;
       }
+      // Stop propagation so any wrapping page-level click handler (e.g. a
+      // search-page-wide listener) can't preventDefault our navigation.
+      e.preventDefault?.();
+      e.stopPropagation?.();
     }
-    void navigate({ to: `/listings/${listing.id}` as never });
+    // Defer to next tick so any in-flight setState/effect from the click
+    // settles before the router transition kicks in. Without this, fast
+    // re-renders on the search page were swallowing the navigation.
+    Promise.resolve().then(() => {
+      try {
+        void navigate({ to: `/listings/${listing.id}` as never });
+      } catch {
+        // Absolute fallback — full-page navigation if the router refuses.
+        window.location.href = `/listings/${listing.id}`;
+      }
+    });
   };
   const activeLocale = locale ?? i18n.language;
   const title = getListingTitle(listing, activeLocale);
