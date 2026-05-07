@@ -10,6 +10,15 @@ export interface MoyasarDisbursement {
   currency?: string;
   reference?: string;
   failure_reason?: string;
+  created_at?: string;
+}
+
+export interface MoyasarDisbursementCreateParams {
+  amount: number; // in SAR (whole units — converted to halalas internally)
+  ibanNumber: string;
+  beneficiaryName: string;
+  description: string;
+  reference: string;
 }
 
 @Injectable()
@@ -18,7 +27,7 @@ export class MoyasarDisbursementService {
   private readonly baseUrl = 'https://api.moyasar.com/v1';
   private readonly secretKey: string;
   private readonly webhookSecret: string;
-  private readonly isConfigured: boolean;
+  private readonly nodeEnv: string;
 
   constructor(private readonly config: ConfigService) {
     this.secretKey =
@@ -29,33 +38,35 @@ export class MoyasarDisbursementService {
       this.config.get<string>('MOYASAR_WEBHOOK_SECRET') ??
       this.config.get<string>('services.moyasar.webhookSecret') ??
       '';
-    this.isConfigured = Boolean(this.secretKey);
-    if (!this.isConfigured) {
-      this.logger.warn(
-        'MOYASAR_SECRET_KEY is not set — disbursement calls will run in mock mode',
+    this.nodeEnv =
+      this.config.get<string>('NODE_ENV') ??
+      this.config.get<string>('app.nodeEnv') ??
+      'development';
+    if (!this.isLive) {
+      this.logger.log(
+        `Moyasar disbursements running in MOCK mode (nodeEnv=${this.nodeEnv}, secretKey=${this.secretKey ? 'set' : 'unset'})`,
       );
     }
   }
 
-  /** True when a real Moyasar key is configured — used by the webhook
-   *  controller to decide whether to enforce signature verification. */
-  isLive(): boolean {
-    return this.isConfigured;
+  /**
+   * Live mode requires *both* a real secret key and `NODE_ENV=production`.
+   * Anything else (dev, staging, test, missing key) falls through to the
+   * mock so we never blow up on a Moyasar account that doesn't have
+   * disbursements enabled — the API returns "Resource not found" for
+   * accounts without the disbursements add-on, and we don't want to
+   * surface that to the agent in dev.
+   */
+  get isLive(): boolean {
+    return Boolean(this.secretKey) && this.nodeEnv === 'production';
   }
 
-  async createDisbursement(params: {
-    amount: number; // in SAR (whole units — converted to halalas internally)
-    ibanNumber: string;
-    beneficiaryName: string;
-    description: string;
-    reference: string;
-  }): Promise<MoyasarDisbursement> {
-    if (!this.isConfigured) {
-      // Mock mode — used in dev/test where no Moyasar key is configured.
-      // Returns an immediately-paid disbursement so the happy path still
-      // exercises the wallet debit + agent notification end-to-end.
-      this.logger.warn(
-        `[mock] disbursement of ${params.amount} SAR to ${params.ibanNumber} (ref ${params.reference})`,
+  async createDisbursement(
+    params: MoyasarDisbursementCreateParams,
+  ): Promise<MoyasarDisbursement> {
+    if (!this.isLive) {
+      this.logger.log(
+        `Dev mode: mocking disbursement as paid (${params.amount} SAR → ${params.ibanNumber}, ref ${params.reference})`,
       );
       return {
         id: `mock_disb_${Date.now()}`,
@@ -63,6 +74,7 @@ export class MoyasarDisbursementService {
         amount: Math.round(params.amount * 100),
         currency: 'SAR',
         reference: params.reference,
+        created_at: new Date().toISOString(),
       };
     }
 
@@ -96,7 +108,7 @@ export class MoyasarDisbursementService {
   }
 
   async getDisbursement(disbursementId: string): Promise<MoyasarDisbursement> {
-    if (!this.isConfigured) {
+    if (!this.isLive) {
       return { id: disbursementId, status: 'paid' };
     }
     const response = await axios.get<MoyasarDisbursement>(

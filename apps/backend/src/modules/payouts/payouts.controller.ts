@@ -127,7 +127,7 @@ export class PayoutsController {
     // comparison. With the current global parser the request body is already
     // an object — verify against the canonical JSON shape.
     const raw = (req as Request & { rawBody?: Buffer }).rawBody ?? JSON.stringify(payload);
-    if (this.moyasar.isLive() && !this.moyasar.verifyWebhookSignature(raw, signature)) {
+    if (this.moyasar.isLive && !this.moyasar.verifyWebhookSignature(raw, signature)) {
       throw new ForbiddenException('Invalid Moyasar webhook signature');
     }
     if (!payload || typeof payload !== 'object') {
