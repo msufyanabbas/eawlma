@@ -32,6 +32,7 @@ import { InquiriesService } from './inquiries.service';
 import { CreateInquiryDto } from './dto/create-inquiry.dto';
 import { UpdateInquiryDto } from './dto/update-inquiry.dto';
 import { InquiryResponseDto } from './dto/inquiry-response.dto';
+import { CloseDealDto } from './dto/close-deal.dto';
 
 @ApiTags('inquiries')
 @Controller({ path: 'inquiries', version: '1' })
@@ -121,5 +122,22 @@ export class InquiriesController {
   ): Promise<InquiryResponseDto> {
     const updated = await this.inquiriesService.update(id, actor, dto);
     return InquiryResponseDto.fromEntity(updated);
+  }
+
+  @ApiBearerAuth('access-token')
+  @Post(':id/close-deal')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Close the deal on an inquiry. Records the transaction value, transitions the inquiry to CLOSED, and auto-creates a pending Commission row + notifications.',
+  })
+  @ApiOkResponse({ type: InquiryResponseDto })
+  async closeDeal(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() actor: RequestUser,
+    @Body() dto: CloseDealDto,
+  ): Promise<InquiryResponseDto> {
+    const closed = await this.inquiriesService.closeDeal(id, actor, dto);
+    return InquiryResponseDto.fromEntity(closed);
   }
 }

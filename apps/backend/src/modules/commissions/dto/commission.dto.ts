@@ -72,8 +72,22 @@ export class CommissionResponseDto {
   @ApiPropertyOptional({ nullable: true }) notes: string | null;
   @ApiProperty({ type: String }) createdAt: Date;
   @ApiProperty({ type: String }) updatedAt: Date;
+  // Optional joined fields — populated by admin/agent list endpoints so the
+  // UI can render readable names without a second round-trip per row.
+  @ApiPropertyOptional({ nullable: true }) listingTitle?: string | null;
+  @ApiPropertyOptional({ nullable: true }) listingReferenceCode?: string | null;
+  @ApiPropertyOptional({ nullable: true }) agentName?: string | null;
+  @ApiPropertyOptional({ nullable: true }) buyerName?: string | null;
 
-  static fromEntity(c: CommissionEntity): CommissionResponseDto {
+  static fromEntity(
+    c: CommissionEntity,
+    enrich?: {
+      listingTitle?: string | null;
+      listingReferenceCode?: string | null;
+      agentName?: string | null;
+      buyerName?: string | null;
+    },
+  ): CommissionResponseDto {
     const dto = new CommissionResponseDto();
     dto.id = c.id;
     dto.listingId = c.listingId;
@@ -88,6 +102,12 @@ export class CommissionResponseDto {
     dto.notes = c.notes;
     dto.createdAt = c.createdAt;
     dto.updatedAt = c.updatedAt;
+    if (enrich) {
+      dto.listingTitle = enrich.listingTitle ?? null;
+      dto.listingReferenceCode = enrich.listingReferenceCode ?? null;
+      dto.agentName = enrich.agentName ?? null;
+      dto.buyerName = enrich.buyerName ?? null;
+    }
     return dto;
   }
 }

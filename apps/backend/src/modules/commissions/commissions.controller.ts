@@ -71,6 +71,16 @@ export class CommissionsController {
     return this.commissions.listForAgent(user.id);
   }
 
+  /** Buyer-side commissions — driven by closed deals where the signed-in
+   *  user is the buyer. Open to any authenticated role. */
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @Get('buyer/me')
+  @ApiOperation({ summary: 'Commissions the current authenticated user owes (as buyer).' })
+  async myAsBuyer(@CurrentUser() user: RequestUser): Promise<CommissionResponseDto[]> {
+    return this.commissions.listForBuyer(user.id);
+  }
+
   /** Admin endpoints. */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)

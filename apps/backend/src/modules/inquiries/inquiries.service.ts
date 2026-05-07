@@ -27,6 +27,8 @@ import { NotificationsService } from '../notifications/notifications.service';
 
 import { CreateInquiryDto } from './dto/create-inquiry.dto';
 import { UpdateInquiryDto } from './dto/update-inquiry.dto';
+import { CloseDealDto } from './dto/close-deal.dto';
+import { CommissionsService } from '../commissions/commissions.service';
 
 interface ClientContext {
   ip?: string | null;
@@ -66,6 +68,7 @@ export class InquiriesService {
     private readonly emailService: EmailService,
     private readonly kafkaService: KafkaService,
     private readonly config: ConfigService,
+    private readonly commissionsService: CommissionsService,
   ) {
     this.inquiryEventsTopic =
       this.config.get<string>('kafka.topics.listingEvents') ?? 'eawlma.listing.events';
@@ -212,6 +215,107 @@ export class InquiriesService {
     if (dto.nextActionAt !== undefined) inquiry.nextActionAt = dto.nextActionAt;
 
     return this.inquiries.save(inquiry);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Close deal — transitions to CLOSED, records the transaction value, and
+  // auto-generates a pending Commission row + admin/buyer notifications.
+  // ---------------------------------------------------------------------------
+
+  async closeDeal(
+    id: string,
+    actor: RequestUser,
+    dto: CloseDealDto,
+  ): Promise<InquiryEntity> {
+    const inquiry = await this.findByIdForActor(id, actor);
+    // Only the listing's agent (or admin/moderator) can close. `assertCanModify`
+    // rejects anyone else with 403.
+    this.assertCanModify(inquiry, actor);
+
+    if (inquiry.status === InquiryStatus.CLOSED) {
+      throw new BadRequestException('Inquiry is already closed');
+    }
+    if (dto.transactionValue <= 0) {
+      throw new BadRequestException('transactionValue must be positive');
+    }
+
+    inquiry.status = InquiryStatus.CLOSED;
+    inquiry.transactionValue = dto.transactionValue.toFixed(2);
+    inquiry.closedAt = dto.closedAt ?? new Date();
+    if (dto.notes) {
+      // Append the close-deal notes onto the existing agent notes so we never
+      // overwrite the live CRM commentary.
+      inquiry.agentNotes = [inquiry.agentNotes, dto.notes].filter(Boolean).join('\n\n');
+    }
+
+    const saved = await this.inquiries.save(inquiry);
+
+    // Generate the commission row (status=pending — admin still confirms).
+    // The CommissionsService computes agent/platform amounts from configured
+    // rates so the breakdown can be audited later.
+    const commission = await this.commissionsService.create({
+      listingId: saved.listingId,
+      agentId: saved.agentId,
+      buyerId: saved.userId ?? undefined,
+      transactionValue: dto.transactionValue,
+      notes: dto.notes,
+    });
+
+    // Look up the listing for nicer notification copy.
+    const listing = await this.listings.findOne({
+      where: { id: saved.listingId },
+      select: ['id', 'title', 'referenceCode'],
+    });
+    const listingLabel = listing?.title ?? saved.listingId;
+    const valueLabel = `${dto.transactionValue.toLocaleString('en-US')} SAR`;
+
+    // Notify all admins. Best-effort — failures here must not block the close.
+    try {
+      const admins = await this.users.find({
+        where: { role: UserRole.ADMIN },
+        select: ['id'],
+      });
+      await Promise.all(
+        admins.map((admin) =>
+          this.notificationsService.create({
+            userId: admin.id,
+            type: NotificationType.INQUIRY_RECEIVED,
+            title: 'New deal closed',
+            body: `${listingLabel} — ${valueLabel}. Commission ${commission.id} awaiting confirmation.`,
+            data: {
+              inquiryId: saved.id,
+              listingId: saved.listingId,
+              commissionId: commission.id,
+              transactionValue: dto.transactionValue,
+            },
+          }),
+        ),
+      );
+    } catch (err) {
+      this.logger.error(`Admin close-deal notifications failed: ${(err as Error).message}`);
+    }
+
+    // Notify the buyer (if authenticated). Buyers see this in their bell.
+    if (saved.userId) {
+      try {
+        await this.notificationsService.create({
+          userId: saved.userId,
+          type: NotificationType.INQUIRY_RECEIVED,
+          title: 'Your deal is confirmed',
+          body: `Your purchase of ${listingLabel} is confirmed. Commission payment will be required after admin review.`,
+          data: {
+            inquiryId: saved.id,
+            listingId: saved.listingId,
+            commissionId: commission.id,
+            transactionValue: dto.transactionValue,
+          },
+        });
+      } catch (err) {
+        this.logger.error(`Buyer close-deal notification failed: ${(err as Error).message}`);
+      }
+    }
+
+    return saved;
   }
 
   // ---------------------------------------------------------------------------

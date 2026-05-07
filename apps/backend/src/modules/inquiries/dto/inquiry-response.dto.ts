@@ -18,6 +18,8 @@ export class InquiryResponseDto {
   @ApiPropertyOptional({ nullable: true }) nextAction: string | null;
   @ApiPropertyOptional({ type: String, nullable: true }) nextActionAt: Date | null;
   @ApiPropertyOptional({ type: String, nullable: true }) respondedAt: Date | null;
+  @ApiPropertyOptional({ nullable: true }) transactionValue: number | null;
+  @ApiPropertyOptional({ type: String, nullable: true }) closedAt: Date | null;
   @ApiProperty({ type: String }) createdAt: Date;
   @ApiProperty({ type: String }) updatedAt: Date;
 
@@ -37,6 +39,8 @@ export class InquiryResponseDto {
     dto.nextAction = i.nextAction;
     dto.nextActionAt = i.nextActionAt;
     dto.respondedAt = i.respondedAt;
+    dto.transactionValue = i.transactionValue !== null ? Number(i.transactionValue) : null;
+    dto.closedAt = i.closedAt;
     dto.createdAt = i.createdAt;
     dto.updatedAt = i.updatedAt;
     return dto;

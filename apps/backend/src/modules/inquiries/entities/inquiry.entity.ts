@@ -80,6 +80,16 @@ export class InquiryEntity extends BaseEntity {
   @Column({ type: 'timestamptz', name: 'responded_at', nullable: true })
   respondedAt: Date | null;
 
+  /** Final transaction value when the deal closes — used to compute the
+   *  commission split. Null until the agent records the close. */
+  @Column({ type: 'numeric', precision: 14, scale: 2, name: 'transaction_value', nullable: true })
+  transactionValue: string | null;
+
+  /** Timestamp the agent reports the deal as closed. Distinct from
+   *  `respondedAt`, which tracks the first reply. */
+  @Column({ type: 'timestamptz', name: 'closed_at', nullable: true })
+  closedAt: Date | null;
+
   @Column({ type: 'inet', name: 'source_ip', nullable: true })
   sourceIp: string | null;
 

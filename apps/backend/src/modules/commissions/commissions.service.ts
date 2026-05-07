@@ -1,10 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
+import { NotificationType } from '@eawlma/shared-types';
 
 import { CommissionEntity, CommissionStatus } from './entities/commission.entity';
 import { CommitmentOathEntity } from './entities/commitment-oath.entity';
+import { ListingEntity } from '../listings/entities/listing.entity';
+import { UserEntity } from '../users/entities/user.entity';
+import { NotificationsService } from '../notifications/notifications.service';
 import {
   AcceptOathDto,
   CommissionResponseDto,
@@ -18,13 +22,62 @@ const STATUS_VALUES: CommissionStatus[] = ['pending', 'confirmed', 'paid', 'disp
 
 @Injectable()
 export class CommissionsService {
+  private readonly logger = new Logger(CommissionsService.name);
+
   constructor(
     @InjectRepository(CommissionEntity)
     private readonly commissions: Repository<CommissionEntity>,
     @InjectRepository(CommitmentOathEntity)
     private readonly oaths: Repository<CommitmentOathEntity>,
+    @InjectRepository(ListingEntity)
+    private readonly listings: Repository<ListingEntity>,
+    @InjectRepository(UserEntity)
+    private readonly users: Repository<UserEntity>,
+    private readonly notifications: NotificationsService,
     private readonly config: ConfigService,
   ) {}
+
+  /** Pull listing/agent/buyer names for a batch of commissions in two queries
+   *  rather than N+1 — used by the admin and agent list endpoints. */
+  private async enrichRows(
+    rows: CommissionEntity[],
+  ): Promise<CommissionResponseDto[]> {
+    if (rows.length === 0) return [];
+    const listingIds = Array.from(new Set(rows.map((r) => r.listingId)));
+    const userIds = Array.from(
+      new Set(rows.flatMap((r) => [r.agentId, r.buyerId].filter((id): id is string => Boolean(id)))),
+    );
+
+    const [listings, users] = await Promise.all([
+      listingIds.length
+        ? this.listings.find({
+            where: { id: In(listingIds) },
+            select: ['id', 'title', 'referenceCode'],
+          })
+        : Promise.resolve([] as ListingEntity[]),
+      userIds.length
+        ? this.users.find({
+            where: { id: In(userIds) },
+            select: ['id', 'firstName', 'lastName'],
+          })
+        : Promise.resolve([] as UserEntity[]),
+    ]);
+
+    const listingsById = new Map(listings.map((l) => [l.id, l]));
+    const usersById = new Map(users.map((u) => [u.id, u]));
+    const fullName = (u: UserEntity | undefined): string | null =>
+      u ? `${u.firstName ?? ''} ${u.lastName ?? ''}`.trim() || null : null;
+
+    return rows.map((r) => {
+      const listing = listingsById.get(r.listingId);
+      return CommissionResponseDto.fromEntity(r, {
+        listingTitle: listing?.title ?? null,
+        listingReferenceCode: listing?.referenceCode ?? null,
+        agentName: fullName(usersById.get(r.agentId)),
+        buyerName: r.buyerId ? fullName(usersById.get(r.buyerId)) : null,
+      });
+    });
+  }
 
   private agentRate(): number {
     return Number(this.config.get<number | string>('AGENT_COMMISSION_RATE', 2.5));
@@ -64,21 +117,63 @@ export class CommissionsService {
       where: { agentId },
       order: { createdAt: 'DESC' },
     });
-    return rows.map(CommissionResponseDto.fromEntity);
+    return this.enrichRows(rows);
+  }
+
+  /** Buyer view — commissions where the current user is the buyer. Used by
+   *  the wallet "pending payments" panel. */
+  async listForBuyer(buyerId: string): Promise<CommissionResponseDto[]> {
+    const rows = await this.commissions.find({
+      where: { buyerId },
+      order: { createdAt: 'DESC' },
+    });
+    return this.enrichRows(rows);
   }
 
   async listAll(): Promise<CommissionResponseDto[]> {
     const rows = await this.commissions.find({ order: { createdAt: 'DESC' } });
-    return rows.map(CommissionResponseDto.fromEntity);
+    return this.enrichRows(rows);
   }
 
   async updateStatus(id: string, dto: UpdateCommissionStatusDto): Promise<CommissionResponseDto> {
     const row = await this.commissions.findOne({ where: { id } });
     if (!row) throw new NotFoundException('Commission not found');
+    const previousStatus = row.status;
     row.status = dto.status;
     if (dto.notes !== undefined) row.notes = dto.notes;
     const saved = await this.commissions.save(row);
-    return CommissionResponseDto.fromEntity(saved);
+
+    // Transition pending|disputed → confirmed nudges the buyer to pay.
+    if (
+      dto.status === 'confirmed' &&
+      previousStatus !== 'confirmed' &&
+      saved.buyerId
+    ) {
+      try {
+        const listing = await this.listings.findOne({
+          where: { id: saved.listingId },
+          select: ['id', 'title', 'referenceCode'],
+        });
+        const total =
+          Number(saved.agentCommissionAmount) + Number(saved.platformCommissionAmount);
+        await this.notifications.create({
+          userId: saved.buyerId,
+          type: NotificationType.INQUIRY_RECEIVED,
+          title: 'Please pay commission',
+          body: `Your commission for ${listing?.title ?? saved.listingId} (${total.toLocaleString('en-US')} SAR) is ready for payment.`,
+          data: {
+            commissionId: saved.id,
+            listingId: saved.listingId,
+            amount: total,
+          },
+        });
+      } catch (err) {
+        this.logger.error(`Buyer commission-confirm notification failed: ${(err as Error).message}`);
+      }
+    }
+
+    const [enriched] = await this.enrichRows([saved]);
+    return enriched ?? CommissionResponseDto.fromEntity(saved);
   }
 
   async summary(): Promise<CommissionSummaryDto> {
