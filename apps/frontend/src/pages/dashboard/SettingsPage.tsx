@@ -18,6 +18,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { UserRole } from '@eawlma/shared-types';
 
 import { usersApi } from '@/api/users.api';
 import { authApi } from '@/api/auth.api';
@@ -34,9 +35,19 @@ export function SettingsPage() {
   const qc = useQueryClient();
   const setUser = useAuthStore((s) => s.setUser);
   const clearSession = useAuthStore((s) => s.clearSession);
+  const sessionRole = useAuthStore((s) => s.user?.role);
 
   const meQuery = useQuery({ queryKey: ['users', 'me'], queryFn: () => usersApi.me() });
   const me = meQuery.data;
+
+  // Agency + identity verification only make sense for agent-side accounts.
+  // Buyers (UserRole.USER) see only the personal-info, notification, password
+  // and danger-zone sections.
+  const role = (me?.role ?? sessionRole) as UserRole | undefined;
+  const isAgentLike =
+    role === UserRole.AGENT ||
+    role === UserRole.AGENCY_ADMIN ||
+    role === UserRole.ADMIN;
 
   // Personal info
   const [firstName, setFirstName] = useState('');
@@ -230,17 +241,20 @@ export function SettingsPage() {
         </Grid>
       </Paper>
 
-      {/* Agency info — placeholder for now */}
-      <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.agency')}</Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}><TextField fullWidth label={t('settings.agencyName')} disabled placeholder={t('settings.agencyNamePlaceholder')} /></Grid>
-          <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.licenseNumber')} disabled /></Grid>
-          <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.registrationNumber')} disabled /></Grid>
-        </Grid>
-      </Paper>
+      {/* Agency info — placeholder for now (agents only) */}
+      {isAgentLike && (
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('settings.agency')}</Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}><TextField fullWidth label={t('settings.agencyName')} disabled placeholder={t('settings.agencyNamePlaceholder')} /></Grid>
+            <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.licenseNumber')} disabled /></Grid>
+            <Grid item xs={12} md={3}><TextField fullWidth label={t('settings.registrationNumber')} disabled /></Grid>
+          </Grid>
+        </Paper>
+      )}
 
-      {/* Identity verification (Authentica.sa) */}
+      {/* Identity verification (Authentica.sa) — agents only */}
+      {isAgentLike && (
       <Paper sx={{ p: 3 }}>
         <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
           <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('settings.verification')}</Typography>
@@ -320,6 +334,7 @@ export function SettingsPage() {
           </Grid>
         )}
       </Paper>
+      )}
 
       {/* Notification preferences */}
       <Paper sx={{ p: 3 }}>
@@ -400,6 +415,13 @@ export function SettingsPage() {
               variant="contained"
               disabled={passwordMutation.isPending || !currentPwd || newPwd.length < 8}
               onClick={() => passwordMutation.mutate()}
+              sx={{
+                bgcolor: 'primary.main',
+                color: 'common.white',
+                fontWeight: 700,
+                '&:hover': { bgcolor: 'primary.dark' },
+                '&.Mui-disabled': { bgcolor: 'grey.300', color: 'grey.600' },
+              }}
             >
               {passwordMutation.isPending ? t('common.loading') : t('settings.updatePassword')}
             </Button>

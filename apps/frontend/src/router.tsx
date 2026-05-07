@@ -40,6 +40,7 @@ import { SettingsPage } from './pages/dashboard/SettingsPage';
 import { MessagesPage } from './pages/dashboard/MessagesPage';
 import { NotificationsPage } from './pages/dashboard/NotificationsPage';
 import { CommissionsPage } from './pages/dashboard/CommissionsPage';
+import { WalletPage } from './pages/dashboard/WalletPage';
 import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { ModerationPage } from './pages/admin/ModerationPage';
@@ -199,6 +200,9 @@ const dashboardSubscriptionRoute = createRoute({ getParentRoute: () => dashboard
 // Settings is open to any authenticated user (buyers and agents alike).
 const dashboardSettingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/settings', component: SettingsPage });
 const dashboardCommissionsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/commissions', beforeLoad: requireAgentRole, component: CommissionsPage });
+// Wallet is open to any authenticated user (buyers fund commission payments,
+// agents collect their share into the same balance).
+const dashboardWalletRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/wallet', component: WalletPage });
 
 // `/messages` (top-level) is a friendlier alias for the same page — Navbar
 // links to it from the public chat icon. It mounts under the dashboard
@@ -260,6 +264,7 @@ const routeTree = rootRoute.addChildren([
     dashboardSubscriptionRoute,
     dashboardSettingsRoute,
     dashboardCommissionsRoute,
+    dashboardWalletRoute,
     dashboardMessagesAliasRoute,
     userNotificationsAliasRoute,
   ]),

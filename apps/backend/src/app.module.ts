@@ -39,6 +39,7 @@ import { AdminModule } from './modules/admin/admin.module';
 import { SavedListingsModule } from './modules/saved-listings/saved-listings.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
 import { CommissionsModule } from './modules/commissions/commissions.module';
+import { WalletModule } from './modules/wallet/wallet.module';
 
 @Module({
   imports: [
@@ -96,6 +97,7 @@ import { CommissionsModule } from './modules/commissions/commissions.module';
     SavedListingsModule,
     ReviewsModule,
     CommissionsModule,
+    WalletModule,
   ],
   controllers: [HealthController],
   providers: [

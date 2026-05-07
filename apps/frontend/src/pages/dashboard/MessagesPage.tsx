@@ -18,7 +18,7 @@ import AttachIcon from '@mui/icons-material/AttachFile';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-import { useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useSearch } from '@tanstack/react-router';
 import {
   useEffect,
@@ -32,12 +32,15 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import {
   type Conversation,
+  type Listing,
   type Message,
 } from '@eawlma/shared-types';
 
 import { messagingApi } from '@/api/messaging.api';
 import { listingsApi } from '@/api/listings.api';
+import { agentsApi } from '@/api/agents.api';
 import { storageApi } from '@/api/storage.api';
+import { getListingTitle } from '@/utils/listingText';
 import { getMessagingSocket } from '@/api/realtime';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';
@@ -83,13 +86,95 @@ export function MessagesPage() {
   });
 
   const conversations = (conversationsQuery.data?.data ?? []) as ConversationRow[];
+
+  // Resolve the listing title + the "other party" name for every visible
+  // conversation so the sidebar shows e.g. "Villa in Olaya — Sarah" instead
+  // of "Conversation 02e9d5". Listings come from /listings/:id; the other
+  // participant is fetched via /agents/:id (agent profiles are public — buyer
+  // profiles aren't, so this resolves only when the other side is an agent).
+  const listingIds = useMemo(
+    () => Array.from(new Set(conversations.map((c) => c.listingId).filter(Boolean) as string[])),
+    [conversations],
+  );
+  const listingQueries = useQueries({
+    queries: listingIds.map((id) => ({
+      queryKey: ['listings', id],
+      queryFn: () => listingsApi.getById(id),
+      staleTime: 5 * 60_000,
+      retry: false,
+    })),
+  });
+  const listingsById = useMemo(() => {
+    const out = new Map<string, Listing>();
+    listingIds.forEach((id, idx) => {
+      const data = listingQueries[idx]?.data;
+      if (data) out.set(id, data);
+    });
+    return out;
+  }, [listingIds, listingQueries]);
+
+  const otherIdsForLookup = useMemo(() => {
+    if (!userId) return [] as string[];
+    return Array.from(
+      new Set(
+        conversations
+          .map((c) => c.participantIds.find((p) => p !== userId))
+          .filter((id): id is string => Boolean(id)),
+      ),
+    );
+  }, [conversations, userId]);
+  const partyQueries = useQueries({
+    queries: otherIdsForLookup.map((id) => ({
+      queryKey: ['agents', id],
+      queryFn: () => agentsApi.getById(id),
+      staleTime: 5 * 60_000,
+      retry: false,
+    })),
+  });
+  const partiesById = useMemo(() => {
+    const out = new Map<string, { name: string; avatarUrl: string | null }>();
+    otherIdsForLookup.forEach((id, idx) => {
+      const data = partyQueries[idx]?.data;
+      if (data) {
+        out.set(id, {
+          name: `${data.firstName} ${data.lastName}`.trim(),
+          avatarUrl: data.avatarUrl,
+        });
+      }
+    });
+    return out;
+  }, [otherIdsForLookup, partyQueries]);
+
+  const conversationDisplay = (conv: Conversation) => {
+    const otherId = userId ? conv.participantIds.find((p) => p !== userId) : undefined;
+    const otherName = otherId ? partiesById.get(otherId)?.name : undefined;
+    const otherAvatar = otherId ? partiesById.get(otherId)?.avatarUrl ?? null : null;
+    const listing = conv.listingId ? listingsById.get(conv.listingId) : undefined;
+    const listingTitle = listing ? getListingTitle(listing, i18n.language) : undefined;
+    const fallback = conv.listingId ? `Conversation ${conv.id.slice(0, 6)}` : t('empty.noMessages');
+    return {
+      title: otherName || listingTitle || fallback,
+      subtitle: otherName && listingTitle ? listingTitle : undefined,
+      avatarUrl: otherAvatar,
+      avatarFallback: (otherName ?? listingTitle ?? '?').charAt(0).toUpperCase(),
+    };
+  };
+
   const filteredConversations = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!q) return conversations;
-    return conversations.filter(
-      (c) => (c.lastMessagePreview ?? '').toLowerCase().includes(q),
-    );
-  }, [conversations, search]);
+    return conversations.filter((c) => {
+      const display = conversationDisplay(c);
+      return (
+        (c.lastMessagePreview ?? '').toLowerCase().includes(q) ||
+        display.title.toLowerCase().includes(q) ||
+        (display.subtitle ?? '').toLowerCase().includes(q)
+      );
+    });
+    // conversationDisplay closes over listingsById/partiesById, so re-run when
+    // either changes. Direct deps keep the memo cache valid without lying.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conversations, search, listingsById, partiesById, userId, i18n.language]);
 
   const activeConversation = conversations.find((c) => c.id === activeId) ?? null;
 
@@ -357,17 +442,24 @@ export function MessagesPage() {
                 onCta={() => { window.location.href = '/search'; }}
               />
             ) : (
-              filteredConversations.map((c) => (
-                <ConversationRowItem
-                  key={c.id}
-                  conversation={c}
-                  active={c.id === activeId}
-                  onClick={() => {
-                    setActiveId(c.id);
-                    setShowListOnMobile(false);
-                  }}
-                />
-              ))
+              filteredConversations.map((c) => {
+                const display = conversationDisplay(c);
+                return (
+                  <ConversationRowItem
+                    key={c.id}
+                    conversation={c}
+                    active={c.id === activeId}
+                    title={display.title}
+                    subtitle={display.subtitle}
+                    avatarUrl={display.avatarUrl}
+                    avatarFallback={display.avatarFallback}
+                    onClick={() => {
+                      setActiveId(c.id);
+                      setShowListOnMobile(false);
+                    }}
+                  />
+                );
+              })
             )}
           </Box>
         </Box>
@@ -411,22 +503,33 @@ export function MessagesPage() {
                   <ArrowBackIcon />
                 </IconButton>
 
-                <Avatar sx={{ bgcolor: 'primary.main' }}>
-                  {(activeConversation.participantIds[0] ?? '?').charAt(0).toUpperCase()}
-                </Avatar>
+                {(() => {
+                  const display = conversationDisplay(activeConversation);
+                  return (
+                    <>
+                      <Avatar
+                        src={display.avatarUrl ?? undefined}
+                        sx={{ bgcolor: 'primary.main' }}
+                      >
+                        {display.avatarFallback}
+                      </Avatar>
 
-                <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 700 }} noWrap>
-                    {listingQuery.data?.title ?? 'Conversation'}
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    {typingFromOther ? 'typing…' : `last message ${
-                      activeConversation.lastMessageAt
-                        ? new Date(activeConversation.lastMessageAt).toLocaleString(i18n.language)
-                        : '—'
-                    }`}
-                  </Typography>
-                </Box>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 700 }} noWrap>
+                          {display.title}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary" noWrap>
+                          {typingFromOther
+                            ? 'typing…'
+                            : display.subtitle ??
+                              (activeConversation.lastMessageAt
+                                ? `last message ${new Date(activeConversation.lastMessageAt).toLocaleString(i18n.language)}`
+                                : '—')}
+                        </Typography>
+                      </Box>
+                    </>
+                  );
+                })()}
 
                 {listingQuery.data && (
                   <Button
@@ -556,14 +659,21 @@ export function MessagesPage() {
 function ConversationRowItem({
   conversation,
   active,
+  title,
+  subtitle,
+  avatarUrl,
+  avatarFallback,
   onClick,
 }: {
   conversation: ConversationRow;
   active: boolean;
+  title: string;
+  subtitle?: string;
+  avatarUrl: string | null;
+  avatarFallback: string;
   onClick: () => void;
 }) {
   const { i18n } = useTranslation();
-  const initials = (conversation.participantIds[0] ?? '?').charAt(0).toUpperCase();
   return (
     <Box
       onClick={onClick}
@@ -586,12 +696,12 @@ function ConversationRowItem({
         max={99}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Avatar>{initials}</Avatar>
+        <Avatar src={avatarUrl ?? undefined}>{avatarFallback}</Avatar>
       </Badge>
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={1}>
           <Typography variant="subtitle2" sx={{ fontWeight: 700 }} noWrap>
-            Conversation {conversation.id.slice(0, 6)}
+            {title}
           </Typography>
           <Typography variant="caption" color="text.secondary" sx={{ flexShrink: 0 }}>
             {conversation.lastMessageAt
@@ -603,7 +713,7 @@ function ConversationRowItem({
           </Typography>
         </Stack>
         <Typography variant="body2" color="text.secondary" noWrap>
-          {conversation.lastMessagePreview ?? '—'}
+          {subtitle ?? conversation.lastMessagePreview ?? '—'}
         </Typography>
       </Box>
     </Box>

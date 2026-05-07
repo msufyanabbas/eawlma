@@ -52,7 +52,23 @@ async function bootstrap(): Promise<void> {
       express.raw({ type: () => true, limit: '500mb' }),
     );
     const expressApp = app.getHttpAdapter().getInstance() as express.Express;
+
+    // The presigned-PUT URL the SPA is given points back to this endpoint
+    // (since we don't run a real S3 in dev). The browser issues a CORS
+    // preflight + a PUT with no auth — we mirror back any origin and the
+    // standard headers so it succeeds without an allow-list.
+    const applyDevUploadCors = (res: Response): void => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'PUT, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', '*');
+      res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    };
+    expressApp.options('/storage/dev-upload/*', (_req: Request, res: Response) => {
+      applyDevUploadCors(res);
+      res.status(204).end();
+    });
     expressApp.put('/storage/dev-upload/*', async (req: Request, res: Response) => {
+      applyDevUploadCors(res);
       try {
         const objectKey = (req.params as Record<string, string>)['0'];
         const body = req.body as Buffer | undefined;

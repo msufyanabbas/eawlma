@@ -627,7 +627,7 @@ export function HomePage() {
               <Box
                 key={c.en}
                 sx={{
-                  minWidth: { xs: 220, md: 260 },
+                  minWidth: { xs: 160, md: 200 },
                   flexShrink: 0,
                   scrollSnapAlign: 'start',
                 }}
@@ -637,9 +637,9 @@ export function HomePage() {
                     onClick={() => goToCity(c.en)}
                     sx={{
                       position: 'relative',
-                      aspectRatio: '3 / 2',
-                      minHeight: 180,
-                      borderRadius: 3,
+                      width: '100%',
+                      height: 160,
+                      borderRadius: 2,
                       overflow: 'hidden',
                       cursor: 'pointer',
                       border: 1,
@@ -647,8 +647,9 @@ export function HomePage() {
                       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                       '&:hover': {
                         transform: 'scale(1.03)',
-                        boxShadow: `0 18px 36px ${alpha(theme.palette.primary.main, 0.22)}`,
+                        boxShadow: `0 14px 28px ${alpha(theme.palette.primary.main, 0.22)}`,
                       },
+                      '&:hover img': { transform: 'scale(1.05)' },
                       '&::before': {
                         content: '""',
                         position: 'absolute',
@@ -667,7 +668,6 @@ export function HomePage() {
                         height: '100%',
                         objectFit: 'cover',
                         transition: 'transform 600ms ease',
-                        '*:hover > &': { transform: 'scale(1.06)' },
                       }}
                       loading="lazy"
                     />
@@ -676,15 +676,15 @@ export function HomePage() {
                         position: 'absolute',
                         bottom: 0,
                         insetInline: 0,
-                        p: 1.5,
+                        p: 1.25,
                         color: 'common.white',
                         zIndex: 2,
                       }}
                     >
-                      <Typography sx={{ fontSize: '1.5rem', fontWeight: 800, lineHeight: 1.15 }}>
+                      <Typography sx={{ fontSize: '1.1rem', fontWeight: 700, lineHeight: 1.2 }}>
                         {label}
                       </Typography>
-                      <Typography sx={{ fontSize: '0.875rem', opacity: 0.85, mt: 0.5, display: 'block', fontWeight: 600 }}>
+                      <Typography sx={{ fontSize: '0.8rem', opacity: 0.85, mt: 0.25, display: 'block', fontWeight: 600 }}>
                         {typeof cityCount === 'number' && cityCount > 0
                           ? `${cityCount.toLocaleString(i18n.language)} ${t('search.results')}`
                           : `${t('home.viewMore')} →`}

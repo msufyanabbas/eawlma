@@ -268,6 +268,12 @@ export function ListingDetailPage() {
     `Eawlma — ${localized.title} — ${window.location.href}`,
   )}`;
 
+  // The agent looking at their own listing must not see the inquiry form —
+  // we surface an "Edit listing" CTA in its place. Cross-checks owner *and*
+  // agent ids since some seeded rows separate the two roles.
+  const ownerLike = (listing as unknown as { agentId?: string }).agentId ?? listing.ownerId;
+  const isOwnListing = Boolean(sessionUser?.id && (sessionUser.id === listing.ownerId || sessionUser.id === ownerLike));
+
   // VR / AR feedback handlers — surface a Snackbar when the listing or the
   // current device cannot honour the action, so users aren't left wondering.
   const handleEnterVR = () => {
@@ -757,19 +763,21 @@ export function ListingDetailPage() {
                   >
                     View profile
                   </Button>
-                  <Button
-                    startIcon={<ChatIcon />}
-                    fullWidth
-                    variant="contained"
-                    size="small"
-                    onClick={handleMessageAgent}
-                  >
-                    {t('nav.messages')}
-                  </Button>
+                  {!isOwnListing && (
+                    <Button
+                      startIcon={<ChatIcon />}
+                      fullWidth
+                      variant="contained"
+                      size="small"
+                      onClick={handleMessageAgent}
+                    >
+                      {t('nav.messages')}
+                    </Button>
+                  )}
                 </Stack>
               </Paper>
 
-              {/* Inquiry form */}
+              {/* Inquiry form (or own-listing edit CTA) */}
               <Paper
                 sx={{
                   p: 3,
@@ -778,7 +786,21 @@ export function ListingDetailPage() {
                   boxShadow: '0 6px 20px rgba(108,99,166,0.10)',
                 }}
               >
-                {inqSuccess ? (
+                {isOwnListing ? (
+                  <Stack spacing={2} alignItems="center" sx={{ py: 2, textAlign: 'center' }}>
+                    <Typography variant="body1" color="text.secondary">
+                      {t('listing.ownListingNotice')}
+                    </Typography>
+                    <Button
+                      variant="outlined"
+                      onClick={() =>
+                        void navigate({ to: `/dashboard/listings/${listing.id}/edit` as never })
+                      }
+                    >
+                      {t('listing.editListing')}
+                    </Button>
+                  </Stack>
+                ) : inqSuccess ? (
                   <Stack spacing={2} alignItems="center" sx={{ py: 2, textAlign: 'center' }}>
                     <Box
                       sx={{
@@ -796,11 +818,10 @@ export function ListingDetailPage() {
                       ✓
                     </Box>
                     <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                      Your inquiry has been sent!
+                      {t('listing.inquirySent')}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      The agent will contact you shortly. You'll also receive a confirmation
-                      email at the address you provided.
+                      {t('listing.inquirySentBody')}
                     </Typography>
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.25} sx={{ width: '100%' }}>
                       <Button
@@ -813,45 +834,32 @@ export function ListingDetailPage() {
                         {t('nav.messages')}
                       </Button>
                       <Button fullWidth variant="outlined" onClick={() => setInqSuccess(false)}>
-                        Send another inquiry
+                        {t('listing.sendAnotherInquiry')}
                       </Button>
                     </Stack>
                   </Stack>
                 ) : (
                   <>
                 <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-                  {t('listing.scheduleTour')}
+                  {t('listing.contactAgent')}
                 </Typography>
                 {!isAuthenticated && (
                   <Stack spacing={1.5} sx={{ mb: 1.5 }}>
-                    <TextField size="small" label="Your name" value={inqName} onChange={(e) => setInqName(e.target.value)} />
+                    <TextField size="small" label={t('contact.name')} value={inqName} onChange={(e) => setInqName(e.target.value)} />
                     <TextField size="small" type="email" label={t('auth.email')} value={inqEmail} onChange={(e) => setInqEmail(e.target.value)} />
                     <TextField size="small" label={t('auth.phone')} value={inqPhone} onChange={(e) => setInqPhone(e.target.value)} placeholder="+9665XXXXXXXX" />
                   </Stack>
                 )}
                 <TextField
                   multiline
-                  minRows={3}
+                  minRows={4}
                   fullWidth
                   size="small"
-                  placeholder={`I'm interested in ${listing.referenceCode}…`}
+                  placeholder={`${t('listing.interestedIn')} ${listing.referenceCode}…`}
                   value={inqMessage}
                   onChange={(e) => setInqMessage(e.target.value)}
-                  sx={{ mb: 1.5 }}
-                />
-                <TextField
-                  select
-                  fullWidth
-                  size="small"
-                  label="Preferred contact"
-                  value={inqMethod}
-                  onChange={(e) => setInqMethod(e.target.value as 'phone' | 'email' | 'whatsapp')}
                   sx={{ mb: 2 }}
-                >
-                  <MenuItem value="whatsapp">WhatsApp</MenuItem>
-                  <MenuItem value="phone">Phone</MenuItem>
-                  <MenuItem value="email">Email</MenuItem>
-                </TextField>
+                />
                 {inquiryMutation.isError && (
                   <Alert severity="error" sx={{ mb: 1.5 }}>
                     {(inquiryMutation.error as Error).message}
@@ -876,12 +884,13 @@ export function ListingDetailPage() {
                     sx={{
                       background: theme.eawlma.gradient,
                       fontWeight: 700,
+                      color: 'common.white',
                       '&:hover': {
                         background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
                       },
                     }}
                   >
-                    {inquiryMutation.isPending ? t('common.loading') : 'Send inquiry'}
+                    {inquiryMutation.isPending ? t('common.loading') : t('listing.sendInquiry')}
                   </Button>
                   <Button
                     fullWidth
@@ -930,8 +939,8 @@ export function ListingDetailPage() {
         </Box>
       </Container>
 
-      {/* Mobile bottom CTA sheet */}
-      {!isDesktop && (
+      {/* Mobile bottom CTA sheet — buyers only */}
+      {!isDesktop && !isOwnListing && (
         <Box
           sx={{
             position: 'fixed',
@@ -945,7 +954,7 @@ export function ListingDetailPage() {
           }}
         >
           <Stack direction="row" spacing={1}>
-            <Button fullWidth variant="contained" startIcon={<ChatIcon />}>{t('nav.messages')}</Button>
+            <Button fullWidth variant="contained" startIcon={<ChatIcon />} onClick={handleMessageAgent}>{t('nav.messages')}</Button>
             <Button fullWidth variant="outlined" color="success" startIcon={<WhatsAppIcon />} href={whatsappLink}>
               {t('listing.whatsapp')}
             </Button>
