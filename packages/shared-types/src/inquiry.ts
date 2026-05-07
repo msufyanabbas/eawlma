@@ -14,8 +14,16 @@ export interface Inquiry {
   nextActionAt: string | null;
   preferredContactMethod: 'phone' | 'email' | 'whatsapp' | null;
   respondedAt: string | null;
+  transactionValue: number | null;
+  closedAt: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface CloseInquiryDealRequest {
+  transactionValue: number;
+  closedAt?: string;
+  notes?: string;
 }
 
 export interface CreateInquiryRequest {

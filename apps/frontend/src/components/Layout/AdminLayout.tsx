@@ -17,6 +17,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import PeopleIcon from '@mui/icons-material/PeopleAltOutlined';
 import HistoryIcon from '@mui/icons-material/History';
 import CommissionIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import PayoutsIcon from '@mui/icons-material/PaymentsOutlined';
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
 
@@ -27,6 +28,7 @@ const ITEMS = [
   { to: '/admin/moderation', i18nKey: 'admin.moderationQueue', icon: <GavelIcon /> },
   { to: '/admin/users', i18nKey: 'admin.users', icon: <PeopleIcon /> },
   { to: '/admin/commissions', i18nKey: 'admin.commissions', icon: <CommissionIcon /> },
+  { to: '/admin/payouts', i18nKey: 'admin.payouts', icon: <PayoutsIcon /> },
   { to: '/admin/audit', i18nKey: 'admin.audit', icon: <HistoryIcon /> },
 ];
 

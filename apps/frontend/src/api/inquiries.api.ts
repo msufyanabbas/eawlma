@@ -1,4 +1,5 @@
 import type {
+  CloseInquiryDealRequest,
   CreateInquiryRequest,
   Inquiry,
   PaginatedResponse,
@@ -34,6 +35,11 @@ export const inquiriesApi = {
 
   update: async (id: string, payload: UpdateInquiryRequest): Promise<Inquiry> => {
     const { data } = await apiClient.patch<{ data: Inquiry }>(`/inquiries/${id}`, payload);
+    return unwrap<Inquiry>(data);
+  },
+
+  closeDeal: async (id: string, payload: CloseInquiryDealRequest): Promise<Inquiry> => {
+    const { data } = await apiClient.post<{ data: Inquiry }>(`/inquiries/${id}/close-deal`, payload);
     return unwrap<Inquiry>(data);
   },
 };

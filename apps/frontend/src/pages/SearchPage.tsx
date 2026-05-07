@@ -31,7 +31,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -101,73 +101,108 @@ export function SearchPage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-  const navigate = useNavigate();
-  const search = useSearch({ strict: false }) as SearchPageSearch;
   const savedIds = useSavedStore((s) => s.ids);
   const toggleSaved = useSavedStore((s) => s.toggle);
 
+  // Read params straight from `window.location.search` instead of TanStack
+  // Router's `useSearch` so the filter state is *not* tied to the router
+  // store. Earlier we used `navigate({ to: '/search', replace: true })` to
+  // push filters to the URL, which racetracked with card clicks — clicking
+  // a listing fired `navigate({ to: '/listings/:id' })` while the search
+  // sync effect fired right after, swallowing the navigation. By doing all
+  // URL writes via `window.history.replaceState` (below) we keep the bar in
+  // sync without poking the router.
+  const initial = useMemo<SearchPageSearch>(() => {
+    if (typeof window === 'undefined') return {};
+    const p = new URLSearchParams(window.location.search);
+    const out: SearchPageSearch = {};
+    const get = (k: string): string | undefined => p.get(k) ?? undefined;
+    if (get('q')) out.q = get('q');
+    if (get('type')) out.type = get('type') as ListingType;
+    if (get('city')) out.city = get('city');
+    if (get('district')) out.district = get('district');
+    if (get('minPrice')) out.minPrice = Number(get('minPrice'));
+    if (get('maxPrice')) out.maxPrice = Number(get('maxPrice'));
+    if (get('minArea')) out.minArea = Number(get('minArea'));
+    if (get('maxArea')) out.maxArea = Number(get('maxArea'));
+    if (get('minBedrooms')) out.minBedrooms = Number(get('minBedrooms'));
+    if (get('minBathrooms')) out.minBathrooms = Number(get('minBathrooms'));
+    if (get('propertyTypes')) out.propertyTypes = get('propertyTypes');
+    if (get('amenities')) out.amenities = get('amenities');
+    if (get('isFeatured') === 'true') out.isFeatured = true;
+    if (get('sortField')) out.sortField = get('sortField');
+    if (get('sortOrder')) out.sortOrder = get('sortOrder') as 'ASC' | 'DESC';
+    if (get('view')) out.view = get('view') as ViewMode;
+    return out;
+    // Initial-only — re-reading on every render would fight our own writes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // ----- local filter state derived from URL --------------------------
-  const [q, setQ] = useState(search.q ?? '');
-  const [type, setType] = useState<ListingType | ''>(search.type ?? '');
-  const [city, setCity] = useState(search.city ?? '');
-  const [district, setDistrict] = useState(search.district ?? '');
+  const [q, setQ] = useState(initial.q ?? '');
+  const [type, setType] = useState<ListingType | ''>(initial.type ?? '');
+  const [city, setCity] = useState(initial.city ?? '');
+  const [district, setDistrict] = useState(initial.district ?? '');
   const [priceRange, setPriceRange] = useState<[number, number]>([
-    Number(search.minPrice ?? PRICE_BOUNDS[0]),
-    Number(search.maxPrice ?? PRICE_BOUNDS[1]),
+    Number(initial.minPrice ?? PRICE_BOUNDS[0]),
+    Number(initial.maxPrice ?? PRICE_BOUNDS[1]),
   ]);
   const [areaRange, setAreaRange] = useState<[number, number]>([
-    Number(search.minArea ?? AREA_BOUNDS[0]),
-    Number(search.maxArea ?? AREA_BOUNDS[1]),
+    Number(initial.minArea ?? AREA_BOUNDS[0]),
+    Number(initial.maxArea ?? AREA_BOUNDS[1]),
   ]);
   const [minBedrooms, setMinBedrooms] = useState<string>(
-    search.minBedrooms ? String(search.minBedrooms) : '',
+    initial.minBedrooms ? String(initial.minBedrooms) : '',
   );
   const [minBathrooms, setMinBathrooms] = useState<string>(
-    search.minBathrooms ? String(search.minBathrooms) : '',
+    initial.minBathrooms ? String(initial.minBathrooms) : '',
   );
-  const [verifiedOnly, setVerifiedOnly] = useState(Boolean(search.isFeatured));
+  const [verifiedOnly, setVerifiedOnly] = useState(Boolean(initial.isFeatured));
   const [propertyTypes, setPropertyTypes] = useState<PropertyType[]>(
-    search.propertyTypes ? (search.propertyTypes.split(',') as PropertyType[]) : [],
+    initial.propertyTypes ? (initial.propertyTypes.split(',') as PropertyType[]) : [],
   );
   const [amenities, setAmenities] = useState<string[]>(
-    search.amenities ? search.amenities.split(',') : [],
+    initial.amenities ? initial.amenities.split(',') : [],
   );
-  const [sort, setSort] = useState<string>(search.sortField ?? 'createdAt');
-  const [view, setView] = useState<ViewMode>((search.view as ViewMode) ?? 'grid');
+  const [sort, setSort] = useState<string>(initial.sortField ?? 'createdAt');
+  const [view, setView] = useState<ViewMode>((initial.view as ViewMode) ?? 'grid');
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
-  // Push filter state back to URL so it's deep-linkable. We *skip* the first
-  // run on mount — the local state was just initialised from the URL, so
-  // there's nothing new to push, and an immediate `navigate({ to: '/search', replace: true })`
-  // would race with a card click in flight (the user reported "clicking
-  // listings doesn't navigate to detail" on this page). After mount, the
-  // effect only fires when the user actually changes a filter.
+  // Push filter state back to the URL bar via `window.history.replaceState`
+  // so the page stays deep-linkable, but *without* going through TanStack
+  // Router's navigation pipeline. A previous version used
+  // `navigate({ to: '/search', replace: true })`; that re-entered the router
+  // synchronously and could swallow an in-flight click on a listing card.
+  // Skipping the first effect run (initial state already matches the URL)
+  // is preserved as a defensive belt-and-braces.
   const filtersHydratedRef = useRef(false);
   useEffect(() => {
     if (!filtersHydratedRef.current) {
       filtersHydratedRef.current = true;
       return;
     }
-    const next: Record<string, string | number | undefined> = {
-      q: q || undefined,
-      type: type || undefined,
-      city: city || undefined,
-      district: district || undefined,
-      minPrice: priceRange[0] > PRICE_BOUNDS[0] ? priceRange[0] : undefined,
-      maxPrice: priceRange[1] < PRICE_BOUNDS[1] ? priceRange[1] : undefined,
-      minArea: areaRange[0] > AREA_BOUNDS[0] ? areaRange[0] : undefined,
-      maxArea: areaRange[1] < AREA_BOUNDS[1] ? areaRange[1] : undefined,
-      minBedrooms: minBedrooms ? Number(minBedrooms) : undefined,
-      minBathrooms: minBathrooms ? Number(minBathrooms) : undefined,
-      isFeatured: verifiedOnly ? 'true' : undefined,
-      propertyTypes: propertyTypes.length > 0 ? propertyTypes.join(',') : undefined,
-      amenities: amenities.length > 0 ? amenities.join(',') : undefined,
-      sortField: sort !== 'createdAt' ? sort : undefined,
-      view: view !== 'grid' ? view : undefined,
-    };
-    Object.keys(next).forEach((k) => next[k] === undefined && delete next[k]);
-    navigate({ to: '/search' as never, search: next as never, replace: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const params = new URLSearchParams();
+    if (q) params.set('q', q);
+    if (type) params.set('type', type);
+    if (city) params.set('city', city);
+    if (district) params.set('district', district);
+    if (priceRange[0] > PRICE_BOUNDS[0]) params.set('minPrice', String(priceRange[0]));
+    if (priceRange[1] < PRICE_BOUNDS[1]) params.set('maxPrice', String(priceRange[1]));
+    if (areaRange[0] > AREA_BOUNDS[0]) params.set('minArea', String(areaRange[0]));
+    if (areaRange[1] < AREA_BOUNDS[1]) params.set('maxArea', String(areaRange[1]));
+    if (minBedrooms) params.set('minBedrooms', String(Number(minBedrooms)));
+    if (minBathrooms) params.set('minBathrooms', String(Number(minBathrooms)));
+    if (verifiedOnly) params.set('isFeatured', 'true');
+    if (propertyTypes.length > 0) params.set('propertyTypes', propertyTypes.join(','));
+    if (amenities.length > 0) params.set('amenities', amenities.join(','));
+    if (sort !== 'createdAt') params.set('sortField', sort);
+    if (view !== 'grid') params.set('view', view);
+
+    const qs = params.toString();
+    const nextUrl = `/search${qs ? `?${qs}` : ''}`;
+    if (typeof window !== 'undefined' && window.location.pathname + window.location.search !== nextUrl) {
+      window.history.replaceState(null, '', nextUrl);
+    }
   }, [
     q, type, city, district, priceRange, areaRange,
     minBedrooms, minBathrooms, verifiedOnly, propertyTypes, amenities, sort, view,

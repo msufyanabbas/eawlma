@@ -62,7 +62,21 @@
     "suspend": "Suspend",
     "reactivate": "Reactivate",
     "promote": "Change role",
-    "commissions": "Commissions"
+    "commissions": "Commissions",
+    "payouts": "Payouts",
+    "payoutsSubtitle": "All disbursement requests, lifecycle status, and admin overrides.",
+    "totalPaidOut": "Total paid out",
+    "totalPending": "Pending / processing",
+    "failedCount": "Failed / rejected",
+    "allPayouts": "All payouts",
+    "agent": "Agent",
+    "requested": "Requested",
+    "actions": "Actions",
+    "retry": "Retry",
+    "noPayouts": "No payouts yet",
+    "noPayoutsBody": "Try a different status filter — payouts will land here as soon as agents request them.",
+    "rejectPayout": "Reject payout",
+    "rejectPayoutBody": "The held amount will be refunded to the agent's wallet and they'll be notified with this reason."
   },
   "auth": {
     "login": "Sign in",
@@ -496,7 +510,27 @@
     "platformShare": "Platform",
     "payNow": "Pay now",
     "commissionPendingNotice": "Awaiting admin confirmation",
-    "insufficientBalance": "Add funds first"
+    "insufficientBalance": "Insufficient balance",
+    "requestPayout": "Request Payout",
+    "payoutAmount": "Payout Amount",
+    "ibanNumber": "IBAN Number",
+    "bankName": "Bank Name",
+    "beneficiaryName": "Beneficiary Name",
+    "beneficiaryHint": "Pre-filled from your profile",
+    "payoutHistory": "Payout History",
+    "payoutProcessing": "Your payout is being processed. Funds will arrive within 1-2 business days.",
+    "payoutSuccess": "Payout initiated successfully",
+    "payoutFailed": "Payout failed",
+    "minPayout": "Minimum payout is 100 SAR",
+    "ibanFormat": "IBAN must start with SA followed by 22 digits",
+    "noPayouts": "No payouts yet",
+    "payoutStatus": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "paid": "✓ Paid",
+      "failed": "Failed",
+      "rejected": "Rejected"
+    }
   },
   "errors": {
     "generic": "An unexpected error occurred",

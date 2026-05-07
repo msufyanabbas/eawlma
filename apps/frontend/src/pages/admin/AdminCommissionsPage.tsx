@@ -211,20 +211,38 @@ export function AdminCommissionsPage() {
               <TableRow>
                 <TableCell>Listing</TableCell>
                 <TableCell>Agent</TableCell>
+                <TableCell>Buyer</TableCell>
                 <TableCell>Value</TableCell>
                 <TableCell>Platform earn</TableCell>
                 <TableCell>Agent earn</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell>Update</TableCell>
+                <TableCell>Closed</TableCell>
+                <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {filtered.map((c) => {
                 const colors = STATUS_COLORS[c.status];
+                const listingLabel =
+                  c.listingTitle ||
+                  c.listingReferenceCode ||
+                  `${c.listingId.slice(0, 8)}…`;
+                const agentLabel = c.agentName || `${c.agentId.slice(0, 8)}…`;
+                const buyerLabel = c.buyerName || (c.buyerId ? `${c.buyerId.slice(0, 8)}…` : '—');
                 return (
                   <TableRow key={c.id} hover>
-                    <TableCell><code>{c.listingId.slice(0, 8)}…</code></TableCell>
-                    <TableCell><code>{c.agentId.slice(0, 8)}…</code></TableCell>
+                    <TableCell>
+                      <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                        {listingLabel}
+                      </Typography>
+                      {c.listingReferenceCode && c.listingTitle && (
+                        <Typography variant="caption" color="text.secondary">
+                          {c.listingReferenceCode}
+                        </Typography>
+                      )}
+                    </TableCell>
+                    <TableCell>{agentLabel}</TableCell>
+                    <TableCell>{buyerLabel}</TableCell>
                     <TableCell>{fmt(c.transactionValue)}</TableCell>
                     <TableCell sx={{ fontWeight: 700 }}>{fmt(c.platformCommissionAmount)}</TableCell>
                     <TableCell sx={{ fontWeight: 700 }}>{fmt(c.agentCommissionAmount)}</TableCell>
@@ -232,17 +250,38 @@ export function AdminCommissionsPage() {
                       <Chip label={colors.label} size="small" sx={{ bgcolor: colors.bg, color: colors.text, fontWeight: 700 }} />
                     </TableCell>
                     <TableCell>
-                      <TextField
-                        select
-                        size="small"
-                        value={c.status}
-                        onChange={(e) => updateMutation.mutate({ id: c.id, status: e.target.value as CommissionStatus })}
-                        sx={{ minWidth: 140 }}
-                      >
-                        {STATUS_OPTIONS.map((s) => (
-                          <MenuItem key={s} value={s}>{STATUS_COLORS[s].label}</MenuItem>
-                        ))}
-                      </TextField>
+                      <Typography variant="caption" color="text.secondary">
+                        {new Date(c.createdAt).toLocaleDateString(i18n.language)}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        {c.status === 'pending' && (
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="success"
+                            disabled={updateMutation.isPending}
+                            onClick={() =>
+                              updateMutation.mutate({ id: c.id, status: 'confirmed' })
+                            }
+                            sx={{ fontWeight: 700 }}
+                          >
+                            Confirm
+                          </Button>
+                        )}
+                        <TextField
+                          select
+                          size="small"
+                          value={c.status}
+                          onChange={(e) => updateMutation.mutate({ id: c.id, status: e.target.value as CommissionStatus })}
+                          sx={{ minWidth: 140 }}
+                        >
+                          {STATUS_OPTIONS.map((s) => (
+                            <MenuItem key={s} value={s}>{STATUS_COLORS[s].label}</MenuItem>
+                          ))}
+                        </TextField>
+                      </Stack>
                     </TableCell>
                   </TableRow>
                 );

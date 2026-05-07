@@ -1,8 +1,13 @@
 import {
+  Alert,
   Avatar,
   Box,
   Button,
   Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   Drawer,
   IconButton,
@@ -24,6 +29,7 @@ import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
 import EmailIcon from '@mui/icons-material/MailOutline';
 import PhoneIcon from '@mui/icons-material/PhoneOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import HandshakeIcon from '@mui/icons-material/HandshakeOutlined';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useEffect, useMemo, useState } from 'react';
@@ -257,6 +263,26 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
     onSuccess: () => onUpdated(),
   });
 
+  // Close-deal dialog state — only relevant once the inquiry is qualified.
+  const [closeOpen, setCloseOpen] = useState(false);
+  const [dealValue, setDealValue] = useState('');
+  const [dealDate, setDealDate] = useState(() => new Date().toISOString().slice(0, 10));
+  const [dealNotes, setDealNotes] = useState('');
+  const closeDealMutation = useMutation({
+    mutationFn: () =>
+      inquiriesApi.closeDeal(inquiry!.id, {
+        transactionValue: Number(dealValue),
+        closedAt: dealDate ? new Date(dealDate).toISOString() : undefined,
+        notes: dealNotes.trim() || undefined,
+      }),
+    onSuccess: () => {
+      setCloseOpen(false);
+      setDealValue('');
+      setDealNotes('');
+      onUpdated();
+    },
+  });
+
   const saveNotes = () => {
     if (!inquiry) return;
     if ((inquiry.agentNotes ?? '') === agentNotes && (inquiry.nextAction ?? '') === nextAction) return;
@@ -390,6 +416,39 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             <Typography variant="caption" color="error">Could not save changes — try again.</Typography>
           )}
 
+          {/* Close-deal CTA — only when the lead is qualified, not yet closed.
+           *  Clicking it opens a dialog with transaction value, close date and
+           *  optional notes. The backend turns this into a Commission row. */}
+          {inquiry.status === InquiryStatus.QUALIFIED && (
+            <>
+              <Divider sx={{ my: 3 }} />
+              <Button
+                fullWidth
+                variant="contained"
+                color="success"
+                size="large"
+                startIcon={<HandshakeIcon />}
+                onClick={() => setCloseOpen(true)}
+                sx={{ fontWeight: 700, py: 1.25 }}
+              >
+                Close Deal
+              </Button>
+            </>
+          )}
+
+          {inquiry.status === InquiryStatus.CLOSED && inquiry.transactionValue && (
+            <>
+              <Divider sx={{ my: 3 }} />
+              <Alert severity="success" icon={<HandshakeIcon />}>
+                Deal closed for {Number(inquiry.transactionValue).toLocaleString()} SAR
+                {inquiry.closedAt
+                  ? ` on ${new Date(inquiry.closedAt).toLocaleDateString()}`
+                  : ''}
+                .
+              </Alert>
+            </>
+          )}
+
           <Divider sx={{ my: 3 }} />
 
           <Stack direction="row" spacing={1}>
@@ -428,6 +487,54 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
           </Stack>
         </Box>
       )}
+
+      <Dialog open={closeOpen} onClose={() => setCloseOpen(false)} maxWidth="xs" fullWidth>
+        <DialogTitle>Close deal</DialogTitle>
+        <DialogContent>
+          <Stack spacing={2} sx={{ mt: 1 }}>
+            <TextField
+              autoFocus
+              type="number"
+              label="Transaction value (SAR)"
+              required
+              value={dealValue}
+              onChange={(e) => setDealValue(e.target.value)}
+              inputProps={{ min: 1, step: 1 }}
+            />
+            <TextField
+              type="date"
+              label="Deal closed on"
+              InputLabelProps={{ shrink: true }}
+              value={dealDate}
+              onChange={(e) => setDealDate(e.target.value)}
+            />
+            <TextField
+              multiline
+              minRows={2}
+              label="Notes (optional)"
+              value={dealNotes}
+              onChange={(e) => setDealNotes(e.target.value)}
+            />
+            {closeDealMutation.isError && (
+              <Alert severity="error">
+                {(closeDealMutation.error as Error).message || 'Could not close the deal — try again.'}
+              </Alert>
+            )}
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setCloseOpen(false)}>Cancel</Button>
+          <Button
+            variant="contained"
+            color="success"
+            disabled={!dealValue || Number(dealValue) <= 0 || closeDealMutation.isPending}
+            onClick={() => closeDealMutation.mutate()}
+            sx={{ fontWeight: 700 }}
+          >
+            {closeDealMutation.isPending ? t('common.loading') : 'Close Deal & Generate Commission'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Drawer>
   );
 }

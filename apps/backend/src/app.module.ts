@@ -40,6 +40,7 @@ import { SavedListingsModule } from './modules/saved-listings/saved-listings.mod
 import { ReviewsModule } from './modules/reviews/reviews.module';
 import { CommissionsModule } from './modules/commissions/commissions.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import { PayoutsModule } from './modules/payouts/payouts.module';
 
 @Module({
   imports: [
@@ -98,6 +99,7 @@ import { WalletModule } from './modules/wallet/wallet.module';
     ReviewsModule,
     CommissionsModule,
     WalletModule,
+    PayoutsModule,
   ],
   controllers: [HealthController],
   providers: [

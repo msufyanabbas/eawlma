@@ -42,6 +42,7 @@ import { NotificationsPage } from './pages/dashboard/NotificationsPage';
 import { CommissionsPage } from './pages/dashboard/CommissionsPage';
 import { WalletPage } from './pages/dashboard/WalletPage';
 import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
+import { AdminPayoutsPage } from './pages/admin/AdminPayoutsPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { ModerationPage } from './pages/admin/ModerationPage';
 import { AdminUsersPage } from './pages/admin/AdminUsersPage';
@@ -225,6 +226,7 @@ const adminModerationRoute = createRoute({ getParentRoute: () => adminShellRoute
 const adminUsersRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/users', component: AdminUsersPage });
 const adminAuditRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/audit', component: AuditLogPage });
 const adminCommissionsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/commissions', component: AdminCommissionsPage });
+const adminPayoutsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/payouts', component: AdminPayoutsPage });
 
 // ----- Tree -----------------------------------------------------------
 
@@ -274,6 +276,7 @@ const routeTree = rootRoute.addChildren([
     adminUsersRoute,
     adminAuditRoute,
     adminCommissionsRoute,
+    adminPayoutsRoute,
   ]),
 ]);
 

@@ -62,7 +62,21 @@
     "suspend": "تعليق الحساب",
     "reactivate": "إعادة التفعيل",
     "promote": "ترقية الدور",
-    "commissions": "العمولات"
+    "commissions": "العمولات",
+    "payouts": "السحوبات",
+    "payoutsSubtitle": "كل طلبات السحب وحالتها وإجراءات المشرف.",
+    "totalPaidOut": "إجمالي المدفوع",
+    "totalPending": "قيد المعالجة",
+    "failedCount": "فشل / مرفوض",
+    "allPayouts": "جميع السحوبات",
+    "agent": "الوكيل",
+    "requested": "تاريخ الطلب",
+    "actions": "إجراءات",
+    "retry": "إعادة المحاولة",
+    "noPayouts": "لا توجد طلبات سحب بعد",
+    "noPayoutsBody": "جرّب فلتراً مختلفاً — ستظهر الطلبات هنا فور إرسالها من قبل الوكلاء.",
+    "rejectPayout": "رفض السحب",
+    "rejectPayoutBody": "سيتم إعادة المبلغ المحجوز إلى محفظة الوكيل وسيتم إشعاره بهذا السبب."
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -496,7 +510,27 @@
     "platformShare": "المنصة",
     "payNow": "ادفع الآن",
     "commissionPendingNotice": "بانتظار اعتماد المشرف",
-    "insufficientBalance": "أضف رصيداً أولاً"
+    "insufficientBalance": "الرصيد غير كافٍ",
+    "requestPayout": "طلب سحب",
+    "payoutAmount": "مبلغ السحب",
+    "ibanNumber": "رقم الآيبان",
+    "bankName": "اسم البنك",
+    "beneficiaryName": "اسم المستفيد",
+    "beneficiaryHint": "تم تعبئته من ملفك الشخصي",
+    "payoutHistory": "سجل السحوبات",
+    "payoutProcessing": "جارٍ معالجة طلب السحب. ستصل الأموال خلال 1-2 يوم عمل.",
+    "payoutSuccess": "تم إرسال طلب السحب بنجاح",
+    "payoutFailed": "فشل طلب السحب",
+    "minPayout": "الحد الأدنى للسحب 100 ريال",
+    "ibanFormat": "يجب أن يبدأ الآيبان بـ SA متبوعاً بـ 22 رقماً",
+    "noPayouts": "لا توجد طلبات سحب بعد",
+    "payoutStatus": {
+      "pending": "قيد المعالجة",
+      "processing": "جارٍ التحويل",
+      "paid": "✓ تم الدفع",
+      "failed": "فشل",
+      "rejected": "مرفوض"
+    }
   },
   "errors": {
     "generic": "حدث خطأ غير متوقع",

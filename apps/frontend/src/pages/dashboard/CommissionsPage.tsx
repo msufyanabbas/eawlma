@@ -24,9 +24,14 @@ import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 import { EmptyState } from '@/components/global/EmptyState';
 
+// Lifecycle palette per the agent view spec:
+//   pending   = grey  (waiting for admin confirmation)
+//   confirmed = yellow (waiting for buyer payment)
+//   paid      = green  (received)
+//   disputed  = red    (escalation needed)
 const STATUS_COLORS: Record<CommissionStatus, { bg: string; text: string; label: string }> = {
-  pending: { bg: '#FFF3CD', text: '#856404', label: 'Pending' },
-  confirmed: { bg: '#CCE5FF', text: '#004085', label: 'Confirmed' },
+  pending: { bg: '#E5E7EB', text: '#374151', label: 'Pending' },
+  confirmed: { bg: '#FFF3CD', text: '#856404', label: 'Confirmed' },
   paid: { bg: '#D4EDDA', text: '#155724', label: 'Paid' },
   disputed: { bg: '#F8D7DA', text: '#721C24', label: 'Disputed' },
 };
@@ -124,12 +129,21 @@ export function CommissionsPage() {
             <TableBody>
               {(commissionsQuery.data ?? []).map((c) => {
                 const colors = STATUS_COLORS[c.status];
+                const listingLabel =
+                  c.listingTitle ||
+                  c.listingReferenceCode ||
+                  `${c.listingId.slice(0, 8)}…`;
                 return (
                   <TableRow key={c.id} hover>
                     <TableCell>
-                      <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>
-                        {c.listingId.slice(0, 8)}…
+                      <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                        {listingLabel}
                       </Typography>
+                      {c.listingReferenceCode && c.listingTitle && (
+                        <Typography variant="caption" color="text.secondary">
+                          {c.listingReferenceCode}
+                        </Typography>
+                      )}
                     </TableCell>
                     <TableCell>{fmt(c.transactionValue)}</TableCell>
                     <TableCell>{c.agentCommissionRate}%</TableCell>

@@ -17,6 +17,12 @@ export interface Commission {
   notes: string | null;
   createdAt: string;
   updatedAt: string;
+  // Optional joined fields populated by list endpoints so the UI can show
+  // human names instead of raw UUIDs.
+  listingTitle?: string | null;
+  listingReferenceCode?: string | null;
+  agentName?: string | null;
+  buyerName?: string | null;
 }
 
 export interface CommissionSummary {
@@ -56,6 +62,12 @@ export const commissionsApi = {
 
   myCommissions: async (): Promise<Commission[]> => {
     const { data } = await apiClient.get<{ data: Commission[] }>('/commissions/my');
+    return unwrap<Commission[]>(data);
+  },
+
+  /** Buyer-side view: commissions the current authenticated user owes. */
+  myAsBuyer: async (): Promise<Commission[]> => {
+    const { data } = await apiClient.get<{ data: Commission[] }>('/commissions/buyer/me');
     return unwrap<Commission[]>(data);
   },
 
