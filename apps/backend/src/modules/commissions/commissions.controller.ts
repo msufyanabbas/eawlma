@@ -16,7 +16,7 @@ import { UserRole } from '@eawlma/shared-types';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { CurrentUser, RequestUser } from '../../common/decorators/current-user.decorator';
 import { CommissionsService } from './commissions.service';
 import {
   AcceptOathDto,
@@ -26,11 +26,6 @@ import {
   OathResponseDto,
   UpdateCommissionStatusDto,
 } from './dto/commission.dto';
-
-interface CurrentUserPayload {
-  sub: string;
-  role?: string;
-}
 
 @ApiTags('commissions')
 @Controller({ path: 'commissions', version: '1' })
@@ -44,7 +39,7 @@ export class CommissionsController {
   @Post('oath')
   @ApiOperation({ summary: 'Record commission commitment oath acceptance.' })
   async acceptOath(
-    @CurrentUser() user: CurrentUserPayload,
+    @CurrentUser() user: RequestUser,
     @Body() dto: AcceptOathDto,
     @Req() req: Request,
   ): Promise<OathResponseDto> {
@@ -52,7 +47,7 @@ export class CommissionsController {
       (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() ??
       (req.socket as { remoteAddress?: string } | undefined)?.remoteAddress ??
       null;
-    return this.commissions.acceptOath(user.sub, dto, ip);
+    return this.commissions.acceptOath(user.id, dto, ip);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -60,10 +55,10 @@ export class CommissionsController {
   @Get('oath/:oathType')
   @ApiOperation({ summary: 'Check whether the current user already accepted this oath type.' })
   async hasOath(
-    @CurrentUser() user: CurrentUserPayload,
+    @CurrentUser() user: RequestUser,
     @Param('oathType') oathType: 'agent_listing' | 'buyer_purchase',
   ): Promise<{ accepted: boolean }> {
-    return { accepted: await this.commissions.hasAcceptedOath(user.sub, oathType) };
+    return { accepted: await this.commissions.hasAcceptedOath(user.id, oathType) };
   }
 
   /** Agent commission history for the signed-in agent. */
@@ -72,8 +67,8 @@ export class CommissionsController {
   @ApiBearerAuth('access-token')
   @Get('my')
   @ApiOperation({ summary: "Current agent's commission history." })
-  async my(@CurrentUser() user: CurrentUserPayload): Promise<CommissionResponseDto[]> {
-    return this.commissions.listForAgent(user.sub);
+  async my(@CurrentUser() user: RequestUser): Promise<CommissionResponseDto[]> {
+    return this.commissions.listForAgent(user.id);
   }
 
   /** Admin endpoints. */

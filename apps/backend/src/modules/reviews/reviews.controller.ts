@@ -20,15 +20,10 @@ import {
 
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { Public } from '../../common/decorators/public.decorator';
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { CurrentUser, RequestUser } from '../../common/decorators/current-user.decorator';
 import { ReviewsService } from './reviews.service';
 import { CreateReviewDto, ReplyReviewDto } from './dto/create-review.dto';
 import { ReviewResponseDto, ReviewSummary } from './dto/review-response.dto';
-
-interface CurrentUserPayload {
-  sub: string;
-  role?: string;
-}
 
 @ApiTags('reviews')
 @Controller({ version: '1' })
@@ -53,10 +48,10 @@ export class ReviewsController {
   @ApiOperation({ summary: 'Create a review for an agent (one per buyer per agent).' })
   async create(
     @Param('id', ParseUUIDPipe) agentId: string,
-    @CurrentUser() user: CurrentUserPayload,
+    @CurrentUser() user: RequestUser,
     @Body() dto: CreateReviewDto,
   ): Promise<ReviewResponseDto> {
-    return this.reviews.create(agentId, user.sub, dto);
+    return this.reviews.create(agentId, user.id, dto);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -65,9 +60,9 @@ export class ReviewsController {
   @ApiOperation({ summary: 'Agent replies to a review — only the reviewed agent may reply.' })
   async reply(
     @Param('id', ParseUUIDPipe) reviewId: string,
-    @CurrentUser() user: CurrentUserPayload,
+    @CurrentUser() user: RequestUser,
     @Body() dto: ReplyReviewDto,
   ): Promise<ReviewResponseDto> {
-    return this.reviews.reply(reviewId, user.sub, dto);
+    return this.reviews.reply(reviewId, user.id, dto);
   }
 }
