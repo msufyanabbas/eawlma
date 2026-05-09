@@ -149,6 +149,20 @@ export class AuthService {
     await this.revokeAllForUser(userId);
   }
 
+  /**
+   * Issue tokens + auth response for an externally-authenticated user.
+   * Used by federated SSO callbacks (e.g. Nafath) where the user is
+   * already proven to be themselves through the IdP.
+   */
+  async loginExternalUser(
+    user: UserEntity,
+    ctx: ClientContext,
+  ): Promise<AuthResponseDto> {
+    const tokens = await this.issueTokens(user, ctx);
+    await this.usersService.recordSuccessfulLogin(user.id, ctx.ip ?? null);
+    return this.buildAuthResponse(user, tokens);
+  }
+
   // ---------------------------------------------------------------------------
   // Password reset (begin)
   //

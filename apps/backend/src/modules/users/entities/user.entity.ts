@@ -69,6 +69,15 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 64, name: 'national_id', nullable: true })
   nationalId: string | null;
 
+  /** Saudi national ID returned by Nafath SSO. Distinct from the manual
+   *  Authentica `nationalId` field — populated only when the user has
+   *  signed in through Nafath at least once. */
+  @Column({ type: 'varchar', length: 16, name: 'nafath_national_id', nullable: true })
+  nafathNationalId: string | null;
+
+  @Column({ type: 'boolean', name: 'is_nafath_verified', default: false })
+  isNafathVerified: boolean;
+
   @Column({ type: 'uuid', name: 'agency_id', nullable: true })
   agencyId: string | null;
 

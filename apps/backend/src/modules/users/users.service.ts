@@ -207,6 +207,64 @@ export class UsersService {
   }
 
   // ---------------------------------------------------------------------------
+  // Nafath SSO
+  // ---------------------------------------------------------------------------
+
+  findByNafathNationalId(nationalId: string): Promise<UserEntity | null> {
+    return this.users.findOne({ where: { nafathNationalId: nationalId } });
+  }
+
+  findByPhone(phone: string): Promise<UserEntity | null> {
+    return this.users.findOne({ where: { phone: phone.trim() } });
+  }
+
+  async createFromNafath(input: {
+    nationalId: string;
+    fullNameAr: string;
+    fullNameEn: string;
+    phone: string;
+  }): Promise<UserEntity> {
+    // Split a single full name on whitespace; first token = firstName,
+    // remainder = lastName. Falls back to the AR form if EN missing.
+    const fullName = (input.fullNameEn || input.fullNameAr || '').trim();
+    const [firstName = 'User', ...rest] = fullName.split(/\s+/);
+    const lastName = rest.join(' ') || 'Nafath';
+
+    // Generate a placeholder email so the schema's NOT NULL constraint is
+    // satisfied. The user can update this later in Settings.
+    const synthetic = `nafath-${input.nationalId}@nafath.local`;
+
+    // Argon2 hash of a random secret — the user logs in via Nafath, never
+    // via password, but we keep the column populated.
+    const placeholderPasswordHash = await argon2.hash(
+      `nafath-${input.nationalId}-${Date.now()}-${Math.random()}`,
+      ARGON_OPTIONS,
+    );
+
+    const user = this.users.create({
+      email: synthetic,
+      phone: input.phone,
+      firstName,
+      lastName,
+      passwordHash: placeholderPasswordHash,
+      role: UserRole.USER,
+      status: UserStatus.ACTIVE,
+      preferredLocale: 'ar',
+      nafathNationalId: input.nationalId,
+      isNafathVerified: true,
+      phoneVerified: true,
+    });
+    return this.users.save(user);
+  }
+
+  async markNafathVerified(userId: string, nationalId: string): Promise<void> {
+    await this.users.update(
+      { id: userId },
+      { nafathNationalId: nationalId, isNafathVerified: true, phoneVerified: true },
+    );
+  }
+
+  // ---------------------------------------------------------------------------
   // Deletion (soft)
   // ---------------------------------------------------------------------------
 

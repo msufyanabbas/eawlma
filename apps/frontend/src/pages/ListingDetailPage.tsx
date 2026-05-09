@@ -61,6 +61,11 @@ import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
+import { formatHijriAndGregorian } from '@/utils/hijri';
+import { EjarContractDialog } from '@/components/global/EjarContractDialog';
+import { BookingCalendar } from '@/components/global/BookingCalendar';
+import { priceTrendsApi } from '@/api/priceTrends.api';
+import { Line, LineChart, ResponsiveContainer, Tooltip as RechartsTooltip } from 'recharts';
 
 // ------------------------------------------------------------------
 // 30 supported translation locales (mirrors backend's TRANSLATION_TARGET_LOCALES)
@@ -83,6 +88,57 @@ const SUPPORTED_LOCALES: Array<{ code: string; label: string }> = [
   { code: 'da', label: 'Dansk' },     { code: 'fi', label: 'Suomi' },
   { code: 'el', label: 'Ελληνικά' },  { code: 'he', label: 'עברית' },
 ];
+
+// ------------------------------------------------------------------
+// Price-fairness helper
+// ------------------------------------------------------------------
+
+interface FairnessResult {
+  bucket: 'great' | 'fair' | 'above';
+  marketPpsm: number;
+  listingPpsm: number;
+}
+
+interface ListingLike {
+  id: string;
+  price: number | string;
+  area: number | string | null;
+  city: string;
+  propertyType: string;
+}
+
+// Compare a listing's price-per-m² to peers in the same city + property type.
+// Returns null when there's no signal (no area or fewer than 3 comparable peers).
+function computeFairness(
+  listing: ListingLike | undefined | null,
+  peers: ListingLike[],
+): FairnessResult | null {
+  if (!listing) return null;
+  const area = Number(listing.area);
+  const price = Number(listing.price);
+  if (!area || !price || !Number.isFinite(area) || !Number.isFinite(price)) return null;
+
+  const ppsmList = peers
+    .filter((p) => p.id !== listing.id && p.city === listing.city && p.propertyType === listing.propertyType)
+    .map((p) => {
+      const a = Number(p.area);
+      const pp = Number(p.price);
+      return a > 0 && pp > 0 ? pp / a : null;
+    })
+    .filter((v): v is number => v != null);
+
+  if (ppsmList.length < 3) return null;
+  const marketPpsm = ppsmList.reduce((a, b) => a + b, 0) / ppsmList.length;
+  const listingPpsm = price / area;
+  const ratio = listingPpsm / marketPpsm;
+
+  let bucket: FairnessResult['bucket'];
+  if (ratio < 0.9) bucket = 'great';
+  else if (ratio <= 1.1) bucket = 'fair';
+  else bucket = 'above';
+
+  return { bucket, marketPpsm, listingPpsm };
+}
 
 // ------------------------------------------------------------------
 // Page
@@ -112,6 +168,7 @@ export function ListingDetailPage() {
   const [displayLocale, setDisplayLocale] = useState<string>(i18n.language);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryIdx, setGalleryIdx] = useState(0);
+  const [ejarOpen, setEjarOpen] = useState(false);
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'info' | 'warning' }>({
     open: false,
     message: '',
@@ -437,9 +494,20 @@ export function ListingDetailPage() {
                 {getListingLocation(listing)}{listing.region ? `, ${listing.region}` : ''}
               </Typography>
             </Stack>
+            {(listing.publishedAt ?? listing.createdAt) && (
+              <Stack direction="row" spacing={0.5} alignItems="center" color="text.secondary" sx={{ mt: 0.5 }}>
+                <AccessTimeIcon sx={{ fontSize: 16 }} />
+                <Typography variant="caption">
+                  {formatHijriAndGregorian(
+                    listing.publishedAt ?? listing.createdAt,
+                    i18n.language,
+                  )}
+                </Typography>
+              </Stack>
+            )}
           </Box>
 
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={1} alignItems="center">
             <Tooltip title={isSaved ? t('listing.saved') : t('listing.save')}>
               <IconButton onClick={() => toggleSaved(id)} aria-label="save listing">
                 {isSaved ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
@@ -451,6 +519,28 @@ export function ListingDetailPage() {
               </IconButton>
             </Tooltip>
             <Box sx={{ flex: 1 }} />
+            {(() => {
+              const fairness = computeFairness(listing, similarQuery.data?.data ?? []);
+              if (!fairness) return null;
+              const chipColor =
+                fairness.bucket === 'great'
+                  ? 'success'
+                  : fairness.bucket === 'fair'
+                    ? 'info'
+                    : 'warning';
+              return (
+                <Tooltip
+                  title={`${t('listing.fairPrice.marketAvg')}: ${Math.round(fairness.marketPpsm).toLocaleString(i18n.language)} ${t('listing.currency')}`}
+                >
+                  <Chip
+                    color={chipColor}
+                    label={t(`listing.fairPrice.${fairness.bucket}`)}
+                    size="small"
+                    sx={{ fontWeight: 700 }}
+                  />
+                </Tooltip>
+              );
+            })()}
             <Typography variant="h5" sx={{ fontWeight: 800, color: 'primary.main' }}>
               {Number(listing.price).toLocaleString(i18n.language)} {t('listing.currency')}
               {!isSale && listing.rentPeriod ? <Typography component="span" variant="caption" sx={{ ml: 0.5, color: 'text.secondary' }}>/{listing.rentPeriod}</Typography> : null}
@@ -475,6 +565,10 @@ export function ListingDetailPage() {
                 {listing.yearBuilt !== null && <FeatureStat label="Built" value={listing.yearBuilt} />}
               </Stack>
             </Paper>
+
+            {/* Mini market sparkline — local price trend */}
+            <PriceTrendSparkline city={listing.city} type={listing.propertyType} />
+
 
             {/* VR/AR — VISUALLY PROMINENT */}
             <Box
@@ -635,8 +729,74 @@ export function ListingDetailPage() {
               </Box>
             )}
 
-            {/* REGA / compliance — surfaces a license badge when the listing or
-             *  reference code is set. The lavender chip flags it as verified. */}
+            {/* Rent-only — Ejar contract + Dufaat installments callouts. */}
+            {!isSale && isAuthenticated && (
+              <Stack spacing={2} sx={{ mb: 4 }}>
+                <Box
+                  sx={{
+                    p: 2.5,
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: alpha('#009639', 0.3),
+                    bgcolor: alpha('#009639', 0.06),
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2,
+                    flexDirection: { xs: 'column', sm: 'row' },
+                  }}
+                >
+                  <Box sx={{ flex: 1 }}>
+                    <Typography sx={{ fontWeight: 700, color: '#007A2E' }}>
+                      📜 {t('ejar.createContract')}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {t('ejar.calloutBody')}
+                    </Typography>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => setEjarOpen(true)}
+                    sx={{ bgcolor: '#009639', '&:hover': { bgcolor: '#007A2E' } }}
+                  >
+                    {t('ejar.createContract')}
+                  </Button>
+                </Box>
+
+                <Box
+                  sx={{
+                    p: 2.5,
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: alpha(theme.palette.primary.main, 0.3),
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  }}
+                >
+                  <Typography sx={{ fontWeight: 700, color: 'primary.main' }}>
+                    💳 {t('dufaat.title')}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    {t('dufaat.calloutBody', {
+                      monthly: Math.round(Number(listing.price) / 12).toLocaleString(i18n.language),
+                      annual: Number(listing.price).toLocaleString(i18n.language),
+                      currency: t('listing.currency'),
+                    })}
+                  </Typography>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    component={Link}
+                    to="/dashboard/dufaat"
+                  >
+                    {t('dufaat.applyNow')}
+                  </Button>
+                </Box>
+              </Stack>
+            )}
+
+            {/* REGA / compliance — required by Saudi law for property listings.
+             *  Rendered as a high-contrast banner so buyers immediately see
+             *  the listing is registered with the General Real Estate Authority. */}
             {(() => {
               const regaNumber =
                 (listing as unknown as { regaNumber?: string }).regaNumber ?? listing.referenceCode;
@@ -646,25 +806,35 @@ export function ListingDetailPage() {
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 1.25,
-                    p: 2,
+                    gap: 2,
+                    p: 2.5,
                     mb: 4,
-                    borderRadius: 2,
-                    border: '1px solid',
-                    borderColor: 'success.light',
-                    bgcolor: alpha(theme.palette.success.main, 0.06),
+                    borderRadius: 3,
+                    border: '2px solid',
+                    borderColor: 'success.main',
+                    bgcolor: alpha(theme.palette.success.main, 0.08),
+                    boxShadow: `0 4px 16px ${alpha(theme.palette.success.main, 0.18)}`,
                   }}
                 >
-                  <VerifiedIcon sx={{ color: 'success.main' }} />
+                  <VerifiedIcon sx={{ color: 'success.main', fontSize: 36, flexShrink: 0 }} />
                   <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Typography variant="caption" color="text.secondary">
-                      REGA License
+                    <Typography
+                      sx={{
+                        fontWeight: 800,
+                        fontSize: '1.05rem',
+                        color: 'success.dark',
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {t('listing.regaLicensed')}
                     </Typography>
-                    <Typography variant="body2" sx={{ fontWeight: 700 }}>
-                      {regaNumber}
+                    <Typography
+                      variant="caption"
+                      sx={{ color: 'text.secondary', display: 'block', mt: 0.25 }}
+                    >
+                      {t('listing.regaLicense')}: <Box component="span" sx={{ fontFamily: 'monospace', fontWeight: 700, color: 'text.primary' }}>{regaNumber}</Box>
                     </Typography>
                   </Box>
-                  <Chip label="Verified" color="success" size="small" />
                 </Box>
               );
             })()}
@@ -838,6 +1008,19 @@ export function ListingDetailPage() {
                       </Button>
                     </Stack>
                   </Stack>
+                ) : (listing as unknown as { bookingType?: string }).bookingType === 'daily' ? (
+                  <BookingCalendar
+                    listingId={listing.id}
+                    dailyRate={
+                      Number(
+                        (listing as unknown as { dailyRate?: number }).dailyRate,
+                      ) || Number(listing.price)
+                    }
+                    minimumStay={
+                      (listing as unknown as { minimumStay?: number }).minimumStay ?? 1
+                    }
+                    currencyLabel={String(listing.currency || t('listing.currency'))}
+                  />
                 ) : (
                   <>
                 <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
@@ -1033,6 +1216,17 @@ export function ListingDetailPage() {
           inquiryMutation.mutate();
         }}
       />
+
+      <EjarContractDialog
+        open={ejarOpen}
+        onClose={() => setEjarOpen(false)}
+        listingId={id}
+        defaultMonthlyRent={
+          listing.rentPeriod === 'monthly'
+            ? Number(listing.price)
+            : Math.round(Number(listing.price) / 12)
+        }
+      />
     </Box>
   );
 }
@@ -1050,6 +1244,66 @@ function FeatureStat({ icon, label, value }: { icon?: React.ReactNode; label: st
       </Stack>
       <Typography variant="h6" sx={{ fontWeight: 700 }}>{value}</Typography>
     </Box>
+  );
+}
+
+function PriceTrendSparkline({ city, type }: { city: string; type: string }) {
+  const { t, i18n } = useTranslation();
+  const trendsQuery = useQuery({
+    queryKey: ['priceTrends', 'sparkline', city, type],
+    queryFn: () => priceTrendsApi.trends(city, type),
+    enabled: Boolean(city && type),
+    staleTime: 1000 * 60 * 30,
+  });
+  const data = trendsQuery.data ?? [];
+  if (trendsQuery.isLoading || data.length === 0) return null;
+
+  const last = data[data.length - 1]?.avgPricePerSqm ?? 0;
+  const first = data[0]?.avgPricePerSqm ?? 0;
+  const change = first > 0 ? ((last - first) / first) * 100 : 0;
+  const positive = change >= 0;
+
+  return (
+    <Paper sx={{ p: 2.5, mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{ flex: 1 }}>
+        <Typography variant="caption" sx={{ textTransform: 'uppercase', letterSpacing: 0.5, color: 'text.secondary' }}>
+          {t('market.miniTrend')}
+        </Typography>
+        <Stack direction="row" spacing={1.5} alignItems="baseline" sx={{ mt: 0.5 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+            {Math.round(last).toLocaleString(i18n.language)} {t('listing.currency')}/m²
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ fontWeight: 700, color: positive ? 'success.main' : 'error.main' }}
+          >
+            {positive ? '▲' : '▼'} {Math.abs(change).toFixed(1)}%
+          </Typography>
+        </Stack>
+        <Link to="/market" style={{ textDecoration: 'none' }}>
+          <Typography variant="caption" sx={{ color: 'primary.main', fontWeight: 600 }}>
+            {t('market.viewMarket')} →
+          </Typography>
+        </Link>
+      </Box>
+      <Box sx={{ width: 200, height: 64 }}>
+        <ResponsiveContainer>
+          <LineChart data={data}>
+            <RechartsTooltip
+              formatter={(v: number) => [`${Math.round(v).toLocaleString(i18n.language)} SAR/m²`, '']}
+              labelFormatter={(label) => String(label)}
+            />
+            <Line
+              type="monotone"
+              dataKey="avgPricePerSqm"
+              stroke={positive ? '#10B981' : '#EF4444'}
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </Box>
+    </Paper>
   );
 }
 

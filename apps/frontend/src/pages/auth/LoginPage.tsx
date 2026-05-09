@@ -52,6 +52,11 @@ export function LoginPage() {
 
   const onSubmit = (values: FormValues) => loginMutation.mutate(values);
 
+  const handleNafathLogin = () => {
+    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+    window.location.href = `${apiUrl}/api/v1/auth/nafath/authorize`;
+  };
+
   return (
     <AuthLayout pageTitle={`${t('auth.login')} — ${t('app.name')}`}>
       <Box sx={{ textAlign: 'center', mb: 4 }}>
@@ -117,6 +122,30 @@ export function LoginPage() {
           {/* Google OAuth — UI only; backend integration is a follow-up. */}
           <Button variant="outlined" color="inherit" startIcon={<GoogleIcon />} disabled>
             Google
+          </Button>
+
+          {/* Nafath SSO — Saudi national digital identity. Hands the browser
+           *  off to the backend `/auth/nafath/authorize` endpoint, which
+           *  redirects to Absher and bounces back through `/auth/nafath-callback`.
+           */}
+          <Button
+            variant="outlined"
+            fullWidth
+            onClick={handleNafathLogin}
+            sx={{
+              py: 1.5,
+              borderWidth: 2,
+              borderColor: '#009639',
+              color: '#009639',
+              fontWeight: 700,
+              '&:hover': {
+                borderWidth: 2,
+                borderColor: '#007A2E',
+                bgcolor: 'rgba(0, 150, 57, 0.04)',
+              },
+            }}
+          >
+            {t('nafath.loginWith')}
           </Button>
         </Stack>
       </Box>

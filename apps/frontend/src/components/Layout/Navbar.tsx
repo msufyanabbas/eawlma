@@ -69,7 +69,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const switchLanguage = (lng: 'ar' | 'en') => {
+  const switchLanguage = (lng: 'ar' | 'en' | 'ur') => {
     void i18n.changeLanguage(lng);
     setLanguage(lng);
     localStorage.setItem('eawlma.locale', lng);
@@ -204,6 +204,16 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 
           {/* Right cluster — pinned to inline-end */}
           <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
+            {isDesktop && (
+              <Link to="/market" style={{ textDecoration: 'none' }}>
+                <Button
+                  color="inherit"
+                  sx={{ color: 'text.primary', fontWeight: 600, textTransform: 'none' }}
+                >
+                  {t('nav.market')}
+                </Button>
+              </Link>
+            )}
             {!isDesktop && (
               <Tooltip title={t('common.search')}>
                 <IconButton
@@ -230,11 +240,14 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
               </IconButton>
             </Tooltip>
             <Menu anchorEl={langAnchor} open={!!langAnchor} onClose={() => setLangAnchor(null)}>
-              <MenuItem selected={i18n.language === 'ar'} onClick={() => switchLanguage('ar')}>
-                {t('common.arabic')}
-              </MenuItem>
               <MenuItem selected={i18n.language === 'en'} onClick={() => switchLanguage('en')}>
-                {t('common.english')}
+                🇬🇧 English
+              </MenuItem>
+              <MenuItem selected={i18n.language === 'ar'} onClick={() => switchLanguage('ar')}>
+                🇸🇦 العربية
+              </MenuItem>
+              <MenuItem selected={i18n.language === 'ur'} onClick={() => switchLanguage('ur')}>
+                🇵🇰 اردو
               </MenuItem>
             </Menu>
 

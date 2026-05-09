@@ -4,8 +4,9 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import ar from './locales/ar.json';
 import en from './locales/en.json';
+import ur from './locales/ur.json';
 
-const supported = (import.meta.env.VITE_SUPPORTED_LOCALES ?? 'ar,en')
+const supported = (import.meta.env.VITE_SUPPORTED_LOCALES ?? 'ar,en,ur')
   .split(',')
   .map((s) => s.trim());
 
@@ -18,6 +19,7 @@ void i18n
     resources: {
       ar: { translation: ar },
       en: { translation: en },
+      ur: { translation: ur },
     },
     lng: undefined, // let detector pick
     fallbackLng: fallback,

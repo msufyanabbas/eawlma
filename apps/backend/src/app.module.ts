@@ -41,6 +41,11 @@ import { ReviewsModule } from './modules/reviews/reviews.module';
 import { CommissionsModule } from './modules/commissions/commissions.module';
 import { WalletModule } from './modules/wallet/wallet.module';
 import { PayoutsModule } from './modules/payouts/payouts.module';
+import { PropertyRequestsModule } from './modules/property-requests/property-requests.module';
+import { EjarModule } from './modules/ejar/ejar.module';
+import { DufaatModule } from './modules/dufaat/dufaat.module';
+import { BookingsModule } from './modules/bookings/bookings.module';
+import { PriceTrendsModule } from './modules/price-trends/price-trends.module';
 
 @Module({
   imports: [
@@ -100,6 +105,11 @@ import { PayoutsModule } from './modules/payouts/payouts.module';
     CommissionsModule,
     WalletModule,
     PayoutsModule,
+    PropertyRequestsModule,
+    EjarModule,
+    DufaatModule,
+    BookingsModule,
+    PriceTrendsModule,
   ],
   controllers: [HealthController],
   providers: [

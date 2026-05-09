@@ -16,6 +16,8 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { AuthenticaController } from './authentica.controller';
 import { AuthenticaClient } from './authentica.client';
+import { NafathService } from './nafath/nafath.service';
+import { NafathController } from './nafath/nafath.controller';
 
 @Module({
   imports: [
@@ -40,9 +42,10 @@ import { AuthenticaClient } from './authentica.client';
     JwtStrategy,
     JwtRefreshStrategy,
     AuthenticaClient,
+    NafathService,
     { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],
-  controllers: [AuthController, AuthenticaController],
-  exports: [AuthService, JwtModule, AuthenticaClient],
+  controllers: [AuthController, AuthenticaController, NafathController],
+  exports: [AuthService, JwtModule, AuthenticaClient, NafathService],
 })
 export class AuthModule {}

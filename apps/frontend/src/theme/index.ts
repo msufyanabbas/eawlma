@@ -3,6 +3,7 @@ import { eawlmaBrand, darkPalette, lightPalette } from './palette';
 
 export type Direction = 'ltr' | 'rtl';
 export type Mode = 'light' | 'dark';
+export type LangScript = 'latin' | 'arabic' | 'urdu';
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -28,57 +29,83 @@ declare module '@mui/material/styles' {
 const headingStackLatin = ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'].join(',');
 const bodyStackLatin = ['Inter', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'].join(',');
 const stackArabic = ['Tajawal', '"IBM Plex Sans Arabic"', 'Cairo', 'system-ui', 'sans-serif'].join(',');
+// Urdu stack — Noto Nastaliq Urdu primary, Mehr Nastaliq self-hosted fallback for richer Nastaleeq.
+const stackUrdu = ['"Noto Nastaliq Urdu"', '"Mehr Nastaliq"', 'serif'].join(',');
 
-const buildTypography = (direction: Direction): ThemeOptions['typography'] => {
-  const isRtl = direction === 'rtl';
+const pickStack = (script: LangScript) => {
+  if (script === 'arabic') return stackArabic;
+  if (script === 'urdu') return stackUrdu;
+  return bodyStackLatin;
+};
+const pickHeadingStack = (script: LangScript) => {
+  if (script === 'arabic') return stackArabic;
+  if (script === 'urdu') return stackUrdu;
+  return headingStackLatin;
+};
+
+const buildTypography = (
+  direction: Direction,
+  script: LangScript = direction === 'rtl' ? 'arabic' : 'latin',
+): ThemeOptions['typography'] => {
+  const stack = pickStack(script);
+  const headingStack = pickHeadingStack(script);
+  // Nastaleeq needs more vertical space and slightly larger glyphs to stay
+  // legible at body sizes — the script stacks taller diagonally than Naskh.
+  const isUrdu = script === 'urdu';
   return {
-    fontFamily: isRtl ? stackArabic : bodyStackLatin,
-    fontSize: 14,
+    fontFamily: stack,
+    fontSize: isUrdu ? 16 : 14,
     htmlFontSize: 16,
     h1: {
-      fontFamily: isRtl ? stackArabic : headingStackLatin,
+      fontFamily: headingStack,
       fontSize: '2.75rem',
       fontWeight: 800,
       letterSpacing: '-0.02em',
       lineHeight: 1.15,
     },
     h2: {
-      fontFamily: isRtl ? stackArabic : headingStackLatin,
+      fontFamily: headingStack,
       fontSize: '2.25rem',
       fontWeight: 700,
       letterSpacing: '-0.018em',
       lineHeight: 1.2,
     },
     h3: {
-      fontFamily: isRtl ? stackArabic : headingStackLatin,
+      fontFamily: headingStack,
       fontSize: '1.75rem',
       fontWeight: 700,
       letterSpacing: '-0.016em',
       lineHeight: 1.25,
     },
     h4: {
-      fontFamily: isRtl ? stackArabic : headingStackLatin,
+      fontFamily: headingStack,
       fontSize: '1.375rem',
       fontWeight: 700,
       letterSpacing: '-0.012em',
       lineHeight: 1.3,
     },
     h5: {
-      fontFamily: isRtl ? stackArabic : headingStackLatin,
+      fontFamily: headingStack,
       fontSize: '1.125rem',
       fontWeight: 600,
       lineHeight: 1.4,
     },
     h6: {
-      fontFamily: isRtl ? stackArabic : headingStackLatin,
+      fontFamily: headingStack,
       fontSize: '1rem',
       fontWeight: 600,
       lineHeight: 1.45,
     },
-    subtitle1: { fontWeight: 500 },
-    subtitle2: { fontWeight: 600 },
-    body1: { fontSize: '0.9375rem', lineHeight: 1.6 },
-    body2: { fontSize: '0.875rem', lineHeight: 1.55 },
+    subtitle1: { fontWeight: 500, ...(isUrdu ? { lineHeight: 2.2 } : {}) },
+    subtitle2: { fontWeight: 600, ...(isUrdu ? { lineHeight: 2.2 } : {}) },
+    body1: {
+      fontSize: isUrdu ? '1.1rem' : '0.9375rem',
+      lineHeight: isUrdu ? 2.2 : 1.6,
+    },
+    body2: {
+      fontSize: isUrdu ? '1rem' : '0.875rem',
+      lineHeight: isUrdu ? 2.2 : 1.55,
+    },
     button: { textTransform: 'none', fontWeight: 600, letterSpacing: 0 },
     overline: { fontWeight: 600, letterSpacing: '0.08em' },
   };
@@ -208,11 +235,11 @@ const buildComponents = (mode: Mode): ThemeOptions['components'] => ({
   },
 });
 
-export const buildTheme = (mode: Mode, direction: Direction) =>
+export const buildTheme = (mode: Mode, direction: Direction, script?: LangScript) =>
   createTheme({
     direction,
     palette: mode === 'dark' ? darkPalette : lightPalette,
-    typography: buildTypography(direction),
+    typography: buildTypography(direction, script),
     shape: baseShape,
     components: buildComponents(mode),
     eawlma: {
@@ -224,4 +251,4 @@ export const buildTheme = (mode: Mode, direction: Direction) =>
     },
   });
 
-export const defaultTheme = buildTheme('light', 'rtl');
+export const defaultTheme = buildTheme('light', 'rtl', 'arabic');

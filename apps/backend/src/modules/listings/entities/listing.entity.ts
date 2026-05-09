@@ -69,6 +69,29 @@ export class ListingEntity extends BaseEntity {
   @Column({ type: 'boolean', name: 'is_negotiable', default: false })
   isNegotiable: boolean;
 
+  // ----- Booking type (long-term / short-term / daily) ---------------------
+  // `daily` listings (chalets, rest houses, furnished short stays) get the
+  // calendar-based booking flow on the listing detail; the others keep the
+  // standard inquiry form.
+
+  @Column({ type: 'varchar', length: 16, name: 'booking_type', default: 'long_term' })
+  bookingType: 'long_term' | 'short_term' | 'daily';
+
+  @Column({ type: 'numeric', precision: 14, scale: 2, name: 'daily_rate', nullable: true })
+  dailyRate: number | null;
+
+  @Column({ type: 'numeric', precision: 14, scale: 2, name: 'weekly_rate', nullable: true })
+  weeklyRate: number | null;
+
+  @Column({ type: 'integer', name: 'minimum_stay', default: 1 })
+  minimumStay: number;
+
+  @Column({ type: 'date', name: 'available_from', nullable: true })
+  availableFrom: string | null;
+
+  @Column({ type: 'date', name: 'available_to', nullable: true })
+  availableTo: string | null;
+
   // ----- Features (denormalized for fast filtering) --------------------------
 
   @Column({ type: 'integer', nullable: true })

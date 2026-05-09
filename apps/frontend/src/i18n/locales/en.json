@@ -22,7 +22,8 @@
     "signIn": "Sign in",
     "createAccount": "Create account",
     "darkMode": "Dark mode",
-    "language": "Language"
+    "language": "Language",
+    "market": "Market"
   },
   "dashboard": {
     "overview": "Overview",
@@ -76,7 +77,16 @@
     "noPayouts": "No payouts yet",
     "noPayoutsBody": "Try a different status filter — payouts will land here as soon as agents request them.",
     "rejectPayout": "Reject payout",
-    "rejectPayoutBody": "The held amount will be refunded to the agent's wallet and they'll be notified with this reason."
+    "rejectPayoutBody": "The held amount will be refunded to the agent's wallet and they'll be notified with this reason.",
+    "propertyRequests": "Property requests",
+    "propertyRequestsSubtitle": "Buyer-submitted property wants — match them with active listings or reach out directly.",
+    "allPropertyRequests": "All property requests",
+    "noPropertyRequests": "No property requests yet",
+    "propertyRequestStatus": {
+      "open": "Open",
+      "matched": "Matched",
+      "closed": "Closed"
+    }
   },
   "auth": {
     "login": "Sign in",
@@ -203,6 +213,14 @@
     "loanTerm": "Loan term",
     "interestRate": "Interest rate",
     "message": "Message",
+    "fairPrice": {
+      "great": "💚 Great price",
+      "fair": "✓ Fair price",
+      "above": "⚠️ Above market",
+      "marketAvg": "Market avg / m²"
+    },
+    "regaLicensed": "REGA Licensed Listing",
+    "regaLicense": "License",
     "status": {
       "active": "Active",
       "pending": "Pending review",
@@ -239,7 +257,14 @@
     "viewAll": "All",
     "price": "Price (SAR)",
     "propertiesFound": "properties found",
-    "searchResults": "Search results"
+    "searchResults": "Search results",
+    "cantFind": {
+      "title": "Can't find what you're looking for?",
+      "subtitle": "Tell us what you need and verified agents will reach out.",
+      "cta": "Submit property request"
+    },
+    "drawArea": "Draw an area",
+    "clearDrawing": "Clear drawing"
   },
   "home": {
     "heroTitle": "Find your perfect home",
@@ -484,6 +509,36 @@
     "noResultsBody": "Try a different keyword, or reach out to our team directly.",
     "respondsIn": "Our team responds within 24 hours."
   },
+  "welcome": {
+    "step1Title": "Looking to buy or rent?",
+    "step1Subtitle": "Tell us what you're looking for so we can show the right listings.",
+    "buy": "Buy",
+    "rent": "Rent",
+    "step2Title": "Are you an agent?",
+    "step2Subtitle": "List your properties and reach thousands of buyers and renters.",
+    "yesAgent": "Yes, sign up as an agent",
+    "notAgent": "No, just browsing",
+    "step3Title": "Search your city",
+    "step3Subtitle": "Riyadh, Jeddah, Dammam, or any Saudi city — we cover them all.",
+    "startSearching": "Start searching",
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back"
+  },
+  "propertyRequest": {
+    "title": "Property request",
+    "subtitle": "Tell us what you need — agents will reach out within 24h",
+    "propertyType": "Property type",
+    "city": "City",
+    "minBudget": "Min budget",
+    "maxBudget": "Max budget",
+    "bedrooms": "Bedrooms",
+    "message": "Additional details",
+    "contactPhone": "Phone number",
+    "submit": "Submit request",
+    "success": "Request received",
+    "successBody": "Verified agents will contact you shortly."
+  },
   "wallet": {
     "title": "Wallet",
     "yourBalance": "Your balance",
@@ -531,6 +586,71 @@
       "failed": "Failed",
       "rejected": "Rejected"
     }
+  },
+  "nafath": {
+    "loginWith": "Sign in with Nafath"
+  },
+  "ejar": {
+    "myContracts": "Rental contracts",
+    "subtitle": "Ejar-registered tenancy agreements you've signed or issued.",
+    "createContract": "Create Ejar contract",
+    "calloutBody": "Generate a Saudi Ejar-registered rental contract directly from this listing.",
+    "monthlyRent": "Monthly rent",
+    "annualRent": "Annual rent",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "tenantNationalId": "Tenant national ID",
+    "submit": "Submit to Ejar",
+    "contractCreated": "Contract submitted to Ejar",
+    "contractNumber": "Contract #",
+    "viewContract": "View contract",
+    "signedThroughEjar": "Signed via Ejar",
+    "noContracts": "No rental contracts yet"
+  },
+  "dufaat": {
+    "title": "Dufaat installments",
+    "subtitle": "Pay your annual rent in monthly installments — Sharia-compliant, no interest.",
+    "applyNow": "Apply for Dufaat",
+    "calloutTitle": "Pay rent monthly with Dufaat",
+    "calloutBody": "Spread {{amount}} SAR rent into 12 affordable monthly installments — Sharia-compliant, no interest.",
+    "plan": "Plan",
+    "monthlyPayment": "Monthly payment",
+    "totalAnnual": "Total annual rent",
+    "platformFee": "Platform fee",
+    "nextPayment": "Next payment",
+    "installmentsPaid": "Installments paid",
+    "payNow": "Pay installment",
+    "noPlans": "No Dufaat plans yet"
+  },
+  "booking": {
+    "myBookings": "My bookings",
+    "tabGuest": "As guest",
+    "tabHost": "As host",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "night": "night",
+    "nights": "nights",
+    "totalAmount": "Total",
+    "bookNow": "Book now",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "success": "Booking confirmed",
+    "noBookings": "No bookings yet",
+    "signInRequired": "Sign in to book this property",
+    "helpTip": "Select your check-in and check-out dates."
+  },
+  "market": {
+    "title": "Market insights",
+    "subtitle": "Live price trends and district averages across the Kingdom.",
+    "city": "City",
+    "propertyType": "Property type",
+    "priceTrend": "Price trend (12 months)",
+    "areaInsights": "Average price per m² by district",
+    "noData": "No market data yet for this filter",
+    "avgPricePerSqm": "Avg price per m²",
+    "listingCount": "Active listings",
+    "viewMarket": "View market",
+    "miniTrend": "Local market trend"
   },
   "errors": {
     "generic": "An unexpected error occurred",

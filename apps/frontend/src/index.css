@@ -1,6 +1,18 @@
+/* Self-hosted Mehr Nastaliq for richer Urdu rendering. Must precede @tailwind
+   per CSS spec — Tajawal/Noto Nastaliq Urdu come from index.html, this @import
+   adds the cdnfonts Mehr Nastaliq face for a more authentic Nastaleeq fallback. */
+@import url('https://fonts.cdnfonts.com/css/mehr-nastaliq-web');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Mehr Nastaliq';
+  src: url('https://fonts.cdnfonts.com/css/mehr-nastaliq-web') format('woff2');
+  unicode-range: U+0600-06FF;
+  font-display: swap;
+}
 
 html, body, #root {
   height: 100%;
@@ -34,6 +46,15 @@ body {
 
 [dir="ltr"] body {
   font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Urdu Nastaleeq — needs more vertical space than Naskh/Latin. */
+.lang-ur,
+[lang="ur"],
+html[lang="ur"] body {
+  font-family: 'Noto Nastaliq Urdu', 'Mehr Nastaliq', serif;
+  line-height: 2.2;
+  font-size: 1.1rem;
 }
 
 /* Dark mode page background — applied by ThemeProvider via data-theme="dark" */

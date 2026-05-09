@@ -24,10 +24,12 @@ import { AgentProfilePage } from './pages/AgentProfilePage';
 import { AgentsPage } from './pages/AgentsPage';
 import { SavedPropertiesPage } from './pages/SavedPropertiesPage';
 import { ComparePage } from './pages/ComparePage';
+import { MarketPage } from './pages/MarketPage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { VerifyOtpPage } from './pages/auth/VerifyOtpPage';
 import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage';
+import { NafathCallbackPage } from './pages/auth/NafathCallbackPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
@@ -41,8 +43,12 @@ import { MessagesPage } from './pages/dashboard/MessagesPage';
 import { NotificationsPage } from './pages/dashboard/NotificationsPage';
 import { CommissionsPage } from './pages/dashboard/CommissionsPage';
 import { WalletPage } from './pages/dashboard/WalletPage';
+import { RentalContractsPage } from './pages/dashboard/RentalContractsPage';
+import { DufaatPage } from './pages/dashboard/DufaatPage';
+import { BookingsPage } from './pages/dashboard/BookingsPage';
 import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
 import { AdminPayoutsPage } from './pages/admin/AdminPayoutsPage';
+import { AdminPropertyRequestsPage } from './pages/admin/AdminPropertyRequestsPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { ModerationPage } from './pages/admin/ModerationPage';
 import { AdminUsersPage } from './pages/admin/AdminUsersPage';
@@ -151,6 +157,7 @@ const agentsListRoute = createRoute({ getParentRoute: () => marketingShellRoute,
 const agentProfileRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/agents/$id', component: AgentProfilePage });
 const savedRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/saved', component: SavedPropertiesPage });
 const compareRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/compare', component: ComparePage });
+const marketRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/market', component: MarketPage });
 const profileRoute = createRoute({
   getParentRoute: () => marketingShellRoute,
   path: '/profile',
@@ -172,6 +179,7 @@ const authLoginRoute = createRoute({ getParentRoute: () => authShellRoute, path:
 const authRegisterRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/register', component: RegisterPage });
 const authVerifyRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/verify', component: VerifyOtpPage });
 const authForgotRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/forgot-password', component: ForgotPasswordPage });
+const authNafathCallbackRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/nafath-callback', component: NafathCallbackPage });
 
 // ----- Legacy redirects ------------------------------------------------
 
@@ -204,6 +212,9 @@ const dashboardCommissionsRoute = createRoute({ getParentRoute: () => dashboardS
 // Wallet is open to any authenticated user (buyers fund commission payments,
 // agents collect their share into the same balance).
 const dashboardWalletRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/wallet', component: WalletPage });
+const dashboardContractsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/contracts', component: RentalContractsPage });
+const dashboardDufaatRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/dufaat', component: DufaatPage });
+const dashboardBookingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/bookings', component: BookingsPage });
 
 // `/messages` (top-level) is a friendlier alias for the same page — Navbar
 // links to it from the public chat icon. It mounts under the dashboard
@@ -227,6 +238,7 @@ const adminUsersRoute = createRoute({ getParentRoute: () => adminShellRoute, pat
 const adminAuditRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/audit', component: AuditLogPage });
 const adminCommissionsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/commissions', component: AdminCommissionsPage });
 const adminPayoutsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/payouts', component: AdminPayoutsPage });
+const adminPropertyRequestsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/property-requests', component: AdminPropertyRequestsPage });
 
 // ----- Tree -----------------------------------------------------------
 
@@ -241,6 +253,7 @@ const routeTree = rootRoute.addChildren([
     agentProfileRoute,
     savedRoute,
     compareRoute,
+    marketRoute,
     profileRoute,
     aboutRoute,
     contactRoute,
@@ -253,6 +266,7 @@ const routeTree = rootRoute.addChildren([
     authRegisterRoute,
     authVerifyRoute,
     authForgotRoute,
+    authNafathCallbackRoute,
   ]),
   dashboardShellRoute.addChildren([
     dashboardHomeRoute,
@@ -267,6 +281,9 @@ const routeTree = rootRoute.addChildren([
     dashboardSettingsRoute,
     dashboardCommissionsRoute,
     dashboardWalletRoute,
+    dashboardContractsRoute,
+    dashboardDufaatRoute,
+    dashboardBookingsRoute,
     dashboardMessagesAliasRoute,
     userNotificationsAliasRoute,
   ]),
@@ -277,6 +294,7 @@ const routeTree = rootRoute.addChildren([
     adminAuditRoute,
     adminCommissionsRoute,
     adminPayoutsRoute,
+    adminPropertyRequestsRoute,
   ]),
 ]);
 

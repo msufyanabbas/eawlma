@@ -36,6 +36,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import {
+  DrawingManagerF,
   GoogleMap,
   InfoWindowF,
   MarkerClustererF,
@@ -52,6 +53,7 @@ import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
 import { Reveal } from '@/components/global/Reveal';
+import { PropertyRequestDialog } from '@/components/global/PropertyRequestDialog';
 import { useSavedStore } from '@/store/saved.store';
 import { listingCoverUrl } from '@/utils/listingImages';
 import { getListingTitle, getListingLocation } from '@/utils/listingText';
@@ -167,6 +169,7 @@ export function SearchPage() {
   const [sort, setSort] = useState<string>(initial.sortField ?? 'createdAt');
   const [view, setView] = useState<ViewMode>((initial.view as ViewMode) ?? 'grid');
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
+  const [requestDialogOpen, setRequestDialogOpen] = useState(false);
 
   // Push filter state back to the URL bar via `window.history.replaceState`
   // so the page stays deep-linkable, but *without* going through TanStack
@@ -209,28 +212,38 @@ export function SearchPage() {
   ]);
 
   // ----- query --------------------------------------------------------
+  // Filters auto-apply with a 500ms debounce so that dragging the price
+  // slider or typing in the city field doesn't fire a fetch on every keystroke.
+  // The "Apply filters" button still works (forces a refetch immediately).
+  const filterSnapshot = useMemo(
+    () => ({ q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort }),
+    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort],
+  );
+  const [debouncedFilters, setDebouncedFilters] = useState(filterSnapshot);
+  useEffect(() => {
+    const id = window.setTimeout(() => setDebouncedFilters(filterSnapshot), 500);
+    return () => window.clearTimeout(id);
+  }, [filterSnapshot]);
+
   const buildParams = (page: number): FlatSearchParams => ({
-    q: q || undefined,
-    type: type || undefined,
-    city: city || undefined,
-    district: district || undefined,
-    minPrice: priceRange[0] > PRICE_BOUNDS[0] ? priceRange[0] : undefined,
-    maxPrice: priceRange[1] < PRICE_BOUNDS[1] ? priceRange[1] : undefined,
-    minBedrooms: minBedrooms ? Number(minBedrooms) : undefined,
-    minArea: areaRange[0] > AREA_BOUNDS[0] ? areaRange[0] : undefined,
-    propertyTypes: propertyTypes.length > 0 ? propertyTypes : undefined,
-    isFeatured: verifiedOnly || undefined,
-    sortField: sort,
+    q: debouncedFilters.q || undefined,
+    type: debouncedFilters.type || undefined,
+    city: debouncedFilters.city || undefined,
+    district: debouncedFilters.district || undefined,
+    minPrice: debouncedFilters.priceRange[0] > PRICE_BOUNDS[0] ? debouncedFilters.priceRange[0] : undefined,
+    maxPrice: debouncedFilters.priceRange[1] < PRICE_BOUNDS[1] ? debouncedFilters.priceRange[1] : undefined,
+    minBedrooms: debouncedFilters.minBedrooms ? Number(debouncedFilters.minBedrooms) : undefined,
+    minArea: debouncedFilters.areaRange[0] > AREA_BOUNDS[0] ? debouncedFilters.areaRange[0] : undefined,
+    propertyTypes: debouncedFilters.propertyTypes.length > 0 ? debouncedFilters.propertyTypes : undefined,
+    isFeatured: debouncedFilters.verifiedOnly || undefined,
+    sortField: debouncedFilters.sort,
     page,
     limit: PAGE_SIZE,
   });
 
   const queryKey = useMemo(
-    () => [
-      'search',
-      { q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort },
-    ],
-    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort],
+    () => ['search', debouncedFilters],
+    [debouncedFilters],
   );
 
   const infiniteQuery = useInfiniteQuery({
@@ -377,7 +390,10 @@ export function SearchPage() {
                 fullWidth
                 variant="contained"
                 sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
-                onClick={() => infiniteQuery.refetch()}
+                onClick={() => {
+                  setDebouncedFilters(filterSnapshot);
+                  void infiniteQuery.refetch();
+                }}
               >
                 {t('search.applyFilters', { defaultValue: 'Apply filters' })}
               </Button>
@@ -510,8 +526,46 @@ export function SearchPage() {
               <Typography variant="body2" color="text.secondary">{t('common.loading')}</Typography>
             </Stack>
           )}
+
+          {/* Property request CTA — shown when the user has few matches so we
+           *  funnel demand to agents instead of leaving them empty-handed. */}
+          {!infiniteQuery.isLoading && view !== 'map' && total < 3 && (
+            <Box
+              sx={{
+                p: 4,
+                textAlign: 'center',
+                bgcolor: alpha(theme.palette.primary.main, 0.06),
+                border: '1px dashed',
+                borderColor: alpha(theme.palette.primary.main, 0.3),
+                borderRadius: 3,
+                mt: 4,
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>
+                {t('search.cantFind.title')}
+              </Typography>
+              <Typography color="text.secondary" sx={{ mb: 3 }}>
+                {t('search.cantFind.subtitle')}
+              </Typography>
+              <Button
+                variant="contained"
+                size="large"
+                onClick={() => setRequestDialogOpen(true)}
+                sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
+              >
+                {t('search.cantFind.cta')}
+              </Button>
+            </Box>
+          )}
         </Box>
       </Box>
+
+      <PropertyRequestDialog
+        open={requestDialogOpen}
+        onClose={() => setRequestDialogOpen(false)}
+        initialCity={city}
+        initialPropertyType={propertyTypes[0]}
+      />
 
       {/* ============ Mobile bottom-sheet drawer ============ */}
       <Drawer
@@ -886,16 +940,21 @@ function FilterSection({
 // MapView
 // ------------------------------------------------------------------
 
-const MAP_LIBRARIES: ('places')[] = ['places'];
+const MAP_LIBRARIES: ('places' | 'drawing')[] = ['places', 'drawing'];
 const MAP_DEFAULT_CENTER = { lat: 24.7136, lng: 46.6753 }; // Riyadh
 
 function MapView({ listings }: { listings: Listing[] }) {
+  const { t } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: apiKey,
     libraries: MAP_LIBRARIES,
   });
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [drawnPolygon, setDrawnPolygon] = useState<google.maps.Polygon | null>(null);
+  // ID set of listings that fall inside the drawn polygon. `null` means
+  // "no polygon drawn", so the full list is displayed.
+  const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
 
   if (!apiKey) {
     return <EmptyState title="Google Maps API key not configured" description="Set VITE_GOOGLE_MAPS_API_KEY to enable the map view." />;
@@ -907,10 +966,39 @@ function MapView({ listings }: { listings: Listing[] }) {
     return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 2 }} />;
   }
 
-  const active = listings.find((l) => l.id === activeId);
-  const center = listings[0]
-    ? { lat: Number(listings[0].lat), lng: Number(listings[0].lng) }
+  const visibleListings = filteredIds
+    ? listings.filter((l) => filteredIds.has(l.id))
+    : listings;
+
+  const active = visibleListings.find((l) => l.id === activeId);
+  const center = visibleListings[0]
+    ? { lat: Number(visibleListings[0].lat), lng: Number(visibleListings[0].lng) }
     : MAP_DEFAULT_CENTER;
+
+  // Filter listings whose coordinates fall inside the drawn polygon. Uses
+  // `google.maps.geometry.poly.containsLocation`, which is part of the
+  // `geometry` library (auto-loaded with `drawing`).
+  const handlePolygonComplete = (polygon: google.maps.Polygon) => {
+    if (drawnPolygon) drawnPolygon.setMap(null);
+    setDrawnPolygon(polygon);
+    const ids = new Set<string>();
+    for (const l of listings) {
+      const lat = Number(l.lat);
+      const lng = Number(l.lng);
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+      const point = new google.maps.LatLng(lat, lng);
+      if (google.maps.geometry?.poly?.containsLocation(point, polygon)) {
+        ids.add(l.id);
+      }
+    }
+    setFilteredIds(ids);
+  };
+
+  const clearDrawing = () => {
+    if (drawnPolygon) drawnPolygon.setMap(null);
+    setDrawnPolygon(null);
+    setFilteredIds(null);
+  };
 
   return (
     <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
@@ -954,16 +1042,75 @@ function MapView({ listings }: { listings: Listing[] }) {
         </Stack>
       </Box>
 
+      {/* Draw / clear-drawing toolbar — overlay top-right. */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 16,
+          insetInlineEnd: 16,
+          zIndex: 10,
+          display: 'flex',
+          gap: 1,
+        }}
+      >
+        {filteredIds && (
+          <Button
+            size="small"
+            variant="contained"
+            color="secondary"
+            onClick={clearDrawing}
+            sx={{ bgcolor: 'background.paper', color: 'text.primary', boxShadow: 2 }}
+          >
+            {t('search.clearDrawing')} ({filteredIds.size})
+          </Button>
+        )}
+        {!filteredIds && (
+          <Box
+            sx={{
+              px: 1.5,
+              py: 0.75,
+              bgcolor: 'background.paper',
+              borderRadius: 999,
+              boxShadow: 2,
+              fontSize: 13,
+              fontWeight: 600,
+              color: 'text.secondary',
+            }}
+          >
+            ✏️ {t('search.drawArea')}
+          </Box>
+        )}
+      </Box>
+
       <GoogleMap
         center={center}
         zoom={11}
         mapContainerStyle={{ width: '100%', height: 'calc(100vh - 220px)', minHeight: 480 }}
         options={{ streetViewControl: false, mapTypeControl: false, fullscreenControl: false }}
       >
+        <DrawingManagerF
+          onPolygonComplete={handlePolygonComplete}
+          options={{
+            drawingControl: true,
+            drawingControlOptions: {
+              position: google.maps.ControlPosition.TOP_CENTER,
+              drawingModes: [google.maps.drawing.OverlayType.POLYGON],
+            },
+            polygonOptions: {
+              fillColor: '#6C63A6',
+              fillOpacity: 0.2,
+              strokeColor: '#6C63A6',
+              strokeWeight: 2,
+              clickable: false,
+              editable: false,
+              zIndex: 1,
+            },
+          }}
+        />
         <MarkerClustererF>
           {(clusterer) => (
             <>
-              {listings.map((l) => (
+              {visibleListings.map((l) => (
                 <MarkerF
                   key={l.id}
                   position={{ lat: Number(l.lat), lng: Number(l.lng) }}

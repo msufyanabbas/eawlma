@@ -20,6 +20,9 @@ import SubscriptionIcon from '@mui/icons-material/CardMembershipOutlined';
 import CommissionIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import WalletIcon from '@mui/icons-material/SavingsOutlined';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
+import ContractIcon from '@mui/icons-material/ArticleOutlined';
+import DufaatIcon from '@mui/icons-material/CreditCardOutlined';
+import BookingIcon from '@mui/icons-material/EventAvailableOutlined';
 import PersonIcon from '@mui/icons-material/PersonOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import type { ReactNode } from 'react';
@@ -51,6 +54,9 @@ const ITEMS: NavItem[] = [
   { to: '/dashboard/subscription', i18nKey: 'dashboard.subscription', icon: <SubscriptionIcon />, agentOnly: true },
   { to: '/dashboard/commissions', i18nKey: 'dashboard.commissions', icon: <CommissionIcon />, agentOnly: true },
   { to: '/dashboard/wallet', i18nKey: 'wallet.title', icon: <WalletIcon /> },
+  { to: '/dashboard/contracts', i18nKey: 'ejar.myContracts', icon: <ContractIcon /> },
+  { to: '/dashboard/dufaat', i18nKey: 'dufaat.title', icon: <DufaatIcon /> },
+  { to: '/dashboard/bookings', i18nKey: 'booking.myBookings', icon: <BookingIcon /> },
   { to: '/dashboard/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
   { to: '/profile', i18nKey: 'nav.profile', icon: <PersonIcon /> },
 ];

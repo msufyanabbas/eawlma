@@ -5,6 +5,7 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { PageTransition } from '@/components/global/PageTransition';
 import { CompareBar } from '@/components/global/CompareBar';
+import { WelcomeModal } from '@/components/global/WelcomeModal';
 
 /**
  * Public-facing app shell — renders the navbar, page content and footer.
@@ -30,6 +31,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </Box>
       <Footer />
       <CompareBar />
+      <WelcomeModal />
     </Box>
   );
 }

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 export type ThemeMode = 'light' | 'dark';
-export type UiLanguage = 'ar' | 'en';
+export type UiLanguage = 'ar' | 'en' | 'ur';
 
 interface UiState {
   language: UiLanguage;
