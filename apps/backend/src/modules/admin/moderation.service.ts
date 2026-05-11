@@ -73,8 +73,8 @@ export class ModerationService {
     listing.publishedAt = new Date();
     listing.rejectionReason = null;
     if (!listing.expiresAt) {
-      // Default 60-day expiry, refreshable on republish
-      listing.expiresAt = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000);
+      // Default 90-day expiry, refreshable on republish or via auto_renew.
+      listing.expiresAt = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
     }
     await this.listings.save(listing);
 

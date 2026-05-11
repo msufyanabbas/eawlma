@@ -29,13 +29,46 @@ export class BookingsController {
   @ApiBearerAuth('access-token')
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Create a daily booking on a listing.' })
+  @ApiOperation({ summary: 'Create a daily booking and initialise its Moyasar payment.' })
   async create(
     @CurrentUser() actor: RequestUser,
     @Body() dto: CreateBookingDto,
-  ): Promise<BookingResponseDto> {
-    const b = await this.bookings.create(actor, dto);
-    return BookingResponseDto.fromEntity(b);
+  ): Promise<{
+    booking: BookingResponseDto;
+    paymentUrl: string | null;
+    paymentId: string;
+    mockPayment: boolean;
+  }> {
+    const result = await this.bookings.create(actor, dto);
+    return {
+      booking: BookingResponseDto.fromEntity(result.booking),
+      paymentUrl: result.paymentUrl,
+      paymentId: result.paymentId,
+      mockPayment: result.mockPayment,
+    };
+  }
+
+  @Public()
+  @Post('payment-callback')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Payment-provider callback — flips the booking to confirmed/cancelled.',
+  })
+  async paymentCallback(
+    @Body()
+    body: {
+      bookingId: string;
+      status: string;
+      paymentId?: string;
+      promoCode?: string;
+    },
+  ): Promise<{ status: string; bookingId: string }> {
+    return this.bookings.handlePaymentCallback(
+      body.bookingId,
+      body.status,
+      body.paymentId,
+      body.promoCode,
+    );
   }
 
   @UseGuards(JwtAuthGuard)

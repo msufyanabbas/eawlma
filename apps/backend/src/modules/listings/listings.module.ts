@@ -13,6 +13,7 @@ import { ListingsController } from './listings.controller';
 import { ListingPricingService } from './listing-pricing.service';
 import { ListingPricingController } from './listing-pricing.controller';
 import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
       ListingPriceOverrideEntity,
     ]),
     forwardRef(() => SubscriptionsModule),
+    NotificationsModule,
   ],
   providers: [ListingsService, ListingPricingService],
   controllers: [ListingsController, ListingPricingController],

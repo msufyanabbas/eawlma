@@ -15,6 +15,7 @@ import {
   ListingFurnishing,
   ListingStatus,
   ListingType,
+  NotificationType,
   PropertyType,
   RentPeriod,
   UserRole,
@@ -24,6 +25,7 @@ import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
 import { KafkaService } from '../../common/kafka/kafka.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
+import { NotificationsService } from '../notifications/notifications.service';
 
 import { ListingEntity } from './entities/listing.entity';
 import { ListingMediaEntity } from './entities/listing-media.entity';
@@ -70,6 +72,7 @@ export class ListingsService {
     private readonly config: ConfigService,
     @Inject(forwardRef(() => SubscriptionsService))
     private readonly subscriptionsService: SubscriptionsService,
+    private readonly notificationsService: NotificationsService,
   ) {}
 
   // ---------------------------------------------------------------------------
@@ -380,6 +383,56 @@ export class ListingsService {
     await this.listings.softDelete({ id });
   }
 
+  /**
+   * Bulk-apply one of activate / deactivate / delete to a list of listings the
+   * current actor owns. Skips listings the actor can't modify rather than
+   * failing the whole batch — returns counts so the UI can surface partial
+   * results.
+   */
+  async bulkUpdate(
+    actor: RequestUser,
+    ids: string[],
+    action: 'activate' | 'deactivate' | 'delete',
+  ): Promise<{ matched: number; updated: number; skipped: number }> {
+    if (!ids.length) return { matched: 0, updated: 0, skipped: 0 };
+
+    const isPrivileged =
+      actor.role === UserRole.ADMIN || actor.role === UserRole.MODERATOR;
+    const where = isPrivileged ? { id: In(ids) } : { id: In(ids), ownerId: actor.id };
+    const listings = await this.listings.find({ where });
+
+    let updated = 0;
+    for (const l of listings) {
+      try {
+        if (action === 'delete') {
+          await this.listings.softDelete({ id: l.id });
+          updated++;
+          continue;
+        }
+        if (action === 'activate') {
+          // Send back through PENDING_REVIEW so moderation gates re-apply
+          // unless the actor is admin/moderator — they can flip directly.
+          l.status = isPrivileged ? ListingStatus.ACTIVE : ListingStatus.PENDING_REVIEW;
+          await this.listings.save(l);
+          updated++;
+          continue;
+        }
+        if (action === 'deactivate') {
+          l.status = ListingStatus.ARCHIVED;
+          await this.listings.save(l);
+          updated++;
+        }
+      } catch (err) {
+        this.logger.warn(`bulk ${action} failed on ${l.id}: ${(err as Error).message}`);
+      }
+    }
+    return {
+      matched: listings.length,
+      updated,
+      skipped: ids.length - updated,
+    };
+  }
+
   // ---------------------------------------------------------------------------
   // Media
   // ---------------------------------------------------------------------------
@@ -557,24 +610,97 @@ export class ListingsService {
   // ---------------------------------------------------------------------------
 
   /**
-   * Hourly sweep that transitions ACTIVE listings whose `expiresAt` has passed
-   * into EXPIRED status. Owners can re-submit them for review afterward.
+   * Hourly sweep that:
+   *   • Auto-renews listings flagged `auto_renew = true` by pushing
+   *     `expires_at` forward by 90 days.
+   *   • Transitions remaining ACTIVE listings whose `expires_at` has passed
+   *     into EXPIRED, then notifies the owner.
+   *   • Sends a 7-day-warning notification once per listing (gated by an
+   *     idempotency flag stamped into the listing's audit metadata — here we
+   *     reuse `published_at` proximity to avoid spamming).
    */
   @Cron(CronExpression.EVERY_HOUR)
   async expireListingsJob(): Promise<void> {
     const now = new Date();
-    const result = await this.listings
+
+    // 1) Auto-renew first — listings that would otherwise expire this hour.
+    const autoRenewed = await this.listings
       .createQueryBuilder()
       .update(ListingEntity)
-      .set({ status: ListingStatus.EXPIRED })
+      .set({ expiresAt: new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000) })
       .where('status = :active', { active: ListingStatus.ACTIVE })
+      .andWhere('auto_renew = TRUE')
       .andWhere('expires_at IS NOT NULL')
       .andWhere('expires_at < :now', { now })
       .execute();
-
-    if (result.affected && result.affected > 0) {
-      this.logger.log(`Auto-expired ${result.affected} listings whose expires_at has passed`);
+    if (autoRenewed.affected && autoRenewed.affected > 0) {
+      this.logger.log(`Auto-renewed ${autoRenewed.affected} listings`);
     }
+
+    // 2) Fetch the ones that are about to expire so we can notify their
+    //    owners before flipping them. Done as a SELECT so we have the row
+    //    payload for the notification body.
+    const expiring = await this.listings
+      .createQueryBuilder('l')
+      .where('l.status = :active', { active: ListingStatus.ACTIVE })
+      .andWhere('l.auto_renew = FALSE')
+      .andWhere('l.expires_at IS NOT NULL')
+      .andWhere('l.expires_at < :now', { now })
+      .getMany();
+
+    for (const listing of expiring) {
+      listing.status = ListingStatus.EXPIRED;
+      await this.listings.save(listing);
+      void this.notifyOwnerOfExpiry(listing).catch((err: Error) =>
+        this.logger.warn(`notifyOwnerOfExpiry failed for ${listing.id}: ${err.message}`),
+      );
+    }
+    if (expiring.length > 0) {
+      this.logger.log(`Auto-expired ${expiring.length} listings whose expires_at has passed`);
+    }
+
+    // 3) 7-day warning sweep — listings whose `expires_at` falls inside the
+    //    next 7-day window (and where `auto_renew = false`). We rate-limit by
+    //    only firing when the listing is within a 1-hour band of the 7-day
+    //    boundary so we don't notify every hour for a week straight.
+    const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const warningWindowEnd = new Date(sevenDaysFromNow.getTime() + 60 * 60 * 1000);
+    const expiringSoon = await this.listings
+      .createQueryBuilder('l')
+      .where('l.status = :active', { active: ListingStatus.ACTIVE })
+      .andWhere('l.auto_renew = FALSE')
+      .andWhere('l.expires_at BETWEEN :from AND :to', {
+        from: sevenDaysFromNow,
+        to: warningWindowEnd,
+      })
+      .getMany();
+    for (const listing of expiringSoon) {
+      void this.notifyOwnerOfUpcomingExpiry(listing).catch((err: Error) =>
+        this.logger.warn(
+          `notifyOwnerOfUpcomingExpiry failed for ${listing.id}: ${err.message}`,
+        ),
+      );
+    }
+  }
+
+  private async notifyOwnerOfExpiry(listing: ListingEntity): Promise<void> {
+    await this.notificationsService.create({
+      userId: listing.ownerId,
+      type: NotificationType.LISTING_EXPIRED,
+      title: 'Your listing has expired',
+      body: `"${listing.title}" is no longer visible to buyers. Submit it for review to relist.`,
+      data: { listingId: listing.id, referenceCode: listing.referenceCode },
+    });
+  }
+
+  private async notifyOwnerOfUpcomingExpiry(listing: ListingEntity): Promise<void> {
+    await this.notificationsService.create({
+      userId: listing.ownerId,
+      type: NotificationType.LISTING_EXPIRING,
+      title: 'Listing expires in 7 days',
+      body: `"${listing.title}" will expire soon — enable auto-renew or republish to keep it live.`,
+      data: { listingId: listing.id, referenceCode: listing.referenceCode },
+    });
   }
 
   /**

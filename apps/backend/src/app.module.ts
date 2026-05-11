@@ -48,6 +48,7 @@ import { DufaatModule } from './modules/dufaat/dufaat.module';
 import { BookingsModule } from './modules/bookings/bookings.module';
 import { PriceTrendsModule } from './modules/price-trends/price-trends.module';
 import { PromosModule } from './modules/promos/promos.module';
+import { SeoModule } from './modules/seo/seo.module';
 
 @Module({
   imports: [
@@ -70,13 +71,20 @@ import { PromosModule } from './modules/promos/promos.module';
       useFactory: typeOrmOptionsFactory,
     }),
 
+    // Named tiers so per-route @Throttle decorators (e.g. auth/login) can
+    // target a specific window without disabling the global guard for other
+    // routes. The 'default' tier applies everywhere; the others are opt-in.
     ThrottlerModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => [
         {
+          name: 'default',
           ttl: config.get<number>('app.throttle.ttl', 60) * 1000,
           limit: config.get<number>('app.throttle.limit', 100),
         },
+        { name: 'short', ttl: 1_000, limit: 10 },
+        { name: 'medium', ttl: 60_000, limit: 100 },
+        { name: 'long', ttl: 3_600_000, limit: 1_000 },
       ],
     }),
 
@@ -114,6 +122,7 @@ import { PromosModule } from './modules/promos/promos.module';
     BookingsModule,
     PriceTrendsModule,
     PromosModule,
+    SeoModule,
   ],
   controllers: [HealthController],
   providers: [

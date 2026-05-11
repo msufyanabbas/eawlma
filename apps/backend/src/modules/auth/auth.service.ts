@@ -57,6 +57,14 @@ export class AuthService {
     const tokens = await this.issueTokens(user, ctx);
     await this.usersService.recordSuccessfulLogin(user.id, ctx.ip ?? null);
 
+    // Fire-and-forget welcome email; email failures must not block signup.
+    void this.emailService
+      .sendWelcomeEmail({
+        email: user.email,
+        firstName: user.firstName ?? user.email.split('@')[0] ?? '',
+      })
+      .catch(() => undefined);
+
     return this.buildAuthResponse(user, tokens);
   }
 
@@ -189,11 +197,10 @@ export class AuthService {
     const appUrl = this.config.get<string>('appUrl', 'http://localhost:5173');
     const link = `${appUrl}/auth/reset?token=${encodeURIComponent(token)}`;
 
-    await this.emailService.send({
-      to: user.email,
-      subject: 'Reset your Eawlma password',
-      html: `<p>Click the link below to reset your password (valid for 30 minutes):</p><p><a href="${link}">${link}</a></p>`,
-      text: `Reset your password: ${link}`,
+    await this.emailService.sendPasswordReset({
+      email: user.email,
+      firstName: user.firstName ?? user.email.split('@')[0] ?? '',
+      resetUrl: link,
     });
   }
 

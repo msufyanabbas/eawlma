@@ -37,6 +37,23 @@ export class CreateBookingDto {
   @IsString()
   @MaxLength(2000)
   notes?: string;
+
+  /** Optional promo code applied at booking time. The server re-validates and
+   *  records usage atomically with the payment confirmation. */
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(32)
+  promoCode?: string;
+}
+
+export interface CreateBookingResult {
+  booking: BookingEntity;
+  paymentUrl: string | null;
+  paymentId: string;
+  /** Set when the dev-stub Moyasar client is being used so the frontend can
+   *  short-circuit to its mock success page without a real redirect. */
+  mockPayment: boolean;
 }
 
 export class BookingResponseDto {

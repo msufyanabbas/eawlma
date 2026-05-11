@@ -207,6 +207,19 @@ export class ListingsController {
     await this.listingsService.softDelete(id, actor);
   }
 
+  @ApiBearerAuth('access-token')
+  @Post('bulk-update')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Bulk activate / deactivate / soft-delete several listings.',
+  })
+  async bulkUpdate(
+    @CurrentUser() actor: RequestUser,
+    @Body() body: { ids: string[]; action: 'activate' | 'deactivate' | 'delete' },
+  ): Promise<{ matched: number; updated: number; skipped: number }> {
+    return this.listingsService.bulkUpdate(actor, body.ids ?? [], body.action);
+  }
+
   // ---------- Media -------------------------------------------------------
 
   @ApiBearerAuth('access-token')

@@ -256,6 +256,11 @@ export class ListingEntity extends BaseEntity {
   @Column({ type: 'timestamptz', name: 'expires_at', nullable: true })
   expiresAt: Date | null;
 
+  /** When true, the daily expiry sweep refreshes `expiresAt` by +90 days instead
+   *  of flipping status to EXPIRED. Lets agents avoid manual renewal cadence. */
+  @Column({ type: 'boolean', name: 'auto_renew', default: false })
+  autoRenew: boolean;
+
   @Column({ type: 'text', name: 'rejection_reason', nullable: true })
   rejectionReason: string | null;
 
