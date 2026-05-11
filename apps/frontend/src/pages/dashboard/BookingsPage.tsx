@@ -258,17 +258,17 @@ function LeaveReviewDialog({
             value={rating}
             onChange={setRating}
           />
-          <RatingRow label="🧹 Cleanliness" value={cleanliness} onChange={setCleanliness} />
-          <RatingRow label="✅ Accuracy" value={accuracy} onChange={setAccuracy} />
-          <RatingRow label="💬 Communication" value={communication} onChange={setCommunication} />
-          <RatingRow label="📍 Location" value={location} onChange={setLocation} />
+          <RatingRow label={t('booking.subRating.cleanliness')} value={cleanliness} onChange={setCleanliness} />
+          <RatingRow label={t('booking.subRating.accuracy')} value={accuracy} onChange={setAccuracy} />
+          <RatingRow label={t('booking.subRating.communication')} value={communication} onChange={setCommunication} />
+          <RatingRow label={t('booking.subRating.location')} value={location} onChange={setLocation} />
           <TextField
             label={t('booking.comment', { defaultValue: 'Comment' })}
             multiline
             minRows={3}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            placeholder="Share what made this stay special…"
+            placeholder={t('booking.commentPlaceholder')}
           />
           {mutation.isError && (
             <Alert severity="error">{extractErrorMessage(mutation.error)}</Alert>

@@ -408,7 +408,7 @@ export function WalletPage() {
                   label={t('wallet.payoutAmount')}
                   value={payoutAmount}
                   onChange={(e) => setPayoutAmount(e.target.value)}
-                  helperText={`${t('wallet.minPayout')} · ${t('wallet.yourBalance')}: ${fmtAmount(wallet?.balance ?? 0)} SAR`}
+                  helperText={`${t('wallet.minPayout')} · ${t('wallet.yourBalance')}: ${fmtAmount(wallet?.balance ?? 0)} ${t('listing.currency')}`}
                   inputProps={{ min: 100, step: 10, max: wallet?.balance ?? undefined }}
                 />
                 <TextField
@@ -496,7 +496,7 @@ function PayoutRow({ payout }: { payout: PayoutRequest }) {
         </Typography>
       </TableCell>
       <TableCell align="right" sx={{ fontWeight: 700 }}>
-        {payout.amount.toLocaleString(i18n.language, { minimumFractionDigits: 2 })} SAR
+        {payout.amount.toLocaleString(i18n.language, { minimumFractionDigits: 2 })} {t('listing.currency')}
       </TableCell>
       <TableCell sx={{ fontFamily: 'monospace', fontSize: 12 }}>{maskedIban}</TableCell>
       <TableCell>
@@ -539,7 +539,7 @@ function TransactionRow({ txn }: { txn: WalletTransaction }) {
           variant="body2"
           sx={{ fontWeight: 700, color: negative ? 'error.main' : 'success.main' }}
         >
-          {sign} {txn.amount.toLocaleString(i18n.language, { minimumFractionDigits: 2 })} SAR
+          {sign} {txn.amount.toLocaleString(i18n.language, { minimumFractionDigits: 2 })} {t('listing.currency')}
         </Typography>
       </TableCell>
       <TableCell>
@@ -588,7 +588,7 @@ function PendingCommissionRow({
           </Typography>
         </Box>
         <Typography variant="h6" sx={{ fontWeight: 800, whiteSpace: 'nowrap' }}>
-          {total.toLocaleString(i18n.language)} SAR
+          {total.toLocaleString(i18n.language)} {t('listing.currency')}
         </Typography>
         <Stack alignItems="flex-end" spacing={0.5}>
           <Button

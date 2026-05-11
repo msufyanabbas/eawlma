@@ -869,7 +869,14 @@
     "leaveReview": "اكتب مراجعة",
     "overallRating": "التقييم العام",
     "comment": "التعليق",
+    "commentPlaceholder": "شاركنا ما الذي جعل هذه الإقامة مميزة…",
     "submitReview": "إرسال المراجعة",
+    "subRating": {
+      "cleanliness": "🧹 النظافة",
+      "accuracy": "✅ مطابقة الوصف",
+      "communication": "💬 التواصل",
+      "location": "📍 الموقع"
+    },
     "status": {
       "pending": "قيد الانتظار",
       "confirmed": "مؤكَّد",

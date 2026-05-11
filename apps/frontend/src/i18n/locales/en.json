@@ -869,7 +869,14 @@
     "leaveReview": "Leave a review",
     "overallRating": "Overall rating",
     "comment": "Comment",
+    "commentPlaceholder": "Share what made this stay special…",
     "submitReview": "Submit review",
+    "subRating": {
+      "cleanliness": "🧹 Cleanliness",
+      "accuracy": "✅ Accuracy",
+      "communication": "💬 Communication",
+      "location": "📍 Location"
+    },
     "status": {
       "pending": "Pending",
       "confirmed": "Confirmed",

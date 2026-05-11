@@ -852,7 +852,14 @@
     "leaveReview": "جائزہ چھوڑیں",
     "overallRating": "مجموعی درجہ بندی",
     "comment": "تبصرہ",
+    "commentPlaceholder": "شیئر کریں کہ یہ قیام کیوں خاص رہا…",
     "submitReview": "جائزہ جمع کرائیں",
+    "subRating": {
+      "cleanliness": "🧹 صفائی",
+      "accuracy": "✅ تفصیل سے مطابقت",
+      "communication": "💬 رابطہ",
+      "location": "📍 مقام"
+    },
     "status": {
       "pending": "زیرِ التواء",
       "confirmed": "تصدیق شدہ",
