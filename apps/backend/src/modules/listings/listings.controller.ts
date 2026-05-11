@@ -149,7 +149,14 @@ export class ListingsController {
         })
         .catch(() => undefined);
     }
-    return ListingResponseDto.fromEntity(listing);
+    const dto = ListingResponseDto.fromEntity(listing);
+    // Owner (or privileged staff) sees their own private check-in copy on
+    // the listing detail; everyone else gets `null` so the field can't leak
+    // before a booking is confirmed.
+    if (viewer && viewer.id === listing.ownerId) {
+      dto.checkInInstructions = listing.checkInInstructions;
+    }
+    return dto;
   }
 
   @ApiBearerAuth('access-token')

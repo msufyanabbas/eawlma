@@ -115,6 +115,9 @@ export class ListingResponseDto {
   cancellationPolicy: CancellationPolicy | null;
   @ApiPropertyOptional({ nullable: true }) hotelStarRating: number | null;
   @ApiPropertyOptional({ nullable: true }) hotelName: string | null;
+  @ApiPropertyOptional({ nullable: true }) damageDeposit: number | null;
+  /** Private check-in instructions — populated only on the owner's view. */
+  @ApiPropertyOptional({ nullable: true }) checkInInstructions: string | null;
 
   @ApiProperty() country: string;
   @ApiProperty() region: string;
@@ -200,6 +203,12 @@ export class ListingResponseDto {
     dto.cancellationPolicy = l.cancellationPolicy;
     dto.hotelStarRating = l.hotelStarRating;
     dto.hotelName = l.hotelName;
+    dto.damageDeposit = l.damageDeposit !== null && l.damageDeposit !== undefined
+      ? Number(l.damageDeposit)
+      : null;
+    // Public listings hide the private check-in instructions; controllers
+    // that serve the owner/buyer-after-booking view set this explicitly.
+    dto.checkInInstructions = null;
     dto.country = l.country;
     dto.region = l.region;
     dto.city = l.city;

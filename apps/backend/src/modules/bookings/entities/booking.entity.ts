@@ -12,6 +12,8 @@ import { UserEntity } from '../../users/entities/user.entity';
 
 export type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
+export type DepositStatus = 'held' | 'released' | 'claimed';
+
 @Entity({ name: 'bookings' })
 @Index('idx_bookings_listing', ['listingId'])
 @Index('idx_bookings_guest', ['guestId'])
@@ -67,4 +69,16 @@ export class BookingEntity extends BaseEntity {
 
   @Column({ type: 'text', nullable: true })
   notes: string | null;
+
+  /** Refundable damage deposit collected at booking time, separate from the
+   *  stay total. Returned to the guest after check-out unless the host claims
+   *  it within the 24h window. */
+  @Column({ type: 'numeric', precision: 14, scale: 2, name: 'deposit_amount', default: 0 })
+  depositAmount: string;
+
+  @Column({ type: 'varchar', length: 16, name: 'deposit_status', default: 'held' })
+  depositStatus: DepositStatus;
+
+  @Column({ type: 'timestamptz', name: 'deposit_released_at', nullable: true })
+  depositReleasedAt: Date | null;
 }

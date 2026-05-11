@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Brackets, Repository } from 'typeorm';
 
 import { ListingEntity } from '../listings/entities/listing.entity';
+import { ListingPricingService } from '../listings/listing-pricing.service';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
 
 import { BookingEntity } from './entities/booking.entity';
@@ -20,6 +21,7 @@ export class BookingsService {
     private readonly bookings: Repository<BookingEntity>,
     @InjectRepository(ListingEntity)
     private readonly listings: Repository<ListingEntity>,
+    private readonly pricing: ListingPricingService,
   ) {}
 
   async create(actor: RequestUser, dto: CreateBookingDto): Promise<BookingEntity> {
@@ -74,7 +76,24 @@ export class BookingsService {
     const dailyRate = Number(listing.dailyRate ?? listing.price ?? 0);
     if (!dailyRate) throw new BadRequestException('Listing has no daily rate');
     const weeklyRate = listing.weeklyRate !== null ? Number(listing.weeklyRate) : null;
-    const totalAmount = calculateStayTotal(nights, dailyRate, weeklyRate).toFixed(2);
+    // Dynamic pricing: sum per-day overrides (or default rate) over the
+    // requested window; fall back to the tiered weekly/monthly discount on
+    // the resulting nightly subtotal so long stays still get a break.
+    const dynamic = await this.pricing.stayTotal(listing.id, checkIn, checkOut);
+    const nightlySubtotal = dynamic.total > 0
+      ? dynamic.total
+      : calculateStayTotal(nights, dailyRate, weeklyRate);
+    // Long-stay discount lives on top of the per-day pricing — 10% over 7
+    // nights, 20% over 30 — but only when no weekly rate was explicitly set
+    // by the host. Hosts who set a weekly rate already control their own
+    // discount math.
+    let stayTotal = nightlySubtotal;
+    if (!weeklyRate) {
+      if (nights >= 30) stayTotal = nightlySubtotal * 0.8;
+      else if (nights >= 7) stayTotal = nightlySubtotal * 0.9;
+    }
+    const deposit = Number(listing.damageDeposit ?? 0);
+    const totalAmount = (stayTotal + deposit).toFixed(2);
 
     // instantBook → auto-confirm without host approval; otherwise pending.
     const initialStatus: 'pending' | 'confirmed' = listing.instantBook
@@ -90,6 +109,8 @@ export class BookingsService {
       nights,
       numGuests,
       totalAmount,
+      depositAmount: deposit.toFixed(2),
+      depositStatus: 'held',
       notes: dto.notes ?? null,
       status: initialStatus,
     });
@@ -97,11 +118,19 @@ export class BookingsService {
   }
 
   async listForGuest(guestId: string): Promise<BookingEntity[]> {
-    return this.bookings.find({ where: { guestId }, order: { createdAt: 'DESC' } });
+    return this.bookings.find({
+      where: { guestId },
+      relations: ['listing'],
+      order: { createdAt: 'DESC' },
+    });
   }
 
   async listForHost(hostId: string): Promise<BookingEntity[]> {
-    return this.bookings.find({ where: { hostId }, order: { createdAt: 'DESC' } });
+    return this.bookings.find({
+      where: { hostId },
+      relations: ['listing'],
+      order: { createdAt: 'DESC' },
+    });
   }
 
   async listConfirmedForListing(listingId: string): Promise<BookingEntity[]> {

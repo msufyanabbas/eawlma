@@ -221,4 +221,22 @@ export class SearchListingsDto extends PaginationQueryDto {
   @IsOptional()
   @IsDateString()
   checkOut?: string;
+
+  @ApiPropertyOptional({
+    description: 'When true the date window is ignored — only minStay matters.',
+  })
+  @IsOptional()
+  @Transform(({ value }) => toBool(value))
+  @IsBoolean()
+  flexibleDates?: boolean;
+
+  @ApiPropertyOptional({
+    description: 'Minimum nights the listing must accept (1, 3, 7, 14, 30).',
+    minimum: 1,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  minStay?: number;
 }

@@ -19,6 +19,12 @@ export class PublicAgentDto {
   @ApiPropertyOptional({ nullable: true }) agencyId: string | null;
   @ApiProperty({ type: String }) memberSince: Date;
 
+  // Host stats — surfaced on the agent card and listing detail.
+  @ApiPropertyOptional({ nullable: true }) responseRate: number | null;
+  @ApiPropertyOptional({ nullable: true }) responseTime: string | null;
+  @ApiProperty() isSuperhost: boolean;
+  @ApiProperty() totalCompletedBookings: number;
+
   static fromEntity(u: UserEntity): PublicAgentDto {
     const dto = new PublicAgentDto();
     dto.id = u.id;
@@ -31,6 +37,12 @@ export class PublicAgentDto {
     dto.identityVerified = u.identityVerificationStatus === 'verified';
     dto.agencyId = u.agencyId;
     dto.memberSince = u.createdAt;
+    dto.responseRate = u.responseRate !== null && u.responseRate !== undefined
+      ? Number(u.responseRate)
+      : null;
+    dto.responseTime = u.responseTime ?? null;
+    dto.isSuperhost = !!u.isSuperhost;
+    dto.totalCompletedBookings = u.totalCompletedBookings ?? 0;
     return dto;
   }
 }

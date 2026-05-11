@@ -21,11 +21,19 @@ import { UserRole, UserStatus } from '@eawlma/shared-types';
 
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
+import { Public } from '../../common/decorators/public.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { PaginationQueryDto } from '../../common/dto/pagination.dto';
 
 import { UsersService } from './users.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BookingEntity } from '../bookings/entities/booking.entity';
+import { ReviewEntity } from '../reviews/entities/review.entity';
+import { UserEntity } from './entities/user.entity';
+import type { HostStats } from '@eawlma/shared-types';
+import { NotFoundException } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import {
   UpdateUserRoleDto,
@@ -38,7 +46,62 @@ import { UserResponseDto } from './dto/user-response.dto';
 @Controller({ path: 'users', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    @InjectRepository(UserEntity)
+    private readonly users: Repository<UserEntity>,
+    @InjectRepository(BookingEntity)
+    private readonly bookings: Repository<BookingEntity>,
+    @InjectRepository(ReviewEntity)
+    private readonly reviews: Repository<ReviewEntity>,
+  ) {}
+
+  // ---------- Public alias ------------------------------------------------
+  // The spec exposes host stats under /users/:id/host-stats; the same data
+  // is also served by AgentsController on /agents/:id/host-stats. The logic
+  // is duplicated rather than cross-controller-injected because Nest
+  // controllers aren't providers.
+  @Public()
+  @Get(':id/host-stats')
+  @ApiOperation({ summary: 'Aggregate host stats — response rate, superhost badge, totals.' })
+  async hostStats(@Param('id', ParseUUIDPipe) id: string): Promise<HostStats> {
+    const user = await this.users.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('User not found');
+
+    const completed = await this.bookings.find({ where: { hostId: id, status: 'completed' } });
+    const totalCompletedBookings = completed.length;
+    const totalEarnings = completed.reduce(
+      (sum, b) => sum + Number(b.totalAmount ?? 0),
+      0,
+    );
+
+    const reviews = await this.reviews.find({ where: { agentId: id } });
+    const reviewCount = reviews.length;
+    const averageRating = reviewCount === 0
+      ? null
+      : Math.round((reviews.reduce((s, r) => s + r.rating, 0) / reviewCount) * 10) / 10;
+
+    const responseRate =
+      user.responseRate !== null && user.responseRate !== undefined
+        ? Number(user.responseRate)
+        : null;
+    const meetsCriteria =
+      totalCompletedBookings >= 10 &&
+      (responseRate ?? 0) >= 90 &&
+      (averageRating ?? 0) >= 4.8;
+    const isSuperhost = user.isSuperhost || meetsCriteria;
+
+    return {
+      userId: id,
+      responseRate,
+      responseTime: user.responseTime ?? null,
+      isSuperhost,
+      totalCompletedBookings,
+      totalEarnings,
+      averageRating,
+      reviewCount,
+    };
+  }
 
   // ---------- Self-service ------------------------------------------------
 

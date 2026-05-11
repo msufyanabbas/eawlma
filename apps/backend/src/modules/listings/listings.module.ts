@@ -6,9 +6,12 @@ import { ListingMediaEntity } from './entities/listing-media.entity';
 import { ListingTranslationEntity } from './entities/listing-translation.entity';
 import { AmenityEntity } from './entities/amenity.entity';
 import { TagEntity } from './entities/tag.entity';
+import { ListingPriceOverrideEntity } from './entities/listing-price-override.entity';
 
 import { ListingsService } from './listings.service';
 import { ListingsController } from './listings.controller';
+import { ListingPricingService } from './listing-pricing.service';
+import { ListingPricingController } from './listing-pricing.controller';
 import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
 
 @Module({
@@ -19,11 +22,12 @@ import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
       ListingTranslationEntity,
       AmenityEntity,
       TagEntity,
+      ListingPriceOverrideEntity,
     ]),
     forwardRef(() => SubscriptionsModule),
   ],
-  providers: [ListingsService],
-  controllers: [ListingsController],
-  exports: [ListingsService, TypeOrmModule],
+  providers: [ListingsService, ListingPricingService],
+  controllers: [ListingsController, ListingPricingController],
+  exports: [ListingsService, ListingPricingService, TypeOrmModule],
 })
 export class ListingsModule {}

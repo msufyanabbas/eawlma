@@ -10,7 +10,7 @@ import {
   Min,
 } from 'class-validator';
 
-import { BookingEntity, BookingStatus } from '../entities/booking.entity';
+import { BookingEntity, BookingStatus, DepositStatus } from '../entities/booking.entity';
 
 export class CreateBookingDto {
   @ApiProperty()
@@ -50,6 +50,11 @@ export class BookingResponseDto {
   @ApiProperty() numGuests: number;
   @ApiProperty() totalAmount: number;
   @ApiProperty() status: BookingStatus;
+  @ApiProperty() depositAmount: number;
+  @ApiProperty({ enum: ['held', 'released', 'claimed'] }) depositStatus: DepositStatus;
+  @ApiPropertyOptional({ type: String, nullable: true }) depositReleasedAt: Date | null;
+  /** Surfaced only when the booking is confirmed/completed. */
+  @ApiPropertyOptional({ nullable: true }) checkInInstructions: string | null;
   @ApiPropertyOptional({ nullable: true }) notes: string | null;
   @ApiPropertyOptional({ nullable: true }) moyasarPaymentId: string | null;
   @ApiProperty({ type: String }) createdAt: Date;
@@ -67,6 +72,15 @@ export class BookingResponseDto {
     dto.numGuests = b.numGuests ?? 1;
     dto.totalAmount = Number(b.totalAmount);
     dto.status = b.status;
+    dto.depositAmount = Number(b.depositAmount ?? 0);
+    dto.depositStatus = b.depositStatus ?? 'held';
+    dto.depositReleasedAt = b.depositReleasedAt;
+    // Reveal the listing's private check-in copy on confirmed/completed
+    // bookings only. The host fills this in via the listing wizard.
+    dto.checkInInstructions =
+      (b.status === 'confirmed' || b.status === 'completed') && b.listing
+        ? (b.listing.checkInInstructions ?? null)
+        : null;
     dto.notes = b.notes;
     dto.moyasarPaymentId = b.moyasarPaymentId;
     dto.createdAt = b.createdAt;

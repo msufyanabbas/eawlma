@@ -66,6 +66,18 @@ export class BookingsController {
     return list.map(BookingResponseDto.fromEntity);
   }
 
+  /** Path-style alias of `/bookings/availability?listingId=…`. Same result —
+   *  kept for clients that prefer RESTful path params. */
+  @Public()
+  @Get('listing/:listingId/availability')
+  @ApiOperation({ summary: 'Path-param alias of GET /bookings/availability.' })
+  async availabilityByPath(
+    @Param('listingId', ParseUUIDPipe) listingId: string,
+  ): Promise<BookingResponseDto[]> {
+    const list = await this.bookings.listConfirmedForListing(listingId);
+    return list.map(BookingResponseDto.fromEntity);
+  }
+
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('access-token')
   @Patch(':id/confirm')

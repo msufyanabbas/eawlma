@@ -126,6 +126,16 @@ export class ListingEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 200, name: 'hotel_name', nullable: true })
   hotelName: string | null;
 
+  /** Refundable damage deposit charged on top of the stay total at booking time.
+   *  Held by the platform until check-out + a 24h claim window. */
+  @Column({ type: 'numeric', precision: 14, scale: 2, name: 'damage_deposit', default: 0 })
+  damageDeposit: string;
+
+  /** Private check-in directions revealed to guests *only* after a booking is
+   *  confirmed. Never exposed on the public listing detail. */
+  @Column({ type: 'text', name: 'check_in_instructions', nullable: true })
+  checkInInstructions: string | null;
+
   // ----- Features (denormalized for fast filtering) --------------------------
 
   @Column({ type: 'integer', nullable: true })

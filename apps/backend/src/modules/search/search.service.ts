@@ -177,7 +177,7 @@ export class SearchService {
     if (dto.instantBookOnly) {
       qb.andWhere('l.instant_book = TRUE');
     }
-    if (dto.checkIn && dto.checkOut) {
+    if (dto.checkIn && dto.checkOut && !dto.flexibleDates) {
       // Listings with bookings overlapping the requested window are excluded.
       qb.andWhere(
         `NOT EXISTS (
@@ -189,6 +189,12 @@ export class SearchService {
         )`,
         { coIn: dto.checkIn, coOut: dto.checkOut },
       );
+    }
+
+    if (dto.minStay !== undefined) {
+      // "I'm flexible — show stays that allow at least N nights." Filters out
+      // listings whose minimum_stay exceeds the user's intended duration.
+      qb.andWhere('l.minimum_stay <= :minStay', { minStay: dto.minStay });
     }
   }
 

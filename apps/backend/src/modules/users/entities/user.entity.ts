@@ -115,6 +115,27 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'jsonb', name: 'notification_preferences', nullable: true })
   notificationPreferences: Record<string, boolean> | null;
 
+  // ----- Host stats (Airbnb-style "Superhost" surfacing) ---------------------
+  // Maintained in aggregate so the host card and search filters can render
+  // these without joining/computing on every request. Sync is via the
+  // `/users/:id/host-stats` endpoint + booking-completion hooks.
+
+  @Column({ type: 'numeric', precision: 5, scale: 2, name: 'response_rate', nullable: true })
+  responseRate: string | null;
+
+  /** Free-text "Responds in X" copy ("Responds in 1 hour", "Responds in 1 day"). */
+  @Column({ type: 'varchar', length: 64, name: 'response_time', nullable: true })
+  responseTime: string | null;
+
+  @Column({ type: 'boolean', name: 'is_superhost', default: false })
+  isSuperhost: boolean;
+
+  @Column({ type: 'integer', name: 'total_completed_bookings', default: 0 })
+  totalCompletedBookings: number;
+
+  @Column({ type: 'numeric', precision: 14, scale: 2, name: 'total_earnings', default: 0 })
+  totalEarnings: string;
+
   @OneToMany(() => RefreshTokenEntity, (rt) => rt.user)
   refreshTokens: RefreshTokenEntity[];
 

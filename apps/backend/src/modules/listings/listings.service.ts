@@ -611,4 +611,8 @@ function applyShortTermFields(
   if (s.weeklyRate !== undefined) listing.weeklyRate = s.weeklyRate;
   if (s.minimumStay !== undefined) listing.minimumStay = s.minimumStay;
   if (s.bookingType !== undefined) listing.bookingType = s.bookingType;
+  if (s.damageDeposit !== undefined) listing.damageDeposit = s.damageDeposit.toFixed(2);
+  if (s.checkInInstructions !== undefined) {
+    listing.checkInInstructions = s.checkInInstructions || null;
+  }
 }

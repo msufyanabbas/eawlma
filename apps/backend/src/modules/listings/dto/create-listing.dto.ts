@@ -106,6 +106,18 @@ export class ShortTermFieldsDto {
   @IsOptional()
   @IsIn(['long_term', 'short_term', 'daily'])
   bookingType?: 'long_term' | 'short_term' | 'daily';
+
+  @ApiPropertyOptional({ description: 'Refundable damage deposit in SAR.' })
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  damageDeposit?: number;
+
+  @ApiPropertyOptional({ description: 'Private check-in directions revealed to confirmed guests.' })
+  @IsOptional()
+  @IsString()
+  @Length(0, 4000)
+  checkInInstructions?: string;
 }
 
 export class CreateListingDto {

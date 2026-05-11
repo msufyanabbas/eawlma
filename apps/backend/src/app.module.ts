@@ -37,6 +37,7 @@ import { AiModule } from './modules/ai/ai.module';
 import { StorageModule } from './modules/storage/storage.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { SavedListingsModule } from './modules/saved-listings/saved-listings.module';
+import { WishlistsModule } from './modules/wishlists/wishlists.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
 import { CommissionsModule } from './modules/commissions/commissions.module';
 import { WalletModule } from './modules/wallet/wallet.module';
@@ -46,6 +47,7 @@ import { EjarModule } from './modules/ejar/ejar.module';
 import { DufaatModule } from './modules/dufaat/dufaat.module';
 import { BookingsModule } from './modules/bookings/bookings.module';
 import { PriceTrendsModule } from './modules/price-trends/price-trends.module';
+import { PromosModule } from './modules/promos/promos.module';
 
 @Module({
   imports: [
@@ -101,6 +103,7 @@ import { PriceTrendsModule } from './modules/price-trends/price-trends.module';
     StorageModule,
     AdminModule,
     SavedListingsModule,
+    WishlistsModule,
     ReviewsModule,
     CommissionsModule,
     WalletModule,
@@ -110,6 +113,7 @@ import { PriceTrendsModule } from './modules/price-trends/price-trends.module';
     DufaatModule,
     BookingsModule,
     PriceTrendsModule,
+    PromosModule,
   ],
   controllers: [HealthController],
   providers: [
