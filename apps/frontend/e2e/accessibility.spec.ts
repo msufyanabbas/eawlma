@@ -29,14 +29,25 @@ test.describe('Accessibility (axe-core)', () => {
   });
 
   test('listing detail has no critical violations', async ({ page }) => {
-    await page.goto('/search');
-    const first = page.locator('[data-card-root]').first();
-    await first.waitFor({ state: 'visible', timeout: 10_000 });
-    await first.click();
-    await page.waitForURL(/\/listings\//);
+    // Skip clicking — the card's `window.location.href` handler isn't always
+    // reliable under Playwright. Discover an id via the public search API.
+    const apiBase = process.env.E2E_API_URL ?? 'http://localhost:3010/api/v1';
+    const res = await page.request.get(`${apiBase}/search/listings?limit=1`);
+    const body = (await res.json()) as { data?: { data?: Array<{ id: string }> } };
+    const id = body.data?.data?.[0]?.id;
+    if (!id) {
+      test.skip(true, 'No listings available for a11y check.');
+      return;
+    }
+    await page.goto(`/listings/${id}`);
+    await page.waitForLoadState('networkidle');
 
     const results = await new AxeBuilder({ page }).withTags(['wcag2a']).analyze();
     const critical = results.violations.filter((v) => v.impact === 'critical');
+    if (critical.length > 0) {
+      console.log('Critical a11y violations on listing detail:');
+      for (const v of critical) console.log(`- ${v.id}: ${v.description}`);
+    }
     expect(critical).toHaveLength(0);
   });
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Test } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication, ValidationPipe, VersioningType } from '@nestjs/common';
 import request from 'supertest';
 
 import { AppModule } from '../../app.module';
@@ -23,8 +23,10 @@ describe('Auth (integration)', () => {
       imports: [AppModule],
     }).compile();
     app = moduleRef.createNestApplication();
+    // Mirror the main bootstrap: `/api` prefix + URI-style `v1` versioning,
+    // global validation pipe, and the response transform interceptor.
     app.setGlobalPrefix('api');
-    // Mirror the main bootstrap pipeline so DTOs are validated identically.
+    app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
     app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
     app.useGlobalInterceptors(new TransformInterceptor());
     await app.init();

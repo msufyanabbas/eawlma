@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout 240 npx playwright test --project=chromium --reporter=list)",
+      "Bash(timeout 300 npx playwright test --project=chromium --reporter=list)"
+    ]
+  }
+}

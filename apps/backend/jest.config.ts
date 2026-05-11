@@ -13,14 +13,20 @@ const config: Config = {
   collectCoverageFrom: ['**/*.(t|j)s'],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
-  // `setupFilesAfterEnv` runs each module after the test framework is set up
-  // but before tests execute — the canonical place to register custom
-  // matchers like jest-extended.
+  // `setupFiles` runs BEFORE the test framework loads — used here to set
+  // NODE_ENV=test so Kafka producers/consumers short-circuit on import.
+  setupFiles: ['<rootDir>/../jest.env.ts'],
+  // `setupFilesAfterEnv` runs after framework but before tests; jest-extended
+  // belongs here so its matchers attach to the live `expect`.
   setupFilesAfterEnv: ['jest-extended/all'],
   // Long-running integration tests against a live database — bump the
   // default 5s timeout so HTTP round-trips and bcrypt hashing don't trip
   // the assertion timer.
   testTimeout: 30_000,
+  // Some Nest modules (bullmq, ws, schedule) hold timers / sockets open even
+  // after AppModule.close(); force the worker to exit so jest doesn't hang.
+  forceExit: true,
+  detectOpenHandles: false,
 };
 
 export default config;

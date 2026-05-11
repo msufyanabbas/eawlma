@@ -18,9 +18,18 @@ test.describe('SEO', () => {
   });
 
   test('listing detail emits RealEstateListing JSON-LD', async ({ page }) => {
-    await page.goto('/search');
-    await page.locator('[data-card-root]').first().click();
-    await page.waitForURL(/\/listings\//);
+    // Discover an id from the public search API rather than click-routing —
+    // the card uses `window.location.href` and intermittent overlays trip
+    // Playwright's click-stability checks.
+    const res = await page.request.get(`${API_BASE}/search/listings?limit=1`);
+    const body = (await res.json()) as { data?: { data?: Array<{ id: string }> } };
+    const id = body.data?.data?.[0]?.id;
+    if (!id) {
+      test.skip(true, 'No listings available.');
+      return;
+    }
+    await page.goto(`/listings/${id}`);
+    await page.waitForLoadState('networkidle');
 
     const ld = await page.locator('script[type="application/ld+json"]').first().textContent();
     expect(ld).toBeTruthy();

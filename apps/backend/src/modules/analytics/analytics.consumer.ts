@@ -20,6 +20,10 @@ export class AnalyticsConsumer implements OnModuleInit, OnApplicationShutdown {
   ) {}
 
   async onModuleInit(): Promise<void> {
+    if (process.env.NODE_ENV === 'test') {
+      this.logger.log('Test environment — analytics consumer disabled');
+      return;
+    }
     const brokers = this.config.get<string[]>('kafka.brokers') ?? ['localhost:9094'];
     const clientId = this.config.get<string>('kafka.clientId', 'eawlma-backend') + '-analytics';
     const groupId = this.config.get<string>('kafka.groupId', 'eawlma-backend-group') + '-analytics';

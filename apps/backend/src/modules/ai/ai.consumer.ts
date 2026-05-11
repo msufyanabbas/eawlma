@@ -28,6 +28,10 @@ export class AiTranslationConsumer implements OnModuleInit, OnApplicationShutdow
   ) {}
 
   async onModuleInit(): Promise<void> {
+    if (process.env.NODE_ENV === 'test') {
+      this.logger.log('Test environment — AI consumer disabled');
+      return;
+    }
     const brokers = this.config.get<string[]>('kafka.brokers') ?? ['localhost:9094'];
     const clientId =
       (this.config.get<string>('kafka.clientId') ?? 'eawlma-backend') + '-ai';
