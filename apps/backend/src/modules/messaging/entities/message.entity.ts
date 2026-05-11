@@ -40,4 +40,9 @@ export class MessageEntity extends BaseEntity {
 
   @Column({ type: 'timestamptz', name: 'delivered_at', nullable: true })
   deliveredAt: Date | null;
+
+  // Google-Translate-detected source language (ISO 639-1, e.g. "en", "ar").
+  // Written best-effort on send; NULL when detection failed or was skipped.
+  @Column({ type: 'varchar', length: 8, name: 'detected_language', nullable: true })
+  detectedLanguage: string | null;
 }

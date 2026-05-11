@@ -6,11 +6,17 @@ export type UiLanguage = 'ar' | 'en' | 'ur';
 
 interface UiState {
   language: UiLanguage;
+  // Display locale used by the message translation service. Defaults to the
+  // active UI language, but may be set to any 2-letter code (fr, es, de, …)
+  // so users can read incoming messages in their preferred reading language
+  // without forcing a full UI swap.
+  displayLocale: string;
   themeMode: ThemeMode;
   sidebarOpen: boolean;
   notificationCount: number;
   unreadMessageCount: number;
   setLanguage: (lng: UiLanguage) => void;
+  setDisplayLocale: (locale: string) => void;
   setThemeMode: (mode: ThemeMode) => void;
   toggleThemeMode: () => void;
   setSidebarOpen: (open: boolean) => void;
@@ -24,12 +30,14 @@ export const useUiStore = create<UiState>()(
   persist(
     (set, get) => ({
       language: 'ar',
+      displayLocale: 'ar',
       themeMode: 'light',
       sidebarOpen: true,
       notificationCount: 0,
       unreadMessageCount: 0,
 
-      setLanguage: (language) => set({ language }),
+      setLanguage: (language) => set({ language, displayLocale: language }),
+      setDisplayLocale: (displayLocale) => set({ displayLocale }),
       setThemeMode: (themeMode) => set({ themeMode }),
       toggleThemeMode: () => set({ themeMode: get().themeMode === 'light' ? 'dark' : 'light' }),
       setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
@@ -44,6 +52,7 @@ export const useUiStore = create<UiState>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({
         language: s.language,
+        displayLocale: s.displayLocale,
         themeMode: s.themeMode,
         sidebarOpen: s.sidebarOpen,
       }),

@@ -18,6 +18,7 @@ import AttachIcon from '@mui/icons-material/AttachFile';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DoneIcon from '@mui/icons-material/Done';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+import TranslateIcon from '@mui/icons-material/Translate';
 import { useInfiniteQuery, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useSearch } from '@tanstack/react-router';
 import {
@@ -57,6 +58,7 @@ export function MessagesPage() {
   const qc = useQueryClient();
   const userId = useAuthStore((s) => s.user?.id);
   const setUnread = useUiStore((s) => s.setUnreadMessageCount);
+  const displayLocale = useUiStore((s) => s.displayLocale);
 
   // Deep-links from agent profile / listing detail / inquiry success:
   //   ?conversationId=… selects an exact thread by id.
@@ -401,7 +403,9 @@ export function MessagesPage() {
             width: { xs: showListOnMobile ? '100%' : 0, md: 320 },
             display: { xs: showListOnMobile ? 'flex' : 'none', md: 'flex' },
             flexDirection: 'column',
-            borderRight: { md: 1 },
+            // Logical property — RTL flex order moves the list to the right
+            // side, so the divider should follow it (inline-end of the list).
+            borderInlineEnd: { md: 1 },
             borderColor: 'divider',
             minWidth: 0,
           }}
@@ -500,7 +504,9 @@ export function MessagesPage() {
                   sx={{ display: { xs: 'inline-flex', md: 'none' } }}
                   aria-label="back"
                 >
-                  <ArrowBackIcon />
+                  <ArrowBackIcon
+                    sx={{ transform: theme.direction === 'rtl' ? 'scaleX(-1)' : 'none' }}
+                  />
                 </IconButton>
 
                 {(() => {
@@ -594,6 +600,8 @@ export function MessagesPage() {
                       message={m}
                       mine={m.senderId === userId}
                       otherIds={activeConversation.participantIds.filter((p) => p !== userId)}
+                      conversationId={activeConversation.id}
+                      displayLocale={displayLocale}
                     />
                   ))}
                   {typingFromOther && <TypingDots />}
@@ -724,14 +732,43 @@ function MessageBubble({
   message,
   mine,
   otherIds,
+  conversationId,
+  displayLocale,
 }: {
   message: Message;
   mine: boolean;
   otherIds: string[];
+  conversationId: string;
+  displayLocale: string;
 }) {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const theme = useTheme();
   const seenByOther = otherIds.length > 0 && otherIds.some((id) => message.readBy.includes(id));
+
+  // Translate only inbound messages, and only when the source language is
+  // either unknown or different from the viewer's chosen display locale.
+  // `langsMatch` compares primary subtags so "zh" matches "zh-CN".
+  const target = (displayLocale || '').split('-')[0]?.toLowerCase() || '';
+  const source = (message.detectedLanguage || '').split('-')[0]?.toLowerCase() || '';
+  const needsTranslation = !mine && Boolean(target) && Boolean(message.body) && source !== target;
+
+  const [showOriginal, setShowOriginal] = useState(false);
+
+  const translationQuery = useQuery({
+    queryKey: ['translate', message.id, displayLocale],
+    queryFn: () => messagingApi.translate(conversationId, message.id, displayLocale),
+    enabled: needsTranslation,
+    staleTime: Infinity,
+    retry: false,
+  });
+
+  // What the bubble actually shows. Defaults to original; flips to the
+  // translation as soon as it lands. The user can toggle back to original.
+  const translatedText = translationQuery.data?.translatedText;
+  const isShowingTranslation =
+    needsTranslation && !showOriginal && translatedText && !translationQuery.data?.isOriginal;
+  const displayText = isShowingTranslation ? translatedText : message.body;
+
   return (
     <Stack
       direction="row"
@@ -766,7 +803,81 @@ function MessageBubble({
           )}
           {message.body && (
             <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-              {message.body}
+              {displayText}
+            </Typography>
+          )}
+
+          {needsTranslation && translationQuery.isFetching && !translatedText && (
+            <Stack direction="row" spacing={0.75} alignItems="center" sx={{ mt: 0.75, opacity: 0.7 }}>
+              <CircularProgress size={10} sx={{ color: 'inherit' }} />
+              <Typography variant="caption" sx={{ fontSize: 11 }}>
+                {t('messages.translating', 'Translating…')}
+              </Typography>
+            </Stack>
+          )}
+
+          {isShowingTranslation && (
+            <Stack
+              direction="row"
+              spacing={0.5}
+              alignItems="center"
+              sx={{ mt: 0.75, opacity: 0.75 }}
+            >
+              <TranslateIcon sx={{ fontSize: 12 }} />
+              <Typography variant="caption" sx={{ fontSize: 11 }}>
+                {translationQuery.data?.sourceLang
+                  ? t('messages.translatedFrom', 'Translated from {{lang}}', {
+                      lang: translationQuery.data.sourceLang.toUpperCase(),
+                    })
+                  : t('messages.translated', 'Translated')}
+              </Typography>
+              <Typography
+                component="button"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowOriginal(true);
+                }}
+                variant="caption"
+                sx={{
+                  fontSize: 11,
+                  background: 'none',
+                  border: 0,
+                  p: 0,
+                  ml: 0.5,
+                  cursor: 'pointer',
+                  color: 'inherit',
+                  textDecoration: 'underline',
+                }}
+              >
+                {t('messages.showOriginal', 'Show original')}
+              </Typography>
+            </Stack>
+          )}
+
+          {needsTranslation && showOriginal && translatedText && (
+            <Typography
+              component="button"
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowOriginal(false);
+              }}
+              variant="caption"
+              sx={{
+                display: 'inline-block',
+                fontSize: 11,
+                mt: 0.5,
+                background: 'none',
+                border: 0,
+                p: 0,
+                cursor: 'pointer',
+                color: 'inherit',
+                textDecoration: 'underline',
+                opacity: 0.75,
+              }}
+            >
+              {t('messages.showTranslation', 'Show translation')}
             </Typography>
           )}
         </Box>

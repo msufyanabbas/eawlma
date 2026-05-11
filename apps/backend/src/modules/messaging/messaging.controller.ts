@@ -28,6 +28,7 @@ import {
   CreateConversationDto,
   MessageResponseDto,
   SendMessageDto,
+  TranslateMessageResponseDto,
 } from './dto/messaging.dto';
 import { MessagingGateway } from './messaging.gateway';
 
@@ -126,6 +127,28 @@ export class MessagingController {
     const messageDto = MessageResponseDto.fromEntity(message);
     this.gateway.emitNewMessage(conversation, messageDto);
     return messageDto;
+  }
+
+  @Get(':id/messages/:messageId/translate')
+  @ApiOperation({
+    summary:
+      "Translate one message into the viewer's target language (Google Translate, cached).",
+  })
+  @ApiOkResponse({ type: TranslateMessageResponseDto })
+  async translate(
+    @Param('id', ParseUUIDPipe) _conversationId: string,
+    @Param('messageId', ParseUUIDPipe) messageId: string,
+    @CurrentUser('id') userId: string,
+    @Query('target') target: string,
+  ): Promise<TranslateMessageResponseDto> {
+    const result = await this.messagingService.translateMessage(messageId, userId, target);
+    const dto = new TranslateMessageResponseDto();
+    dto.messageId = result.messageId;
+    dto.targetLang = result.targetLang;
+    dto.sourceLang = result.sourceLang;
+    dto.translatedText = result.translatedText;
+    dto.isOriginal = result.isOriginal;
+    return dto;
   }
 
   @Post(':id/read')

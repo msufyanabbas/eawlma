@@ -170,7 +170,7 @@ export function DashboardHomePage() {
           </Stack>
         }
       />
-
+    <Paper sx={{ p: 2 }}>
       {/* ---------------- KPI grid — 2 rows of 3 cards on md+, 1 row of 6 on lg ---------------- */}
       <Grid container spacing={2.5} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={4}>
@@ -417,6 +417,7 @@ export function DashboardHomePage() {
           </Paper>
         </Grid>
       </Grid>
+      </Paper>
     </DashboardLayout>
   );
 }

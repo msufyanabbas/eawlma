@@ -11,6 +11,7 @@ import {
   Stack,
   TextField,
   Typography,
+  useTheme,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import AddIcon from '@mui/icons-material/Add';
@@ -33,6 +34,8 @@ import { useSavedStore } from '@/store/saved.store';
 
 export function SavedPropertiesPage() {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -165,7 +168,7 @@ export function SavedPropertiesPage() {
               aria-label="back"
               size="small"
             >
-              <ArrowBackIcon />
+              <ArrowBackIcon sx={{ transform: isRtl ? 'scaleX(-1)' : 'none' }} />
             </IconButton>
             <Typography variant="h4" sx={{ fontWeight: 700, flex: 1 }}>
               {selectedList.emoji ? `${selectedList.emoji} ` : ''}

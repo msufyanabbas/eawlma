@@ -19,6 +19,18 @@ export interface Message {
   deliveredAt: string | null;
   readAt: string | null;
   createdAt: string;
+  // Google-Translate-detected source language (ISO 639-1). Null when
+  // detection was skipped or failed; the UI then translates unconditionally.
+  detectedLanguage?: string | null;
+}
+
+export interface TranslatedMessage {
+  messageId: string;
+  targetLang: string;
+  sourceLang: string | null;
+  translatedText: string;
+  /** True when source==target — the body is already in the viewer's lang. */
+  isOriginal: boolean;
 }
 
 export interface CreateConversationRequest {

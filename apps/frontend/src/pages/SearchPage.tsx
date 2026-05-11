@@ -1020,8 +1020,8 @@ function FilterSection({
       disableGutters
       elevation={0}
       square
+      className="no-accordion-divider"
       sx={{
-        '&::before': { display: 'none' },
         borderBottom: 1,
         borderColor: 'divider',
         bgcolor: 'transparent',
@@ -1129,7 +1129,7 @@ function MapView({ listings }: { listings: Listing[] }) {
         sx={{
           position: 'absolute',
           bottom: 16,
-          left: 16,
+          insetInlineStart: 16,
           zIndex: 10,
           bgcolor: 'background.paper',
           color: 'text.primary',

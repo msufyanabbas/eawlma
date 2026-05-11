@@ -10,6 +10,9 @@ const supported = (import.meta.env.VITE_SUPPORTED_LOCALES ?? 'ar,en,ur')
   .split(',')
   .map((s) => s.trim());
 
+// Arabic is the canonical default for Eawlma — first-time visitors land in
+// Arabic unless the language detector finds a saved preference in
+// localStorage or a matching browser language.
 const fallback = import.meta.env.VITE_DEFAULT_LOCALE ?? 'ar';
 
 void i18n
@@ -21,12 +24,18 @@ void i18n
       en: { translation: en },
       ur: { translation: ur },
     },
-    lng: undefined, // let detector pick
+    // Initial language: prefer the detector (localStorage > navigator), but
+    // fall back to Arabic if nothing matches.
+    lng: undefined,
     fallbackLng: fallback,
     supportedLngs: supported,
     interpolation: { escapeValue: false },
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      // Drop `htmlTag` — it would always resolve to Arabic now (since the
+      // initial document.documentElement.lang is set by the previous session
+      // or our default), masking real navigator preferences for first-time
+      // visitors.
+      order: ['localStorage', 'navigator'],
       lookupLocalStorage: 'eawlma.locale',
       caches: ['localStorage'],
     },

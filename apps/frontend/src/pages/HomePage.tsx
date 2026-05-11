@@ -337,12 +337,11 @@ export function HomePage() {
         }}
       >
         <Box
+          className="scrollbar-hide"
           sx={{
             ...SECTION,
             display: 'flex',
             overflowX: 'auto',
-            scrollbarWidth: 'none',
-            '&::-webkit-scrollbar': { display: 'none' },
           }}
         >
           {CATEGORIES.map((cat) => {

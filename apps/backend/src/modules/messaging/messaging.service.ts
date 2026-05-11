@@ -15,6 +15,7 @@ import { REDIS_DEFAULT } from '../../common/redis/redis.module';
 import { ConversationEntity } from './entities/conversation.entity';
 import { MessageEntity } from './entities/message.entity';
 import { UserEntity } from '../users/entities/user.entity';
+import { TranslationService } from '../translation/translation.service';
 
 const PREVIEW_MAX = 280;
 
@@ -44,6 +45,7 @@ export class MessagingService {
     private readonly users: Repository<UserEntity>,
     private readonly dataSource: DataSource,
     @Inject(REDIS_DEFAULT) private readonly redis: Redis,
+    private readonly translation: TranslationService,
   ) {}
 
   // ---------------------------------------------------------------------------
@@ -150,6 +152,12 @@ export class MessagingService {
     if (!input.body.trim()) {
       throw new BadRequestException('Message body cannot be empty');
     }
+    const trimmedBody = input.body.trim();
+    // Detection runs outside the transaction so a slow Google response
+    // doesn't hold a row lock. Failure is non-fatal — `null` just means
+    // the read path will translate without a same-language fast path.
+    const detectedLanguage = await this.translation.detect(trimmedBody);
+
     return this.dataSource.transaction(async (em) => {
       const conversation = await em.findOne(ConversationEntity, {
         where: { id: input.conversationId },
@@ -160,10 +168,11 @@ export class MessagingService {
       const message = em.create(MessageEntity, {
         conversationId: conversation.id,
         senderId: input.senderId,
-        body: input.body.trim(),
+        body: trimmedBody,
         attachmentUrls: input.attachmentUrls ?? [],
         readBy: [input.senderId],
         deliveredAt: new Date(),
+        detectedLanguage,
       });
       const saved = await em.save(message);
 
@@ -216,6 +225,62 @@ export class MessagingService {
       .catch((err) => this.logger.warn(`Redis del failed: ${err.message}`));
 
     return { updated };
+  }
+
+  /**
+   * Translate a single message into `targetLang` for a viewer. Verifies the
+   * caller is a participant in the message's conversation; never throws on a
+   * Google failure (returns the original body with isOriginal=false so the
+   * UI can decide whether to show a "translation unavailable" hint).
+   */
+  async translateMessage(
+    messageId: string,
+    userId: string,
+    targetLang: string,
+  ): Promise<{
+    messageId: string;
+    targetLang: string;
+    sourceLang: string | null;
+    translatedText: string;
+    isOriginal: boolean;
+  }> {
+    const message = await this.messages.findOne({ where: { id: messageId } });
+    if (!message) throw new NotFoundException('Message not found');
+    const conversation = await this.conversations.findOne({
+      where: { id: message.conversationId },
+    });
+    if (!conversation) throw new NotFoundException('Conversation not found');
+    this.assertParticipant(conversation, userId);
+
+    const normalizedTarget = (targetLang || '').trim().toLowerCase();
+    if (!normalizedTarget) throw new BadRequestException('targetLang is required');
+
+    // Fast path: when we already know the source language and it matches the
+    // target, skip the round-trip.
+    const source = message.detectedLanguage;
+    if (source && this.langsEqual(source, normalizedTarget)) {
+      return {
+        messageId: message.id,
+        targetLang: normalizedTarget,
+        sourceLang: source,
+        translatedText: message.body,
+        isOriginal: true,
+      };
+    }
+
+    const translated = await this.translation.translate(message.body, normalizedTarget);
+    return {
+      messageId: message.id,
+      targetLang: normalizedTarget,
+      sourceLang: source,
+      translatedText: translated,
+      isOriginal: translated === message.body,
+    };
+  }
+
+  private langsEqual(a: string, b: string): boolean {
+    // Compare just the primary subtag so "zh-CN" matches "zh".
+    return a.toLowerCase().split('-')[0] === b.toLowerCase().split('-')[0];
   }
 
   async unreadCountFor(userId: string, conversationId: string): Promise<number> {

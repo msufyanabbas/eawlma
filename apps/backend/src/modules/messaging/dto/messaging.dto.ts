@@ -82,6 +82,7 @@ export class MessageResponseDto {
   @ApiProperty({ type: [String] }) attachmentUrls: string[];
   @ApiProperty({ type: [String] }) readBy: string[];
   @ApiPropertyOptional({ type: String, nullable: true }) deliveredAt: Date | null;
+  @ApiPropertyOptional({ type: String, nullable: true }) detectedLanguage: string | null;
   @ApiProperty({ type: String }) createdAt: Date;
 
   static fromEntity(m: MessageEntity): MessageResponseDto {
@@ -93,9 +94,19 @@ export class MessageResponseDto {
     dto.attachmentUrls = m.attachmentUrls ?? [];
     dto.readBy = m.readBy ?? [];
     dto.deliveredAt = m.deliveredAt;
+    dto.detectedLanguage = m.detectedLanguage ?? null;
     dto.createdAt = m.createdAt;
     return dto;
   }
+}
+
+export class TranslateMessageResponseDto {
+  @ApiProperty() messageId: string;
+  @ApiProperty() targetLang: string;
+  @ApiPropertyOptional({ type: String, nullable: true }) sourceLang: string | null;
+  @ApiProperty() translatedText: string;
+  @ApiProperty({ description: 'True when source==target (no translation needed).' })
+  isOriginal: boolean;
 }
 
 export class ConversationResponseDto {

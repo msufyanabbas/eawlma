@@ -5,6 +5,7 @@ import type {
   PaginatedResponse,
   PaginationParams,
   SendMessageRequest,
+  TranslatedMessage,
 } from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
@@ -61,5 +62,17 @@ export const messagingApi = {
       upToMessageId ? { upToMessageId } : {},
     );
     return unwrap<{ updated: number }>(data);
+  },
+
+  translate: async (
+    conversationId: string,
+    messageId: string,
+    target: string,
+  ): Promise<TranslatedMessage> => {
+    const { data } = await apiClient.get<{ data: TranslatedMessage }>(
+      `/conversations/${conversationId}/messages/${messageId}/translate`,
+      { params: { target } },
+    );
+    return unwrap<TranslatedMessage>(data);
   },
 };

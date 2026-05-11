@@ -177,13 +177,14 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             loading="lazy"
           />
 
-          {/* Top-left: status chips wrap so they never collide with the icon
-           *  column on the right. maxWidth caps growth on narrow cards. */}
+          {/* Top inline-start: status chips wrap so they never collide with
+           *  the action column on the inline-end side. maxWidth caps growth on
+           *  narrow cards. Logical properties so the cluster flips in RTL. */}
           <Box
             sx={{
               position: 'absolute',
               top: 12,
-              left: 12,
+              insetInlineStart: 12,
               display: 'flex',
               flexWrap: 'wrap',
               gap: 0.5,
@@ -235,9 +236,9 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             )}
           </Box>
 
-          {/* Top-right: stacked column of action icons so they don't crowd the
-           *  status chips even when all three (featured + new + sale) appear. */}
-          <Stack direction="column" spacing={0.5} sx={{ position: 'absolute', top: 8, right: 8 }}>
+          {/* Top inline-end: stacked column of action icons so they don't
+           *  crowd the status chips even when all three appear. */}
+          <Stack direction="column" spacing={0.5} sx={{ position: 'absolute', top: 8, insetInlineEnd: 8 }}>
             <Tooltip title={compareHas ? 'Remove from compare' : 'Add to compare'}>
               <IconButton
                 onClick={handleCompareClick}

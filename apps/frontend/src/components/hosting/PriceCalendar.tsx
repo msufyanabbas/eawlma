@@ -173,13 +173,17 @@ export function PriceCalendar({ listingId, fallbackDailyRate }: Props) {
     <Box>
       <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
         <IconButton onClick={() => shiftMonth(-1)} aria-label="previous month">
-          <ChevronLeftIcon />
+          <ChevronLeftIcon
+            sx={{ transform: theme.direction === 'rtl' ? 'scaleX(-1)' : 'none' }}
+          />
         </IconButton>
         <Typography variant="h6" sx={{ flex: 1, fontWeight: 700 }}>
           {cursor.toLocaleString(i18n.language, { month: 'long', year: 'numeric' })}
         </Typography>
         <IconButton onClick={() => shiftMonth(1)} aria-label="next month">
-          <ChevronRightIcon />
+          <ChevronRightIcon
+            sx={{ transform: theme.direction === 'rtl' ? 'scaleX(-1)' : 'none' }}
+          />
         </IconButton>
       </Stack>
 

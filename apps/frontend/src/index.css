@@ -137,3 +137,22 @@ h6 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ─── Pseudo-element rules moved out of MUI sx{} ──────────────────────
+ * stylis-plugin-rtl + cssjanus crash on certain `&::pseudo` selectors when
+ * an emotion-generated sheet is RTL-flipped at runtime. Browser-parsed CSS
+ * here bypasses that pipeline entirely. */
+
+/* MUI Accordion default top divider — opt out per-instance via className. */
+.no-accordion-divider.MuiAccordion-root::before {
+  display: none;
+}
+
+/* PhotoGallery thumb strip — slim translucent scrollbar (dark surface). */
+.photo-thumb-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.photo-thumb-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}

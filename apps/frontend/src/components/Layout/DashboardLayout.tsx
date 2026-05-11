@@ -287,11 +287,14 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
     </Stack>
   );
 
-  // The dashboard layout intentionally pins the sidebar to the LEFT regardless
-  // of the document direction. RTL flipping with flex + permanent Drawer was
-  // breaking layout in Arabic mode. We render the Drawer with anchor="left"
-  // and explicitly push the main content right with marginLeft (a logical-
-  // property `marginInlineStart` would flip in RTL — `ml` does not).
+  // IMPORTANT: do NOT branch on `theme.direction` to flip `anchor` / `left` /
+  // `ml` here. stylis-plugin-rtl (cssjanus) already flips every `left/right/
+  // margin-left/margin-right` declaration when the emotion cache is in RTL
+  // mode. Writing `anchor="right"` + `right: 0` + `mr: 240` in RTL gets
+  // double-flipped and the drawer lands on the LEFT side.
+  //
+  // The correct pattern: always emit LTR coordinates and let cssjanus do its
+  // single flip in RTL.
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Navbar />

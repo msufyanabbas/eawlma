@@ -216,13 +216,13 @@ export function HelpPage() {
                     key={idx}
                     disableGutters
                     elevation={0}
+                    className="no-accordion-divider"
                     sx={{
                       bgcolor: 'background.paper',
                       border: 1,
                       borderColor: 'divider',
                       borderRadius: 2,
                       mb: 1.25,
-                      '&::before': { display: 'none' },
                       '&:hover': { borderColor: alpha(theme.palette.primary.main, 0.4) },
                     }}
                   >

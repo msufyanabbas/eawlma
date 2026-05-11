@@ -10,7 +10,6 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
@@ -50,9 +49,7 @@ const ITEMS: AdminNavItem[] = [
 
 export function AdminLayout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
-  const theme = useTheme();
   const location = useLocation();
-  const isRtl = theme.direction === 'rtl';
 
   // Open-dispute count drives the sidebar badge. Stale-time of 60s keeps the
   // sidebar lively without hammering the endpoint on every navigation.
@@ -67,10 +64,13 @@ export function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Navbar />
-      <Box sx={{ display: 'flex', minHeight: 'calc(100vh - 64px)' }}>
+      <Box sx={{ display: 'flex', minHeight: { xs: 'calc(100vh - 64px)', md: 'calc(100vh - 110px)' } }}>
+        {/* Always emit LTR-style anchor + border. stylis-plugin-rtl flips
+         *  these for us in RTL — manual branching produces a double-flip and
+         *  lands the drawer on the wrong side. */}
         <Drawer
           variant="permanent"
-          anchor={isRtl ? 'right' : 'left'}
+          anchor="left"
           sx={{
             width: SIDEBAR_WIDTH,
             flexShrink: 0,
@@ -78,10 +78,10 @@ export function AdminLayout({ children }: { children: ReactNode }) {
             '& .MuiDrawer-paper': {
               width: SIDEBAR_WIDTH,
               boxSizing: 'border-box',
-              top: 64,
-              height: 'calc(100vh - 64px)',
-              borderRight: isRtl ? 0 : 1,
-              borderLeft: isRtl ? 1 : 0,
+              // Navbar is ~110px tall on md+ (toolbar 64 + category row ~46).
+              top: 110,
+              height: 'calc(100vh - 110px)',
+              borderRight: 1,
               borderColor: 'divider',
             },
           }}

@@ -151,7 +151,7 @@ export function PhotoGallery({ photos, alt }: Props) {
           sx={{
             position: 'absolute',
             bottom: 16,
-            right: 16,
+            insetInlineEnd: 16,
             bgcolor: 'rgba(255,255,255,0.95)',
             color: 'text.primary',
             fontWeight: 700,
@@ -171,14 +171,14 @@ export function PhotoGallery({ photos, alt }: Props) {
         PaperProps={{ sx: { bgcolor: 'rgba(0,0,0,0.95)' } }}
       >
         <Box sx={{ bgcolor: 'rgba(0,0,0,0.95)', minHeight: '100vh', position: 'relative' }}>
-          {/* Close */}
+          {/* Close — trailing-edge corner so it flips to the left in RTL. */}
           <IconButton
             onClick={close}
             aria-label="Close"
             sx={{
               position: 'absolute',
               top: 16,
-              right: 16,
+              insetInlineEnd: 16,
               zIndex: 10,
               color: 'common.white',
               bgcolor: 'rgba(0,0,0,0.5)',
@@ -207,14 +207,16 @@ export function PhotoGallery({ photos, alt }: Props) {
             {currentIndex + 1} / {total}
           </Typography>
 
-          {/* Left arrow */}
+          {/* Previous — anchored at inline-start (left in LTR, right in RTL).
+           *  The chevron itself is flipped under RTL so it always points
+           *  toward the start edge of the viewport. */}
           <IconButton
             onClick={goPrev}
             disabled={currentIndex === 0}
             aria-label="Previous photo"
             sx={{
               position: 'absolute',
-              left: 16,
+              insetInlineStart: 16,
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -226,7 +228,9 @@ export function PhotoGallery({ photos, alt }: Props) {
               '&.Mui-disabled': { opacity: 0.3, color: 'common.white' },
             }}
           >
-            <ChevronLeftIcon sx={{ fontSize: 32 }} />
+            <ChevronLeftIcon
+              sx={{ fontSize: 32, transform: theme.direction === 'rtl' ? 'scaleX(-1)' : 'none' }}
+            />
           </IconButton>
 
           {/* Main image */}
@@ -254,14 +258,14 @@ export function PhotoGallery({ photos, alt }: Props) {
             />
           </Box>
 
-          {/* Right arrow */}
+          {/* Next — anchored at inline-end (right in LTR, left in RTL). */}
           <IconButton
             onClick={goNext}
             disabled={currentIndex === total - 1}
             aria-label="Next photo"
             sx={{
               position: 'absolute',
-              right: 16,
+              insetInlineEnd: 16,
               top: '50%',
               transform: 'translateY(-50%)',
               zIndex: 10,
@@ -273,11 +277,14 @@ export function PhotoGallery({ photos, alt }: Props) {
               '&.Mui-disabled': { opacity: 0.3, color: 'common.white' },
             }}
           >
-            <ChevronRightIcon sx={{ fontSize: 32 }} />
+            <ChevronRightIcon
+              sx={{ fontSize: 32, transform: theme.direction === 'rtl' ? 'scaleX(-1)' : 'none' }}
+            />
           </IconButton>
 
           {/* Thumbnail strip */}
           <Box
+            className="photo-thumb-scroll"
             sx={{
               position: 'absolute',
               bottom: 16,
@@ -288,8 +295,6 @@ export function PhotoGallery({ photos, alt }: Props) {
               gap: 1,
               px: 4,
               overflowX: 'auto',
-              '&::-webkit-scrollbar': { height: 6 },
-              '&::-webkit-scrollbar-thumb': { bgcolor: 'rgba(255,255,255,0.3)', borderRadius: 3 },
             }}
           >
             {photos.map((photo, i) => (

@@ -34,10 +34,11 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { UserRole } from '@eawlma/shared-types';
 import { useAuthStore } from '@/store/auth.store';
-import { useUiStore } from '@/store/ui.store';
+import { useUiStore, type UiLanguage } from '@/store/ui.store';
 import { authApi } from '@/api/auth.api';
 import { useQuery } from '@tanstack/react-query';
 import { notificationsApi } from '@/api/notifications.api';
+import { LanguageSwitcherModal } from './LanguageSwitcherModal';
 
 interface NavbarProps {
   onMobileMenuClick?: () => void;
@@ -63,7 +64,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
   const toggleThemeMode = useUiStore((s) => s.toggleThemeMode);
   const unreadMessageCount = useUiStore((s) => s.unreadMessageCount);
 
-  const [langAnchor, setLangAnchor] = useState<HTMLElement | null>(null);
+  const [langModalOpen, setLangModalOpen] = useState(false);
   const [userAnchor, setUserAnchor] = useState<HTMLElement | null>(null);
   const [searchValue, setSearchValue] = useState('');
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
@@ -81,11 +82,10 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     // No-op; placeholder kept in case future scroll-state tweaks return.
   }, []);
 
-  const switchLanguage = (lng: 'ar' | 'en' | 'ur') => {
+  const switchLanguage = (lng: UiLanguage) => {
     void i18n.changeLanguage(lng);
     setLanguage(lng);
     localStorage.setItem('eawlma.locale', lng);
-    setLangAnchor(null);
   };
 
   const handleLogout = async () => {
@@ -238,24 +238,18 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
           <Tooltip title={t('common.language')}>
             <IconButton
               size="small"
-              onClick={(e: MouseEvent<HTMLButtonElement>) => setLangAnchor(e.currentTarget)}
+              onClick={() => setLangModalOpen(true)}
               aria-label="language"
               sx={{ color: 'text.secondary' }}
             >
               <LanguageIcon fontSize="small" />
             </IconButton>
           </Tooltip>
-          <Menu anchorEl={langAnchor} open={!!langAnchor} onClose={() => setLangAnchor(null)}>
-            <MenuItem selected={i18n.language === 'en'} onClick={() => switchLanguage('en')}>
-              🇬🇧 English
-            </MenuItem>
-            <MenuItem selected={i18n.language === 'ar'} onClick={() => switchLanguage('ar')}>
-              🇸🇦 العربية
-            </MenuItem>
-            <MenuItem selected={i18n.language === 'ur'} onClick={() => switchLanguage('ur')}>
-              🇵🇰 اردو
-            </MenuItem>
-          </Menu>
+          <LanguageSwitcherModal
+            open={langModalOpen}
+            onClose={() => setLangModalOpen(false)}
+            onLanguageChange={switchLanguage}
+          />
 
           <Tooltip title={t(isDark ? 'common.lightMode' : 'common.darkMode')}>
             <IconButton
@@ -520,14 +514,13 @@ function CategoryNavRow({ currentPath, isAr }: { currentPath: string; isAr: bool
       }}
     >
       <Box
+        className="scrollbar-hide"
         sx={{
           maxWidth: NAVBAR_MAX,
           mx: 'auto',
           px: { md: 4, lg: 5 },
           display: 'flex',
           overflowX: 'auto',
-          scrollbarWidth: 'none',
-          '&::-webkit-scrollbar': { display: 'none' },
         }}
       >
         {CATEGORY_LINKS.map((link) => {

@@ -90,17 +90,20 @@ export function KpiCard({
         bgcolor: 'background.paper',
         border: '1px solid',
         borderColor: 'divider',
-        borderLeft: '4px solid',
-        borderLeftColor: toneColor,
+        // Logical property — flips automatically in RTL so the accent stripe
+        // tracks the reading direction.
+        borderInlineStart: '4px solid',
+        borderInlineStartColor: toneColor,
         display: 'flex',
         flexDirection: 'column',
       }}
     >
-      {/* Watermark icon — sits bottom-right at low opacity. */}
+      {/* Watermark icon — sits in the trailing corner at low opacity.
+       *  `insetInlineEnd` flips to the left side under RTL automatically. */}
       <Box
         sx={{
           position: 'absolute',
-          right: 12,
+          insetInlineEnd: 12,
           bottom: 8,
           color: toneColor,
           opacity: 0.08,
