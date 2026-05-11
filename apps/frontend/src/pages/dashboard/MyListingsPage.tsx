@@ -72,9 +72,7 @@ export function MyListingsPage() {
   const totalPages = listingsQuery.data?.meta.totalPages ?? 1;
 
   const deleteMutation = useMutation({
-    mutationFn: async (ids: string[]) => {
-      for (const id of ids) await listingsApi.remove(id);
-    },
+    mutationFn: (ids: string[]) => listingsApi.bulkUpdate(ids, 'delete'),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ['listings', 'mine'] });
       setSelected(new Set());
@@ -86,6 +84,22 @@ export function MyListingsPage() {
     mutationFn: async (ids: string[]) => {
       for (const id of ids) await listingsApi.submit(id);
     },
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: ['listings', 'mine'] });
+      setSelected(new Set());
+    },
+  });
+
+  // Single round-trip bulk update — server handles activate/deactivate/delete
+  // in one transaction per id and returns a summary.
+  const bulkMutation = useMutation({
+    mutationFn: ({
+      ids,
+      action,
+    }: {
+      ids: string[];
+      action: 'activate' | 'deactivate' | 'delete';
+    }) => listingsApi.bulkUpdate(ids, action),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ['listings', 'mine'] });
       setSelected(new Set());
@@ -126,6 +140,59 @@ export function MyListingsPage() {
           </Button>
         }
       />
+
+      {/* Sticky bulk-action toolbar — only shown when at least one listing is
+       *  selected. Mirrors Airbnb-style multi-select UX. */}
+      {selected.size > 0 && (
+        <Box
+          sx={{
+            position: 'sticky',
+            top: 72,
+            zIndex: 10,
+            bgcolor: 'primary.main',
+            color: 'common.white',
+            p: 1.5,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            borderRadius: 2,
+            mb: 1,
+          }}
+        >
+          <Typography sx={{ fontWeight: 700, flex: 1 }}>
+            {selected.size} selected
+          </Typography>
+          <Button
+            color="inherit"
+            onClick={() =>
+              bulkMutation.mutate({ ids: Array.from(selected), action: 'activate' })
+            }
+            disabled={bulkMutation.isPending}
+          >
+            Activate all
+          </Button>
+          <Button
+            color="inherit"
+            onClick={() =>
+              bulkMutation.mutate({ ids: Array.from(selected), action: 'deactivate' })
+            }
+            disabled={bulkMutation.isPending}
+          >
+            Deactivate all
+          </Button>
+          <Button
+            color="inherit"
+            sx={{ color: 'error.light' }}
+            onClick={() => setConfirm({ open: true, ids: Array.from(selected) })}
+            disabled={bulkMutation.isPending}
+          >
+            Delete all
+          </Button>
+          <Button color="inherit" onClick={() => setSelected(new Set())}>
+            Cancel
+          </Button>
+        </Box>
+      )}
 
       {/* Filter chips + view toggle + bulk actions */}
       <Paper sx={{ p: 2 }}>

@@ -41,6 +41,8 @@ export interface FlatSearchParams {
   instantBookOnly?: boolean;
   checkIn?: string;
   checkOut?: string;
+  flexibleDates?: boolean;
+  minStay?: number;
 }
 
 const flattenParams = (p: FlatSearchParams): Record<string, string | number | boolean> => {

@@ -13,6 +13,9 @@ import MailIcon from '@mui/icons-material/MailOutline';
 import MoneyIcon from '@mui/icons-material/PaymentsOutlined';
 import GavelIcon from '@mui/icons-material/Gavel';
 import HistoryIcon from '@mui/icons-material/History';
+import ReportIcon from '@mui/icons-material/ReportProblemOutlined';
+import BookmarkIcon from '@mui/icons-material/BookOnline';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -27,8 +30,6 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { UserStatus } from '@eawlma/shared-types';
-
 import { adminApi } from '@/api/admin.api';
 import { AdminLayout } from '@/components/Layout/AdminLayout';
 import { PageHeader } from '@/components/global/PageHeader';
@@ -53,30 +54,12 @@ export function AdminDashboardPage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
 
-  // Best-effort platform KPIs from existing admin endpoints. A dedicated
-  // /admin/dashboard endpoint would render this trivial; for now we derive.
-  const usersQuery = useQuery({
-    queryKey: ['admin', 'users', 'all'],
-    queryFn: () => adminApi.users({ page: 1, limit: 1 }),
+  // Live KPIs from the dedicated /admin/stats endpoint.
+  const statsQuery = useQuery({
+    queryKey: ['admin', 'stats'],
+    queryFn: () => adminApi.dashboardStats(),
   });
-  const activeUsersQuery = useQuery({
-    queryKey: ['admin', 'users', 'active'],
-    queryFn: () => adminApi.users({ page: 1, limit: 1, status: UserStatus.ACTIVE }),
-  });
-  const pendingQuery = useQuery({
-    queryKey: ['admin', 'pending', 1],
-    queryFn: () => adminApi.pendingListings({ page: 1, limit: 1 }),
-  });
-  const recentSignupsQuery = useQuery({
-    queryKey: ['admin', 'users', 'recent'],
-    queryFn: () => adminApi.users({ page: 1, limit: 50 }),
-  });
-
-  // Derive new signups today
-  const todayIso = new Date().toISOString().slice(0, 10);
-  const newSignupsToday = (recentSignupsQuery.data?.data ?? []).filter(
-    (u) => u.createdAt.startsWith(todayIso),
-  ).length;
+  const stats = statsQuery.data;
 
   // Recent activity (last 20 audit entries)
   const auditQuery = useQuery({
@@ -104,49 +87,76 @@ export function AdminDashboardPage() {
 
       {/* ---- KPI row ---- */}
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4} lg={2.4}>
-          <KpiCard
-            label="Pending review"
-            value={pendingQuery.data?.meta.total ?? 0}
-            icon={<GavelIcon />}
-            tone="inquiries"
-            loading={pendingQuery.isLoading}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2.4}>
-          <KpiCard
-            label="Active users"
-            value={activeUsersQuery.data?.meta.total ?? 0}
-            icon={<PeopleIcon />}
-            tone="listings"
-            loading={activeUsersQuery.isLoading}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2.4}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
             label="Total users"
-            value={usersQuery.data?.meta.total ?? 0}
+            value={stats?.totalUsers ?? 0}
+            icon={<PeopleIcon />}
+            tone="listings"
+            loading={statsQuery.isLoading}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <KpiCard
+            label="Verified agents"
+            value={stats?.totalAgents ?? 0}
             icon={<HomeIcon />}
             tone="views"
-            loading={usersQuery.isLoading}
+            loading={statsQuery.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2.4}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Inquiry events (audit)"
-            value={recentAudit.filter((a) => a.entityType === 'inquiry').length}
+            label="Active listings"
+            value={stats?.activeListings ?? 0}
+            icon={<StorefrontIcon />}
+            tone="listings"
+            loading={statsQuery.isLoading}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <KpiCard
+            label="Total bookings"
+            value={stats?.totalBookings ?? 0}
+            icon={<BookmarkIcon />}
+            tone="views"
+            loading={statsQuery.isLoading}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <KpiCard
+            label="Total inquiries"
+            value={stats?.totalInquiries ?? 0}
             icon={<MailIcon />}
             tone="messages"
-            loading={auditQuery.isLoading}
+            loading={statsQuery.isLoading}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2.4}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Signups today"
-            value={newSignupsToday}
+            label="Pending review"
+            value={stats?.pendingModeration ?? 0}
+            icon={<GavelIcon />}
+            tone="inquiries"
+            loading={statsQuery.isLoading}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <KpiCard
+            label="Open disputes"
+            value={stats?.openDisputes ?? 0}
+            icon={<ReportIcon />}
+            tone="inquiries"
+            loading={statsQuery.isLoading}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <KpiCard
+            label="Platform earnings (SAR)"
+            value={Math.round(stats?.platformEarnings ?? 0)}
             icon={<MoneyIcon />}
             tone="listings"
-            loading={recentSignupsQuery.isLoading}
+            loading={statsQuery.isLoading}
           />
         </Grid>
       </Grid>

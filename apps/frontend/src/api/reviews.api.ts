@@ -12,18 +12,40 @@ export interface Review {
   reviewerId: string;
   reviewer: ReviewerSnapshot | null;
   listingId: string | null;
+  bookingId: string | null;
   rating: number;
+  cleanlinessRating: number | null;
+  accuracyRating: number | null;
+  communicationRating: number | null;
+  locationRating: number | null;
   comment: string;
   reply: string | null;
   repliedAt: string | null;
   createdAt: string;
 }
 
+export interface SubRatingAverages {
+  cleanliness: number | null;
+  accuracy: number | null;
+  communication: number | null;
+  location: number | null;
+}
+
 export interface ReviewSummary {
   averageRating: number;
   totalReviews: number;
   ratingDistribution: Record<1 | 2 | 3 | 4 | 5, number>;
+  subRatings?: SubRatingAverages;
   reviews: Review[];
+}
+
+export interface CreateListingReviewPayload {
+  rating: number;
+  comment: string;
+  cleanlinessRating?: number;
+  accuracyRating?: number;
+  communicationRating?: number;
+  locationRating?: number;
 }
 
 export const reviewsApi = {
@@ -44,6 +66,25 @@ export const reviewsApi = {
 
   reply: async (reviewId: string, reply: string): Promise<Review> => {
     const { data } = await apiClient.patch<{ data: Review }>(`/reviews/${reviewId}/reply`, { reply });
+    return unwrap<Review>(data);
+  },
+
+  forListing: async (listingId: string, page = 1, limit = 20): Promise<ReviewSummary> => {
+    const { data } = await apiClient.get<{ data: ReviewSummary }>(
+      `/listings/${listingId}/reviews`,
+      { params: { page, limit } },
+    );
+    return unwrap<ReviewSummary>(data);
+  },
+
+  createForListing: async (
+    listingId: string,
+    payload: CreateListingReviewPayload,
+  ): Promise<Review> => {
+    const { data } = await apiClient.post<{ data: Review }>(
+      `/reviews/listings/${listingId}`,
+      payload,
+    );
     return unwrap<Review>(data);
   },
 };

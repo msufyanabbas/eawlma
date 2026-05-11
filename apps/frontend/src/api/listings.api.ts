@@ -58,6 +58,16 @@ export const listingsApi = {
     await apiClient.delete(`/listings/${id}`);
   },
 
+  bulkUpdate: async (
+    ids: string[],
+    action: 'activate' | 'deactivate' | 'delete',
+  ): Promise<{ matched: number; updated: number; skipped: number }> => {
+    const { data } = await apiClient.post<{
+      data: { matched: number; updated: number; skipped: number };
+    }>('/listings/bulk-update', { ids, action });
+    return unwrap<{ matched: number; updated: number; skipped: number }>(data);
+  },
+
   addMedia: async (
     id: string,
     payload: ListingMediaUploadRequest,

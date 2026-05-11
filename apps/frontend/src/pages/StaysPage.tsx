@@ -2,9 +2,11 @@ import {
   Box,
   Button,
   Chip,
+  FormControlLabel,
   Grid,
   MenuItem,
   Stack,
+  Switch,
   TextField,
   Typography,
   alpha,
@@ -48,14 +50,18 @@ export function StaysPage() {
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState<string>('');
   const [propertyType, setPropertyType] = useState<string>('');
+  const [flexibleDates, setFlexibleDates] = useState<boolean>(false);
+  const [flexibleDuration, setFlexibleDuration] = useState<'1' | '3' | '7' | '14' | '30'>('7');
 
   const params: FlatSearchParams = {
     rentalType: 'short_term',
     city: city || undefined,
-    checkIn: checkIn || undefined,
-    checkOut: checkOut || undefined,
+    checkIn: flexibleDates ? undefined : checkIn || undefined,
+    checkOut: flexibleDates ? undefined : checkOut || undefined,
     minGuests: guests ? Number(guests) : undefined,
     propertyTypes: propertyType ? [propertyType] : undefined,
+    flexibleDates: flexibleDates || undefined,
+    minStay: flexibleDates ? Number(flexibleDuration) : undefined,
     limit: PAGE_SIZE,
   };
 
@@ -200,6 +206,51 @@ export function StaysPage() {
               </Grid>
             </Grid>
           </Box>
+
+          {/* Flexible-dates row */}
+          <Stack direction="row" alignItems="center" spacing={2} sx={{ mt: 2, flexWrap: 'wrap' }}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={flexibleDates}
+                  onChange={(e) => setFlexibleDates(e.target.checked)}
+                  sx={{
+                    '& .MuiSwitch-track': { bgcolor: 'rgba(255,255,255,0.4)' },
+                  }}
+                />
+              }
+              label={
+                <Typography sx={{ color: 'common.white', fontWeight: 600 }}>
+                  {t('search.flexibleDates', { defaultValue: "I'm flexible with dates" })}
+                </Typography>
+              }
+            />
+            {flexibleDates && (
+              <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1}>
+                {(['1', '3', '7', '14', '30'] as const).map((v) => {
+                  const label =
+                    v === '30'
+                      ? t('search.flex1Month', { defaultValue: '1 month' })
+                      : `${v} ${t('booking.nights')}`;
+                  const on = flexibleDuration === v;
+                  return (
+                    <Chip
+                      key={v}
+                      label={label}
+                      onClick={() => setFlexibleDuration(v)}
+                      sx={{
+                        bgcolor: on ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.12)',
+                        color: on ? 'text.primary' : 'common.white',
+                        fontWeight: 700,
+                        border: `1px solid ${on ? 'transparent' : 'rgba(255,255,255,0.4)'}`,
+                        cursor: 'pointer',
+                      }}
+                    />
+                  );
+                })}
+              </Stack>
+            )}
+          </Stack>
         </Box>
       </Box>
 

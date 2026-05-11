@@ -34,6 +34,7 @@ import { reviewsApi } from '@/api/reviews.api';
 import { extractErrorMessage } from '@/api/client';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
+import { PriceCalendar } from '@/components/hosting/PriceCalendar';
 
 const STATUS_COLORS: Record<Booking['status'], { bg: string; text: string; label: string }> = {
   pending: { bg: '#FFF3CD', text: '#856404', label: 'Pending' },
@@ -260,8 +261,8 @@ export function HostingPage() {
         )}
       </Paper>
 
-      {/* Pricing-by-date — placeholder card hinting at the dynamic pricing
-       *  feature on the roadmap. */}
+      {/* Pricing-by-date — dynamic calendar with per-day overrides. Daily &
+       *  weekly rate cards on top, override grid below. */}
       <Paper sx={{ p: 2.5 }}>
         <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>
           {t('hosting.pricingByDate')}
@@ -270,24 +271,34 @@ export function HostingPage() {
           {t('hosting.pricingHint')}
         </Typography>
         {selectedListing && (
-          <Stack direction="row" spacing={2} flexWrap="wrap" rowGap={1.5}>
-            <Box sx={{ flex: '1 1 200px', minWidth: 200, p: 2, bgcolor: alpha(theme.palette.primary.main, 0.06), borderRadius: 2 }}>
-              <Typography variant="overline" color="text.secondary">{t('hosting.dailyRate')}</Typography>
-              <Typography variant="h5" sx={{ fontWeight: 800 }}>
-                {Number(
-                  (selectedListing as unknown as { dailyRate?: number }).dailyRate ?? selectedListing.price,
-                ).toLocaleString(i18n.language)} SAR
-              </Typography>
-            </Box>
-            <Box sx={{ flex: '1 1 200px', minWidth: 200, p: 2, bgcolor: alpha(theme.palette.primary.main, 0.06), borderRadius: 2 }}>
-              <Typography variant="overline" color="text.secondary">{t('hosting.weeklyRate')}</Typography>
-              <Typography variant="h5" sx={{ fontWeight: 800 }}>
-                {(selectedListing as unknown as { weeklyRate?: number | null }).weeklyRate
-                  ? `${Number((selectedListing as unknown as { weeklyRate?: number }).weeklyRate).toLocaleString(i18n.language)} SAR`
-                  : '—'}
-              </Typography>
-            </Box>
-          </Stack>
+          <>
+            <Stack direction="row" spacing={2} flexWrap="wrap" rowGap={1.5} sx={{ mb: 3 }}>
+              <Box sx={{ flex: '1 1 200px', minWidth: 200, p: 2, bgcolor: alpha(theme.palette.primary.main, 0.06), borderRadius: 2 }}>
+                <Typography variant="overline" color="text.secondary">{t('hosting.dailyRate')}</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800 }}>
+                  {Number(
+                    (selectedListing as unknown as { dailyRate?: number }).dailyRate ?? selectedListing.price,
+                  ).toLocaleString(i18n.language)} SAR
+                </Typography>
+              </Box>
+              <Box sx={{ flex: '1 1 200px', minWidth: 200, p: 2, bgcolor: alpha(theme.palette.primary.main, 0.06), borderRadius: 2 }}>
+                <Typography variant="overline" color="text.secondary">{t('hosting.weeklyRate')}</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 800 }}>
+                  {(selectedListing as unknown as { weeklyRate?: number | null }).weeklyRate
+                    ? `${Number((selectedListing as unknown as { weeklyRate?: number }).weeklyRate).toLocaleString(i18n.language)} SAR`
+                    : '—'}
+                </Typography>
+              </Box>
+            </Stack>
+            <PriceCalendar
+              listingId={selectedListing.id}
+              fallbackDailyRate={Number(
+                (selectedListing as unknown as { dailyRate?: number }).dailyRate ??
+                  selectedListing.price ??
+                  0,
+              )}
+            />
+          </>
         )}
       </Paper>
 

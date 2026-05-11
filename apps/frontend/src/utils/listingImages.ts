@@ -37,3 +37,52 @@ export function listingCoverUrl(listing: {
   if (first?.url) return first.url;
   return fallbackImageForPropertyType(listing.propertyType);
 }
+
+/**
+ * Curated extra Unsplash photos used to pad the gallery when a listing has
+ * fewer than ~10 uploaded images. Real-estate-y interior + exterior shots so
+ * the Airbnb-style grid always renders a full preview even on demo data.
+ */
+const EXTRA_GALLERY_PHOTOS: string[] = [
+  'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80',
+  'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=80',
+  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80',
+  'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
+  'https://images.unsplash.com/photo-1583845112203-29329902332e?w=1200&q=80',
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+  'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80',
+  'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80',
+  'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1200&q=80',
+];
+
+/**
+ * Returns *at least* `minLength` photo URLs for the gallery — uploaded media
+ * first, then the property-type cover as a tiebreaker, then a curated pool of
+ * Unsplash filler shots. Always deduplicates.
+ */
+export function listingGalleryUrls(
+  listing: {
+    propertyType: PropertyType | string;
+    media?: Array<{ url: string; thumbnailUrl?: string | null }> | null;
+  },
+  minLength = 10,
+): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  const push = (url: string | null | undefined) => {
+    if (!url) return;
+    if (seen.has(url)) return;
+    seen.add(url);
+    out.push(url);
+  };
+
+  for (const m of listing.media ?? []) push(m.url);
+  push(fallbackImageForPropertyType(listing.propertyType));
+  for (const u of EXTRA_GALLERY_PHOTOS) {
+    if (out.length >= minLength) break;
+    push(u);
+  }
+  return out;
+}

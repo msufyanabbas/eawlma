@@ -116,6 +116,10 @@ export interface Listing {
   cancellationPolicy?: CancellationPolicy | null;
   hotelStarRating?: number | null;
   hotelName?: string | null;
+  damageDeposit?: number | null;
+  /** Private check-in instructions. Only present on the listing payload for
+   *  the agent who owns it; never exposed publicly. */
+  checkInInstructions?: string | null;
 
   // ---- Address (flat for filtering + nested for display) ----
   country: string;
@@ -181,6 +185,8 @@ export interface ShortTermListingFields {
   bookingType?: 'long_term' | 'short_term' | 'daily';
   availableFrom?: string;
   availableTo?: string;
+  damageDeposit?: number;
+  checkInInstructions?: string;
 }
 
 export interface CreateListingRequest {

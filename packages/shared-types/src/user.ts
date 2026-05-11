@@ -28,9 +28,27 @@ export interface User {
   licenseNumber: string | null;
   registrationNumber: string | null;
   notificationPreferences: UserNotificationPrefs | null;
+  // Host stats (Airbnb-style Superhost surfacing)
+  responseRate?: number | null;
+  responseTime?: string | null;
+  isSuperhost?: boolean;
+  totalCompletedBookings?: number;
+  totalEarnings?: number;
   createdAt: string;
   updatedAt: string;
   lastLoginAt: string | null;
+}
+
+/** Aggregated host stats — returned by `GET /users/:id/host-stats`. */
+export interface HostStats {
+  userId: string;
+  responseRate: number | null;
+  responseTime: string | null;
+  isSuperhost: boolean;
+  totalCompletedBookings: number;
+  totalEarnings: number;
+  averageRating: number | null;
+  reviewCount: number;
 }
 
 export interface UpdateProfileRequest {

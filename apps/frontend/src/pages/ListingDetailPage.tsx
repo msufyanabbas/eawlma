@@ -6,11 +6,8 @@ import {
   Button,
   Chip,
   Container,
-  Dialog,
   Grid,
   IconButton,
-  ImageList,
-  ImageListItem,
   MenuItem,
   Paper,
   Skeleton,
@@ -36,7 +33,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import PhoneIcon from '@mui/icons-material/PhoneOutlined';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
-import CloseIcon from '@mui/icons-material/Close';
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams, Link, useNavigate } from '@tanstack/react-router';
@@ -50,6 +46,8 @@ import confetti from 'canvas-confetti';
 import { listingsApi } from '@/api/listings.api';
 import { searchApi } from '@/api/search.api';
 import { agentsApi } from '@/api/agents.api';
+import { reviewsApi } from '@/api/reviews.api';
+import { PhotoGallery } from '@/components/global/PhotoGallery';
 import { inquiriesApi } from '@/api/inquiries.api';
 import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
@@ -58,7 +56,7 @@ import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { MortgageCalculator } from '@/components/global/MortgageCalculator';
 import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
-import { fallbackImageForPropertyType } from '@/utils/listingImages';
+import { fallbackImageForPropertyType, listingGalleryUrls } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
 import { formatHijriAndGregorian } from '@/utils/hijri';
@@ -166,8 +164,6 @@ export function ListingDetailPage() {
 
   const navigate = useNavigate();
   const [displayLocale, setDisplayLocale] = useState<string>(i18n.language);
-  const [galleryOpen, setGalleryOpen] = useState(false);
-  const [galleryIdx, setGalleryIdx] = useState(0);
   const [ejarOpen, setEjarOpen] = useState(false);
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'info' | 'warning' }>({
     open: false,
@@ -309,13 +305,21 @@ export function ListingDetailPage() {
   // Guard every nested array — media can come back undefined for legacy rows.
   const allMedia = listing.media ?? [];
   const realImages = allMedia.filter((m) => m?.type === MediaType.IMAGE);
-  // When no agent-uploaded images exist, surface a property-type-aware
-  // Unsplash placeholder so the gallery never renders as a blank grey block.
+  // Pad the gallery with curated Unsplash fallbacks so the Airbnb-style 1+4
+  // grid + "Show all 10 photos" CTA always have material to render — even on
+  // seed listings that only ship one uploaded photo.
   const fallbackUrl = fallbackImageForPropertyType(listing.propertyType);
-  const images =
-    realImages.length > 0
+  const galleryUrls = listingGalleryUrls(listing, 10);
+  const images: Array<{ id: string; url: string; thumbnailUrl?: string | null }> =
+    realImages.length >= 5
       ? realImages
-      : [{ id: 'fallback', url: fallbackUrl, thumbnailUrl: fallbackUrl } as unknown as (typeof realImages)[number]];
+      : galleryUrls.map((url, i) => {
+          // Prefer the real ListingMedia object when we have one — keeps its
+          // id stable for downstream `key`s — otherwise synthesize a stable id.
+          const real = realImages[i];
+          if (real) return real as { id: string; url: string; thumbnailUrl?: string | null };
+          return { id: `fallback-${i}`, url, thumbnailUrl: url };
+        });
   const video = allMedia.find((m) => m?.type === MediaType.VIDEO);
   const tour360 = allMedia.find((m) => m?.type === MediaType.TOUR_360);
   const cover = images[0]?.url;
@@ -375,94 +379,42 @@ export function ListingDetailPage() {
       <Helmet>
         <title>{localized.title} — {t('app.name')}</title>
         <meta name="description" content={localized.description.slice(0, 160)} />
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${localized.title} — ${t('app.name')}`} />
+        <meta property="og:description" content={localized.description.slice(0, 160)} />
+        <meta property="og:image" content={images[0]?.url ?? '/apps/frontend/assets/logo.svg'} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta property="og:site_name" content="Eawlma" />
+        {/* Twitter card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${localized.title} — ${t('app.name')}`} />
+        <meta name="twitter:description" content={localized.description.slice(0, 160)} />
+        <meta name="twitter:image" content={images[0]?.url ?? ''} />
+        {/* JSON-LD structured data — RealEstateListing */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'RealEstateListing',
+            name: localized.title,
+            description: localized.description,
+            price: Number(listing.price),
+            priceCurrency: listing.currency ?? 'SAR',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: listing.city,
+              addressRegion: listing.region,
+              addressCountry: listing.country ?? 'SA',
+            },
+            image: images.map((m) => m.url).slice(0, 6),
+            url: typeof window !== 'undefined' ? window.location.href : '',
+          })}
+        </script>
       </Helmet>
 
       {/* ---------------- Image gallery — Airbnb 60/40 split ---------------- */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 3 }}>
-        {images.length <= 1 ? (
-          // Single-image fallback — full-width with a subtle gradient veil
-          <Box
-            onClick={() => images.length > 0 && (setGalleryIdx(0), setGalleryOpen(true))}
-            sx={{
-              position: 'relative',
-              width: '100%',
-              height: { xs: 280, md: 460 },
-              borderRadius: 3,
-              overflow: 'hidden',
-              cursor: cover ? 'pointer' : 'default',
-              backgroundImage: cover ? `url(${cover})` : 'none',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              bgcolor: 'grey.100',
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35) 100%)',
-              },
-            }}
-          />
-        ) : (
-          <Box
-            sx={{
-              position: 'relative',
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: '3fr 1fr 1fr' },
-              gridTemplateRows: { md: '1fr 1fr' },
-              gap: 1,
-              borderRadius: 3,
-              overflow: 'hidden',
-              height: { xs: 320, md: 480 },
-            }}
-          >
-            <Box
-              onClick={() => (setGalleryIdx(0), setGalleryOpen(true))}
-              sx={{
-                gridRow: { md: '1 / span 2' },
-                bgcolor: 'grey.200',
-                backgroundImage: cover ? `url(${cover})` : 'none',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                cursor: cover ? 'pointer' : 'default',
-              }}
-            />
-            {images.slice(1, 5).map((m, i) => (
-              <Box
-                key={m.id}
-                onClick={() => (setGalleryIdx(i + 1), setGalleryOpen(true))}
-                sx={{
-                  bgcolor: 'grey.200',
-                  backgroundImage: `url(${m.url})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  cursor: 'pointer',
-                  display: { xs: i < 1 ? 'block' : 'none', md: 'block' },
-                  position: 'relative',
-                }}
-              />
-            ))}
-
-            {/* "Show all photos" overlay button — bottom-end, always available */}
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => (setGalleryIdx(0), setGalleryOpen(true))}
-              sx={{
-                position: 'absolute',
-                bottom: 16,
-                insetInlineEnd: 16,
-                bgcolor: 'rgba(255,255,255,0.95)',
-                color: 'text.primary',
-                fontWeight: 700,
-                px: 1.75,
-                '&:hover': { bgcolor: '#FFFFFF' },
-                boxShadow: '0 4px 12px rgba(0,0,0,0.18)',
-              }}
-            >
-              {`Show all photos (${images.length})`}
-            </Button>
-          </Box>
-        )}
+        <PhotoGallery photos={images.map((m) => m.url)} alt={localized.title} />
       </Container>
 
       {/* ---------------- Title + actions ---------------- */}
@@ -724,6 +676,8 @@ export function ListingDetailPage() {
 
             <ShortTermInfoSections listing={listing} />
 
+            <ListingReviewsSection listingId={listing.id} />
+
             {/* Mortgage calculator — sale listings only (rent has no loan to amortise) */}
             {isSale && (
               <Box sx={{ mb: 4 }}>
@@ -912,9 +866,29 @@ export function ListingDetailPage() {
                     </Stack>
                   </Box>
                 </Stack>
+                {agent?.isSuperhost && (
+                  <Chip
+                    icon={<StarIcon sx={{ fontSize: 14, color: '#FFFFFF !important' }} />}
+                    label={`${t('booking.superhost', { defaultValue: 'Superhost' })} / سوبر هوست`}
+                    size="small"
+                    sx={{
+                      mb: 1,
+                      bgcolor: '#FF385C',
+                      color: '#FFFFFF',
+                      fontSize: '0.75rem',
+                      fontWeight: 800,
+                    }}
+                  />
+                )}
                 <Chip
                   icon={<AccessTimeIcon sx={{ fontSize: 14 }} />}
-                  label="Responds within 2 hours"
+                  label={
+                    agent?.responseRate != null
+                      ? `${agent.responseRate}% ${t('booking.responseRate', { defaultValue: 'response rate' })}${
+                          agent.responseTime ? ` · ${agent.responseTime}` : ''
+                        }`
+                      : 'Responds within 2 hours'
+                  }
                   size="small"
                   sx={{
                     mb: 2,
@@ -1019,8 +993,17 @@ export function ListingDetailPage() {
                         (listing as unknown as { dailyRate?: number }).dailyRate,
                       ) || Number(listing.price)
                     }
+                    weeklyRate={
+                      (listing as unknown as { weeklyRate?: number | null }).weeklyRate ?? null
+                    }
                     minimumStay={
                       (listing as unknown as { minimumStay?: number }).minimumStay ?? 1
+                    }
+                    maxGuests={
+                      (listing as unknown as { maxGuests?: number | null }).maxGuests ?? null
+                    }
+                    damageDeposit={
+                      (listing as unknown as { damageDeposit?: number | null }).damageDeposit ?? null
                     }
                     currencyLabel={String(listing.currency || t('listing.currency'))}
                   />
@@ -1147,50 +1130,6 @@ export function ListingDetailPage() {
           </Stack>
         </Box>
       )}
-
-      {/* Lightbox */}
-      <Dialog
-        open={galleryOpen}
-        onClose={() => setGalleryOpen(false)}
-        maxWidth="lg"
-        fullWidth
-        PaperProps={{ sx: { bgcolor: '#000', position: 'relative' } }}
-      >
-        <IconButton
-          onClick={() => setGalleryOpen(false)}
-          sx={{ position: 'absolute', top: 8, insetInlineEnd: 8, color: 'common.white', zIndex: 1 }}
-        >
-          <CloseIcon />
-        </IconButton>
-        <Box sx={{ p: 2 }}>
-          <Box
-            sx={{
-              width: '100%',
-              aspectRatio: '16 / 9',
-              backgroundImage: `url(${images[galleryIdx]?.url ?? ''})`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-            }}
-          />
-          <ImageList cols={Math.min(images.length, 6)} gap={6} sx={{ mt: 2 }}>
-            {images.map((m, i) => (
-              <ImageListItem
-                key={m.id}
-                onClick={() => setGalleryIdx(i)}
-                sx={{
-                  cursor: 'pointer',
-                  border: i === galleryIdx ? `2px solid ${theme.palette.primary.main}` : '2px solid transparent',
-                  borderRadius: 1.5,
-                  overflow: 'hidden',
-                }}
-              >
-                <img src={m.thumbnailUrl ?? m.url} alt={`thumb-${i}`} loading="lazy" />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Box>
-      </Dialog>
 
       {/* VR / AR / message feedback snackbar */}
       <Snackbar
@@ -1471,5 +1410,92 @@ function InfoChip({ label, value }: { label: string; value: string }) {
         {value}
       </Typography>
     </Box>
+  );
+}
+
+// ------------------------------------------------------------------
+// Listing reviews section — sub-rating averages + recent comments.
+// ------------------------------------------------------------------
+
+function ListingReviewsSection({ listingId }: { listingId: string }) {
+  const reviewsQuery = useQuery({
+    queryKey: ['reviews', 'listing', listingId],
+    queryFn: () => reviewsApi.forListing(listingId, 1, 6),
+    staleTime: 60_000,
+  });
+  if (reviewsQuery.isLoading) return null;
+  const data = reviewsQuery.data;
+  if (!data || data.totalReviews === 0) return null;
+
+  const sub = data.subRatings;
+  return (
+    <Box sx={{ mb: 4 }}>
+      <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+        ⭐ {data.averageRating.toFixed(1)} · {data.totalReviews} reviews
+      </Typography>
+
+      {sub && (
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr 1fr', md: 'repeat(4, 1fr)' },
+            gap: 2,
+            mb: 3,
+          }}
+        >
+          <SubRatingRow emoji="🧹" label="Cleanliness" value={sub.cleanliness} />
+          <SubRatingRow emoji="✅" label="Accuracy" value={sub.accuracy} />
+          <SubRatingRow emoji="💬" label="Communication" value={sub.communication} />
+          <SubRatingRow emoji="📍" label="Location" value={sub.location} />
+        </Box>
+      )}
+
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+          gap: 2,
+        }}
+      >
+        {data.reviews.map((r) => (
+          <Paper key={r.id} variant="outlined" sx={{ p: 2 }}>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
+              <Box sx={{ color: '#D4A843', letterSpacing: 1 }}>{'★'.repeat(r.rating)}</Box>
+              <Typography variant="caption" color="text.secondary">
+                {r.reviewer
+                  ? `${r.reviewer.firstName} ${r.reviewer.lastName}`.trim()
+                  : 'Guest'}{' '}
+                · {new Date(r.createdAt).toLocaleDateString()}
+              </Typography>
+            </Stack>
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+              {r.comment}
+            </Typography>
+          </Paper>
+        ))}
+      </Box>
+    </Box>
+  );
+}
+
+function SubRatingRow({
+  emoji,
+  label,
+  value,
+}: {
+  emoji: string;
+  label: string;
+  value: number | null;
+}) {
+  return (
+    <Stack direction="row" spacing={1} alignItems="baseline">
+      <Typography variant="h6" sx={{ width: 28 }}>{emoji}</Typography>
+      <Box>
+        <Typography variant="caption" color="text.secondary">{label}</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+          {value != null ? value.toFixed(1) : '—'}
+        </Typography>
+      </Box>
+    </Stack>
   );
 }

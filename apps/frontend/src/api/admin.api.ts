@@ -100,4 +100,23 @@ export const adminApi = {
     const qs = search.toString();
     return `/admin/audit/export.csv${qs ? `?${qs}` : ''}`;
   },
+
+  dashboardStats: async (): Promise<AdminDashboardStats> => {
+    const { data } = await apiClient.get<{ data: AdminDashboardStats }>('/admin/stats');
+    return unwrap<AdminDashboardStats>(data);
+  },
 };
+
+export interface AdminDashboardStats {
+  totalUsers: number;
+  totalAgents: number;
+  totalListings: number;
+  activeListings: number;
+  totalInquiries: number;
+  totalBookings: number;
+  totalRevenue: number;
+  pendingModeration: number;
+  openDisputes: number;
+  platformEarnings: number;
+  newUsersThisMonth: number;
+}

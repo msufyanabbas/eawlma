@@ -52,6 +52,8 @@ import { DufaatPage } from './pages/dashboard/DufaatPage';
 import { BookingsPage } from './pages/dashboard/BookingsPage';
 import { BuyerDealsPage } from './pages/dashboard/BuyerDealsPage';
 import { AdminDisputesPage } from './pages/admin/AdminDisputesPage';
+import { AdminPromosPage } from './pages/admin/AdminPromosPage';
+import { BookingPaymentCallbackPage } from './pages/BookingPaymentCallbackPage';
 import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
 import { AdminPayoutsPage } from './pages/admin/AdminPayoutsPage';
 import { AdminPropertyRequestsPage } from './pages/admin/AdminPropertyRequestsPage';
@@ -172,6 +174,12 @@ const profileRoute = createRoute({
   beforeLoad: requireAuth,
   component: ProfilePage,
 });
+const bookingPaymentCallbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/bookings/payment-callback',
+  validateSearch: (search): Record<string, unknown> => search as Record<string, unknown>,
+  component: BookingPaymentCallbackPage,
+});
 
 // ----- Footer / marketing static pages -------------------------------
 
@@ -254,12 +262,14 @@ const adminCommissionsRoute = createRoute({ getParentRoute: () => adminShellRout
 const adminPayoutsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/payouts', component: AdminPayoutsPage });
 const adminPropertyRequestsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/property-requests', component: AdminPropertyRequestsPage });
 const adminDisputesRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/disputes', component: AdminDisputesPage });
+const adminPromosRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/promos', component: AdminPromosPage });
 
 // ----- Tree -----------------------------------------------------------
 
 const routeTree = rootRoute.addChildren([
   legacyLoginRoute,
   legacyRegisterRoute,
+  bookingPaymentCallbackRoute,
   marketingShellRoute.addChildren([
     indexRoute,
     searchRoute,
@@ -316,6 +326,7 @@ const routeTree = rootRoute.addChildren([
     adminPayoutsRoute,
     adminPropertyRequestsRoute,
     adminDisputesRoute,
+    adminPromosRoute,
   ]),
 ]);
 

@@ -44,12 +44,16 @@ interface NavItem {
   i18nKey: string;
   icon: ReactNode;
   agentOnly?: boolean;
+  /** When true, the item is active only on an exact-path match — used for
+   *  `/dashboard` (otherwise it'd match every nested route) and for
+   *  `/dashboard/listings/new` (otherwise it'd overlap `/dashboard/listings`). */
+  exactOnly?: boolean;
 }
 
 const ITEMS: NavItem[] = [
-  { to: '/dashboard', i18nKey: 'dashboard.overview', icon: <OverviewIcon />, agentOnly: true },
+  { to: '/dashboard', i18nKey: 'dashboard.overview', icon: <OverviewIcon />, agentOnly: true, exactOnly: true },
   { to: '/dashboard/listings', i18nKey: 'dashboard.listings', icon: <ListingsIcon />, agentOnly: true },
-  { to: '/dashboard/listings/new', i18nKey: 'dashboard.newListing', icon: <AddIcon />, agentOnly: true },
+  { to: '/dashboard/listings/new', i18nKey: 'dashboard.newListing', icon: <AddIcon />, agentOnly: true, exactOnly: true },
   { to: '/dashboard/inquiries', i18nKey: 'dashboard.inquiries', icon: <InquiryIcon />, agentOnly: true },
   { to: '/dashboard/messages', i18nKey: 'dashboard.messages', icon: <MessagesIcon /> },
   { to: '/dashboard/notifications', i18nKey: 'nav.notifications', icon: <NotificationsIcon /> },
@@ -67,6 +71,58 @@ const ITEMS: NavItem[] = [
   { to: '/dashboard/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
   { to: '/profile', i18nKey: 'nav.profile', icon: <PersonIcon /> },
 ];
+
+// One sx object per state — applied wholesale per item so we never end up
+// with a half-styled row (e.g. active background + inactive text colour).
+const NAV_ITEM_BASE = {
+  py: 1.25,
+  px: 3,
+  mb: 0.25,
+  cursor: 'pointer',
+  borderRadius: '0 24px 24px 0',
+  mr: 1.5,
+  transition: 'background-color 0.2s ease, color 0.2s ease',
+} as const;
+
+const NAV_ITEM_ACTIVE = {
+  ...NAV_ITEM_BASE,
+  color: '#FFFFFF',
+  bgcolor: 'rgba(255,255,255,0.15)',
+  fontWeight: 700,
+  '&:hover': { bgcolor: 'rgba(255,255,255,0.18)' },
+} as const;
+
+const NAV_ITEM_INACTIVE = {
+  ...NAV_ITEM_BASE,
+  color: 'rgba(255,255,255,0.7)',
+  bgcolor: 'transparent',
+  fontWeight: 500,
+  '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', color: '#FFFFFF' },
+} as const;
+
+/**
+ * Resolve which single nav item should be highlighted for the current path.
+ *
+ * Rule of precedence (one winner per render):
+ *   1. Exact `path === item.to` match always wins. This is how
+ *      /dashboard/listings/new (exact-only) wins over /dashboard/listings
+ *      (prefix-matchable).
+ *   2. Otherwise, longest prefix match — `path.startsWith(item.to + '/')` —
+ *      among items that are NOT marked exactOnly. `/dashboard` is exact-only
+ *      so it never lights up under nested routes.
+ */
+function findActiveItem(path: string, items: NavItem[]): NavItem | null {
+  const exact = items.find((i) => i.to === path);
+  if (exact) return exact;
+  let best: NavItem | null = null;
+  for (const it of items) {
+    if (it.exactOnly) continue;
+    if (path.startsWith(it.to + '/')) {
+      if (!best || it.to.length > best.to.length) best = it;
+    }
+  }
+  return best;
+}
 
 export function DashboardLayout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
@@ -121,58 +177,43 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
       </Typography>
 
       {/* Nav items — buyers see only the public-friendly ones (messages,
-       *  notifications, settings, profile); agents see the full set. */}
+       *  notifications, settings, profile); agents see the full set. The
+       *  active item is computed once via findActiveItem so exactly one row
+       *  lights up — no overlapping highlights on nested routes. */}
       <Box component="nav" sx={{ flex: 1, py: 0.5 }}>
-        {ITEMS.filter((item) => !item.agentOnly || isAgent).map((item) => {
-          // Active when the path is an exact match OR a child route. Using
-          // `itemPath + '/'` avoids `/dashboard/list` highlighting both
-          // `/dashboard/listings` and `/dashboard/list-something`.
-          const path = location.pathname;
-          const active =
-            path === item.to || path.startsWith(item.to + '/');
-          return (
-            <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
-              <Stack
-                direction="row"
-                alignItems="center"
-                sx={{
-                  py: 1.25,
-                  px: 3,
-                  mb: 0.25,
-                  cursor: 'pointer',
-                  color: active ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
-                  bgcolor: active ? 'rgba(255,255,255,0.12)' : 'transparent',
-                  // Dashboard chrome stays LTR-anchored for layout stability.
-                  borderRadius: '0 24px 24px 0',
-                  mr: 1.5,
-                  fontWeight: active ? 700 : 500,
-                  transition: 'background-color 0.2s ease, color 0.2s ease',
-                  '&:hover': {
-                    bgcolor: active ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.08)',
-                    color: '#FFFFFF',
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 22,
-                    height: 22,
-                    mr: 1.5,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    '& svg': { fontSize: 22 },
-                  }}
+        {(() => {
+          const visibleItems = ITEMS.filter((item) => !item.agentOnly || isAgent);
+          const activeItem = findActiveItem(location.pathname, visibleItems);
+          return visibleItems.map((item) => {
+            const isActiveItem = activeItem?.to === item.to;
+            return (
+              <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  sx={isActiveItem ? NAV_ITEM_ACTIVE : NAV_ITEM_INACTIVE}
                 >
-                  {item.icon}
-                </Box>
-                <Typography sx={{ fontSize: '0.9rem', fontWeight: 'inherit', color: 'inherit' }}>
-                  {t(item.i18nKey)}
-                </Typography>
-              </Stack>
-            </Link>
-          );
-        })}
+                  <Box
+                    sx={{
+                      width: 22,
+                      height: 22,
+                      mr: 1.5,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      '& svg': { fontSize: 22 },
+                    }}
+                  >
+                    {item.icon}
+                  </Box>
+                  <Typography sx={{ fontSize: '0.9rem', fontWeight: 'inherit', color: 'inherit' }}>
+                    {t(item.i18nKey)}
+                  </Typography>
+                </Stack>
+              </Link>
+            );
+          });
+        })()}
       </Box>
 
       {/* Bottom: user identity + sign out */}

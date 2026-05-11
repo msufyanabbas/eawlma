@@ -2,6 +2,8 @@ import { apiClient, unwrap } from './client';
 
 export type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
 
+export type DepositStatus = 'held' | 'released' | 'claimed';
+
 export interface Booking {
   id: string;
   listingId: string;
@@ -13,6 +15,11 @@ export interface Booking {
   numGuests: number;
   totalAmount: number;
   status: BookingStatus;
+  depositAmount: number;
+  depositStatus: DepositStatus;
+  depositReleasedAt: string | null;
+  /** Only populated when status is confirmed/completed. */
+  checkInInstructions: string | null;
   notes: string | null;
   moyasarPaymentId: string | null;
   createdAt: string;
@@ -25,12 +32,33 @@ export interface CreateBookingPayload {
   checkOut: string;
   numGuests?: number;
   notes?: string;
+  promoCode?: string;
+}
+
+export interface CreateBookingResult {
+  booking: Booking;
+  paymentUrl: string | null;
+  paymentId: string;
+  mockPayment: boolean;
 }
 
 export const bookingsApi = {
-  create: async (payload: CreateBookingPayload): Promise<Booking> => {
-    const { data } = await apiClient.post<{ data: Booking }>('/bookings', payload);
-    return unwrap<Booking>(data);
+  create: async (payload: CreateBookingPayload): Promise<CreateBookingResult> => {
+    const { data } = await apiClient.post<{ data: CreateBookingResult }>('/bookings', payload);
+    return unwrap<CreateBookingResult>(data);
+  },
+
+  confirmPayment: async (
+    bookingId: string,
+    status: string,
+    paymentId?: string,
+    promoCode?: string,
+  ): Promise<{ status: string; bookingId: string }> => {
+    const { data } = await apiClient.post<{ data: { status: string; bookingId: string } }>(
+      '/bookings/payment-callback',
+      { bookingId, status, paymentId, promoCode },
+    );
+    return unwrap<{ status: string; bookingId: string }>(data);
   },
   my: async (): Promise<Booking[]> => {
     const { data } = await apiClient.get<{ data: Booking[] }>('/bookings/my');

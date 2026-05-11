@@ -22,11 +22,13 @@ import PlaceIcon from '@mui/icons-material/PlaceOutlined';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { useCompareStore } from '@/store/compare.store';
+import { useAuthStore } from '@/store/auth.store';
 import { useTranslation } from 'react-i18next';
 import { ListingType, type Listing } from '@eawlma/shared-types';
 import { type MouseEvent } from 'react';
 import { listingCoverUrl } from '@/utils/listingImages';
 import { getListingTitle, getListingLocation } from '@/utils/listingText';
+import { SaveToWishlistButton } from '@/components/global/SaveToWishlistButton';
 
 interface ListingCardProps {
   listing: Listing;
@@ -96,6 +98,11 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
     e.preventDefault();
     onToggleSave?.(listing.id);
   };
+
+  // Authenticated users get the multi-list "Save to wishlist" popover; anonymous
+  // users still use the legacy single-heart toggle so they can pin listings
+  // without an account.
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   const compareHas = useCompareStore((s) => s.has(listing.id));
   const toggleCompare = useCompareStore((s) => s.toggle);
@@ -244,23 +251,27 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 <WhatsAppIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip title={saved ? t('listing.saved') : t('listing.save')}>
-              <IconButton
-                onClick={handleSaveClick}
-                size="small"
-                sx={{
-                  bgcolor: 'rgba(255,255,255,0.95)',
-                  '&:hover': { bgcolor: 'common.white' },
-                }}
-                aria-label="save listing"
-              >
-                {saved ? (
-                  <FavoriteIcon fontSize="small" color="error" />
-                ) : (
-                  <FavoriteBorderIcon fontSize="small" />
-                )}
-              </IconButton>
-            </Tooltip>
+            {isAuthenticated ? (
+              <SaveToWishlistButton listingId={listing.id} />
+            ) : (
+              <Tooltip title={saved ? t('listing.saved') : t('listing.save')}>
+                <IconButton
+                  onClick={handleSaveClick}
+                  size="small"
+                  sx={{
+                    bgcolor: 'rgba(255,255,255,0.95)',
+                    '&:hover': { bgcolor: 'common.white' },
+                  }}
+                  aria-label="save listing"
+                >
+                  {saved ? (
+                    <FavoriteIcon fontSize="small" color="error" />
+                  ) : (
+                    <FavoriteBorderIcon fontSize="small" />
+                  )}
+                </IconButton>
+              </Tooltip>
+            )}
           </Stack>
 
           {/* Bottom-left: lavender price badge */}

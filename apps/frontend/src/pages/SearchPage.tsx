@@ -14,6 +14,7 @@ import {
   MenuItem,
   Slider,
   Stack,
+  Switch,
   TextField,
   ToggleButton,
   ToggleButtonGroup,
@@ -172,6 +173,8 @@ export function SearchPage() {
   const [sort, setSort] = useState<string>(initial.sortField ?? 'createdAt');
   const [view, setView] = useState<ViewMode>((initial.view as ViewMode) ?? 'grid');
   const [rentalType, setRentalType] = useState<RentalType | ''>(initial.rentalType ?? '');
+  const [flexibleDates, setFlexibleDates] = useState<boolean>(false);
+  const [flexibleDuration, setFlexibleDuration] = useState<'1' | '3' | '7' | '14' | '30'>('7');
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [requestDialogOpen, setRequestDialogOpen] = useState(false);
 
@@ -221,8 +224,8 @@ export function SearchPage() {
   // slider or typing in the city field doesn't fire a fetch on every keystroke.
   // The "Apply filters" button still works (forces a refetch immediately).
   const filterSnapshot = useMemo(
-    () => ({ q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort, rentalType }),
-    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort, rentalType],
+    () => ({ q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort, rentalType, flexibleDates, flexibleDuration }),
+    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort, rentalType, flexibleDates, flexibleDuration],
   );
   const [debouncedFilters, setDebouncedFilters] = useState(filterSnapshot);
   useEffect(() => {
@@ -243,6 +246,8 @@ export function SearchPage() {
     isFeatured: debouncedFilters.verifiedOnly || undefined,
     sortField: debouncedFilters.sort,
     rentalType: debouncedFilters.rentalType || undefined,
+    flexibleDates: debouncedFilters.flexibleDates || undefined,
+    minStay: debouncedFilters.flexibleDates ? Number(debouncedFilters.flexibleDuration) : undefined,
     page,
     limit: PAGE_SIZE,
   });
@@ -305,6 +310,8 @@ export function SearchPage() {
     city, setCity,
     district, setDistrict,
     rentalType, setRentalType,
+    flexibleDates, setFlexibleDates,
+    flexibleDuration, setFlexibleDuration,
   };
 
   return (
@@ -659,6 +666,10 @@ interface FilterPanelProps {
   setDistrict: (v: string) => void;
   rentalType: RentalType | '';
   setRentalType: (v: RentalType | '') => void;
+  flexibleDates: boolean;
+  setFlexibleDates: (v: boolean) => void;
+  flexibleDuration: '1' | '3' | '7' | '14' | '30';
+  setFlexibleDuration: (v: '1' | '3' | '7' | '14' | '30') => void;
 }
 
 function FilterPanel(props: FilterPanelProps) {
@@ -755,6 +766,45 @@ function FilterPanel(props: FilterPanelProps) {
             <ToggleButton value="hotel">{t('search.hotel', { defaultValue: 'Hotel' })}</ToggleButton>
             <ToggleButton value="chalet">{t('search.chalet', { defaultValue: 'Chalet' })}</ToggleButton>
           </ToggleButtonGroup>
+        </Box>
+
+        {/* Flexible dates toggle — when on, listings whose minimum_stay
+         *  exceeds the chosen duration are excluded. */}
+        <Box sx={{ mt: 2 }}>
+          <FormControlLabel
+            control={
+              <Switch
+                size="small"
+                checked={props.flexibleDates}
+                onChange={(e) => props.setFlexibleDates(e.target.checked)}
+              />
+            }
+            label={
+              <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                {t('search.flexibleDates', { defaultValue: "I'm flexible with dates" })}
+              </Typography>
+            }
+            sx={{ mb: 1 }}
+          />
+          {props.flexibleDates && (
+            <Stack direction="row" flexWrap="wrap" rowGap={0.75} columnGap={0.75}>
+              {(['1', '3', '7', '14', '30'] as const).map((v) => (
+                <Chip
+                  key={v}
+                  label={
+                    v === '30'
+                      ? t('search.flex1Month', { defaultValue: '1 month' })
+                      : `${v} ${t('booking.nights')}`
+                  }
+                  size="small"
+                  onClick={() => props.setFlexibleDuration(v)}
+                  color={props.flexibleDuration === v ? 'primary' : 'default'}
+                  variant={props.flexibleDuration === v ? 'filled' : 'outlined'}
+                  sx={{ fontWeight: 600 }}
+                />
+              ))}
+            </Stack>
+          )}
         </Box>
       </Box>
 
