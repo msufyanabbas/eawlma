@@ -719,6 +719,42 @@
       "disputed": "متنازع عليها"
     }
   },
+  "moderation": {
+    "pendingCountSubtitle": "{{count}} بانتظار المراجعة",
+    "bulkApprove": "اعتماد جماعي ({{count}})",
+    "allCaughtUp": "تم إنجاز كل شيء! 🎉",
+    "queueEmpty": "طابور المراجعة فارغ.",
+    "colTitle": "العنوان",
+    "colReference": "المرجع",
+    "colType": "النوع",
+    "colCity": "المدينة",
+    "colPrice": "السعر",
+    "colSubmitted": "تاريخ الإرسال",
+    "ownerLabel": "المالك {{ownerShort}}",
+    "rejectTitle": "رفض الإعلان",
+    "rejectDescription": "يُرسل السبب إلى الوكيل عبر الإشعارات والبريد الإلكتروني.",
+    "rejectReasonLabel": "السبب",
+    "rejectConfirm": "رفض الإعلان",
+    "bulkApproveTitle": "اعتماد {{count}} إعلان؟",
+    "bulkApproveDescription": "سيتم نشرها فوراً وإشعار الوكيل بذلك.",
+    "bulkApproveConfirm": "اعتماد الكل",
+    "actionFailed": "فشل أحد إجراءات المراجعة — حاول مرة أخرى.",
+    "preview": {
+      "bedroomsShort": "{{count}} غرف",
+      "bathroomsShort": "{{count}} حمامات",
+      "vrTourAvailable": "جولة VR متاحة",
+      "vrTourSection": "جولة 360° / VR",
+      "locationSection": "الموقع",
+      "mapUnavailable": "معاينة الخريطة غير متوفرة",
+      "approve": "اعتماد",
+      "reject": "رفض"
+    }
+  },
+  "profilePage": {
+    "profileUpdated": "تم تحديث الملف",
+    "recentEmptyHint": "ستظهر هنا الإعلانات التي تطّلع عليها.",
+    "browseListings": "تصفّح الإعلانات"
+  },
   "adminDashboard": {
     "subtitle": "نظرة عامة على المنصة",
     "kpiTotalUsers": "إجمالي المستخدمين",

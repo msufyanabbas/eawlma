@@ -95,7 +95,7 @@ export function ProfilePage() {
         phoneVerified: updated.phoneVerified,
         identityVerified: updated.identityVerificationStatus === 'verified',
       });
-      setToast({ open: true, ok: true, msg: 'Profile updated' });
+      setToast({ open: true, ok: true, msg: t('profilePage.profileUpdated') });
     },
     onError: (err) => {
       setToast({ open: true, ok: false, msg: extractErrorMessage(err) });
@@ -286,10 +286,10 @@ export function ProfilePage() {
               {recentlyViewed.length === 0 ? (
                 <Stack alignItems="flex-start" spacing={1}>
                   <Typography variant="body2" color="text.secondary">
-                    Listings you view will appear here.
+                    {t('profilePage.recentEmptyHint')}
                   </Typography>
                   <Button onClick={() => void navigate({ to: '/search' })} variant="contained" size="small" sx={{ background: theme.eawlma.gradient }}>
-                    Browse listings
+                    {t('profilePage.browseListings')}
                   </Button>
                 </Stack>
               ) : (

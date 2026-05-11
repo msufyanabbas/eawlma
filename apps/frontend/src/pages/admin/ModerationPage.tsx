@@ -105,7 +105,7 @@ export function ModerationPage() {
 
       <PageHeader
         title={t('admin.moderationQueue')}
-        subtitle={`${queueQuery.data?.meta.total ?? 0} pending`}
+        subtitle={t('moderation.pendingCountSubtitle', { count: queueQuery.data?.meta.total ?? 0 })}
         action={
           selected.size > 0 ? (
             <Button
@@ -114,7 +114,7 @@ export function ModerationPage() {
               startIcon={<CheckIcon />}
               onClick={() => setBulkApproveOpen(true)}
             >
-              Bulk approve ({selected.size})
+              {t('moderation.bulkApprove', { count: selected.size })}
             </Button>
           ) : undefined
         }
@@ -126,7 +126,7 @@ export function ModerationPage() {
             {[...Array(6)].map((_, i) => <Skeleton key={i} height={48} />)}
           </Stack>
         ) : items.length === 0 ? (
-          <EmptyState title="All caught up! 🎉" description="The moderation queue is empty." />
+          <EmptyState title={t('moderation.allCaughtUp')} description={t('moderation.queueEmpty')} />
         ) : (
           <Table size="small">
             <TableHead>
@@ -135,12 +135,12 @@ export function ModerationPage() {
                   <Checkbox checked={allChecked} onChange={toggleAll} />
                 </TableCell>
                 <TableCell />
-                <TableCell>Title</TableCell>
-                <TableCell>Reference</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>City</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell>Submitted</TableCell>
+                <TableCell>{t('moderation.colTitle')}</TableCell>
+                <TableCell>{t('moderation.colReference')}</TableCell>
+                <TableCell>{t('moderation.colType')}</TableCell>
+                <TableCell>{t('moderation.colCity')}</TableCell>
+                <TableCell align="right">{t('moderation.colPrice')}</TableCell>
+                <TableCell>{t('moderation.colSubmitted')}</TableCell>
                 <TableCell align="right" />
               </TableRow>
             </TableHead>
@@ -175,13 +175,13 @@ export function ModerationPage() {
                   <TableCell sx={{ maxWidth: 320 }}>
                     <Typography variant="body2" sx={{ fontWeight: 600 }} noWrap>{l.title}</Typography>
                     <Typography variant="caption" color="text.secondary">
-                      Owner {l.ownerId.slice(0, 8)}
+                      {t('moderation.ownerLabel', { ownerShort: l.ownerId.slice(0, 8) })}
                     </Typography>
                   </TableCell>
                   <TableCell><Typography variant="caption" sx={{ fontFamily: 'monospace' }}>{l.referenceCode}</Typography></TableCell>
                   <TableCell sx={{ textTransform: 'capitalize' }}>{l.propertyType}</TableCell>
                   <TableCell>{l.city}{l.district ? ` · ${l.district}` : ''}</TableCell>
-                  <TableCell align="right">{Number(l.price).toLocaleString(i18n.language)} SAR</TableCell>
+                  <TableCell align="right">{Number(l.price).toLocaleString(i18n.language)} {t('listing.currency')}</TableCell>
                   <TableCell>{new Date(l.createdAt).toLocaleDateString(i18n.language)}</TableCell>
                   <TableCell align="right" onClick={(e) => e.stopPropagation()}>
                     <Stack direction="row" spacing={0.5} justifyContent="flex-end">
@@ -223,14 +223,14 @@ export function ModerationPage() {
       {/* Reject dialog */}
       <ConfirmDialog
         open={Boolean(rejectingId)}
-        title="Reject listing"
+        title={t('moderation.rejectTitle')}
         description={(
           <Stack spacing={2}>
             <Typography variant="body2" color="text.secondary">
-              The reason is sent to the agent in their notification and via email.
+              {t('moderation.rejectDescription')}
             </Typography>
             <TextField
-              label="Reason"
+              label={t('moderation.rejectReasonLabel')}
               fullWidth
               multiline
               minRows={3}
@@ -241,7 +241,7 @@ export function ModerationPage() {
           </Stack>
         )}
         destructive
-        confirmLabel="Reject listing"
+        confirmLabel={t('moderation.rejectConfirm')}
         loading={rejectMutation.isPending}
         onConfirm={() => {
           if (!rejectingId) return;
@@ -254,9 +254,9 @@ export function ModerationPage() {
       {/* Bulk-approve dialog */}
       <ConfirmDialog
         open={bulkApproveOpen}
-        title={`Approve ${selected.size} listing(s)?`}
-        description="They'll go live immediately and the agent will be notified."
-        confirmLabel="Approve all"
+        title={t('moderation.bulkApproveTitle', { count: selected.size })}
+        description={t('moderation.bulkApproveDescription')}
+        confirmLabel={t('moderation.bulkApproveConfirm')}
         loading={bulkApproveMutation.isPending}
         onConfirm={() => bulkApproveMutation.mutate(Array.from(selected))}
         onCancel={() => setBulkApproveOpen(false)}
@@ -264,7 +264,7 @@ export function ModerationPage() {
 
       {(approveMutation.isError || rejectMutation.isError || bulkApproveMutation.isError) && (
         <Alert severity="error">
-          A moderation action failed — try again.
+          {t('moderation.actionFailed')}
         </Alert>
       )}
     </AdminLayout>
@@ -282,6 +282,7 @@ function ListingPreview({
   onReject: () => void;
   onClose: () => void;
 }) {
+  const { t, i18n } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey, libraries: MAP_LIBS });
   const tour = listing.media.find((m) => m.type === MediaType.TOUR_360);
@@ -321,16 +322,20 @@ function ListingPreview({
       <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', rowGap: 1 }}>
         <Chip size="small" label={listing.type} sx={{ textTransform: 'capitalize' }} />
         <Chip size="small" label={listing.propertyType} sx={{ textTransform: 'capitalize' }} />
-        {listing.bedrooms !== null && <Chip size="small" label={`${listing.bedrooms} BR`} />}
-        {listing.bathrooms !== null && <Chip size="small" label={`${listing.bathrooms} BA`} />}
-        {listing.area !== null && <Chip size="small" label={`${listing.area} m²`} />}
+        {listing.bedrooms !== null && (
+          <Chip size="small" label={t('moderation.preview.bedroomsShort', { count: listing.bedrooms })} />
+        )}
+        {listing.bathrooms !== null && (
+          <Chip size="small" label={t('moderation.preview.bathroomsShort', { count: listing.bathrooms })} />
+        )}
+        {listing.area !== null && <Chip size="small" label={`${listing.area} ${t('listing.areaUnit')}`} />}
         {tour && (
-          <Chip size="small" color="secondary" icon={<VrIcon />} label="VR tour available" />
+          <Chip size="small" color="secondary" icon={<VrIcon />} label={t('moderation.preview.vrTourAvailable')} />
         )}
       </Stack>
 
       <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 800, mb: 1 }}>
-        {Number(listing.price).toLocaleString()} SAR
+        {Number(listing.price).toLocaleString(i18n.language)} {t('listing.currency')}
       </Typography>
 
       <Typography variant="body2" sx={{ whiteSpace: 'pre-line', color: 'text.secondary', mb: 3 }}>
@@ -339,7 +344,7 @@ function ListingPreview({
 
       {tour && (
         <Box sx={{ mb: 2 }}>
-          <Typography variant="overline" color="text.secondary">VR / 360° tour</Typography>
+          <Typography variant="overline" color="text.secondary">{t('moderation.preview.vrTourSection')}</Typography>
           <Box sx={{ borderRadius: 2, overflow: 'hidden', mt: 0.5 }}>
             <model-viewer
               src={tour.url}
@@ -352,10 +357,10 @@ function ListingPreview({
       )}
 
       <Box sx={{ mb: 3 }}>
-        <Typography variant="overline" color="text.secondary">Location</Typography>
+        <Typography variant="overline" color="text.secondary">{t('moderation.preview.locationSection')}</Typography>
         {!apiKey || !isLoaded ? (
           <Box sx={{ height: 200, bgcolor: 'grey.100', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Typography variant="caption" color="text.secondary">Map preview unavailable</Typography>
+            <Typography variant="caption" color="text.secondary">{t('moderation.preview.mapUnavailable')}</Typography>
           </Box>
         ) : (
           <Box sx={{ height: 200, borderRadius: 2, overflow: 'hidden', mt: 0.5 }}>
@@ -373,10 +378,10 @@ function ListingPreview({
 
       <Stack direction="row" spacing={1}>
         <Button fullWidth variant="contained" color="success" startIcon={<CheckIcon />} onClick={onApprove}>
-          Approve
+          {t('moderation.preview.approve')}
         </Button>
         <Button fullWidth variant="outlined" color="error" startIcon={<CloseIcon />} onClick={onReject}>
-          Reject
+          {t('moderation.preview.reject')}
         </Button>
       </Stack>
     </Box>

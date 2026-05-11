@@ -731,6 +731,42 @@
       "disputed": "متنازع"
     }
   },
+  "moderation": {
+    "pendingCountSubtitle": "{{count}} زیرِ التواء",
+    "bulkApprove": "اجتماعی منظوری ({{count}})",
+    "allCaughtUp": "سب کچھ مکمل! 🎉",
+    "queueEmpty": "ماڈریشن قطار خالی ہے۔",
+    "colTitle": "عنوان",
+    "colReference": "حوالہ",
+    "colType": "قسم",
+    "colCity": "شہر",
+    "colPrice": "قیمت",
+    "colSubmitted": "جمع کرائی گئی",
+    "ownerLabel": "مالک {{ownerShort}}",
+    "rejectTitle": "لسٹنگ مسترد کریں",
+    "rejectDescription": "وجہ ایجنٹ کو اطلاع اور ای میل میں بھیجی جاتی ہے۔",
+    "rejectReasonLabel": "وجہ",
+    "rejectConfirm": "لسٹنگ مسترد کریں",
+    "bulkApproveTitle": "{{count}} لسٹنگز منظور کریں؟",
+    "bulkApproveDescription": "یہ فوراً لائیو ہو جائیں گی اور ایجنٹ کو اطلاع دی جائے گی۔",
+    "bulkApproveConfirm": "سب منظور کریں",
+    "actionFailed": "ماڈریشن کارروائی ناکام ہوئی — دوبارہ کوشش کریں۔",
+    "preview": {
+      "bedroomsShort": "{{count}} کمرے",
+      "bathroomsShort": "{{count}} غسل خانے",
+      "vrTourAvailable": "VR ٹور دستیاب",
+      "vrTourSection": "VR / 360° ٹور",
+      "locationSection": "مقام",
+      "mapUnavailable": "نقشے کا پیش منظر دستیاب نہیں",
+      "approve": "منظور کریں",
+      "reject": "مسترد کریں"
+    }
+  },
+  "profilePage": {
+    "profileUpdated": "پروفائل اپ ڈیٹ ہو گئی",
+    "recentEmptyHint": "آپ جو لسٹنگز دیکھیں گے وہ یہاں ظاہر ہوں گی۔",
+    "browseListings": "لسٹنگز دیکھیں"
+  },
   "adminDashboard": {
     "subtitle": "پلیٹ فارم کا جائزہ",
     "kpiTotalUsers": "کل صارفین",

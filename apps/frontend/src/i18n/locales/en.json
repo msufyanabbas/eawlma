@@ -719,6 +719,42 @@
       "disputed": "Disputed"
     }
   },
+  "moderation": {
+    "pendingCountSubtitle": "{{count}} pending",
+    "bulkApprove": "Bulk approve ({{count}})",
+    "allCaughtUp": "All caught up! 🎉",
+    "queueEmpty": "The moderation queue is empty.",
+    "colTitle": "Title",
+    "colReference": "Reference",
+    "colType": "Type",
+    "colCity": "City",
+    "colPrice": "Price",
+    "colSubmitted": "Submitted",
+    "ownerLabel": "Owner {{ownerShort}}",
+    "rejectTitle": "Reject listing",
+    "rejectDescription": "The reason is sent to the agent in their notification and via email.",
+    "rejectReasonLabel": "Reason",
+    "rejectConfirm": "Reject listing",
+    "bulkApproveTitle": "Approve {{count}} listing(s)?",
+    "bulkApproveDescription": "They'll go live immediately and the agent will be notified.",
+    "bulkApproveConfirm": "Approve all",
+    "actionFailed": "A moderation action failed — try again.",
+    "preview": {
+      "bedroomsShort": "{{count}} BR",
+      "bathroomsShort": "{{count}} BA",
+      "vrTourAvailable": "VR tour available",
+      "vrTourSection": "VR / 360° tour",
+      "locationSection": "Location",
+      "mapUnavailable": "Map preview unavailable",
+      "approve": "Approve",
+      "reject": "Reject"
+    }
+  },
+  "profilePage": {
+    "profileUpdated": "Profile updated",
+    "recentEmptyHint": "Listings you view will appear here.",
+    "browseListings": "Browse listings"
+  },
   "adminDashboard": {
     "subtitle": "Platform overview",
     "kpiTotalUsers": "Total users",
