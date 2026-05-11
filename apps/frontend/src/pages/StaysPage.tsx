@@ -25,14 +25,26 @@ import { useSavedStore } from '@/store/saved.store';
 
 const PAGE_SIZE = 12;
 
-const STAY_PROPERTY_TYPES = [
-  { value: '', label: 'Any type' },
-  { value: 'entire_home', label: 'Entire home' },
-  { value: 'room', label: 'Private room' },
-  { value: 'chalet', label: 'Chalet' },
-  { value: 'rest_house', label: 'Rest house' },
-  { value: 'farm', label: 'Farm' },
-];
+// Property-type options for the short-term stays filter. Labels come from
+// the i18n bundle so they flip to Arabic with the rest of the chrome — this
+// avoids hardcoded English bleeding into the Arabic-default UI.
+const STAY_PROPERTY_TYPE_VALUES = [
+  '', // any
+  'entire_home',
+  'room',
+  'chalet',
+  'rest_house',
+  'farm',
+] as const;
+
+const STAY_PROPERTY_TYPE_I18N: Record<(typeof STAY_PROPERTY_TYPE_VALUES)[number], { key: string; fallback: string }> = {
+  '': { key: 'stays.anyType', fallback: 'Any type' },
+  entire_home: { key: 'stays.typeEntireHome', fallback: 'Entire home' },
+  room: { key: 'stays.typeRoom', fallback: 'Private room' },
+  chalet: { key: 'stays.typeChalet', fallback: 'Chalet' },
+  rest_house: { key: 'stays.typeRestHouse', fallback: 'Rest house' },
+  farm: { key: 'stays.typeFarm', fallback: 'Farm' },
+};
 
 export function StaysPage() {
   const { t, i18n } = useTranslation();
@@ -117,24 +129,30 @@ export function StaysPage() {
             <TextField
               size="small"
               type="number"
-              placeholder={t('stays.guests')}
+              label={t('stays.guests')}
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
               inputProps={{ min: 1 }}
-              sx={{ bgcolor: 'background.paper', borderRadius: 1, width: 90 }}
+              InputLabelProps={{ shrink: true }}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, width: 110 }}
             />
             <TextField
               select
               size="small"
+              label={t('stays.propertyType', { defaultValue: 'Property type' })}
               value={propertyType}
               onChange={(e) => setPropertyType(e.target.value)}
-              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 140 }}
+              InputLabelProps={{ shrink: true }}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 160 }}
             >
-              {STAY_PROPERTY_TYPES.map((p) => (
-                <MenuItem key={p.value} value={p.value}>
-                  {p.label}
-                </MenuItem>
-              ))}
+              {STAY_PROPERTY_TYPE_VALUES.map((value) => {
+                const meta = STAY_PROPERTY_TYPE_I18N[value];
+                return (
+                  <MenuItem key={value || 'any'} value={value}>
+                    {t(meta.key, { defaultValue: meta.fallback })}
+                  </MenuItem>
+                );
+              })}
             </TextField>
             <Button
               type="submit"
@@ -195,10 +213,28 @@ export function StaysPage() {
         </Box>
       </Box>
 
-      <Box sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, md: 6 } }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
-          <Typography variant="h5" sx={{ fontWeight: 800 }}>
-            {total.toLocaleString(i18n.language)} {t('stays.count', { defaultValue: 'stays available' })}
+      {/* Body — pt:{4} pulls the results bar off the purple header so it
+          breathes; the previous layout had them touching. */}
+      <Box sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, md: 6 }, pt: 4 }}>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{
+            mb: 3,
+            px: 2,
+            py: 1.5,
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
+          <Typography variant="body1" sx={{ fontWeight: 600 }}>
+            <Box component="span" sx={{ color: 'primary.main', fontWeight: 800 }}>
+              {total.toLocaleString(i18n.language)}
+            </Box>{' '}
+            {t('stays.count', { defaultValue: 'stays available' })}
           </Typography>
           <Chip label={t('search.shortTerm', { defaultValue: 'Short-term' })} color="primary" sx={{ fontWeight: 700 }} />
         </Stack>

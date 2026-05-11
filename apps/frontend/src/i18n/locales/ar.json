@@ -103,7 +103,14 @@
     "guests": "الضيوف",
     "count": "إقامة متاحة",
     "empty": "لا توجد إقامات تطابق فلاترك.",
-    "allListings": "تصفح كل العقارات →"
+    "allListings": "تصفح كل العقارات →",
+    "propertyType": "نوع العقار",
+    "anyType": "كل الأنواع",
+    "typeEntireHome": "منزل كامل",
+    "typeRoom": "غرفة خاصة",
+    "typeChalet": "شاليه",
+    "typeRestHouse": "استراحة",
+    "typeFarm": "مزرعة"
   },
   "hotels": {
     "title": "فنادق",
@@ -112,7 +119,35 @@
     "city": "المدينة",
     "count": "فنادق",
     "empty": "لا توجد فنادق تطابق فلاترك.",
-    "allStays": "أو تصفح الإقامات القصيرة →"
+    "allStays": "أو تصفح الإقامات القصيرة →",
+    "starRating": "التقييم",
+    "anyRating": "كل التقييمات",
+    "andUp": "فأعلى",
+    "priceRange": "نطاق السعر",
+    "anyPrice": "كل الأسعار",
+    "upTo500": "حتى 500 ر.س",
+    "upTo1000": "حتى 1,000 ر.س",
+    "upTo2500": "حتى 2,500 ر.س"
+  },
+  "messages": {
+    "startConversation": "ابدأ المحادثة",
+    "noThreadYet": "ليس لديك محادثة مع هذا الوكيل بعد.",
+    "howToStart": "افتح أحد إعلاناته واستخدم نموذج \"إرسال استفسار\" للتواصل معه — ستظهر رسائلك هنا.",
+    "browseAgentListings": "تصفّح إعلانات هذا الوكيل",
+    "pickConversation": "اختر محادثة من القائمة لبدء الدردشة.",
+    "startFromListing": "ابدأ المحادثة بإرسال رسالة لأي وكيل من صفحة العقار.",
+    "noConversations": "لا توجد محادثات بعد",
+    "searchConversations": "ابحث في المحادثات…",
+    "typeMessage": "اكتب رسالة…",
+    "typing": "يكتب الآن…",
+    "send": "إرسال",
+    "translating": "جارٍ الترجمة…",
+    "translated": "مترجم",
+    "translatedFrom": "مترجم من {{lang}}",
+    "showOriginal": "عرض النص الأصلي",
+    "showTranslation": "عرض الترجمة",
+    "online": "متصل",
+    "lastSeen": "آخر ظهور"
   },
   "hosting": {
     "title": "الاستضافة",

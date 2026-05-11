@@ -103,7 +103,14 @@
     "guests": "Guests",
     "count": "stays available",
     "empty": "No stays match your filters yet.",
-    "allListings": "Browse all listings →"
+    "allListings": "Browse all listings →",
+    "propertyType": "Property type",
+    "anyType": "Any type",
+    "typeEntireHome": "Entire home",
+    "typeRoom": "Private room",
+    "typeChalet": "Chalet",
+    "typeRestHouse": "Rest house",
+    "typeFarm": "Farm"
   },
   "hotels": {
     "title": "Hotels",
@@ -112,7 +119,35 @@
     "city": "City",
     "count": "hotels",
     "empty": "No hotels match your filters.",
-    "allStays": "Or browse Airbnb-style stays →"
+    "allStays": "Or browse Airbnb-style stays →",
+    "starRating": "Star rating",
+    "anyRating": "Any rating",
+    "andUp": "and up",
+    "priceRange": "Price range",
+    "anyPrice": "Any price",
+    "upTo500": "Up to 500 SAR",
+    "upTo1000": "Up to 1,000 SAR",
+    "upTo2500": "Up to 2,500 SAR"
+  },
+  "messages": {
+    "startConversation": "Start the conversation",
+    "noThreadYet": "You don't have a thread with this agent yet.",
+    "howToStart": "Open one of their listings and use the \"Send inquiry\" form to reach them — your messages will then appear here.",
+    "browseAgentListings": "Browse this agent's listings",
+    "pickConversation": "Pick a conversation on the left to start chatting.",
+    "startFromListing": "Start a conversation by messaging an agent from any listing page.",
+    "noConversations": "No conversations yet",
+    "searchConversations": "Search conversations…",
+    "typeMessage": "Type a message…",
+    "typing": "typing…",
+    "send": "Send",
+    "translating": "Translating…",
+    "translated": "Translated",
+    "translatedFrom": "Translated from {{lang}}",
+    "showOriginal": "Show original",
+    "showTranslation": "Show translation",
+    "online": "Online",
+    "lastSeen": "Last seen"
   },
   "hosting": {
     "title": "Hosting",

@@ -425,7 +425,7 @@ export function MessagesPage() {
             <TextField
               size="small"
               fullWidth
-              placeholder={t('common.search')}
+              placeholder={t('messages.searchConversations')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               InputProps={{
@@ -452,7 +452,7 @@ export function MessagesPage() {
             ) : filteredConversations.length === 0 ? (
               <EmptyState
                 title={t('empty.noMessages')}
-                description="Start a conversation by messaging an agent from any listing page."
+                description={t('messages.startFromListing')}
                 ctaLabel={t('nav.search')}
                 onCta={() => { window.location.href = '/search'; }}
               />
@@ -494,15 +494,18 @@ export function MessagesPage() {
           {!activeConversation ? (
             requestedAgentHasNoThread ? (
               <EmptyState
-                title="Start the conversation"
-                description={`You don't have a thread with this agent yet. Open one of their listings and use the "Send inquiry" form to reach them — your messages will then appear here.`}
-                ctaLabel="Browse this agent's listings"
+                title={t('messages.startConversation')}
+                description={`${t('messages.noThreadYet')} ${t('messages.howToStart')}`}
+                ctaLabel={t('messages.browseAgentListings')}
                 onCta={() =>
                   (window.location.href = `/agents/${requestedAgentId}`)
                 }
               />
             ) : (
-              <EmptyState title={t('empty.noMessages')} description="Pick a conversation on the left to start chatting." />
+              <EmptyState
+                title={t('empty.noMessages')}
+                description={t('messages.pickConversation')}
+              />
             )
           ) : (
             <>
@@ -540,7 +543,7 @@ export function MessagesPage() {
                         </Typography>
                         <Typography variant="caption" color="text.secondary" noWrap>
                           {typingFromOther
-                            ? 'typing…'
+                            ? t('messages.typing')
                             : display.subtitle ??
                               (activeConversation.lastMessageAt
                                 ? `last message ${new Date(activeConversation.lastMessageAt).toLocaleString(i18n.language)}`
@@ -559,7 +562,7 @@ export function MessagesPage() {
                     size="small"
                     variant="outlined"
                   >
-                    View listing
+                    {t('listing.viewListing')}
                   </Button>
                 )}
               </Stack>
@@ -642,7 +645,7 @@ export function MessagesPage() {
                   <TextField
                     fullWidth
                     size="small"
-                    placeholder="Type a message…"
+                    placeholder={t('messages.typeMessage')}
                     value={draft}
                     onChange={(e) => onDraftChange(e.target.value)}
                     multiline

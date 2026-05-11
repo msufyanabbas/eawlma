@@ -24,12 +24,15 @@ import { useSavedStore } from '@/store/saved.store';
 
 const PAGE_SIZE = 12;
 
-const PRICE_OPTIONS = [
-  { value: '', label: 'Any price' },
-  { value: '500', label: 'Up to 500' },
-  { value: '1000', label: 'Up to 1,000' },
-  { value: '2500', label: 'Up to 2,500' },
-];
+// Price-cap options for the hotel filter — labels are i18n-derived so
+// the bar reads "حتى 500 ر.س" in Arabic instead of bleeding English.
+const PRICE_OPTION_VALUES = ['', '500', '1000', '2500'] as const;
+const PRICE_OPTION_I18N: Record<(typeof PRICE_OPTION_VALUES)[number], { key: string; fallback: string }> = {
+  '': { key: 'hotels.anyPrice', fallback: 'Any price' },
+  '500': { key: 'hotels.upTo500', fallback: 'Up to 500 SAR' },
+  '1000': { key: 'hotels.upTo1000', fallback: 'Up to 1,000 SAR' },
+  '2500': { key: 'hotels.upTo2500', fallback: 'Up to 2,500 SAR' },
+};
 
 export function HotelsPage() {
   const { t, i18n } = useTranslation();
@@ -92,29 +95,36 @@ export function HotelsPage() {
             <TextField
               select
               size="small"
+              label={t('hotels.starRating', { defaultValue: 'Star rating' })}
               value={stars}
               onChange={(e) => setStars(e.target.value)}
-              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 140 }}
+              InputLabelProps={{ shrink: true }}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 160 }}
             >
-              <MenuItem value="">Any rating</MenuItem>
+              <MenuItem value="">{t('hotels.anyRating', { defaultValue: 'Any rating' })}</MenuItem>
               {[5, 4, 3, 2, 1].map((n) => (
                 <MenuItem key={n} value={String(n)}>
-                  {n}★ and up
+                  {n}★ {t('hotels.andUp', { defaultValue: 'and up' })}
                 </MenuItem>
               ))}
             </TextField>
             <TextField
               select
               size="small"
+              label={t('hotels.priceRange', { defaultValue: 'Price range' })}
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
-              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 140 }}
+              InputLabelProps={{ shrink: true }}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 170 }}
             >
-              {PRICE_OPTIONS.map((p) => (
-                <MenuItem key={p.value} value={p.value}>
-                  {p.label}
-                </MenuItem>
-              ))}
+              {PRICE_OPTION_VALUES.map((value) => {
+                const meta = PRICE_OPTION_I18N[value];
+                return (
+                  <MenuItem key={value || 'any'} value={value}>
+                    {t(meta.key, { defaultValue: meta.fallback })}
+                  </MenuItem>
+                );
+              })}
             </TextField>
             <Button
               type="submit"
@@ -133,10 +143,27 @@ export function HotelsPage() {
         </Box>
       </Box>
 
-      <Box sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, md: 6 } }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
-          <Typography variant="h5" sx={{ fontWeight: 800 }}>
-            {total.toLocaleString(i18n.language)} {t('hotels.count', { defaultValue: 'hotels' })}
+      {/* Body — pt:{4} pulls the results bar off the purple header. */}
+      <Box sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, md: 6 }, pt: 4 }}>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{
+            mb: 3,
+            px: 2,
+            py: 1.5,
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
+          <Typography variant="body1" sx={{ fontWeight: 600 }}>
+            <Box component="span" sx={{ color: 'primary.main', fontWeight: 800 }}>
+              {total.toLocaleString(i18n.language)}
+            </Box>{' '}
+            {t('hotels.count', { defaultValue: 'hotels' })}
           </Typography>
           <Chip
             icon={<StarIcon fontSize="small" sx={{ color: '#D4A843 !important' }} />}

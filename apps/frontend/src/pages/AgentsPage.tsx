@@ -27,17 +27,9 @@ import { agentsApi, type PublicAgent } from '@/api/agents.api';
 import { searchApi } from '@/api/search.api';
 import { EmptyState } from '@/components/global/EmptyState';
 
-// Curated Unsplash portrait photos — assigned deterministically to agent IDs
-// so the same person always shows up for the same agent (matches the homepage).
-const AGENT_PHOTOS = [
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80',
-];
-
+// Avatars come from each agent's own profile (`agent.avatarUrl`). When that
+// is null we render initials on the brand gradient — never a stock photo of
+// a stranger, which is what the previous AGENT_PHOTOS array was doing.
 const CITY_FILTERS = ['All Cities', 'Riyadh', 'Jeddah', 'Dammam'] as const;
 const PAGE_SIZE = 12;
 
@@ -187,10 +179,12 @@ export function AgentsPage() {
         ) : (
           <>
             <Grid container spacing={3}>
-              {pageAgents.map((agent, idx) => {
-                const photo = AGENT_PHOTOS[idx % AGENT_PHOTOS.length];
+              {pageAgents.map((agent) => {
                 const listingCount = agentListingCounts.get(agent.id) ?? 0;
                 const fullName = `${agent.firstName} ${agent.lastName}`.trim();
+                const initials = `${agent.firstName?.[0] ?? ''}${agent.lastName?.[0] ?? ''}`
+                  .trim()
+                  .toUpperCase() || 'E';
                 return (
                   <Grid key={agent.id} item xs={12} sm={6} md={4}>
                     <Box
@@ -213,8 +207,13 @@ export function AgentsPage() {
                         },
                       }}
                     >
+                      {/* Avatar — uses the agent's own avatarUrl if they
+                          have one, otherwise renders initials on the brand
+                          gradient. The previous code mapped a hardcoded
+                          Unsplash portrait to each card index, which meant
+                          agents got the wrong face. */}
                       <Avatar
-                        src={photo}
+                        src={agent.avatarUrl ?? undefined}
                         alt={fullName}
                         sx={{
                           width: 96,
@@ -228,13 +227,8 @@ export function AgentsPage() {
                           border: '3px solid',
                           borderColor: 'background.paper',
                         }}
-                        imgProps={{
-                          onError: (e) => {
-                            (e.currentTarget as HTMLImageElement).style.display = 'none';
-                          },
-                        }}
                       >
-                        {(agent.firstName?.[0] ?? 'E').toUpperCase()}
+                        {initials}
                       </Avatar>
                       <Typography sx={{ fontWeight: 800, fontSize: '1.1rem', mb: 0.25 }}>
                         {fullName}

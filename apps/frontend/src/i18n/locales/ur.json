@@ -104,7 +104,14 @@
     "guests": "مہمان",
     "count": "قیامیں دستیاب",
     "empty": "آپ کے فلٹرز سے کوئی قیام میل نہیں کھاتا۔",
-    "allListings": "تمام لسٹنگز دیکھیں →"
+    "allListings": "تمام لسٹنگز دیکھیں →",
+    "propertyType": "جائیداد کی قسم",
+    "anyType": "کوئی بھی قسم",
+    "typeEntireHome": "مکمل گھر",
+    "typeRoom": "نجی کمرہ",
+    "typeChalet": "شالے",
+    "typeRestHouse": "آرام گاہ",
+    "typeFarm": "فارم"
   },
   "hotels": {
     "title": "ہوٹل",
@@ -113,7 +120,35 @@
     "city": "شہر",
     "count": "ہوٹل",
     "empty": "آپ کے فلٹرز سے کوئی ہوٹل میل نہیں کھاتا۔",
-    "allStays": "یا Airbnb طرز کی قیامیں دیکھیں →"
+    "allStays": "یا Airbnb طرز کی قیامیں دیکھیں →",
+    "starRating": "ستارے",
+    "anyRating": "کوئی بھی درجہ",
+    "andUp": "اور اوپر",
+    "priceRange": "قیمت کی حد",
+    "anyPrice": "کوئی بھی قیمت",
+    "upTo500": "500 ریال تک",
+    "upTo1000": "1,000 ریال تک",
+    "upTo2500": "2,500 ریال تک"
+  },
+  "messages": {
+    "startConversation": "گفتگو شروع کریں",
+    "noThreadYet": "ابھی تک اس ایجنٹ کے ساتھ آپ کی کوئی گفتگو نہیں ہے۔",
+    "howToStart": "ان کی کسی لسٹنگ کو کھولیں اور \"استفسار بھیجیں\" فارم استعمال کریں — آپ کے پیغامات یہاں ظاہر ہوں گے۔",
+    "browseAgentListings": "اس ایجنٹ کی لسٹنگز دیکھیں",
+    "pickConversation": "بائیں جانب سے ایک گفتگو منتخب کریں۔",
+    "startFromListing": "کسی لسٹنگ سے ایجنٹ کو پیغام بھیج کر گفتگو شروع کریں۔",
+    "noConversations": "ابھی تک کوئی گفتگو نہیں",
+    "searchConversations": "گفتگوؤں میں تلاش کریں…",
+    "typeMessage": "پیغام لکھیں…",
+    "typing": "لکھ رہے ہیں…",
+    "send": "بھیجیں",
+    "translating": "ترجمہ ہو رہا ہے…",
+    "translated": "ترجمہ شدہ",
+    "translatedFrom": "{{lang}} سے ترجمہ شدہ",
+    "showOriginal": "اصل دکھائیں",
+    "showTranslation": "ترجمہ دکھائیں",
+    "online": "آن لائن",
+    "lastSeen": "آخری بار دیکھا گیا"
   },
   "hosting": {
     "title": "میزبانی",
