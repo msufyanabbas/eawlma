@@ -709,6 +709,49 @@
       "closedOn": " بتاریخ {{date}}"
     }
   },
+  "commission": {
+    "title": "کمیشن",
+    "myTitle": "میرا کمیشن",
+    "subtitle": "بند ہونے والی ہر ڈیل پر کمائی گئی کمیشن کا ٹریک رکھیں۔",
+    "totalEarned": "کل کمائی",
+    "pendingHeader": "زیرِ التواء",
+    "paidHeader": "ادا شدہ",
+    "noCommissionsTitle": "ابھی تک کوئی کمیشن نہیں",
+    "noCommissionsBody": "جیسے ہی کوئی لسٹنگ بند ہوگی، آپ کا کمیشن مکمل تفصیل اور حیثیت کے ساتھ یہاں ظاہر ہوگا۔",
+    "colListing": "جائیداد",
+    "colTransactionValue": "لین دین کی رقم",
+    "colRate": "شرح",
+    "colYouEarn": "آپ کا حصہ",
+    "colStatus": "حالت",
+    "colDate": "تاریخ",
+    "status": {
+      "pending": "زیرِ التواء",
+      "confirmed": "تصدیق شدہ",
+      "paid": "ادا شدہ",
+      "disputed": "متنازع"
+    }
+  },
+  "adminDashboard": {
+    "subtitle": "پلیٹ فارم کا جائزہ",
+    "kpiTotalUsers": "کل صارفین",
+    "kpiVerifiedAgents": "تصدیق شدہ ایجنٹس",
+    "kpiActiveListings": "فعال لسٹنگز",
+    "kpiTotalBookings": "کل بکنگز",
+    "kpiTotalInquiries": "کل استفسارات",
+    "kpiPendingReview": "زیرِ نظرثانی",
+    "kpiOpenDisputes": "کھلے تنازعات",
+    "kpiPlatformEarnings": "پلیٹ فارم آمدنی (ریال)",
+    "chartListingsCreated": "بنائی گئی لسٹنگز (آخری 30 دن)",
+    "chartListingsHint": "آڈٹ لاگ سے اخذ شدہ — مکمل کوریج کے لیے /admin/metrics اینڈ پوائنٹ منسلک کریں۔",
+    "chartInquiryEvents": "استفسار واقعات (آخری 30 دن)",
+    "chartFromAudit": "آڈٹ لاگ سے",
+    "recentActivity": "حالیہ سرگرمی",
+    "last20Events": "آخری 20 واقعات",
+    "noActivity": "کوئی حالیہ سرگرمی نہیں",
+    "actionOnEntity": "{{entity}} پر {{action}}",
+    "byActor": "بذریعہ {{actor}} · {{date}}",
+    "actorSystem": "نظام"
+  },
   "dashboardHome": {
     "kpiActiveListings": "فعال جائیدادیں",
     "kpiTotalViews30d": "کل مشاہدات (30 دن)",

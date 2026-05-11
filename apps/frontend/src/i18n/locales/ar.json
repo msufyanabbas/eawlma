@@ -697,6 +697,49 @@
       "closedOn": " بتاريخ {{date}}"
     }
   },
+  "commission": {
+    "title": "العمولات",
+    "myTitle": "عمولاتي",
+    "subtitle": "تتبّع كل عمولة كسبتها من الصفقات المغلقة.",
+    "totalEarned": "إجمالي المكتسب",
+    "pendingHeader": "قيد الانتظار",
+    "paidHeader": "تم الدفع",
+    "noCommissionsTitle": "لا توجد عمولات بعد",
+    "noCommissionsBody": "بمجرد إغلاق صفقة، ستظهر عمولتك هنا مع التفاصيل الكاملة والحالة.",
+    "colListing": "العقار",
+    "colTransactionValue": "قيمة الصفقة",
+    "colRate": "النسبة",
+    "colYouEarn": "نصيبك",
+    "colStatus": "الحالة",
+    "colDate": "التاريخ",
+    "status": {
+      "pending": "قيد الانتظار",
+      "confirmed": "مؤكدة",
+      "paid": "مدفوعة",
+      "disputed": "متنازع عليها"
+    }
+  },
+  "adminDashboard": {
+    "subtitle": "نظرة عامة على المنصة",
+    "kpiTotalUsers": "إجمالي المستخدمين",
+    "kpiVerifiedAgents": "الوكلاء الموثقون",
+    "kpiActiveListings": "الإعلانات النشطة",
+    "kpiTotalBookings": "إجمالي الحجوزات",
+    "kpiTotalInquiries": "إجمالي الاستفسارات",
+    "kpiPendingReview": "بانتظار المراجعة",
+    "kpiOpenDisputes": "النزاعات المفتوحة",
+    "kpiPlatformEarnings": "أرباح المنصة (ر.س)",
+    "chartListingsCreated": "الإعلانات المُنشأة (آخر 30 يوم)",
+    "chartListingsHint": "مستخرج من سجل التدقيق — اربط نقطة /admin/metrics للتغطية الكاملة.",
+    "chartInquiryEvents": "أحداث الاستفسارات (آخر 30 يوم)",
+    "chartFromAudit": "من سجل التدقيق",
+    "recentActivity": "النشاط الأخير",
+    "last20Events": "آخر 20 حدث",
+    "noActivity": "لا يوجد نشاط حديث",
+    "actionOnEntity": "{{action}} على {{entity}}",
+    "byActor": "بواسطة {{actor}} · {{date}}",
+    "actorSystem": "النظام"
+  },
   "dashboardHome": {
     "kpiActiveListings": "الإعلانات النشطة",
     "kpiTotalViews30d": "إجمالي المشاهدات (30 يوم)",

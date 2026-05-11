@@ -83,13 +83,13 @@ export function AdminDashboardPage() {
         <title>{t('nav.admin')} — {t('app.name')}</title>
       </Helmet>
 
-      <PageHeader title={t('nav.admin')} subtitle="Platform overview" />
+      <PageHeader title={t('nav.admin')} subtitle={t('adminDashboard.subtitle')} />
 
       {/* ---- KPI row ---- */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Total users"
+            label={t('adminDashboard.kpiTotalUsers')}
             value={stats?.totalUsers ?? 0}
             icon={<PeopleIcon />}
             tone="listings"
@@ -98,7 +98,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Verified agents"
+            label={t('adminDashboard.kpiVerifiedAgents')}
             value={stats?.totalAgents ?? 0}
             icon={<HomeIcon />}
             tone="views"
@@ -107,7 +107,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Active listings"
+            label={t('adminDashboard.kpiActiveListings')}
             value={stats?.activeListings ?? 0}
             icon={<StorefrontIcon />}
             tone="listings"
@@ -116,7 +116,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Total bookings"
+            label={t('adminDashboard.kpiTotalBookings')}
             value={stats?.totalBookings ?? 0}
             icon={<BookmarkIcon />}
             tone="views"
@@ -125,7 +125,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Total inquiries"
+            label={t('adminDashboard.kpiTotalInquiries')}
             value={stats?.totalInquiries ?? 0}
             icon={<MailIcon />}
             tone="messages"
@@ -134,7 +134,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Pending review"
+            label={t('adminDashboard.kpiPendingReview')}
             value={stats?.pendingModeration ?? 0}
             icon={<GavelIcon />}
             tone="inquiries"
@@ -143,7 +143,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Open disputes"
+            label={t('adminDashboard.kpiOpenDisputes')}
             value={stats?.openDisputes ?? 0}
             icon={<ReportIcon />}
             tone="inquiries"
@@ -152,7 +152,7 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <KpiCard
-            label="Platform earnings (SAR)"
+            label={t('adminDashboard.kpiPlatformEarnings')}
             value={Math.round(stats?.platformEarnings ?? 0)}
             icon={<MoneyIcon />}
             tone="listings"
@@ -165,9 +165,9 @@ export function AdminDashboardPage() {
       <Grid container spacing={3}>
         <Grid item xs={12} md={7}>
           <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>Listings created (last 30d)</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>{t('adminDashboard.chartListingsCreated')}</Typography>
             <Typography variant="caption" color="text.secondary">
-              Derived from the audit log — connect a dedicated <code>/admin/metrics</code> endpoint for full coverage.
+              {t('adminDashboard.chartListingsHint')}
             </Typography>
             <Box sx={{ height: 280, mt: 2 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -190,8 +190,8 @@ export function AdminDashboardPage() {
         </Grid>
         <Grid item xs={12} md={5}>
           <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>Inquiry events (last 30d)</Typography>
-            <Typography variant="caption" color="text.secondary">From audit log</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>{t('adminDashboard.chartInquiryEvents')}</Typography>
+            <Typography variant="caption" color="text.secondary">{t('adminDashboard.chartFromAudit')}</Typography>
             <Box sx={{ height: 280, mt: 2 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={dailyInquiryCreates}>
@@ -217,12 +217,12 @@ export function AdminDashboardPage() {
       <Paper sx={{ p: 3 }}>
         <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 2 }}>
           <HistoryIcon color="action" />
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>Recent activity</Typography>
-          <Typography variant="caption" color="text.secondary">last 20 events</Typography>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('adminDashboard.recentActivity')}</Typography>
+          <Typography variant="caption" color="text.secondary">{t('adminDashboard.last20Events')}</Typography>
         </Stack>
         {recentAudit.length === 0 ? (
           <Typography variant="body2" color="text.secondary" align="center" sx={{ py: 4 }}>
-            No recent activity
+            {t('adminDashboard.noActivity')}
           </Typography>
         ) : (
           <Stack divider={<Box sx={{ borderTop: 1, borderColor: 'divider' }} />}>
@@ -232,14 +232,17 @@ export function AdminDashboardPage() {
                   {(entry.actorId ?? '?').charAt(0).toUpperCase()}
                 </Avatar>
                 <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Typography variant="body2">
-                    <strong>{entry.action}</strong> on{' '}
-                    <Box component="span" sx={{ fontFamily: 'monospace' }}>
-                      {entry.entityType}/{(entry.entityId ?? '').slice(0, 8)}
-                    </Box>
+                  <Typography variant="body2" sx={{ fontFamily: 'inherit' }}>
+                    {t('adminDashboard.actionOnEntity', {
+                      action: entry.action,
+                      entity: `${entry.entityType}/${(entry.entityId ?? '').slice(0, 8)}`,
+                    })}
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    by {entry.actorId ? entry.actorId.slice(0, 8) : 'system'} · {new Date(entry.createdAt).toLocaleString(i18n.language)}
+                    {t('adminDashboard.byActor', {
+                      actor: entry.actorId ? entry.actorId.slice(0, 8) : t('adminDashboard.actorSystem'),
+                      date: new Date(entry.createdAt).toLocaleString(i18n.language),
+                    })}
                   </Typography>
                 </Box>
               </Stack>

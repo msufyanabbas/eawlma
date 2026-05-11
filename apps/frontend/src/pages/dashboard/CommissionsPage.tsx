@@ -29,11 +29,12 @@ import { EmptyState } from '@/components/global/EmptyState';
 //   confirmed = yellow (waiting for buyer payment)
 //   paid      = green  (received)
 //   disputed  = red    (escalation needed)
-const STATUS_COLORS: Record<CommissionStatus, { bg: string; text: string; label: string }> = {
-  pending: { bg: '#E5E7EB', text: '#374151', label: 'Pending' },
-  confirmed: { bg: '#FFF3CD', text: '#856404', label: 'Confirmed' },
-  paid: { bg: '#D4EDDA', text: '#155724', label: 'Paid' },
-  disputed: { bg: '#F8D7DA', text: '#721C24', label: 'Disputed' },
+// Labels come from i18n at render time so the chip text flips with locale.
+const STATUS_COLORS: Record<CommissionStatus, { bg: string; text: string }> = {
+  pending: { bg: '#E5E7EB', text: '#374151' },
+  confirmed: { bg: '#FFF3CD', text: '#856404' },
+  paid: { bg: '#D4EDDA', text: '#155724' },
+  disputed: { bg: '#F8D7DA', text: '#721C24' },
 };
 
 export function CommissionsPage() {
@@ -64,16 +65,16 @@ export function CommissionsPage() {
   return (
     <DashboardLayout>
       <Helmet>
-        <title>Commissions — {t('app.name')}</title>
+        <title>{t('commission.title')} — {t('app.name')}</title>
       </Helmet>
 
-      <PageHeader title="My commissions" subtitle="Track every commission you've earned across closed transactions." />
+      <PageHeader title={t('commission.myTitle')} subtitle={t('commission.subtitle')} />
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2.5, background: theme.eawlma.gradient, color: 'common.white' }}>
             <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 0.5, opacity: 0.85, textTransform: 'uppercase' }}>
-              Total earned
+              {t('commission.totalEarned')}
             </Typography>
             <Typography sx={{ fontSize: '2rem', fontWeight: 800, mt: 0.5 }}>
               {commissionsQuery.isLoading ? <Skeleton width={120} sx={{ bgcolor: 'rgba(255,255,255,0.18)' }} /> : fmt(summary.total)}
@@ -83,7 +84,7 @@ export function CommissionsPage() {
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2.5, bgcolor: alpha(theme.palette.warning.main, 0.1), border: 1, borderColor: 'warning.light' }}>
             <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 0.5, color: 'warning.dark', textTransform: 'uppercase' }}>
-              Pending
+              {t('commission.pendingHeader')}
             </Typography>
             <Typography sx={{ fontSize: '2rem', fontWeight: 800, mt: 0.5, color: 'warning.dark' }}>
               {commissionsQuery.isLoading ? <Skeleton width={120} /> : fmt(summary.pending)}
@@ -93,7 +94,7 @@ export function CommissionsPage() {
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2.5, bgcolor: alpha(theme.palette.success.main, 0.1), border: 1, borderColor: 'success.light' }}>
             <Typography variant="caption" sx={{ fontWeight: 700, letterSpacing: 0.5, color: 'success.dark', textTransform: 'uppercase' }}>
-              Paid
+              {t('commission.paidHeader')}
             </Typography>
             <Typography sx={{ fontSize: '2rem', fontWeight: 800, mt: 0.5, color: 'success.dark' }}>
               {commissionsQuery.isLoading ? <Skeleton width={120} /> : fmt(summary.paid)}
@@ -111,19 +112,19 @@ export function CommissionsPage() {
           </Box>
         ) : (commissionsQuery.data?.length ?? 0) === 0 ? (
           <EmptyState
-            title="No commissions yet"
-            description="Once a listing closes, your commission will appear here with full breakdown and status."
+            title={t('commission.noCommissionsTitle')}
+            description={t('commission.noCommissionsBody')}
           />
         ) : (
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Listing</TableCell>
-                <TableCell>Transaction value</TableCell>
-                <TableCell>Rate</TableCell>
-                <TableCell>You earn</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell>{t('commission.colListing')}</TableCell>
+                <TableCell>{t('commission.colTransactionValue')}</TableCell>
+                <TableCell>{t('commission.colRate')}</TableCell>
+                <TableCell>{t('commission.colYouEarn')}</TableCell>
+                <TableCell>{t('commission.colStatus')}</TableCell>
+                <TableCell>{t('commission.colDate')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -150,7 +151,7 @@ export function CommissionsPage() {
                     <TableCell sx={{ fontWeight: 700, color: 'primary.dark' }}>{fmt(c.agentCommissionAmount)}</TableCell>
                     <TableCell>
                       <Chip
-                        label={colors.label}
+                        label={t(`commission.status.${c.status}`)}
                         size="small"
                         sx={{ bgcolor: colors.bg, color: colors.text, fontWeight: 700 }}
                       />

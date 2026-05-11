@@ -697,6 +697,49 @@
       "closedOn": " on {{date}}"
     }
   },
+  "commission": {
+    "title": "Commissions",
+    "myTitle": "My commissions",
+    "subtitle": "Track every commission you've earned across closed transactions.",
+    "totalEarned": "Total earned",
+    "pendingHeader": "Pending",
+    "paidHeader": "Paid",
+    "noCommissionsTitle": "No commissions yet",
+    "noCommissionsBody": "Once a listing closes, your commission will appear here with full breakdown and status.",
+    "colListing": "Listing",
+    "colTransactionValue": "Transaction value",
+    "colRate": "Rate",
+    "colYouEarn": "You earn",
+    "colStatus": "Status",
+    "colDate": "Date",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "paid": "Paid",
+      "disputed": "Disputed"
+    }
+  },
+  "adminDashboard": {
+    "subtitle": "Platform overview",
+    "kpiTotalUsers": "Total users",
+    "kpiVerifiedAgents": "Verified agents",
+    "kpiActiveListings": "Active listings",
+    "kpiTotalBookings": "Total bookings",
+    "kpiTotalInquiries": "Total inquiries",
+    "kpiPendingReview": "Pending review",
+    "kpiOpenDisputes": "Open disputes",
+    "kpiPlatformEarnings": "Platform earnings (SAR)",
+    "chartListingsCreated": "Listings created (last 30d)",
+    "chartListingsHint": "Derived from the audit log — connect a dedicated /admin/metrics endpoint for full coverage.",
+    "chartInquiryEvents": "Inquiry events (last 30d)",
+    "chartFromAudit": "From audit log",
+    "recentActivity": "Recent activity",
+    "last20Events": "last 20 events",
+    "noActivity": "No recent activity",
+    "actionOnEntity": "{{action}} on {{entity}}",
+    "byActor": "by {{actor}} · {{date}}",
+    "actorSystem": "system"
+  },
   "dashboardHome": {
     "kpiActiveListings": "Active listings",
     "kpiTotalViews30d": "Total views (30d)",
