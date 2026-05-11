@@ -1,0 +1,75 @@
+config:
+  target: 'http://localhost:3010'
+  phases:
+    - name: Smoke test
+      duration: 10
+      arrivalRate: 5
+    - name: Load test
+      duration: 30
+      arrivalRate: 10
+      rampTo: 50
+    - name: Stress test
+      duration: 20
+      arrivalRate: 100
+  plugins:
+    expect: {}
+  defaults:
+    headers:
+      Content-Type: 'application/json'
+
+scenarios:
+  - name: Browse listings
+    weight: 40
+    flow:
+      - get:
+          url: '/api/v1/search/listings'
+          expect:
+            - statusCode: 200
+      - get:
+          url: '/api/v1/search/listings?city=Riyadh&propertyType=apartment'
+          expect:
+            - statusCode: 200
+
+  - name: Login flow
+    weight: 20
+    flow:
+      - post:
+          url: '/api/v1/auth/login'
+          json:
+            email: 'agent1@eawlma.sa'
+            password: 'Agent123!'
+          expect:
+            - statusCode: 200
+          capture:
+            - json: '$.data.tokens.accessToken'
+              as: token
+      - get:
+          url: '/api/v1/users/me'
+          headers:
+            Authorization: 'Bearer {{ token }}'
+          expect:
+            - statusCode: 200
+
+  - name: Market data
+    weight: 20
+    flow:
+      - get:
+          url: '/api/v1/price-trends?city=Riyadh&type=apartment'
+          expect:
+            - statusCode: 200
+      - get:
+          url: '/api/v1/price-trends/area-insights?city=Riyadh'
+          expect:
+            - statusCode: 200
+
+  - name: Filtered search
+    weight: 20
+    flow:
+      - get:
+          url: '/api/v1/search/listings?minPrice=500000&maxPrice=2000000&bedrooms=3'
+          expect:
+            - statusCode: 200
+      - get:
+          url: '/api/v1/search/listings?propertyType=villa&city=Jeddah'
+          expect:
+            - statusCode: 200

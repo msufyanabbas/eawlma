@@ -25,6 +25,12 @@
     "test:e2e:debug": "npm run test:e2e:debug -w @eawlma/frontend",
     "test:report": "npm run test:e2e && npm run test:report:generate -w @eawlma/frontend",
     "test:all": "npm run test:backend && npm run test:frontend && npm run test:e2e",
+    "test:api": "npm run test:api-coverage -w @eawlma/backend",
+    "test:load": "npm run test:load -w @eawlma/backend",
+    "test:load:report": "npm run test:load:report -w @eawlma/backend",
+    "test:full": "npm run test:api && npm run test:frontend && npm run test:e2e",
+    "test:report:full": "npm run test:e2e && node apps/frontend/e2e/full-report.mjs",
+    "test:open:report": "start apps/frontend/playwright-report/eawlma-full-report.html",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f"
