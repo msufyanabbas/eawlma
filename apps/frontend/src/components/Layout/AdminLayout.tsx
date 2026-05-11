@@ -1,17 +1,17 @@
 import {
   Badge,
   Box,
+  Button,
   Drawer,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Stack,
-  Toolbar,
   Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from '@tanstack/react-router';
+import { Link, useLocation, useNavigate } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import OverviewIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import GavelIcon from '@mui/icons-material/Gavel';
@@ -22,11 +22,18 @@ import CommissionIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PayoutsIcon from '@mui/icons-material/PaymentsOutlined';
 import RequestIcon from '@mui/icons-material/HelpOutlineOutlined';
 import LocalOfferIcon from '@mui/icons-material/LocalOfferOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
 import { inquiriesApi } from '@/api/inquiries.api';
+import { useAuthStore } from '@/store/auth.store';
+import { authApi } from '@/api/auth.api';
 
 const SIDEBAR_WIDTH = 248;
+// Same deeper brand-purple gradient as the agent dashboard — identity is
+// shared between the two role surfaces, so they should look like siblings.
+const SIDEBAR_GRADIENT =
+  'linear-gradient(160deg, #4A3F8F 0%, #3D3570 40%, #2D2650 100%)';
 
 interface AdminNavItem {
   to: string;
@@ -50,6 +57,9 @@ const ITEMS: AdminNavItem[] = [
 export function AdminLayout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
+  const clearSession = useAuthStore((s) => s.clearSession);
+  const getRefreshToken = useAuthStore((s) => s.getRefreshToken);
 
   // Open-dispute count drives the sidebar badge. Stale-time of 60s keeps the
   // sidebar lively without hammering the endpoint on every navigation.
@@ -60,6 +70,19 @@ export function AdminLayout({ children }: { children: ReactNode }) {
     retry: false,
   });
   const disputeCount = disputeCountQuery.data ?? 0;
+
+  const handleSignOut = async () => {
+    const rt = getRefreshToken();
+    if (rt) {
+      try {
+        await authApi.logout(rt);
+      } catch {
+        /* best-effort */
+      }
+    }
+    clearSession();
+    void navigate({ to: '/' });
+  };
 
   return (
     <Box sx={{ minHeight: '100vh' }}>
@@ -81,61 +104,104 @@ export function AdminLayout({ children }: { children: ReactNode }) {
               // Navbar is ~110px tall on md+ (toolbar 64 + category row ~46).
               top: 110,
               height: 'calc(100vh - 110px)',
-              borderRight: 1,
-              borderColor: 'divider',
+              border: 'none',
+              background: SIDEBAR_GRADIENT,
+              color: '#FFFFFF',
             },
           }}
         >
-          <Toolbar sx={{ px: 2, minHeight: 56 }}>
-            <Typography variant="overline" color="text.secondary">
+          <Stack sx={{ height: '100%', pt: 2 }}>
+            <Typography
+              sx={{
+                fontSize: '0.7rem',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.5)',
+                px: 3,
+                pt: 0.5,
+                pb: 1,
+                fontWeight: 700,
+              }}
+            >
               {t('nav.admin')}
             </Typography>
-          </Toolbar>
-          <List sx={{ p: 1 }}>
-            {ITEMS.map((item) => {
-              const active =
-                location.pathname === item.to ||
-                (item.to !== '/admin' && location.pathname.startsWith(item.to));
-              return (
-                <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
-                  <ListItemButton
-                    selected={active}
-                    sx={{
-                      borderRadius: 2,
-                      mb: 0.5,
-                      '&.Mui-selected': {
-                        bgcolor: 'secondary.main',
-                        color: 'secondary.contrastText',
-                        '& .MuiListItemIcon-root': { color: 'secondary.contrastText' },
-                        '&:hover': { bgcolor: 'secondary.dark' },
-                      },
-                    }}
-                  >
-                    <ListItemIcon
-                      sx={{ minWidth: 36, color: active ? 'inherit' : 'text.secondary' }}
+
+            <List sx={{ p: 1, flex: 1, overflowY: 'auto' }}>
+              {ITEMS.map((item) => {
+                const active =
+                  location.pathname === item.to ||
+                  (item.to !== '/admin' && location.pathname.startsWith(item.to));
+                return (
+                  <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
+                    <ListItemButton
+                      selected={active}
+                      sx={{
+                        borderRadius: 2,
+                        mb: 0.5,
+                        color: active ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                        '&:hover': { bgcolor: 'rgba(255,255,255,0.08)', color: '#FFFFFF' },
+                        '&.Mui-selected': {
+                          bgcolor: 'rgba(255,255,255,0.15)',
+                          color: '#FFFFFF',
+                          '& .MuiListItemIcon-root': { color: '#FFFFFF' },
+                          '&:hover': { bgcolor: 'rgba(255,255,255,0.18)' },
+                        },
+                      }}
                     >
-                      {item.badgeKey === 'disputes' && disputeCount > 0 ? (
-                        <Badge
-                          badgeContent={disputeCount}
-                          color="error"
-                          overlap="circular"
-                          sx={{ '& .MuiBadge-badge': { fontWeight: 700 } }}
-                        >
-                          {item.icon}
-                        </Badge>
-                      ) : (
-                        item.icon
-                      )}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={t(item.i18nKey)}
-                      primaryTypographyProps={{ variant: 'body2', fontWeight: active ? 700 : 500 }}
-                    />
-                  </ListItemButton>
-                </Link>
-              );
-            })}
-          </List>
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 36,
+                          color: active ? '#FFFFFF' : 'rgba(255,255,255,0.7)',
+                        }}
+                      >
+                        {item.badgeKey === 'disputes' && disputeCount > 0 ? (
+                          <Badge
+                            badgeContent={disputeCount}
+                            color="error"
+                            overlap="circular"
+                            sx={{ '& .MuiBadge-badge': { fontWeight: 700 } }}
+                          >
+                            {item.icon}
+                          </Badge>
+                        ) : (
+                          item.icon
+                        )}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={t(item.i18nKey)}
+                        primaryTypographyProps={{
+                          variant: 'body2',
+                          fontWeight: active ? 700 : 500,
+                          color: 'inherit',
+                        }}
+                      />
+                    </ListItemButton>
+                  </Link>
+                );
+              })}
+            </List>
+
+            <Box sx={{ p: 2, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+              <Button
+                fullWidth
+                variant="outlined"
+                startIcon={<LogoutIcon sx={{ fontSize: 18 }} />}
+                onClick={handleSignOut}
+                sx={{
+                  color: 'rgba(255,255,255,0.9) !important',
+                  borderColor: 'rgba(255,255,255,0.3) !important',
+                  fontWeight: 600,
+                  fontSize: '0.8rem',
+                  '&:hover': {
+                    borderColor: 'rgba(255,255,255,0.6) !important',
+                    bgcolor: 'rgba(255,255,255,0.1)',
+                  },
+                }}
+              >
+                {t('nav.logout')}
+              </Button>
+            </Box>
+          </Stack>
         </Drawer>
 
         <Box component="main" sx={{ flex: 1, p: { xs: 2, md: 4 }, minWidth: 0 }}>

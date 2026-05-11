@@ -386,15 +386,23 @@ export function MessagesPage() {
         <title>{t('dashboard.messages')} — {t('app.name')}</title>
       </Helmet>
 
+      {/*
+        Fixed-height chat layout. The page must NOT scroll as a whole — only
+        the conversation list and the message stream do, internally. We
+        negate the DashboardLayout's outer padding (p:{xs:2,md:3}) and the
+        Stack spacing(3) above us with negative margins so the chat fills
+        the full main column edge-to-edge, then size the container to
+        viewport-minus-navbar (navbar = 110px on md+, 64px on xs).
+       */}
       <Box
         sx={{
-          height: { xs: 'calc(100vh - 64px - 32px)', md: 'calc(100vh - 64px - 64px)' },
+          mx: { xs: -2, md: -3 },
+          mt: { xs: -2, md: -3 },
+          mb: { xs: -2, md: -3 },
+          height: { xs: 'calc(100dvh - 64px)', md: 'calc(100dvh - 110px)' },
           display: 'flex',
-          border: 1,
-          borderColor: 'divider',
-          borderRadius: 2,
           overflow: 'hidden',
-          bgcolor: 'background.paper',
+          bgcolor: 'background.default',
         }}
       >
         {/* ---------------- Conversation list ---------------- */}
@@ -408,9 +416,12 @@ export function MessagesPage() {
             borderInlineEnd: { md: 1 },
             borderColor: 'divider',
             minWidth: 0,
+            height: '100%',
+            overflow: 'hidden',
+            bgcolor: 'background.paper',
           }}
         >
-          <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
+          <Box sx={{ p: 2, flexShrink: 0, borderBottom: 1, borderColor: 'divider' }}>
             <TextField
               size="small"
               fullWidth
@@ -475,6 +486,9 @@ export function MessagesPage() {
             display: { xs: showListOnMobile ? 'none' : 'flex', md: 'flex' },
             flexDirection: 'column',
             minWidth: 0,
+            height: '100%',
+            overflow: 'hidden',
+            bgcolor: 'background.paper',
           }}
         >
           {!activeConversation ? (
@@ -497,7 +511,7 @@ export function MessagesPage() {
                 direction="row"
                 spacing={1.5}
                 alignItems="center"
-                sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}
+                sx={{ p: 2, flexShrink: 0, borderBottom: 1, borderColor: 'divider' }}
               >
                 <IconButton
                   onClick={() => setShowListOnMobile(true)}
@@ -556,7 +570,7 @@ export function MessagesPage() {
                   direction="row"
                   spacing={1.5}
                   alignItems="center"
-                  sx={{ px: 2, py: 1.25, bgcolor: 'background.default', borderBottom: 1, borderColor: 'divider' }}
+                  sx={{ px: 2, py: 1.25, flexShrink: 0, bgcolor: 'background.default', borderBottom: 1, borderColor: 'divider' }}
                 >
                   <Box
                     sx={{
@@ -612,7 +626,7 @@ export function MessagesPage() {
               <Box
                 component="form"
                 onSubmit={sendDraft}
-                sx={{ p: 1.5, borderTop: 1, borderColor: 'divider' }}
+                sx={{ p: 1.5, flexShrink: 0, borderTop: 1, borderColor: 'divider', bgcolor: 'background.paper' }}
               >
                 <Stack direction="row" spacing={1} alignItems="center">
                   <IconButton onClick={() => fileInputRef.current?.click()} aria-label="attach">

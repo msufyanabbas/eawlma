@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   Drawer,
@@ -35,9 +34,12 @@ import { authApi } from '@/api/auth.api';
 
 const AGENT_ROLES = new Set<UserRole>([UserRole.AGENT, UserRole.AGENCY_ADMIN, UserRole.ADMIN]);
 
-import logoUrl from '@/assets/logo.svg';
-
 const SIDEBAR_WIDTH = 240;
+// Deeper brand-purple gradient, matching the homepage/primary palette. The
+// previous lavender washed out against the white main column — this version
+// reads as the same family as the primary buttons.
+const SIDEBAR_GRADIENT =
+  'linear-gradient(160deg, #4A3F8F 0%, #3D3570 40%, #2D2650 100%)';
 
 interface NavItem {
   to: string;
@@ -148,74 +150,24 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
     <Stack
       sx={{
         height: '100%',
-        // Softer lavender-purple sidebar — matches the brand instead of
-        // near-black navy.
-        background: 'linear-gradient(180deg, #2D2650 0%, #3D3570 100%)',
+        background: SIDEBAR_GRADIENT,
         color: 'rgba(255,255,255,0.85)',
+        // Logo and user-identity blocks were removed — the navbar already
+        // shows both, so duplicating them in the drawer was visual noise.
+        // The drawer is now: section label → nav items → sign out.
+        pt: 2,
       }}
     >
-      {/* Brand block */}
-      <Stack direction="row" alignItems="center" spacing={1.25} sx={{ py: 2.5, px: 3 }}>
-        <Box component="img" src={logoUrl} alt="Eawlma" sx={{ height: 32, width: 32, filter: 'brightness(1.1)' }} />
-        <Typography sx={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.4px' }}>
-          Eawlma
-        </Typography>
-      </Stack>
-
-      {/* User info block (top of sidebar) */}
-      {user && (
-        <Box
-          sx={{
-            p: 2.5,
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-            borderBottom: '1px solid rgba(255,255,255,0.1)',
-            mb: 1,
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1.5}>
-            <Avatar
-              src={user.avatarUrl ?? undefined}
-              sx={{
-                width: 40,
-                height: 40,
-                bgcolor: 'secondary.main',
-                color: '#1A1A2E',
-                fontWeight: 700,
-              }}
-            >
-              {user.firstName?.[0]?.toUpperCase() ?? 'U'}
-            </Avatar>
-            <Box sx={{ minWidth: 0, flex: 1 }}>
-              <Typography
-                sx={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}
-                noWrap
-              >
-                {user.firstName} {user.lastName}
-              </Typography>
-              <Typography
-                sx={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}
-                noWrap
-              >
-                {user.role === UserRole.ADMIN
-                  ? t('nav.admin')
-                  : isAgent
-                    ? t('listing.agent', { defaultValue: 'Agent' })
-                    : t('nav.profile')}
-              </Typography>
-            </Box>
-          </Stack>
-        </Box>
-      )}
-
       <Typography
         sx={{
           fontSize: '0.7rem',
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.4)',
+          color: 'rgba(255,255,255,0.5)',
           px: 3,
-          pt: 1,
+          pt: 0.5,
           pb: 1,
+          fontWeight: 700,
         }}
       >
         {t('nav.dashboard')}
@@ -225,7 +177,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
        *  notifications, settings, profile); agents see the full set. The
        *  active item is computed once via findActiveItem so exactly one row
        *  lights up — no overlapping highlights on nested routes. */}
-      <Box component="nav" sx={{ flex: 1, py: 0.5 }}>
+      <Box component="nav" sx={{ flex: 1, py: 0.5, overflowY: 'auto' }}>
         {(() => {
           const visibleItems = ITEMS.filter((item) => !item.agentOnly || isAgent);
           const activeItem = findActiveItem(location.pathname, visibleItems);
@@ -313,7 +265,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             height: { md: 'calc(100vh - 110px)' },
             // Force the dark lavender gradient regardless of the active theme
             // mode so sidebar text stays legibly white in both light and dark.
-            background: 'linear-gradient(180deg, #2D2650 0%, #3D3570 100%)',
+            background: SIDEBAR_GRADIENT,
             color: '#FFFFFF',
           },
         }}

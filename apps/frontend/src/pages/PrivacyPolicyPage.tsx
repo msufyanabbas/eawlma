@@ -1,101 +1,184 @@
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
+interface Section {
+  title: string;
+  content: string;
+}
+
+interface LocaleContent {
+  title: string;
+  lastUpdated: string;
+  intro: string;
+  sections: Section[];
+}
+
+const PRIVACY_CONTENT: Record<'ar' | 'en', LocaleContent> = {
+  ar: {
+    title: 'سياسة الخصوصية',
+    lastUpdated: 'آخر تحديث: يناير 2026',
+    intro:
+      'نحن في عَوْلَمَة نلتزم بحماية خصوصيتك وبياناتك الشخصية. توضح هذه السياسة كيفية جمعنا للمعلومات واستخدامها وحمايتها.',
+    sections: [
+      {
+        title: 'المعلومات التي نجمعها',
+        content: `نجمع المعلومات التالية عند استخدامك لمنصة عَوْلَمَة:
+- معلومات الحساب: الاسم، البريد الإلكتروني، رقم الهاتف
+- معلومات العقارات: الإعلانات، الاستفسارات، الحجوزات
+- معلومات الاستخدام: الصفحات المزارة، عمليات البحث
+- معلومات الجهاز: نوع المتصفح، عنوان IP`,
+      },
+      {
+        title: 'كيف نستخدم معلوماتك',
+        content: `نستخدم معلوماتك من أجل:
+- تشغيل وتحسين خدمات المنصة
+- معالجة المعاملات والمدفوعات
+- التواصل معك بشأن إعلاناتك واستفساراتك
+- إرسال إشعارات مهمة تتعلق بحسابك
+- تحسين تجربة المستخدم وتطوير ميزات جديدة`,
+      },
+      {
+        title: 'حماية بياناتك',
+        content: `نتخذ إجراءات أمنية صارمة لحماية بياناتك:
+- تشفير SSL لجميع البيانات المنقولة
+- تخزين آمن للبيانات على خوادم محمية
+- وصول محدود للموظفين المصرح لهم فقط
+- مراجعات أمنية دورية`,
+      },
+      {
+        title: 'مشاركة المعلومات',
+        content: `لا نبيع معلوماتك الشخصية. قد نشارك بياناتك مع:
+- مزودي خدمات الدفع (مثل ميسر)
+- شركاء التحقق من الهوية (مثل أوثنتيكا)
+- جهات حكومية عند الطلب القانوني`,
+      },
+      {
+        title: 'حقوقك',
+        content: `لديك الحق في:
+- الوصول إلى بياناتك الشخصية
+- تصحيح أي معلومات غير دقيقة
+- طلب حذف حسابك وبياناتك
+- الاعتراض على معالجة بياناتك
+- تصدير بياناتك`,
+      },
+      {
+        title: 'الاتصال بنا',
+        content: 'لأي استفسارات تتعلق بهذه السياسة، يرجى التواصل معنا عبر: privacy@eawlma.sa',
+      },
+    ],
+  },
+  en: {
+    title: 'Privacy Policy',
+    lastUpdated: 'Last updated: January 2026',
+    intro:
+      'At Eawlma, we are committed to protecting your privacy and personal data. This policy explains how we collect, use, and protect your information.',
+    sections: [
+      {
+        title: 'Information We Collect',
+        content: `We collect the following information when you use Eawlma:
+- Account info: name, email, phone number
+- Property info: listings, inquiries, bookings
+- Usage data: pages visited, searches performed
+- Device info: browser type, IP address`,
+      },
+      {
+        title: 'How We Use Your Information',
+        content: `We use your information to:
+- Operate and improve our platform services
+- Process transactions and payments
+- Communicate about your listings and inquiries
+- Send important account notifications
+- Improve user experience and develop new features`,
+      },
+      {
+        title: 'Data Protection',
+        content: `We take strict security measures to protect your data:
+- SSL encryption for all data transfers
+- Secure storage on protected servers
+- Limited access to authorized staff only
+- Regular security audits`,
+      },
+      {
+        title: 'Information Sharing',
+        content: `We do not sell your personal information. We may share data with:
+- Payment service providers (e.g. Moyasar)
+- Identity verification partners (e.g. Authentica)
+- Government authorities when legally required`,
+      },
+      {
+        title: 'Your Rights',
+        content: `You have the right to:
+- Access your personal data
+- Correct any inaccurate information
+- Request deletion of your account and data
+- Object to data processing
+- Export your data`,
+      },
+      {
+        title: 'Contact Us',
+        content: 'For any questions about this policy, please contact us at: privacy@eawlma.sa',
+      },
+    ],
+  },
+};
+
 export function PrivacyPolicyPage() {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
+  const isAr = i18n.language.startsWith('ar');
+  const content = isAr ? PRIVACY_CONTENT.ar : PRIVACY_CONTENT.en;
+
   return (
     <Box sx={{ bgcolor: 'background.default' }}>
       <Helmet>
-        <title>{t('privacy.title')} — {t('app.name')}</title>
+        <title>
+          {content.title} — {t('app.name')}
+        </title>
       </Helmet>
 
-      <Container maxWidth="md" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, mb: 1 }}>
-          {t('privacy.title')}
+      <Box sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', py: { xs: 4, md: 6 } }}>
+        <Container maxWidth="md">
+          <Typography sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800, mb: 1 }}>
+            {content.title}
+          </Typography>
+          <Typography sx={{ opacity: 0.85 }}>{content.lastUpdated}</Typography>
+        </Container>
+      </Box>
+
+      <Container maxWidth="md" sx={{ py: { xs: 5, md: 7 } }}>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          sx={{ mb: 4, lineHeight: 1.85 }}
+        >
+          {content.intro}
         </Typography>
-        <Typography sx={{ color: 'text.secondary', mb: 4 }}>
-          {t('privacy.lastUpdated')}: 1 January 2026
-        </Typography>
 
-        <Stack spacing={4} sx={{ '& p': { color: 'text.secondary', lineHeight: 1.75 } }}>
-          <Section title="1. Data we collect">
-            <p>
-              When you use Eawlma we collect: account details (name, email, phone),
-              identity verification data when you choose to verify your account,
-              listing content you publish (photos, descriptions, prices), saved
-              searches and favourites, and standard interaction logs (page views,
-              device, IP). We do not collect biometric data.
-            </p>
-          </Section>
-
-          <Section title="2. How we use it">
-            <p>
-              We use your data to operate the platform — show you relevant
-              listings, route inquiries to the right agent, send transactional
-              notifications, prevent fraud, and meet our legal obligations. We
-              never sell your personal data.
-            </p>
-          </Section>
-
-          <Section title="3. Sharing & sub-processors">
-            <p>
-              Your data is shared only with the parties needed to provide the
-              service: cloud hosting (AWS in the Bahrain region), email delivery
-              (AWS SES), payments (Moyasar), translation (OpenAI for listing
-              translations only — no PII), and Google Maps for location
-              rendering. All sub-processors are bound by data-processing
-              agreements.
-            </p>
-          </Section>
-
-          <Section title="4. Your rights">
-            <p>
-              Under the PDPL you have the right to access, correct, port, and
-              delete your personal data. You may also withdraw consent for any
-              processing based on consent. To exercise any of these rights,
-              email <a href="mailto:privacy@eawlma.sa" style={{ color: '#6C63A6', fontWeight: 700 }}>privacy@eawlma.sa</a>
-              {' '}— we respond within 30 days.
-            </p>
-          </Section>
-
-          <Section title="5. Retention">
-            <p>
-              We retain account data for the lifetime of your account plus 5
-              years for audit and tax compliance. Inactive accounts are anonymised
-              after 24 months. Listing photos you delete are permanently removed
-              from primary storage within 30 days.
-            </p>
-          </Section>
-
-          <Section title="6. Security">
-            <p>
-              All data is encrypted in transit (TLS 1.3) and at rest (AES-256).
-              Passwords are hashed with Argon2id. Access to production data is
-              limited to a small on-call team and fully audit-logged.
-            </p>
-          </Section>
-
-          <Section title="7. Contact for data requests">
-            <p>
-              <strong>Data Protection Officer</strong><br />
-              Eawlma Real Estate · King Fahd Road, Riyadh, Saudi Arabia<br />
-              Email: <a href="mailto:privacy@eawlma.sa" style={{ color: '#6C63A6', fontWeight: 700 }}>privacy@eawlma.sa</a>
-            </p>
-          </Section>
-        </Stack>
+        {content.sections.map((section, i) => (
+          <Box key={i} sx={{ mb: 4 }}>
+            <Typography
+              sx={{
+                fontSize: '1.25rem',
+                fontWeight: 700,
+                mb: 1.5,
+                color: 'text.primary',
+                borderInlineStart: '4px solid',
+                borderInlineStartColor: 'primary.main',
+                pl: 2,
+              }}
+            >
+              {section.title}
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ whiteSpace: 'pre-line', lineHeight: 2 }}
+            >
+              {section.content}
+            </Typography>
+          </Box>
+        ))}
       </Container>
-    </Box>
-  );
-}
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <Box>
-      <Typography sx={{ fontSize: '1.25rem', fontWeight: 700, mb: 1.25, color: 'text.primary' }}>
-        {title}
-      </Typography>
-      {children}
     </Box>
   );
 }
