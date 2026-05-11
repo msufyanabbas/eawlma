@@ -28,5 +28,14 @@ export default defineConfig({
     { name: 'mobile-chrome', use: { ...devices['Pixel 5'] } },
     { name: 'mobile-safari', use: { ...devices['iPhone 13'] } },
     { name: 'tablet', use: { ...devices['iPad Pro'] } },
+    {
+      name: 'demo',
+      use: {
+        viewport: { width: 1440, height: 900 },
+        video: { mode: 'on', size: { width: 1440, height: 900 } },
+        launchOptions: { slowMo: 600 },
+        headless: false,
+      },
+    },
   ],
 });

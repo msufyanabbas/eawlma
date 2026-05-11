@@ -7,8 +7,6 @@ import {
   Stack,
   TextField,
   Typography,
-  alpha,
-  useTheme,
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -25,8 +23,6 @@ import { EmptyState } from '@/components/global/EmptyState';
 import { useSavedStore } from '@/store/saved.store';
 
 const PAGE_SIZE = 12;
-const HERO_IMAGE_URL =
-  'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1920&q=80';
 
 const PRICE_OPTIONS = [
   { value: '', label: 'Any price' },
@@ -37,7 +33,6 @@ const PRICE_OPTIONS = [
 
 export function HotelsPage() {
   const { t, i18n } = useTranslation();
-  const theme = useTheme();
   const savedIds = useSavedStore((s) => s.ids);
   const toggleSaved = useSavedStore((s) => s.toggle);
 
@@ -76,93 +71,64 @@ export function HotelsPage() {
         <meta name="description" content={t('hotels.heroSubtitle')} />
       </Helmet>
 
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: { xs: 320, md: 420 },
-          display: 'flex',
-          alignItems: 'center',
-          color: 'common.white',
-          background: `linear-gradient(135deg, ${alpha('#1A1A2E', 0.78)} 0%, ${alpha('#6C63A6', 0.62)} 100%), url(${HERO_IMAGE_URL})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          py: { xs: 6, md: 10 },
-          mb: 4,
-        }}
-      >
-        <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto', px: { xs: 3, md: 6 } }}>
-          <Typography variant="h2" sx={{ fontWeight: 800, lineHeight: 1.1, fontSize: 'clamp(2rem, 4vw, 3.25rem)', mb: 1 }}>
-            {t('hotels.heroTitle')}
+      {/* Compact purple header */}
+      <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
+            🏨 {t('hotels.heroTitle')}
           </Typography>
-          <Typography variant="h6" sx={{ opacity: 0.9, fontWeight: 400, mb: 4, maxWidth: 700 }}>
-            {t('hotels.heroSubtitle')}
-          </Typography>
-
           <Box
             component="form"
             onSubmit={onSubmit}
-            sx={{
-              bgcolor: 'rgba(255,255,255,0.95)',
-              borderRadius: { xs: 3, md: 999 },
-              p: { xs: 1.5, md: 1 },
-              maxWidth: 900,
-              boxShadow: '0 24px 50px rgba(26,26,46,0.45)',
-            }}
+            sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}
           >
-            <Grid container spacing={1} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="standard"
-                  placeholder={t('hotels.city')}
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <TextField
-                  fullWidth
-                  select
-                  size="small"
-                  variant="standard"
-                  value={stars}
-                  onChange={(e) => setStars(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                >
-                  <MenuItem value="">Any rating</MenuItem>
-                  {[5, 4, 3, 2, 1].map((n) => (
-                    <MenuItem key={n} value={String(n)}>{n}★ and up</MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <TextField
-                  fullWidth
-                  select
-                  size="small"
-                  variant="standard"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                >
-                  {PRICE_OPTIONS.map((p) => (
-                    <MenuItem key={p.value} value={p.value}>{p.label}</MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid item xs={12} sm={2}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ borderRadius: 999, py: 1.25, fontWeight: 700, background: theme.eawlma.gradient }}
-                >
-                  {t('search.applyFilters', { defaultValue: 'Search' })}
-                </Button>
-              </Grid>
-            </Grid>
+            <TextField
+              size="small"
+              placeholder={t('hotels.city')}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 160 }}
+            />
+            <TextField
+              select
+              size="small"
+              value={stars}
+              onChange={(e) => setStars(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 140 }}
+            >
+              <MenuItem value="">Any rating</MenuItem>
+              {[5, 4, 3, 2, 1].map((n) => (
+                <MenuItem key={n} value={String(n)}>
+                  {n}★ and up
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              select
+              size="small"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 140 }}
+            >
+              {PRICE_OPTIONS.map((p) => (
+                <MenuItem key={p.value} value={p.value}>
+                  {p.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Button
+              type="submit"
+              variant="contained"
+              size="small"
+              sx={{
+                bgcolor: 'secondary.main',
+                color: 'common.white',
+                fontWeight: 700,
+                '&:hover': { bgcolor: 'secondary.dark' },
+              }}
+            >
+              {t('search.applyFilters', { defaultValue: 'Search' })}
+            </Button>
           </Box>
         </Box>
       </Box>

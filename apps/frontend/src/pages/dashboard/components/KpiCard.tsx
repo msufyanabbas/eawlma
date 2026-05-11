@@ -20,16 +20,15 @@ export interface KpiCardProps {
   loading?: boolean;
 }
 
-// All tones live in the same lavender-blue family — cohesive with the brand
-// and visually consistent across the KPI strip. Subtle hue shifts let the
-// eye distinguish tiles without breaking the palette.
-const TONE_GRADIENTS: Record<KpiTone, string> = {
-  listings:   'linear-gradient(135deg, #6C63A6 0%, #9B94C9 100%)',
-  views:      'linear-gradient(135deg, #5B72A6 0%, #8494C9 100%)',
-  inquiries:  'linear-gradient(135deg, #7B63A6 0%, #A494C9 100%)',
-  messages:   'linear-gradient(135deg, #6380A6 0%, #849EC9 100%)',
-  plan:       'linear-gradient(135deg, #8B63A6 0%, #B494C9 100%)',
-  conversion: 'linear-gradient(135deg, #638CA6 0%, #84B0C9 100%)',
+// Solid accent colours per tone — surface a thin coloured left border on each
+// tile so the row reads at a glance without leaning on heavy gradients.
+const TONE_COLORS: Record<KpiTone, string> = {
+  listings:   '#6C63A6',
+  views:      '#5B72A6',
+  inquiries:  '#7B63A6',
+  messages:   '#6380A6',
+  plan:       '#8B63A6',
+  conversion: '#638CA6',
 };
 
 /** Smoothly counts from 0 to `value` over 1.2s. Falls back to the raw string
@@ -74,91 +73,89 @@ export function KpiCard({
           : ('flat' as const)
       : null;
   const TrendIcon = trend === 'up' ? TrendingUpIcon : trend === 'down' ? TrendingDownIcon : TrendingFlatIcon;
-  const trendColor = trend === 'up' ? 'rgba(255,255,255,0.95)' : trend === 'down' ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.7)';
+  const trendColor = trend === 'up' ? 'success.main' : trend === 'down' ? 'error.main' : 'text.secondary';
 
   const numericValue = typeof value === 'number' ? value : Number(value);
   const isNumeric = !loading && Number.isFinite(numericValue);
+  const toneColor = TONE_COLORS[tone];
 
   return (
     <Paper
       sx={{
-        p: 2.5,
+        p: 2,
         minHeight: 130,
         height: '100%',
         position: 'relative',
         overflow: 'hidden',
-        background: TONE_GRADIENTS[tone],
-        color: '#FFFFFF',
-        boxShadow: '0 8px 24px rgba(26,26,46,0.18)',
-        border: 'none',
+        bgcolor: 'background.paper',
+        border: '1px solid',
+        borderColor: 'divider',
+        borderLeft: '4px solid',
+        borderLeftColor: toneColor,
         display: 'flex',
         flexDirection: 'column',
       }}
     >
-      {/* Top-right icon — explicit `right` (not insetInlineEnd) so the icon
-       *  stays put in RTL where the rest of the dashboard chrome is locked
-       *  to LTR layout. */}
+      {/* Watermark icon — sits bottom-right at low opacity. */}
       <Box
         sx={{
           position: 'absolute',
-          top: 12,
           right: 12,
-          color: '#FFFFFF',
-          opacity: 0.6,
-          '& svg': { fontSize: 24 },
+          bottom: 8,
+          color: toneColor,
+          opacity: 0.08,
+          pointerEvents: 'none',
+          '& svg': { fontSize: '3.5rem' },
         }}
       >
         {icon}
       </Box>
 
       <Typography
+        variant="caption"
         sx={{
-          fontSize: '0.7rem',
-          color: 'rgba(255,255,255,0.9)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.08em',
           fontWeight: 700,
+          color: 'text.secondary',
+          textTransform: 'uppercase',
+          letterSpacing: '0.06em',
           mb: 1,
-          pr: 5,
+          display: 'block',
         }}
       >
         {label}
       </Typography>
       <Typography
         sx={{
-          fontSize: '2.25rem',
-          fontWeight: 800,
+          fontSize: '2rem',
+          fontWeight: 900,
           lineHeight: 1,
-          color: '#FFFFFF',
+          color: 'text.primary',
           mt: 'auto',
-          // Numbers always render LTR even when the page direction flips.
           direction: 'ltr',
           unicodeBidi: 'embed',
         }}
       >
         {loading ? (
-          <Skeleton width={96} sx={{ bgcolor: 'rgba(255,255,255,0.18)' }} />
+          <Skeleton width={96} />
         ) : isNumeric ? (
           <Counter value={numericValue} />
         ) : (
           value
         )}
       </Typography>
-      <Stack spacing={1}>
-        {trend && (
-          <Stack direction="row" spacing={0.5} alignItems="center">
-            <TrendIcon sx={{ color: trendColor, fontSize: 18 }} />
-            <Typography sx={{ color: trendColor, fontWeight: 700, fontSize: '0.875rem' }}>
-              {Math.abs(trendPct ?? 0).toFixed(1)}%
+      {trend && (
+        <Stack direction="row" spacing={0.5} alignItems="center" sx={{ mt: 1 }}>
+          <TrendIcon sx={{ color: trendColor, fontSize: 18 }} />
+          <Typography sx={{ color: trendColor, fontWeight: 700, fontSize: '0.875rem' }}>
+            {Math.abs(trendPct ?? 0).toFixed(1)}%
+          </Typography>
+          {trendLabel && (
+            <Typography sx={{ color: 'text.secondary', fontSize: '0.8rem' }}>
+              {trendLabel}
             </Typography>
-            {trendLabel && (
-              <Typography sx={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.8rem' }}>
-                {trendLabel}
-              </Typography>
-            )}
-          </Stack>
-        )}
-      </Stack>
+          )}
+        </Stack>
+      )}
     </Paper>
   );
 }

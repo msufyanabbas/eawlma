@@ -3,11 +3,13 @@ import {
   Avatar,
   Badge,
   Box,
+  Breadcrumbs,
   Button,
   Chip,
   Container,
   Grid,
   IconButton,
+  Link as MuiLink,
   MenuItem,
   Paper,
   Skeleton,
@@ -421,6 +423,40 @@ export function ListingDetailPage() {
           })}
         </script>
       </Helmet>
+
+      {/* ---------------- Breadcrumb ---------------- */}
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          py: 1.5,
+          px: { xs: 2, md: 3 },
+        }}
+      >
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Breadcrumbs separator="›" aria-label="breadcrumb">
+            <MuiLink href="/" color="inherit" underline="hover">
+              {t('nav.home')}
+            </MuiLink>
+            <MuiLink href="/search" color="inherit" underline="hover">
+              {t('nav.search')}
+            </MuiLink>
+            {listing.city && (
+              <MuiLink
+                href={`/search?city=${encodeURIComponent(listing.city)}`}
+                color="inherit"
+                underline="hover"
+              >
+                {listing.city}
+              </MuiLink>
+            )}
+            <Typography color="primary.main" fontWeight={600}>
+              {listing.referenceCode}
+            </Typography>
+          </Breadcrumbs>
+        </Box>
+      </Box>
 
       {/* ---------------- Image gallery — Airbnb 60/40 split ---------------- */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 3 }}>

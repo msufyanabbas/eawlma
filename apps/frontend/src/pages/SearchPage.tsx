@@ -392,11 +392,20 @@ export function SearchPage() {
               direction="row"
               alignItems="center"
               justifyContent="space-between"
-              sx={{ px: 3, mb: 2 }}
+              sx={{
+                px: 3,
+                pb: 1,
+                mb: 2,
+                mx: 3,
+                ml: 0,
+                pl: 3,
+                borderBottom: '2px solid',
+                borderColor: 'primary.main',
+              }}
             >
               <Typography
                 sx={{
-                  fontSize: '0.75rem',
+                  fontSize: '0.875rem',
                   fontWeight: 700,
                   color: 'primary.main',
                   textTransform: 'uppercase',

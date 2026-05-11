@@ -154,27 +154,23 @@ export function HelpPage() {
         <title>{t('help.title')} — {t('app.name')}</title>
       </Helmet>
 
-      {/* Hero */}
-      <Box
-        sx={{
-          background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
-          color: 'common.white',
-          py: { xs: 7, md: 10 },
-          textAlign: 'center',
-        }}
-      >
-        <Box sx={{ width: '100%', maxWidth: 900, mx: 'auto', px: { xs: 3, sm: 4 } }}>
-          <HelpIcon sx={{ fontSize: 56, mb: 2, opacity: 0.9 }} />
-          <Typography sx={{ fontSize: 'clamp(2rem, 4.5vw, 3rem)', fontWeight: 800, lineHeight: 1.1, mb: 1.5 }}>
-            {t('help.title')}
-          </Typography>
-          <Typography sx={{ fontSize: '1.05rem', opacity: 0.9, mb: 4, maxWidth: 640, mx: 'auto' }}>
+      {/* Compact purple header */}
+      <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 1.5 }}>
+            <HelpIcon sx={{ fontSize: 28 }} />
+            <Typography variant="h5" sx={{ fontWeight: 800 }}>
+              {t('help.title')}
+            </Typography>
+          </Stack>
+          <Typography sx={{ opacity: 0.85, fontSize: '0.9rem', mb: 2, maxWidth: 640 }}>
             {t('help.subtitle')}
           </Typography>
           <TextField
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('help.searchPlaceholder')}
+            size="small"
             fullWidth
             InputProps={{
               startAdornment: (
@@ -182,9 +178,9 @@ export function HelpPage() {
                   <SearchIcon sx={{ color: 'text.secondary' }} />
                 </InputAdornment>
               ),
-              sx: { bgcolor: 'common.white', borderRadius: 999, px: 1.5, py: 0.5, '& fieldset': { border: 'none' } },
+              sx: { bgcolor: 'background.paper', borderRadius: 1, '& fieldset': { border: 'none' } },
             }}
-            sx={{ maxWidth: 540, mx: 'auto' }}
+            sx={{ maxWidth: 540 }}
           />
         </Box>
       </Box>

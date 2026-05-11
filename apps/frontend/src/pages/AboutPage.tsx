@@ -18,22 +18,16 @@ export function AboutPage() {
         <title>{t('about.title')} — {t('app.name')}</title>
       </Helmet>
 
-      {/* Hero */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #1A1A2E 0%, #4A4080 100%)',
-          color: 'common.white',
-          py: { xs: 8, md: 12 },
-        }}
-      >
-        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
-          <Typography sx={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.1, mb: 2 }}>
-            {t('about.title')}
+      {/* Compact purple header */}
+      <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5 }}>
+            🏢 {t('about.title')}
           </Typography>
-          <Typography sx={{ fontSize: '1.125rem', opacity: 0.9, maxWidth: 720, lineHeight: 1.6 }}>
+          <Typography sx={{ opacity: 0.85, fontSize: '0.95rem', maxWidth: 720 }}>
             {t('about.subtitle')}
           </Typography>
-        </Container>
+        </Box>
       </Box>
 
       {/* Mission */}

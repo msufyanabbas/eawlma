@@ -20,7 +20,6 @@ import {
 import { useTheme } from '@mui/material/styles';
 import LanguageIcon from '@mui/icons-material/Language';
 import SearchIcon from '@mui/icons-material/Search';
-import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubbleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
@@ -29,10 +28,11 @@ import AdminIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuIcon from '@mui/icons-material/Menu';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
+import AddIcon from '@mui/icons-material/Add';
 import { useEffect, useState, type FormEvent, type MouseEvent } from 'react';
 import logoUrl from '@/assets/logo.svg';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate, useLocation } from '@tanstack/react-router';
 import { UserRole } from '@eawlma/shared-types';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';
@@ -47,6 +47,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const { user, isAuthenticated, clearSession, getRefreshToken } = useAuthStore();
@@ -287,6 +288,28 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
               </MenuItem>
             </Menu>
 
+            {isDesktop && isAgent && (
+              <Button
+                variant="contained"
+                onClick={() => navigate({ to: '/dashboard/listings/new' as never })}
+                startIcon={<AddIcon />}
+                sx={{
+                  bgcolor: 'secondary.main',
+                  color: 'common.white',
+                  height: 36,
+                  px: 1.75,
+                  borderRadius: 2,
+                  fontWeight: 700,
+                  whiteSpace: 'nowrap',
+                  textTransform: 'none',
+                  ml: 1,
+                  '&:hover': { bgcolor: 'secondary.dark' },
+                }}
+              >
+                {t('home.addListing')}
+              </Button>
+            )}
+
             {isAuthenticated && user ? (
               <>
                 <Tooltip title={t('nav.messages')}>
@@ -366,6 +389,10 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
           </Stack>
         </Toolbar>
 
+        {/* Category nav row — Haraj-style horizontal links under the main bar.
+         *  Desktop-only; mobile reaches the same destinations via the hamburger. */}
+        {isDesktop && <CategoryNavRow currentPath={location.pathname} />}
+
         {/* Mobile expandable search bar */}
         {!isDesktop && mobileSearchOpen && (
           <Box
@@ -396,5 +423,83 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
         )}
       </Container>
     </AppBar>
+  );
+}
+
+// ------------------------------------------------------------------
+// Category nav row — secondary horizontal strip under the main toolbar.
+// ------------------------------------------------------------------
+
+type CategoryLink = {
+  to: string;
+  labelKey: string;
+  /** Optional search-param payload for routes that take filter state. */
+  search?: Record<string, string | boolean>;
+};
+
+const CATEGORY_LINKS: CategoryLink[] = [
+  { to: '/', labelKey: 'nav.home' },
+  { to: '/search', labelKey: 'nav.buy', search: { type: 'sale' } },
+  { to: '/search', labelKey: 'nav.rent', search: { type: 'rent' } },
+  { to: '/stays', labelKey: 'nav.shortTermStays' },
+  { to: '/hotels', labelKey: 'nav.hotels' },
+  { to: '/market', labelKey: 'nav.market' },
+  { to: '/agents', labelKey: 'nav.agents' },
+];
+
+function CategoryNavRow({ currentPath }: { currentPath: string }) {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  return (
+    <Box
+      sx={{
+        borderTop: '1px solid',
+        borderColor: 'divider',
+        bgcolor: 'background.paper',
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: 1200,
+          mx: 'auto',
+          display: 'flex',
+          px: 2,
+          overflowX: 'auto',
+          scrollbarWidth: 'none',
+          '&::-webkit-scrollbar': { display: 'none' },
+        }}
+      >
+        {CATEGORY_LINKS.map((link) => {
+          const active = currentPath === link.to;
+          return (
+            <Box
+              key={`${link.to}-${link.labelKey}`}
+              onClick={() =>
+                void navigate({
+                  to: link.to as never,
+                  ...(link.search ? { search: link.search as never } : {}),
+                })
+              }
+              sx={{
+                px: 2,
+                py: 1,
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                color: active ? 'primary.main' : 'text.secondary',
+                borderBottom: '2px solid',
+                borderBottomColor: active ? 'primary.main' : 'transparent',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+                '&:hover': { color: 'primary.main' },
+                transition: 'color 150ms ease, border-color 150ms ease',
+              }}
+            >
+              {t(link.labelKey)}
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
   );
 }

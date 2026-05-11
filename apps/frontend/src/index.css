@@ -29,9 +29,19 @@ body {
   font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FAFAF8;
+  background-color: #f8f9fa;
   color: #1A1A2E;
 }
+
+/* Custom scrollbar — slim purple thumb (light mode only; dark mode keeps the
+ * UA default to avoid a too-bright bar on dark backgrounds). */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb {
+  background: #6C63A6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: #5a5292; }
 
 /* Locale-aware fallback so OS-level Arabic rendering uses our preferred face */
 .lang-ar,

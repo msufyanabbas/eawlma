@@ -73,22 +73,14 @@ export function MarketPage() {
         <title>{t('market.title')} — {t('app.name')}</title>
       </Helmet>
 
-      {/* Hero */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #1A1A2E 0%, #4A4080 100%)',
-          color: 'common.white',
-          py: { xs: 6, md: 10 },
-        }}
-      >
-        <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
-          <Typography sx={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, lineHeight: 1.1, mb: 1.5 }}>
-            {t('market.title')}
+      {/* Compact purple header */}
+      <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5 }}>
+            📊 {t('market.title')}
           </Typography>
-          <Typography sx={{ fontSize: '1.05rem', opacity: 0.9, maxWidth: 700 }}>
-            {t('market.subtitle')}
-          </Typography>
-        </Container>
+          <Typography sx={{ opacity: 0.85, fontSize: '0.9rem' }}>{t('market.subtitle')}</Typography>
+        </Box>
       </Box>
 
       <Container

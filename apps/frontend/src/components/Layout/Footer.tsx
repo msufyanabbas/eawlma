@@ -8,7 +8,6 @@ import {
   Stack,
   Typography,
   alpha,
-  useTheme,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -31,49 +30,39 @@ const SOCIAL_LINKS = {
 
 export function Footer() {
   const { t } = useTranslation();
-  const theme = useTheme();
 
   return (
     <Box
       component="footer"
       sx={{
-        pt: { xs: 7, md: 9 },
-        pb: 5,
-        mt: 8,
+        pt: { xs: 4, md: 5 },
+        pb: 3,
+        mt: 4,
         bgcolor: 'background.paper',
         borderTop: 1,
         borderColor: 'divider',
       }}
     >
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 } }}>
+      <Container maxWidth={false} sx={{ maxWidth: 1200, mx: 'auto', px: { xs: 3, sm: 4, md: 6 } }}>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
-          spacing={{ xs: 5, md: 8 }}
+          spacing={{ xs: 4, md: 6 }}
           alignItems="flex-start"
         >
           {/* Brand block */}
           <Box sx={{ flex: { md: 1.4 }, maxWidth: { md: 380 } }}>
-            <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 2 }}>
-              <Box
-                sx={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: 2,
-                  background: theme.eawlma.gradient,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'common.white',
-                  fontWeight: 800,
-                  fontSize: 16,
-                }}
-              >
-                A
-              </Box>
-              <Typography variant="h6" sx={{ fontWeight: 800, letterSpacing: -0.4 }}>
-                {t('app.name')}
-              </Typography>
-            </Stack>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 900,
+                letterSpacing: -0.4,
+                color: 'primary.main',
+                fontFamily: 'Tajawal, "IBM Plex Sans Arabic", sans-serif',
+                mb: 1.5,
+              }}
+            >
+              {t('app.name')}
+            </Typography>
             <Typography sx={{ fontSize: '1rem', color: 'text.secondary', lineHeight: 1.7, mb: 2.5 }}>
               {t('footer.tagline')}
             </Typography>
@@ -161,7 +150,7 @@ export function Footer() {
           </Stack>
         </Stack>
 
-        <Divider sx={{ my: 5 }} />
+        <Divider sx={{ my: 3 }} />
 
         <Stack
           direction={{ xs: 'column', sm: 'row' }}

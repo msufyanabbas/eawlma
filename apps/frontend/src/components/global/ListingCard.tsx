@@ -41,6 +41,9 @@ interface ListingCardProps {
   onToggleSave?: (listingId: string) => void | Promise<void>;
   /** Pass `true` to surface the verified-agent badge on the agent strip. */
   agentVerified?: boolean;
+  /** @deprecated Compact dimensions are now the default. Accepted for backward
+   *  compatibility with existing call sites. */
+  compact?: boolean;
 }
 
 
@@ -134,18 +137,19 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
     <Card
       sx={{
         overflow: 'hidden',
-        minHeight: 380,
+        minHeight: 340,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        border: '1px solid',
         borderColor: 'divider',
-        borderRadius: 4,
-        boxShadow: '0 2px 8px rgba(108,99,166,0.08)',
-        transition: 'all 0.25s ease',
+        borderRadius: 2,
+        boxShadow: 'none',
+        transition: 'border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease',
         '&:hover': {
-          transform: 'translateY(-4px)',
-          borderColor: alpha(theme.palette.primary.main, 0.4),
-          boxShadow: '0 12px 32px rgba(108,99,166,0.18)',
+          transform: 'translateY(-2px)',
+          borderColor: 'primary.main',
+          boxShadow: `0 6px 16px ${alpha(theme.palette.primary.main, 0.12)}`,
         },
       }}
     >
@@ -162,8 +166,8 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
         }}
         sx={{ flex: 1, cursor: 'pointer', outline: 'none' }}
       >
-        {/* Cover — 200px tall (matches the section spec) */}
-        <Box sx={{ position: 'relative', height: 200, bgcolor: 'grey.100' }}>
+        {/* Cover — 170px tall, classifieds-density. */}
+        <Box sx={{ position: 'relative', height: 170, bgcolor: 'grey.100' }}>
           <Box
             component="img"
             src={coverUrl}
@@ -308,8 +312,8 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
           </Box>
         </Box>
 
-        {/* Body — tighter padding for compactness */}
-        <CardContent sx={{ p: 1.75, '&:last-child': { pb: 1.5 } }}>
+        {/* Body — Haraj-style dense padding. */}
+        <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1 } }}>
           <Stack direction="row" alignItems="center" spacing={0.75} sx={{ mb: 0.5 }}>
             <Typography
               variant="caption"
@@ -329,7 +333,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
 
           <Typography
             sx={{
-              fontSize: '1.1rem',
+              fontSize: '1rem',
               fontWeight: 700,
               lineHeight: 1.3,
               display: '-webkit-box',
@@ -337,7 +341,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               minHeight: '2.6em',
-              mt: 1.5,
+              mt: 0.75,
               mb: 0.5,
             }}
           >
@@ -346,12 +350,12 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
 
           <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5, mb: 0.5, color: 'text.secondary' }}>
             <PlaceIcon sx={{ fontSize: 16 }} />
-            <Typography sx={{ fontSize: '0.875rem' }}>
+            <Typography sx={{ fontSize: '0.8rem' }}>
               {location}
             </Typography>
           </Stack>
           {pricePerSqm && (
-            <Typography sx={{ fontSize: '0.8rem', color: 'text.secondary', mb: 1 }}>
+            <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mb: 0.5 }}>
               {pricePerSqm.toLocaleString(activeLocale)} {t('listing.currency')}/m²
             </Typography>
           )}
@@ -393,23 +397,23 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
         </CardContent>
       </Box>
 
-      {/* Footer: agent strip — solid top border, larger spacing */}
+      {/* Footer: agent strip — solid top border, with inline WhatsApp button */}
       {showVerified && (
         <Box
           sx={{
-            px: 1.75,
-            pb: 1.5,
-            pt: 1.5,
+            px: 1.5,
+            pb: 1,
+            pt: 1,
             borderTop: '1px solid',
             borderColor: 'divider',
-            mt: 2,
+            mt: 'auto',
           }}
         >
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" spacing={0.75}>
             <Avatar
               sx={{
-                width: 24,
-                height: 24,
+                width: 22,
+                height: 22,
                 fontSize: 11,
                 bgcolor: alpha(theme.palette.primary.main, 0.12),
                 color: 'primary.dark',
@@ -426,24 +430,24 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             >
               {agentDisplay}
             </Typography>
-            <Tooltip title={t('listing.featured')}>
-              <Stack
-                direction="row"
-                alignItems="center"
-                spacing={0.4}
+            <Tooltip title={t('listing.verified', { defaultValue: 'Verified' })}>
+              <VerifiedIcon sx={{ fontSize: 16, color: theme.eawlma.accent }} />
+            </Tooltip>
+            <Tooltip title="WhatsApp">
+              <IconButton
+                onClick={handleWhatsAppShare}
+                size="small"
+                aria-label="contact via whatsapp"
                 sx={{
-                  bgcolor: alpha(theme.eawlma.accent, 0.14),
-                  color: theme.eawlma.accent,
-                  px: 0.75,
-                  py: 0.2,
-                  borderRadius: 999,
+                  width: 26,
+                  height: 26,
+                  bgcolor: '#25D366',
+                  color: 'common.white',
+                  '&:hover': { bgcolor: '#1ebe57' },
                 }}
               >
-                <VerifiedIcon sx={{ fontSize: 14 }} />
-                <Typography variant="caption" sx={{ fontWeight: 700, fontSize: 10.5 }}>
-                  {t('listing.verified', { defaultValue: 'Verified' })}
-                </Typography>
-              </Stack>
+                <WhatsAppIcon sx={{ fontSize: 15 }} />
+              </IconButton>
             </Tooltip>
           </Stack>
         </Box>

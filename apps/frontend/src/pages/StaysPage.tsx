@@ -9,8 +9,6 @@ import {
   Switch,
   TextField,
   Typography,
-  alpha,
-  useTheme,
 } from '@mui/material';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState, type FormEvent } from 'react';
@@ -27,9 +25,6 @@ import { useSavedStore } from '@/store/saved.store';
 
 const PAGE_SIZE = 12;
 
-const HERO_IMAGE_URL =
-  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920&q=80';
-
 const STAY_PROPERTY_TYPES = [
   { value: '', label: 'Any type' },
   { value: 'entire_home', label: 'Entire home' },
@@ -41,7 +36,6 @@ const STAY_PROPERTY_TYPES = [
 
 export function StaysPage() {
   const { t, i18n } = useTranslation();
-  const theme = useTheme();
   const savedIds = useSavedStore((s) => s.ids);
   const toggleSaved = useSavedStore((s) => s.toggle);
 
@@ -88,142 +82,88 @@ export function StaysPage() {
         <meta name="description" content={t('stays.heroSubtitle')} />
       </Helmet>
 
-      {/* Hero */}
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: { xs: 360, md: 460 },
-          display: 'flex',
-          alignItems: 'center',
-          color: 'common.white',
-          background: `linear-gradient(135deg, ${alpha('#1A1A2E', 0.78)} 0%, ${alpha('#4A4080', 0.62)} 100%), url(${HERO_IMAGE_URL})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          py: { xs: 6, md: 10 },
-          mb: 4,
-        }}
-      >
-        <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto', px: { xs: 3, md: 6 } }}>
-          <Typography variant="h2" sx={{ fontWeight: 800, lineHeight: 1.1, fontSize: 'clamp(2rem, 4vw, 3.25rem)', mb: 1 }}>
-            {t('stays.heroTitle')}
+      {/* Compact purple header */}
+      <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
+            🏖️ {t('stays.heroTitle')}
           </Typography>
-          <Typography variant="h6" sx={{ opacity: 0.9, fontWeight: 400, mb: 4, maxWidth: 700 }}>
-            {t('stays.heroSubtitle')}
-          </Typography>
-
-          {/* Filter pill */}
           <Box
             component="form"
             onSubmit={onSubmit}
-            sx={{
-              bgcolor: 'rgba(255,255,255,0.95)',
-              borderRadius: { xs: 3, md: 999 },
-              p: { xs: 1.5, md: 1 },
-              maxWidth: 1100,
-              boxShadow: '0 24px 50px rgba(26,26,46,0.45)',
-            }}
+            sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}
           >
-            <Grid container spacing={1} alignItems="center">
-              <Grid item xs={12} sm={6} md={3}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="standard"
-                  placeholder={t('stays.city')}
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={3} md={2}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="standard"
-                  type="date"
-                  label={t('booking.checkIn')}
-                  InputLabelProps={{ shrink: true }}
-                  value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={3} md={2}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="standard"
-                  type="date"
-                  label={t('booking.checkOut')}
-                  InputLabelProps={{ shrink: true }}
-                  value={checkOut}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={3} md={2}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  variant="standard"
-                  type="number"
-                  placeholder={t('stays.guests')}
-                  value={guests}
-                  onChange={(e) => setGuests(e.target.value)}
-                  inputProps={{ min: 1 }}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={3} md={2}>
-                <TextField
-                  fullWidth
-                  select
-                  size="small"
-                  variant="standard"
-                  value={propertyType}
-                  onChange={(e) => setPropertyType(e.target.value)}
-                  InputProps={{ disableUnderline: true, sx: { px: 1.5, color: 'text.primary' } }}
-                >
-                  {STAY_PROPERTY_TYPES.map((p) => (
-                    <MenuItem key={p.value} value={p.value}>{p.label}</MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid item xs={12} md={1}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{
-                    borderRadius: 999,
-                    py: 1.25,
-                    fontWeight: 700,
-                    background: theme.eawlma.gradient,
-                  }}
-                >
-                  {t('search.applyFilters', { defaultValue: 'Search' })}
-                </Button>
-              </Grid>
-            </Grid>
-          </Box>
-
-          {/* Flexible-dates row */}
-          <Stack direction="row" alignItems="center" spacing={2} sx={{ mt: 2, flexWrap: 'wrap' }}>
+            <TextField
+              size="small"
+              placeholder={t('stays.city')}
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 160 }}
+            />
+            <TextField
+              size="small"
+              type="date"
+              value={checkIn}
+              onChange={(e) => setCheckIn(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1 }}
+            />
+            <TextField
+              size="small"
+              type="date"
+              value={checkOut}
+              onChange={(e) => setCheckOut(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1 }}
+            />
+            <TextField
+              size="small"
+              type="number"
+              placeholder={t('stays.guests')}
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+              inputProps={{ min: 1 }}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, width: 90 }}
+            />
+            <TextField
+              select
+              size="small"
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
+              sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 140 }}
+            >
+              {STAY_PROPERTY_TYPES.map((p) => (
+                <MenuItem key={p.value} value={p.value}>
+                  {p.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Button
+              type="submit"
+              variant="contained"
+              size="small"
+              sx={{
+                bgcolor: 'secondary.main',
+                color: 'common.white',
+                fontWeight: 700,
+                '&:hover': { bgcolor: 'secondary.dark' },
+              }}
+            >
+              {t('search.applyFilters', { defaultValue: 'Search' })}
+            </Button>
             <FormControlLabel
               control={
                 <Switch
                   checked={flexibleDates}
                   onChange={(e) => setFlexibleDates(e.target.checked)}
-                  sx={{
-                    '& .MuiSwitch-track': { bgcolor: 'rgba(255,255,255,0.4)' },
-                  }}
+                  size="small"
+                  sx={{ '& .MuiSwitch-track': { bgcolor: 'rgba(255,255,255,0.4)' } }}
                 />
               }
               label={
-                <Typography sx={{ color: 'common.white', fontWeight: 600 }}>
+                <Typography sx={{ color: 'common.white', fontWeight: 600, fontSize: '0.8rem' }}>
                   {t('search.flexibleDates', { defaultValue: "I'm flexible with dates" })}
                 </Typography>
               }
+              sx={{ ml: 1 }}
             />
             {flexibleDates && (
               <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1}>
@@ -236,10 +176,11 @@ export function StaysPage() {
                   return (
                     <Chip
                       key={v}
+                      size="small"
                       label={label}
                       onClick={() => setFlexibleDuration(v)}
                       sx={{
-                        bgcolor: on ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.12)',
+                        bgcolor: on ? 'background.paper' : 'rgba(255,255,255,0.12)',
                         color: on ? 'text.primary' : 'common.white',
                         fontWeight: 700,
                         border: `1px solid ${on ? 'transparent' : 'rgba(255,255,255,0.4)'}`,
@@ -250,7 +191,7 @@ export function StaysPage() {
                 })}
               </Stack>
             )}
-          </Stack>
+          </Box>
         </Box>
       </Box>
 

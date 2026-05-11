@@ -2,10 +2,8 @@ import {
   Alert,
   Box,
   Button,
-  Container,
   Link as MuiLink,
   MenuItem,
-  Paper,
   Stack,
   TextField,
   Typography,
@@ -13,7 +11,6 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -22,6 +19,7 @@ import { UserRole } from '@eawlma/shared-types';
 import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
+import { AuthLayout } from '@/pages/auth/AuthLayout';
 
 export function RegisterPage() {
   const { t, i18n } = useTranslation();
@@ -89,29 +87,24 @@ export function RegisterPage() {
   const onSubmit = (values: FormValues) => registerMutation.mutate(values);
 
   return (
-    <>
-      <Helmet>
-        <title>{t('auth.register')} — {t('app.name')}</title>
-      </Helmet>
-      <Container maxWidth="sm">
-        <Paper sx={{ p: { xs: 3, sm: 5 }, mt: { xs: 4, sm: 6 }, borderRadius: 3, border: 1, borderColor: 'divider' }}>
-          <Box sx={{ textAlign: 'center', mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-              {t('auth.registerTitle')}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {t('auth.registerSubtitle')}
-            </Typography>
-          </Box>
+    <AuthLayout pageTitle={`${t('auth.register')} — ${t('app.name')}`}>
+      <Box sx={{ textAlign: 'center', mb: 3 }}>
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
+          {t('auth.registerTitle')}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {t('auth.registerSubtitle')}
+        </Typography>
+      </Box>
 
-          {registerMutation.isError && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {extractErrorMessage(registerMutation.error)}
-            </Alert>
-          )}
+      {registerMutation.isError && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {extractErrorMessage(registerMutation.error)}
+        </Alert>
+      )}
 
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-            <Stack spacing={2.5}>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Stack spacing={2}>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
                 <TextField
                   label={t('auth.firstName')}
@@ -188,20 +181,18 @@ export function RegisterPage() {
                 {registerMutation.isPending ? t('common.loading') : t('auth.signUp')}
               </Button>
 
-              <Typography variant="caption" color="text.secondary" align="center">
-                {t('auth.agreeTerms')}
-              </Typography>
-            </Stack>
-          </Box>
-
-          <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-            {t('auth.hasAccount')}{' '}
-            <MuiLink component={Link} to="/login" underline="hover" color="primary">
-              {t('auth.signIn')}
-            </MuiLink>
+          <Typography variant="caption" color="text.secondary" align="center">
+            {t('auth.agreeTerms')}
           </Typography>
-        </Paper>
-      </Container>
-    </>
+        </Stack>
+      </Box>
+
+      <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+        {t('auth.hasAccount')}{' '}
+        <MuiLink component={Link} to="/login" underline="hover" color="primary">
+          {t('auth.signIn')}
+        </MuiLink>
+      </Typography>
+    </AuthLayout>
   );
 }

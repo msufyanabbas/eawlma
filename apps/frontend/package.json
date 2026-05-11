@@ -18,7 +18,9 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:report": "playwright show-report",
-    "test:report:generate": "ts-node e2e/generate-report.ts"
+    "test:report:generate": "ts-node e2e/generate-report.ts",
+    "demo:record": "playwright test e2e/demo-video.spec.ts --project=demo",
+    "demo:play": "start test-results/demo-video-Eawlma-Platform-Demo-demo/video.webm"
   },
   "dependencies": {
     "@eawlma/shared-types": "*",
