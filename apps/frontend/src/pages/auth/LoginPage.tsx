@@ -19,6 +19,7 @@ import { z } from 'zod';
 import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
+import { GA } from '@/utils/analytics';
 import { AuthLayout } from './AuthLayout';
 
 export function LoginPage() {
@@ -46,6 +47,7 @@ export function LoginPage() {
     mutationFn: (values: FormValues) => authApi.login(values),
     onSuccess: (data) => {
       setSession(data.user, data.tokens);
+      GA.login('password');
       void navigate({ to: '/' });
     },
   });

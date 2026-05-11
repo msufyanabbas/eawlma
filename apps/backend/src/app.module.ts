@@ -20,6 +20,7 @@ import { typeOrmOptionsFactory } from './database/typeorm.options';
 import { HealthController } from './common/health/health.controller';
 import { RedisModule } from './common/redis/redis.module';
 import { EmailModule } from './common/email/email.module';
+import { WhatsAppModule } from './common/whatsapp/whatsapp.module';
 import { KafkaModule } from './common/kafka/kafka.module';
 import { RequestContextModule } from './common/context/request-context.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -94,6 +95,7 @@ import { SeoModule } from './modules/seo/seo.module';
 
     RedisModule,
     EmailModule,
+    WhatsAppModule,
     KafkaModule,
     RequestContextModule,
     AuthModule,

@@ -12,6 +12,7 @@ import { NotificationToaster } from './components/global/NotificationToaster';
 import { SavedListingsHydrator } from './components/global/SavedListingsHydrator';
 import { ErrorBoundary } from './components/global/ErrorBoundary';
 import { ScrollToTop } from './components/global/ScrollToTop';
+import { PageviewTracker } from './components/global/PageviewTracker';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
@@ -105,6 +106,7 @@ const rootRoute = createRootRoute({
   component: () => (
     <ErrorBoundary>
       <ScrollToTop />
+      <PageviewTracker />
       <Outlet />
       <NotificationToaster />
       <SavedListingsHydrator />

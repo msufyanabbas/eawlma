@@ -51,6 +51,7 @@ import {
   type RentalType,
 } from '@eawlma/shared-types';
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
+import { GA } from '@/utils/analytics';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
@@ -269,6 +270,17 @@ export function SearchPage() {
     [infiniteQuery.data],
   );
   const total = infiniteQuery.data?.pages[0]?.meta.total ?? 0;
+
+  // GA4: fire one `search` event per distinct filter combo, after the first
+  // page comes back so we can include the result count.
+  const lastSearchKeyRef = useRef<string>('');
+  useEffect(() => {
+    if (!infiniteQuery.data) return;
+    const key = JSON.stringify(queryKey);
+    if (lastSearchKeyRef.current === key) return;
+    lastSearchKeyRef.current = key;
+    GA.search(key, total);
+  }, [queryKey, total, infiniteQuery.data]);
 
   // Infinite scroll: when the sentinel intersects the viewport, fetch next.
   const sentinelRef = (node: HTMLDivElement | null) => {

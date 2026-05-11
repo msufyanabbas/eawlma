@@ -17,6 +17,7 @@ import { NotificationsService } from '../notifications/notifications.service';
 import { PromosService } from '../promos/promos.service';
 import { UserEntity } from '../users/entities/user.entity';
 import { EmailService } from '../../common/email/email.service';
+import { WhatsAppService } from '../../common/whatsapp/whatsapp.service';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
 
 import { BookingEntity } from './entities/booking.entity';
@@ -38,6 +39,7 @@ export class BookingsService {
     private readonly notifications: NotificationsService,
     private readonly promos: PromosService,
     private readonly email: EmailService,
+    private readonly whatsapp: WhatsAppService,
     private readonly config: ConfigService,
   ) {}
 
@@ -266,18 +268,47 @@ export class BookingsService {
     booking: BookingEntity,
     listing: ListingEntity,
   ): Promise<void> {
-    const guest = await this.users.findOne({ where: { id: booking.guestId } });
-    if (!guest?.email) return;
-    await this.email.sendBookingConfirmation({
-      bookingId: booking.id,
-      guestEmail: guest.email,
-      guestName: guest.firstName ?? guest.email.split('@')[0] ?? 'there',
-      listingTitle: listing.title,
-      checkIn: booking.checkIn,
-      checkOut: booking.checkOut,
-      nights: booking.nights,
-      totalAmount: Number(booking.totalAmount),
-    });
+    const [guest, host] = await Promise.all([
+      this.users.findOne({ where: { id: booking.guestId } }),
+      this.users.findOne({ where: { id: listing.ownerId } }),
+    ]);
+
+    if (guest?.email) {
+      await this.email.sendBookingConfirmation({
+        bookingId: booking.id,
+        guestEmail: guest.email,
+        guestName: guest.firstName ?? guest.email.split('@')[0] ?? 'there',
+        listingTitle: listing.title,
+        checkIn: booking.checkIn,
+        checkOut: booking.checkOut,
+        nights: booking.nights,
+        totalAmount: Number(booking.totalAmount),
+      });
+    }
+
+    // WhatsApp dispatch — guest confirmation + host payment notice. Both run
+    // best-effort so a transient 360dialog blip doesn't fail the callback.
+    if (guest?.phone) {
+      void this.whatsapp
+        .sendBookingConfirmation({
+          phone: guest.phone,
+          guestName: guest.firstName ?? 'Guest',
+          listingTitle: listing.title,
+          checkIn: booking.checkIn,
+          checkOut: booking.checkOut,
+          totalAmount: Number(booking.totalAmount),
+        })
+        .catch(() => undefined);
+    }
+    if (host?.phone) {
+      void this.whatsapp
+        .sendPaymentReceived({
+          agentPhone: host.phone,
+          amount: Number(booking.totalAmount),
+          listingTitle: listing.title,
+        })
+        .catch(() => undefined);
+    }
   }
 
   async listForGuest(guestId: string): Promise<BookingEntity[]> {

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 import { bookingsApi } from '@/api/bookings.api';
 import { extractErrorMessage } from '@/api/client';
+import { GA } from '@/utils/analytics';
 
 interface CallbackSearch {
   bookingId?: string;
@@ -57,6 +58,8 @@ export function BookingPaymentCallbackPage() {
           setResolved('failed');
         } else {
           setResolved('paid');
+          // GA4 conversion — best-effort, doesn't block redirect.
+          GA.completeBooking(result.bookingId, 0);
           setTimeout(() => {
             if (!cancelled) navigate({ to: '/dashboard/bookings' as never });
           }, 2200);

@@ -18,6 +18,7 @@ import {
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { RequestUser } from '../../common/decorators/current-user.decorator';
 import { EmailService } from '../../common/email/email.service';
+import { WhatsAppService } from '../../common/whatsapp/whatsapp.service';
 import { KafkaService } from '../../common/kafka/kafka.service';
 
 import { InquiryEntity } from './entities/inquiry.entity';
@@ -66,6 +67,7 @@ export class InquiriesService {
     private readonly users: Repository<UserEntity>,
     private readonly notificationsService: NotificationsService,
     private readonly emailService: EmailService,
+    private readonly whatsapp: WhatsAppService,
     private readonly kafkaService: KafkaService,
     private readonly config: ConfigService,
     private readonly commissionsService: CommissionsService,
@@ -629,7 +631,20 @@ export class InquiriesService {
       });
     }
 
-    // 3. SES — confirmation to the buyer
+    // 3. WhatsApp — alert the agent if they have a phone on file. Fire-and-forget.
+    if (agent?.phone) {
+      const buyerLabel = inquiry.guestName ?? buyer?.fullName ?? 'Anonymous lead';
+      void this.whatsapp
+        .sendInquiryAlert({
+          agentPhone: agent.phone,
+          buyerName: buyerLabel,
+          listingTitle: listing.title,
+          message: inquiry.message,
+        })
+        .catch(() => undefined);
+    }
+
+    // 4. SES — confirmation to the buyer
     if (inquiry.guestEmail) {
       const greetingName = inquiry.guestName ?? 'there';
       void this.emailService.send({

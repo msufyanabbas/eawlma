@@ -879,5 +879,20 @@
       "long_term": "طویل مدتی",
       "specific_listing": "مخصوص لسٹنگ"
     }
+  },
+  "ai": {
+    "priceSuggestion": "AI قیمت کی تجویز",
+    "analyzing": "مارکیٹ قیمتوں کا تجزیہ…",
+    "recommended": "تجویز کردہ قیمت",
+    "range": "تجویز کردہ رینج",
+    "perSqm": "فی م²",
+    "marketAvg": "مارکیٹ اوسط",
+    "comparables": "ملتی جلتی جائیدادیں",
+    "usePrice": "تجویز کردہ قیمت استعمال کریں",
+    "confidence": {
+      "high": "اعلیٰ اعتماد",
+      "medium": "درمیانہ اعتماد",
+      "low": "کم اعتماد"
+    }
   }
 }

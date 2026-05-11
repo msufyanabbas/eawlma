@@ -28,6 +28,7 @@ import { ListingType, type Listing } from '@eawlma/shared-types';
 import { type MouseEvent } from 'react';
 import { listingCoverUrl } from '@/utils/listingImages';
 import { getListingTitle, getListingLocation } from '@/utils/listingText';
+import { whatsappListingUrl } from '@/utils/whatsapp';
 import { SaveToWishlistButton } from '@/components/global/SaveToWishlistButton';
 
 interface ListingCardProps {
@@ -115,9 +116,18 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   const handleWhatsAppShare = (e: MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    const url = `${window.location.origin}/listings/${listing.id}`;
-    const text = `Check this property: ${title} — ${url}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    // No agent phone on the card payload — keep the share-mode wa.me link
+    // (empty phone routes the user to pick a contact). Listing context still
+    // gets formatted through the central helper for consistency.
+    const url = whatsappListingUrl('', listing, {
+      locale: activeLocale,
+      absoluteUrl: `${window.location.origin}/listings/${listing.id}`,
+    });
+    window.open(
+      url || `https://wa.me/?text=${encodeURIComponent(`Check this property: ${title}`)}`,
+      '_blank',
+      'noopener',
+    );
   };
 
   return (

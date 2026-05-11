@@ -17,6 +17,28 @@ export interface RecommendationScore {
   reason: string;
 }
 
+export interface PriceSuggestion {
+  suggestedMin: number;
+  suggestedMax: number;
+  recommended: number;
+  pricePerSqm: number;
+  marketAvg: number;
+  confidence: 'high' | 'medium' | 'low';
+  reasoning: string;
+  comparables: number;
+}
+
+export interface SuggestPriceParams {
+  city: string;
+  propertyType: string;
+  areaSqm: number;
+  bedrooms: number;
+  bathrooms: number;
+  district?: string;
+  transactionType: 'sale' | 'rent';
+  amenities?: string[];
+}
+
 export const aiApi = {
   enhanceDescription: async (
     text: string,
@@ -49,5 +71,13 @@ export const aiApi = {
       targetLocales ? { targetLocales } : {},
     );
     return unwrap<{ translated: number; locales: string[] }>(data);
+  },
+
+  suggestPrice: async (params: SuggestPriceParams): Promise<PriceSuggestion> => {
+    const { data } = await apiClient.post<{ data: PriceSuggestion }>(
+      '/ai/suggest-price',
+      params,
+    );
+    return unwrap<PriceSuggestion>(data);
   },
 };

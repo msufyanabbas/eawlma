@@ -866,5 +866,20 @@
       "long_term": "Long-term",
       "specific_listing": "Specific listing"
     }
+  },
+  "ai": {
+    "priceSuggestion": "AI Price Suggestion",
+    "analyzing": "Analyzing market prices…",
+    "recommended": "Recommended price",
+    "range": "Suggested range",
+    "perSqm": "Per m²",
+    "marketAvg": "Market average",
+    "comparables": "Comparable listings",
+    "usePrice": "Use suggested price",
+    "confidence": {
+      "high": "High confidence",
+      "medium": "Medium confidence",
+      "low": "Low confidence"
+    }
   }
 }

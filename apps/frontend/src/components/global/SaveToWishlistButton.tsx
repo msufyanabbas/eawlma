@@ -22,6 +22,7 @@ import { useState, type MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { wishlistsApi, type WishlistSummary } from '@/api/wishlists.api';
+import { GA } from '@/utils/analytics';
 
 interface Props {
   listingId: string;
@@ -60,7 +61,10 @@ export function SaveToWishlistButton({
   const isSaved = containingLists.length > 0;
 
   const addMutation = useMutation({
-    mutationFn: (wishlistId: string) => wishlistsApi.addItem(wishlistId, listingId),
+    mutationFn: (wishlistId: string) => {
+      GA.saveListing(listingId);
+      return wishlistsApi.addItem(wishlistId, listingId);
+    },
     onMutate: async (wishlistId) => {
       await queryClient.cancelQueries({ queryKey: ['wishlists', 'mine'] });
       const previous = queryClient.getQueryData<WishlistSummary[]>(['wishlists', 'mine']);

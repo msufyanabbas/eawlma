@@ -59,6 +59,8 @@ import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global
 import { fallbackImageForPropertyType, listingGalleryUrls } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
+import { whatsappListingUrl } from '@/utils/whatsapp';
+import { GA } from '@/utils/analytics';
 import { formatHijriAndGregorian } from '@/utils/hijri';
 import { EjarContractDialog } from '@/components/global/EjarContractDialog';
 import { BookingCalendar } from '@/components/global/BookingCalendar';
@@ -185,6 +187,11 @@ export function ListingDetailPage() {
   useEffect(() => {
     if (id) trackListingView(id);
   }, [id]);
+
+  // GA4: fire `view_item` once per listing load.
+  useEffect(() => {
+    if (listing) GA.viewListing(listing.id, listing.title, Number(listing.price ?? 0));
+  }, [listing]);
 
   const similarQuery = useQuery({
     queryKey: ['search', 'similar', listing?.city, listing?.propertyType],
@@ -325,9 +332,12 @@ export function ListingDetailPage() {
   const cover = images[0]?.url;
 
   const isSale = listing.type === ListingType.SALE;
-  const whatsappLink = `https://wa.me/?text=${encodeURIComponent(
-    `Eawlma — ${localized.title} — ${window.location.href}`,
-  )}`;
+  // wa.me with no phone routes the user through their own contact picker —
+  // useful for the share-mode CTA on the detail page. When an agent phone is
+  // available, prefer routing directly to them via the same helper.
+  const whatsappLink =
+    whatsappListingUrl('', { title: localized.title, price: listing.price }, { locale: i18n.language }) ||
+    `https://wa.me/?text=${encodeURIComponent(`Eawlma — ${localized.title} — ${window.location.href}`)}`;
 
   // The agent looking at their own listing must not see the inquiry form —
   // we surface an "Edit listing" CTA in its place. Cross-checks owner *and*

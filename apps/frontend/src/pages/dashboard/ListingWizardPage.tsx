@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Chip,
+  CircularProgress,
   Divider,
   FormControlLabel,
   Grid,
@@ -18,11 +19,14 @@ import {
   Switch,
   TextField,
   Typography,
+  alpha,
+  useTheme,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from '@tanstack/react-router';
@@ -47,7 +51,7 @@ import {
 import { listingsApi } from '@/api/listings.api';
 import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
 import { storageApi } from '@/api/storage.api';
-import { aiApi } from '@/api/ai.api';
+import { aiApi, type PriceSuggestion } from '@/api/ai.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 
@@ -517,7 +521,65 @@ interface StepProps {
 }
 
 function BasicInfoStep({ state, update }: StepProps) {
+  const { t } = useTranslation();
+  const theme = useTheme();
   const isRent = state.type === ListingType.RENT;
+  const [priceSuggestion, setPriceSuggestion] = useState<PriceSuggestion | null>(null);
+  const [loadingSuggestion, setLoadingSuggestion] = useState(false);
+
+  // Debounce the AI suggestion: wait until the user has been idle for 1.2s
+  // and the dependent fields look usable. We don't fire on every keystroke.
+  useEffect(() => {
+    const city = state.city.trim();
+    const propertyType = state.propertyType;
+    const areaSqm = Number(state.area);
+    const bedrooms = Number(state.bedrooms);
+    const transactionType = state.type === ListingType.RENT ? 'rent' : 'sale';
+    if (!city || !propertyType || !(areaSqm >= 20) || !(bedrooms >= 1)) {
+      setPriceSuggestion(null);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      setLoadingSuggestion(true);
+      try {
+        const suggestion = await aiApi.suggestPrice({
+          city,
+          propertyType,
+          areaSqm,
+          bedrooms,
+          bathrooms: Number(state.bathrooms) || 1,
+          district: state.district?.trim() || undefined,
+          transactionType,
+          amenities: state.amenityKeys,
+        });
+        setPriceSuggestion(suggestion);
+      } catch {
+        // Silent — pricing suggestion is an optional helper.
+      } finally {
+        setLoadingSuggestion(false);
+      }
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [
+    state.city,
+    state.propertyType,
+    state.area,
+    state.bedrooms,
+    state.bathrooms,
+    state.district,
+    state.type,
+    state.amenityKeys,
+  ]);
+
+  // Background + border colour per confidence tier. Falls back to theme greys
+  // when the tier is `low` so it still reads as informational, not warning.
+  const tone =
+    priceSuggestion?.confidence === 'high'
+      ? { bg: alpha(theme.palette.success.main, 0.08), border: theme.palette.success.main }
+      : priceSuggestion?.confidence === 'medium'
+        ? { bg: alpha(theme.palette.warning.main, 0.08), border: theme.palette.warning.main }
+        : { bg: alpha(theme.palette.grey[500], 0.08), border: theme.palette.divider };
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={6}>
@@ -549,6 +611,101 @@ function BasicInfoStep({ state, update }: StepProps) {
       <Grid item xs={6} sm={3}>
         <TextField fullWidth type="number" label="Price (SAR)" value={state.price} onChange={(e) => update({ price: e.target.value })} />
       </Grid>
+
+      {/* AI Price Suggestion — full-width row directly under the price + area
+       *  fields so the agent sees market context next to the value they enter. */}
+      {(loadingSuggestion || priceSuggestion) && (
+        <Grid item xs={12}>
+          {loadingSuggestion && !priceSuggestion ? (
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ pl: 1 }}>
+              <CircularProgress size={16} />
+              <Typography variant="caption" color="text.secondary">
+                {t('ai.analyzing', { defaultValue: 'Analyzing market prices…' })}
+              </Typography>
+            </Stack>
+          ) : priceSuggestion ? (
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: 2,
+                bgcolor: tone.bg,
+                border: '1.5px solid',
+                borderColor: tone.border,
+              }}
+            >
+              <Stack direction="row" alignItems="center" sx={{ mb: 1 }}>
+                <AutoGraphIcon sx={{ mr: 1, color: 'primary.main', fontSize: 20 }} />
+                <Typography sx={{ fontWeight: 700, color: 'primary.dark' }}>
+                  {t('ai.priceSuggestion', { defaultValue: 'AI Price Suggestion' })}
+                </Typography>
+                <Chip
+                  label={t(`ai.confidence.${priceSuggestion.confidence}`, {
+                    defaultValue: `${priceSuggestion.confidence} confidence`,
+                  })}
+                  size="small"
+                  color={
+                    priceSuggestion.confidence === 'high'
+                      ? 'success'
+                      : priceSuggestion.confidence === 'medium'
+                        ? 'warning'
+                        : 'default'
+                  }
+                  sx={{ ml: 'auto', fontSize: '0.7rem' }}
+                />
+              </Stack>
+
+              <Typography variant="h5" sx={{ fontWeight: 800, color: 'primary.dark' }}>
+                {priceSuggestion.recommended.toLocaleString()} SAR
+              </Typography>
+              <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 1.5 }}>
+                {t('ai.range', { defaultValue: 'Range' })}:{' '}
+                {priceSuggestion.suggestedMin.toLocaleString()} –{' '}
+                {priceSuggestion.suggestedMax.toLocaleString()} SAR
+              </Typography>
+
+              <Stack direction="row" spacing={3} sx={{ mb: 1.5, flexWrap: 'wrap' }}>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">
+                    {t('ai.perSqm', { defaultValue: 'Per m²' })}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                    {priceSuggestion.pricePerSqm.toLocaleString()} SAR
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">
+                    {t('ai.marketAvg', { defaultValue: 'Market average' })}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                    {priceSuggestion.marketAvg.toLocaleString()} SAR
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">
+                    {t('ai.comparables', { defaultValue: 'Comparables' })}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                    {priceSuggestion.comparables}
+                  </Typography>
+                </Box>
+              </Stack>
+
+              <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 1.5 }}>
+                {priceSuggestion.reasoning}
+              </Typography>
+
+              <Button
+                size="small"
+                variant="outlined"
+                color="primary"
+                onClick={() => update({ price: String(priceSuggestion.recommended) })}
+              >
+                {t('ai.usePrice', { defaultValue: 'Use suggested price' })}
+              </Button>
+            </Box>
+          ) : null}
+        </Grid>
+      )}
       {isRent && (
         <Grid item xs={6} sm={3}>
           <TextField select fullWidth label="Period" value={state.rentPeriod} onChange={(e) => update({ rentPeriod: e.target.value as RentPeriod })}>

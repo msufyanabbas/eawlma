@@ -17,6 +17,7 @@ import { z } from 'zod';
 import { UserRole } from '@eawlma/shared-types';
 
 import { authApi } from '@/api/auth.api';
+import { GA } from '@/utils/analytics';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
 import { AuthLayout } from './AuthLayout';
@@ -77,8 +78,9 @@ export function RegisterPage() {
         role: values.role,
         preferredLocale: i18n.language,
       }),
-    onSuccess: (data) => {
+    onSuccess: (data, vars) => {
       setSession(data.user, data.tokens);
+      GA.register(vars.role);
       void navigate({ to: '/' });
     },
   });

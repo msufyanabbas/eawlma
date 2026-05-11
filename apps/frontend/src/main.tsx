@@ -10,6 +10,9 @@ import './index.css';
 import { EawlmaThemeProvider } from './theme/ThemeProvider';
 import { queryClient } from './api/queryClient';
 import { router } from './router';
+import { initGA } from './utils/analytics';
+
+initGA();
 
 const rootEl = document.getElementById('root');
 if (!rootEl) {

@@ -17,6 +17,7 @@ import { bookingsApi, type Booking } from '@/api/bookings.api';
 import { promosApi, type ValidatePromoResult } from '@/api/promos.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
+import { GA } from '@/utils/analytics';
 
 interface Props {
   listingId: string;
@@ -135,6 +136,7 @@ export function BookingCalendar({
   const handleBook = async () => {
     setError(null);
     setSubmitting(true);
+    GA.beginBooking(listingId, nights, breakdown.total);
     try {
       const result = await bookingsApi.create({
         listingId,
