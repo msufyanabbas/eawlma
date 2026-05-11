@@ -49,7 +49,35 @@ export enum PropertyType {
   CHALET = 'chalet',
   HOTEL_APARTMENT = 'hotel_apartment',
   BUILDING = 'building',
+  // Short-term / hospitality (Airbnb + hotel support)
+  ROOM = 'room',
+  ENTIRE_HOME = 'entire_home',
+  HOTEL_ROOM = 'hotel_room',
+  REST_HOUSE = 'rest_house',
 }
+
+/** Coarse rental bucket for the search filter (Long-term / Short-term / Hotel
+ *  / Chalet). Maps to PropertyType + bookingType under the hood. */
+export type RentalType = 'long_term' | 'short_term' | 'hotel' | 'chalet';
+
+/** Short-term cancellation policy presets. */
+export type CancellationPolicy = 'flexible' | 'moderate' | 'strict';
+
+/** PropertyType values that imply a short-term / nightly booking flow. */
+export const SHORT_TERM_PROPERTY_TYPES: PropertyType[] = [
+  PropertyType.ROOM,
+  PropertyType.ENTIRE_HOME,
+  PropertyType.HOTEL_ROOM,
+  PropertyType.HOTEL_APARTMENT,
+  PropertyType.CHALET,
+  PropertyType.FARM,
+  PropertyType.REST_HOUSE,
+];
+
+export const HOTEL_PROPERTY_TYPES: PropertyType[] = [
+  PropertyType.HOTEL_ROOM,
+  PropertyType.HOTEL_APARTMENT,
+];
 
 export enum ListingStatus {
   DRAFT = 'draft',

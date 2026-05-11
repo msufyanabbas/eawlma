@@ -3,8 +3,11 @@ import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import {
+  HOTEL_PROPERTY_TYPES,
   ListingSortField,
   ListingStatus,
+  PropertyType,
+  SHORT_TERM_PROPERTY_TYPES,
   SortOrder,
 } from '@eawlma/shared-types';
 
@@ -145,6 +148,46 @@ export class SearchService {
           WHERE la.listing_id = l.id AND la.amenity_id IN (:...amenityIds)
         ) = :amenityCount`,
         { amenityIds: dto.amenityIds, amenityCount: dto.amenityIds.length },
+      );
+    }
+
+    // -------------------- Short-term / hospitality --------------------
+    if (dto.rentalType === 'short_term') {
+      qb.andWhere('l.property_type IN (:...shortTermTypes)', {
+        shortTermTypes: SHORT_TERM_PROPERTY_TYPES,
+      });
+    } else if (dto.rentalType === 'hotel') {
+      qb.andWhere('l.property_type IN (:...hotelTypes)', { hotelTypes: HOTEL_PROPERTY_TYPES });
+    } else if (dto.rentalType === 'chalet') {
+      qb.andWhere('l.property_type IN (:...chaletTypes)', {
+        chaletTypes: [PropertyType.CHALET, PropertyType.REST_HOUSE, PropertyType.FARM],
+      });
+    } else if (dto.rentalType === 'long_term') {
+      qb.andWhere('l.property_type NOT IN (:...shortTermTypes)', {
+        shortTermTypes: SHORT_TERM_PROPERTY_TYPES,
+      });
+    }
+
+    if (dto.minGuests !== undefined) {
+      qb.andWhere('l.max_guests >= :minGuests', { minGuests: dto.minGuests });
+    }
+    if (dto.hotelStarRating !== undefined) {
+      qb.andWhere('l.hotel_star_rating >= :star', { star: dto.hotelStarRating });
+    }
+    if (dto.instantBookOnly) {
+      qb.andWhere('l.instant_book = TRUE');
+    }
+    if (dto.checkIn && dto.checkOut) {
+      // Listings with bookings overlapping the requested window are excluded.
+      qb.andWhere(
+        `NOT EXISTS (
+          SELECT 1 FROM bookings b
+          WHERE b.listing_id = l.id
+            AND b.status IN ('pending','confirmed')
+            AND b.check_in < :coOut::date
+            AND b.check_out > :coIn::date
+        )`,
+        { coIn: dto.checkIn, coOut: dto.checkOut },
       );
     }
   }

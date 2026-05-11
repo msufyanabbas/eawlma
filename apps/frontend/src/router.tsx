@@ -25,6 +25,9 @@ import { AgentsPage } from './pages/AgentsPage';
 import { SavedPropertiesPage } from './pages/SavedPropertiesPage';
 import { ComparePage } from './pages/ComparePage';
 import { MarketPage } from './pages/MarketPage';
+import { StaysPage } from './pages/StaysPage';
+import { HotelsPage } from './pages/HotelsPage';
+import { HostingPage } from './pages/dashboard/HostingPage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { VerifyOtpPage } from './pages/auth/VerifyOtpPage';
@@ -47,6 +50,8 @@ import { WalletPage } from './pages/dashboard/WalletPage';
 import { RentalContractsPage } from './pages/dashboard/RentalContractsPage';
 import { DufaatPage } from './pages/dashboard/DufaatPage';
 import { BookingsPage } from './pages/dashboard/BookingsPage';
+import { BuyerDealsPage } from './pages/dashboard/BuyerDealsPage';
+import { AdminDisputesPage } from './pages/admin/AdminDisputesPage';
 import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
 import { AdminPayoutsPage } from './pages/admin/AdminPayoutsPage';
 import { AdminPropertyRequestsPage } from './pages/admin/AdminPropertyRequestsPage';
@@ -159,6 +164,8 @@ const agentProfileRoute = createRoute({ getParentRoute: () => marketingShellRout
 const savedRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/saved', component: SavedPropertiesPage });
 const compareRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/compare', component: ComparePage });
 const marketRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/market', component: MarketPage });
+const staysRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/stays', component: StaysPage });
+const hotelsRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/hotels', component: HotelsPage });
 const profileRoute = createRoute({
   getParentRoute: () => marketingShellRoute,
   path: '/profile',
@@ -217,6 +224,11 @@ const dashboardWalletRoute = createRoute({ getParentRoute: () => dashboardShellR
 const dashboardContractsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/contracts', component: RentalContractsPage });
 const dashboardDufaatRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/dufaat', component: DufaatPage });
 const dashboardBookingsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/bookings', component: BookingsPage });
+// "My Deals" is open to all authenticated users — buyers see pending deals to
+// confirm/dispute; agents will see only confirmed/disputed/resolved entries
+// where they were the buyer on another agent's listing (rare but possible).
+const dashboardDealsRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/deals', component: BuyerDealsPage });
+const dashboardHostingRoute = createRoute({ getParentRoute: () => dashboardShellRoute, path: '/dashboard/hosting', beforeLoad: requireAgentRole, component: HostingPage });
 
 // `/messages` (top-level) is a friendlier alias for the same page — Navbar
 // links to it from the public chat icon. It mounts under the dashboard
@@ -241,6 +253,7 @@ const adminAuditRoute = createRoute({ getParentRoute: () => adminShellRoute, pat
 const adminCommissionsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/commissions', component: AdminCommissionsPage });
 const adminPayoutsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/payouts', component: AdminPayoutsPage });
 const adminPropertyRequestsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/property-requests', component: AdminPropertyRequestsPage });
+const adminDisputesRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/disputes', component: AdminDisputesPage });
 
 // ----- Tree -----------------------------------------------------------
 
@@ -256,6 +269,8 @@ const routeTree = rootRoute.addChildren([
     savedRoute,
     compareRoute,
     marketRoute,
+    staysRoute,
+    hotelsRoute,
     profileRoute,
     aboutRoute,
     contactRoute,
@@ -287,6 +302,8 @@ const routeTree = rootRoute.addChildren([
     dashboardContractsRoute,
     dashboardDufaatRoute,
     dashboardBookingsRoute,
+    dashboardDealsRoute,
+    dashboardHostingRoute,
     dashboardMessagesAliasRoute,
     userNotificationsAliasRoute,
   ]),
@@ -298,6 +315,7 @@ const routeTree = rootRoute.addChildren([
     adminCommissionsRoute,
     adminPayoutsRoute,
     adminPropertyRequestsRoute,
+    adminDisputesRoute,
   ]),
 ]);
 

@@ -34,6 +34,13 @@ export interface FlatSearchParams {
   sortOrder?: 'ASC' | 'DESC';
   page?: number;
   limit?: number;
+  // short-term / hospitality filters
+  rentalType?: 'long_term' | 'short_term' | 'hotel' | 'chalet';
+  minGuests?: number;
+  hotelStarRating?: number;
+  instantBookOnly?: boolean;
+  checkIn?: string;
+  checkOut?: string;
 }
 
 const flattenParams = (p: FlatSearchParams): Record<string, string | number | boolean> => {

@@ -10,6 +10,7 @@ export interface Booking {
   checkIn: string;
   checkOut: string;
   nights: number;
+  numGuests: number;
   totalAmount: number;
   status: BookingStatus;
   notes: string | null;
@@ -22,6 +23,7 @@ export interface CreateBookingPayload {
   listingId: string;
   checkIn: string;
   checkOut: string;
+  numGuests?: number;
   notes?: string;
 }
 

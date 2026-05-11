@@ -6,6 +6,8 @@ import {
   MediaType,
   PropertyType,
   RentPeriod,
+  type CancellationPolicy,
+  type ShortTermAmenities,
 } from '@eawlma/shared-types';
 import { ListingEntity } from '../entities/listing.entity';
 import { ListingMediaEntity } from '../entities/listing-media.entity';
@@ -94,6 +96,26 @@ export class ListingResponseDto {
   @ApiProperty() hasSecurity: boolean;
   @ApiProperty() isCornerUnit: boolean;
 
+  // Short-term / hospitality
+  @ApiProperty({ enum: ['long_term', 'short_term', 'daily'] })
+  bookingType: 'long_term' | 'short_term' | 'daily';
+  @ApiPropertyOptional({ nullable: true }) dailyRate: number | null;
+  @ApiPropertyOptional({ nullable: true }) weeklyRate: number | null;
+  @ApiPropertyOptional({ nullable: true }) minimumStay: number | null;
+  @ApiPropertyOptional({ type: String, nullable: true }) availableFrom: string | null;
+  @ApiPropertyOptional({ type: String, nullable: true }) availableTo: string | null;
+  @ApiPropertyOptional({ nullable: true }) maxGuests: number | null;
+  @ApiPropertyOptional({ nullable: true, type: 'object', additionalProperties: true })
+  amenitiesDetailed: ShortTermAmenities | null;
+  @ApiPropertyOptional({ nullable: true }) houseRules: string | null;
+  @ApiProperty() checkInTime: string;
+  @ApiProperty() checkOutTime: string;
+  @ApiProperty() instantBook: boolean;
+  @ApiPropertyOptional({ nullable: true, enum: ['flexible', 'moderate', 'strict'] })
+  cancellationPolicy: CancellationPolicy | null;
+  @ApiPropertyOptional({ nullable: true }) hotelStarRating: number | null;
+  @ApiPropertyOptional({ nullable: true }) hotelName: string | null;
+
   @ApiProperty() country: string;
   @ApiProperty() region: string;
   @ApiProperty() city: string;
@@ -163,6 +185,21 @@ export class ListingResponseDto {
     dto.hasKitchenAppliances = l.hasKitchenAppliances;
     dto.hasSecurity = l.hasSecurity;
     dto.isCornerUnit = l.isCornerUnit;
+    dto.bookingType = l.bookingType ?? 'long_term';
+    dto.dailyRate = l.dailyRate !== null ? Number(l.dailyRate) : null;
+    dto.weeklyRate = l.weeklyRate !== null ? Number(l.weeklyRate) : null;
+    dto.minimumStay = l.minimumStay ?? null;
+    dto.availableFrom = l.availableFrom;
+    dto.availableTo = l.availableTo;
+    dto.maxGuests = l.maxGuests;
+    dto.amenitiesDetailed = l.amenitiesDetailed;
+    dto.houseRules = l.houseRules;
+    dto.checkInTime = l.checkInTime ?? '15:00';
+    dto.checkOutTime = l.checkOutTime ?? '11:00';
+    dto.instantBook = !!l.instantBook;
+    dto.cancellationPolicy = l.cancellationPolicy;
+    dto.hotelStarRating = l.hotelStarRating;
+    dto.hotelName = l.hotelName;
     dto.country = l.country;
     dto.region = l.region;
     dto.city = l.city;

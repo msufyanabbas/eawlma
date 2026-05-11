@@ -14,6 +14,8 @@ import {
   ListingType,
   PropertyType,
   RentPeriod,
+  type CancellationPolicy,
+  type ShortTermAmenities,
 } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { UserEntity } from '../../users/entities/user.entity';
@@ -91,6 +93,38 @@ export class ListingEntity extends BaseEntity {
 
   @Column({ type: 'date', name: 'available_to', nullable: true })
   availableTo: string | null;
+
+  // ----- Short-term / hospitality (Airbnb + hotel) -------------------------
+  // Optional fields that only matter for short-term listings. Stored on the
+  // listings table directly since the read pattern is "fetch one listing" —
+  // a separate table would double the joins for no benefit.
+
+  @Column({ type: 'integer', name: 'max_guests', nullable: true })
+  maxGuests: number | null;
+
+  @Column({ type: 'jsonb', name: 'amenities_detailed', nullable: true })
+  amenitiesDetailed: ShortTermAmenities | null;
+
+  @Column({ type: 'text', name: 'house_rules', nullable: true })
+  houseRules: string | null;
+
+  @Column({ type: 'varchar', length: 8, name: 'check_in_time', default: '15:00' })
+  checkInTime: string;
+
+  @Column({ type: 'varchar', length: 8, name: 'check_out_time', default: '11:00' })
+  checkOutTime: string;
+
+  @Column({ type: 'boolean', name: 'instant_book', default: false })
+  instantBook: boolean;
+
+  @Column({ type: 'varchar', length: 16, name: 'cancellation_policy', nullable: true })
+  cancellationPolicy: CancellationPolicy | null;
+
+  @Column({ type: 'integer', name: 'hotel_star_rating', nullable: true })
+  hotelStarRating: number | null;
+
+  @Column({ type: 'varchar', length: 200, name: 'hotel_name', nullable: true })
+  hotelName: string | null;
 
   // ----- Features (denormalized for fast filtering) --------------------------
 

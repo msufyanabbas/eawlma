@@ -25,7 +25,7 @@ export class BookingsService {
   async create(actor: RequestUser, dto: CreateBookingDto): Promise<BookingEntity> {
     const listing = await this.listings.findOne({ where: { id: dto.listingId } });
     if (!listing) throw new NotFoundException('Listing not found');
-    if (listing.bookingType !== 'daily') {
+    if (listing.bookingType !== 'daily' && listing.bookingType !== 'short_term') {
       throw new BadRequestException('Listing is not bookable on a daily basis');
     }
 
@@ -46,6 +46,14 @@ export class BookingsService {
       );
     }
 
+    // Headcount cap — refuse bookings that exceed the listing's maxGuests.
+    const numGuests = dto.numGuests ?? 1;
+    if (listing.maxGuests && numGuests > listing.maxGuests) {
+      throw new BadRequestException(
+        `This listing accommodates up to ${listing.maxGuests} guests`,
+      );
+    }
+
     const overlap = await this.bookings
       .createQueryBuilder('b')
       .where('b.listing_id = :id', { id: listing.id })
@@ -63,9 +71,15 @@ export class BookingsService {
       throw new BadRequestException('Selected dates overlap an existing booking');
     }
 
-    const rate = Number(listing.dailyRate ?? listing.price ?? 0);
-    if (!rate) throw new BadRequestException('Listing has no daily rate');
-    const totalAmount = (rate * nights).toFixed(2);
+    const dailyRate = Number(listing.dailyRate ?? listing.price ?? 0);
+    if (!dailyRate) throw new BadRequestException('Listing has no daily rate');
+    const weeklyRate = listing.weeklyRate !== null ? Number(listing.weeklyRate) : null;
+    const totalAmount = calculateStayTotal(nights, dailyRate, weeklyRate).toFixed(2);
+
+    // instantBook → auto-confirm without host approval; otherwise pending.
+    const initialStatus: 'pending' | 'confirmed' = listing.instantBook
+      ? 'confirmed'
+      : 'pending';
 
     const booking = this.bookings.create({
       listingId: listing.id,
@@ -74,9 +88,10 @@ export class BookingsService {
       checkIn: dto.checkIn,
       checkOut: dto.checkOut,
       nights,
+      numGuests,
       totalAmount,
       notes: dto.notes ?? null,
-      status: 'pending',
+      status: initialStatus,
     });
     return this.bookings.save(booking);
   }
@@ -119,4 +134,31 @@ export class BookingsService {
     b.status = 'cancelled';
     return this.bookings.save(b);
   }
+}
+
+/**
+ * Tiered booking pricing:
+ *   - 1-6 nights  → nights × daily
+ *   - 7-29 nights → weekly rate when configured, otherwise daily × nights × 0.9
+ *   - 30+ nights  → 20% monthly discount on (daily × nights)
+ *
+ * Exported so unit tests can pin the math.
+ */
+export function calculateStayTotal(
+  nights: number,
+  dailyRate: number,
+  weeklyRate: number | null,
+): number {
+  if (nights >= 30) {
+    return dailyRate * nights * 0.8;
+  }
+  if (nights >= 7) {
+    if (weeklyRate && weeklyRate > 0) {
+      const fullWeeks = Math.floor(nights / 7);
+      const extraNights = nights % 7;
+      return weeklyRate * fullWeeks + extraNights * dailyRate;
+    }
+    return dailyRate * nights * 0.9;
+  }
+  return dailyRate * nights;
 }

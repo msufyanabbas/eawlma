@@ -5,6 +5,8 @@ import {
   IsArray,
   IsBoolean,
   IsEnum,
+  IsIn,
+  IsInt,
   IsNumber,
   IsObject,
   IsOptional,
@@ -12,6 +14,8 @@ import {
   IsString,
   IsUUID,
   Length,
+  Matches,
+  Max,
   Min,
   ValidateNested,
 } from 'class-validator';
@@ -21,8 +25,88 @@ import {
   Locale,
   PropertyType,
   RentPeriod,
+  type CancellationPolicy,
+  type ShortTermAmenities,
 } from '@eawlma/shared-types';
 import { AddressDto, FeaturesDto, GeoPointDto } from './address.dto';
+
+export class ShortTermFieldsDto {
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  @Max(99)
+  maxGuests?: number;
+
+  @ApiPropertyOptional({ type: 'object', additionalProperties: true })
+  @IsOptional()
+  @IsObject()
+  amenitiesDetailed?: ShortTermAmenities;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Length(0, 4000)
+  houseRules?: string;
+
+  @ApiPropertyOptional({ example: '15:00' })
+  @IsOptional()
+  @IsString()
+  @Matches(/^\d{2}:\d{2}$/)
+  checkInTime?: string;
+
+  @ApiPropertyOptional({ example: '11:00' })
+  @IsOptional()
+  @IsString()
+  @Matches(/^\d{2}:\d{2}$/)
+  checkOutTime?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsBoolean()
+  instantBook?: boolean;
+
+  @ApiPropertyOptional({ enum: ['flexible', 'moderate', 'strict'] })
+  @IsOptional()
+  @IsIn(['flexible', 'moderate', 'strict'])
+  cancellationPolicy?: CancellationPolicy;
+
+  @ApiPropertyOptional({ minimum: 1, maximum: 5 })
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  @Max(5)
+  hotelStarRating?: number;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Length(0, 200)
+  hotelName?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  dailyRate?: number;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  weeklyRate?: number;
+
+  @ApiPropertyOptional({ minimum: 1 })
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  minimumStay?: number;
+
+  @ApiPropertyOptional({ enum: ['long_term', 'short_term', 'daily'] })
+  @IsOptional()
+  @IsIn(['long_term', 'short_term', 'daily'])
+  bookingType?: 'long_term' | 'short_term' | 'daily';
+}
 
 export class CreateListingDto {
   @ApiProperty({ enum: ListingType })
@@ -73,6 +157,12 @@ export class CreateListingDto {
   @ValidateNested()
   @Type(() => FeaturesDto)
   features: FeaturesDto;
+
+  @ApiPropertyOptional({ type: ShortTermFieldsDto })
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => ShortTermFieldsDto)
+  shortTerm?: ShortTermFieldsDto;
 
   @ApiPropertyOptional({ enum: ListingFurnishing })
   @IsOptional()

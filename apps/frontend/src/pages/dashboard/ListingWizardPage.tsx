@@ -38,6 +38,10 @@ import {
   MediaType,
   PropertyType,
   RentPeriod,
+  SHORT_TERM_PROPERTY_TYPES,
+  HOTEL_PROPERTY_TYPES,
+  type CancellationPolicy,
+  type ShortTermAmenities,
 } from '@eawlma/shared-types';
 
 import { listingsApi } from '@/api/listings.api';
@@ -99,6 +103,21 @@ interface WizardState {
   permitExpiry: string;
   contactPreference: 'phone' | 'whatsapp' | 'email';
   visibility: 'public' | 'unlisted';
+
+  // ---- Short-term / hospitality (only relevant when propertyType is one
+  //      of SHORT_TERM_PROPERTY_TYPES) ----
+  dailyRate: string;
+  weeklyRate: string;
+  minimumStay: string;
+  maxGuests: string;
+  amenitiesDetailed: ShortTermAmenities;
+  houseRules: string;
+  checkInTime: string;
+  checkOutTime: string;
+  instantBook: boolean;
+  cancellationPolicy: CancellationPolicy | '';
+  hotelStarRating: string;
+  hotelName: string;
 }
 
 const DEFAULT_LAT = 24.7136;
@@ -160,6 +179,19 @@ const initialState: WizardState = {
   permitExpiry: '',
   contactPreference: 'whatsapp',
   visibility: 'public',
+
+  dailyRate: '',
+  weeklyRate: '',
+  minimumStay: '1',
+  maxGuests: '',
+  amenitiesDetailed: {},
+  houseRules: '',
+  checkInTime: '15:00',
+  checkOutTime: '11:00',
+  instantBook: false,
+  cancellationPolicy: '',
+  hotelStarRating: '',
+  hotelName: '',
 };
 
 // ------------------------------------------------------------------
@@ -218,6 +250,18 @@ export function ListingWizardPage() {
         })),
         vrUrl: l.media.find((m) => m.type === MediaType.TOUR_360)?.url ?? '',
         modelUrl: '',
+        dailyRate: l.dailyRate !== null && l.dailyRate !== undefined ? String(l.dailyRate) : '',
+        weeklyRate: l.weeklyRate !== null && l.weeklyRate !== undefined ? String(l.weeklyRate) : '',
+        minimumStay: l.minimumStay ? String(l.minimumStay) : '1',
+        maxGuests: l.maxGuests ? String(l.maxGuests) : '',
+        amenitiesDetailed: l.amenitiesDetailed ?? {},
+        houseRules: l.houseRules ?? '',
+        checkInTime: l.checkInTime ?? '15:00',
+        checkOutTime: l.checkOutTime ?? '11:00',
+        instantBook: !!l.instantBook,
+        cancellationPolicy: l.cancellationPolicy ?? '',
+        hotelStarRating: l.hotelStarRating ? String(l.hotelStarRating) : '',
+        hotelName: l.hotelName ?? '',
       }));
       setSavedListingId(l.id);
     }
@@ -269,6 +313,27 @@ export function ListingWizardPage() {
       postalCode: state.postalCode || undefined,
     },
     location: { lat: state.lat, lng: state.lng },
+    shortTerm: SHORT_TERM_PROPERTY_TYPES.includes(state.propertyType)
+      ? {
+          maxGuests: state.maxGuests ? Number(state.maxGuests) : undefined,
+          amenitiesDetailed: state.amenitiesDetailed,
+          houseRules: state.houseRules || undefined,
+          checkInTime: state.checkInTime || undefined,
+          checkOutTime: state.checkOutTime || undefined,
+          instantBook: state.instantBook,
+          cancellationPolicy: state.cancellationPolicy || undefined,
+          hotelStarRating: HOTEL_PROPERTY_TYPES.includes(state.propertyType) && state.hotelStarRating
+            ? Number(state.hotelStarRating)
+            : undefined,
+          hotelName: HOTEL_PROPERTY_TYPES.includes(state.propertyType)
+            ? state.hotelName || undefined
+            : undefined,
+          dailyRate: state.dailyRate ? Number(state.dailyRate) : undefined,
+          weeklyRate: state.weeklyRate ? Number(state.weeklyRate) : undefined,
+          minimumStay: state.minimumStay ? Number(state.minimumStay) : undefined,
+          bookingType: 'short_term' as const,
+        }
+      : undefined,
   });
 
   // ---- Save / Submit -----------------------------------------------
@@ -502,7 +567,210 @@ function BasicInfoStep({ state, update }: StepProps) {
         </TextField>
       </Grid>
       <Grid item xs={6} sm={3}><TextField fullWidth type="number" label="Year built" value={state.yearBuilt} onChange={(e) => update({ yearBuilt: e.target.value })} /></Grid>
+
+      {SHORT_TERM_PROPERTY_TYPES.includes(state.propertyType) && (
+        <Grid item xs={12}>
+          <ShortTermSection state={state} update={update} />
+        </Grid>
+      )}
     </Grid>
+  );
+}
+
+// ------------------------------------------------------------------
+// Short-term rental section — surfaced under Step 1 (Basic info) only when
+// the chosen property type is Airbnb-style (room / entire_home / hotel /
+// chalet / farm / rest_house).
+// ------------------------------------------------------------------
+
+const SHORT_TERM_AMENITY_OPTIONS: Array<{ key: keyof ShortTermAmenities; label: string }> = [
+  { key: 'wifi', label: 'Wi-Fi' },
+  { key: 'pool', label: 'Pool' },
+  { key: 'parking', label: 'Parking' },
+  { key: 'breakfast', label: 'Breakfast' },
+  { key: 'ac', label: 'Air conditioning' },
+  { key: 'kitchen', label: 'Kitchen' },
+  { key: 'tv', label: 'TV' },
+  { key: 'washer', label: 'Washer' },
+  { key: 'workspace', label: 'Workspace' },
+  { key: 'petsAllowed', label: 'Pets allowed' },
+  { key: 'smokingAllowed', label: 'Smoking allowed' },
+  { key: 'wheelchairAccessible', label: 'Wheelchair accessible' },
+];
+
+function ShortTermSection({ state, update }: StepProps) {
+  const isHotel = HOTEL_PROPERTY_TYPES.includes(state.propertyType);
+  const toggleAmenity = (key: keyof ShortTermAmenities) => {
+    update((prev) => ({
+      amenitiesDetailed: {
+        ...prev.amenitiesDetailed,
+        [key]: !prev.amenitiesDetailed[key],
+      },
+    }));
+  };
+
+  return (
+    <Paper variant="outlined" sx={{ p: 3, mt: 1, bgcolor: 'rgba(108,99,166,0.04)' }}>
+      <Typography variant="subtitle1" sx={{ fontWeight: 800, mb: 0.5 }}>
+        Short-term rental details
+      </Typography>
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 2 }}>
+        Guests will book this listing by the night. Configure stay rules, amenities, and pricing tiers.
+      </Typography>
+
+      <Grid container spacing={2}>
+        <Grid item xs={6} sm={3}>
+          <TextField
+            fullWidth
+            type="number"
+            label="Daily rate (SAR)"
+            value={state.dailyRate}
+            onChange={(e) => update({ dailyRate: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <TextField
+            fullWidth
+            type="number"
+            label="Weekly rate (SAR, optional)"
+            value={state.weeklyRate}
+            onChange={(e) => update({ weeklyRate: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <TextField
+            fullWidth
+            type="number"
+            label="Minimum stay (nights)"
+            inputProps={{ min: 1 }}
+            value={state.minimumStay}
+            onChange={(e) => update({ minimumStay: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <TextField
+            fullWidth
+            type="number"
+            label="Max guests"
+            inputProps={{ min: 1, max: 99 }}
+            value={state.maxGuests}
+            onChange={(e) => update({ maxGuests: e.target.value })}
+          />
+        </Grid>
+
+        <Grid item xs={6} sm={3}>
+          <TextField
+            fullWidth
+            type="time"
+            label="Check-in"
+            InputLabelProps={{ shrink: true }}
+            value={state.checkInTime}
+            onChange={(e) => update({ checkInTime: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <TextField
+            fullWidth
+            type="time"
+            label="Check-out"
+            InputLabelProps={{ shrink: true }}
+            value={state.checkOutTime}
+            onChange={(e) => update({ checkOutTime: e.target.value })}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            select
+            fullWidth
+            label="Cancellation policy"
+            value={state.cancellationPolicy}
+            onChange={(e) => update({ cancellationPolicy: e.target.value as CancellationPolicy | '' })}
+          >
+            <MenuItem value="">—</MenuItem>
+            <MenuItem value="flexible">Flexible — full refund up to 24 hours before</MenuItem>
+            <MenuItem value="moderate">Moderate — full refund up to 5 days before</MenuItem>
+            <MenuItem value="strict">Strict — 50% refund up to 7 days before</MenuItem>
+          </TextField>
+        </Grid>
+
+        {isHotel && (
+          <>
+            <Grid item xs={6} sm={3}>
+              <TextField
+                select
+                fullWidth
+                label="Star rating"
+                value={state.hotelStarRating}
+                onChange={(e) => update({ hotelStarRating: e.target.value })}
+              >
+                <MenuItem value="">—</MenuItem>
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <MenuItem key={n} value={String(n)}>{n}★</MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={9}>
+              <TextField
+                fullWidth
+                label="Hotel name"
+                value={state.hotelName}
+                onChange={(e) => update({ hotelName: e.target.value })}
+              />
+            </Grid>
+          </>
+        )}
+
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={state.instantBook}
+                onChange={(e) => update({ instantBook: e.target.checked })}
+              />
+            }
+            label={
+              <Box>
+                <Typography variant="body2" sx={{ fontWeight: 700 }}>Instant book</Typography>
+                <Typography variant="caption" color="text.secondary">
+                  Bookings auto-confirm without your approval. Disable to review each request first.
+                </Typography>
+              </Box>
+            }
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>Amenities</Typography>
+          <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1}>
+            {SHORT_TERM_AMENITY_OPTIONS.map((a) => {
+              const on = Boolean(state.amenitiesDetailed[a.key]);
+              return (
+                <Chip
+                  key={a.key}
+                  label={a.label}
+                  onClick={() => toggleAmenity(a.key)}
+                  color={on ? 'primary' : 'default'}
+                  variant={on ? 'filled' : 'outlined'}
+                  sx={{ cursor: 'pointer', fontWeight: 600 }}
+                />
+              );
+            })}
+          </Stack>
+        </Grid>
+
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            multiline
+            minRows={3}
+            label="House rules"
+            placeholder="e.g. No parties, quiet hours after 10pm, no smoking indoors..."
+            value={state.houseRules}
+            onChange={(e) => update({ houseRules: e.target.value })}
+          />
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 

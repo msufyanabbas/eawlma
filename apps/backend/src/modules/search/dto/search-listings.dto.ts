@@ -4,7 +4,10 @@ import {
   ArrayMaxSize,
   IsArray,
   IsBoolean,
+  IsDateString,
   IsEnum,
+  IsIn,
+  IsInt,
   IsLatitude,
   IsLongitude,
   IsNumber,
@@ -22,6 +25,7 @@ import {
   PropertyType,
   RentPeriod,
   SortOrder,
+  type RentalType,
 } from '@eawlma/shared-types';
 import { PaginationQueryDto } from '../../../common/dto/pagination.dto';
 
@@ -180,4 +184,41 @@ export class SearchListingsDto extends PaginationQueryDto {
   @IsOptional()
   @IsEnum(SortOrder)
   sortOrder?: SortOrder = SortOrder.DESC;
+
+  // Short-term / hospitality filters
+  @ApiPropertyOptional({ enum: ['long_term', 'short_term', 'hotel', 'chalet'] })
+  @IsOptional()
+  @IsIn(['long_term', 'short_term', 'hotel', 'chalet'])
+  rentalType?: RentalType;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  minGuests?: number;
+
+  @ApiPropertyOptional({ minimum: 1, maximum: 5 })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  @Max(5)
+  hotelStarRating?: number;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @Transform(({ value }) => toBool(value))
+  @IsBoolean()
+  instantBookOnly?: boolean;
+
+  @ApiPropertyOptional({ example: '2025-08-10' })
+  @IsOptional()
+  @IsDateString()
+  checkIn?: string;
+
+  @ApiPropertyOptional({ example: '2025-08-15' })
+  @IsOptional()
+  @IsDateString()
+  checkOut?: string;
 }

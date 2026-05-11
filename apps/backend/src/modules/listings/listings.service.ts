@@ -136,6 +136,8 @@ export class ListingsService {
       tags: tagEntities,
     });
 
+    if (dto.shortTerm) applyShortTermFields(listing, dto.shortTerm);
+
     const saved = await this.listings.save(listing);
     this.logger.log(`Created listing ${saved.id} (${saved.referenceCode}) for owner ${ownerId}`);
     return this.findByIdOrFail(saved.id);
@@ -295,6 +297,8 @@ export class ListingsService {
       listing.lat = dto.location.lat;
       listing.lng = dto.location.lng;
     }
+
+    if (dto.shortTerm) applyShortTermFields(listing, dto.shortTerm);
 
     if (dto.amenityIds) listing.amenities = await this.resolveAmenities(dto.amenityIds);
     if (dto.tagIds) listing.tags = await this.resolveTags(dto.tagIds);
@@ -586,4 +590,25 @@ export class ListingsService {
     const seq = result[0]?.next ?? '000001';
     return `EAW-${year}-${seq}`;
   }
+}
+
+// Short-term field patcher used by both create + update. Hoisted out of the
+// service so create() doesn't need to repeat the same field-by-field copy.
+function applyShortTermFields(
+  listing: ListingEntity,
+  s: NonNullable<CreateListingDto['shortTerm']>,
+): void {
+  if (s.maxGuests !== undefined) listing.maxGuests = s.maxGuests;
+  if (s.amenitiesDetailed !== undefined) listing.amenitiesDetailed = s.amenitiesDetailed;
+  if (s.houseRules !== undefined) listing.houseRules = s.houseRules || null;
+  if (s.checkInTime !== undefined) listing.checkInTime = s.checkInTime;
+  if (s.checkOutTime !== undefined) listing.checkOutTime = s.checkOutTime;
+  if (s.instantBook !== undefined) listing.instantBook = !!s.instantBook;
+  if (s.cancellationPolicy !== undefined) listing.cancellationPolicy = s.cancellationPolicy;
+  if (s.hotelStarRating !== undefined) listing.hotelStarRating = s.hotelStarRating;
+  if (s.hotelName !== undefined) listing.hotelName = s.hotelName || null;
+  if (s.dailyRate !== undefined) listing.dailyRate = s.dailyRate;
+  if (s.weeklyRate !== undefined) listing.weeklyRate = s.weeklyRate;
+  if (s.minimumStay !== undefined) listing.minimumStay = s.minimumStay;
+  if (s.bookingType !== undefined) listing.bookingType = s.bookingType;
 }

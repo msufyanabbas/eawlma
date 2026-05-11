@@ -218,8 +218,11 @@ export class InquiriesService {
   }
 
   // ---------------------------------------------------------------------------
-  // Close deal — transitions to CLOSED, records the transaction value, and
-  // auto-generates a pending Commission row + admin/buyer notifications.
+  // Close deal — agent records the transaction value, but a commission is NOT
+  // created yet. The deal sits in `pending_confirmation` until the buyer
+  // confirms (commission created) or either party raises a dispute (admin
+  // resolves). The agent's CRM inquiry transitions to CLOSED for filtering
+  // purposes; the new `dealStatus` field carries the real lifecycle state.
   // ---------------------------------------------------------------------------
 
   async closeDeal(
@@ -232,8 +235,8 @@ export class InquiriesService {
     // rejects anyone else with 403.
     this.assertCanModify(inquiry, actor);
 
-    if (inquiry.status === InquiryStatus.CLOSED) {
-      throw new BadRequestException('Inquiry is already closed');
+    if (inquiry.dealClosedByAgent) {
+      throw new BadRequestException('Deal close already submitted for this inquiry');
     }
     if (dto.transactionValue <= 0) {
       throw new BadRequestException('transactionValue must be positive');
@@ -242,26 +245,14 @@ export class InquiriesService {
     inquiry.status = InquiryStatus.CLOSED;
     inquiry.transactionValue = dto.transactionValue.toFixed(2);
     inquiry.closedAt = dto.closedAt ?? new Date();
+    inquiry.dealClosedByAgent = true;
+    inquiry.dealStatus = 'pending_confirmation';
     if (dto.notes) {
-      // Append the close-deal notes onto the existing agent notes so we never
-      // overwrite the live CRM commentary.
       inquiry.agentNotes = [inquiry.agentNotes, dto.notes].filter(Boolean).join('\n\n');
     }
 
     const saved = await this.inquiries.save(inquiry);
 
-    // Generate the commission row (status=pending — admin still confirms).
-    // The CommissionsService computes agent/platform amounts from configured
-    // rates so the breakdown can be audited later.
-    const commission = await this.commissionsService.create({
-      listingId: saved.listingId,
-      agentId: saved.agentId,
-      buyerId: saved.userId ?? undefined,
-      transactionValue: dto.transactionValue,
-      notes: dto.notes,
-    });
-
-    // Look up the listing for nicer notification copy.
     const listing = await this.listings.findOne({
       where: { id: saved.listingId },
       select: ['id', 'title', 'referenceCode'],
@@ -269,7 +260,92 @@ export class InquiriesService {
     const listingLabel = listing?.title ?? saved.listingId;
     const valueLabel = `${dto.transactionValue.toLocaleString('en-US')} SAR`;
 
-    // Notify all admins. Best-effort — failures here must not block the close.
+    // Notify the buyer to confirm or dispute. If we don't have a buyer userId
+    // (anonymous inquiry) there's no one to notify — agent will follow up via
+    // email/phone and the deal will be confirmed manually by an admin.
+    if (saved.userId) {
+      try {
+        await this.notificationsService.create({
+          userId: saved.userId,
+          type: NotificationType.INQUIRY_RECEIVED,
+          title: 'Agent marked your deal as closed',
+          body: `Agent has marked your deal on ${listingLabel} as closed for ${valueLabel}. Please confirm or dispute within 48 hours.`,
+          data: {
+            inquiryId: saved.id,
+            listingId: saved.listingId,
+            transactionValue: dto.transactionValue,
+            dealStatus: saved.dealStatus,
+          },
+        });
+      } catch (err) {
+        this.logger.error(`Buyer close-deal notification failed: ${(err as Error).message}`);
+      }
+    }
+
+    return saved;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Confirm deal — buyer accepts the close, triggering commission creation
+  // and notifying the agent + admins.
+  // ---------------------------------------------------------------------------
+
+  async confirmDeal(id: string, actor: RequestUser): Promise<InquiryEntity> {
+    const inquiry = await this.inquiries.findOne({ where: { id } });
+    if (!inquiry) throw new NotFoundException('Inquiry not found');
+
+    if (!inquiry.userId || inquiry.userId !== actor.id) {
+      throw new ForbiddenException('Only the buyer on this inquiry can confirm the deal');
+    }
+    if (!inquiry.dealClosedByAgent) {
+      throw new BadRequestException('Agent has not closed this deal yet');
+    }
+    if (inquiry.dealStatus !== 'pending_confirmation') {
+      throw new BadRequestException(`Cannot confirm a deal in status ${inquiry.dealStatus}`);
+    }
+    if (inquiry.transactionValue === null) {
+      throw new BadRequestException('Deal has no transaction value to confirm');
+    }
+
+    inquiry.dealConfirmedByBuyer = true;
+    inquiry.dealStatus = 'confirmed';
+    const saved = await this.inquiries.save(inquiry);
+
+    const transactionValue = Number(saved.transactionValue);
+    const commission = await this.commissionsService.create({
+      listingId: saved.listingId,
+      agentId: saved.agentId,
+      buyerId: saved.userId ?? undefined,
+      transactionValue,
+      notes: 'Created after buyer confirmation',
+    });
+
+    const listing = await this.listings.findOne({
+      where: { id: saved.listingId },
+      select: ['id', 'title', 'referenceCode'],
+    });
+    const listingLabel = listing?.title ?? saved.listingId;
+    const valueLabel = `${transactionValue.toLocaleString('en-US')} SAR`;
+
+    // Notify the agent
+    try {
+      await this.notificationsService.create({
+        userId: saved.agentId,
+        type: NotificationType.INQUIRY_RECEIVED,
+        title: 'Buyer confirmed the deal!',
+        body: `Buyer confirmed your deal on ${listingLabel}. Commission has been created.`,
+        data: {
+          inquiryId: saved.id,
+          listingId: saved.listingId,
+          commissionId: commission.id,
+          transactionValue,
+        },
+      });
+    } catch (err) {
+      this.logger.error(`Agent confirm-deal notification failed: ${(err as Error).message}`);
+    }
+
+    // Notify admins
     try {
       const admins = await this.users.find({
         where: { role: UserRole.ADMIN },
@@ -280,42 +356,221 @@ export class InquiriesService {
           this.notificationsService.create({
             userId: admin.id,
             type: NotificationType.INQUIRY_RECEIVED,
-            title: 'New deal closed',
+            title: 'New confirmed deal',
             body: `${listingLabel} — ${valueLabel}. Commission ${commission.id} awaiting confirmation.`,
             data: {
               inquiryId: saved.id,
               listingId: saved.listingId,
               commissionId: commission.id,
-              transactionValue: dto.transactionValue,
+              transactionValue,
             },
           }),
         ),
       );
     } catch (err) {
-      this.logger.error(`Admin close-deal notifications failed: ${(err as Error).message}`);
+      this.logger.error(`Admin confirm-deal notifications failed: ${(err as Error).message}`);
     }
 
-    // Notify the buyer (if authenticated). Buyers see this in their bell.
-    if (saved.userId) {
+    return saved;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Raise dispute — either party (buyer OR agent) can dispute a pending deal.
+  // Admin then resolves via `adminResolveDispute`.
+  // ---------------------------------------------------------------------------
+
+  async raiseDispute(
+    id: string,
+    actor: RequestUser,
+    reason: string,
+  ): Promise<InquiryEntity> {
+    const inquiry = await this.inquiries.findOne({ where: { id } });
+    if (!inquiry) throw new NotFoundException('Inquiry not found');
+
+    const isBuyer = inquiry.userId !== null && inquiry.userId === actor.id;
+    const isAgent = inquiry.agentId === actor.id;
+    if (!isBuyer && !isAgent && !this.isPrivileged(actor)) {
+      throw new ForbiddenException('Only the buyer or agent on this deal can raise a dispute');
+    }
+    if (!inquiry.dealClosedByAgent) {
+      throw new BadRequestException('Agent has not closed this deal yet — nothing to dispute');
+    }
+    if (inquiry.dealStatus !== 'pending_confirmation') {
+      throw new BadRequestException(`Cannot dispute a deal in status ${inquiry.dealStatus}`);
+    }
+    const trimmed = reason.trim();
+    if (!trimmed) {
+      throw new BadRequestException('Dispute reason is required');
+    }
+
+    inquiry.dealStatus = 'disputed';
+    inquiry.disputeReason = trimmed;
+    inquiry.disputeRaisedBy = actor.id;
+    inquiry.disputeRaisedAt = new Date();
+    const saved = await this.inquiries.save(inquiry);
+
+    const listing = await this.listings.findOne({
+      where: { id: saved.listingId },
+      select: ['id', 'title', 'referenceCode'],
+    });
+    const listingLabel = listing?.title ?? saved.listingId;
+
+    // Notify admins
+    try {
+      const admins = await this.users.find({
+        where: { role: UserRole.ADMIN },
+        select: ['id'],
+      });
+      await Promise.all(
+        admins.map((admin) =>
+          this.notificationsService.create({
+            userId: admin.id,
+            type: NotificationType.INQUIRY_RECEIVED,
+            title: 'Deal dispute raised',
+            body: `Deal dispute raised on ${listingLabel}. Reason: ${trimmed}. Please review.`,
+            data: {
+              inquiryId: saved.id,
+              listingId: saved.listingId,
+              disputeReason: trimmed,
+              disputeRaisedBy: actor.id,
+            },
+          }),
+        ),
+      );
+    } catch (err) {
+      this.logger.error(`Admin raise-dispute notifications failed: ${(err as Error).message}`);
+    }
+
+    // Notify the *other* party so they know admin will step in.
+    const otherPartyId = isBuyer ? saved.agentId : saved.userId;
+    if (otherPartyId) {
       try {
         await this.notificationsService.create({
-          userId: saved.userId,
+          userId: otherPartyId,
           type: NotificationType.INQUIRY_RECEIVED,
-          title: 'Your deal is confirmed',
-          body: `Your purchase of ${listingLabel} is confirmed. Commission payment will be required after admin review.`,
+          title: 'A dispute has been raised on your deal',
+          body: `A dispute has been raised on your deal for ${listingLabel}. Admin will review shortly.`,
           data: {
             inquiryId: saved.id,
             listingId: saved.listingId,
-            commissionId: commission.id,
-            transactionValue: dto.transactionValue,
+            disputeRaisedBy: actor.id,
           },
         });
       } catch (err) {
-        this.logger.error(`Buyer close-deal notification failed: ${(err as Error).message}`);
+        this.logger.error(`Other-party raise-dispute notification failed: ${(err as Error).message}`);
       }
     }
 
     return saved;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Admin resolves a dispute. Depending on favor:
+  //   `agent`     → creates the commission as if the buyer had confirmed
+  //   `buyer`     → cancels the deal (no commission created)
+  //   `cancelled` → marks the deal as cancelled without favoring either side
+  // ---------------------------------------------------------------------------
+
+  async adminResolveDispute(
+    id: string,
+    actor: RequestUser,
+    resolution: string,
+    favor: 'agent' | 'buyer' | 'cancelled',
+  ): Promise<InquiryEntity> {
+    if (!this.isPrivileged(actor)) {
+      throw new ForbiddenException('Only admins can resolve disputes');
+    }
+    const inquiry = await this.inquiries.findOne({ where: { id } });
+    if (!inquiry) throw new NotFoundException('Inquiry not found');
+    if (inquiry.dealStatus !== 'disputed') {
+      throw new BadRequestException(`Cannot resolve a deal in status ${inquiry.dealStatus}`);
+    }
+    const trimmed = resolution.trim();
+    if (!trimmed) {
+      throw new BadRequestException('Resolution notes are required');
+    }
+
+    inquiry.dealStatus = 'resolved';
+    inquiry.adminResolution = trimmed;
+    inquiry.adminResolvedBy = actor.id;
+    inquiry.adminResolvedAt = new Date();
+    const saved = await this.inquiries.save(inquiry);
+
+    const listing = await this.listings.findOne({
+      where: { id: saved.listingId },
+      select: ['id', 'title', 'referenceCode'],
+    });
+    const listingLabel = listing?.title ?? saved.listingId;
+
+    let outcomeBody: string;
+    if (favor === 'agent') {
+      const transactionValue = Number(saved.transactionValue ?? 0);
+      if (transactionValue > 0) {
+        try {
+          const commission = await this.commissionsService.create({
+            listingId: saved.listingId,
+            agentId: saved.agentId,
+            buyerId: saved.userId ?? undefined,
+            transactionValue,
+            notes: `Created after admin resolved dispute in favor of agent. ${trimmed}`,
+          });
+          outcomeBody = `Admin resolved the dispute in favor of the agent. Commission ${commission.id} has been created.`;
+        } catch (err) {
+          this.logger.error(`Commission creation on dispute resolution failed: ${(err as Error).message}`);
+          outcomeBody = 'Admin resolved the dispute in favor of the agent.';
+        }
+      } else {
+        outcomeBody = 'Admin resolved the dispute in favor of the agent.';
+      }
+    } else if (favor === 'buyer') {
+      outcomeBody = 'Admin resolved the dispute in favor of the buyer. The deal has been cancelled and no commission was created.';
+    } else {
+      outcomeBody = 'Admin cancelled the deal. No commission was created.';
+    }
+
+    // Notify both parties
+    const recipients = [saved.agentId, saved.userId].filter((u): u is string => Boolean(u));
+    for (const userId of recipients) {
+      try {
+        await this.notificationsService.create({
+          userId,
+          type: NotificationType.INQUIRY_RECEIVED,
+          title: 'Dispute resolved',
+          body: `${outcomeBody} Listing: ${listingLabel}. Notes: ${trimmed}`,
+          data: {
+            inquiryId: saved.id,
+            listingId: saved.listingId,
+            favor,
+            adminResolution: trimmed,
+          },
+        });
+      } catch (err) {
+        this.logger.error(`Resolve-dispute notification failed: ${(err as Error).message}`);
+      }
+    }
+
+    return saved;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Admin: list all disputed inquiries
+  // ---------------------------------------------------------------------------
+
+  async listDisputes(actor: RequestUser): Promise<InquiryEntity[]> {
+    if (!this.isPrivileged(actor)) {
+      throw new ForbiddenException('Only admins can view the dispute queue');
+    }
+    return this.inquiries.find({
+      where: { dealStatus: 'disputed' },
+      order: { disputeRaisedAt: 'DESC' },
+    });
+  }
+
+  async countOpenDisputes(actor: RequestUser): Promise<number> {
+    if (!this.isPrivileged(actor)) {
+      throw new ForbiddenException('Only admins can view dispute counts');
+    }
+    return this.inquiries.count({ where: { dealStatus: 'disputed' } });
   }
 
   // ---------------------------------------------------------------------------

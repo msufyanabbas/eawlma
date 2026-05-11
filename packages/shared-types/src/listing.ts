@@ -8,6 +8,8 @@ import {
   RentPeriod,
   ListingSortField,
   SortOrder,
+  type CancellationPolicy,
+  type RentalType,
 } from './enums';
 import { Address, GeoBounds, GeoPoint } from './geo';
 import { PaginationParams } from './pagination';
@@ -98,6 +100,23 @@ export interface Listing {
   hasSecurity: boolean;
   isCornerUnit: boolean;
 
+  // ---- Short-term / hospitality fields ----
+  bookingType?: 'long_term' | 'short_term' | 'daily';
+  dailyRate?: number | null;
+  weeklyRate?: number | null;
+  minimumStay?: number | null;
+  availableFrom?: string | null;
+  availableTo?: string | null;
+  maxGuests?: number | null;
+  amenitiesDetailed?: ShortTermAmenities | null;
+  houseRules?: string | null;
+  checkInTime?: string | null;
+  checkOutTime?: string | null;
+  instantBook?: boolean;
+  cancellationPolicy?: CancellationPolicy | null;
+  hotelStarRating?: number | null;
+  hotelName?: string | null;
+
   // ---- Address (flat for filtering + nested for display) ----
   country: string;
   region: string;
@@ -125,6 +144,45 @@ export interface Listing {
   tagIds: string[];
 }
 
+/** Bag of boolean flags for short-term amenities (wifi, pool, breakfast, …).
+ *  Stored as JSONB on the backend; keys are stable and extensible. */
+export interface ShortTermAmenities {
+  wifi?: boolean;
+  pool?: boolean;
+  parking?: boolean;
+  breakfast?: boolean;
+  ac?: boolean;
+  kitchen?: boolean;
+  tv?: boolean;
+  washer?: boolean;
+  workspace?: boolean;
+  petsAllowed?: boolean;
+  smokingAllowed?: boolean;
+  wheelchairAccessible?: boolean;
+  [key: string]: boolean | undefined;
+}
+
+/** Fields specific to short-term/Airbnb-style + hotel listings. Persisted on
+ *  the listing row (not a separate table) since every value is optional and
+ *  read in the same payload as the listing detail. */
+export interface ShortTermListingFields {
+  maxGuests?: number;
+  amenitiesDetailed?: ShortTermAmenities;
+  houseRules?: string;
+  checkInTime?: string;            // HH:mm
+  checkOutTime?: string;           // HH:mm
+  instantBook?: boolean;
+  cancellationPolicy?: CancellationPolicy;
+  hotelStarRating?: number;        // 1-5 for hotels
+  hotelName?: string;
+  dailyRate?: number;
+  weeklyRate?: number;
+  minimumStay?: number;
+  bookingType?: 'long_term' | 'short_term' | 'daily';
+  availableFrom?: string;
+  availableTo?: string;
+}
+
 export interface CreateListingRequest {
   type: ListingType;
   propertyType: PropertyType;
@@ -136,6 +194,7 @@ export interface CreateListingRequest {
   rentPeriod?: RentPeriod;
   isNegotiable?: boolean;
   features: Partial<ListingFeatures>;
+  shortTerm?: ShortTermListingFields;
   address: Address;
   location: GeoPoint;
   amenityIds?: string[];
@@ -184,6 +243,12 @@ export interface ListingSearchParams extends PaginationParams {
   sortBy?: ListingSortField;
   sortOrder?: SortOrder;
   locale?: Locale;
+  rentalType?: RentalType;
+  minGuests?: number;
+  hotelStarRating?: number;
+  instantBookOnly?: boolean;
+  checkIn?: string;
+  checkOut?: string;
 }
 
 export interface Amenity {

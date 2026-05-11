@@ -436,16 +436,10 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             </>
           )}
 
-          {inquiry.status === InquiryStatus.CLOSED && inquiry.transactionValue && (
+          {inquiry.dealClosedByAgent && inquiry.transactionValue && (
             <>
               <Divider sx={{ my: 3 }} />
-              <Alert severity="success" icon={<HandshakeIcon />}>
-                Deal closed for {Number(inquiry.transactionValue).toLocaleString()} SAR
-                {inquiry.closedAt
-                  ? ` on ${new Date(inquiry.closedAt).toLocaleDateString()}`
-                  : ''}
-                .
-              </Alert>
+              <DealTimeline inquiry={inquiry} />
             </>
           )}
 
@@ -488,7 +482,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
         </Box>
       )}
 
-      <Dialog open={closeOpen} onClose={() => setCloseOpen(false)} maxWidth="xs" fullWidth>
+      <Dialog open={closeOpen} onClose={() => setCloseOpen(false)} maxWidth="xs" fullWidth aria-labelledby="close-deal-dialog-title">
         <DialogTitle>Close deal</DialogTitle>
         <DialogContent>
           <Stack spacing={2} sx={{ mt: 1 }}>
@@ -536,5 +530,101 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
         </DialogActions>
       </Dialog>
     </Drawer>
+  );
+}
+
+// ------------------------------------------------------------------
+// Deal Timeline — shown on the agent's drawer once they've submitted a
+// close-deal. Mirrors the buyer's view but framed from the agent's side.
+// ------------------------------------------------------------------
+
+function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
+  const value = inquiry.transactionValue
+    ? `${Number(inquiry.transactionValue).toLocaleString()} SAR`
+    : '—';
+  const status = inquiry.dealStatus;
+
+  if (status === 'pending_confirmation') {
+    return (
+      <Box>
+        <Stack direction="row" spacing={1} sx={{ mb: 1.5 }}>
+          <Chip
+            label="Pending Buyer Confirmation"
+            sx={{
+              bgcolor: '#FFF3CD',
+              color: '#856404',
+              fontWeight: 700,
+            }}
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography variant="body2">✅ Agent closed deal for {value}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            ⏳ Waiting for buyer confirmation
+          </Typography>
+        </Stack>
+      </Box>
+    );
+  }
+
+  if (status === 'disputed') {
+    return (
+      <Box>
+        <Stack direction="row" spacing={1} sx={{ mb: 1.5 }}>
+          <Chip
+            label="DISPUTED"
+            color="error"
+            sx={{ fontWeight: 800, letterSpacing: 0.4 }}
+          />
+        </Stack>
+        <Stack spacing={1}>
+          <Typography variant="body2">✅ Agent closed deal for {value}</Typography>
+          {inquiry.disputeReason && (
+            <Alert severity="warning" sx={{ mt: 1 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700 }}>Dispute reason</Typography>
+              <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                {inquiry.disputeReason}
+              </Typography>
+            </Alert>
+          )}
+          <Typography variant="body2" color="info.main" sx={{ fontWeight: 600 }}>
+            Admin is reviewing — you'll be notified once it's resolved.
+          </Typography>
+        </Stack>
+      </Box>
+    );
+  }
+
+  if (status === 'confirmed') {
+    return (
+      <Alert severity="success" icon={<HandshakeIcon />}>
+        Buyer confirmed the deal for {value}. Commission has been created.
+      </Alert>
+    );
+  }
+
+  if (status === 'resolved') {
+    return (
+      <Box>
+        <Chip label="Resolved" color="success" sx={{ fontWeight: 700, mb: 1 }} />
+        {inquiry.adminResolution && (
+          <Alert severity="info">
+            <Typography variant="caption" sx={{ fontWeight: 700 }}>Admin resolution</Typography>
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+              {inquiry.adminResolution}
+            </Typography>
+          </Alert>
+        )}
+      </Box>
+    );
+  }
+
+  // Fallback — pre-flag legacy rows that were closed but never went through
+  // the new flow (deal_status = 'none' with a closed_at).
+  return (
+    <Alert severity="success" icon={<HandshakeIcon />}>
+      Deal closed for {value}
+      {inquiry.closedAt ? ` on ${new Date(inquiry.closedAt).toLocaleDateString()}` : ''}.
+    </Alert>
   );
 }

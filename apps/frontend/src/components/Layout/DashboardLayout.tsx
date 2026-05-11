@@ -23,6 +23,8 @@ import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import ContractIcon from '@mui/icons-material/ArticleOutlined';
 import DufaatIcon from '@mui/icons-material/CreditCardOutlined';
 import BookingIcon from '@mui/icons-material/EventAvailableOutlined';
+import HostingIcon from '@mui/icons-material/CottageOutlined';
+import DealsIcon from '@mui/icons-material/HandshakeOutlined';
 import PersonIcon from '@mui/icons-material/PersonOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import type { ReactNode } from 'react';
@@ -57,6 +59,11 @@ const ITEMS: NavItem[] = [
   { to: '/dashboard/contracts', i18nKey: 'ejar.myContracts', icon: <ContractIcon /> },
   { to: '/dashboard/dufaat', i18nKey: 'dufaat.title', icon: <DufaatIcon /> },
   { to: '/dashboard/bookings', i18nKey: 'booking.myBookings', icon: <BookingIcon /> },
+  // Hosting dashboard — only useful for hosts (agents/agency-admins).
+  { to: '/dashboard/hosting', i18nKey: 'hosting.title', icon: <HostingIcon />, agentOnly: true },
+  // Open to every authenticated user — buyers confirm/dispute deals here,
+  // agents who also buy property would see their own buyer-side deals.
+  { to: '/dashboard/deals', i18nKey: 'buyerDeals.title', icon: <DealsIcon /> },
   { to: '/dashboard/settings', i18nKey: 'dashboard.settings', icon: <SettingsIcon /> },
   { to: '/profile', i18nKey: 'nav.profile', icon: <PersonIcon /> },
 ];

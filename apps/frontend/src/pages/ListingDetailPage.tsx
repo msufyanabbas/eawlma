@@ -722,6 +722,8 @@ export function ListingDetailPage() {
               </Typography>
             </Box>
 
+            <ShortTermInfoSections listing={listing} />
+
             {/* Mortgage calculator — sale listings only (rent has no loan to amortise) */}
             {isSale && (
               <Box sx={{ mb: 4 }}>
@@ -1008,7 +1010,8 @@ export function ListingDetailPage() {
                       </Button>
                     </Stack>
                   </Stack>
-                ) : (listing as unknown as { bookingType?: string }).bookingType === 'daily' ? (
+                ) : ((listing as unknown as { bookingType?: string }).bookingType === 'daily'
+                  || (listing as unknown as { bookingType?: string }).bookingType === 'short_term') ? (
                   <BookingCalendar
                     listingId={listing.id}
                     dailyRate={
@@ -1333,6 +1336,140 @@ function ListingMap({ lat, lng }: { lat: number; lng: number }) {
       >
         <MarkerF position={{ lat, lng }} />
       </GoogleMap>
+    </Box>
+  );
+}
+
+// ------------------------------------------------------------------
+// Short-term / hotel info panels — surfaced under the description when the
+// listing carries any of the Airbnb-style or hotel metadata.
+// ------------------------------------------------------------------
+
+const SHORT_TERM_AMENITY_LABELS: Record<string, { label: string; emoji: string }> = {
+  wifi: { label: 'Wi-Fi', emoji: '📶' },
+  pool: { label: 'Pool', emoji: '🏊' },
+  parking: { label: 'Parking', emoji: '🚗' },
+  breakfast: { label: 'Breakfast', emoji: '🍳' },
+  ac: { label: 'Air conditioning', emoji: '❄️' },
+  kitchen: { label: 'Kitchen', emoji: '🍽️' },
+  tv: { label: 'TV', emoji: '📺' },
+  washer: { label: 'Washer', emoji: '🧺' },
+  workspace: { label: 'Workspace', emoji: '💻' },
+  petsAllowed: { label: 'Pets allowed', emoji: '🐾' },
+  smokingAllowed: { label: 'Smoking allowed', emoji: '🚬' },
+  wheelchairAccessible: { label: 'Wheelchair accessible', emoji: '♿' },
+};
+
+const CANCELLATION_LABELS: Record<string, string> = {
+  flexible: 'Flexible — full refund up to 24 hours before check-in',
+  moderate: 'Moderate — full refund up to 5 days before check-in',
+  strict: 'Strict — 50% refund up to 7 days before check-in',
+};
+
+function ShortTermInfoSections({ listing }: { listing: unknown }) {
+  const l = listing as {
+    bookingType?: string;
+    maxGuests?: number | null;
+    checkInTime?: string | null;
+    checkOutTime?: string | null;
+    houseRules?: string | null;
+    amenitiesDetailed?: Record<string, boolean> | null;
+    cancellationPolicy?: string | null;
+    hotelStarRating?: number | null;
+    hotelName?: string | null;
+    propertyType?: string;
+  };
+  const isShortTerm = l.bookingType === 'short_term' || l.bookingType === 'daily';
+  const isHotel =
+    l.propertyType === 'hotel_room' || l.propertyType === 'hotel_apartment';
+  if (!isShortTerm && !isHotel) return null;
+
+  const amenities = l.amenitiesDetailed
+    ? Object.entries(l.amenitiesDetailed).filter(([, v]) => v === true)
+    : [];
+
+  return (
+    <Box sx={{ mb: 4 }}>
+      {isHotel && (l.hotelName || l.hotelStarRating) && (
+        <Paper variant="outlined" sx={{ p: 2.5, mb: 2 }}>
+          <Typography variant="overline" color="text.secondary">Hotel</Typography>
+          <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mt: 0.5 }}>
+            <Typography variant="h6" sx={{ fontWeight: 800 }}>
+              {l.hotelName ?? '—'}
+            </Typography>
+            {l.hotelStarRating ? (
+              <Box sx={{ color: '#D4A843', letterSpacing: 1 }}>
+                {'★'.repeat(l.hotelStarRating)}
+                <Typography component="span" variant="caption" color="text.secondary" sx={{ ml: 0.5 }}>
+                  {l.hotelStarRating}-star
+                </Typography>
+              </Box>
+            ) : null}
+          </Stack>
+        </Paper>
+      )}
+
+      <Paper variant="outlined" sx={{ p: 2.5, mb: 2 }}>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>Stay details</Typography>
+        <Stack direction="row" spacing={4} flexWrap="wrap" rowGap={1.5}>
+          {l.maxGuests ? (
+            <InfoChip label="Max guests" value={String(l.maxGuests)} />
+          ) : null}
+          {l.checkInTime ? (
+            <InfoChip label="Check-in" value={`from ${l.checkInTime}`} />
+          ) : null}
+          {l.checkOutTime ? (
+            <InfoChip label="Check-out" value={`by ${l.checkOutTime}`} />
+          ) : null}
+          {l.cancellationPolicy ? (
+            <InfoChip label="Cancellation" value={l.cancellationPolicy} />
+          ) : null}
+        </Stack>
+        {l.cancellationPolicy && CANCELLATION_LABELS[l.cancellationPolicy] && (
+          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1.5 }}>
+            {CANCELLATION_LABELS[l.cancellationPolicy]}
+          </Typography>
+        )}
+      </Paper>
+
+      {amenities.length > 0 && (
+        <Paper variant="outlined" sx={{ p: 2.5, mb: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>What this place offers</Typography>
+          <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={2}>
+            {amenities.map(([key]) => {
+              const meta = SHORT_TERM_AMENITY_LABELS[key] ?? { label: key, emoji: '✓' };
+              return (
+                <Stack key={key} direction="row" spacing={0.75} alignItems="center" sx={{ minWidth: 160 }}>
+                  <Typography variant="body1">{meta.emoji}</Typography>
+                  <Typography variant="body2">{meta.label}</Typography>
+                </Stack>
+              );
+            })}
+          </Stack>
+        </Paper>
+      )}
+
+      {l.houseRules && (
+        <Paper variant="outlined" sx={{ p: 2.5 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>House rules</Typography>
+          <Typography variant="body2" sx={{ whiteSpace: 'pre-line', lineHeight: 1.6 }}>
+            {l.houseRules}
+          </Typography>
+        </Paper>
+      )}
+    </Box>
+  );
+}
+
+function InfoChip({ label, value }: { label: string; value: string }) {
+  return (
+    <Box>
+      <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 0.4 }}>
+        {label}
+      </Typography>
+      <Typography variant="body2" sx={{ fontWeight: 700, textTransform: 'capitalize' }}>
+        {value}
+      </Typography>
     </Box>
   );
 }

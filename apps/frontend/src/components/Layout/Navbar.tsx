@@ -57,6 +57,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 
   const [langAnchor, setLangAnchor] = useState<HTMLElement | null>(null);
   const [userAnchor, setUserAnchor] = useState<HTMLElement | null>(null);
+  const [staysAnchor, setStaysAnchor] = useState<HTMLElement | null>(null);
   const [searchValue, setSearchValue] = useState('');
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -205,14 +206,49 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
           {/* Right cluster — pinned to inline-end */}
           <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
             {isDesktop && (
-              <Link to="/market" style={{ textDecoration: 'none' }}>
+              <>
                 <Button
                   color="inherit"
+                  onClick={(e) => setStaysAnchor(e.currentTarget)}
                   sx={{ color: 'text.primary', fontWeight: 600, textTransform: 'none' }}
                 >
-                  {t('nav.market')}
+                  {t('nav.stays', { defaultValue: 'Stays' })}
                 </Button>
-              </Link>
+                <Menu
+                  anchorEl={staysAnchor}
+                  open={!!staysAnchor}
+                  onClose={() => setStaysAnchor(null)}
+                  PaperProps={{ sx: { minWidth: 200, mt: 1, borderRadius: 2 } }}
+                >
+                  <MenuItem
+                    onClick={() => { setStaysAnchor(null); void navigate({ to: '/stays' as never }); }}
+                  >
+                    {t('nav.shortTermStays', { defaultValue: 'Short-term stays' })}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => { setStaysAnchor(null); void navigate({ to: '/hotels' as never }); }}
+                  >
+                    {t('nav.hotels', { defaultValue: 'Hotels' })}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setStaysAnchor(null);
+                      void navigate({ to: '/search' as never, search: { rentalType: 'chalet' } as never });
+                    }}
+                  >
+                    {t('nav.chalets', { defaultValue: 'Chalets & farms' })}
+                  </MenuItem>
+                </Menu>
+
+                <Link to="/market" style={{ textDecoration: 'none' }}>
+                  <Button
+                    color="inherit"
+                    sx={{ color: 'text.primary', fontWeight: 600, textTransform: 'none' }}
+                  >
+                    {t('nav.market')}
+                  </Button>
+                </Link>
+              </>
             )}
             {!isDesktop && (
               <Tooltip title={t('common.search')}>

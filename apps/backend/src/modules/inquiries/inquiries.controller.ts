@@ -33,6 +33,8 @@ import { CreateInquiryDto } from './dto/create-inquiry.dto';
 import { UpdateInquiryDto } from './dto/update-inquiry.dto';
 import { InquiryResponseDto } from './dto/inquiry-response.dto';
 import { CloseDealDto } from './dto/close-deal.dto';
+import { RaiseDisputeDto } from './dto/raise-dispute.dto';
+import { AdminResolveDisputeDto } from './dto/admin-resolve-dispute.dto';
 
 @ApiTags('inquiries')
 @Controller({ path: 'inquiries', version: '1' })
@@ -129,7 +131,7 @@ export class InquiriesController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary:
-      'Close the deal on an inquiry. Records the transaction value, transitions the inquiry to CLOSED, and auto-creates a pending Commission row + notifications.',
+      'Agent records the transaction value and flags the deal as pending buyer confirmation. No commission is created until the buyer confirms.',
   })
   @ApiOkResponse({ type: InquiryResponseDto })
   async closeDeal(
@@ -139,5 +141,73 @@ export class InquiriesController {
   ): Promise<InquiryResponseDto> {
     const closed = await this.inquiriesService.closeDeal(id, actor, dto);
     return InquiryResponseDto.fromEntity(closed);
+  }
+
+  @ApiBearerAuth('access-token')
+  @Post(':id/confirm-deal')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Buyer confirms a deal the agent marked as closed. Creates the commission and notifies the agent and admins.',
+  })
+  @ApiOkResponse({ type: InquiryResponseDto })
+  async confirmDeal(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() actor: RequestUser,
+  ): Promise<InquiryResponseDto> {
+    const confirmed = await this.inquiriesService.confirmDeal(id, actor);
+    return InquiryResponseDto.fromEntity(confirmed);
+  }
+
+  @ApiBearerAuth('access-token')
+  @Post(':id/raise-dispute')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Buyer OR agent disputes a pending deal. Admin will review via /admin/disputes.',
+  })
+  @ApiOkResponse({ type: InquiryResponseDto })
+  async raiseDispute(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() actor: RequestUser,
+    @Body() dto: RaiseDisputeDto,
+  ): Promise<InquiryResponseDto> {
+    const disputed = await this.inquiriesService.raiseDispute(id, actor, dto.reason);
+    return InquiryResponseDto.fromEntity(disputed);
+  }
+
+  @ApiBearerAuth('access-token')
+  @Get('admin/disputes')
+  @ApiOperation({ summary: 'Admin: list all disputed inquiries.' })
+  async listDisputes(@CurrentUser() actor: RequestUser) {
+    const data = await this.inquiriesService.listDisputes(actor);
+    return { data: data.map(InquiryResponseDto.fromEntity) };
+  }
+
+  @ApiBearerAuth('access-token')
+  @Get('admin/disputes/count')
+  @ApiOperation({ summary: 'Admin: open-dispute count, used for sidebar badge.' })
+  async countDisputes(@CurrentUser() actor: RequestUser) {
+    const count = await this.inquiriesService.countOpenDisputes(actor);
+    return { count };
+  }
+
+  @ApiBearerAuth('access-token')
+  @Post(':id/admin-resolve')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Admin resolves a disputed deal in favor of agent / buyer / cancelled.' })
+  @ApiOkResponse({ type: InquiryResponseDto })
+  async adminResolveDispute(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() actor: RequestUser,
+    @Body() dto: AdminResolveDisputeDto,
+  ): Promise<InquiryResponseDto> {
+    const resolved = await this.inquiriesService.adminResolveDispute(
+      id,
+      actor,
+      dto.resolution,
+      dto.favor,
+    );
+    return InquiryResponseDto.fromEntity(resolved);
   }
 }

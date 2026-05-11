@@ -51,6 +51,11 @@ export class BookingEntity extends BaseEntity {
   @Column({ type: 'integer' })
   nights: number;
 
+  /** Headcount for the stay. Defaults to 1; capped by listing.maxGuests on
+   *  create. */
+  @Column({ type: 'integer', name: 'num_guests', default: 1 })
+  numGuests: number;
+
   @Column({ type: 'numeric', precision: 14, scale: 2, name: 'total_amount' })
   totalAmount: string;
 

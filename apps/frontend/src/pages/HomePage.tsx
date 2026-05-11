@@ -827,20 +827,76 @@ export function HomePage() {
 // Partners
 // ------------------------------------------------------------------
 
-const PARTNERS: Array<{ name: string; logo: string }> = [
-  { name: 'Roshn',        logo: 'https://via.placeholder.com/160x60/6C63A6/FFFFFF?text=Roshn' },
-  { name: 'Ajlan & Bros', logo: 'https://via.placeholder.com/160x60/4A4080/FFFFFF?text=Ajlan' },
-  { name: 'Saudi Fransi', logo: 'https://via.placeholder.com/160x60/8B84C4/FFFFFF?text=Fransi' },
-  { name: 'Riyad Bank',   logo: 'https://via.placeholder.com/160x60/D4A843/1A1A2E?text=Riyad' },
-  { name: 'Al Rajhi',     logo: 'https://via.placeholder.com/160x60/6C63A6/FFFFFF?text=Rajhi' },
-  { name: 'CBRE',         logo: 'https://via.placeholder.com/160x60/2BBFBF/FFFFFF?text=CBRE' },
-  { name: 'JLL',          logo: 'https://via.placeholder.com/160x60/4A4080/FFFFFF?text=JLL' },
+const PARTNERS: Array<{ name: string; nameAr: string; logo: string; url: string }> = [
+  {
+    name: 'Roshn',
+    nameAr: 'روشن',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/ROSHN_Logo.svg/200px-ROSHN_Logo.svg.png',
+    url: 'https://roshn.sa',
+  },
+  {
+    name: 'Saudi Real Estate Co.',
+    nameAr: 'شركة العقارية السعودية',
+    logo: 'https://www.sreco.com.sa/images/logo.png',
+    url: 'https://sreco.com.sa',
+  },
+  {
+    name: 'Al Rajhi Bank',
+    nameAr: 'مصرف الراجحي',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Al_Rajhi_Bank_Logo.svg/200px-Al_Rajhi_Bank_Logo.svg.png',
+    url: 'https://alrajhibank.com.sa',
+  },
+  {
+    name: 'Riyad Bank',
+    nameAr: 'بنك الرياض',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Riyad_Bank_logo.svg/200px-Riyad_Bank_logo.svg.png',
+    url: 'https://riyadbank.com',
+  },
+  {
+    name: 'Saudi National Bank',
+    nameAr: 'البنك الأهلي السعودي',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Saudi_National_Bank_logo.svg/200px-Saudi_National_Bank_logo.svg.png',
+    url: 'https://alahli.com',
+  },
+  {
+    name: 'Alinma Bank',
+    nameAr: 'مصرف الإنماء',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Alinma_Bank_logo.svg/200px-Alinma_Bank_logo.svg.png',
+    url: 'https://alinma.com',
+  },
+  {
+    name: 'Dar Al Arkan',
+    nameAr: 'دار الأركان',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Dar_Al_Arkan_logo.svg/200px-Dar_Al_Arkan_logo.svg.png',
+    url: 'https://daralarkan.com',
+  },
+  {
+    name: 'Emaar',
+    nameAr: 'إعمار',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Emaar_Properties_Logo.svg/200px-Emaar_Properties_Logo.svg.png',
+    url: 'https://emaar.com',
+  },
+  {
+    name: 'CBRE',
+    nameAr: 'سي بي آر إي',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/CBRE_Group_logo.svg/200px-CBRE_Group_logo.svg.png',
+    url: 'https://cbre.com',
+  },
+  {
+    name: 'JLL',
+    nameAr: 'جي إل إل',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/JLL_logo.svg/200px-JLL_logo.svg.png',
+    url: 'https://jll.com',
+  },
 ];
 
 function PartnersCarousel() {
   // Render the list twice so the keyframe animation can scroll a full lap
   // before resetting and looking continuous. Pause-on-hover preserves a11y
   // for users who want to read a specific logo.
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
+
   return (
     <Box
       sx={{
@@ -876,33 +932,91 @@ function PartnersCarousel() {
         className="partners-track"
         sx={{
           display: 'flex',
-          gap: { xs: 4, md: 6 },
+          gap: { xs: 2.5, md: 3.5 },
           width: 'max-content',
-          animation: 'partners-scroll 32s linear infinite',
+          animation: 'partners-scroll 48s linear infinite',
+          py: 1.5,
         }}
       >
-        {[...PARTNERS, ...PARTNERS].map((p, i) => (
+        {[...PARTNERS, ...PARTNERS].map((partner, i) => (
           <Box
-            key={`${p.name}-${i}`}
+            key={`${partner.name}-${i}`}
+            component="a"
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={isAr ? partner.nameAr : partner.name}
             sx={{
               flex: '0 0 auto',
-              opacity: 0.85,
-              transition: 'opacity 200ms ease',
-              '&:hover': { opacity: 1 },
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1.25,
+              width: 180,
+              p: 2,
+              bgcolor: (t) => (t.palette.mode === 'dark' ? 'rgba(255,255,255,0.04)' : 'grey.100'),
+              borderRadius: 2,
+              textDecoration: 'none',
+              color: 'inherit',
+              border: 1,
+              borderColor: 'divider',
+              transition: 'transform 220ms ease, box-shadow 220ms ease',
+              '&:hover': {
+                transform: 'translateY(-4px)',
+                boxShadow: '0 12px 28px rgba(26,26,46,0.14)',
+              },
             }}
           >
             <Box
-              component="img"
-              src={p.logo}
-              alt={p.name}
-              loading="lazy"
               sx={{
-                height: { xs: 40, md: 56 },
-                width: 'auto',
-                filter: 'grayscale(0.2)',
-                display: 'block',
+                bgcolor: 'common.white',
+                borderRadius: 1.5,
+                width: '100%',
+                height: 70,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                px: 1.5,
               }}
-            />
+            >
+              <Box
+                component="img"
+                src={partner.logo}
+                alt={partner.name}
+                loading="lazy"
+                onError={(e) => {
+                  const el = e.currentTarget as HTMLImageElement;
+                  el.style.display = 'none';
+                  const next = el.nextSibling as HTMLElement | null;
+                  if (next) next.style.display = 'block';
+                }}
+                sx={{ height: 50, objectFit: 'contain', maxWidth: 140 }}
+              />
+              <Typography
+                sx={{
+                  display: 'none',
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  fontSize: 14,
+                  textAlign: 'center',
+                  px: 1,
+                }}
+              >
+                {isAr ? partner.nameAr : partner.name}
+              </Typography>
+            </Box>
+            <Typography
+              sx={{
+                fontSize: 13,
+                fontWeight: 600,
+                color: 'text.primary',
+                textAlign: 'center',
+                lineHeight: 1.3,
+              }}
+            >
+              {isAr ? partner.nameAr : partner.name}
+            </Typography>
           </Box>
         ))}
       </Box>

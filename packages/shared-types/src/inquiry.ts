@@ -1,8 +1,18 @@
 import { InquiryStatus } from './enums';
 
+export type DealStatus =
+  | 'none'
+  | 'pending_confirmation'
+  | 'confirmed'
+  | 'disputed'
+  | 'resolved';
+
+export type DisputeFavor = 'agent' | 'buyer' | 'cancelled';
+
 export interface Inquiry {
   id: string;
   listingId: string;
+  agentId?: string;
   userId: string | null;     // null when sent by anonymous visitor
   guestName: string | null;
   guestEmail: string | null;
@@ -16,8 +26,26 @@ export interface Inquiry {
   respondedAt: string | null;
   transactionValue: number | null;
   closedAt: string | null;
+  dealClosedByAgent: boolean;
+  dealConfirmedByBuyer: boolean;
+  dealStatus: DealStatus;
+  disputeReason: string | null;
+  disputeRaisedBy: string | null;
+  disputeRaisedAt: string | null;
+  adminResolution: string | null;
+  adminResolvedBy: string | null;
+  adminResolvedAt: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface RaiseDisputeRequest {
+  reason: string;
+}
+
+export interface AdminResolveDisputeRequest {
+  resolution: string;
+  favor: DisputeFavor;
 }
 
 export interface CloseInquiryDealRequest {

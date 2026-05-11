@@ -47,6 +47,7 @@ import {
   ListingType,
   PropertyType,
   type Listing,
+  type RentalType,
 } from '@eawlma/shared-types';
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
 import { ListingCard } from '@/components/global/ListingCard';
@@ -84,6 +85,7 @@ interface SearchPageSearch {
   sortField?: string;
   sortOrder?: 'ASC' | 'DESC';
   view?: ViewMode;
+  rentalType?: RentalType;
 }
 
 const PAGE_SIZE = 12;
@@ -135,6 +137,7 @@ export function SearchPage() {
     if (get('sortField')) out.sortField = get('sortField');
     if (get('sortOrder')) out.sortOrder = get('sortOrder') as 'ASC' | 'DESC';
     if (get('view')) out.view = get('view') as ViewMode;
+    if (get('rentalType')) out.rentalType = get('rentalType') as RentalType;
     return out;
     // Initial-only — re-reading on every render would fight our own writes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -168,6 +171,7 @@ export function SearchPage() {
   );
   const [sort, setSort] = useState<string>(initial.sortField ?? 'createdAt');
   const [view, setView] = useState<ViewMode>((initial.view as ViewMode) ?? 'grid');
+  const [rentalType, setRentalType] = useState<RentalType | ''>(initial.rentalType ?? '');
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [requestDialogOpen, setRequestDialogOpen] = useState(false);
 
@@ -200,6 +204,7 @@ export function SearchPage() {
     if (amenities.length > 0) params.set('amenities', amenities.join(','));
     if (sort !== 'createdAt') params.set('sortField', sort);
     if (view !== 'grid') params.set('view', view);
+    if (rentalType) params.set('rentalType', rentalType);
 
     const qs = params.toString();
     const nextUrl = `/search${qs ? `?${qs}` : ''}`;
@@ -208,7 +213,7 @@ export function SearchPage() {
     }
   }, [
     q, type, city, district, priceRange, areaRange,
-    minBedrooms, minBathrooms, verifiedOnly, propertyTypes, amenities, sort, view,
+    minBedrooms, minBathrooms, verifiedOnly, propertyTypes, amenities, sort, view, rentalType,
   ]);
 
   // ----- query --------------------------------------------------------
@@ -216,8 +221,8 @@ export function SearchPage() {
   // slider or typing in the city field doesn't fire a fetch on every keystroke.
   // The "Apply filters" button still works (forces a refetch immediately).
   const filterSnapshot = useMemo(
-    () => ({ q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort }),
-    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort],
+    () => ({ q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort, rentalType }),
+    [q, type, city, district, priceRange, areaRange, minBedrooms, minBathrooms, propertyTypes, amenities, verifiedOnly, sort, rentalType],
   );
   const [debouncedFilters, setDebouncedFilters] = useState(filterSnapshot);
   useEffect(() => {
@@ -237,6 +242,7 @@ export function SearchPage() {
     propertyTypes: debouncedFilters.propertyTypes.length > 0 ? debouncedFilters.propertyTypes : undefined,
     isFeatured: debouncedFilters.verifiedOnly || undefined,
     sortField: debouncedFilters.sort,
+    rentalType: debouncedFilters.rentalType || undefined,
     page,
     limit: PAGE_SIZE,
   });
@@ -278,6 +284,7 @@ export function SearchPage() {
     setPriceRange(PRICE_BOUNDS); setAreaRange(AREA_BOUNDS);
     setMinBedrooms(''); setMinBathrooms('');
     setPropertyTypes([]); setAmenities([]); setVerifiedOnly(false);
+    setRentalType('');
   };
 
   const activeChips = buildActiveChips({
@@ -297,6 +304,7 @@ export function SearchPage() {
     verifiedOnly, setVerifiedOnly,
     city, setCity,
     district, setDistrict,
+    rentalType, setRentalType,
   };
 
   return (
@@ -649,6 +657,8 @@ interface FilterPanelProps {
   setCity: (v: string) => void;
   district: string;
   setDistrict: (v: string) => void;
+  rentalType: RentalType | '';
+  setRentalType: (v: RentalType | '') => void;
 }
 
 function FilterPanel(props: FilterPanelProps) {
@@ -710,6 +720,42 @@ function FilterPanel(props: FilterPanelProps) {
             },
           }}
         />
+
+        {/* Rental type — Long-term / Short-term / Hotel / Chalet */}
+        <Box sx={{ mt: 2 }}>
+          <Typography
+            sx={{ fontSize: 11, fontWeight: 700, color: 'text.secondary', mb: 0.75, textTransform: 'uppercase', letterSpacing: 0.4 }}
+          >
+            {t('search.rentalType', { defaultValue: 'Rental type' })}
+          </Typography>
+          <ToggleButtonGroup
+            fullWidth
+            exclusive
+            size="small"
+            value={props.rentalType}
+            onChange={(_, v) => props.setRentalType((v ?? '') as RentalType | '')}
+            sx={{
+              flexWrap: 'wrap',
+              '& .MuiToggleButton-root': {
+                fontWeight: 600,
+                fontSize: 11,
+                py: 0.5,
+                flex: '1 0 50%',
+                '&.Mui-selected': {
+                  bgcolor: 'primary.main',
+                  color: 'common.white',
+                  '&:hover': { bgcolor: 'primary.dark' },
+                },
+              },
+            }}
+          >
+            <ToggleButton value="">{t('common.viewAll')}</ToggleButton>
+            <ToggleButton value="long_term">{t('search.longTerm', { defaultValue: 'Long-term' })}</ToggleButton>
+            <ToggleButton value="short_term">{t('search.shortTerm', { defaultValue: 'Short-term' })}</ToggleButton>
+            <ToggleButton value="hotel">{t('search.hotel', { defaultValue: 'Hotel' })}</ToggleButton>
+            <ToggleButton value="chalet">{t('search.chalet', { defaultValue: 'Chalet' })}</ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
       </Box>
 
       <FilterSection title={t('search.propertyType')} defaultExpanded>

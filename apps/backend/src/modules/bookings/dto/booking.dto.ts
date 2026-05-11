@@ -1,10 +1,13 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsDateString,
+  IsInt,
   IsOptional,
   IsString,
   IsUUID,
+  Max,
   MaxLength,
+  Min,
 } from 'class-validator';
 
 import { BookingEntity, BookingStatus } from '../entities/booking.entity';
@@ -22,6 +25,13 @@ export class CreateBookingDto {
   @IsDateString()
   checkOut: string;
 
+  @ApiPropertyOptional({ minimum: 1, maximum: 50, default: 1 })
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  @Max(50)
+  numGuests?: number;
+
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
@@ -37,6 +47,7 @@ export class BookingResponseDto {
   @ApiProperty() checkIn: string;
   @ApiProperty() checkOut: string;
   @ApiProperty() nights: number;
+  @ApiProperty() numGuests: number;
   @ApiProperty() totalAmount: number;
   @ApiProperty() status: BookingStatus;
   @ApiPropertyOptional({ nullable: true }) notes: string | null;
@@ -53,6 +64,7 @@ export class BookingResponseDto {
     dto.checkIn = b.checkIn;
     dto.checkOut = b.checkOut;
     dto.nights = b.nights;
+    dto.numGuests = b.numGuests ?? 1;
     dto.totalAmount = Number(b.totalAmount);
     dto.status = b.status;
     dto.notes = b.notes;

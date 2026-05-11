@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { InquiryStatus } from '@eawlma/shared-types';
+import { InquiryStatus, type DealStatus } from '@eawlma/shared-types';
 import { InquiryEntity } from '../entities/inquiry.entity';
 
 export class InquiryResponseDto {
@@ -20,6 +20,19 @@ export class InquiryResponseDto {
   @ApiPropertyOptional({ type: String, nullable: true }) respondedAt: Date | null;
   @ApiPropertyOptional({ nullable: true }) transactionValue: number | null;
   @ApiPropertyOptional({ type: String, nullable: true }) closedAt: Date | null;
+
+  // Deal confirmation + dispute fields
+  @ApiProperty() dealClosedByAgent: boolean;
+  @ApiProperty() dealConfirmedByBuyer: boolean;
+  @ApiProperty({ enum: ['none', 'pending_confirmation', 'confirmed', 'disputed', 'resolved'] })
+  dealStatus: DealStatus;
+  @ApiPropertyOptional({ nullable: true }) disputeReason: string | null;
+  @ApiPropertyOptional({ nullable: true }) disputeRaisedBy: string | null;
+  @ApiPropertyOptional({ type: String, nullable: true }) disputeRaisedAt: Date | null;
+  @ApiPropertyOptional({ nullable: true }) adminResolution: string | null;
+  @ApiPropertyOptional({ nullable: true }) adminResolvedBy: string | null;
+  @ApiPropertyOptional({ type: String, nullable: true }) adminResolvedAt: Date | null;
+
   @ApiProperty({ type: String }) createdAt: Date;
   @ApiProperty({ type: String }) updatedAt: Date;
 
@@ -41,6 +54,15 @@ export class InquiryResponseDto {
     dto.respondedAt = i.respondedAt;
     dto.transactionValue = i.transactionValue !== null ? Number(i.transactionValue) : null;
     dto.closedAt = i.closedAt;
+    dto.dealClosedByAgent = i.dealClosedByAgent ?? false;
+    dto.dealConfirmedByBuyer = i.dealConfirmedByBuyer ?? false;
+    dto.dealStatus = (i.dealStatus ?? 'none') as DealStatus;
+    dto.disputeReason = i.disputeReason;
+    dto.disputeRaisedBy = i.disputeRaisedBy;
+    dto.disputeRaisedAt = i.disputeRaisedAt;
+    dto.adminResolution = i.adminResolution;
+    dto.adminResolvedBy = i.adminResolvedBy;
+    dto.adminResolvedAt = i.adminResolvedAt;
     dto.createdAt = i.createdAt;
     dto.updatedAt = i.updatedAt;
     return dto;

@@ -5,7 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { InquiryStatus } from '@eawlma/shared-types';
+import { InquiryStatus, type DealStatus } from '@eawlma/shared-types';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { ListingEntity } from '../../listings/entities/listing.entity';
 import { UserEntity } from '../../users/entities/user.entity';
@@ -95,4 +95,36 @@ export class InquiryEntity extends BaseEntity {
 
   @Column({ type: 'varchar', length: 512, name: 'user_agent', nullable: true })
   userAgent: string | null;
+
+  // --- Deal confirmation + dispute resolution ---
+  // The close-deal flow no longer creates a commission immediately. Instead the
+  // agent flags `dealClosedByAgent` and we wait for the buyer to confirm. If
+  // either party disputes within the confirmation window, an admin resolves it.
+
+  @Column({ type: 'boolean', name: 'deal_closed_by_agent', default: false })
+  dealClosedByAgent: boolean;
+
+  @Column({ type: 'boolean', name: 'deal_confirmed_by_buyer', default: false })
+  dealConfirmedByBuyer: boolean;
+
+  @Column({ type: 'varchar', length: 32, name: 'deal_status', default: 'none' })
+  dealStatus: DealStatus;
+
+  @Column({ type: 'text', name: 'dispute_reason', nullable: true })
+  disputeReason: string | null;
+
+  @Column({ type: 'uuid', name: 'dispute_raised_by', nullable: true })
+  disputeRaisedBy: string | null;
+
+  @Column({ type: 'timestamptz', name: 'dispute_raised_at', nullable: true })
+  disputeRaisedAt: Date | null;
+
+  @Column({ type: 'text', name: 'admin_resolution', nullable: true })
+  adminResolution: string | null;
+
+  @Column({ type: 'uuid', name: 'admin_resolved_by', nullable: true })
+  adminResolvedBy: string | null;
+
+  @Column({ type: 'timestamptz', name: 'admin_resolved_at', nullable: true })
+  adminResolvedAt: Date | null;
 }
