@@ -155,12 +155,57 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
       }}
     >
       {/* Brand block */}
-      <Stack direction="row" alignItems="center" spacing={1.25} sx={{ py: 3, px: 3 }}>
-        <Box component="img" src={logoUrl} alt="Eawlma" sx={{ height: 36, width: 36, filter: 'brightness(1.1)' }} />
-        <Typography sx={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.4px' }}>
+      <Stack direction="row" alignItems="center" spacing={1.25} sx={{ py: 2.5, px: 3 }}>
+        <Box component="img" src={logoUrl} alt="Eawlma" sx={{ height: 32, width: 32, filter: 'brightness(1.1)' }} />
+        <Typography sx={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.4px' }}>
           Eawlma
         </Typography>
       </Stack>
+
+      {/* User info block (top of sidebar) */}
+      {user && (
+        <Box
+          sx={{
+            p: 2.5,
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            mb: 1,
+          }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <Avatar
+              src={user.avatarUrl ?? undefined}
+              sx={{
+                width: 40,
+                height: 40,
+                bgcolor: 'secondary.main',
+                color: '#1A1A2E',
+                fontWeight: 700,
+              }}
+            >
+              {user.firstName?.[0]?.toUpperCase() ?? 'U'}
+            </Avatar>
+            <Box sx={{ minWidth: 0, flex: 1 }}>
+              <Typography
+                sx={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}
+                noWrap
+              >
+                {user.firstName} {user.lastName}
+              </Typography>
+              <Typography
+                sx={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)' }}
+                noWrap
+              >
+                {user.role === UserRole.ADMIN
+                  ? t('nav.admin')
+                  : isAgent
+                    ? t('listing.agent', { defaultValue: 'Agent' })
+                    : t('nav.profile')}
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+      )}
 
       <Typography
         sx={{
@@ -169,7 +214,7 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
           textTransform: 'uppercase',
           color: 'rgba(255,255,255,0.4)',
           px: 3,
-          pt: 3,
+          pt: 1,
           pb: 1,
         }}
       >
@@ -216,39 +261,15 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
         })()}
       </Box>
 
-      {/* Bottom: user identity + sign out */}
+      {/* Bottom: sign-out only — user identity already lives at the top. */}
       {user && (
         <Box sx={{ p: 2, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-          <Stack direction="row" alignItems="center" spacing={1.25} sx={{ mb: 1.5 }}>
-            <Avatar
-              src={user.avatarUrl ?? undefined}
-              sx={{
-                width: 36,
-                height: 36,
-                bgcolor: 'rgba(255,255,255,0.18)',
-                color: '#FFFFFF',
-                fontWeight: 700,
-              }}
-            >
-              {user.firstName?.[0]?.toUpperCase() ?? 'U'}
-            </Avatar>
-            <Box sx={{ minWidth: 0, flex: 1 }}>
-              <Typography sx={{ fontSize: '0.875rem', fontWeight: 700, color: '#FFFFFF' }} noWrap>
-                {user.firstName} {user.lastName}
-              </Typography>
-              <Typography sx={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.55)' }} noWrap>
-                {user.email}
-              </Typography>
-            </Box>
-          </Stack>
           <Button
             fullWidth
             variant="outlined"
             startIcon={<LogoutIcon sx={{ fontSize: 18 }} />}
             onClick={handleSignOut}
             sx={{
-              // Sidebar is always rendered on the dark gradient — force white
-              // so the button stays legible regardless of light/dark theme.
               color: 'rgba(255,255,255,0.9) !important',
               borderColor: 'rgba(255,255,255,0.3) !important',
               fontWeight: 600,
@@ -285,8 +306,8 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
             boxSizing: 'border-box',
             border: 'none',
             left: 0,
-            top: { md: 72 },
-            height: { md: 'calc(100vh - 72px)' },
+            top: { md: 110 },
+            height: { md: 'calc(100vh - 110px)' },
             // Force the dark lavender gradient regardless of the active theme
             // mode so sidebar text stays legibly white in both light and dark.
             background: 'linear-gradient(180deg, #2D2650 0%, #3D3570 100%)',

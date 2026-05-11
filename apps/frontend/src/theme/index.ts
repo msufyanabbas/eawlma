@@ -26,92 +26,59 @@ declare module '@mui/material/styles' {
   }
 }
 
-const headingStackLatin = ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'].join(',');
-const bodyStackLatin = ['Inter', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'].join(',');
-const stackArabic = ['Tajawal', '"IBM Plex Sans Arabic"', 'Cairo', 'system-ui', 'sans-serif'].join(',');
-// Urdu stack — Noto Nastaliq Urdu primary, Mehr Nastaliq self-hosted fallback for richer Nastaleeq.
-const stackUrdu = ['"Noto Nastaliq Urdu"', '"Mehr Nastaliq"', 'serif'].join(',');
+// Tajawal handles Arabic + Latin in a single face so we use it as the
+// primary font for both. Inter is kept as a Latin-only fallback. Urdu gets
+// Nastaliq because Tajawal is Naskh-only.
+const STACK_DEFAULT = '"Tajawal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+const STACK_URDU = '"Noto Nastaliq Urdu", "Mehr Nastaliq", serif';
 
-const pickStack = (script: LangScript) => {
-  if (script === 'arabic') return stackArabic;
-  if (script === 'urdu') return stackUrdu;
-  return bodyStackLatin;
-};
-const pickHeadingStack = (script: LangScript) => {
-  if (script === 'arabic') return stackArabic;
-  if (script === 'urdu') return stackUrdu;
-  return headingStackLatin;
-};
+const pickStack = (script: LangScript) => (script === 'urdu' ? STACK_URDU : STACK_DEFAULT);
 
 const buildTypography = (
-  direction: Direction,
-  script: LangScript = direction === 'rtl' ? 'arabic' : 'latin',
+  _direction: Direction,
+  script: LangScript = 'arabic',
 ): ThemeOptions['typography'] => {
   const stack = pickStack(script);
-  const headingStack = pickHeadingStack(script);
-  // Nastaleeq needs more vertical space than Naskh/Latin but the same glyph
-  // size — bumping fontSize made everything feel oversized.
+  // Nastaleeq needs more vertical space than Naskh/Latin — bump line-height
+  // (and slightly bump the body size for Nastaleeq legibility) but keep glyph
+  // sizes otherwise identical so layouts don't reshuffle per locale.
   const isUrdu = script === 'urdu';
+  const lineBody = isUrdu ? 2.2 : 1.65;
+  const lineHeading = isUrdu ? 2.2 : 1.3;
   return {
     fontFamily: stack,
-    fontSize: 14,
+    // 15px base reads better in Tajawal than the prior 14px while staying
+    // denser than the original 16px MUI default.
+    fontSize: isUrdu ? 16 : 15,
     htmlFontSize: 16,
-    h1: {
-      fontFamily: headingStack,
-      fontSize: '2.75rem',
-      fontWeight: 800,
-      letterSpacing: '-0.02em',
-      lineHeight: 1.15,
-    },
-    h2: {
-      fontFamily: headingStack,
-      fontSize: '2.25rem',
+    h1: { fontFamily: stack, fontSize: '2rem',    fontWeight: 800, lineHeight: lineHeading },
+    h2: { fontFamily: stack, fontSize: '1.65rem', fontWeight: 700, lineHeight: lineHeading },
+    h3: { fontFamily: stack, fontSize: '1.4rem',  fontWeight: 700, lineHeight: isUrdu ? 2.2 : 1.35 },
+    h4: { fontFamily: stack, fontSize: '1.2rem',  fontWeight: 700, lineHeight: isUrdu ? 2 : 1.4 },
+    h5: { fontFamily: stack, fontSize: '1.05rem', fontWeight: 600, lineHeight: isUrdu ? 2 : 1.45 },
+    h6: { fontFamily: stack, fontSize: '0.95rem', fontWeight: 600, lineHeight: isUrdu ? 2 : 1.5 },
+    subtitle1: { fontSize: '1rem',      fontWeight: 500, lineHeight: isUrdu ? 2 : 1.5 },
+    subtitle2: { fontSize: '0.9rem',    fontWeight: 600, lineHeight: isUrdu ? 2 : 1.5 },
+    body1:     { fontSize: '0.9375rem', fontWeight: 400, lineHeight: lineBody },
+    body2:     { fontSize: '0.875rem',  fontWeight: 400, lineHeight: lineBody },
+    caption:   { fontSize: '0.8125rem', fontWeight: 400, lineHeight: isUrdu ? 2 : 1.5 },
+    overline: {
+      fontSize: '0.75rem',
       fontWeight: 700,
-      letterSpacing: '-0.018em',
-      lineHeight: 1.2,
+      letterSpacing: '0.08em',
+      textTransform: 'uppercase',
+      lineHeight: 2,
     },
-    h3: {
-      fontFamily: headingStack,
-      fontSize: '1.75rem',
-      fontWeight: 700,
-      letterSpacing: '-0.016em',
-      lineHeight: 1.25,
-    },
-    h4: {
-      fontFamily: headingStack,
-      fontSize: '1.375rem',
-      fontWeight: 700,
-      letterSpacing: '-0.012em',
-      lineHeight: 1.3,
-    },
-    h5: {
-      fontFamily: headingStack,
-      fontSize: '1.125rem',
-      fontWeight: 600,
-      lineHeight: 1.4,
-    },
-    h6: {
-      fontFamily: headingStack,
-      fontSize: '1rem',
-      fontWeight: 600,
-      lineHeight: 1.45,
-    },
-    subtitle1: { fontWeight: 500, ...(isUrdu ? { lineHeight: 1.8 } : {}) },
-    subtitle2: { fontWeight: 600, ...(isUrdu ? { lineHeight: 1.8 } : {}) },
-    body1: {
+    button: {
       fontSize: '0.9375rem',
-      lineHeight: isUrdu ? 1.8 : 1.6,
+      fontWeight: 600,
+      textTransform: 'none',
+      letterSpacing: '0.01em',
     },
-    body2: {
-      fontSize: '0.875rem',
-      lineHeight: isUrdu ? 1.8 : 1.55,
-    },
-    button: { textTransform: 'none', fontWeight: 600, letterSpacing: 0 },
-    overline: { fontWeight: 600, letterSpacing: '0.08em' },
   };
 };
 
-const baseShape: ThemeOptions['shape'] = { borderRadius: 12 };
+const baseShape: ThemeOptions['shape'] = { borderRadius: 10 };
 
 const buildComponents = (mode: Mode): ThemeOptions['components'] => ({
   MuiCssBaseline: {
@@ -121,70 +88,109 @@ const buildComponents = (mode: Mode): ThemeOptions['components'] => ({
       },
     },
   },
+  // (MuiTypography font-family is enforced via .MuiTypography-root in
+  // index.css — the function-form override here used to send styles through
+  // stylis-plugin-rtl + cssjanus, which couldn't handle the `::placeholder`
+  // pseudo-element and crashed with "Cannot read properties of undefined
+  // (reading 'push')" at runtime. Inheriting from the document handles it.)
   MuiButton: {
     defaultProps: { disableElevation: true, disableRipple: false },
     styleOverrides: {
-      root: ({ ownerState, theme }) => ({
-        borderRadius: 10,
-        paddingInline: 18,
-        paddingBlock: 9,
+      root: {
+        borderRadius: 8,
+        textTransform: 'none',
         fontWeight: 600,
+        fontSize: '0.875rem',
         boxShadow: 'none',
-        transition: 'transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease',
-        '&:hover': {
-          boxShadow: ownerState.variant === 'contained' ? `0 8px 18px ${alpha(theme.palette.primary.main, 0.22)}` : 'none',
-          transform: 'translateY(-1px)',
-        },
-        '&:active': { transform: 'translateY(0)' },
-      }),
-      sizeLarge: { paddingInline: 26, paddingBlock: 13, fontSize: '1rem' },
-      sizeSmall: { paddingInline: 12, paddingBlock: 6, fontSize: '0.8125rem' },
-      containedPrimary: ({ theme }) => ({
-        background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
-        '&:hover': {
-          background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
-        },
-      }),
+        lineHeight: 1.5,
+        '&:hover': { boxShadow: 'none' },
+      },
+      sizeSmall: { fontSize: '0.8125rem', padding: '4px 12px' },
+      sizeMedium: { padding: '8px 20px' },
+      sizeLarge: { fontSize: '0.9375rem', padding: '10px 24px' },
     },
   },
   MuiTextField: {
     defaultProps: { variant: 'outlined', fullWidth: true, size: 'medium' },
   },
+  MuiInputBase: {
+    // No `&::placeholder` override here — cssjanus (used internally by
+    // stylis-plugin-rtl) doesn't understand that pseudo-element and emits
+    // CSS that crashes the RTL prefixer at runtime. Placeholder font-size
+    // inherits from the input which already gets 0.875rem via theme.
+    styleOverrides: {
+      root: { fontSize: '0.875rem' },
+    },
+  },
   MuiOutlinedInput: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: 10,
+        borderRadius: 8,
         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
           borderColor: theme.palette.primary.main,
           borderWidth: 1.5,
         },
       }),
+      input: { padding: '10px 14px' },
+      inputSizeSmall: { padding: '6px 12px' },
+    },
+  },
+  MuiInputLabel: {
+    styleOverrides: {
+      root: { fontSize: '0.875rem' },
     },
   },
   MuiCard: {
     defaultProps: { elevation: 0 },
     styleOverrides: {
-      root: ({ theme }) => ({
-        borderRadius: 16,
-        border: `1px solid ${theme.palette.divider}`,
-        boxShadow: '0 1px 2px rgba(15, 23, 42, 0.04)',
-        transition: 'transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
+      root: {
+        boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+        border: '1px solid',
+        borderColor: 'rgba(0,0,0,0.09)',
+        borderRadius: 10,
         backgroundImage: 'none',
+        transition: 'all 0.15s ease',
         '&:hover': {
-          transform: 'translateY(-2px)',
-          borderColor: alpha(theme.palette.primary.main, 0.3),
-          boxShadow: '0 14px 28px rgba(15, 23, 42, 0.06)',
+          boxShadow: '0 4px 12px rgba(108,99,166,0.15)',
         },
-      }),
+      },
     },
   },
   MuiPaper: {
     defaultProps: { elevation: 0 },
-    styleOverrides: { root: { backgroundImage: 'none', borderRadius: 14 } },
+    styleOverrides: {
+      root: {
+        backgroundImage: 'none',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+        border: '1px solid rgba(0,0,0,0.06)',
+        borderRadius: 10,
+      },
+      elevation0: {
+        boxShadow: 'none',
+        border: 'none',
+      },
+    },
   },
   MuiAppBar: { defaultProps: { elevation: 0, color: 'inherit' } },
   MuiDialog: {
-    styleOverrides: { paper: { borderRadius: 16 } },
+    styleOverrides: { paper: { borderRadius: 12 } },
+  },
+  MuiDialogTitle: {
+    styleOverrides: {
+      root: {
+        fontSize: '1.1rem',
+        fontWeight: 700,
+        padding: '16px 20px',
+      },
+    },
+  },
+  MuiDialogContent: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.875rem',
+        padding: '12px 20px',
+      },
+    },
   },
   MuiChip: {
     defaultProps: { size: 'small' },
@@ -195,10 +201,11 @@ const buildComponents = (mode: Mode): ThemeOptions['components'] => ({
             ? theme.palette[ownerState.color as 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info']
             : null;
         return {
-          borderRadius: 999,
+          borderRadius: 6,
           fontWeight: 600,
+          fontSize: '0.78rem',
+          height: 28,
           letterSpacing: 0,
-          height: 26,
           paddingInline: 4,
           ...(ownerState.variant === 'filled' && baseColor
             ? {
@@ -209,16 +216,101 @@ const buildComponents = (mode: Mode): ThemeOptions['components'] => ({
             : {}),
         };
       },
+      sizeSmall: {
+        height: 24,
+        fontSize: '0.72rem',
+      },
+    },
+  },
+  MuiMenuItem: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.875rem',
+        minHeight: 36,
+      },
+    },
+  },
+  MuiSelect: {
+    styleOverrides: {
+      select: { fontSize: '0.875rem' },
+    },
+  },
+  MuiTableCell: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.875rem',
+        padding: '10px 16px',
+      },
+      head: {
+        fontSize: '0.78rem',
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
+        color: '#6b7280',
+      },
+    },
+  },
+  MuiTab: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.875rem',
+        fontWeight: 600,
+        textTransform: 'none',
+        minWidth: 'auto',
+        padding: '8px 16px',
+      },
     },
   },
   MuiTooltip: {
     styleOverrides: {
       tooltip: ({ theme }) => ({
         backgroundColor: theme.palette.grey[900],
-        fontSize: 12,
-        borderRadius: 8,
+        fontSize: '0.78rem',
+        borderRadius: 6,
       }),
       arrow: ({ theme }) => ({ color: theme.palette.grey[900] }),
+    },
+  },
+  MuiBadge: {
+    styleOverrides: {
+      badge: {
+        fontSize: '0.65rem',
+        fontWeight: 700,
+        minWidth: 16,
+        height: 16,
+        padding: '0 4px',
+      },
+    },
+  },
+  MuiAlert: {
+    styleOverrides: {
+      root: {
+        fontSize: '0.875rem',
+        borderRadius: 8,
+      },
+    },
+  },
+  MuiBreadcrumbs: {
+    styleOverrides: {
+      root: { fontSize: '0.8125rem' },
+      separator: { fontSize: '0.8125rem' },
+      li: { fontSize: '0.8125rem' },
+    },
+  },
+  MuiListItemText: {
+    styleOverrides: {
+      primary: { fontSize: '0.875rem' },
+      secondary: { fontSize: '0.8rem' },
+    },
+  },
+  MuiAccordionSummary: {
+    styleOverrides: {
+      root: { fontSize: '0.9rem', fontWeight: 600 },
+    },
+  },
+  MuiStepLabel: {
+    styleOverrides: {
+      label: { fontSize: '0.8125rem' },
     },
   },
   MuiAvatar: {

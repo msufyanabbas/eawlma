@@ -158,12 +158,12 @@ export function HelpPage() {
       <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
           <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 1.5 }}>
-            <HelpIcon sx={{ fontSize: 28 }} />
-            <Typography variant="h5" sx={{ fontWeight: 800 }}>
+            <HelpIcon sx={{ fontSize: 32 }} />
+            <Typography variant="h3" sx={{ fontWeight: 800 }}>
               {t('help.title')}
             </Typography>
           </Stack>
-          <Typography sx={{ opacity: 0.85, fontSize: '0.9rem', mb: 2, maxWidth: 640 }}>
+          <Typography variant="body1" sx={{ opacity: 0.85, mb: 2, maxWidth: 640 }}>
             {t('help.subtitle')}
           </Typography>
           <TextField

@@ -539,7 +539,7 @@ export function ListingDetailPage() {
                 </Tooltip>
               );
             })()}
-            <Typography variant="h5" sx={{ fontWeight: 800, color: 'primary.main' }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, color: 'primary.main' }}>
               {Number(listing.price).toLocaleString(i18n.language)} {t('listing.currency')}
               {!isSale && listing.rentPeriod ? <Typography component="span" variant="caption" sx={{ ml: 0.5, color: 'text.secondary' }}>/{listing.rentPeriod}</Typography> : null}
             </Typography>

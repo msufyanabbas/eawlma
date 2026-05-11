@@ -85,7 +85,7 @@ export function StaysPage() {
       {/* Compact purple header */}
       <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
-          <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
+          <Typography variant="h3" sx={{ fontWeight: 800, mb: 2 }}>
             🏖️ {t('stays.heroTitle')}
           </Typography>
           <Box

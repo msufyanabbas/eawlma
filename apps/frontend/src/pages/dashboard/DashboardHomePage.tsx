@@ -170,10 +170,9 @@ export function DashboardHomePage() {
           </Stack>
         }
       />
-       <Paper sx={{ p: 2 }}>
 
       {/* ---------------- KPI grid — 2 rows of 3 cards on md+, 1 row of 6 on lg ---------------- */}
-      <Grid container spacing={2} sx={{ mb: 3 }}>
+      <Grid container spacing={2.5} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
             label="Active listings"
@@ -231,8 +230,8 @@ export function DashboardHomePage() {
       </Grid>
 
       {/* ---------------- Charts ---------------- */}
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={7}>
+      <Grid container spacing={2.5} sx={{ mb: 4 }}>
+        <Grid item xs={12} md={8}>
           <Paper sx={{ p: 3, height: '100%' }}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
               {t('dashboard.viewsOverTime')}
@@ -265,7 +264,7 @@ export function DashboardHomePage() {
             </Box>
           </Paper>
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={4}>
           <Paper sx={{ p: 3, height: '100%' }}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
               {t('dashboard.topListings')}
@@ -418,7 +417,6 @@ export function DashboardHomePage() {
           </Paper>
         </Grid>
       </Grid>
-      </Paper>
     </DashboardLayout>
   );
 }

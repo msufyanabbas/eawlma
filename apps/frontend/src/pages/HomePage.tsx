@@ -24,6 +24,7 @@ import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
+import { SECTION } from '@/theme/layout';
 
 // ------------------------------------------------------------------
 // Constants — classifieds layout, Eawlma palette
@@ -242,11 +243,10 @@ export function HomePage() {
       </Helmet>
 
       {/* ============================== A — Compact search bar (purple) ============================== */}
-      <Box sx={{ bgcolor: 'primary.main', py: 2.5, px: { xs: 2, md: 3 } }}>
+      <Box sx={{ bgcolor: 'primary.main', py: 3.5 }}>
         <Box
           sx={{
-            maxWidth: 1200,
-            mx: 'auto',
+            ...SECTION,
             display: 'flex',
             gap: 1.5,
             alignItems: 'center',
@@ -261,8 +261,8 @@ export function HomePage() {
             sx={{
               bgcolor: 'background.paper',
               borderRadius: 2,
-              minWidth: 150,
-              height: 44,
+              minWidth: 160,
+              height: 48,
               flexBasis: { xs: '100%', md: 'auto' },
               '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
             }}
@@ -290,7 +290,7 @@ export function HomePage() {
               flex: 1,
               minWidth: { xs: '100%', md: 0 },
               '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-              '& .MuiInputBase-root': { height: 44 },
+              '& .MuiInputBase-root': { height: 48 },
             }}
             InputProps={{
               endAdornment: (
@@ -310,8 +310,8 @@ export function HomePage() {
                 bgcolor: 'secondary.main',
                 color: 'common.white',
                 '&:hover': { bgcolor: 'secondary.dark' },
-                height: 44,
-                px: 2.5,
+                height: 48,
+                px: 3,
                 borderRadius: 2,
                 fontWeight: 700,
                 whiteSpace: 'nowrap',
@@ -332,19 +332,17 @@ export function HomePage() {
           borderBottom: '1px solid',
           borderColor: 'divider',
           position: 'sticky',
-          top: { xs: 64, md: 72 },
+          top: { xs: 64, md: 110 },
           zIndex: 99,
         }}
       >
         <Box
           sx={{
-            maxWidth: 1200,
-            mx: 'auto',
+            ...SECTION,
             display: 'flex',
             overflowX: 'auto',
             scrollbarWidth: 'none',
             '&::-webkit-scrollbar': { display: 'none' },
-            px: 2,
           }}
         >
           {CATEGORIES.map((cat) => {
@@ -385,13 +383,11 @@ export function HomePage() {
           borderBottom: '1px solid',
           borderColor: 'divider',
           py: 1.5,
-          px: 2,
         }}
       >
         <Box
           sx={{
-            maxWidth: 1200,
-            mx: 'auto',
+            ...SECTION,
             display: 'flex',
             gap: 1,
             flexWrap: 'wrap',
@@ -429,20 +425,13 @@ export function HomePage() {
       </Box>
 
       {/* ============================== D — Two-column main ============================== */}
-      <Box
-        sx={{
-          maxWidth: 1200,
-          mx: 'auto',
-          px: 2,
-          py: 3,
-          bgcolor: 'background.default',
-        }}
-      >
-        <Grid container spacing={2.5}>
-          {/* LEFT: Filters + Stats */}
-          <Grid item xs={12} md={3}>
-            <Box sx={{ position: { md: 'sticky' }, top: 130 }}>
-              <Paper sx={{ p: 2, mb: 2 }}>
+      <Box sx={{ bgcolor: 'background.default', py: 4 }}>
+        <Box sx={SECTION}>
+          <Grid container spacing={3}>
+            {/* LEFT: Filters + Stats */}
+            <Grid item xs={12} md={3}>
+              <Box sx={{ position: { md: 'sticky' }, top: 130 }}>
+                <Paper sx={{ p: 2.5, mb: 2.5 }}>
                 <Typography
                   fontWeight={700}
                   mb={2}
@@ -644,6 +633,7 @@ export function HomePage() {
             )}
           </Grid>
         </Grid>
+        </Box>
       </Box>
 
       {/* ============================== E — Compact city chips ============================== */}
@@ -655,7 +645,7 @@ export function HomePage() {
           py: 2.5,
         }}
       >
-        <Box sx={{ maxWidth: 1200, mx: 'auto', px: 2 }}>
+        <Box sx={SECTION}>
           <Typography fontWeight={700} mb={1.5}>
             {t('home.browseByCity')}
           </Typography>

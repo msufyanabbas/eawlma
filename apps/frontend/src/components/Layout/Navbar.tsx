@@ -4,44 +4,50 @@ import {
   Badge,
   Box,
   Button,
-  Container,
   Divider,
   IconButton,
   InputAdornment,
   Menu,
   MenuItem,
-  Stack,
   TextField,
-  Toolbar,
   Tooltip,
   Typography,
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import LanguageIcon from '@mui/icons-material/Language';
-import SearchIcon from '@mui/icons-material/Search';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubbleOutline';
-import LogoutIcon from '@mui/icons-material/Logout';
-import PersonIcon from '@mui/icons-material/Person';
-import DashboardIcon from '@mui/icons-material/SpaceDashboardOutlined';
-import AdminIcon from '@mui/icons-material/AdminPanelSettings';
-import MenuIcon from '@mui/icons-material/Menu';
-import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
-import LightModeIcon from '@mui/icons-material/LightModeOutlined';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import AddIcon from '@mui/icons-material/Add';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubbleOutline';
+import DashboardIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
+import HomeIcon from '@mui/icons-material/HomeOutlined';
+import LanguageIcon from '@mui/icons-material/Language';
+import LightModeIcon from '@mui/icons-material/LightModeOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MenuIcon from '@mui/icons-material/Menu';
+import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
+import PersonIcon from '@mui/icons-material/Person';
+import SearchIcon from '@mui/icons-material/Search';
+import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import { useEffect, useState, type FormEvent, type MouseEvent } from 'react';
-import logoUrl from '@/assets/logo.svg';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useLocation } from '@tanstack/react-router';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import { UserRole } from '@eawlma/shared-types';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';
 import { authApi } from '@/api/auth.api';
-import { NotificationBadge } from '@/components/global/NotificationBadge';
+import { useQuery } from '@tanstack/react-query';
+import { notificationsApi } from '@/api/notifications.api';
 
 interface NavbarProps {
   onMobileMenuClick?: () => void;
 }
+
+const NAVBAR_MAX = 1400;
+const NAVBAR_HEIGHT = 64;
+
+const AGENT_ROLES = new Set<UserRole>([UserRole.AGENT, UserRole.AGENCY_ADMIN]);
+const ADMIN_ROLES = new Set<UserRole>([UserRole.ADMIN, UserRole.MODERATOR]);
 
 export function Navbar({ onMobileMenuClick }: NavbarProps) {
   const { t, i18n } = useTranslation();
@@ -49,6 +55,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const isAr = i18n.language === 'ar';
 
   const { user, isAuthenticated, clearSession, getRefreshToken } = useAuthStore();
   const setLanguage = useUiStore((s) => s.setLanguage);
@@ -58,17 +65,20 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 
   const [langAnchor, setLangAnchor] = useState<HTMLElement | null>(null);
   const [userAnchor, setUserAnchor] = useState<HTMLElement | null>(null);
-  const [staysAnchor, setStaysAnchor] = useState<HTMLElement | null>(null);
   const [searchValue, setSearchValue] = useState('');
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  // Toggle the glass-frosted look once the user scrolls past the hero band.
+  // Notification badge count — only fetched when authenticated.
+  const notificationsQuery = useQuery({
+    queryKey: ['notifications', 'unread-count'],
+    queryFn: () => notificationsApi.unreadCount(),
+    enabled: !!user,
+    staleTime: 30_000,
+  });
+  const unreadNotifications = notificationsQuery.data ?? 0;
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    // No-op; placeholder kept in case future scroll-state tweaks return.
   }, []);
 
   const switchLanguage = (lng: 'ar' | 'en' | 'ur') => {
@@ -84,7 +94,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
       try {
         await authApi.logout(rt);
       } catch {
-        // sign-out is best-effort; ignore network errors
+        // best-effort sign-out
       }
     }
     clearSession();
@@ -92,336 +102,396 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
     void navigate({ to: '/' });
   };
 
-  const handleSearch = (e: FormEvent) => {
-    e.preventDefault();
+  const handleSearch = (e?: FormEvent) => {
+    if (e) e.preventDefault();
     const q = searchValue.trim();
     if (!q) return;
     void navigate({ to: '/search', search: { q } as never });
   };
 
-  const isAgent =
-    user?.role === UserRole.AGENT || user?.role === UserRole.AGENCY_ADMIN;
-  const isAdmin = user?.role === UserRole.ADMIN || user?.role === UserRole.MODERATOR;
+  const isAgent = user ? AGENT_ROLES.has(user.role as UserRole) : false;
+  const isAdmin = user ? ADMIN_ROLES.has(user.role as UserRole) : false;
+  const isDark = themeMode === 'dark';
 
   return (
     <AppBar
       position="sticky"
+      elevation={0}
       sx={{
-        bgcolor: scrolled
-          ? theme.palette.mode === 'dark'
-            ? 'rgba(15, 14, 30, 0.92)'
-            : 'rgba(255, 255, 255, 0.92)'
-          : 'background.paper',
-        color: theme.palette.mode === 'dark' && scrolled ? 'rgba(255,255,255,0.95)' : 'text.primary',
-        backdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(16px) saturate(180%)' : 'none',
-        borderBottom: 1,
-        borderColor: scrolled ? 'rgba(108,99,166,0.18)' : 'divider',
-        boxShadow: scrolled ? '0 2px 20px rgba(108,99,166,0.08)' : 'none',
-        transition: 'background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease, box-shadow 220ms ease',
+        bgcolor: 'background.paper',
+        color: 'text.primary',
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+        zIndex: theme.zIndex.appBar,
       }}
     >
-      <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 2, sm: 3, md: 6, lg: 8 } }}>
-        <Toolbar
-          disableGutters
+      {/* ============================== MAIN TOOLBAR ============================== */}
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: NAVBAR_MAX,
+          mx: 'auto',
+          px: { xs: 2, md: 4, lg: 5 },
+          height: NAVBAR_HEIGHT,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 2,
+        }}
+      >
+        {/* Mobile hamburger */}
+        {!isDesktop && (
+          <IconButton edge="start" onClick={onMobileMenuClick} aria-label="menu" size="small">
+            <MenuIcon />
+          </IconButton>
+        )}
+
+        {/* LOGO */}
+        <Box
+          component="a"
+          href="/"
           sx={{
-            gap: 2,
-            py: 1,
-            minHeight: { xs: 64, md: 72 },
-            justifyContent: 'space-between',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            flexShrink: 0,
           }}
         >
-          {/* Mobile hamburger */}
-          {!isDesktop && (
-            <IconButton edge="start" onClick={onMobileMenuClick} aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-          )}
-
-          {/* Brand — pinned to inline-start */}
-          <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
-            <Stack direction="row" alignItems="center" spacing={1.5}>
-              <Box
-                component="img"
-                src={logoUrl}
-                alt={t('app.name')}
-                sx={{ height: 44, width: 44, display: 'block', mr: 0.25 }}
-              />
-              <Typography
-                sx={{
-                  fontSize: '1.5rem',
-                  fontWeight: 800,
-                  color: 'primary.main',
-                  letterSpacing: '-0.5px',
-                  display: { xs: 'none', sm: 'block' },
-                  lineHeight: 1,
-                }}
-              >
-                {t('app.name')}
-              </Typography>
-            </Stack>
-          </Link>
-
-          {/* Search bar — centered pill, 560px max; icon-only on mobile */}
-          {isDesktop ? (
-            <Box
-              component="form"
-              onSubmit={handleSearch}
-              sx={{
-                flex: 1,
-                display: 'flex',
-                justifyContent: 'center',
-                mx: 4,
-              }}
-            >
-              <TextField
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder={t('nav.searchPlaceholder')}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon sx={{ color: 'text.secondary' }} />
-                    </InputAdornment>
-                  ),
-                  sx: {
-                    borderRadius: 999,
-                    bgcolor: 'grey.50',
-                    pl: 2,
-                    pr: 1.5,
-                    height: 44,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    '& fieldset': { border: 'none' },
-                    '&:hover': { borderColor: 'primary.light' },
-                    '&.Mui-focused': { borderColor: 'primary.main', bgcolor: 'common.white' },
-                  },
-                }}
-                sx={{ width: '100%', maxWidth: 560 }}
-              />
-            </Box>
-          ) : (
-            <Box sx={{ flex: 1 }} />
-          )}
-
-          {/* Right cluster — pinned to inline-end */}
-          <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexShrink: 0 }}>
-            {isDesktop && (
-              <>
-                <Button
-                  color="inherit"
-                  onClick={(e) => setStaysAnchor(e.currentTarget)}
-                  sx={{ color: 'text.primary', fontWeight: 600, textTransform: 'none' }}
-                >
-                  {t('nav.stays', { defaultValue: 'Stays' })}
-                </Button>
-                <Menu
-                  anchorEl={staysAnchor}
-                  open={!!staysAnchor}
-                  onClose={() => setStaysAnchor(null)}
-                  PaperProps={{ sx: { minWidth: 200, mt: 1, borderRadius: 2 } }}
-                >
-                  <MenuItem
-                    onClick={() => { setStaysAnchor(null); void navigate({ to: '/stays' as never }); }}
-                  >
-                    {t('nav.shortTermStays', { defaultValue: 'Short-term stays' })}
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => { setStaysAnchor(null); void navigate({ to: '/hotels' as never }); }}
-                  >
-                    {t('nav.hotels', { defaultValue: 'Hotels' })}
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      setStaysAnchor(null);
-                      void navigate({ to: '/search' as never, search: { rentalType: 'chalet' } as never });
-                    }}
-                  >
-                    {t('nav.chalets', { defaultValue: 'Chalets & farms' })}
-                  </MenuItem>
-                </Menu>
-
-                <Link to="/market" style={{ textDecoration: 'none' }}>
-                  <Button
-                    color="inherit"
-                    sx={{ color: 'text.primary', fontWeight: 600, textTransform: 'none' }}
-                  >
-                    {t('nav.market')}
-                  </Button>
-                </Link>
-              </>
-            )}
-            {!isDesktop && (
-              <Tooltip title={t('common.search')}>
-                <IconButton
-                  onClick={() => setMobileSearchOpen((v) => !v)}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-
-            <Tooltip title={t(themeMode === 'dark' ? 'common.lightMode' : 'common.darkMode')}>
-              <IconButton onClick={toggleThemeMode} aria-label="toggle theme">
-                {themeMode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title={t('common.language')}>
-              <IconButton
-                onClick={(e: MouseEvent<HTMLButtonElement>) => setLangAnchor(e.currentTarget)}
-                aria-label="language"
-              >
-                <LanguageIcon />
-              </IconButton>
-            </Tooltip>
-            <Menu anchorEl={langAnchor} open={!!langAnchor} onClose={() => setLangAnchor(null)}>
-              <MenuItem selected={i18n.language === 'en'} onClick={() => switchLanguage('en')}>
-                🇬🇧 English
-              </MenuItem>
-              <MenuItem selected={i18n.language === 'ar'} onClick={() => switchLanguage('ar')}>
-                🇸🇦 العربية
-              </MenuItem>
-              <MenuItem selected={i18n.language === 'ur'} onClick={() => switchLanguage('ur')}>
-                🇵🇰 اردو
-              </MenuItem>
-            </Menu>
-
-            {isDesktop && isAgent && (
-              <Button
-                variant="contained"
-                onClick={() => navigate({ to: '/dashboard/listings/new' as never })}
-                startIcon={<AddIcon />}
-                sx={{
-                  bgcolor: 'secondary.main',
-                  color: 'common.white',
-                  height: 36,
-                  px: 1.75,
-                  borderRadius: 2,
-                  fontWeight: 700,
-                  whiteSpace: 'nowrap',
-                  textTransform: 'none',
-                  ml: 1,
-                  '&:hover': { bgcolor: 'secondary.dark' },
-                }}
-              >
-                {t('home.addListing')}
-              </Button>
-            )}
-
-            {isAuthenticated && user ? (
-              <>
-                <Tooltip title={t('nav.messages')}>
-                  <IconButton
-                    onClick={() => navigate({ to: '/dashboard/messages' as never })}
-                    aria-label="messages"
-                  >
-                    <Badge badgeContent={unreadMessageCount} color="error">
-                      <ChatBubbleIcon />
-                    </Badge>
-                  </IconButton>
-                </Tooltip>
-
-                <NotificationBadge />
-
-                <IconButton onClick={(e) => setUserAnchor(e.currentTarget)} sx={{ p: 0.5 }}>
-                  <Avatar
-                    src={user.avatarUrl ?? undefined}
-                    alt={user.firstName}
-                    sx={{ width: 36, height: 36, bgcolor: 'primary.main', color: 'primary.contrastText' }}
-                  >
-                    {user.firstName?.[0]}
-                  </Avatar>
-                </IconButton>
-                <Menu
-                  anchorEl={userAnchor}
-                  open={!!userAnchor}
-                  onClose={() => setUserAnchor(null)}
-                  PaperProps={{ sx: { minWidth: 220, mt: 1, borderRadius: 2 } }}
-                >
-                  <Box sx={{ px: 2, py: 1.25 }}>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
-                      {user.firstName} {user.lastName}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      {user.email}
-                    </Typography>
-                  </Box>
-                  <Divider />
-                  <MenuItem onClick={() => { setUserAnchor(null); void navigate({ to: '/profile' }); }}>
-                    <PersonIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('nav.profile')}
-                  </MenuItem>
-                  {isAgent && (
-                    <MenuItem
-                      onClick={() => { setUserAnchor(null); void navigate({ to: '/dashboard' as never }); }}
-                    >
-                      <DashboardIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('nav.dashboard')}
-                    </MenuItem>
-                  )}
-                  {isAdmin && (
-                    <MenuItem
-                      onClick={() => { setUserAnchor(null); void navigate({ to: '/admin' as never }); }}
-                    >
-                      <AdminIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('nav.admin')}
-                    </MenuItem>
-                  )}
-                  <Divider />
-                  <MenuItem onClick={handleLogout}>
-                    <LogoutIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('nav.logout')}
-                  </MenuItem>
-                </Menu>
-              </>
-            ) : (
-              <Stack direction="row" spacing={1}>
-                <Link to="/auth/login" style={{ textDecoration: 'none' }}>
-                  <Button color="inherit" sx={{ color: 'text.primary' }}>
-                    {t('auth.login')}
-                  </Button>
-                </Link>
-                <Link to="/auth/register" style={{ textDecoration: 'none' }}>
-                  <Button variant="contained" color="primary">
-                    {t('auth.register')}
-                  </Button>
-                </Link>
-              </Stack>
-            )}
-          </Stack>
-        </Toolbar>
-
-        {/* Category nav row — Haraj-style horizontal links under the main bar.
-         *  Desktop-only; mobile reaches the same destinations via the hamburger. */}
-        {isDesktop && <CategoryNavRow currentPath={location.pathname} />}
-
-        {/* Mobile expandable search bar */}
-        {!isDesktop && mobileSearchOpen && (
           <Box
-            component="form"
-            onSubmit={(e: FormEvent) => {
-              handleSearch(e);
-              setMobileSearchOpen(false);
+            sx={{
+              width: 36,
+              height: 36,
+              bgcolor: 'primary.main',
+              borderRadius: 1.5,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
-            sx={{ pb: 1.5 }}
           >
+            <HomeIcon sx={{ color: 'common.white', fontSize: 20 }} />
+          </Box>
+          <Typography
+            sx={{
+              fontWeight: 900,
+              fontSize: '1.3rem',
+              color: 'primary.main',
+              fontFamily: 'Tajawal, sans-serif',
+              letterSpacing: '-0.02em',
+              display: { xs: 'none', sm: 'block' },
+            }}
+          >
+            {t('app.name')}
+          </Typography>
+        </Box>
+
+        {/* SEARCH — grows in the middle */}
+        {isDesktop ? (
+          <Box component="form" onSubmit={handleSearch} sx={{ flex: 1, maxWidth: 560, mx: 2 }}>
             <TextField
               size="small"
               fullWidth
-              autoFocus
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder={t('nav.searchPlaceholder')}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon sx={{ color: 'text.secondary', fontSize: 18 }} />
                   </InputAdornment>
                 ),
-                sx: { borderRadius: 999, bgcolor: 'grey.50' },
+                sx: {
+                  bgcolor: 'grey.50',
+                  borderRadius: 2,
+                  height: 40,
+                  '& fieldset': { borderColor: 'divider' },
+                  '&:hover fieldset': { borderColor: 'primary.main' },
+                },
               }}
             />
           </Box>
+        ) : (
+          <Box sx={{ flex: 1 }} />
         )}
-      </Container>
+
+        {/* RIGHT ACTIONS */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: { xs: 0.5, md: 1 },
+            ml: 'auto',
+            flexShrink: 0,
+          }}
+        >
+          {!isDesktop && (
+            <Tooltip title={t('common.search')}>
+              <IconButton
+                onClick={() => setMobileSearchOpen((v) => !v)}
+                aria-label="search"
+                size="small"
+              >
+                <SearchIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+
+          <Tooltip title={t('common.language')}>
+            <IconButton
+              size="small"
+              onClick={(e: MouseEvent<HTMLButtonElement>) => setLangAnchor(e.currentTarget)}
+              aria-label="language"
+              sx={{ color: 'text.secondary' }}
+            >
+              <LanguageIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          <Menu anchorEl={langAnchor} open={!!langAnchor} onClose={() => setLangAnchor(null)}>
+            <MenuItem selected={i18n.language === 'en'} onClick={() => switchLanguage('en')}>
+              🇬🇧 English
+            </MenuItem>
+            <MenuItem selected={i18n.language === 'ar'} onClick={() => switchLanguage('ar')}>
+              🇸🇦 العربية
+            </MenuItem>
+            <MenuItem selected={i18n.language === 'ur'} onClick={() => switchLanguage('ur')}>
+              🇵🇰 اردو
+            </MenuItem>
+          </Menu>
+
+          <Tooltip title={t(isDark ? 'common.lightMode' : 'common.darkMode')}>
+            <IconButton
+              size="small"
+              onClick={toggleThemeMode}
+              aria-label="toggle theme"
+              sx={{ color: 'text.secondary' }}
+            >
+              {isDark ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
+            </IconButton>
+          </Tooltip>
+
+          {isAuthenticated && user ? (
+            <>
+              <Tooltip title={t('nav.notifications')}>
+                <IconButton
+                  size="small"
+                  onClick={() => navigate({ to: '/dashboard/notifications' as never })}
+                  aria-label="notifications"
+                  sx={{ color: 'text.secondary' }}
+                >
+                  <Badge badgeContent={unreadNotifications} color="error" max={99}>
+                    <NotificationsIcon fontSize="small" />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title={t('nav.messages')}>
+                <IconButton
+                  size="small"
+                  onClick={() => navigate({ to: '/dashboard/messages' as never })}
+                  aria-label="messages"
+                  sx={{ color: 'text.secondary' }}
+                >
+                  <Badge badgeContent={unreadMessageCount} color="error">
+                    <ChatBubbleIcon fontSize="small" />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+
+              {isAgent && (
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<AddIcon />}
+                  onClick={() => navigate({ to: '/dashboard/listings/new' as never })}
+                  sx={{
+                    bgcolor: 'secondary.main',
+                    color: 'common.white',
+                    '&:hover': { bgcolor: 'secondary.dark' },
+                    fontWeight: 700,
+                    px: 2,
+                    height: 36,
+                    display: { xs: 'none', sm: 'flex' },
+                    boxShadow: 'none',
+                  }}
+                >
+                  {t('home.addListing')}
+                </Button>
+              )}
+
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<DashboardIcon />}
+                onClick={() =>
+                  navigate({ to: (isAdmin ? '/admin' : '/dashboard') as never })
+                }
+                sx={{
+                  borderColor: 'primary.main',
+                  color: 'primary.main',
+                  fontWeight: 600,
+                  px: 1.5,
+                  height: 36,
+                  display: { xs: 'none', md: 'flex' },
+                }}
+              >
+                {isAdmin ? t('nav.admin') : t('nav.dashboard')}
+              </Button>
+
+              <Tooltip title={`${user.firstName} ${user.lastName}`}>
+                <Avatar
+                  src={user.avatarUrl ?? undefined}
+                  onClick={(e: MouseEvent<HTMLElement>) => setUserAnchor(e.currentTarget)}
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    cursor: 'pointer',
+                    bgcolor: 'primary.main',
+                    color: 'common.white',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    border: '2px solid',
+                    borderColor: 'primary.light',
+                    '&:hover': { borderColor: 'secondary.main' },
+                  }}
+                >
+                  {user.firstName?.[0]?.toUpperCase()}
+                </Avatar>
+              </Tooltip>
+
+              <Menu
+                anchorEl={userAnchor}
+                open={!!userAnchor}
+                onClose={() => setUserAnchor(null)}
+                PaperProps={{ sx: { minWidth: 220, mt: 1, borderRadius: 2 } }}
+              >
+                <Box sx={{ px: 2, py: 1.5, borderBottom: '1px solid', borderColor: 'divider' }}>
+                  <Typography fontWeight={700}>
+                    {user.firstName} {user.lastName}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {user.email}
+                  </Typography>
+                </Box>
+
+                <MenuItem
+                  onClick={() => {
+                    setUserAnchor(null);
+                    void navigate({ to: '/profile' });
+                  }}
+                >
+                  <PersonIcon fontSize="small" sx={{ mr: 1.5 }} />
+                  {t('nav.profile')}
+                </MenuItem>
+
+                <MenuItem
+                  onClick={() => {
+                    setUserAnchor(null);
+                    void navigate({ to: (isAdmin ? '/admin' : '/dashboard') as never });
+                  }}
+                >
+                  <DashboardIcon fontSize="small" sx={{ mr: 1.5 }} />
+                  {isAdmin ? t('nav.admin') : t('nav.dashboard')}
+                </MenuItem>
+
+                {isAgent && (
+                  <MenuItem
+                    onClick={() => {
+                      setUserAnchor(null);
+                      void navigate({ to: '/dashboard/listings/new' as never });
+                    }}
+                  >
+                    <AddIcon fontSize="small" sx={{ mr: 1.5 }} />
+                    {t('home.addListing')}
+                  </MenuItem>
+                )}
+
+                <MenuItem
+                  onClick={() => {
+                    setUserAnchor(null);
+                    void navigate({ to: '/dashboard/wallet' as never });
+                  }}
+                >
+                  <AccountBalanceWalletIcon fontSize="small" sx={{ mr: 1.5 }} />
+                  {t('wallet.title')}
+                </MenuItem>
+
+                <MenuItem
+                  onClick={() => {
+                    setUserAnchor(null);
+                    void navigate({ to: '/dashboard/settings' as never });
+                  }}
+                >
+                  <SettingsIcon fontSize="small" sx={{ mr: 1.5 }} />
+                  {t('nav.settings')}
+                </MenuItem>
+
+                <Divider />
+
+                <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
+                  <LogoutIcon fontSize="small" sx={{ mr: 1.5 }} />
+                  {t('nav.logout')}
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Button
+                variant="text"
+                size="small"
+                onClick={() => navigate({ to: '/auth/login' as never })}
+                sx={{ color: 'text.primary', fontWeight: 600 }}
+              >
+                {t('auth.signIn')}
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate({ to: '/auth/register' as never })}
+                sx={{
+                  bgcolor: 'primary.main',
+                  '&:hover': { bgcolor: 'primary.dark' },
+                  fontWeight: 700,
+                  px: 2,
+                  boxShadow: 'none',
+                }}
+              >
+                {t('auth.signUp')}
+              </Button>
+            </Box>
+          )}
+        </Box>
+      </Box>
+
+      {/* ============================== SECOND ROW: CATEGORY LINKS ============================== */}
+      {isDesktop && <CategoryNavRow currentPath={location.pathname} isAr={isAr} />}
+
+      {/* Mobile expandable search */}
+      {!isDesktop && mobileSearchOpen && (
+        <Box
+          component="form"
+          onSubmit={(e: FormEvent) => {
+            handleSearch(e);
+            setMobileSearchOpen(false);
+          }}
+          sx={{ px: 2, pb: 1.5 }}
+        >
+          <TextField
+            size="small"
+            fullWidth
+            autoFocus
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder={t('nav.searchPlaceholder')}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon fontSize="small" />
+                </InputAdornment>
+              ),
+              sx: { borderRadius: 2, bgcolor: 'grey.50' },
+            }}
+          />
+        </Box>
+      )}
     </AppBar>
   );
 }
@@ -430,26 +500,17 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 // Category nav row — secondary horizontal strip under the main toolbar.
 // ------------------------------------------------------------------
 
-type CategoryLink = {
-  to: string;
-  labelKey: string;
-  /** Optional search-param payload for routes that take filter state. */
-  search?: Record<string, string | boolean>;
-};
-
-const CATEGORY_LINKS: CategoryLink[] = [
-  { to: '/', labelKey: 'nav.home' },
-  { to: '/search', labelKey: 'nav.buy', search: { type: 'sale' } },
-  { to: '/search', labelKey: 'nav.rent', search: { type: 'rent' } },
-  { to: '/stays', labelKey: 'nav.shortTermStays' },
-  { to: '/hotels', labelKey: 'nav.hotels' },
-  { to: '/market', labelKey: 'nav.market' },
-  { to: '/agents', labelKey: 'nav.agents' },
+const CATEGORY_LINKS: Array<{ labelEn: string; labelAr: string; to: string }> = [
+  { labelEn: 'Home',   labelAr: 'الرئيسية',   to: '/' },
+  { labelEn: 'Search', labelAr: 'بحث',         to: '/search' },
+  { labelEn: 'Stays',  labelAr: 'إيجار قصير', to: '/stays' },
+  { labelEn: 'Hotels', labelAr: 'فنادق',       to: '/hotels' },
+  { labelEn: 'Agents', labelAr: 'الوكلاء',     to: '/agents' },
+  { labelEn: 'Market', labelAr: 'السوق',       to: '/market' },
+  { labelEn: 'About',  labelAr: 'عن المنصة',  to: '/about' },
 ];
 
-function CategoryNavRow({ currentPath }: { currentPath: string }) {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
+function CategoryNavRow({ currentPath, isAr }: { currentPath: string; isAr: boolean }) {
   return (
     <Box
       sx={{
@@ -460,42 +521,42 @@ function CategoryNavRow({ currentPath }: { currentPath: string }) {
     >
       <Box
         sx={{
-          maxWidth: 1200,
+          maxWidth: NAVBAR_MAX,
           mx: 'auto',
+          px: { md: 4, lg: 5 },
           display: 'flex',
-          px: 2,
           overflowX: 'auto',
           scrollbarWidth: 'none',
           '&::-webkit-scrollbar': { display: 'none' },
         }}
       >
         {CATEGORY_LINKS.map((link) => {
-          const active = currentPath === link.to;
+          const isActive =
+            currentPath === link.to || (link.to !== '/' && currentPath.startsWith(link.to));
           return (
             <Box
-              key={`${link.to}-${link.labelKey}`}
-              onClick={() =>
-                void navigate({
-                  to: link.to as never,
-                  ...(link.search ? { search: link.search as never } : {}),
-                })
-              }
+              key={link.to}
+              component="a"
+              href={link.to}
               sx={{
-                px: 2,
-                py: 1,
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                color: active ? 'primary.main' : 'text.secondary',
-                borderBottom: '2px solid',
-                borderBottomColor: active ? 'primary.main' : 'transparent',
-                cursor: 'pointer',
+                px: 2.5,
+                py: 1.25,
+                fontSize: '0.9rem',
+                fontWeight: isActive ? 700 : 500,
+                color: isActive ? 'primary.main' : 'text.secondary',
+                borderBottom: '2.5px solid',
+                borderBottomColor: isActive ? 'primary.main' : 'transparent',
+                textDecoration: 'none',
                 whiteSpace: 'nowrap',
                 flexShrink: 0,
-                '&:hover': { color: 'primary.main' },
-                transition: 'color 150ms ease, border-color 150ms ease',
+                transition: 'all 0.15s',
+                '&:hover': {
+                  color: 'primary.main',
+                  borderBottomColor: 'primary.light',
+                },
               }}
             >
-              {t(link.labelKey)}
+              {isAr ? link.labelAr : link.labelEn}
             </Box>
           );
         })}

@@ -76,10 +76,12 @@ export function MarketPage() {
       {/* Compact purple header */}
       <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
         <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
-          <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5 }}>
+          <Typography variant="h3" sx={{ fontWeight: 800, mb: 0.75 }}>
             📊 {t('market.title')}
           </Typography>
-          <Typography sx={{ opacity: 0.85, fontSize: '0.9rem' }}>{t('market.subtitle')}</Typography>
+          <Typography variant="body1" sx={{ opacity: 0.85 }}>
+            {t('market.subtitle')}
+          </Typography>
         </Box>
       </Box>
 

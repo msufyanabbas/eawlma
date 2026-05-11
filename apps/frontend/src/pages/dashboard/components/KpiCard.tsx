@@ -125,8 +125,8 @@ export function KpiCard({
         {label}
       </Typography>
       <Typography
+        variant="h4"
         sx={{
-          fontSize: '2rem',
           fontWeight: 900,
           lineHeight: 1,
           color: 'text.primary',

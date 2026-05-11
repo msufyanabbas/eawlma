@@ -372,15 +372,15 @@ export function SearchPage() {
 
       {/* ============ Body: 280px sticky sidebar + flex-1 results — no outer container, edge to edge ============ */}
       <Box sx={{ display: 'flex', alignItems: 'flex-start', width: '100%' }}>
-        {/* ---- LEFT SIDEBAR (desktop only) — fixed 280px, sticky beneath the 72px navbar, sidebar itself scrolls ---- */}
+        {/* ---- LEFT SIDEBAR (desktop only) — fixed 280px, sticky beneath the 110px navbar, sidebar itself scrolls ---- */}
         {isDesktop && (
           <Box
             sx={{
               width: 280,
               flexShrink: 0,
               position: 'sticky',
-              top: 72,
-              height: 'calc(100vh - 72px)',
+              top: 110,
+              height: 'calc(100vh - 110px)',
               overflowY: 'auto',
               bgcolor: 'background.paper',
               borderInlineEnd: 1,
@@ -513,7 +513,7 @@ export function SearchPage() {
             {view === 'map' ? (
               <MapView listings={listings} />
             ) : infiniteQuery.isLoading ? (
-              <Grid container spacing={view === 'grid' ? 2 : 1.5}>
+              <Grid container spacing={view === 'grid' ? 2.5 : 2}>
                 {Array.from({ length: 6 }).map((_, i) => (
                   <Grid key={i} item xs={12} sm={view === 'grid' ? 6 : 12} lg={view === 'grid' ? 4 : 12}>
                     <SkeletonCard />
