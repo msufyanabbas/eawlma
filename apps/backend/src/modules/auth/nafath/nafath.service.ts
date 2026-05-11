@@ -33,9 +33,12 @@ export class NafathService {
 
   getAuthorizationUrl(state?: string): string {
     if (!this.isConfigured) {
-      // Dev mock — points back at our own callback so the round-trip works
-      // without leaving localhost.
-      return '/api/v1/auth/nafath/mock-callback';
+      // Dev mock — bounce to the frontend mock-Nafath page so devs see a
+      // realistic Nafath approval screen instead of being silently logged in.
+      // The page itself calls our `/auth/nafath/mock-callback` endpoint when
+      // the user clicks "Approve".
+      const frontend = this.config.get<string>('appUrl', 'http://localhost:5173');
+      return `${frontend}/auth/nafath-mock`;
     }
     const params = new URLSearchParams({
       client_id: this.config.getOrThrow<string>('NAFATH_CLIENT_ID'),

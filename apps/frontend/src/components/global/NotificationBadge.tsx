@@ -54,7 +54,7 @@ export function NotificationBadge() {
 
   return (
     <Tooltip title={t('nav.notifications')}>
-      <IconButton onClick={() => navigate({ to: '/notifications' as never })} aria-label="notifications">
+      <IconButton onClick={() => navigate({ to: '/dashboard/notifications' as never })} aria-label="notifications">
         <Badge badgeContent={count} color="error" max={99}>
           <NotificationsIcon />
         </Badge>

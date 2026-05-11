@@ -506,7 +506,7 @@ function BasicInfoStep({ state, update }: StepProps) {
   );
 }
 
-const MAP_LIBS: ('places')[] = ['places'];
+const MAP_LIBS: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
 function LocationStep({ state, update }: StepProps) {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';

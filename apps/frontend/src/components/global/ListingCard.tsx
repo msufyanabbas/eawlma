@@ -23,7 +23,6 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { useCompareStore } from '@/store/compare.store';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from '@tanstack/react-router';
 import { ListingType, type Listing } from '@eawlma/shared-types';
 import { type MouseEvent } from 'react';
 import { listingCoverUrl } from '@/utils/listingImages';
@@ -45,34 +44,24 @@ interface ListingCardProps {
 export function ListingCard({ listing, locale, saved, onToggleSave, agentVerified }: ListingCardProps) {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
-  const navigate = useNavigate();
   // Imperative navigation — works without TanStack Router code-gen and avoids
   // the typed-Link `params` issue. The string interpolation is matched against
   // the registered '/listings/$id' route at runtime.
   // The handler also guards against bubbled clicks from inner buttons / links
   // (heart, WhatsApp share, compare) so those don't accidentally navigate.
+  // Inner action buttons (save, compare, WhatsApp) sit inside this same card
+  // and must NOT navigate when clicked. We mark each with `data-action` and
+  // bail out of navigation if the click originated inside one — same for any
+  // <button> or <a>. After that, fall through to a hard-page navigation; the
+  // search page's frequent re-renders were swallowing TanStack Router calls.
   const goToDetail = (e?: React.MouseEvent | React.KeyboardEvent) => {
     if (e) {
       const target = e.target as HTMLElement | null;
-      if (target?.closest('button, a, [role="button"]:not([data-card-root])')) {
-        return;
-      }
-      // Stop propagation so any wrapping page-level click handler (e.g. a
-      // search-page-wide listener) can't preventDefault our navigation.
-      e.preventDefault?.();
-      e.stopPropagation?.();
+      if (target?.closest('[data-action]')) return;
+      if (target?.closest('button')) return;
+      if (target?.closest('a')) return;
     }
-    // Defer to next tick so any in-flight setState/effect from the click
-    // settles before the router transition kicks in. Without this, fast
-    // re-renders on the search page were swallowing the navigation.
-    Promise.resolve().then(() => {
-      try {
-        void navigate({ to: `/listings/${listing.id}` as never });
-      } catch {
-        // Absolute fallback — full-page navigation if the router refuses.
-        window.location.href = `/listings/${listing.id}`;
-      }
-    });
+    window.location.href = `/listings/${listing.id}`;
   };
   const activeLocale = locale ?? i18n.language;
   const title = getListingTitle(listing, activeLocale);

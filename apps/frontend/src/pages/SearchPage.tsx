@@ -940,7 +940,11 @@ function FilterSection({
 // MapView
 // ------------------------------------------------------------------
 
-const MAP_LIBRARIES: ('places' | 'drawing')[] = ['places', 'drawing'];
+// `drawing` powers the polygon DrawingManager toolbar; `geometry` provides
+// `geometry.poly.containsLocation` used by the polygon filter — both must be
+// loaded explicitly (the loader does not pull `geometry` automatically when
+// `drawing` is requested).
+const MAP_LIBRARIES: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 const MAP_DEFAULT_CENTER = { lat: 24.7136, lng: 46.6753 }; // Riyadh
 
 function MapView({ listings }: { listings: Listing[] }) {

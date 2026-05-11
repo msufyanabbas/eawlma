@@ -1307,7 +1307,10 @@ function PriceTrendSparkline({ city, type }: { city: string; type: string }) {
   );
 }
 
-const MAP_LIBRARIES: ('places')[] = ['places'];
+// Keep this in sync with SearchPage's MAP_LIBRARIES — the Google Maps JS
+// loader is a singleton, so the first page to load wins; aligning the lists
+// avoids "drawing/geometry not loaded" silent failures on /search.
+const MAP_LIBRARIES: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
 function ListingMap({ lat, lng }: { lat: number; lng: number }) {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';

@@ -255,7 +255,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
               <>
                 <Tooltip title={t('nav.messages')}>
                   <IconButton
-                    onClick={() => navigate({ to: '/messages' as never })}
+                    onClick={() => navigate({ to: '/dashboard/messages' as never })}
                     aria-label="messages"
                   >
                     <Badge badgeContent={unreadMessageCount} color="error">

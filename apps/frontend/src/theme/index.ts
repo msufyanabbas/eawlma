@@ -49,12 +49,12 @@ const buildTypography = (
 ): ThemeOptions['typography'] => {
   const stack = pickStack(script);
   const headingStack = pickHeadingStack(script);
-  // Nastaleeq needs more vertical space and slightly larger glyphs to stay
-  // legible at body sizes — the script stacks taller diagonally than Naskh.
+  // Nastaleeq needs more vertical space than Naskh/Latin but the same glyph
+  // size — bumping fontSize made everything feel oversized.
   const isUrdu = script === 'urdu';
   return {
     fontFamily: stack,
-    fontSize: isUrdu ? 16 : 14,
+    fontSize: 14,
     htmlFontSize: 16,
     h1: {
       fontFamily: headingStack,
@@ -96,15 +96,15 @@ const buildTypography = (
       fontWeight: 600,
       lineHeight: 1.45,
     },
-    subtitle1: { fontWeight: 500, ...(isUrdu ? { lineHeight: 2.2 } : {}) },
-    subtitle2: { fontWeight: 600, ...(isUrdu ? { lineHeight: 2.2 } : {}) },
+    subtitle1: { fontWeight: 500, ...(isUrdu ? { lineHeight: 1.8 } : {}) },
+    subtitle2: { fontWeight: 600, ...(isUrdu ? { lineHeight: 1.8 } : {}) },
     body1: {
-      fontSize: isUrdu ? '1.1rem' : '0.9375rem',
-      lineHeight: isUrdu ? 2.2 : 1.6,
+      fontSize: '0.9375rem',
+      lineHeight: isUrdu ? 1.8 : 1.6,
     },
     body2: {
-      fontSize: isUrdu ? '1rem' : '0.875rem',
-      lineHeight: isUrdu ? 2.2 : 1.55,
+      fontSize: '0.875rem',
+      lineHeight: isUrdu ? 1.8 : 1.55,
     },
     button: { textTransform: 'none', fontWeight: 600, letterSpacing: 0 },
     overline: { fontWeight: 600, letterSpacing: '0.08em' },

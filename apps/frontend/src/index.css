@@ -48,13 +48,13 @@ body {
   font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
-/* Urdu Nastaleeq — needs more vertical space than Naskh/Latin. */
+/* Urdu Nastaleeq — needs more vertical space than Naskh/Latin. Same glyph
+   size as Latin/Arabic; only the line-height changes for Nastaleeq stacking. */
 .lang-ur,
 [lang="ur"],
 html[lang="ur"] body {
   font-family: 'Noto Nastaliq Urdu', 'Mehr Nastaliq', serif;
-  line-height: 2.2;
-  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 /* Dark mode page background — applied by ThemeProvider via data-theme="dark" */

@@ -30,6 +30,7 @@ import { RegisterPage } from './pages/auth/RegisterPage';
 import { VerifyOtpPage } from './pages/auth/VerifyOtpPage';
 import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage';
 import { NafathCallbackPage } from './pages/auth/NafathCallbackPage';
+import { MockNafathPage } from './pages/auth/MockNafathPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
@@ -180,6 +181,7 @@ const authRegisterRoute = createRoute({ getParentRoute: () => authShellRoute, pa
 const authVerifyRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/verify', component: VerifyOtpPage });
 const authForgotRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/forgot-password', component: ForgotPasswordPage });
 const authNafathCallbackRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/nafath-callback', component: NafathCallbackPage });
+const authNafathMockRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/nafath-mock', component: MockNafathPage });
 
 // ----- Legacy redirects ------------------------------------------------
 
@@ -267,6 +269,7 @@ const routeTree = rootRoute.addChildren([
     authVerifyRoute,
     authForgotRoute,
     authNafathCallbackRoute,
+    authNafathMockRoute,
   ]),
   dashboardShellRoute.addChildren([
     dashboardHomeRoute,

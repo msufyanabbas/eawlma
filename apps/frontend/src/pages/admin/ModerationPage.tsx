@@ -37,7 +37,7 @@ import { EmptyState } from '@/components/global/EmptyState';
 import { ConfirmDialog } from '@/components/global/ConfirmDialog';
 
 const PAGE_SIZE = 20;
-const MAP_LIBS: ('places')[] = ['places'];
+const MAP_LIBS: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
 export function ModerationPage() {
   const { t, i18n } = useTranslation();

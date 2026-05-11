@@ -117,9 +117,12 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
        *  notifications, settings, profile); agents see the full set. */}
       <Box component="nav" sx={{ flex: 1, py: 0.5 }}>
         {ITEMS.filter((item) => !item.agentOnly || isAgent).map((item) => {
+          // Active when the path is an exact match OR a child route. Using
+          // `itemPath + '/'` avoids `/dashboard/list` highlighting both
+          // `/dashboard/listings` and `/dashboard/list-something`.
+          const path = location.pathname;
           const active =
-            location.pathname === item.to ||
-            (item.to !== '/dashboard' && location.pathname.startsWith(item.to));
+            path === item.to || path.startsWith(item.to + '/');
           return (
             <Link key={item.to} to={item.to as never} style={{ textDecoration: 'none' }}>
               <Stack
