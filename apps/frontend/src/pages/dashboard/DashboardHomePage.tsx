@@ -175,7 +175,7 @@ export function DashboardHomePage() {
       <Grid container spacing={2.5} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
-            label="Active listings"
+            label={t('dashboardHome.kpiActiveListings')}
             value={summary?.activeListings ?? 0}
             icon={<HomeIcon />}
             tone="listings"
@@ -184,7 +184,7 @@ export function DashboardHomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
-            label="Total views (30d)"
+            label={t('dashboardHome.kpiTotalViews30d')}
             value={summary?.totalDetailViews ?? 0}
             icon={<VisibilityIcon />}
             tone="views"
@@ -193,7 +193,7 @@ export function DashboardHomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
-            label="Inquiries (30d)"
+            label={t('dashboardHome.kpiInquiries30d')}
             value={summary?.totalInquiries ?? 0}
             icon={<MailIcon />}
             tone="inquiries"
@@ -202,7 +202,7 @@ export function DashboardHomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
-            label="Conversion"
+            label={t('dashboardHome.kpiConversion')}
             value={`${summary?.conversionRate ?? 0}%`}
             icon={<TrendIcon />}
             tone="conversion"
@@ -211,7 +211,7 @@ export function DashboardHomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
-            label="Unread messages"
+            label={t('dashboardHome.kpiUnreadMessages')}
             value={unreadMessages.data ?? 0}
             icon={<ChatIcon />}
             tone="messages"
@@ -220,7 +220,7 @@ export function DashboardHomePage() {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <KpiCard
-            label="Current plan"
+            label={t('dashboardHome.kpiCurrentPlan')}
             value={(currentPlan.data?.planKey ?? 'free').toString().toUpperCase()}
             icon={<StarIcon />}
             tone="plan"
@@ -237,7 +237,7 @@ export function DashboardHomePage() {
               {t('dashboard.viewsOverTime')}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              {t('dashboard.last30Days')} · {lineSourceListing ? lineSourceListing.referenceCode : 'no active listings'}
+              {t('dashboard.last30Days')} · {lineSourceListing ? lineSourceListing.referenceCode : t('dashboardHome.noActiveListings')}
             </Typography>
             <Box sx={{ height: 280, mt: 2 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -307,7 +307,7 @@ export function DashboardHomePage() {
           <Paper sx={{ p: 3 }}>
             <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Recent inquiries
+                {t('dashboardHome.recentInquiries')}
               </Typography>
               <Button component={Link} to="/dashboard/inquiries" size="small">
                 {t('common.viewAll')}
@@ -316,10 +316,10 @@ export function DashboardHomePage() {
             <Table size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell>Lead</TableCell>
-                  <TableCell>Listing</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Status</TableCell>
+                  <TableCell>{t('inquiries.lead')}</TableCell>
+                  <TableCell>{t('inquiries.listing')}</TableCell>
+                  <TableCell>{t('inquiries.date')}</TableCell>
+                  <TableCell>{t('inquiries.status')}</TableCell>
                   <TableCell align="right" />
                 </TableRow>
               </TableHead>
@@ -328,7 +328,7 @@ export function DashboardHomePage() {
                   <TableRow>
                     <TableCell colSpan={5}>
                       <Typography variant="body2" color="text.secondary" align="center" sx={{ py: 3 }}>
-                        No inquiries yet — {t('common.search')} for properties to inquire on
+                        {t('dashboardHome.noInquiriesYet', { search: t('common.search') })}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -371,16 +371,18 @@ export function DashboardHomePage() {
             </Stack>
             {attention.length === 0 ? (
               <Typography variant="body2" color="text.secondary" sx={{ py: 4, textAlign: 'center' }}>
-                Nothing flagged — your listings are healthy 🎉
+                {t('dashboardHome.nothingFlagged')}
               </Typography>
             ) : (
               <Stack spacing={1.5}>
                 {attention.map((l) => {
                   const reason =
                     l.status === ListingStatus.REJECTED
-                      ? 'Rejected — needs revision'
+                      ? t('dashboardHome.rejectedRevision')
                       : l.expiresAt && new Date(l.expiresAt).getTime() - now < SEVEN_DAYS_MS
-                        ? `Expires ${new Date(l.expiresAt).toLocaleDateString(i18n.language)}`
+                        ? t('dashboardHome.expiresOn', {
+                            date: new Date(l.expiresAt).toLocaleDateString(i18n.language),
+                          })
                         : t('dashboard.lowEngagement');
                   return (
                     <Box

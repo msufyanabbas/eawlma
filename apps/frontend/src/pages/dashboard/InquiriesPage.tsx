@@ -85,7 +85,7 @@ export function InquiriesPage() {
       return messagingApi.create({
         recipientId: inquiry.userId,
         listingId: inquiry.listingId,
-        initialMessage: `Following up on your inquiry about ${ref}.`,
+        initialMessage: t('inquiries.followingUpRef', { ref }),
       });
     },
     onSuccess: ({ conversation }) => {
@@ -120,7 +120,11 @@ export function InquiriesPage() {
           {STATUS_FILTERS.map((s) => (
             <Chip
               key={s}
-              label={s === 'all' ? 'All' : s}
+              label={
+                s === 'all'
+                  ? t('inquiries.filterAll')
+                  : t(`inquiries.statuses.${s}`, { defaultValue: s })
+              }
               onClick={() => setFilter(s)}
               color={filter === s ? 'primary' : 'default'}
               variant={filter === s ? 'filled' : 'outlined'}
@@ -186,11 +190,7 @@ export function InquiriesPage() {
                       <TableCell><InquiryStatusChip status={inq.status} /></TableCell>
                       <TableCell align="right">
                         <Tooltip
-                          title={
-                            inq.userId
-                              ? ''
-                              : 'Anonymous lead — reply via email or phone'
-                          }
+                          title={inq.userId ? '' : t('inquiries.anonymousLeadShort')}
                         >
                           <span>
                             <Button
@@ -202,7 +202,7 @@ export function InquiriesPage() {
                                 replyMutation.mutate(inq);
                               }}
                             >
-                              Reply
+                              {t('inquiries.reply')}
                             </Button>
                           </span>
                         </Tooltip>
@@ -237,7 +237,7 @@ interface InquiryDrawerProps {
 }
 
 function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: InquiryDrawerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [agentNotes, setAgentNotes] = useState('');
   const [nextAction, setNextAction] = useState('');
   const [nextActionAt, setNextActionAt] = useState('');
@@ -308,7 +308,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
       {!inquiry ? null : (
         <Box sx={{ p: 3 }}>
           <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
-            <Typography variant="h6" sx={{ fontWeight: 700 }}>Inquiry detail</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('inquiries.drawerTitle')}</Typography>
             <IconButton onClick={onClose} size="small"><CloseIcon /></IconButton>
           </Stack>
 
@@ -317,7 +317,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 1 }}>
               <Avatar sx={{ width: 40, height: 40 }}>{(inquiry.guestName ?? 'L').charAt(0).toUpperCase()}</Avatar>
               <Box sx={{ minWidth: 0 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{inquiry.guestName ?? 'Anonymous'}</Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{inquiry.guestName ?? t('inquiries.anonymous')}</Typography>
                 <InquiryStatusChip status={inquiry.status} />
               </Box>
             </Stack>
@@ -333,7 +333,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
 
           {/* Listing snapshot */}
           <Paper variant="outlined" sx={{ p: 2, mt: 2 }}>
-            <Typography variant="overline" color="text.secondary">Listing</Typography>
+            <Typography variant="overline" color="text.secondary">{t('inquiries.listingLabel')}</Typography>
             {listingQuery.isLoading || !listingQuery.data ? (
               <Skeleton width="80%" />
             ) : (
@@ -341,7 +341,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
                 <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>{listingQuery.data.title}</Typography>
                 <Typography variant="caption" color="text.secondary">{listingQuery.data.referenceCode} · {listingQuery.data.city}</Typography>
                 <Typography variant="body2" sx={{ mt: 0.5 }}>
-                  {Number(listingQuery.data.price).toLocaleString()} SAR
+                  {Number(listingQuery.data.price).toLocaleString(i18n.language)} {t('listing.currency')}
                 </Typography>
                 <Button
                   component={Link}
@@ -350,7 +350,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
                   size="small"
                   sx={{ mt: 1 }}
                 >
-                  View public page
+                  {t('inquiries.viewPublicPage')}
                 </Button>
               </>
             )}
@@ -358,7 +358,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
 
           {/* Original message */}
           <Paper variant="outlined" sx={{ p: 2, mt: 2 }}>
-            <Typography variant="overline" color="text.secondary">Message</Typography>
+            <Typography variant="overline" color="text.secondary">{t('inquiries.messageLabel')}</Typography>
             <Typography variant="body2" sx={{ mt: 0.5, whiteSpace: 'pre-line' }}>
               {inquiry.message}
             </Typography>
@@ -371,12 +371,16 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             select
             fullWidth
             size="small"
-            label="Status"
+            label={t('inquiries.status')}
             value={status}
             onChange={(e) => changeStatus(e.target.value as InquiryStatus)}
             sx={{ mb: 2 }}
           >
-            {Object.values(InquiryStatus).map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
+            {Object.values(InquiryStatus).map((s) => (
+              <MenuItem key={s} value={s}>
+                {t(`inquiries.statuses.${s}`, { defaultValue: s })}
+              </MenuItem>
+            ))}
           </TextField>
 
           {/* Agent notes — auto-save on blur */}
@@ -384,7 +388,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             fullWidth
             multiline
             minRows={3}
-            label="Agent notes (saved on blur)"
+            label={t('inquiries.agentNotesLabel')}
             value={agentNotes}
             onChange={(e) => setAgentNotes(e.target.value)}
             onBlur={saveNotes}
@@ -395,7 +399,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             <TextField
               fullWidth
               size="small"
-              label="Next action"
+              label={t('inquiries.nextAction')}
               value={nextAction}
               onChange={(e) => setNextAction(e.target.value)}
               onBlur={saveNotes}
@@ -403,7 +407,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             <TextField
               size="small"
               type="datetime-local"
-              label="When"
+              label={t('inquiries.nextActionWhen')}
               InputLabelProps={{ shrink: true }}
               value={nextActionAt}
               onChange={(e) => setNextActionAt(e.target.value)}
@@ -413,7 +417,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
           </Stack>
 
           {updateMutation.isError && (
-            <Typography variant="caption" color="error">Could not save changes — try again.</Typography>
+            <Typography variant="caption" color="error">{t('inquiries.saveError')}</Typography>
           )}
 
           {/* Close-deal CTA — only when the lead is qualified, not yet closed.
@@ -431,7 +435,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
                 onClick={() => setCloseOpen(true)}
                 sx={{ fontWeight: 700, py: 1.25 }}
               >
-                Close Deal
+                {t('inquiries.closeDealCta')}
               </Button>
             </>
           )}
@@ -447,11 +451,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
 
           <Stack direction="row" spacing={1}>
             <Tooltip
-              title={
-                inquiry.userId
-                  ? ''
-                  : 'Anonymous lead — reach out via email or phone instead'
-              }
+              title={inquiry.userId ? '' : t('inquiries.anonymousLeadLong')}
             >
               <span style={{ width: '100%' }}>
                 <Button
@@ -461,7 +461,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
                   disabled={!inquiry.userId || replyPending}
                   onClick={() => onReply(inquiry)}
                 >
-                  {replyPending ? t('common.loading') : 'Reply via Message'}
+                  {replyPending ? t('common.loading') : t('inquiries.replyViaMessage')}
                 </Button>
               </span>
             </Tooltip>
@@ -483,13 +483,13 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
       )}
 
       <Dialog open={closeOpen} onClose={() => setCloseOpen(false)} maxWidth="xs" fullWidth aria-labelledby="close-deal-dialog-title">
-        <DialogTitle>Close deal</DialogTitle>
+        <DialogTitle>{t('inquiries.closeDealTitle')}</DialogTitle>
         <DialogContent>
           <Stack spacing={2} sx={{ mt: 1 }}>
             <TextField
               autoFocus
               type="number"
-              label="Transaction value (SAR)"
+              label={t('inquiries.transactionValue')}
               required
               value={dealValue}
               onChange={(e) => setDealValue(e.target.value)}
@@ -497,7 +497,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             />
             <TextField
               type="date"
-              label="Deal closed on"
+              label={t('inquiries.dealClosedOn')}
               InputLabelProps={{ shrink: true }}
               value={dealDate}
               onChange={(e) => setDealDate(e.target.value)}
@@ -505,19 +505,19 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             <TextField
               multiline
               minRows={2}
-              label="Notes (optional)"
+              label={t('inquiries.notesOptional')}
               value={dealNotes}
               onChange={(e) => setDealNotes(e.target.value)}
             />
             {closeDealMutation.isError && (
               <Alert severity="error">
-                {(closeDealMutation.error as Error).message || 'Could not close the deal — try again.'}
+                {(closeDealMutation.error as Error).message || t('inquiries.closeDealError')}
               </Alert>
             )}
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setCloseOpen(false)}>Cancel</Button>
+          <Button onClick={() => setCloseOpen(false)}>{t('common.cancel')}</Button>
           <Button
             variant="contained"
             color="success"
@@ -525,7 +525,7 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
             onClick={() => closeDealMutation.mutate()}
             sx={{ fontWeight: 700 }}
           >
-            {closeDealMutation.isPending ? t('common.loading') : 'Close Deal & Generate Commission'}
+            {closeDealMutation.isPending ? t('common.loading') : t('inquiries.closeDealConfirm')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -539,8 +539,9 @@ function InquiryDrawer({ inquiry, onClose, onUpdated, onReply, replyPending }: I
 // ------------------------------------------------------------------
 
 function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
+  const { t, i18n } = useTranslation();
   const value = inquiry.transactionValue
-    ? `${Number(inquiry.transactionValue).toLocaleString()} SAR`
+    ? `${Number(inquiry.transactionValue).toLocaleString(i18n.language)} ${t('listing.currency')}`
     : '—';
   const status = inquiry.dealStatus;
 
@@ -549,7 +550,7 @@ function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
       <Box>
         <Stack direction="row" spacing={1} sx={{ mb: 1.5 }}>
           <Chip
-            label="Pending Buyer Confirmation"
+            label={t('inquiries.deal.pendingChip')}
             sx={{
               bgcolor: '#FFF3CD',
               color: '#856404',
@@ -558,9 +559,9 @@ function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
           />
         </Stack>
         <Stack spacing={1}>
-          <Typography variant="body2">✅ Agent closed deal for {value}</Typography>
+          <Typography variant="body2">{t('inquiries.deal.agentClosedFor', { value })}</Typography>
           <Typography variant="body2" color="text.secondary">
-            ⏳ Waiting for buyer confirmation
+            {t('inquiries.deal.waitingBuyerConfirm')}
           </Typography>
         </Stack>
       </Box>
@@ -572,23 +573,23 @@ function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
       <Box>
         <Stack direction="row" spacing={1} sx={{ mb: 1.5 }}>
           <Chip
-            label="DISPUTED"
+            label={t('inquiries.deal.disputedChip')}
             color="error"
             sx={{ fontWeight: 800, letterSpacing: 0.4 }}
           />
         </Stack>
         <Stack spacing={1}>
-          <Typography variant="body2">✅ Agent closed deal for {value}</Typography>
+          <Typography variant="body2">{t('inquiries.deal.agentClosedFor', { value })}</Typography>
           {inquiry.disputeReason && (
             <Alert severity="warning" sx={{ mt: 1 }}>
-              <Typography variant="caption" sx={{ fontWeight: 700 }}>Dispute reason</Typography>
+              <Typography variant="caption" sx={{ fontWeight: 700 }}>{t('inquiries.deal.disputeReasonHeading')}</Typography>
               <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
                 {inquiry.disputeReason}
               </Typography>
             </Alert>
           )}
           <Typography variant="body2" color="info.main" sx={{ fontWeight: 600 }}>
-            Admin is reviewing — you'll be notified once it's resolved.
+            {t('inquiries.deal.adminReviewing')}
           </Typography>
         </Stack>
       </Box>
@@ -598,7 +599,7 @@ function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
   if (status === 'confirmed') {
     return (
       <Alert severity="success" icon={<HandshakeIcon />}>
-        Buyer confirmed the deal for {value}. Commission has been created.
+        {t('inquiries.deal.buyerConfirmed', { value })}
       </Alert>
     );
   }
@@ -606,10 +607,10 @@ function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
   if (status === 'resolved') {
     return (
       <Box>
-        <Chip label="Resolved" color="success" sx={{ fontWeight: 700, mb: 1 }} />
+        <Chip label={t('inquiries.deal.resolvedChip')} color="success" sx={{ fontWeight: 700, mb: 1 }} />
         {inquiry.adminResolution && (
           <Alert severity="info">
-            <Typography variant="caption" sx={{ fontWeight: 700 }}>Admin resolution</Typography>
+            <Typography variant="caption" sx={{ fontWeight: 700 }}>{t('inquiries.deal.adminResolutionHeading')}</Typography>
             <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
               {inquiry.adminResolution}
             </Typography>
@@ -619,12 +620,18 @@ function DealTimeline({ inquiry }: { inquiry: Inquiry }) {
     );
   }
 
-  // Fallback — pre-flag legacy rows that were closed but never went through
-  // the new flow (deal_status = 'none' with a closed_at).
+  // Fallback — legacy rows where deal_status='none' but a closed_at was set.
+  // The trailing date is appended via a separate translation segment so RTL
+  // languages can reorder cleanly without us hardcoding " on ".
   return (
     <Alert severity="success" icon={<HandshakeIcon />}>
-      Deal closed for {value}
-      {inquiry.closedAt ? ` on ${new Date(inquiry.closedAt).toLocaleDateString()}` : ''}.
+      {t('inquiries.deal.closedFor', { value })}
+      {inquiry.closedAt
+        ? t('inquiries.deal.closedOn', {
+            date: new Date(inquiry.closedAt).toLocaleDateString(i18n.language),
+          })
+        : ''}
+      .
     </Alert>
   );
 }
