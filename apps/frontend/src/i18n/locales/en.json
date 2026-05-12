@@ -127,7 +127,22 @@
     "anyPrice": "Any price",
     "upTo500": "Up to 500 SAR",
     "upTo1000": "Up to 1,000 SAR",
-    "upTo2500": "Up to 2,500 SAR"
+    "upTo2500": "Up to 2,500 SAR",
+    "hotelChip": "Hotel"
+  },
+  "agents": {
+    "searchPlaceholder": "Search by name or specialty",
+    "allCities": "All Cities",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "No agents match your search",
+    "emptyBody": "Try a different name or city.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Verified",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} active listings",
+    "viewProfile": "View Profile"
   },
   "messages": {
     "startConversation": "Start the conversation",
@@ -166,7 +181,8 @@
     "dailyRate": "Daily rate",
     "weeklyRate": "Weekly rate",
     "guestReviews": "Guest reviews",
-    "noReviews": "No reviews yet — once guests check out and rate their stay, they'll show up here."
+    "noReviews": "No reviews yet — once guests check out and rate their stay, they'll show up here.",
+    "guestFallback": "Guest"
   },
   "buyerDeals": {
     "title": "My deals",
@@ -216,7 +232,12 @@
     "favorAgent": "Favor agent — create commission",
     "favorBuyer": "Favor buyer — cancel deal",
     "cancelDeal": "Cancel deal — no commission",
-    "resolutionHint": "Both parties will be notified with these notes."
+    "resolutionHint": "Both parties will be notified with these notes.",
+    "other": "Other",
+    "buyerLower": "buyer",
+    "agentLower": "agent",
+    "otherLower": "other",
+    "anonymous": "Anonymous"
   },
   "auth": {
     "login": "Sign in",
@@ -296,7 +317,8 @@
     "remove": "Remove",
     "actions": "Actions",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "loadMore": "Load more"
   },
   "listing": {
     "forSale": "For sale",
@@ -399,7 +421,10 @@
       "cta": "Submit property request"
     },
     "drawArea": "Draw an area",
-    "clearDrawing": "Clear drawing"
+    "clearDrawing": "Clear drawing",
+    "flexibleDates": "I'm flexible with dates",
+    "flex1Month": "1 month",
+    "shortTerm": "Short-term"
   },
   "home": {
     "heroTitle": "Find your perfect home",
@@ -563,6 +588,9 @@
     "saveDraft": "Save draft",
     "submit": "Submit for review",
     "submitForReview": "Submit for review",
+    "editListing": "Edit listing",
+    "newListing": "New listing",
+    "crumbNew": "New",
     "fields": {
       "propertyType": "Property type",
       "transactionType": "Transaction type",
@@ -571,12 +599,137 @@
       "descriptionAr": "Description (Arabic)",
       "descriptionEn": "Description (English)",
       "price": "Price (SAR)",
+      "rentPeriod": "Period",
       "area": "Area (m²)",
       "bedrooms": "Bedrooms",
       "bathrooms": "Bathrooms",
       "parking": "Parking",
       "yearBuilt": "Year built",
       "furnishing": "Furnishing"
+    },
+    "validation": {
+      "titleRequired": "Please add a title in at least one language.",
+      "descriptionRequired": "Please add a description in at least one language.",
+      "priceRequired": "Price must be greater than zero.",
+      "cityRequired": "City is required.",
+      "pinRequired": "Drop a pin on the map for the location.",
+      "imageRequired": "At least one image is required before publishing."
+    },
+    "transactionType": {
+      "sale": "Sale",
+      "rent": "Rent"
+    },
+    "rentPeriod": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "furnishing": {
+      "unfurnished": "Unfurnished",
+      "semi_furnished": "Semi-furnished",
+      "furnished": "Furnished"
+    },
+    "visibility": {
+      "public": "Public",
+      "unlisted": "Unlisted"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Garden",
+      "gym": "Gym",
+      "elevator": "Elevator",
+      "maidRoom": "Maid room",
+      "driverRoom": "Driver room",
+      "centralAc": "Central AC",
+      "kitchenAppliances": "Kitchen appliances",
+      "security": "24/7 security",
+      "cornerUnit": "Corner unit"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Parking",
+      "breakfast": "Breakfast",
+      "ac": "Air conditioning",
+      "kitchen": "Kitchen",
+      "tv": "TV",
+      "washer": "Washer",
+      "workspace": "Workspace",
+      "petsAllowed": "Pets allowed",
+      "smokingAllowed": "Smoking allowed",
+      "wheelchairAccessible": "Wheelchair accessible"
+    },
+    "shortTerm": {
+      "title": "Short-term rental details",
+      "subtitle": "Guests will book this listing by the night. Configure stay rules, amenities, and pricing tiers.",
+      "dailyRate": "Daily rate (SAR)",
+      "weeklyRate": "Weekly rate (SAR, optional)",
+      "minimumStay": "Minimum stay (nights)",
+      "maxGuests": "Max guests",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Cancellation policy",
+      "cancelFlexible": "Flexible — full refund up to 24 hours before",
+      "cancelModerate": "Moderate — full refund up to 5 days before",
+      "cancelStrict": "Strict — 50% refund up to 7 days before",
+      "starRating": "Star rating",
+      "hotelName": "Hotel name",
+      "instantBook": "Instant book",
+      "instantBookHint": "Bookings auto-confirm without your approval. Disable to review each request first.",
+      "amenities": "Amenities",
+      "houseRules": "House rules",
+      "houseRulesPlaceholder": "e.g. No parties, quiet hours after 10pm, no smoking indoors..."
+    },
+    "location": {
+      "street": "Street",
+      "buildingNumber": "Building no.",
+      "postalCode": "Postal code",
+      "pinPrompt": "Drop a pin to set the exact location",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Map pin picker unavailable. Coordinates fall back to {{lat}}, {{lng}}."
+    },
+    "mediaStep": {
+      "images": "Images",
+      "imageDropHint": "Drag & drop photos here, or click to choose. JPEG / PNG / WebP up to 10 MB.",
+      "photoAlt": "Listing photo",
+      "setCover": "Set as cover",
+      "cover": "Cover",
+      "videoTour": "Video tour",
+      "videoDropHint": "Drag an MP4 file or click to choose. Max 500 MB.",
+      "videoUploaded": "Video uploaded — {{name}}",
+      "vrTitle": "🥽 Virtual Reality Tour Link",
+      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "modelTitle": "3D / AR model (.glb or .gltf)",
+      "modelDropHint": "Upload a GLB/GLTF model to enable AR. Max 50 MB.",
+      "modelUploaded": "Model uploaded — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Tap the amenities this property offers. We'll surface them as filters on Search."
+    },
+    "compliance": {
+      "permitNumber": "Permit / FAL number",
+      "regaNumber": "REGA license number",
+      "permitExpiry": "Permit expiry",
+      "preferredContact": "Preferred contact",
+      "phone": "Phone",
+      "publicVisibility": "Public visibility (uncheck for unlisted / private link only)"
+    },
+    "review": {
+      "summaryTitle": "Listing summary",
+      "enhanceWithAi": "Enhance with AI",
+      "enhancing": "Enhancing…",
+      "aiStubNotice": "AI returned a stub — set OPENAI_API_KEY on the backend to use the live model.",
+      "descriptionPreview": "Description preview",
+      "emptyDescription": "(empty)",
+      "type": "Type",
+      "titleLabel": "Title",
+      "bedsBaths": "Bedrooms / Bathrooms",
+      "cityDistrict": "City / District",
+      "coordinates": "Coordinates",
+      "permit": "Permit",
+      "regaLicense": "REGA license",
+      "visibility": "Visibility"
     }
   },
   "subscription": {
@@ -717,6 +870,19 @@
       "confirmed": "Confirmed",
       "paid": "Paid",
       "disputed": "Disputed"
+    },
+    "oath": {
+      "dialogTitle": "Commission Commitment",
+      "translatedOath": "I hereby commit to paying the agreed commission upon completion of this real estate transaction, and acknowledge this responsibility before God and the law.",
+      "breakdownTitle": "Commission breakdown",
+      "agentListingBreakdown": "Platform commission: <strong>0.5%</strong> of the transaction value, payable upon successful sale or lease closure.",
+      "buyerAgentCommission": "Agent commission: <strong>2.5%</strong> of the transaction value.",
+      "buyerPlatformFee": "Platform fee: <strong>0.5%</strong> of the transaction value.",
+      "acceptError": "Could not record your acceptance",
+      "agreeCheckbox": "I agree to commission terms",
+      "decline": "I do not agree",
+      "saving": "Saving...",
+      "acceptCta": "I Accept & Commit"
     }
   },
   "moderation": {
@@ -896,7 +1062,26 @@
     "contractNumber": "Contract #",
     "viewContract": "View contract",
     "signedThroughEjar": "Signed via Ejar",
-    "noContracts": "No rental contracts yet"
+    "noContracts": "No rental contracts yet",
+    "status": {
+      "draft": "Draft",
+      "pending_signatures": "Pending signatures",
+      "active": "Active",
+      "expired": "Expired",
+      "cancelled": "Cancelled"
+    }
+  },
+  "myListings": {
+    "countSelected": "{{count}} selected",
+    "activateAll": "Activate all",
+    "deactivateAll": "Deactivate all",
+    "deleteAll": "Delete all",
+    "colViews": "Views",
+    "colInquiries": "Inquiries",
+    "boostFeature": "Boost (feature)",
+    "duplicate": "Duplicate",
+    "deleteConfirmTitle": "Delete {{count}} listing(s)?",
+    "deleteConfirmDescription": "This action soft-deletes the listing — it will no longer appear publicly."
   },
   "dufaat": {
     "title": "Dufaat installments",
@@ -911,7 +1096,13 @@
     "nextPayment": "Next payment",
     "installmentsPaid": "Installments paid",
     "payNow": "Pay installment",
-    "noPlans": "No Dufaat plans yet"
+    "noPlans": "No Dufaat plans yet",
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "defaulted": "Defaulted",
+      "cancelled": "Cancelled"
+    }
   },
   "booking": {
     "myBookings": "My bookings",
@@ -961,6 +1152,9 @@
       "confirmed": "Confirmed",
       "cancelled": "Cancelled",
       "completed": "Completed"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Max guests: {{count}}"
     }
   },
   "market": {

@@ -36,11 +36,11 @@ import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 import { PriceCalendar } from '@/components/hosting/PriceCalendar';
 
-const STATUS_COLORS: Record<Booking['status'], { bg: string; text: string; label: string }> = {
-  pending: { bg: '#FFF3CD', text: '#856404', label: 'Pending' },
-  confirmed: { bg: '#D4EDDA', text: '#155724', label: 'Confirmed' },
-  cancelled: { bg: '#F8D7DA', text: '#721C24', label: 'Cancelled' },
-  completed: { bg: '#CCE5FF', text: '#004085', label: 'Completed' },
+const STATUS_COLORS: Record<Booking['status'], { bg: string; text: string }> = {
+  pending: { bg: '#FFF3CD', text: '#856404' },
+  confirmed: { bg: '#D4EDDA', text: '#155724' },
+  cancelled: { bg: '#F8D7DA', text: '#721C24' },
+  completed: { bg: '#CCE5FF', text: '#004085' },
 };
 
 export function HostingPage() {
@@ -203,12 +203,12 @@ export function HostingPage() {
                     <TableCell>{b.nights}</TableCell>
                     <TableCell>{b.numGuests}</TableCell>
                     <TableCell sx={{ fontWeight: 700 }}>
-                      {Number(b.totalAmount).toLocaleString(i18n.language)} SAR
+                      {Number(b.totalAmount).toLocaleString(i18n.language)} {t('listing.currency')}
                     </TableCell>
                     <TableCell>
                       <Chip
                         size="small"
-                        label={palette.label}
+                        label={t(`booking.status.${b.status}`, { defaultValue: b.status })}
                         sx={{ bgcolor: palette.bg, color: palette.text, fontWeight: 700 }}
                       />
                     </TableCell>
@@ -278,14 +278,14 @@ export function HostingPage() {
                 <Typography variant="h5" sx={{ fontWeight: 800 }}>
                   {Number(
                     (selectedListing as unknown as { dailyRate?: number }).dailyRate ?? selectedListing.price,
-                  ).toLocaleString(i18n.language)} SAR
+                  ).toLocaleString(i18n.language)} {t('listing.currency')}
                 </Typography>
               </Box>
               <Box sx={{ flex: '1 1 200px', minWidth: 200, p: 2, bgcolor: alpha(theme.palette.primary.main, 0.06), borderRadius: 2 }}>
                 <Typography variant="overline" color="text.secondary">{t('hosting.weeklyRate')}</Typography>
                 <Typography variant="h5" sx={{ fontWeight: 800 }}>
                   {(selectedListing as unknown as { weeklyRate?: number | null }).weeklyRate
-                    ? `${Number((selectedListing as unknown as { weeklyRate?: number }).weeklyRate).toLocaleString(i18n.language)} SAR`
+                    ? `${Number((selectedListing as unknown as { weeklyRate?: number }).weeklyRate).toLocaleString(i18n.language)} ${t('listing.currency')}`
                     : '—'}
                 </Typography>
               </Box>
@@ -328,7 +328,7 @@ export function HostingPage() {
                   <Typography variant="caption" color="text.secondary">
                     {r.reviewer
                       ? `${r.reviewer.firstName} ${r.reviewer.lastName}`.trim()
-                      : 'Guest'}{' '}
+                      : t('hosting.guestFallback')}{' '}
                     · {new Date(r.createdAt).toLocaleDateString(i18n.language)}
                   </Typography>
                 </Stack>

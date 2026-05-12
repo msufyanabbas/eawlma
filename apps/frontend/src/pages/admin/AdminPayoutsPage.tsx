@@ -33,12 +33,12 @@ import { AdminLayout } from '@/components/Layout/AdminLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 import { EmptyState } from '@/components/global/EmptyState';
 
-const STATUS_COLORS: Record<PayoutStatus, { bg: string; text: string; label: string }> = {
-  pending: { bg: '#E5E7EB', text: '#374151', label: 'Pending' },
-  processing: { bg: '#CCE5FF', text: '#004085', label: 'Processing' },
-  paid: { bg: '#D4EDDA', text: '#155724', label: 'Paid' },
-  failed: { bg: '#F8D7DA', text: '#721C24', label: 'Failed' },
-  rejected: { bg: '#F8D7DA', text: '#721C24', label: 'Rejected' },
+const STATUS_COLORS: Record<PayoutStatus, { bg: string; text: string; labelKey: string }> = {
+  pending: { bg: '#E5E7EB', text: '#374151', labelKey: 'wallet.payoutStatus.pending' },
+  processing: { bg: '#CCE5FF', text: '#004085', labelKey: 'wallet.payoutStatus.processing' },
+  paid: { bg: '#D4EDDA', text: '#155724', labelKey: 'wallet.payoutStatus.paid' },
+  failed: { bg: '#F8D7DA', text: '#721C24', labelKey: 'wallet.payoutStatus.failed' },
+  rejected: { bg: '#F8D7DA', text: '#721C24', labelKey: 'wallet.payoutStatus.rejected' },
 };
 
 const STATUS_OPTIONS: PayoutStatus[] = ['pending', 'processing', 'paid', 'failed', 'rejected'];

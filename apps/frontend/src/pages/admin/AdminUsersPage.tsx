@@ -108,36 +108,36 @@ export function AdminUsersPage() {
         <title>{t('admin.users')} — {t('app.name')}</title>
       </Helmet>
 
-      <PageHeader title={t('admin.users')} subtitle={`${usersQuery.data?.meta.total ?? 0} users`} />
+      <PageHeader title={t('admin.users')} subtitle={t('adminUsers.userCount', { count: usersQuery.data?.meta.total ?? 0 })} />
 
       <Paper sx={{ p: 2 }}>
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={1.5}>
           <TextField
             size="small"
             fullWidth
-            placeholder="Search name or email"
+            placeholder={t('adminUsers.searchPlaceholder')}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             InputProps={{ startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment> }}
             sx={{ maxWidth: { md: 320 } }}
           />
           <TextField
-            select size="small" label="Role"
+            select size="small" label={t('adminUsers.role')}
             value={roleFilter}
             onChange={(e) => { setRoleFilter(e.target.value as UserRole | ''); setPage(1); }}
             sx={{ minWidth: 160 }}
           >
-            <MenuItem value="">All</MenuItem>
-            {Object.values(UserRole).map((r) => <MenuItem key={r} value={r}>{r}</MenuItem>)}
+            <MenuItem value="">{t('adminUsers.all')}</MenuItem>
+            {Object.values(UserRole).map((r) => <MenuItem key={r} value={r}>{t(`adminUsers.roles.${r}`, { defaultValue: r })}</MenuItem>)}
           </TextField>
           <TextField
-            select size="small" label="Status"
+            select size="small" label={t('common.status')}
             value={statusFilter}
             onChange={(e) => { setStatusFilter(e.target.value as UserStatus | ''); setPage(1); }}
             sx={{ minWidth: 160 }}
           >
-            <MenuItem value="">All</MenuItem>
-            {Object.values(UserStatus).map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
+            <MenuItem value="">{t('adminUsers.all')}</MenuItem>
+            {Object.values(UserStatus).map((s) => <MenuItem key={s} value={s}>{t(`adminUsers.statuses.${s}`, { defaultValue: s })}</MenuItem>)}
           </TextField>
         </Stack>
       </Paper>
@@ -147,12 +147,12 @@ export function AdminUsersPage() {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Role</TableCell>
-              <TableCell>Verified</TableCell>
-              <TableCell>Joined</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell>{t('adminUsers.name')}</TableCell>
+              <TableCell>{t('auth.email')}</TableCell>
+              <TableCell>{t('adminUsers.role')}</TableCell>
+              <TableCell>{t('adminUsers.verified')}</TableCell>
+              <TableCell>{t('adminUsers.joined')}</TableCell>
+              <TableCell>{t('common.status')}</TableCell>
               <TableCell align="right" />
             </TableRow>
           </TableHead>
@@ -162,7 +162,7 @@ export function AdminUsersPage() {
                 <TableRow key={i}><TableCell colSpan={8}><Skeleton /></TableCell></TableRow>
               ))
             ) : items.length === 0 ? (
-              <TableRow><TableCell colSpan={8} sx={{ py: 4, textAlign: 'center', color: 'text.secondary' }}>No users match these filters</TableCell></TableRow>
+              <TableRow><TableCell colSpan={8} sx={{ py: 4, textAlign: 'center', color: 'text.secondary' }}>{t('adminUsers.empty')}</TableCell></TableRow>
             ) : (
               items.map((u) => (
                 <TableRow key={u.id} hover>
@@ -176,7 +176,7 @@ export function AdminUsersPage() {
                     <Typography variant="caption" color="text.secondary">{u.phone}</Typography>
                   </TableCell>
                   <TableCell>{u.email}</TableCell>
-                  <TableCell><Chip size="small" label={u.role} color={ROLE_COLORS[u.role]} variant="filled" /></TableCell>
+                  <TableCell><Chip size="small" label={t(`adminUsers.roles.${u.role}`, { defaultValue: u.role })} color={ROLE_COLORS[u.role]} variant="filled" /></TableCell>
                   <TableCell>
                     <Stack direction="row" spacing={0.5}>
                       {u.emailVerified && <VerifiedIcon sx={{ fontSize: 16, color: 'success.main' }} />}
@@ -190,7 +190,7 @@ export function AdminUsersPage() {
                   </TableCell>
                   <TableCell>{new Date(u.createdAt).toLocaleDateString(i18n.language)}</TableCell>
                   <TableCell>
-                    <Chip size="small" label={u.status} color={STATUS_COLORS[u.status]} variant="filled" sx={{ textTransform: 'capitalize' }} />
+                    <Chip size="small" label={t(`adminUsers.statuses.${u.status}`, { defaultValue: u.status })} color={STATUS_COLORS[u.status]} variant="filled" sx={{ textTransform: 'capitalize' }} />
                   </TableCell>
                   <TableCell align="right">
                     <IconButton
@@ -217,7 +217,7 @@ export function AdminUsersPage() {
       <Menu open={!!rowMenu} anchorEl={rowMenu?.anchor} onClose={() => setRowMenu(null)}>
         <MenuItem disabled sx={{ opacity: 1, color: 'text.secondary', fontSize: 12 }}>
           <Box>
-            <Typography variant="caption" sx={{ textTransform: 'uppercase', letterSpacing: 0.5 }}>Change role</Typography>
+            <Typography variant="caption" sx={{ textTransform: 'uppercase', letterSpacing: 0.5 }}>{t('adminUsers.changeRole')}</Typography>
           </Box>
         </MenuItem>
         {Object.values(UserRole).map((r) => (
@@ -230,7 +230,7 @@ export function AdminUsersPage() {
             }}
             sx={{ pl: 3 }}
           >
-            {r}
+            {t(`adminUsers.roles.${r}`, { defaultValue: r })}
           </MenuItem>
         ))}
         <Box sx={{ borderTop: 1, borderColor: 'divider', my: 1 }} />
@@ -241,7 +241,7 @@ export function AdminUsersPage() {
               setRowMenu(null);
             }}
           >
-            Reactivate account
+            {t('adminUsers.reactivateAccount')}
           </MenuItem>
         ) : (
           <MenuItem
@@ -251,7 +251,7 @@ export function AdminUsersPage() {
             }}
             sx={{ color: 'error.main' }}
           >
-            Suspend account
+            {t('adminUsers.suspendAccount')}
           </MenuItem>
         )}
       </Menu>
@@ -259,8 +259,8 @@ export function AdminUsersPage() {
       {/* Confirm dialogs */}
       <ConfirmDialog
         open={confirm?.kind === 'role'}
-        title={`Change role to "${confirm?.kind === 'role' ? confirm.role : ''}"?`}
-        description={confirm?.kind === 'role' ? `${confirm.user.firstName} ${confirm.user.lastName} will be re-permissioned immediately.` : undefined}
+        title={t('adminUsers.changeRoleTitle', { role: confirm?.kind === 'role' ? t(`adminUsers.roles.${confirm.role}`, { defaultValue: confirm.role }) : '' })}
+        description={confirm?.kind === 'role' ? t('adminUsers.changeRoleDescription', { name: `${confirm.user.firstName} ${confirm.user.lastName}` }) : undefined}
         loading={setRoleMutation.isPending}
         onConfirm={() => {
           if (confirm?.kind === 'role') setRoleMutation.mutate({ id: confirm.user.id, role: confirm.role });
@@ -269,24 +269,24 @@ export function AdminUsersPage() {
       />
       <ConfirmDialog
         open={confirm?.kind === 'suspend'}
-        title="Suspend this user?"
+        title={t('adminUsers.suspendTitle')}
         description={confirm?.kind === 'suspend' ? (
           <Stack spacing={2}>
             <Typography variant="body2" color="text.secondary">
-              {confirm.user.firstName} {confirm.user.lastName} will be signed out and unable to log in until reactivated.
+              {t('adminUsers.suspendDescription', { name: `${confirm.user.firstName} ${confirm.user.lastName}` })}
             </Typography>
             <TextField
               fullWidth
               multiline
               minRows={2}
-              label="Reason (audit trail)"
+              label={t('adminUsers.suspendReasonLabel')}
               value={confirm.reason}
               onChange={(e) => setConfirm({ ...confirm, reason: e.target.value })}
             />
           </Stack>
         ) : undefined}
         destructive
-        confirmLabel="Suspend"
+        confirmLabel={t('admin.suspend')}
         loading={suspendMutation.isPending}
         onConfirm={() => {
           if (confirm?.kind === 'suspend' && confirm.reason.trim().length >= 5) {
@@ -297,8 +297,8 @@ export function AdminUsersPage() {
       />
       <ConfirmDialog
         open={confirm?.kind === 'reactivate'}
-        title="Reactivate this user?"
-        description={confirm?.kind === 'reactivate' ? `${confirm.user.firstName} ${confirm.user.lastName} will be able to log in again immediately.` : undefined}
+        title={t('adminUsers.reactivateTitle')}
+        description={confirm?.kind === 'reactivate' ? t('adminUsers.reactivateDescription', { name: `${confirm.user.firstName} ${confirm.user.lastName}` }) : undefined}
         loading={reactivateMutation.isPending}
         onConfirm={() => {
           if (confirm?.kind === 'reactivate') reactivateMutation.mutate(confirm.user.id);

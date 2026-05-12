@@ -238,7 +238,10 @@ export function BookingCalendar({
               value={numGuests}
               onChange={(e) => setNumGuests(Math.max(1, Number(e.target.value) || 1))}
               inputProps={{ min: 1, max: maxGuests }}
-              helperText={t('booking.maxGuests', { defaultValue: 'Max guests' }) + `: ${maxGuests}`}
+              helperText={t('booking.calendar.maxGuestsHelper', {
+                count: maxGuests,
+                defaultValue: 'Max guests: {{count}}',
+              })}
             />
           ) : null}
 

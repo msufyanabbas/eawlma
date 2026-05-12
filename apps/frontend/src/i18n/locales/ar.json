@@ -127,7 +127,22 @@
     "anyPrice": "كل الأسعار",
     "upTo500": "حتى 500 ر.س",
     "upTo1000": "حتى 1,000 ر.س",
-    "upTo2500": "حتى 2,500 ر.س"
+    "upTo2500": "حتى 2,500 ر.س",
+    "hotelChip": "فندق"
+  },
+  "agents": {
+    "searchPlaceholder": "ابحث بالاسم أو التخصص",
+    "allCities": "كل المدن",
+    "cityRiyadh": "الرياض",
+    "cityJeddah": "جدة",
+    "cityDammam": "الدمام",
+    "emptyTitle": "لا يوجد وكلاء يطابقون بحثك",
+    "emptyBody": "جرّب اسماً أو مدينة مختلفة.",
+    "agency": "عَوْلَمَة العقارية",
+    "verified": "موثّق",
+    "respondsUnder2h": "أقل من ساعتين",
+    "activeListingsCount": "{{count}} إعلان نشط",
+    "viewProfile": "عرض الملف الشخصي"
   },
   "messages": {
     "startConversation": "ابدأ المحادثة",
@@ -166,7 +181,8 @@
     "dailyRate": "سعر الليلة",
     "weeklyRate": "السعر الأسبوعي",
     "guestReviews": "تقييمات الضيوف",
-    "noReviews": "لا توجد تقييمات بعد — ستظهر هنا فور تسجيل خروج الضيف وتقييمه."
+    "noReviews": "لا توجد تقييمات بعد — ستظهر هنا فور تسجيل خروج الضيف وتقييمه.",
+    "guestFallback": "ضيف"
   },
   "buyerDeals": {
     "title": "صفقاتي",
@@ -216,7 +232,12 @@
     "favorAgent": "لصالح الوكيل — إنشاء العمولة",
     "favorBuyer": "لصالح المشتري — إلغاء الصفقة",
     "cancelDeal": "إلغاء الصفقة — لا توجد عمولة",
-    "resolutionHint": "سيتم إشعار الطرفين بهذه الملاحظات."
+    "resolutionHint": "سيتم إشعار الطرفين بهذه الملاحظات.",
+    "other": "أخرى",
+    "buyerLower": "المشتري",
+    "agentLower": "الوكيل",
+    "otherLower": "طرف آخر",
+    "anonymous": "بدون اسم"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -296,7 +317,8 @@
     "remove": "إزالة",
     "actions": "إجراءات",
     "active": "نشط",
-    "inactive": "غير نشط"
+    "inactive": "غير نشط",
+    "loadMore": "تحميل المزيد"
   },
   "listing": {
     "forSale": "للبيع",
@@ -399,7 +421,10 @@
       "cta": "إرسال طلب عقار"
     },
     "drawArea": "ارسم منطقة",
-    "clearDrawing": "مسح الرسم"
+    "clearDrawing": "مسح الرسم",
+    "flexibleDates": "تواريخي مرنة",
+    "flex1Month": "شهر واحد",
+    "shortTerm": "قصيرة المدى"
   },
   "home": {
     "heroTitle": "اعثر على منزلك المثالي",
@@ -563,6 +588,9 @@
     "saveDraft": "حفظ كمسودة",
     "submit": "تقديم للمراجعة",
     "submitForReview": "تقديم للمراجعة",
+    "editListing": "تعديل الإعلان",
+    "newListing": "إعلان جديد",
+    "crumbNew": "جديد",
     "fields": {
       "propertyType": "نوع العقار",
       "transactionType": "نوع المعاملة",
@@ -571,12 +599,137 @@
       "descriptionAr": "الوصف (عربي)",
       "descriptionEn": "الوصف (إنجليزي)",
       "price": "السعر (ر.س)",
+      "rentPeriod": "الفترة",
       "area": "المساحة (م²)",
       "bedrooms": "غرف النوم",
       "bathrooms": "دورات المياه",
       "parking": "مواقف السيارات",
       "yearBuilt": "سنة البناء",
       "furnishing": "التأثيث"
+    },
+    "validation": {
+      "titleRequired": "يرجى إضافة عنوان بلغة واحدة على الأقل.",
+      "descriptionRequired": "يرجى إضافة وصف بلغة واحدة على الأقل.",
+      "priceRequired": "يجب أن يكون السعر أكبر من صفر.",
+      "cityRequired": "المدينة مطلوبة.",
+      "pinRequired": "حدد الموقع بدقة على الخريطة.",
+      "imageRequired": "يلزم رفع صورة واحدة على الأقل قبل النشر."
+    },
+    "transactionType": {
+      "sale": "بيع",
+      "rent": "إيجار"
+    },
+    "rentPeriod": {
+      "daily": "يومي",
+      "weekly": "أسبوعي",
+      "monthly": "شهري",
+      "yearly": "سنوي"
+    },
+    "furnishing": {
+      "unfurnished": "غير مفروش",
+      "semi_furnished": "نصف مفروش",
+      "furnished": "مفروش"
+    },
+    "visibility": {
+      "public": "عام",
+      "unlisted": "غير مدرج"
+    },
+    "amenity": {
+      "pool": "مسبح",
+      "garden": "حديقة",
+      "gym": "صالة رياضية",
+      "elevator": "مصعد",
+      "maidRoom": "غرفة خادمة",
+      "driverRoom": "غرفة سائق",
+      "centralAc": "تكييف مركزي",
+      "kitchenAppliances": "أجهزة مطبخ",
+      "security": "حراسة 24/7",
+      "cornerUnit": "وحدة ركنية"
+    },
+    "shortTermAmenity": {
+      "wifi": "واي فاي",
+      "pool": "مسبح",
+      "parking": "موقف سيارة",
+      "breakfast": "إفطار",
+      "ac": "تكييف",
+      "kitchen": "مطبخ",
+      "tv": "تلفاز",
+      "washer": "غسالة",
+      "workspace": "مساحة عمل",
+      "petsAllowed": "يسمح بالحيوانات الأليفة",
+      "smokingAllowed": "يسمح بالتدخين",
+      "wheelchairAccessible": "ملائم لذوي الإعاقة"
+    },
+    "shortTerm": {
+      "title": "تفاصيل التأجير قصير المدى",
+      "subtitle": "سيقوم الضيوف بحجز هذا العقار بالليلة. اضبط القواعد والمرافق وفئات الأسعار.",
+      "dailyRate": "السعر اليومي (ر.س)",
+      "weeklyRate": "السعر الأسبوعي (ر.س، اختياري)",
+      "minimumStay": "الحد الأدنى للإقامة (ليالٍ)",
+      "maxGuests": "الحد الأقصى للضيوف",
+      "checkIn": "تسجيل الوصول",
+      "checkOut": "تسجيل المغادرة",
+      "cancellationPolicy": "سياسة الإلغاء",
+      "cancelFlexible": "مرنة — استرداد كامل حتى 24 ساعة قبل الموعد",
+      "cancelModerate": "متوسطة — استرداد كامل حتى 5 أيام قبل الموعد",
+      "cancelStrict": "صارمة — استرداد 50% حتى 7 أيام قبل الموعد",
+      "starRating": "تصنيف النجوم",
+      "hotelName": "اسم الفندق",
+      "instantBook": "حجز فوري",
+      "instantBookHint": "تتأكد الحجوزات تلقائياً دون الحاجة إلى موافقتك. ألغِ التفعيل لمراجعة كل طلب.",
+      "amenities": "المرافق",
+      "houseRules": "قواعد المنزل",
+      "houseRulesPlaceholder": "مثل: ممنوع الحفلات، ساعات الهدوء بعد العاشرة، ممنوع التدخين..."
+    },
+    "location": {
+      "street": "الشارع",
+      "buildingNumber": "رقم المبنى",
+      "postalCode": "الرمز البريدي",
+      "pinPrompt": "حدد الموقع الدقيق على الخريطة",
+      "pinLabel": "الإحداثيات",
+      "mapUnavailable": "اختيار الموقع على الخريطة غير متاح. الإحداثيات الافتراضية: {{lat}}, {{lng}}."
+    },
+    "mediaStep": {
+      "images": "الصور",
+      "imageDropHint": "اسحب وأفلت الصور هنا، أو انقر للاختيار. JPEG / PNG / WebP حتى 10 ميغابايت.",
+      "photoAlt": "صورة العقار",
+      "setCover": "تعيين كصورة رئيسية",
+      "cover": "الصورة الرئيسية",
+      "videoTour": "جولة بالفيديو",
+      "videoDropHint": "اسحب ملف MP4 أو انقر للاختيار. حتى 500 ميغابايت.",
+      "videoUploaded": "تم رفع الفيديو — {{name}}",
+      "vrTitle": "🥽 رابط جولة الواقع الافتراضي",
+      "vrPlaceholder": "https://… (Matterport, Kuula، إلخ.)",
+      "modelTitle": "نموذج ثلاثي الأبعاد / AR (‎.glb أو .gltf)",
+      "modelDropHint": "ارفع نموذج GLB/GLTF لتفعيل الواقع المعزز. حتى 50 ميغابايت.",
+      "modelUploaded": "تم رفع النموذج — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "اضغط على المرافق التي يوفرها العقار. ستظهر كفلاتر في صفحة البحث."
+    },
+    "compliance": {
+      "permitNumber": "رقم التصريح / FAL",
+      "regaNumber": "رقم رخصة الهيئة العامة للعقار (REGA)",
+      "permitExpiry": "تاريخ انتهاء التصريح",
+      "preferredContact": "وسيلة التواصل المفضلة",
+      "phone": "هاتف",
+      "publicVisibility": "إظهار للعموم (ألغِ التحديد للوصول عبر رابط خاص فقط)"
+    },
+    "review": {
+      "summaryTitle": "ملخص الإعلان",
+      "enhanceWithAi": "تحسين بالذكاء الاصطناعي",
+      "enhancing": "جارٍ التحسين…",
+      "aiStubNotice": "تم إرجاع نموذج تجريبي — اضبط OPENAI_API_KEY في الخادم لاستخدام النموذج الفعلي.",
+      "descriptionPreview": "معاينة الوصف",
+      "emptyDescription": "(فارغ)",
+      "type": "النوع",
+      "titleLabel": "العنوان",
+      "bedsBaths": "غرف النوم / دورات المياه",
+      "cityDistrict": "المدينة / الحي",
+      "coordinates": "الإحداثيات",
+      "permit": "التصريح",
+      "regaLicense": "رخصة REGA",
+      "visibility": "الإظهار"
     }
   },
   "subscription": {
@@ -717,6 +870,19 @@
       "confirmed": "مؤكدة",
       "paid": "مدفوعة",
       "disputed": "متنازع عليها"
+    },
+    "oath": {
+      "dialogTitle": "التزام بالأمانة والعمولة",
+      "translatedOath": "أتعهد بدفع العمولة المتفق عليها عند إتمام هذه الصفقة العقارية، وأقرّ بهذه المسؤولية أمام الله وأمام القانون.",
+      "breakdownTitle": "تفاصيل العمولة",
+      "agentListingBreakdown": "عمولة المنصة: <strong>٠.٥٪</strong> من قيمة الصفقة، تُستحق عند إتمام البيع أو التأجير بنجاح.",
+      "buyerAgentCommission": "عمولة الوكيل: <strong>٢.٥٪</strong> من قيمة الصفقة.",
+      "buyerPlatformFee": "رسوم المنصة: <strong>٠.٥٪</strong> من قيمة الصفقة.",
+      "acceptError": "تعذّر تسجيل موافقتك",
+      "agreeCheckbox": "أوافق على شروط العمولة",
+      "decline": "لا أوافق",
+      "saving": "جارٍ الحفظ...",
+      "acceptCta": "أقبل وأتعهد"
     }
   },
   "moderation": {
@@ -896,7 +1062,26 @@
     "contractNumber": "رقم العقد",
     "viewContract": "عرض العقد",
     "signedThroughEjar": "موثق عبر إيجار",
-    "noContracts": "لا توجد عقود إيجار حتى الآن"
+    "noContracts": "لا توجد عقود إيجار حتى الآن",
+    "status": {
+      "draft": "مسودة",
+      "pending_signatures": "بانتظار التوقيع",
+      "active": "ساري",
+      "expired": "منتهي",
+      "cancelled": "ملغى"
+    }
+  },
+  "myListings": {
+    "countSelected": "{{count}} محدد",
+    "activateAll": "تفعيل الكل",
+    "deactivateAll": "تعطيل الكل",
+    "deleteAll": "حذف الكل",
+    "colViews": "المشاهدات",
+    "colInquiries": "الاستفسارات",
+    "boostFeature": "ترقية الإعلان (ميزة)",
+    "duplicate": "تكرار",
+    "deleteConfirmTitle": "حذف {{count}} إعلان؟",
+    "deleteConfirmDescription": "سيؤدي هذا الإجراء إلى حذف الإعلان حذفاً مؤقتاً — لن يظهر للعامة بعد الآن."
   },
   "dufaat": {
     "title": "أقساط دفعات",
@@ -911,7 +1096,13 @@
     "nextPayment": "القسط القادم",
     "installmentsPaid": "الأقساط المدفوعة",
     "payNow": "دفع القسط",
-    "noPlans": "لا توجد خطط دفعات حتى الآن"
+    "noPlans": "لا توجد خطط دفعات حتى الآن",
+    "status": {
+      "active": "نشطة",
+      "completed": "مكتملة",
+      "defaulted": "متعثرة",
+      "cancelled": "ملغاة"
+    }
   },
   "booking": {
     "myBookings": "حجوزاتي",
@@ -961,6 +1152,9 @@
       "confirmed": "مؤكَّد",
       "cancelled": "ملغى",
       "completed": "مكتمل"
+    },
+    "calendar": {
+      "maxGuestsHelper": "الحد الأقصى للضيوف: {{count}}"
     }
   },
   "market": {

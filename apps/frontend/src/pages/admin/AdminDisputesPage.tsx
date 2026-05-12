@@ -124,6 +124,7 @@ function DisputeRow({
   onClick: () => void;
   selected: boolean;
 }) {
+  const { t } = useTranslation();
   const listingQuery = useQuery({
     queryKey: ['listings', inquiry.listingId],
     queryFn: () => listingsApi.getById(inquiry.listingId),
@@ -177,10 +178,10 @@ function DisputeRow({
           size="small"
           label={
             inquiry.disputeRaisedBy === inquiry.userId
-              ? 'Buyer'
+              ? t('adminDisputes.buyer')
               : inquiry.disputeRaisedBy === inquiry.agentId
-                ? 'Agent'
-                : 'Other'
+                ? t('adminDisputes.agent')
+                : t('adminDisputes.other')
           }
           variant="outlined"
         />
@@ -315,7 +316,7 @@ function DisputeDrawer({
               {t('adminDisputes.buyerSide')}
             </Typography>
             <Typography variant="body2" sx={{ fontWeight: 700, mt: 0.5 }}>
-              {inquiry.guestName ?? (inquiry.userId ? inquiry.userId.slice(0, 8) + '…' : 'Anonymous')}
+              {inquiry.guestName ?? (inquiry.userId ? inquiry.userId.slice(0, 8) + '…' : t('adminDisputes.anonymous'))}
             </Typography>
             {inquiry.disputeReason && (
               <Box sx={{ mt: 1 }}>
@@ -334,10 +335,10 @@ function DisputeDrawer({
                 : '—'}{' '}
               {t('adminDisputes.by')}{' '}
               {inquiry.disputeRaisedBy === inquiry.userId
-                ? 'buyer'
+                ? t('adminDisputes.buyerLower')
                 : inquiry.disputeRaisedBy === inquiry.agentId
-                  ? 'agent'
-                  : 'other'}
+                  ? t('adminDisputes.agentLower')
+                  : t('adminDisputes.otherLower')}
             </Typography>
           </Paper>
 

@@ -128,16 +128,16 @@ const DEFAULT_LAT = 24.7136;
 const DEFAULT_LNG = 46.6753;
 
 const AMENITY_OPTIONS = [
-  { key: 'pool', label: 'Pool' },
-  { key: 'garden', label: 'Garden' },
-  { key: 'gym', label: 'Gym' },
-  { key: 'elevator', label: 'Elevator' },
-  { key: 'maid_room', label: 'Maid room' },
-  { key: 'driver_room', label: 'Driver room' },
-  { key: 'central_ac', label: 'Central AC' },
-  { key: 'kitchen_appliances', label: 'Kitchen appliances' },
-  { key: 'security', label: '24/7 security' },
-  { key: 'corner_unit', label: 'Corner unit' },
+  { key: 'pool', i18nKey: 'wizard.amenity.pool', fallback: 'Pool' },
+  { key: 'garden', i18nKey: 'wizard.amenity.garden', fallback: 'Garden' },
+  { key: 'gym', i18nKey: 'wizard.amenity.gym', fallback: 'Gym' },
+  { key: 'elevator', i18nKey: 'wizard.amenity.elevator', fallback: 'Elevator' },
+  { key: 'maid_room', i18nKey: 'wizard.amenity.maidRoom', fallback: 'Maid room' },
+  { key: 'driver_room', i18nKey: 'wizard.amenity.driverRoom', fallback: 'Driver room' },
+  { key: 'central_ac', i18nKey: 'wizard.amenity.centralAc', fallback: 'Central AC' },
+  { key: 'kitchen_appliances', i18nKey: 'wizard.amenity.kitchenAppliances', fallback: 'Kitchen appliances' },
+  { key: 'security', i18nKey: 'wizard.amenity.security', fallback: '24/7 security' },
+  { key: 'corner_unit', i18nKey: 'wizard.amenity.cornerUnit', fallback: 'Corner unit' },
 ];
 
 const STEP_KEYS: Array<'basicInfo' | 'location' | 'media' | 'amenities' | 'compliance' | 'review'> = [
@@ -388,7 +388,7 @@ export function ListingWizardPage() {
     setError(null);
     const validation = validateStep(step, state);
     if (validation) {
-      setError(validation);
+      setError(t(validation));
       return;
     }
     setStep((s) => Math.min(s + 1, STEP_KEYS.length - 1));
@@ -399,15 +399,15 @@ export function ListingWizardPage() {
   return (
     <DashboardLayout>
       <Helmet>
-        <title>{isEdit ? 'Edit listing' : 'New listing'} — {t('app.name')}</title>
+        <title>{isEdit ? t('wizard.editListing') : t('wizard.newListing')} — {t('app.name')}</title>
       </Helmet>
 
       <PageHeader
-        title={isEdit ? 'Edit listing' : 'New listing'}
+        title={isEdit ? t('wizard.editListing') : t('wizard.newListing')}
         breadcrumbs={[
           { label: t('dashboard.overview'), to: '/dashboard' },
           { label: t('dashboard.listings'), to: '/dashboard/listings' },
-          { label: isEdit ? 'Edit' : 'New' },
+          { label: isEdit ? t('common.edit') : t('wizard.crumbNew') },
         ]}
       />
 
@@ -493,19 +493,21 @@ export function ListingWizardPage() {
 // Validation
 // ------------------------------------------------------------------
 
+// Returns an i18n key that the caller passes to t(); fields without a value
+// return null. Keeping this pure (no useTranslation) keeps it composable.
 function validateStep(step: number, s: WizardState): string | null {
   if (step === 0) {
-    if (!s.titleAr && !s.titleEn) return 'Please add a title in at least one language.';
-    if (!s.descriptionAr && !s.descriptionEn) return 'Please add a description in at least one language.';
-    if (!s.price || Number(s.price) <= 0) return 'Price must be greater than zero.';
+    if (!s.titleAr && !s.titleEn) return 'wizard.validation.titleRequired';
+    if (!s.descriptionAr && !s.descriptionEn) return 'wizard.validation.descriptionRequired';
+    if (!s.price || Number(s.price) <= 0) return 'wizard.validation.priceRequired';
   }
   if (step === 1) {
-    if (!s.city.trim()) return 'City is required.';
-    if (!Number.isFinite(s.lat) || !Number.isFinite(s.lng)) return 'Drop a pin on the map for the location.';
+    if (!s.city.trim()) return 'wizard.validation.cityRequired';
+    if (!Number.isFinite(s.lat) || !Number.isFinite(s.lng)) return 'wizard.validation.pinRequired';
   }
   if (step === 2) {
     if (s.media.filter((m) => m.type === MediaType.IMAGE).length === 0) {
-      return 'At least one image is required before publishing.';
+      return 'wizard.validation.imageRequired';
     }
   }
   return null;
@@ -583,33 +585,33 @@ function BasicInfoStep({ state, update }: StepProps) {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={6}>
-        <TextField select fullWidth label="Property type" value={state.propertyType} onChange={(e) => update({ propertyType: e.target.value as PropertyType })}>
-          {Object.values(PropertyType).map((p) => <MenuItem key={p} value={p}>{p}</MenuItem>)}
+        <TextField select fullWidth label={t('wizard.fields.propertyType')} value={state.propertyType} onChange={(e) => update({ propertyType: e.target.value as PropertyType })}>
+          {Object.values(PropertyType).map((p) => <MenuItem key={p} value={p}>{t(`propertyTypes.${p}`, { defaultValue: p })}</MenuItem>)}
         </TextField>
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField select fullWidth label="Transaction type" value={state.type} onChange={(e) => update({ type: e.target.value as ListingType })}>
-          <MenuItem value={ListingType.SALE}>Sale</MenuItem>
-          <MenuItem value={ListingType.RENT}>Rent</MenuItem>
+        <TextField select fullWidth label={t('wizard.fields.transactionType')} value={state.type} onChange={(e) => update({ type: e.target.value as ListingType })}>
+          <MenuItem value={ListingType.SALE}>{t('search.forSale')}</MenuItem>
+          <MenuItem value={ListingType.RENT}>{t('search.forRent')}</MenuItem>
         </TextField>
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth label="Title (Arabic)" value={state.titleAr} onChange={(e) => update({ titleAr: e.target.value })} dir="rtl" />
+        <TextField fullWidth label={t('wizard.fields.titleAr')} value={state.titleAr} onChange={(e) => update({ titleAr: e.target.value })} dir="rtl" />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth label="Title (English)" value={state.titleEn} onChange={(e) => update({ titleEn: e.target.value })} />
+        <TextField fullWidth label={t('wizard.fields.titleEn')} value={state.titleEn} onChange={(e) => update({ titleEn: e.target.value })} />
       </Grid>
 
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth multiline minRows={4} label="Description (Arabic)" value={state.descriptionAr} onChange={(e) => update({ descriptionAr: e.target.value })} dir="rtl" />
+        <TextField fullWidth multiline minRows={4} label={t('wizard.fields.descriptionAr')} value={state.descriptionAr} onChange={(e) => update({ descriptionAr: e.target.value })} dir="rtl" />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth multiline minRows={4} label="Description (English)" value={state.descriptionEn} onChange={(e) => update({ descriptionEn: e.target.value })} />
+        <TextField fullWidth multiline minRows={4} label={t('wizard.fields.descriptionEn')} value={state.descriptionEn} onChange={(e) => update({ descriptionEn: e.target.value })} />
       </Grid>
 
       <Grid item xs={6} sm={3}>
-        <TextField fullWidth type="number" label="Price (SAR)" value={state.price} onChange={(e) => update({ price: e.target.value })} />
+        <TextField fullWidth type="number" label={t('wizard.fields.price')} value={state.price} onChange={(e) => update({ price: e.target.value })} />
       </Grid>
 
       {/* AI Price Suggestion — full-width row directly under the price + area
@@ -708,22 +710,22 @@ function BasicInfoStep({ state, update }: StepProps) {
       )}
       {isRent && (
         <Grid item xs={6} sm={3}>
-          <TextField select fullWidth label="Period" value={state.rentPeriod} onChange={(e) => update({ rentPeriod: e.target.value as RentPeriod })}>
-            {Object.values(RentPeriod).map((r) => <MenuItem key={r} value={r}>{r}</MenuItem>)}
+          <TextField select fullWidth label={t('wizard.fields.rentPeriod')} value={state.rentPeriod} onChange={(e) => update({ rentPeriod: e.target.value as RentPeriod })}>
+            {Object.values(RentPeriod).map((r) => <MenuItem key={r} value={r}>{t(`wizard.rentPeriod.${r}`, { defaultValue: r })}</MenuItem>)}
           </TextField>
         </Grid>
       )}
-      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label="Area (m²)" value={state.area} onChange={(e) => update({ area: e.target.value })} /></Grid>
-      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label="Bedrooms" value={state.bedrooms} onChange={(e) => update({ bedrooms: e.target.value })} /></Grid>
-      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label="Bathrooms" value={state.bathrooms} onChange={(e) => update({ bathrooms: e.target.value })} /></Grid>
-      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label="Parking" value={state.parkingSpaces} onChange={(e) => update({ parkingSpaces: e.target.value })} /></Grid>
+      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label={t('wizard.fields.area')} value={state.area} onChange={(e) => update({ area: e.target.value })} /></Grid>
+      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label={t('wizard.fields.bedrooms')} value={state.bedrooms} onChange={(e) => update({ bedrooms: e.target.value })} /></Grid>
+      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label={t('wizard.fields.bathrooms')} value={state.bathrooms} onChange={(e) => update({ bathrooms: e.target.value })} /></Grid>
+      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label={t('wizard.fields.parking')} value={state.parkingSpaces} onChange={(e) => update({ parkingSpaces: e.target.value })} /></Grid>
       <Grid item xs={6} sm={3}>
-        <TextField select fullWidth label="Furnishing" value={state.furnishing} onChange={(e) => update({ furnishing: e.target.value as ListingFurnishing })}>
+        <TextField select fullWidth label={t('wizard.fields.furnishing')} value={state.furnishing} onChange={(e) => update({ furnishing: e.target.value as ListingFurnishing })}>
           <MenuItem value="">—</MenuItem>
-          {Object.values(ListingFurnishing).map((f) => <MenuItem key={f} value={f}>{f}</MenuItem>)}
+          {Object.values(ListingFurnishing).map((f) => <MenuItem key={f} value={f}>{t(`wizard.furnishing.${f}`, { defaultValue: f })}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label="Year built" value={state.yearBuilt} onChange={(e) => update({ yearBuilt: e.target.value })} /></Grid>
+      <Grid item xs={6} sm={3}><TextField fullWidth type="number" label={t('wizard.fields.yearBuilt')} value={state.yearBuilt} onChange={(e) => update({ yearBuilt: e.target.value })} /></Grid>
 
       {SHORT_TERM_PROPERTY_TYPES.includes(state.propertyType) && (
         <Grid item xs={12}>
@@ -740,22 +742,23 @@ function BasicInfoStep({ state, update }: StepProps) {
 // chalet / farm / rest_house).
 // ------------------------------------------------------------------
 
-const SHORT_TERM_AMENITY_OPTIONS: Array<{ key: keyof ShortTermAmenities; label: string }> = [
-  { key: 'wifi', label: 'Wi-Fi' },
-  { key: 'pool', label: 'Pool' },
-  { key: 'parking', label: 'Parking' },
-  { key: 'breakfast', label: 'Breakfast' },
-  { key: 'ac', label: 'Air conditioning' },
-  { key: 'kitchen', label: 'Kitchen' },
-  { key: 'tv', label: 'TV' },
-  { key: 'washer', label: 'Washer' },
-  { key: 'workspace', label: 'Workspace' },
-  { key: 'petsAllowed', label: 'Pets allowed' },
-  { key: 'smokingAllowed', label: 'Smoking allowed' },
-  { key: 'wheelchairAccessible', label: 'Wheelchair accessible' },
+const SHORT_TERM_AMENITY_OPTIONS: Array<{ key: keyof ShortTermAmenities; i18nKey: string; fallback: string }> = [
+  { key: 'wifi', i18nKey: 'wizard.shortTermAmenity.wifi', fallback: 'Wi-Fi' },
+  { key: 'pool', i18nKey: 'wizard.shortTermAmenity.pool', fallback: 'Pool' },
+  { key: 'parking', i18nKey: 'wizard.shortTermAmenity.parking', fallback: 'Parking' },
+  { key: 'breakfast', i18nKey: 'wizard.shortTermAmenity.breakfast', fallback: 'Breakfast' },
+  { key: 'ac', i18nKey: 'wizard.shortTermAmenity.ac', fallback: 'Air conditioning' },
+  { key: 'kitchen', i18nKey: 'wizard.shortTermAmenity.kitchen', fallback: 'Kitchen' },
+  { key: 'tv', i18nKey: 'wizard.shortTermAmenity.tv', fallback: 'TV' },
+  { key: 'washer', i18nKey: 'wizard.shortTermAmenity.washer', fallback: 'Washer' },
+  { key: 'workspace', i18nKey: 'wizard.shortTermAmenity.workspace', fallback: 'Workspace' },
+  { key: 'petsAllowed', i18nKey: 'wizard.shortTermAmenity.petsAllowed', fallback: 'Pets allowed' },
+  { key: 'smokingAllowed', i18nKey: 'wizard.shortTermAmenity.smokingAllowed', fallback: 'Smoking allowed' },
+  { key: 'wheelchairAccessible', i18nKey: 'wizard.shortTermAmenity.wheelchairAccessible', fallback: 'Wheelchair accessible' },
 ];
 
 function ShortTermSection({ state, update }: StepProps) {
+  const { t } = useTranslation();
   const isHotel = HOTEL_PROPERTY_TYPES.includes(state.propertyType);
   const toggleAmenity = (key: keyof ShortTermAmenities) => {
     update((prev) => ({
@@ -769,10 +772,10 @@ function ShortTermSection({ state, update }: StepProps) {
   return (
     <Paper variant="outlined" sx={{ p: 3, mt: 1, bgcolor: 'rgba(108,99,166,0.04)' }}>
       <Typography variant="subtitle1" sx={{ fontWeight: 800, mb: 0.5 }}>
-        Short-term rental details
+        {t('wizard.shortTerm.title')}
       </Typography>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 2 }}>
-        Guests will book this listing by the night. Configure stay rules, amenities, and pricing tiers.
+        {t('wizard.shortTerm.subtitle')}
       </Typography>
 
       <Grid container spacing={2}>
@@ -780,7 +783,7 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             fullWidth
             type="number"
-            label="Daily rate (SAR)"
+            label={t('wizard.shortTerm.dailyRate')}
             value={state.dailyRate}
             onChange={(e) => update({ dailyRate: e.target.value })}
           />
@@ -789,7 +792,7 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             fullWidth
             type="number"
-            label="Weekly rate (SAR, optional)"
+            label={t('wizard.shortTerm.weeklyRate')}
             value={state.weeklyRate}
             onChange={(e) => update({ weeklyRate: e.target.value })}
           />
@@ -798,7 +801,7 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             fullWidth
             type="number"
-            label="Minimum stay (nights)"
+            label={t('wizard.shortTerm.minimumStay')}
             inputProps={{ min: 1 }}
             value={state.minimumStay}
             onChange={(e) => update({ minimumStay: e.target.value })}
@@ -808,7 +811,7 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             fullWidth
             type="number"
-            label="Max guests"
+            label={t('wizard.shortTerm.maxGuests')}
             inputProps={{ min: 1, max: 99 }}
             value={state.maxGuests}
             onChange={(e) => update({ maxGuests: e.target.value })}
@@ -819,7 +822,7 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             fullWidth
             type="time"
-            label="Check-in"
+            label={t('wizard.shortTerm.checkIn')}
             InputLabelProps={{ shrink: true }}
             value={state.checkInTime}
             onChange={(e) => update({ checkInTime: e.target.value })}
@@ -829,7 +832,7 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             fullWidth
             type="time"
-            label="Check-out"
+            label={t('wizard.shortTerm.checkOut')}
             InputLabelProps={{ shrink: true }}
             value={state.checkOutTime}
             onChange={(e) => update({ checkOutTime: e.target.value })}
@@ -839,14 +842,14 @@ function ShortTermSection({ state, update }: StepProps) {
           <TextField
             select
             fullWidth
-            label="Cancellation policy"
+            label={t('wizard.shortTerm.cancellationPolicy')}
             value={state.cancellationPolicy}
             onChange={(e) => update({ cancellationPolicy: e.target.value as CancellationPolicy | '' })}
           >
             <MenuItem value="">—</MenuItem>
-            <MenuItem value="flexible">Flexible — full refund up to 24 hours before</MenuItem>
-            <MenuItem value="moderate">Moderate — full refund up to 5 days before</MenuItem>
-            <MenuItem value="strict">Strict — 50% refund up to 7 days before</MenuItem>
+            <MenuItem value="flexible">{t('wizard.shortTerm.cancelFlexible')}</MenuItem>
+            <MenuItem value="moderate">{t('wizard.shortTerm.cancelModerate')}</MenuItem>
+            <MenuItem value="strict">{t('wizard.shortTerm.cancelStrict')}</MenuItem>
           </TextField>
         </Grid>
 
@@ -856,7 +859,7 @@ function ShortTermSection({ state, update }: StepProps) {
               <TextField
                 select
                 fullWidth
-                label="Star rating"
+                label={t('wizard.shortTerm.starRating')}
                 value={state.hotelStarRating}
                 onChange={(e) => update({ hotelStarRating: e.target.value })}
               >
@@ -869,7 +872,7 @@ function ShortTermSection({ state, update }: StepProps) {
             <Grid item xs={12} sm={9}>
               <TextField
                 fullWidth
-                label="Hotel name"
+                label={t('wizard.shortTerm.hotelName')}
                 value={state.hotelName}
                 onChange={(e) => update({ hotelName: e.target.value })}
               />
@@ -887,9 +890,9 @@ function ShortTermSection({ state, update }: StepProps) {
             }
             label={
               <Box>
-                <Typography variant="body2" sx={{ fontWeight: 700 }}>Instant book</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 700 }}>{t('wizard.shortTerm.instantBook')}</Typography>
                 <Typography variant="caption" color="text.secondary">
-                  Bookings auto-confirm without your approval. Disable to review each request first.
+                  {t('wizard.shortTerm.instantBookHint')}
                 </Typography>
               </Box>
             }
@@ -897,14 +900,14 @@ function ShortTermSection({ state, update }: StepProps) {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>Amenities</Typography>
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>{t('wizard.shortTerm.amenities')}</Typography>
           <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={1}>
             {SHORT_TERM_AMENITY_OPTIONS.map((a) => {
               const on = Boolean(state.amenitiesDetailed[a.key]);
               return (
                 <Chip
                   key={a.key}
-                  label={a.label}
+                  label={t(a.i18nKey, { defaultValue: a.fallback })}
                   onClick={() => toggleAmenity(a.key)}
                   color={on ? 'primary' : 'default'}
                   variant={on ? 'filled' : 'outlined'}
@@ -920,8 +923,8 @@ function ShortTermSection({ state, update }: StepProps) {
             fullWidth
             multiline
             minRows={3}
-            label="House rules"
-            placeholder="e.g. No parties, quiet hours after 10pm, no smoking indoors..."
+            label={t('wizard.shortTerm.houseRules')}
+            placeholder={t('wizard.shortTerm.houseRulesPlaceholder')}
             value={state.houseRules}
             onChange={(e) => update({ houseRules: e.target.value })}
           />
@@ -934,6 +937,7 @@ function ShortTermSection({ state, update }: StepProps) {
 const MAP_LIBS: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
 function LocationStep({ state, update }: StepProps) {
+  const { t } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
   const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey, libraries: MAP_LIBS });
 
@@ -957,26 +961,26 @@ function LocationStep({ state, update }: StepProps) {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth label="City" value={state.city} onChange={(e) => update({ city: e.target.value })} />
+        <TextField fullWidth label={t('search.city')} value={state.city} onChange={(e) => update({ city: e.target.value })} />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField fullWidth label="District" value={state.district} onChange={(e) => update({ district: e.target.value })} />
+        <TextField fullWidth label={t('search.district')} value={state.district} onChange={(e) => update({ district: e.target.value })} />
       </Grid>
       <Grid item xs={12} sm={4}>
-        <TextField fullWidth label="Street" value={state.street} onChange={(e) => update({ street: e.target.value })} />
+        <TextField fullWidth label={t('wizard.location.street')} value={state.street} onChange={(e) => update({ street: e.target.value })} />
       </Grid>
       <Grid item xs={6} sm={4}>
-        <TextField fullWidth label="Building no." value={state.buildingNumber} onChange={(e) => update({ buildingNumber: e.target.value })} />
+        <TextField fullWidth label={t('wizard.location.buildingNumber')} value={state.buildingNumber} onChange={(e) => update({ buildingNumber: e.target.value })} />
       </Grid>
       <Grid item xs={6} sm={4}>
-        <TextField fullWidth label="Postal code" value={state.postalCode} onChange={(e) => update({ postalCode: e.target.value })} />
+        <TextField fullWidth label={t('wizard.location.postalCode')} value={state.postalCode} onChange={(e) => update({ postalCode: e.target.value })} />
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="subtitle2" sx={{ mb: 1 }}>Drop a pin to set the exact location</Typography>
+        <Typography variant="subtitle2" sx={{ mb: 1 }}>{t('wizard.location.pinPrompt')}</Typography>
         {!apiKey ? (
           <Paper sx={{ p: 4, textAlign: 'center' }}>
             <Typography variant="body2" color="text.secondary">
-              Map pin picker unavailable (set <code>VITE_GOOGLE_MAPS_API_KEY</code>). Coordinates fall back to {state.lat.toFixed(4)}, {state.lng.toFixed(4)}.
+              {t('wizard.location.mapUnavailable', { lat: state.lat.toFixed(4), lng: state.lng.toFixed(4) })}
             </Typography>
           </Paper>
         ) : !isLoaded ? (
@@ -1011,7 +1015,7 @@ function LocationStep({ state, update }: StepProps) {
           </Box>
         )}
         <Typography variant="caption" color="text.secondary">
-          Pin: {state.lat.toFixed(5)}, {state.lng.toFixed(5)}
+          {t('wizard.location.pinLabel')}: {state.lat.toFixed(5)}, {state.lng.toFixed(5)}
         </Typography>
       </Grid>
     </Grid>
@@ -1019,6 +1023,7 @@ function LocationStep({ state, update }: StepProps) {
 }
 
 function MediaStep({ state, update, listingId }: StepProps & { listingId?: string }) {
+  const { t } = useTranslation();
   const [uploads, setUploads] = useState<Record<string, number>>({});
   const [uploadError, setUploadError] = useState<string | null>(null);
 
@@ -1147,7 +1152,7 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
 
       {/* Images */}
       <Box>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>Images</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>{t('wizard.mediaStep.images')}</Typography>
         <Box
           {...imageDz.getRootProps()}
           sx={{
@@ -1158,7 +1163,7 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
           <input {...imageDz.getInputProps()} />
           <CloudUploadIcon sx={{ fontSize: 36, color: 'text.secondary' }} />
           <Typography variant="body2" sx={{ mt: 1 }}>
-            Drag & drop photos here, or click to choose. JPEG / PNG / WebP up to 10 MB.
+            {t('wizard.mediaStep.imageDropHint')}
           </Typography>
         </Box>
         {Object.keys(uploads).length > 0 && (
@@ -1185,7 +1190,7 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
                   <Box
                     component="img"
                     src={m.url}
-                    alt={m.caption ?? 'Listing photo'}
+                    alt={m.caption ?? t('wizard.mediaStep.photoAlt')}
                     loading="lazy"
                     onError={(e) => {
                       // Surface broken-image URLs in the dev console so it's
@@ -1203,17 +1208,17 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
                     }}
                   />
                   <Stack direction="row" spacing={0.5} sx={{ position: 'absolute', top: 4, insetInlineEnd: 4 }}>
-                    <IconButton size="small" sx={{ bgcolor: 'background.paper' }} onClick={() => setCover(idx)} aria-label="set cover">
+                    <IconButton size="small" sx={{ bgcolor: 'background.paper' }} onClick={() => setCover(idx)} aria-label={t('wizard.mediaStep.setCover')}>
                       {idx === 0 ? <StarIcon fontSize="small" color="primary" /> : <StarBorderIcon fontSize="small" />}
                     </IconButton>
-                    <IconButton size="small" sx={{ bgcolor: 'background.paper' }} onClick={() => removeMedia(m)} aria-label="remove">
+                    <IconButton size="small" sx={{ bgcolor: 'background.paper' }} onClick={() => removeMedia(m)} aria-label={t('common.remove')}>
                       <DeleteIcon fontSize="small" />
                     </IconButton>
                   </Stack>
                   {idx === 0 && (
                     <Chip
                       size="small"
-                      label="Cover"
+                      label={t('wizard.mediaStep.cover')}
                       color="primary"
                       sx={{ position: 'absolute', bottom: 6, insetInlineStart: 6 }}
                     />
@@ -1227,7 +1232,7 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
 
       {/* Video */}
       <Box>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>Video tour</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>{t('wizard.mediaStep.videoTour')}</Typography>
         <Box
           {...videoDz.getRootProps()}
           sx={{
@@ -1236,25 +1241,25 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
         >
           <input {...videoDz.getInputProps()} />
           <Typography variant="body2" color="text.secondary">
-            {video ? `Video uploaded — ${video.url.split('/').pop()}` : 'Drag an MP4 file or click to choose. Max 500 MB.'}
+            {video ? t('wizard.mediaStep.videoUploaded', { name: video.url.split('/').pop() }) : t('wizard.mediaStep.videoDropHint')}
           </Typography>
         </Box>
       </Box>
 
       {/* VR + AR */}
       <Box>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>🥽 Virtual Reality Tour Link</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>{t('wizard.mediaStep.vrTitle')}</Typography>
         <TextField
           fullWidth
           size="small"
-          placeholder="https://… (Matterport, Kuula, etc.)"
+          placeholder={t('wizard.mediaStep.vrPlaceholder')}
           value={state.vrUrl}
           onChange={(e) => update({ vrUrl: e.target.value })}
         />
       </Box>
 
       <Box>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>3D / AR model (.glb or .gltf)</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>{t('wizard.mediaStep.modelTitle')}</Typography>
         <Box
           {...modelDz.getRootProps()}
           sx={{
@@ -1264,8 +1269,8 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
           <input {...modelDz.getInputProps()} />
           <Typography variant="body2" color="text.secondary">
             {state.modelUrl
-              ? `Model uploaded — ${state.modelUrl.split('/').pop()}`
-              : 'Upload a GLB/GLTF model to enable AR. Max 50 MB.'}
+              ? t('wizard.mediaStep.modelUploaded', { name: state.modelUrl.split('/').pop() })
+              : t('wizard.mediaStep.modelDropHint')}
           </Typography>
         </Box>
       </Box>
@@ -1274,6 +1279,7 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
 }
 
 function AmenitiesStep({ state, update }: StepProps) {
+  const { t } = useTranslation();
   const toggle = (key: string) => {
     const next = state.amenityKeys.includes(key)
       ? state.amenityKeys.filter((x) => x !== key)
@@ -1283,7 +1289,7 @@ function AmenitiesStep({ state, update }: StepProps) {
   return (
     <Box>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        Tap the amenities this property offers. We'll surface them as filters on Search.
+        {t('wizard.amenitiesStep.hint')}
       </Typography>
       <Stack direction="row" spacing={1} flexWrap="wrap" rowGap={1}>
         {AMENITY_OPTIONS.map((a) => {
@@ -1291,7 +1297,7 @@ function AmenitiesStep({ state, update }: StepProps) {
           return (
             <Chip
               key={a.key}
-              label={a.label}
+              label={t(a.i18nKey, { defaultValue: a.fallback })}
               onClick={() => toggle(a.key)}
               color={selected ? 'primary' : 'default'}
               variant={selected ? 'filled' : 'outlined'}
@@ -1304,16 +1310,17 @@ function AmenitiesStep({ state, update }: StepProps) {
 }
 
 function ComplianceStep({ state, update }: StepProps) {
+  const { t } = useTranslation();
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}><TextField fullWidth label="Permit / FAL number" value={state.permitNumber} onChange={(e) => update({ permitNumber: e.target.value })} /></Grid>
-      <Grid item xs={12} sm={6}><TextField fullWidth label="REGA license number" value={state.regaNumber} onChange={(e) => update({ regaNumber: e.target.value })} /></Grid>
-      <Grid item xs={12} sm={6}><TextField fullWidth type="date" label="Permit expiry" InputLabelProps={{ shrink: true }} value={state.permitExpiry} onChange={(e) => update({ permitExpiry: e.target.value })} /></Grid>
+      <Grid item xs={12} sm={6}><TextField fullWidth label={t('wizard.compliance.permitNumber')} value={state.permitNumber} onChange={(e) => update({ permitNumber: e.target.value })} /></Grid>
+      <Grid item xs={12} sm={6}><TextField fullWidth label={t('wizard.compliance.regaNumber')} value={state.regaNumber} onChange={(e) => update({ regaNumber: e.target.value })} /></Grid>
+      <Grid item xs={12} sm={6}><TextField fullWidth type="date" label={t('wizard.compliance.permitExpiry')} InputLabelProps={{ shrink: true }} value={state.permitExpiry} onChange={(e) => update({ permitExpiry: e.target.value })} /></Grid>
       <Grid item xs={12} sm={6}>
-        <TextField select fullWidth label="Preferred contact" value={state.contactPreference} onChange={(e) => update({ contactPreference: e.target.value as 'phone' | 'whatsapp' | 'email' })}>
-          <MenuItem value="whatsapp">WhatsApp</MenuItem>
-          <MenuItem value="phone">Phone</MenuItem>
-          <MenuItem value="email">Email</MenuItem>
+        <TextField select fullWidth label={t('wizard.compliance.preferredContact')} value={state.contactPreference} onChange={(e) => update({ contactPreference: e.target.value as 'phone' | 'whatsapp' | 'email' })}>
+          <MenuItem value="whatsapp">{t('listing.whatsapp')}</MenuItem>
+          <MenuItem value="phone">{t('wizard.compliance.phone')}</MenuItem>
+          <MenuItem value="email">{t('auth.email')}</MenuItem>
         </TextField>
       </Grid>
       <Grid item xs={12}>
@@ -1324,7 +1331,7 @@ function ComplianceStep({ state, update }: StepProps) {
               onChange={(_, v) => update({ visibility: v ? 'public' : 'unlisted' })}
             />
           }
-          label="Public visibility (uncheck for unlisted / private link only)"
+          label={t('wizard.compliance.publicVisibility')}
         />
       </Grid>
     </Grid>
@@ -1332,6 +1339,7 @@ function ComplianceStep({ state, update }: StepProps) {
 }
 
 function ReviewStep({ state, update }: StepProps) {
+  const { t } = useTranslation();
   const sourceLocale = state.titleAr ? 'ar' : 'en';
   const sourceText = sourceLocale === 'ar' ? state.descriptionAr : state.descriptionEn;
   const enhanceMutation = useMutation({
@@ -1344,37 +1352,37 @@ function ReviewStep({ state, update }: StepProps) {
 
   const summary = useMemo(
     () => [
-      ['Type', `${state.type} · ${state.propertyType}`],
-      ['Title', state.titleEn || state.titleAr],
-      ['Price', state.price ? `${Number(state.price).toLocaleString()} SAR${state.type === ListingType.RENT ? `/${state.rentPeriod || 'monthly'}` : ''}` : '—'],
-      ['Area', state.area ? `${state.area} m²` : '—'],
-      ['Bedrooms / Bathrooms', `${state.bedrooms || '—'} / ${state.bathrooms || '—'}`],
-      ['City / District', `${state.city}${state.district ? `, ${state.district}` : ''}`],
-      ['Coordinates', `${state.lat.toFixed(5)}, ${state.lng.toFixed(5)}`],
-      ['Images', String(state.media.filter((m) => m.type === MediaType.IMAGE).length)],
-      ['Amenities', state.amenityKeys.length ? state.amenityKeys.join(', ') : '—'],
-      ['Permit', state.permitNumber || '—'],
-      ['REGA license', state.regaNumber || '—'],
-      ['Visibility', state.visibility],
+      [t('wizard.review.type'), `${t(`wizard.transactionType.${state.type}`, { defaultValue: state.type })} · ${t(`propertyTypes.${state.propertyType}`, { defaultValue: state.propertyType })}`],
+      [t('wizard.review.titleLabel'), state.titleEn || state.titleAr],
+      [t('listing.price'), state.price ? `${Number(state.price).toLocaleString()} ${t('listing.currency')}${state.type === ListingType.RENT ? `/${t(`wizard.rentPeriod.${state.rentPeriod || 'monthly'}`, { defaultValue: state.rentPeriod || 'monthly' })}` : ''}` : '—'],
+      [t('listing.area'), state.area ? `${state.area} ${t('listing.areaUnit')}` : '—'],
+      [t('wizard.review.bedsBaths'), `${state.bedrooms || '—'} / ${state.bathrooms || '—'}`],
+      [t('wizard.review.cityDistrict'), `${state.city}${state.district ? `, ${state.district}` : ''}`],
+      [t('wizard.review.coordinates'), `${state.lat.toFixed(5)}, ${state.lng.toFixed(5)}`],
+      [t('wizard.mediaStep.images'), String(state.media.filter((m) => m.type === MediaType.IMAGE).length)],
+      [t('wizard.amenities'), state.amenityKeys.length ? state.amenityKeys.map((k) => t(`wizard.amenity.${toCamel(k)}`, { defaultValue: k })).join(', ') : '—'],
+      [t('wizard.review.permit'), state.permitNumber || '—'],
+      [t('wizard.review.regaLicense'), state.regaNumber || '—'],
+      [t('wizard.review.visibility'), t(`wizard.visibility.${state.visibility}`, { defaultValue: state.visibility })],
     ],
-    [state],
+    [state, t],
   );
 
   return (
     <Stack spacing={3}>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>Listing summary</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>{t('wizard.review.summaryTitle')}</Typography>
         <Button
           startIcon={<AutoAwesomeIcon />}
           onClick={() => enhanceMutation.mutate()}
           disabled={enhanceMutation.isPending || !sourceText}
           variant="outlined"
         >
-          {enhanceMutation.isPending ? 'Enhancing…' : 'Enhance with AI'}
+          {enhanceMutation.isPending ? t('wizard.review.enhancing') : t('wizard.review.enhanceWithAi')}
         </Button>
       </Stack>
       {enhanceMutation.isSuccess && !enhanceMutation.data?.live && (
-        <Alert severity="info">AI returned a stub — set <code>OPENAI_API_KEY</code> on the backend to use the live model.</Alert>
+        <Alert severity="info">{t('wizard.review.aiStubNotice')}</Alert>
       )}
       <Paper variant="outlined" sx={{ p: 2 }}>
         <Grid container spacing={1}>
@@ -1389,11 +1397,17 @@ function ReviewStep({ state, update }: StepProps) {
         </Grid>
       </Paper>
       <Box>
-        <Typography variant="subtitle2" sx={{ mb: 1 }}>Description preview</Typography>
+        <Typography variant="subtitle2" sx={{ mb: 1 }}>{t('wizard.review.descriptionPreview')}</Typography>
         <Paper variant="outlined" sx={{ p: 2, whiteSpace: 'pre-line' }}>
-          {sourceText || <em>(empty)</em>}
+          {sourceText || <em>{t('wizard.review.emptyDescription')}</em>}
         </Paper>
       </Box>
     </Stack>
   );
+}
+
+// snake_case → camelCase so the amenity key (e.g. `maid_room`) resolves into
+// the camelCase i18n leaf (`wizard.amenity.maidRoom`) we defined above.
+function toCamel(s: string) {
+  return s.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
 }

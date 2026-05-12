@@ -31,6 +31,12 @@ import { EmptyState } from '@/components/global/EmptyState';
 // is null we render initials on the brand gradient — never a stock photo of
 // a stranger, which is what the previous AGENT_PHOTOS array was doing.
 const CITY_FILTERS = ['All Cities', 'Riyadh', 'Jeddah', 'Dammam'] as const;
+const CITY_LABEL_KEYS: Record<(typeof CITY_FILTERS)[number], string> = {
+  'All Cities': 'agents.allCities',
+  Riyadh: 'agents.cityRiyadh',
+  Jeddah: 'agents.cityJeddah',
+  Dammam: 'agents.cityDammam',
+};
 const PAGE_SIZE = 12;
 
 export function AgentsPage() {
@@ -116,7 +122,7 @@ export function AgentsPage() {
               setQuery(e.target.value);
               setPage(1);
             }}
-            placeholder="Search by name or specialty"
+            placeholder={t('agents.searchPlaceholder', { defaultValue: 'Search by name or specialty' })}
             size="small"
             fullWidth
             InputProps={{
@@ -153,7 +159,7 @@ export function AgentsPage() {
             return (
               <Chip
                 key={c}
-                label={c}
+                label={t(CITY_LABEL_KEYS[c], { defaultValue: c })}
                 onClick={() => { setCity(c); setPage(1); }}
                 sx={{
                   fontWeight: 700,
@@ -175,7 +181,10 @@ export function AgentsPage() {
             ))}
           </Grid>
         ) : filteredAgents.length === 0 ? (
-          <EmptyState title="No agents match your search" description="Try a different name or city." />
+          <EmptyState
+            title={t('agents.emptyTitle', { defaultValue: 'No agents match your search' })}
+            description={t('agents.emptyBody', { defaultValue: 'Try a different name or city.' })}
+          />
         ) : (
           <>
             <Grid container spacing={3}>
@@ -234,7 +243,7 @@ export function AgentsPage() {
                         {fullName}
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
-                        Eawlma Real Estate
+                        {t('agents.agency', { defaultValue: 'Eawlma Real Estate' })}
                       </Typography>
 
                       <Stack direction="row" spacing={0.25} justifyContent="center" sx={{ mb: 1 }}>
@@ -249,21 +258,24 @@ export function AgentsPage() {
                       <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2, flexWrap: 'wrap', rowGap: 1 }}>
                         <Chip
                           icon={<VerifiedIcon sx={{ fontSize: 14 }} />}
-                          label="Verified"
+                          label={t('agents.verified', { defaultValue: 'Verified' })}
                           size="small"
                           color="success"
                           sx={{ fontWeight: 700 }}
                         />
                         <Chip
                           icon={<AccessTimeIcon sx={{ fontSize: 14 }} />}
-                          label="< 2h"
+                          label={t('agents.respondsUnder2h', { defaultValue: '< 2h' })}
                           size="small"
                           sx={{ bgcolor: 'success.light', color: 'success.dark', fontWeight: 700 }}
                         />
                       </Stack>
 
                       <Typography variant="caption" color="text.secondary" sx={{ mb: 2 }}>
-                        {listingCount} active listings
+                        {t('agents.activeListingsCount', {
+                          count: listingCount,
+                          defaultValue: '{{count}} active listings',
+                        })}
                       </Typography>
 
                       <Button
@@ -273,7 +285,7 @@ export function AgentsPage() {
                         variant="contained"
                         sx={{ mt: 'auto', background: theme.eawlma.gradient, fontWeight: 700 }}
                       >
-                        View Profile
+                        {t('agents.viewProfile', { defaultValue: 'View Profile' })}
                       </Button>
                     </Box>
                   </Grid>

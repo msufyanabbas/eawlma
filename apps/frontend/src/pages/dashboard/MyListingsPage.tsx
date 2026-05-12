@@ -160,7 +160,7 @@ export function MyListingsPage() {
           }}
         >
           <Typography sx={{ fontWeight: 700, flex: 1 }}>
-            {selected.size} selected
+            {t('myListings.countSelected', { count: selected.size })}
           </Typography>
           <Button
             color="inherit"
@@ -169,7 +169,7 @@ export function MyListingsPage() {
             }
             disabled={bulkMutation.isPending}
           >
-            Activate all
+            {t('myListings.activateAll')}
           </Button>
           <Button
             color="inherit"
@@ -178,7 +178,7 @@ export function MyListingsPage() {
             }
             disabled={bulkMutation.isPending}
           >
-            Deactivate all
+            {t('myListings.deactivateAll')}
           </Button>
           <Button
             color="inherit"
@@ -186,10 +186,10 @@ export function MyListingsPage() {
             onClick={() => setConfirm({ open: true, ids: Array.from(selected) })}
             disabled={bulkMutation.isPending}
           >
-            Delete all
+            {t('myListings.deleteAll')}
           </Button>
           <Button color="inherit" onClick={() => setSelected(new Set())}>
-            Cancel
+            {t('common.cancel')}
           </Button>
         </Box>
       )}
@@ -197,35 +197,51 @@ export function MyListingsPage() {
       {/* Filter chips + view toggle + bulk actions */}
       <Paper sx={{ p: 2 }}>
         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', rowGap: 1, alignItems: 'center' }}>
-          {(['all', ListingStatus.ACTIVE, ListingStatus.PENDING_REVIEW, ListingStatus.REJECTED, ListingStatus.EXPIRED, ListingStatus.DRAFT] as StatusFilter[]).map((s) => (
-            <Chip
-              key={s}
-              label={s === 'all' ? 'All' : s.replace('_', ' ')}
-              onClick={() => setStatusFilter(s)}
-              color={statusFilter === s ? 'primary' : 'default'}
-              variant={statusFilter === s ? 'filled' : 'outlined'}
-              sx={{ textTransform: 'capitalize', fontWeight: 600 }}
-            />
-          ))}
+          {(['all', ListingStatus.ACTIVE, ListingStatus.PENDING_REVIEW, ListingStatus.REJECTED, ListingStatus.EXPIRED, ListingStatus.DRAFT] as StatusFilter[]).map((s) => {
+            const statusKey =
+              s === 'all'
+                ? null
+                : s === ListingStatus.PENDING_REVIEW
+                  ? 'pending'
+                  : s === ListingStatus.ACTIVE
+                    ? 'active'
+                    : s === ListingStatus.REJECTED
+                      ? 'rejected'
+                      : s === ListingStatus.EXPIRED
+                        ? 'expired'
+                        : s === ListingStatus.DRAFT
+                          ? 'draft'
+                          : null;
+            return (
+              <Chip
+                key={s}
+                label={s === 'all' ? t('inquiries.filterAll') : t(`listing.status.${statusKey}`, { defaultValue: s.replace('_', ' ') })}
+                onClick={() => setStatusFilter(s)}
+                color={statusFilter === s ? 'primary' : 'default'}
+                variant={statusFilter === s ? 'filled' : 'outlined'}
+                sx={{ textTransform: 'capitalize', fontWeight: 600 }}
+              />
+            );
+          })}
           <Box sx={{ flex: 1 }} />
           {selected.size > 0 && (
             <>
               <Typography variant="body2" color="text.secondary">
-                {selected.size} selected
+                {t('myListings.countSelected', { count: selected.size })}
               </Typography>
               <Button
                 size="small"
                 onClick={() => submitMutation.mutate(Array.from(selected))}
                 disabled={submitMutation.isPending}
               >
-                Submit for review
+                {t('wizard.submitForReview')}
               </Button>
               <Button
                 size="small"
                 color="error"
                 onClick={() => setConfirm({ open: true, ids: Array.from(selected) })}
               >
-                Delete
+                {t('common.delete')}
               </Button>
             </>
           )}
@@ -259,13 +275,13 @@ export function MyListingsPage() {
                 <TableCell padding="checkbox">
                   <Checkbox checked={allSelected} onChange={toggleAll} />
                 </TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell>Reference</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Views</TableCell>
-                <TableCell align="right">Inquiries</TableCell>
+                <TableCell>{t('moderation.colTitle')}</TableCell>
+                <TableCell>{t('moderation.colReference')}</TableCell>
+                <TableCell>{t('moderation.colType')}</TableCell>
+                <TableCell>{t('common.status')}</TableCell>
+                <TableCell align="right">{t('listing.price')}</TableCell>
+                <TableCell align="right">{t('myListings.colViews')}</TableCell>
+                <TableCell align="right">{t('myListings.colInquiries')}</TableCell>
                 <TableCell align="right" />
               </TableRow>
             </TableHead>
@@ -322,7 +338,7 @@ export function MyListingsPage() {
                     startIcon={<EditIcon />}
                     fullWidth
                   >
-                    Edit
+                    {t('common.edit')}
                   </Button>
                   <Button
                     size="small"
@@ -331,7 +347,7 @@ export function MyListingsPage() {
                     startIcon={<AnalyticsIcon />}
                     fullWidth
                   >
-                    Analytics
+                    {t('dashboard.analytics')}
                   </Button>
                 </Stack>
               </Stack>
@@ -362,24 +378,24 @@ export function MyListingsPage() {
           to={`/dashboard/listings/${rowMenu?.listing.id ?? ''}/edit` as never}
           onClick={() => setRowMenu(null)}
         >
-          <EditIcon fontSize="small" sx={{ mr: 1.5 }} /> Edit
+          <EditIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('common.edit')}
         </MenuItem>
         <MenuItem
           component={Link}
           to={`/dashboard/listings/${rowMenu?.listing.id ?? ''}/analytics` as never}
           onClick={() => setRowMenu(null)}
         >
-          <AnalyticsIcon fontSize="small" sx={{ mr: 1.5 }} /> Analytics
+          <AnalyticsIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('dashboard.analytics')}
         </MenuItem>
         <MenuItem
           component={Link}
           to="/dashboard/subscription"
           onClick={() => setRowMenu(null)}
         >
-          <RocketIcon fontSize="small" sx={{ mr: 1.5 }} /> Boost (feature)
+          <RocketIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('myListings.boostFeature')}
         </MenuItem>
         <MenuItem onClick={() => setRowMenu(null)} disabled>
-          <CopyIcon fontSize="small" sx={{ mr: 1.5 }} /> Duplicate
+          <CopyIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('myListings.duplicate')}
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -389,17 +405,17 @@ export function MyListingsPage() {
           }}
           sx={{ color: 'error.main' }}
         >
-          <DeleteIcon fontSize="small" sx={{ mr: 1.5 }} /> Delete
+          <DeleteIcon fontSize="small" sx={{ mr: 1.5 }} /> {t('common.delete')}
         </MenuItem>
       </Menu>
 
       <ConfirmDialog
         open={!!confirm?.open}
-        title={`Delete ${confirm?.ids.length ?? 0} listing(s)?`}
-        description="This action soft-deletes the listing — it will no longer appear publicly."
+        title={t('myListings.deleteConfirmTitle', { count: confirm?.ids.length ?? 0 })}
+        description={t('myListings.deleteConfirmDescription')}
         destructive
         loading={deleteMutation.isPending}
-        confirmLabel="Delete"
+        confirmLabel={t('common.delete')}
         onConfirm={() => confirm && deleteMutation.mutate(confirm.ids)}
         onCancel={() => setConfirm(null)}
       />

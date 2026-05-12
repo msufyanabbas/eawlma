@@ -128,7 +128,22 @@
     "anyPrice": "کوئی بھی قیمت",
     "upTo500": "500 ریال تک",
     "upTo1000": "1,000 ریال تک",
-    "upTo2500": "2,500 ریال تک"
+    "upTo2500": "2,500 ریال تک",
+    "hotelChip": "ہوٹل"
+  },
+  "agents": {
+    "searchPlaceholder": "نام یا تخصص کے ذریعے تلاش کریں",
+    "allCities": "تمام شہر",
+    "cityRiyadh": "ریاض",
+    "cityJeddah": "جدہ",
+    "cityDammam": "دمام",
+    "emptyTitle": "آپ کی تلاش سے کوئی ایجنٹ میل نہیں کھاتا",
+    "emptyBody": "کوئی دوسرا نام یا شہر آزمائیں۔",
+    "agency": "عَوْلَمَہ ریئل اسٹیٹ",
+    "verified": "تصدیق شدہ",
+    "respondsUnder2h": "‎< 2 گھنٹے",
+    "activeListingsCount": "{{count}} فعال فہرستیں",
+    "viewProfile": "پروفائل دیکھیں"
   },
   "messages": {
     "startConversation": "گفتگو شروع کریں",
@@ -167,7 +182,8 @@
     "dailyRate": "روزانہ ریٹ",
     "weeklyRate": "ہفتہ وار ریٹ",
     "guestReviews": "مہمانوں کے جائزے",
-    "noReviews": "ابھی کوئی جائزہ نہیں — جیسے ہی مہمان چیک آؤٹ کرے گا یہاں ظاہر ہوگا۔"
+    "noReviews": "ابھی کوئی جائزہ نہیں — جیسے ہی مہمان چیک آؤٹ کرے گا یہاں ظاہر ہوگا۔",
+    "guestFallback": "مہمان"
   },
   "buyerDeals": {
     "title": "میرے سودے",
@@ -217,7 +233,12 @@
     "favorAgent": "ایجنٹ کے حق میں — کمیشن بنائیں",
     "favorBuyer": "خریدار کے حق میں — سودہ منسوخ",
     "cancelDeal": "سودہ منسوخ — کمیشن نہیں",
-    "resolutionHint": "دونوں فریقوں کو ان نوٹس کا نوٹیفکیشن بھیجا جائے گا۔"
+    "resolutionHint": "دونوں فریقوں کو ان نوٹس کا نوٹیفکیشن بھیجا جائے گا۔",
+    "other": "دیگر",
+    "buyerLower": "خریدار",
+    "agentLower": "ایجنٹ",
+    "otherLower": "دیگر فریق",
+    "anonymous": "گمنام"
   },
   "auth": {
     "login": "سائن ان",
@@ -298,7 +319,8 @@
     "remove": "ہٹائیں",
     "actions": "اقدامات",
     "active": "فعال",
-    "inactive": "غیر فعال"
+    "inactive": "غیر فعال",
+    "loadMore": "مزید لوڈ کریں"
   },
   "listing": {
     "forSale": "برائے فروخت",
@@ -401,7 +423,10 @@
       "cta": "جائیداد کی درخواست بھیجیں"
     },
     "drawArea": "علاقہ کھینچیں",
-    "clearDrawing": "ڈرائنگ صاف کریں"
+    "clearDrawing": "ڈرائنگ صاف کریں",
+    "flexibleDates": "میری تاریخیں لچکدار ہیں",
+    "flex1Month": "1 ماہ",
+    "shortTerm": "مختصر مدت"
   },
   "home": {
     "heroTitle": "اپنا مثالی گھر تلاش کریں",
@@ -575,6 +600,9 @@
     "saveDraft": "مسودہ محفوظ کریں",
     "submit": "جمع کروائیں",
     "submitForReview": "نظرثانی کے لیے جمع کروائیں",
+    "editListing": "لسٹنگ میں ترمیم",
+    "newListing": "نئی لسٹنگ",
+    "crumbNew": "نئی",
     "fields": {
       "propertyType": "جائیداد کی قسم",
       "transactionType": "لین دین کی قسم",
@@ -583,12 +611,137 @@
       "descriptionAr": "تفصیل (عربی)",
       "descriptionEn": "تفصیل (انگریزی)",
       "price": "قیمت (ر.س)",
+      "rentPeriod": "مدت",
       "area": "رقبہ (م²)",
       "bedrooms": "کمرے",
       "bathrooms": "باتھ روم",
       "parking": "پارکنگ",
       "yearBuilt": "تعمیر کا سال",
       "furnishing": "فرنیچر"
+    },
+    "validation": {
+      "titleRequired": "کم از کم ایک زبان میں عنوان درج کریں۔",
+      "descriptionRequired": "کم از کم ایک زبان میں تفصیل درج کریں۔",
+      "priceRequired": "قیمت صفر سے زیادہ ہونی چاہیے۔",
+      "cityRequired": "شہر درج کرنا لازمی ہے۔",
+      "pinRequired": "نقشہ پر مقام کا پن رکھیں۔",
+      "imageRequired": "شائع کرنے سے پہلے کم از کم ایک تصویر لازمی ہے۔"
+    },
+    "transactionType": {
+      "sale": "فروخت",
+      "rent": "کرایہ"
+    },
+    "rentPeriod": {
+      "daily": "روزانہ",
+      "weekly": "ہفتہ وار",
+      "monthly": "ماہانہ",
+      "yearly": "سالانہ"
+    },
+    "furnishing": {
+      "unfurnished": "غیر فرنشڈ",
+      "semi_furnished": "نیم فرنشڈ",
+      "furnished": "فرنشڈ"
+    },
+    "visibility": {
+      "public": "عوامی",
+      "unlisted": "غیر فہرست"
+    },
+    "amenity": {
+      "pool": "سوئمنگ پول",
+      "garden": "باغ",
+      "gym": "جم",
+      "elevator": "لفٹ",
+      "maidRoom": "ملازمہ کا کمرہ",
+      "driverRoom": "ڈرائیور کا کمرہ",
+      "centralAc": "سینٹرل اے سی",
+      "kitchenAppliances": "کچن کے آلات",
+      "security": "24/7 سیکیورٹی",
+      "cornerUnit": "کارنر یونٹ"
+    },
+    "shortTermAmenity": {
+      "wifi": "وائی فائی",
+      "pool": "سوئمنگ پول",
+      "parking": "پارکنگ",
+      "breakfast": "ناشتہ",
+      "ac": "ائیر کنڈیشننگ",
+      "kitchen": "کچن",
+      "tv": "ٹی وی",
+      "washer": "واشر",
+      "workspace": "ورک سپیس",
+      "petsAllowed": "پالتو جانوروں کی اجازت",
+      "smokingAllowed": "تمباکو نوشی کی اجازت",
+      "wheelchairAccessible": "وہیل چیئر تک رسائی"
+    },
+    "shortTerm": {
+      "title": "مختصر مدتی کرایہ کی تفصیلات",
+      "subtitle": "مہمان اس لسٹنگ کو راتاً بک کریں گے۔ قیام کے قواعد، سہولیات اور قیمت کی سطحیں ترتیب دیں۔",
+      "dailyRate": "روزانہ ریٹ (ریال)",
+      "weeklyRate": "ہفتہ وار ریٹ (ریال، اختیاری)",
+      "minimumStay": "کم از کم قیام (راتیں)",
+      "maxGuests": "زیادہ سے زیادہ مہمان",
+      "checkIn": "چیک اِن",
+      "checkOut": "چیک آؤٹ",
+      "cancellationPolicy": "منسوخی کی پالیسی",
+      "cancelFlexible": "لچکدار — 24 گھنٹے پہلے تک مکمل رقم واپس",
+      "cancelModerate": "اعتدال — 5 دن پہلے تک مکمل رقم واپس",
+      "cancelStrict": "سخت — 7 دن پہلے تک 50% رقم واپس",
+      "starRating": "ستارہ درجہ",
+      "hotelName": "ہوٹل کا نام",
+      "instantBook": "فوری بکنگ",
+      "instantBookHint": "بکنگز آپ کی منظوری کے بغیر خودکار تصدیق ہو جاتی ہیں۔ ہر درخواست کا جائزہ لینے کے لیے بند کریں۔",
+      "amenities": "سہولیات",
+      "houseRules": "گھر کے قواعد",
+      "houseRulesPlaceholder": "مثلاً: پارٹیاں منع، رات 10 بجے کے بعد خاموشی، اندر تمباکو نوشی منع..."
+    },
+    "location": {
+      "street": "گلی",
+      "buildingNumber": "بلڈنگ نمبر",
+      "postalCode": "پوسٹل کوڈ",
+      "pinPrompt": "صحیح مقام کے لیے پن رکھیں",
+      "pinLabel": "پن",
+      "mapUnavailable": "نقشہ پر پن منتخب کرنا دستیاب نہیں۔ پہلے سے طے شدہ کوآرڈینیٹس: {{lat}}, {{lng}}۔"
+    },
+    "mediaStep": {
+      "images": "تصاویر",
+      "imageDropHint": "تصاویر یہاں کھینچ کر چھوڑیں، یا منتخب کرنے کے لیے کلک کریں۔ JPEG / PNG / WebP، 10 MB تک۔",
+      "photoAlt": "لسٹنگ کی تصویر",
+      "setCover": "کور تصویر بنائیں",
+      "cover": "کور",
+      "videoTour": "ویڈیو ٹور",
+      "videoDropHint": "MP4 فائل کھینچ کر چھوڑیں یا منتخب کرنے کے لیے کلک کریں۔ زیادہ سے زیادہ 500 MB۔",
+      "videoUploaded": "ویڈیو اپ لوڈ ہو گئی — {{name}}",
+      "vrTitle": "🥽 ورچوئل ریئلٹی ٹور لنک",
+      "vrPlaceholder": "https://… (Matterport، Kuula، وغیرہ)",
+      "modelTitle": "3D / AR ماڈل (‎.glb یا ‎.gltf)",
+      "modelDropHint": "AR کو فعال کرنے کے لیے GLB/GLTF ماڈل اپ لوڈ کریں۔ زیادہ سے زیادہ 50 MB۔",
+      "modelUploaded": "ماڈل اپ لوڈ ہو گیا — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "اس جائیداد میں موجود سہولیات پر ٹیپ کریں۔ یہ تلاش میں فلٹرز کے طور پر ظاہر ہوں گی۔"
+    },
+    "compliance": {
+      "permitNumber": "پرمٹ / FAL نمبر",
+      "regaNumber": "REGA لائسنس نمبر",
+      "permitExpiry": "پرمٹ کی میعاد",
+      "preferredContact": "ترجیحی رابطہ",
+      "phone": "فون",
+      "publicVisibility": "عوامی نمائش (نجی لنک کے لیے غیر فعال کریں)"
+    },
+    "review": {
+      "summaryTitle": "لسٹنگ کا خلاصہ",
+      "enhanceWithAi": "AI کے ذریعے بہتر بنائیں",
+      "enhancing": "بہتر کیا جا رہا ہے…",
+      "aiStubNotice": "AI نے ٹیمپلیٹ جواب دیا — لائیو ماڈل استعمال کرنے کے لیے بیک اینڈ پر OPENAI_API_KEY سیٹ کریں۔",
+      "descriptionPreview": "تفصیل کا پیش منظر",
+      "emptyDescription": "(خالی)",
+      "type": "قسم",
+      "titleLabel": "عنوان",
+      "bedsBaths": "کمرے / باتھ روم",
+      "cityDistrict": "شہر / ضلع",
+      "coordinates": "کوآرڈینیٹس",
+      "permit": "پرمٹ",
+      "regaLicense": "REGA لائسنس",
+      "visibility": "نمائش"
     }
   },
   "subscription": {
@@ -729,6 +882,19 @@
       "confirmed": "تصدیق شدہ",
       "paid": "ادا شدہ",
       "disputed": "متنازع"
+    },
+    "oath": {
+      "dialogTitle": "کمیشن کا عہد",
+      "translatedOath": "میں عہد کرتا ہوں کہ اس ریئل اسٹیٹ لین دین کی تکمیل پر طے شدہ کمیشن ادا کروں گا، اور اللہ اور قانون کے سامنے اس ذمہ داری کو تسلیم کرتا ہوں۔",
+      "breakdownTitle": "کمیشن کی تفصیل",
+      "agentListingBreakdown": "پلیٹ فارم کمیشن: کامیاب فروخت یا کرایہ کے اختتام پر قابلِ ادائیگی لین دین کی رقم کا <strong>0.5%</strong>۔",
+      "buyerAgentCommission": "ایجنٹ کمیشن: لین دین کی رقم کا <strong>2.5%</strong>۔",
+      "buyerPlatformFee": "پلیٹ فارم فیس: لین دین کی رقم کا <strong>0.5%</strong>۔",
+      "acceptError": "آپ کی منظوری ریکارڈ نہیں ہو سکی",
+      "agreeCheckbox": "میں کمیشن کی شرائط سے اتفاق کرتا ہوں",
+      "decline": "میں متفق نہیں",
+      "saving": "محفوظ ہو رہا ہے...",
+      "acceptCta": "میں قبول اور عہد کرتا ہوں"
     }
   },
   "moderation": {
@@ -879,7 +1045,26 @@
     "contractNumber": "معاہدہ نمبر",
     "viewContract": "معاہدہ دیکھیں",
     "signedThroughEjar": "ایجار کے ذریعے دستخط شدہ",
-    "noContracts": "ابھی تک کوئی کرایہ نامہ نہیں"
+    "noContracts": "ابھی تک کوئی کرایہ نامہ نہیں",
+    "status": {
+      "draft": "مسودہ",
+      "pending_signatures": "دستخط کے منتظر",
+      "active": "فعال",
+      "expired": "ختم شدہ",
+      "cancelled": "منسوخ"
+    }
+  },
+  "myListings": {
+    "countSelected": "{{count}} منتخب",
+    "activateAll": "سب کو فعال کریں",
+    "deactivateAll": "سب کو غیر فعال کریں",
+    "deleteAll": "سب حذف کریں",
+    "colViews": "مشاہدات",
+    "colInquiries": "استفسارات",
+    "boostFeature": "بوسٹ (فیچر)",
+    "duplicate": "نقل کریں",
+    "deleteConfirmTitle": "{{count}} لسٹنگ حذف کریں؟",
+    "deleteConfirmDescription": "یہ کارروائی لسٹنگ کو نرم طور پر حذف کر دے گی — یہ عوامی طور پر نظر نہیں آئے گی۔"
   },
   "dufaat": {
     "title": "دفعات قسطیں",
@@ -894,7 +1079,13 @@
     "nextPayment": "اگلی ادائیگی",
     "installmentsPaid": "ادا شدہ قسطیں",
     "payNow": "قسط ادا کریں",
-    "noPlans": "ابھی تک کوئی دفعات منصوبہ نہیں"
+    "noPlans": "ابھی تک کوئی دفعات منصوبہ نہیں",
+    "status": {
+      "active": "فعال",
+      "completed": "مکمل",
+      "defaulted": "نادہندہ",
+      "cancelled": "منسوخ"
+    }
   },
   "booking": {
     "myBookings": "میری بکنگز",
@@ -944,6 +1135,9 @@
       "confirmed": "تصدیق شدہ",
       "cancelled": "منسوخ",
       "completed": "مکمل"
+    },
+    "calendar": {
+      "maxGuestsHelper": "زیادہ سے زیادہ مہمان: {{count}}"
     }
   },
   "market": {

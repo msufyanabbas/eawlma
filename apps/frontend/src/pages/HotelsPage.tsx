@@ -137,7 +137,7 @@ export function HotelsPage() {
                 '&:hover': { bgcolor: 'secondary.dark' },
               }}
             >
-              {t('search.applyFilters', { defaultValue: 'Search' })}
+              {t('home.searchCta', { defaultValue: 'Search' })}
             </Button>
           </Box>
         </Box>
@@ -167,7 +167,7 @@ export function HotelsPage() {
           </Typography>
           <Chip
             icon={<StarIcon fontSize="small" sx={{ color: '#D4A843 !important' }} />}
-            label={t('search.hotel', { defaultValue: 'Hotel' })}
+            label={t('hotels.hotelChip', { defaultValue: 'Hotel' })}
             color="primary"
             sx={{ fontWeight: 700 }}
           />

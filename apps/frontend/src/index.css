@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Self-hosted Mehr Nastaliq fallback for richer Urdu rendering. */
-@font-face {
-  font-family: 'Mehr Nastaliq';
-  src: url('https://fonts.cdnfonts.com/css/mehr-nastaliq-web') format('woff2');
-  unicode-range: U+0600-06FF;
-  font-display: swap;
-}
-
 /* Reset and base */
 *,
 *::before,
@@ -60,38 +52,16 @@ html[data-theme='dark'] body {
   letter-spacing: 0;
 }
 
-/* Urdu Nastaleeq — Nastaleeq glyphs stack diagonally and need much more
- * line-height than Naskh/Latin or they overlap; word-spacing keeps adjacent
- * Nastaleeq words from kissing. */
-.lang-ur,
+/* Urdu — only the typeface differs from Arabic; sizing and rhythm match.
+ * Noto Nastaliq Urdu has a larger ink area per em than Tajawal/Inter, so
+ * it visually appears bigger at the same CSS font-size. Scale it down ~12%
+ * relative to the parent (em, not rem) so it sits at the same optical size
+ * everywhere it's used without shifting the layout. */
 [lang='ur'],
+.lang-ur,
 html[lang='ur'] body {
-  font-family: 'Noto Nastaliq Urdu', 'Mehr Nastaliq', serif;
-  line-height: 2.2;
-  word-spacing: 0.1em;
-}
-
-/* Cards / typography in Urdu — let long Nastaleeq strings wrap at any
- * grapheme boundary so a long word doesn't blow out the card width. */
-[lang='ur'] .MuiCard-root,
-[lang='ur'] .MuiTypography-root {
-  overflow-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-}
-
-/* Headings need extra vertical breathing room in Nastaleeq so descenders
- * from one line don't overlap ascenders from the next. */
-[lang='ur'] h1,
-[lang='ur'] h2,
-[lang='ur'] h3,
-[lang='ur'] h4,
-[lang='ur'] h5,
-[lang='ur'] h6 {
-  line-height: 2.2;
-  margin-bottom: 0.5em;
-  display: block;
-  overflow: visible;
+  font-family: 'Gulzar', 'Noto Nastaliq Urdu', serif;
+  font-size: 0.95em;
 }
 
 /* Consistent heading sizing */

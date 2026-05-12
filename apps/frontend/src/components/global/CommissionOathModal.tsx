@@ -55,7 +55,7 @@ export function CommissionOathModal({
   onClose,
 }: CommissionOathModalProps) {
   const theme = useTheme();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const [agreed, setAgreed] = useState(false);
 
@@ -112,7 +112,7 @@ export function CommissionOathModal({
       >
         <GavelIcon sx={{ fontSize: 36, mb: 1 }} />
         <Typography sx={{ fontSize: '1.4rem', fontWeight: 800, lineHeight: 1.2 }}>
-          {isAr ? 'التزام بالأمانة والعمولة' : 'Commission Commitment'}
+          {t('commission.oath.dialogTitle', { defaultValue: 'Commission Commitment' })}
         </Typography>
       </DialogTitle>
 
@@ -156,7 +156,7 @@ export function CommissionOathModal({
           </Box>
 
           <Typography sx={{ fontSize: '0.95rem', color: 'text.secondary', lineHeight: 1.7 }}>
-            {ENGLISH_OATH}
+            {t('commission.oath.translatedOath', { defaultValue: ENGLISH_OATH })}
           </Typography>
 
           <Box
@@ -169,19 +169,38 @@ export function CommissionOathModal({
             }}
           >
             <Typography variant="caption" sx={{ fontWeight: 800, color: 'primary.dark', textTransform: 'uppercase', letterSpacing: 0.5, mb: 1, display: 'block' }}>
-              Commission breakdown
+              {t('commission.oath.breakdownTitle', { defaultValue: 'Commission breakdown' })}
             </Typography>
             {oathType === 'agent_listing' ? (
               <Typography variant="body2" color="text.primary">
-                Platform commission: <strong>0.5%</strong> of the transaction value, payable upon successful sale or lease closure.
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t('commission.oath.agentListingBreakdown', {
+                      defaultValue:
+                        'Platform commission: <strong>0.5%</strong> of the transaction value, payable upon successful sale or lease closure.',
+                    }),
+                  }}
+                />
               </Typography>
             ) : (
               <Stack spacing={0.5}>
                 <Typography variant="body2" color="text.primary">
-                  Agent commission: <strong>2.5%</strong> of the transaction value.
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t('commission.oath.buyerAgentCommission', {
+                        defaultValue: 'Agent commission: <strong>2.5%</strong> of the transaction value.',
+                      }),
+                    }}
+                  />
                 </Typography>
                 <Typography variant="body2" color="text.primary">
-                  Platform fee: <strong>0.5%</strong> of the transaction value.
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t('commission.oath.buyerPlatformFee', {
+                        defaultValue: 'Platform fee: <strong>0.5%</strong> of the transaction value.',
+                      }),
+                    }}
+                  />
                 </Typography>
               </Stack>
             )}
@@ -189,20 +208,21 @@ export function CommissionOathModal({
 
           {acceptMutation.isError && (
             <Alert severity="error">
-              {(acceptMutation.error as Error).message ?? 'Could not record your acceptance'}
+              {(acceptMutation.error as Error).message ??
+                t('commission.oath.acceptError', { defaultValue: 'Could not record your acceptance' })}
             </Alert>
           )}
 
           <FormControlLabel
             control={<Checkbox checked={agreed} onChange={(_, v) => setAgreed(v)} />}
-            label={isAr ? 'أوافق على شروط العمولة' : 'I agree to commission terms'}
+            label={t('commission.oath.agreeCheckbox', { defaultValue: 'I agree to commission terms' })}
           />
         </Stack>
       </DialogContent>
 
       <DialogActions sx={{ px: 3, pb: 3, justifyContent: 'space-between' }}>
         <Button onClick={onClose} variant="text" color="inherit">
-          {isAr ? 'لا أوافق' : 'I do not agree'}
+          {t('commission.oath.decline', { defaultValue: 'I do not agree' })}
         </Button>
         <Button
           onClick={handleAccept}
@@ -215,12 +235,8 @@ export function CommissionOathModal({
           }}
         >
           {acceptMutation.isPending
-            ? isAr
-              ? 'جارٍ الحفظ...'
-              : 'Saving...'
-            : isAr
-              ? 'أقبل وأتعهد'
-              : 'I Accept & Commit'}
+            ? t('commission.oath.saving', { defaultValue: 'Saving...' })
+            : t('commission.oath.acceptCta', { defaultValue: 'I Accept & Commit' })}
         </Button>
       </DialogActions>
     </Dialog>

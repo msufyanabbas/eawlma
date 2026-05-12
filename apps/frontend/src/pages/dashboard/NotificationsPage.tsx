@@ -99,7 +99,7 @@ export function NotificationsPage() {
             disabled={markAllReadMutation.isPending}
             variant="outlined"
           >
-            Mark all as read
+            {t('notifications.markAllRead')}
           </Button>
         </Box>
 
@@ -172,7 +172,7 @@ export function NotificationsPage() {
                         e.stopPropagation();
                         markReadMutation.mutate([n.id]);
                       }}
-                      aria-label="mark read"
+                      aria-label={t('notifications.markRead')}
                     >
                       <CheckIcon fontSize="small" />
                     </IconButton>

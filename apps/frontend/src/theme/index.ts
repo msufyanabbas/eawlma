@@ -30,7 +30,7 @@ declare module '@mui/material/styles' {
 // primary font for both. Inter is kept as a Latin-only fallback. Urdu gets
 // Nastaliq because Tajawal is Naskh-only.
 const STACK_DEFAULT = '"Tajawal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-const STACK_URDU = '"Noto Nastaliq Urdu", "Mehr Nastaliq", serif';
+const STACK_URDU = '"Gulzar", "Noto Nastaliq Urdu", serif';
 
 const pickStack = (script: LangScript) => (script === 'urdu' ? STACK_URDU : STACK_DEFAULT);
 
@@ -39,29 +39,25 @@ const buildTypography = (
   script: LangScript = 'arabic',
 ): ThemeOptions['typography'] => {
   const stack = pickStack(script);
-  // Nastaleeq needs more vertical space than Naskh/Latin — bump line-height
-  // (and slightly bump the body size for Nastaleeq legibility) but keep glyph
-  // sizes otherwise identical so layouts don't reshuffle per locale.
-  const isUrdu = script === 'urdu';
-  const lineBody = isUrdu ? 2.2 : 1.65;
-  const lineHeading = isUrdu ? 2.2 : 1.3;
+  // Urdu differs from Arabic only in the typeface — sizing and line-heights
+  // stay identical so layouts don't reshuffle per locale.
   return {
     fontFamily: stack,
     // 15px base reads better in Tajawal than the prior 14px while staying
     // denser than the original 16px MUI default.
-    fontSize: isUrdu ? 16 : 15,
+    fontSize: 15,
     htmlFontSize: 16,
-    h1: { fontFamily: stack, fontSize: '2rem',    fontWeight: 800, lineHeight: lineHeading },
-    h2: { fontFamily: stack, fontSize: '1.65rem', fontWeight: 700, lineHeight: lineHeading },
-    h3: { fontFamily: stack, fontSize: '1.4rem',  fontWeight: 700, lineHeight: isUrdu ? 2.2 : 1.35 },
-    h4: { fontFamily: stack, fontSize: '1.2rem',  fontWeight: 700, lineHeight: isUrdu ? 2 : 1.4 },
-    h5: { fontFamily: stack, fontSize: '1.05rem', fontWeight: 600, lineHeight: isUrdu ? 2 : 1.45 },
-    h6: { fontFamily: stack, fontSize: '0.95rem', fontWeight: 600, lineHeight: isUrdu ? 2 : 1.5 },
-    subtitle1: { fontSize: '1rem',      fontWeight: 500, lineHeight: isUrdu ? 2 : 1.5 },
-    subtitle2: { fontSize: '0.9rem',    fontWeight: 600, lineHeight: isUrdu ? 2 : 1.5 },
-    body1:     { fontSize: '0.9375rem', fontWeight: 400, lineHeight: lineBody },
-    body2:     { fontSize: '0.875rem',  fontWeight: 400, lineHeight: lineBody },
-    caption:   { fontSize: '0.8125rem', fontWeight: 400, lineHeight: isUrdu ? 2 : 1.5 },
+    h1: { fontFamily: stack, fontSize: '2rem',    fontWeight: 800, lineHeight: 1.3 },
+    h2: { fontFamily: stack, fontSize: '1.65rem', fontWeight: 700, lineHeight: 1.3 },
+    h3: { fontFamily: stack, fontSize: '1.4rem',  fontWeight: 700, lineHeight: 1.35 },
+    h4: { fontFamily: stack, fontSize: '1.2rem',  fontWeight: 700, lineHeight: 1.4 },
+    h5: { fontFamily: stack, fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.45 },
+    h6: { fontFamily: stack, fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.5 },
+    subtitle1: { fontSize: '1rem',      fontWeight: 500, lineHeight: 1.5 },
+    subtitle2: { fontSize: '0.9rem',    fontWeight: 600, lineHeight: 1.5 },
+    body1:     { fontSize: '0.9375rem', fontWeight: 400, lineHeight: 1.65 },
+    body2:     { fontSize: '0.875rem',  fontWeight: 400, lineHeight: 1.65 },
+    caption:   { fontSize: '0.8125rem', fontWeight: 400, lineHeight: 1.5 },
     overline: {
       fontSize: '0.75rem',
       fontWeight: 700,

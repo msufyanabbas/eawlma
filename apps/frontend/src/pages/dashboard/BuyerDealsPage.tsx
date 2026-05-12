@@ -36,19 +36,19 @@ import { extractErrorMessage } from '@/api/client';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 
-const DEAL_STATUS_COLORS: Record<DealStatus, { bg: string; text: string; label: string }> = {
-  none: { bg: '#E0E0E0', text: '#333', label: 'No deal' },
-  pending_confirmation: { bg: '#FFF3CD', text: '#856404', label: 'Pending your confirmation' },
-  confirmed: { bg: '#D4EDDA', text: '#155724', label: 'Confirmed' },
-  disputed: { bg: '#F8D7DA', text: '#721C24', label: 'Disputed' },
-  resolved: { bg: '#CCE5FF', text: '#004085', label: 'Resolved' },
+const DEAL_STATUS_COLORS: Record<DealStatus, { bg: string; text: string; labelKey: string }> = {
+  none: { bg: '#E0E0E0', text: '#333', labelKey: 'buyerDeals.dealStatus.none' },
+  pending_confirmation: { bg: '#FFF3CD', text: '#856404', labelKey: 'buyerDeals.dealStatus.pending_confirmation' },
+  confirmed: { bg: '#D4EDDA', text: '#155724', labelKey: 'buyerDeals.dealStatus.confirmed' },
+  disputed: { bg: '#F8D7DA', text: '#721C24', labelKey: 'buyerDeals.dealStatus.disputed' },
+  resolved: { bg: '#CCE5FF', text: '#004085', labelKey: 'buyerDeals.dealStatus.resolved' },
 };
 
 const DISPUTE_REASONS = [
-  'Deal is not yet finalized',
-  'Wrong transaction amount',
-  'I did not agree to this',
-  'Other',
+  'not_finalized',
+  'wrong_amount',
+  'did_not_agree',
+  'other',
 ] as const;
 
 export function BuyerDealsPage() {
@@ -212,7 +212,7 @@ function DealRow({
       <TableCell>
         <Typography variant="body2" sx={{ fontWeight: 700 }}>
           {inquiry.transactionValue
-            ? `${Number(inquiry.transactionValue).toLocaleString(locale)} SAR`
+            ? `${Number(inquiry.transactionValue).toLocaleString(locale)} ${t('listing.currency')}`
             : '—'}
         </Typography>
       </TableCell>
@@ -222,7 +222,7 @@ function DealRow({
       <TableCell>
         <Chip
           size="small"
-          label={palette.label}
+          label={t(palette.labelKey)}
           sx={{ bgcolor: palette.bg, color: palette.text, fontWeight: 700 }}
         />
         {inquiry.dealStatus === 'disputed' && inquiry.disputeReason && (
@@ -278,13 +278,16 @@ function DisputeDialog({
   const [reasonChoice, setReasonChoice] = useState<typeof DISPUTE_REASONS[number]>(DISPUTE_REASONS[0]);
   const [detail, setDetail] = useState('');
 
+  const reasonLabel = (r: typeof DISPUTE_REASONS[number]) => t(`buyerDeals.disputeReasons.${r}`);
+
   const mutation = useMutation({
     mutationFn: () => {
-      const composed = reasonChoice === 'Other'
+      const reasonText = reasonLabel(reasonChoice);
+      const composed = reasonChoice === 'other'
         ? detail.trim()
         : detail.trim()
-          ? `${reasonChoice}: ${detail.trim()}`
-          : reasonChoice;
+          ? `${reasonText}: ${detail.trim()}`
+          : reasonText;
       return inquiriesApi.raiseDispute(inquiry.id, { reason: composed });
     },
     onSuccess: () => onSuccess(),
@@ -292,7 +295,7 @@ function DisputeDialog({
 
   const submitDisabled =
     mutation.isPending ||
-    (reasonChoice === 'Other' && detail.trim().length < 4);
+    (reasonChoice === 'other' && detail.trim().length < 4);
 
   return (
     <Dialog open onClose={onClose} maxWidth="sm" fullWidth>
@@ -309,7 +312,7 @@ function DisputeDialog({
               onChange={(_, v) => setReasonChoice(v as typeof DISPUTE_REASONS[number])}
             >
               {DISPUTE_REASONS.map((r) => (
-                <FormControlLabel key={r} value={r} control={<Radio />} label={r} />
+                <FormControlLabel key={r} value={r} control={<Radio />} label={reasonLabel(r)} />
               ))}
             </RadioGroup>
           </FormControl>
@@ -317,12 +320,12 @@ function DisputeDialog({
           <TextField
             multiline
             minRows={3}
-            label={reasonChoice === 'Other'
+            label={reasonChoice === 'other'
               ? t('buyerDeals.disputeReasonRequired')
               : t('buyerDeals.disputeReasonOptional')}
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
-            required={reasonChoice === 'Other'}
+            required={reasonChoice === 'other'}
           />
 
           {mutation.isError && (

@@ -171,13 +171,13 @@ export function MarketPage() {
             <Grid item xs={12} sm={4}>
               <StatCard
                 label={t('market.avgPrice')}
-                value={`${fmt(stats.avgPrice)} SAR`}
+                value={`${fmt(stats.avgPrice)} ${t('listing.currency')}`}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
               <StatCard
                 label={t('market.avgPricePerSqm')}
-                value={`${fmt(stats.avgPpsm)} SAR/m²`}
+                value={`${fmt(stats.avgPpsm)} ${t('listing.currency')}/${t('listing.areaUnit')}`}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -211,7 +211,7 @@ export function MarketPage() {
                     <XAxis dataKey="month" />
                     <YAxis tickFormatter={(v) => fmt(Number(v))} />
                     <RechartsTooltip
-                      formatter={(v: number) => [`${fmt(v)} SAR/m²`, t('market.avgPricePerSqm')]}
+                      formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}
                     />
                     <Line
                       type="monotone"
@@ -249,7 +249,7 @@ export function MarketPage() {
                     <XAxis type="number" tickFormatter={(v) => fmt(Number(v))} />
                     <YAxis type="category" dataKey="district" width={140} />
                     <RechartsTooltip
-                      formatter={(v: number) => [`${fmt(v)} SAR/m²`, t('market.avgPricePerSqm')]}
+                      formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}
                     />
                     <Bar dataKey="avgPricePerSqm" fill="#6C63A6" radius={[0, 6, 6, 0]} />
                   </BarChart>
