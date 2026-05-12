@@ -14,10 +14,10 @@ import { useUiStore } from '@/store/ui.store';
 export function EawlmaThemeProvider({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
   const themeMode = useUiStore((s) => s.themeMode);
-  // Both Arabic and Urdu use RTL script.
+  // Arabic, Urdu, Persian and Hebrew all use RTL script.
   const lang = i18n.language ?? '';
-  const direction: Direction =
-    lang.startsWith('ar') || lang.startsWith('ur') ? 'rtl' : 'ltr';
+  const isRtl = ['ar', 'ur', 'fa', 'he'].some((code) => lang.startsWith(code));
+  const direction: Direction = isRtl ? 'rtl' : 'ltr';
   const script: LangScript = lang.startsWith('ur')
     ? 'urdu'
     : lang.startsWith('ar')

@@ -2,7 +2,10 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 export type ThemeMode = 'light' | 'dark';
-export type UiLanguage = 'ar' | 'en' | 'ur';
+// Any locale code we ship UI translations for. The full list is centralized in
+// src/i18n/index.ts; we keep this as `string` so adding a new locale doesn't
+// require touching every store/handler signature.
+export type UiLanguage = string;
 
 interface UiState {
   language: UiLanguage;

@@ -24,55 +24,59 @@ export interface LanguageOption {
   englishName: string;
 }
 
-// Three locales we ship full UI translations for. Selecting one of these
+// All 38 locales we ship full UI translations for. Selecting one of these
 // switches the i18n locale (and therefore RTL/LTR direction).
 export const INTERFACE_LANGUAGES: ReadonlyArray<LanguageOption & { code: UiLanguage }> = [
   { code: 'ar', flag: '🇸🇦', nativeName: 'العربية', englishName: 'Arabic' },
   { code: 'en', flag: '🇬🇧', nativeName: 'English', englishName: 'English' },
   { code: 'ur', flag: '🇵🇰', nativeName: 'اردو', englishName: 'Urdu' },
-];
-
-// All Google-Translate-supported languages we expose for "translate messages
-// into …". Codes are ISO 639-1 (or BCP-47 when needed). Order roughly by
-// expected demand in the GCC + global tourism corridor.
-export const TRANSLATION_LANGUAGES: ReadonlyArray<LanguageOption> = [
   { code: 'fr', flag: '🇫🇷', nativeName: 'Français', englishName: 'French' },
   { code: 'es', flag: '🇪🇸', nativeName: 'Español', englishName: 'Spanish' },
   { code: 'de', flag: '🇩🇪', nativeName: 'Deutsch', englishName: 'German' },
   { code: 'it', flag: '🇮🇹', nativeName: 'Italiano', englishName: 'Italian' },
   { code: 'pt', flag: '🇵🇹', nativeName: 'Português', englishName: 'Portuguese' },
-  { code: 'ru', flag: '🇷🇺', nativeName: 'Русский', englishName: 'Russian' },
+  { code: 'nl', flag: '🇳🇱', nativeName: 'Nederlands', englishName: 'Dutch' },
   { code: 'tr', flag: '🇹🇷', nativeName: 'Türkçe', englishName: 'Turkish' },
-  { code: 'fa', flag: '🇮🇷', nativeName: 'فارسی', englishName: 'Persian' },
-  { code: 'hi', flag: '🇮🇳', nativeName: 'हिन्दी', englishName: 'Hindi' },
-  { code: 'bn', flag: '🇧🇩', nativeName: 'বাংলা', englishName: 'Bengali' },
-  { code: 'pa', flag: '🇮🇳', nativeName: 'ਪੰਜਾਬੀ', englishName: 'Punjabi' },
-  { code: 'ta', flag: '🇮🇳', nativeName: 'தமிழ்', englishName: 'Tamil' },
-  { code: 'te', flag: '🇮🇳', nativeName: 'తెలుగు', englishName: 'Telugu' },
-  { code: 'ml', flag: '🇮🇳', nativeName: 'മലയാളം', englishName: 'Malayalam' },
+  { code: 'ru', flag: '🇷🇺', nativeName: 'Русский', englishName: 'Russian' },
+  { code: 'pl', flag: '🇵🇱', nativeName: 'Polski', englishName: 'Polish' },
+  { code: 'ro', flag: '🇷🇴', nativeName: 'Română', englishName: 'Romanian' },
+  { code: 'sv', flag: '🇸🇪', nativeName: 'Svenska', englishName: 'Swedish' },
+  { code: 'da', flag: '🇩🇰', nativeName: 'Dansk', englishName: 'Danish' },
+  { code: 'fi', flag: '🇫🇮', nativeName: 'Suomi', englishName: 'Finnish' },
+  { code: 'no', flag: '🇳🇴', nativeName: 'Norsk', englishName: 'Norwegian' },
+  { code: 'af', flag: '🇿🇦', nativeName: 'Afrikaans', englishName: 'Afrikaans' },
   { code: 'id', flag: '🇮🇩', nativeName: 'Bahasa Indonesia', englishName: 'Indonesian' },
   { code: 'ms', flag: '🇲🇾', nativeName: 'Bahasa Melayu', englishName: 'Malay' },
   { code: 'tl', flag: '🇵🇭', nativeName: 'Tagalog', englishName: 'Filipino' },
-  { code: 'zh-CN', flag: '🇨🇳', nativeName: '简体中文', englishName: 'Chinese (Simplified)' },
-  { code: 'zh-TW', flag: '🇹🇼', nativeName: '繁體中文', englishName: 'Chinese (Traditional)' },
-  { code: 'ja', flag: '🇯🇵', nativeName: '日本語', englishName: 'Japanese' },
-  { code: 'ko', flag: '🇰🇷', nativeName: '한국어', englishName: 'Korean' },
-  { code: 'th', flag: '🇹🇭', nativeName: 'ภาษาไทย', englishName: 'Thai' },
   { code: 'vi', flag: '🇻🇳', nativeName: 'Tiếng Việt', englishName: 'Vietnamese' },
-  { code: 'nl', flag: '🇳🇱', nativeName: 'Nederlands', englishName: 'Dutch' },
-  { code: 'pl', flag: '🇵🇱', nativeName: 'Polski', englishName: 'Polish' },
-  { code: 'sv', flag: '🇸🇪', nativeName: 'Svenska', englishName: 'Swedish' },
-  { code: 'no', flag: '🇳🇴', nativeName: 'Norsk', englishName: 'Norwegian' },
-  { code: 'da', flag: '🇩🇰', nativeName: 'Dansk', englishName: 'Danish' },
-  { code: 'fi', flag: '🇫🇮', nativeName: 'Suomi', englishName: 'Finnish' },
-  { code: 'el', flag: '🇬🇷', nativeName: 'Ελληνικά', englishName: 'Greek' },
-  { code: 'he', flag: '🇮🇱', nativeName: 'עברית', englishName: 'Hebrew' },
+  { code: 'th', flag: '🇹🇭', nativeName: 'ภาษาไทย', englishName: 'Thai' },
   { code: 'sw', flag: '🇰🇪', nativeName: 'Kiswahili', englishName: 'Swahili' },
   { code: 'am', flag: '🇪🇹', nativeName: 'አማርኛ', englishName: 'Amharic' },
+  { code: 'hi', flag: '🇮🇳', nativeName: 'हिन्दी', englishName: 'Hindi' },
+  { code: 'bn', flag: '🇧🇩', nativeName: 'বাংলা', englishName: 'Bengali' },
+  { code: 'ne', flag: '🇳🇵', nativeName: 'नेपाली', englishName: 'Nepali' },
+  { code: 'ta', flag: '🇮🇳', nativeName: 'தமிழ்', englishName: 'Tamil' },
+  { code: 'te', flag: '🇮🇳', nativeName: 'తెలుగు', englishName: 'Telugu' },
+  { code: 'gu', flag: '🇮🇳', nativeName: 'ગુજરાતી', englishName: 'Gujarati' },
+  { code: 'mr', flag: '🇮🇳', nativeName: 'मराठी', englishName: 'Marathi' },
+  { code: 'si', flag: '🇱🇰', nativeName: 'සිංහල', englishName: 'Sinhala' },
+  { code: 'zh', flag: '🇨🇳', nativeName: '中文', englishName: 'Chinese' },
+  { code: 'ko', flag: '🇰🇷', nativeName: '한국어', englishName: 'Korean' },
+  { code: 'ja', flag: '🇯🇵', nativeName: '日本語', englishName: 'Japanese' },
+  { code: 'fa', flag: '🇮🇷', nativeName: 'فارسی', englishName: 'Persian' },
+  { code: 'he', flag: '🇮🇱', nativeName: 'עברית', englishName: 'Hebrew' },
+];
+
+// Additional Google-Translate-only targets for translating *incoming messages*
+// without changing the chrome. Kept for languages we don't ship full UI for.
+export const TRANSLATION_LANGUAGES: ReadonlyArray<LanguageOption> = [
+  { code: 'pa', flag: '🇮🇳', nativeName: 'ਪੰਜਾਬੀ', englishName: 'Punjabi' },
+  { code: 'ml', flag: '🇮🇳', nativeName: 'മലയാളം', englishName: 'Malayalam' },
+  { code: 'zh-TW', flag: '🇹🇼', nativeName: '繁體中文', englishName: 'Chinese (Traditional)' },
+  { code: 'el', flag: '🇬🇷', nativeName: 'Ελληνικά', englishName: 'Greek' },
   { code: 'so', flag: '🇸🇴', nativeName: 'Soomaali', englishName: 'Somali' },
   { code: 'uk', flag: '🇺🇦', nativeName: 'Українська', englishName: 'Ukrainian' },
   { code: 'cs', flag: '🇨🇿', nativeName: 'Čeština', englishName: 'Czech' },
-  { code: 'ro', flag: '🇷🇴', nativeName: 'Română', englishName: 'Romanian' },
   { code: 'hu', flag: '🇭🇺', nativeName: 'Magyar', englishName: 'Hungarian' },
 ];
 
