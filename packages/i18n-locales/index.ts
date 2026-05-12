@@ -50,11 +50,18 @@ export type LocaleCode = keyof typeof LOCALES;
 
 // Convenience: i18next resources shape so consumers can do
 //   i18n.init({ resources: toI18nextResources() })
-// without rewriting the map themselves.
-export function toI18nextResources(): Record<LocaleCode, { translation: unknown }> {
-  return Object.fromEntries(
-    (Object.keys(LOCALES) as LocaleCode[]).map((code) => [code, { translation: LOCALES[code] }]),
-  ) as Record<LocaleCode, { translation: unknown }>;
+// without rewriting the map themselves. We type the per-locale translations
+// as `Record<string, unknown>` because i18next's own `ResourceKey` is opaque
+// to TypeScript, and a structural shape lets us pass the typed JSON imports
+// through without a runtime transform.
+export type ResourceMap = Record<string, { translation: Record<string, unknown> }>;
+
+export function toI18nextResources(): ResourceMap {
+  const map: ResourceMap = {};
+  for (const code of Object.keys(LOCALES) as LocaleCode[]) {
+    map[code] = { translation: LOCALES[code] as unknown as Record<string, unknown> };
+  }
+  return map;
 }
 
 export const LOCALE_CODES = Object.keys(LOCALES) as LocaleCode[];

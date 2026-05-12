@@ -165,10 +165,6 @@ export function ChatScreen() {
               right: { color: '#FFFFFF', fontFamily: FONTS.regular },
               left: { color: colors.text, fontFamily: FONTS.regular },
             }}
-            timeTextStyle={{
-              right: { color: 'rgba(255,255,255,0.75)', fontFamily: FONTS.regular },
-              left: { color: colors.textMuted, fontFamily: FONTS.regular },
-            }}
           />
           {isTranslated ? (
             <TouchableOpacity
@@ -322,14 +318,8 @@ export function ChatScreen() {
             renderInputToolbar={renderInputToolbar}
             renderSend={renderSend}
             alwaysShowSend
-            scrollToBottom
             renderUsernameOnMessage={false}
             messagesContainerStyle={{ backgroundColor: colors.background }}
-            textInputStyle={{
-              color: colors.text,
-              fontFamily: FONTS.regular,
-              fontSize: SIZES.body,
-            }}
           />
         </KeyboardAvoidingView>
       )}

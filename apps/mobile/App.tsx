@@ -10,8 +10,17 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { useColorScheme, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider as RawI18nextProvider } from 'react-i18next';
 import { PaperProvider } from 'react-native-paper';
+
+// react-i18next v15's component types still target React 18's `ReactNode`.
+// Under React 19's stricter children type, JSX flags the provider as
+// "not a valid JSX element". This cast is the canonical workaround until
+// react-i18next publishes 19-aware types.
+const I18nextProvider = RawI18nextProvider as unknown as React.FC<{
+  i18n: typeof import('./src/i18n').i18n;
+  children: React.ReactNode;
+}>;
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AppNavigator } from './src/navigation';

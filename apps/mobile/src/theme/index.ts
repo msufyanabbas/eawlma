@@ -4,7 +4,31 @@
 //   <View style={{ backgroundColor: colors.surface }} />
 import { useColorScheme } from 'react-native';
 
-export const LIGHT_COLORS = {
+export interface ColorPaletteShape {
+  primary: string;
+  primaryDark: string;
+  primaryLight: string;
+  secondary: string;
+  secondaryDark: string;
+  background: string;
+  surface: string;
+  surfaceMuted: string;
+  error: string;
+  success: string;
+  warning: string;
+  info: string;
+  text: string;
+  textSecondary: string;
+  textMuted: string;
+  border: string;
+  divider: string;
+  white: string;
+  black: string;
+  overlay: string;
+  shadow: string;
+}
+
+export const LIGHT_COLORS: ColorPaletteShape = {
   primary: '#6C63A6',
   primaryDark: '#4A3F8F',
   primaryLight: '#8B84C4',
@@ -26,9 +50,9 @@ export const LIGHT_COLORS = {
   black: '#000000',
   overlay: 'rgba(0,0,0,0.5)',
   shadow: '#000000',
-} as const;
+};
 
-export const DARK_COLORS: typeof LIGHT_COLORS = {
+export const DARK_COLORS: ColorPaletteShape = {
   primary: '#8B84C4',
   primaryDark: '#6C63A6',
   primaryLight: '#A8A2D6',
@@ -52,7 +76,7 @@ export const DARK_COLORS: typeof LIGHT_COLORS = {
   shadow: '#000000',
 };
 
-export type ColorPalette = typeof LIGHT_COLORS;
+export type ColorPalette = ColorPaletteShape;
 
 // Legacy named export — most files just want the light palette constants.
 export const COLORS = LIGHT_COLORS;
