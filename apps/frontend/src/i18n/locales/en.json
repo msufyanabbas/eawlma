@@ -237,7 +237,15 @@
     "buyerLower": "buyer",
     "agentLower": "agent",
     "otherLower": "other",
-    "anonymous": "Anonymous"
+    "anonymous": "Anonymous",
+    "resolveTitle": "Resolve dispute",
+    "resolveDesc": "Choose the outcome for this dispute",
+    "favorAgentDesc": "Commission will be confirmed and paid to agent",
+    "favorBuyerDesc": "Commission will be cancelled",
+    "cancelDealDesc": "Deal and commission both cancelled",
+    "adminNotes": "Admin notes (optional)",
+    "resolvedSuccess": "Dispute resolved successfully",
+    "resolvedError": "Failed to resolve dispute"
   },
   "auth": {
     "login": "Sign in",

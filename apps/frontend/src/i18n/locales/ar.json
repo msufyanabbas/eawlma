@@ -237,7 +237,15 @@
     "buyerLower": "المشتري",
     "agentLower": "الوكيل",
     "otherLower": "طرف آخر",
-    "anonymous": "بدون اسم"
+    "anonymous": "بدون اسم",
+    "resolveTitle": "حل النزاع",
+    "resolveDesc": "اختر نتيجة هذا النزاع",
+    "favorAgentDesc": "سيتم تأكيد العمولة ودفعها للوكيل",
+    "favorBuyerDesc": "سيتم إلغاء العمولة",
+    "cancelDealDesc": "إلغاء الصفقة والعمولة معاً",
+    "adminNotes": "ملاحظات المدير (اختياري)",
+    "resolvedSuccess": "تم حل النزاع بنجاح",
+    "resolvedError": "فشل في حل النزاع"
   },
   "auth": {
     "login": "تسجيل الدخول",

@@ -238,7 +238,15 @@
     "buyerLower": "خریدار",
     "agentLower": "ایجنٹ",
     "otherLower": "دیگر فریق",
-    "anonymous": "گمنام"
+    "anonymous": "گمنام",
+    "resolveTitle": "تنازع کا فیصلہ",
+    "resolveDesc": "اس تنازع کا نتیجہ منتخب کریں",
+    "favorAgentDesc": "کمیشن کی تصدیق ہو گی اور ایجنٹ کو ادا کی جائے گی",
+    "favorBuyerDesc": "کمیشن منسوخ ہو جائے گا",
+    "cancelDealDesc": "ڈیل اور کمیشن دونوں منسوخ",
+    "adminNotes": "ایڈمن کے نوٹس (اختیاری)",
+    "resolvedSuccess": "تنازع کامیابی سے حل ہو گیا",
+    "resolvedError": "تنازع حل کرنے میں ناکامی"
   },
   "auth": {
     "login": "سائن ان",
