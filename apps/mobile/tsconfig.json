@@ -4,6 +4,7 @@
     "strict": true,
     "jsx": "react-native",
     "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "baseUrl": "./",

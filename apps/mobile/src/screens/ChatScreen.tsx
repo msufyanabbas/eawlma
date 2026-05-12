@@ -1,35 +1,37 @@
-// ChatScreen — full-screen 1:1 chat pushed from MessagesScreen. We use
-// `react-native-gifted-chat` as the message list / composer; the bubble +
-// input toolbar are themed to the Eawlma brand. A small "Translated" caption
-// appears on bubbles whose ids end with `-tx` (UI-only stub until the
-// translation API is wired) and lets the user toggle between original and
-// translated text per-message.
+// Custom 1:1 chat — no react-native-gifted-chat, no keyboard-controller,
+// no community packages beyond what the rest of the app already uses
+// (FlatList + TextInput + Reanimated + expo-image). Inverted FlatList means
+// the message array stays oldest→newest server-side, we just feed it the
+// reverse so the newest bubble pins to the bottom and the keyboard pushes
+// the input up cleanly. Brand-purple bubbles for "me", neutral for the
+// other party, plus a per-message "Translated" caption that flips between
+// the live translation and the original text.
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NavigationProp, RouteProp } from '@react-navigation/native';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useCallback, useMemo, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Image } from 'expo-image';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
+  FlatList,
   KeyboardAvoidingView,
   Platform,
   Pressable,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  Bubble,
-  GiftedChat,
-  InputToolbar,
-  Send,
-  type IMessage,
-  type SendProps,
-  type BubbleProps,
-  type InputToolbarProps,
-} from 'react-native-gifted-chat';
-import { Image } from 'expo-image';
-import { useTranslation } from 'react-i18next';
+import Animated, {
+  Easing,
+  FadeInUp,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BrandSpinner } from '@/components/LoadingScreen';
@@ -62,22 +64,6 @@ interface ThreadResponse {
   messages: ThreadMessage[];
 }
 
-type ChatMessage = IMessage & { original?: string | null };
-
-function toGiftedMessage(m: ThreadMessage): ChatMessage {
-  return {
-    _id: m.id,
-    text: m.text,
-    original: m.original ?? null,
-    createdAt: new Date(m.createdAt),
-    user: {
-      _id: m.senderId,
-      name: m.senderName ?? undefined,
-      avatar: m.senderAvatarUrl ?? undefined,
-    },
-  };
-}
-
 export function ChatScreen() {
   const { t, i18n } = useTranslation();
   const colors = useColors();
@@ -87,7 +73,10 @@ export function ChatScreen() {
   const queryClient = useQueryClient();
   const myId = useAuthStore((s) => s.user?.id) ?? 'anon';
   const { threadId } = route.params;
-  const [showOriginalIds, setShowOriginalIds] = useState<Set<string | number>>(new Set());
+
+  const listRef = useRef<FlatList<ThreadMessage>>(null);
+  const [draft, setDraft] = useState('');
+  const [showOriginalIds, setShowOriginalIds] = useState<Set<string>>(new Set());
 
   const threadQuery = useQuery({
     queryKey: ['messages', 'thread', threadId],
@@ -99,10 +88,9 @@ export function ChatScreen() {
 
   const sendMutation = useMutation({
     mutationFn: async (text: string) => {
-      const { data } = await apiClient.post<ThreadMessage>(
-        `/messages/threads/${threadId}`,
-        { text },
-      );
+      const { data } = await apiClient.post<ThreadMessage>(`/messages/threads/${threadId}`, {
+        text,
+      });
       return data;
     },
     onSuccess: () => {
@@ -111,26 +99,16 @@ export function ChatScreen() {
     },
   });
 
-  const messages = useMemo<ChatMessage[]>(() => {
+  // Inverted list — newest first. We sort defensively so the server can return
+  // either order and the UI stays right.
+  const messages = useMemo<ThreadMessage[]>(() => {
     const list = threadQuery.data?.messages ?? [];
-    // GiftedChat expects newest-first order.
-    return [...list].map(toGiftedMessage).sort((a, b) => {
-      const bTime = b.createdAt instanceof Date ? b.createdAt.getTime() : 0;
-      const aTime = a.createdAt instanceof Date ? a.createdAt.getTime() : 0;
-      return bTime - aTime;
-    });
+    return [...list].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
   }, [threadQuery.data]);
 
-  const handleSend = useCallback(
-    (sent: IMessage[]) => {
-      const next = sent[0];
-      if (!next?.text?.trim()) return;
-      sendMutation.mutate(next.text.trim());
-    },
-    [sendMutation],
-  );
-
-  const toggleOriginal = useCallback((id: string | number) => {
+  const toggleOriginal = useCallback((id: string) => {
     setShowOriginalIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -139,90 +117,12 @@ export function ChatScreen() {
     });
   }, []);
 
-  const renderBubble = useCallback(
-    (props: BubbleProps<ChatMessage>) => {
-      const msg = props.currentMessage as ChatMessage | undefined;
-      if (!msg) {
-        return <Bubble {...props} />;
-      }
-      const isTranslated =
-        msg.system !== true &&
-        typeof msg._id === 'string' &&
-        msg._id.toString().endsWith('-tx');
-      const showOriginal = showOriginalIds.has(msg._id);
-      const displayText =
-        isTranslated && showOriginal && msg.original ? msg.original : msg.text;
-      return (
-        <View>
-          <Bubble
-            {...props}
-            currentMessage={{ ...msg, text: displayText }}
-            wrapperStyle={{
-              right: { backgroundColor: colors.primary, borderRadius: SIZES.borderRadiusLg },
-              left: { backgroundColor: colors.surfaceMuted, borderRadius: SIZES.borderRadiusLg },
-            }}
-            textStyle={{
-              right: { color: '#FFFFFF', fontFamily: FONTS.regular },
-              left: { color: colors.text, fontFamily: FONTS.regular },
-            }}
-          />
-          {isTranslated ? (
-            <TouchableOpacity
-              onPress={() => toggleOriginal(msg._id)}
-              hitSlop={6}
-              style={[
-                styles.translatedCaption,
-                {
-                  alignSelf: msg.user._id === myId ? 'flex-end' : 'flex-start',
-                },
-              ]}
-            >
-              <Ionicons name="language-outline" size={11} color={colors.textMuted} />
-              <Text style={[styles.translatedText, { color: colors.textMuted }]}>
-                {showOriginal ? t('messages.showTranslation') : t('messages.translated')}
-              </Text>
-              {!showOriginal ? (
-                <Text style={[styles.translatedDot, { color: colors.textMuted }]}>·</Text>
-              ) : null}
-              {!showOriginal ? (
-                <Text style={[styles.translatedAction, { color: colors.primary }]}>
-                  {t('messages.showOriginal')}
-                </Text>
-              ) : null}
-            </TouchableOpacity>
-          ) : null}
-        </View>
-      );
-    },
-    [colors, myId, showOriginalIds, t, toggleOriginal],
-  );
-
-  const renderInputToolbar = useCallback(
-    (props: InputToolbarProps<ChatMessage>) => (
-      <InputToolbar
-        {...props}
-        containerStyle={{
-          backgroundColor: colors.surface,
-          borderTopColor: colors.border,
-          borderTopWidth: StyleSheet.hairlineWidth,
-          paddingHorizontal: SIZES.sm,
-        }}
-        primaryStyle={{ alignItems: 'center' }}
-      />
-    ),
-    [colors],
-  );
-
-  const renderSend = useCallback(
-    (props: SendProps<ChatMessage>) => (
-      <Send {...props} containerStyle={styles.sendContainer}>
-        <View style={[styles.sendButton, { backgroundColor: colors.primary }]}>
-          <Ionicons name="send" size={18} color="#FFFFFF" />
-        </View>
-      </Send>
-    ),
-    [colors],
-  );
+  const handleSend = useCallback(() => {
+    const trimmed = draft.trim();
+    if (!trimmed || sendMutation.isPending) return;
+    sendMutation.mutate(trimmed);
+    setDraft('');
+  }, [draft, sendMutation]);
 
   const otherUser = threadQuery.data?.thread?.otherUser;
   const otherUserId = otherUser?.id ?? route.params.otherUserId;
@@ -232,6 +132,122 @@ export function ChatScreen() {
     : otherUser?.lastSeenAt
       ? `${t('messages.lastSeen')} ${new Date(otherUser.lastSeenAt).toLocaleDateString(i18n.language)}`
       : '';
+
+  const renderItem = useCallback(
+    ({ item, index }: { item: ThreadMessage; index: number }) => {
+      const isMine = item.senderId === myId;
+      const isTranslated =
+        typeof item.id === 'string' && item.id.endsWith('-tx') && Boolean(item.original);
+      const showOriginal = showOriginalIds.has(item.id);
+      const displayText = isTranslated && showOriginal && item.original ? item.original : item.text;
+      // In an inverted FlatList, index 0 is the *bottom* visually; the
+      // "previous" message in time appears at index+1.
+      const previous = messages[index + 1];
+      const sameAuthorAsPrev = previous && previous.senderId === item.senderId;
+      const showAvatar = !isMine && !sameAuthorAsPrev;
+
+      return (
+        <Animated.View
+          entering={FadeInUp.duration(180).easing(Easing.out(Easing.cubic))}
+          style={[
+            styles.row,
+            { justifyContent: isMine ? 'flex-end' : 'flex-start' },
+          ]}
+        >
+          {!isMine ? (
+            <View style={styles.avatarSlot}>
+              {showAvatar ? (
+                item.senderAvatarUrl ? (
+                  <Image
+                    source={{ uri: item.senderAvatarUrl }}
+                    style={styles.avatar}
+                    contentFit="cover"
+                  />
+                ) : (
+                  <View
+                    style={[styles.avatar, styles.avatarFallback, { backgroundColor: colors.primary }]}
+                  >
+                    <Text style={styles.avatarText}>
+                      {(item.senderName?.trim()?.[0] ?? otherName?.[0] ?? '?').toUpperCase()}
+                    </Text>
+                  </View>
+                )
+              ) : null}
+            </View>
+          ) : null}
+
+          <View style={styles.bubbleColumn}>
+            <View
+              style={[
+                styles.bubble,
+                isMine
+                  ? [styles.bubbleMine, { backgroundColor: colors.primary }]
+                  : [styles.bubbleOther, { backgroundColor: colors.surfaceMuted }],
+              ]}
+            >
+              <Text
+                style={[
+                  styles.bubbleText,
+                  { color: isMine ? '#FFFFFF' : colors.text },
+                ]}
+              >
+                {displayText}
+              </Text>
+              <Text
+                style={[
+                  styles.bubbleTime,
+                  { color: isMine ? 'rgba(255,255,255,0.72)' : colors.textMuted },
+                ]}
+              >
+                {new Date(item.createdAt).toLocaleTimeString(i18n.language, {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </Text>
+            </View>
+
+            {isTranslated ? (
+              <TouchableOpacity
+                onPress={() => toggleOriginal(item.id)}
+                hitSlop={6}
+                style={[
+                  styles.translatedCaption,
+                  { alignSelf: isMine ? 'flex-end' : 'flex-start' },
+                ]}
+              >
+                <Ionicons name="language-outline" size={11} color={colors.textMuted} />
+                <Text style={[styles.translatedText, { color: colors.textMuted }]}>
+                  {showOriginal ? t('messages.showTranslation') : t('messages.translated')}
+                </Text>
+                <Text style={[styles.translatedDot, { color: colors.textMuted }]}>·</Text>
+                <Text style={[styles.translatedAction, { color: colors.primary }]}>
+                  {showOriginal ? t('messages.showTranslation') : t('messages.showOriginal')}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
+          </View>
+        </Animated.View>
+      );
+    },
+    [colors, i18n.language, messages, myId, otherName, showOriginalIds, t, toggleOriginal],
+  );
+
+  // Send button: scale-down feedback on press and a fade between
+  // active (purple) and disabled (muted) states.
+  const sendScale = useSharedValue(1);
+  const sendAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: sendScale.value }],
+  }));
+  const canSend = draft.trim().length > 0 && !sendMutation.isPending;
+
+  // Auto-scroll to bottom (top of inverted list) when sending so the user's
+  // freshly-sent message is visible. Server invalidation will re-render
+  // and the inverted list keeps the new entry at index 0 automatically.
+  useEffect(() => {
+    if (sendMutation.isSuccess) {
+      listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    }
+  }, [sendMutation.isSuccess]);
 
   return (
     <View style={[styles.flex, { backgroundColor: colors.background }]}>
@@ -269,8 +285,10 @@ export function ChatScreen() {
               transition={120}
             />
           ) : (
-            <View style={[styles.headerAvatar, styles.headerAvatarFallback, { backgroundColor: colors.primary }]}>
-              <Text style={styles.headerAvatarText}>
+            <View
+              style={[styles.headerAvatar, styles.avatarFallback, { backgroundColor: colors.primary }]}
+            >
+              <Text style={styles.avatarText}>
                 {(otherName?.trim()?.[0] ?? '?').toUpperCase()}
               </Text>
             </View>
@@ -309,18 +327,81 @@ export function ChatScreen() {
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           keyboardVerticalOffset={Platform.OS === 'ios' ? insets.top + 56 : 0}
         >
-          <GiftedChat
-            messages={messages}
-            onSend={handleSend}
-            user={{ _id: myId }}
-            placeholder={t('messages.typeMessage')}
-            renderBubble={renderBubble}
-            renderInputToolbar={renderInputToolbar}
-            renderSend={renderSend}
-            alwaysShowSend
-            renderUsernameOnMessage={false}
-            messagesContainerStyle={{ backgroundColor: colors.background }}
+          <FlatList<ThreadMessage>
+            ref={listRef}
+            data={messages}
+            keyExtractor={(m) => m.id}
+            renderItem={renderItem}
+            inverted
+            contentContainerStyle={styles.listContent}
+            keyboardDismissMode="interactive"
+            removeClippedSubviews
+            ListEmptyComponent={
+              <View style={styles.emptyWrap}>
+                <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
+                  {t('messages.startConversation')}
+                </Text>
+              </View>
+            }
           />
+
+          <View
+            style={[
+              styles.composer,
+              {
+                backgroundColor: colors.surface,
+                borderTopColor: colors.border,
+                paddingBottom: insets.bottom > 0 ? insets.bottom : SIZES.md,
+              },
+            ]}
+          >
+            <TextInput
+              value={draft}
+              onChangeText={setDraft}
+              placeholder={t('messages.typeMessage')}
+              placeholderTextColor={colors.textMuted}
+              style={[
+                styles.input,
+                {
+                  color: colors.text,
+                  backgroundColor: colors.surfaceMuted,
+                  fontFamily: FONTS.regular,
+                },
+              ]}
+              multiline
+              maxLength={2000}
+              returnKeyType="send"
+              onSubmitEditing={handleSend}
+              blurOnSubmit={false}
+            />
+            <Animated.View style={sendAnimatedStyle}>
+              <Pressable
+                disabled={!canSend}
+                onPress={handleSend}
+                onPressIn={() => (sendScale.value = withTiming(0.9, { duration: 80 }))}
+                onPressOut={() =>
+                  (sendScale.value = withSpring(1, { damping: 12, stiffness: 240 }))
+                }
+                hitSlop={4}
+                style={[
+                  styles.sendButton,
+                  { backgroundColor: canSend ? colors.primary : colors.border },
+                ]}
+                accessibilityRole="button"
+                accessibilityLabel={t('messages.send')}
+              >
+                {sendMutation.isPending ? (
+                  <BrandSpinner size={18} />
+                ) : (
+                  <Ionicons
+                    name="send"
+                    size={18}
+                    color={canSend ? '#FFFFFF' : colors.textMuted}
+                  />
+                )}
+              </Pressable>
+            </Animated.View>
+          </View>
         </KeyboardAvoidingView>
       )}
     </View>
@@ -345,85 +426,99 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: SIZES.borderRadius,
   },
-  headerUser: {
+  headerUser: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, flex: 1 },
+  headerAvatar: { width: 36, height: 36, borderRadius: 18 },
+  headerUserText: { flex: 1 },
+  headerName: { fontFamily: FONTS.bold, fontSize: SIZES.bodyLg },
+  headerPresenceRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 1 },
+  onlineDot: { width: 8, height: 8, borderRadius: 4 },
+  headerPresence: { fontFamily: FONTS.regular, fontSize: SIZES.caption },
+
+  listContent: {
+    paddingHorizontal: SIZES.md,
+    paddingVertical: SIZES.md,
+    gap: 2,
+  },
+
+  row: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.sm,
-    flex: 1,
-  },
-  headerAvatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-  },
-  headerAvatarFallback: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerAvatarText: {
-    color: '#FFFFFF',
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.body,
-  },
-  headerUserText: {
-    flex: 1,
-  },
-  headerName: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.bodyLg,
-  },
-  headerPresenceRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    marginTop: 1,
-  },
-  onlineDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-  },
-  headerPresence: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.caption,
-  },
-  sendContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: SIZES.xs,
-  },
-  sendButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-end',
     marginBottom: 4,
-    marginRight: 4,
+    gap: SIZES.sm,
   },
+  avatarSlot: {
+    width: 28,
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+  },
+  avatarFallback: { alignItems: 'center', justifyContent: 'center' },
+  avatarText: { color: '#FFFFFF', fontFamily: FONTS.bold, fontSize: SIZES.small },
+
+  bubbleColumn: { maxWidth: '78%' },
+  bubble: {
+    paddingHorizontal: SIZES.md,
+    paddingVertical: SIZES.sm,
+    borderRadius: SIZES.borderRadiusLg,
+  },
+  bubbleMine: { borderBottomRightRadius: 4 },
+  bubbleOther: { borderBottomLeftRadius: 4 },
+  bubbleText: { fontFamily: FONTS.regular, fontSize: SIZES.body, lineHeight: 20 },
+  bubbleTime: {
+    fontFamily: FONTS.regular,
+    fontSize: 10,
+    marginTop: 4,
+    alignSelf: 'flex-end',
+  },
+
   translatedCaption: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 3,
-    marginHorizontal: SIZES.md,
-    marginTop: 2,
-    marginBottom: SIZES.xs,
+    marginTop: 4,
+    paddingHorizontal: 4,
   },
-  translatedText: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.caption,
+  translatedText: { fontFamily: FONTS.medium, fontSize: SIZES.caption },
+  translatedDot: { fontFamily: FONTS.medium, fontSize: SIZES.caption },
+  translatedAction: { fontFamily: FONTS.bold, fontSize: SIZES.caption },
+
+  composer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    gap: SIZES.sm,
+    paddingHorizontal: SIZES.md,
+    paddingTop: SIZES.sm,
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
-  translatedDot: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.caption,
-  },
-  translatedAction: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.caption,
-  },
-  error: {
-    fontFamily: FONTS.medium,
+  input: {
+    flex: 1,
+    minHeight: 40,
+    maxHeight: 120,
+    paddingHorizontal: SIZES.md,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: SIZES.borderRadiusXl,
     fontSize: SIZES.body,
-    textAlign: 'center',
   },
+  sendButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  emptyWrap: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: [{ scaleY: -1 }],
+    padding: SIZES.xl,
+  },
+  emptyText: { fontFamily: FONTS.medium, fontSize: SIZES.body, textAlign: 'center' },
+
+  error: { fontFamily: FONTS.medium, fontSize: SIZES.body, textAlign: 'center' },
 });
