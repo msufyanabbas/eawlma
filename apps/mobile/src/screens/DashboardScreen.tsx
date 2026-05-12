@@ -15,7 +15,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 
@@ -179,7 +179,7 @@ export function DashboardScreen() {
         }
       >
         {/* KPI grid */}
-        <Animated.View entering={FadeInDown.duration(300)} style={styles.kpiGrid}>
+        <Animated.View style={styles.kpiGrid}>
           {kpis.map((k, idx) => (
             <View
               key={k.key}
@@ -218,7 +218,7 @@ export function DashboardScreen() {
         </Animated.View>
 
         {/* Quick actions */}
-        <Animated.View entering={FadeInDown.delay(100).duration(300)} style={styles.section}>
+        <Animated.View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: colors.text }]}>
             {t('common.actions')}
           </Text>
@@ -246,7 +246,7 @@ export function DashboardScreen() {
         </Animated.View>
 
         {/* Recent inquiries */}
-        <Animated.View entering={FadeInDown.delay(150).duration(300)} style={styles.section}>
+        <Animated.View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={[styles.sectionTitle, { color: colors.text }]}>
               {t('dashboard.inquiries')}
@@ -309,7 +309,7 @@ export function DashboardScreen() {
         </Animated.View>
 
         {/* My listings preview */}
-        <Animated.View entering={FadeInDown.delay(200).duration(300)} style={styles.section}>
+        <Animated.View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={[styles.sectionTitle, { color: colors.text }]}>
               {t('dashboard.myListings')}

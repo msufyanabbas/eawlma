@@ -3,6 +3,12 @@ node_modules/
 dist/
 web-build/
 
+# Native build output. We use Expo Go for development; these directories are
+# regenerated on demand by `npx expo prebuild` / `expo run:*`. Committing them
+# would mean every dev's local Gradle/Pods cache state ends up in git.
+android/
+ios/
+
 *.orig.*
 *.jks
 *.p8

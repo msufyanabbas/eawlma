@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native';
 import { Button, Menu, TextInput } from 'react-native-paper';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
@@ -282,7 +282,7 @@ export function SearchScreen() {
   return (
     <View style={[styles.root, { backgroundColor: colors.background }]}>
       {Header}
-      <Animated.View entering={FadeIn.duration(200)} style={styles.flex}>
+      <Animated.View style={styles.flex}>
         {body}
       </Animated.View>
 

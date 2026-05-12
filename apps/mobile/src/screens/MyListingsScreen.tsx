@@ -14,7 +14,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 
@@ -145,7 +145,7 @@ export function MyListingsScreen() {
           keyExtractor={(it) => it.id}
           contentContainerStyle={styles.list}
           renderItem={({ item, index }) => (
-            <Animated.View entering={FadeInDown.duration(300).delay(index * 40)}>
+            <Animated.View>
               <View style={styles.cardWrap}>
                 <ListingCard
                   listing={item}

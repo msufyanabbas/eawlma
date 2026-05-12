@@ -1,18 +1,11 @@
-// Lightweight bottom sheet built on RN's Modal + Reanimated. We deliberately
-// don't pull in @gorhom/bottom-sheet — for filter / picker use-cases the
-// dependency is too heavy and ships a second gesture-handler config. This
-// supports open/close animation, swipe-down to dismiss, and a backdrop.
-import { useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
+// Lightweight bottom sheet built on RN's Modal + Gesture Handler. No
+// reanimated — translateY and backdrop opacity use RN's built-in `Animated`
+// API with the native driver. We keep gesture-handler because it lets the
+// user swipe the sheet down to dismiss; without it the sheet still works,
+// you'd just lose that gesture.
+import { useEffect, useRef } from 'react';
+import { Animated, Easing, Modal, Pressable, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
-  Easing,
-  runOnJS,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
 
 import { COLORS, SHADOWS, SIZES } from '../theme';
 
@@ -27,46 +20,89 @@ interface BottomSheetProps {
 export function BottomSheet({ open, onClose, children, heightFraction = 0.6 }: BottomSheetProps) {
   const { height } = useWindowDimensions();
   const sheetHeight = Math.round(height * heightFraction);
-  const translateY = useSharedValue(sheetHeight);
-  const backdropOpacity = useSharedValue(0);
+  const translateY = useRef(new Animated.Value(sheetHeight)).current;
+  const backdropOpacity = useRef(new Animated.Value(0)).current;
+
+  // We need a JS-thread mirror of the current translateY because the pan
+  // gesture runs on the JS thread (gesture-handler events come through
+  // worklets but the result drives RN Animated.Value via .setValue()).
+  const dragStartY = useRef(0);
 
   useEffect(() => {
     if (open) {
-      translateY.value = withSpring(0, { damping: 18, stiffness: 220 });
-      backdropOpacity.value = withTiming(1, { duration: 200, easing: Easing.out(Easing.quad) });
+      Animated.parallel([
+        Animated.spring(translateY, {
+          toValue: 0,
+          damping: 18,
+          stiffness: 220,
+          useNativeDriver: true,
+        }),
+        Animated.timing(backdropOpacity, {
+          toValue: 1,
+          duration: 200,
+          easing: Easing.out(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]).start();
     } else {
-      translateY.value = withTiming(sheetHeight, { duration: 220 });
-      backdropOpacity.value = withTiming(0, { duration: 180 });
+      Animated.parallel([
+        Animated.timing(translateY, {
+          toValue: sheetHeight,
+          duration: 220,
+          easing: Easing.in(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(backdropOpacity, {
+          toValue: 0,
+          duration: 180,
+          useNativeDriver: true,
+        }),
+      ]).start();
     }
   }, [open, sheetHeight, translateY, backdropOpacity]);
 
-  const sheetStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
-  }));
-  const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropOpacity.value,
-  }));
-
   const drag = Gesture.Pan()
+    .onStart(() => {
+      // @ts-expect-error _value is not part of the public API but RN exposes
+      // it on every Animated.Value; the alternative is a useState round-trip
+      // which we'd rather avoid in a gesture handler.
+      dragStartY.current = translateY._value as number;
+    })
     .onUpdate((e) => {
-      translateY.value = Math.max(0, e.translationY);
+      const next = Math.max(0, dragStartY.current + e.translationY);
+      translateY.setValue(next);
     })
     .onEnd((e) => {
       if (e.translationY > 120 || e.velocityY > 800) {
-        translateY.value = withTiming(sheetHeight, { duration: 200 });
-        runOnJS(onClose)();
+        Animated.timing(translateY, {
+          toValue: sheetHeight,
+          duration: 200,
+          easing: Easing.in(Easing.quad),
+          useNativeDriver: true,
+        }).start(({ finished }) => {
+          if (finished) onClose();
+        });
       } else {
-        translateY.value = withSpring(0, { damping: 18, stiffness: 220 });
+        Animated.spring(translateY, {
+          toValue: 0,
+          damping: 18,
+          stiffness: 220,
+          useNativeDriver: true,
+        }).start();
       }
     });
 
   return (
     <Modal transparent visible={open} animationType="none" onRequestClose={onClose}>
-      <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]}>
+      <Animated.View
+        style={[StyleSheet.absoluteFill, styles.backdrop, { opacity: backdropOpacity }]}
+      >
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
       </Animated.View>
       <GestureDetector gesture={drag}>
-        <Animated.View style={[styles.sheet, { height: sheetHeight }, sheetStyle]}>
+        <Animated.View
+          style={[styles.sheet, { height: sheetHeight, transform: [{ translateY }] }]}
+        >
           <View style={styles.grabber} />
           {children}
         </Animated.View>
@@ -76,9 +112,7 @@ export function BottomSheet({ open, onClose, children, heightFraction = 0.6 }: B
 }
 
 const styles = StyleSheet.create({
-  backdrop: {
-    backgroundColor: 'rgba(0,0,0,0.45)',
-  },
+  backdrop: { backgroundColor: 'rgba(0,0,0,0.45)' },
   sheet: {
     position: 'absolute',
     bottom: 0,

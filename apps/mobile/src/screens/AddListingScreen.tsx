@@ -21,7 +21,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 
@@ -165,7 +165,7 @@ export function AddListingScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <Animated.View entering={FadeInDown.duration(300)} key={step}>
+          <Animated.View key={step}>
             {step === 0 && <BasicInfoStep form={form} update={update} errors={errors} />}
             {step === 1 && <LocationStep form={form} update={update} errors={errors} />}
             {step === 2 && <PricingStep form={form} update={update} errors={errors} />}

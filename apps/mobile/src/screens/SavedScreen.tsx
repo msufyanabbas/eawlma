@@ -9,7 +9,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, { FadeInDown, LinearTransition } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 
 import { BrandSpinner } from '@/components/LoadingScreen';
 import { EmptyState } from '@/components/EmptyState';
@@ -124,8 +124,6 @@ export function SavedScreen() {
           onRefresh={() => wishlistQuery.refetch()}
           renderItem={({ item, index }) => (
             <Animated.View
-              entering={FadeInDown.duration(300).delay(index * 30)}
-              layout={LinearTransition.duration(220)}
             >
               <ListingCard
                 listing={item}

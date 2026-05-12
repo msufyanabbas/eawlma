@@ -20,7 +20,7 @@ import {
 import { Image } from 'expo-image';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 
 import { BrandSpinner } from '@/components/LoadingScreen';
 import { EmptyState } from '@/components/EmptyState';
@@ -125,7 +125,7 @@ export function AgentProfileScreen() {
   const listingsCount = agent.listingsCount ?? listings.length;
 
   const Header = (
-    <Animated.View entering={FadeInDown.duration(300)}>
+    <Animated.View>
       <View
         style={[
           styles.heroCard,
@@ -278,7 +278,7 @@ export function AgentProfileScreen() {
           )
         }
         renderItem={({ item, index }) => (
-          <Animated.View entering={FadeInDown.duration(300).delay(index * 30)}>
+          <Animated.View>
             <ListingCard
               listing={item}
               variant="feed"

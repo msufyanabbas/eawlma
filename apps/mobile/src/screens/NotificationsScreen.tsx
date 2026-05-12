@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 
 import { COLORS, FONTS, SHADOWS, SIZES, useColors } from '@/theme';
 import { Header } from '@/components/Header';
@@ -106,7 +106,7 @@ export function NotificationsScreen() {
             const icon = TYPE_ICONS[item.type] ?? 'notifications-outline';
             const unread = !item.readAt;
             return (
-              <Animated.View entering={FadeInDown.duration(300).delay(index * 30)}>
+              <Animated.View>
                 <Pressable
                   onPress={() => {
                     if (unread) markRead.mutate(item.id);

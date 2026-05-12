@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -72,7 +72,7 @@ export function LoginScreen() {
     <View style={[styles.root, { backgroundColor: colors.background }]}>
       {/* Purple hero banner (custom, not the shared Header — we want a tall logo block) */}
       <View style={[styles.hero, { paddingTop: insets.top + SIZES.xxl }]}>
-        <Animated.View entering={FadeInUp.duration(400)}>
+        <Animated.View>
           <Text style={styles.brand}>Eawlma</Text>
           <Text style={styles.brandTagline}>{t('auth.welcomeBack')}</Text>
           <Text style={styles.brandSubtitle}>{t('auth.signInToContinue')}</Text>
@@ -90,7 +90,6 @@ export function LoginScreen() {
           showsVerticalScrollIndicator={false}
         >
           <Animated.View
-            entering={FadeInDown.duration(400).delay(100)}
             style={[styles.card, { backgroundColor: colors.surface }, SHADOWS.md]}
           >
             <TextInput

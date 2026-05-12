@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
@@ -154,7 +154,6 @@ export function BookingScreen() {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Listing summary */}
         <Animated.View
-          entering={FadeInDown.duration(300)}
           style={[styles.summary, { backgroundColor: colors.surface, borderColor: colors.border }, SHADOWS.sm]}
         >
           {cover ? <Image source={{ uri: cover }} style={styles.cover} contentFit="cover" /> : null}
@@ -168,14 +167,13 @@ export function BookingScreen() {
         </Animated.View>
 
         {/* Dates */}
-        <Animated.View entering={FadeInDown.delay(80).duration(300)} style={styles.row2}>
+        <Animated.View style={styles.row2}>
           <DateField label={t('booking.checkIn')} value={isoDate(checkIn)} onPress={() => promptDate('in')} />
           <DateField label={t('booking.checkOut')} value={isoDate(checkOut)} onPress={() => promptDate('out')} />
         </Animated.View>
 
         {/* Guests */}
         <Animated.View
-          entering={FadeInDown.delay(140).duration(300)}
           style={[styles.stepper, { backgroundColor: colors.surface, borderColor: colors.border }]}
         >
           <View>
@@ -199,7 +197,7 @@ export function BookingScreen() {
         </Animated.View>
 
         {/* Promo */}
-        <Animated.View entering={FadeInDown.delay(200).duration(300)} style={styles.promoRow}>
+        <Animated.View style={styles.promoRow}>
           <TextInput
             value={promoCode}
             onChangeText={setPromoCode}
@@ -219,7 +217,6 @@ export function BookingScreen() {
 
         {/* Breakdown */}
         <Animated.View
-          entering={FadeInDown.delay(260).duration(300)}
           style={[styles.breakdown, { backgroundColor: colors.surface, borderColor: colors.border }]}
         >
           <Text style={[styles.breakdownTitle, { color: colors.text }]}>{t('booking.priceBreakdown')}</Text>

@@ -21,7 +21,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
@@ -162,7 +162,7 @@ export function HomeScreen() {
 
       {/* Purple hero */}
       <View style={[styles.hero, { paddingTop: insets.top + SIZES.md }]}>
-        <Animated.View entering={FadeInDown.duration(400)} style={styles.heroTop}>
+        <Animated.View style={styles.heroTop}>
           <View style={{ flex: 1 }}>
             <Text style={styles.brand}>{t('app.name', { defaultValue: 'Eawlma' })}</Text>
             {user?.fullName ? (
@@ -187,13 +187,12 @@ export function HomeScreen() {
         </Animated.View>
 
         <Animated.Text
-          entering={FadeInDown.delay(80).duration(400)}
           style={styles.heroTitle}
         >
           {t('home.heroTitle', { defaultValue: 'Discover the perfect place to call home' })}
         </Animated.Text>
 
-        <Animated.View entering={FadeInDown.delay(160).duration(400)} style={styles.searchWrap}>
+        <Animated.View style={styles.searchWrap}>
           <SearchBar
             placeholder={t('home.searchPlaceholder', { defaultValue: 'Search city, district…' })}
             onSubmit={handleSubmitSearch}
@@ -215,7 +214,7 @@ export function HomeScreen() {
         }
       >
         {/* Category chips */}
-        <Animated.View entering={FadeInDown.delay(220).duration(400)}>
+        <Animated.View>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -256,7 +255,6 @@ export function HomeScreen() {
 
         {/* Featured carousel */}
         <Animated.View
-          entering={FadeInDown.delay(280).duration(400)}
           style={styles.section}
         >
           <View style={styles.sectionHeader}>
@@ -296,7 +294,6 @@ export function HomeScreen() {
 
         {/* Popular cities — 2x2 grid */}
         <Animated.View
-          entering={FadeInDown.delay(340).duration(400)}
           style={styles.section}
         >
           <View style={styles.sectionHeader}>
@@ -323,7 +320,6 @@ export function HomeScreen() {
 
         {/* Recent listings */}
         <Animated.View
-          entering={FadeInDown.delay(400).duration(400)}
           style={styles.section}
         >
           <View style={styles.sectionHeader}>

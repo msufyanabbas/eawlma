@@ -14,6 +14,8 @@ import { Image } from 'expo-image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Animated,
+  Easing,
   FlatList,
   KeyboardAvoidingView,
   Platform,
@@ -24,14 +26,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Animated, {
-  Easing,
-  FadeInUp,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BrandSpinner } from '@/components/LoadingScreen';
@@ -147,13 +141,7 @@ export function ChatScreen() {
       const showAvatar = !isMine && !sameAuthorAsPrev;
 
       return (
-        <Animated.View
-          entering={FadeInUp.duration(180).easing(Easing.out(Easing.cubic))}
-          style={[
-            styles.row,
-            { justifyContent: isMine ? 'flex-end' : 'flex-start' },
-          ]}
-        >
+        <BubbleRow isMine={isMine}>
           {!isMine ? (
             <View style={styles.avatarSlot}>
               {showAvatar ? (
@@ -226,18 +214,14 @@ export function ChatScreen() {
               </TouchableOpacity>
             ) : null}
           </View>
-        </Animated.View>
+        </BubbleRow>
       );
     },
     [colors, i18n.language, messages, myId, otherName, showOriginalIds, t, toggleOriginal],
   );
 
-  // Send button: scale-down feedback on press and a fade between
-  // active (purple) and disabled (muted) states.
-  const sendScale = useSharedValue(1);
-  const sendAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: sendScale.value }],
-  }));
+  // Send button: scale-down feedback on press; built-in Animated, native driver.
+  const sendScale = useRef(new Animated.Value(1)).current;
   const canSend = draft.trim().length > 0 && !sendMutation.isPending;
 
   // Auto-scroll to bottom (top of inverted list) when sending so the user's
@@ -374,13 +358,25 @@ export function ChatScreen() {
               onSubmitEditing={handleSend}
               blurOnSubmit={false}
             />
-            <Animated.View style={sendAnimatedStyle}>
+            <Animated.View style={{ transform: [{ scale: sendScale }] }}>
               <Pressable
                 disabled={!canSend}
                 onPress={handleSend}
-                onPressIn={() => (sendScale.value = withTiming(0.9, { duration: 80 }))}
+                onPressIn={() =>
+                  Animated.timing(sendScale, {
+                    toValue: 0.9,
+                    duration: 80,
+                    easing: Easing.out(Easing.quad),
+                    useNativeDriver: true,
+                  }).start()
+                }
                 onPressOut={() =>
-                  (sendScale.value = withSpring(1, { damping: 12, stiffness: 240 }))
+                  Animated.spring(sendScale, {
+                    toValue: 1,
+                    damping: 12,
+                    stiffness: 240,
+                    useNativeDriver: true,
+                  }).start()
                 }
                 hitSlop={4}
                 style={[
@@ -405,6 +401,40 @@ export function ChatScreen() {
         </KeyboardAvoidingView>
       )}
     </View>
+  );
+}
+
+// Each new message bubble fades + slides up by 6px on mount. Lives outside
+// the parent function so the Animated.Value isn't recreated on every render
+// of ChatScreen, only on the row it belongs to.
+function BubbleRow({ isMine, children }: { isMine: boolean; children: React.ReactNode }) {
+  const opacity = useRef(new Animated.Value(0)).current;
+  const offset = useRef(new Animated.Value(6)).current;
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 180,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }),
+      Animated.timing(offset, {
+        toValue: 0,
+        duration: 180,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [opacity, offset]);
+  return (
+    <Animated.View
+      style={[
+        styles.row,
+        { justifyContent: isMine ? 'flex-end' : 'flex-start', opacity, transform: [{ translateY: offset }] },
+      ]}
+    >
+      {children}
+    </Animated.View>
   );
 }
 

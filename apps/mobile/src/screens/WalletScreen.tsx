@@ -14,7 +14,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 
 import { COLORS, FONTS, SHADOWS, SIZES, useColors } from '@/theme';
 import { Header } from '@/components/Header';
@@ -84,7 +84,7 @@ export function WalletScreen() {
         ListHeaderComponent={
           <>
             {/* Balance card */}
-            <Animated.View entering={FadeInDown.duration(300)} style={[styles.balanceCard, SHADOWS.lg]}>
+            <Animated.View style={[styles.balanceCard, SHADOWS.lg]}>
               <Text style={styles.balanceLabel}>{t('wallet.yourBalance')}</Text>
               <Text style={styles.balanceValue}>
                 {wallet.isLoading ? '…' : (wallet.data?.balance ?? 0).toLocaleString()}{' '}

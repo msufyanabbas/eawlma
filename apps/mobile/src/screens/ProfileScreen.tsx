@@ -19,7 +19,7 @@ import { Image } from 'expo-image';
 import { Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 
 import { BottomSheet } from '@/components/BottomSheet';
 import { useAuthStore } from '@/store/auth.store';
@@ -93,7 +93,6 @@ export function ProfileScreen() {
 
         {isSignedIn && user ? (
           <Animated.View
-            entering={FadeInDown.duration(300)}
             style={[styles.identityCard, { backgroundColor: colors.surface }, SHADOWS.sm]}
           >
             {user.avatarUrl ? (
@@ -132,7 +131,6 @@ export function ProfileScreen() {
           </Animated.View>
         ) : (
           <Animated.View
-            entering={FadeInDown.duration(300)}
             style={[styles.signedOutCard, { backgroundColor: colors.surface }, SHADOWS.sm]}
           >
             <View style={[styles.signedOutIcon, { backgroundColor: '#EEEAFF' }]}>

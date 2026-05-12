@@ -22,7 +22,7 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { Button } from 'react-native-paper';
-import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { RouteProp } from '@react-navigation/native';
@@ -206,7 +206,7 @@ export function ListingDetailScreen() {
         </View>
 
         {/* Title + location */}
-        <Animated.View entering={FadeInDown.duration(400)} style={styles.section}>
+        <Animated.View style={styles.section}>
           <Text style={[styles.title, { color: colors.text }]}>{listing.title}</Text>
           <View style={styles.locationRow}>
             <Ionicons name="location-outline" size={16} color={colors.textSecondary} />
@@ -225,7 +225,6 @@ export function ListingDetailScreen() {
 
         {/* Facts */}
         <Animated.View
-          entering={FadeInDown.delay(80).duration(400)}
           style={[styles.factsRow, styles.section]}
         >
           <FactCard
@@ -255,7 +254,6 @@ export function ListingDetailScreen() {
         {/* Description */}
         {listing.description ? (
           <Animated.View
-            entering={FadeInDown.delay(140).duration(400)}
             style={styles.section}
           >
             <Text style={[styles.sectionTitle, { color: colors.text }]}>
@@ -280,7 +278,6 @@ export function ListingDetailScreen() {
         {/* Amenities */}
         {amenities.length > 0 ? (
           <Animated.View
-            entering={FadeInDown.delay(180).duration(400)}
             style={styles.section}
           >
             <Text style={[styles.sectionTitle, { color: colors.text }]}>
@@ -309,7 +306,6 @@ export function ListingDetailScreen() {
 
         {/* Agent card */}
         <Animated.View
-          entering={FadeInDown.delay(220).duration(400)}
           style={styles.section}
         >
           <Text style={[styles.sectionTitle, { color: colors.text }]}>
@@ -373,7 +369,6 @@ export function ListingDetailScreen() {
 
       {/* Fixed bottom CTAs */}
       <Animated.View
-        entering={FadeIn.delay(280).duration(300)}
         style={[
           styles.bottomBar,
           {
