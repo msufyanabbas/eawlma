@@ -1,61 +1,37 @@
-// UI preferences that need to live across screens (language, dark-mode pref,
-// unread-count badges). Persists to AsyncStorage in a microtask after every
-// change so we don't block React renders on disk writes.
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = 'eawlma.ui';
-
-export type ThemePref = 'light' | 'dark' | 'system';
-
-interface UiState {
+interface UIState {
+  isDarkMode: boolean;
   language: string;
-  themePref: ThemePref;
-  unreadMessages: number;
-  unreadNotifications: number;
-  hydrated: boolean;
-  hydrate: () => Promise<void>;
+  toggleDarkMode: () => void;
   setLanguage: (lang: string) => void;
-  setThemePref: (pref: ThemePref) => void;
-  setUnreadMessages: (n: number) => void;
-  setUnreadNotifications: (n: number) => void;
+  loadPreferences: () => Promise<void>;
 }
 
-const persist = (state: Pick<UiState, 'language' | 'themePref'>) => {
-  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-};
-
-export const useUiStore = create<UiState>((set, get) => ({
+export const useUIStore = create<UIState>((set, get) => ({
+  isDarkMode: false,
   language: 'ar',
-  themePref: 'system',
-  unreadMessages: 0,
-  unreadNotifications: 0,
-  hydrated: false,
-  hydrate: async () => {
+
+  toggleDarkMode: () => {
+    const next = !get().isDarkMode;
+    set({ isDarkMode: next });
+    AsyncStorage.setItem('eawlma.darkMode', String(next));
+  },
+
+  setLanguage: (lang) => {
+    set({ language: lang });
+    AsyncStorage.setItem('eawlma.locale', lang);
+  },
+
+  loadPreferences: async () => {
     try {
-      const raw = await AsyncStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as Partial<UiState>;
-        set({
-          language: parsed.language ?? 'ar',
-          themePref: parsed.themePref ?? 'system',
-          hydrated: true,
-        });
-        return;
-      }
-    } catch {
-      // Corrupted or missing — start fresh.
-    }
-    set({ hydrated: true });
+      const dark = await AsyncStorage.getItem('eawlma.darkMode');
+      const lang = await AsyncStorage.getItem('eawlma.locale');
+      set({
+        isDarkMode: dark === 'true',
+        language: lang || 'ar',
+      });
+    } catch {}
   },
-  setLanguage: (language) => {
-    set({ language });
-    persist({ language, themePref: get().themePref });
-  },
-  setThemePref: (themePref) => {
-    set({ themePref });
-    persist({ language: get().language, themePref });
-  },
-  setUnreadMessages: (unreadMessages) => set({ unreadMessages }),
-  setUnreadNotifications: (unreadNotifications) => set({ unreadNotifications }),
 }));

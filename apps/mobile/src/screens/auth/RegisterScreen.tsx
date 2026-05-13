@@ -1,423 +1,261 @@
-// RegisterScreen — same hero + card layout as Login, but with a fuller form:
-// name (split into first/last), email, optional phone, password w/ visibility
-// toggle, confirm password, and a two-button role selector (seeker / agent).
-// On success: setAuth(...); the root navigator handles the redirect.
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+  View, Text, StyleSheet, TextInput,
+  TouchableOpacity, ActivityIndicator,
+  ScrollView, KeyboardAvoidingView, Platform,
 } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
-import { Animated } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useMutation } from '@tanstack/react-query';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
-import type { StackNavigationProp } from '@react-navigation/stack';
+import { useAuthStore } from '../../store/auth.store';
+import { authApi } from '../../api';
+import { COLORS, SIZES, SHADOWS } from '../../theme';
 
-import { COLORS, FONTS, SIZES, SHADOWS, useColors } from '@/theme';
-import { authApi } from '@/api';
-import { extractErrorMessage } from '@/api/client';
-import { useAuthStore } from '@/store/auth.store';
-import type { RootStackParamList } from '@/navigation/types';
+const ROLES = [
+  { value: 'user', labelAr: 'مستخدم', labelEn: 'User' },
+  { value: 'agent', labelAr: 'وكيل عقاري', labelEn: 'Agent' },
+];
 
-type Nav = StackNavigationProp<RootStackParamList, 'Register'>;
-type Role = 'user' | 'agent';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-interface FormErrors {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-}
-
-export function RegisterScreen() {
-  const { t } = useTranslation();
-  const navigation = useNavigation<Nav>();
-  const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const setAuth = useAuthStore((s) => s.setAuth);
-
+export default function RegisterScreen({ navigation }: any) {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [role, setRole] = useState<Role>('user');
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [role, setRole] = useState('user');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { setUser, setToken } = useAuthStore();
 
-  const mutation = useMutation({
-    mutationFn: async () =>
-      authApi.register({
-        email: email.trim(),
-        password,
+  const handleRegister = async () => {
+    if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim()) {
+      setError(isAr ? 'يرجى تعبئة جميع الحقول' : 'Please fill all required fields');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const { user, tokens } = await authApi.register({
         firstName: firstName.trim(),
         lastName: lastName.trim(),
-        role,
+        email: email.trim(),
         phone: phone.trim() || undefined,
-      }),
-    onSuccess: async ({ user, accessToken }) => {
-      await setAuth(user, accessToken);
-    },
-    onError: (err) => {
-      Alert.alert(t('auth.signUp'), extractErrorMessage(err));
-    },
-  });
-
-  const validate = (): boolean => {
-    const next: FormErrors = {};
-    if (!firstName.trim()) next.firstName = t('validation.required');
-    if (!lastName.trim()) next.lastName = t('validation.required');
-    if (!email.trim()) next.email = t('validation.required');
-    else if (!EMAIL_RE.test(email.trim())) next.email = t('validation.emailInvalid');
-    if (!password) next.password = t('validation.required');
-    else if (password.length < 8) next.password = t('validation.passwordMin');
-    if (!confirmPassword) next.confirmPassword = t('validation.required');
-    else if (confirmPassword !== password)
-      next.confirmPassword = t('validation.passwordsMismatch');
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
-
-  const onSubmit = () => {
-    if (!validate()) return;
-    mutation.mutate();
-  };
-
-  const RolePill = ({ value, label }: { value: Role; label: string }) => {
-    const active = role === value;
-    return (
-      <Pressable
-        onPress={() => setRole(value)}
-        style={[
-          styles.rolePill,
-          {
-            backgroundColor: active ? COLORS.primary : colors.surfaceMuted,
-            borderColor: active ? COLORS.primary : colors.border,
-          },
-        ]}
-      >
-        <Text
-          style={[
-            styles.rolePillText,
-            { color: active ? COLORS.white : colors.textSecondary },
-          ]}
-        >
-          {label}
-        </Text>
-      </Pressable>
-    );
+        password,
+        role,
+      });
+      setToken(tokens.accessToken);
+      setUser(user);
+      navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
+    } catch (e: any) {
+      setError(
+        e.response?.data?.message ||
+        (isAr ? 'فشل التسجيل، حاول مرة أخرى' : 'Registration failed, try again')
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <View style={[styles.root, { backgroundColor: colors.background }]}>
-      <View style={[styles.hero, { paddingTop: insets.top + SIZES.xxl }]}>
-        <Animated.View>
-          <Text style={styles.brand}>Eawlma</Text>
-          <Text style={styles.brandTagline}>{t('auth.joinEawlma')}</Text>
-          <Text style={styles.brandSubtitle}>{t('auth.signUp')}</Text>
-        </Animated.View>
-      </View>
-
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
-        style={styles.flex}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
       >
-        <ScrollView
-          contentContainerStyle={styles.scroll}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-        >
-          <Animated.View
-            style={[styles.card, { backgroundColor: colors.surface }, SHADOWS.md]}
-          >
-            {/* Role selector */}
-            <View style={styles.roleRow}>
-              <RolePill value="user" label={t('auth.propertySeeker')} />
-              <RolePill value="agent" label={t('auth.realEstateAgent')} />
-            </View>
+        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+          <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
+            <Ionicons
+              name={isAr ? 'arrow-forward' : 'arrow-back'}
+              size={24}
+              color={COLORS.text}
+            />
+          </TouchableOpacity>
 
-            {/* Name row */}
-            <View style={styles.nameRow}>
-              <View style={styles.nameCol}>
+          <View style={styles.logoSection}>
+            <View style={styles.logo}>
+              <Text style={styles.logoText}>عالمة</Text>
+            </View>
+            <Text style={styles.title}>
+              {isAr ? 'إنشاء حساب' : 'Create Account'}
+            </Text>
+            <Text style={styles.subtitle}>
+              {isAr ? 'أهلاً بك في عالمة' : 'Join Eawlma today'}
+            </Text>
+          </View>
+
+          {error ? (
+            <View style={styles.errorBox}>
+              <Ionicons name="alert-circle-outline" size={18} color={COLORS.error} />
+              <Text style={styles.errorText}>{error}</Text>
+            </View>
+          ) : null}
+
+          <View style={styles.form}>
+            <View style={styles.row}>
+              <View style={[styles.field, { flex: 1 }]}>
+                <Text style={styles.fieldLabel}>
+                  {isAr ? 'الاسم الأول' : 'First Name'}
+                </Text>
                 <TextInput
-                  mode="outlined"
-                  label={t('auth.firstName')}
+                  style={styles.input}
                   value={firstName}
                   onChangeText={setFirstName}
-                  autoCapitalize="words"
-                  error={!!errors.firstName}
-                  outlineColor={colors.border}
-                  activeOutlineColor={COLORS.primary}
-                  style={styles.input}
+                  placeholder={isAr ? 'أحمد' : 'John'}
+                  placeholderTextColor={COLORS.textLight}
+                  textAlign={isAr ? 'right' : 'left'}
                 />
-                {errors.firstName ? (
-                  <Text style={styles.fieldError}>{errors.firstName}</Text>
-                ) : null}
               </View>
-              <View style={styles.nameCol}>
+              <View style={[styles.field, { flex: 1 }]}>
+                <Text style={styles.fieldLabel}>
+                  {isAr ? 'اسم العائلة' : 'Last Name'}
+                </Text>
                 <TextInput
-                  mode="outlined"
-                  label={t('auth.lastName')}
+                  style={styles.input}
                   value={lastName}
                   onChangeText={setLastName}
-                  autoCapitalize="words"
-                  error={!!errors.lastName}
-                  outlineColor={colors.border}
-                  activeOutlineColor={COLORS.primary}
-                  style={styles.input}
+                  placeholder={isAr ? 'الأحمد' : 'Doe'}
+                  placeholderTextColor={COLORS.textLight}
+                  textAlign={isAr ? 'right' : 'left'}
                 />
-                {errors.lastName ? (
-                  <Text style={styles.fieldError}>{errors.lastName}</Text>
-                ) : null}
               </View>
             </View>
 
-            <TextInput
-              mode="outlined"
-              label={t('auth.email')}
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect={false}
-              error={!!errors.email}
-              outlineColor={colors.border}
-              activeOutlineColor={COLORS.primary}
-              style={styles.input}
-            />
-            {errors.email ? (
-              <Text style={styles.fieldError}>{errors.email}</Text>
-            ) : null}
-
-            <TextInput
-              mode="outlined"
-              label={t('auth.phone')}
-              value={phone}
-              onChangeText={setPhone}
-              keyboardType="phone-pad"
-              autoComplete="tel"
-              outlineColor={colors.border}
-              activeOutlineColor={COLORS.primary}
-              style={styles.input}
-            />
-
-            <TextInput
-              mode="outlined"
-              label={t('auth.password')}
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={!showPassword}
-              autoCapitalize="none"
-              autoComplete="password-new"
-              right={
-                <TextInput.Icon
-                  icon={showPassword ? 'eye-off' : 'eye'}
-                  onPress={() => setShowPassword((v) => !v)}
-                  forceTextInputFocus={false}
-                />
-              }
-              error={!!errors.password}
-              outlineColor={colors.border}
-              activeOutlineColor={COLORS.primary}
-              style={styles.input}
-            />
-            {errors.password ? (
-              <Text style={styles.fieldError}>{errors.password}</Text>
-            ) : null}
-
-            <TextInput
-              mode="outlined"
-              label={t('auth.confirmPassword')}
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry={!showConfirm}
-              autoCapitalize="none"
-              right={
-                <TextInput.Icon
-                  icon={showConfirm ? 'eye-off' : 'eye'}
-                  onPress={() => setShowConfirm((v) => !v)}
-                  forceTextInputFocus={false}
-                />
-              }
-              error={!!errors.confirmPassword}
-              outlineColor={colors.border}
-              activeOutlineColor={COLORS.primary}
-              style={styles.input}
-            />
-            {errors.confirmPassword ? (
-              <Text style={styles.fieldError}>{errors.confirmPassword}</Text>
-            ) : null}
-
-            <Text style={[styles.termsText, { color: colors.textMuted }]}>
-              {t('auth.agreeTerms')}
-            </Text>
-
-            <Button
-              mode="contained"
-              buttonColor={COLORS.primary}
-              textColor={COLORS.white}
-              onPress={onSubmit}
-              loading={mutation.isPending}
-              disabled={mutation.isPending}
-              contentStyle={styles.buttonContent}
-              style={styles.button}
-              labelStyle={styles.buttonLabel}
-            >
-              {t('auth.signUp')}
-            </Button>
-
-            <View style={styles.dividerRow}>
-              <View style={[styles.divider, { backgroundColor: colors.divider }]} />
-            </View>
-
-            <View style={styles.footerRow}>
-              <Text style={[styles.footerText, { color: colors.textSecondary }]}>
-                {t('auth.alreadyHaveAccount')}{' '}
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>
+                {isAr ? 'البريد الإلكتروني' : 'Email'}
               </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Login')}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              >
-                <Text style={[styles.footerLink, { color: COLORS.primary }]}>
-                  {t('auth.signIn')}
-                </Text>
-              </TouchableOpacity>
+              <TextInput
+                style={styles.input}
+                value={email}
+                onChangeText={setEmail}
+                placeholder="example@email.com"
+                placeholderTextColor={COLORS.textLight}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                textAlign={isAr ? 'right' : 'left'}
+              />
             </View>
-          </Animated.View>
+
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>
+                {isAr ? 'رقم الجوال' : 'Phone'}
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={phone}
+                onChangeText={setPhone}
+                placeholder="+966 5X XXX XXXX"
+                placeholderTextColor={COLORS.textLight}
+                keyboardType="phone-pad"
+                textAlign={isAr ? 'right' : 'left'}
+              />
+            </View>
+
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>
+                {isAr ? 'كلمة المرور' : 'Password'}
+              </Text>
+              <View style={styles.passwordBox}>
+                <TextInput
+                  style={[styles.input, { flex: 1, borderWidth: 0 }]}
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder="••••••••"
+                  placeholderTextColor={COLORS.textLight}
+                  secureTextEntry={!showPassword}
+                  textAlign={isAr ? 'right' : 'left'}
+                />
+                <TouchableOpacity
+                  style={styles.eyeBtn}
+                  onPress={() => setShowPassword(!showPassword)}
+                >
+                  <Ionicons
+                    name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                    size={20}
+                    color={COLORS.textSecondary}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>
+                {isAr ? 'نوع الحساب' : 'Account Type'}
+              </Text>
+              <View style={styles.rolesRow}>
+                {ROLES.map(r => (
+                  <TouchableOpacity
+                    key={r.value}
+                    style={[styles.roleChip, role === r.value && styles.roleChipActive]}
+                    onPress={() => setRole(r.value)}
+                  >
+                    <Text style={[styles.roleChipText, role === r.value && styles.roleChipTextActive]}>
+                      {isAr ? r.labelAr : r.labelEn}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+            <TouchableOpacity
+              style={[styles.submitBtn, loading && { opacity: 0.7 }]}
+              onPress={handleRegister}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator color="#FFF" />
+              ) : (
+                <Text style={styles.submitBtnText}>
+                  {isAr ? 'إنشاء الحساب' : 'Create Account'}
+                </Text>
+              )}
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.linkBtn}
+              onPress={() => navigation.navigate('Login')}
+            >
+              <Text style={styles.linkBtnText}>
+                {isAr
+                  ? 'لديك حساب بالفعل؟ سجل الدخول'
+                  : 'Already have an account? Sign in'}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  flex: { flex: 1 },
-  hero: {
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: SIZES.xl,
-    paddingBottom: SIZES.huge,
-    alignItems: 'center',
-  },
-  brand: {
-    fontFamily: FONTS.extraBold,
-    fontSize: 44,
-    color: COLORS.white,
-    textAlign: 'center',
-    letterSpacing: 0.5,
-  },
-  brandTagline: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.h3,
-    color: COLORS.white,
-    textAlign: 'center',
-    marginTop: SIZES.md,
-  },
-  brandSubtitle: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-    color: 'rgba(255,255,255,0.8)',
-    textAlign: 'center',
-    marginTop: SIZES.xs,
-  },
-  scroll: {
-    flexGrow: 1,
-    paddingHorizontal: SIZES.lg,
-    paddingBottom: SIZES.xxl,
-  },
-  card: {
-    marginTop: -SIZES.xxl,
-    borderRadius: SIZES.borderRadiusXl,
-    padding: SIZES.xl,
-  },
-  roleRow: {
-    flexDirection: 'row',
-    gap: SIZES.sm,
-    marginBottom: SIZES.sm,
-  },
-  rolePill: {
-    flex: 1,
-    paddingVertical: SIZES.md,
-    paddingHorizontal: SIZES.md,
-    borderRadius: SIZES.borderRadius,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  rolePillText: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.body,
-    textAlign: 'center',
-  },
-  nameRow: {
-    flexDirection: 'row',
-    gap: SIZES.sm,
-  },
-  nameCol: {
-    flex: 1,
-  },
-  input: {
-    marginTop: SIZES.md,
-    backgroundColor: 'transparent',
-  },
-  fieldError: {
-    color: COLORS.error,
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginTop: SIZES.xs,
-    marginStart: SIZES.xs,
-  },
-  termsText: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginTop: SIZES.lg,
-    textAlign: 'center',
-  },
-  button: {
-    marginTop: SIZES.lg,
-    borderRadius: SIZES.borderRadius,
-  },
-  buttonContent: {
-    paddingVertical: SIZES.xs,
-  },
-  buttonLabel: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.bodyLg,
-  },
-  dividerRow: {
-    marginTop: SIZES.xl,
-    marginBottom: SIZES.md,
-  },
-  divider: {
-    height: 1,
-    width: '100%',
-  },
-  footerRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footerText: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-  },
-  footerLink: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.body,
-  },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  scroll: { flexGrow: 1, padding: SIZES.xl },
+  backBtn: { alignSelf: 'flex-start', padding: SIZES.sm, marginBottom: SIZES.lg },
+  logoSection: { alignItems: 'center', marginBottom: SIZES.xl },
+  logo: { width: 80, height: 80, borderRadius: 20, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginBottom: SIZES.lg, ...SHADOWS.lg },
+  logoText: { fontSize: SIZES.h2, fontWeight: '900', color: '#FFF' },
+  title: { fontSize: SIZES.h2, fontWeight: '900', color: COLORS.text },
+  subtitle: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.sm },
+  errorBox: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, backgroundColor: COLORS.error + '12', borderWidth: 1, borderColor: COLORS.error + '30', borderRadius: SIZES.borderRadius, padding: SIZES.md, marginBottom: SIZES.lg },
+  errorText: { flex: 1, fontSize: SIZES.body, color: COLORS.error },
+  form: { gap: SIZES.lg },
+  row: { flexDirection: 'row', gap: SIZES.md },
+  field: {},
+  fieldLabel: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text, marginBottom: SIZES.sm, textAlign: 'right' },
+  input: { backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, color: COLORS.text, height: 52 },
+  passwordBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, height: 52, paddingRight: SIZES.sm },
+  eyeBtn: { padding: SIZES.sm },
+  rolesRow: { flexDirection: 'row', gap: SIZES.sm },
+  roleChip: { flex: 1, paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg, borderWidth: 1.5, borderColor: COLORS.border, backgroundColor: COLORS.surface, alignItems: 'center' },
+  roleChipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
+  roleChipText: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text },
+  roleChipTextActive: { color: '#FFF' },
+  submitBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.sm, ...SHADOWS.md },
+  submitBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  linkBtn: { alignItems: 'center', padding: SIZES.md },
+  linkBtnText: { fontSize: SIZES.body, color: COLORS.primary, fontWeight: '600' },
 });

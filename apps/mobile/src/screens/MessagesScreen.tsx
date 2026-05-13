@@ -1,310 +1,124 @@
-// MessagesScreen — conversation list (Messages tab). Pulls threads from
-// `/messages/threads` (the backend isn't wired yet, but the endpoint shape is
-// stable). Each row navigates into the full-screen `ChatScreen`. Unauthenticated
-// users see a sign-in prompt instead of the list so we don't fire requests
-// against the API anonymously.
-import { useNavigation } from '@react-navigation/native';
-import type { NavigationProp } from '@react-navigation/native';
+import React from 'react';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'react-native-paper';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Animated } from 'react-native';
+import { useAuthStore } from '../store/auth.store';
+import { api } from '../api';
+import { COLORS, SIZES } from '../theme';
 
-import { BrandSpinner } from '@/components/LoadingScreen';
-import { EmptyState } from '@/components/EmptyState';
-import { SearchBar } from '@/components/SearchBar';
-import { apiClient, extractErrorMessage } from '@/api';
-import { useAuthStore } from '@/store/auth.store';
-import { FONTS, SIZES, useColors } from '@/theme';
-import type { RootStackParamList } from '@/navigation/types';
+export default function MessagesScreen({ navigation }: any) {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
+  const { isAuthenticated } = useAuthStore();
 
-interface ConversationThread {
-  id: string;
-  otherUserId: string;
-  otherUserName: string;
-  otherUserAvatarUrl?: string | null;
-  lastMessage: string;
-  lastMessageAt: string;
-  unreadCount: number;
-}
-
-interface ThreadListResponse {
-  data: ConversationThread[];
-}
-
-async function fetchThreads(): Promise<ConversationThread[]> {
-  const { data } = await apiClient.get<ThreadListResponse>('/messages/threads');
-  return data?.data ?? [];
-}
-
-function formatRelativeTime(iso: string, locale: string): string {
-  try {
-    const date = new Date(iso);
-    const diffMs = Date.now() - date.getTime();
-    const diffMin = Math.floor(diffMs / 60_000);
-    if (diffMin < 1) return 'now';
-    if (diffMin < 60) return `${diffMin}m`;
-    const diffH = Math.floor(diffMin / 60);
-    if (diffH < 24) return `${diffH}h`;
-    const diffD = Math.floor(diffH / 24);
-    if (diffD < 7) return `${diffD}d`;
-    return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
-  } catch {
-    return '';
-  }
-}
-
-export function MessagesScreen() {
-  const { t, i18n } = useTranslation();
-  const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const token = useAuthStore((s) => s.token);
-  const [query, setQuery] = useState('');
-
-  const threadsQuery = useQuery({
-    queryKey: ['messages', 'threads'],
-    queryFn: fetchThreads,
-    enabled: !!token,
+  const { data } = useQuery({
+    queryKey: ['conversations'],
+    queryFn: () => api.get('/conversations').then(r => r.data),
+    enabled: isAuthenticated,
   });
 
-  const filtered = useMemo(() => {
-    const list = threadsQuery.data ?? [];
-    if (!query.trim()) return list;
-    const needle = query.trim().toLowerCase();
-    return list.filter((thread) => thread.otherUserName.toLowerCase().includes(needle));
-  }, [threadsQuery.data, query]);
+  const conversations = data?.data?.data || data?.data || [];
 
-  if (!token) {
+  if (!isAuthenticated) {
     return (
-      <View style={[styles.flex, { backgroundColor: colors.background, paddingTop: insets.top }]}>
-        <View style={[styles.headerBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>{t('nav.messages')}</Text>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>{isAr ? 'الرسائل' : 'Messages'}</Text>
         </View>
-        <View style={styles.centerWrap}>
-          <EmptyState
-            icon="chatbubbles-outline"
-            title={t('messages.startConversation', { defaultValue: 'Sign in to view your messages' })}
-            body={t('wishlist.signInDesc')}
-            ctaLabel={t('auth.signIn')}
-            onCta={() => navigation.navigate('Login')}
-          />
+        <View style={styles.authPrompt}>
+          <Ionicons name="chatbubbles-outline" size={64} color={COLORS.border} />
+          <Text style={styles.authTitle}>
+            {isAr ? 'سجل دخولك لرؤية رسائلك' : 'Sign in to see your messages'}
+          </Text>
+          <TouchableOpacity
+            style={styles.authBtn}
+            onPress={() => navigation.navigate('Login')}
+          >
+            <Text style={styles.authBtnText}>
+              {isAr ? 'تسجيل الدخول' : 'Sign In'}
+            </Text>
+          </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={[styles.flex, { backgroundColor: colors.background, paddingTop: insets.top }]}>
-      <View style={[styles.headerBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>{t('nav.messages')}</Text>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{isAr ? 'الرسائل' : 'Messages'}</Text>
       </View>
-      <View style={styles.searchWrap}>
-        <SearchBar
-          placeholder={t('messages.searchConversations')}
-          value={query}
-          onChangeText={setQuery}
-        />
-      </View>
-
-      {threadsQuery.isLoading ? (
-        <View style={styles.centerWrap}>
-          <BrandSpinner />
-        </View>
-      ) : threadsQuery.isError ? (
-        <View style={styles.centerWrap}>
-          <Text style={[styles.error, { color: colors.error }]}>
-            {extractErrorMessage(threadsQuery.error)}
+      {conversations.length === 0 ? (
+        <View style={styles.empty}>
+          <Ionicons name="chatbubbles-outline" size={64} color={COLORS.border} />
+          <Text style={styles.emptyText}>
+            {isAr ? 'لا توجد رسائل' : 'No messages yet'}
           </Text>
-          <Button mode="contained" onPress={() => threadsQuery.refetch()} buttonColor={colors.primary}>
-            {t('common.retry', { defaultValue: 'Retry' })}
-          </Button>
-        </View>
-      ) : filtered.length === 0 ? (
-        <View style={styles.centerWrap}>
-          <EmptyState icon="chatbubbles-outline" title={t('messages.noConversations')} />
+          <Text style={styles.emptySubtext}>
+            {isAr
+              ? 'تواصل مع الوكلاء عبر صفحة العقار'
+              : 'Contact agents from listing pages'}
+          </Text>
         </View>
       ) : (
         <FlatList
-          data={filtered}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.listContent}
-          refreshing={threadsQuery.isRefetching}
-          onRefresh={() => threadsQuery.refetch()}
-          renderItem={({ item, index }) => (
-            <Animated.View>
-              <Pressable
-                onPress={() =>
-                  navigation.navigate('Chat', {
-                    threadId: item.id,
-                    otherUserId: item.otherUserId,
-                  })
-                }
-                style={({ pressed }) => [
-                  styles.row,
-                  {
-                    backgroundColor: pressed ? colors.surfaceMuted : colors.surface,
-                    borderBottomColor: colors.divider,
-                  },
-                ]}
-              >
-                <Avatar
-                  uri={item.otherUserAvatarUrl}
-                  name={item.otherUserName}
-                  primaryColor={colors.primary}
-                />
-                <View style={styles.rowBody}>
-                  <View style={styles.rowTopLine}>
-                    <Text numberOfLines={1} style={[styles.rowName, { color: colors.text }]}>
-                      {item.otherUserName}
-                    </Text>
-                    <Text style={[styles.rowTime, { color: colors.textMuted }]}>
-                      {formatRelativeTime(item.lastMessageAt, i18n.language)}
-                    </Text>
-                  </View>
-                  <View style={styles.rowBottomLine}>
-                    <Text
-                      numberOfLines={1}
-                      style={[
-                        styles.rowPreview,
-                        {
-                          color: item.unreadCount > 0 ? colors.text : colors.textSecondary,
-                          fontFamily: item.unreadCount > 0 ? FONTS.medium : FONTS.regular,
-                        },
-                      ]}
-                    >
-                      {item.lastMessage}
-                    </Text>
-                    {item.unreadCount > 0 ? (
-                      <View style={[styles.badge, { backgroundColor: colors.primary }]}>
-                        <Text style={styles.badgeText}>
-                          {item.unreadCount > 99 ? '99+' : item.unreadCount}
-                        </Text>
-                      </View>
-                    ) : null}
-                  </View>
+          data={conversations}
+          keyExtractor={(item: any) => item.id}
+          contentContainerStyle={styles.list}
+          renderItem={({ item }: any) => (
+            <TouchableOpacity
+              style={styles.convCard}
+              onPress={() => navigation.navigate('Chat', {
+                conversationId: item.id,
+                recipientName: item.otherParty?.firstName + ' ' + item.otherParty?.lastName,
+              })}
+            >
+              <View style={styles.convAvatar}>
+                <Text style={styles.convAvatarText}>
+                  {item.otherParty?.firstName?.[0] || '?'}
+                </Text>
+              </View>
+              <View style={styles.convInfo}>
+                <Text style={styles.convName}>
+                  {item.otherParty?.firstName} {item.otherParty?.lastName}
+                </Text>
+                <Text style={styles.convLast} numberOfLines={1}>
+                  {item.lastMessage?.content || (isAr ? 'لا توجد رسائل' : 'No messages')}
+                </Text>
+              </View>
+              {item.unreadCount > 0 && (
+                <View style={styles.unreadBadge}>
+                  <Text style={styles.unreadText}>{item.unreadCount}</Text>
                 </View>
-              </Pressable>
-            </Animated.View>
+              )}
+            </TouchableOpacity>
           )}
         />
       )}
-    </View>
-  );
-}
-
-function Avatar({
-  uri,
-  name,
-  primaryColor,
-}: {
-  uri?: string | null;
-  name: string;
-  primaryColor: string;
-}) {
-  const initial = (name?.trim()?.[0] ?? '?').toUpperCase();
-  if (uri) {
-    return (
-      <Image source={{ uri }} style={styles.avatar} contentFit="cover" transition={120} />
-    );
-  }
-  return (
-    <View style={[styles.avatar, styles.avatarFallback, { backgroundColor: primaryColor }]}>
-      <Text style={styles.avatarText}>{initial}</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1 },
-  centerWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: SIZES.lg },
-  headerBar: {
-    paddingHorizontal: SIZES.lg,
-    paddingVertical: SIZES.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  headerTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.h3,
-  },
-  searchWrap: {
-    paddingHorizontal: SIZES.lg,
-    paddingVertical: SIZES.md,
-  },
-  listContent: {
-    paddingBottom: SIZES.huge,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.md,
-    paddingHorizontal: SIZES.lg,
-    paddingVertical: SIZES.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-  },
-  avatarFallback: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  avatarText: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.bodyLg,
-    color: '#FFFFFF',
-  },
-  rowBody: {
-    flex: 1,
-  },
-  rowTopLine: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: SIZES.sm,
-  },
-  rowName: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.bodyLg,
-    flex: 1,
-  },
-  rowTime: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.caption,
-  },
-  rowBottomLine: {
-    marginTop: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.sm,
-  },
-  rowPreview: {
-    flex: 1,
-    fontSize: SIZES.small,
-  },
-  badge: {
-    minWidth: 20,
-    height: 20,
-    borderRadius: 10,
-    paddingHorizontal: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  badgeText: {
-    color: '#FFFFFF',
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.caption,
-  },
-  error: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.body,
-    marginBottom: SIZES.md,
-    textAlign: 'center',
-  },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  header: { backgroundColor: COLORS.primary, padding: SIZES.lg },
+  headerTitle: { fontSize: SIZES.h3, fontWeight: '800', color: '#FFF' },
+  list: { paddingBottom: SIZES.xxxl },
+  convCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, padding: SIZES.lg, borderBottomWidth: 1, borderBottomColor: COLORS.divider },
+  convAvatar: { width: 48, height: 48, borderRadius: 24, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginRight: SIZES.md },
+  convAvatarText: { fontSize: SIZES.title, fontWeight: '800', color: '#FFF' },
+  convInfo: { flex: 1 },
+  convName: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text },
+  convLast: { fontSize: SIZES.small, color: COLORS.textSecondary, marginTop: 2 },
+  unreadBadge: { backgroundColor: COLORS.primary, width: 22, height: 22, borderRadius: 11, justifyContent: 'center', alignItems: 'center' },
+  unreadText: { fontSize: 11, color: '#FFF', fontWeight: '800' },
+  authPrompt: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: SIZES.xxxl },
+  authTitle: { fontSize: SIZES.subtitle, fontWeight: '700', color: COLORS.text, textAlign: 'center', marginTop: SIZES.lg },
+  authBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, paddingHorizontal: SIZES.xxxl, paddingVertical: SIZES.md, marginTop: SIZES.xl },
+  authBtnText: { color: '#FFF', fontWeight: '700', fontSize: SIZES.bodyLg },
+  empty: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: SIZES.xxxl },
+  emptyText: { fontSize: SIZES.subtitle, fontWeight: '700', color: COLORS.text, marginTop: SIZES.lg, textAlign: 'center' },
+  emptySubtext: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.sm, textAlign: 'center' },
 });

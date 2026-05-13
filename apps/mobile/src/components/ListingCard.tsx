@@ -1,227 +1,177 @@
-// Mobile listing tile. Press scales the card down 3%; the heart taps
-// independently of the card press so saving doesn't navigate away.
-// All animations use RN's built-in `Animated` API (no reanimated).
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRef, useState } from 'react';
-import { Animated, Easing, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
+import { useRTL } from '../hooks/useRTL';
+import { useTheme } from '../hooks/useTheme';
+import { COLORS, SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
+import PriceText from './PriceText';
 
-import { COLORS, FONTS, SHADOWS, SIZES } from '../theme';
-import type { Listing } from '../api/listings.api';
+const { width: W } = Dimensions.get('window');
 
-const FALLBACK_IMAGE =
-  'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=70';
+interface Listing {
+  id: string;
+  titleAr?: string;
+  titleEn?: string;
+  title?: string;
+  price: number;
+  city?: string;
+  district?: string;
+  coverImageUrl?: string;
+  transactionType?: 'sale' | 'rent';
+  type?: 'sale' | 'rent';
+  bedrooms?: number;
+  bathrooms?: number;
+  area?: number;
+}
 
-interface ListingCardProps {
-  listing: Listing;
-  variant?: 'feed' | 'carousel';
-  saved?: boolean;
+interface Props {
+  item: Listing;
+  variant?: 'grid' | 'list';
   onPress?: () => void;
-  onToggleSave?: () => void;
-  whatsappPhone?: string | null;
 }
 
-export function ListingCard({
-  listing,
-  variant = 'feed',
-  saved = false,
-  onPress,
-  onToggleSave,
-  whatsappPhone,
-}: ListingCardProps) {
-  const scale = useRef(new Animated.Value(1)).current;
-  const heart = useRef(new Animated.Value(saved ? 1.2 : 1)).current;
-  const [localSaved, setLocalSaved] = useState(saved);
+export function getListingTitle(item: Listing, isAr: boolean): string {
+  if (isAr) return item.titleAr || item.title || item.titleEn || '';
+  return item.titleEn || item.title || item.titleAr || '';
+}
 
-  const handleSave = () => {
-    const next = !localSaved;
-    setLocalSaved(next);
-    // Pop the heart: scale up then settle.
-    Animated.sequence([
-      Animated.timing(heart, {
-        toValue: next ? 1.35 : 1,
-        duration: 120,
-        easing: Easing.out(Easing.quad),
-        useNativeDriver: true,
-      }),
-      Animated.spring(heart, {
-        toValue: next ? 1.2 : 1,
-        damping: 8,
-        stiffness: 220,
-        useNativeDriver: true,
-      }),
-    ]).start();
-    onToggleSave?.();
-  };
+export default function ListingCard({ item, variant = 'grid', onPress }: Props) {
+  const { isAr } = useRTL();
+  const { colors } = useTheme();
+  const tx = item.transactionType || item.type;
+  const isRent = tx === 'rent';
+  const badgeColor = isRent ? colors.success : colors.primary;
+  const badgeText = isRent ? (isAr ? 'إيجار' : 'Rent') : (isAr ? 'بيع' : 'Sale');
 
-  const handlePressIn = () => {
-    Animated.timing(scale, {
-      toValue: 0.97,
-      duration: 90,
-      easing: Easing.out(Easing.quad),
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const handlePressOut = () => {
-    Animated.spring(scale, {
-      toValue: 1,
-      damping: 12,
-      stiffness: 240,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const handleWhatsapp = () => {
-    if (!whatsappPhone) return;
-    const number = whatsappPhone.replace(/[^0-9]/g, '');
-    const text = encodeURIComponent(`Hi, I'm interested in ${listing.referenceCode}`);
-    void Linking.openURL(`whatsapp://send?phone=${number}&text=${text}`);
-  };
-
-  const imageUri = listing.thumbnailUrl ?? listing.images?.[0] ?? FALLBACK_IMAGE;
-  const priceLabel = `${Math.round(listing.price).toLocaleString()} SAR${
-    listing.type === 'rent' ? '/mo' : ''
-  }`;
-  const isCarousel = variant === 'carousel';
-
-  return (
-    <Animated.View
-      style={[isCarousel ? styles.carousel : styles.feed, { transform: [{ scale }] }]}
-    >
-      <Pressable
+  if (variant === 'list') {
+    return (
+      <TouchableOpacity
+        style={[styles.listCard, { backgroundColor: colors.surface }]}
         onPress={onPress}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        style={styles.pressable}
       >
-        <View style={isCarousel ? styles.carouselImageWrap : styles.feedImageWrap}>
-          <Image
-            source={{ uri: imageUri }}
-            style={styles.image}
-            contentFit="cover"
-            transition={150}
+        <View style={styles.listImageBox}>
+          {item.coverImageUrl ? (
+            <Image source={{ uri: item.coverImageUrl }} style={styles.listImage} contentFit="cover" />
+          ) : (
+            <View style={[styles.listImage, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
+              <Ionicons name="home" size={24} color={colors.primaryLight} />
+            </View>
+          )}
+          <View style={[styles.badge, { backgroundColor: badgeColor, top: 8, left: 8 }]}>
+            <Text style={styles.badgeText}>{badgeText}</Text>
+          </View>
+        </View>
+        <View style={styles.listInfo}>
+          <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text }]} numberOfLines={1}>
+            {getListingTitle(item, isAr)}
+          </Text>
+          <PriceText
+            value={item.price}
+            style={[TYPOGRAPHY.subtitle, { color: colors.primary, fontWeight: '900', marginTop: 4 }]}
+            currencyStyle={TYPOGRAPHY.small}
           />
-          <View style={styles.priceBadge}>
-            <Text style={styles.priceText}>{priceLabel}</Text>
-          </View>
-          <View style={styles.typeBadge}>
-            <Text style={styles.typeText}>{listing.type === 'sale' ? 'For sale' : 'For rent'}</Text>
-          </View>
-          <Pressable onPress={handleSave} style={styles.heartButton} hitSlop={8}>
-            <Animated.View style={{ transform: [{ scale: heart }] }}>
-              <Ionicons
-                name={localSaved ? 'heart' : 'heart-outline'}
-                size={20}
-                color={localSaved ? COLORS.error : COLORS.white}
-              />
-            </Animated.View>
-          </Pressable>
-        </View>
-
-        <View style={styles.body}>
-          <Text numberOfLines={isCarousel ? 1 : 2} style={styles.title}>
-            {listing.title}
-          </Text>
-          <Text numberOfLines={1} style={styles.location}>
-            <Ionicons name="location-outline" size={12} color={COLORS.textSecondary} />{' '}
-            {listing.district ? `${listing.district}, ` : ''}
-            {listing.city}
-          </Text>
-
+          {(item.city || item.district) && (
+            <View style={styles.locRow}>
+              <Ionicons name="location-outline" size={12} color={colors.textSecondary} />
+              <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>
+                {[item.district, item.city].filter(Boolean).join(', ')}
+              </Text>
+            </View>
+          )}
           <View style={styles.statsRow}>
-            {listing.bedrooms != null && (
-              <Stat icon="bed-outline" label={`${listing.bedrooms}`} />
+            {item.bedrooms != null && (
+              <View style={styles.stat}>
+                <Ionicons name="bed-outline" size={11} color={colors.textSecondary} />
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{item.bedrooms}</Text>
+              </View>
             )}
-            {listing.bathrooms != null && (
-              <Stat icon="water-outline" label={`${listing.bathrooms}`} />
+            {item.bathrooms != null && (
+              <View style={styles.stat}>
+                <Ionicons name="water-outline" size={11} color={colors.textSecondary} />
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{item.bathrooms}</Text>
+              </View>
             )}
-            {listing.area != null && <Stat icon="resize-outline" label={`${listing.area}m²`} />}
+            {item.area != null && (
+              <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{item.area}م²</Text>
+            )}
           </View>
-
-          {whatsappPhone && !isCarousel ? (
-            <Pressable onPress={handleWhatsapp} style={styles.whatsappRow}>
-              <Ionicons name="logo-whatsapp" size={16} color={COLORS.success} />
-              <Text style={styles.whatsappText}>WhatsApp</Text>
-            </Pressable>
-          ) : null}
         </View>
-      </Pressable>
-    </Animated.View>
-  );
-}
+      </TouchableOpacity>
+    );
+  }
 
-function Stat({ icon, label }: { icon: keyof typeof Ionicons.glyphMap; label: string }) {
+  const gridWidth = (W - SIZES.lg * 2 - SIZES.sm) / 2;
   return (
-    <View style={styles.stat}>
-      <Ionicons name={icon} size={14} color={COLORS.textSecondary} />
-      <Text style={styles.statText}>{label}</Text>
-    </View>
+    <TouchableOpacity
+      style={[styles.gridCard, { width: gridWidth, backgroundColor: colors.surface }]}
+      onPress={onPress}
+    >
+      <View style={styles.gridImageBox}>
+        {item.coverImageUrl ? (
+          <Image source={{ uri: item.coverImageUrl }} style={styles.gridImage} contentFit="cover" />
+        ) : (
+          <View style={[styles.gridImage, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
+            <Ionicons name="home" size={28} color={colors.primaryLight} />
+          </View>
+        )}
+        <View style={[styles.badge, { backgroundColor: badgeColor, top: 8, right: 8 }]}>
+          <Text style={styles.badgeText}>{badgeText}</Text>
+        </View>
+      </View>
+      <View style={styles.gridInfo}>
+        <PriceText
+          value={item.price}
+          style={[TYPOGRAPHY.bodyBold, { color: colors.primary }]}
+          currencyStyle={TYPOGRAPHY.small}
+        />
+        <Text style={[TYPOGRAPHY.small, { color: colors.text, marginTop: 2 }]} numberOfLines={1}>
+          {getListingTitle(item, isAr)}
+        </Text>
+        {(item.city || item.district) && (
+          <View style={styles.locRow}>
+            <Ionicons name="location-outline" size={11} color={colors.textSecondary} />
+            <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary, flex: 1 }]} numberOfLines={1}>
+              {[item.district, item.city].filter(Boolean).join(', ')}
+            </Text>
+          </View>
+        )}
+        {(item.bedrooms != null || item.bathrooms != null || item.area != null) && (
+          <View style={styles.statsRow}>
+            {item.bedrooms != null && (
+              <View style={styles.stat}>
+                <Ionicons name="bed-outline" size={11} color={colors.textSecondary} />
+                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{item.bedrooms}</Text>
+              </View>
+            )}
+            {item.bathrooms != null && (
+              <View style={styles.stat}>
+                <Ionicons name="water-outline" size={11} color={colors.textSecondary} />
+                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{item.bathrooms}</Text>
+              </View>
+            )}
+            {item.area != null && (
+              <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{item.area}م²</Text>
+            )}
+          </View>
+        )}
+      </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  feed: {
-    backgroundColor: COLORS.surface,
-    borderRadius: SIZES.borderRadiusLg,
-    marginBottom: SIZES.md,
-    overflow: 'hidden',
-    ...SHADOWS.sm,
-  },
-  carousel: {
-    backgroundColor: COLORS.surface,
-    borderRadius: SIZES.borderRadiusLg,
-    marginRight: SIZES.md,
-    width: 240,
-    overflow: 'hidden',
-    ...SHADOWS.sm,
-  },
-  pressable: { overflow: 'hidden', borderRadius: SIZES.borderRadiusLg },
-  feedImageWrap: { height: 180, position: 'relative' },
-  carouselImageWrap: { height: 140, position: 'relative' },
-  image: { width: '100%', height: '100%' },
-  priceBadge: {
-    position: 'absolute',
-    bottom: SIZES.sm,
-    left: SIZES.sm,
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: SIZES.md,
-    paddingVertical: 6,
-    borderRadius: SIZES.borderRadiusFull,
-  },
-  priceText: { color: COLORS.white, fontFamily: FONTS.bold, fontSize: SIZES.small },
-  typeBadge: {
-    position: 'absolute',
-    top: SIZES.sm,
-    left: SIZES.sm,
-    backgroundColor: 'rgba(0,0,0,0.55)',
-    paddingHorizontal: SIZES.sm,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  typeText: { color: COLORS.white, fontFamily: FONTS.medium, fontSize: SIZES.caption },
-  heartButton: {
-    position: 'absolute',
-    top: SIZES.sm,
-    right: SIZES.sm,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(0,0,0,0.35)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  body: { padding: SIZES.md },
-  title: { color: COLORS.text, fontFamily: FONTS.bold, fontSize: SIZES.bodyLg, marginBottom: 4 },
-  location: {
-    color: COLORS.textSecondary,
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginBottom: SIZES.sm,
-  },
-  statsRow: { flexDirection: 'row', gap: SIZES.md },
-  stat: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  statText: { fontFamily: FONTS.medium, fontSize: SIZES.small, color: COLORS.textSecondary },
-  whatsappRow: { marginTop: SIZES.sm, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  whatsappText: { fontFamily: FONTS.medium, fontSize: SIZES.small, color: COLORS.success },
+  gridCard: { borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', ...SHADOWS.sm },
+  gridImageBox: { position: 'relative' },
+  gridImage: { width: '100%', height: 120 },
+  gridInfo: { padding: SIZES.sm },
+  listCard: { flexDirection: 'row', borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', ...SHADOWS.sm },
+  listImageBox: { width: 110, height: 110, position: 'relative' },
+  listImage: { width: '100%', height: '100%' },
+  listInfo: { flex: 1, padding: SIZES.sm, justifyContent: 'center' },
+  badge: { position: 'absolute', paddingHorizontal: 7, paddingVertical: 2, borderRadius: SIZES.borderRadiusFull },
+  badgeText: { fontSize: 10, color: '#FFF', fontWeight: '700' },
+  locRow: { flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 2 },
+  statsRow: { flexDirection: 'row', gap: SIZES.sm, marginTop: 6 },
+  stat: { flexDirection: 'row', alignItems: 'center', gap: 2 },
 });

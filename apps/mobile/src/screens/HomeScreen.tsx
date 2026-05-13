@@ -1,548 +1,336 @@
-// HomeScreen — the marquee surface of the app. Layout: a tall purple hero
-// (custom, not the shared Header — we want a search bar that visually sits at
-// the bottom edge of the hero and bleeds into the white surface below), then
-// a white scroll surface containing category chips, a horizontal carousel of
-// featured listings, a 2x2 grid of popular cities, and finally a vertical
-// feed of recent listings. Sections fade-in with a small stagger so the page
-// feels alive on cold start. Pull-to-refresh refetches featured + recent in
-// parallel.
-import { Ionicons } from '@expo/vector-icons';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Image } from 'expo-image';
-import { useCallback, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
 import {
-  FlatList,
-  Pressable,
-  RefreshControl,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
+  View, Text, StyleSheet, ScrollView,
+  TouchableOpacity, ActivityIndicator,
+  RefreshControl, Dimensions,
 } from 'react-native';
-import { Animated } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import type { StackNavigationProp } from '@react-navigation/stack';
-import type { CompositeNavigationProp } from '@react-navigation/native';
-import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { listingsApi } from '../api';
+import { COLORS, SIZES, SHADOWS } from '../theme';
 
-import { COLORS, FONTS, SHADOWS, SIZES, useColors } from '@/theme';
-import { SearchBar } from '@/components/SearchBar';
-import { ListingCard } from '@/components/ListingCard';
-import { BrandSpinner } from '@/components/LoadingScreen';
-import { listingsApi } from '@/api';
-import type { Listing } from '@/api/listings.api';
-import { useAuthStore } from '@/store/auth.store';
-import type { RootStackParamList, TabsParamList } from '@/navigation/types';
+const { width: W } = Dimensions.get('window');
 
-type HomeNav = CompositeNavigationProp<
-  BottomTabNavigationProp<TabsParamList, 'Home'>,
-  StackNavigationProp<RootStackParamList>
->;
-
-type CategoryKey = 'all' | 'apartment' | 'villa' | 'office' | 'land';
-
-interface Category {
-  key: CategoryKey;
-  labelKey: string;
-  icon: keyof typeof Ionicons.glyphMap;
-}
-
-const CATEGORIES: Category[] = [
-  { key: 'all', labelKey: 'home.tabBuy', icon: 'grid-outline' },
-  { key: 'apartment', labelKey: 'propertyTypes.apartment', icon: 'business-outline' },
-  { key: 'villa', labelKey: 'propertyTypes.villa', icon: 'home-outline' },
-  { key: 'office', labelKey: 'propertyTypes.office', icon: 'briefcase-outline' },
-  { key: 'land', labelKey: 'propertyTypes.land', icon: 'map-outline' },
+const CATEGORIES = [
+  { labelAr: 'الكل', labelEn: 'All', value: '' },
+  { labelAr: 'للبيع', labelEn: 'Sale', value: 'sale' },
+  { labelAr: 'للإيجار', labelEn: 'Rent', value: 'rent' },
+  { labelAr: 'شاليهات', labelEn: 'Chalets', value: 'chalet' },
+  { labelAr: 'فلل', labelEn: 'Villas', value: 'villa' },
+  { labelAr: 'شقق', labelEn: 'Apts', value: 'apartment' },
+  { labelAr: 'أراضي', labelEn: 'Land', value: 'land' },
 ];
 
-interface CityTile {
-  key: string;
-  name: string;
-  nameAr: string;
-  image: string;
-}
+export default function HomeScreen({ navigation }: any) {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
+  const [activeCategory, setActiveCategory] = useState('');
 
-// Saudi city photos hosted on Unsplash — purely decorative placeholders.
-const CITIES: CityTile[] = [
-  {
-    key: 'Riyadh',
-    name: 'Riyadh',
-    nameAr: 'الرياض',
-    image:
-      'https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?auto=format&fit=crop&w=600&q=70',
-  },
-  {
-    key: 'Jeddah',
-    name: 'Jeddah',
-    nameAr: 'جدة',
-    image:
-      'https://images.unsplash.com/photo-1578895101408-1a36b834405b?auto=format&fit=crop&w=600&q=70',
-  },
-  {
-    key: 'Dammam',
-    name: 'Dammam',
-    nameAr: 'الدمام',
-    image:
-      'https://images.unsplash.com/photo-1614107151491-6876eecbff89?auto=format&fit=crop&w=600&q=70',
-  },
-  {
-    key: 'Mecca',
-    name: 'Mecca',
-    nameAr: 'مكة المكرمة',
-    image:
-      'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=600&q=70',
-  },
-];
-
-export function HomeScreen() {
-  const { t, i18n } = useTranslation();
-  const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const navigation = useNavigation<HomeNav>();
-  const queryClient = useQueryClient();
-  const user = useAuthStore((s) => s.user);
-
-  const [category, setCategory] = useState<CategoryKey>('all');
-  const [refreshing, setRefreshing] = useState(false);
-  const isArabic = i18n.language?.startsWith('ar');
-
-  const featured = useQuery({
-    queryKey: ['listings', 'featured'],
-    queryFn: () => listingsApi.featured(),
-  });
-
-  const recentParams = useMemo(
-    () => ({
-      page: 1,
-      limit: 10,
-      ...(category !== 'all' ? { propertyType: category } : {}),
+  const { data, isLoading, refetch, isRefetching } = useQuery({
+    queryKey: ['home-listings', activeCategory],
+    queryFn: () => listingsApi.getAll({
+      transactionType: activeCategory || undefined,
+      limit: 20,
     }),
-    [category],
-  );
-
-  const recent = useQuery({
-    queryKey: ['listings', 'recent', recentParams],
-    queryFn: () => listingsApi.search(recentParams),
   });
 
-  const onRefresh = useCallback(async () => {
-    setRefreshing(true);
-    await Promise.all([
-      queryClient.invalidateQueries({ queryKey: ['listings', 'featured'] }),
-      queryClient.invalidateQueries({ queryKey: ['listings', 'recent'] }),
-    ]);
-    setRefreshing(false);
-  }, [queryClient]);
+  const { data: featuredData } = useQuery({
+    queryKey: ['featured'],
+    queryFn: () => listingsApi.getFeatured(),
+  });
 
-  const handleSubmitSearch = (text: string) => {
-    navigation.navigate('Search', { initialQuery: text });
-  };
-
-  const openListing = (id: string) => {
-    navigation.navigate('ListingDetail', { id });
-  };
-
-  const openCitySearch = (city: string) => {
-    navigation.navigate('Search', { initialQuery: city });
-  };
-
-  const greetingKey = (() => {
-    const h = new Date().getHours();
-    if (h < 12) return 'common.goodMorning';
-    if (h < 18) return 'common.goodAfternoon';
-    return 'common.goodEvening';
-  })();
+  const listings = data?.data?.data || data?.data?.items || [];
+  const featured = featuredData?.data?.data || featuredData?.data?.items || [];
 
   return (
-    <View style={[styles.root, { backgroundColor: colors.background }]}>
-      <StatusBar barStyle="light-content" backgroundColor={COLORS.primary} />
-
-      {/* Purple hero */}
-      <View style={[styles.hero, { paddingTop: insets.top + SIZES.md }]}>
-        <Animated.View style={styles.heroTop}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.brand}>{t('app.name', { defaultValue: 'Eawlma' })}</Text>
-            {user?.fullName ? (
-              <Text style={styles.greeting} numberOfLines={1}>
-                {t(greetingKey, { defaultValue: 'Hello' })}, {user.fullName.split(' ')[0]}
-              </Text>
-            ) : (
-              <Text style={styles.greeting} numberOfLines={1}>
-                {t('home.heroSubtitle', { defaultValue: 'Find your next home' })}
-              </Text>
-            )}
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <View style={styles.headerTop}>
+          <View>
+            <Text style={styles.headerLogo}>عالمة</Text>
+            <Text style={styles.headerTagline}>
+              {isAr ? 'منصة العقارات الأولى' : 'Premier Real Estate'}
+            </Text>
           </View>
-          <Pressable
+          <TouchableOpacity
+            style={styles.notifBtn}
             onPress={() => navigation.navigate('Notifications')}
-            style={styles.bellButton}
-            hitSlop={10}
-            accessibilityRole="button"
-            accessibilityLabel="Notifications"
           >
-            <Ionicons name="notifications-outline" size={22} color={COLORS.white} />
-          </Pressable>
-        </Animated.View>
+            <Ionicons name="notifications-outline" size={24} color="#FFF" />
+          </TouchableOpacity>
+        </View>
 
-        <Animated.Text
-          style={styles.heroTitle}
+        <TouchableOpacity
+          style={styles.searchBar}
+          onPress={() => navigation.navigate('Search')}
         >
-          {t('home.heroTitle', { defaultValue: 'Discover the perfect place to call home' })}
-        </Animated.Text>
+          <Ionicons name="search" size={18} color={COLORS.textSecondary} />
+          <Text style={styles.searchPlaceholder}>
+            {isAr ? 'ابحث عن عقار، حي، مدينة...' : 'Search properties...'}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
-        <Animated.View style={styles.searchWrap}>
-          <SearchBar
-            placeholder={t('home.searchPlaceholder', { defaultValue: 'Search city, district…' })}
-            onSubmit={handleSubmitSearch}
-          />
-        </Animated.View>
+      <View style={styles.categoriesWrapper}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoriesContent}
+        >
+          {CATEGORIES.map(cat => (
+            <TouchableOpacity
+              key={cat.value}
+              style={[
+                styles.categoryChip,
+                activeCategory === cat.value && styles.categoryChipActive,
+              ]}
+              onPress={() => setActiveCategory(cat.value)}
+            >
+              <Text style={[
+                styles.categoryChipText,
+                activeCategory === cat.value && styles.categoryChipTextActive,
+              ]}>
+                {isAr ? cat.labelAr : cat.labelEn}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
 
       <ScrollView
-        style={styles.scrollRoot}
-        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
+            refreshing={isRefetching}
+            onRefresh={refetch}
             tintColor={COLORS.primary}
             colors={[COLORS.primary]}
           />
         }
       >
-        {/* Category chips */}
-        <Animated.View>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.chipRow}
-          >
-            {CATEGORIES.map((cat) => {
-              const active = category === cat.key;
-              return (
-                <Pressable
-                  key={cat.key}
-                  onPress={() => setCategory(cat.key)}
-                  style={[
-                    styles.chip,
-                    {
-                      backgroundColor: active ? COLORS.primary : colors.surface,
-                      borderColor: active ? COLORS.primary : colors.border,
-                    },
-                  ]}
-                >
-                  <Ionicons
-                    name={cat.icon}
-                    size={16}
-                    color={active ? COLORS.white : colors.textSecondary}
-                  />
-                  <Text
-                    style={[
-                      styles.chipText,
-                      { color: active ? COLORS.white : colors.text },
-                    ]}
-                  >
-                    {t(cat.labelKey)}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </ScrollView>
-        </Animated.View>
-
-        {/* Featured carousel */}
-        <Animated.View
-          style={styles.section}
-        >
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>
-              {t('home.featuredListings')}
-            </Text>
-            <Pressable onPress={() => navigation.navigate('Search')} hitSlop={8}>
-              <Text style={styles.viewMore}>{t('home.viewMore')}</Text>
-            </Pressable>
-          </View>
-
-          {featured.isLoading ? (
-            <CarouselSkeleton />
-          ) : (featured.data?.length ?? 0) === 0 ? (
-            <View style={styles.emptyInline}>
-              <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
-                {t('search.noResults')}
+        {featured.length > 0 && (
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>
+                {isAr ? '⭐ مميزة' : '⭐ Featured'}
               </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+                <Text style={styles.seeAll}>
+                  {isAr ? 'عرض الكل' : 'See all'}
+                </Text>
+              </TouchableOpacity>
             </View>
-          ) : (
-            <FlatList
-              data={featured.data ?? []}
-              keyExtractor={(item) => item.id}
+            <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.carouselList}
-              renderItem={({ item }) => (
-                <ListingCard
-                  listing={item}
-                  variant="carousel"
-                  onPress={() => openListing(item.id)}
+              contentContainerStyle={styles.featuredList}
+            >
+              {featured.map((item: any) => (
+                <FeaturedCard
+                  key={item.id}
+                  item={item}
+                  isAr={isAr}
+                  onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
                 />
-              )}
+              ))}
+            </ScrollView>
+          </View>
+        )}
+
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>
+              {isAr ? '🏠 أحدث العقارات' : '🏠 Latest Listings'}
+            </Text>
+          </View>
+
+          {isLoading ? (
+            <ActivityIndicator
+              color={COLORS.primary}
+              size="large"
+              style={{ marginVertical: 40 }}
             />
-          )}
-        </Animated.View>
-
-        {/* Popular cities — 2x2 grid */}
-        <Animated.View
-          style={styles.section}
-        >
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>
-              {t('home.popularCities')}
-            </Text>
-          </View>
-          <View style={styles.citiesGrid}>
-            {CITIES.map((c) => (
-              <Pressable
-                key={c.key}
-                style={[styles.cityTile, SHADOWS.sm]}
-                onPress={() => openCitySearch(c.key)}
-              >
-                <Image source={{ uri: c.image }} style={styles.cityImage} contentFit="cover" />
-                <View style={styles.cityOverlay} />
-                <View style={styles.cityLabelWrap}>
-                  <Text style={styles.cityLabel}>{isArabic ? c.nameAr : c.name}</Text>
-                </View>
-              </Pressable>
-            ))}
-          </View>
-        </Animated.View>
-
-        {/* Recent listings */}
-        <Animated.View
-          style={styles.section}
-        >
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>
-              {t('home.recentlyViewed')}
-            </Text>
-            <Pressable onPress={() => navigation.navigate('Search')} hitSlop={8}>
-              <Text style={styles.viewMore}>{t('home.viewMore')}</Text>
-            </Pressable>
-          </View>
-
-          {recent.isLoading ? (
-            <FeedSkeleton />
-          ) : (recent.data?.data.length ?? 0) === 0 ? (
-            <View style={styles.emptyInline}>
-              <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
-                {t('search.noResults')}
+          ) : listings.length === 0 ? (
+            <View style={styles.empty}>
+              <Ionicons name="home-outline" size={48} color={COLORS.border} />
+              <Text style={styles.emptyText}>
+                {isAr ? 'لا توجد عقارات' : 'No listings found'}
               </Text>
             </View>
           ) : (
-            <View>
-              {recent.data!.data.map((listing: Listing) => (
-                <ListingCard
-                  key={listing.id}
-                  listing={listing}
-                  variant="feed"
-                  onPress={() => openListing(listing.id)}
+            <View style={styles.grid}>
+              {listings.map((item: any) => (
+                <ListingGridCard
+                  key={item.id}
+                  item={item}
+                  isAr={isAr}
+                  onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
                 />
               ))}
             </View>
           )}
-        </Animated.View>
+        </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
-function CarouselSkeleton() {
+function FeaturedCard({ item, isAr, onPress }: any) {
   return (
-    <View style={styles.carouselSkeletonRow}>
-      {[0, 1, 2].map((i) => (
-        <View key={i} style={styles.carouselSkeleton}>
-          <View style={styles.skeletonSpinner}>
-            <BrandSpinner size={24} />
+    <TouchableOpacity style={styles.featuredCard} onPress={onPress}>
+      <Image
+        source={{ uri: item.coverImageUrl || '' }}
+        style={styles.featuredImage}
+        contentFit="cover"
+        placeholder={{ uri: '' }}
+      />
+      <View style={styles.featuredOverlay}>
+        <View style={styles.featuredBadge}>
+          <Text style={styles.featuredBadgeText}>
+            {item.transactionType === 'rent'
+              ? (isAr ? 'إيجار' : 'Rent')
+              : (isAr ? 'بيع' : 'Sale')}
+          </Text>
+        </View>
+        <View style={styles.featuredInfo}>
+          <Text style={styles.featuredPrice}>
+            {Number(item.price).toLocaleString()} {isAr ? 'ر.س' : 'SAR'}
+          </Text>
+          <Text style={styles.featuredTitle} numberOfLines={1}>
+            {isAr ? item.titleAr : item.titleEn}
+          </Text>
+          <View style={styles.featuredLocation}>
+            <Ionicons name="location-outline" size={12} color="rgba(255,255,255,0.8)" />
+            <Text style={styles.featuredLocationText}>
+              {item.district}, {item.city}
+            </Text>
           </View>
         </View>
-      ))}
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 
-function FeedSkeleton() {
+function ListingGridCard({ item, isAr, onPress }: any) {
+  const cardWidth = (W - SIZES.lg * 2 - SIZES.sm) / 2;
+
   return (
-    <View>
-      {[0, 1].map((i) => (
-        <View key={i} style={styles.feedSkeleton}>
-          <View style={styles.skeletonSpinner}>
-            <BrandSpinner size={24} />
+    <TouchableOpacity
+      style={[styles.gridCard, { width: cardWidth }]}
+      onPress={onPress}
+    >
+      <View style={styles.gridImageBox}>
+        {item.coverImageUrl ? (
+          <Image
+            source={{ uri: item.coverImageUrl }}
+            style={styles.gridImage}
+            contentFit="cover"
+          />
+        ) : (
+          <View style={[styles.gridImage, styles.gridImagePlaceholder]}>
+            <Ionicons name="home" size={28} color={COLORS.primaryLight} />
           </View>
+        )}
+        <View style={[
+          styles.gridBadge,
+          { backgroundColor: item.transactionType === 'rent' ? COLORS.success : COLORS.primary }
+        ]}>
+          <Text style={styles.gridBadgeText}>
+            {item.transactionType === 'rent'
+              ? (isAr ? 'إيجار' : 'Rent')
+              : (isAr ? 'بيع' : 'Sale')}
+          </Text>
         </View>
-      ))}
-    </View>
+      </View>
+      <View style={styles.gridInfo}>
+        <Text style={styles.gridPrice}>
+          {Number(item.price).toLocaleString()}
+          <Text style={styles.gridPriceCurrency}> {isAr ? 'ر.س' : 'SAR'}</Text>
+        </Text>
+        <Text style={styles.gridTitle} numberOfLines={1}>
+          {isAr ? item.titleAr : item.titleEn}
+        </Text>
+        <View style={styles.gridLocation}>
+          <Ionicons name="location-outline" size={11} color={COLORS.textSecondary} />
+          <Text style={styles.gridLocationText} numberOfLines={1}>
+            {item.district}, {item.city}
+          </Text>
+        </View>
+        {(item.bedrooms || item.bathrooms || item.area) && (
+          <View style={styles.gridStats}>
+            {item.bedrooms && (
+              <View style={styles.gridStat}>
+                <Ionicons name="bed-outline" size={11} color={COLORS.textSecondary} />
+                <Text style={styles.gridStatText}>{item.bedrooms}</Text>
+              </View>
+            )}
+            {item.bathrooms && (
+              <View style={styles.gridStat}>
+                <Ionicons name="water-outline" size={11} color={COLORS.textSecondary} />
+                <Text style={styles.gridStatText}>{item.bathrooms}</Text>
+              </View>
+            )}
+            {item.area && (
+              <View style={styles.gridStat}>
+                <Text style={styles.gridStatText}>{item.area}م²</Text>
+              </View>
+            )}
+          </View>
+        )}
+      </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  scrollRoot: { flex: 1 },
-  scrollContent: { paddingBottom: SIZES.huge },
-
-  hero: {
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: SIZES.lg,
-    paddingBottom: SIZES.xxxl + SIZES.md,
-    borderBottomLeftRadius: SIZES.borderRadiusXl,
-    borderBottomRightRadius: SIZES.borderRadiusXl,
-  },
-  heroTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.sm,
-  },
-  brand: {
-    fontFamily: FONTS.extraBold,
-    fontSize: SIZES.h3,
-    color: COLORS.white,
-    letterSpacing: 0.5,
-  },
-  greeting: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    color: 'rgba(255,255,255,0.85)',
-    marginTop: 2,
-  },
-  bellButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.18)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  heroTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.h2,
-    color: COLORS.white,
-    marginTop: SIZES.lg,
-    lineHeight: 32,
-  },
-  searchWrap: {
-    marginTop: SIZES.lg,
-  },
-
-  chipRow: {
-    paddingHorizontal: SIZES.lg,
-    paddingTop: SIZES.lg,
-    gap: SIZES.sm,
-    flexDirection: 'row',
-  },
-  chip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    paddingHorizontal: SIZES.md,
-    paddingVertical: SIZES.sm,
-    borderRadius: SIZES.borderRadiusFull,
-    borderWidth: 1,
-  },
-  chipText: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.small,
-  },
-
-  section: {
-    marginTop: SIZES.xl,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: SIZES.lg,
-    marginBottom: SIZES.md,
-  },
-  sectionTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.subtitle,
-  },
-  viewMore: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.small,
-    color: COLORS.primary,
-  },
-
-  carouselList: {
-    paddingHorizontal: SIZES.lg,
-  },
-
-  citiesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingHorizontal: SIZES.lg,
-    gap: SIZES.md,
-  },
-  cityTile: {
-    width: '47%',
-    height: 110,
-    borderRadius: SIZES.borderRadiusLg,
-    overflow: 'hidden',
-    backgroundColor: COLORS.surfaceMuted,
-  },
-  cityImage: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  cityOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(20,16,48,0.35)',
-  },
-  cityLabelWrap: {
-    position: 'absolute',
-    bottom: SIZES.md,
-    start: SIZES.md,
-  },
-  cityLabel: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.bodyLg,
-    color: COLORS.white,
-  },
-
-  // Inline list area
-  emptyInline: {
-    paddingHorizontal: SIZES.lg,
-    paddingVertical: SIZES.xl,
-    alignItems: 'center',
-  },
-  emptyText: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-  },
-
-  // Skeletons
-  carouselSkeletonRow: {
-    flexDirection: 'row',
-    paddingHorizontal: SIZES.lg,
-    gap: SIZES.md,
-  },
-  carouselSkeleton: {
-    width: 240,
-    height: 220,
-    borderRadius: SIZES.borderRadiusLg,
-    backgroundColor: '#EFEFF5',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  feedSkeleton: {
-    height: 240,
-    marginHorizontal: SIZES.lg,
-    marginBottom: SIZES.md,
-    borderRadius: SIZES.borderRadiusLg,
-    backgroundColor: '#EFEFF5',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  skeletonSpinner: {
-    opacity: 0.7,
-  },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  header: { backgroundColor: COLORS.primary, paddingHorizontal: SIZES.lg, paddingBottom: SIZES.lg },
+  headerTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: SIZES.md },
+  headerLogo: { fontSize: SIZES.h1, fontWeight: '900', color: '#FFF' },
+  headerTagline: { fontSize: SIZES.small, color: 'rgba(255,255,255,0.75)', marginTop: 2 },
+  notifBtn: { padding: SIZES.sm, backgroundColor: 'rgba(255,255,255,0.15)', borderRadius: SIZES.borderRadiusFull },
+  searchBar: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', borderRadius: SIZES.borderRadiusFull, paddingHorizontal: SIZES.md, height: 46, gap: SIZES.sm },
+  searchPlaceholder: { flex: 1, fontSize: SIZES.body, color: COLORS.textSecondary },
+  categoriesWrapper: { backgroundColor: COLORS.surface, borderBottomWidth: 1, borderBottomColor: COLORS.border },
+  categoriesContent: { paddingHorizontal: SIZES.lg, paddingVertical: SIZES.sm, gap: SIZES.sm },
+  categoryChip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1.5, borderColor: COLORS.border, backgroundColor: COLORS.surface },
+  categoryChipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
+  categoryChipText: { fontSize: SIZES.small, fontWeight: '600', color: COLORS.textSecondary },
+  categoryChipTextActive: { color: '#FFF' },
+  section: { paddingTop: SIZES.lg },
+  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: SIZES.lg, marginBottom: SIZES.md },
+  sectionTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: COLORS.text },
+  seeAll: { fontSize: SIZES.body, color: COLORS.primary, fontWeight: '600' },
+  featuredList: { paddingHorizontal: SIZES.lg, gap: SIZES.md },
+  featuredCard: { width: W * 0.7, height: 200, borderRadius: SIZES.borderRadiusXl, overflow: 'hidden', ...SHADOWS.md },
+  featuredImage: { width: '100%', height: '100%' },
+  featuredOverlay: { ...StyleSheet.absoluteFillObject, justifyContent: 'space-between', padding: SIZES.md, backgroundColor: 'rgba(0,0,0,0.35)' },
+  featuredBadge: { alignSelf: 'flex-start', backgroundColor: COLORS.secondary, paddingHorizontal: SIZES.sm, paddingVertical: 3, borderRadius: SIZES.borderRadiusFull },
+  featuredBadgeText: { fontSize: 10, color: '#FFF', fontWeight: '800' },
+  featuredInfo: {},
+  featuredPrice: { fontSize: SIZES.subtitle, fontWeight: '900', color: '#FFF' },
+  featuredTitle: { fontSize: SIZES.body, color: 'rgba(255,255,255,0.9)', marginTop: 2 },
+  featuredLocation: { flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 3 },
+  featuredLocationText: { fontSize: 11, color: 'rgba(255,255,255,0.8)' },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: SIZES.lg, gap: SIZES.sm, paddingBottom: SIZES.xxxl },
+  gridCard: { backgroundColor: COLORS.surface, borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', ...SHADOWS.sm },
+  gridImageBox: { position: 'relative' },
+  gridImage: { width: '100%', height: 120 },
+  gridImagePlaceholder: { backgroundColor: COLORS.surfaceVariant, justifyContent: 'center', alignItems: 'center' },
+  gridBadge: { position: 'absolute', top: 8, right: 8, paddingHorizontal: 7, paddingVertical: 2, borderRadius: SIZES.borderRadiusFull },
+  gridBadgeText: { fontSize: 10, color: '#FFF', fontWeight: '700' },
+  gridInfo: { padding: SIZES.sm },
+  gridPrice: { fontSize: SIZES.body, fontWeight: '800', color: COLORS.primary },
+  gridPriceCurrency: { fontSize: SIZES.small, fontWeight: '600' },
+  gridTitle: { fontSize: SIZES.small, color: COLORS.text, fontWeight: '600', marginTop: 2 },
+  gridLocation: { flexDirection: 'row', alignItems: 'center', marginTop: 4, gap: 2 },
+  gridLocationText: { fontSize: 10, color: COLORS.textSecondary, flex: 1 },
+  gridStats: { flexDirection: 'row', gap: SIZES.sm, marginTop: 6 },
+  gridStat: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  gridStatText: { fontSize: 10, color: COLORS.textSecondary },
+  empty: { alignItems: 'center', paddingVertical: 40 },
+  emptyText: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.md },
 });

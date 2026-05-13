@@ -1,275 +1,176 @@
-// LoginScreen — purple hero banner + white rounded card with email/password
-// form. On success we call authStore.setAuth(...); the root navigator swaps
-// stacks automatically so we never push/replace 'Main' ourselves.
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+  View, Text, StyleSheet, TextInput,
+  TouchableOpacity, ActivityIndicator,
+  ScrollView, KeyboardAvoidingView, Platform,
 } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
-import { Animated } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useMutation } from '@tanstack/react-query';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
-import type { StackNavigationProp } from '@react-navigation/stack';
+import { useAuthStore } from '../../store/auth.store';
+import { authApi } from '../../api';
+import { COLORS, SIZES, SHADOWS } from '../../theme';
 
-import { COLORS, FONTS, SIZES, SHADOWS, useColors } from '@/theme';
-import { authApi } from '@/api';
-import { extractErrorMessage } from '@/api/client';
-import { useAuthStore } from '@/store/auth.store';
-import type { RootStackParamList } from '@/navigation/types';
-
-type Nav = StackNavigationProp<RootStackParamList, 'Login'>;
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-export function LoginScreen() {
-  const { t } = useTranslation();
-  const navigation = useNavigation<Nav>();
-  const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const setAuth = useAuthStore((s) => s.setAuth);
-
+export default function LoginScreen({ navigation }: any) {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { setUser, setToken } = useAuthStore();
 
-  const mutation = useMutation({
-    mutationFn: ({ email, password }: { email: string; password: string }) =>
-      authApi.login(email.trim(), password),
-    onSuccess: async ({ user, accessToken }) => {
-      await setAuth(user, accessToken);
-    },
-    onError: (err) => {
-      Alert.alert(t('auth.signIn'), extractErrorMessage(err));
-    },
-  });
-
-  const validate = (): boolean => {
-    const next: typeof errors = {};
-    if (!email.trim()) next.email = t('validation.required');
-    else if (!EMAIL_RE.test(email.trim())) next.email = t('validation.emailInvalid');
-    if (!password) next.password = t('validation.required');
-    else if (password.length < 8) next.password = t('validation.passwordMin');
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
-
-  const onSubmit = () => {
-    if (!validate()) return;
-    mutation.mutate({ email, password });
+  const handleLogin = async () => {
+    if (!email.trim() || !password.trim()) {
+      setError(isAr ? 'يرجى تعبئة جميع الحقول' : 'Please fill all fields');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const { user, tokens } = await authApi.login(email.trim(), password);
+      setToken(tokens.accessToken);
+      setUser(user);
+      navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
+    } catch (e: any) {
+      setError(
+        e.response?.data?.message ||
+        (isAr ? 'بيانات الدخول غير صحيحة' : 'Invalid credentials')
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <View style={[styles.root, { backgroundColor: colors.background }]}>
-      {/* Purple hero banner (custom, not the shared Header — we want a tall logo block) */}
-      <View style={[styles.hero, { paddingTop: insets.top + SIZES.xxl }]}>
-        <Animated.View>
-          <Text style={styles.brand}>Eawlma</Text>
-          <Text style={styles.brandTagline}>{t('auth.welcomeBack')}</Text>
-          <Text style={styles.brandSubtitle}>{t('auth.signInToContinue')}</Text>
-        </Animated.View>
-      </View>
-
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
-        style={styles.flex}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
       >
-        <ScrollView
-          contentContainerStyle={styles.scroll}
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-        >
-          <Animated.View
-            style={[styles.card, { backgroundColor: colors.surface }, SHADOWS.md]}
-          >
-            <TextInput
-              mode="outlined"
-              label={t('auth.email')}
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect={false}
-              error={!!errors.email}
-              outlineColor={colors.border}
-              activeOutlineColor={COLORS.primary}
-              style={styles.input}
+        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+          <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
+            <Ionicons
+              name={isAr ? 'arrow-forward' : 'arrow-back'}
+              size={24}
+              color={COLORS.text}
             />
-            {errors.email ? (
-              <Text style={styles.fieldError}>{errors.email}</Text>
-            ) : null}
+          </TouchableOpacity>
 
-            <TextInput
-              mode="outlined"
-              label={t('auth.password')}
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={!showPassword}
-              autoCapitalize="none"
-              autoComplete="password"
-              right={
-                <TextInput.Icon
-                  icon={showPassword ? 'eye-off' : 'eye'}
-                  onPress={() => setShowPassword((v) => !v)}
-                  forceTextInputFocus={false}
+          <View style={styles.logoSection}>
+            <View style={styles.logo}>
+              <Text style={styles.logoText}>عالمة</Text>
+            </View>
+            <Text style={styles.title}>
+              {isAr ? 'تسجيل الدخول' : 'Sign In'}
+            </Text>
+            <Text style={styles.subtitle}>
+              {isAr ? 'أهلاً بعودتك!' : 'Welcome back!'}
+            </Text>
+          </View>
+
+          {error ? (
+            <View style={styles.errorBox}>
+              <Ionicons name="alert-circle-outline" size={18} color={COLORS.error} />
+              <Text style={styles.errorText}>{error}</Text>
+            </View>
+          ) : null}
+
+          <View style={styles.form}>
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>
+                {isAr ? 'البريد الإلكتروني' : 'Email'}
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={email}
+                onChangeText={setEmail}
+                placeholder="example@email.com"
+                placeholderTextColor={COLORS.textLight}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                textAlign={isAr ? 'right' : 'left'}
+              />
+            </View>
+
+            <View style={styles.field}>
+              <Text style={styles.fieldLabel}>
+                {isAr ? 'كلمة المرور' : 'Password'}
+              </Text>
+              <View style={styles.passwordBox}>
+                <TextInput
+                  style={[styles.input, { flex: 1, borderWidth: 0 }]}
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder="••••••••"
+                  placeholderTextColor={COLORS.textLight}
+                  secureTextEntry={!showPassword}
+                  textAlign={isAr ? 'right' : 'left'}
                 />
-              }
-              error={!!errors.password}
-              outlineColor={colors.border}
-              activeOutlineColor={COLORS.primary}
-              style={styles.input}
-            />
-            {errors.password ? (
-              <Text style={styles.fieldError}>{errors.password}</Text>
-            ) : null}
+                <TouchableOpacity
+                  style={styles.eyeBtn}
+                  onPress={() => setShowPassword(!showPassword)}
+                >
+                  <Ionicons
+                    name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                    size={20}
+                    color={COLORS.textSecondary}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
 
             <TouchableOpacity
-              style={styles.forgotRow}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              style={[styles.submitBtn, loading && { opacity: 0.7 }]}
+              onPress={handleLogin}
+              disabled={loading}
             >
-              <Text style={[styles.forgotText, { color: COLORS.primary }]}>
-                {t('auth.forgotPassword')}
-              </Text>
+              {loading ? (
+                <ActivityIndicator color="#FFF" />
+              ) : (
+                <Text style={styles.submitBtnText}>
+                  {isAr ? 'دخول' : 'Sign In'}
+                </Text>
+              )}
             </TouchableOpacity>
 
-            <Button
-              mode="contained"
-              buttonColor={COLORS.primary}
-              textColor={COLORS.white}
-              onPress={onSubmit}
-              loading={mutation.isPending}
-              disabled={mutation.isPending}
-              contentStyle={styles.buttonContent}
-              style={styles.button}
-              labelStyle={styles.buttonLabel}
+            <TouchableOpacity
+              style={styles.linkBtn}
+              onPress={() => navigation.navigate('Register')}
             >
-              {t('auth.signIn')}
-            </Button>
-
-            <View style={styles.dividerRow}>
-              <View style={[styles.divider, { backgroundColor: colors.divider }]} />
-            </View>
-
-            <View style={styles.footerRow}>
-              <Text style={[styles.footerText, { color: colors.textSecondary }]}>
-                {t('auth.noAccount')}{' '}
+              <Text style={styles.linkBtnText}>
+                {isAr
+                  ? 'ليس لديك حساب؟ سجل الآن'
+                  : "Don't have an account? Register"}
               </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Register')}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              >
-                <Text style={[styles.footerLink, { color: COLORS.primary }]}>
-                  {t('auth.signUp')}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </Animated.View>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  flex: { flex: 1 },
-  hero: {
-    backgroundColor: COLORS.primary,
-    paddingHorizontal: SIZES.xl,
-    paddingBottom: SIZES.huge,
-    alignItems: 'center',
-  },
-  brand: {
-    fontFamily: FONTS.extraBold,
-    fontSize: 44,
-    color: COLORS.white,
-    textAlign: 'center',
-    letterSpacing: 0.5,
-  },
-  brandTagline: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.h3,
-    color: COLORS.white,
-    textAlign: 'center',
-    marginTop: SIZES.md,
-  },
-  brandSubtitle: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-    color: 'rgba(255,255,255,0.8)',
-    textAlign: 'center',
-    marginTop: SIZES.xs,
-  },
-  scroll: {
-    flexGrow: 1,
-    paddingHorizontal: SIZES.lg,
-    paddingBottom: SIZES.xxl,
-  },
-  card: {
-    marginTop: -SIZES.xxl,
-    borderRadius: SIZES.borderRadiusXl,
-    padding: SIZES.xl,
-  },
-  input: {
-    marginTop: SIZES.md,
-    backgroundColor: 'transparent',
-  },
-  fieldError: {
-    color: COLORS.error,
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginTop: SIZES.xs,
-    marginStart: SIZES.xs,
-  },
-  forgotRow: {
-    alignItems: 'flex-end',
-    marginTop: SIZES.md,
-  },
-  forgotText: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.body,
-  },
-  button: {
-    marginTop: SIZES.xl,
-    borderRadius: SIZES.borderRadius,
-  },
-  buttonContent: {
-    paddingVertical: SIZES.xs,
-  },
-  buttonLabel: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.bodyLg,
-  },
-  dividerRow: {
-    marginTop: SIZES.xl,
-    marginBottom: SIZES.md,
-  },
-  divider: {
-    height: 1,
-    width: '100%',
-  },
-  footerRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footerText: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-  },
-  footerLink: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.body,
-  },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  scroll: { flexGrow: 1, padding: SIZES.xl },
+  backBtn: { alignSelf: 'flex-start', padding: SIZES.sm, marginBottom: SIZES.lg },
+  logoSection: { alignItems: 'center', marginBottom: SIZES.xxxl },
+  logo: { width: 80, height: 80, borderRadius: 20, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginBottom: SIZES.lg, ...SHADOWS.lg },
+  logoText: { fontSize: SIZES.h2, fontWeight: '900', color: '#FFF' },
+  title: { fontSize: SIZES.h2, fontWeight: '900', color: COLORS.text },
+  subtitle: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.sm },
+  errorBox: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, backgroundColor: COLORS.error + '12', borderWidth: 1, borderColor: COLORS.error + '30', borderRadius: SIZES.borderRadius, padding: SIZES.md, marginBottom: SIZES.lg },
+  errorText: { flex: 1, fontSize: SIZES.body, color: COLORS.error },
+  form: { gap: SIZES.lg },
+  field: {},
+  fieldLabel: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text, marginBottom: SIZES.sm, textAlign: 'right' },
+  input: { backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, color: COLORS.text, height: 52 },
+  passwordBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, height: 52, paddingRight: SIZES.sm },
+  eyeBtn: { padding: SIZES.sm },
+  submitBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.sm, ...SHADOWS.md },
+  submitBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  linkBtn: { alignItems: 'center', padding: SIZES.md },
+  linkBtnText: { fontSize: SIZES.body, color: COLORS.primary, fontWeight: '600' },
 });

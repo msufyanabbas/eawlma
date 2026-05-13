@@ -1,50 +1,32 @@
-// Axios client shared by all API modules. Picks up the JWT from the auth
-// store on every request and clears the store on 401 so screens that rely
-// on `useAuthStore` immediately re-render to the unauthenticated state.
-import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import Constants from 'expo-constants';
+import * as SecureStore from 'expo-secure-store';
 
-import { useAuthStore } from '../store/auth.store';
+const BASE_URL = (Constants.expoConfig?.extra?.apiUrl as string) ||
+  'http://192.168.1.125:3010/api/v1';
 
-const FALLBACK_URL = 'http://localhost:3010/api/v1';
-
-function resolveBaseUrl(): string {
-  const extra = Constants.expoConfig?.extra as { apiUrl?: string } | undefined;
-  if (extra?.apiUrl) return extra.apiUrl;
-  return FALLBACK_URL;
-}
-
-export const apiClient = axios.create({
-  baseURL: resolveBaseUrl(),
+const api = axios.create({
+  baseURL: BASE_URL,
   timeout: 15000,
+  headers: { 'Content-Type': 'application/json' },
 });
 
-apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const token = useAuthStore.getState().token;
-  if (token) {
-    config.headers.set('Authorization', `Bearer ${token}`);
-  }
+api.interceptors.request.use(async (config) => {
+  try {
+    const token = await SecureStore.getItemAsync('accessToken');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+  } catch {}
   return config;
 });
 
-apiClient.interceptors.response.use(
-  (response) => response,
-  (error: AxiosError) => {
+api.interceptors.response.use(
+  (res) => res,
+  async (error) => {
     if (error.response?.status === 401) {
-      void useAuthStore.getState().clear();
+      await SecureStore.deleteItemAsync('accessToken');
     }
     return Promise.reject(error);
-  },
+  }
 );
 
-export function extractErrorMessage(error: unknown): string {
-  if (axios.isAxiosError(error)) {
-    const data = error.response?.data as { message?: string | string[] } | undefined;
-    if (data?.message) {
-      return Array.isArray(data.message) ? data.message.join(', ') : data.message;
-    }
-    return error.message;
-  }
-  if (error instanceof Error) return error.message;
-  return 'Unknown error';
-}
+export default api;

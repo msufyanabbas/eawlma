@@ -1,64 +1,51 @@
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-paper';
+import { useTheme } from '../hooks/useTheme';
+import { SIZES, TYPOGRAPHY } from '../theme';
 
-import { COLORS, FONTS, SIZES } from '../theme';
-
-export interface EmptyStateProps {
+interface Props {
   icon?: keyof typeof Ionicons.glyphMap;
   title: string;
-  body?: string;
-  ctaLabel?: string;
-  onCta?: () => void;
+  subtitle?: string;
+  actionLabel?: string;
+  onAction?: () => void;
 }
 
-export function EmptyState({ icon = 'cube-outline', title, body, ctaLabel, onCta }: EmptyStateProps) {
+export default function EmptyState({
+  icon = 'document-outline',
+  title,
+  subtitle,
+  actionLabel,
+  onAction,
+}: Props) {
+  const { colors } = useTheme();
   return (
     <View style={styles.container}>
-      <View style={styles.iconBubble}>
-        <Ionicons name={icon} size={32} color={COLORS.primary} />
-      </View>
-      <Text style={styles.title}>{title}</Text>
-      {body ? <Text style={styles.body}>{body}</Text> : null}
-      {ctaLabel ? (
-        <Button mode="contained" onPress={onCta} style={styles.cta} buttonColor={COLORS.primary}>
-          {ctaLabel}
-        </Button>
-      ) : null}
+      <Ionicons name={icon} size={64} color={colors.border} />
+      <Text style={[TYPOGRAPHY.subtitle, styles.title, { color: colors.text }]}>
+        {title}
+      </Text>
+      {subtitle && (
+        <Text style={[TYPOGRAPHY.body, styles.subtitle, { color: colors.textSecondary }]}>
+          {subtitle}
+        </Text>
+      )}
+      {actionLabel && onAction && (
+        <TouchableOpacity
+          style={[styles.btn, { backgroundColor: colors.primary }]}
+          onPress={onAction}
+        >
+          <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>{actionLabel}</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    paddingVertical: SIZES.xxxl,
-    paddingHorizontal: SIZES.xl,
-  },
-  iconBubble: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    backgroundColor: '#EEEAFF',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: SIZES.lg,
-  },
-  title: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.subtitle,
-    color: COLORS.text,
-    textAlign: 'center',
-  },
-  body: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-    color: COLORS.textSecondary,
-    textAlign: 'center',
-    marginTop: SIZES.sm,
-  },
-  cta: {
-    marginTop: SIZES.lg,
-    borderRadius: SIZES.borderRadius,
-  },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: SIZES.xxxl },
+  title: { marginTop: SIZES.lg, textAlign: 'center' },
+  subtitle: { marginTop: SIZES.sm, textAlign: 'center' },
+  btn: { marginTop: SIZES.xl, paddingHorizontal: SIZES.xl, paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg },
 });

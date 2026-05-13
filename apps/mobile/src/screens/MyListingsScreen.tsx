@@ -1,297 +1,152 @@
-// MyListingsScreen — agent-owned listings with status filtering, per-row action
-// menu, and a floating action button to start the AddListing wizard. Status
-// values map to `listing.status.*` (active / pending / rejected / expired).
-import { Ionicons } from '@expo/vector-icons';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
 import {
-  Alert,
-  FlatList,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
+  View, Text, StyleSheet, FlatList,
+  TouchableOpacity, ActivityIndicator,
 } from 'react-native';
-import { Animated } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { StackNavigationProp } from '@react-navigation/stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { listingsApi } from '../api';
+import { COLORS, SIZES, SHADOWS } from '../theme';
 
-import { COLORS, FONTS, SHADOWS, SIZES, useColors } from '@/theme';
-import { Header } from '@/components/Header';
-import { ListingCard } from '@/components/ListingCard';
-import { BottomSheet } from '@/components/BottomSheet';
-import { EmptyState } from '@/components/EmptyState';
-import { BrandSpinner } from '@/components/LoadingScreen';
-import { apiClient, extractErrorMessage, listingsApi } from '@/api';
-import type { Listing } from '@/api/listings.api';
-import type { RootStackParamList } from '@/navigation/types';
-
-type Nav = StackNavigationProp<RootStackParamList, 'MyListings'>;
-
-type StatusTab = 'all' | 'active' | 'pending' | 'rejected' | 'expired';
-
-const TABS: Array<{ key: StatusTab; labelKey: string }> = [
-  { key: 'all', labelKey: 'inquiries.filterAll' },
-  { key: 'active', labelKey: 'listing.status.active' },
-  { key: 'pending', labelKey: 'listing.status.pending' },
-  { key: 'rejected', labelKey: 'listing.status.rejected' },
-  { key: 'expired', labelKey: 'listing.status.expired' },
+const STATUSES = [
+  { labelAr: 'الكل', labelEn: 'All', value: '' },
+  { labelAr: 'نشط', labelEn: 'Active', value: 'active' },
+  { labelAr: 'مسودة', labelEn: 'Draft', value: 'draft' },
+  { labelAr: 'منتهي', labelEn: 'Expired', value: 'expired' },
 ];
 
-export function MyListingsScreen() {
-  const { t } = useTranslation();
-  const colors = useColors();
-  const navigation = useNavigation<Nav>();
-  const queryClient = useQueryClient();
-  const [tab, setTab] = useState<StatusTab>('all');
-  const [actionFor, setActionFor] = useState<Listing | null>(null);
+export default function MyListingsScreen({ navigation }: any) {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
+  const [status, setStatus] = useState('');
 
-  const listings = useQuery({
-    queryKey: ['listings', 'mine'],
-    queryFn: () => listingsApi.mine(),
+  const { data, isLoading } = useQuery({
+    queryKey: ['my-listings'],
+    queryFn: () => listingsApi.getMine(),
   });
 
-  const deleteListing = useMutation({
-    mutationFn: (id: string) => apiClient.delete(`/listings/${id}`),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['listings', 'mine'] }),
-    onError: (err) => Alert.alert(t('common.error'), extractErrorMessage(err)),
-  });
-
-  const filtered = useMemo<Listing[]>(() => {
-    const list = listings.data ?? [];
-    if (tab === 'all') return list;
-    return list.filter((l) => (l.status ?? '').toLowerCase() === tab);
-  }, [listings.data, tab]);
-
-  const onAction = (action: 'edit' | 'boost' | 'duplicate' | 'delete') => {
-    if (!actionFor) return;
-    const id = actionFor.id;
-    setActionFor(null);
-    if (action === 'edit') {
-      navigation.navigate('AddListing', { mode: 'edit', listingId: id });
-    } else if (action === 'delete') {
-      Alert.alert(
-        t('myListings.deleteConfirmTitle', { count: 1 }),
-        t('myListings.deleteConfirmDescription'),
-        [
-          { text: t('common.cancel'), style: 'cancel' },
-          {
-            text: t('common.delete'),
-            style: 'destructive',
-            onPress: () => deleteListing.mutate(id),
-          },
-        ],
-      );
-    } else {
-      // Boost / duplicate — wire up later
-      Alert.alert(t('common.more'), action);
-    }
-  };
+  const all = data?.data?.data || data?.data?.items || data?.data || [];
+  const listings = status ? all.filter((l: any) => l.status === status) : all;
 
   return (
-    <View style={[styles.root, { backgroundColor: colors.background }]}>
-      <Header title={t('dashboard.myListings')} />
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
+          <Ionicons
+            name={isAr ? 'arrow-forward' : 'arrow-back'}
+            size={22}
+            color="#FFF"
+          />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>
+          {isAr ? 'إعلاناتي' : 'My Listings'}
+        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('AddListing')}>
+          <Ionicons name="add" size={26} color="#FFF" />
+        </TouchableOpacity>
+      </View>
 
-      {/* Tabs */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.tabsRow}
-      >
-        {TABS.map((it) => {
-          const active = tab === it.key;
-          return (
-            <Pressable
-              key={it.key}
-              onPress={() => setTab(it.key)}
-              style={[
-                styles.tabChip,
-                {
-                  backgroundColor: active ? COLORS.primary : colors.surface,
-                  borderColor: active ? COLORS.primary : colors.border,
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.tabText,
-                  { color: active ? COLORS.white : colors.text },
-                ]}
-              >
-                {t(it.labelKey, { defaultValue: it.key })}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+      <View style={styles.statusBar}>
+        {STATUSES.map(s => (
+          <TouchableOpacity
+            key={s.value}
+            style={[styles.statusChip, status === s.value && styles.statusChipActive]}
+            onPress={() => setStatus(s.value)}
+          >
+            <Text style={[styles.statusText, status === s.value && styles.statusTextActive]}>
+              {isAr ? s.labelAr : s.labelEn}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-      {listings.isLoading ? (
-        <View style={styles.center}>
-          <BrandSpinner size={32} />
+      {isLoading ? (
+        <ActivityIndicator color={COLORS.primary} size="large" style={{ marginTop: 40 }} />
+      ) : listings.length === 0 ? (
+        <View style={styles.empty}>
+          <Ionicons name="home-outline" size={64} color={COLORS.border} />
+          <Text style={styles.emptyText}>
+            {isAr ? 'لا توجد إعلانات' : 'No listings yet'}
+          </Text>
+          <TouchableOpacity
+            style={styles.addBtn}
+            onPress={() => navigation.navigate('AddListing')}
+          >
+            <Ionicons name="add-circle-outline" size={20} color="#FFF" />
+            <Text style={styles.addBtnText}>
+              {isAr ? 'إضافة إعلان' : 'Add Listing'}
+            </Text>
+          </TouchableOpacity>
         </View>
-      ) : filtered.length === 0 ? (
-        <EmptyState
-          icon="home-outline"
-          title={t('dashboard.noListings')}
-          body={t('dashboard.createFirst')}
-          ctaLabel={t('dashboard.newListing')}
-          onCta={() => navigation.navigate('AddListing')}
-        />
       ) : (
         <FlatList
-          data={filtered}
-          keyExtractor={(it) => it.id}
+          data={listings}
+          keyExtractor={(item: any) => item.id}
           contentContainerStyle={styles.list}
-          renderItem={({ item, index }) => (
-            <Animated.View>
-              <View style={styles.cardWrap}>
-                <ListingCard
-                  listing={item}
-                  variant="feed"
-                  onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
-                />
-                <Pressable
-                  style={[styles.menuBtn, { backgroundColor: colors.surface }, SHADOWS.sm]}
-                  onPress={() => setActionFor(item)}
-                  hitSlop={10}
-                >
-                  <Ionicons name="ellipsis-horizontal" size={18} color={colors.text} />
-                </Pressable>
+          renderItem={({ item }: any) => (
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
+            >
+              {item.coverImageUrl ? (
+                <Image source={{ uri: item.coverImageUrl }} style={styles.thumb} contentFit="cover" />
+              ) : (
+                <View style={[styles.thumb, styles.thumbEmpty]}>
+                  <Ionicons name="home" size={24} color={COLORS.primaryLight} />
+                </View>
+              )}
+              <View style={styles.info}>
+                <Text style={styles.title} numberOfLines={1}>
+                  {isAr ? item.titleAr : item.titleEn}
+                </Text>
+                <Text style={styles.price}>
+                  {Number(item.price).toLocaleString()} {isAr ? 'ر.س' : 'SAR'}
+                </Text>
+                <Text style={styles.statusLabel}>
+                  {item.status === 'active'
+                    ? (isAr ? '● نشط' : '● Active')
+                    : (isAr ? `● ${item.status}` : `● ${item.status}`)}
+                </Text>
               </View>
-            </Animated.View>
+              <TouchableOpacity
+                style={styles.editBtn}
+                onPress={() => navigation.navigate('EditListing', { id: item.id })}
+                hitSlop={8}
+              >
+                <Ionicons name="create-outline" size={20} color={COLORS.primary} />
+              </TouchableOpacity>
+            </TouchableOpacity>
           )}
         />
       )}
-
-      {/* FAB */}
-      <Pressable
-        onPress={() => navigation.navigate('AddListing')}
-        style={[styles.fab, SHADOWS.lg]}
-        accessibilityRole="button"
-        accessibilityLabel={t('dashboard.newListing')}
-      >
-        <Ionicons name="add" size={28} color={COLORS.white} />
-      </Pressable>
-
-      {/* Action sheet */}
-      <BottomSheet
-        open={!!actionFor}
-        onClose={() => setActionFor(null)}
-        heightFraction={0.45}
-      >
-        <Text style={[styles.sheetTitle, { color: colors.text }]} numberOfLines={1}>
-          {actionFor?.title}
-        </Text>
-        <ActionRow icon="create-outline" label={t('common.edit')} onPress={() => onAction('edit')} />
-        <ActionRow
-          icon="rocket-outline"
-          label={t('myListings.boostFeature')}
-          onPress={() => onAction('boost')}
-        />
-        <ActionRow
-          icon="copy-outline"
-          label={t('myListings.duplicate')}
-          onPress={() => onAction('duplicate')}
-        />
-        <ActionRow
-          icon="trash-outline"
-          label={t('common.delete')}
-          danger
-          onPress={() => onAction('delete')}
-        />
-      </BottomSheet>
-    </View>
-  );
-}
-
-function ActionRow({
-  icon,
-  label,
-  onPress,
-  danger,
-}: {
-  icon: keyof typeof Ionicons.glyphMap;
-  label: string;
-  onPress: () => void;
-  danger?: boolean;
-}) {
-  const colors = useColors();
-  return (
-    <Pressable style={styles.actionRow} onPress={onPress}>
-      <Ionicons
-        name={icon}
-        size={20}
-        color={danger ? COLORS.error : colors.text}
-      />
-      <Text
-        style={[
-          styles.actionLabel,
-          { color: danger ? COLORS.error : colors.text },
-        ]}
-      >
-        {label}
-      </Text>
-    </Pressable>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  tabsRow: {
-    paddingHorizontal: SIZES.lg,
-    paddingTop: SIZES.md,
-    paddingBottom: SIZES.sm,
-    gap: SIZES.sm,
-  },
-  tabChip: {
-    paddingHorizontal: SIZES.md,
-    paddingVertical: SIZES.sm,
-    borderRadius: SIZES.borderRadiusFull,
-    borderWidth: 1,
-  },
-  tabText: { fontFamily: FONTS.medium, fontSize: SIZES.small, textTransform: 'capitalize' },
-  list: {
-    paddingHorizontal: SIZES.lg,
-    paddingBottom: SIZES.huge,
-  },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  cardWrap: { position: 'relative' },
-  menuBtn: {
-    position: 'absolute',
-    top: SIZES.sm,
-    end: SIZES.sm,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  fab: {
-    position: 'absolute',
-    bottom: SIZES.xl,
-    end: SIZES.xl,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: COLORS.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  sheetTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.subtitle,
-    marginBottom: SIZES.md,
-  },
-  actionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.md,
-    paddingVertical: SIZES.md,
-  },
-  actionLabel: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.bodyLg,
-  },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: COLORS.primary, padding: SIZES.lg },
+  backBtn: { padding: 4 },
+  headerTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: '#FFF' },
+  statusBar: { flexDirection: 'row', gap: SIZES.sm, padding: SIZES.md, backgroundColor: COLORS.surface, borderBottomWidth: 1, borderBottomColor: COLORS.border },
+  statusChip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1, borderColor: COLORS.border },
+  statusChipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
+  statusText: { fontSize: SIZES.small, color: COLORS.textSecondary, fontWeight: '600' },
+  statusTextActive: { color: '#FFF' },
+  list: { padding: SIZES.lg, gap: SIZES.sm },
+  card: { flexDirection: 'row', backgroundColor: COLORS.surface, borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', ...SHADOWS.sm },
+  thumb: { width: 100, height: 100 },
+  thumbEmpty: { backgroundColor: COLORS.surfaceVariant, justifyContent: 'center', alignItems: 'center' },
+  info: { flex: 1, padding: SIZES.md, justifyContent: 'center' },
+  title: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text },
+  price: { fontSize: SIZES.subtitle, fontWeight: '900', color: COLORS.primary, marginTop: 4 },
+  statusLabel: { fontSize: SIZES.small, color: COLORS.success, marginTop: 4, fontWeight: '600' },
+  editBtn: { width: 44, justifyContent: 'center', alignItems: 'center', borderLeftWidth: 1, borderLeftColor: COLORS.divider },
+  empty: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: SIZES.xxxl },
+  emptyText: { fontSize: SIZES.subtitle, fontWeight: '700', color: COLORS.text, marginTop: SIZES.lg, textAlign: 'center' },
+  addBtn: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, paddingHorizontal: SIZES.xl, paddingVertical: SIZES.md, marginTop: SIZES.lg },
+  addBtnText: { color: '#FFF', fontWeight: '700', fontSize: SIZES.bodyLg },
 });

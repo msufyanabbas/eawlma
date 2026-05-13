@@ -1,554 +1,156 @@
-// Custom 1:1 chat — no react-native-gifted-chat, no keyboard-controller,
-// no community packages beyond what the rest of the app already uses
-// (FlatList + TextInput + Reanimated + expo-image). Inverted FlatList means
-// the message array stays oldest→newest server-side, we just feed it the
-// reverse so the newest bubble pins to the bottom and the keyboard pushes
-// the input up cleanly. Brand-purple bubbles for "me", neutral for the
-// other party, plus a per-message "Translated" caption that flips between
-// the live translation and the original text.
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import type { NavigationProp, RouteProp } from '@react-navigation/native';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Image } from 'expo-image';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState, useRef, useEffect } from 'react';
 import {
-  Animated,
-  Easing,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+  View, Text, StyleSheet, FlatList, TextInput,
+  TouchableOpacity, KeyboardAvoidingView, Platform,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { useAuthStore } from '../store/auth.store';
+import { api } from '../api';
+import { COLORS, SIZES } from '../theme';
 
-import { BrandSpinner } from '@/components/LoadingScreen';
-import { apiClient, extractErrorMessage } from '@/api';
-import { useAuthStore } from '@/store/auth.store';
-import { FONTS, SIZES, useColors } from '@/theme';
-import type { RootStackParamList } from '@/navigation/types';
-
-interface ThreadMessage {
-  id: string;
-  text: string;
-  original?: string | null;
-  createdAt: string;
-  senderId: string;
-  senderName?: string | null;
-  senderAvatarUrl?: string | null;
-}
-
-interface ThreadResponse {
-  thread: {
-    id: string;
-    otherUser: {
-      id: string;
-      name: string;
-      avatarUrl?: string | null;
-      online?: boolean;
-      lastSeenAt?: string | null;
-    };
-  };
-  messages: ThreadMessage[];
-}
-
-export function ChatScreen() {
-  const { t, i18n } = useTranslation();
-  const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const route = useRoute<RouteProp<RootStackParamList, 'Chat'>>();
-  const queryClient = useQueryClient();
-  const myId = useAuthStore((s) => s.user?.id) ?? 'anon';
-  const { threadId } = route.params;
-
-  const listRef = useRef<FlatList<ThreadMessage>>(null);
+export default function ChatScreen({ navigation, route }: any) {
+  const { conversationId, recipientName } = route.params;
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
+  const { user } = useAuthStore();
   const [draft, setDraft] = useState('');
-  const [showOriginalIds, setShowOriginalIds] = useState<Set<string>>(new Set());
+  const [sending, setSending] = useState(false);
+  const listRef = useRef<FlatList>(null);
+  const qc = useQueryClient();
 
-  const threadQuery = useQuery({
-    queryKey: ['messages', 'thread', threadId],
-    queryFn: async (): Promise<ThreadResponse> => {
-      const { data } = await apiClient.get<ThreadResponse>(`/messages/threads/${threadId}`);
-      return data;
-    },
+  const { data } = useQuery({
+    queryKey: ['messages', conversationId],
+    queryFn: () => api.get(`/conversations/${conversationId}/messages`).then(r => r.data),
+    refetchInterval: 3000,
+    enabled: conversationId !== 'new',
   });
 
-  const sendMutation = useMutation({
-    mutationFn: async (text: string) => {
-      const { data } = await apiClient.post<ThreadMessage>(`/messages/threads/${threadId}`, {
-        text,
-      });
-      return data;
-    },
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['messages', 'thread', threadId] });
-      void queryClient.invalidateQueries({ queryKey: ['messages', 'threads'] });
-    },
-  });
+  const messages = data?.data?.data || data?.data || [];
 
-  // Inverted list — newest first. We sort defensively so the server can return
-  // either order and the UI stays right.
-  const messages = useMemo<ThreadMessage[]>(() => {
-    const list = threadQuery.data?.messages ?? [];
-    return [...list].sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    );
-  }, [threadQuery.data]);
-
-  const toggleOriginal = useCallback((id: string) => {
-    setShowOriginalIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }, []);
-
-  const handleSend = useCallback(() => {
-    const trimmed = draft.trim();
-    if (!trimmed || sendMutation.isPending) return;
-    sendMutation.mutate(trimmed);
-    setDraft('');
-  }, [draft, sendMutation]);
-
-  const otherUser = threadQuery.data?.thread?.otherUser;
-  const otherUserId = otherUser?.id ?? route.params.otherUserId;
-  const otherName = otherUser?.name ?? '';
-  const presence = otherUser?.online
-    ? t('messages.online')
-    : otherUser?.lastSeenAt
-      ? `${t('messages.lastSeen')} ${new Date(otherUser.lastSeenAt).toLocaleDateString(i18n.language)}`
-      : '';
-
-  const renderItem = useCallback(
-    ({ item, index }: { item: ThreadMessage; index: number }) => {
-      const isMine = item.senderId === myId;
-      const isTranslated =
-        typeof item.id === 'string' && item.id.endsWith('-tx') && Boolean(item.original);
-      const showOriginal = showOriginalIds.has(item.id);
-      const displayText = isTranslated && showOriginal && item.original ? item.original : item.text;
-      // In an inverted FlatList, index 0 is the *bottom* visually; the
-      // "previous" message in time appears at index+1.
-      const previous = messages[index + 1];
-      const sameAuthorAsPrev = previous && previous.senderId === item.senderId;
-      const showAvatar = !isMine && !sameAuthorAsPrev;
-
-      return (
-        <BubbleRow isMine={isMine}>
-          {!isMine ? (
-            <View style={styles.avatarSlot}>
-              {showAvatar ? (
-                item.senderAvatarUrl ? (
-                  <Image
-                    source={{ uri: item.senderAvatarUrl }}
-                    style={styles.avatar}
-                    contentFit="cover"
-                  />
-                ) : (
-                  <View
-                    style={[styles.avatar, styles.avatarFallback, { backgroundColor: colors.primary }]}
-                  >
-                    <Text style={styles.avatarText}>
-                      {(item.senderName?.trim()?.[0] ?? otherName?.[0] ?? '?').toUpperCase()}
-                    </Text>
-                  </View>
-                )
-              ) : null}
-            </View>
-          ) : null}
-
-          <View style={styles.bubbleColumn}>
-            <View
-              style={[
-                styles.bubble,
-                isMine
-                  ? [styles.bubbleMine, { backgroundColor: colors.primary }]
-                  : [styles.bubbleOther, { backgroundColor: colors.surfaceMuted }],
-              ]}
-            >
-              <Text
-                style={[
-                  styles.bubbleText,
-                  { color: isMine ? '#FFFFFF' : colors.text },
-                ]}
-              >
-                {displayText}
-              </Text>
-              <Text
-                style={[
-                  styles.bubbleTime,
-                  { color: isMine ? 'rgba(255,255,255,0.72)' : colors.textMuted },
-                ]}
-              >
-                {new Date(item.createdAt).toLocaleTimeString(i18n.language, {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
-              </Text>
-            </View>
-
-            {isTranslated ? (
-              <TouchableOpacity
-                onPress={() => toggleOriginal(item.id)}
-                hitSlop={6}
-                style={[
-                  styles.translatedCaption,
-                  { alignSelf: isMine ? 'flex-end' : 'flex-start' },
-                ]}
-              >
-                <Ionicons name="language-outline" size={11} color={colors.textMuted} />
-                <Text style={[styles.translatedText, { color: colors.textMuted }]}>
-                  {showOriginal ? t('messages.showTranslation') : t('messages.translated')}
-                </Text>
-                <Text style={[styles.translatedDot, { color: colors.textMuted }]}>·</Text>
-                <Text style={[styles.translatedAction, { color: colors.primary }]}>
-                  {showOriginal ? t('messages.showTranslation') : t('messages.showOriginal')}
-                </Text>
-              </TouchableOpacity>
-            ) : null}
-          </View>
-        </BubbleRow>
-      );
-    },
-    [colors, i18n.language, messages, myId, otherName, showOriginalIds, t, toggleOriginal],
-  );
-
-  // Send button: scale-down feedback on press; built-in Animated, native driver.
-  const sendScale = useRef(new Animated.Value(1)).current;
-  const canSend = draft.trim().length > 0 && !sendMutation.isPending;
-
-  // Auto-scroll to bottom (top of inverted list) when sending so the user's
-  // freshly-sent message is visible. Server invalidation will re-render
-  // and the inverted list keeps the new entry at index 0 automatically.
   useEffect(() => {
-    if (sendMutation.isSuccess) {
-      listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    if (messages.length > 0) {
+      setTimeout(() => listRef.current?.scrollToEnd({ animated: true }), 100);
     }
-  }, [sendMutation.isSuccess]);
+  }, [messages.length]);
+
+  const handleSend = async () => {
+    const text = draft.trim();
+    if (!text || sending) return;
+    setSending(true);
+    setDraft('');
+    try {
+      await api.post(`/conversations/${conversationId}/messages`, { content: text });
+      qc.invalidateQueries({ queryKey: ['messages', conversationId] });
+    } catch {
+      setDraft(text);
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
-    <View style={[styles.flex, { backgroundColor: colors.background }]}>
-      <View
-        style={[
-          styles.header,
-          {
-            paddingTop: insets.top + SIZES.sm,
-            backgroundColor: colors.surface,
-            borderBottomColor: colors.border,
-          },
-        ]}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          hitSlop={10}
-          style={styles.headerBack}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-        >
-          <Ionicons name="chevron-back" size={22} color={colors.text} />
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
+          <Ionicons
+            name={isAr ? 'arrow-forward' : 'arrow-back'}
+            size={22}
+            color="#FFF"
+          />
         </TouchableOpacity>
-
-        <Pressable
-          style={styles.headerUser}
-          onPress={() => {
-            if (otherUserId) navigation.navigate('AgentProfile', { id: otherUserId });
-          }}
-        >
-          {otherUser?.avatarUrl ? (
-            <Image
-              source={{ uri: otherUser.avatarUrl }}
-              style={styles.headerAvatar}
-              contentFit="cover"
-              transition={120}
-            />
-          ) : (
-            <View
-              style={[styles.headerAvatar, styles.avatarFallback, { backgroundColor: colors.primary }]}
-            >
-              <Text style={styles.avatarText}>
-                {(otherName?.trim()?.[0] ?? '?').toUpperCase()}
-              </Text>
-            </View>
-          )}
-          <View style={styles.headerUserText}>
-            <Text numberOfLines={1} style={[styles.headerName, { color: colors.text }]}>
-              {otherName || ' '}
-            </Text>
-            <View style={styles.headerPresenceRow}>
-              {otherUser?.online ? (
-                <View style={[styles.onlineDot, { backgroundColor: colors.success }]} />
-              ) : null}
-              {presence ? (
-                <Text style={[styles.headerPresence, { color: colors.textSecondary }]}>
-                  {presence}
-                </Text>
-              ) : null}
-            </View>
-          </View>
-        </Pressable>
-      </View>
-
-      {threadQuery.isLoading ? (
-        <View style={styles.centerWrap}>
-          <BrandSpinner />
-        </View>
-      ) : threadQuery.isError ? (
-        <View style={styles.centerWrap}>
-          <Text style={[styles.error, { color: colors.error }]}>
-            {extractErrorMessage(threadQuery.error)}
+        <View style={{ flex: 1 }}>
+          <Text style={styles.headerTitle} numberOfLines={1}>{recipientName}</Text>
+          <Text style={styles.headerStatus}>
+            {isAr ? 'متصل الآن' : 'Online'}
           </Text>
         </View>
-      ) : (
-        <KeyboardAvoidingView
-          style={styles.flex}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? insets.top + 56 : 0}
-        >
-          <FlatList<ThreadMessage>
-            ref={listRef}
-            data={messages}
-            keyExtractor={(m) => m.id}
-            renderItem={renderItem}
-            inverted
-            contentContainerStyle={styles.listContent}
-            keyboardDismissMode="interactive"
-            removeClippedSubviews
-            ListEmptyComponent={
-              <View style={styles.emptyWrap}>
-                <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
-                  {t('messages.startConversation')}
-                </Text>
+      </View>
+
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
+      >
+        <FlatList
+          ref={listRef}
+          data={messages}
+          keyExtractor={(item: any) => item.id || String(Math.random())}
+          contentContainerStyle={styles.list}
+          renderItem={({ item }: any) => {
+            const isMe = item.senderId === user?.id;
+            return (
+              <View style={[styles.bubbleWrap, isMe ? styles.bubbleWrapMe : styles.bubbleWrapThem]}>
+                <View style={[styles.bubble, isMe ? styles.bubbleMe : styles.bubbleThem]}>
+                  <Text style={[styles.bubbleText, isMe && { color: '#FFF' }]}>
+                    {item.content}
+                  </Text>
+                  {item.isTranslated && (
+                    <View style={styles.translatedBadge}>
+                      <Ionicons name="language" size={9} color={isMe ? 'rgba(255,255,255,0.7)' : COLORS.primary} />
+                      <Text style={[styles.translatedText, { color: isMe ? 'rgba(255,255,255,0.7)' : COLORS.primary }]}>
+                        {isAr ? 'مترجم' : 'Translated'}
+                      </Text>
+                    </View>
+                  )}
+                </View>
               </View>
-            }
+            );
+          }}
+          ListEmptyComponent={
+            <View style={styles.empty}>
+              <Ionicons name="chatbubble-outline" size={48} color={COLORS.border} />
+              <Text style={styles.emptyText}>
+                {isAr ? 'لا توجد رسائل بعد' : 'No messages yet'}
+              </Text>
+            </View>
+          }
+        />
+
+        <View style={styles.composer}>
+          <TextInput
+            style={styles.composerInput}
+            value={draft}
+            onChangeText={setDraft}
+            placeholder={isAr ? 'اكتب رسالة...' : 'Type a message...'}
+            placeholderTextColor={COLORS.textSecondary}
+            multiline
+            textAlign={isAr ? 'right' : 'left'}
           />
-
-          <View
-            style={[
-              styles.composer,
-              {
-                backgroundColor: colors.surface,
-                borderTopColor: colors.border,
-                paddingBottom: insets.bottom > 0 ? insets.bottom : SIZES.md,
-              },
-            ]}
+          <TouchableOpacity
+            style={[styles.sendBtn, !draft.trim() && { opacity: 0.5 }]}
+            onPress={handleSend}
+            disabled={!draft.trim() || sending}
           >
-            <TextInput
-              value={draft}
-              onChangeText={setDraft}
-              placeholder={t('messages.typeMessage')}
-              placeholderTextColor={colors.textMuted}
-              style={[
-                styles.input,
-                {
-                  color: colors.text,
-                  backgroundColor: colors.surfaceMuted,
-                  fontFamily: FONTS.regular,
-                },
-              ]}
-              multiline
-              maxLength={2000}
-              returnKeyType="send"
-              onSubmitEditing={handleSend}
-              blurOnSubmit={false}
-            />
-            <Animated.View style={{ transform: [{ scale: sendScale }] }}>
-              <Pressable
-                disabled={!canSend}
-                onPress={handleSend}
-                onPressIn={() =>
-                  Animated.timing(sendScale, {
-                    toValue: 0.9,
-                    duration: 80,
-                    easing: Easing.out(Easing.quad),
-                    useNativeDriver: true,
-                  }).start()
-                }
-                onPressOut={() =>
-                  Animated.spring(sendScale, {
-                    toValue: 1,
-                    damping: 12,
-                    stiffness: 240,
-                    useNativeDriver: true,
-                  }).start()
-                }
-                hitSlop={4}
-                style={[
-                  styles.sendButton,
-                  { backgroundColor: canSend ? colors.primary : colors.border },
-                ]}
-                accessibilityRole="button"
-                accessibilityLabel={t('messages.send')}
-              >
-                {sendMutation.isPending ? (
-                  <BrandSpinner size={18} />
-                ) : (
-                  <Ionicons
-                    name="send"
-                    size={18}
-                    color={canSend ? '#FFFFFF' : colors.textMuted}
-                  />
-                )}
-              </Pressable>
-            </Animated.View>
-          </View>
-        </KeyboardAvoidingView>
-      )}
-    </View>
-  );
-}
-
-// Each new message bubble fades + slides up by 6px on mount. Lives outside
-// the parent function so the Animated.Value isn't recreated on every render
-// of ChatScreen, only on the row it belongs to.
-function BubbleRow({ isMine, children }: { isMine: boolean; children: React.ReactNode }) {
-  const opacity = useRef(new Animated.Value(0)).current;
-  const offset = useRef(new Animated.Value(6)).current;
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 180,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }),
-      Animated.timing(offset, {
-        toValue: 0,
-        duration: 180,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }, [opacity, offset]);
-  return (
-    <Animated.View
-      style={[
-        styles.row,
-        { justifyContent: isMine ? 'flex-end' : 'flex-start', opacity, transform: [{ translateY: offset }] },
-      ]}
-    >
-      {children}
-    </Animated.View>
+            <Ionicons name="send" size={20} color="#FFF" />
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1 },
-  centerWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: SIZES.lg },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.sm,
-    paddingHorizontal: SIZES.md,
-    paddingBottom: SIZES.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  headerBack: {
-    width: 36,
-    height: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: SIZES.borderRadius,
-  },
-  headerUser: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, flex: 1 },
-  headerAvatar: { width: 36, height: 36, borderRadius: 18 },
-  headerUserText: { flex: 1 },
-  headerName: { fontFamily: FONTS.bold, fontSize: SIZES.bodyLg },
-  headerPresenceRow: { flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 1 },
-  onlineDot: { width: 8, height: 8, borderRadius: 4 },
-  headerPresence: { fontFamily: FONTS.regular, fontSize: SIZES.caption },
-
-  listContent: {
-    paddingHorizontal: SIZES.md,
-    paddingVertical: SIZES.md,
-    gap: 2,
-  },
-
-  row: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    marginBottom: 4,
-    gap: SIZES.sm,
-  },
-  avatarSlot: {
-    width: 28,
-    alignItems: 'center',
-  },
-  avatar: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-  },
-  avatarFallback: { alignItems: 'center', justifyContent: 'center' },
-  avatarText: { color: '#FFFFFF', fontFamily: FONTS.bold, fontSize: SIZES.small },
-
-  bubbleColumn: { maxWidth: '78%' },
-  bubble: {
-    paddingHorizontal: SIZES.md,
-    paddingVertical: SIZES.sm,
-    borderRadius: SIZES.borderRadiusLg,
-  },
-  bubbleMine: { borderBottomRightRadius: 4 },
-  bubbleOther: { borderBottomLeftRadius: 4 },
-  bubbleText: { fontFamily: FONTS.regular, fontSize: SIZES.body, lineHeight: 20 },
-  bubbleTime: {
-    fontFamily: FONTS.regular,
-    fontSize: 10,
-    marginTop: 4,
-    alignSelf: 'flex-end',
-  },
-
-  translatedCaption: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 3,
-    marginTop: 4,
-    paddingHorizontal: 4,
-  },
-  translatedText: { fontFamily: FONTS.medium, fontSize: SIZES.caption },
-  translatedDot: { fontFamily: FONTS.medium, fontSize: SIZES.caption },
-  translatedAction: { fontFamily: FONTS.bold, fontSize: SIZES.caption },
-
-  composer: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    gap: SIZES.sm,
-    paddingHorizontal: SIZES.md,
-    paddingTop: SIZES.sm,
-    borderTopWidth: StyleSheet.hairlineWidth,
-  },
-  input: {
-    flex: 1,
-    minHeight: 40,
-    maxHeight: 120,
-    paddingHorizontal: SIZES.md,
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderRadius: SIZES.borderRadiusXl,
-    fontSize: SIZES.body,
-  },
-  sendButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  emptyWrap: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    transform: [{ scaleY: -1 }],
-    padding: SIZES.xl,
-  },
-  emptyText: { fontFamily: FONTS.medium, fontSize: SIZES.body, textAlign: 'center' },
-
-  error: { fontFamily: FONTS.medium, fontSize: SIZES.body, textAlign: 'center' },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  header: { flexDirection: 'row', alignItems: 'center', gap: SIZES.md, backgroundColor: COLORS.primary, padding: SIZES.lg },
+  backBtn: { padding: 4 },
+  headerTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: '#FFF' },
+  headerStatus: { fontSize: SIZES.small, color: 'rgba(255,255,255,0.75)' },
+  list: { padding: SIZES.lg, gap: SIZES.sm },
+  bubbleWrap: { flexDirection: 'row' },
+  bubbleWrapMe: { justifyContent: 'flex-end' },
+  bubbleWrapThem: { justifyContent: 'flex-start' },
+  bubble: { maxWidth: '78%', padding: SIZES.md, borderRadius: SIZES.borderRadiusLg },
+  bubbleMe: { backgroundColor: COLORS.primary, borderBottomRightRadius: 4 },
+  bubbleThem: { backgroundColor: COLORS.surface, borderBottomLeftRadius: 4 },
+  bubbleText: { fontSize: SIZES.body, color: COLORS.text, lineHeight: 20 },
+  translatedBadge: { flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 4 },
+  translatedText: { fontSize: 10, fontWeight: '600' },
+  composer: { flexDirection: 'row', alignItems: 'flex-end', gap: SIZES.sm, padding: SIZES.md, backgroundColor: COLORS.surface, borderTopWidth: 1, borderTopColor: COLORS.border },
+  composerInput: { flex: 1, backgroundColor: COLORS.background, borderRadius: SIZES.borderRadiusLg, paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, fontSize: SIZES.body, color: COLORS.text, maxHeight: 100, borderWidth: 1, borderColor: COLORS.border },
+  sendBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center' },
+  empty: { alignItems: 'center', padding: SIZES.xxxl },
+  emptyText: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.md },
 });

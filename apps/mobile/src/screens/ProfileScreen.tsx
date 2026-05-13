@@ -1,501 +1,305 @@
-// ProfileScreen — the Profile tab. Acts as the settings hub. Authenticated
-// users see their identity card + menu rows (dashboard, listings, wallet, etc.)
-// plus theme & language controls. Unauthenticated users see a sign-in CTA but
-// can still tweak theme/language so their preferences survive sign-in.
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, CommonActions } from '@react-navigation/native';
-import type { NavigationProp } from '@react-navigation/native';
-import { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
+  View, Text, StyleSheet, ScrollView,
+  TouchableOpacity, Switch, Modal, FlatList,
 } from 'react-native';
-import { Image } from 'expo-image';
-import { Button } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Animated } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+import { useAuthStore } from '../store/auth.store';
+import { useUIStore } from '../store/ui.store';
+import { authApi } from '../api';
+import { changeLanguage } from '../i18n';
+import { COLORS, SIZES, SHADOWS } from '../theme';
 
-import { BottomSheet } from '@/components/BottomSheet';
-import { useAuthStore } from '@/store/auth.store';
-import { useUiStore } from '@/store/ui.store';
-import { changeLanguage } from '@/i18n';
-import { LOCALE_CODES, type LocaleCode } from '@eawlma/i18n-locales';
-import { FONTS, SHADOWS, SIZES, useColors, useIsDark } from '@/theme';
-import type { RootStackParamList } from '@/navigation/types';
+const LANGUAGES = [
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'ur', name: 'اردو', flag: '🇵🇰' },
+];
 
-// Native names for the most common locales we ship. Anything outside this map
-// falls back to the language code in uppercase.
-const LANGUAGE_LABELS: Partial<Record<LocaleCode, string>> = {
-  ar: 'العربية',
-  en: 'English',
-  ur: 'اردو',
-  fr: 'Français',
-  es: 'Español',
-  de: 'Deutsch',
-  tr: 'Türkçe',
-  fa: 'فارسی',
-};
+export default function ProfileScreen({ navigation }: any) {
+  const { i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
+  const { user, isAuthenticated, logout } = useAuthStore();
+  const { isDarkMode, toggleDarkMode } = useUIStore();
+  const [showLangPicker, setShowLangPicker] = useState(false);
 
-const STAFF_ROLES = new Set(['agent', 'admin', 'moderator', 'agency_admin']);
+  const { data: meData } = useQuery({
+    queryKey: ['me'],
+    queryFn: () => authApi.getMe(),
+    enabled: isAuthenticated,
+  });
 
-export function ProfileScreen() {
-  const { t } = useTranslation();
-  const colors = useColors();
-  const isDark = useIsDark();
-  const insets = useSafeAreaInsets();
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const user = useAuthStore((s) => s.user);
-  const token = useAuthStore((s) => s.token);
-  const themePref = useUiStore((s) => s.themePref);
-  const language = useUiStore((s) => s.language);
-  const [languageSheetOpen, setLanguageSheetOpen] = useState(false);
+  const currentUser = meData || user;
 
-  const isSignedIn = !!token;
-  const isStaff = !!user && STAFF_ROLES.has(user.role);
-
-  const currentLanguageLabel = useMemo(() => {
-    const code = language as LocaleCode;
-    return LANGUAGE_LABELS[code] ?? language.toUpperCase();
-  }, [language]);
-
-  const darkModeOn =
-    themePref === 'dark' || (themePref === 'system' && isDark);
-
-  const toggleDarkMode = (next: boolean) => {
-    useUiStore.getState().setThemePref(next ? 'dark' : 'light');
+  const handleLogout = async () => {
+    await logout();
   };
 
-  const handleSignOut = () => {
-    void useAuthStore.getState().clear();
+  const handleLanguageChange = async (code: string) => {
+    await changeLanguage(code);
+    setShowLangPicker(false);
   };
 
-  const handlePickLanguage = (code: LocaleCode) => {
-    useUiStore.getState().setLanguage(code);
-    void changeLanguage(code);
-    setLanguageSheetOpen(false);
-  };
+  if (!isAuthenticated) {
+    return (
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>{isAr ? 'حسابي' : 'Profile'}</Text>
+        </View>
+        <ScrollView>
+          <View style={styles.guestBox}>
+            <View style={styles.guestIcon}>
+              <Ionicons name="person-circle-outline" size={80} color={COLORS.border} />
+            </View>
+            <Text style={styles.guestTitle}>
+              {isAr ? 'مرحباً بك في عالمة' : 'Welcome to Eawlma'}
+            </Text>
+            <Text style={styles.guestSubtitle}>
+              {isAr ? 'سجل دخولك للوصول إلى حسابك' : 'Sign in to access your account'}
+            </Text>
+            <TouchableOpacity
+              style={styles.loginBtn}
+              onPress={() => navigation.navigate('Login')}
+            >
+              <Text style={styles.loginBtnText}>
+                {isAr ? 'تسجيل الدخول' : 'Sign In'}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.registerBtn}
+              onPress={() => navigation.navigate('Register')}
+            >
+              <Text style={styles.registerBtnText}>
+                {isAr ? 'إنشاء حساب جديد' : 'Create Account'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.settingsSection}>
+            <Text style={styles.sectionTitle}>
+              {isAr ? 'الإعدادات' : 'Settings'}
+            </Text>
+            <SettingRow
+              icon="language-outline"
+              label={isAr ? 'اللغة' : 'Language'}
+              value={LANGUAGES.find(l => l.code === i18n.language)?.name}
+              onPress={() => setShowLangPicker(true)}
+            />
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <View style={styles.settingIcon}>
+                  <Ionicons name="moon-outline" size={20} color={COLORS.primary} />
+                </View>
+                <Text style={styles.settingLabel}>
+                  {isAr ? 'الوضع الليلي' : 'Dark Mode'}
+                </Text>
+              </View>
+              <Switch
+                value={isDarkMode}
+                onValueChange={toggleDarkMode}
+                trackColor={{ false: COLORS.border, true: COLORS.primary }}
+                thumbColor="#FFF"
+              />
+            </View>
+          </View>
+        </ScrollView>
+        <LangPickerModal
+          visible={showLangPicker}
+          onClose={() => setShowLangPicker(false)}
+          onSelect={handleLanguageChange}
+          currentLang={i18n.language}
+          isAr={isAr}
+        />
+      </SafeAreaView>
+    );
+  }
+
+  const isAgent = currentUser?.role === 'agent' || currentUser?.role === 'agency_owner';
+  const isAdmin = currentUser?.role === 'admin';
 
   return (
-    <View style={[styles.flex, { backgroundColor: colors.background }]}>
-      <ScrollView
-        contentContainerStyle={[
-          styles.scrollContent,
-          { paddingTop: insets.top + SIZES.lg, paddingBottom: SIZES.huge },
-        ]}
-      >
-        <Text style={[styles.screenTitle, { color: colors.text }]}>{t('nav.profile')}</Text>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{isAr ? 'حسابي' : 'My Account'}</Text>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.profileCard}>
+          <View style={styles.profileAvatar}>
+            <Text style={styles.profileAvatarText}>
+              {currentUser?.firstName?.[0]}{currentUser?.lastName?.[0]}
+            </Text>
+          </View>
+          <View style={styles.profileInfo}>
+            <Text style={styles.profileName}>
+              {currentUser?.firstName} {currentUser?.lastName}
+            </Text>
+            <Text style={styles.profileEmail}>{currentUser?.email}</Text>
+            <View style={styles.roleBadge}>
+              <Text style={styles.roleBadgeText}>
+                {isAdmin ? (isAr ? 'مدير النظام' : 'Admin') :
+                 isAgent ? (isAr ? 'وكيل عقاري' : 'Agent') :
+                 (isAr ? 'عضو' : 'Member')}
+              </Text>
+            </View>
+          </View>
+        </View>
 
-        {isSignedIn && user ? (
-          <Animated.View
-            style={[styles.identityCard, { backgroundColor: colors.surface }, SHADOWS.sm]}
-          >
-            {user.avatarUrl ? (
-              <Image
-                source={{ uri: user.avatarUrl }}
-                style={styles.identityAvatar}
-                contentFit="cover"
-                transition={150}
-              />
-            ) : (
-              <View
-                style={[
-                  styles.identityAvatar,
-                  styles.identityAvatarFallback,
-                  { backgroundColor: colors.primary },
-                ]}
-              >
-                <Text style={styles.identityAvatarText}>
-                  {(user.fullName ?? user.email ?? '?').trim()[0]?.toUpperCase() ?? '?'}
-                </Text>
-              </View>
-            )}
-            <View style={styles.identityBody}>
-              <Text numberOfLines={1} style={[styles.identityName, { color: colors.text }]}>
-                {user.fullName ?? user.email}
-              </Text>
-              <Text numberOfLines={1} style={[styles.identityEmail, { color: colors.textSecondary }]}>
-                {user.email}
-              </Text>
-              <View style={[styles.roleChip, { backgroundColor: colors.surfaceMuted }]}>
-                <Text style={[styles.roleChipText, { color: colors.primary }]}>
-                  {user.role}
-                </Text>
-              </View>
-            </View>
-          </Animated.View>
-        ) : (
-          <Animated.View
-            style={[styles.signedOutCard, { backgroundColor: colors.surface }, SHADOWS.sm]}
-          >
-            <View style={[styles.signedOutIcon, { backgroundColor: '#EEEAFF' }]}>
-              <Ionicons name="person-circle-outline" size={40} color={colors.primary} />
-            </View>
-            <Text style={[styles.signedOutTitle, { color: colors.text }]}>
-              {t('wishlist.signInToSync')}
+        {isAgent && (
+          <View style={styles.menuSection}>
+            <Text style={styles.sectionTitle}>
+              {isAr ? 'لوحة الوكيل' : 'Agent Dashboard'}
             </Text>
-            <Text style={[styles.signedOutBody, { color: colors.textSecondary }]}>
-              {t('wishlist.signInDesc')}
-            </Text>
-            <Button
-              mode="contained"
-              onPress={() => navigation.navigate('Login')}
-              buttonColor={colors.primary}
-              style={styles.signedOutBtn}
-            >
-              {t('auth.signIn')}
-            </Button>
-            <Button
-              mode="text"
-              onPress={() => navigation.navigate('Register')}
-              textColor={colors.primary}
-            >
-              {t('auth.createAccount')}
-            </Button>
-          </Animated.View>
+            <SettingRow icon="home-outline" label={isAr ? 'إعلاناتي' : 'My Listings'} onPress={() => navigation.navigate('MyListings')} />
+            <SettingRow icon="add-circle-outline" label={isAr ? 'إضافة إعلان' : 'Add Listing'} onPress={() => navigation.navigate('AddListing')} />
+            <SettingRow icon="wallet-outline" label={isAr ? 'المحفظة' : 'Wallet'} onPress={() => navigation.navigate('Wallet')} />
+            <SettingRow icon="receipt-outline" label={isAr ? 'العمولات' : 'Commissions'} onPress={() => navigation.navigate('Commissions')} />
+          </View>
         )}
 
-        <View style={[styles.section, { backgroundColor: colors.surface }, SHADOWS.sm]}>
-          {isSignedIn && isStaff ? (
-            <MenuRow
-              icon="speedometer-outline"
-              label={t('nav.dashboard')}
-              onPress={() => navigation.navigate('Dashboard')}
-              colors={colors}
+        {isAdmin && (
+          <View style={styles.menuSection}>
+            <Text style={styles.sectionTitle}>
+              {isAr ? 'لوحة الإدارة' : 'Admin Panel'}
+            </Text>
+            <SettingRow icon="stats-chart-outline" label={isAr ? 'الإحصائيات' : 'Statistics'} onPress={() => {}} />
+            <SettingRow icon="people-outline" label={isAr ? 'المستخدمون' : 'Users'} onPress={() => {}} />
+          </View>
+        )}
+
+        <View style={styles.menuSection}>
+          <Text style={styles.sectionTitle}>
+            {isAr ? 'الحساب' : 'Account'}
+          </Text>
+          <SettingRow icon="notifications-outline" label={isAr ? 'الإشعارات' : 'Notifications'} onPress={() => navigation.navigate('Notifications')} />
+          <SettingRow icon="language-outline" label={isAr ? 'اللغة' : 'Language'} value={LANGUAGES.find(l => l.code === i18n.language)?.name} onPress={() => setShowLangPicker(true)} />
+          <View style={styles.settingRow}>
+            <View style={styles.settingLeft}>
+              <View style={styles.settingIcon}>
+                <Ionicons name="moon-outline" size={20} color={COLORS.primary} />
+              </View>
+              <Text style={styles.settingLabel}>
+                {isAr ? 'الوضع الليلي' : 'Dark Mode'}
+              </Text>
+            </View>
+            <Switch
+              value={isDarkMode}
+              onValueChange={toggleDarkMode}
+              trackColor={{ false: COLORS.border, true: COLORS.primary }}
+              thumbColor="#FFF"
             />
-          ) : null}
-
-          {isSignedIn ? (
-            <>
-              <MenuRow
-                icon="document-text-outline"
-                label={t('nav.myListings')}
-                onPress={() => navigation.navigate('MyListings')}
-                colors={colors}
-              />
-              <MenuRow
-                icon="heart-outline"
-                label={t('nav.favorites')}
-                onPress={() =>
-                  navigation.dispatch(
-                    CommonActions.navigate({ name: 'Saved' }),
-                  )
-                }
-                colors={colors}
-              />
-              <MenuRow
-                icon="wallet-outline"
-                label={t('wallet.title')}
-                onPress={() => navigation.navigate('Wallet')}
-                colors={colors}
-              />
-              <MenuRow
-                icon="notifications-outline"
-                label={t('nav.notifications')}
-                onPress={() => navigation.navigate('Notifications')}
-                colors={colors}
-              />
-            </>
-          ) : null}
-
-          <MenuRow
-            icon="language-outline"
-            label={t('nav.language')}
-            value={currentLanguageLabel}
-            onPress={() => setLanguageSheetOpen(true)}
-            colors={colors}
-          />
-
-          <ToggleRow
-            icon={darkModeOn ? 'moon' : 'sunny-outline'}
-            label={t('nav.darkMode')}
-            value={darkModeOn}
-            onValueChange={toggleDarkMode}
-            colors={colors}
-          />
-
-          {isSignedIn ? (
-            <MenuRow
-              icon="log-out-outline"
-              label={t('nav.logout')}
-              onPress={handleSignOut}
-              colors={colors}
-              destructive
-              hideChevron
-              hideDivider
-            />
-          ) : null}
+          </View>
         </View>
+
+        <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
+          <Ionicons name="log-out-outline" size={20} color={COLORS.error} />
+          <Text style={styles.logoutText}>
+            {isAr ? 'تسجيل الخروج' : 'Sign Out'}
+          </Text>
+        </TouchableOpacity>
+
+        <View style={{ height: SIZES.xxxl }} />
       </ScrollView>
 
-      <BottomSheet
-        open={languageSheetOpen}
-        onClose={() => setLanguageSheetOpen(false)}
-        heightFraction={0.7}
-      >
-        <Text style={[styles.sheetTitle, { color: colors.text }]}>{t('nav.language')}</Text>
-        <ScrollView style={styles.flex} contentContainerStyle={styles.sheetContent}>
-          {LOCALE_CODES.map((code) => {
-            const label = LANGUAGE_LABELS[code] ?? code.toUpperCase();
-            const active = code === language;
-            return (
-              <TouchableOpacity
-                key={code}
-                style={[
-                  styles.sheetRow,
-                  { borderBottomColor: colors.divider },
-                  active && { backgroundColor: colors.surfaceMuted },
-                ]}
-                onPress={() => handlePickLanguage(code)}
-              >
-                <View style={styles.sheetRowText}>
-                  <Text style={[styles.sheetRowLabel, { color: colors.text }]}>{label}</Text>
-                  <Text style={[styles.sheetRowCode, { color: colors.textMuted }]}>{code}</Text>
-                </View>
-                {active ? (
-                  <Ionicons name="checkmark" size={20} color={colors.primary} />
-                ) : null}
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </BottomSheet>
-    </View>
+      <LangPickerModal
+        visible={showLangPicker}
+        onClose={() => setShowLangPicker(false)}
+        onSelect={handleLanguageChange}
+        currentLang={i18n.language}
+        isAr={isAr}
+      />
+    </SafeAreaView>
   );
 }
 
-interface MenuRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
-  label: string;
-  value?: string;
-  onPress?: () => void;
-  destructive?: boolean;
-  hideChevron?: boolean;
-  hideDivider?: boolean;
-  colors: ReturnType<typeof useColors>;
+function SettingRow({ icon, label, value, onPress }: any) {
+  return (
+    <TouchableOpacity style={styles.settingRow} onPress={onPress}>
+      <View style={styles.settingLeft}>
+        <View style={styles.settingIcon}>
+          <Ionicons name={icon} size={20} color={COLORS.primary} />
+        </View>
+        <Text style={styles.settingLabel}>{label}</Text>
+      </View>
+      <View style={styles.settingRight}>
+        {value && <Text style={styles.settingValue}>{value}</Text>}
+        <Ionicons name="chevron-forward" size={16} color={COLORS.textSecondary} />
+      </View>
+    </TouchableOpacity>
+  );
 }
 
-function MenuRow({
-  icon,
-  label,
-  value,
-  onPress,
-  destructive,
-  hideChevron,
-  hideDivider,
-  colors,
-}: MenuRowProps) {
+function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr }: any) {
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.menuRow,
-        !hideDivider && { borderBottomColor: colors.divider, borderBottomWidth: StyleSheet.hairlineWidth },
-        pressed && { backgroundColor: colors.surfaceMuted },
-      ]}
-    >
-      <View style={[styles.menuIconWrap, { backgroundColor: destructive ? '#FEE2E2' : '#EEEAFF' }]}>
-        <Ionicons
-          name={icon}
-          size={18}
-          color={destructive ? colors.error : colors.primary}
+    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet">
+      <View style={styles.modalContainer}>
+        <View style={styles.modalHeader}>
+          <Text style={styles.modalTitle}>
+            {isAr ? 'اختر اللغة' : 'Choose Language'}
+          </Text>
+          <TouchableOpacity onPress={onClose}>
+            <Ionicons name="close" size={24} color={COLORS.text} />
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={LANGUAGES}
+          keyExtractor={item => item.code}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[styles.langRow, currentLang === item.code && styles.langRowActive]}
+              onPress={() => onSelect(item.code)}
+            >
+              <Text style={styles.langFlag}>{item.flag}</Text>
+              <Text style={styles.langName}>{item.name}</Text>
+              {currentLang === item.code && (
+                <Ionicons name="checkmark" size={20} color={COLORS.primary} />
+              )}
+            </TouchableOpacity>
+          )}
         />
       </View>
-      <Text
-        style={[
-          styles.menuLabel,
-          { color: destructive ? colors.error : colors.text },
-        ]}
-      >
-        {label}
-      </Text>
-      {value ? (
-        <Text style={[styles.menuValue, { color: colors.textSecondary }]} numberOfLines={1}>
-          {value}
-        </Text>
-      ) : null}
-      {!hideChevron ? (
-        <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
-      ) : null}
-    </Pressable>
-  );
-}
-
-interface ToggleRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
-  label: string;
-  value: boolean;
-  onValueChange: (next: boolean) => void;
-  colors: ReturnType<typeof useColors>;
-}
-
-function ToggleRow({ icon, label, value, onValueChange, colors }: ToggleRowProps) {
-  return (
-    <View
-      style={[
-        styles.menuRow,
-        { borderBottomColor: colors.divider, borderBottomWidth: StyleSheet.hairlineWidth },
-      ]}
-    >
-      <View style={[styles.menuIconWrap, { backgroundColor: '#EEEAFF' }]}>
-        <Ionicons name={icon} size={18} color={colors.primary} />
-      </View>
-      <Text style={[styles.menuLabel, { color: colors.text }]}>{label}</Text>
-      <Switch
-        value={value}
-        onValueChange={onValueChange}
-        thumbColor={value ? colors.primary : colors.surface}
-        trackColor={{ false: colors.border, true: colors.primaryLight }}
-      />
-    </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1 },
-  scrollContent: {
-    paddingHorizontal: SIZES.lg,
-  },
-  screenTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.h2,
-    marginBottom: SIZES.lg,
-  },
-  identityCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.md,
-    padding: SIZES.lg,
-    borderRadius: SIZES.borderRadiusLg,
-    marginBottom: SIZES.lg,
-  },
-  identityAvatar: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-  },
-  identityAvatarFallback: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  identityAvatarText: {
-    color: '#FFFFFF',
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.h3,
-  },
-  identityBody: { flex: 1 },
-  identityName: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.subtitle,
-  },
-  identityEmail: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginTop: 2,
-  },
-  roleChip: {
-    marginTop: SIZES.sm,
-    paddingHorizontal: SIZES.sm,
-    paddingVertical: 4,
-    borderRadius: SIZES.borderRadiusFull,
-    alignSelf: 'flex-start',
-  },
-  roleChipText: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.caption,
-    textTransform: 'capitalize',
-  },
-  signedOutCard: {
-    alignItems: 'center',
-    padding: SIZES.xl,
-    borderRadius: SIZES.borderRadiusLg,
-    marginBottom: SIZES.lg,
-  },
-  signedOutIcon: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: SIZES.md,
-  },
-  signedOutTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.subtitle,
-    textAlign: 'center',
-  },
-  signedOutBody: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.body,
-    textAlign: 'center',
-    marginTop: SIZES.sm,
-    marginBottom: SIZES.md,
-  },
-  signedOutBtn: {
-    alignSelf: 'stretch',
-    borderRadius: SIZES.borderRadius,
-  },
-  section: {
-    borderRadius: SIZES.borderRadiusLg,
-    overflow: 'hidden',
-  },
-  menuRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.md,
-    paddingHorizontal: SIZES.md,
-    paddingVertical: SIZES.md,
-  },
-  menuIconWrap: {
-    width: 32,
-    height: 32,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  menuLabel: {
-    flex: 1,
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.body,
-  },
-  menuValue: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginRight: SIZES.xs,
-    maxWidth: 120,
-  },
-  sheetTitle: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.subtitle,
-    marginBottom: SIZES.sm,
-  },
-  sheetContent: {
-    paddingBottom: SIZES.huge,
-  },
-  sheetRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: SIZES.md,
-    paddingHorizontal: SIZES.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderRadius: SIZES.borderRadius,
-  },
-  sheetRowText: {
-    flex: 1,
-  },
-  sheetRowLabel: {
-    fontFamily: FONTS.medium,
-    fontSize: SIZES.body,
-  },
-  sheetRowCode: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.caption,
-    textTransform: 'uppercase',
-    marginTop: 1,
-  },
+  container: { flex: 1, backgroundColor: COLORS.background },
+  header: { backgroundColor: COLORS.primary, padding: SIZES.lg },
+  headerTitle: { fontSize: SIZES.h3, fontWeight: '800', color: '#FFF' },
+  guestBox: { alignItems: 'center', padding: SIZES.xxxl },
+  guestIcon: { marginBottom: SIZES.lg },
+  guestTitle: { fontSize: SIZES.h3, fontWeight: '800', color: COLORS.text, textAlign: 'center' },
+  guestSubtitle: { fontSize: SIZES.body, color: COLORS.textSecondary, textAlign: 'center', marginTop: SIZES.sm, marginBottom: SIZES.xl },
+  loginBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, paddingVertical: SIZES.md, width: '100%', alignItems: 'center', marginBottom: SIZES.sm, ...SHADOWS.md },
+  loginBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  registerBtn: { borderWidth: 1.5, borderColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, paddingVertical: SIZES.md, width: '100%', alignItems: 'center' },
+  registerBtnText: { fontSize: SIZES.bodyLg, fontWeight: '700', color: COLORS.primary },
+  profileCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusXl, ...SHADOWS.sm },
+  profileAvatar: { width: 64, height: 64, borderRadius: 32, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginRight: SIZES.lg },
+  profileAvatarText: { fontSize: SIZES.h2, fontWeight: '900', color: '#FFF' },
+  profileInfo: { flex: 1 },
+  profileName: { fontSize: SIZES.subtitle, fontWeight: '800', color: COLORS.text, textAlign: 'right' },
+  profileEmail: { fontSize: SIZES.small, color: COLORS.textSecondary, textAlign: 'right', marginTop: 2 },
+  roleBadge: { alignSelf: 'flex-end', marginTop: SIZES.sm, backgroundColor: COLORS.primary + '15', paddingHorizontal: SIZES.sm, paddingVertical: 3, borderRadius: SIZES.borderRadiusFull },
+  roleBadgeText: { fontSize: SIZES.small, color: COLORS.primary, fontWeight: '700' },
+  menuSection: { marginHorizontal: SIZES.lg, marginBottom: SIZES.lg },
+  sectionTitle: { fontSize: SIZES.small, fontWeight: '700', color: COLORS.textSecondary, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: SIZES.sm, paddingHorizontal: SIZES.sm },
+  settingsSection: { margin: SIZES.lg },
+  settingRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: COLORS.surface, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, ...SHADOWS.sm },
+  settingLeft: { flexDirection: 'row', alignItems: 'center' },
+  settingIcon: { width: 36, height: 36, borderRadius: SIZES.borderRadius, backgroundColor: COLORS.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: SIZES.md },
+  settingLabel: { fontSize: SIZES.bodyLg, fontWeight: '600', color: COLORS.text },
+  settingRight: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm },
+  settingValue: { fontSize: SIZES.body, color: COLORS.textSecondary },
+  logoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1, borderColor: COLORS.error + '40', backgroundColor: COLORS.error + '08' },
+  logoutText: { fontSize: SIZES.bodyLg, fontWeight: '700', color: COLORS.error },
+  modalContainer: { flex: 1, backgroundColor: COLORS.surface },
+  modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: SIZES.xl, borderBottomWidth: 1, borderBottomColor: COLORS.border },
+  modalTitle: { fontSize: SIZES.h3, fontWeight: '800', color: COLORS.text },
+  langRow: { flexDirection: 'row', alignItems: 'center', padding: SIZES.lg, gap: SIZES.md, borderBottomWidth: 1, borderBottomColor: COLORS.divider },
+  langRowActive: { backgroundColor: COLORS.primary + '08' },
+  langFlag: { fontSize: 28 },
+  langName: { flex: 1, fontSize: SIZES.bodyLg, fontWeight: '600', color: COLORS.text },
 });

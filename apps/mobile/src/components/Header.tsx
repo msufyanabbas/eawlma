@@ -1,109 +1,44 @@
-// Purple gradient app header used by the auth screens, Profile, Wallet, etc.
-// Tabs use their own purple-less surfaces — this is for "stack" screens where
-// we want the brand colour edge-to-edge under the status bar.
+import React, { ReactNode } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRTL } from '../hooks/useRTL';
+import { COLORS, SIZES, TYPOGRAPHY } from '../theme';
 
-import { COLORS, FONTS, SIZES } from '../theme';
-
-export interface HeaderProps {
+interface Props {
   title: string;
-  subtitle?: string;
-  showBack?: boolean;
-  right?: React.ReactNode;
-  variant?: 'brand' | 'transparent' | 'surface';
+  onBack?: () => void;
+  rightAction?: ReactNode;
+  variant?: 'primary' | 'surface';
 }
 
-export function Header({
-  title,
-  subtitle,
-  showBack = true,
-  right,
-  variant = 'brand',
-}: HeaderProps) {
-  const insets = useSafeAreaInsets();
-  const navigation = useNavigation();
-
-  const backgroundColor =
-    variant === 'brand'
-      ? COLORS.primary
-      : variant === 'surface'
-        ? COLORS.surface
-        : 'transparent';
-  const textColor = variant === 'brand' ? COLORS.white : COLORS.text;
-  const subColor = variant === 'brand' ? 'rgba(255,255,255,0.78)' : COLORS.textSecondary;
+export default function Header({ title, onBack, rightAction, variant = 'primary' }: Props) {
+  const { backIcon } = useRTL();
+  const isPrimary = variant === 'primary';
+  const bg = isPrimary ? COLORS.primary : COLORS.surface;
+  const fg = isPrimary ? '#FFF' : COLORS.text;
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top + SIZES.sm, backgroundColor }]}>
+    <SafeAreaView edges={['top']} style={{ backgroundColor: bg }}>
       <View style={styles.row}>
-        {showBack && navigation.canGoBack() ? (
-          <TouchableOpacity
-            onPress={navigation.goBack}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-            style={[styles.iconButton, variant === 'brand' && styles.iconButtonBrand]}
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-          >
-            <Ionicons name="chevron-back" size={22} color={textColor} />
+        {onBack ? (
+          <TouchableOpacity onPress={onBack} style={styles.iconBtn} hitSlop={8}>
+            <Ionicons name={backIcon} size={22} color={fg} />
           </TouchableOpacity>
         ) : (
-          <View style={styles.iconButton} />
+          <View style={styles.iconBtn} />
         )}
-
-        <View style={styles.titleBlock}>
-          <Text numberOfLines={1} style={[styles.title, { color: textColor }]}>
-            {title}
-          </Text>
-          {subtitle ? (
-            <Text numberOfLines={1} style={[styles.subtitle, { color: subColor }]}>
-              {subtitle}
-            </Text>
-          ) : null}
-        </View>
-
-        <View style={styles.rightSlot}>{right}</View>
+        <Text style={[TYPOGRAPHY.h4, styles.title, { color: fg }]} numberOfLines={1}>
+          {title}
+        </Text>
+        <View style={styles.iconBtn}>{rightAction}</View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    paddingBottom: SIZES.md,
-    paddingHorizontal: SIZES.lg,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SIZES.sm,
-  },
-  iconButton: {
-    width: 36,
-    height: 36,
-    borderRadius: SIZES.borderRadius,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  iconButtonBrand: {
-    backgroundColor: 'rgba(255,255,255,0.18)',
-  },
-  titleBlock: {
-    flex: 1,
-    alignItems: 'flex-start',
-  },
-  title: {
-    fontFamily: FONTS.bold,
-    fontSize: SIZES.title,
-  },
-  subtitle: {
-    fontFamily: FONTS.regular,
-    fontSize: SIZES.small,
-    marginTop: 2,
-  },
-  rightSlot: {
-    minWidth: 36,
-    alignItems: 'flex-end',
-  },
+  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: SIZES.lg, paddingVertical: SIZES.md, minHeight: 56 },
+  iconBtn: { width: 36, height: 36, justifyContent: 'center', alignItems: 'center' },
+  title: { flex: 1, textAlign: 'center' },
 });

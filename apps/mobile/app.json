@@ -1,58 +1,28 @@
 {
   "expo": {
-    "name": "عَوْلَمَة",
+    "name": "عالمة",
+    "displayName": "عالمة | Eawlma",
     "slug": "eawlma",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "eawlma",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": false,
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#6C63A6"
+      "backgroundColor": "#6C63A6",
+      "resizeMode": "contain"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "sa.eawlma.app",
-      "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "We use your location to surface nearby properties.",
-        "NSCameraUsageDescription": "Camera access is required to upload property photos.",
-        "NSPhotoLibraryUsageDescription": "Photo library access is required to upload property photos."
-      }
+      "bundleIdentifier": "sa.eawlma.app"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#6C63A6"
       },
-      "package": "sa.eawlma.app",
-      "permissions": [
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION",
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+      "package": "sa.eawlma.app"
     },
-    "web": {
-      "bundler": "metro"
-    },
-    "plugins": [
-      "expo-font",
-      "expo-secure-store",
-      "expo-location",
-      "expo-image-picker",
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/notification-icon.png",
-          "color": "#6C63A6"
-        }
-      ]
-    ],
     "extra": {
       "apiUrl": "http://192.168.1.125:3010/api/v1"
     }
