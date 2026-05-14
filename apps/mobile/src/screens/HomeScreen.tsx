@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { useQuery } from '@tanstack/react-query';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
@@ -14,6 +13,7 @@ import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import ListingCard, { getListingTitle } from '../components/ListingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
+import SmartImage from '../components/SmartImage';
 
 const { width: W } = Dimensions.get('window');
 
@@ -29,7 +29,7 @@ const CATEGORIES = [
 
 export default function HomeScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr } = useRTL();
+  const { isAr, isRTL, textAlign } = useRTL();
   const [activeCategory, setActiveCategory] = useState('');
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
@@ -132,10 +132,37 @@ export default function HomeScreen({ navigation }: any) {
           />
         }
       >
+        <View style={[styles.quickRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+          <QuickTile
+            icon="bed-outline"
+            label={isAr ? 'الإقامات' : 'Stays'}
+            colors={colors}
+            onPress={() => navigation.navigate('Stays')}
+          />
+          <QuickTile
+            icon="people-outline"
+            label={isAr ? 'الوكلاء' : 'Agents'}
+            colors={colors}
+            onPress={() => navigation.navigate('AgentsList')}
+          />
+          <QuickTile
+            icon="trending-up-outline"
+            label={isAr ? 'السوق' : 'Market'}
+            colors={colors}
+            onPress={() => navigation.navigate('Market')}
+          />
+          <QuickTile
+            icon="heart-outline"
+            label={isAr ? 'محفوظات' : 'Saved'}
+            colors={colors}
+            onPress={() => navigation.navigate('Saved')}
+          />
+        </View>
+
         {featured.length > 0 && (
           <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Text style={[TYPOGRAPHY.h4, { color: colors.text }]}>
+            <View style={[styles.sectionHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+              <Text style={[TYPOGRAPHY.h4, { color: colors.text, textAlign }]}>
                 {isAr ? '⭐ مميزة' : '⭐ Featured'}
               </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Search')}>
@@ -155,10 +182,10 @@ export default function HomeScreen({ navigation }: any) {
                   style={styles.featuredCard}
                   onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
                 >
-                  <Image
-                    source={{ uri: item.coverImageUrl || '' }}
+                  <SmartImage
+                    uri={item.coverImageUrl}
                     style={styles.featuredImage}
-                    contentFit="cover"
+                    fallbackIconSize={48}
                   />
                   <View style={styles.featuredOverlay}>
                     <View style={[styles.featuredBadge, { backgroundColor: colors.secondary }]}>
@@ -193,10 +220,15 @@ export default function HomeScreen({ navigation }: any) {
         )}
 
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={[TYPOGRAPHY.h4, { color: colors.text }]}>
+          <View style={[styles.sectionHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+            <Text style={[TYPOGRAPHY.h4, { color: colors.text, textAlign }]}>
               {isAr ? '🏠 أحدث العقارات' : '🏠 Latest Listings'}
             </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+              <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
+                {isAr ? 'عرض الكل' : 'See all'}
+              </Text>
+            </TouchableOpacity>
           </View>
 
           {isLoading ? (
@@ -224,6 +256,22 @@ export default function HomeScreen({ navigation }: any) {
   );
 }
 
+function QuickTile({ icon, label, colors, onPress }: any) {
+  return (
+    <TouchableOpacity
+      style={[styles.quickTile, { backgroundColor: colors.surface }]}
+      onPress={onPress}
+    >
+      <View style={[styles.quickIcon, { backgroundColor: colors.primary + '15' }]}>
+        <Ionicons name={icon} size={22} color={colors.primary} />
+      </View>
+      <Text style={[TYPOGRAPHY.caption, { color: colors.text, fontWeight: '600', marginTop: 4, textAlign: 'center' }]}>
+        {label}
+      </Text>
+    </TouchableOpacity>
+  );
+}
+
 const styles = StyleSheet.create({
   header: { paddingHorizontal: SIZES.lg, paddingBottom: SIZES.lg },
   headerTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: SIZES.md },
@@ -232,8 +280,11 @@ const styles = StyleSheet.create({
   categoriesWrapper: { borderBottomWidth: 1 },
   categoriesContent: { paddingHorizontal: SIZES.lg, paddingVertical: SIZES.sm, gap: SIZES.sm },
   categoryChip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1.5 },
+  quickRow: { paddingHorizontal: SIZES.lg, paddingTop: SIZES.lg, gap: SIZES.sm },
+  quickTile: { flex: 1, alignItems: 'center', paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.sm },
+  quickIcon: { width: 44, height: 44, borderRadius: 22, justifyContent: 'center', alignItems: 'center' },
   section: { paddingTop: SIZES.lg },
-  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: SIZES.lg, marginBottom: SIZES.md },
+  sectionHeader: { justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: SIZES.lg, marginBottom: SIZES.md },
   featuredList: { paddingHorizontal: SIZES.lg, gap: SIZES.md },
   featuredCard: { width: W * 0.7, height: 200, borderRadius: SIZES.borderRadiusXl, overflow: 'hidden', ...SHADOWS.md },
   featuredImage: { width: '100%', height: '100%' },

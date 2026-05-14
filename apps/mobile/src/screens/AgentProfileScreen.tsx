@@ -4,7 +4,6 @@ import {
   TouchableOpacity, Linking, Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { useQuery } from '@tanstack/react-query';
 import { agentsApi } from '../api';
 import { useRTL } from '../hooks/useRTL';
@@ -14,6 +13,7 @@ import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ListingCard from '../components/ListingCard';
 import EmptyState from '../components/EmptyState';
+import UserAvatar from '../components/UserAvatar';
 
 const { width: W } = Dimensions.get('window');
 
@@ -62,15 +62,7 @@ export default function AgentProfileScreen({ navigation, route }: any) {
       <Header title={fullName} onBack={() => navigation.goBack()} />
       <ScrollView contentContainerStyle={{ paddingBottom: SIZES.xxxl }}>
         <View style={[styles.heroCard, { backgroundColor: colors.surface }]}>
-          {agent.avatarUrl ? (
-            <Image source={{ uri: agent.avatarUrl }} style={styles.avatar} contentFit="cover" />
-          ) : (
-            <View style={[styles.avatar, { backgroundColor: colors.primary, justifyContent: 'center', alignItems: 'center' }]}>
-              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>
-                {agent.firstName?.[0]?.toUpperCase() || '?'}
-              </Text>
-            </View>
-          )}
+          <UserAvatar user={agent} size={80} />
           <View style={styles.nameRow}>
             <Text style={[TYPOGRAPHY.h3, { color: colors.text }]}>{fullName}</Text>
             {agent.isVerified && (
@@ -109,6 +101,16 @@ export default function AgentProfileScreen({ navigation, route }: any) {
               <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>WhatsApp</Text>
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity
+            style={[styles.reviewsLink, { borderColor: colors.border }]}
+            onPress={() => navigation.navigate('Reviews', { mode: 'agent', id })}
+          >
+            <Ionicons name="star-outline" size={16} color={colors.primary} />
+            <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary }]}>
+              {isAr ? 'عرض التقييمات' : 'View Reviews'}
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.section}>
@@ -149,12 +151,12 @@ function Stat({ label, value, colors }: any) {
 
 const styles = StyleSheet.create({
   heroCard: { margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusXl, alignItems: 'center', ...SHADOWS.sm },
-  avatar: { width: 80, height: 80, borderRadius: 40 },
   nameRow: { flexDirection: 'row', alignItems: 'center', gap: SIZES.xs, marginTop: SIZES.md },
   statsRow: { flexDirection: 'row', gap: SIZES.xl, marginTop: SIZES.lg },
   statBox: { alignItems: 'center' },
   actionsRow: { flexDirection: 'row', gap: SIZES.sm, marginTop: SIZES.lg, alignSelf: 'stretch' },
   actionBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: SIZES.xs, paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg },
+  reviewsLink: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: SIZES.xs, marginTop: SIZES.md, paddingVertical: SIZES.sm, paddingHorizontal: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1 },
   section: { marginTop: SIZES.sm },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm, paddingHorizontal: SIZES.lg },
 });

@@ -8,3 +8,6 @@ export { notificationsApi } from './notifications.api';
 export { agentsApi } from './agents.api';
 export { commissionsApi } from './commissions.api';
 export { savedApi } from './saved.api';
+export { marketApi } from './market.api';
+export { reviewsApi } from './reviews.api';
+export { bookingsApi } from './bookings.api';

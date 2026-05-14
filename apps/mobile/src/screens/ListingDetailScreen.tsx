@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, Linking, Dimensions,
+  TouchableOpacity, Linking, Dimensions, Platform,
   Modal, TextInput, Alert, ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
@@ -16,6 +15,8 @@ import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import LoadingSpinner from '../components/LoadingSpinner';
 import PriceText from '../components/PriceText';
 import ListingCard from '../components/ListingCard';
+import SmartImage from '../components/SmartImage';
+import UserAvatar from '../components/UserAvatar';
 
 const { width: W } = Dimensions.get('window');
 
@@ -89,12 +90,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
       return;
     }
     if (isStay) {
-      Alert.alert(
-        isAr ? 'الحجز' : 'Booking',
-        isAr
-          ? 'صفحة الحجز قيد التطوير. حتى ذلك الحين تواصل مع الوكيل مباشرة.'
-          : 'Booking flow is in development. Please contact the agent.',
-      );
+      navigation.navigate('Booking', { listingId: id, listing });
       return;
     }
     setShowInquiry(true);
@@ -151,13 +147,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={styles.heroBox}>
-          {listing.coverImageUrl ? (
-            <Image source={{ uri: listing.coverImageUrl }} style={styles.heroImage} contentFit="cover" />
-          ) : (
-            <View style={[styles.heroImage, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
-              <Ionicons name="home" size={64} color={colors.primaryLight} />
-            </View>
-          )}
+          <SmartImage uri={listing.coverImageUrl} style={styles.heroImage} fallbackIconSize={64} />
           <SafeAreaView style={styles.heroNav} edges={['top']}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => navigation.goBack()}>
               <Ionicons name={backIcon} size={22} color="#FFF" />
@@ -258,9 +248,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
               ]}
               onPress={() => agent.id && navigation.navigate('AgentProfile', { id: agent.id })}
             >
-              <View style={[styles.agentAvatar, { backgroundColor: colors.primary }]}>
-                <Text style={[TYPOGRAPHY.h4, { color: '#FFF' }]}>{agent.firstName?.[0]}</Text>
-              </View>
+              <UserAvatar user={agent} size={48} />
               <View style={styles.agentInfo}>
                 <View style={{ flexDirection: isRTL ? 'row-reverse' : 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}>
@@ -293,17 +281,44 @@ export default function ListingDetailScreen({ navigation, route }: any) {
             </TouchableOpacity>
           )}
 
-          {(listing.lat || listing.lng) && (
+          {(listing.lat || listing.lng || listing.city) && (
             <>
               <SectionTitle colors={colors} textAlign={textAlign}>
                 {isAr ? 'الموقع' : 'Location'}
               </SectionTitle>
-              <View style={[styles.mapPlaceholder, { backgroundColor: colors.surfaceVariant }]}>
-                <Ionicons name="map-outline" size={36} color={colors.primaryLight} />
-                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 6 }]}>
-                  {listing.lat?.toFixed(4)}, {listing.lng?.toFixed(4)}
+              <TouchableOpacity
+                style={[styles.mapPlaceholder, { backgroundColor: colors.surfaceVariant, borderColor: colors.primary + '30' }]}
+                onPress={() => {
+                  const lat = listing?.lat;
+                  const lng = listing?.lng;
+                  const label = encodeURIComponent(
+                    listing.titleAr || listing.titleEn || 'Property',
+                  );
+                  let url: string | undefined;
+                  if (lat != null && lng != null) {
+                    url = Platform.select({
+                      ios: `maps:${lat},${lng}?q=${label}`,
+                      android: `geo:${lat},${lng}?q=${lat},${lng}(${label})`,
+                      default: `https://www.google.com/maps?q=${lat},${lng}`,
+                    });
+                  } else {
+                    const q = encodeURIComponent(
+                      [listing.district, listing.city].filter(Boolean).join(', '),
+                    );
+                    url = `https://www.google.com/maps?q=${q}`;
+                  }
+                  if (url) Linking.openURL(url).catch(() => undefined);
+                }}
+              >
+                <Ionicons name="map-outline" size={36} color={colors.primary} />
+                <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary, marginTop: 6 }]}>
+                  {isAr ? 'عرض على الخريطة' : 'View on Map'}
                 </Text>
-              </View>
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2 }]}>
+                  {[listing.district, listing.city].filter(Boolean).join(', ') ||
+                    `${listing.lat?.toFixed(4)}, ${listing.lng?.toFixed(4)}`}
+                </Text>
+              </TouchableOpacity>
             </>
           )}
 
@@ -514,7 +529,7 @@ const styles = StyleSheet.create({
   agentAvatar: { width: 48, height: 48, borderRadius: 24, justifyContent: 'center', alignItems: 'center' },
   agentInfo: { flex: 1 },
   actionCircle: { width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center' },
-  mapPlaceholder: { height: 150, borderRadius: SIZES.borderRadiusLg, justifyContent: 'center', alignItems: 'center' },
+  mapPlaceholder: { height: 150, borderRadius: SIZES.borderRadiusLg, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderStyle: 'dashed' },
   footer: { position: 'absolute', bottom: 0, left: 0, right: 0, borderTopWidth: 1, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
   contactBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
 });

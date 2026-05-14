@@ -24,9 +24,26 @@ export default function WalletScreen({ navigation }: any) {
   const { data: txData, refetch: refetchTx, isRefetching: txRefetching } =
     useQuery({ queryKey: ['wallet-transactions'], queryFn: () => walletApi.getTransactions() });
 
-  const balance = balanceData?.data?.balance ?? balanceData?.balance ?? 0;
-  const currency = balanceData?.data?.currency || balanceData?.currency || 'SAR';
-  const transactions: any[] = txData?.data?.data || txData?.data || [];
+  // Backend GET /wallet/me returns { wallet: { balance, currency, ... }, recentTransactions }.
+  // We tolerate a few alternate shapes so we don't blow up if the schema shifts.
+  const balance =
+    balanceData?.wallet?.balance ??
+    balanceData?.data?.wallet?.balance ??
+    balanceData?.data?.balance ??
+    balanceData?.balance ??
+    0;
+  const currency =
+    balanceData?.wallet?.currency ||
+    balanceData?.data?.wallet?.currency ||
+    balanceData?.currency ||
+    'SAR';
+  const recent: any[] = balanceData?.recentTransactions || balanceData?.data?.recentTransactions || [];
+  const transactions: any[] = (() => {
+    const candidates = [txData?.data?.data, txData?.data, txData?.items, txData];
+    for (const c of candidates) if (Array.isArray(c)) return c;
+    return recent;
+  })();
+  void currency; // currency display is handled inside PriceText
 
   const onRefresh = () => {
     refetchBalance();

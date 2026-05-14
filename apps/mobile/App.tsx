@@ -41,6 +41,11 @@ import CommissionsScreen from './src/screens/CommissionsScreen';
 import ChatScreen from './src/screens/ChatScreen';
 import AgentProfileScreen from './src/screens/AgentProfileScreen';
 import InquiriesScreen from './src/screens/InquiriesScreen';
+import StaysScreen from './src/screens/StaysScreen';
+import AgentsListScreen from './src/screens/AgentsListScreen';
+import MarketScreen from './src/screens/MarketScreen';
+import BookingScreen from './src/screens/BookingScreen';
+import ReviewsScreen from './src/screens/ReviewsScreen';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -191,6 +196,11 @@ export default function App() {
             <Stack.Screen name="Wallet" component={WalletScreen} />
             <Stack.Screen name="Commissions" component={CommissionsScreen} />
             <Stack.Screen name="Inquiries" component={InquiriesScreen} />
+            <Stack.Screen name="Stays" component={StaysScreen} />
+            <Stack.Screen name="AgentsList" component={AgentsListScreen} />
+            <Stack.Screen name="Market" component={MarketScreen} />
+            <Stack.Screen name="Booking" component={BookingScreen} />
+            <Stack.Screen name="Reviews" component={ReviewsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

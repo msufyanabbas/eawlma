@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { useRTL } from '../hooks/useRTL';
 import { useTheme } from '../hooks/useTheme';
-import { COLORS, SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import PriceText from './PriceText';
+import SmartImage from './SmartImage';
 
 const { width: W } = Dimensions.get('window');
 
@@ -51,13 +51,7 @@ export default function ListingCard({ item, variant = 'grid', onPress }: Props) 
         onPress={onPress}
       >
         <View style={styles.listImageBox}>
-          {item.coverImageUrl ? (
-            <Image source={{ uri: item.coverImageUrl }} style={styles.listImage} contentFit="cover" />
-          ) : (
-            <View style={[styles.listImage, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
-              <Ionicons name="home" size={24} color={colors.primaryLight} />
-            </View>
-          )}
+          <SmartImage uri={item.coverImageUrl} style={styles.listImage} fallbackIconSize={24} />
           <View style={[styles.badge, { backgroundColor: badgeColor, top: 8, left: 8 }]}>
             <Text style={styles.badgeText}>{badgeText}</Text>
           </View>
@@ -108,13 +102,7 @@ export default function ListingCard({ item, variant = 'grid', onPress }: Props) 
       onPress={onPress}
     >
       <View style={styles.gridImageBox}>
-        {item.coverImageUrl ? (
-          <Image source={{ uri: item.coverImageUrl }} style={styles.gridImage} contentFit="cover" />
-        ) : (
-          <View style={[styles.gridImage, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
-            <Ionicons name="home" size={28} color={colors.primaryLight} />
-          </View>
-        )}
+        <SmartImage uri={item.coverImageUrl} style={styles.gridImage} fallbackIconSize={28} />
         <View style={[styles.badge, { backgroundColor: badgeColor, top: 8, right: 8 }]}>
           <Text style={styles.badgeText}>{badgeText}</Text>
         </View>

@@ -1,15 +1,20 @@
 import api from './client';
 
+// Backend (commissions.controller.ts):
+//   POST  /commissions/oath
+//   GET   /commissions/oath/:oathType
+//   GET   /commissions/my            — agent's commission history
+//   GET   /commissions/buyer/me      — buyer-side commissions
 export const commissionsApi = {
-  myCommissions: (params?: Record<string, any>) =>
-    api.get('/commissions/my', { params }).then(r => r.data),
+  myCommissions: () =>
+    api.get('/commissions/my').then(r => r.data),
 
-  myAsBuyer: (params?: Record<string, any>) =>
-    api.get('/commissions/my-buyer', { params }).then(r => r.data),
+  myAsBuyer: () =>
+    api.get('/commissions/buyer/me').then(r => r.data),
 
-  acceptOath: () =>
-    api.post('/commissions/oath').then(r => r.data),
+  acceptOath: (oathType: 'agent_listing' | 'buyer_purchase') =>
+    api.post('/commissions/oath', { oathType }).then(r => r.data),
 
-  hasAcceptedOath: () =>
-    api.get('/commissions/oath').then(r => r.data),
+  hasAcceptedOath: (oathType: 'agent_listing' | 'buyer_purchase') =>
+    api.get(`/commissions/oath/${oathType}`).then(r => r.data),
 };

@@ -11,6 +11,7 @@ import { useAuthStore } from '../store/auth.store';
 import { messagesApi } from '../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import EmptyState from '../components/EmptyState';
+import UserAvatar from '../components/UserAvatar';
 
 export default function MessagesScreen({ navigation }: any) {
   const { colors } = useTheme();
@@ -23,7 +24,17 @@ export default function MessagesScreen({ navigation }: any) {
     enabled: isAuthenticated,
   });
 
-  const conversations: any[] = data?.data?.data || data?.data || [];
+  const conversations: any[] = (() => {
+    const candidates = [
+      data?.data?.data,
+      data?.data?.items,
+      data?.data,
+      data?.items,
+      data,
+    ];
+    for (const c of candidates) if (Array.isArray(c)) return c;
+    return [];
+  })();
 
   if (!isAuthenticated) {
     return (
@@ -76,11 +87,7 @@ export default function MessagesScreen({ navigation }: any) {
                 recipientName: name,
               })}
             >
-              <View style={[styles.avatar, { backgroundColor: colors.primary }]}>
-                <Text style={[TYPOGRAPHY.h4, { color: '#FFF' }]}>
-                  {other.firstName?.[0]?.toUpperCase() || '?'}
-                </Text>
-              </View>
+              <UserAvatar user={other} size={48} />
               <View style={styles.info}>
                 <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]} numberOfLines={1}>
                   {name}

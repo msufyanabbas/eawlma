@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, FlatList, TouchableOpacity,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
+import SmartImage from '../components/SmartImage';
 import { useQuery } from '@tanstack/react-query';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
@@ -80,13 +80,7 @@ export default function MyListingsScreen({ navigation }: any) {
                 style={styles.thumbBox}
                 onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
               >
-                {item.coverImageUrl ? (
-                  <Image source={{ uri: item.coverImageUrl }} style={styles.thumb} contentFit="cover" />
-                ) : (
-                  <View style={[styles.thumb, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
-                    <Ionicons name="home" size={24} color={colors.primaryLight} />
-                  </View>
-                )}
+                <SmartImage uri={item.coverImageUrl} style={styles.thumb} fallbackIconSize={24} />
               </TouchableOpacity>
 
               <TouchableOpacity
