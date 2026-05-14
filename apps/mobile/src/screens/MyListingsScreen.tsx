@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import SmartImage from '../components/SmartImage';
+import { listingCoverUrl } from '../utils/listingImages';
 import { useQuery } from '@tanstack/react-query';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
@@ -80,7 +81,7 @@ export default function MyListingsScreen({ navigation }: any) {
                 style={styles.thumbBox}
                 onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
               >
-                <SmartImage uri={item.coverImageUrl} style={styles.thumb} fallbackIconSize={24} />
+                <SmartImage uri={listingCoverUrl(item)} style={styles.thumb} fallbackIconSize={24} />
               </TouchableOpacity>
 
               <TouchableOpacity

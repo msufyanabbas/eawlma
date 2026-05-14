@@ -6,6 +6,7 @@ import { useTheme } from '../hooks/useTheme';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import PriceText from './PriceText';
 import SmartImage from './SmartImage';
+import { listingCoverUrl } from '../utils/listingImages';
 
 const { width: W } = Dimensions.get('window');
 
@@ -51,7 +52,7 @@ export default function ListingCard({ item, variant = 'grid', onPress }: Props) 
         onPress={onPress}
       >
         <View style={styles.listImageBox}>
-          <SmartImage uri={item.coverImageUrl} style={styles.listImage} fallbackIconSize={24} />
+          <SmartImage uri={listingCoverUrl(item)} style={styles.listImage} fallbackIconSize={24} />
           <View style={[styles.badge, { backgroundColor: badgeColor, top: 8, left: 8 }]}>
             <Text style={styles.badgeText}>{badgeText}</Text>
           </View>
@@ -102,7 +103,7 @@ export default function ListingCard({ item, variant = 'grid', onPress }: Props) 
       onPress={onPress}
     >
       <View style={styles.gridImageBox}>
-        <SmartImage uri={item.coverImageUrl} style={styles.gridImage} fallbackIconSize={28} />
+        <SmartImage uri={listingCoverUrl(item)} style={styles.gridImage} fallbackIconSize={28} />
         <View style={[styles.badge, { backgroundColor: badgeColor, top: 8, right: 8 }]}>
           <Text style={styles.badgeText}>{badgeText}</Text>
         </View>

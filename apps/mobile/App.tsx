@@ -14,6 +14,7 @@ import {
 } from '@expo-google-fonts/tajawal';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
+import { useTranslation } from 'react-i18next';
 
 import { initI18n } from './src/i18n';
 import { useAuthStore } from './src/store/auth.store';
@@ -66,7 +67,8 @@ const Stack = createStackNavigator();
 
 function MainTabs() {
   const { colors } = useTheme();
-  const { isRTL, isAr } = useRTL();
+  const { isRTL } = useRTL();
+  const { t } = useTranslation();
   const isAuthenticated = useAuthStore(s => s.isAuthenticated);
 
   const { data: unreadData } = useQuery({
@@ -82,12 +84,15 @@ function MainTabs() {
     unreadData?.data?.total ??
     0;
 
+  // Tab labels go through i18next so all 38 locales render — the previous
+  // ternary only handled Arabic vs English and silently fell back to English
+  // for the other 36. The translation keys already ship in every locale JSON.
   const tabs = [
-    { name: 'Home',     component: HomeScreen,     labelAr: 'الرئيسية', labelEn: 'Home',     icon: 'home' },
-    { name: 'Search',   component: SearchScreen,   labelAr: 'بحث',      labelEn: 'Search',   icon: 'search' },
-    { name: 'Saved',    component: SavedScreen,    labelAr: 'محفوظات',  labelEn: 'Saved',    icon: 'heart' },
-    { name: 'Messages', component: MessagesScreen, labelAr: 'رسائل',    labelEn: 'Messages', icon: 'chatbubbles' },
-    { name: 'Profile',  component: ProfileScreen,  labelAr: 'حسابي',    labelEn: 'Profile',  icon: 'person' },
+    { name: 'Home',     component: HomeScreen,     label: t('nav.home'),          icon: 'home' },
+    { name: 'Search',   component: SearchScreen,   label: t('nav.search'),        icon: 'search' },
+    { name: 'Saved',    component: SavedScreen,    label: t('nav.favorites'),     icon: 'heart' },
+    { name: 'Messages', component: MessagesScreen, label: t('nav.messages'),      icon: 'chatbubbles' },
+    { name: 'Profile',  component: ProfileScreen,  label: t('nav.profile'),       icon: 'person' },
   ];
 
   // React Navigation bottom tabs don't auto-flip for RTL. Reverse the order
@@ -132,7 +137,7 @@ function MainTabs() {
           name={tab.name as any}
           component={tab.component}
           options={{
-            tabBarLabel: isAr ? tab.labelAr : tab.labelEn,
+            tabBarLabel: tab.label,
             tabBarBadge:
               tab.name === 'Messages' && unread > 0 ? unread : undefined,
           }}

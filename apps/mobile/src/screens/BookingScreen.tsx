@@ -11,6 +11,7 @@ import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SmartImage from '../components/SmartImage';
+import { listingCoverUrl } from '../utils/listingImages';
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -128,7 +129,7 @@ export default function BookingScreen({ navigation, route }: any) {
       <Header title={isAr ? 'الحجز' : 'Book your stay'} onBack={() => navigation.goBack()} />
       <ScrollView contentContainerStyle={{ padding: SIZES.lg, paddingBottom: 140 }}>
         <View style={[styles.card, { backgroundColor: colors.surface, flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
-          <SmartImage uri={listing.coverImageUrl} style={styles.thumb} fallbackIconSize={28} />
+          <SmartImage uri={listingCoverUrl(listing)} style={styles.thumb} fallbackIconSize={28} />
           <View style={{ flex: 1, padding: SIZES.md }}>
             <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]} numberOfLines={2}>
               {isAr ? (listing.titleAr || listing.titleEn) : (listing.titleEn || listing.titleAr)}

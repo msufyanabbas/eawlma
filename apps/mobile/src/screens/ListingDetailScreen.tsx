@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity, Linking, Dimensions, Platform, Image,
@@ -18,6 +18,7 @@ import PriceText from '../components/PriceText';
 import ListingCard from '../components/ListingCard';
 import SmartImage from '../components/SmartImage';
 import UserAvatar from '../components/UserAvatar';
+import { listingCoverUrl } from '../utils/listingImages';
 
 // Google Maps Static API key — wired through Expo extra so a single value in
 // app.json (and the matching .env entry) drives Android/iOS native config and
@@ -56,6 +57,20 @@ export default function ListingDetailScreen({ navigation, route }: any) {
 
   const listing: any = data?.data || {};
   const agent: any = listing.agent || listing.user || {};
+
+  // One-time dev assertion to make missing keys / unreachable Static Maps
+  // requests easy to spot in the Metro log. Silent in production.
+  useEffect(() => {
+    if (!__DEV__) return;
+    const keyOk = !!GOOGLE_MAPS_KEY && GOOGLE_MAPS_KEY !== 'YOUR_GOOGLE_MAPS_API_KEY_HERE';
+    if (!keyOk) {
+      // eslint-disable-next-line no-console
+      console.warn('[maps] googleMapsApiKey is missing or still a placeholder.');
+    } else if (listing?.lat != null && listing?.lng != null) {
+      // eslint-disable-next-line no-console
+      console.log('[maps] static URL:', buildStaticMapUrl(listing.lat, listing.lng).slice(0, 140));
+    }
+  }, [listing?.lat, listing?.lng]);
 
   const { data: similarData } = useQuery({
     queryKey: ['similar', listing.city, listing.type],
@@ -154,7 +169,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={styles.heroBox}>
-          <SmartImage uri={listing.coverImageUrl} style={styles.heroImage} fallbackIconSize={64} />
+          <SmartImage uri={listingCoverUrl(listing)} style={styles.heroImage} fallbackIconSize={64} />
           <SafeAreaView style={styles.heroNav} edges={['top']}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => navigation.goBack()}>
               <Ionicons name={backIcon} size={22} color="#FFF" />

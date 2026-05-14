@@ -106,16 +106,37 @@ export async function initI18n(): Promise<void> {
     await i18n.use(initReactI18next).init({
       resources,
       lng: lang,
-      fallbackLng: 'ar',
+      // Fall back to English (not Arabic) when a key is missing in the
+      // active locale — useful for the 35 non-RTL locales because a missing
+      // French key shouldn't render as Arabic text. The Arabic-only audience
+      // will still see Arabic when ar is the active locale.
+      fallbackLng: 'en',
       interpolation: { escapeValue: false },
       compatibilityJSON: 'v4',
+      // Surface missing keys during development so the next wave of refactors
+      // is easier — silent in production builds.
+      saveMissing: __DEV__,
+      missingKeyHandler: __DEV__
+        ? (lngs, _ns, key) => {
+            // eslint-disable-next-line no-console
+            console.warn(`[i18n] missing key "${key}" for locale ${lngs?.[0] ?? '?'}`);
+          }
+        : undefined,
     });
   }
 }
 
 export async function changeLanguage(lang: string): Promise<void> {
+  if (__DEV__) {
+    // eslint-disable-next-line no-console
+    console.log(`[i18n] changeLanguage from "${i18n.language}" to "${lang}"`);
+  }
   await AsyncStorage.setItem(LANGUAGE_KEY, lang);
   await i18n.changeLanguage(lang);
+  if (__DEV__) {
+    // eslint-disable-next-line no-console
+    console.log(`[i18n] active="${i18n.language}", nav.home="${i18n.t('nav.home')}"`);
+  }
   I18nManager.forceRTL(RTL_LANGUAGES.includes(lang));
 }
 

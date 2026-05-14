@@ -14,6 +14,7 @@ import ListingCard, { getListingTitle } from '../components/ListingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import SmartImage from '../components/SmartImage';
+import { listingCoverUrl } from '../utils/listingImages';
 
 const { width: W } = Dimensions.get('window');
 
@@ -193,7 +194,7 @@ export default function HomeScreen({ navigation }: any) {
                   onPress={() => navigation.navigate('ListingDetail', { id: item.id })}
                 >
                   <SmartImage
-                    uri={item.coverImageUrl}
+                    uri={listingCoverUrl(item)}
                     style={styles.featuredImage}
                     fallbackIconSize={48}
                   />
