@@ -1,17 +1,19 @@
 import React, { useMemo, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, Switch, Modal, FlatList, TextInput,
+  TouchableOpacity, Switch, Modal, FlatList, TextInput, Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
+import * as Updates from 'expo-updates';
+import i18n from '../i18n';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
 import { useUIStore } from '../store/ui.store';
 import { authApi } from '../api';
-import { changeLanguage } from '../i18n';
+import { changeLanguage, isRTLLang } from '../i18n';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 
 type LangEntry = { code: string; name: string; flag: string; popular?: boolean };
@@ -78,8 +80,34 @@ export default function ProfileScreen({ navigation }: any) {
   };
 
   const handleLanguageChange = async (code: string) => {
+    // Capture the previous language BEFORE we flip it — otherwise the RTL
+    // comparison below always reads the new language and returns false.
+    const prevLang = i18n.language;
     await changeLanguage(code);
     setShowLangPicker(false);
+
+    // Switching between LTR and RTL flips I18nManager.forceRTL, but React
+    // Native only re-lays-out the existing trees on a full JS reload.
+    if (isRTLLang(prevLang) !== isRTLLang(code)) {
+      Alert.alert(
+        isAr ? 'إعادة التشغيل' : 'Restart Required',
+        isAr
+          ? 'يجب إعادة تشغيل التطبيق لتطبيق تغيير اتجاه الواجهة'
+          : 'The app needs to restart to apply the new layout direction',
+        [
+          {
+            text: isAr ? 'لاحقاً' : 'Later',
+            style: 'cancel',
+          },
+          {
+            text: isAr ? 'إعادة التشغيل الآن' : 'Restart Now',
+            onPress: () => {
+              Updates.reloadAsync().catch(() => undefined);
+            },
+          },
+        ],
+      );
+    }
   };
 
   const currentLangName = ALL_LANGUAGES.find(l => l.code === lang)?.name;
