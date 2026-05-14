@@ -6,3 +6,5 @@ export { messagesApi } from './messages.api';
 export { walletApi } from './wallet.api';
 export { notificationsApi } from './notifications.api';
 export { agentsApi } from './agents.api';
+export { commissionsApi } from './commissions.api';
+export { savedApi } from './saved.api';

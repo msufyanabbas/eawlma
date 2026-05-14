@@ -34,16 +34,20 @@ export const SIZES = {
   tabBarHeight: 64,
 };
 
+// Note: fontWeight is intentionally omitted. When a custom font is loaded,
+// the weight is encoded in the family name (e.g. Tajawal_800ExtraBold) — passing
+// fontWeight alongside can trigger faux-bold or be ignored inconsistently across
+// Android/iOS. Use the family name to select the weight you want.
 export const TYPOGRAPHY: Record<string, TextStyle> = {
-  h1: { fontSize: 30, fontWeight: '900', fontFamily: 'Tajawal_800ExtraBold' },
-  h2: { fontSize: 26, fontWeight: '800', fontFamily: 'Tajawal_800ExtraBold' },
-  h3: { fontSize: 22, fontWeight: '700', fontFamily: 'Tajawal_700Bold' },
-  h4: { fontSize: 20, fontWeight: '700', fontFamily: 'Tajawal_700Bold' },
-  subtitle: { fontSize: 18, fontWeight: '600', fontFamily: 'Tajawal_500Medium' },
-  body: { fontSize: 15, fontWeight: '400', fontFamily: 'Tajawal_400Regular' },
-  bodyBold: { fontSize: 15, fontWeight: '700', fontFamily: 'Tajawal_700Bold' },
-  small: { fontSize: 13, fontWeight: '400', fontFamily: 'Tajawal_400Regular' },
-  caption: { fontSize: 11, fontWeight: '400', fontFamily: 'Tajawal_400Regular' },
+  h1:       { fontSize: 30, fontFamily: 'Tajawal_800ExtraBold' },
+  h2:       { fontSize: 26, fontFamily: 'Tajawal_800ExtraBold' },
+  h3:       { fontSize: 22, fontFamily: 'Tajawal_700Bold' },
+  h4:       { fontSize: 20, fontFamily: 'Tajawal_700Bold' },
+  subtitle: { fontSize: 18, fontFamily: 'Tajawal_500Medium' },
+  body:     { fontSize: 15, fontFamily: 'Tajawal_400Regular' },
+  bodyBold: { fontSize: 15, fontFamily: 'Tajawal_700Bold' },
+  small:    { fontSize: 13, fontFamily: 'Tajawal_400Regular' },
+  caption:  { fontSize: 11, fontFamily: 'Tajawal_400Regular' },
 };
 
 export const SHADOWS = {

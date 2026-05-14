@@ -23,7 +23,7 @@ export default function SplashScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: COLORS.primary }]}>
       <Animated.View style={[styles.logoBox, { transform: [{ scale }], opacity }]}>
         <Text style={styles.logoText}>عالمة</Text>
       </Animated.View>
@@ -60,20 +60,18 @@ function LoadingDot({ delay }: { delay: number }) {
     ).start();
   }, []);
 
-  return (
-    <Animated.View style={[styles.dot, { opacity }]} />
-  );
+  return <Animated.View style={[styles.dot, { opacity }]} />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   logoBox: {
-    width: 120, height: 120,
+    width: 120,
+    height: 120,
     borderRadius: 30,
     backgroundColor: 'rgba(255,255,255,0.2)',
     justifyContent: 'center',
@@ -81,19 +79,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoText: {
-    fontSize: 40, fontWeight: '900',
+    fontSize: 40,
+    fontWeight: '900',
     color: '#FFFFFF',
+    fontFamily: 'Tajawal_800ExtraBold',
   },
   tagline: {
-    fontSize: 18, color: 'rgba(255,255,255,0.8)',
-    fontWeight: '600', marginBottom: 40,
+    fontSize: 18,
+    color: 'rgba(255,255,255,0.8)',
+    fontWeight: '600',
+    marginBottom: 40,
+    fontFamily: 'Tajawal_500Medium',
   },
-  dotsContainer: {
-    flexDirection: 'row', gap: 8,
-  },
-  dot: {
-    width: 10, height: 10,
-    borderRadius: 5,
-    backgroundColor: '#FFFFFF',
-  },
+  dotsContainer: { flexDirection: 'row', gap: 8 },
+  dot: { width: 10, height: 10, borderRadius: 5, backgroundColor: '#FFFFFF' },
 });

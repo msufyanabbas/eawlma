@@ -18,8 +18,10 @@ import { StatusBar } from 'expo-status-bar';
 import { initI18n } from './src/i18n';
 import { useAuthStore } from './src/store/auth.store';
 import { useUIStore } from './src/store/ui.store';
+import { useTheme } from './src/hooks/useTheme';
+import { useRTL } from './src/hooks/useRTL';
 import { messagesApi } from './src/api';
-import { COLORS, SIZES } from './src/theme';
+import { SIZES } from './src/theme';
 
 import SplashScreen from './src/screens/SplashScreen';
 import HomeScreen from './src/screens/HomeScreen';
@@ -38,6 +40,7 @@ import WalletScreen from './src/screens/WalletScreen';
 import CommissionsScreen from './src/screens/CommissionsScreen';
 import ChatScreen from './src/screens/ChatScreen';
 import AgentProfileScreen from './src/screens/AgentProfileScreen';
+import InquiriesScreen from './src/screens/InquiriesScreen';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,45 +55,60 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function MainTabs() {
+  const { colors } = useTheme();
+  const { isRTL, isAr } = useRTL();
   const isAuthenticated = useAuthStore(s => s.isAuthenticated);
+
   const { data: unreadData } = useQuery({
     queryKey: ['conversations-unread'],
     queryFn: () => messagesApi.unreadTotal(),
     enabled: isAuthenticated,
     refetchInterval: 30_000,
   });
-  const unread = unreadData?.data?.total ?? unreadData?.total ?? 0;
+  const unread =
+    unreadData?.count ??
+    unreadData?.data?.count ??
+    unreadData?.total ??
+    unreadData?.data?.total ??
+    0;
+
+  const tabs = [
+    { name: 'Home',     component: HomeScreen,     labelAr: 'الرئيسية', labelEn: 'Home',     icon: 'home' },
+    { name: 'Search',   component: SearchScreen,   labelAr: 'بحث',      labelEn: 'Search',   icon: 'search' },
+    { name: 'Saved',    component: SavedScreen,    labelAr: 'محفوظات',  labelEn: 'Saved',    icon: 'heart' },
+    { name: 'Messages', component: MessagesScreen, labelAr: 'رسائل',    labelEn: 'Messages', icon: 'chatbubbles' },
+    { name: 'Profile',  component: ProfileScreen,  labelAr: 'حسابي',    labelEn: 'Profile',  icon: 'person' },
+  ];
+
+  // React Navigation bottom tabs don't auto-flip for RTL. Reverse the order
+  // so Home lands on the right when an RTL language is active.
+  const orderedTabs = isRTL ? [...tabs].reverse() : tabs;
 
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: COLORS.surface,
-          borderTopColor: COLORS.border,
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
           borderTopWidth: 1,
           height: SIZES.tabBarHeight,
           paddingBottom: 10,
           paddingTop: 8,
         },
-        tabBarActiveTintColor: COLORS.primary,
-        tabBarInactiveTintColor: COLORS.textSecondary,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textSecondary,
         tabBarLabelStyle: {
           fontSize: SIZES.caption,
+          fontFamily: 'Tajawal_700Bold',
           fontWeight: '600',
         },
         tabBarIcon: ({ focused, color }) => {
-          const map: Record<string, [string, string]> = {
-            Home:     ['home',         'home-outline'],
-            Search:   ['search',       'search-outline'],
-            Saved:    ['heart',        'heart-outline'],
-            Messages: ['chatbubbles',  'chatbubbles-outline'],
-            Profile:  ['person',       'person-outline'],
-          };
-          const [active, inactive] = map[route.name] || ['ellipse', 'ellipse-outline'];
+          const tab = tabs.find(t => t.name === route.name);
+          if (!tab) return null;
           return (
             <Ionicons
-              name={(focused ? active : inactive) as any}
+              name={(focused ? tab.icon : `${tab.icon}-outline`) as any}
               size={24}
               color={color}
             />
@@ -98,18 +116,18 @@ function MainTabs() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'الرئيسية' }} />
-      <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'بحث' }} />
-      <Tab.Screen name="Saved" component={SavedScreen} options={{ tabBarLabel: 'محفوظات' }} />
-      <Tab.Screen
-        name="Messages"
-        component={MessagesScreen}
-        options={{
-          tabBarLabel: 'رسائل',
-          tabBarBadge: unread > 0 ? unread : undefined,
-        }}
-      />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'حسابي' }} />
+      {orderedTabs.map(tab => (
+        <Tab.Screen
+          key={tab.name}
+          name={tab.name as any}
+          component={tab.component}
+          options={{
+            tabBarLabel: isAr ? tab.labelAr : tab.labelEn,
+            tabBarBadge:
+              tab.name === 'Messages' && unread > 0 ? unread : undefined,
+          }}
+        />
+      ))}
     </Tab.Navigator>
   );
 }
@@ -172,6 +190,7 @@ export default function App() {
             <Stack.Screen name="EditListing" component={EditListingScreen} />
             <Stack.Screen name="Wallet" component={WalletScreen} />
             <Stack.Screen name="Commissions" component={CommissionsScreen} />
+            <Stack.Screen name="Inquiries" component={InquiriesScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

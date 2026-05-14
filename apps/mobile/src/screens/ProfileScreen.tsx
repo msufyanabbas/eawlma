@@ -1,27 +1,66 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, Switch, Modal, FlatList,
+  TouchableOpacity, Switch, Modal, FlatList, TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
+import { useTheme } from '../hooks/useTheme';
+import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
 import { useUIStore } from '../store/ui.store';
 import { authApi } from '../api';
 import { changeLanguage } from '../i18n';
-import { COLORS, SIZES, SHADOWS } from '../theme';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 
-const LANGUAGES = [
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'ur', name: 'اردو', flag: '🇵🇰' },
+type LangEntry = { code: string; name: string; flag: string; popular?: boolean };
+
+// Full list of the 38 locales the shared i18n package ships with.
+const ALL_LANGUAGES: LangEntry[] = [
+  { code: 'ar', name: 'العربية',          flag: '🇸🇦', popular: true },
+  { code: 'en', name: 'English',           flag: '🇬🇧', popular: true },
+  { code: 'ur', name: 'اردو',              flag: '🇵🇰', popular: true },
+  { code: 'fr', name: 'Français',          flag: '🇫🇷', popular: true },
+  { code: 'zh', name: '中文',              flag: '🇨🇳', popular: true },
+  { code: 'hi', name: 'हिन्दी',             flag: '🇮🇳', popular: true },
+  { code: 'es', name: 'Español',           flag: '🇪🇸' },
+  { code: 'de', name: 'Deutsch',           flag: '🇩🇪' },
+  { code: 'tr', name: 'Türkçe',            flag: '🇹🇷' },
+  { code: 'ru', name: 'Русский',           flag: '🇷🇺' },
+  { code: 'id', name: 'Bahasa Indonesia',  flag: '🇮🇩' },
+  { code: 'ms', name: 'Bahasa Melayu',     flag: '🇲🇾' },
+  { code: 'bn', name: 'বাংলা',             flag: '🇧🇩' },
+  { code: 'tl', name: 'Filipino',          flag: '🇵🇭' },
+  { code: 'vi', name: 'Tiếng Việt',        flag: '🇻🇳' },
+  { code: 'th', name: 'ไทย',               flag: '🇹🇭' },
+  { code: 'ko', name: '한국어',            flag: '🇰🇷' },
+  { code: 'ja', name: '日本語',            flag: '🇯🇵' },
+  { code: 'fa', name: 'فارسی',             flag: '🇮🇷' },
+  { code: 'he', name: 'עברית',             flag: '🇮🇱' },
+  { code: 'sw', name: 'Kiswahili',         flag: '🇰🇪' },
+  { code: 'am', name: 'አማርኛ',              flag: '🇪🇹' },
+  { code: 'ne', name: 'नेपाली',             flag: '🇳🇵' },
+  { code: 'si', name: 'සිංහල',             flag: '🇱🇰' },
+  { code: 'ta', name: 'தமிழ்',             flag: '🇮🇳' },
+  { code: 'te', name: 'తెలుగు',             flag: '🇮🇳' },
+  { code: 'gu', name: 'ગુજરાતી',            flag: '🇮🇳' },
+  { code: 'mr', name: 'मराठी',              flag: '🇮🇳' },
+  { code: 'pt', name: 'Português',         flag: '🇧🇷' },
+  { code: 'it', name: 'Italiano',          flag: '🇮🇹' },
+  { code: 'nl', name: 'Nederlands',        flag: '🇳🇱' },
+  { code: 'pl', name: 'Polski',            flag: '🇵🇱' },
+  { code: 'ro', name: 'Română',            flag: '🇷🇴' },
+  { code: 'sv', name: 'Svenska',           flag: '🇸🇪' },
+  { code: 'da', name: 'Dansk',             flag: '🇩🇰' },
+  { code: 'fi', name: 'Suomi',             flag: '🇫🇮' },
+  { code: 'no', name: 'Norsk',             flag: '🇳🇴' },
+  { code: 'af', name: 'Afrikaans',         flag: '🇿🇦' },
 ];
 
 export default function ProfileScreen({ navigation }: any) {
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, isRTL, textAlign, lang } = useRTL();
   const { user, isAuthenticated, logout } = useAuthStore();
   const { isDarkMode, toggleDarkMode } = useUIStore();
   const [showLangPicker, setShowLangPicker] = useState(false);
@@ -32,7 +71,7 @@ export default function ProfileScreen({ navigation }: any) {
     enabled: isAuthenticated,
   });
 
-  const currentUser = meData || user;
+  const currentUser: any = meData || user;
 
   const handleLogout = async () => {
     await logout();
@@ -43,75 +82,64 @@ export default function ProfileScreen({ navigation }: any) {
     setShowLangPicker(false);
   };
 
+  const currentLangName = ALL_LANGUAGES.find(l => l.code === lang)?.name;
+
   if (!isAuthenticated) {
     return (
-      <SafeAreaView style={styles.container} edges={['top']}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>{isAr ? 'حسابي' : 'Profile'}</Text>
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
+        <View style={[styles.header, { backgroundColor: colors.primary }]}>
+          <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{isAr ? 'حسابي' : 'Profile'}</Text>
         </View>
         <ScrollView>
           <View style={styles.guestBox}>
-            <View style={styles.guestIcon}>
-              <Ionicons name="person-circle-outline" size={80} color={COLORS.border} />
-            </View>
-            <Text style={styles.guestTitle}>
+            <Ionicons name="person-circle-outline" size={80} color={colors.border} />
+            <Text style={[TYPOGRAPHY.h3, { color: colors.text, marginTop: SIZES.lg, textAlign: 'center' }]}>
               {isAr ? 'مرحباً بك في عالمة' : 'Welcome to Eawlma'}
             </Text>
-            <Text style={styles.guestSubtitle}>
+            <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, textAlign: 'center', marginTop: SIZES.sm, marginBottom: SIZES.xl }]}>
               {isAr ? 'سجل دخولك للوصول إلى حسابك' : 'Sign in to access your account'}
             </Text>
             <TouchableOpacity
-              style={styles.loginBtn}
+              style={[styles.loginBtn, { backgroundColor: colors.primary }]}
               onPress={() => navigation.navigate('Login')}
             >
-              <Text style={styles.loginBtnText}>
+              <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
                 {isAr ? 'تسجيل الدخول' : 'Sign In'}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.registerBtn}
+              style={[styles.registerBtn, { borderColor: colors.primary }]}
               onPress={() => navigation.navigate('Register')}
             >
-              <Text style={styles.registerBtnText}>
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary, fontSize: SIZES.bodyLg }]}>
                 {isAr ? 'إنشاء حساب جديد' : 'Create Account'}
               </Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.settingsSection}>
-            <Text style={styles.sectionTitle}>
-              {isAr ? 'الإعدادات' : 'Settings'}
-            </Text>
+            <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'الإعدادات' : 'Settings'}</SectionLabel>
             <SettingRow
               icon="language-outline"
               label={isAr ? 'اللغة' : 'Language'}
-              value={LANGUAGES.find(l => l.code === i18n.language)?.name}
+              value={currentLangName}
               onPress={() => setShowLangPicker(true)}
+              colors={colors}
+              isRTL={isRTL}
+              textAlign={textAlign}
             />
-            <View style={styles.settingRow}>
-              <View style={styles.settingLeft}>
-                <View style={styles.settingIcon}>
-                  <Ionicons name="moon-outline" size={20} color={COLORS.primary} />
-                </View>
-                <Text style={styles.settingLabel}>
-                  {isAr ? 'الوضع الليلي' : 'Dark Mode'}
-                </Text>
-              </View>
-              <Switch
-                value={isDarkMode}
-                onValueChange={toggleDarkMode}
-                trackColor={{ false: COLORS.border, true: COLORS.primary }}
-                thumbColor="#FFF"
-              />
-            </View>
+            <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} isAr={isAr} isRTL={isRTL} textAlign={textAlign} />
           </View>
         </ScrollView>
         <LangPickerModal
           visible={showLangPicker}
           onClose={() => setShowLangPicker(false)}
           onSelect={handleLanguageChange}
-          currentLang={i18n.language}
+          currentLang={lang}
           isAr={isAr}
+          isRTL={isRTL}
+          textAlign={textAlign}
+          colors={colors}
         />
       </SafeAreaView>
     );
@@ -121,24 +149,42 @@ export default function ProfileScreen({ navigation }: any) {
   const isAdmin = currentUser?.role === 'admin';
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>{isAr ? 'حسابي' : 'My Account'}</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
+      <View style={[styles.header, { backgroundColor: colors.primary }]}>
+        <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{isAr ? 'حسابي' : 'My Account'}</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.profileCard}>
-          <View style={styles.profileAvatar}>
-            <Text style={styles.profileAvatarText}>
+        <View style={[
+          styles.profileCard,
+          { backgroundColor: colors.surface, flexDirection: isRTL ? 'row-reverse' : 'row' },
+        ]}>
+          <View style={[
+            styles.profileAvatar,
+            {
+              backgroundColor: colors.primary,
+              marginRight: isRTL ? 0 : SIZES.lg,
+              marginLeft: isRTL ? SIZES.lg : 0,
+            },
+          ]}>
+            <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>
               {currentUser?.firstName?.[0]}{currentUser?.lastName?.[0]}
             </Text>
           </View>
           <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>
+            <Text style={[TYPOGRAPHY.h4, { color: colors.text, textAlign }]}>
               {currentUser?.firstName} {currentUser?.lastName}
             </Text>
-            <Text style={styles.profileEmail}>{currentUser?.email}</Text>
-            <View style={styles.roleBadge}>
-              <Text style={styles.roleBadgeText}>
+            <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign, marginTop: 2 }]}>
+              {currentUser?.email}
+            </Text>
+            <View style={[
+              styles.roleBadge,
+              {
+                backgroundColor: colors.primary + '15',
+                alignSelf: isRTL ? 'flex-start' : 'flex-end',
+              },
+            ]}>
+              <Text style={[TYPOGRAPHY.small, { color: colors.primary, fontWeight: '700' }]}>
                 {isAdmin ? (isAr ? 'مدير النظام' : 'Admin') :
                  isAgent ? (isAr ? 'وكيل عقاري' : 'Agent') :
                  (isAr ? 'عضو' : 'Member')}
@@ -149,53 +195,38 @@ export default function ProfileScreen({ navigation }: any) {
 
         {isAgent && (
           <View style={styles.menuSection}>
-            <Text style={styles.sectionTitle}>
-              {isAr ? 'لوحة الوكيل' : 'Agent Dashboard'}
-            </Text>
-            <SettingRow icon="home-outline" label={isAr ? 'إعلاناتي' : 'My Listings'} onPress={() => navigation.navigate('MyListings')} />
-            <SettingRow icon="add-circle-outline" label={isAr ? 'إضافة إعلان' : 'Add Listing'} onPress={() => navigation.navigate('AddListing')} />
-            <SettingRow icon="wallet-outline" label={isAr ? 'المحفظة' : 'Wallet'} onPress={() => navigation.navigate('Wallet')} />
-            <SettingRow icon="receipt-outline" label={isAr ? 'العمولات' : 'Commissions'} onPress={() => navigation.navigate('Commissions')} />
-          </View>
-        )}
-
-        {isAdmin && (
-          <View style={styles.menuSection}>
-            <Text style={styles.sectionTitle}>
-              {isAr ? 'لوحة الإدارة' : 'Admin Panel'}
-            </Text>
-            <SettingRow icon="stats-chart-outline" label={isAr ? 'الإحصائيات' : 'Statistics'} onPress={() => {}} />
-            <SettingRow icon="people-outline" label={isAr ? 'المستخدمون' : 'Users'} onPress={() => {}} />
+            <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'لوحة الوكيل' : 'Agent Dashboard'}</SectionLabel>
+            <SettingRow icon="home-outline" label={isAr ? 'إعلاناتي' : 'My Listings'} onPress={() => navigation.navigate('MyListings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="add-circle-outline" label={isAr ? 'إضافة إعلان' : 'Add Listing'} onPress={() => navigation.navigate('AddListing')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="mail-unread-outline" label={isAr ? 'الاستفسارات' : 'Inquiries'} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="wallet-outline" label={isAr ? 'المحفظة' : 'Wallet'} onPress={() => navigation.navigate('Wallet')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="receipt-outline" label={isAr ? 'العمولات' : 'Commissions'} onPress={() => navigation.navigate('Commissions')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           </View>
         )}
 
         <View style={styles.menuSection}>
-          <Text style={styles.sectionTitle}>
-            {isAr ? 'الحساب' : 'Account'}
-          </Text>
-          <SettingRow icon="notifications-outline" label={isAr ? 'الإشعارات' : 'Notifications'} onPress={() => navigation.navigate('Notifications')} />
-          <SettingRow icon="language-outline" label={isAr ? 'اللغة' : 'Language'} value={LANGUAGES.find(l => l.code === i18n.language)?.name} onPress={() => setShowLangPicker(true)} />
-          <View style={styles.settingRow}>
-            <View style={styles.settingLeft}>
-              <View style={styles.settingIcon}>
-                <Ionicons name="moon-outline" size={20} color={COLORS.primary} />
-              </View>
-              <Text style={styles.settingLabel}>
-                {isAr ? 'الوضع الليلي' : 'Dark Mode'}
-              </Text>
-            </View>
-            <Switch
-              value={isDarkMode}
-              onValueChange={toggleDarkMode}
-              trackColor={{ false: COLORS.border, true: COLORS.primary }}
-              thumbColor="#FFF"
-            />
-          </View>
+          <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'الحساب' : 'Account'}</SectionLabel>
+          {!isAgent && (
+            <SettingRow icon="mail-unread-outline" label={isAr ? 'استفساراتي' : 'My Inquiries'} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          )}
+          <SettingRow icon="notifications-outline" label={isAr ? 'الإشعارات' : 'Notifications'} onPress={() => navigation.navigate('Notifications')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="language-outline" label={isAr ? 'اللغة' : 'Language'} value={currentLangName} onPress={() => setShowLangPicker(true)} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} isAr={isAr} isRTL={isRTL} textAlign={textAlign} />
         </View>
 
-        <TouchableOpacity style={styles.logoutBtn} onPress={handleLogout}>
-          <Ionicons name="log-out-outline" size={20} color={COLORS.error} />
-          <Text style={styles.logoutText}>
+        <TouchableOpacity
+          style={[
+            styles.logoutBtn,
+            {
+              borderColor: colors.error + '40',
+              backgroundColor: colors.error + '08',
+              flexDirection: isRTL ? 'row-reverse' : 'row',
+            },
+          ]}
+          onPress={handleLogout}
+        >
+          <Ionicons name="log-out-outline" size={20} color={colors.error} />
+          <Text style={[TYPOGRAPHY.bodyBold, { color: colors.error, fontSize: SIZES.bodyLg }]}>
             {isAr ? 'تسجيل الخروج' : 'Sign Out'}
           </Text>
         </TouchableOpacity>
@@ -207,57 +238,217 @@ export default function ProfileScreen({ navigation }: any) {
         visible={showLangPicker}
         onClose={() => setShowLangPicker(false)}
         onSelect={handleLanguageChange}
-        currentLang={i18n.language}
+        currentLang={lang}
         isAr={isAr}
+        isRTL={isRTL}
+        textAlign={textAlign}
+        colors={colors}
       />
     </SafeAreaView>
   );
 }
 
-function SettingRow({ icon, label, value, onPress }: any) {
+function SectionLabel({ children, colors, textAlign }: any) {
   return (
-    <TouchableOpacity style={styles.settingRow} onPress={onPress}>
-      <View style={styles.settingLeft}>
-        <View style={styles.settingIcon}>
-          <Ionicons name={icon} size={20} color={COLORS.primary} />
+    <Text style={[
+      TYPOGRAPHY.small,
+      {
+        color: colors.textSecondary,
+        textTransform: 'uppercase',
+        letterSpacing: 0.8,
+        marginBottom: SIZES.sm,
+        paddingHorizontal: SIZES.sm,
+        fontWeight: '700',
+        textAlign,
+      },
+    ]}>
+      {children}
+    </Text>
+  );
+}
+
+function SettingRow({ icon, label, value, onPress, colors, isRTL, textAlign }: any) {
+  return (
+    <TouchableOpacity
+      style={[
+        styles.settingRow,
+        {
+          backgroundColor: colors.surface,
+          flexDirection: isRTL ? 'row-reverse' : 'row',
+        },
+      ]}
+      onPress={onPress}
+    >
+      <View style={[styles.settingLeft, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+        <View style={[
+          styles.settingIcon,
+          {
+            backgroundColor: colors.primary + '15',
+            marginRight: isRTL ? 0 : SIZES.md,
+            marginLeft: isRTL ? SIZES.md : 0,
+          },
+        ]}>
+          <Ionicons name={icon} size={20} color={colors.primary} />
         </View>
-        <Text style={styles.settingLabel}>{label}</Text>
+        <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}>{label}</Text>
       </View>
-      <View style={styles.settingRight}>
-        {value && <Text style={styles.settingValue}>{value}</Text>}
-        <Ionicons name="chevron-forward" size={16} color={COLORS.textSecondary} />
+      <View style={[styles.settingRight, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+        {value ? (
+          <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary }]}>{value}</Text>
+        ) : null}
+        <Ionicons
+          name={isRTL ? 'chevron-back' : 'chevron-forward'}
+          size={16}
+          color={colors.textSecondary}
+        />
       </View>
     </TouchableOpacity>
   );
 }
 
-function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr }: any) {
+function DarkModeRow({ isDarkMode, toggleDarkMode, colors, isAr, isRTL, textAlign }: any) {
   return (
-    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet">
-      <View style={styles.modalContainer}>
-        <View style={styles.modalHeader}>
-          <Text style={styles.modalTitle}>
+    <View style={[
+      styles.settingRow,
+      {
+        backgroundColor: colors.surface,
+        flexDirection: isRTL ? 'row-reverse' : 'row',
+      },
+    ]}>
+      <View style={[styles.settingLeft, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+        <View style={[
+          styles.settingIcon,
+          {
+            backgroundColor: colors.primary + '15',
+            marginRight: isRTL ? 0 : SIZES.md,
+            marginLeft: isRTL ? SIZES.md : 0,
+          },
+        ]}>
+          <Ionicons name="moon-outline" size={20} color={colors.primary} />
+        </View>
+        <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}>
+          {isAr ? 'الوضع الليلي' : 'Dark Mode'}
+        </Text>
+      </View>
+      <Switch
+        value={isDarkMode}
+        onValueChange={toggleDarkMode}
+        trackColor={{ false: colors.border, true: colors.primary }}
+        thumbColor="#FFF"
+      />
+    </View>
+  );
+}
+
+function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL, textAlign, colors }: any) {
+  const [search, setSearch] = useState('');
+
+  const { popular, others } = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    const matches = (l: LangEntry) =>
+      !q || l.name.toLowerCase().includes(q) || l.code.toLowerCase().includes(q);
+    return {
+      popular: ALL_LANGUAGES.filter(l => l.popular && matches(l)),
+      others: ALL_LANGUAGES.filter(l => !l.popular && matches(l)),
+    };
+  }, [search]);
+
+  const renderRow = (item: LangEntry) => {
+    const active = currentLang === item.code;
+    return (
+      <TouchableOpacity
+        key={item.code}
+        style={[
+          styles.langRow,
+          {
+            borderBottomColor: colors.divider,
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+          },
+          active && { backgroundColor: colors.primary + '08' },
+        ]}
+        onPress={() => onSelect(item.code)}
+      >
+        <Text style={{ fontSize: 28 }}>{item.flag}</Text>
+        <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, flex: 1, textAlign, marginHorizontal: SIZES.md }]}>
+          {item.name}
+        </Text>
+        {active && (
+          <Ionicons name="checkmark" size={20} color={colors.primary} />
+        )}
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
+      <View style={{ flex: 1, backgroundColor: colors.surface }}>
+        <View style={[
+          styles.modalHeader,
+          {
+            borderBottomColor: colors.border,
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+          },
+        ]}>
+          <Text style={[TYPOGRAPHY.h3, { color: colors.text }]}>
             {isAr ? 'اختر اللغة' : 'Choose Language'}
           </Text>
           <TouchableOpacity onPress={onClose}>
-            <Ionicons name="close" size={24} color={COLORS.text} />
+            <Ionicons name="close" size={24} color={colors.text} />
           </TouchableOpacity>
         </View>
+
+        <View style={[
+          styles.searchBox,
+          {
+            backgroundColor: colors.background,
+            borderColor: colors.border,
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+          },
+        ]}>
+          <Ionicons name="search" size={18} color={colors.textSecondary} />
+          <TextInput
+            value={search}
+            onChangeText={setSearch}
+            placeholder={isAr ? 'بحث...' : 'Search...'}
+            placeholderTextColor={colors.textSecondary}
+            style={[
+              { flex: 1, color: colors.text, fontSize: SIZES.body, textAlign, marginHorizontal: SIZES.sm },
+            ]}
+          />
+        </View>
+
         <FlatList
-          data={LANGUAGES}
-          keyExtractor={item => item.code}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[styles.langRow, currentLang === item.code && styles.langRowActive]}
-              onPress={() => onSelect(item.code)}
-            >
-              <Text style={styles.langFlag}>{item.flag}</Text>
-              <Text style={styles.langName}>{item.name}</Text>
-              {currentLang === item.code && (
-                <Ionicons name="checkmark" size={20} color={COLORS.primary} />
+          data={[]}
+          renderItem={null as any}
+          keyExtractor={(_, i) => String(i)}
+          ListHeaderComponent={
+            <View>
+              {popular.length > 0 && (
+                <>
+                  <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign }]}>
+                    {isAr ? 'الأكثر شيوعاً' : 'Popular'}
+                  </Text>
+                  {popular.map(renderRow)}
+                </>
               )}
-            </TouchableOpacity>
-          )}
+              {others.length > 0 && (
+                <>
+                  <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign, marginTop: SIZES.md }]}>
+                    {isAr ? 'جميع اللغات' : 'All Languages'}
+                  </Text>
+                  {others.map(renderRow)}
+                </>
+              )}
+              {popular.length === 0 && others.length === 0 && (
+                <Text style={[
+                  TYPOGRAPHY.body,
+                  { color: colors.textSecondary, textAlign: 'center', padding: SIZES.xl },
+                ]}>
+                  {isAr ? 'لا توجد لغة بهذا الاسم' : 'No matching language'}
+                </Text>
+              )}
+            </View>
+          }
         />
       </View>
     </Modal>
@@ -265,41 +456,23 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr }: any)
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  header: { backgroundColor: COLORS.primary, padding: SIZES.lg },
-  headerTitle: { fontSize: SIZES.h3, fontWeight: '800', color: '#FFF' },
+  header: { padding: SIZES.lg },
   guestBox: { alignItems: 'center', padding: SIZES.xxxl },
-  guestIcon: { marginBottom: SIZES.lg },
-  guestTitle: { fontSize: SIZES.h3, fontWeight: '800', color: COLORS.text, textAlign: 'center' },
-  guestSubtitle: { fontSize: SIZES.body, color: COLORS.textSecondary, textAlign: 'center', marginTop: SIZES.sm, marginBottom: SIZES.xl },
-  loginBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, paddingVertical: SIZES.md, width: '100%', alignItems: 'center', marginBottom: SIZES.sm, ...SHADOWS.md },
-  loginBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
-  registerBtn: { borderWidth: 1.5, borderColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, paddingVertical: SIZES.md, width: '100%', alignItems: 'center' },
-  registerBtnText: { fontSize: SIZES.bodyLg, fontWeight: '700', color: COLORS.primary },
-  profileCard: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusXl, ...SHADOWS.sm },
-  profileAvatar: { width: 64, height: 64, borderRadius: 32, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginRight: SIZES.lg },
-  profileAvatarText: { fontSize: SIZES.h2, fontWeight: '900', color: '#FFF' },
+  loginBtn: { borderRadius: SIZES.borderRadiusLg, paddingVertical: SIZES.md, width: '100%', alignItems: 'center', marginBottom: SIZES.sm, ...SHADOWS.md },
+  registerBtn: { borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, paddingVertical: SIZES.md, width: '100%', alignItems: 'center' },
+  profileCard: { alignItems: 'center', margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusXl, ...SHADOWS.sm },
+  profileAvatar: { width: 64, height: 64, borderRadius: 32, justifyContent: 'center', alignItems: 'center' },
   profileInfo: { flex: 1 },
-  profileName: { fontSize: SIZES.subtitle, fontWeight: '800', color: COLORS.text, textAlign: 'right' },
-  profileEmail: { fontSize: SIZES.small, color: COLORS.textSecondary, textAlign: 'right', marginTop: 2 },
-  roleBadge: { alignSelf: 'flex-end', marginTop: SIZES.sm, backgroundColor: COLORS.primary + '15', paddingHorizontal: SIZES.sm, paddingVertical: 3, borderRadius: SIZES.borderRadiusFull },
-  roleBadgeText: { fontSize: SIZES.small, color: COLORS.primary, fontWeight: '700' },
+  roleBadge: { marginTop: SIZES.sm, paddingHorizontal: SIZES.sm, paddingVertical: 3, borderRadius: SIZES.borderRadiusFull },
   menuSection: { marginHorizontal: SIZES.lg, marginBottom: SIZES.lg },
-  sectionTitle: { fontSize: SIZES.small, fontWeight: '700', color: COLORS.textSecondary, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: SIZES.sm, paddingHorizontal: SIZES.sm },
   settingsSection: { margin: SIZES.lg },
-  settingRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: COLORS.surface, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, ...SHADOWS.sm },
-  settingLeft: { flexDirection: 'row', alignItems: 'center' },
-  settingIcon: { width: 36, height: 36, borderRadius: SIZES.borderRadius, backgroundColor: COLORS.primary + '15', justifyContent: 'center', alignItems: 'center', marginRight: SIZES.md },
-  settingLabel: { fontSize: SIZES.bodyLg, fontWeight: '600', color: COLORS.text },
-  settingRight: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm },
-  settingValue: { fontSize: SIZES.body, color: COLORS.textSecondary },
-  logoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1, borderColor: COLORS.error + '40', backgroundColor: COLORS.error + '08' },
-  logoutText: { fontSize: SIZES.bodyLg, fontWeight: '700', color: COLORS.error },
-  modalContainer: { flex: 1, backgroundColor: COLORS.surface },
-  modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: SIZES.xl, borderBottomWidth: 1, borderBottomColor: COLORS.border },
-  modalTitle: { fontSize: SIZES.h3, fontWeight: '800', color: COLORS.text },
-  langRow: { flexDirection: 'row', alignItems: 'center', padding: SIZES.lg, gap: SIZES.md, borderBottomWidth: 1, borderBottomColor: COLORS.divider },
-  langRowActive: { backgroundColor: COLORS.primary + '08' },
-  langFlag: { fontSize: 28 },
-  langName: { flex: 1, fontSize: SIZES.bodyLg, fontWeight: '600', color: COLORS.text },
+  settingRow: { alignItems: 'center', justifyContent: 'space-between', padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, ...SHADOWS.sm },
+  settingLeft: { alignItems: 'center', flex: 1 },
+  settingIcon: { width: 36, height: 36, borderRadius: SIZES.borderRadius, justifyContent: 'center', alignItems: 'center' },
+  settingRight: { alignItems: 'center', gap: SIZES.sm },
+  logoutBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, margin: SIZES.lg, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1 },
+  modalHeader: { justifyContent: 'space-between', alignItems: 'center', padding: SIZES.xl, borderBottomWidth: 1 },
+  searchBox: { alignItems: 'center', marginHorizontal: SIZES.lg, marginTop: SIZES.md, paddingHorizontal: SIZES.md, height: 44, borderRadius: SIZES.borderRadius, borderWidth: 1 },
+  langRow: { alignItems: 'center', paddingHorizontal: SIZES.lg, paddingVertical: SIZES.md, borderBottomWidth: 1 },
+  groupLabel: { textTransform: 'uppercase', letterSpacing: 0.8, fontSize: 11, fontWeight: '700', paddingHorizontal: SIZES.lg, paddingTop: SIZES.md, paddingBottom: SIZES.xs },
 });

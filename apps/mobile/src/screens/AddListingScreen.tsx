@@ -2,210 +2,440 @@ import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity, TextInput, ActivityIndicator,
-  KeyboardAvoidingView, Platform, Alert,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from '../hooks/useTheme';
+import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
-import { COLORS, SIZES, SHADOWS } from '../theme';
+import { SIZES, SHADOWS } from '../theme';
+
+const STEPS = [
+  { titleAr: 'نوع العقار', titleEn: 'Property Type' },
+  { titleAr: 'التفاصيل', titleEn: 'Details' },
+  { titleAr: 'الموقع', titleEn: 'Location' },
+  { titleAr: 'المواصفات', titleEn: 'Specs' },
+  { titleAr: 'المراجعة', titleEn: 'Review' },
+];
+
+const TRANSACTION_TYPES = [
+  { labelAr: 'للبيع', labelEn: 'For Sale', value: 'sale' },
+  { labelAr: 'للإيجار', labelEn: 'For Rent', value: 'rent' },
+];
 
 const PROPERTY_TYPES = [
-  { value: 'apartment', labelAr: 'شقة', labelEn: 'Apartment' },
-  { value: 'villa', labelAr: 'فيلا', labelEn: 'Villa' },
-  { value: 'land', labelAr: 'أرض', labelEn: 'Land' },
-  { value: 'chalet', labelAr: 'شاليه', labelEn: 'Chalet' },
-  { value: 'farm', labelAr: 'مزرعة', labelEn: 'Farm' },
+  { labelAr: 'شقة', labelEn: 'Apartment', value: 'apartment', icon: '🏢' },
+  { labelAr: 'فيلا', labelEn: 'Villa', value: 'villa', icon: '🏡' },
+  { labelAr: 'أرض', labelEn: 'Land', value: 'land', icon: '🏗️' },
+  { labelAr: 'شاليه', labelEn: 'Chalet', value: 'chalet', icon: '🏖️' },
+  { labelAr: 'مزرعة', labelEn: 'Farm', value: 'farm', icon: '🌾' },
+  { labelAr: 'استراحة', labelEn: 'Rest House', value: 'rest_house', icon: '🛖' },
+  { labelAr: 'مكتب', labelEn: 'Office', value: 'office', icon: '🏬' },
+  { labelAr: 'محل', labelEn: 'Shop', value: 'shop', icon: '🏪' },
 ];
 
-const TX_TYPES = [
-  { value: 'sale', labelAr: 'للبيع', labelEn: 'Sale' },
-  { value: 'rent', labelAr: 'للإيجار', labelEn: 'Rent' },
-];
+const CITIES = ['الرياض', 'جدة', 'الدمام', 'مكة المكرمة', 'المدينة المنورة', 'الطائف', 'تبوك', 'أبها'];
 
 export default function AddListingScreen({ navigation }: any) {
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, textAlign, backIcon } = useRTL();
+  const [step, setStep] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  const [titleAr, setTitleAr] = useState('');
-  const [titleEn, setTitleEn] = useState('');
-  const [descAr, setDescAr] = useState('');
-  const [price, setPrice] = useState('');
-  const [city, setCity] = useState('');
-  const [district, setDistrict] = useState('');
-  const [propertyType, setPropertyType] = useState('apartment');
-  const [transactionType, setTransactionType] = useState('sale');
-  const [bedrooms, setBedrooms] = useState('');
-  const [bathrooms, setBathrooms] = useState('');
-  const [area, setArea] = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState({
+    transactionType: 'sale',
+    propertyType: 'apartment',
+    titleAr: '',
+    titleEn: '',
+    price: '',
+    area: '',
+    city: '',
+    district: '',
+    bedrooms: '',
+    bathrooms: '',
+    descriptionAr: '',
+    descriptionEn: '',
+  });
+
+  const update = (key: string, value: string) =>
+    setForm(f => ({ ...f, [key]: value }));
+
+  const goNext = () => {
+    if (step < STEPS.length - 1) setStep(s => s + 1);
+  };
+
+  const goBack = () => {
+    if (step > 0) setStep(s => s - 1);
+    else navigation.goBack();
+  };
 
   const handleSubmit = async () => {
-    if (!titleAr.trim() || !price.trim() || !city.trim()) {
+    if (!form.titleAr || !form.price || !form.city) {
       Alert.alert(
-        isAr ? 'بيانات ناقصة' : 'Missing fields',
-        isAr ? 'يرجى تعبئة الحقول الأساسية' : 'Please fill required fields',
+        isAr ? 'خطأ' : 'Error',
+        isAr ? 'يرجى تعبئة الحقول المطلوبة' : 'Please fill required fields'
       );
       return;
     }
-    setSubmitting(true);
+    setLoading(true);
     try {
       await listingsApi.create({
-        titleAr: titleAr.trim(),
-        titleEn: titleEn.trim() || titleAr.trim(),
-        descriptionAr: descAr.trim(),
-        price: Number(price),
-        city: city.trim(),
-        district: district.trim(),
-        propertyType,
-        transactionType,
-        bedrooms: bedrooms ? Number(bedrooms) : undefined,
-        bathrooms: bathrooms ? Number(bathrooms) : undefined,
-        area: area ? Number(area) : undefined,
+        ...form,
+        price: Number(form.price),
+        area: Number(form.area),
+        bedrooms: Number(form.bedrooms),
+        bathrooms: Number(form.bathrooms),
+        lat: 24.7136,
+        lng: 46.6753,
       });
       Alert.alert(
         isAr ? 'تم' : 'Success',
-        isAr ? 'تم إنشاء الإعلان' : 'Listing created',
-        [{ text: 'OK', onPress: () => navigation.goBack() }]
+        isAr ? 'تم إضافة الإعلان بنجاح' : 'Listing added successfully',
+        [{ text: isAr ? 'موافق' : 'OK', onPress: () => navigation.goBack() }]
       );
     } catch (e: any) {
       Alert.alert(
         isAr ? 'خطأ' : 'Error',
-        e.response?.data?.message || (isAr ? 'فشل الإنشاء' : 'Failed to create')
+        e.response?.data?.message || (isAr ? 'حدث خطأ' : 'Something went wrong')
       );
     } finally {
-      setSubmitting(false);
+      setLoading(false);
     }
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Ionicons
-            name={isAr ? 'arrow-forward' : 'arrow-back'}
-            size={22}
-            color="#FFF"
-          />
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { backgroundColor: colors.primary }]}>
+        <TouchableOpacity onPress={goBack} style={styles.backBtn}>
+          <Ionicons name={backIcon as any} size={24} color="#FFF" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{isAr ? 'إضافة إعلان' : 'Add Listing'}</Text>
-        <View style={{ width: 22 }} />
+        <Text style={styles.headerTitle}>
+          {isAr ? 'إضافة إعلان' : 'Add Listing'}
+        </Text>
+        <View style={{ width: 40 }} />
       </View>
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={{ flex: 1 }}
+      <View style={[styles.progressContainer, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+        <View style={[styles.progressBar, { backgroundColor: colors.border }]}>
+          <View style={[
+            styles.progressFill,
+            {
+              backgroundColor: colors.primary,
+              width: `${((step + 1) / STEPS.length) * 100}%` as any,
+            }
+          ]} />
+        </View>
+        <Text style={[styles.progressText, { color: colors.textSecondary }]}>
+          {isAr
+            ? `الخطوة ${step + 1} من ${STEPS.length}: ${STEPS[step].titleAr}`
+            : `Step ${step + 1} of ${STEPS.length}: ${STEPS[step].titleEn}`}
+        </Text>
+      </View>
+
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
       >
-        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <Field label={isAr ? 'العنوان (عربي) *' : 'Title (Arabic) *'} value={titleAr} onChange={setTitleAr} />
-          <Field label={isAr ? 'العنوان (إنجليزي)' : 'Title (English)'} value={titleEn} onChange={setTitleEn} />
+        {step === 0 && (
+          <View>
+            <Text style={[styles.stepTitle, { color: colors.text, textAlign }]}>
+              {isAr ? 'نوع المعاملة' : 'Transaction Type'}
+            </Text>
+            <View style={styles.typeRow}>
+              {TRANSACTION_TYPES.map(t => (
+                <TouchableOpacity
+                  key={t.value}
+                  style={[
+                    styles.typeBtn,
+                    { borderColor: colors.border, backgroundColor: colors.surface },
+                    form.transactionType === t.value && {
+                      borderColor: colors.primary,
+                      backgroundColor: colors.primary + '15',
+                    }
+                  ]}
+                  onPress={() => update('transactionType', t.value)}
+                >
+                  <Text style={[
+                    styles.typeBtnText,
+                    { color: colors.textSecondary },
+                    form.transactionType === t.value && { color: colors.primary }
+                  ]}>
+                    {isAr ? t.labelAr : t.labelEn}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
 
-          <Text style={styles.fieldLabel}>{isAr ? 'نوع الإعلان' : 'Transaction Type'}</Text>
-          <View style={styles.chipsRow}>
-            {TX_TYPES.map(t => (
-              <TouchableOpacity
-                key={t.value}
-                style={[styles.chip, transactionType === t.value && styles.chipActive]}
-                onPress={() => setTransactionType(t.value)}
-              >
-                <Text style={[styles.chipText, transactionType === t.value && styles.chipTextActive]}>
-                  {isAr ? t.labelAr : t.labelEn}
-                </Text>
-              </TouchableOpacity>
+            <Text style={[styles.stepTitle, { color: colors.text, textAlign, marginTop: SIZES.xl }]}>
+              {isAr ? 'نوع العقار' : 'Property Type'}
+            </Text>
+            <View style={styles.propTypeGrid}>
+              {PROPERTY_TYPES.map(p => (
+                <TouchableOpacity
+                  key={p.value}
+                  style={[
+                    styles.propTypeBtn,
+                    { borderColor: colors.border, backgroundColor: colors.surface },
+                    form.propertyType === p.value && {
+                      borderColor: colors.primary,
+                      backgroundColor: colors.primary + '15',
+                    }
+                  ]}
+                  onPress={() => update('propertyType', p.value)}
+                >
+                  <Text style={styles.propTypeIcon}>{p.icon}</Text>
+                  <Text style={[
+                    styles.propTypeText,
+                    { color: colors.textSecondary },
+                    form.propertyType === p.value && { color: colors.primary }
+                  ]}>
+                    {isAr ? p.labelAr : p.labelEn}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        )}
+
+        {step === 1 && (
+          <View style={{ gap: SIZES.lg }}>
+            <FormField
+              label={isAr ? 'العنوان بالعربية *' : 'Arabic Title *'}
+              value={form.titleAr}
+              onChangeText={(v: string) => update('titleAr', v)}
+              placeholder="مثال: شقة فاخرة في الرياض"
+              colors={colors}
+              textAlign="right"
+            />
+            <FormField
+              label={isAr ? 'العنوان بالإنجليزية' : 'English Title'}
+              value={form.titleEn}
+              onChangeText={(v: string) => update('titleEn', v)}
+              placeholder="e.g. Luxury apartment in Riyadh"
+              colors={colors}
+              textAlign="left"
+            />
+            <FormField
+              label={isAr ? 'السعر (ريال) *' : 'Price (SAR) *'}
+              value={form.price}
+              onChangeText={(v: string) => update('price', v)}
+              placeholder="750000"
+              keyboardType="numeric"
+              colors={colors}
+              textAlign={textAlign}
+            />
+            <FormField
+              label={isAr ? 'المساحة (م²)' : 'Area (m²)'}
+              value={form.area}
+              onChangeText={(v: string) => update('area', v)}
+              placeholder="150"
+              keyboardType="numeric"
+              colors={colors}
+              textAlign={textAlign}
+            />
+            <FormField
+              label={isAr ? 'الوصف بالعربية' : 'Arabic Description'}
+              value={form.descriptionAr}
+              onChangeText={(v: string) => update('descriptionAr', v)}
+              placeholder="وصف تفصيلي للعقار..."
+              multiline
+              colors={colors}
+              textAlign="right"
+            />
+          </View>
+        )}
+
+        {step === 2 && (
+          <View style={{ gap: SIZES.lg }}>
+            <Text style={[styles.stepTitle, { color: colors.text, textAlign }]}>
+              {isAr ? 'المدينة *' : 'City *'}
+            </Text>
+            <View style={styles.citiesGrid}>
+              {CITIES.map(city => (
+                <TouchableOpacity
+                  key={city}
+                  style={[
+                    styles.cityBtn,
+                    { borderColor: colors.border, backgroundColor: colors.surface },
+                    form.city === city && {
+                      borderColor: colors.primary,
+                      backgroundColor: colors.primary + '15',
+                    }
+                  ]}
+                  onPress={() => update('city', city)}
+                >
+                  <Text style={[
+                    styles.cityBtnText,
+                    { color: colors.text },
+                    form.city === city && { color: colors.primary, fontWeight: '700' }
+                  ]}>
+                    {city}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+            <FormField
+              label={isAr ? 'الحي *' : 'District *'}
+              value={form.district}
+              onChangeText={(v: string) => update('district', v)}
+              placeholder={isAr ? 'مثال: العليا' : 'e.g. Al Olaya'}
+              colors={colors}
+              textAlign={textAlign}
+            />
+          </View>
+        )}
+
+        {step === 3 && (
+          <View style={{ gap: SIZES.lg }}>
+            <View style={styles.specsRow}>
+              <View style={{ flex: 1 }}>
+                <FormField
+                  label={isAr ? 'غرف النوم' : 'Bedrooms'}
+                  value={form.bedrooms}
+                  onChangeText={(v: string) => update('bedrooms', v)}
+                  placeholder="3"
+                  keyboardType="numeric"
+                  colors={colors}
+                  textAlign="center"
+                />
+              </View>
+              <View style={{ flex: 1 }}>
+                <FormField
+                  label={isAr ? 'دورات المياه' : 'Bathrooms'}
+                  value={form.bathrooms}
+                  onChangeText={(v: string) => update('bathrooms', v)}
+                  placeholder="2"
+                  keyboardType="numeric"
+                  colors={colors}
+                  textAlign="center"
+                />
+              </View>
+            </View>
+          </View>
+        )}
+
+        {step === 4 && (
+          <View style={[styles.reviewCard, { backgroundColor: colors.surface }]}>
+            <Text style={[styles.reviewTitle, { color: colors.text }]}>
+              {isAr ? 'مراجعة الإعلان' : 'Review Listing'}
+            </Text>
+            {[
+              { label: isAr ? 'نوع المعاملة' : 'Transaction', value: form.transactionType },
+              { label: isAr ? 'نوع العقار' : 'Property Type', value: form.propertyType },
+              { label: isAr ? 'العنوان' : 'Title', value: form.titleAr || form.titleEn },
+              { label: isAr ? 'السعر' : 'Price', value: form.price ? `${Number(form.price).toLocaleString()} ر.س` : '-' },
+              { label: isAr ? 'المدينة' : 'City', value: form.city },
+              { label: isAr ? 'الحي' : 'District', value: form.district },
+              { label: isAr ? 'الغرف' : 'Bedrooms', value: form.bedrooms },
+            ].map(row => (
+              <View key={row.label} style={[styles.reviewRow, { borderBottomColor: colors.divider }]}>
+                <Text style={[styles.reviewLabel, { color: colors.textSecondary }]}>{row.label}</Text>
+                <Text style={[styles.reviewValue, { color: colors.text }]}>{row.value || '-'}</Text>
+              </View>
             ))}
           </View>
+        )}
+      </ScrollView>
 
-          <Text style={styles.fieldLabel}>{isAr ? 'نوع العقار' : 'Property Type'}</Text>
-          <View style={styles.chipsRow}>
-            {PROPERTY_TYPES.map(p => (
-              <TouchableOpacity
-                key={p.value}
-                style={[styles.chip, propertyType === p.value && styles.chipActive]}
-                onPress={() => setPropertyType(p.value)}
-              >
-                <Text style={[styles.chipText, propertyType === p.value && styles.chipTextActive]}>
-                  {isAr ? p.labelAr : p.labelEn}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          <Field label={isAr ? 'السعر *' : 'Price *'} value={price} onChange={setPrice} keyboard="numeric" />
-          <Field label={isAr ? 'المدينة *' : 'City *'} value={city} onChange={setCity} />
-          <Field label={isAr ? 'الحي' : 'District'} value={district} onChange={setDistrict} />
-
-          <View style={styles.row3}>
-            <View style={{ flex: 1 }}>
-              <Field label={isAr ? 'غرف' : 'Beds'} value={bedrooms} onChange={setBedrooms} keyboard="numeric" />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Field label={isAr ? 'حمامات' : 'Baths'} value={bathrooms} onChange={setBathrooms} keyboard="numeric" />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Field label={isAr ? 'مساحة م²' : 'Area m²'} value={area} onChange={setArea} keyboard="numeric" />
-            </View>
-          </View>
-
-          <Text style={styles.fieldLabel}>{isAr ? 'الوصف' : 'Description'}</Text>
-          <TextInput
-            style={[styles.input, styles.textarea]}
-            value={descAr}
-            onChangeText={setDescAr}
-            multiline
-            placeholder={isAr ? 'وصف العقار...' : 'Describe the property...'}
-            placeholderTextColor={COLORS.textLight}
-            textAlignVertical="top"
-          />
-
+      <View style={[styles.bottomBar, {
+        backgroundColor: colors.surface,
+        borderTopColor: colors.border,
+      }]}>
+        {step > 0 && (
           <TouchableOpacity
-            style={[styles.submitBtn, submitting && { opacity: 0.7 }]}
-            onPress={handleSubmit}
-            disabled={submitting}
+            style={[styles.prevBtn, { borderColor: colors.primary }]}
+            onPress={goBack}
           >
-            {submitting ? (
-              <ActivityIndicator color="#FFF" />
-            ) : (
-              <Text style={styles.submitBtnText}>
-                {isAr ? 'نشر الإعلان' : 'Publish Listing'}
-              </Text>
-            )}
+            <Text style={[styles.prevBtnText, { color: colors.primary }]}>
+              {isAr ? 'السابق' : 'Back'}
+            </Text>
           </TouchableOpacity>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        )}
+        <TouchableOpacity
+          style={[styles.nextBtn, { backgroundColor: colors.primary }]}
+          onPress={step === STEPS.length - 1 ? handleSubmit : goNext}
+          disabled={loading}
+        >
+          {loading ? (
+            <ActivityIndicator color="#FFF" />
+          ) : (
+            <Text style={styles.nextBtnText}>
+              {step === STEPS.length - 1
+                ? (isAr ? 'نشر الإعلان' : 'Publish Listing')
+                : (isAr ? 'التالي' : 'Next')}
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 
-function Field({ label, value, onChange, keyboard }: any) {
+function FormField({
+  label, value, onChangeText, placeholder,
+  keyboardType, multiline, colors, textAlign,
+}: any) {
   return (
     <View>
-      <Text style={styles.fieldLabel}>{label}</Text>
+      <Text style={[styles.fieldLabel, { color: colors.text, textAlign }]}>
+        {label}
+      </Text>
       <TextInput
-        style={styles.input}
+        style={[
+          styles.fieldInput,
+          {
+            backgroundColor: colors.surface,
+            borderColor: colors.border,
+            color: colors.text,
+            textAlign,
+            height: multiline ? 100 : 52,
+            textAlignVertical: multiline ? 'top' : 'center',
+          }
+        ]}
         value={value}
-        onChangeText={onChange}
-        keyboardType={keyboard || 'default'}
-        placeholderTextColor={COLORS.textLight}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={colors.textLight}
+        keyboardType={keyboardType || 'default'}
+        multiline={multiline}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: COLORS.primary, padding: SIZES.lg },
-  backBtn: { padding: 4 },
-  headerTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: '#FFF' },
-  scroll: { padding: SIZES.lg, gap: SIZES.md, paddingBottom: SIZES.xxxl },
-  fieldLabel: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text, marginTop: SIZES.sm, marginBottom: SIZES.sm },
-  input: { backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, color: COLORS.text, height: 48 },
-  textarea: { height: 100, paddingTop: SIZES.md },
-  chipsRow: { flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm },
-  chip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, borderRadius: SIZES.borderRadiusFull, borderWidth: 1.5, borderColor: COLORS.border, backgroundColor: COLORS.surface },
-  chipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
-  chipText: { fontSize: SIZES.small, color: COLORS.text, fontWeight: '600' },
-  chipTextActive: { color: '#FFF' },
-  row3: { flexDirection: 'row', gap: SIZES.sm },
-  submitBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.xl, ...SHADOWS.md },
-  submitBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  container: { flex: 1 },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: SIZES.lg, paddingTop: SIZES.xl },
+  backBtn: { width: 40, height: 40, justifyContent: 'center', alignItems: 'center' },
+  headerTitle: { fontSize: SIZES.title, fontWeight: '800', color: '#FFF' },
+  progressContainer: { padding: SIZES.lg, borderBottomWidth: 1 },
+  progressBar: { height: 6, borderRadius: 3, overflow: 'hidden', marginBottom: SIZES.sm },
+  progressFill: { height: '100%', borderRadius: 3 },
+  progressText: { fontSize: SIZES.small, textAlign: 'center' },
+  content: { padding: SIZES.xl, paddingBottom: 100 },
+  stepTitle: { fontSize: SIZES.subtitle, fontWeight: '700', marginBottom: SIZES.md },
+  typeRow: { flexDirection: 'row', gap: SIZES.md },
+  typeBtn: { flex: 1, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 2, alignItems: 'center' },
+  typeBtnText: { fontSize: SIZES.bodyLg, fontWeight: '700' },
+  propTypeGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm },
+  propTypeBtn: { width: '22%', aspectRatio: 1, borderRadius: SIZES.borderRadiusLg, borderWidth: 2, justifyContent: 'center', alignItems: 'center' },
+  propTypeIcon: { fontSize: 24, marginBottom: 4 },
+  propTypeText: { fontSize: 10, fontWeight: '600', textAlign: 'center' },
+  citiesGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm },
+  cityBtn: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, borderRadius: SIZES.borderRadiusFull, borderWidth: 1.5 },
+  cityBtnText: { fontSize: SIZES.body },
+  specsRow: { flexDirection: 'row', gap: SIZES.md },
+  reviewCard: { borderRadius: SIZES.borderRadiusXl, padding: SIZES.xl, ...SHADOWS.sm },
+  reviewTitle: { fontSize: SIZES.h3, fontWeight: '800', marginBottom: SIZES.xl },
+  reviewRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: SIZES.md, borderBottomWidth: 1 },
+  reviewLabel: { fontSize: SIZES.body },
+  reviewValue: { fontSize: SIZES.body, fontWeight: '600' },
+  bottomBar: { flexDirection: 'row', gap: SIZES.md, padding: SIZES.lg, borderTopWidth: 1 },
+  prevBtn: { flex: 1, height: 52, justifyContent: 'center', alignItems: 'center', borderRadius: SIZES.borderRadiusLg, borderWidth: 2 },
+  prevBtnText: { fontSize: SIZES.bodyLg, fontWeight: '700' },
+  nextBtn: { flex: 2, height: 52, justifyContent: 'center', alignItems: 'center', borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
+  nextBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  fieldLabel: { fontSize: SIZES.body, fontWeight: '700', marginBottom: SIZES.sm },
+  fieldInput: { borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body },
 });

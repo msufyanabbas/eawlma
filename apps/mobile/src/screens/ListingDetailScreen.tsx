@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, ActivityIndicator, Linking,
-  Dimensions,
+  TouchableOpacity, Linking, Dimensions,
+  Modal, TextInput, Alert, ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTheme } from '../hooks/useTheme';
+import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
-import { listingsApi } from '../api';
-import { COLORS, SIZES, SHADOWS } from '../theme';
+import { inquiriesApi, listingsApi, savedApi } from '../api';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
+import LoadingSpinner from '../components/LoadingSpinner';
+import PriceText from '../components/PriceText';
+import ListingCard from '../components/ListingCard';
 
 const { width: W } = Dimensions.get('window');
 
+// Short-term property types are bookable — they show "Book Now" instead of
+// "Send Inquiry". Kept in sync with the backend's SHORT_TERM_PROPERTY_TYPES.
+const STAY_PROPERTY_TYPES = new Set([
+  'chalet',
+  'farm',
+  'rest_house',
+  'rest-house',
+  'resthouse',
+  'hotel_room',
+  'hotel-room',
+]);
+
 export default function ListingDetailScreen({ navigation, route }: any) {
   const { id } = route.params;
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, isRTL, backIcon, textAlign } = useRTL();
   const { isAuthenticated } = useAuthStore();
+  const qc = useQueryClient();
+  const [showInquiry, setShowInquiry] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ['listing', id],
@@ -27,62 +47,132 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   });
 
   const listing: any = data?.data || {};
-  const agent = listing.agent || listing.user || {};
+  const agent: any = listing.agent || listing.user || {};
+
+  const { data: similarData } = useQuery({
+    queryKey: ['similar', listing.city, listing.type],
+    queryFn: () => listingsApi.getAll({
+      city: listing.city,
+      type: listing.type || listing.transactionType,
+      limit: 5,
+    }),
+    enabled: !!listing.city,
+  });
+  const similar: any[] = (
+    similarData?.data?.data ||
+    similarData?.data?.items ||
+    similarData?.data ||
+    []
+  )
+    .filter((l: any) => l.id !== id)
+    .slice(0, 4);
+
+  const propertyType = String(listing.propertyType || '').toLowerCase();
+  const isStay = STAY_PROPERTY_TYPES.has(propertyType);
 
   const handleWhatsApp = () => {
     const phone = agent.phone?.replace(/\D/g, '');
     if (!phone) return;
     const msg = isAr
-      ? `مرحباً، أنا مهتم بإعلان: ${listing.titleAr}`
-      : `Hello, I'm interested in: ${listing.titleEn}`;
+      ? `مرحباً، أنا مهتم بإعلان: ${listing.titleAr || ''}`
+      : `Hello, I'm interested in: ${listing.titleEn || ''}`;
     Linking.openURL(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
   };
 
-  const handleContact = () => {
+  const handleCall = () => {
+    if (agent.phone) Linking.openURL(`tel:${agent.phone}`);
+  };
+
+  const handlePrimaryAction = () => {
     if (!isAuthenticated) {
       navigation.navigate('Login');
       return;
     }
-    navigation.navigate('Chat', {
-      conversationId: agent.id || 'new',
-      recipientName: `${agent.firstName} ${agent.lastName}`,
-    });
+    if (isStay) {
+      Alert.alert(
+        isAr ? 'الحجز' : 'Booking',
+        isAr
+          ? 'صفحة الحجز قيد التطوير. حتى ذلك الحين تواصل مع الوكيل مباشرة.'
+          : 'Booking flow is in development. Please contact the agent.',
+      );
+      return;
+    }
+    setShowInquiry(true);
+  };
+
+  const handleToggleSave = async () => {
+    if (!isAuthenticated) {
+      navigation.navigate('Login');
+      return;
+    }
+    setSaving(true);
+    try {
+      if (isSaved) {
+        await savedApi.unsave(id);
+        setIsSaved(false);
+      } else {
+        await savedApi.save(id);
+        setIsSaved(true);
+      }
+      qc.invalidateQueries({ queryKey: ['saved-listings'] });
+    } catch (e: any) {
+      Alert.alert(
+        isAr ? 'خطأ' : 'Error',
+        e?.response?.data?.message || (isAr ? 'فشلت العملية' : 'Action failed'),
+      );
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (isLoading) {
     return (
-      <SafeAreaView style={styles.container}>
-        <ActivityIndicator color={COLORS.primary} size="large" style={{ marginTop: 100 }} />
-      </SafeAreaView>
+      <View style={{ flex: 1, backgroundColor: colors.background }}>
+        <LoadingSpinner />
+      </View>
     );
   }
 
+  const amenities: string[] = [];
+  if (listing.hasElevator) amenities.push(isAr ? 'مصعد' : 'Elevator');
+  if (listing.hasPool) amenities.push(isAr ? 'مسبح' : 'Pool');
+  if (listing.hasGarden) amenities.push(isAr ? 'حديقة' : 'Garden');
+  if (listing.hasGym) amenities.push(isAr ? 'صالة رياضية' : 'Gym');
+  if (listing.hasMaidRoom) amenities.push(isAr ? 'غرفة خادمة' : 'Maid Room');
+  if (listing.hasDriverRoom) amenities.push(isAr ? 'غرفة سائق' : 'Driver Room');
+  if (listing.hasCentralAC) amenities.push(isAr ? 'تكييف مركزي' : 'Central AC');
+  if (listing.hasSecurity) amenities.push(isAr ? 'أمن' : 'Security');
+
+  const primaryLabel = isStay
+    ? (isAr ? 'احجز الآن' : 'Book Now')
+    : (isAr ? 'إرسال استفسار' : 'Send Inquiry');
+
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={styles.heroBox}>
           {listing.coverImageUrl ? (
-            <Image
-              source={{ uri: listing.coverImageUrl }}
-              style={styles.heroImage}
-              contentFit="cover"
-            />
+            <Image source={{ uri: listing.coverImageUrl }} style={styles.heroImage} contentFit="cover" />
           ) : (
-            <View style={[styles.heroImage, styles.heroEmpty]}>
-              <Ionicons name="home" size={64} color={COLORS.primaryLight} />
+            <View style={[styles.heroImage, { backgroundColor: colors.surfaceVariant, justifyContent: 'center', alignItems: 'center' }]}>
+              <Ionicons name="home" size={64} color={colors.primaryLight} />
             </View>
           )}
           <SafeAreaView style={styles.heroNav} edges={['top']}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => navigation.goBack()}>
-              <Ionicons
-                name={isAr ? 'arrow-forward' : 'arrow-back'}
-                size={22}
-                color="#FFF"
-              />
+              <Ionicons name={backIcon} size={22} color="#FFF" />
             </TouchableOpacity>
             <View style={styles.heroActions}>
-              <TouchableOpacity style={styles.iconBtn}>
-                <Ionicons name="heart-outline" size={22} color="#FFF" />
+              <TouchableOpacity style={styles.iconBtn} onPress={handleToggleSave} disabled={saving}>
+                {saving ? (
+                  <ActivityIndicator color="#FFF" size="small" />
+                ) : (
+                  <Ionicons
+                    name={isSaved ? 'heart' : 'heart-outline'}
+                    size={22}
+                    color={isSaved ? colors.error : '#FFF'}
+                  />
+                )}
               </TouchableOpacity>
               <TouchableOpacity style={styles.iconBtn}>
                 <Ionicons name="share-outline" size={22} color="#FFF" />
@@ -91,9 +181,9 @@ export default function ListingDetailScreen({ navigation, route }: any) {
           </SafeAreaView>
           <View style={[
             styles.heroBadge,
-            { backgroundColor: listing.transactionType === 'rent' ? COLORS.success : COLORS.secondary }
+            { backgroundColor: listing.transactionType === 'rent' ? colors.success : colors.secondary },
           ]}>
-            <Text style={styles.heroBadgeText}>
+            <Text style={[TYPOGRAPHY.small, { color: '#FFF', fontWeight: '800' }]}>
               {listing.transactionType === 'rent'
                 ? (isAr ? 'للإيجار' : 'For Rent')
                 : (isAr ? 'للبيع' : 'For Sale')}
@@ -102,119 +192,338 @@ export default function ListingDetailScreen({ navigation, route }: any) {
         </View>
 
         <View style={styles.body}>
-          <Text style={styles.price}>
-            {Number(listing.price || 0).toLocaleString()}
-            <Text style={styles.priceCurrency}> {isAr ? 'ر.س' : 'SAR'}</Text>
+          <PriceText
+            value={listing.price}
+            style={[TYPOGRAPHY.h1, { color: colors.primary }]}
+            currencyStyle={[TYPOGRAPHY.h4, { color: colors.primary }]}
+          />
+          <Text style={[TYPOGRAPHY.h4, { color: colors.text, marginTop: SIZES.sm, textAlign }]}>
+            {isAr ? (listing.titleAr || listing.titleEn) : (listing.titleEn || listing.titleAr)}
           </Text>
-          <Text style={styles.title}>
-            {isAr ? listing.titleAr : listing.titleEn}
-          </Text>
-          <View style={styles.locRow}>
-            <Ionicons name="location" size={16} color={COLORS.primary} />
-            <Text style={styles.locText}>
-              {listing.district}, {listing.city}
+          <View style={[styles.locRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+            <Ionicons name="location" size={16} color={colors.primary} />
+            <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary }]}>
+              {[listing.district, listing.city].filter(Boolean).join(', ')}
             </Text>
           </View>
 
-          <View style={styles.statsRow}>
+          <View style={[styles.statsRow, { backgroundColor: colors.surface }]}>
             {listing.bedrooms != null && (
-              <View style={styles.statBox}>
-                <Ionicons name="bed-outline" size={20} color={COLORS.primary} />
-                <Text style={styles.statValue}>{listing.bedrooms}</Text>
-                <Text style={styles.statLabel}>{isAr ? 'غرف' : 'Beds'}</Text>
-              </View>
+              <Stat icon="bed-outline" value={listing.bedrooms} label={isAr ? 'غرف' : 'Beds'} colors={colors} />
             )}
             {listing.bathrooms != null && (
-              <View style={styles.statBox}>
-                <Ionicons name="water-outline" size={20} color={COLORS.primary} />
-                <Text style={styles.statValue}>{listing.bathrooms}</Text>
-                <Text style={styles.statLabel}>{isAr ? 'حمامات' : 'Baths'}</Text>
-              </View>
+              <Stat icon="water-outline" value={listing.bathrooms} label={isAr ? 'حمامات' : 'Baths'} colors={colors} />
             )}
             {listing.area != null && (
-              <View style={styles.statBox}>
-                <Ionicons name="resize-outline" size={20} color={COLORS.primary} />
-                <Text style={styles.statValue}>{listing.area}</Text>
-                <Text style={styles.statLabel}>م²</Text>
-              </View>
+              <Stat icon="resize-outline" value={listing.area} label="م²" colors={colors} />
+            )}
+            {listing.propertyType && (
+              <Stat icon="business-outline" value={listing.propertyType} label={isAr ? 'النوع' : 'Type'} colors={colors} />
             )}
           </View>
 
-          <Text style={styles.sectionTitle}>
+          <SectionTitle colors={colors} textAlign={textAlign}>
             {isAr ? 'الوصف' : 'Description'}
+          </SectionTitle>
+          <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, lineHeight: 22, textAlign }]}>
+            {isAr
+              ? (listing.descriptionAr || listing.descriptionEn || 'لا يوجد وصف.')
+              : (listing.descriptionEn || listing.descriptionAr || 'No description.')}
           </Text>
-          <Text style={styles.description}>
-            {isAr ? listing.descriptionAr : listing.descriptionEn || (isAr ? 'لا يوجد وصف.' : 'No description.')}
-          </Text>
+
+          {amenities.length > 0 && (
+            <>
+              <SectionTitle colors={colors} textAlign={textAlign}>
+                {isAr ? 'المرافق' : 'Amenities'}
+              </SectionTitle>
+              <View style={styles.amenitiesGrid}>
+                {amenities.map(a => (
+                  <View
+                    key={a}
+                    style={[styles.amenityChip, { backgroundColor: colors.primary + '10', borderColor: colors.primary + '30' }]}
+                  >
+                    <Ionicons name="checkmark-circle" size={14} color={colors.primary} />
+                    <Text style={[TYPOGRAPHY.small, { color: colors.text }]}>{a}</Text>
+                  </View>
+                ))}
+              </View>
+            </>
+          )}
 
           {agent?.firstName && (
             <TouchableOpacity
-              style={styles.agentCard}
+              style={[
+                styles.agentCard,
+                { backgroundColor: colors.surface, flexDirection: isRTL ? 'row-reverse' : 'row' },
+              ]}
               onPress={() => agent.id && navigation.navigate('AgentProfile', { id: agent.id })}
             >
-              <View style={styles.agentAvatar}>
-                <Text style={styles.agentAvatarText}>{agent.firstName?.[0]}</Text>
+              <View style={[styles.agentAvatar, { backgroundColor: colors.primary }]}>
+                <Text style={[TYPOGRAPHY.h4, { color: '#FFF' }]}>{agent.firstName?.[0]}</Text>
               </View>
               <View style={styles.agentInfo}>
-                <Text style={styles.agentName}>
-                  {agent.firstName} {agent.lastName}
-                </Text>
-                <Text style={styles.agentLabel}>
+                <View style={{ flexDirection: isRTL ? 'row-reverse' : 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}>
+                    {agent.firstName} {agent.lastName}
+                  </Text>
+                  {agent.isVerified && (
+                    <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
+                  )}
+                </View>
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign }]}>
                   {isAr ? 'وكيل عقاري' : 'Real Estate Agent'}
                 </Text>
               </View>
               {agent.phone && (
-                <TouchableOpacity style={styles.whatsappBtn} onPress={handleWhatsApp}>
-                  <Ionicons name="logo-whatsapp" size={20} color="#FFF" />
-                </TouchableOpacity>
+                <>
+                  <TouchableOpacity
+                    style={[styles.actionCircle, { backgroundColor: colors.primary }]}
+                    onPress={handleCall}
+                  >
+                    <Ionicons name="call" size={18} color="#FFF" />
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.actionCircle, { backgroundColor: colors.whatsapp }]}
+                    onPress={handleWhatsApp}
+                  >
+                    <Ionicons name="logo-whatsapp" size={18} color="#FFF" />
+                  </TouchableOpacity>
+                </>
               )}
             </TouchableOpacity>
+          )}
+
+          {(listing.lat || listing.lng) && (
+            <>
+              <SectionTitle colors={colors} textAlign={textAlign}>
+                {isAr ? 'الموقع' : 'Location'}
+              </SectionTitle>
+              <View style={[styles.mapPlaceholder, { backgroundColor: colors.surfaceVariant }]}>
+                <Ionicons name="map-outline" size={36} color={colors.primaryLight} />
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 6 }]}>
+                  {listing.lat?.toFixed(4)}, {listing.lng?.toFixed(4)}
+                </Text>
+              </View>
+            </>
+          )}
+
+          {similar.length > 0 && (
+            <>
+              <SectionTitle colors={colors} textAlign={textAlign}>
+                {isAr ? 'إعلانات مشابهة' : 'Similar Listings'}
+              </SectionTitle>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: SIZES.sm }}>
+                {similar.map(item => (
+                  <View key={item.id} style={{ width: W * 0.5 }}>
+                    <ListingCard
+                      item={item}
+                      variant="grid"
+                      onPress={() => navigation.push('ListingDetail', { id: item.id })}
+                    />
+                  </View>
+                ))}
+              </ScrollView>
+            </>
           )}
         </View>
       </ScrollView>
 
-      <SafeAreaView edges={['bottom']} style={styles.footer}>
-        <TouchableOpacity style={styles.contactBtn} onPress={handleContact}>
-          <Ionicons name="chatbubble-ellipses-outline" size={20} color="#FFF" />
-          <Text style={styles.contactBtnText}>
-            {isAr ? 'تواصل مع الوكيل' : 'Contact Agent'}
+      <SafeAreaView edges={['bottom']} style={[styles.footer, { backgroundColor: colors.surface, borderTopColor: colors.border }]}>
+        <TouchableOpacity
+          style={[styles.contactBtn, { backgroundColor: colors.primary, flexDirection: isRTL ? 'row-reverse' : 'row' }]}
+          onPress={handlePrimaryAction}
+        >
+          <Ionicons
+            name={isStay ? 'calendar-outline' : 'chatbubble-ellipses-outline'}
+            size={20}
+            color="#FFF"
+          />
+          <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
+            {primaryLabel}
           </Text>
         </TouchableOpacity>
       </SafeAreaView>
+
+      <InquiryModal
+        visible={showInquiry}
+        onClose={() => setShowInquiry(false)}
+        listingId={id}
+        colors={colors}
+        isAr={isAr}
+        isRTL={isRTL}
+        textAlign={textAlign}
+      />
     </View>
   );
 }
 
+function InquiryModal({
+  visible, onClose, listingId, colors, isAr, isRTL, textAlign,
+}: any) {
+  const [message, setMessage] = useState('');
+  const [contact, setContact] = useState<'phone' | 'email' | 'whatsapp'>('phone');
+
+  const send = useMutation({
+    mutationFn: () =>
+      inquiriesApi.createInquiry({
+        listingId,
+        message,
+        preferredContactMethod: contact,
+      }),
+    onSuccess: () => {
+      setMessage('');
+      onClose();
+      Alert.alert(
+        isAr ? 'تم الإرسال' : 'Sent',
+        isAr ? 'تم إرسال استفسارك بنجاح' : 'Your inquiry was sent',
+      );
+    },
+    onError: (err: any) => {
+      Alert.alert(
+        isAr ? 'خطأ' : 'Error',
+        err?.response?.data?.message || (isAr ? 'فشل الإرسال' : 'Failed to send'),
+      );
+    },
+  });
+
+  const submit = () => {
+    if (message.trim().length < 10) {
+      Alert.alert(
+        isAr ? 'الرسالة قصيرة' : 'Message too short',
+        isAr ? 'يجب أن تكون الرسالة 10 أحرف على الأقل' : 'Message must be at least 10 characters',
+      );
+      return;
+    }
+    send.mutate();
+  };
+
+  return (
+    <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
+      <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.4)' }}>
+        <View style={[modalStyles.sheet, { backgroundColor: colors.surface }]}>
+          <View style={[modalStyles.header, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+            <Text style={[TYPOGRAPHY.h3, { color: colors.text }]}>
+              {isAr ? 'إرسال استفسار' : 'Send Inquiry'}
+            </Text>
+            <TouchableOpacity onPress={onClose}>
+              <Ionicons name="close" size={24} color={colors.text} />
+            </TouchableOpacity>
+          </View>
+
+          <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginBottom: SIZES.xs, textAlign }]}>
+            {isAr ? 'رسالتك' : 'Your message'}
+          </Text>
+          <TextInput
+            value={message}
+            onChangeText={setMessage}
+            multiline
+            placeholder={isAr ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
+            placeholderTextColor={colors.textSecondary}
+            style={[
+              modalStyles.textarea,
+              {
+                color: colors.text,
+                borderColor: colors.border,
+                backgroundColor: colors.background,
+                textAlign,
+              },
+            ]}
+          />
+
+          <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: SIZES.md, marginBottom: SIZES.xs, textAlign }]}>
+            {isAr ? 'طريقة التواصل المفضلة' : 'Preferred contact'}
+          </Text>
+          <View style={[modalStyles.chipsRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+            {(['phone', 'whatsapp', 'email'] as const).map(c => {
+              const active = c === contact;
+              return (
+                <TouchableOpacity
+                  key={c}
+                  onPress={() => setContact(c)}
+                  style={[
+                    modalStyles.chip,
+                    {
+                      backgroundColor: active ? colors.primary : colors.background,
+                      borderColor: active ? colors.primary : colors.border,
+                    },
+                  ]}
+                >
+                  <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.text, fontWeight: '600' }]}>
+                    {c === 'phone'
+                      ? (isAr ? 'هاتف' : 'Phone')
+                      : c === 'whatsapp'
+                        ? 'WhatsApp'
+                        : (isAr ? 'بريد' : 'Email')}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+
+          <TouchableOpacity
+            disabled={send.isPending}
+            onPress={submit}
+            style={[modalStyles.submitBtn, { backgroundColor: colors.primary }]}
+          >
+            {send.isPending ? (
+              <ActivityIndicator color="#FFF" />
+            ) : (
+              <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
+                {isAr ? 'إرسال' : 'Send'}
+              </Text>
+            )}
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+function Stat({ icon, value, label, colors }: any) {
+  return (
+    <View style={styles.statBox}>
+      <Ionicons name={icon} size={20} color={colors.primary} />
+      <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text }]}>{value}</Text>
+      <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{label}</Text>
+    </View>
+  );
+}
+
+function SectionTitle({ children, colors, textAlign }: any) {
+  return (
+    <Text style={[TYPOGRAPHY.h4, { color: colors.text, marginTop: SIZES.xl, marginBottom: SIZES.sm, textAlign }]}>
+      {children}
+    </Text>
+  );
+}
+
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
   heroBox: { width: W, height: 300, position: 'relative' },
   heroImage: { width: '100%', height: '100%' },
-  heroEmpty: { backgroundColor: COLORS.surfaceVariant, justifyContent: 'center', alignItems: 'center' },
   heroNav: { position: 'absolute', top: 0, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: SIZES.lg, paddingVertical: SIZES.sm },
   heroActions: { flexDirection: 'row', gap: SIZES.sm },
   iconBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', alignItems: 'center' },
   heroBadge: { position: 'absolute', bottom: SIZES.lg, left: SIZES.lg, paddingHorizontal: SIZES.md, paddingVertical: 6, borderRadius: SIZES.borderRadiusFull },
-  heroBadgeText: { color: '#FFF', fontWeight: '800', fontSize: SIZES.small },
   body: { padding: SIZES.lg },
-  price: { fontSize: SIZES.h1, fontWeight: '900', color: COLORS.primary },
-  priceCurrency: { fontSize: SIZES.subtitle, fontWeight: '700' },
-  title: { fontSize: SIZES.title, fontWeight: '700', color: COLORS.text, marginTop: SIZES.sm },
-  locRow: { flexDirection: 'row', alignItems: 'center', gap: SIZES.xs, marginTop: SIZES.sm },
-  locText: { fontSize: SIZES.body, color: COLORS.textSecondary },
-  statsRow: { flexDirection: 'row', justifyContent: 'space-around', backgroundColor: COLORS.surface, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginTop: SIZES.lg, ...SHADOWS.sm },
-  statBox: { alignItems: 'center', gap: 4 },
-  statValue: { fontSize: SIZES.subtitle, fontWeight: '800', color: COLORS.text },
-  statLabel: { fontSize: SIZES.small, color: COLORS.textSecondary },
-  sectionTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: COLORS.text, marginTop: SIZES.xl, marginBottom: SIZES.sm },
-  description: { fontSize: SIZES.body, color: COLORS.textSecondary, lineHeight: 22 },
-  agentCard: { flexDirection: 'row', alignItems: 'center', gap: SIZES.md, backgroundColor: COLORS.surface, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginTop: SIZES.xl, ...SHADOWS.sm },
-  agentAvatar: { width: 50, height: 50, borderRadius: 25, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center' },
-  agentAvatarText: { fontSize: SIZES.title, fontWeight: '800', color: '#FFF' },
+  locRow: { alignItems: 'center', gap: SIZES.xs, marginTop: SIZES.sm },
+  statsRow: { flexDirection: 'row', justifyContent: 'space-around', padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginTop: SIZES.lg, ...SHADOWS.sm },
+  statBox: { alignItems: 'center', gap: 4, flex: 1 },
+  amenitiesGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm },
+  amenityChip: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: SIZES.sm, paddingVertical: 6, borderRadius: SIZES.borderRadiusFull, borderWidth: 1 },
+  agentCard: { alignItems: 'center', gap: SIZES.sm, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginTop: SIZES.xl, ...SHADOWS.sm },
+  agentAvatar: { width: 48, height: 48, borderRadius: 24, justifyContent: 'center', alignItems: 'center' },
   agentInfo: { flex: 1 },
-  agentName: { fontSize: SIZES.bodyLg, fontWeight: '700', color: COLORS.text },
-  agentLabel: { fontSize: SIZES.small, color: COLORS.textSecondary },
-  whatsappBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: COLORS.whatsapp, justifyContent: 'center', alignItems: 'center' },
-  footer: { position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: COLORS.surface, borderTopWidth: 1, borderTopColor: COLORS.border, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
-  contactBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, backgroundColor: COLORS.primary, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
-  contactBtnText: { color: '#FFF', fontSize: SIZES.bodyLg, fontWeight: '800' },
+  actionCircle: { width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center' },
+  mapPlaceholder: { height: 150, borderRadius: SIZES.borderRadiusLg, justifyContent: 'center', alignItems: 'center' },
+  footer: { position: 'absolute', bottom: 0, left: 0, right: 0, borderTopWidth: 1, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
+  contactBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
+});
+
+const modalStyles = StyleSheet.create({
+  sheet: { padding: SIZES.lg, borderTopLeftRadius: SIZES.borderRadiusXl, borderTopRightRadius: SIZES.borderRadiusXl, paddingBottom: SIZES.xxxl },
+  header: { alignItems: 'center', justifyContent: 'space-between', marginBottom: SIZES.lg },
+  textarea: { borderWidth: 1, borderRadius: SIZES.borderRadius, padding: SIZES.md, minHeight: 100, fontSize: SIZES.body, textAlignVertical: 'top' },
+  chipsRow: { gap: SIZES.sm, flexWrap: 'wrap' },
+  chip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1 },
+  submitBtn: { marginTop: SIZES.xl, height: 50, borderRadius: SIZES.borderRadiusLg, alignItems: 'center', justifyContent: 'center', ...SHADOWS.md },
 });

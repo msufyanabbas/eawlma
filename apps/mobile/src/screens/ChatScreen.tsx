@@ -1,40 +1,47 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TextInput,
   TouchableOpacity, KeyboardAvoidingView, Platform,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from '../hooks/useTheme';
+import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
-import { api } from '../api';
-import { COLORS, SIZES } from '../theme';
+import { messagesApi } from '../api';
+import { SIZES, TYPOGRAPHY } from '../theme';
+import Header from '../components/Header';
+import EmptyState from '../components/EmptyState';
+
+function formatTime(iso?: string): string {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  } catch {
+    return '';
+  }
+}
 
 export default function ChatScreen({ navigation, route }: any) {
   const { conversationId, recipientName } = route.params;
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr } = useRTL();
   const { user } = useAuthStore();
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
-  const listRef = useRef<FlatList>(null);
   const qc = useQueryClient();
 
   const { data } = useQuery({
     queryKey: ['messages', conversationId],
-    queryFn: () => api.get(`/conversations/${conversationId}/messages`).then(r => r.data),
-    refetchInterval: 3000,
+    queryFn: () => messagesApi.getMessages(conversationId),
+    refetchInterval: 5000,
     enabled: conversationId !== 'new',
   });
 
-  const messages = data?.data?.data || data?.data || [];
-
-  useEffect(() => {
-    if (messages.length > 0) {
-      setTimeout(() => listRef.current?.scrollToEnd({ animated: true }), 100);
-    }
-  }, [messages.length]);
+  const rawMessages: any[] = data?.data?.data || data?.data || [];
+  // Inverted FlatList: newest first
+  const messages = [...rawMessages].reverse();
 
   const handleSend = async () => {
     const text = draft.trim();
@@ -42,8 +49,9 @@ export default function ChatScreen({ navigation, route }: any) {
     setSending(true);
     setDraft('');
     try {
-      await api.post(`/conversations/${conversationId}/messages`, { content: text });
+      await messagesApi.sendMessage(conversationId, text);
       qc.invalidateQueries({ queryKey: ['messages', conversationId] });
+      qc.invalidateQueries({ queryKey: ['conversations-unread'] });
     } catch {
       setDraft(text);
     } finally {
@@ -52,22 +60,8 @@ export default function ChatScreen({ navigation, route }: any) {
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Ionicons
-            name={isAr ? 'arrow-forward' : 'arrow-back'}
-            size={22}
-            color="#FFF"
-          />
-        </TouchableOpacity>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.headerTitle} numberOfLines={1}>{recipientName}</Text>
-          <Text style={styles.headerStatus}>
-            {isAr ? 'متصل الآن' : 'Online'}
-          </Text>
-        </View>
-      </View>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <Header title={recipientName || (isAr ? 'محادثة' : 'Chat')} onBack={() => navigation.goBack()} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -75,52 +69,85 @@ export default function ChatScreen({ navigation, route }: any) {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       >
         <FlatList
-          ref={listRef}
           data={messages}
+          inverted
           keyExtractor={(item: any) => item.id || String(Math.random())}
           contentContainerStyle={styles.list}
           renderItem={({ item }: any) => {
             const isMe = item.senderId === user?.id;
             return (
               <View style={[styles.bubbleWrap, isMe ? styles.bubbleWrapMe : styles.bubbleWrapThem]}>
-                <View style={[styles.bubble, isMe ? styles.bubbleMe : styles.bubbleThem]}>
-                  <Text style={[styles.bubbleText, isMe && { color: '#FFF' }]}>
+                <View style={[
+                  styles.bubble,
+                  isMe
+                    ? { backgroundColor: colors.primary, borderBottomRightRadius: 4 }
+                    : { backgroundColor: colors.surface, borderBottomLeftRadius: 4 },
+                ]}>
+                  <Text style={[
+                    TYPOGRAPHY.body,
+                    { color: isMe ? '#FFF' : colors.text, lineHeight: 20 },
+                  ]}>
                     {item.content}
                   </Text>
                   {item.isTranslated && (
                     <View style={styles.translatedBadge}>
-                      <Ionicons name="language" size={9} color={isMe ? 'rgba(255,255,255,0.7)' : COLORS.primary} />
-                      <Text style={[styles.translatedText, { color: isMe ? 'rgba(255,255,255,0.7)' : COLORS.primary }]}>
+                      <Ionicons
+                        name="language"
+                        size={9}
+                        color={isMe ? 'rgba(255,255,255,0.7)' : colors.primary}
+                      />
+                      <Text style={[
+                        TYPOGRAPHY.caption,
+                        { color: isMe ? 'rgba(255,255,255,0.7)' : colors.primary, fontWeight: '600' },
+                      ]}>
                         {isAr ? 'مترجم' : 'Translated'}
                       </Text>
                     </View>
                   )}
                 </View>
+                <Text style={[
+                  TYPOGRAPHY.caption,
+                  {
+                    color: colors.textLight,
+                    marginTop: 2,
+                    [isMe ? 'marginRight' : 'marginLeft']: 4,
+                  } as any,
+                ]}>
+                  {formatTime(item.createdAt)}
+                </Text>
               </View>
             );
           }}
           ListEmptyComponent={
-            <View style={styles.empty}>
-              <Ionicons name="chatbubble-outline" size={48} color={COLORS.border} />
-              <Text style={styles.emptyText}>
-                {isAr ? 'لا توجد رسائل بعد' : 'No messages yet'}
-              </Text>
+            <View style={{ transform: [{ scaleY: -1 }] }}>
+              <EmptyState
+                icon="chatbubble-outline"
+                title={isAr ? 'لا توجد رسائل بعد' : 'No messages yet'}
+                subtitle={isAr ? 'ابدأ المحادثة الآن' : 'Send the first message'}
+              />
             </View>
           }
         />
 
-        <View style={styles.composer}>
+        <View style={[styles.composer, { backgroundColor: colors.surface, borderTopColor: colors.border }]}>
           <TextInput
-            style={styles.composerInput}
+            style={[
+              styles.composerInput,
+              { backgroundColor: colors.background, color: colors.text, borderColor: colors.border },
+            ]}
             value={draft}
             onChangeText={setDraft}
             placeholder={isAr ? 'اكتب رسالة...' : 'Type a message...'}
-            placeholderTextColor={COLORS.textSecondary}
+            placeholderTextColor={colors.textSecondary}
             multiline
             textAlign={isAr ? 'right' : 'left'}
           />
           <TouchableOpacity
-            style={[styles.sendBtn, !draft.trim() && { opacity: 0.5 }]}
+            style={[
+              styles.sendBtn,
+              { backgroundColor: colors.primary },
+              (!draft.trim() || sending) && { opacity: 0.5 },
+            ]}
             onPress={handleSend}
             disabled={!draft.trim() || sending}
           >
@@ -128,29 +155,18 @@ export default function ChatScreen({ navigation, route }: any) {
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  header: { flexDirection: 'row', alignItems: 'center', gap: SIZES.md, backgroundColor: COLORS.primary, padding: SIZES.lg },
-  backBtn: { padding: 4 },
-  headerTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: '#FFF' },
-  headerStatus: { fontSize: SIZES.small, color: 'rgba(255,255,255,0.75)' },
   list: { padding: SIZES.lg, gap: SIZES.sm },
-  bubbleWrap: { flexDirection: 'row' },
-  bubbleWrapMe: { justifyContent: 'flex-end' },
-  bubbleWrapThem: { justifyContent: 'flex-start' },
-  bubble: { maxWidth: '78%', padding: SIZES.md, borderRadius: SIZES.borderRadiusLg },
-  bubbleMe: { backgroundColor: COLORS.primary, borderBottomRightRadius: 4 },
-  bubbleThem: { backgroundColor: COLORS.surface, borderBottomLeftRadius: 4 },
-  bubbleText: { fontSize: SIZES.body, color: COLORS.text, lineHeight: 20 },
+  bubbleWrap: { marginBottom: SIZES.xs },
+  bubbleWrapMe: { alignSelf: 'flex-end', alignItems: 'flex-end' },
+  bubbleWrapThem: { alignSelf: 'flex-start', alignItems: 'flex-start' },
+  bubble: { maxWidth: 280, padding: SIZES.md, borderRadius: SIZES.borderRadiusLg },
   translatedBadge: { flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 4 },
-  translatedText: { fontSize: 10, fontWeight: '600' },
-  composer: { flexDirection: 'row', alignItems: 'flex-end', gap: SIZES.sm, padding: SIZES.md, backgroundColor: COLORS.surface, borderTopWidth: 1, borderTopColor: COLORS.border },
-  composerInput: { flex: 1, backgroundColor: COLORS.background, borderRadius: SIZES.borderRadiusLg, paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, fontSize: SIZES.body, color: COLORS.text, maxHeight: 100, borderWidth: 1, borderColor: COLORS.border },
-  sendBtn: { width: 44, height: 44, borderRadius: 22, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center' },
-  empty: { alignItems: 'center', padding: SIZES.xxxl },
-  emptyText: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.md },
+  composer: { flexDirection: 'row', alignItems: 'flex-end', gap: SIZES.sm, padding: SIZES.md, borderTopWidth: 1 },
+  composerInput: { flex: 1, borderRadius: SIZES.borderRadiusLg, paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, fontSize: SIZES.body, maxHeight: 100, borderWidth: 1 },
+  sendBtn: { width: 44, height: 44, borderRadius: 22, justifyContent: 'center', alignItems: 'center' },
 });

@@ -22,6 +22,15 @@ api.interceptors.request.use(async (config) => {
 api.interceptors.response.use(
   (res) => res,
   async (error) => {
+    if (__DEV__) {
+      console.error('API Error:', {
+        url: error.config?.url,
+        method: error.config?.method,
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message,
+      });
+    }
     if (error.response?.status === 401) {
       await SecureStore.deleteItemAsync('accessToken');
     }

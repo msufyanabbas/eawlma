@@ -1,104 +1,154 @@
 import React from 'react';
 import {
-  View, Text, StyleSheet, FlatList,
-  TouchableOpacity, ActivityIndicator,
+  View, Text, StyleSheet, FlatList, RefreshControl,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
-import { api } from '../api';
-import { COLORS, SIZES, SHADOWS } from '../theme';
+import { useTheme } from '../hooks/useTheme';
+import { useRTL } from '../hooks/useRTL';
+import { commissionsApi } from '../api';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
+import Header from '../components/Header';
+import LoadingSpinner from '../components/LoadingSpinner';
+import EmptyState from '../components/EmptyState';
+import PriceText from '../components/PriceText';
 
-const STATUS_COLORS: Record<string, string> = {
-  paid: COLORS.success,
-  pending: COLORS.warning,
-  cancelled: COLORS.error,
-};
+type Status = 'pending' | 'confirmed' | 'paid' | 'cancelled' | string;
 
 export default function CommissionsScreen({ navigation }: any) {
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, isRTL, textAlign } = useRTL();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['commissions'],
-    queryFn: () => api.get('/commissions').then(r => r.data),
+  const { data, isLoading, refetch, isRefetching } = useQuery({
+    queryKey: ['commissions-mine'],
+    queryFn: () => commissionsApi.myCommissions(),
   });
 
-  const items = data?.data?.data || data?.data || [];
+  const items: any[] = data?.data?.data || data?.data || [];
+
+  const statusMeta = (s: Status) => {
+    switch (s) {
+      case 'confirmed':
+        return { color: colors.success, labelAr: 'مؤكدة', labelEn: 'Confirmed' };
+      case 'paid':
+        return { color: colors.primary, labelAr: 'مدفوعة', labelEn: 'Paid' };
+      case 'cancelled':
+        return { color: colors.error, labelAr: 'ملغاة', labelEn: 'Cancelled' };
+      case 'pending':
+      default:
+        return { color: colors.warning, labelAr: 'معلّقة', labelEn: 'Pending' };
+    }
+  };
+
+  const totalEarned = items
+    .filter(i => i.status === 'paid' || i.status === 'confirmed')
+    .reduce((sum, i) => sum + Number(i.amount || 0), 0);
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Ionicons
-            name={isAr ? 'arrow-forward' : 'arrow-back'}
-            size={22}
-            color="#FFF"
-          />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{isAr ? 'العمولات' : 'Commissions'}</Text>
-        <View style={{ width: 22 }} />
-      </View>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <Header title={isAr ? 'العمولات' : 'Commissions'} onBack={() => navigation.goBack()} />
 
       {isLoading ? (
-        <ActivityIndicator color={COLORS.primary} size="large" style={{ marginTop: 40 }} />
-      ) : items.length === 0 ? (
-        <View style={styles.empty}>
-          <Ionicons name="receipt-outline" size={64} color={COLORS.border} />
-          <Text style={styles.emptyText}>
-            {isAr ? 'لا توجد عمولات' : 'No commissions yet'}
-          </Text>
-        </View>
+        <LoadingSpinner />
       ) : (
         <FlatList
           data={items}
           keyExtractor={(item: any) => item.id}
-          contentContainerStyle={styles.list}
-          renderItem={({ item }: any) => (
-            <View style={styles.card}>
-              <View style={styles.row}>
-                <Text style={styles.title} numberOfLines={1}>
-                  {item.title || `#${item.id?.slice(0, 8)}`}
-                </Text>
-                <View style={[
-                  styles.badge,
-                  { backgroundColor: (STATUS_COLORS[item.status] || COLORS.textSecondary) + '20' },
-                ]}>
-                  <Text style={[styles.badgeText, { color: STATUS_COLORS[item.status] || COLORS.textSecondary }]}>
-                    {item.status || 'pending'}
-                  </Text>
-                </View>
-              </View>
-              <Text style={styles.amount}>
-                {Number(item.amount || 0).toLocaleString()} {isAr ? 'ر.س' : 'SAR'}
+          contentContainerStyle={{ paddingBottom: SIZES.xxxl }}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefetching}
+              onRefresh={refetch}
+              tintColor={colors.primary}
+              colors={[colors.primary]}
+            />
+          }
+          ListHeaderComponent={
+            <View style={[styles.summary, { backgroundColor: colors.primary }]}>
+              <Text style={[TYPOGRAPHY.body, { color: 'rgba(255,255,255,0.85)' }]}>
+                {isAr ? 'إجمالي العمولات المكتسبة' : 'Total Earned'}
               </Text>
-              {item.createdAt && (
-                <Text style={styles.date}>
-                  {new Date(item.createdAt).toLocaleDateString()}
-                </Text>
-              )}
+              <PriceText
+                value={totalEarned}
+                style={[TYPOGRAPHY.h1, { color: '#FFF', fontSize: 36, marginTop: SIZES.xs }]}
+                currencyStyle={[TYPOGRAPHY.h3, { color: '#FFF' }]}
+              />
+              <Text style={[TYPOGRAPHY.small, { color: 'rgba(255,255,255,0.75)', marginTop: SIZES.sm }]}>
+                {isAr
+                  ? `من ${items.length} عملية`
+                  : `from ${items.length} transactions`}
+              </Text>
             </View>
-          )}
+          }
+          renderItem={({ item }: any) => {
+            const meta = statusMeta(item.status);
+            const title = item.listingTitleAr && isAr
+              ? item.listingTitleAr
+              : item.listingTitleEn || item.listing?.titleAr || item.listing?.titleEn || (isAr ? 'عمولة' : 'Commission');
+            return (
+              <View style={[styles.card, { backgroundColor: colors.surface }]}>
+                <View style={[styles.cardHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+                  <Text
+                    style={[TYPOGRAPHY.bodyBold, { color: colors.text, flex: 1, textAlign }]}
+                    numberOfLines={1}
+                  >
+                    {title}
+                  </Text>
+                  <View style={[styles.badge, { backgroundColor: meta.color + '20' }]}>
+                    <Text style={[TYPOGRAPHY.caption, { color: meta.color, fontWeight: '800', textTransform: 'uppercase' }]}>
+                      {isAr ? meta.labelAr : meta.labelEn}
+                    </Text>
+                  </View>
+                </View>
+
+                {item.transactionValue != null && (
+                  <View style={[styles.row, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+                    <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>
+                      {isAr ? 'قيمة الصفقة' : 'Deal value'}
+                    </Text>
+                    <PriceText
+                      value={item.transactionValue}
+                      style={[TYPOGRAPHY.small, { color: colors.text, fontWeight: '600' }]}
+                      currencyStyle={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}
+                    />
+                  </View>
+                )}
+
+                <View style={[styles.row, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+                  <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>
+                    {isAr ? 'العمولة' : 'Commission'}
+                  </Text>
+                  <PriceText
+                    value={item.amount}
+                    style={[TYPOGRAPHY.bodyBold, { color: colors.primary }]}
+                    currencyStyle={TYPOGRAPHY.small}
+                  />
+                </View>
+
+                {item.createdAt && (
+                  <Text style={[TYPOGRAPHY.caption, { color: colors.textLight, marginTop: SIZES.sm, textAlign }]}>
+                    {new Date(item.createdAt).toLocaleDateString()}
+                  </Text>
+                )}
+              </View>
+            );
+          }}
+          ListEmptyComponent={
+            <EmptyState
+              icon="receipt-outline"
+              title={isAr ? 'لا توجد عمولات' : 'No commissions yet'}
+              subtitle={isAr ? 'ستظهر العمولات هنا بعد إغلاق الصفقات' : 'Earnings will appear after closing deals'}
+            />
+          }
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: COLORS.primary, padding: SIZES.lg },
-  backBtn: { padding: 4 },
-  headerTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: '#FFF' },
-  list: { padding: SIZES.lg, gap: SIZES.sm },
-  card: { backgroundColor: COLORS.surface, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.sm },
-  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  title: { flex: 1, fontSize: SIZES.body, fontWeight: '700', color: COLORS.text },
+  summary: { margin: SIZES.lg, padding: SIZES.xl, borderRadius: SIZES.borderRadiusXl, ...SHADOWS.lg },
+  card: { marginHorizontal: SIZES.lg, marginBottom: SIZES.sm, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.sm },
+  cardHeader: { alignItems: 'center', justifyContent: 'space-between', gap: SIZES.sm, marginBottom: SIZES.sm },
   badge: { paddingHorizontal: SIZES.sm, paddingVertical: 3, borderRadius: SIZES.borderRadiusFull },
-  badgeText: { fontSize: 10, fontWeight: '800', textTransform: 'uppercase' },
-  amount: { fontSize: SIZES.title, fontWeight: '900', color: COLORS.primary, marginTop: SIZES.sm },
-  date: { fontSize: SIZES.small, color: COLORS.textSecondary, marginTop: 4 },
-  empty: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: SIZES.xxxl },
-  emptyText: { fontSize: SIZES.subtitle, fontWeight: '700', color: COLORS.text, marginTop: SIZES.lg, textAlign: 'center' },
+  row: { alignItems: 'center', justifyContent: 'space-between', paddingVertical: 4 },
 });

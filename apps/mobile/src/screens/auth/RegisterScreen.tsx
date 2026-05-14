@@ -6,19 +6,20 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../hooks/useTheme';
+import { useRTL } from '../../hooks/useRTL';
 import { useAuthStore } from '../../store/auth.store';
 import { authApi } from '../../api';
-import { COLORS, SIZES, SHADOWS } from '../../theme';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
 
 const ROLES = [
-  { value: 'user', labelAr: 'مستخدم', labelEn: 'User' },
+  { value: 'user', labelAr: 'مستخدم', labelEn: 'Buyer' },
   { value: 'agent', labelAr: 'وكيل عقاري', labelEn: 'Agent' },
 ];
 
 export default function RegisterScreen({ navigation }: any) {
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, textAlign, backIcon } = useRTL();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,6 +30,22 @@ export default function RegisterScreen({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { setUser, setToken } = useAuthStore();
+
+  const pwStrength = (() => {
+    let s = 0;
+    if (password.length >= 8) s++;
+    if (/[A-Z]/.test(password)) s++;
+    if (/[0-9]/.test(password)) s++;
+    if (/[^A-Za-z0-9]/.test(password)) s++;
+    return s;
+  })();
+  const strengthColor =
+    pwStrength <= 1 ? colors.error : pwStrength === 2 ? colors.warning : pwStrength === 3 ? colors.secondary : colors.success;
+  const strengthLabel =
+    pwStrength <= 1 ? (isAr ? 'ضعيفة' : 'Weak')
+    : pwStrength === 2 ? (isAr ? 'متوسطة' : 'Fair')
+    : pwStrength === 3 ? (isAr ? 'جيدة' : 'Good')
+    : (isAr ? 'قوية' : 'Strong');
 
   const handleRegister = async () => {
     if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim()) {
@@ -60,168 +77,154 @@ export default function RegisterScreen({ navigation }: any) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
           <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-            <Ionicons
-              name={isAr ? 'arrow-forward' : 'arrow-back'}
-              size={24}
-              color={COLORS.text}
-            />
+            <Ionicons name={backIcon} size={24} color={colors.text} />
           </TouchableOpacity>
 
           <View style={styles.logoSection}>
-            <View style={styles.logo}>
-              <Text style={styles.logoText}>عالمة</Text>
+            <View style={[styles.logo, { backgroundColor: colors.primary }]}>
+              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>عالمة</Text>
             </View>
-            <Text style={styles.title}>
+            <Text style={[TYPOGRAPHY.h2, { color: colors.text }]}>
               {isAr ? 'إنشاء حساب' : 'Create Account'}
             </Text>
-            <Text style={styles.subtitle}>
+            <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: SIZES.sm }]}>
               {isAr ? 'أهلاً بك في عالمة' : 'Join Eawlma today'}
             </Text>
           </View>
 
           {error ? (
-            <View style={styles.errorBox}>
-              <Ionicons name="alert-circle-outline" size={18} color={COLORS.error} />
-              <Text style={styles.errorText}>{error}</Text>
+            <View style={[styles.errorBox, { backgroundColor: colors.error + '12', borderColor: colors.error + '30' }]}>
+              <Ionicons name="alert-circle-outline" size={18} color={colors.error} />
+              <Text style={[TYPOGRAPHY.body, { color: colors.error, flex: 1 }]}>{error}</Text>
             </View>
           ) : null}
 
           <View style={styles.form}>
             <View style={styles.row}>
-              <View style={[styles.field, { flex: 1 }]}>
-                <Text style={styles.fieldLabel}>
-                  {isAr ? 'الاسم الأول' : 'First Name'}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  value={firstName}
-                  onChangeText={setFirstName}
-                  placeholder={isAr ? 'أحمد' : 'John'}
-                  placeholderTextColor={COLORS.textLight}
-                  textAlign={isAr ? 'right' : 'left'}
-                />
-              </View>
-              <View style={[styles.field, { flex: 1 }]}>
-                <Text style={styles.fieldLabel}>
-                  {isAr ? 'اسم العائلة' : 'Last Name'}
-                </Text>
-                <TextInput
-                  style={styles.input}
-                  value={lastName}
-                  onChangeText={setLastName}
-                  placeholder={isAr ? 'الأحمد' : 'Doe'}
-                  placeholderTextColor={COLORS.textLight}
-                  textAlign={isAr ? 'right' : 'left'}
-                />
-              </View>
-            </View>
-
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>
-                {isAr ? 'البريد الإلكتروني' : 'Email'}
-              </Text>
-              <TextInput
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-                placeholder="example@email.com"
-                placeholderTextColor={COLORS.textLight}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                textAlign={isAr ? 'right' : 'left'}
+              <Field
+                flex
+                label={isAr ? 'الاسم الأول' : 'First Name'}
+                value={firstName}
+                onChange={setFirstName}
+                placeholder={isAr ? 'أحمد' : 'John'}
+                colors={colors}
+                textAlign={textAlign}
+              />
+              <Field
+                flex
+                label={isAr ? 'اسم العائلة' : 'Last Name'}
+                value={lastName}
+                onChange={setLastName}
+                placeholder={isAr ? 'الأحمد' : 'Doe'}
+                colors={colors}
+                textAlign={textAlign}
               />
             </View>
 
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>
-                {isAr ? 'رقم الجوال' : 'Phone'}
-              </Text>
-              <TextInput
-                style={styles.input}
-                value={phone}
-                onChangeText={setPhone}
-                placeholder="+966 5X XXX XXXX"
-                placeholderTextColor={COLORS.textLight}
-                keyboardType="phone-pad"
-                textAlign={isAr ? 'right' : 'left'}
-              />
-            </View>
+            <Field
+              label={isAr ? 'البريد الإلكتروني' : 'Email'}
+              value={email}
+              onChange={setEmail}
+              placeholder="example@email.com"
+              keyboard="email-address"
+              autoCapitalize="none"
+              colors={colors}
+              textAlign={textAlign}
+            />
 
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>
+            <Field
+              label={isAr ? 'رقم الجوال' : 'Phone'}
+              value={phone}
+              onChange={setPhone}
+              placeholder="+966 5X XXX XXXX"
+              keyboard="phone-pad"
+              colors={colors}
+              textAlign={textAlign}
+            />
+
+            <View>
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
                 {isAr ? 'كلمة المرور' : 'Password'}
               </Text>
-              <View style={styles.passwordBox}>
+              <View style={[styles.passwordBox, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <TextInput
-                  style={[styles.input, { flex: 1, borderWidth: 0 }]}
+                  style={[styles.input, { flex: 1, borderWidth: 0, color: colors.text, textAlign }]}
                   value={password}
                   onChangeText={setPassword}
                   placeholder="••••••••"
-                  placeholderTextColor={COLORS.textLight}
+                  placeholderTextColor={colors.textLight}
                   secureTextEntry={!showPassword}
-                  textAlign={isAr ? 'right' : 'left'}
                 />
-                <TouchableOpacity
-                  style={styles.eyeBtn}
-                  onPress={() => setShowPassword(!showPassword)}
-                >
+                <TouchableOpacity style={styles.eyeBtn} onPress={() => setShowPassword(!showPassword)}>
                   <Ionicons
                     name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                     size={20}
-                    color={COLORS.textSecondary}
+                    color={colors.textSecondary}
                   />
                 </TouchableOpacity>
               </View>
+              {password.length > 0 && (
+                <View style={styles.strengthRow}>
+                  <View style={[styles.strengthBar, { backgroundColor: colors.border }]}>
+                    <View style={{ height: 4, backgroundColor: strengthColor, width: `${(pwStrength / 4) * 100}%` }} />
+                  </View>
+                  <Text style={[TYPOGRAPHY.caption, { color: strengthColor, fontWeight: '700' }]}>
+                    {strengthLabel}
+                  </Text>
+                </View>
+              )}
             </View>
 
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>
+            <View>
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
                 {isAr ? 'نوع الحساب' : 'Account Type'}
               </Text>
               <View style={styles.rolesRow}>
-                {ROLES.map(r => (
-                  <TouchableOpacity
-                    key={r.value}
-                    style={[styles.roleChip, role === r.value && styles.roleChipActive]}
-                    onPress={() => setRole(r.value)}
-                  >
-                    <Text style={[styles.roleChipText, role === r.value && styles.roleChipTextActive]}>
-                      {isAr ? r.labelAr : r.labelEn}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+                {ROLES.map(r => {
+                  const active = role === r.value;
+                  return (
+                    <TouchableOpacity
+                      key={r.value}
+                      style={[
+                        styles.roleChip,
+                        { backgroundColor: colors.surface, borderColor: colors.border },
+                        active && { backgroundColor: colors.primary, borderColor: colors.primary },
+                      ]}
+                      onPress={() => setRole(r.value)}
+                    >
+                      <Text style={[TYPOGRAPHY.bodyBold, { color: active ? '#FFF' : colors.text }]}>
+                        {isAr ? r.labelAr : r.labelEn}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
               </View>
             </View>
 
             <TouchableOpacity
-              style={[styles.submitBtn, loading && { opacity: 0.7 }]}
+              style={[styles.submitBtn, { backgroundColor: colors.primary }, loading && { opacity: 0.7 }]}
               onPress={handleRegister}
               disabled={loading}
             >
               {loading ? (
                 <ActivityIndicator color="#FFF" />
               ) : (
-                <Text style={styles.submitBtnText}>
+                <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
                   {isAr ? 'إنشاء الحساب' : 'Create Account'}
                 </Text>
               )}
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.linkBtn}
-              onPress={() => navigation.navigate('Login')}
-            >
-              <Text style={styles.linkBtnText}>
-                {isAr
-                  ? 'لديك حساب بالفعل؟ سجل الدخول'
-                  : 'Already have an account? Sign in'}
+            <TouchableOpacity style={styles.linkBtn} onPress={() => navigation.navigate('Login')}>
+              <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
+                {isAr ? 'لديك حساب بالفعل؟ سجل الدخول' : 'Already have an account? Sign in'}
               </Text>
             </TouchableOpacity>
           </View>
@@ -231,31 +234,40 @@ export default function RegisterScreen({ navigation }: any) {
   );
 }
 
+function Field({ label, value, onChange, placeholder, keyboard, autoCapitalize, flex, colors, textAlign }: any) {
+  return (
+    <View style={flex ? { flex: 1 } : undefined}>
+      <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
+        {label}
+      </Text>
+      <TextInput
+        style={[styles.input, { backgroundColor: colors.surface, borderColor: colors.border, color: colors.text, textAlign }]}
+        value={value}
+        onChangeText={onChange}
+        placeholder={placeholder}
+        placeholderTextColor={colors.textLight}
+        keyboardType={keyboard || 'default'}
+        autoCapitalize={autoCapitalize}
+      />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
   scroll: { flexGrow: 1, padding: SIZES.xl },
   backBtn: { alignSelf: 'flex-start', padding: SIZES.sm, marginBottom: SIZES.lg },
   logoSection: { alignItems: 'center', marginBottom: SIZES.xl },
-  logo: { width: 80, height: 80, borderRadius: 20, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginBottom: SIZES.lg, ...SHADOWS.lg },
-  logoText: { fontSize: SIZES.h2, fontWeight: '900', color: '#FFF' },
-  title: { fontSize: SIZES.h2, fontWeight: '900', color: COLORS.text },
-  subtitle: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.sm },
-  errorBox: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, backgroundColor: COLORS.error + '12', borderWidth: 1, borderColor: COLORS.error + '30', borderRadius: SIZES.borderRadius, padding: SIZES.md, marginBottom: SIZES.lg },
-  errorText: { flex: 1, fontSize: SIZES.body, color: COLORS.error },
+  logo: { width: 80, height: 80, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginBottom: SIZES.lg, ...SHADOWS.lg },
+  errorBox: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, borderWidth: 1, borderRadius: SIZES.borderRadius, padding: SIZES.md, marginBottom: SIZES.lg },
   form: { gap: SIZES.lg },
   row: { flexDirection: 'row', gap: SIZES.md },
-  field: {},
-  fieldLabel: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text, marginBottom: SIZES.sm, textAlign: 'right' },
-  input: { backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, color: COLORS.text, height: 52 },
-  passwordBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, height: 52, paddingRight: SIZES.sm },
+  input: { borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, height: 52 },
+  passwordBox: { flexDirection: 'row', alignItems: 'center', borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, height: 52, paddingRight: SIZES.sm },
   eyeBtn: { padding: SIZES.sm },
+  strengthRow: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, marginTop: SIZES.sm },
+  strengthBar: { flex: 1, height: 4, borderRadius: 2, overflow: 'hidden' },
   rolesRow: { flexDirection: 'row', gap: SIZES.sm },
-  roleChip: { flex: 1, paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg, borderWidth: 1.5, borderColor: COLORS.border, backgroundColor: COLORS.surface, alignItems: 'center' },
-  roleChipActive: { backgroundColor: COLORS.primary, borderColor: COLORS.primary },
-  roleChipText: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text },
-  roleChipTextActive: { color: '#FFF' },
-  submitBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.sm, ...SHADOWS.md },
-  submitBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  roleChip: { flex: 1, paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg, borderWidth: 1.5, alignItems: 'center' },
+  submitBtn: { borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.sm, ...SHADOWS.md },
   linkBtn: { alignItems: 'center', padding: SIZES.md },
-  linkBtnText: { fontSize: SIZES.body, color: COLORS.primary, fontWeight: '600' },
 });

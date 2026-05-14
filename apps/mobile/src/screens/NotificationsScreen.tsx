@@ -1,88 +1,152 @@
 import React from 'react';
 import {
   View, Text, StyleSheet, FlatList,
-  TouchableOpacity, ActivityIndicator,
+  TouchableOpacity, RefreshControl,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useQuery } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
-import { api } from '../api';
-import { COLORS, SIZES, SHADOWS } from '../theme';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { formatDistanceToNow } from 'date-fns';
+import { useTheme } from '../hooks/useTheme';
+import { useRTL } from '../hooks/useRTL';
+import { notificationsApi } from '../api';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
+import Header from '../components/Header';
+import LoadingSpinner from '../components/LoadingSpinner';
+import EmptyState from '../components/EmptyState';
+
+const TYPE_ICON: Record<string, keyof typeof Ionicons.glyphMap> = {
+  message: 'chatbubble-ellipses',
+  inquiry: 'mail',
+  listing: 'home',
+  commission: 'cash',
+  booking: 'calendar',
+  payment: 'card',
+  system: 'notifications',
+};
 
 export default function NotificationsScreen({ navigation }: any) {
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, isRTL, textAlign } = useRTL();
+  const qc = useQueryClient();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch, isRefetching } = useQuery({
     queryKey: ['notifications'],
-    queryFn: () => api.get('/notifications').then(r => r.data),
+    queryFn: () => notificationsApi.getAll(),
   });
 
-  const notifications = data?.data?.data || data?.data || [];
+  const items: any[] = data?.data?.data || data?.data || [];
+  const unreadCount = items.filter(n => !n.readAt && !n.isRead).length;
+
+  const markRead = async (id: string) => {
+    try {
+      await notificationsApi.markRead(id);
+      qc.invalidateQueries({ queryKey: ['notifications'] });
+    } catch {}
+  };
+
+  const markAllRead = async () => {
+    try {
+      await notificationsApi.markAllRead();
+      qc.invalidateQueries({ queryKey: ['notifications'] });
+    } catch {}
+  };
+
+  const formatTime = (iso?: string): string => {
+    if (!iso) return '';
+    try {
+      return formatDistanceToNow(new Date(iso), { addSuffix: true });
+    } catch {
+      return '';
+    }
+  };
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-          <Ionicons
-            name={isAr ? 'arrow-forward' : 'arrow-back'}
-            size={22}
-            color="#FFF"
-          />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>
-          {isAr ? 'الإشعارات' : 'Notifications'}
-        </Text>
-        <View style={{ width: 22 }} />
-      </View>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <Header
+        title={isAr ? 'الإشعارات' : 'Notifications'}
+        onBack={() => navigation.goBack()}
+        rightAction={
+          unreadCount > 0 ? (
+            <TouchableOpacity onPress={markAllRead} hitSlop={8}>
+              <Ionicons name="checkmark-done" size={22} color="#FFF" />
+            </TouchableOpacity>
+          ) : undefined
+        }
+      />
 
       {isLoading ? (
-        <ActivityIndicator color={COLORS.primary} size="large" style={{ marginTop: 40 }} />
-      ) : notifications.length === 0 ? (
-        <View style={styles.empty}>
-          <Ionicons name="notifications-off-outline" size={64} color={COLORS.border} />
-          <Text style={styles.emptyText}>
-            {isAr ? 'لا توجد إشعارات' : 'No notifications'}
-          </Text>
-        </View>
+        <LoadingSpinner />
       ) : (
         <FlatList
-          data={notifications}
+          data={items}
           keyExtractor={(item: any) => item.id}
-          contentContainerStyle={styles.list}
-          renderItem={({ item }: any) => (
-            <View style={styles.card}>
-              <View style={styles.iconBox}>
-                <Ionicons name="notifications" size={20} color={COLORS.primary} />
-              </View>
-              <View style={styles.content}>
-                <Text style={styles.title} numberOfLines={1}>
-                  {item.title || (isAr ? 'إشعار' : 'Notification')}
-                </Text>
-                <Text style={styles.body} numberOfLines={2}>
-                  {item.body || item.message || ''}
-                </Text>
-              </View>
-            </View>
-          )}
+          contentContainerStyle={{ padding: SIZES.lg, paddingBottom: SIZES.xxxl }}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefetching}
+              onRefresh={refetch}
+              tintColor={colors.primary}
+              colors={[colors.primary]}
+            />
+          }
+          renderItem={({ item }: any) => {
+            const isUnread = !item.readAt && !item.isRead;
+            const iconName = TYPE_ICON[item.type] || 'notifications';
+            return (
+              <TouchableOpacity
+                style={[
+                  styles.card,
+                  {
+                    backgroundColor: colors.surface,
+                    borderLeftColor: 'transparent',
+                    flexDirection: isRTL ? 'row-reverse' : 'row',
+                  },
+                  isUnread && { borderLeftColor: colors.primary, backgroundColor: colors.primary + '08' },
+                ]}
+                onPress={() => isUnread && markRead(item.id)}
+              >
+                <View style={[styles.iconBox, { backgroundColor: colors.primary + '15' }]}>
+                  <Ionicons name={iconName} size={20} color={colors.primary} />
+                </View>
+                <View style={styles.content}>
+                  <Text
+                    style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}
+                    numberOfLines={1}
+                  >
+                    {item.title || (isAr ? 'إشعار' : 'Notification')}
+                  </Text>
+                  <Text
+                    style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2, textAlign }]}
+                    numberOfLines={2}
+                  >
+                    {item.body || item.message || ''}
+                  </Text>
+                  {item.createdAt && (
+                    <Text style={[TYPOGRAPHY.caption, { color: colors.textLight, marginTop: 4, textAlign }]}>
+                      {formatTime(item.createdAt)}
+                    </Text>
+                  )}
+                </View>
+                {isUnread && <View style={[styles.dot, { backgroundColor: colors.primary }]} />}
+              </TouchableOpacity>
+            );
+          }}
+          ListEmptyComponent={
+            <EmptyState
+              icon="notifications-off-outline"
+              title={isAr ? 'لا توجد إشعارات' : 'No notifications'}
+              subtitle={isAr ? 'ستظهر إشعاراتك هنا' : 'Your alerts will appear here'}
+            />
+          }
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: COLORS.primary, padding: SIZES.lg },
-  backBtn: { padding: 4 },
-  headerTitle: { fontSize: SIZES.subtitle, fontWeight: '800', color: '#FFF' },
-  list: { padding: SIZES.lg, gap: SIZES.sm },
-  card: { flexDirection: 'row', alignItems: 'center', gap: SIZES.md, backgroundColor: COLORS.surface, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.sm },
-  iconBox: { width: 40, height: 40, borderRadius: SIZES.borderRadius, backgroundColor: COLORS.primary + '15', justifyContent: 'center', alignItems: 'center' },
+  card: { alignItems: 'center', gap: SIZES.md, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, borderLeftWidth: 3, ...SHADOWS.sm },
+  iconBox: { width: 40, height: 40, borderRadius: SIZES.borderRadius, justifyContent: 'center', alignItems: 'center' },
   content: { flex: 1 },
-  title: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text },
-  body: { fontSize: SIZES.small, color: COLORS.textSecondary, marginTop: 2 },
-  empty: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: SIZES.xxxl },
-  emptyText: { fontSize: SIZES.subtitle, fontWeight: '700', color: COLORS.text, marginTop: SIZES.lg, textAlign: 'center' },
+  dot: { width: 8, height: 8, borderRadius: 4 },
 });

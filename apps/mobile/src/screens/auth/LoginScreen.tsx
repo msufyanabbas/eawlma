@@ -6,14 +6,15 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../hooks/useTheme';
+import { useRTL } from '../../hooks/useRTL';
 import { useAuthStore } from '../../store/auth.store';
 import { authApi } from '../../api';
-import { COLORS, SIZES, SHADOWS } from '../../theme';
+import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
 
 export default function LoginScreen({ navigation }: any) {
-  const { i18n } = useTranslation();
-  const isAr = i18n.language === 'ar';
+  const { colors } = useTheme();
+  const { isAr, textAlign, backIcon } = useRTL();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -44,105 +45,91 @@ export default function LoginScreen({ navigation }: any) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
           <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
-            <Ionicons
-              name={isAr ? 'arrow-forward' : 'arrow-back'}
-              size={24}
-              color={COLORS.text}
-            />
+            <Ionicons name={backIcon} size={24} color={colors.text} />
           </TouchableOpacity>
 
           <View style={styles.logoSection}>
-            <View style={styles.logo}>
-              <Text style={styles.logoText}>عالمة</Text>
+            <View style={[styles.logo, { backgroundColor: colors.primary }]}>
+              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>عالمة</Text>
             </View>
-            <Text style={styles.title}>
+            <Text style={[TYPOGRAPHY.h2, { color: colors.text }]}>
               {isAr ? 'تسجيل الدخول' : 'Sign In'}
             </Text>
-            <Text style={styles.subtitle}>
+            <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: SIZES.sm }]}>
               {isAr ? 'أهلاً بعودتك!' : 'Welcome back!'}
             </Text>
           </View>
 
           {error ? (
-            <View style={styles.errorBox}>
-              <Ionicons name="alert-circle-outline" size={18} color={COLORS.error} />
-              <Text style={styles.errorText}>{error}</Text>
+            <View style={[styles.errorBox, { backgroundColor: colors.error + '12', borderColor: colors.error + '30' }]}>
+              <Ionicons name="alert-circle-outline" size={18} color={colors.error} />
+              <Text style={[TYPOGRAPHY.body, { color: colors.error, flex: 1 }]}>{error}</Text>
             </View>
           ) : null}
 
           <View style={styles.form}>
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>
+            <View>
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
                 {isAr ? 'البريد الإلكتروني' : 'Email'}
               </Text>
               <TextInput
-                style={styles.input}
+                style={[styles.input, { backgroundColor: colors.surface, borderColor: colors.border, color: colors.text, textAlign }]}
                 value={email}
                 onChangeText={setEmail}
                 placeholder="example@email.com"
-                placeholderTextColor={COLORS.textLight}
+                placeholderTextColor={colors.textLight}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                textAlign={isAr ? 'right' : 'left'}
               />
             </View>
 
-            <View style={styles.field}>
-              <Text style={styles.fieldLabel}>
+            <View>
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
                 {isAr ? 'كلمة المرور' : 'Password'}
               </Text>
-              <View style={styles.passwordBox}>
+              <View style={[styles.passwordBox, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <TextInput
-                  style={[styles.input, { flex: 1, borderWidth: 0 }]}
+                  style={[styles.input, { flex: 1, borderWidth: 0, color: colors.text, textAlign }]}
                   value={password}
                   onChangeText={setPassword}
                   placeholder="••••••••"
-                  placeholderTextColor={COLORS.textLight}
+                  placeholderTextColor={colors.textLight}
                   secureTextEntry={!showPassword}
-                  textAlign={isAr ? 'right' : 'left'}
                 />
-                <TouchableOpacity
-                  style={styles.eyeBtn}
-                  onPress={() => setShowPassword(!showPassword)}
-                >
+                <TouchableOpacity style={styles.eyeBtn} onPress={() => setShowPassword(!showPassword)}>
                   <Ionicons
                     name={showPassword ? 'eye-off-outline' : 'eye-outline'}
                     size={20}
-                    color={COLORS.textSecondary}
+                    color={colors.textSecondary}
                   />
                 </TouchableOpacity>
               </View>
             </View>
 
             <TouchableOpacity
-              style={[styles.submitBtn, loading && { opacity: 0.7 }]}
+              style={[styles.submitBtn, { backgroundColor: colors.primary }, loading && { opacity: 0.7 }]}
               onPress={handleLogin}
               disabled={loading}
             >
               {loading ? (
                 <ActivityIndicator color="#FFF" />
               ) : (
-                <Text style={styles.submitBtnText}>
+                <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
                   {isAr ? 'دخول' : 'Sign In'}
                 </Text>
               )}
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.linkBtn}
-              onPress={() => navigation.navigate('Register')}
-            >
-              <Text style={styles.linkBtnText}>
-                {isAr
-                  ? 'ليس لديك حساب؟ سجل الآن'
-                  : "Don't have an account? Register"}
+            <TouchableOpacity style={styles.linkBtn} onPress={() => navigation.navigate('Register')}>
+              <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
+                {isAr ? 'ليس لديك حساب؟ سجل الآن' : "Don't have an account? Register"}
               </Text>
             </TouchableOpacity>
           </View>
@@ -153,24 +140,15 @@ export default function LoginScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
   scroll: { flexGrow: 1, padding: SIZES.xl },
   backBtn: { alignSelf: 'flex-start', padding: SIZES.sm, marginBottom: SIZES.lg },
   logoSection: { alignItems: 'center', marginBottom: SIZES.xxxl },
-  logo: { width: 80, height: 80, borderRadius: 20, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', marginBottom: SIZES.lg, ...SHADOWS.lg },
-  logoText: { fontSize: SIZES.h2, fontWeight: '900', color: '#FFF' },
-  title: { fontSize: SIZES.h2, fontWeight: '900', color: COLORS.text },
-  subtitle: { fontSize: SIZES.body, color: COLORS.textSecondary, marginTop: SIZES.sm },
-  errorBox: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, backgroundColor: COLORS.error + '12', borderWidth: 1, borderColor: COLORS.error + '30', borderRadius: SIZES.borderRadius, padding: SIZES.md, marginBottom: SIZES.lg },
-  errorText: { flex: 1, fontSize: SIZES.body, color: COLORS.error },
+  logo: { width: 80, height: 80, borderRadius: 20, justifyContent: 'center', alignItems: 'center', marginBottom: SIZES.lg, ...SHADOWS.lg },
+  errorBox: { flexDirection: 'row', alignItems: 'center', gap: SIZES.sm, borderWidth: 1, borderRadius: SIZES.borderRadius, padding: SIZES.md, marginBottom: SIZES.lg },
   form: { gap: SIZES.lg },
-  field: {},
-  fieldLabel: { fontSize: SIZES.body, fontWeight: '700', color: COLORS.text, marginBottom: SIZES.sm, textAlign: 'right' },
-  input: { backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, color: COLORS.text, height: 52 },
-  passwordBox: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.surface, borderWidth: 1.5, borderColor: COLORS.border, borderRadius: SIZES.borderRadiusLg, height: 52, paddingRight: SIZES.sm },
+  input: { borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body, height: 52 },
+  passwordBox: { flexDirection: 'row', alignItems: 'center', borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, height: 52, paddingRight: SIZES.sm },
   eyeBtn: { padding: SIZES.sm },
-  submitBtn: { backgroundColor: COLORS.primary, borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.sm, ...SHADOWS.md },
-  submitBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
+  submitBtn: { borderRadius: SIZES.borderRadiusLg, height: 54, justifyContent: 'center', alignItems: 'center', marginTop: SIZES.sm, ...SHADOWS.md },
   linkBtn: { alignItems: 'center', padding: SIZES.md },
-  linkBtnText: { fontSize: SIZES.body, color: COLORS.primary, fontWeight: '600' },
 });
