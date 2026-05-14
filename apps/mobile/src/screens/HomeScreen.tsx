@@ -65,10 +65,10 @@ export default function HomeScreen({ navigation }: any) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
-        <View style={styles.headerTop}>
+        <View style={[styles.headerTop, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
           <View>
-            <Text style={[TYPOGRAPHY.h1, { color: '#FFF' }]}>عالمة</Text>
-            <Text style={[TYPOGRAPHY.small, { color: 'rgba(255,255,255,0.75)', marginTop: 2 }]}>
+            <Text style={[TYPOGRAPHY.h1, { color: '#FFF', textAlign }]}>عالمة</Text>
+            <Text style={[TYPOGRAPHY.small, { color: 'rgba(255,255,255,0.75)', marginTop: 2, textAlign }]}>
               {isAr ? 'منصة العقارات الأولى' : 'Premier Real Estate'}
             </Text>
           </View>
@@ -81,11 +81,11 @@ export default function HomeScreen({ navigation }: any) {
         </View>
 
         <TouchableOpacity
-          style={styles.searchBar}
+          style={[styles.searchBar, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}
           onPress={() => navigation.navigate('Search')}
         >
           <Ionicons name="search" size={18} color={colors.textSecondary} />
-          <Text style={[TYPOGRAPHY.body, { flex: 1, color: colors.textSecondary }]}>
+          <Text style={[TYPOGRAPHY.body, { flex: 1, color: colors.textSecondary, textAlign }]}>
             {isAr ? 'ابحث عن عقار، حي، مدينة...' : 'Search properties...'}
           </Text>
         </TouchableOpacity>
@@ -132,12 +132,22 @@ export default function HomeScreen({ navigation }: any) {
           />
         }
       >
-        <View style={[styles.quickRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={[styles.quickRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}
+        >
           <QuickTile
             icon="bed-outline"
             label={isAr ? 'الإقامات' : 'Stays'}
             colors={colors}
             onPress={() => navigation.navigate('Stays')}
+          />
+          <QuickTile
+            icon="business-outline"
+            label={isAr ? 'الفنادق' : 'Hotels'}
+            colors={colors}
+            onPress={() => navigation.navigate('Hotels')}
           />
           <QuickTile
             icon="people-outline"
@@ -157,7 +167,7 @@ export default function HomeScreen({ navigation }: any) {
             colors={colors}
             onPress={() => navigation.navigate('Saved')}
           />
-        </View>
+        </ScrollView>
 
         {featured.length > 0 && (
           <View style={styles.section}>
@@ -274,14 +284,14 @@ function QuickTile({ icon, label, colors, onPress }: any) {
 
 const styles = StyleSheet.create({
   header: { paddingHorizontal: SIZES.lg, paddingBottom: SIZES.lg },
-  headerTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: SIZES.md },
+  headerTop: { justifyContent: 'space-between', alignItems: 'center', marginBottom: SIZES.md },
   notifBtn: { padding: SIZES.sm, backgroundColor: 'rgba(255,255,255,0.15)', borderRadius: SIZES.borderRadiusFull },
-  searchBar: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#FFF', borderRadius: SIZES.borderRadiusFull, paddingHorizontal: SIZES.md, height: 46, gap: SIZES.sm },
+  searchBar: { alignItems: 'center', backgroundColor: '#FFF', borderRadius: SIZES.borderRadiusFull, paddingHorizontal: SIZES.md, height: 46, gap: SIZES.sm },
   categoriesWrapper: { borderBottomWidth: 1 },
   categoriesContent: { paddingHorizontal: SIZES.lg, paddingVertical: SIZES.sm, gap: SIZES.sm },
   categoryChip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1.5 },
   quickRow: { paddingHorizontal: SIZES.lg, paddingTop: SIZES.lg, gap: SIZES.sm },
-  quickTile: { flex: 1, alignItems: 'center', paddingVertical: SIZES.md, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.sm },
+  quickTile: { width: 88, alignItems: 'center', paddingVertical: SIZES.md, paddingHorizontal: SIZES.sm, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.sm },
   quickIcon: { width: 44, height: 44, borderRadius: 22, justifyContent: 'center', alignItems: 'center' },
   section: { paddingTop: SIZES.lg },
   sectionHeader: { justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: SIZES.lg, marginBottom: SIZES.md },

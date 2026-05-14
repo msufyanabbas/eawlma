@@ -209,9 +209,17 @@ export default function ProfileScreen({ navigation }: any) {
           {!isAgent && (
             <SettingRow icon="mail-unread-outline" label={isAr ? 'استفساراتي' : 'My Inquiries'} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           )}
+          <SettingRow icon="calendar-outline" label={isAr ? 'حجوزاتي' : 'My Bookings'} onPress={() => navigation.navigate('Bookings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <SettingRow icon="notifications-outline" label={isAr ? 'الإشعارات' : 'Notifications'} onPress={() => navigation.navigate('Notifications')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <SettingRow icon="language-outline" label={isAr ? 'اللغة' : 'Language'} value={currentLangName} onPress={() => setShowLangPicker(true)} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} isAr={isAr} isRTL={isRTL} textAlign={textAlign} />
+        </View>
+
+        <View style={styles.menuSection}>
+          <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'الإعدادات والدعم' : 'Settings & Support'}</SectionLabel>
+          <SettingRow icon="settings-outline" label={isAr ? 'الإعدادات' : 'Settings'} onPress={() => navigation.navigate('Settings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="help-circle-outline" label={isAr ? 'المساعدة' : 'Help & FAQ'} onPress={() => navigation.navigate('Help')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="information-circle-outline" label={isAr ? 'حول' : 'About'} onPress={() => navigation.navigate('About')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
         </View>
 
         <TouchableOpacity

@@ -17,6 +17,7 @@ import PriceText from '../components/PriceText';
 import ListingCard from '../components/ListingCard';
 import SmartImage from '../components/SmartImage';
 import UserAvatar from '../components/UserAvatar';
+import { WebView } from 'react-native-webview';
 
 const { width: W } = Dimensions.get('window');
 
@@ -286,39 +287,52 @@ export default function ListingDetailScreen({ navigation, route }: any) {
               <SectionTitle colors={colors} textAlign={textAlign}>
                 {isAr ? 'الموقع' : 'Location'}
               </SectionTitle>
-              <TouchableOpacity
-                style={[styles.mapPlaceholder, { backgroundColor: colors.surfaceVariant, borderColor: colors.primary + '30' }]}
-                onPress={() => {
-                  const lat = listing?.lat;
-                  const lng = listing?.lng;
-                  const label = encodeURIComponent(
-                    listing.titleAr || listing.titleEn || 'Property',
-                  );
-                  let url: string | undefined;
-                  if (lat != null && lng != null) {
-                    url = Platform.select({
-                      ios: `maps:${lat},${lng}?q=${label}`,
-                      android: `geo:${lat},${lng}?q=${lat},${lng}(${label})`,
-                      default: `https://www.google.com/maps?q=${lat},${lng}`,
-                    });
-                  } else {
+              {listing?.lat != null && listing?.lng != null ? (
+                <View style={styles.mapContainer}>
+                  <WebView
+                    style={styles.map}
+                    originWhitelist={['*']}
+                    javaScriptEnabled
+                    scrollEnabled={false}
+                    source={{ html: buildMapHtml(listing) }}
+                  />
+                  <TouchableOpacity
+                    style={[styles.openMapsBtn, { backgroundColor: colors.primary }]}
+                    onPress={() => {
+                      const label = encodeURIComponent(
+                        listing.titleAr || listing.titleEn || 'Property',
+                      );
+                      const url = Platform.select({
+                        ios: `maps:${listing.lat},${listing.lng}?q=${label}`,
+                        android: `geo:${listing.lat},${listing.lng}?q=${listing.lat},${listing.lng}(${label})`,
+                        default: `https://www.google.com/maps?q=${listing.lat},${listing.lng}`,
+                      });
+                      if (url) Linking.openURL(url).catch(() => undefined);
+                    }}
+                  >
+                    <Ionicons name="navigate" size={14} color="#FFF" />
+                    <Text style={[TYPOGRAPHY.caption, { color: '#FFF', fontWeight: '700' }]}>
+                      {isAr ? 'فتح في الخرائط' : 'Open in Maps'}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <TouchableOpacity
+                  style={[styles.mapPlaceholder, { backgroundColor: colors.surfaceVariant, borderColor: colors.primary + '30' }]}
+                  onPress={() => {
                     const q = encodeURIComponent(
                       [listing.district, listing.city].filter(Boolean).join(', '),
                     );
-                    url = `https://www.google.com/maps?q=${q}`;
-                  }
-                  if (url) Linking.openURL(url).catch(() => undefined);
-                }}
-              >
-                <Ionicons name="map-outline" size={36} color={colors.primary} />
-                <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary, marginTop: 6 }]}>
-                  {isAr ? 'عرض على الخريطة' : 'View on Map'}
-                </Text>
-                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2 }]}>
-                  {[listing.district, listing.city].filter(Boolean).join(', ') ||
-                    `${listing.lat?.toFixed(4)}, ${listing.lng?.toFixed(4)}`}
-                </Text>
-              </TouchableOpacity>
+                    if (q) Linking.openURL(`https://www.google.com/maps?q=${q}`).catch(() => undefined);
+                  }}
+                >
+                  <Ionicons name="location-outline" size={32} color={colors.textSecondary} />
+                  <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: 8, textAlign: 'center' }]}>
+                    {[listing.district, listing.city].filter(Boolean).join(', ') ||
+                      (isAr ? 'الموقع غير محدد' : 'Location not specified')}
+                  </Text>
+                </TouchableOpacity>
+              )}
             </>
           )}
 
@@ -494,6 +508,35 @@ function InquiryModal({
   );
 }
 
+// OSM/Leaflet map embedded in a WebView. Free, no API key required, works
+// inside Expo Go. The title is escaped to keep the popup safe.
+function buildMapHtml(listing: any): string {
+  const lat = Number(listing.lat);
+  const lng = Number(listing.lng);
+  const title = String(listing.titleAr || listing.titleEn || 'Property')
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/</g, '&lt;');
+  return `<!DOCTYPE html>
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>html,body,#map{margin:0;padding:0;width:100%;height:100%}</style>
+</head><body>
+<div id="map"></div>
+<script>
+  var map = L.map('map', { zoomControl: false, attributionControl: true })
+    .setView([${lat}, ${lng}], 15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  L.marker([${lat}, ${lng}]).addTo(map).bindPopup('${title}').openPopup();
+</script>
+</body></html>`;
+}
+
 function Stat({ icon, value, label, colors }: any) {
   return (
     <View style={styles.statBox}>
@@ -530,6 +573,9 @@ const styles = StyleSheet.create({
   agentInfo: { flex: 1 },
   actionCircle: { width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center' },
   mapPlaceholder: { height: 150, borderRadius: SIZES.borderRadiusLg, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderStyle: 'dashed' },
+  mapContainer: { height: 220, borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', marginTop: SIZES.sm, position: 'relative' },
+  map: { flex: 1 },
+  openMapsBtn: { position: 'absolute', bottom: 12, right: 12, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20 },
   footer: { position: 'absolute', bottom: 0, left: 0, right: 0, borderTopWidth: 1, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
   contactBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
 });

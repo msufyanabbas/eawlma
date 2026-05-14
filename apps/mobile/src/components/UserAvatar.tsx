@@ -4,6 +4,7 @@ import { Image as ExpoImage } from 'expo-image';
 import { useTheme } from '../hooks/useTheme';
 
 interface User {
+  id?: string | null;
   firstName?: string | null;
   lastName?: string | null;
   avatarUrl?: string | null;
@@ -16,15 +17,33 @@ interface Props {
   backgroundColor?: string;
 }
 
-// Renders an avatar that prefers the user's image but falls back to coloured
-// initials when avatarUrl is missing or the image fails to load. Most users
-// in the database don't have a real avatar, so the fallback is the common path.
+// Palette of avatar background colours used when no image is available. We
+// derive an index from the user's id so the same person always renders with
+// the same colour across screens, instead of every avatar being the brand
+// primary purple.
+const AVATAR_PALETTE = [
+  '#6C63A6', '#D4A843', '#22C55E', '#3B82F6',
+  '#EC4899', '#F59E0B', '#8B5CF6', '#EF4444',
+  '#0EA5E9', '#14B8A6',
+];
+
+function colourFromId(id?: string | null): string {
+  if (!id) return AVATAR_PALETTE[0];
+  let sum = 0;
+  for (let i = 0; i < id.length; i++) sum = (sum + id.charCodeAt(i)) >>> 0;
+  return AVATAR_PALETTE[sum % AVATAR_PALETTE.length];
+}
+
 export default function UserAvatar({ user, size = 48, style, backgroundColor }: Props) {
-  const { colors } = useTheme();
+  const { colors: themeColors } = useTheme();
   const [failed, setFailed] = useState(false);
 
   const hasImage = !!user?.avatarUrl && !failed;
   const initials = `${user?.firstName?.[0] || ''}${user?.lastName?.[0] || ''}`.toUpperCase() || '?';
+
+  const bg =
+    backgroundColor ||
+    (hasImage ? themeColors.primary : colourFromId(user?.id));
 
   return (
     <View
@@ -33,7 +52,7 @@ export default function UserAvatar({ user, size = 48, style, backgroundColor }: 
           width: size,
           height: size,
           borderRadius: size / 2,
-          backgroundColor: backgroundColor || colors.primary,
+          backgroundColor: bg,
           justifyContent: 'center',
           alignItems: 'center',
           overflow: 'hidden',
@@ -46,6 +65,7 @@ export default function UserAvatar({ user, size = 48, style, backgroundColor }: 
           source={{ uri: user!.avatarUrl! }}
           style={{ width: size, height: size }}
           contentFit="cover"
+          cachePolicy="memory-disk"
           onError={() => setFailed(true)}
         />
       ) : (

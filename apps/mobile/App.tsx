@@ -46,6 +46,11 @@ import AgentsListScreen from './src/screens/AgentsListScreen';
 import MarketScreen from './src/screens/MarketScreen';
 import BookingScreen from './src/screens/BookingScreen';
 import ReviewsScreen from './src/screens/ReviewsScreen';
+import HotelsScreen from './src/screens/HotelsScreen';
+import AboutScreen from './src/screens/AboutScreen';
+import HelpScreen from './src/screens/HelpScreen';
+import BookingsListScreen from './src/screens/BookingsListScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -201,6 +206,11 @@ export default function App() {
             <Stack.Screen name="Market" component={MarketScreen} />
             <Stack.Screen name="Booking" component={BookingScreen} />
             <Stack.Screen name="Reviews" component={ReviewsScreen} />
+            <Stack.Screen name="Hotels" component={HotelsScreen} />
+            <Stack.Screen name="About" component={AboutScreen} />
+            <Stack.Screen name="Help" component={HelpScreen} />
+            <Stack.Screen name="Bookings" component={BookingsListScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

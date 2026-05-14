@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   View, Text, StyleSheet, FlatList, TextInput,
   TouchableOpacity, KeyboardAvoidingView, Platform,
@@ -26,7 +26,7 @@ function formatTime(iso?: string): string {
 export default function ChatScreen({ navigation, route }: any) {
   const { conversationId, recipientName } = route.params;
   const { colors } = useTheme();
-  const { isAr } = useRTL();
+  const { isAr, isRTL } = useRTL();
   const { user } = useAuthStore();
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
@@ -35,22 +35,44 @@ export default function ChatScreen({ navigation, route }: any) {
   const { data } = useQuery({
     queryKey: ['messages', conversationId],
     queryFn: () => messagesApi.getMessages(conversationId),
-    refetchInterval: 5000,
-    enabled: conversationId !== 'new',
+    refetchInterval: 3000,
+    enabled: !!conversationId && conversationId !== 'new',
   });
 
-  const rawMessages: any[] = data?.data?.data || data?.data || [];
-  // Inverted FlatList: newest first
-  const messages = [...rawMessages].reverse();
+  // Mark conversation as read on open (and when it changes).
+  useEffect(() => {
+    if (!conversationId || conversationId === 'new') return;
+    messagesApi.markRead(conversationId).catch(() => undefined);
+  }, [conversationId]);
+
+  // Backend returns { data: { data: Message[], meta }, timestamp } after the
+  // global TransformInterceptor wrap. Tolerate every plausible shape so a
+  // future API change doesn't blank the chat.
+  const rawMessages: any[] = useMemo(() => {
+    const candidates = [
+      data?.data?.data,
+      data?.data?.items,
+      data?.data,
+      data?.items,
+      data,
+    ];
+    for (const c of candidates) if (Array.isArray(c)) return c;
+    return [];
+  }, [data]);
+
+  // Inverted FlatList expects newest first. Backend returns newest-first too,
+  // so we leave the order as-is.
+  const messages = rawMessages;
 
   const handleSend = async () => {
     const text = draft.trim();
-    if (!text || sending) return;
+    if (!text || sending || !conversationId || conversationId === 'new') return;
     setSending(true);
     setDraft('');
     try {
       await messagesApi.sendMessage(conversationId, text);
       qc.invalidateQueries({ queryKey: ['messages', conversationId] });
+      qc.invalidateQueries({ queryKey: ['conversations'] });
       qc.invalidateQueries({ queryKey: ['conversations-unread'] });
     } catch {
       setDraft(text);
@@ -66,15 +88,17 @@ export default function ChatScreen({ navigation, route }: any) {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={{ flex: 1 }}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       >
         <FlatList
           data={messages}
           inverted
-          keyExtractor={(item: any) => item.id || String(Math.random())}
+          keyExtractor={(item: any, idx) => item?.id || `tmp-${idx}`}
           contentContainerStyle={styles.list}
           renderItem={({ item }: any) => {
             const isMe = item.senderId === user?.id;
+            // Backend message DTO uses `body`; we still fall back to `content`
+            // for resilience against an older payload shape.
+            const text = item.body || item.content || '';
             return (
               <View style={[styles.bubbleWrap, isMe ? styles.bubbleWrapMe : styles.bubbleWrapThem]}>
                 <View style={[
@@ -87,23 +111,8 @@ export default function ChatScreen({ navigation, route }: any) {
                     TYPOGRAPHY.body,
                     { color: isMe ? '#FFF' : colors.text, lineHeight: 20 },
                   ]}>
-                    {item.content}
+                    {text}
                   </Text>
-                  {item.isTranslated && (
-                    <View style={styles.translatedBadge}>
-                      <Ionicons
-                        name="language"
-                        size={9}
-                        color={isMe ? 'rgba(255,255,255,0.7)' : colors.primary}
-                      />
-                      <Text style={[
-                        TYPOGRAPHY.caption,
-                        { color: isMe ? 'rgba(255,255,255,0.7)' : colors.primary, fontWeight: '600' },
-                      ]}>
-                        {isAr ? 'مترجم' : 'Translated'}
-                      </Text>
-                    </View>
-                  )}
                 </View>
                 <Text style={[
                   TYPOGRAPHY.caption,
@@ -129,7 +138,14 @@ export default function ChatScreen({ navigation, route }: any) {
           }
         />
 
-        <View style={[styles.composer, { backgroundColor: colors.surface, borderTopColor: colors.border }]}>
+        <View style={[
+          styles.composer,
+          {
+            backgroundColor: colors.surface,
+            borderTopColor: colors.border,
+            flexDirection: isRTL ? 'row-reverse' : 'row',
+          },
+        ]}>
           <TextInput
             style={[
               styles.composerInput,
@@ -165,8 +181,7 @@ const styles = StyleSheet.create({
   bubbleWrapMe: { alignSelf: 'flex-end', alignItems: 'flex-end' },
   bubbleWrapThem: { alignSelf: 'flex-start', alignItems: 'flex-start' },
   bubble: { maxWidth: 280, padding: SIZES.md, borderRadius: SIZES.borderRadiusLg },
-  translatedBadge: { flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 4 },
-  composer: { flexDirection: 'row', alignItems: 'flex-end', gap: SIZES.sm, padding: SIZES.md, borderTopWidth: 1 },
+  composer: { alignItems: 'flex-end', gap: SIZES.sm, padding: SIZES.md, borderTopWidth: 1 },
   composerInput: { flex: 1, borderRadius: SIZES.borderRadiusLg, paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, fontSize: SIZES.body, maxHeight: 100, borderWidth: 1 },
   sendBtn: { width: 44, height: 44, borderRadius: 22, justifyContent: 'center', alignItems: 'center' },
 });
