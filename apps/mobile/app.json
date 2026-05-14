@@ -15,16 +15,25 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "sa.eawlma.app"
+      "bundleIdentifier": "sa.eawlma.app",
+      "config": {
+        "googleMapsApiKey": "YOUR_GOOGLE_MAPS_API_KEY_HERE"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#6C63A6"
       },
-      "package": "sa.eawlma.app"
+      "package": "sa.eawlma.app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY_HERE"
+        }
+      }
     },
     "extra": {
-      "apiUrl": "http://192.168.1.125:3010/api/v1"
+      "apiUrl": "http://192.168.1.125:3010/api/v1",
+      "googleMapsApiKey": "YOUR_GOOGLE_MAPS_API_KEY_HERE"
     }
   }
 }

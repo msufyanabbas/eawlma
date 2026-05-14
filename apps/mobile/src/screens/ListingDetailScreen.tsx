@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, Linking, Dimensions, Platform,
+  TouchableOpacity, Linking, Dimensions, Platform, Image,
   Modal, TextInput, Alert, ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import Constants from 'expo-constants';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -17,7 +18,12 @@ import PriceText from '../components/PriceText';
 import ListingCard from '../components/ListingCard';
 import SmartImage from '../components/SmartImage';
 import UserAvatar from '../components/UserAvatar';
-import { WebView } from 'react-native-webview';
+
+// Google Maps Static API key — wired through Expo extra so a single value in
+// app.json (and the matching .env entry) drives Android/iOS native config and
+// any HTTP-based static-tile request.
+const GOOGLE_MAPS_KEY =
+  (Constants.expoConfig?.extra as Record<string, string> | undefined)?.googleMapsApiKey || '';
 
 const { width: W } = Dimensions.get('window');
 
@@ -288,48 +294,49 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                 {isAr ? 'الموقع' : 'Location'}
               </SectionTitle>
               {listing?.lat != null && listing?.lng != null ? (
-                <View style={styles.mapContainer}>
-                  <WebView
-                    style={styles.map}
-                    originWhitelist={['*']}
-                    javaScriptEnabled
-                    scrollEnabled={false}
-                    source={{ html: buildMapHtml(listing) }}
+                <TouchableOpacity
+                  style={styles.mapContainer}
+                  onPress={() => {
+                    const label = encodeURIComponent(
+                      listing.titleAr || listing.titleEn || 'Property',
+                    );
+                    const url = Platform.select({
+                      ios: `maps:0,0?q=${label}@${listing.lat},${listing.lng}`,
+                      android: `geo:${listing.lat},${listing.lng}?q=${listing.lat},${listing.lng}(${label})`,
+                      default: `https://www.google.com/maps/search/?api=1&query=${listing.lat},${listing.lng}`,
+                    });
+                    if (url) Linking.openURL(url).catch(() => undefined);
+                  }}
+                >
+                  <Image
+                    source={{ uri: buildStaticMapUrl(listing.lat, listing.lng) }}
+                    style={styles.mapImage}
+                    resizeMode="cover"
                   />
-                  <TouchableOpacity
-                    style={[styles.openMapsBtn, { backgroundColor: colors.primary }]}
-                    onPress={() => {
-                      const label = encodeURIComponent(
-                        listing.titleAr || listing.titleEn || 'Property',
-                      );
-                      const url = Platform.select({
-                        ios: `maps:${listing.lat},${listing.lng}?q=${label}`,
-                        android: `geo:${listing.lat},${listing.lng}?q=${listing.lat},${listing.lng}(${label})`,
-                        default: `https://www.google.com/maps?q=${listing.lat},${listing.lng}`,
-                      });
-                      if (url) Linking.openURL(url).catch(() => undefined);
-                    }}
-                  >
+                  <View style={[styles.openMapsBtn, { backgroundColor: colors.primary }]}>
                     <Ionicons name="navigate" size={14} color="#FFF" />
                     <Text style={[TYPOGRAPHY.caption, { color: '#FFF', fontWeight: '700' }]}>
                       {isAr ? 'فتح في الخرائط' : 'Open in Maps'}
                     </Text>
-                  </TouchableOpacity>
-                </View>
+                  </View>
+                </TouchableOpacity>
               ) : (
                 <TouchableOpacity
                   style={[styles.mapPlaceholder, { backgroundColor: colors.surfaceVariant, borderColor: colors.primary + '30' }]}
                   onPress={() => {
                     const q = encodeURIComponent(
-                      [listing.district, listing.city].filter(Boolean).join(', '),
+                      [listing.district, listing.city, 'Saudi Arabia'].filter(Boolean).join(' '),
                     );
-                    if (q) Linking.openURL(`https://www.google.com/maps?q=${q}`).catch(() => undefined);
+                    if (q) Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${q}`).catch(() => undefined);
                   }}
                 >
                   <Ionicons name="location-outline" size={32} color={colors.textSecondary} />
                   <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: 8, textAlign: 'center' }]}>
                     {[listing.district, listing.city].filter(Boolean).join(', ') ||
                       (isAr ? 'الموقع غير محدد' : 'Location not specified')}
+                  </Text>
+                  <Text style={[TYPOGRAPHY.small, { color: colors.primary, marginTop: 4 }]}>
+                    {isAr ? 'اضغط لفتح الخريطة' : 'Tap to open map'}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -508,33 +515,19 @@ function InquiryModal({
   );
 }
 
-// OSM/Leaflet map embedded in a WebView. Free, no API key required, works
-// inside Expo Go. The title is escaped to keep the popup safe.
-function buildMapHtml(listing: any): string {
-  const lat = Number(listing.lat);
-  const lng = Number(listing.lng);
-  const title = String(listing.titleAr || listing.titleEn || 'Property')
-    .replace(/\\/g, '\\\\')
-    .replace(/'/g, "\\'")
-    .replace(/</g, '&lt;');
-  return `<!DOCTYPE html>
-<html><head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<style>html,body,#map{margin:0;padding:0;width:100%;height:100%}</style>
-</head><body>
-<div id="map"></div>
-<script>
-  var map = L.map('map', { zoomControl: false, attributionControl: true })
-    .setView([${lat}, ${lng}], 15);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-  }).addTo(map);
-  L.marker([${lat}, ${lng}]).addTo(map).bindPopup('${title}').openPopup();
-</script>
-</body></html>`;
+// Build a Google Static Maps URL for the listing's coordinates. Uses the
+// brand purple marker and a 2x scale tile for retina screens.
+function buildStaticMapUrl(lat: number, lng: number): string {
+  const params = [
+    `center=${lat},${lng}`,
+    'zoom=15',
+    'size=600x300',
+    'scale=2',
+    'maptype=roadmap',
+    `markers=color:0x6C63A6%7Csize:large%7C${lat},${lng}`,
+    `key=${GOOGLE_MAPS_KEY}`,
+  ].join('&');
+  return `https://maps.googleapis.com/maps/api/staticmap?${params}`;
 }
 
 function Stat({ icon, value, label, colors }: any) {
@@ -572,9 +565,9 @@ const styles = StyleSheet.create({
   agentAvatar: { width: 48, height: 48, borderRadius: 24, justifyContent: 'center', alignItems: 'center' },
   agentInfo: { flex: 1 },
   actionCircle: { width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center' },
-  mapPlaceholder: { height: 150, borderRadius: SIZES.borderRadiusLg, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderStyle: 'dashed' },
-  mapContainer: { height: 220, borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', marginTop: SIZES.sm, position: 'relative' },
-  map: { flex: 1 },
+  mapPlaceholder: { height: 150, borderRadius: SIZES.borderRadiusLg, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderStyle: 'dashed', marginTop: SIZES.sm },
+  mapContainer: { height: 200, borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', marginTop: SIZES.sm, position: 'relative' },
+  mapImage: { width: '100%', height: '100%' },
   openMapsBtn: { position: 'absolute', bottom: 12, right: 12, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20 },
   footer: { position: 'absolute', bottom: 0, left: 0, right: 0, borderTopWidth: 1, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
   contactBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
