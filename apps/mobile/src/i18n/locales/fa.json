@@ -295,7 +295,14 @@
     "fillAllFields": "لطفاً تمام فیلدها را پر کنید",
     "invalidCredentials": "ایمیل یا رمز عبور نامعتبر",
     "fillRequired": "لطفاً تمام فیلدهای الزامی را پر کنید",
-    "registerFailed": "ثبت نام انجام نشد، دوباره امتحان کنید"
+    "registerFailed": "ثبت نام انجام نشد، دوباره امتحان کنید",
+    "pwWeak": "ضعیف",
+    "pwFair": "منصفانه",
+    "pwGood": "خوب",
+    "pwStrong": "قوی",
+    "firstNamePlaceholder": "جان",
+    "lastNamePlaceholder": "گوزن",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "این فیلد الزامی است",
@@ -615,7 +622,10 @@
       "agents": "مشاوران تأییدشده",
       "cities": "شهرها",
       "support": "پشتیبانی"
-    }
+    },
+    "appAbout": "درباره برنامه",
+    "appDescription": "Eawlma یک پلت فرم املاک و مستغلات است که خریداران و اجاره دهندگان را با نمایندگان مورد اعتماد در سراسر عربستان سعودی متصل می کند. ملک عالی خود را کشف کنید، یک اقامت کوتاه رزرو کنید و مستقیماً با نمایندگان گپ بزنید.",
+    "website": "وب سایت"
   },
   "contact": {
     "title": "با ما در تماس باشید",
@@ -767,10 +777,7 @@
       "pinRequired": "برای مکان، یک پین روی نقشه بیندازید.",
       "imageRequired": "حداقل یک تصویر قبل از انتشار لازم است."
     },
-    "transactionType": {
-      "sale": "فروش",
-      "rent": "اجاره"
-    },
+    "transactionType": "نوع معامله",
     "rentPeriod": {
       "daily": "روزانه",
       "weekly": "هفتگی",
@@ -850,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "روی امکاناتی که این ملک ارائه می دهد ضربه بزنید. ما آنها را به عنوان فیلتر در جستجو نشان خواهیم داد."
-    }
+    },
+    "stepProperty": "نوع ملک",
+    "stepDetails": "جزئیات",
+    "stepLocation": "مکان",
+    "stepSpecs": "مشخصات",
+    "stepReview": "مرور کنید",
+    "stepCount": "مرحله {{current}} از {{total}}: {{title}}",
+    "addListing": "افزودن لیست",
+    "forSale": "برای فروش",
+    "forRent": "برای اجاره",
+    "propertyType": "نوع ملک",
+    "apartment": "آپارتمان",
+    "villa": "ویلا",
+    "land": "زمین",
+    "chalet": "کلبه کلبه",
+    "farm": "مزرعه",
+    "restHouse": "خانه استراحت",
+    "office": "دفتر",
+    "shop": "خرید کنید",
+    "titleArLabel": "عنوان عربی *",
+    "titleEnLabel": "عنوان انگلیسی",
+    "priceLabel": "قیمت (SAR) *",
+    "areaLabel": "مساحت (متر مربع)",
+    "descArLabel": "توضیحات عربی",
+    "descPlaceholder": "توضیحات کامل ملک ...",
+    "city": "شهر *",
+    "district": "منطقه *",
+    "districtPlaceholder": "به عنوان مثال العلیا",
+    "bedroomsLabel": "اتاق های خواب",
+    "bathroomsLabel": "حمام ها",
+    "reviewListing": "فهرست را مرور کنید",
+    "transaction": "معامله",
+    "title": "عنوان",
+    "price": "قیمت",
+    "bedrooms": "اتاق های خواب",
+    "back": "برگشت",
+    "next": "بعدی",
+    "publish": "انتشار فهرست",
+    "errorTitle": "خطا",
+    "successTitle": "موفقیت",
+    "fillRequired": "لطفا فیلدهای الزامی را پر کنید",
+    "addedSuccess": "فهرست با موفقیت اضافه شد",
+    "ok": "باشه",
+    "somethingWrong": "مشکلی پیش آمد",
+    "editTitle": "ویرایش فهرست",
+    "missing": "زمینه های گم شده",
+    "fillBasic": "لطفا فیلدهای الزامی را پر کنید",
+    "savedTitle": "ذخیره شد",
+    "savedBody": "فهرست به روز شد",
+    "updateFailed": "به روز رسانی انجام نشد",
+    "deleteTitle": "حذف لیست",
+    "deleteBody": "مطمئنی؟ این قابل واگرد نیست.",
+    "deleteFailed": "حذف نشد",
+    "delete": "حذف کنید",
+    "deleteListing": "حذف فهرست",
+    "titleArEdit": "عنوان (عربی) *",
+    "titleEnEdit": "عنوان (انگلیسی)",
+    "transactionTypeShort": "نوع معامله",
+    "priceShort": "قیمت *",
+    "cityShort": "شهر",
+    "districtShort": "ناحیه",
+    "bedsShort": "تخت",
+    "bathsShort": "حمام ها",
+    "areaShort": "منطقه",
+    "description": "توضیحات",
+    "saveChanges": "ذخیره تغییرات",
+    "sale": "فروش",
+    "rent": "اجاره"
   },
   "subscription": {
     "title": "اشتراک",
@@ -916,7 +990,13 @@
     "redirectingToAuthentica": "در حال انتقال به Authentica.sa…",
     "otpComing": "به‌زودی یک کد یکبارمصرف برای تکمیل احراز هویت دریافت خواهید کرد.",
     "profileUpdated": "پروفایل بروزرسانی شد.",
-    "deleteLabel": "حذف"
+    "deleteLabel": "حذف",
+    "appearance": "ظاهر",
+    "languageRegion": "زبان و منطقه",
+    "pushNotifications": "اعلان های فشاری",
+    "emailNotifications": "اعلان های ایمیل",
+    "privacyAccount": "حریم خصوصی و حساب",
+    "areYouSure": "مطمئنی؟"
   },
   "inquiries": {
     "title": "استعلام‌ها",
@@ -968,7 +1048,12 @@
       "adminResolutionHeading": "حل توسط مدیر",
       "closedFor": "معامله با {{value}} بسته شد",
       "closedOn": " در {{date}}"
-    }
+    },
+    "received": "دریافت کرد",
+    "sent": "ارسال شد",
+    "single": "استعلام",
+    "noInquiriesYet": "هنوز استعلام نشده است",
+    "appearHere": "سوالات شما در اینجا ظاهر می شود"
   },
   "commission": {
     "title": "کارمزدها",
@@ -989,7 +1074,8 @@
       "pending": "در انتظار",
       "confirmed": "تأییدشده",
       "paid": "پرداخت‌شده",
-      "disputed": "مورد اعتراض"
+      "disputed": "مورد اعتراض",
+      "cancelled": "لغو شد"
     },
     "oath": {
       "dialogTitle": "تعهد کمیسیون",
@@ -1003,7 +1089,11 @@
       "decline": "من موافق نیستم",
       "saving": "در حال ذخیره...",
       "acceptCta": "من می پذیرم و متعهد می شوم"
-    }
+    },
+    "dealValue": "ارزش معامله",
+    "commission": "کمیسیون",
+    "fromTxn": "از {{count}} تراکنش",
+    "earningsHint": "سود پس از بسته شدن معاملات ظاهر می شود"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} در انتظار",
@@ -1084,7 +1174,12 @@
     "contactUs": "با ما تماس بگیرید",
     "noResultsTitle": "پاسخ منطبقی یافت نشد",
     "noResultsBody": "کلیدواژه دیگری امتحان کنید، یا مستقیماً با تیم ما تماس بگیرید.",
-    "respondsIn": "تیم ما ظرف ۲۴ ساعت پاسخ می‌دهد."
+    "respondsIn": "تیم ما ظرف ۲۴ ساعت پاسخ می‌دهد.",
+    "faqTitle": "سوالات متداول",
+    "faqs": {
+      "q1": "چگونه برای ملک جستجو کنم؟",
+      "a1": "روی برگه جستجو در پایین ضربه بزنید، سپس فیلترهایی را انتخاب کنید که مناسب شما هستند (قیمت، نوع، شهر)."
+    }
   },
   "welcome": {
     "step1Title": "می‌خواهید بخرید یا اجاره کنید؟",
