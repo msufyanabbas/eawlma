@@ -110,7 +110,16 @@
     "typeRoom": "Cameră privată",
     "typeChalet": "Cabană",
     "typeRestHouse": "Casă de odihnă",
-    "typeFarm": "Fermă"
+    "typeFarm": "Fermă",
+    "typeAll": "Toate",
+    "chalets": "Cabana",
+    "farms": "Ferme",
+    "restHouses": "Case de odihnă",
+    "hotelsLabel": "Hoteluri",
+    "bookNext": "Rezervă-ți următorul sejur",
+    "subtitleMix": "Cabane, ferme, case de odihnă și hoteluri",
+    "noStays": "Nu există șederi disponibile",
+    "tryAnother": "Încercați altă categorie"
   },
   "hotels": {
     "title": "Hoteluri",
@@ -128,7 +137,10 @@
     "upTo500": "Până la 500 SAR",
     "upTo1000": "Până la 1.000 SAR",
     "upTo2500": "Până la 2.500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Rezervați un sejur la hotel",
+    "nightly": "Camere de hotel pentru sejururi pe noapte",
+    "noHotels": "Nu există hoteluri disponibile"
   },
   "messages": {
     "startConversation": "Începe conversația",
@@ -281,7 +293,16 @@
     "loginBtn": "Conectați-vă",
     "registerBtn": "Creează cont",
     "fillAllFields": "Vă rugăm să completați toate câmpurile",
-    "invalidCredentials": "E-mail sau parolă nevalidă"
+    "invalidCredentials": "E-mail sau parolă nevalidă",
+    "fillRequired": "Vă rugăm să completați toate câmpurile obligatorii",
+    "registerFailed": "Înregistrarea a eșuat, încercați din nou",
+    "pwWeak": "Slab",
+    "pwFair": "Târg",
+    "pwGood": "Bun",
+    "pwStrong": "Puternic",
+    "firstNamePlaceholder": "Ioan",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Acest câmp este obligatoriu",
@@ -601,7 +622,10 @@
       "agents": "Agenți verificați",
       "cities": "Orașe",
       "support": "Asistență"
-    }
+    },
+    "appAbout": "Despre aplicație",
+    "appDescription": "Eawlma este o platformă imobiliară care conectează cumpărători și chiriași cu agenți de încredere din toată Arabia Saudită. Descoperiți-vă proprietatea perfectă, rezervați un sejur scurt și discutați direct cu agenții.",
+    "website": "Site-ul web"
   },
   "contact": {
     "title": "Contactează-ne",
@@ -753,10 +777,7 @@
       "pinRequired": "Aruncă un indicator pe hartă pentru locație.",
       "imageRequired": "Este necesară cel puțin o imagine înainte de publicare."
     },
-    "transactionType": {
-      "sale": "Vânzare",
-      "rent": "Închiriere"
-    },
+    "transactionType": "Tipul tranzacției",
     "rentPeriod": {
       "daily": "Zilnic",
       "weekly": "Săptămânal",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Atingeți facilitățile oferite de această proprietate. Le vom prezenta ca filtre în Căutare."
-    }
+    },
+    "stepProperty": "Tip de proprietate",
+    "stepDetails": "Detalii",
+    "stepLocation": "Locaţie",
+    "stepSpecs": "Specificații",
+    "stepReview": "Recenzie",
+    "stepCount": "Pasul {{curent}} din {{total}}: {{titlu}}",
+    "addListing": "Adăugați lista",
+    "forSale": "De Vanzare",
+    "forRent": "De Inchiriere",
+    "propertyType": "Tip de proprietate",
+    "apartment": "Apartament",
+    "villa": "Vila",
+    "land": "Teren",
+    "chalet": "Cabana",
+    "farm": "Ferma",
+    "restHouse": "Casa de odihnă",
+    "office": "Birou",
+    "shop": "Magazin",
+    "titleArLabel": "Titlu arab *",
+    "titleEnLabel": "Titlu în engleză",
+    "priceLabel": "Preț (SAR) *",
+    "areaLabel": "Suprafața (m²)",
+    "descArLabel": "Descriere arabă",
+    "descPlaceholder": "Descrierea detaliată a proprietății...",
+    "city": "Oraș *",
+    "district": "District *",
+    "districtPlaceholder": "de ex. Al Olaya",
+    "bedroomsLabel": "Dormitoare",
+    "bathroomsLabel": "Băi",
+    "reviewListing": "Verificați lista",
+    "transaction": "Tranzacție",
+    "title": "Titlu",
+    "price": "Preț",
+    "bedrooms": "Dormitoare",
+    "back": "Înapoi",
+    "next": "Următorul",
+    "publish": "Publicați listarea",
+    "errorTitle": "Eroare",
+    "successTitle": "Succes",
+    "fillRequired": "Vă rugăm să completați câmpurile obligatorii",
+    "addedSuccess": "Lista adăugată cu succes",
+    "ok": "OK",
+    "somethingWrong": "Ceva a mers prost",
+    "editTitle": "Editați lista",
+    "missing": "Câmpuri lipsă",
+    "fillBasic": "Vă rugăm să completați câmpurile obligatorii",
+    "savedTitle": "Salvat",
+    "savedBody": "Listare actualizată",
+    "updateFailed": "Actualizarea eșuată",
+    "deleteTitle": "Ștergeți lista",
+    "deleteBody": "esti sigur? Acest lucru nu poate fi anulat.",
+    "deleteFailed": "S-a șters",
+    "delete": "Şterge",
+    "deleteListing": "Ștergeți lista",
+    "titleArEdit": "Titlu (araba) *",
+    "titleEnEdit": "Titlu (engleză)",
+    "transactionTypeShort": "Tipul tranzacției",
+    "priceShort": "Preț *",
+    "cityShort": "Oraș",
+    "districtShort": "District",
+    "bedsShort": "Paturi",
+    "bathsShort": "Băi",
+    "areaShort": "Zona",
+    "description": "Descriere",
+    "saveChanges": "Salvați modificările",
+    "sale": "Vanzare",
+    "rent": "Închiriere"
   },
   "subscription": {
     "title": "Abonament",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Redirecționare către Authentica.sa…",
     "otpComing": "Vei primi un OTP în scurt timp pentru a finaliza verificarea.",
     "profileUpdated": "Profil actualizat.",
-    "deleteLabel": "Șterge"
+    "deleteLabel": "Șterge",
+    "appearance": "Aspect",
+    "languageRegion": "Limbă și regiune",
+    "pushNotifications": "Notificări push",
+    "emailNotifications": "Notificări prin e-mail",
+    "privacyAccount": "Confidențialitate și cont",
+    "areYouSure": "esti sigur?"
   },
   "inquiries": {
     "title": "Cereri",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Rezolvare administrator",
       "closedFor": "Tranzacție închisă pentru {{value}}",
       "closedOn": " pe {{date}}"
-    }
+    },
+    "received": "Primit",
+    "sent": "Trimis",
+    "single": "Anchetă",
+    "noInquiriesYet": "Încă nu există întrebări",
+    "appearHere": "Întrebările dvs. vor apărea aici"
   },
   "commission": {
     "title": "Comisioane",
@@ -975,7 +1074,8 @@
       "pending": "În așteptare",
       "confirmed": "Confirmat",
       "paid": "Plătit",
-      "disputed": "Disputat"
+      "disputed": "Disputat",
+      "cancelled": "Anulat"
     },
     "oath": {
       "dialogTitle": "Angajamentul Comisiei",
@@ -989,7 +1089,11 @@
       "decline": "Nu sunt de acord",
       "saving": "Se salvează...",
       "acceptCta": "Accept și mă angajez"
-    }
+    },
+    "dealValue": "Valoarea tranzacției",
+    "commission": "Comisia",
+    "fromTxn": "din {{count}} tranzacții",
+    "earningsHint": "Câștigurile vor apărea după încheierea tranzacțiilor"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} în așteptare",
@@ -1070,7 +1174,22 @@
     "contactUs": "Contactează-ne",
     "noResultsTitle": "Niciun răspuns potrivit",
     "noResultsBody": "Încearcă un alt cuvânt cheie sau contactează direct echipa noastră.",
-    "respondsIn": "Echipa noastră răspunde în 24 de ore."
+    "respondsIn": "Echipa noastră răspunde în 24 de ore.",
+    "faqTitle": "Întrebări frecvente",
+    "faqs": {
+      "q1": "Cum caut o proprietate?",
+      "a1": "Atingeți fila Căutare din partea de jos, apoi alegeți filtrele care vi se potrivesc (preț, tip, oraș).",
+      "q2": "Cum pot contacta un agent?",
+      "a2": "Deschideți lista, apoi atingeți „Trimiteți întrebarea” sau utilizați butoanele de apel/WhatsApp de pe cardul agentului.",
+      "q3": "Pot rezerva cabane și ferme?",
+      "a3": "Da — deschideți orice listă de cabane / fermă / case de odihnă și atingeți „Rezervați acum” pentru a alege datele.",
+      "q4": "Cum salvez o proprietate pentru mai târziu?",
+      "a4": "Atingeți pictograma inimii de pe listă. Articolele salvate live sub fila Salvate.",
+      "q5": "Aplicația este gratuită?",
+      "a5": "Da, gratuit pentru solicitanții de proprietate. Agenții plătesc un comision numai după o tranzacție de succes.",
+      "q6": "Cum schimb limba aplicației?",
+      "a6": "Fila Profil → Setări → Limbă. Alegeți din 38 de limbi acceptate."
+    }
   },
   "welcome": {
     "step1Title": "Cauți să cumperi sau să închiriezi?",
@@ -1211,7 +1330,7 @@
     "tabGuest": "Ca oaspete",
     "tabHost": "Ca gazdă",
     "checkIn": "Înregistrare",
-    "checkOut": "Check-out",
+    "checkOut": "Verifică",
     "night": "noapte",
     "nights": "nopți",
     "guests": "Oaspeți",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Max invitați: {{count}}"
-    }
+    },
+    "title": "Rezervă-ți șederea",
+    "shortTitle": "Carte",
+    "created": "Rezervare creată",
+    "createdBody": "Rezervarea a fost creată. Veți fi redirecționat către plată.",
+    "error": "Eroare",
+    "failed": "Rezervarea a eșuat",
+    "invalidDates": "Date nevalide",
+    "invalidDatesBody": "Utilizați formatul AAAA-LL-ZZ",
+    "tooShort": "Prea scurt",
+    "tooShortBody": "Rezervarea trebuie să fie de cel puțin 1 noapte",
+    "perNight": "SAR / noapte",
+    "notesOptional": "Note (opțional)",
+    "notesPlaceholder": "Orice solicitari speciale...",
+    "totalLabel": "Total"
   },
   "market": {
     "title": "Analize de piață",
@@ -1277,7 +1410,10 @@
     "totalListings": "Total anunțuri",
     "listingCount": "Anunțuri active",
     "viewMarket": "Vezi piața",
-    "miniTrend": "Tendință piață locală"
+    "miniTrend": "Tendință piață locală",
+    "trendTitle": "Tendința prețurilor (12 luni)",
+    "avgByDistrict": "Media ﷼/m² pe district",
+    "cityPlaceholder": "Riad, Jedda..."
   },
   "errors": {
     "generic": "A apărut o eroare neașteptată",
@@ -1388,7 +1524,18 @@
     "verified": "Verificat",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} înregistrări active",
-    "viewProfile": "Vezi profilul"
+    "viewProfile": "Vezi profilul",
+    "agent": "Agent",
+    "listings": "Listări",
+    "reviews": "Recenzii",
+    "rating": "Evaluare",
+    "noListings": "Nicio listă",
+    "viewReviews": "Vezi recenzii",
+    "call": "Apelați",
+    "title": "Agenți",
+    "listingsShort": "listări",
+    "noAgentsFound": "Nu s-au găsit agenți",
+    "tryLater": "Încercați din nou mai târziu"
   },
   "myListings": {
     "countSelected": "{{count}} selectat",
@@ -1441,5 +1588,12 @@
     "saved": "Salvat",
     "messages": "Mesaje",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Recenzii",
+    "user": "Utilizator",
+    "ownerReply": "Răspunsul proprietarului:",
+    "empty": "Nicio recenzie încă",
+    "beFirst": "Fii primul care scrie o recenzie"
   }
 }

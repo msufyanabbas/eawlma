@@ -110,7 +110,16 @@
     "typeRoom": "Privaat kamer",
     "typeChalet": "Chalet",
     "typeRestHouse": "Rushuis",
-    "typeFarm": "Plaas"
+    "typeFarm": "Plaas",
+    "typeAll": "Alles",
+    "chalets": "Chalets",
+    "farms": "Plase",
+    "restHouses": "Rushuise",
+    "hotelsLabel": "Hotelle",
+    "bookNext": "Bespreek jou volgende verblyf",
+    "subtitleMix": "Chalets, plase, rushuise en hotelle",
+    "noStays": "Geen verblyf beskikbaar nie",
+    "tryAnother": "Probeer 'n ander kategorie"
   },
   "hotels": {
     "title": "Hotelle",
@@ -128,7 +137,10 @@
     "upTo500": "Tot 500 SAR",
     "upTo1000": "Tot 1 000 SAR",
     "upTo2500": "Tot 2 500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Bespreek 'n hotelverblyf",
+    "nightly": "Hotelkamers vir nagverblyf",
+    "noHotels": "Geen hotelle beskikbaar nie"
   },
   "messages": {
     "startConversation": "Begin die gesprek",
@@ -281,7 +293,16 @@
     "loginBtn": "Teken in",
     "registerBtn": "Skep rekening",
     "fillAllFields": "Vul asseblief alle velde",
-    "invalidCredentials": "in Ongeldige e-pos of wagwoord"
+    "invalidCredentials": "in Ongeldige e-pos of wagwoord",
+    "fillRequired": "Vul asseblief alle vereiste velde",
+    "registerFailed": "in Registrasie het misluk, probeer weer",
+    "pwWeak": "Swak",
+    "pwFair": "Regverdig",
+    "pwGood": "Goeie",
+    "pwStrong": "Sterk",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Hierdie veld is verpligtend",
@@ -601,7 +622,10 @@
       "agents": "Geverifieerde agente",
       "cities": "Stede",
       "support": "Ondersteuning"
-    }
+    },
+    "appAbout": "Meer oor die toepassing",
+    "appDescription": "Eawlma is 'n eiendomsplatform wat kopers en huurders verbind met betroubare agente regoor Saoedi-Arabië. Ontdek jou perfekte eiendom, bespreek 'n kort verblyf en gesels direk met agente.",
+    "website": "Webwerf"
   },
   "contact": {
     "title": "Kry in kontak",
@@ -753,10 +777,7 @@
       "pinRequired": "Los 'n speld op die kaart vir die ligging.",
       "imageRequired": "Ten minste een prent word vereis voor publikasie."
     },
-    "transactionType": {
-      "sale": "Verkoop",
-      "rent": "Huur"
-    },
+    "transactionType": "Transaksietipe",
     "rentPeriod": {
       "daily": "Daagliks",
       "weekly": "Weeklikse",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Tik op die geriewe wat hierdie eiendom bied. Ons sal hulle as filters op Search na vore bring."
-    }
+    },
+    "stepProperty": "Eiendom Tipe",
+    "stepDetails": "Besonderhede",
+    "stepLocation": "Ligging",
+    "stepSpecs": "Spesifikasies",
+    "stepReview": "Hersien",
+    "stepCount": "Stap {{huidige}} van {{totaal}}: {{title}}",
+    "addListing": "Voeg lysinskrywing by",
+    "forSale": "Te Koop",
+    "forRent": "Te Huur",
+    "propertyType": "Eiendom Tipe",
+    "apartment": "Woonstel",
+    "villa": "Villa",
+    "land": "Grond",
+    "chalet": "Chalet",
+    "farm": "Plaas",
+    "restHouse": "Rushuis",
+    "office": "Kantoor",
+    "shop": "Winkel",
+    "titleArLabel": "Arabiese titel *",
+    "titleEnLabel": "Engelse titel",
+    "priceLabel": "Prys (SAR) *",
+    "areaLabel": "Oppervlakte (m²)",
+    "descArLabel": "Arabiese Beskrywing",
+    "descPlaceholder": "Gedetailleerde eiendomsbeskrywing...",
+    "city": "Stad *",
+    "district": "Distrik *",
+    "districtPlaceholder": "bv. Al Olaya",
+    "bedroomsLabel": "Slaapkamers",
+    "bathroomsLabel": "Badkamers",
+    "reviewListing": "Resensielys",
+    "transaction": "Transaksie",
+    "title": "Titel",
+    "price": "Prys",
+    "bedrooms": "Slaapkamers",
+    "back": "Terug",
+    "next": "Volgende",
+    "publish": "Publiseer lysinskrywing",
+    "errorTitle": "Fout",
+    "successTitle": "Sukses",
+    "fillRequired": "Vul asseblief vereiste velde in",
+    "addedSuccess": "Notering is suksesvol bygevoeg",
+    "ok": "OK",
+    "somethingWrong": "Iets het verkeerd geloop",
+    "editTitle": "Wysig lysinskrywing",
+    "missing": "Ontbrekende velde",
+    "fillBasic": "Vul asseblief vereiste velde in",
+    "savedTitle": "Gestoor",
+    "savedBody": "Notering opgedateer",
+    "updateFailed": "Kon nie",
+    "deleteTitle": "opdateer nie Vee lysinskrywing",
+    "deleteBody": "uit Is jy seker? Dit kan nie ongedaan gemaak word nie.",
+    "deleteFailed": "Kon nie",
+    "delete": "uitvee nie Verwyder",
+    "deleteListing": "Vee lysinskrywing",
+    "titleArEdit": "uit Titel (Arabies) *",
+    "titleEnEdit": "Titel (Engels)",
+    "transactionTypeShort": "Transaksietipe",
+    "priceShort": "Prys *",
+    "cityShort": "Stad",
+    "districtShort": "Distrik",
+    "bedsShort": "Beddens",
+    "bathsShort": "Baddens",
+    "areaShort": "Area",
+    "description": "Beskrywing",
+    "saveChanges": "Stoor veranderinge",
+    "sale": "Verkoop",
+    "rent": "Huur"
   },
   "subscription": {
     "title": "Subskripsie",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Herrig na Authentica.sa…",
     "otpComing": "Jy sal binnekort 'n OTP ontvang om verifikasie te voltooi.",
     "profileUpdated": "Profiel opgedateer.",
-    "deleteLabel": "Skrap"
+    "deleteLabel": "Skrap",
+    "appearance": "Voorkoms",
+    "languageRegion": "Taal en streek",
+    "pushNotifications": "Stootkennisgewings",
+    "emailNotifications": "E-poskennisgewings",
+    "privacyAccount": "Privaatheid en rekening",
+    "areYouSure": "Is jy seker?"
   },
   "inquiries": {
     "title": "Navrae",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Administrateur-oplossing",
       "closedFor": "Transaksie gesluit vir {{value}}",
       "closedOn": " op {{date}}"
-    }
+    },
+    "received": "Ontvang",
+    "sent": "Gestuur",
+    "single": "Navraag",
+    "noInquiriesYet": "Nog geen navrae nie",
+    "appearHere": "Jou navrae sal hier verskyn"
   },
   "commission": {
     "title": "Kommissies",
@@ -975,7 +1074,8 @@
       "pending": "Hangende",
       "confirmed": "Bevestig",
       "paid": "Betaal",
-      "disputed": "Betwis"
+      "disputed": "Betwis",
+      "cancelled": "Gekanselleer"
     },
     "oath": {
       "dialogTitle": "Kommissie-verbintenis",
@@ -989,7 +1089,11 @@
       "decline": "Ek stem nie saam nie",
       "saving": "Stoor tans...",
       "acceptCta": "Ek aanvaar en verbind"
-    }
+    },
+    "dealValue": "Handelingswaarde",
+    "commission": "Kommissie",
+    "fromTxn": "vanaf {{count}} transaksies",
+    "earningsHint": "Verdienste sal verskyn na die sluiting van transaksies"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} hangende",
@@ -1070,7 +1174,22 @@
     "contactUs": "Kontak ons",
     "noResultsTitle": "Geen passende antwoorde nie",
     "noResultsBody": "Probeer 'n ander sleutelwoord, of reik direk uit na ons span.",
-    "respondsIn": "Ons span reageer binne 24 uur."
+    "respondsIn": "Ons span reageer binne 24 uur.",
+    "faqTitle": "Gereelde Vrae",
+    "faqs": {
+      "q1": "Hoe soek ek 'n eiendom?",
+      "a1": "Tik die Soek-oortjie onderaan, kies dan filters wat by jou pas (prys, tipe, stad).",
+      "q2": "Hoe kontak ek 'n agent?",
+      "a2": "Maak die lysinskrywing oop en tik dan \"Stuur navraag\" of gebruik die oproep-/WhatsApp-knoppies op die agentkaart.",
+      "q3": "Kan ek chalets en plase bespreek?",
+      "a3": "Ja — maak enige chalet/plaas/rushuislys oop en tik \"Bespreek nou\" om datums te kies.",
+      "q4": "Hoe stoor ek 'n eiendom vir later?",
+      "a4": "Tik die hartikoon op die lysinskrywing. Gestoorde items regstreeks onder die Gestoord-oortjie.",
+      "q5": "Is die toepassing gratis?",
+      "a5": "Ja — gratis vir eiendomsoekers. Agente betaal slegs 'n kommissie na 'n suksesvolle transaksie.",
+      "q6": "Hoe verander ek die programtaal?",
+      "a6": "Profiel-oortjie → Instellings → Taal. Kies uit 38 ondersteunde tale."
+    }
   },
   "welcome": {
     "step1Title": "Wil jy koop of huur?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Maksimum gaste: {{tel}}"
-    }
+    },
+    "title": "Bespreek jou verblyf",
+    "shortTitle": "Boek",
+    "created": "Bespreking geskep",
+    "createdBody": "Bespreking geskep. Jy sal na betaling herlei word.",
+    "error": "Fout",
+    "failed": "Bespreking het misluk",
+    "invalidDates": "Ongeldige datums",
+    "invalidDatesBody": "Gebruik die JJJJ-MM-DD-formaat",
+    "tooShort": "Te kort",
+    "tooShortBody": "Bespreking moet ten minste 1 nag wees",
+    "perNight": "SAR / nag",
+    "notesOptional": "Notas (opsioneel)",
+    "notesPlaceholder": "Enige spesiale versoeke...",
+    "totalLabel": "Totaal"
   },
   "market": {
     "title": "Mark-insigte",
@@ -1277,7 +1410,10 @@
     "totalListings": "Totale advertensies",
     "listingCount": "Aktiewe advertensies",
     "viewMarket": "Bekyk mark",
-    "miniTrend": "Plaaslike marktendens"
+    "miniTrend": "Plaaslike marktendens",
+    "trendTitle": "Prystendens (12 maande)",
+    "avgByDistrict": "Gem. ﷼/m² volgens distrik",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "'n Onverwagte fout het voorgekom",
@@ -1388,7 +1524,18 @@
     "verified": "Geverifieer",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} aktiewe lyste",
-    "viewProfile": "Bekyk profiel"
+    "viewProfile": "Bekyk profiel",
+    "agent": "Agent",
+    "listings": "Inskrywings",
+    "reviews": "Resensies",
+    "rating": "Gradering",
+    "noListings": "Geen inskrywings nie",
+    "viewReviews": "Bekyk resensies",
+    "call": "Bel",
+    "title": "Agente",
+    "listingsShort": "lyste",
+    "noAgentsFound": "Geen agente gevind nie",
+    "tryLater": "Probeer later weer"
   },
   "myListings": {
     "countSelected": "{{count}} gekies",
@@ -1441,5 +1588,12 @@
     "saved": "Gestoor",
     "messages": "Boodskappe",
     "profile": "Profiel"
+  },
+  "reviews": {
+    "title": "Resensies",
+    "user": "Gebruiker",
+    "ownerReply": "Eienaar antwoord:",
+    "empty": "Nog geen resensies",
+    "beFirst": "Wees die eerste om te hersien"
   }
 }

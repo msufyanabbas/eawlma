@@ -110,7 +110,16 @@
     "typeRoom": "Yksityinen huone",
     "typeChalet": "Mökki",
     "typeRestHouse": "Lepokoti",
-    "typeFarm": "Maatila"
+    "typeFarm": "Maatila",
+    "typeAll": "Kaikki",
+    "chalets": "Lomamökit",
+    "farms": "Maatilat",
+    "restHouses": "Lepotalot",
+    "hotelsLabel": "Hotellit",
+    "bookNext": "Varaa seuraava oleskelusi",
+    "subtitleMix": "Mökkejä, maatiloja, lepotaloja ja hotelleja",
+    "noStays": "Ei yöpymisiä saatavilla",
+    "tryAnother": "Kokeile toista luokkaa"
   },
   "hotels": {
     "title": "Hotellit",
@@ -128,7 +137,10 @@
     "upTo500": "Enintään 500 SAR",
     "upTo1000": "Enintään 1 000 SAR",
     "upTo2500": "Enintään 2 500 SAR",
-    "hotelChip": "Hotelli"
+    "hotelChip": "Hotelli",
+    "bookStay": "Varaa hotellimajoitus",
+    "nightly": "Hotellihuoneita yöpymiseen",
+    "noHotels": "Ei hotelleja saatavilla"
   },
   "messages": {
     "startConversation": "Aloita keskustelu",
@@ -281,7 +293,16 @@
     "loginBtn": "Kirjaudu sisään",
     "registerBtn": "Luo tili",
     "fillAllFields": "Täytä kaikki kentät",
-    "invalidCredentials": "Virheellinen sähköpostiosoite tai salasana"
+    "invalidCredentials": "Virheellinen sähköpostiosoite tai salasana",
+    "fillRequired": "Täytä kaikki vaaditut kentät",
+    "registerFailed": "Rekisteröinti epäonnistui, yritä uudelleen",
+    "pwWeak": "Heikko",
+    "pwFair": "Reilu",
+    "pwGood": "Hyvä",
+    "pwStrong": "Vahva",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Tämä kenttä on pakollinen",
@@ -601,7 +622,10 @@
       "agents": "Vahvistetut välittäjät",
       "cities": "Kaupungit",
       "support": "Tuki"
-    }
+    },
+    "appAbout": "Tietoja sovelluksesta",
+    "appDescription": "Eawlma on kiinteistöalusta, joka yhdistää ostajat ja vuokraajat luotettaviin agentteihin kaikkialla Saudi-Arabiassa. Löydä täydellinen kiinteistösi, varaa lyhyt oleskelu ja keskustele suoraan agenttien kanssa.",
+    "website": "Verkkosivusto"
   },
   "contact": {
     "title": "Ota yhteyttä",
@@ -753,10 +777,7 @@
       "pinRequired": "Pudota paikkaan merkki kartalle.",
       "imageRequired": "Vähintään yksi kuva vaaditaan ennen julkaisua."
     },
-    "transactionType": {
-      "sale": "Myynti",
-      "rent": "Vuokrata"
-    },
+    "transactionType": "Tapahtumatyyppi",
     "rentPeriod": {
       "daily": "Päivittäin",
       "weekly": "Viikoittain",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Napauta tämän kiinteistön tarjoamia mukavuuksia. Näytämme ne suodattimina Haussa."
-    }
+    },
+    "stepProperty": "Kiinteistön tyyppi",
+    "stepDetails": "Yksityiskohdat",
+    "stepLocation": "Sijainti",
+    "stepSpecs": "Tekniset tiedot",
+    "stepReview": "Arvostelu",
+    "stepCount": "Vaihe {{current}}/{{total}}: {{title}}",
+    "addListing": "Lisää listaus",
+    "forSale": "Myytävänä",
+    "forRent": "Vuokrattavana",
+    "propertyType": "Kiinteistön tyyppi",
+    "apartment": "Huoneisto",
+    "villa": "Huvila",
+    "land": "Maa",
+    "chalet": "Chalet",
+    "farm": "Maatila",
+    "restHouse": "Lepotalo",
+    "office": "Toimisto",
+    "shop": "Kauppa",
+    "titleArLabel": "arabiankielinen otsikko *",
+    "titleEnLabel": "Englanninkielinen otsikko",
+    "priceLabel": "Hinta (SAR) *",
+    "areaLabel": "Pinta-ala (m²)",
+    "descArLabel": "Arabialainen kuvaus",
+    "descPlaceholder": "Yksityiskohtainen kiinteistön kuvaus...",
+    "city": "kaupunki *",
+    "district": "Piiri*",
+    "districtPlaceholder": "esim. Al Olaya",
+    "bedroomsLabel": "Makuuhuoneita",
+    "bathroomsLabel": "Kylpyhuoneet",
+    "reviewListing": "Tarkista listaus",
+    "transaction": "Tapahtuma",
+    "title": "Otsikko",
+    "price": "Hinta",
+    "bedrooms": "Makuuhuoneita",
+    "back": "Takaisin",
+    "next": "Seuraavaksi",
+    "publish": "Julkaise listaus",
+    "errorTitle": "Virhe",
+    "successTitle": "Menestys",
+    "fillRequired": "Täytä pakolliset kentät",
+    "addedSuccess": "Tietojen lisäys onnistui",
+    "ok": "OK",
+    "somethingWrong": "Jotain meni pieleen",
+    "editTitle": "Muokkaa listausta",
+    "missing": "Puuttuvat kentät",
+    "fillBasic": "Täytä pakolliset kentät",
+    "savedTitle": "Tallennettu",
+    "savedBody": "Listaus päivitetty",
+    "updateFailed": "Päivitys epäonnistui",
+    "deleteTitle": "Poista listaus",
+    "deleteBody": "Oletko varma? Tätä ei voi kumota.",
+    "deleteFailed": "Poistaminen epäonnistui",
+    "delete": "Poistaa",
+    "deleteListing": "Poista listaus",
+    "titleArEdit": "Otsikko (arabia) *",
+    "titleEnEdit": "Otsikko (englanniksi)",
+    "transactionTypeShort": "Tapahtumatyyppi",
+    "priceShort": "Hinta *",
+    "cityShort": "Kaupunki",
+    "districtShort": "piiri",
+    "bedsShort": "Sängyt",
+    "bathsShort": "Kylpyammeet",
+    "areaShort": "Alue",
+    "description": "Kuvaus",
+    "saveChanges": "Tallenna muutokset",
+    "sale": "Myynti",
+    "rent": "Vuokrata"
   },
   "subscription": {
     "title": "Tilaus",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Uudelleenohjataan Authentica.sa:han…",
     "otpComing": "Saat OTP:n pian vahvistuksen viimeistelemiseksi.",
     "profileUpdated": "Profiili päivitetty.",
-    "deleteLabel": "Poista"
+    "deleteLabel": "Poista",
+    "appearance": "Ulkonäkö",
+    "languageRegion": "Kieli ja alue",
+    "pushNotifications": "Push-ilmoitukset",
+    "emailNotifications": "Sähköposti-ilmoitukset",
+    "privacyAccount": "Yksityisyys ja tili",
+    "areYouSure": "Oletko varma?"
   },
   "inquiries": {
     "title": "Tiedustelut",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Ylläpitäjän ratkaisu",
       "closedFor": "Kauppa suljettu summalla {{value}}",
       "closedOn": " {{date}}"
-    }
+    },
+    "received": "Vastaanotettu",
+    "sent": "Lähetetty",
+    "single": "Tiedustelu",
+    "noInquiriesYet": "Ei tiedusteluja vielä",
+    "appearHere": "Kysymyksesi näkyvät täällä"
   },
   "commission": {
     "title": "Palkkiot",
@@ -975,7 +1074,8 @@
       "pending": "Odottaa",
       "confirmed": "Vahvistettu",
       "paid": "Maksettu",
-      "disputed": "Riitautettu"
+      "disputed": "Riitautettu",
+      "cancelled": "Peruutettu"
     },
     "oath": {
       "dialogTitle": "komission sitoumus",
@@ -989,7 +1089,11 @@
       "decline": "En ole samaa mieltä",
       "saving": "Tallennetaan...",
       "acceptCta": "Hyväksyn & Sitoudun"
-    }
+    },
+    "dealValue": "Sopimuksen arvo",
+    "commission": "Komissio",
+    "fromTxn": "{{count}} tapahtumasta",
+    "earningsHint": "Tulot näkyvät kaupanteon jälkeen"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} odottaa",
@@ -1070,7 +1174,22 @@
     "contactUs": "Ota yhteyttä",
     "noResultsTitle": "Ei sopivia vastauksia",
     "noResultsBody": "Kokeile eri avainsanaa tai ota yhteyttä tiimimme suoraan.",
-    "respondsIn": "Tiimimme vastaa 24 tunnin sisällä."
+    "respondsIn": "Tiimimme vastaa 24 tunnin sisällä.",
+    "faqTitle": "Usein kysytyt kysymykset",
+    "faqs": {
+      "q1": "Miten haen kiinteistön?",
+      "a1": "Napauta Haku-välilehteä alareunassa ja valitse sitten sinulle sopivat suodattimet (hinta, tyyppi, kaupunki).",
+      "q2": "Miten otan yhteyttä agenttiin?",
+      "a2": "Avaa listaus ja napauta sitten \"Lähetä kysely\" tai käytä agenttikortin soitto-/WhatsApp-painikkeita.",
+      "q3": "Voinko varata mökkejä ja maatiloja?",
+      "a3": "Kyllä – avaa mikä tahansa lomamökki/maatila/lomatalo ja valitse päivämäärät napauttamalla Varaa nyt.",
+      "q4": "Kuinka säästän kiinteistön myöhempää käyttöä varten?",
+      "a4": "Napauta listalla olevaa sydänkuvaketta. Tallennetut kohteet ovat Tallennetut-välilehdellä.",
+      "q5": "Onko sovellus ilmainen?",
+      "a5": "Kyllä – asunnonhakijoille ilmainen. Agentit maksavat palkkion vasta onnistuneen kaupan jälkeen.",
+      "q6": "Kuinka vaihdan sovelluksen kielen?",
+      "a6": "Profiili-välilehti → Asetukset → Kieli. Valitse 38 tuetusta kielestä."
+    }
   },
   "welcome": {
     "step1Title": "Haluatko ostaa vai vuokrata?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Vieraiden enimmäismäärä: {{count}}"
-    }
+    },
+    "title": "Varaa majoitus",
+    "shortTitle": "Kirja",
+    "created": "Varaus luotu",
+    "createdBody": "Varaus luotu. Sinut ohjataan maksuun.",
+    "error": "Virhe",
+    "failed": "Varaus epäonnistui",
+    "invalidDates": "Virheelliset päivämäärät",
+    "invalidDatesBody": "Käytä muotoa VVVV-KK-PP",
+    "tooShort": "Liian lyhyt",
+    "tooShortBody": "Varauksen tulee olla vähintään 1 yö",
+    "perNight": "SAR / yö",
+    "notesOptional": "Huomautuksia (valinnainen)",
+    "notesPlaceholder": "Kaikki erityistoiveet...",
+    "totalLabel": "Kokonais"
   },
   "market": {
     "title": "Markkinanäkemykset",
@@ -1277,7 +1410,10 @@
     "totalListings": "Ilmoituksia yhteensä",
     "listingCount": "Aktiiviset ilmoitukset",
     "viewMarket": "Näytä markkinat",
-    "miniTrend": "Paikallinen markkinatrendi"
+    "miniTrend": "Paikallinen markkinatrendi",
+    "trendTitle": "Hintatrendi (12 kuukautta)",
+    "avgByDistrict": "Keskim. ﷼/m² alueittain",
+    "cityPlaceholder": "Riad, Jedda..."
   },
   "errors": {
     "generic": "Tapahtui odottamaton virhe",
@@ -1388,7 +1524,18 @@
     "verified": "Vahvistettu",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} aktiivista yritystietoa",
-    "viewProfile": "Näytä profiili"
+    "viewProfile": "Näytä profiili",
+    "agent": "Agentti",
+    "listings": "Listaukset",
+    "reviews": "Arvostelut",
+    "rating": "Luokitus",
+    "noListings": "Ei listauksia",
+    "viewReviews": "Näytä arvostelut",
+    "call": "Soittaa",
+    "title": "Agentit",
+    "listingsShort": "listaukset",
+    "noAgentsFound": "Agentteja ei löytynyt",
+    "tryLater": "Yritä myöhemmin uudelleen"
   },
   "myListings": {
     "countSelected": "{{count}} valittu",
@@ -1441,5 +1588,12 @@
     "saved": "Tallennettu",
     "messages": "Viestit",
     "profile": "Profiili"
+  },
+  "reviews": {
+    "title": "Arvostelut",
+    "user": "Käyttäjä",
+    "ownerReply": "Omistajan vastaus:",
+    "empty": "Ei arvosteluja vielä",
+    "beFirst": "Arvostele ensimmäisenä"
   }
 }

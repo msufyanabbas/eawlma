@@ -110,7 +110,16 @@
     "typeRoom": "ખાનગી રૂમ",
     "typeChalet": "શેલે",
     "typeRestHouse": "રેસ્ટ હાઉસ",
-    "typeFarm": "ફાર્મ"
+    "typeFarm": "ફાર્મ",
+    "typeAll": "બધા",
+    "chalets": "ચેલેટ્સ",
+    "farms": "ખેતરો",
+    "restHouses": "| વિશ્રામ ગૃહો",
+    "hotelsLabel": "હોટેલ્સ",
+    "bookNext": "| તમારું આગલું રોકાણ બુક કરો",
+    "subtitleMix": "| ચેલેટ્સ, ફાર્મ, રેસ્ટ હાઉસ અને હોટેલ્સ",
+    "noStays": "કોઈ રોકાણ ઉપલબ્ધ નથી",
+    "tryAnother": "બીજી શ્રેણી અજમાવી જુઓ"
   },
   "hotels": {
     "title": "હોટેલ્સ",
@@ -128,7 +137,10 @@
     "upTo500": "500 SAR સુધી",
     "upTo1000": "1,000 SAR સુધી",
     "upTo2500": "2,500 SAR સુધી",
-    "hotelChip": "હોટેલ"
+    "hotelChip": "હોટેલ",
+    "bookStay": "હોટેલ રોકાણ બુક કરો",
+    "nightly": "| રાત્રિ રોકાણ માટે હોટેલ રૂમ",
+    "noHotels": "કોઈ હોટેલ ઉપલબ્ધ નથી"
   },
   "messages": {
     "startConversation": "વાતચીત શરૂ કરો",
@@ -281,7 +293,16 @@
     "loginBtn": "| સાઇન ઇન કરો",
     "registerBtn": "| એકાઉન્ટ બનાવો",
     "fillAllFields": "| કૃપા કરીને તમામ ફીલ્ડ ભરો",
-    "invalidCredentials": "અમાન્ય ઈમેલ અથવા પાસવર્ડ"
+    "invalidCredentials": "અમાન્ય ઈમેલ અથવા પાસવર્ડ",
+    "fillRequired": "કૃપા કરીને તમામ જરૂરી ફીલ્ડ ભરો",
+    "registerFailed": "નોંધણી નિષ્ફળ, ફરી પ્રયાસ કરો",
+    "pwWeak": "નબળા",
+    "pwFair": "ફેર",
+    "pwGood": "સારું",
+    "pwStrong": "મજબૂત",
+    "firstNamePlaceholder": "જ્હોન",
+    "lastNamePlaceholder": "ડો",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "આ ફીલ્ડ આવશ્યક છે",
@@ -601,7 +622,10 @@
       "agents": "ચકાસાયેલ એજન્ટ્સ",
       "cities": "શહેરો",
       "support": "આધાર"
-    }
+    },
+    "appAbout": "એપ્લિકેશન વિશે",
+    "appDescription": "Eawlma એ સમગ્ર સાઉદી અરેબિયામાં ખરીદદારો અને ભાડૂતોને વિશ્વસનીય એજન્ટો સાથે જોડતું રિયલ એસ્ટેટ પ્લેટફોર્મ છે. તમારી સંપૂર્ણ મિલકત શોધો, ટૂંકા રોકાણ બુક કરો અને એજન્ટો સાથે સીધી ચેટ કરો.",
+    "website": "વેબસાઈટ"
   },
   "contact": {
     "title": "સંપર્કમાં રહો",
@@ -753,10 +777,7 @@
       "pinRequired": "સ્થાન માટે નકશા પર એક પિન મૂકો.",
       "imageRequired": "પ્રકાશિત કરતા પહેલા ઓછામાં ઓછી એક છબી જરૂરી છે."
     },
-    "transactionType": {
-      "sale": "વેચાણ",
-      "rent": "ભાડે"
-    },
+    "transactionType": "વ્યવહારનો પ્રકાર",
     "rentPeriod": {
       "daily": "દૈનિક",
       "weekly": "સાપ્તાહિક",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "આ મિલકત ઓફર કરે છે તે સુવિધાઓ પર ટૅપ કરો. અમે તેમને શોધ પર ફિલ્ટર તરીકે સપાટી પર લાવીશું."
-    }
+    },
+    "stepProperty": "મિલકતનો પ્રકાર",
+    "stepDetails": "વિગતો",
+    "stepLocation": "સ્થાન",
+    "stepSpecs": "સ્પેક્સ",
+    "stepReview": "સમીક્ષા",
+    "stepCount": "{{total}} માંથી {{current}} પગલું: {{title}}",
+    "addListing": "સૂચિ ઉમેરો",
+    "forSale": "વેચાણ માટે",
+    "forRent": "ભાડા માટે",
+    "propertyType": "મિલકતનો પ્રકાર",
+    "apartment": "એપાર્ટમેન્ટ",
+    "villa": "વિલા",
+    "land": "જમીન",
+    "chalet": "| ચેલેટ",
+    "farm": "| ફાર્મ",
+    "restHouse": "| રેસ્ટ હાઉસ",
+    "office": "| ઓફિસ",
+    "shop": "દુકાન",
+    "titleArLabel": "અરબી શીર્ષક *",
+    "titleEnLabel": "અંગ્રેજી શીર્ષક",
+    "priceLabel": "| કિંમત (SAR) *",
+    "areaLabel": "વિસ્તાર (m²)",
+    "descArLabel": "અરબી વર્ણન",
+    "descPlaceholder": "મિલકતનું વિગતવાર વર્ણન...",
+    "city": "શહેર *",
+    "district": "જિલ્લો *",
+    "districtPlaceholder": "| દા.ત. અલ ઓલાયા",
+    "bedroomsLabel": "શયનખંડ",
+    "bathroomsLabel": "બાથરૂમ",
+    "reviewListing": "| સમીક્ષા સૂચિ",
+    "transaction": "વ્યવહાર",
+    "title": "| શીર્ષક",
+    "price": "| કિંમત",
+    "bedrooms": "શયનખંડ",
+    "back": "પાછળ",
+    "next": "આગળ",
+    "publish": "લિસ્ટિંગ પ્રકાશિત કરો",
+    "errorTitle": "ભૂલ",
+    "successTitle": "સફળતા",
+    "fillRequired": "કૃપા કરીને જરૂરી ફીલ્ડ્સ ભરો",
+    "addedSuccess": "સૂચિ સફળતાપૂર્વક ઉમેરવામાં આવી",
+    "ok": "ઠીક છે",
+    "somethingWrong": "કંઈક ખોટું થયું",
+    "editTitle": "સૂચિ સંપાદિત કરો",
+    "missing": "ખૂટે છે",
+    "fillBasic": "કૃપા કરીને જરૂરી ફીલ્ડ્સ ભરો",
+    "savedTitle": "સાચવેલ",
+    "savedBody": "સૂચિ અપડેટ કરી",
+    "updateFailed": "અપડેટ કરવામાં નિષ્ફળ",
+    "deleteTitle": "સૂચિ કાઢી નાખો",
+    "deleteBody": "શું તમને ખાતરી છે? આ પૂર્વવત્ કરી શકાતું નથી.",
+    "deleteFailed": "કાઢી નાખવામાં નિષ્ફળ",
+    "delete": "કાઢી નાખો",
+    "deleteListing": "સૂચિ કાઢી નાખો",
+    "titleArEdit": "શીર્ષક (અરબી) *",
+    "titleEnEdit": "શીર્ષક (અંગ્રેજી)",
+    "transactionTypeShort": "વ્યવહારનો પ્રકાર",
+    "priceShort": "કિંમત*",
+    "cityShort": "શહેર",
+    "districtShort": "જિલ્લો",
+    "bedsShort": "પથારી",
+    "bathsShort": "સ્નાન",
+    "areaShort": "વિસ્તાર",
+    "description": "વર્ણન",
+    "saveChanges": "ફેરફારો સાચવો",
+    "sale": "વેચાણ",
+    "rent": "ભાડે"
   },
   "subscription": {
     "title": "સબ્સ્ક્રિપ્શન",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Authentica.sa પર રીડાયરેક્ટ કરી રહ્યું છે…",
     "otpComing": "ચકાસણી પૂર્ણ કરવા તમને ટૂંક સમયમાં એક OTP પ્રાપ્ત થશે.",
     "profileUpdated": "પ્રોફાઇલ અપડેટ થયું.",
-    "deleteLabel": "કાઢી નાખો"
+    "deleteLabel": "કાઢી નાખો",
+    "appearance": "દેખાવ",
+    "languageRegion": "ભાષા અને પ્રદેશ",
+    "pushNotifications": "પુશ સૂચનાઓ",
+    "emailNotifications": "ઇમેઇલ સૂચનાઓ",
+    "privacyAccount": "ગોપનીયતા અને એકાઉન્ટ",
+    "areYouSure": "શું તમને ખાતરી છે?"
   },
   "inquiries": {
     "title": "પૂછપરછ",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "એડમિન ઠરાવ",
       "closedFor": "{{value}} માટે સોદો બંધ થયો",
       "closedOn": " {{date}} ના રોજ"
-    }
+    },
+    "received": "પ્રાપ્ત",
+    "sent": "મોકલેલ",
+    "single": "પૂછપરછ",
+    "noInquiriesYet": "હજુ સુધી કોઈ પૂછપરછ નથી",
+    "appearHere": "તમારી પૂછપરછ અહીં દેખાશે"
   },
   "commission": {
     "title": "કમિશન",
@@ -975,7 +1074,8 @@
       "pending": "બાકી",
       "confirmed": "પુષ્ટિ થયેલ",
       "paid": "ચૂકવેલ",
-      "disputed": "વિવાદિત"
+      "disputed": "વિવાદિત",
+      "cancelled": "રદ કરેલ"
     },
     "oath": {
       "dialogTitle": "કમિશન પ્રતિબદ્ધતા",
@@ -989,7 +1089,11 @@
       "decline": "હું સહમત નથી",
       "saving": "સાચવી રહ્યું છે...",
       "acceptCta": "હું સ્વીકારું છું અને પ્રતિબદ્ધ છું"
-    }
+    },
+    "dealValue": "ડીલ કિંમત",
+    "commission": "કમિશન",
+    "fromTxn": "{{count}} વ્યવહારોમાંથી",
+    "earningsHint": "સોદા બંધ થયા પછી કમાણી દેખાશે"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} બાકી",
@@ -1070,7 +1174,22 @@
     "contactUs": "અમારો સંપર્ક કરો",
     "noResultsTitle": "કોઈ મેળ ખાતા જવાબો નથી",
     "noResultsBody": "અલગ કીવર્ડ અજમાવો, અથવા અમારી ટીમનો સીધો સંપર્ક કરો.",
-    "respondsIn": "અમારી ટીમ 24 કલાકમાં પ્રતિસાદ આપે છે."
+    "respondsIn": "અમારી ટીમ 24 કલાકમાં પ્રતિસાદ આપે છે.",
+    "faqTitle": "વારંવાર પૂછાતા પ્રશ્નો",
+    "faqs": {
+      "q1": "હું મિલકત કેવી રીતે શોધી શકું?",
+      "a1": "તળિયે શોધ ટેબને ટેપ કરો, પછી તમને અનુકૂળ હોય તેવા ફિલ્ટર્સ પસંદ કરો (કિંમત, પ્રકાર, શહેર).",
+      "q2": "હું એજન્ટનો સંપર્ક કેવી રીતે કરી શકું?",
+      "a2": "સૂચિ ખોલો, પછી \"પૂછપરછ મોકલો\" પર ટૅપ કરો અથવા એજન્ટ કાર્ડ પર કૉલ/વોટ્સએપ બટનોનો ઉપયોગ કરો.",
+      "q3": "શું હું ચેલેટ્સ અને ફાર્મ બુક કરી શકું?",
+      "a3": "હા — કોઈપણ ચેલેટ / ફાર્મ / રેસ્ટ-હાઉસ લિસ્ટિંગ ખોલો અને તારીખો પસંદ કરવા માટે \"હવે બુક કરો\" પર ટૅપ કરો.",
+      "q4": "હું પછી માટે મિલકત કેવી રીતે બચાવી શકું?",
+      "a4": "સૂચિ પર હાર્ટ આઇકનને ટેપ કરો. સાચવેલી આઇટમ સેવ ટેબ હેઠળ રહે છે.",
+      "q5": "શું એપ ફ્રી છે?",
+      "a5": "હા — મિલકત શોધનારાઓ માટે મફત. સફળ ડીલ પછી જ એજન્ટો કમિશન ચૂકવે છે.",
+      "q6": "હું એપ્લિકેશનની ભાષા કેવી રીતે બદલી શકું?",
+      "a6": "પ્રોફાઇલ ટેબ → સેટિંગ્સ → ભાષા. 38 સમર્થિત ભાષાઓમાંથી પસંદ કરો."
+    }
   },
   "welcome": {
     "step1Title": "ખરીદવા અથવા ભાડે લેવા માગો છો?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "મહત્તમ મહેમાનો: {{count}}"
-    }
+    },
+    "title": "તમારું રોકાણ બુક કરો",
+    "shortTitle": "પુસ્તક",
+    "created": "બુકિંગ બનાવ્યું",
+    "createdBody": "બુકિંગ બનાવ્યું. તમને ચુકવણી પર રીડાયરેક્ટ કરવામાં આવશે.",
+    "error": "ભૂલ",
+    "failed": "બુકિંગ નિષ્ફળ થયું",
+    "invalidDates": "અમાન્ય તારીખો",
+    "invalidDatesBody": "YYYY-MM-DD ફોર્મેટનો ઉપયોગ કરો",
+    "tooShort": "ખૂબ ટૂંકા",
+    "tooShortBody": "બુકિંગ ઓછામાં ઓછું 1 રાત્રિનું હોવું જોઈએ",
+    "perNight": "SAR / રાત્રિ",
+    "notesOptional": "નોંધો (વૈકલ્પિક)",
+    "notesPlaceholder": "કોઈપણ ખાસ વિનંતીઓ...",
+    "totalLabel": "કુલ"
   },
   "market": {
     "title": "બજાર આંતરદૃષ્ટિ",
@@ -1277,7 +1410,10 @@
     "totalListings": "કુલ જાહેરાતો",
     "listingCount": "સક્રિય જાહેરાતો",
     "viewMarket": "બજાર જુઓ",
-    "miniTrend": "સ્થાનિક બજાર વલણ"
+    "miniTrend": "સ્થાનિક બજાર વલણ",
+    "trendTitle": "ભાવ વલણ (12 મહિના)",
+    "avgByDistrict": "જિલ્લા પ્રમાણે સરેરાશ ﷼/m²",
+    "cityPlaceholder": "રિયાધ, જેદ્દાહ..."
   },
   "errors": {
     "generic": "અણધારી ભૂલ આવી",
@@ -1388,7 +1524,18 @@
     "verified": "ચકાસાયેલ",
     "respondsUnder2h": "< 2 કલાક",
     "activeListingsCount": "{{count}} સક્રિય સૂચિઓ",
-    "viewProfile": "પ્રોફાઇલ જુઓ"
+    "viewProfile": "પ્રોફાઇલ જુઓ",
+    "agent": "| એજન્ટ",
+    "listings": "| સૂચિઓ",
+    "reviews": "સમીક્ષાઓ",
+    "rating": "| રેટિંગ",
+    "noListings": "| કોઈ સૂચિઓ નથી",
+    "viewReviews": "| સમીક્ષાઓ જુઓ",
+    "call": "કૉલ કરો",
+    "title": "એજન્ટો",
+    "listingsShort": "સૂચિઓ",
+    "noAgentsFound": "| કોઈ એજન્ટ મળ્યા નથી",
+    "tryLater": "પછીથી ફરી પ્રયાસ કરો"
   },
   "myListings": {
     "countSelected": "{{count}} પસંદ કર્યા",
@@ -1441,5 +1588,12 @@
     "saved": "સાચવેલ",
     "messages": "સંદેશાઓ",
     "profile": "| પ્રોફાઇલ"
+  },
+  "reviews": {
+    "title": "સમીક્ષાઓ",
+    "user": "| વપરાશકર્તા",
+    "ownerReply": "માલિકનો જવાબ:",
+    "empty": "હજુ સુધી કોઈ સમીક્ષા નથી",
+    "beFirst": "સમીક્ષા કરનાર પ્રથમ બનો"
   }
 }

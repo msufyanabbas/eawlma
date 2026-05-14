@@ -110,7 +110,16 @@
     "typeRoom": "Privat værelse",
     "typeChalet": "Hytte",
     "typeRestHouse": "Hvilehus",
-    "typeFarm": "Gård"
+    "typeFarm": "Gård",
+    "typeAll": "Alle",
+    "chalets": "Hytter",
+    "farms": "Gårde",
+    "restHouses": "Hvilehuse",
+    "hotelsLabel": "Hoteller",
+    "bookNext": "Book dit næste ophold",
+    "subtitleMix": "Hytter, gårde, rastehuse og hoteller",
+    "noStays": "Ingen tilgængelige ophold",
+    "tryAnother": "Prøv en anden kategori"
   },
   "hotels": {
     "title": "Hoteller",
@@ -128,7 +137,10 @@
     "upTo500": "Op til 500 SAR",
     "upTo1000": "Op til 1.000 SAR",
     "upTo2500": "Op til 2.500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Book et hotelophold",
+    "nightly": "Hotelværelser til overnatninger",
+    "noHotels": "Ingen ledige hoteller"
   },
   "messages": {
     "startConversation": "Start samtalen",
@@ -281,7 +293,16 @@
     "loginBtn": "Log ind",
     "registerBtn": "Opret konto",
     "fillAllFields": "Udfyld venligst alle felter",
-    "invalidCredentials": "Ugyldig e-mail eller adgangskode"
+    "invalidCredentials": "Ugyldig e-mail eller adgangskode",
+    "fillRequired": "Udfyld venligst alle påkrævede felter",
+    "registerFailed": "Registreringen mislykkedes, prøv igen",
+    "pwWeak": "Svag",
+    "pwFair": "Fair",
+    "pwGood": "Godt",
+    "pwStrong": "Stærk",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Dette felt er påkrævet",
@@ -412,7 +433,7 @@
     "saveProperty": "Gem ejendom",
     "openInMaps": "Åbn i Maps",
     "viewOnMap": "Se på kort",
-    "tapToOpenMap": "Tap to open map",
+    "tapToOpenMap": "Tryk for at åbne kort",
     "sendInquiryTitle": "Send forespørgsel",
     "yourMessage": "Din besked",
     "messagePlaceholder": "Skriv din besked her...",
@@ -601,7 +622,10 @@
       "agents": "Verificerede mæglere",
       "cities": "Byer",
       "support": "Support"
-    }
+    },
+    "appAbout": "Om appen",
+    "appDescription": "Eawlma er en ejendomsplatform, der forbinder købere og lejere med betroede agenter i hele Saudi-Arabien. Oplev din perfekte ejendom, book et kort ophold, og chat direkte med agenter.",
+    "website": "Hjemmeside"
   },
   "contact": {
     "title": "Kom i kontakt",
@@ -753,10 +777,7 @@
       "pinRequired": "Slip en nål på kortet for placeringen.",
       "imageRequired": "Der kræves mindst ét ​​billede før publicering."
     },
-    "transactionType": {
-      "sale": "Udsalg",
-      "rent": "Leje"
-    },
+    "transactionType": "Transaktionstype",
     "rentPeriod": {
       "daily": "Dagligt",
       "weekly": "Ugentlig",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Tryk på de faciliteter, som denne ejendom tilbyder. Vi viser dem som filtre på Søgning."
-    }
+    },
+    "stepProperty": "Ejendomstype",
+    "stepDetails": "Detaljer",
+    "stepLocation": "Placering",
+    "stepSpecs": "Specifikationer",
+    "stepReview": "Gennemgå",
+    "stepCount": "Trin {{current}} af {{total}}: {{title}}",
+    "addListing": "Tilføj fortegnelse",
+    "forSale": "Til salg",
+    "forRent": "Til leje",
+    "propertyType": "Ejendomstype",
+    "apartment": "Lejlighed",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Shop",
+    "titleArLabel": "Arabisk titel *",
+    "titleEnLabel": "Engelsk titel",
+    "priceLabel": "Pris (SAR) *",
+    "areaLabel": "Areal (m²)",
+    "descArLabel": "Arabisk Beskrivelse",
+    "descPlaceholder": "Detaljeret ejendomsbeskrivelse...",
+    "city": "By *",
+    "district": "Distrikt *",
+    "districtPlaceholder": "f.eks. Al Olaya",
+    "bedroomsLabel": "Soveværelser",
+    "bathroomsLabel": "Badeværelser",
+    "reviewListing": "Anmeldelsesfortegnelse",
+    "transaction": "Transaktion",
+    "title": "Titel",
+    "price": "Pris",
+    "bedrooms": "Soveværelser",
+    "back": "Tilbage",
+    "next": "Næste",
+    "publish": "Udgiv fortegnelse",
+    "errorTitle": "Fejl",
+    "successTitle": "Succes",
+    "fillRequired": "Udfyld venligst de obligatoriske felter",
+    "addedSuccess": "Fortegnelse tilføjet succesfuldt",
+    "ok": "OK",
+    "somethingWrong": "Noget gik galt",
+    "editTitle": "Rediger fortegnelse",
+    "missing": "Manglende felter",
+    "fillBasic": "Udfyld venligst de obligatoriske felter",
+    "savedTitle": "Gemt",
+    "savedBody": "Fortegnelse opdateret",
+    "updateFailed": "Kunne ikke opdatere",
+    "deleteTitle": "Slet liste",
+    "deleteBody": "Er du sikker? Dette kan ikke fortrydes.",
+    "deleteFailed": "Kunne ikke slette",
+    "delete": "Slet",
+    "deleteListing": "Slet fortegnelse",
+    "titleArEdit": "Titel (arabisk) *",
+    "titleEnEdit": "Titel (engelsk)",
+    "transactionTypeShort": "Transaktionstype",
+    "priceShort": "Pris *",
+    "cityShort": "By",
+    "districtShort": "Distrikt",
+    "bedsShort": "Senge",
+    "bathsShort": "Bade",
+    "areaShort": "Område",
+    "description": "Beskrivelse",
+    "saveChanges": "Gem ændringer",
+    "sale": "Udsalg",
+    "rent": "Leje"
   },
   "subscription": {
     "title": "Abonnement",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Omdirigerer til Authentica.sa…",
     "otpComing": "Du modtager en OTP snart for at fuldføre verificeringen.",
     "profileUpdated": "Profil opdateret.",
-    "deleteLabel": "Slet"
+    "deleteLabel": "Slet",
+    "appearance": "Udseende",
+    "languageRegion": "Sprog og region",
+    "pushNotifications": "Push-meddelelser",
+    "emailNotifications": "E-mail-meddelelser",
+    "privacyAccount": "Privatliv og konto",
+    "areYouSure": "Er du sikker?"
   },
   "inquiries": {
     "title": "Forespørgsler",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Administrator-løsning",
       "closedFor": "Handel lukket for {{value}}",
       "closedOn": " den {{date}}"
-    }
+    },
+    "received": "Modtaget",
+    "sent": "Sendt",
+    "single": "Forespørgsel",
+    "noInquiriesYet": "Ingen forespørgsler endnu",
+    "appearHere": "Dine forespørgsler vises her"
   },
   "commission": {
     "title": "Kommissioner",
@@ -975,7 +1074,8 @@
       "pending": "Afventer",
       "confirmed": "Bekræftet",
       "paid": "Betalt",
-      "disputed": "Bestridt"
+      "disputed": "Bestridt",
+      "cancelled": "Annulleret"
     },
     "oath": {
       "dialogTitle": "Kommissionens forpligtelse",
@@ -989,7 +1089,11 @@
       "decline": "Jeg er ikke enig",
       "saving": "Gemmer...",
       "acceptCta": "Jeg accepterer og forpligter"
-    }
+    },
+    "dealValue": "Deal værdi",
+    "commission": "Kommissionen",
+    "fromTxn": "fra {{count}} transaktioner",
+    "earningsHint": "Indtjening vises efter afslutning af aftaler"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} afventer",
@@ -1070,7 +1174,22 @@
     "contactUs": "Kontakt os",
     "noResultsTitle": "Ingen matchende svar",
     "noResultsBody": "Prøv et andet nøgleord, eller kontakt vores team direkte.",
-    "respondsIn": "Vores team svarer inden for 24 timer."
+    "respondsIn": "Vores team svarer inden for 24 timer.",
+    "faqTitle": "Ofte stillede spørgsmål",
+    "faqs": {
+      "q1": "Hvordan søger jeg efter en ejendom?",
+      "a1": "Tryk på fanen Søg nederst, og vælg derefter filtre, der passer til dig (pris, type, by).",
+      "q2": "Hvordan kontakter jeg en agent?",
+      "a2": "Åbn fortegnelsen, og tryk derefter på \"Send forespørgsel\" eller brug opkalds-/WhatsApp-knapperne på agentkortet.",
+      "q3": "Kan jeg booke hytter og gårde?",
+      "a3": "Ja – åbn en liste over en hvilken som helst hytte/gård/rasthus og tryk på \"Book nu\" for at vælge datoer.",
+      "q4": "Hvordan gemmer jeg en ejendom til senere?",
+      "a4": "Tryk på hjerteikonet på fortegnelsen. Gemte elementer live under fanen Gemt.",
+      "q5": "Er appen gratis?",
+      "a5": "Ja - gratis for ejendomssøgende. Agenter betaler først en kommission efter en vellykket handel.",
+      "q6": "Hvordan ændrer jeg appens sprog?",
+      "a6": "Fanen Profil → Indstillinger → Sprog. Vælg mellem 38 understøttede sprog."
+    }
   },
   "welcome": {
     "step1Title": "Vil du købe eller leje?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Maks. gæster: {{count}}"
-    }
+    },
+    "title": "Book dit ophold",
+    "shortTitle": "Bog",
+    "created": "Booking oprettet",
+    "createdBody": "Booking oprettet. Du vil blive omdirigeret til betaling.",
+    "error": "Fejl",
+    "failed": "Booking mislykkedes",
+    "invalidDates": "Ugyldige datoer",
+    "invalidDatesBody": "Brug formatet ÅÅÅÅ-MM-DD",
+    "tooShort": "For kort",
+    "tooShortBody": "Booking skal være mindst 1 nat",
+    "perNight": "SAR / nat",
+    "notesOptional": "Noter (valgfrit)",
+    "notesPlaceholder": "Eventuelle særlige ønsker...",
+    "totalLabel": "I alt"
   },
   "market": {
     "title": "Markedsindsigt",
@@ -1277,7 +1410,10 @@
     "totalListings": "Annoncer i alt",
     "listingCount": "Aktive annoncer",
     "viewMarket": "Vis marked",
-    "miniTrend": "Lokal markedstendens"
+    "miniTrend": "Lokal markedstendens",
+    "trendTitle": "Prisudvikling (12 måneder)",
+    "avgByDistrict": "Gns. ﷼/m² efter distrikt",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "Der opstod en uventet fejl",
@@ -1388,7 +1524,18 @@
     "verified": "Verificeret",
     "respondsUnder2h": "< 2t",
     "activeListingsCount": "{{count}} aktive fortegnelser",
-    "viewProfile": "Se profil"
+    "viewProfile": "Se profil",
+    "agent": "Agent",
+    "listings": "Fortegnelser",
+    "reviews": "Anmeldelser",
+    "rating": "Bedømmelse",
+    "noListings": "Ingen fortegnelser",
+    "viewReviews": "Se anmeldelser",
+    "call": "Ring",
+    "title": "Agenter",
+    "listingsShort": "lister",
+    "noAgentsFound": "Ingen agenter fundet",
+    "tryLater": "Prøv igen senere"
   },
   "myListings": {
     "countSelected": "{{count}} valgt",
@@ -1441,5 +1588,12 @@
     "saved": "Gemt",
     "messages": "Beskeder",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Anmeldelser",
+    "user": "Bruger",
+    "ownerReply": "Ejersvar:",
+    "empty": "Ingen anmeldelser endnu",
+    "beFirst": "Vær den første til at anmelde"
   }
 }

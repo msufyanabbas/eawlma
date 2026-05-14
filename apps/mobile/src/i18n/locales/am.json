@@ -110,7 +110,16 @@
     "typeRoom": "የግል ክፍል",
     "typeChalet": "ቻሌት",
     "typeRestHouse": "የእረፍት ቤት",
-    "typeFarm": "እርሻ"
+    "typeFarm": "እርሻ",
+    "typeAll": "ሁሉም",
+    "chalets": "ቻሌቶች",
+    "farms": "እርሻዎች",
+    "restHouses": "ማረፊያ ቤቶች",
+    "hotelsLabel": "ሆቴሎች",
+    "bookNext": "የሚቀጥለውን ቆይታዎን ያስይዙ",
+    "subtitleMix": "ቻሌቶች፣ እርሻዎች፣ ማረፊያ ቤቶች እና ሆቴሎች",
+    "noStays": "ምንም ማቆያ የለም።",
+    "tryAnother": "ሌላ ምድብ ይሞክሩ"
   },
   "hotels": {
     "title": "ሆቴሎች",
@@ -128,7 +137,10 @@
     "upTo500": "እስከ 500 SAR",
     "upTo1000": "እስከ 1,000 SAR",
     "upTo2500": "እስከ 2,500 SAR",
-    "hotelChip": "ሆቴል"
+    "hotelChip": "ሆቴል",
+    "bookStay": "የሆቴል ቆይታ ያስይዙ",
+    "nightly": "የምሽት ቆይታ የሆቴል ክፍሎች",
+    "noHotels": "ምንም ሆቴሎች የሉም"
   },
   "messages": {
     "startConversation": "ውይይት ጀምር",
@@ -281,7 +293,16 @@
     "loginBtn": "ይግቡ",
     "registerBtn": "መለያ ፍጠር",
     "fillAllFields": "እባክዎ ሁሉንም መስኮች ይሙሉ",
-    "invalidCredentials": "የተሳሳተ ኢሜይል ወይም የይለፍ ቃል"
+    "invalidCredentials": "የተሳሳተ ኢሜይል ወይም የይለፍ ቃል",
+    "fillRequired": "እባክዎ ሁሉንም አስፈላጊ መስኮች ይሙሉ",
+    "registerFailed": "ምዝገባው አልተሳካም፣ እንደገና ይሞክሩ",
+    "pwWeak": "ደካማ",
+    "pwFair": "ፍትሃዊ",
+    "pwGood": "ጥሩ",
+    "pwStrong": "ጠንካራ",
+    "firstNamePlaceholder": "ዮሐንስ",
+    "lastNamePlaceholder": "ዶ",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "ይህ መስክ ያስፈልጋል",
@@ -601,7 +622,10 @@
       "agents": "የተረጋገጡ ወኪሎች",
       "cities": "ከተሞች",
       "support": "ድጋፍ"
-    }
+    },
+    "appAbout": "ስለ መተግበሪያው",
+    "appDescription": "ኢውልማ በመላው ሳውዲ አረቢያ ካሉ ታማኝ ወኪሎች ጋር ገዥዎችን እና ተከራዮችን የሚያገናኝ የሪል እስቴት መድረክ ነው። ፍጹም ንብረትዎን ያግኙ፣ ለአጭር ጊዜ ቆይታ ያስይዙ እና ከወኪሎች ጋር በቀጥታ ይወያዩ።",
+    "website": "ድህረገፅ"
   },
   "contact": {
     "title": "ግንኙነት ያድርጉ",
@@ -753,10 +777,7 @@
       "pinRequired": "ለቦታው በካርታው ላይ ፒን ጣል ያድርጉ።",
       "imageRequired": "ከማተምዎ በፊት ቢያንስ አንድ ምስል ያስፈልጋል።"
     },
-    "transactionType": {
-      "sale": "ሽያጭ",
-      "rent": "ይከራዩ"
-    },
+    "transactionType": "የግብይት አይነት",
     "rentPeriod": {
       "daily": "በየቀኑ",
       "weekly": "በየሳምንቱ",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "ይህ ንብረት የሚያቀርባቸውን መገልገያዎች ይንኩ። በፍለጋ ላይ እንደ ማጣሪያ እናደርጋቸዋለን።"
-    }
+    },
+    "stepProperty": "የንብረት አይነት",
+    "stepDetails": "ዝርዝሮች",
+    "stepLocation": "አካባቢ",
+    "stepSpecs": "ዝርዝሮች",
+    "stepReview": "ግምገማ",
+    "stepCount": "ደረጃ {{አሁን}} ከ{{total}}፡ {{title}}",
+    "addListing": "ዝርዝር አክል",
+    "forSale": "የሚሸጥ ፡ ለሽያጭ የቀረበ",
+    "forRent": "ለኪራይ",
+    "propertyType": "የንብረት አይነት",
+    "apartment": "አፓርትመንት",
+    "villa": "ቪላ",
+    "land": "መሬት",
+    "chalet": "ቻሌት",
+    "farm": "እርሻ",
+    "restHouse": "ማረፊያ ቤት",
+    "office": "ቢሮ",
+    "shop": "ይግዙ",
+    "titleArLabel": "የአረብኛ ርዕስ *",
+    "titleEnLabel": "የእንግሊዝኛ ርዕስ",
+    "priceLabel": "ዋጋ (SAR) *",
+    "areaLabel": "አካባቢ (m²)",
+    "descArLabel": "የአረብኛ መግለጫ",
+    "descPlaceholder": "ዝርዝር የንብረት መግለጫ...",
+    "city": "ከተማ *",
+    "district": "ወረዳ *",
+    "districtPlaceholder": "ለምሳሌ. አል ኦላያ",
+    "bedroomsLabel": "መኝታ ቤቶች",
+    "bathroomsLabel": "መታጠቢያ ቤቶች",
+    "reviewListing": "የግምገማ ዝርዝር",
+    "transaction": "ግብይት",
+    "title": "ርዕስ",
+    "price": "ዋጋ",
+    "bedrooms": "መኝታ ቤቶች",
+    "back": "ተመለስ",
+    "next": "ቀጥሎ",
+    "publish": "ዝርዝርን አትም",
+    "errorTitle": "ስህተት",
+    "successTitle": "ስኬት",
+    "fillRequired": "እባክዎ የሚፈለጉትን መስኮች ይሙሉ",
+    "addedSuccess": "ዝርዝር በተሳካ ሁኔታ ታክሏል።",
+    "ok": "እሺ",
+    "somethingWrong": "የሆነ ችግር ተፈጥሯል።",
+    "editTitle": "ዝርዝር አርትዕ",
+    "missing": "የጎደሉ መስኮች",
+    "fillBasic": "እባክዎ የሚፈለጉትን መስኮች ይሙሉ",
+    "savedTitle": "ተቀምጧል",
+    "savedBody": "ዝርዝር ዘምኗል",
+    "updateFailed": "ማዘመን አልተሳካም።",
+    "deleteTitle": "ዝርዝሩን ሰርዝ",
+    "deleteBody": "ኧረ ይህ ሊቀለበስ አይችልም።",
+    "deleteFailed": "መሰረዝ አልተሳካም።",
+    "delete": "ሰርዝ",
+    "deleteListing": "ዝርዝር ሰርዝ",
+    "titleArEdit": "ርዕስ (አረብኛ) *",
+    "titleEnEdit": "ርዕስ (እንግሊዝኛ)",
+    "transactionTypeShort": "የግብይት አይነት",
+    "priceShort": "ዋጋ *",
+    "cityShort": "ከተማ",
+    "districtShort": "ወረዳ",
+    "bedsShort": "አልጋዎች",
+    "bathsShort": "መታጠቢያዎች",
+    "areaShort": "አካባቢ",
+    "description": "መግለጫ",
+    "saveChanges": "ለውጦችን ያስቀምጡ",
+    "sale": "ሽያጭ",
+    "rent": "ይከራዩ"
   },
   "subscription": {
     "title": "ምዝገባ",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "ወደ Authentica.sa በማዞር ላይ…",
     "otpComing": "ማረጋገጫን ለማጠናቀቅ በቅርቡ OTP ይደርስዎታል።",
     "profileUpdated": "መገለጫ ተዘምኗል።",
-    "deleteLabel": "ሰርዝ"
+    "deleteLabel": "ሰርዝ",
+    "appearance": "መልክ",
+    "languageRegion": "ቋንቋ እና ክልል",
+    "pushNotifications": "ማሳወቂያዎችን ይግፉ",
+    "emailNotifications": "የኢሜል ማሳወቂያዎች",
+    "privacyAccount": "ግላዊነት እና መለያ",
+    "areYouSure": "ኧረ"
   },
   "inquiries": {
     "title": "ጥያቄዎች",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "የአስተዳዳሪ መፍትሄ",
       "closedFor": "ስምምነቱ በ {{value}} ተዘግቷል",
       "closedOn": " በ {{date}}"
-    }
+    },
+    "received": "ተቀብሏል",
+    "sent": "ተልኳል።",
+    "single": "ጥያቄ",
+    "noInquiriesYet": "እስካሁን ምንም ጥያቄዎች የሉም",
+    "appearHere": "ጥያቄዎችህ እዚህ ይታያሉ"
   },
   "commission": {
     "title": "ኮሚሽኖች",
@@ -975,7 +1074,8 @@
       "pending": "በመጠባበቅ ላይ",
       "confirmed": "ተረጋግጧል",
       "paid": "የተከፈለ",
-      "disputed": "ተከራክሯል"
+      "disputed": "ተከራክሯል",
+      "cancelled": "ተሰርዟል።"
     },
     "oath": {
       "dialogTitle": "የኮሚሽኑ ቁርጠኝነት",
@@ -989,7 +1089,11 @@
       "decline": "አልስማማም።",
       "saving": "በማስቀመጥ ላይ...",
       "acceptCta": "እቀበላለሁ እና እፈፅማለሁ።"
-    }
+    },
+    "dealValue": "የቅናሽ ዋጋ",
+    "commission": "ኮሚሽን",
+    "fromTxn": "ከ{{count}} ግብይቶች",
+    "earningsHint": "ስምምነቶችን ከተዘጋ በኋላ ገቢዎች ይታያሉ"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} በመጠባበቅ ላይ",
@@ -1070,7 +1174,22 @@
     "contactUs": "ያነጋግሩን",
     "noResultsTitle": "የሚዛመዱ መልሶች የሉም",
     "noResultsBody": "የተለየ ቁልፍ ቃል ይሞክሩ ወይም ለቡድናችን በቀጥታ ይድረሱ።",
-    "respondsIn": "ቡድናችን በ24 ሰዓታት ውስጥ ይመልሳል።"
+    "respondsIn": "ቡድናችን በ24 ሰዓታት ውስጥ ይመልሳል።",
+    "faqTitle": "በተደጋጋሚ የሚጠየቁ ጥያቄዎች",
+    "faqs": {
+      "q1": "ንብረት እንዴት መፈለግ እችላለሁ?",
+      "a1": "ከታች ያለውን የፍለጋ ትር ይንኩ፣ ከዚያ ለእርስዎ የሚስማሙ ማጣሪያዎችን ይምረጡ (ዋጋ፣ አይነት፣ ከተማ)።",
+      "q2": "ወኪልን እንዴት ማግኘት እችላለሁ?",
+      "a2": "ዝርዝሩን ይክፈቱ እና \"ጥያቄ ላክ\" የሚለውን ይንኩ ወይም በተወካይ ካርዱ ላይ የጥሪ/የዋትስአፕ ቁልፎችን ይጠቀሙ።",
+      "q3": "ቻሌትስ እና እርሻዎችን ማስያዝ እችላለሁ?",
+      "a3": "አዎ — ማንኛውንም የቻሌት/የእርሻ/የእረፍት ቤት ዝርዝር ይክፈቱ እና ቀኖችን ለመምረጥ “አሁኑኑ ያስይዙ” የሚለውን ይንኩ።",
+      "q4": "በኋላ ላይ ንብረት እንዴት መቆጠብ እችላለሁ?",
+      "a4": "በዝርዝሩ ላይ ያለውን የልብ አዶ ይንኩ። የተቀመጡ ዕቃዎች በቀጥታ በተቀመጡት ትር ስር።",
+      "q5": "መተግበሪያው ነፃ ነው?",
+      "a5": "አዎ - ለንብረት ፈላጊዎች ነፃ። ወኪሎች ኮሚሽን የሚከፍሉት ከተሳካ ስምምነት በኋላ ብቻ ነው።",
+      "q6": "የመተግበሪያውን ቋንቋ እንዴት መለወጥ እችላለሁ?",
+      "a6": "የመገለጫ ትር → መቼቶች → ቋንቋ። ከ38 የሚደገፉ ቋንቋዎች ይምረጡ።"
+    }
   },
   "welcome": {
     "step1Title": "ለመግዛት ወይም ለመከራየት ይፈልጋሉ?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "ከፍተኛ እንግዶች፡ {{count}}"
-    }
+    },
+    "title": "ቆይታዎን ያስይዙ",
+    "shortTitle": "መጽሐፍ",
+    "created": "ቦታ ማስያዝ ተፈጥሯል።",
+    "createdBody": "ቦታ ማስያዝ ተፈጥሯል። ወደ ክፍያ ይዛወራሉ።",
+    "error": "ስህተት",
+    "failed": "ቦታ ማስያዝ አልተሳካም።",
+    "invalidDates": "ልክ ያልሆኑ ቀኖች",
+    "invalidDatesBody": "ዓዓዓ-ወወ-ቀን ቅርጸት ይጠቀሙ",
+    "tooShort": "በጣም አጭር",
+    "tooShortBody": "ቦታ ማስያዝ ቢያንስ 1 ሌሊት መሆን አለበት።",
+    "perNight": "SAR / ሌሊት",
+    "notesOptional": "ማስታወሻዎች (አማራጭ)",
+    "notesPlaceholder": "ማንኛውም ልዩ ጥያቄ...",
+    "totalLabel": "ጠቅላላ"
   },
   "market": {
     "title": "የገበያ ግንዛቤዎች",
@@ -1277,7 +1410,10 @@
     "totalListings": "ጠቅላላ ማስታወቂያዎች",
     "listingCount": "ንቁ ማስታወቂያዎች",
     "viewMarket": "ገበያ ይመልከቱ",
-    "miniTrend": "የአካባቢ የገበያ አዝማሚያ"
+    "miniTrend": "የአካባቢ የገበያ አዝማሚያ",
+    "trendTitle": "የዋጋ አዝማሚያ (12 ወራት)",
+    "avgByDistrict": "አማካኝ ﷼/m² በወረዳ",
+    "cityPlaceholder": "ሪያድ፣ ጅዳ..."
   },
   "errors": {
     "generic": "ያልተጠበቀ ስህተት ተከስቷል",
@@ -1388,7 +1524,18 @@
     "verified": "የተረጋገጠ",
     "respondsUnder2h": "< 2ሰ",
     "activeListingsCount": "{{count}} ንቁ ዝርዝሮች",
-    "viewProfile": "መገለጫ ይመልከቱ"
+    "viewProfile": "መገለጫ ይመልከቱ",
+    "agent": "ወኪል",
+    "listings": "ዝርዝሮች",
+    "reviews": "ግምገማዎች",
+    "rating": "ደረጃ መስጠት",
+    "noListings": "ምንም ዝርዝሮች የሉም",
+    "viewReviews": "ግምገማዎችን ይመልከቱ",
+    "call": "ይደውሉ",
+    "title": "ወኪሎች",
+    "listingsShort": "ዝርዝሮች",
+    "noAgentsFound": "ምንም ወኪሎች አልተገኙም።",
+    "tryLater": "ቆይተው እንደገና ይሞክሩ"
   },
   "myListings": {
     "countSelected": "{{count}} ተመርጧል",
@@ -1441,5 +1588,12 @@
     "saved": "ተቀምጧል",
     "messages": "መልዕክቶች",
     "profile": "መገለጫ"
+  },
+  "reviews": {
+    "title": "ግምገማዎች",
+    "user": "ተጠቃሚ",
+    "ownerReply": "የባለቤት ምላሽ፡-",
+    "empty": "እስካሁን ምንም ግምገማዎች የሉም",
+    "beFirst": "ለመገምገም የመጀመሪያው ይሁኑ"
   }
 }

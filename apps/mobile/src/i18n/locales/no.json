@@ -110,7 +110,16 @@
     "typeRoom": "Privat rom",
     "typeChalet": "Hytte",
     "typeRestHouse": "Hvilehus",
-    "typeFarm": "Gård"
+    "typeFarm": "Gård",
+    "typeAll": "Alle",
+    "chalets": "Hytter",
+    "farms": "Gårder",
+    "restHouses": "Hvilehus",
+    "hotelsLabel": "Hoteller",
+    "bookNext": "Bestill ditt neste opphold",
+    "subtitleMix": "Hytter, gårder, rastehus og hoteller",
+    "noStays": "Ingen tilgjengelige opphold",
+    "tryAnother": "Prøv en annen kategori"
   },
   "hotels": {
     "title": "Hoteller",
@@ -128,7 +137,10 @@
     "upTo500": "Opptil 500 SAR",
     "upTo1000": "Opptil 1 000 SAR",
     "upTo2500": "Opptil 2 500 SAR",
-    "hotelChip": "Hotell"
+    "hotelChip": "Hotell",
+    "bookStay": "Bestill hotellopphold",
+    "nightly": "Hotellrom for nattlige opphold",
+    "noHotels": "Ingen tilgjengelige hoteller"
   },
   "messages": {
     "startConversation": "Start samtalen",
@@ -281,7 +293,16 @@
     "loginBtn": "Logg på",
     "registerBtn": "Opprett konto",
     "fillAllFields": "Vennligst fyll ut alle felter",
-    "invalidCredentials": "Ugyldig e-postadresse eller passord"
+    "invalidCredentials": "Ugyldig e-postadresse eller passord",
+    "fillRequired": "Vennligst fyll ut alle obligatoriske felter",
+    "registerFailed": "Registreringen mislyktes, prøv igjen",
+    "pwWeak": "Svak",
+    "pwFair": "Fair",
+    "pwGood": "Bra",
+    "pwStrong": "Sterk",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Dette feltet er obligatorisk",
@@ -424,7 +445,7 @@
     "messageTooShort": "Meldingen er for kort",
     "messageTooShortBody": "Meldingen må inneholde minst 10 tegn",
     "actionFailed": "Handlingen mislyktes",
-    "bookingDevTitle": "Booking",
+    "bookingDevTitle": "Bestilling",
     "bookingDevBody": "Bookingflyt er i utvikling. Ta kontakt med agenten.",
     "removeFromSaved": "Vil du fjerne denne egenskapen fra lagret?"
   },
@@ -601,7 +622,10 @@
       "agents": "Verifiserte meglere",
       "cities": "Byer",
       "support": "Støtte"
-    }
+    },
+    "appAbout": "Om appen",
+    "appDescription": "Eawlma er en eiendomsplattform som forbinder kjøpere og leietakere med pålitelige agenter over hele Saudi-Arabia. Oppdag din perfekte eiendom, bestill et kort opphold og chat direkte med agenter.",
+    "website": "Nettsted"
   },
   "contact": {
     "title": "Ta kontakt",
@@ -753,10 +777,7 @@
       "pinRequired": "Sett en nål på kartet for plasseringen.",
       "imageRequired": "Minst ett bilde kreves før publisering."
     },
-    "transactionType": {
-      "sale": "Salg",
-      "rent": "Leie"
-    },
+    "transactionType": "Transaksjonstype",
     "rentPeriod": {
       "daily": "Daglig",
       "weekly": "Ukentlig",
@@ -786,7 +807,7 @@
     },
     "shortTermAmenity": {
       "wifi": "Wi-Fi",
-      "pool": "Pool",
+      "pool": "Basseng",
       "parking": "Parkering",
       "breakfast": "Frokost",
       "ac": "Air condition",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Trykk på fasilitetene denne eiendommen tilbyr. Vi viser dem som filtre på Søk."
-    }
+    },
+    "stepProperty": "Eiendomstype",
+    "stepDetails": "Detaljer",
+    "stepLocation": "Plassering",
+    "stepSpecs": "Spesifikasjoner",
+    "stepReview": "Gjennomgå",
+    "stepCount": "Trinn {{current}} av {{total}}: {{title}}",
+    "addListing": "Legg til oppføring",
+    "forSale": "Til salgs",
+    "forRent": "Til leie",
+    "propertyType": "Eiendomstype",
+    "apartment": "Leilighet",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handle",
+    "titleArLabel": "Arabisk tittel *",
+    "titleEnLabel": "Engelsk tittel",
+    "priceLabel": "Pris (SAR) *",
+    "areaLabel": "Areal (m²)",
+    "descArLabel": "Arabisk Beskrivelse",
+    "descPlaceholder": "Detaljert eiendomsbeskrivelse...",
+    "city": "By *",
+    "district": "Distrikt *",
+    "districtPlaceholder": "f.eks. Al Olaya",
+    "bedroomsLabel": "Soverom",
+    "bathroomsLabel": "Bad",
+    "reviewListing": "Gjennomgå oppføring",
+    "transaction": "Transaksjon",
+    "title": "Tittel",
+    "price": "Pris",
+    "bedrooms": "Soverom",
+    "back": "Tilbake",
+    "next": "Neste",
+    "publish": "Publiser oppføring",
+    "errorTitle": "Feil",
+    "successTitle": "Suksess",
+    "fillRequired": "Fyll ut obligatoriske felter",
+    "addedSuccess": "Oppføringen ble lagt til",
+    "ok": "OK",
+    "somethingWrong": "Noe gikk galt",
+    "editTitle": "Rediger oppføring",
+    "missing": "Manglende felt",
+    "fillBasic": "Fyll ut obligatoriske felter",
+    "savedTitle": "Lagret",
+    "savedBody": "Oppføring oppdatert",
+    "updateFailed": "Kunne ikke oppdatere",
+    "deleteTitle": "Slett oppføring",
+    "deleteBody": "Er du sikker? Dette kan ikke angres.",
+    "deleteFailed": "Kunne ikke slette",
+    "delete": "Slett",
+    "deleteListing": "Slett oppføring",
+    "titleArEdit": "Tittel (arabisk) *",
+    "titleEnEdit": "Tittel (engelsk)",
+    "transactionTypeShort": "Transaksjonstype",
+    "priceShort": "Pris *",
+    "cityShort": "By",
+    "districtShort": "Distrikt",
+    "bedsShort": "Senger",
+    "bathsShort": "Baths",
+    "areaShort": "Område",
+    "description": "Beskrivelse",
+    "saveChanges": "Lagre endringer",
+    "sale": "Salg",
+    "rent": "Lei"
   },
   "subscription": {
     "title": "Abonnement",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Omdirigerer til Authentica.sa…",
     "otpComing": "Du vil motta en OTP snart for å fullføre verifiseringen.",
     "profileUpdated": "Profil oppdatert.",
-    "deleteLabel": "Slett"
+    "deleteLabel": "Slett",
+    "appearance": "Utseende",
+    "languageRegion": "Språk og region",
+    "pushNotifications": "Push-varsler",
+    "emailNotifications": "E-postvarsler",
+    "privacyAccount": "Personvern og konto",
+    "areYouSure": "Er du sikker?"
   },
   "inquiries": {
     "title": "Forespørsler",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Administratorens løsning",
       "closedFor": "Avtale lukket for {{value}}",
       "closedOn": " den {{date}}"
-    }
+    },
+    "received": "Mottatt",
+    "sent": "Sendt",
+    "single": "Forespørsel",
+    "noInquiriesYet": "Ingen forespørsler ennå",
+    "appearHere": "Dine henvendelser vil vises her"
   },
   "commission": {
     "title": "Provisjoner",
@@ -975,7 +1074,8 @@
       "pending": "Venter",
       "confirmed": "Bekreftet",
       "paid": "Betalt",
-      "disputed": "Bestridt"
+      "disputed": "Bestridt",
+      "cancelled": "Avbrutt"
     },
     "oath": {
       "dialogTitle": "Kommisjonsforpliktelse",
@@ -989,7 +1089,11 @@
       "decline": "Jeg er ikke enig",
       "saving": "Lagrer...",
       "acceptCta": "Jeg godtar og forplikter"
-    }
+    },
+    "dealValue": "Deal verdi",
+    "commission": "Kommisjon",
+    "fromTxn": "fra {{count}} transaksjoner",
+    "earningsHint": "Inntekter vil vises etter at avtaler er avsluttet"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} venter",
@@ -1070,7 +1174,22 @@
     "contactUs": "Kontakt oss",
     "noResultsTitle": "Ingen matchende svar",
     "noResultsBody": "Prøv et annet søkeord, eller kontakt teamet vårt direkte.",
-    "respondsIn": "Teamet vårt svarer innen 24 timer."
+    "respondsIn": "Teamet vårt svarer innen 24 timer.",
+    "faqTitle": "Ofte stilte spørsmål",
+    "faqs": {
+      "q1": "Hvordan søker jeg etter en eiendom?",
+      "a1": "Trykk på Søk-fanen nederst, og velg deretter filtre som passer deg (pris, type, by).",
+      "q2": "Hvordan kontakter jeg en agent?",
+      "a2": "Åpne oppføringen, trykk deretter på \"Send forespørsel\" eller bruk ringe-/WhatsApp-knappene på agentkortet.",
+      "q3": "Kan jeg bestille hytter og gårder?",
+      "a3": "Ja – åpne en liste over hytter/gårder/rasthus og trykk på «Bestill nå» for å velge datoer.",
+      "q4": "Hvordan lagrer jeg en eiendom til senere?",
+      "a4": "Trykk på hjerteikonet på oppføringen. Lagrede elementer live under Lagret-fanen.",
+      "q5": "Er appen gratis?",
+      "a5": "Ja – gratis for eiendomssøkere. Agenter betaler en provisjon først etter en vellykket avtale.",
+      "q6": "Hvordan endrer jeg app-språket?",
+      "a6": "Kategorien Profil → Innstillinger → Språk. Velg blant 38 støttede språk."
+    }
   },
   "welcome": {
     "step1Title": "Ser du etter å kjøpe eller leie?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Maks gjester: {{count}}"
-    }
+    },
+    "title": "Bestill ditt opphold",
+    "shortTitle": "Bok",
+    "created": "Booking opprettet",
+    "createdBody": "Booking opprettet. Du vil bli omdirigert til betaling.",
+    "error": "Feil",
+    "failed": "Bestilling mislyktes",
+    "invalidDates": "Ugyldige datoer",
+    "invalidDatesBody": "Bruk formatet ÅÅÅÅ-MM-DD",
+    "tooShort": "For kort",
+    "tooShortBody": "Bestilling må være minst 1 natt",
+    "perNight": "SAR / natt",
+    "notesOptional": "Merknader (valgfritt)",
+    "notesPlaceholder": "Eventuelle spesielle forespørsler...",
+    "totalLabel": "Totalt"
   },
   "market": {
     "title": "Markedsinnsikt",
@@ -1277,7 +1410,10 @@
     "totalListings": "Totale annonser",
     "listingCount": "Aktive annonser",
     "viewMarket": "Vis marked",
-    "miniTrend": "Lokal markedstrend"
+    "miniTrend": "Lokal markedstrend",
+    "trendTitle": "Prisutvikling (12 måneder)",
+    "avgByDistrict": "Gj.sn. ﷼/m² etter distrikt",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "En uventet feil oppstod",
@@ -1388,7 +1524,18 @@
     "verified": "Verifisert",
     "respondsUnder2h": "< 2t",
     "activeListingsCount": "{{count}} aktive oppføringer",
-    "viewProfile": "Vis profil"
+    "viewProfile": "Vis profil",
+    "agent": "Agent",
+    "listings": "Oppføringer",
+    "reviews": "Anmeldelser",
+    "rating": "Rangering",
+    "noListings": "Ingen oppføringer",
+    "viewReviews": "Se anmeldelser",
+    "call": "Ring",
+    "title": "Agenter",
+    "listingsShort": "oppføringer",
+    "noAgentsFound": "Ingen agenter funnet",
+    "tryLater": "Prøv igjen senere"
   },
   "myListings": {
     "countSelected": "{{count}} valgt",
@@ -1441,5 +1588,12 @@
     "saved": "Lagret",
     "messages": "Meldinger",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Anmeldelser",
+    "user": "Bruker",
+    "ownerReply": "Eiers svar:",
+    "empty": "Ingen anmeldelser ennå",
+    "beFirst": "Vær den første til å anmelde"
   }
 }

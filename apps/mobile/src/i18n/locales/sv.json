@@ -110,7 +110,16 @@
     "typeRoom": "Privat rum",
     "typeChalet": "Stuga",
     "typeRestHouse": "Vilohem",
-    "typeFarm": "Gård"
+    "typeFarm": "Gård",
+    "typeAll": "Alla",
+    "chalets": "Chalets",
+    "farms": "Gårdar",
+    "restHouses": "Resthus",
+    "hotelsLabel": "Hotell",
+    "bookNext": "Boka din nästa vistelse",
+    "subtitleMix": "Stugor, gårdar, raststugor och hotell",
+    "noStays": "Inga vistelser tillgängliga",
+    "tryAnother": "Prova en annan kategori"
   },
   "hotels": {
     "title": "Hotell",
@@ -128,7 +137,10 @@
     "upTo500": "Upp till 500 SAR",
     "upTo1000": "Upp till 1 000 SAR",
     "upTo2500": "Upp till 2 500 SAR",
-    "hotelChip": "Hotell"
+    "hotelChip": "Hotell",
+    "bookStay": "Boka en hotellvistelse",
+    "nightly": "Hotellrum för nattliga vistelser",
+    "noHotels": "Inga tillgängliga hotell"
   },
   "messages": {
     "startConversation": "Starta konversationen",
@@ -281,7 +293,16 @@
     "loginBtn": "Logga in",
     "registerBtn": "Skapa konto",
     "fillAllFields": "Fyll i alla fält",
-    "invalidCredentials": "Ogiltig e-postadress eller lösenord"
+    "invalidCredentials": "Ogiltig e-postadress eller lösenord",
+    "fillRequired": "Fyll i alla obligatoriska fält",
+    "registerFailed": "Registreringen misslyckades, försök igen",
+    "pwWeak": "Svag",
+    "pwFair": "Rättvis",
+    "pwGood": "Bra",
+    "pwStrong": "Stark",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Detta fält är obligatoriskt",
@@ -601,7 +622,10 @@
       "agents": "Verifierade mäklare",
       "cities": "Städer",
       "support": "Stöd"
-    }
+    },
+    "appAbout": "Om appen",
+    "appDescription": "Eawlma är en fastighetsplattform som förbinder köpare och hyresgäster med pålitliga agenter över hela Saudiarabien. Upptäck din perfekta fastighet, boka en kortare vistelse och chatta direkt med agenter.",
+    "website": "Webbplats"
   },
   "contact": {
     "title": "Ta kontakt",
@@ -753,10 +777,7 @@
       "pinRequired": "Sätt en nål på kartan för platsen.",
       "imageRequired": "Minst en bild krävs innan publicering."
     },
-    "transactionType": {
-      "sale": "Försäljning",
-      "rent": "Hyr"
-    },
+    "transactionType": "Transaktionstyp",
     "rentPeriod": {
       "daily": "Dagligen",
       "weekly": "Veckovis",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Tryck på bekvämligheterna som den här fastigheten erbjuder. Vi visar dem som filter på Sök."
-    }
+    },
+    "stepProperty": "Egenskapstyp",
+    "stepDetails": "Detaljer",
+    "stepLocation": "Plats",
+    "stepSpecs": "Specifikationer",
+    "stepReview": "Recension",
+    "stepCount": "Steg {{current}} av {{total}}: {{title}}",
+    "addListing": "Lägg till annons",
+    "forSale": "Till salu",
+    "forRent": "Uthyres",
+    "propertyType": "Egenskapstyp",
+    "apartment": "Lägenhet",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handla",
+    "titleArLabel": "Arabisk titel *",
+    "titleEnLabel": "Engelsk titel",
+    "priceLabel": "Pris (SAR) *",
+    "areaLabel": "Yta (m²)",
+    "descArLabel": "Arabiska Beskrivning",
+    "descPlaceholder": "Detaljerad fastighetsbeskrivning...",
+    "city": "Stad *",
+    "district": "Distrikt *",
+    "districtPlaceholder": "till exempel Al Olaya",
+    "bedroomsLabel": "Sovrum",
+    "bathroomsLabel": "Badrum",
+    "reviewListing": "Recensionslista",
+    "transaction": "Transaktion",
+    "title": "Titel",
+    "price": "Pris",
+    "bedrooms": "Sovrum",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "publish": "Publicera notering",
+    "errorTitle": "Fel",
+    "successTitle": "Framgång",
+    "fillRequired": "Fyll i obligatoriska fält",
+    "addedSuccess": "Listan har lagts till",
+    "ok": "OK",
+    "somethingWrong": "Något gick fel",
+    "editTitle": "Redigera lista",
+    "missing": "Saknade fält",
+    "fillBasic": "Fyll i obligatoriska fält",
+    "savedTitle": "Sparad",
+    "savedBody": "Listan uppdaterad",
+    "updateFailed": "Det gick inte att uppdatera",
+    "deleteTitle": "Ta bort lista",
+    "deleteBody": "Är du säker? Detta kan inte ångras.",
+    "deleteFailed": "Det gick inte att ta bort",
+    "delete": "Ta bort",
+    "deleteListing": "Ta bort listning",
+    "titleArEdit": "Titel (arabiska) *",
+    "titleEnEdit": "Titel (engelska)",
+    "transactionTypeShort": "Transaktionstyp",
+    "priceShort": "Pris *",
+    "cityShort": "Stad",
+    "districtShort": "Distrikt",
+    "bedsShort": "Sängar",
+    "bathsShort": "Bad",
+    "areaShort": "Område",
+    "description": "Beskrivning",
+    "saveChanges": "Spara ändringar",
+    "sale": "Försäljning",
+    "rent": "Hyr"
   },
   "subscription": {
     "title": "Prenumeration",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Omdirigerar till Authentica.sa…",
     "otpComing": "Du får en OTP inom kort för att slutföra verifieringen.",
     "profileUpdated": "Profil uppdaterad.",
-    "deleteLabel": "Ta bort"
+    "deleteLabel": "Ta bort",
+    "appearance": "Utseende",
+    "languageRegion": "Språk och region",
+    "pushNotifications": "Push-meddelanden",
+    "emailNotifications": "E-postmeddelanden",
+    "privacyAccount": "Sekretess och konto",
+    "areYouSure": "Är du säker?"
   },
   "inquiries": {
     "title": "Förfrågningar",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Administratörens lösning",
       "closedFor": "Affär stängd för {{value}}",
       "closedOn": " den {{date}}"
-    }
+    },
+    "received": "Mottaget",
+    "sent": "Skickat",
+    "single": "Förfrågan",
+    "noInquiriesYet": "Inga förfrågningar ännu",
+    "appearHere": "Dina förfrågningar kommer att visas här"
   },
   "commission": {
     "title": "Provisioner",
@@ -975,7 +1074,8 @@
       "pending": "Väntar",
       "confirmed": "Bekräftad",
       "paid": "Betald",
-      "disputed": "Bestridd"
+      "disputed": "Bestridd",
+      "cancelled": "Avbruten"
     },
     "oath": {
       "dialogTitle": "Kommissionens åtagande",
@@ -989,7 +1089,11 @@
       "decline": "Jag håller inte med",
       "saving": "Sparar...",
       "acceptCta": "Jag accepterar och binder"
-    }
+    },
+    "dealValue": "Affärsvärde",
+    "commission": "Kommissionen",
+    "fromTxn": "från {{count}} transaktioner",
+    "earningsHint": "Intäkter kommer att visas efter avslutade affärer"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} väntande",
@@ -1070,7 +1174,22 @@
     "contactUs": "Kontakta oss",
     "noResultsTitle": "Inga matchande svar",
     "noResultsBody": "Prova ett annat sökord eller kontakta vårt team direkt.",
-    "respondsIn": "Vårt team svarar inom 24 timmar."
+    "respondsIn": "Vårt team svarar inom 24 timmar.",
+    "faqTitle": "Vanliga frågor",
+    "faqs": {
+      "q1": "Hur söker jag efter en fastighet?",
+      "a1": "Tryck på fliken Sök längst ned och välj sedan filter som passar dig (pris, typ, stad).",
+      "q2": "Hur kontaktar jag en agent?",
+      "a2": "Öppna listan och tryck sedan på \"Skicka förfrågan\" eller använd ring-/WhatsApp-knapparna på agentkortet.",
+      "q3": "Kan jag boka stugor och gårdar?",
+      "a3": "Ja – öppna en lista över alla stugor/gårdar/rastställen och tryck på \"Boka nu\" för att välja datum.",
+      "q4": "Hur sparar jag en fastighet för senare?",
+      "a4": "Tryck på hjärtikonen på listan. Sparade objekt live under fliken Sparade.",
+      "q5": "Är appen gratis?",
+      "a5": "Ja – gratis för fastighetssökande. Agenter betalar en provision först efter en lyckad affär.",
+      "q6": "Hur ändrar jag appens språk?",
+      "a6": "Fliken Profil → Inställningar → Språk. Välj bland 38 språk som stöds."
+    }
   },
   "welcome": {
     "step1Title": "Vill du köpa eller hyra?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Max gäster: {{count}}"
-    }
+    },
+    "title": "Boka din vistelse",
+    "shortTitle": "Bok",
+    "created": "Bokning skapad",
+    "createdBody": "Bokning skapad. Du kommer att omdirigeras till betalning.",
+    "error": "Fel",
+    "failed": "Bokning misslyckades",
+    "invalidDates": "Ogiltiga datum",
+    "invalidDatesBody": "Använd formatet ÅÅÅÅ-MM-DD",
+    "tooShort": "För kort",
+    "tooShortBody": "Bokningen måste vara minst 1 natt",
+    "perNight": "SAR / natt",
+    "notesOptional": "Anteckningar (valfritt)",
+    "notesPlaceholder": "Eventuella särskilda önskemål...",
+    "totalLabel": "Totalt"
   },
   "market": {
     "title": "Marknadsinsikter",
@@ -1277,7 +1410,10 @@
     "totalListings": "Totalt annonser",
     "listingCount": "Aktiva annonser",
     "viewMarket": "Visa marknad",
-    "miniTrend": "Lokal marknadstrend"
+    "miniTrend": "Lokal marknadstrend",
+    "trendTitle": "Prisutveckling (12 månader)",
+    "avgByDistrict": "Genomsnittlig ﷼/m² efter distrikt",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "Ett oväntat fel inträffade",
@@ -1388,7 +1524,18 @@
     "verified": "Verifierad",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} aktiva listor",
-    "viewProfile": "Visa profil"
+    "viewProfile": "Visa profil",
+    "agent": "Agent",
+    "listings": "Listor",
+    "reviews": "Recensioner",
+    "rating": "Betyg",
+    "noListings": "Inga listor",
+    "viewReviews": "Visa recensioner",
+    "call": "Samtal",
+    "title": "Agenter",
+    "listingsShort": "listor",
+    "noAgentsFound": "Inga agenter hittades",
+    "tryLater": "Försök igen senare"
   },
   "myListings": {
     "countSelected": "{{count}} markerade",
@@ -1441,5 +1588,12 @@
     "saved": "Sparad",
     "messages": "Meddelanden",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Recensioner",
+    "user": "Användare",
+    "ownerReply": "Ägarens svar:",
+    "empty": "Inga recensioner ännu",
+    "beFirst": "Bli den första att recensera"
   }
 }

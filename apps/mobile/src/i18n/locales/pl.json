@@ -110,7 +110,16 @@
     "typeRoom": "Pokój prywatny",
     "typeChalet": "Domek",
     "typeRestHouse": "Dom gościnny",
-    "typeFarm": "Gospodarstwo"
+    "typeFarm": "Gospodarstwo",
+    "typeAll": "Wszystko",
+    "chalets": "Domki",
+    "farms": "Farmy",
+    "restHouses": "Domy wypoczynkowe",
+    "hotelsLabel": "Hotele",
+    "bookNext": "Zarezerwuj kolejny pobyt",
+    "subtitleMix": "Chaty, gospodarstwa rolne, domy wypoczynkowe i hotele",
+    "noStays": "Brak dostępnych pobytów",
+    "tryAnother": "Wypróbuj inną kategorię"
   },
   "hotels": {
     "title": "Hotele",
@@ -128,7 +137,10 @@
     "upTo500": "Do 500 SAR",
     "upTo1000": "Do 1 000 SAR",
     "upTo2500": "Do 2 500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Zarezerwuj pobyt w hotelu",
+    "nightly": "Pokoje hotelowe na noclegi",
+    "noHotels": "Brak dostępnych hoteli"
   },
   "messages": {
     "startConversation": "Rozpocznij rozmowę",
@@ -281,7 +293,16 @@
     "loginBtn": "Zalogować się",
     "registerBtn": "Utwórz konto",
     "fillAllFields": "Proszę wypełnić wszystkie pola",
-    "invalidCredentials": "Nieprawidłowy adres e-mail lub hasło"
+    "invalidCredentials": "Nieprawidłowy adres e-mail lub hasło",
+    "fillRequired": "Proszę wypełnić wszystkie wymagane pola",
+    "registerFailed": "Rejestracja nie powiodła się, spróbuj ponownie",
+    "pwWeak": "Słaby",
+    "pwFair": "Sprawiedliwy",
+    "pwGood": "Dobry",
+    "pwStrong": "Mocny",
+    "firstNamePlaceholder": "Jan",
+    "lastNamePlaceholder": "Łania",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "To pole jest wymagane",
@@ -601,7 +622,10 @@
       "agents": "Zweryfikowani agenci",
       "cities": "Miasta",
       "support": "Wsparcie"
-    }
+    },
+    "appAbout": "O aplikacji",
+    "appDescription": "Eawlma to platforma nieruchomości łącząca kupujących i najemców z zaufanymi agentami w całej Arabii Saudyjskiej. Odkryj swoją idealną nieruchomość, zarezerwuj krótki pobyt i rozmawiaj bezpośrednio z agentami.",
+    "website": "Strona internetowa"
   },
   "contact": {
     "title": "Skontaktuj się",
@@ -753,10 +777,7 @@
       "pinRequired": "Umieść pinezkę na mapie, aby wskazać lokalizację.",
       "imageRequired": "Przed publikacją wymagany jest co najmniej jeden obraz."
     },
-    "transactionType": {
-      "sale": "Sprzedaż",
-      "rent": "Wynajem"
-    },
+    "transactionType": "Typ transakcji",
     "rentPeriod": {
       "daily": "Codziennie",
       "weekly": "Tygodnik",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Kliknij udogodnienia, jakie oferuje ten obiekt. Wyświetlimy je jako filtry w wyszukiwarce."
-    }
+    },
+    "stepProperty": "Typ właściwości",
+    "stepDetails": "Bliższe dane",
+    "stepLocation": "Lokalizacja",
+    "stepSpecs": "Okular",
+    "stepReview": "Recenzja",
+    "stepCount": "Krok {{current}} z {{total}}: {{title}}",
+    "addListing": "Dodaj ogłoszenie",
+    "forSale": "Na sprzedaż",
+    "forRent": "Do wynajęcia",
+    "propertyType": "Typ właściwości",
+    "apartment": "Apartament",
+    "villa": "Willa",
+    "land": "Grunt",
+    "chalet": "Szalet",
+    "farm": "Gospodarstwo",
+    "restHouse": "Dom Wypoczynkowy",
+    "office": "Biuro",
+    "shop": "Sklep",
+    "titleArLabel": "Tytuł arabski *",
+    "titleEnLabel": "Tytuł angielski",
+    "priceLabel": "Cena (SAR) *",
+    "areaLabel": "Powierzchnia (m²)",
+    "descArLabel": "Opis arabski",
+    "descPlaceholder": "Szczegółowy opis nieruchomości...",
+    "city": "Miasto *",
+    "district": "Dzielnica *",
+    "districtPlaceholder": "np. Al Olaya",
+    "bedroomsLabel": "Sypialnie",
+    "bathroomsLabel": "Łazienki",
+    "reviewListing": "Przejrzyj listę",
+    "transaction": "Transakcja",
+    "title": "Tytuł",
+    "price": "Cena",
+    "bedrooms": "Sypialnie",
+    "back": "Z powrotem",
+    "next": "Następny",
+    "publish": "Publikuj listę",
+    "errorTitle": "Błąd",
+    "successTitle": "Sukces",
+    "fillRequired": "Proszę wypełnić wymagane pola",
+    "addedSuccess": "Ogłoszenie dodano pomyślnie",
+    "ok": "OK",
+    "somethingWrong": "Coś poszło nie tak",
+    "editTitle": "Edytuj listę",
+    "missing": "Brakujące pola",
+    "fillBasic": "Proszę wypełnić wymagane pola",
+    "savedTitle": "Zapisano",
+    "savedBody": "Lista zaktualizowana",
+    "updateFailed": "Nie udało się zaktualizować",
+    "deleteTitle": "Usuń wpis",
+    "deleteBody": "Czy jesteś pewien? Tego nie można cofnąć.",
+    "deleteFailed": "Nie udało się usunąć",
+    "delete": "Usuwać",
+    "deleteListing": "Usuń ogłoszenie",
+    "titleArEdit": "Tytuł (arabski) *",
+    "titleEnEdit": "Tytuł (angielski)",
+    "transactionTypeShort": "Typ transakcji",
+    "priceShort": "Cena *",
+    "cityShort": "Miasto",
+    "districtShort": "Dzielnica",
+    "bedsShort": "Łóżka",
+    "bathsShort": "Łaźnia",
+    "areaShort": "Obszar",
+    "description": "Opis",
+    "saveChanges": "Zapisz zmiany",
+    "sale": "Sprzedaż",
+    "rent": "Wynajem"
   },
   "subscription": {
     "title": "Subskrypcja",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Przekierowywanie do Authentica.sa…",
     "otpComing": "Wkrótce otrzymasz OTP, aby zakończyć weryfikację.",
     "profileUpdated": "Profil zaktualizowany.",
-    "deleteLabel": "Usuń"
+    "deleteLabel": "Usuń",
+    "appearance": "Wygląd",
+    "languageRegion": "Język i region",
+    "pushNotifications": "Powiadomienia push",
+    "emailNotifications": "Powiadomienia e-mailowe",
+    "privacyAccount": "Prywatność i konto",
+    "areYouSure": "Czy jesteś pewien?"
   },
   "inquiries": {
     "title": "Zapytania",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Rozstrzygnięcie administratora",
       "closedFor": "Transakcja zamknięta za {{value}}",
       "closedOn": " w dniu {{date}}"
-    }
+    },
+    "received": "Otrzymane",
+    "sent": "Wysłano",
+    "single": "Zapytanie",
+    "noInquiriesYet": "Nie ma jeszcze żadnych zapytań",
+    "appearHere": "Twoje zapytania pojawią się tutaj"
   },
   "commission": {
     "title": "Prowizje",
@@ -975,7 +1074,8 @@
       "pending": "Oczekuje",
       "confirmed": "Potwierdzone",
       "paid": "Wypłacone",
-      "disputed": "Sporne"
+      "disputed": "Sporne",
+      "cancelled": "Odwołany"
     },
     "oath": {
       "dialogTitle": "Zobowiązanie Komisji",
@@ -989,7 +1089,11 @@
       "decline": "Nie zgadzam się",
       "saving": "Oszczędność...",
       "acceptCta": "Akceptuję i zobowiązuję się"
-    }
+    },
+    "dealValue": "Wartość transakcji",
+    "commission": "Zamawiać",
+    "fromTxn": "z {{count}} transakcji",
+    "earningsHint": "Zarobki pojawią się po zamknięciu transakcji"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} oczekujących",
@@ -1070,7 +1174,22 @@
     "contactUs": "Skontaktuj się z nami",
     "noResultsTitle": "Brak pasujących odpowiedzi",
     "noResultsBody": "Spróbuj innego słowa kluczowego lub skontaktuj się bezpośrednio z naszym zespołem.",
-    "respondsIn": "Nasz zespół odpowiada w ciągu 24 godzin."
+    "respondsIn": "Nasz zespół odpowiada w ciągu 24 godzin.",
+    "faqTitle": "Często zadawane pytania",
+    "faqs": {
+      "q1": "Jak szukać nieruchomości?",
+      "a1": "Stuknij kartę Szukaj na dole, a następnie wybierz odpowiednie filtry (cena, rodzaj, miasto).",
+      "q2": "Jak skontaktować się z agentem?",
+      "a2": "Otwórz ofertę, a następnie kliknij „Wyślij zapytanie” lub użyj przycisków połączenia/WhatsApp na karcie agenta.",
+      "q3": "Czy mogę zarezerwować domki i gospodarstwa rolne?",
+      "a3": "Tak — otwórz dowolną ofertę domku/gospodarstwa/domu wypoczynkowego i kliknij „Zarezerwuj teraz”, aby wybrać daty.",
+      "q4": "Jak zapisać nieruchomość na później?",
+      "a4": "Naciśnij ikonę serca na aukcji. Zapisane elementy znajdują się na karcie Zapisane.",
+      "q5": "Czy aplikacja jest bezpłatna?",
+      "a5": "Tak — bezpłatnie dla osób poszukujących nieruchomości. Agenci płacą prowizję dopiero po pomyślnej transakcji.",
+      "q6": "Jak zmienić język aplikacji?",
+      "a6": "Zakładka Profil → Ustawienia → Język. Wybierz spośród 38 obsługiwanych języków."
+    }
   },
   "welcome": {
     "step1Title": "Chcesz kupić czy wynająć?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Maksymalna liczba gości: {{count}}"
-    }
+    },
+    "title": "Zarezerwuj pobyt",
+    "shortTitle": "Książka",
+    "created": "Rezerwacja utworzona",
+    "createdBody": "Rezerwacja utworzona. Zostaniesz przekierowany do płatności.",
+    "error": "Błąd",
+    "failed": "Rezerwacja nie powiodła się",
+    "invalidDates": "Nieprawidłowe daty",
+    "invalidDatesBody": "Użyj formatu RRRR-MM-DD",
+    "tooShort": "Za krótki",
+    "tooShortBody": "Rezerwacja musi obejmować co najmniej 1 noc",
+    "perNight": "SAR / noc",
+    "notesOptional": "Notatki (opcjonalnie)",
+    "notesPlaceholder": "Wszelkie specjalne życzenia...",
+    "totalLabel": "Całkowity"
   },
   "market": {
     "title": "Analizy rynku",
@@ -1277,7 +1410,10 @@
     "totalListings": "Łączne ogłoszenia",
     "listingCount": "Aktywne ogłoszenia",
     "viewMarket": "Zobacz rynek",
-    "miniTrend": "Lokalny trend rynkowy"
+    "miniTrend": "Lokalny trend rynkowy",
+    "trendTitle": "Trend cenowy (12 miesięcy)",
+    "avgByDistrict": "Średnio ﷼/m² według dzielnicy",
+    "cityPlaceholder": "Rijad, Dżudda..."
   },
   "errors": {
     "generic": "Wystąpił nieoczekiwany błąd",
@@ -1388,7 +1524,18 @@
     "verified": "Zweryfikowano",
     "respondsUnder2h": "< 2 godz",
     "activeListingsCount": "{{count}} aktywnych ofert",
-    "viewProfile": "Zobacz profil"
+    "viewProfile": "Zobacz profil",
+    "agent": "Agent",
+    "listings": "Oferty",
+    "reviews": "Recenzje",
+    "rating": "Ocena",
+    "noListings": "Brak ofert",
+    "viewReviews": "Zobacz recenzje",
+    "call": "Dzwonić",
+    "title": "Agenci",
+    "listingsShort": "zestawienia",
+    "noAgentsFound": "Nie znaleziono agentów",
+    "tryLater": "Spróbuj ponownie później"
   },
   "myListings": {
     "countSelected": "Wybrano {{count}}",
@@ -1441,5 +1588,12 @@
     "saved": "Zapisano",
     "messages": "Wiadomości",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Recenzje",
+    "user": "Użytkownik",
+    "ownerReply": "Odpowiedź właściciela:",
+    "empty": "Nie ma jeszcze żadnych recenzji",
+    "beFirst": "Bądź pierwszą osobą, która napisze recenzję"
   }
 }

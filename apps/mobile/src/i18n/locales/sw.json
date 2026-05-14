@@ -110,7 +110,16 @@
     "typeRoom": "Chumba binafsi",
     "typeChalet": "Kibanda",
     "typeRestHouse": "Nyumba ya kupumzika",
-    "typeFarm": "Shamba"
+    "typeFarm": "Shamba",
+    "typeAll": "Wote",
+    "chalets": "Chalets",
+    "farms": "Mashamba",
+    "restHouses": "Nyumba za mapumziko",
+    "hotelsLabel": "Hoteli",
+    "bookNext": "Weka nafasi ya kukaa kwako ijayo",
+    "subtitleMix": "Chalets, mashamba, nyumba za kupumzika na hoteli",
+    "noStays": "Hakuna makaazi yanayopatikana",
+    "tryAnother": "Jaribu aina nyingine"
   },
   "hotels": {
     "title": "Hoteli",
@@ -128,7 +137,10 @@
     "upTo500": "Hadi 500 SAR",
     "upTo1000": "Hadi 1,000 SAR",
     "upTo2500": "Hadi 2,500 SAR",
-    "hotelChip": "Hoteli"
+    "hotelChip": "Hoteli",
+    "bookStay": "Weka nafasi ya kukaa hotelini",
+    "nightly": "Vyumba vya hoteli kwa ajili ya kukaa usiku",
+    "noHotels": "Hakuna hoteli zinazopatikana"
   },
   "messages": {
     "startConversation": "Anza mazungumzo",
@@ -281,7 +293,16 @@
     "loginBtn": "Ingia",
     "registerBtn": "Fungua Akaunti",
     "fillAllFields": "Tafadhali jaza sehemu zote",
-    "invalidCredentials": "Barua pepe au nenosiri batili"
+    "invalidCredentials": "Barua pepe au nenosiri batili",
+    "fillRequired": "Tafadhali jaza sehemu zote zinazohitajika",
+    "registerFailed": "Usajili umeshindwa, jaribu tena",
+    "pwWeak": "Dhaifu",
+    "pwFair": "Haki",
+    "pwGood": "Nzuri",
+    "pwStrong": "Nguvu",
+    "firstNamePlaceholder": "Yohana",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Sehemu hii inahitajika",
@@ -601,7 +622,10 @@
       "agents": "Mawakala waliothibitishwa",
       "cities": "Miji",
       "support": "Usaidizi"
-    }
+    },
+    "appAbout": "Kuhusu programu",
+    "appDescription": "Eawlma ni jukwaa la mali isiyohamishika linalounganisha wanunuzi na wapangaji na mawakala wanaoaminika kote Saudi Arabia. Gundua mali yako bora, weka nafasi ya kukaa kwa muda mfupi na uzungumze moja kwa moja na mawakala.",
+    "website": "Tovuti"
   },
   "contact": {
     "title": "Wasiliana nasi",
@@ -717,10 +741,10 @@
       "type": "Aina",
       "titleLabel": "Kichwa",
       "bedsBaths": "Vyumba vya kulala / Bafu",
-      "cityDistrict": "City / District",
+      "cityDistrict": "Mji/Wilaya",
       "coordinates": "Kuratibu",
-      "permit": "Permit",
-      "regaLicense": "REGA license",
+      "permit": "Kibali",
+      "regaLicense": "Leseni ya REGA",
       "visibility": "Mwonekano"
     },
     "saveDraft": "Hifadhi rasimu",
@@ -753,10 +777,7 @@
       "pinRequired": "Dondosha pini kwenye ramani kwa eneo.",
       "imageRequired": "Angalau picha moja inahitajika kabla ya kuchapishwa."
     },
-    "transactionType": {
-      "sale": "Uuzaji",
-      "rent": "Kodisha"
-    },
+    "transactionType": "Aina ya Muamala",
     "rentPeriod": {
       "daily": "Kila siku",
       "weekly": "Kila wiki",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Gusa huduma ambazo mali hii inatoa. Tutazionyesha kama vichujio kwenye Utafutaji."
-    }
+    },
+    "stepProperty": "Aina ya Mali",
+    "stepDetails": "Maelezo",
+    "stepLocation": "Mahali",
+    "stepSpecs": "Vipimo",
+    "stepReview": "Kagua",
+    "stepCount": "Hatua ya {{current}} kati ya {{total}}: {{title}}",
+    "addListing": "Ongeza Orodha",
+    "forSale": "Inauzwa",
+    "forRent": "Kwa Kukodisha",
+    "propertyType": "Aina ya Mali",
+    "apartment": "Ghorofa",
+    "villa": "Villa",
+    "land": "Ardhi",
+    "chalet": "Chalet",
+    "farm": "Shamba",
+    "restHouse": "Nyumba ya mapumziko",
+    "office": "Ofisi",
+    "shop": "Duka",
+    "titleArLabel": "Jina la Kiarabu *",
+    "titleEnLabel": "Kichwa cha Kiingereza",
+    "priceLabel": "Bei (SAR) *",
+    "areaLabel": "Eneo (m²)",
+    "descArLabel": "Maelezo ya Kiarabu",
+    "descPlaceholder": "Maelezo ya kina ya mali ...",
+    "city": "Jiji *",
+    "district": "Wilaya *",
+    "districtPlaceholder": "k.m. Al Olaya",
+    "bedroomsLabel": "Vyumba vya kulala",
+    "bathroomsLabel": "Vyumba vya bafu",
+    "reviewListing": "Kagua Uorodheshaji",
+    "transaction": "Shughuli",
+    "title": "Kichwa",
+    "price": "Bei",
+    "bedrooms": "Vyumba vya kulala",
+    "back": "Nyuma",
+    "next": "Inayofuata",
+    "publish": "Chapisha Orodha",
+    "errorTitle": "Hitilafu",
+    "successTitle": "Mafanikio",
+    "fillRequired": "Tafadhali jaza sehemu zinazohitajika",
+    "addedSuccess": "Uorodheshaji umeongezwa",
+    "ok": "Sawa",
+    "somethingWrong": "Hitilafu fulani imetokea",
+    "editTitle": "Badilisha Orodha",
+    "missing": "Sehemu zinazokosekana",
+    "fillBasic": "Tafadhali jaza sehemu zinazohitajika",
+    "savedTitle": "Imehifadhiwa",
+    "savedBody": "Orodha imesasishwa",
+    "updateFailed": "Imeshindwa kusasisha",
+    "deleteTitle": "Futa uorodheshaji",
+    "deleteBody": "Je, una uhakika? Hili haliwezi kutenduliwa.",
+    "deleteFailed": "Imeshindwa kufuta",
+    "delete": "Futa",
+    "deleteListing": "Futa Uorodheshaji",
+    "titleArEdit": "Kichwa (Kiarabu) *",
+    "titleEnEdit": "Kichwa (Kiingereza)",
+    "transactionTypeShort": "Aina ya Muamala",
+    "priceShort": "Bei*",
+    "cityShort": "Jiji",
+    "districtShort": "Wilaya",
+    "bedsShort": "Vitanda",
+    "bathsShort": "Bafu",
+    "areaShort": "Eneo",
+    "description": "Maelezo",
+    "saveChanges": "Hifadhi Mabadiliko",
+    "sale": "Uuzaji",
+    "rent": "Kodisha"
   },
   "subscription": {
     "title": "Usajili",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Inaelekeza kwa Authentica.sa…",
     "otpComing": "Utapokea OTP hivi karibuni ili kukamilisha uthibitisho.",
     "profileUpdated": "Wasifu umesasishwa.",
-    "deleteLabel": "Futa"
+    "deleteLabel": "Futa",
+    "appearance": "Muonekano",
+    "languageRegion": "Lugha na eneo",
+    "pushNotifications": "Arifa za kushinikiza",
+    "emailNotifications": "Arifa za barua pepe",
+    "privacyAccount": "Faragha na akaunti",
+    "areYouSure": "Je, una uhakika?"
   },
   "inquiries": {
     "title": "Maswali",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Utatuzi wa msimamizi",
       "closedFor": "Mkataba ulifungwa kwa {{value}}",
       "closedOn": " tarehe {{date}}"
-    }
+    },
+    "received": "Imepokelewa",
+    "sent": "Imetumwa",
+    "single": "Uchunguzi",
+    "noInquiriesYet": "Bado hakuna maswali",
+    "appearHere": "Maswali yako yataonekana hapa"
   },
   "commission": {
     "title": "Tume",
@@ -975,7 +1074,8 @@
       "pending": "Inasubiri",
       "confirmed": "Imethibitishwa",
       "paid": "Imelipwa",
-      "disputed": "Inapingwa"
+      "disputed": "Inapingwa",
+      "cancelled": "Imeghairiwa"
     },
     "oath": {
       "dialogTitle": "Ahadi ya Tume",
@@ -989,7 +1089,11 @@
       "decline": "sikubaliani",
       "saving": "Inahifadhi...",
       "acceptCta": "Nakubali & Kujitolea"
-    }
+    },
+    "dealValue": "Thamani ya biashara",
+    "commission": "Tume",
+    "fromTxn": "kutoka kwa miamala {{count}}",
+    "earningsHint": "Mapato yataonekana baada ya kufunga ofa"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} inasubiri",
@@ -1070,7 +1174,22 @@
     "contactUs": "Wasiliana nasi",
     "noResultsTitle": "Hakuna majibu yanayolingana",
     "noResultsBody": "Jaribu neno tofauti, au wasiliana na timu yetu moja kwa moja.",
-    "respondsIn": "Timu yetu hujibu ndani ya saa 24."
+    "respondsIn": "Timu yetu hujibu ndani ya saa 24.",
+    "faqTitle": "Maswali Yanayoulizwa Mara Kwa Mara",
+    "faqs": {
+      "q1": "Je, ninatafutaje mali?",
+      "a1": "Gusa kichupo cha Tafuta kilicho chini, kisha uchague vichujio vinavyokufaa (bei, aina, jiji).",
+      "q2": "Je, ninawezaje kuwasiliana na wakala?",
+      "a2": "Fungua tangazo, kisha uguse \"Tuma Swali\" au utumie vitufe vya kupiga simu/WhatsApp kwenye kadi ya wakala.",
+      "q3": "Je, ninaweza kuweka nafasi ya chalets na mashamba?",
+      "a3": "Ndiyo — fungua orodha yoyote ya chalet/shamba/nyumba ya mapumziko na uguse \"Weka Nafasi Sasa\" ili uchague tarehe.",
+      "q4": "Ninawezaje kuokoa mali kwa ajili ya baadaye?",
+      "a4": "Gusa aikoni ya moyo kwenye tangazo. Vipengee vilivyohifadhiwa huishi chini ya kichupo Kilichohifadhiwa.",
+      "q5": "Je, programu ni bure?",
+      "a5": "Ndiyo - bure kwa wanaotafuta mali. Wakala hulipa tume tu baada ya mpango uliofanikiwa.",
+      "q6": "Je, ninabadilishaje lugha ya programu?",
+      "a6": "Kichupo cha wasifu → Mipangilio → Lugha. Chagua kutoka lugha 38 zinazotumika."
+    }
   },
   "welcome": {
     "step1Title": "Unataka kununua au kukodisha?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Wageni wa juu zaidi: {{count}}"
-    }
+    },
+    "title": "Weka nafasi ya kukaa kwako",
+    "shortTitle": "Kitabu",
+    "created": "Uhifadhi umeundwa",
+    "createdBody": "Uhifadhi umeundwa. Utaelekezwa kwenye malipo.",
+    "error": "Hitilafu",
+    "failed": "Imeshindwa kuhifadhi",
+    "invalidDates": "Tarehe batili",
+    "invalidDatesBody": "Tumia umbizo la YYYY-MM-DD",
+    "tooShort": "Mfupi sana",
+    "tooShortBody": "Uhifadhi lazima uwe angalau usiku 1",
+    "perNight": "SAR / usiku",
+    "notesOptional": "Vidokezo (si lazima)",
+    "notesPlaceholder": "Maombi yoyote maalum ...",
+    "totalLabel": "Jumla"
   },
   "market": {
     "title": "Mtazamo wa soko",
@@ -1277,7 +1410,10 @@
     "totalListings": "Jumla ya matangazo",
     "listingCount": "Matangazo yanayofanya kazi",
     "viewMarket": "Angalia soko",
-    "miniTrend": "Mwelekeo wa soko la ndani"
+    "miniTrend": "Mwelekeo wa soko la ndani",
+    "trendTitle": "Mwenendo wa bei (miezi 12)",
+    "avgByDistrict": "Wastani ﷼/m² kulingana na wilaya",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "Hitilafu isiyotarajiwa imetokea",
@@ -1388,7 +1524,18 @@
     "verified": "Imethibitishwa",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} matangazo amilifu",
-    "viewProfile": "Tazama Wasifu"
+    "viewProfile": "Tazama Wasifu",
+    "agent": "Wakala",
+    "listings": "Orodha",
+    "reviews": "Ukaguzi",
+    "rating": "Ukadiriaji",
+    "noListings": "Hakuna matangazo",
+    "viewReviews": "Tazama Maoni",
+    "call": "Piga simu",
+    "title": "Mawakala",
+    "listingsShort": "orodha",
+    "noAgentsFound": "Hakuna mawakala waliopatikana",
+    "tryLater": "Jaribu tena baadaye"
   },
   "myListings": {
     "countSelected": "{{count}} zimechaguliwa",
@@ -1441,5 +1588,12 @@
     "saved": "Imehifadhiwa",
     "messages": "Ujumbe",
     "profile": "Wasifu"
+  },
+  "reviews": {
+    "title": "Ukaguzi",
+    "user": "Mtumiaji",
+    "ownerReply": "Jibu la mmiliki:",
+    "empty": "Bado hakuna hakiki",
+    "beFirst": "Kuwa wa kwanza kukagua"
   }
 }

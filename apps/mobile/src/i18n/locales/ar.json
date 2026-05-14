@@ -802,10 +802,7 @@
       "pinRequired": "حدد الموقع بدقة على الخريطة.",
       "imageRequired": "يلزم رفع صورة واحدة على الأقل قبل النشر."
     },
-    "transactionType": {
-      "sale": "أُوكَازيُون",
-      "rent": "إيجار"
-    },
+    "transactionType": "نوع المعاملة",
     "rentPeriod": {
       "daily": "يومي",
       "weekly": "أسبوعي",

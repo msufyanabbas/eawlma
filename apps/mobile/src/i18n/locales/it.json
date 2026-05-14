@@ -110,7 +110,16 @@
     "typeRoom": "Camera privata",
     "typeChalet": "Chalet",
     "typeRestHouse": "Casa di riposo",
-    "typeFarm": "Fattoria"
+    "typeFarm": "Fattoria",
+    "typeAll": "Tutti",
+    "chalets": "Chalet",
+    "farms": "Fattorie",
+    "restHouses": "Case di riposo",
+    "hotelsLabel": "Alberghi",
+    "bookNext": "Prenota il tuo prossimo soggiorno",
+    "subtitleMix": "Chalet, fattorie, pensioni e alberghi",
+    "noStays": "Nessun soggiorno disponibile",
+    "tryAnother": "Prova un'altra categoria"
   },
   "hotels": {
     "title": "Hotel",
@@ -128,7 +137,10 @@
     "upTo500": "Fino a 500 SAR",
     "upTo1000": "Fino a 1.000 SAR",
     "upTo2500": "Fino a 2.500 SAR",
-    "hotelChip": "Albergo"
+    "hotelChip": "Albergo",
+    "bookStay": "Prenota un soggiorno in hotel",
+    "nightly": "Camere d'albergo per pernottamenti",
+    "noHotels": "Nessun hotel disponibile"
   },
   "messages": {
     "startConversation": "Inizia la conversazione",
@@ -281,7 +293,16 @@
     "loginBtn": "Accedi",
     "registerBtn": "Crea account",
     "fillAllFields": "Compila tutti i campi",
-    "invalidCredentials": "Email o password non valide"
+    "invalidCredentials": "Email o password non valide",
+    "fillRequired": "Compila tutti i campi obbligatori",
+    "registerFailed": "Registrazione fallita, riprova",
+    "pwWeak": "Debole",
+    "pwFair": "Fiera",
+    "pwGood": "Buono",
+    "pwStrong": "Forte",
+    "firstNamePlaceholder": "Giovanni",
+    "lastNamePlaceholder": "Dai",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Questo campo è obbligatorio",
@@ -579,7 +600,7 @@
     "support": "Supporto",
     "help": "Centro assistenza",
     "helpCenter": "Centro assistenza",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Whatsapp",
     "callUs": "Chiamaci",
     "needHelp": "Hai bisogno di aiuto? Parlaci su WhatsApp.",
     "cr": "Registro commerciale",
@@ -601,7 +622,10 @@
       "agents": "Agenti verificati",
       "cities": "Città",
       "support": "Supporto"
-    }
+    },
+    "appAbout": "Informazioni sull'app",
+    "appDescription": "Eawlma è una piattaforma immobiliare che mette in contatto acquirenti e affittuari con agenti di fiducia in tutta l'Arabia Saudita. Scopri la tua proprietà perfetta, prenota un breve soggiorno e chatta direttamente con gli agenti.",
+    "website": "Sito web"
   },
   "contact": {
     "title": "Mettiti in contatto",
@@ -753,10 +777,7 @@
       "pinRequired": "Rilascia un segnaposto sulla mappa per la posizione.",
       "imageRequired": "È richiesta almeno un'immagine prima della pubblicazione."
     },
-    "transactionType": {
-      "sale": "Vendita",
-      "rent": "Affitta"
-    },
+    "transactionType": "Tipo di transazione",
     "rentPeriod": {
       "daily": "Giornaliero",
       "weekly": "Settimanale",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Tocca i servizi offerti da questa struttura. Li mostreremo come filtri nella Ricerca."
-    }
+    },
+    "stepProperty": "Tipo di proprietà",
+    "stepDetails": "Dettagli",
+    "stepLocation": "Posizione",
+    "stepSpecs": "Specifiche",
+    "stepReview": "Recensione",
+    "stepCount": "Passaggio {{current}} di {{total}}: {{title}}",
+    "addListing": "Aggiungi elenco",
+    "forSale": "In vendita",
+    "forRent": "In Affitto",
+    "propertyType": "Tipo di proprietà",
+    "apartment": "Appartamento",
+    "villa": "Villa",
+    "land": "Terreno",
+    "chalet": "Chalet",
+    "farm": "Azienda agricola",
+    "restHouse": "Casa di Riposo",
+    "office": "Ufficio",
+    "shop": "Acquista",
+    "titleArLabel": "Titolo arabo *",
+    "titleEnLabel": "Titolo inglese",
+    "priceLabel": "Prezzo (SAR) *",
+    "areaLabel": "Superficie (m²)",
+    "descArLabel": "Descrizione araba",
+    "descPlaceholder": "Descrizione dettagliata della proprietà...",
+    "city": "Città *",
+    "district": "Distretto *",
+    "districtPlaceholder": "per esempio. Al Olaya",
+    "bedroomsLabel": "Camere da letto",
+    "bathroomsLabel": "Bagni",
+    "reviewListing": "Elenco delle revisioni",
+    "transaction": "Transazione",
+    "title": "Titolo",
+    "price": "Prezzo",
+    "bedrooms": "Camere da letto",
+    "back": "Indietro",
+    "next": "Successivo",
+    "publish": "Pubblica elenco",
+    "errorTitle": "Errore",
+    "successTitle": "Successo",
+    "fillRequired": "Si prega di compilare i campi obbligatori",
+    "addedSuccess": "Annuncio aggiunto con successo",
+    "ok": "OK",
+    "somethingWrong": "Qualcosa è andato storto",
+    "editTitle": "Modifica elenco",
+    "missing": "Campi mancanti",
+    "fillBasic": "Si prega di compilare i campi obbligatori",
+    "savedTitle": "Salvato",
+    "savedBody": "Elenco aggiornato",
+    "updateFailed": "Impossibile aggiornare",
+    "deleteTitle": "Elimina l'elenco",
+    "deleteBody": "Sei sicuro? Questa operazione non può essere annullata.",
+    "deleteFailed": "Impossibile eliminare",
+    "delete": "Eliminare",
+    "deleteListing": "Elimina elenco",
+    "titleArEdit": "Titolo (arabo) *",
+    "titleEnEdit": "Titolo (inglese)",
+    "transactionTypeShort": "Tipo di transazione",
+    "priceShort": "Prezzo *",
+    "cityShort": "Città",
+    "districtShort": "Quartiere",
+    "bedsShort": "Letti",
+    "bathsShort": "Bagni",
+    "areaShort": "Zona",
+    "description": "Descrizione",
+    "saveChanges": "Salva modifiche",
+    "sale": "Vendita",
+    "rent": "Affitta"
   },
   "subscription": {
     "title": "Abbonamento",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Reindirizzamento ad Authentica.sa…",
     "otpComing": "Riceverai un OTP a breve per completare la verifica.",
     "profileUpdated": "Profilo aggiornato.",
-    "deleteLabel": "Elimina"
+    "deleteLabel": "Elimina",
+    "appearance": "Aspetto",
+    "languageRegion": "Lingua e regione",
+    "pushNotifications": "Notifiche push",
+    "emailNotifications": "Notifiche e-mail",
+    "privacyAccount": "Privacy e account",
+    "areYouSure": "Sei sicuro?"
   },
   "inquiries": {
     "title": "Richieste",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Risoluzione amministrativa",
       "closedFor": "Accordo chiuso per {{value}}",
       "closedOn": " il {{date}}"
-    }
+    },
+    "received": "Ricevuto",
+    "sent": "Inviato",
+    "single": "Richiesta",
+    "noInquiriesYet": "Nessuna richiesta ancora",
+    "appearHere": "Le tue richieste appariranno qui"
   },
   "commission": {
     "title": "Commissioni",
@@ -975,7 +1074,8 @@
       "pending": "In attesa",
       "confirmed": "Confermato",
       "paid": "Pagato",
-      "disputed": "Contestato"
+      "disputed": "Contestato",
+      "cancelled": "Annullato"
     },
     "oath": {
       "dialogTitle": "Impegno della Commissione",
@@ -989,7 +1089,11 @@
       "decline": "Non sono d'accordo",
       "saving": "Salvataggio in corso...",
       "acceptCta": "Accetto e mi impegno"
-    }
+    },
+    "dealValue": "Valore offerta",
+    "commission": "Commissione",
+    "fromTxn": "da {{count}} transazioni",
+    "earningsHint": "I guadagni verranno visualizzati dopo la chiusura delle operazioni"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} in attesa",
@@ -1070,7 +1174,22 @@
     "contactUs": "Contattaci",
     "noResultsTitle": "Nessuna risposta corrispondente",
     "noResultsBody": "Prova una parola chiave diversa o contatta il nostro team direttamente.",
-    "respondsIn": "Il nostro team risponde entro 24 ore."
+    "respondsIn": "Il nostro team risponde entro 24 ore.",
+    "faqTitle": "Domande frequenti",
+    "faqs": {
+      "q1": "Come cerco un immobile?",
+      "a1": "Tocca la scheda Cerca in basso, quindi scegli i filtri adatti a te (prezzo, tipo, città).",
+      "q2": "Come posso contattare un agente?",
+      "a2": "Apri l'elenco, quindi tocca \"Invia richiesta\" o utilizza i pulsanti di chiamata/WhatsApp sulla scheda dell'agente.",
+      "q3": "Posso prenotare chalet e fattorie?",
+      "a3": "Sì, apri l'elenco di chalet/fattorie/ristoranti e tocca \"Prenota ora\" per scegliere le date.",
+      "q4": "Come faccio a salvare una proprietà per dopo?",
+      "a4": "Tocca l'icona del cuore nell'elenco. Gli elementi salvati si trovano nella scheda Salvati.",
+      "q5": "L'app è gratuita?",
+      "a5": "Sì, gratuito per chi cerca proprietà. Gli agenti pagano una commissione solo dopo un accordo andato a buon fine.",
+      "q6": "Come posso cambiare la lingua dell'app?",
+      "a6": "Scheda Profilo → Impostazioni → Lingua. Scegli tra 38 lingue supportate."
+    }
   },
   "welcome": {
     "step1Title": "Vuoi acquistare o affittare?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Ospiti massimi: {{count}}"
-    }
+    },
+    "title": "Prenota il tuo soggiorno",
+    "shortTitle": "Prenota",
+    "created": "Prenotazione creata",
+    "createdBody": "Prenotazione creata. Verrai reindirizzato al pagamento.",
+    "error": "Errore",
+    "failed": "Prenotazione fallita",
+    "invalidDates": "Date non valide",
+    "invalidDatesBody": "Utilizza il formato AAAA-MM-GG",
+    "tooShort": "Troppo corto",
+    "tooShortBody": "La prenotazione deve essere di almeno 1 notte",
+    "perNight": "SAR / notte",
+    "notesOptional": "Note (facoltativo)",
+    "notesPlaceholder": "Eventuali richieste speciali...",
+    "totalLabel": "Totale"
   },
   "market": {
     "title": "Approfondimenti di mercato",
@@ -1277,7 +1410,10 @@
     "totalListings": "Annunci totali",
     "listingCount": "Annunci attivi",
     "viewMarket": "Vedi mercato",
-    "miniTrend": "Tendenza del mercato locale"
+    "miniTrend": "Tendenza del mercato locale",
+    "trendTitle": "Andamento dei prezzi (12 mesi)",
+    "avgByDistrict": "Media ﷼/m² per distretto",
+    "cityPlaceholder": "Riad, Jeddah..."
   },
   "errors": {
     "generic": "Si è verificato un errore imprevisto",
@@ -1388,7 +1524,18 @@
     "verified": "Verificato",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} inserzioni attive",
-    "viewProfile": "Visualizza profilo"
+    "viewProfile": "Visualizza profilo",
+    "agent": "Agente",
+    "listings": "Elenchi",
+    "reviews": "Recensioni",
+    "rating": "Valutazione",
+    "noListings": "Nessuna inserzione",
+    "viewReviews": "Visualizza recensioni",
+    "call": "Chiama",
+    "title": "Agenti",
+    "listingsShort": "elenchi",
+    "noAgentsFound": "Nessun agente trovato",
+    "tryLater": "Riprova più tardi"
   },
   "myListings": {
     "countSelected": "{{count}} selezionato",
@@ -1441,5 +1588,12 @@
     "saved": "Salvato",
     "messages": "Messaggi",
     "profile": "Profilo"
+  },
+  "reviews": {
+    "title": "Recensioni",
+    "user": "Utente",
+    "ownerReply": "Risposta del proprietario:",
+    "empty": "Ancora nessuna recensione",
+    "beFirst": "Sii il primo a recensire"
   }
 }

@@ -110,7 +110,16 @@
     "typeRoom": "खाजगी खोली",
     "typeChalet": "शॅले",
     "typeRestHouse": "विश्रामगृह",
-    "typeFarm": "शेत"
+    "typeFarm": "शेत",
+    "typeAll": "सर्व",
+    "chalets": "चाले",
+    "farms": "शेततळे",
+    "restHouses": "विश्रामगृहे",
+    "hotelsLabel": "हॉटेल्स",
+    "bookNext": "तुमचा पुढील मुक्काम बुक करा",
+    "subtitleMix": "चाळे, शेततळे, विश्रामगृहे आणि हॉटेल्स",
+    "noStays": "मुक्काम उपलब्ध नाही",
+    "tryAnother": "दुसरी श्रेणी वापरून पहा"
   },
   "hotels": {
     "title": "हॉटेल्स",
@@ -128,7 +137,10 @@
     "upTo500": "500 SAR पर्यंत",
     "upTo1000": "1,000 SAR पर्यंत",
     "upTo2500": "2,500 SAR पर्यंत",
-    "hotelChip": "हॉटेल"
+    "hotelChip": "हॉटेल",
+    "bookStay": "हॉटेल मुक्काम बुक करा",
+    "nightly": "रात्रीच्या मुक्कामासाठी हॉटेल खोल्या",
+    "noHotels": "हॉटेल्स उपलब्ध नाहीत"
   },
   "messages": {
     "startConversation": "संभाषण सुरू करा",
@@ -281,7 +293,16 @@
     "loginBtn": "साइन इन करा",
     "registerBtn": "खाते तयार करा",
     "fillAllFields": "कृपया सर्व फील्ड भरा",
-    "invalidCredentials": "अवैध ईमेल किंवा पासवर्ड"
+    "invalidCredentials": "अवैध ईमेल किंवा पासवर्ड",
+    "fillRequired": "कृपया सर्व आवश्यक फील्ड भरा",
+    "registerFailed": "नोंदणी अयशस्वी, पुन्हा प्रयत्न करा",
+    "pwWeak": "कमकुवत",
+    "pwFair": "गोरा",
+    "pwGood": "चांगले",
+    "pwStrong": "मजबूत",
+    "firstNamePlaceholder": "जॉन",
+    "lastNamePlaceholder": "डो",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "हे फील्ड आवश्यक आहे",
@@ -601,7 +622,10 @@
       "agents": "सत्यापित एजंट",
       "cities": "शहरे",
       "support": "समर्थन"
-    }
+    },
+    "appAbout": "ॲप बद्दल",
+    "appDescription": "Eawlma हे एक रिअल इस्टेट प्लॅटफॉर्म आहे जे खरेदीदार आणि भाडेकरूंना सौदी अरेबियातील विश्वसनीय एजंट्ससह जोडते. तुमची परिपूर्ण मालमत्ता शोधा, लहान मुक्काम बुक करा आणि एजंटांशी थेट चॅट करा.",
+    "website": "वेबसाइट"
   },
   "contact": {
     "title": "संपर्क साधा",
@@ -753,10 +777,7 @@
       "pinRequired": "स्थानासाठी नकाशावर एक पिन टाका.",
       "imageRequired": "प्रकाशित करण्यापूर्वी किमान एक प्रतिमा आवश्यक आहे."
     },
-    "transactionType": {
-      "sale": "विक्री",
-      "rent": "भाड्याने"
-    },
+    "transactionType": "व्यवहाराचा प्रकार",
     "rentPeriod": {
       "daily": "दररोज",
       "weekly": "साप्ताहिक",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "ही मालमत्ता देत असलेल्या सुविधांवर टॅप करा. आम्ही त्यांना शोध वर फिल्टर म्हणून दाखवू."
-    }
+    },
+    "stepProperty": "मालमत्तेचा प्रकार",
+    "stepDetails": "तपशील",
+    "stepLocation": "स्थान",
+    "stepSpecs": "चष्मा",
+    "stepReview": "पुनरावलोकन करा",
+    "stepCount": "{{total}} पैकी {{current}} पायरी: {{title}}",
+    "addListing": "सूची जोडा",
+    "forSale": "विक्रीसाठी",
+    "forRent": "भाड्याने",
+    "propertyType": "मालमत्तेचा प्रकार",
+    "apartment": "अपार्टमेंट",
+    "villa": "व्हिला",
+    "land": "जमीन",
+    "chalet": "| चालेट",
+    "farm": "| फार्म",
+    "restHouse": "| विश्रामगृह",
+    "office": "| कार्यालय",
+    "shop": "दुकान",
+    "titleArLabel": "अरबी शीर्षक *",
+    "titleEnLabel": "इंग्रजी शीर्षक",
+    "priceLabel": "| किंमत (SAR) *",
+    "areaLabel": "| क्षेत्रफळ (m²)",
+    "descArLabel": "अरबी वर्णन",
+    "descPlaceholder": "तपशीलवार मालमत्तेचे वर्णन...",
+    "city": "शहर *",
+    "district": "जिल्हा *",
+    "districtPlaceholder": "| उदा. अल ओलाया",
+    "bedroomsLabel": "शयनकक्ष",
+    "bathroomsLabel": "| स्नानगृहे",
+    "reviewListing": "| पुनरावलोकन सूची",
+    "transaction": "व्यवहार",
+    "title": "| शीर्षक",
+    "price": "| किंमत",
+    "bedrooms": "शयनकक्ष",
+    "back": "| मागे",
+    "next": "पुढे",
+    "publish": "सूची प्रकाशित करा",
+    "errorTitle": "त्रुटी",
+    "successTitle": "यश",
+    "fillRequired": "कृपया आवश्यक फील्ड भरा",
+    "addedSuccess": "सूची यशस्वीरित्या जोडली",
+    "ok": "ठीक आहे",
+    "somethingWrong": "काहीतरी चूक झाली",
+    "editTitle": "सूची संपादित करा",
+    "missing": "गहाळ फील्ड",
+    "fillBasic": "कृपया आवश्यक फील्ड भरा",
+    "savedTitle": "जतन केले",
+    "savedBody": "सूची अद्यतनित केली",
+    "updateFailed": "अपडेट करण्यात अयशस्वी",
+    "deleteTitle": "सूची हटवा",
+    "deleteBody": "तुम्हाला खात्री आहे का? हे पूर्ववत केले जाऊ शकत नाही.",
+    "deleteFailed": "हटवण्यात अयशस्वी",
+    "delete": "हटवा",
+    "deleteListing": "सूची हटवा",
+    "titleArEdit": "शीर्षक (अरबी) *",
+    "titleEnEdit": "शीर्षक (इंग्रजी)",
+    "transactionTypeShort": "व्यवहाराचा प्रकार",
+    "priceShort": "किंमत*",
+    "cityShort": "शहर",
+    "districtShort": "जिल्हा",
+    "bedsShort": "पलंग",
+    "bathsShort": "आंघोळ",
+    "areaShort": "क्षेत्रफळ",
+    "description": "वर्णन",
+    "saveChanges": "बदल जतन करा",
+    "sale": "विक्री",
+    "rent": "भाड्याने"
   },
   "subscription": {
     "title": "सदस्यता",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Authentica.sa वर पुनर्निर्देशित करत आहे…",
     "otpComing": "सत्यापन पूर्ण करण्यासाठी तुम्हाला लवकरच एक OTP प्राप्त होईल.",
     "profileUpdated": "प्रोफाइल अद्ययावत झाले.",
-    "deleteLabel": "हटवा"
+    "deleteLabel": "हटवा",
+    "appearance": "देखावा",
+    "languageRegion": "भाषा आणि प्रदेश",
+    "pushNotifications": "पुश सूचना",
+    "emailNotifications": "ईमेल सूचना",
+    "privacyAccount": "गोपनीयता आणि खाते",
+    "areYouSure": "तुम्हाला खात्री आहे का?"
   },
   "inquiries": {
     "title": "चौकशी",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "अॅडमिन निराकरण",
       "closedFor": "{{value}} साठी करार बंद",
       "closedOn": " {{date}} रोजी"
-    }
+    },
+    "received": "प्राप्त झाले",
+    "sent": "पाठवले",
+    "single": "चौकशी",
+    "noInquiriesYet": "अजून चौकशी नाही",
+    "appearHere": "तुमची चौकशी येथे दिसून येईल"
   },
   "commission": {
     "title": "कमिशन",
@@ -975,7 +1074,8 @@
       "pending": "प्रलंबित",
       "confirmed": "पुष्टी केली",
       "paid": "पैसे दिले",
-      "disputed": "विवादित"
+      "disputed": "विवादित",
+      "cancelled": "रद्द केले"
     },
     "oath": {
       "dialogTitle": "कमिशन वचनबद्धता",
@@ -989,7 +1089,11 @@
       "decline": "मला पटत नाही",
       "saving": "सेव्ह करत आहे...",
       "acceptCta": "मी स्वीकारतो आणि वचन देतो"
-    }
+    },
+    "dealValue": "डील मूल्य",
+    "commission": "आयोग",
+    "fromTxn": "{{count}} व्यवहारांमधून",
+    "earningsHint": "सौदे बंद झाल्यानंतर कमाई दिसून येईल"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} प्रलंबित",
@@ -1070,7 +1174,22 @@
     "contactUs": "आमच्याशी संपर्क साधा",
     "noResultsTitle": "जुळणारी उत्तरे नाहीत",
     "noResultsBody": "वेगळा कीवर्ड वापरून पहा, किंवा थेट आमच्या टीमशी संपर्क साधा.",
-    "respondsIn": "आमची टीम 24 तासांत प्रतिसाद देते."
+    "respondsIn": "आमची टीम 24 तासांत प्रतिसाद देते.",
+    "faqTitle": "वारंवार विचारले जाणारे प्रश्न",
+    "faqs": {
+      "q1": "मी मालमत्ता कशी शोधू?",
+      "a1": "तळाशी असलेल्या शोध टॅबवर टॅप करा, त्यानंतर तुम्हाला अनुकूल असलेले फिल्टर निवडा (किंमत, प्रकार, शहर).",
+      "q2": "मी एजंटशी संपर्क कसा साधू?",
+      "a2": "सूची उघडा, नंतर \"चौकशी पाठवा\" वर टॅप करा किंवा एजंट कार्डवरील कॉल/व्हॉट्सॲप बटणे वापरा.",
+      "q3": "मी चालेट आणि शेत बुक करू शकतो?",
+      "a3": "होय — कोणतीही चॅलेट / फार्म / रेस्ट-हाऊस सूची उघडा आणि तारखा निवडण्यासाठी \"आता बुक करा\" वर टॅप करा.",
+      "q4": "मी नंतरसाठी मालमत्ता कशी जतन करू?",
+      "a4": "सूचीवरील हृदय चिन्हावर टॅप करा. सेव्ह केलेले आयटम सेव्ह केलेल्या टॅबखाली राहतात.",
+      "q5": "ॲप मोफत आहे का?",
+      "a5": "होय — मालमत्ता शोधणाऱ्यांसाठी विनामूल्य. यशस्वी करारानंतरच एजंट कमिशन देतात.",
+      "q6": "मी ॲपची भाषा कशी बदलू?",
+      "a6": "प्रोफाइल टॅब → सेटिंग्ज → भाषा. 38 समर्थित भाषांमधून निवडा."
+    }
   },
   "welcome": {
     "step1Title": "खरेदी किंवा भाडे घ्यायचे आहे?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "कमाल अतिथी: {{count}}"
-    }
+    },
+    "title": "तुमचा मुक्काम बुक करा",
+    "shortTitle": "पुस्तक",
+    "created": "बुकिंग तयार केले",
+    "createdBody": "बुकिंग तयार केले. तुम्हाला पेमेंटवर पुनर्निर्देशित केले जाईल.",
+    "error": "त्रुटी",
+    "failed": "बुकिंग अयशस्वी",
+    "invalidDates": "अवैध तारखा",
+    "invalidDatesBody": "YYYY-MM-DD फॉरमॅट वापरा",
+    "tooShort": "खूप लहान",
+    "tooShortBody": "बुकिंग किमान 1 रात्र असणे आवश्यक आहे",
+    "perNight": "SAR / रात्री",
+    "notesOptional": "नोट्स (पर्यायी)",
+    "notesPlaceholder": "| कोणत्याही विशेष विनंत्या...",
+    "totalLabel": "एकूण"
   },
   "market": {
     "title": "बाजार अंतर्दृष्टी",
@@ -1277,7 +1410,10 @@
     "totalListings": "एकूण जाहिराती",
     "listingCount": "सक्रिय जाहिराती",
     "viewMarket": "बाजार पहा",
-    "miniTrend": "स्थानिक बाजार ट्रेंड"
+    "miniTrend": "स्थानिक बाजार ट्रेंड",
+    "trendTitle": "किमतीचा कल (१२ महिने)",
+    "avgByDistrict": "जिल्ह्यानुसार सरासरी ﷼/m²",
+    "cityPlaceholder": "रियाध, जेद्दाह..."
   },
   "errors": {
     "generic": "अनपेक्षित त्रुटी आली",
@@ -1388,7 +1524,18 @@
     "verified": "सत्यापित",
     "respondsUnder2h": "< 2 ता",
     "activeListingsCount": "{{count}} सक्रिय सूची",
-    "viewProfile": "प्रोफाइल पहा"
+    "viewProfile": "प्रोफाइल पहा",
+    "agent": "एजंट",
+    "listings": "सूची",
+    "reviews": "पुनरावलोकने",
+    "rating": "रेटिंग",
+    "noListings": "सूची नाहीत",
+    "viewReviews": "पुनरावलोकने पहा",
+    "call": "कॉल करा",
+    "title": "एजंट",
+    "listingsShort": "सूची",
+    "noAgentsFound": "कोणतेही एजंट आढळले नाहीत",
+    "tryLater": "नंतर पुन्हा प्रयत्न करा"
   },
   "myListings": {
     "countSelected": "{{count}} निवडले",
@@ -1441,5 +1588,12 @@
     "saved": "जतन केले",
     "messages": "संदेश",
     "profile": "| प्रोफाइल"
+  },
+  "reviews": {
+    "title": "पुनरावलोकने",
+    "user": "| वापरकर्ता",
+    "ownerReply": "मालकाचे उत्तर:",
+    "empty": "अद्याप कोणतेही पुनरावलोकन नाही",
+    "beFirst": "| पुनरावलोकन करणारे पहिले व्हा"
   }
 }

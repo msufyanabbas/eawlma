@@ -110,7 +110,16 @@
     "typeRoom": "חדר פרטי",
     "typeChalet": "צימר",
     "typeRestHouse": "בית הארחה",
-    "typeFarm": "חווה"
+    "typeFarm": "חווה",
+    "typeAll": "הכל",
+    "chalets": "בקתות",
+    "farms": "חוות",
+    "restHouses": "בתי מנוחה",
+    "hotelsLabel": "מלונות",
+    "bookNext": "הזמן את השהות הבאה שלך",
+    "subtitleMix": "בקתות, חוות, בתי מנוחה ובתי מלון",
+    "noStays": "אין שהות זמינה",
+    "tryAnother": "נסה קטגוריה אחרת"
   },
   "hotels": {
     "title": "מלונות",
@@ -128,7 +137,10 @@
     "upTo500": "עד 500 SAR",
     "upTo1000": "עד 1,000 SAR",
     "upTo2500": "עד 2,500 SAR",
-    "hotelChip": "מלון"
+    "hotelChip": "מלון",
+    "bookStay": "הזמינו שהות במלון",
+    "nightly": "חדרי מלון לשהייה לילית",
+    "noHotels": "אין מלונות זמינים"
   },
   "messages": {
     "startConversation": "התחילו שיחה",
@@ -281,7 +293,16 @@
     "loginBtn": "היכנס",
     "registerBtn": "צור חשבון",
     "fillAllFields": "אנא מלא את כל השדות",
-    "invalidCredentials": "דוא\"ל או סיסמה לא חוקיים"
+    "invalidCredentials": "דוא\"ל או סיסמה לא חוקיים",
+    "fillRequired": "אנא מלא את כל השדות הדרושים",
+    "registerFailed": "הרישום נכשל, נסה שוב",
+    "pwWeak": "חלש",
+    "pwFair": "הוגן",
+    "pwGood": "טוב",
+    "pwStrong": "חזק",
+    "firstNamePlaceholder": "ג'ון",
+    "lastNamePlaceholder": "איילה",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "שדה זה הוא חובה",
@@ -601,7 +622,10 @@
       "agents": "סוכנים מאומתים",
       "cities": "ערים",
       "support": "תמיכה"
-    }
+    },
+    "appAbout": "אודות האפליקציה",
+    "appDescription": "Eawlma היא פלטפורמת נדל\"ן המחברת קונים ושוכרים עם סוכנים מהימנים ברחבי ערב הסעודית. גלה את הנכס המושלם שלך, הזמינו שהות קצרה ושוחח ישירות עם סוכנים.",
+    "website": "אתר"
   },
   "contact": {
     "title": "יצירת קשר",
@@ -753,10 +777,7 @@
       "pinRequired": "זרוק סיכה על המפה עבור המיקום.",
       "imageRequired": "נדרשת לפחות תמונה אחת לפני הפרסום."
     },
-    "transactionType": {
-      "sale": "מבצע",
-      "rent": "השכרה"
-    },
+    "transactionType": "סוג עסקה",
     "rentPeriod": {
       "daily": "יומי",
       "weekly": "שבועי",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "הקש על השירותים שהנכס הזה מציע. אנו נציג אותם כמסננים בחיפוש."
-    }
+    },
+    "stepProperty": "סוג נכס",
+    "stepDetails": "פרטים",
+    "stepLocation": "מיקום",
+    "stepSpecs": "מפרט",
+    "stepReview": "סקירה",
+    "stepCount": "שלב {{נוכחי}} מתוך {{סה\"כ}}: {{title}}",
+    "addListing": "הוסף רישום",
+    "forSale": "למכירה",
+    "forRent": "להשכרה",
+    "propertyType": "סוג נכס",
+    "apartment": "דירה",
+    "villa": "וילה",
+    "land": "קרקע",
+    "chalet": "בקתה",
+    "farm": "חווה",
+    "restHouse": "בית מנוחה",
+    "office": "Office",
+    "shop": "חנות",
+    "titleArLabel": "כותרת ערבית *",
+    "titleEnLabel": "כותרת אנגלית",
+    "priceLabel": "מחיר (SAR) *",
+    "areaLabel": "שטח (מ\"ר)",
+    "descArLabel": "תיאור ערבית",
+    "descPlaceholder": "תיאור נכס מפורט...",
+    "city": "עיר *",
+    "district": "מחוז *",
+    "districtPlaceholder": "לְמָשָׁל Al Olaya",
+    "bedroomsLabel": "חדרי שינה",
+    "bathroomsLabel": "חדרי אמבטיה",
+    "reviewListing": "סקירת רישום",
+    "transaction": "עסקה",
+    "title": "כותרת",
+    "price": "מחיר",
+    "bedrooms": "חדרי שינה",
+    "back": "חזרה",
+    "next": "הבא",
+    "publish": "פרסם רישום",
+    "errorTitle": "שגיאה",
+    "successTitle": "הצלחה",
+    "fillRequired": "אנא מלא שדות חובה",
+    "addedSuccess": "הרישום נוסף בהצלחה",
+    "ok": "אישור",
+    "somethingWrong": "משהו השתבש",
+    "editTitle": "ערוך רישום",
+    "missing": "שדות חסרים",
+    "fillBasic": "אנא מלא שדות חובה",
+    "savedTitle": "נשמר",
+    "savedBody": "הרישום עודכן",
+    "updateFailed": "עדכון",
+    "deleteTitle": "נכשל מחק רישום",
+    "deleteBody": "אתה בטוח? לא ניתן לבטל זאת.",
+    "deleteFailed": "מחיקת",
+    "delete": "נכשלה מחק",
+    "deleteListing": "מחק רישום",
+    "titleArEdit": "כותרת (ערבית) *",
+    "titleEnEdit": "כותרת (אנגלית)",
+    "transactionTypeShort": "סוג עסקה",
+    "priceShort": "מחיר *",
+    "cityShort": "עיר",
+    "districtShort": "מחוז",
+    "bedsShort": "מיטות",
+    "bathsShort": "אמבטיות",
+    "areaShort": "אזור",
+    "description": "תיאור",
+    "saveChanges": "שמור שינויים",
+    "sale": "מבצע",
+    "rent": "השכרה"
   },
   "subscription": {
     "title": "מנוי",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "מעבר ל-Authentica.sa…",
     "otpComing": "תקבלו OTP בקרוב להשלמת האימות.",
     "profileUpdated": "הפרופיל עודכן.",
-    "deleteLabel": "מחיקה"
+    "deleteLabel": "מחיקה",
+    "appearance": "מראה",
+    "languageRegion": "שפה ואזור",
+    "pushNotifications": "הודעות דחיפה",
+    "emailNotifications": "הודעות דוא\"ל",
+    "privacyAccount": "פרטיות וחשבון",
+    "areYouSure": "אתה בטוח?"
   },
   "inquiries": {
     "title": "פניות",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "פתרון המנהל",
       "closedFor": "העסקה נסגרה ב-{{value}}",
       "closedOn": " ב-{{date}}"
-    }
+    },
+    "received": "התקבל",
+    "sent": "נשלח",
+    "single": "חקירה",
+    "noInquiriesYet": "אין עדיין פניות",
+    "appearHere": "השאלות שלך יופיעו כאן"
   },
   "commission": {
     "title": "עמלות",
@@ -975,7 +1074,8 @@
       "pending": "ממתין",
       "confirmed": "מאושר",
       "paid": "שולם",
-      "disputed": "במחלוקת"
+      "disputed": "במחלוקת",
+      "cancelled": "בוטל"
     },
     "oath": {
       "dialogTitle": "מחויבות עמלה",
@@ -989,7 +1089,11 @@
       "decline": "אני לא מסכים",
       "saving": "שומר...",
       "acceptCta": "אני מקבל ומתחייב"
-    }
+    },
+    "dealValue": "ערך עסקה",
+    "commission": "עמלה",
+    "fromTxn": "מ-{{count}} עסקאות",
+    "earningsHint": "הרווחים יופיעו לאחר סגירת עסקאות"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} ממתינות",
@@ -1070,7 +1174,22 @@
     "contactUs": "צרו קשר",
     "noResultsTitle": "אין תשובות תואמות",
     "noResultsBody": "נסו מילת מפתח אחרת, או פנו לצוות שלנו ישירות.",
-    "respondsIn": "הצוות שלנו מגיב תוך 24 שעות."
+    "respondsIn": "הצוות שלנו מגיב תוך 24 שעות.",
+    "faqTitle": "שאלות נפוצות",
+    "faqs": {
+      "q1": "איך אני מחפש נכס?",
+      "a1": "הקש על הכרטיסייה חיפוש בתחתית, ולאחר מכן בחר מסננים המתאימים לך (מחיר, סוג, עיר).",
+      "q2": "איך אני יוצר קשר עם סוכן?",
+      "a2": "פתח את הרישום ולאחר מכן הקש על \"שלח פניה\" או השתמש בכפתורי השיחה/וואטסאפ בכרטיס הסוכן.",
+      "q3": "האם אני יכול להזמין בקתות וחוות?",
+      "a3": "כן - פתח כל רישום של בקתה/חווה/בית מנוחה והקש על \"הזמן עכשיו\" כדי לבחור תאריכים.",
+      "q4": "כיצד אוכל לשמור נכס למועד מאוחר יותר?",
+      "a4": "הקש על סמל הלב ברישום. פריטים שמורים פעילים בכרטיסייה שמורים.",
+      "q5": "האם האפליקציה חינמית?",
+      "a5": "כן - חינם למחפשי נכס. סוכנים משלמים עמלה רק לאחר עסקה מוצלחת.",
+      "q6": "איך אני משנה את שפת האפליקציה?",
+      "a6": "כרטיסיית פרופיל ← הגדרות ← שפה. בחר מתוך 38 שפות נתמכות."
+    }
   },
   "welcome": {
     "step1Title": "רוצים לקנות או לשכור?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "מקסימום אורחים: {{count}}"
-    }
+    },
+    "title": "הזמינו את השהות שלכם",
+    "shortTitle": "ספר",
+    "created": "ההזמנה נוצרה",
+    "createdBody": "ההזמנה נוצרה. אתה תופנה לתשלום.",
+    "error": "שגיאה",
+    "failed": "ההזמנה נכשלה",
+    "invalidDates": "תאריכים לא חוקיים",
+    "invalidDatesBody": "השתמש בפורמט YYYY-MM-DD",
+    "tooShort": "קצר מדי",
+    "tooShortBody": "ההזמנה חייבת להיות לילה אחד לפחות",
+    "perNight": "SAR / לילה",
+    "notesOptional": "הערות (אופציונלי)",
+    "notesPlaceholder": "כל בקשות מיוחדות...",
+    "totalLabel": "סך הכל"
   },
   "market": {
     "title": "תובנות שוק",
@@ -1277,7 +1410,10 @@
     "totalListings": "סך המודעות",
     "listingCount": "מודעות פעילות",
     "viewMarket": "הצגת השוק",
-    "miniTrend": "מגמת שוק מקומי"
+    "miniTrend": "מגמת שוק מקומי",
+    "trendTitle": "מגמת מחיר (12 חודשים)",
+    "avgByDistrict": "Avg ﷼/m² by district",
+    "cityPlaceholder": "ריאד, ג'דה..."
   },
   "errors": {
     "generic": "אירעה שגיאה לא צפויה",
@@ -1388,7 +1524,18 @@
     "verified": "מאומת",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} רישומים פעילים",
-    "viewProfile": "צפה בפרופיל"
+    "viewProfile": "צפה בפרופיל",
+    "agent": "סוכן",
+    "listings": "רישומים",
+    "reviews": "ביקורות",
+    "rating": "דירוג",
+    "noListings": "אין רישומים",
+    "viewReviews": "הצג ביקורות",
+    "call": "התקשר",
+    "title": "סוכנים",
+    "listingsShort": "רישומים",
+    "noAgentsFound": "לא נמצאו סוכנים",
+    "tryLater": "נסה שוב מאוחר יותר"
   },
   "myListings": {
     "countSelected": "{{count}} נבחרו",
@@ -1441,5 +1588,12 @@
     "saved": "נשמר",
     "messages": "הודעות",
     "profile": "פּרוֹפִיל"
+  },
+  "reviews": {
+    "title": "ביקורות",
+    "user": "משתמש",
+    "ownerReply": "תשובת הבעלים:",
+    "empty": "אין עדיין ביקורות",
+    "beFirst": "היה הראשון לכתוב ביקורת"
   }
 }
