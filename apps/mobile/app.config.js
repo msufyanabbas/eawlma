@@ -2,10 +2,15 @@
 // API key (and any other secret) lives in .env — which is gitignored — and
 // gets injected into native config (Android/iOS) plus the JS-runtime
 // Constants.expoConfig.extra at build/start time.
-require('dotenv').config();
+//
+// We resolve .env by absolute path so it loads regardless of which CWD
+// Expo CLI was invoked from (otherwise running `expo start` from the
+// monorepo root would silently miss this file).
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || '';
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://192.168.1.125:3010/api/v1';
+const API_URL = process.env.API_URL || 'http://192.168.1.125:3010/api/v1';
 
 module.exports = {
   expo: {
