@@ -127,7 +127,8 @@
     "anyPrice": "כל מחיר",
     "upTo500": "עד 500 SAR",
     "upTo1000": "עד 1,000 SAR",
-    "upTo2500": "עד 2,500 SAR"
+    "upTo2500": "עד 2,500 SAR",
+    "hotelChip": "מלון"
   },
   "messages": {
     "startConversation": "התחילו שיחה",
@@ -147,7 +148,14 @@
     "showOriginal": "הצגת המקור",
     "showTranslation": "הצגת התרגום",
     "online": "מחובר",
-    "lastSeen": "נראה לאחרונה"
+    "lastSeen": "נראה לאחרונה",
+    "title": "הודעות",
+    "noMessages": "אין עדיין הודעות",
+    "noMessagesPrompt": "צור קשר עם סוכנים מדפי הרישום",
+    "signInPrompt": "היכנס כדי לראות את ההודעות שלך",
+    "chat": "צ'אט",
+    "user": "משתמש",
+    "noMessagesShort": "אין הודעות"
   },
   "hosting": {
     "title": "אירוח",
@@ -166,7 +174,8 @@
     "dailyRate": "מחיר ללילה",
     "weeklyRate": "מחיר שבועי",
     "guestReviews": "ביקורות אורחים",
-    "noReviews": "אין עדיין ביקורות — לאחר שאורחים יעזבו וידרגו את השהייה שלהם, הביקורות יופיעו כאן."
+    "noReviews": "אין עדיין ביקורות — לאחר שאורחים יעזבו וידרגו את השהייה שלהם, הביקורות יופיעו כאן.",
+    "guestFallback": "אורח"
   },
   "buyerDeals": {
     "title": "העסקאות שלי",
@@ -216,7 +225,20 @@
     "favorAgent": "לטובת הסוכן — יצירת עמלה",
     "favorBuyer": "לטובת הקונה — ביטול העסקה",
     "cancelDeal": "ביטול עסקה — ללא עמלה",
-    "resolutionHint": "שני הצדדים יקבלו הודעה עם הערות אלה."
+    "resolutionHint": "שני הצדדים יקבלו הודעה עם הערות אלה.",
+    "other": "אחר",
+    "buyerLower": "קונה",
+    "agentLower": "סוֹכֵן",
+    "otherLower": "אחר",
+    "anonymous": "אנונימי",
+    "resolveTitle": "פתרון מחלוקת",
+    "resolveDesc": "בחר את התוצאה עבור מחלוקת זו",
+    "favorAgentDesc": "העמלה תאושר ותשולם לסוכן",
+    "favorBuyerDesc": "העמלה תבוטל",
+    "cancelDealDesc": "העסקה והעמלה שניהם בוטלו",
+    "adminNotes": "הערות מנהל (אופציונלי)",
+    "resolvedSuccess": "המחלוקת נפתרה בהצלחה",
+    "resolvedError": "נכשל בפתרון המחלוקת"
   },
   "auth": {
     "login": "התחברות",
@@ -252,7 +274,14 @@
     "agreeTerms": "ביצירת חשבון אתם מסכימים לתנאי השימוש ומדיניות הפרטיות שלנו",
     "loginSuccess": "התחברתם בהצלחה",
     "registerSuccess": "החשבון נוצר בהצלחה",
-    "logoutSuccess": "התנתקתם"
+    "logoutSuccess": "התנתקתם",
+    "role": "סוג חשבון",
+    "buyer": "קונה",
+    "agent": "סוכן",
+    "loginBtn": "היכנס",
+    "registerBtn": "צור חשבון",
+    "fillAllFields": "אנא מלא את כל השדות",
+    "invalidCredentials": "דוא\"ל או סיסמה לא חוקיים"
   },
   "validation": {
     "required": "שדה זה הוא חובה",
@@ -278,7 +307,7 @@
     "submit": "שליחה",
     "language": "שפה",
     "arabic": "العربية",
-    "english": "English",
+    "english": "אנגלית",
     "back": "חזרה",
     "next": "הבא",
     "previous": "הקודם",
@@ -296,7 +325,14 @@
     "remove": "הסרה",
     "actions": "פעולות",
     "active": "פעיל",
-    "inactive": "לא פעיל"
+    "inactive": "לא פעיל",
+    "loadMore": "טען עוד",
+    "errorOccurred": "אירעה שגיאה",
+    "yes": "כן",
+    "no": "לא",
+    "sar": "SAR",
+    "perNight": "ללילה",
+    "perMonth": "לחודש"
   },
   "listing": {
     "forSale": "למכירה",
@@ -363,7 +399,34 @@
       "expired": "פג תוקף",
       "draft": "טיוטה",
       "archived": "בארכיון"
-    }
+    },
+    "sale": "מבצע",
+    "rent": "השכרה",
+    "bedrooms": "מיטות",
+    "bathrooms": "אמבטיות",
+    "propertyTypeLabel": "הקלד",
+    "noDescription": "אין תיאור.",
+    "locationNotSpecified": "מיקום לא צוין",
+    "similarProperties": "מאפיינים דומים",
+    "bookNow": "הזמן עכשיו",
+    "saveProperty": "שמור נכס",
+    "openInMaps": "פתח במפות",
+    "viewOnMap": "הצג במפה",
+    "tapToOpenMap": "הקש כדי לפתוח מפה",
+    "sendInquiryTitle": "שלח שאילתה",
+    "yourMessage": "ההודעה שלך",
+    "messagePlaceholder": "כתוב את הודעתך כאן...",
+    "preferredContact": "איש קשר מועדף",
+    "phone": "טלפון",
+    "email": "דוא\"ל",
+    "sent": "נשלח",
+    "sentBody": "שאלתך נשלחה",
+    "messageTooShort": "הודעה קצרה מדי",
+    "messageTooShortBody": "ההודעה חייבת להיות באורך 10 תווים לפחות",
+    "actionFailed": "הפעולה נכשלה",
+    "bookingDevTitle": "הזמנה",
+    "bookingDevBody": "זרימת ההזמנות נמצאת בפיתוח. נא לפנות לסוכן.",
+    "removeFromSaved": "להסיר את הנכס הזה מהשמור?"
   },
   "search": {
     "filters": "מסננים",
@@ -399,7 +462,29 @@
       "cta": "שליחת בקשת נכס"
     },
     "drawArea": "סמנו אזור",
-    "clearDrawing": "ניקוי הסימון"
+    "clearDrawing": "ניקוי הסימון",
+    "flexibleDates": "אני גמיש עם תאריכים",
+    "flex1Month": "חודש אחד",
+    "shortTerm": "לטווח קצר",
+    "title": "חפש",
+    "placeholder": "חפש נכסים, עיר...",
+    "noResultsHint": "נסה מסננים שונים",
+    "cityPlaceholder": "ריאד, ג'דה...",
+    "priceRange": "טווח מחירים",
+    "bedrooms": "חדרי שינה",
+    "sort": "מיין",
+    "any": "כל",
+    "all": "הכל",
+    "sale": "מבצע",
+    "rent": "השכרה",
+    "apartment": "Apt",
+    "villa": "וילה",
+    "land": "קרקע",
+    "chalet": "בקתה",
+    "farm": "חווה",
+    "sortNewest": "הכי חדש",
+    "sortPriceAsc": "מחיר ↑",
+    "sortPriceDesc": "מחיר ↓"
   },
   "home": {
     "heroTitle": "מצאו את הבית המושלם שלכם",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} מודעות נמצאו",
     "clearFilters": "ניקוי הכל",
     "results": "תוצאות",
-    "loadMoreListings": "טעינת מודעות נוספות"
+    "loadMoreListings": "טעינת מודעות נוספות",
+    "latestListings": "רישומים אחרונים",
+    "featuredProperties": "נכסים מומלצים",
+    "seeAll": "ראה הכל",
+    "quickAccess": "גישה מהירה",
+    "stays": "נשאר",
+    "hotels": "מלונות",
+    "market": "שוק",
+    "saved": "נשמר",
+    "tagline": "פרימייר נדל\"ן",
+    "categories": {
+      "all": "הכל",
+      "sale": "למכירה",
+      "rent": "להשכרה",
+      "chalets": "בקתות",
+      "villas": "וילות",
+      "apartments": "דירות",
+      "land": "קרקע"
+    }
   },
   "empty": {
     "noListings": "אין עדיין מודעות",
@@ -551,15 +654,75 @@
     "recentActivity": "פעילות אחרונה",
     "browseListings": "עיון במודעות",
     "goToDashboard": "מעבר ללוח הבקרה",
-    "profileUpdated": "הפרופיל עודכן"
+    "profileUpdated": "הפרופיל עודכן",
+    "title": "החשבון שלי",
+    "signIn": "היכנס",
+    "welcome": "ברוכים הבאים לאולמה",
+    "signInPrompt": "היכנס כדי לגשת לחשבון שלך",
+    "createAccount": "צור חשבון",
+    "agentDashboard": "לוח המחוונים של הסוכן",
+    "myListings": "הרישומים שלי",
+    "addListing": "הוסף רישום",
+    "wallet": "ארנק",
+    "commissions": "עמלות",
+    "myBookings": "ההזמנות שלי",
+    "myInquiries": "השאלות שלי",
+    "inquiries": "פניות",
+    "account": "חשבון",
+    "notifications": "הודעות",
+    "language": "שפה",
+    "darkMode": "מצב כהה",
+    "support": "הגדרות ותמיכה",
+    "settings": "הגדרות",
+    "help": "עזרה ושאלות נפוצות",
+    "about": "אודות",
+    "signOut": "צא",
+    "signOutConfirm": "האם אתה בטוח שאתה רוצה לצאת?",
+    "member": "חבר",
+    "agentRole": "סוכן",
+    "admin": "Admin",
+    "chooseLanguage": "בחר שפה",
+    "searchLanguage": "לְחַפֵּשׂ...",
+    "popular": "פופולרי",
+    "allLanguages": "כל השפות",
+    "noLanguageMatch": "אין שפה תואמת"
   },
   "wizard": {
     "basicInfo": "מידע בסיסי",
-    "location": "מיקום",
+    "location": {
+      "street": "רחוב",
+      "buildingNumber": "בניין מס.",
+      "postalCode": "מיקוד",
+      "pinPrompt": "שחרר סיכה כדי להגדיר את המיקום המדויק",
+      "pinLabel": "הצמד",
+      "mapUnavailable": "בוחר סיכות המפה אינו זמין. הקואורדינטות נופלות בחזרה ל-{{lat}}, {{lng}}."
+    },
     "media": "מדיה",
     "amenities": "מתקנים",
-    "compliance": "ציות",
-    "review": "בקרה",
+    "compliance": {
+      "permitNumber": "מספר אישור / FAL",
+      "regaNumber": "מספר רישיון REGA",
+      "permitExpiry": "תוקף ההיתר",
+      "preferredContact": "איש קשר מועדף",
+      "phone": "טלפון",
+      "publicVisibility": "חשיפה ציבורית (בטל את הסימון עבור קישור לא רשום / פרטי בלבד)"
+    },
+    "review": {
+      "summaryTitle": "סיכום רישום",
+      "enhanceWithAi": "שפר עם AI",
+      "enhancing": "משפרים...",
+      "aiStubNotice": "AI החזיר בדל - הגדר את OPENAI_API_KEY בקצה האחורי כדי להשתמש במודל החי.",
+      "descriptionPreview": "תצוגה מקדימה של תיאור",
+      "emptyDescription": "(ריק)",
+      "type": "הקלד",
+      "titleLabel": "כותרת",
+      "bedsBaths": "חדרי שינה / חדרי רחצה",
+      "cityDistrict": "עיר / מחוז",
+      "coordinates": "קואורדינטות",
+      "permit": "היתר",
+      "regaLicense": "רישיון REGA",
+      "visibility": "נראות"
+    },
     "saveDraft": "שמירת טיוטה",
     "submit": "שליחה לבדיקה",
     "submitForReview": "שליחה לבדיקה",
@@ -576,7 +739,103 @@
       "bathrooms": "חדרי רחצה",
       "parking": "חניה",
       "yearBuilt": "שנת בנייה",
-      "furnishing": "ריהוט"
+      "furnishing": "ריהוט",
+      "rentPeriod": "תקופה"
+    },
+    "editListing": "ערוך רישום",
+    "newListing": "רישום חדש",
+    "crumbNew": "חדש",
+    "validation": {
+      "titleRequired": "אנא הוסף כותרת בשפה אחת לפחות.",
+      "descriptionRequired": "אנא הוסף תיאור בשפה אחת לפחות.",
+      "priceRequired": "המחיר חייב להיות גדול מאפס.",
+      "cityRequired": "עיר נדרשת.",
+      "pinRequired": "זרוק סיכה על המפה עבור המיקום.",
+      "imageRequired": "נדרשת לפחות תמונה אחת לפני הפרסום."
+    },
+    "transactionType": {
+      "sale": "מבצע",
+      "rent": "השכרה"
+    },
+    "rentPeriod": {
+      "daily": "יומי",
+      "weekly": "שבועי",
+      "monthly": "חודשי",
+      "yearly": "שנתי"
+    },
+    "furnishing": {
+      "unfurnished": "לא מרוהט",
+      "semi_furnished": "מרוהט למחצה",
+      "furnished": "מרוהט"
+    },
+    "visibility": {
+      "public": "ציבורי",
+      "unlisted": "לא רשום"
+    },
+    "amenity": {
+      "pool": "בריכה",
+      "garden": "גן",
+      "gym": "חדר כושר",
+      "elevator": "מעלית",
+      "maidRoom": "חדר עוזרת",
+      "driverRoom": "חדר נהג",
+      "centralAc": "Central AC",
+      "kitchenAppliances": "מוצרי חשמל למטבח",
+      "security": "אבטחה 24/7",
+      "cornerUnit": "יחידה פינתית"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "בריכה",
+      "parking": "חניה",
+      "breakfast": "ארוחת בוקר",
+      "ac": "מיזוג אוויר",
+      "kitchen": "מטבח",
+      "tv": "טלוויזיה",
+      "washer": "מכונת כביסה",
+      "workspace": "סביבת עבודה",
+      "petsAllowed": "חיות מחמד מותרות",
+      "smokingAllowed": "מותר לעשן",
+      "wheelchairAccessible": "נגיש לכיסא גלגלים"
+    },
+    "shortTerm": {
+      "title": "פרטי השכרה לטווח קצר",
+      "subtitle": "האורחים יזמינו את הרישום הזה עד הלילה. הגדר כללי שהייה, שירותים ושכבות תמחור.",
+      "dailyRate": "תעריף יומי (SAR)",
+      "weeklyRate": "תעריף שבועי (SAR, אופציונלי)",
+      "minimumStay": "מינימום שהייה (לילות)",
+      "maxGuests": "מקסימום אורחים",
+      "checkIn": "צ'ק-אין",
+      "checkOut": "צ'ק-אאוט",
+      "cancellationPolicy": "מדיניות ביטול",
+      "cancelFlexible": "גמיש - החזר מלא עד 24 שעות לפני",
+      "cancelModerate": "בינוני - החזר מלא עד 5 ימים לפני",
+      "cancelStrict": "קפדנית — החזר של 50% עד 7 ימים לפני",
+      "starRating": "דירוג כוכבים",
+      "hotelName": "שם המלון",
+      "instantBook": "ספר מיידי",
+      "instantBookHint": "הזמנות מאושרות אוטומטית ללא אישורך. השבת תחילה לבדוק כל בקשה.",
+      "amenities": "שירותים",
+      "houseRules": "חוקי בית",
+      "houseRulesPlaceholder": "לְמָשָׁל בלי מסיבות, שעות שקט אחרי 22:00, אסור לעשן בתוך הבית..."
+    },
+    "mediaStep": {
+      "images": "תמונות",
+      "imageDropHint": "גרור ושחרר תמונות כאן, או לחץ כדי לבחור. JPEG / PNG / WebP עד 10 MB.",
+      "photoAlt": "תמונת רישום",
+      "setCover": "הגדר ככריכה",
+      "cover": "כריכה",
+      "videoTour": "סיור וידאו",
+      "videoDropHint": "גרור קובץ MP4 או לחץ כדי לבחור. מקסימום 500 מגה-בייט.",
+      "videoUploaded": "הועלה סרטון — {{name}}",
+      "vrTitle": "🥽 קישור לסיור במציאות מדומה",
+      "vrPlaceholder": "https://... (Matterport, Kuula וכו')",
+      "modelTitle": "מודל 3D / AR (.glb או .gltf)",
+      "modelDropHint": "העלה דגם GLB/GLTF כדי לאפשר AR. מקסימום 50 מגה-בייט.",
+      "modelUploaded": "הדגם הועלה — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "הקש על השירותים שהנכס הזה מציע. אנו נציג אותם כמסננים בחיפוש."
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "מאושר",
       "paid": "שולם",
       "disputed": "במחלוקת"
+    },
+    "oath": {
+      "dialogTitle": "מחויבות עמלה",
+      "translatedOath": "אני מתחייב בזאת לשלם את העמלה המוסכמת עם השלמת עסקת מקרקעין זו, ומכיר באחריות זו בפני ה' והחוק.",
+      "breakdownTitle": "פירוט עמלות",
+      "agentListingBreakdown": "עמלת פלטפורמה: <strong>0.5%</strong> מערך העסקה, לתשלום עם מכירה או סגירת חכירה מוצלחת.",
+      "buyerAgentCommission": "עמלת סוכן: <strong>2.5%</strong> מערך העסקה.",
+      "buyerPlatformFee": "עמלת פלטפורמה: <strong>0.5%</strong> מערך העסקה.",
+      "acceptError": "לא ניתן היה להקליט את הקבלה שלך",
+      "agreeCheckbox": "אני מסכים לתנאי העמלה",
+      "decline": "אני לא מסכים",
+      "saving": "שומר...",
+      "acceptCta": "אני מקבל ומתחייב"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ שולם",
       "failed": "נכשל",
       "rejected": "נדחה"
-    }
+    },
+    "balance": "יתרה נוכחית",
+    "withdraw": "תשלום",
+    "noTransactionsHint": "העסקאות שלך יופיעו כאן",
+    "sar": "SAR",
+    "inDevelopment": "תכונה זו בפיתוח",
+    "depositTitle": "הפקדה",
+    "payoutTitle": "תשלום",
+    "withdrawal": "משיכה"
   },
   "nafath": {
     "loginWith": "התחברו עם Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "מס' חוזה",
     "viewContract": "צפייה בחוזה",
     "signedThroughEjar": "נחתם דרך Ejar",
-    "noContracts": "אין עדיין חוזי שכירות"
+    "noContracts": "אין עדיין חוזי שכירות",
+    "status": {
+      "draft": "טְיוּטָה",
+      "pending_signatures": "חתימות בהמתנה",
+      "active": "פעיל",
+      "expired": "פג תוקף",
+      "cancelled": "בוטל"
+    }
   },
   "dufaat": {
     "title": "תשלומים של Dufaat",
@@ -911,7 +1198,13 @@
     "nextPayment": "תשלום הבא",
     "installmentsPaid": "תשלומים ששולמו",
     "payNow": "שלמו תשלום",
-    "noPlans": "אין עדיין תוכניות Dufaat"
+    "noPlans": "אין עדיין תוכניות Dufaat",
+    "status": {
+      "active": "פעיל",
+      "completed": "הושלם",
+      "defaulted": "ברירת מחדל",
+      "cancelled": "בוטל"
+    }
   },
   "booking": {
     "myBookings": "ההזמנות שלי",
@@ -961,6 +1254,9 @@
       "confirmed": "מאושר",
       "cancelled": "בוטל",
       "completed": "הושלם"
+    },
+    "calendar": {
+      "maxGuestsHelper": "מקסימום אורחים: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "ביטחון בינוני",
       "low": "ביטחון נמוך"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "חפש לפי שם או התמחות",
+    "allCities": "כל הערים",
+    "cityRiyadh": "ריאד",
+    "cityJeddah": "ג'דה",
+    "cityDammam": "Dammam",
+    "emptyTitle": "אין סוכנים שתואמים לחיפוש שלך",
+    "emptyBody": "נסה שם או עיר אחרים.",
+    "agency": "Eawlma Real Estate",
+    "verified": "מאומת",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} רישומים פעילים",
+    "viewProfile": "צפה בפרופיל"
+  },
+  "myListings": {
+    "countSelected": "{{count}} נבחרו",
+    "activateAll": "הפעל את כל",
+    "deactivateAll": "בטל את כל",
+    "deleteAll": "מחק הכל",
+    "colViews": "צפיות",
+    "colInquiries": "פניות",
+    "boostFeature": "בוסט (תכונה)",
+    "duplicate": "שכפול",
+    "deleteConfirmTitle": "למחוק {{count}} רישומים?",
+    "deleteConfirmDescription": "פעולה זו מוחקת את הרישום בצורה רכה - היא לא תופיע יותר בפומבי."
+  },
+  "saved": {
+    "title": "נשמר",
+    "empty": "אין נכסים שמורים",
+    "emptyPrompt": "שמור נכסים שאתה אוהב על ידי הקשה על ❤️",
+    "signInPrompt": "היכנס כדי לשמור נכסים",
+    "removeTitle": "הסר",
+    "removePrompt": "להסיר את הנכס הזה מהשמור?"
+  },
+  "notifications": {
+    "title": "הודעות",
+    "empty": "אין הודעות",
+    "emptyHint": "ההתראות שלך יופיעו כאן",
+    "markAllRead": "סמן הכל כנקראו",
+    "notification": "הודעה"
+  },
+  "bookings": {
+    "title": "ההזמנות שלי",
+    "host": "כמארח",
+    "guest": "כאורח",
+    "noBookings": "אין עדיין הזמנות",
+    "noBookingsHint": "ההזמנות שלך יופיעו כאן",
+    "checkIn": "צ'ק-אין",
+    "checkOut": "צ'ק-אאוט",
+    "guests": "אורחים",
+    "nights": "לילות",
+    "total": "סך הכל",
+    "status": {
+      "pending": "בהמתנה",
+      "confirmed": "אושר",
+      "cancelled": "בוטל",
+      "completed": "הושלם"
+    }
+  },
+  "tabs": {
+    "home": "דף הבית",
+    "search": "חפש",
+    "saved": "נשמר",
+    "messages": "הודעות",
+    "profile": "פּרוֹפִיל"
   }
 }

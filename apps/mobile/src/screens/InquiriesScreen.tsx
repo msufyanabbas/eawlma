@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, FlatList, TouchableOpacity, RefreshControl,
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -24,6 +24,7 @@ const STATUS_COLORS: Record<string, string> = {
 export default function InquiriesScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const { user } = useAuthStore();
   const isAgent = user?.role === 'agent' || user?.role === 'agency_owner';
   const [tab, setTab] = useState<'received' | 'sent'>(isAgent ? 'received' : 'sent');
@@ -41,7 +42,7 @@ export default function InquiriesScreen({ navigation }: any) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <Header
-        title={isAr ? 'الاستفسارات' : 'Inquiries'}
+        title={t('inquiries.title')}
         onBack={() => navigation.goBack()}
       />
 
@@ -51,13 +52,13 @@ export default function InquiriesScreen({ navigation }: any) {
           { backgroundColor: colors.surface, borderBottomColor: colors.border, flexDirection: isRTL ? 'row-reverse' : 'row' },
         ]}>
           <TabBtn
-            label={isAr ? 'مستلمة' : 'Received'}
+            label={t('inquiries.received')}
             active={tab === 'received'}
             onPress={() => setTab('received')}
             colors={colors}
           />
           <TabBtn
-            label={isAr ? 'مرسلة' : 'Sent'}
+            label={t('inquiries.sent')}
             active={tab === 'sent'}
             onPress={() => setTab('sent')}
             colors={colors}
@@ -86,7 +87,7 @@ export default function InquiriesScreen({ navigation }: any) {
               (isAr && item.listing?.titleAr) ||
               item.listing?.titleEn ||
               item.listing?.titleAr ||
-              (isAr ? 'استفسار' : 'Inquiry');
+              t('inquiries.single');
             return (
               <TouchableOpacity
                 style={[styles.card, { backgroundColor: colors.surface }]}
@@ -127,10 +128,8 @@ export default function InquiriesScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="mail-outline"
-              title={isAr ? 'لا توجد استفسارات' : 'No inquiries yet'}
-              subtitle={isAr
-                ? 'سيظهر سجل الاستفسارات هنا'
-                : 'Your inquiries will appear here'}
+              title={t('inquiries.noInquiriesYet')}
+              subtitle={t('inquiries.appearHere')}
             />
           }
         />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, RefreshControl, ScrollView } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
@@ -10,10 +11,10 @@ import ListingCard from '../components/ListingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 
-// Mirrors the web /hotels page — filters for hotel_room property type.
 export default function HotelsScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, textAlign } = useRTL();
+  const { textAlign } = useRTL();
+  const { t } = useTranslation();
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
     queryKey: ['hotels'],
@@ -29,13 +30,13 @@ export default function HotelsScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'الفنادق' : 'Hotels'} onBack={() => navigation.goBack()} />
+      <Header title={t('hotels.title')} onBack={() => navigation.goBack()} />
       <View style={{ padding: SIZES.lg, backgroundColor: colors.primary }}>
         <Text style={[TYPOGRAPHY.h3, { color: '#FFF', textAlign }]}>
-          {isAr ? 'احجز إقامة فندقية' : 'Book a hotel stay'}
+          {t('hotels.bookStay')}
         </Text>
         <Text style={[TYPOGRAPHY.body, { color: 'rgba(255,255,255,0.85)', marginTop: 4, textAlign }]}>
-          {isAr ? 'غرف فندقية للحجز اليومي' : 'Hotel rooms for nightly stays'}
+          {t('hotels.nightly')}
         </Text>
       </View>
       {isLoading ? (
@@ -55,7 +56,7 @@ export default function HotelsScreen({ navigation }: any) {
           {listings.length === 0 ? (
             <EmptyState
               icon="bed-outline"
-              title={isAr ? 'لا توجد فنادق' : 'No hotels available'}
+              title={t('hotels.noHotels')}
             />
           ) : (
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm }}>

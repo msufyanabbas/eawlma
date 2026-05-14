@@ -110,7 +110,16 @@
     "typeRoom": "غرفة خاصة",
     "typeChalet": "شاليه",
     "typeRestHouse": "استراحة",
-    "typeFarm": "مزرعة"
+    "typeFarm": "مزرعة",
+    "typeAll": "الكل",
+    "chalets": "شاليهات",
+    "farms": "مزارع",
+    "restHouses": "استراحات",
+    "hotelsLabel": "فنادق",
+    "bookNext": "احجز إقامتك القادمة",
+    "subtitleMix": "شاليهات، مزارع، استراحات وفنادق",
+    "noStays": "لا توجد إقامات متاحة",
+    "tryAnother": "جرّب تصنيفاً آخر"
   },
   "hotels": {
     "title": "فنادق",
@@ -128,7 +137,10 @@
     "upTo500": "حتى 500 ر.س",
     "upTo1000": "حتى 1,000 ر.س",
     "upTo2500": "حتى 2,500 ر.س",
-    "hotelChip": "فندق"
+    "hotelChip": "فندق",
+    "bookStay": "احجز إقامة فندقية",
+    "nightly": "غرف فندقية للحجز اليومي",
+    "noHotels": "لا توجد فنادق"
   },
   "agents": {
     "searchPlaceholder": "ابحث بالاسم أو التخصص",
@@ -142,7 +154,18 @@
     "verified": "موثّق",
     "respondsUnder2h": "أقل من ساعتين",
     "activeListingsCount": "{{count}} إعلان نشط",
-    "viewProfile": "عرض الملف الشخصي"
+    "viewProfile": "عرض الملف الشخصي",
+    "agent": "وكيل",
+    "listings": "الإعلانات",
+    "reviews": "التقييمات",
+    "rating": "متوسط ⭐",
+    "noListings": "لا توجد إعلانات",
+    "viewReviews": "عرض التقييمات",
+    "call": "اتصال",
+    "title": "الوكلاء",
+    "listingsShort": "إعلان",
+    "noAgentsFound": "لا يوجد وكلاء",
+    "tryLater": "حاول لاحقاً"
   },
   "messages": {
     "startConversation": "ابدأ المحادثة",
@@ -295,7 +318,16 @@
     "loginBtn": "دخول",
     "registerBtn": "إنشاء حساب",
     "fillAllFields": "يرجى تعبئة جميع الحقول",
-    "invalidCredentials": "بيانات الدخول غير صحيحة"
+    "invalidCredentials": "بيانات الدخول غير صحيحة",
+    "fillRequired": "يرجى تعبئة جميع الحقول المطلوبة",
+    "registerFailed": "فشل التسجيل، حاول مرة أخرى",
+    "pwWeak": "ضعيفة",
+    "pwFair": "متوسطة",
+    "pwGood": "جيدة",
+    "pwStrong": "قوية",
+    "firstNamePlaceholder": "أحمد",
+    "lastNamePlaceholder": "الأحمد",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -615,7 +647,10 @@
       "agents": "وكلاء معتمدون",
       "cities": "مدن",
       "support": "دعم"
-    }
+    },
+    "appAbout": "عن التطبيق",
+    "appDescription": "عالمة منصة عقارية تربط الباحثين عن العقارات بالوكلاء الموثوقين في جميع أنحاء المملكة العربية السعودية. اكتشف عقارك المثالي، احجز إقامة قصيرة، وتواصل مباشرة مع الوكلاء.",
+    "website": "الموقع الإلكتروني"
   },
   "contact": {
     "title": "تواصل معنا",
@@ -850,7 +885,76 @@
     },
     "amenitiesStep": {
       "hint": "اضغط على المرافق التي يوفرها العقار. ستظهر كفلاتر في صفحة البحث."
-    }
+    },
+    "stepProperty": "نوع العقار",
+    "stepDetails": "التفاصيل",
+    "stepLocation": "الموقع",
+    "stepSpecs": "المواصفات",
+    "stepReview": "المراجعة",
+    "stepCount": "الخطوة {{current}} من {{total}}: {{title}}",
+    "addListing": "إضافة إعلان",
+    "transactionType": "نوع المعاملة",
+    "forSale": "للبيع",
+    "forRent": "للإيجار",
+    "propertyType": "نوع العقار",
+    "apartment": "شقة",
+    "villa": "فيلا",
+    "land": "أرض",
+    "chalet": "شاليه",
+    "farm": "مزرعة",
+    "restHouse": "استراحة",
+    "office": "مكتب",
+    "shop": "محل",
+    "titleArLabel": "العنوان بالعربية *",
+    "titleEnLabel": "العنوان بالإنجليزية",
+    "priceLabel": "السعر (ريال) *",
+    "areaLabel": "المساحة (م²)",
+    "descArLabel": "الوصف بالعربية",
+    "descPlaceholder": "وصف تفصيلي للعقار...",
+    "city": "المدينة *",
+    "district": "الحي *",
+    "districtPlaceholder": "مثال: العليا",
+    "bedroomsLabel": "غرف النوم",
+    "bathroomsLabel": "دورات المياه",
+    "reviewListing": "مراجعة الإعلان",
+    "transaction": "نوع المعاملة",
+    "title": "العنوان",
+    "price": "السعر",
+    "bedrooms": "الغرف",
+    "back": "السابق",
+    "next": "التالي",
+    "publish": "نشر الإعلان",
+    "errorTitle": "خطأ",
+    "successTitle": "تم",
+    "fillRequired": "يرجى تعبئة الحقول المطلوبة",
+    "addedSuccess": "تم إضافة الإعلان بنجاح",
+    "ok": "موافق",
+    "somethingWrong": "حدث خطأ",
+    "editTitle": "تعديل الإعلان",
+    "missing": "بيانات ناقصة",
+    "fillBasic": "يرجى تعبئة الحقول الأساسية",
+    "savedTitle": "تم",
+    "savedBody": "تم تحديث الإعلان",
+    "updateFailed": "فشل التحديث",
+    "deleteTitle": "حذف الإعلان",
+    "deleteBody": "هل أنت متأكد؟ لا يمكن التراجع.",
+    "deleteFailed": "فشل الحذف",
+    "delete": "حذف",
+    "deleteListing": "حذف الإعلان",
+    "titleArEdit": "العنوان (عربي) *",
+    "titleEnEdit": "العنوان (إنجليزي)",
+    "transactionTypeShort": "نوع الإعلان",
+    "priceShort": "السعر *",
+    "cityShort": "المدينة",
+    "districtShort": "الحي",
+    "bedsShort": "غرف",
+    "bathsShort": "حمامات",
+    "areaShort": "م²",
+    "description": "الوصف",
+    "saveChanges": "حفظ التغييرات",
+    "sale": "للبيع",
+    "rent": "للإيجار"
+
   },
   "subscription": {
     "title": "الاشتراك",
@@ -913,6 +1017,12 @@
     "nationalIdLabel": "بطاقة الأحوال أو الإقامة (10 أرقام)",
     "verificationNotConfigured": "مفتاح Authentica.sa غير مهيأ على الخادم — تم تسجيل التحقق كقيد المراجعة لأغراض الاختبار. اضبط AUTHENTICA_API_KEY في الخادم لتفعيل التدفق المباشر.",
     "verificationStarted": "بدأ التحقق.",
+    "appearance": "المظهر",
+    "languageRegion": "اللغة والمنطقة",
+    "pushNotifications": "إشعارات الجوال",
+    "emailNotifications": "إشعارات البريد الإلكتروني",
+    "privacyAccount": "الخصوصية والحساب",
+    "areYouSure": "هل أنت متأكد؟",
     "redirectingToAuthentica": "جاري التحويل إلى Authentica.sa…",
     "otpComing": "ستصلك رسالة تحقق قريباً لإكمال العملية.",
     "profileUpdated": "تم تحديث الملف.",
@@ -956,6 +1066,11 @@
     "closeDealError": "تعذّر إغلاق الصفقة — حاول مرة أخرى.",
     "closeDealConfirm": "إغلاق الصفقة وإنشاء العمولة",
     "followingUpRef": "متابعة لاستفسارك بخصوص {{ref}}.",
+    "received": "مستلمة",
+    "sent": "مرسلة",
+    "single": "استفسار",
+    "noInquiriesYet": "لا توجد استفسارات",
+    "appearHere": "سيظهر سجل الاستفسارات هنا",
     "deal": {
       "pendingChip": "بانتظار تأكيد المشتري",
       "agentClosedFor": "✅ أغلق الوكيل الصفقة بقيمة {{value}}",
@@ -989,8 +1104,13 @@
       "pending": "قيد الانتظار",
       "confirmed": "مؤكدة",
       "paid": "مدفوعة",
-      "disputed": "متنازع عليها"
+      "disputed": "متنازع عليها",
+      "cancelled": "ملغاة"
     },
+    "dealValue": "قيمة الصفقة",
+    "commission": "العمولة",
+    "fromTxn": "من {{count}} عملية",
+    "earningsHint": "ستظهر العمولات هنا بعد إغلاق الصفقات",
     "oath": {
       "dialogTitle": "التزام بالأمانة والعمولة",
       "translatedOath": "أتعهد بدفع العمولة المتفق عليها عند إتمام هذه الصفقة العقارية، وأقرّ بهذه المسؤولية أمام الله وأمام القانون.",
@@ -1084,7 +1204,22 @@
     "contactUs": "تواصل معنا",
     "noResultsTitle": "لا توجد إجابات مطابقة",
     "noResultsBody": "جرب كلمة مفتاحية مختلفة، أو تواصل مع فريقنا مباشرة.",
-    "respondsIn": "يستجيب فريقنا خلال 24 ساعة."
+    "respondsIn": "يستجيب فريقنا خلال 24 ساعة.",
+    "faqTitle": "الأسئلة الشائعة",
+    "faqs": {
+      "q1": "كيف أبحث عن عقار؟",
+      "a1": "اضغط على تبويب \"بحث\" في الأسفل، ثم اختر الفلاتر التي تناسبك (السعر، النوع، الموقع).",
+      "q2": "كيف أتواصل مع الوكيل؟",
+      "a2": "افتح صفحة العقار، ثم اضغط على \"إرسال استفسار\" أو اتصل/تواصل عبر واتساب من بطاقة الوكيل.",
+      "q3": "هل خدمة الحجز للشاليهات والمزارع متوفرة؟",
+      "a3": "نعم، افتح أي عقار من نوع شاليه/مزرعة/استراحة، واضغط \"احجز الآن\" لاختيار التواريخ.",
+      "q4": "كيف أحفظ عقار للرجوع إليه لاحقاً؟",
+      "a4": "اضغط على أيقونة القلب في صفحة العقار. ستجد جميع المحفوظات في تبويب \"محفوظات\".",
+      "q5": "هل التطبيق مجاني؟",
+      "a5": "نعم، التطبيق مجاني للباحثين عن العقارات. الوكلاء يدفعون عمولة بعد إتمام الصفقة.",
+      "q6": "كيف أغيّر لغة التطبيق؟",
+      "a6": "من تبويب \"حسابي\" > الإعدادات > اللغة، ثم اختر من بين 38 لغة."
+    }
   },
   "welcome": {
     "step1Title": "هل تريد الشراء أو الإيجار؟",
@@ -1283,7 +1418,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "الحد الأقصى للضيوف: {{count}}"
-    }
+    },
+    "title": "الحجز",
+    "shortTitle": "الحجز",
+    "created": "تم الحجز",
+    "createdBody": "تم إنشاء حجزك. سيتم توجيهك للدفع.",
+    "error": "خطأ",
+    "failed": "فشل الحجز",
+    "invalidDates": "تواريخ غير صحيحة",
+    "invalidDatesBody": "استخدم تنسيق YYYY-MM-DD",
+    "tooShort": "مدة قصيرة",
+    "tooShortBody": "يجب أن يكون الحجز ليلة واحدة على الأقل",
+    "perNight": "ر.س / ليلة",
+    "notesOptional": "ملاحظات للمضيف (اختياري)",
+    "notesPlaceholder": "أي طلبات خاصة...",
+    "totalLabel": "الإجمالي"
   },
   "market": {
     "title": "رؤى السوق",
@@ -1303,7 +1452,10 @@
     "totalListings": "إجمالي الإعلانات",
     "listingCount": "إعلانات نشطة",
     "viewMarket": "عرض السوق",
-    "miniTrend": "اتجاه السوق المحلي"
+    "miniTrend": "اتجاه السوق المحلي",
+    "trendTitle": "اتجاه السعر (12 شهرًا)",
+    "avgByDistrict": "متوسط السعر/م² حسب الحي",
+    "cityPlaceholder": "الرياض، جدة..."
   },
   "errors": {
     "generic": "حدث خطأ غير متوقع",
@@ -1441,5 +1593,12 @@
     "saved": "محفوظات",
     "messages": "رسائل",
     "profile": "حسابي"
+  },
+  "reviews": {
+    "title": "التقييمات",
+    "user": "مستخدم",
+    "ownerReply": "رد المالك:",
+    "empty": "لا توجد تقييمات",
+    "beFirst": "كن أول من يقيّم"
   }
 }

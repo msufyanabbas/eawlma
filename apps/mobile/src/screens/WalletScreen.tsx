@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { walletApi } from '../api';
@@ -16,7 +17,8 @@ import PriceText from '../components/PriceText';
 
 export default function WalletScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
 
   const { data: balanceData, isLoading: balanceLoading, refetch: refetchBalance, isRefetching: bRefetching } =
     useQuery({ queryKey: ['wallet-balance'], queryFn: () => walletApi.getBalance() });
@@ -51,22 +53,16 @@ export default function WalletScreen({ navigation }: any) {
   };
 
   const handleDeposit = () => {
-    Alert.alert(
-      isAr ? 'إيداع' : 'Deposit',
-      isAr ? 'هذه الخاصية قيد التطوير' : 'This feature is in development'
-    );
+    Alert.alert(t('wallet.depositTitle'), t('wallet.inDevelopment'));
   };
 
   const handlePayout = () => {
-    Alert.alert(
-      isAr ? 'سحب' : 'Payout',
-      isAr ? 'هذه الخاصية قيد التطوير' : 'This feature is in development'
-    );
+    Alert.alert(t('wallet.payoutTitle'), t('wallet.inDevelopment'));
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'المحفظة' : 'Wallet'} onBack={() => navigation.goBack()} />
+      <Header title={t('wallet.title')} onBack={() => navigation.goBack()} />
       <FlatList
         data={transactions}
         keyExtractor={(item: any) => item.id}
@@ -78,7 +74,7 @@ export default function WalletScreen({ navigation }: any) {
           <View>
             <View style={[styles.balanceCard, { backgroundColor: colors.primary }]}>
               <Text style={[TYPOGRAPHY.body, { color: 'rgba(255,255,255,0.8)' }]}>
-                {isAr ? 'الرصيد الحالي' : 'Current Balance'}
+                {t('wallet.balance')}
               </Text>
               {balanceLoading ? (
                 <LoadingSpinner inline />
@@ -93,20 +89,20 @@ export default function WalletScreen({ navigation }: any) {
                 <TouchableOpacity style={styles.actionBtn} onPress={handleDeposit}>
                   <Ionicons name="arrow-down-circle-outline" size={20} color="#FFF" />
                   <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>
-                    {isAr ? 'إيداع' : 'Deposit'}
+                    {t('wallet.deposit')}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.actionBtn} onPress={handlePayout}>
                   <Ionicons name="arrow-up-circle-outline" size={20} color="#FFF" />
                   <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>
-                    {isAr ? 'سحب' : 'Payout'}
+                    {t('wallet.withdraw')}
                   </Text>
                 </TouchableOpacity>
               </View>
             </View>
 
             <Text style={[TYPOGRAPHY.h4, { color: colors.text, marginHorizontal: SIZES.lg, marginTop: SIZES.lg, marginBottom: SIZES.md, textAlign }]}>
-              {isAr ? 'سجل المعاملات' : 'Transaction History'}
+              {t('wallet.transactions')}
             </Text>
           </View>
         }
@@ -129,7 +125,7 @@ export default function WalletScreen({ navigation }: any) {
               </View>
               <View style={styles.txInfo}>
                 <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}>
-                  {item.description || (isCredit ? (isAr ? 'إيداع' : 'Deposit') : (isAr ? 'سحب' : 'Withdrawal'))}
+                  {item.description || (isCredit ? t('wallet.txnDeposit') : t('wallet.withdrawal'))}
                 </Text>
                 <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2, textAlign }]}>
                   {item.createdAt ? new Date(item.createdAt).toLocaleDateString() : ''}
@@ -148,8 +144,8 @@ export default function WalletScreen({ navigation }: any) {
           !balanceLoading ? (
             <EmptyState
               icon="receipt-outline"
-              title={isAr ? 'لا توجد معاملات' : 'No transactions'}
-              subtitle={isAr ? 'ستظهر معاملاتك هنا' : 'Your transactions will appear here'}
+              title={t('wallet.noTransactions')}
+              subtitle={t('wallet.noTransactionsHint')}
             />
           ) : null
         }

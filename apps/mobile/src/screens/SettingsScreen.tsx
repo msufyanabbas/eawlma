@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -12,7 +13,8 @@ import Header from '../components/Header';
 
 export default function SettingsScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const { isDarkMode, toggleDarkMode } = useUIStore();
   const { isAuthenticated, logout } = useAuthStore();
   const [pushEnabled, setPushEnabled] = useState(true);
@@ -20,12 +22,12 @@ export default function SettingsScreen({ navigation }: any) {
 
   const handleLogout = () => {
     Alert.alert(
-      isAr ? 'تسجيل الخروج' : 'Sign out',
-      isAr ? 'هل أنت متأكد؟' : 'Are you sure?',
+      t('profile.signOut'),
+      t('settings.areYouSure'),
       [
-        { text: isAr ? 'إلغاء' : 'Cancel', style: 'cancel' },
+        { text: t('common.cancel'), style: 'cancel' },
         {
-          text: isAr ? 'تسجيل الخروج' : 'Sign out',
+          text: t('profile.signOut'),
           style: 'destructive',
           onPress: async () => {
             await logout();
@@ -38,14 +40,14 @@ export default function SettingsScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'الإعدادات' : 'Settings'} onBack={() => navigation.goBack()} />
+      <Header title={t('settings.title')} onBack={() => navigation.goBack()} />
       <ScrollView contentContainerStyle={{ padding: SIZES.lg, paddingBottom: SIZES.xxxl }}>
         <SectionLabel colors={colors} textAlign={textAlign}>
-          {isAr ? 'المظهر' : 'Appearance'}
+          {t('settings.appearance')}
         </SectionLabel>
         <SwitchRow
           icon="moon-outline"
-          label={isAr ? 'الوضع الليلي' : 'Dark mode'}
+          label={t('profile.darkMode')}
           value={isDarkMode}
           onValueChange={toggleDarkMode}
           colors={colors}
@@ -54,11 +56,11 @@ export default function SettingsScreen({ navigation }: any) {
         />
 
         <SectionLabel colors={colors} textAlign={textAlign}>
-          {isAr ? 'اللغة والمنطقة' : 'Language & region'}
+          {t('settings.languageRegion')}
         </SectionLabel>
         <NavRow
           icon="language-outline"
-          label={isAr ? 'اللغة' : 'Language'}
+          label={t('profile.language')}
           onPress={() => navigation.navigate('MainTabs', { screen: 'Profile' })}
           colors={colors}
           isRTL={isRTL}
@@ -66,11 +68,11 @@ export default function SettingsScreen({ navigation }: any) {
         />
 
         <SectionLabel colors={colors} textAlign={textAlign}>
-          {isAr ? 'الإشعارات' : 'Notifications'}
+          {t('profile.notifications')}
         </SectionLabel>
         <SwitchRow
           icon="notifications-outline"
-          label={isAr ? 'إشعارات الجوال' : 'Push notifications'}
+          label={t('settings.pushNotifications')}
           value={pushEnabled}
           onValueChange={setPushEnabled}
           colors={colors}
@@ -79,7 +81,7 @@ export default function SettingsScreen({ navigation }: any) {
         />
         <SwitchRow
           icon="mail-outline"
-          label={isAr ? 'البريد الإلكتروني' : 'Email notifications'}
+          label={t('settings.emailNotifications')}
           value={emailEnabled}
           onValueChange={setEmailEnabled}
           colors={colors}
@@ -88,11 +90,11 @@ export default function SettingsScreen({ navigation }: any) {
         />
 
         <SectionLabel colors={colors} textAlign={textAlign}>
-          {isAr ? 'الخصوصية والحساب' : 'Privacy & account'}
+          {t('settings.privacyAccount')}
         </SectionLabel>
         <NavRow
           icon="shield-checkmark-outline"
-          label={isAr ? 'سياسة الخصوصية' : 'Privacy policy'}
+          label={t('footer.privacyPolicy')}
           onPress={() => navigation.navigate('About')}
           colors={colors}
           isRTL={isRTL}
@@ -100,7 +102,7 @@ export default function SettingsScreen({ navigation }: any) {
         />
         <NavRow
           icon="help-circle-outline"
-          label={isAr ? 'المساعدة' : 'Help'}
+          label={t('profile.help')}
           onPress={() => navigation.navigate('Help')}
           colors={colors}
           isRTL={isRTL}
@@ -108,7 +110,7 @@ export default function SettingsScreen({ navigation }: any) {
         />
         <NavRow
           icon="information-circle-outline"
-          label={isAr ? 'حول التطبيق' : 'About'}
+          label={t('profile.about')}
           onPress={() => navigation.navigate('About')}
           colors={colors}
           isRTL={isRTL}
@@ -129,7 +131,7 @@ export default function SettingsScreen({ navigation }: any) {
           >
             <Ionicons name="log-out-outline" size={20} color={colors.error} />
             <Text style={[TYPOGRAPHY.bodyBold, { color: colors.error, fontSize: SIZES.bodyLg }]}>
-              {isAr ? 'تسجيل الخروج' : 'Sign out'}
+              {t('profile.signOut')}
             </Text>
           </TouchableOpacity>
         )}

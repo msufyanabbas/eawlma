@@ -110,7 +110,16 @@
     "typeRoom": "Private room",
     "typeChalet": "Chalet",
     "typeRestHouse": "Rest house",
-    "typeFarm": "Farm"
+    "typeFarm": "Farm",
+    "typeAll": "All",
+    "chalets": "Chalets",
+    "farms": "Farms",
+    "restHouses": "Rest Houses",
+    "hotelsLabel": "Hotels",
+    "bookNext": "Book your next stay",
+    "subtitleMix": "Chalets, farms, rest houses and hotels",
+    "noStays": "No stays available",
+    "tryAnother": "Try another category"
   },
   "hotels": {
     "title": "Hotels",
@@ -128,7 +137,10 @@
     "upTo500": "Up to 500 SAR",
     "upTo1000": "Up to 1,000 SAR",
     "upTo2500": "Up to 2,500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Book a hotel stay",
+    "nightly": "Hotel rooms for nightly stays",
+    "noHotels": "No hotels available"
   },
   "agents": {
     "searchPlaceholder": "Search by name or specialty",
@@ -142,7 +154,18 @@
     "verified": "Verified",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} active listings",
-    "viewProfile": "View Profile"
+    "viewProfile": "View Profile",
+    "agent": "Agent",
+    "listings": "Listings",
+    "reviews": "Reviews",
+    "rating": "Rating",
+    "noListings": "No listings",
+    "viewReviews": "View Reviews",
+    "call": "Call",
+    "title": "Agents",
+    "listingsShort": "listings",
+    "noAgentsFound": "No agents found",
+    "tryLater": "Try again later"
   },
   "messages": {
     "startConversation": "Start the conversation",
@@ -295,7 +318,16 @@
     "loginBtn": "Sign In",
     "registerBtn": "Create Account",
     "fillAllFields": "Please fill all fields",
-    "invalidCredentials": "Invalid email or password"
+    "invalidCredentials": "Invalid email or password",
+    "fillRequired": "Please fill all required fields",
+    "registerFailed": "Registration failed, try again",
+    "pwWeak": "Weak",
+    "pwFair": "Fair",
+    "pwGood": "Good",
+    "pwStrong": "Strong",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "This field is required",
@@ -615,7 +647,10 @@
       "agents": "Verified agents",
       "cities": "Cities",
       "support": "Support"
-    }
+    },
+    "appAbout": "About the app",
+    "appDescription": "Eawlma is a real estate platform connecting buyers and renters with trusted agents across Saudi Arabia. Discover your perfect property, book a short stay, and chat directly with agents.",
+    "website": "Website"
   },
   "contact": {
     "title": "Get in touch",
@@ -850,7 +885,75 @@
     },
     "amenitiesStep": {
       "hint": "Tap the amenities this property offers. We'll surface them as filters on Search."
-    }
+    },
+    "stepProperty": "Property Type",
+    "stepDetails": "Details",
+    "stepLocation": "Location",
+    "stepSpecs": "Specs",
+    "stepReview": "Review",
+    "stepCount": "Step {{current}} of {{total}}: {{title}}",
+    "addListing": "Add Listing",
+    "transactionType": "Transaction Type",
+    "forSale": "For Sale",
+    "forRent": "For Rent",
+    "propertyType": "Property Type",
+    "apartment": "Apartment",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Farm",
+    "restHouse": "Rest House",
+    "office": "Office",
+    "shop": "Shop",
+    "titleArLabel": "Arabic Title *",
+    "titleEnLabel": "English Title",
+    "priceLabel": "Price (SAR) *",
+    "areaLabel": "Area (m²)",
+    "descArLabel": "Arabic Description",
+    "descPlaceholder": "Detailed property description...",
+    "city": "City *",
+    "district": "District *",
+    "districtPlaceholder": "e.g. Al Olaya",
+    "bedroomsLabel": "Bedrooms",
+    "bathroomsLabel": "Bathrooms",
+    "reviewListing": "Review Listing",
+    "transaction": "Transaction",
+    "title": "Title",
+    "price": "Price",
+    "bedrooms": "Bedrooms",
+    "back": "Back",
+    "next": "Next",
+    "publish": "Publish Listing",
+    "errorTitle": "Error",
+    "successTitle": "Success",
+    "fillRequired": "Please fill required fields",
+    "addedSuccess": "Listing added successfully",
+    "ok": "OK",
+    "somethingWrong": "Something went wrong",
+    "editTitle": "Edit Listing",
+    "missing": "Missing fields",
+    "fillBasic": "Please fill required fields",
+    "savedTitle": "Saved",
+    "savedBody": "Listing updated",
+    "updateFailed": "Failed to update",
+    "deleteTitle": "Delete listing",
+    "deleteBody": "Are you sure? This cannot be undone.",
+    "deleteFailed": "Failed to delete",
+    "delete": "Delete",
+    "deleteListing": "Delete Listing",
+    "titleArEdit": "Title (Arabic) *",
+    "titleEnEdit": "Title (English)",
+    "transactionTypeShort": "Transaction Type",
+    "priceShort": "Price *",
+    "cityShort": "City",
+    "districtShort": "District",
+    "bedsShort": "Beds",
+    "bathsShort": "Baths",
+    "areaShort": "Area",
+    "description": "Description",
+    "saveChanges": "Save Changes",
+    "sale": "Sale",
+    "rent": "Rent"
   },
   "subscription": {
     "title": "Subscription",
@@ -913,6 +1016,12 @@
     "nationalIdLabel": "National ID / Iqama (10 digits)",
     "verificationNotConfigured": "Authentica.sa API key isn't configured on the server — your verification has been recorded as pending for testing. Set AUTHENTICA_API_KEY in the backend to use the live flow.",
     "verificationStarted": "Verification started.",
+    "appearance": "Appearance",
+    "languageRegion": "Language & region",
+    "pushNotifications": "Push notifications",
+    "emailNotifications": "Email notifications",
+    "privacyAccount": "Privacy & account",
+    "areYouSure": "Are you sure?",
     "redirectingToAuthentica": "Redirecting to Authentica.sa…",
     "otpComing": "You'll receive an OTP shortly to complete verification.",
     "profileUpdated": "Profile updated.",
@@ -956,6 +1065,11 @@
     "closeDealError": "Could not close the deal — try again.",
     "closeDealConfirm": "Close Deal & Generate Commission",
     "followingUpRef": "Following up on your inquiry about {{ref}}.",
+    "received": "Received",
+    "sent": "Sent",
+    "single": "Inquiry",
+    "noInquiriesYet": "No inquiries yet",
+    "appearHere": "Your inquiries will appear here",
     "deal": {
       "pendingChip": "Pending Buyer Confirmation",
       "agentClosedFor": "✅ Agent closed deal for {{value}}",
@@ -989,8 +1103,13 @@
       "pending": "Pending",
       "confirmed": "Confirmed",
       "paid": "Paid",
-      "disputed": "Disputed"
+      "disputed": "Disputed",
+      "cancelled": "Cancelled"
     },
+    "dealValue": "Deal value",
+    "commission": "Commission",
+    "fromTxn": "from {{count}} transactions",
+    "earningsHint": "Earnings will appear after closing deals",
     "oath": {
       "dialogTitle": "Commission Commitment",
       "translatedOath": "I hereby commit to paying the agreed commission upon completion of this real estate transaction, and acknowledge this responsibility before God and the law.",
@@ -1084,7 +1203,22 @@
     "contactUs": "Contact us",
     "noResultsTitle": "No matching answers",
     "noResultsBody": "Try a different keyword, or reach out to our team directly.",
-    "respondsIn": "Our team responds within 24 hours."
+    "respondsIn": "Our team responds within 24 hours.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": {
+      "q1": "How do I search for a property?",
+      "a1": "Tap the Search tab at the bottom, then pick filters that suit you (price, type, city).",
+      "q2": "How do I contact an agent?",
+      "a2": "Open the listing, then tap \"Send Inquiry\" or use the call/WhatsApp buttons on the agent card.",
+      "q3": "Can I book chalets and farms?",
+      "a3": "Yes — open any chalet / farm / rest-house listing and tap \"Book Now\" to pick dates.",
+      "q4": "How do I save a property for later?",
+      "a4": "Tap the heart icon on the listing. Saved items live under the Saved tab.",
+      "q5": "Is the app free?",
+      "a5": "Yes — free for property seekers. Agents pay a commission only after a successful deal.",
+      "q6": "How do I change the app language?",
+      "a6": "Profile tab → Settings → Language. Pick from 38 supported languages."
+    }
   },
   "welcome": {
     "step1Title": "Looking to buy or rent?",
@@ -1283,7 +1417,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Max guests: {{count}}"
-    }
+    },
+    "title": "Book your stay",
+    "shortTitle": "Book",
+    "created": "Booking created",
+    "createdBody": "Booking created. You will be redirected to payment.",
+    "error": "Error",
+    "failed": "Booking failed",
+    "invalidDates": "Invalid dates",
+    "invalidDatesBody": "Use the YYYY-MM-DD format",
+    "tooShort": "Too short",
+    "tooShortBody": "Booking must be at least 1 night",
+    "perNight": "SAR / night",
+    "notesOptional": "Notes (optional)",
+    "notesPlaceholder": "Any special requests...",
+    "totalLabel": "Total"
   },
   "market": {
     "title": "Market insights",
@@ -1303,7 +1451,10 @@
     "totalListings": "Total listings",
     "listingCount": "Active listings",
     "viewMarket": "View market",
-    "miniTrend": "Local market trend"
+    "miniTrend": "Local market trend",
+    "trendTitle": "Price trend (12 months)",
+    "avgByDistrict": "Avg ﷼/m² by district",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "An unexpected error occurred",
@@ -1441,5 +1592,12 @@
     "saved": "Saved",
     "messages": "Messages",
     "profile": "Profile"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "user": "User",
+    "ownerReply": "Owner reply:",
+    "empty": "No reviews yet",
+    "beFirst": "Be the first to review"
   }
 }

@@ -6,42 +6,44 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
 import { SIZES, SHADOWS } from '../theme';
 
-const STEPS = [
-  { titleAr: 'نوع العقار', titleEn: 'Property Type' },
-  { titleAr: 'التفاصيل', titleEn: 'Details' },
-  { titleAr: 'الموقع', titleEn: 'Location' },
-  { titleAr: 'المواصفات', titleEn: 'Specs' },
-  { titleAr: 'المراجعة', titleEn: 'Review' },
-];
-
-const TRANSACTION_TYPES = [
-  { labelAr: 'للبيع', labelEn: 'For Sale', value: 'sale' },
-  { labelAr: 'للإيجار', labelEn: 'For Rent', value: 'rent' },
-];
-
-const PROPERTY_TYPES = [
-  { labelAr: 'شقة', labelEn: 'Apartment', value: 'apartment', icon: '🏢' },
-  { labelAr: 'فيلا', labelEn: 'Villa', value: 'villa', icon: '🏡' },
-  { labelAr: 'أرض', labelEn: 'Land', value: 'land', icon: '🏗️' },
-  { labelAr: 'شاليه', labelEn: 'Chalet', value: 'chalet', icon: '🏖️' },
-  { labelAr: 'مزرعة', labelEn: 'Farm', value: 'farm', icon: '🌾' },
-  { labelAr: 'استراحة', labelEn: 'Rest House', value: 'rest_house', icon: '🛖' },
-  { labelAr: 'مكتب', labelEn: 'Office', value: 'office', icon: '🏬' },
-  { labelAr: 'محل', labelEn: 'Shop', value: 'shop', icon: '🏪' },
-];
-
 const CITIES = ['الرياض', 'جدة', 'الدمام', 'مكة المكرمة', 'المدينة المنورة', 'الطائف', 'تبوك', 'أبها'];
 
 export default function AddListingScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, textAlign, backIcon } = useRTL();
+  const { textAlign, backIcon } = useRTL();
+  const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const STEPS = [
+    { title: t('wizard.stepProperty') },
+    { title: t('wizard.stepDetails') },
+    { title: t('wizard.stepLocation') },
+    { title: t('wizard.stepSpecs') },
+    { title: t('wizard.stepReview') },
+  ];
+
+  const TRANSACTION_TYPES = [
+    { label: t('wizard.forSale'), value: 'sale' },
+    { label: t('wizard.forRent'), value: 'rent' },
+  ];
+
+  const PROPERTY_TYPES = [
+    { label: t('wizard.apartment'), value: 'apartment', icon: '🏢' },
+    { label: t('wizard.villa'), value: 'villa', icon: '🏡' },
+    { label: t('wizard.land'), value: 'land', icon: '🏗️' },
+    { label: t('wizard.chalet'), value: 'chalet', icon: '🏖️' },
+    { label: t('wizard.farm'), value: 'farm', icon: '🌾' },
+    { label: t('wizard.restHouse'), value: 'rest_house', icon: '🛖' },
+    { label: t('wizard.office'), value: 'office', icon: '🏬' },
+    { label: t('wizard.shop'), value: 'shop', icon: '🏪' },
+  ];
 
   const [form, setForm] = useState({
     transactionType: 'sale',
@@ -72,10 +74,7 @@ export default function AddListingScreen({ navigation }: any) {
 
   const handleSubmit = async () => {
     if (!form.titleAr || !form.price || !form.city) {
-      Alert.alert(
-        isAr ? 'خطأ' : 'Error',
-        isAr ? 'يرجى تعبئة الحقول المطلوبة' : 'Please fill required fields'
-      );
+      Alert.alert(t('wizard.errorTitle'), t('wizard.fillRequired'));
       return;
     }
     setLoading(true);
@@ -90,14 +89,14 @@ export default function AddListingScreen({ navigation }: any) {
         lng: 46.6753,
       });
       Alert.alert(
-        isAr ? 'تم' : 'Success',
-        isAr ? 'تم إضافة الإعلان بنجاح' : 'Listing added successfully',
-        [{ text: isAr ? 'موافق' : 'OK', onPress: () => navigation.goBack() }]
+        t('wizard.successTitle'),
+        t('wizard.addedSuccess'),
+        [{ text: t('wizard.ok'), onPress: () => navigation.goBack() }]
       );
     } catch (e: any) {
       Alert.alert(
-        isAr ? 'خطأ' : 'Error',
-        e.response?.data?.message || (isAr ? 'حدث خطأ' : 'Something went wrong')
+        t('wizard.errorTitle'),
+        e.response?.data?.message || t('wizard.somethingWrong')
       );
     } finally {
       setLoading(false);
@@ -111,7 +110,7 @@ export default function AddListingScreen({ navigation }: any) {
           <Ionicons name={backIcon as any} size={24} color="#FFF" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>
-          {isAr ? 'إضافة إعلان' : 'Add Listing'}
+          {t('wizard.addListing')}
         </Text>
         <View style={{ width: 40 }} />
       </View>
@@ -127,9 +126,7 @@ export default function AddListingScreen({ navigation }: any) {
           ]} />
         </View>
         <Text style={[styles.progressText, { color: colors.textSecondary }]}>
-          {isAr
-            ? `الخطوة ${step + 1} من ${STEPS.length}: ${STEPS[step].titleAr}`
-            : `Step ${step + 1} of ${STEPS.length}: ${STEPS[step].titleEn}`}
+          {t('wizard.stepCount', { current: step + 1, total: STEPS.length, title: STEPS[step].title })}
         </Text>
       </View>
 
@@ -140,35 +137,35 @@ export default function AddListingScreen({ navigation }: any) {
         {step === 0 && (
           <View>
             <Text style={[styles.stepTitle, { color: colors.text, textAlign }]}>
-              {isAr ? 'نوع المعاملة' : 'Transaction Type'}
+              {t('wizard.transactionType')}
             </Text>
             <View style={styles.typeRow}>
-              {TRANSACTION_TYPES.map(t => (
+              {TRANSACTION_TYPES.map(opt => (
                 <TouchableOpacity
-                  key={t.value}
+                  key={opt.value}
                   style={[
                     styles.typeBtn,
                     { borderColor: colors.border, backgroundColor: colors.surface },
-                    form.transactionType === t.value && {
+                    form.transactionType === opt.value && {
                       borderColor: colors.primary,
                       backgroundColor: colors.primary + '15',
                     }
                   ]}
-                  onPress={() => update('transactionType', t.value)}
+                  onPress={() => update('transactionType', opt.value)}
                 >
                   <Text style={[
                     styles.typeBtnText,
                     { color: colors.textSecondary },
-                    form.transactionType === t.value && { color: colors.primary }
+                    form.transactionType === opt.value && { color: colors.primary }
                   ]}>
-                    {isAr ? t.labelAr : t.labelEn}
+                    {opt.label}
                   </Text>
                 </TouchableOpacity>
               ))}
             </View>
 
             <Text style={[styles.stepTitle, { color: colors.text, textAlign, marginTop: SIZES.xl }]}>
-              {isAr ? 'نوع العقار' : 'Property Type'}
+              {t('wizard.propertyType')}
             </Text>
             <View style={styles.propTypeGrid}>
               {PROPERTY_TYPES.map(p => (
@@ -190,7 +187,7 @@ export default function AddListingScreen({ navigation }: any) {
                     { color: colors.textSecondary },
                     form.propertyType === p.value && { color: colors.primary }
                   ]}>
-                    {isAr ? p.labelAr : p.labelEn}
+                    {p.label}
                   </Text>
                 </TouchableOpacity>
               ))}
@@ -201,7 +198,7 @@ export default function AddListingScreen({ navigation }: any) {
         {step === 1 && (
           <View style={{ gap: SIZES.lg }}>
             <FormField
-              label={isAr ? 'العنوان بالعربية *' : 'Arabic Title *'}
+              label={t('wizard.titleArLabel')}
               value={form.titleAr}
               onChangeText={(v: string) => update('titleAr', v)}
               placeholder="مثال: شقة فاخرة في الرياض"
@@ -209,7 +206,7 @@ export default function AddListingScreen({ navigation }: any) {
               textAlign="right"
             />
             <FormField
-              label={isAr ? 'العنوان بالإنجليزية' : 'English Title'}
+              label={t('wizard.titleEnLabel')}
               value={form.titleEn}
               onChangeText={(v: string) => update('titleEn', v)}
               placeholder="e.g. Luxury apartment in Riyadh"
@@ -217,7 +214,7 @@ export default function AddListingScreen({ navigation }: any) {
               textAlign="left"
             />
             <FormField
-              label={isAr ? 'السعر (ريال) *' : 'Price (SAR) *'}
+              label={t('wizard.priceLabel')}
               value={form.price}
               onChangeText={(v: string) => update('price', v)}
               placeholder="750000"
@@ -226,7 +223,7 @@ export default function AddListingScreen({ navigation }: any) {
               textAlign={textAlign}
             />
             <FormField
-              label={isAr ? 'المساحة (م²)' : 'Area (m²)'}
+              label={t('wizard.areaLabel')}
               value={form.area}
               onChangeText={(v: string) => update('area', v)}
               placeholder="150"
@@ -235,10 +232,10 @@ export default function AddListingScreen({ navigation }: any) {
               textAlign={textAlign}
             />
             <FormField
-              label={isAr ? 'الوصف بالعربية' : 'Arabic Description'}
+              label={t('wizard.descArLabel')}
               value={form.descriptionAr}
               onChangeText={(v: string) => update('descriptionAr', v)}
-              placeholder="وصف تفصيلي للعقار..."
+              placeholder={t('wizard.descPlaceholder')}
               multiline
               colors={colors}
               textAlign="right"
@@ -249,7 +246,7 @@ export default function AddListingScreen({ navigation }: any) {
         {step === 2 && (
           <View style={{ gap: SIZES.lg }}>
             <Text style={[styles.stepTitle, { color: colors.text, textAlign }]}>
-              {isAr ? 'المدينة *' : 'City *'}
+              {t('wizard.city')}
             </Text>
             <View style={styles.citiesGrid}>
               {CITIES.map(city => (
@@ -276,10 +273,10 @@ export default function AddListingScreen({ navigation }: any) {
               ))}
             </View>
             <FormField
-              label={isAr ? 'الحي *' : 'District *'}
+              label={t('wizard.district')}
               value={form.district}
               onChangeText={(v: string) => update('district', v)}
-              placeholder={isAr ? 'مثال: العليا' : 'e.g. Al Olaya'}
+              placeholder={t('wizard.districtPlaceholder')}
               colors={colors}
               textAlign={textAlign}
             />
@@ -291,7 +288,7 @@ export default function AddListingScreen({ navigation }: any) {
             <View style={styles.specsRow}>
               <View style={{ flex: 1 }}>
                 <FormField
-                  label={isAr ? 'غرف النوم' : 'Bedrooms'}
+                  label={t('wizard.bedroomsLabel')}
                   value={form.bedrooms}
                   onChangeText={(v: string) => update('bedrooms', v)}
                   placeholder="3"
@@ -302,7 +299,7 @@ export default function AddListingScreen({ navigation }: any) {
               </View>
               <View style={{ flex: 1 }}>
                 <FormField
-                  label={isAr ? 'دورات المياه' : 'Bathrooms'}
+                  label={t('wizard.bathroomsLabel')}
                   value={form.bathrooms}
                   onChangeText={(v: string) => update('bathrooms', v)}
                   placeholder="2"
@@ -318,16 +315,16 @@ export default function AddListingScreen({ navigation }: any) {
         {step === 4 && (
           <View style={[styles.reviewCard, { backgroundColor: colors.surface }]}>
             <Text style={[styles.reviewTitle, { color: colors.text }]}>
-              {isAr ? 'مراجعة الإعلان' : 'Review Listing'}
+              {t('wizard.reviewListing')}
             </Text>
             {[
-              { label: isAr ? 'نوع المعاملة' : 'Transaction', value: form.transactionType },
-              { label: isAr ? 'نوع العقار' : 'Property Type', value: form.propertyType },
-              { label: isAr ? 'العنوان' : 'Title', value: form.titleAr || form.titleEn },
-              { label: isAr ? 'السعر' : 'Price', value: form.price ? `${Number(form.price).toLocaleString()} ر.س` : '-' },
-              { label: isAr ? 'المدينة' : 'City', value: form.city },
-              { label: isAr ? 'الحي' : 'District', value: form.district },
-              { label: isAr ? 'الغرف' : 'Bedrooms', value: form.bedrooms },
+              { label: t('wizard.transaction'), value: form.transactionType },
+              { label: t('wizard.propertyType'), value: form.propertyType },
+              { label: t('wizard.title'), value: form.titleAr || form.titleEn },
+              { label: t('wizard.price'), value: form.price ? `${Number(form.price).toLocaleString()} ${t('common.sar')}` : '-' },
+              { label: t('wizard.city').replace(' *', ''), value: form.city },
+              { label: t('wizard.district').replace(' *', ''), value: form.district },
+              { label: t('wizard.bedrooms'), value: form.bedrooms },
             ].map(row => (
               <View key={row.label} style={[styles.reviewRow, { borderBottomColor: colors.divider }]}>
                 <Text style={[styles.reviewLabel, { color: colors.textSecondary }]}>{row.label}</Text>
@@ -348,7 +345,7 @@ export default function AddListingScreen({ navigation }: any) {
             onPress={goBack}
           >
             <Text style={[styles.prevBtnText, { color: colors.primary }]}>
-              {isAr ? 'السابق' : 'Back'}
+              {t('wizard.back')}
             </Text>
           </TouchableOpacity>
         )}
@@ -362,8 +359,8 @@ export default function AddListingScreen({ navigation }: any) {
           ) : (
             <Text style={styles.nextBtnText}>
               {step === STEPS.length - 1
-                ? (isAr ? 'نشر الإعلان' : 'Publish Listing')
-                : (isAr ? 'التالي' : 'Next')}
+                ? t('wizard.publish')
+                : t('wizard.next')}
             </Text>
           )}
         </TouchableOpacity>

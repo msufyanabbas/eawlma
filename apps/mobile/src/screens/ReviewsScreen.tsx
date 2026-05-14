@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, FlatList, RefreshControl,
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { reviewsApi } from '../api';
@@ -17,7 +18,8 @@ type Mode = 'listing' | 'agent';
 export default function ReviewsScreen({ navigation, route }: any) {
   const { mode, id } = (route.params || {}) as { mode: Mode; id: string };
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
     queryKey: ['reviews', mode, id],
@@ -35,7 +37,7 @@ export default function ReviewsScreen({ navigation, route }: any) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <Header
-        title={isAr ? 'التقييمات' : 'Reviews'}
+        title={t('reviews.title')}
         onBack={() => navigation.goBack()}
       />
       {isLoading ? (
@@ -55,7 +57,7 @@ export default function ReviewsScreen({ navigation, route }: any) {
           }
           renderItem={({ item }: any) => {
             const reviewer = item.reviewer || item.author || item.user || {};
-            const name = `${reviewer.firstName || ''} ${reviewer.lastName || ''}`.trim() || (isAr ? 'مستخدم' : 'User');
+            const name = `${reviewer.firstName || ''} ${reviewer.lastName || ''}`.trim() || t('reviews.user');
             return (
               <View style={[styles.card, { backgroundColor: colors.surface }]}>
                 <View style={[styles.header, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
@@ -82,7 +84,7 @@ export default function ReviewsScreen({ navigation, route }: any) {
                 {item.reply && (
                   <View style={[styles.reply, { backgroundColor: colors.primary + '08', borderLeftColor: colors.primary }]}>
                     <Text style={[TYPOGRAPHY.small, { color: colors.primary, fontWeight: '700', textAlign }]}>
-                      {isAr ? 'رد المالك:' : 'Owner reply:'}
+                      {t('reviews.ownerReply')}
                     </Text>
                     <Text style={[TYPOGRAPHY.body, { color: colors.text, marginTop: 4, textAlign }]}>
                       {item.reply}
@@ -95,8 +97,8 @@ export default function ReviewsScreen({ navigation, route }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="star-outline"
-              title={isAr ? 'لا توجد تقييمات' : 'No reviews yet'}
-              subtitle={isAr ? 'كن أول من يقيّم' : 'Be the first to review'}
+              title={t('reviews.empty')}
+              subtitle={t('reviews.beFirst')}
             />
           }
         />

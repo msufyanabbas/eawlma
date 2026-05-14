@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Alert, ActivityIndicator, Platform,
 } from 'react-native';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -27,6 +28,7 @@ export default function BookingScreen({ navigation, route }: any) {
   const { listingId, listing: passedListing } = route.params || {};
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
 
   const { data, isLoading } = useQuery({
@@ -59,20 +61,16 @@ export default function BookingScreen({ navigation, route }: any) {
     onSuccess: (resp: any) => {
       const paymentUrl = resp?.paymentUrl || resp?.data?.paymentUrl;
       Alert.alert(
-        isAr ? 'تم الحجز' : 'Booking created',
-        isAr
-          ? 'تم إنشاء حجزك. سيتم توجيهك للدفع.'
-          : 'Booking created. You will be redirected to payment.',
+        t('booking.created'),
+        t('booking.createdBody'),
         [
           {
-            text: 'OK',
+            text: t('wizard.ok'),
             onPress: () => {
               if (paymentUrl) {
-                // Open payment URL via Linking
                 if (Platform.OS === 'web') {
                   window.location.href = paymentUrl;
                 } else {
-                  // Lazy require to avoid pulling in if unused
                   // eslint-disable-next-line @typescript-eslint/no-var-requires
                   const { Linking } = require('react-native');
                   Linking.openURL(paymentUrl);
@@ -87,8 +85,8 @@ export default function BookingScreen({ navigation, route }: any) {
     },
     onError: (err: any) => {
       Alert.alert(
-        isAr ? 'خطأ' : 'Error',
-        err?.response?.data?.message || (isAr ? 'فشل الحجز' : 'Booking failed'),
+        t('booking.error'),
+        err?.response?.data?.message || t('booking.failed'),
       );
     },
   });
@@ -99,17 +97,11 @@ export default function BookingScreen({ navigation, route }: any) {
       return;
     }
     if (!ISO_DATE.test(checkIn) || !ISO_DATE.test(checkOut)) {
-      Alert.alert(
-        isAr ? 'تواريخ غير صحيحة' : 'Invalid dates',
-        isAr ? 'استخدم تنسيق YYYY-MM-DD' : 'Use the YYYY-MM-DD format',
-      );
+      Alert.alert(t('booking.invalidDates'), t('booking.invalidDatesBody'));
       return;
     }
     if (nights < 1) {
-      Alert.alert(
-        isAr ? 'مدة قصيرة' : 'Too short',
-        isAr ? 'يجب أن يكون الحجز ليلة واحدة على الأقل' : 'Booking must be at least 1 night',
-      );
+      Alert.alert(t('booking.tooShort'), t('booking.tooShortBody'));
       return;
     }
     create.mutate();
@@ -118,7 +110,7 @@ export default function BookingScreen({ navigation, route }: any) {
   if (isLoading) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background }}>
-        <Header title={isAr ? 'الحجز' : 'Book'} onBack={() => navigation.goBack()} />
+        <Header title={t('booking.shortTitle')} onBack={() => navigation.goBack()} />
         <LoadingSpinner />
       </View>
     );
@@ -126,7 +118,7 @@ export default function BookingScreen({ navigation, route }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'الحجز' : 'Book your stay'} onBack={() => navigation.goBack()} />
+      <Header title={t('booking.title')} onBack={() => navigation.goBack()} />
       <ScrollView contentContainerStyle={{ padding: SIZES.lg, paddingBottom: 140 }}>
         <View style={[styles.card, { backgroundColor: colors.surface, flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
           <SmartImage uri={listingCoverUrl(listing)} style={styles.thumb} fallbackIconSize={28} />
@@ -139,14 +131,14 @@ export default function BookingScreen({ navigation, route }: any) {
             </Text>
             {pricePerNight > 0 && (
               <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary, marginTop: SIZES.xs, textAlign }]}>
-                {pricePerNight.toLocaleString()} {isAr ? 'ر.س / ليلة' : 'SAR / night'}
+                {pricePerNight.toLocaleString()} {t('booking.perNight')}
               </Text>
             )}
           </View>
         </View>
 
         <Section colors={colors} textAlign={textAlign}>
-          {isAr ? 'تاريخ الوصول' : 'Check-in'}
+          {t('booking.checkIn')}
         </Section>
         <TextInput
           value={checkIn}
@@ -157,7 +149,7 @@ export default function BookingScreen({ navigation, route }: any) {
         />
 
         <Section colors={colors} textAlign={textAlign}>
-          {isAr ? 'تاريخ المغادرة' : 'Check-out'}
+          {t('booking.checkOut')}
         </Section>
         <TextInput
           value={checkOut}
@@ -168,7 +160,7 @@ export default function BookingScreen({ navigation, route }: any) {
         />
 
         <Section colors={colors} textAlign={textAlign}>
-          {isAr ? 'عدد الضيوف' : 'Guests'}
+          {t('booking.guests')}
         </Section>
         <TextInput
           value={guests}
@@ -180,13 +172,13 @@ export default function BookingScreen({ navigation, route }: any) {
         />
 
         <Section colors={colors} textAlign={textAlign}>
-          {isAr ? 'ملاحظات للمضيف (اختياري)' : 'Notes (optional)'}
+          {t('booking.notesOptional')}
         </Section>
         <TextInput
           value={notes}
           onChangeText={setNotes}
           multiline
-          placeholder={isAr ? 'أي طلبات خاصة...' : 'Any special requests...'}
+          placeholder={t('booking.notesPlaceholder')}
           placeholderTextColor={colors.textSecondary}
           style={[
             styles.input,
@@ -198,20 +190,20 @@ export default function BookingScreen({ navigation, route }: any) {
         {nights > 0 && (
           <View style={[styles.breakdown, { backgroundColor: colors.surface }]}>
             <BreakdownRow
-              label={`${pricePerNight.toLocaleString()} × ${nights} ${isAr ? 'ليلة' : 'nights'}`}
+              label={`${pricePerNight.toLocaleString()} × ${nights} ${t('booking.nights')}`}
               value={subtotal}
               colors={colors}
               isRTL={isRTL}
             />
             <BreakdownRow
-              label={isAr ? 'رسوم الخدمة' : 'Service fee'}
+              label={t('booking.serviceFee')}
               value={serviceFee}
               colors={colors}
               isRTL={isRTL}
             />
             <View style={[styles.divider, { backgroundColor: colors.divider }]} />
             <BreakdownRow
-              label={isAr ? 'الإجمالي' : 'Total'}
+              label={t('booking.totalLabel')}
               value={total}
               colors={colors}
               isRTL={isRTL}
@@ -231,7 +223,7 @@ export default function BookingScreen({ navigation, route }: any) {
             <ActivityIndicator color="#FFF" />
           ) : (
             <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
-              {isAr ? 'احجز الآن' : 'Book Now'}
+              {t('booking.bookNow')}
             </Text>
           )}
         </TouchableOpacity>

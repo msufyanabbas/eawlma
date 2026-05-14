@@ -5,32 +5,32 @@ import {
   KeyboardAvoidingView, Platform, Alert,
 } from 'react-native';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { listingsApi } from '../api';
-import { useRTL } from '../hooks/useRTL';
 import { useTheme } from '../hooks/useTheme';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const TX_TYPES = [
-  { value: 'sale', labelAr: 'للبيع', labelEn: 'Sale' },
-  { value: 'rent', labelAr: 'للإيجار', labelEn: 'Rent' },
-];
-
-const PROPERTY_TYPES = [
-  { value: 'apartment', labelAr: 'شقة', labelEn: 'Apartment' },
-  { value: 'villa', labelAr: 'فيلا', labelEn: 'Villa' },
-  { value: 'land', labelAr: 'أرض', labelEn: 'Land' },
-  { value: 'chalet', labelAr: 'شاليه', labelEn: 'Chalet' },
-  { value: 'farm', labelAr: 'مزرعة', labelEn: 'Farm' },
-];
-
 export default function EditListingScreen({ navigation, route }: any) {
   const { id } = route.params;
-  const { isAr } = useRTL();
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const qc = useQueryClient();
   const [submitting, setSubmitting] = useState(false);
+
+  const TX_TYPES = [
+    { value: 'sale', label: t('wizard.sale') },
+    { value: 'rent', label: t('wizard.rent') },
+  ];
+
+  const PROPERTY_TYPES = [
+    { value: 'apartment', label: t('wizard.apartment') },
+    { value: 'villa', label: t('wizard.villa') },
+    { value: 'land', label: t('wizard.land') },
+    { value: 'chalet', label: t('wizard.chalet') },
+    { value: 'farm', label: t('wizard.farm') },
+  ];
 
   const { data, isLoading } = useQuery({
     queryKey: ['listing', id],
@@ -69,10 +69,7 @@ export default function EditListingScreen({ navigation, route }: any) {
 
   const handleSave = async () => {
     if (!titleAr.trim() || !price.trim()) {
-      Alert.alert(
-        isAr ? 'بيانات ناقصة' : 'Missing fields',
-        isAr ? 'يرجى تعبئة الحقول الأساسية' : 'Please fill required fields'
-      );
+      Alert.alert(t('wizard.missing'), t('wizard.fillBasic'));
       return;
     }
     setSubmitting(true);
@@ -93,14 +90,14 @@ export default function EditListingScreen({ navigation, route }: any) {
       qc.invalidateQueries({ queryKey: ['listing', id] });
       qc.invalidateQueries({ queryKey: ['my-listings'] });
       Alert.alert(
-        isAr ? 'تم' : 'Saved',
-        isAr ? 'تم تحديث الإعلان' : 'Listing updated',
-        [{ text: 'OK', onPress: () => navigation.goBack() }]
+        t('wizard.savedTitle'),
+        t('wizard.savedBody'),
+        [{ text: t('wizard.ok'), onPress: () => navigation.goBack() }]
       );
     } catch (e: any) {
       Alert.alert(
-        isAr ? 'خطأ' : 'Error',
-        e.response?.data?.message || (isAr ? 'فشل التحديث' : 'Failed to update')
+        t('wizard.errorTitle'),
+        e.response?.data?.message || t('wizard.updateFailed')
       );
     } finally {
       setSubmitting(false);
@@ -109,12 +106,12 @@ export default function EditListingScreen({ navigation, route }: any) {
 
   const handleDelete = () => {
     Alert.alert(
-      isAr ? 'حذف الإعلان' : 'Delete listing',
-      isAr ? 'هل أنت متأكد؟ لا يمكن التراجع.' : 'Are you sure? This cannot be undone.',
+      t('wizard.deleteTitle'),
+      t('wizard.deleteBody'),
       [
-        { text: isAr ? 'إلغاء' : 'Cancel', style: 'cancel' },
+        { text: t('common.cancel'), style: 'cancel' },
         {
-          text: isAr ? 'حذف' : 'Delete',
+          text: t('wizard.delete'),
           style: 'destructive',
           onPress: async () => {
             try {
@@ -122,7 +119,7 @@ export default function EditListingScreen({ navigation, route }: any) {
               qc.invalidateQueries({ queryKey: ['my-listings'] });
               navigation.goBack();
             } catch {
-              Alert.alert(isAr ? 'خطأ' : 'Error', isAr ? 'فشل الحذف' : 'Failed to delete');
+              Alert.alert(t('wizard.errorTitle'), t('wizard.deleteFailed'));
             }
           },
         },
@@ -133,7 +130,7 @@ export default function EditListingScreen({ navigation, route }: any) {
   if (isLoading) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background }}>
-        <Header title={isAr ? 'تعديل الإعلان' : 'Edit Listing'} onBack={() => navigation.goBack()} />
+        <Header title={t('wizard.editTitle')} onBack={() => navigation.goBack()} />
         <LoadingSpinner />
       </View>
     );
@@ -141,35 +138,35 @@ export default function EditListingScreen({ navigation, route }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'تعديل الإعلان' : 'Edit Listing'} onBack={() => navigation.goBack()} />
+      <Header title={t('wizard.editTitle')} onBack={() => navigation.goBack()} />
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <Field label={isAr ? 'العنوان (عربي) *' : 'Title (Arabic) *'} value={titleAr} onChange={setTitleAr} colors={colors} />
-          <Field label={isAr ? 'العنوان (إنجليزي)' : 'Title (English)'} value={titleEn} onChange={setTitleEn} colors={colors} />
+          <Field label={t('wizard.titleArEdit')} value={titleAr} onChange={setTitleAr} colors={colors} />
+          <Field label={t('wizard.titleEnEdit')} value={titleEn} onChange={setTitleEn} colors={colors} />
 
-          <SectionLabel colors={colors}>{isAr ? 'نوع الإعلان' : 'Transaction Type'}</SectionLabel>
-          <Chips items={TX_TYPES} value={transactionType} onChange={setTransactionType} isAr={isAr} colors={colors} />
+          <SectionLabel colors={colors}>{t('wizard.transactionTypeShort')}</SectionLabel>
+          <Chips items={TX_TYPES} value={transactionType} onChange={setTransactionType} colors={colors} />
 
-          <SectionLabel colors={colors}>{isAr ? 'نوع العقار' : 'Property Type'}</SectionLabel>
-          <Chips items={PROPERTY_TYPES} value={propertyType} onChange={setPropertyType} isAr={isAr} colors={colors} />
+          <SectionLabel colors={colors}>{t('wizard.propertyType')}</SectionLabel>
+          <Chips items={PROPERTY_TYPES} value={propertyType} onChange={setPropertyType} colors={colors} />
 
-          <Field label={isAr ? 'السعر *' : 'Price *'} value={price} onChange={setPrice} keyboard="numeric" colors={colors} />
-          <Field label={isAr ? 'المدينة' : 'City'} value={city} onChange={setCity} colors={colors} />
-          <Field label={isAr ? 'الحي' : 'District'} value={district} onChange={setDistrict} colors={colors} />
+          <Field label={t('wizard.priceShort')} value={price} onChange={setPrice} keyboard="numeric" colors={colors} />
+          <Field label={t('wizard.cityShort')} value={city} onChange={setCity} colors={colors} />
+          <Field label={t('wizard.districtShort')} value={district} onChange={setDistrict} colors={colors} />
 
           <View style={styles.row3}>
             <View style={{ flex: 1 }}>
-              <Field label={isAr ? 'غرف' : 'Beds'} value={bedrooms} onChange={setBedrooms} keyboard="numeric" colors={colors} />
+              <Field label={t('wizard.bedsShort')} value={bedrooms} onChange={setBedrooms} keyboard="numeric" colors={colors} />
             </View>
             <View style={{ flex: 1 }}>
-              <Field label={isAr ? 'حمامات' : 'Baths'} value={bathrooms} onChange={setBathrooms} keyboard="numeric" colors={colors} />
+              <Field label={t('wizard.bathsShort')} value={bathrooms} onChange={setBathrooms} keyboard="numeric" colors={colors} />
             </View>
             <View style={{ flex: 1 }}>
-              <Field label={isAr ? 'م²' : 'Area'} value={area} onChange={setArea} keyboard="numeric" colors={colors} />
+              <Field label={t('wizard.areaShort')} value={area} onChange={setArea} keyboard="numeric" colors={colors} />
             </View>
           </View>
 
-          <SectionLabel colors={colors}>{isAr ? 'الوصف' : 'Description'}</SectionLabel>
+          <SectionLabel colors={colors}>{t('wizard.description')}</SectionLabel>
           <TextInput
             style={[styles.input, styles.textarea, { backgroundColor: colors.surface, color: colors.text, borderColor: colors.border }]}
             value={descAr}
@@ -186,7 +183,7 @@ export default function EditListingScreen({ navigation, route }: any) {
           >
             {submitting
               ? <ActivityIndicator color="#FFF" />
-              : <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>{isAr ? 'حفظ التغييرات' : 'Save Changes'}</Text>}
+              : <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>{t('wizard.saveChanges')}</Text>}
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -194,7 +191,7 @@ export default function EditListingScreen({ navigation, route }: any) {
             onPress={handleDelete}
           >
             <Text style={[TYPOGRAPHY.bodyBold, { color: colors.error }]}>
-              {isAr ? 'حذف الإعلان' : 'Delete Listing'}
+              {t('wizard.deleteListing')}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -226,7 +223,7 @@ function SectionLabel({ children, colors }: any) {
   );
 }
 
-function Chips({ items, value, onChange, isAr, colors }: any) {
+function Chips({ items, value, onChange, colors }: any) {
   return (
     <View style={styles.chipsRow}>
       {items.map((it: any) => {
@@ -242,7 +239,7 @@ function Chips({ items, value, onChange, isAr, colors }: any) {
             onPress={() => onChange(it.value)}
           >
             <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.text, fontWeight: '600' }]}>
-              {isAr ? it.labelAr : it.labelEn}
+              {it.label}
             </Text>
           </TouchableOpacity>
         );

@@ -6,20 +6,17 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks/useTheme';
 import { useRTL } from '../../hooks/useRTL';
 import { useAuthStore } from '../../store/auth.store';
 import { authApi } from '../../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
 
-const ROLES = [
-  { value: 'user', labelAr: 'مستخدم', labelEn: 'Buyer' },
-  { value: 'agent', labelAr: 'وكيل عقاري', labelEn: 'Agent' },
-];
-
 export default function RegisterScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, textAlign, backIcon } = useRTL();
+  const { t } = useTranslation();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,6 +27,11 @@ export default function RegisterScreen({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { setUser, setToken } = useAuthStore();
+
+  const ROLES = [
+    { value: 'user', label: t('auth.buyer') },
+    { value: 'agent', label: t('auth.agent') },
+  ];
 
   const pwStrength = (() => {
     let s = 0;
@@ -42,14 +44,14 @@ export default function RegisterScreen({ navigation }: any) {
   const strengthColor =
     pwStrength <= 1 ? colors.error : pwStrength === 2 ? colors.warning : pwStrength === 3 ? colors.secondary : colors.success;
   const strengthLabel =
-    pwStrength <= 1 ? (isAr ? 'ضعيفة' : 'Weak')
-    : pwStrength === 2 ? (isAr ? 'متوسطة' : 'Fair')
-    : pwStrength === 3 ? (isAr ? 'جيدة' : 'Good')
-    : (isAr ? 'قوية' : 'Strong');
+    pwStrength <= 1 ? t('auth.pwWeak')
+    : pwStrength === 2 ? t('auth.pwFair')
+    : pwStrength === 3 ? t('auth.pwGood')
+    : t('auth.pwStrong');
 
   const handleRegister = async () => {
     if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim()) {
-      setError(isAr ? 'يرجى تعبئة جميع الحقول' : 'Please fill all required fields');
+      setError(t('auth.fillRequired'));
       return;
     }
     setLoading(true);
@@ -68,8 +70,7 @@ export default function RegisterScreen({ navigation }: any) {
       navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
     } catch (e: any) {
       setError(
-        e.response?.data?.message ||
-        (isAr ? 'فشل التسجيل، حاول مرة أخرى' : 'Registration failed, try again')
+        e.response?.data?.message || t('auth.registerFailed')
       );
     } finally {
       setLoading(false);
@@ -89,13 +90,13 @@ export default function RegisterScreen({ navigation }: any) {
 
           <View style={styles.logoSection}>
             <View style={[styles.logo, { backgroundColor: colors.primary }]}>
-              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>عالمة</Text>
+              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>{isAr ? 'عالمة' : 'Eawlma'}</Text>
             </View>
             <Text style={[TYPOGRAPHY.h2, { color: colors.text }]}>
-              {isAr ? 'إنشاء حساب' : 'Create Account'}
+              {t('auth.createAccount')}
             </Text>
             <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: SIZES.sm }]}>
-              {isAr ? 'أهلاً بك في عالمة' : 'Join Eawlma today'}
+              {t('auth.joinEawlma')}
             </Text>
           </View>
 
@@ -110,26 +111,26 @@ export default function RegisterScreen({ navigation }: any) {
             <View style={styles.row}>
               <Field
                 flex
-                label={isAr ? 'الاسم الأول' : 'First Name'}
+                label={t('auth.firstName')}
                 value={firstName}
                 onChange={setFirstName}
-                placeholder={isAr ? 'أحمد' : 'John'}
+                placeholder={t('auth.firstNamePlaceholder')}
                 colors={colors}
                 textAlign={textAlign}
               />
               <Field
                 flex
-                label={isAr ? 'اسم العائلة' : 'Last Name'}
+                label={t('auth.lastName')}
                 value={lastName}
                 onChange={setLastName}
-                placeholder={isAr ? 'الأحمد' : 'Doe'}
+                placeholder={t('auth.lastNamePlaceholder')}
                 colors={colors}
                 textAlign={textAlign}
               />
             </View>
 
             <Field
-              label={isAr ? 'البريد الإلكتروني' : 'Email'}
+              label={t('auth.email')}
               value={email}
               onChange={setEmail}
               placeholder="example@email.com"
@@ -140,10 +141,10 @@ export default function RegisterScreen({ navigation }: any) {
             />
 
             <Field
-              label={isAr ? 'رقم الجوال' : 'Phone'}
+              label={t('auth.phone')}
               value={phone}
               onChange={setPhone}
-              placeholder="+966 5X XXX XXXX"
+              placeholder={t('auth.phonePlaceholder')}
               keyboard="phone-pad"
               colors={colors}
               textAlign={textAlign}
@@ -151,7 +152,7 @@ export default function RegisterScreen({ navigation }: any) {
 
             <View>
               <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
-                {isAr ? 'كلمة المرور' : 'Password'}
+                {t('auth.password')}
               </Text>
               <View style={[styles.passwordBox, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <TextInput
@@ -184,7 +185,7 @@ export default function RegisterScreen({ navigation }: any) {
 
             <View>
               <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
-                {isAr ? 'نوع الحساب' : 'Account Type'}
+                {t('auth.role')}
               </Text>
               <View style={styles.rolesRow}>
                 {ROLES.map(r => {
@@ -200,7 +201,7 @@ export default function RegisterScreen({ navigation }: any) {
                       onPress={() => setRole(r.value)}
                     >
                       <Text style={[TYPOGRAPHY.bodyBold, { color: active ? '#FFF' : colors.text }]}>
-                        {isAr ? r.labelAr : r.labelEn}
+                        {r.label}
                       </Text>
                     </TouchableOpacity>
                   );
@@ -217,14 +218,14 @@ export default function RegisterScreen({ navigation }: any) {
                 <ActivityIndicator color="#FFF" />
               ) : (
                 <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
-                  {isAr ? 'إنشاء الحساب' : 'Create Account'}
+                  {t('auth.registerBtn')}
                 </Text>
               )}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.linkBtn} onPress={() => navigation.navigate('Login')}>
               <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
-                {isAr ? 'لديك حساب بالفعل؟ سجل الدخول' : 'Already have an account? Sign in'}
+                {t('auth.alreadyHaveAccount')}
               </Text>
             </TouchableOpacity>
           </View>

@@ -170,14 +170,14 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   }
 
   const amenities: string[] = [];
-  if (listing.hasElevator) amenities.push(isAr ? 'مصعد' : 'Elevator');
-  if (listing.hasPool) amenities.push(isAr ? 'مسبح' : 'Pool');
-  if (listing.hasGarden) amenities.push(isAr ? 'حديقة' : 'Garden');
-  if (listing.hasGym) amenities.push(isAr ? 'صالة رياضية' : 'Gym');
-  if (listing.hasMaidRoom) amenities.push(isAr ? 'غرفة خادمة' : 'Maid Room');
-  if (listing.hasDriverRoom) amenities.push(isAr ? 'غرفة سائق' : 'Driver Room');
-  if (listing.hasCentralAC) amenities.push(isAr ? 'تكييف مركزي' : 'Central AC');
-  if (listing.hasSecurity) amenities.push(isAr ? 'أمن' : 'Security');
+  if (listing.hasElevator) amenities.push(t('wizard.amenity.elevator'));
+  if (listing.hasPool) amenities.push(t('wizard.amenity.pool'));
+  if (listing.hasGarden) amenities.push(t('wizard.amenity.garden'));
+  if (listing.hasGym) amenities.push(t('wizard.amenity.gym'));
+  if (listing.hasMaidRoom) amenities.push(t('wizard.amenity.maidRoom'));
+  if (listing.hasDriverRoom) amenities.push(t('wizard.amenity.driverRoom'));
+  if (listing.hasCentralAC) amenities.push(t('wizard.amenity.centralAc'));
+  if (listing.hasSecurity) amenities.push(t('wizard.amenity.security'));
 
   const primaryLabel = isStay ? t('listing.bookNow') : t('listing.sendInquiry');
 

@@ -16,7 +16,7 @@
     "profile": "Perfil",
     "logout": "Cerrar sesión",
     "dashboard": "Panel",
-    "admin": "Admin",
+    "admin": "Administración",
     "settings": "Ajustes",
     "searchPlaceholder": "Busca por ciudad, distrito o referencia",
     "signIn": "Iniciar sesión",
@@ -127,7 +127,8 @@
     "anyPrice": "Cualquier precio",
     "upTo500": "Hasta 500 SAR",
     "upTo1000": "Hasta 1.000 SAR",
-    "upTo2500": "Hasta 2.500 SAR"
+    "upTo2500": "Hasta 2.500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Inicia la conversación",
@@ -147,7 +148,14 @@
     "showOriginal": "Mostrar original",
     "showTranslation": "Mostrar traducción",
     "online": "En línea",
-    "lastSeen": "Última conexión"
+    "lastSeen": "Última conexión",
+    "title": "Mensajes",
+    "noMessages": "Aún no hay mensajes",
+    "noMessagesPrompt": "Contacte a los agentes desde las páginas de listado",
+    "signInPrompt": "Inicia sesión para ver tus mensajes",
+    "chat": "Charlar",
+    "user": "Usuario",
+    "noMessagesShort": "Sin mensajes"
   },
   "hosting": {
     "title": "Hospedaje",
@@ -166,7 +174,8 @@
     "dailyRate": "Tarifa diaria",
     "weeklyRate": "Tarifa semanal",
     "guestReviews": "Reseñas de huéspedes",
-    "noReviews": "Aún no hay reseñas — aparecerán cuando los huéspedes califiquen su estancia."
+    "noReviews": "Aún no hay reseñas — aparecerán cuando los huéspedes califiquen su estancia.",
+    "guestFallback": "Invitado"
   },
   "buyerDeals": {
     "title": "Mis acuerdos",
@@ -216,7 +225,20 @@
     "favorAgent": "A favor del agente — crear comisión",
     "favorBuyer": "A favor del comprador — cancelar acuerdo",
     "cancelDeal": "Cancelar acuerdo — sin comisión",
-    "resolutionHint": "Ambas partes serán notificadas con estas notas."
+    "resolutionHint": "Ambas partes serán notificadas con estas notas.",
+    "other": "Otro",
+    "buyerLower": "comprador",
+    "agentLower": "agente",
+    "otherLower": "otro",
+    "anonymous": "Anónimo",
+    "resolveTitle": "Resolver disputa",
+    "resolveDesc": "Elija el resultado de esta disputa",
+    "favorAgentDesc": "La comisión será confirmada y pagada al agente.",
+    "favorBuyerDesc": "La comisión será cancelada.",
+    "cancelDealDesc": "Oferta y comisión canceladas",
+    "adminNotes": "Notas administrativas (opcional)",
+    "resolvedSuccess": "Disputa resuelta con éxito",
+    "resolvedError": "No se pudo resolver la disputa"
   },
   "auth": {
     "login": "Iniciar sesión",
@@ -252,7 +274,14 @@
     "agreeTerms": "Al crear una cuenta aceptas nuestros Términos y Política de Privacidad",
     "loginSuccess": "Sesión iniciada con éxito",
     "registerSuccess": "Cuenta creada con éxito",
-    "logoutSuccess": "Sesión cerrada"
+    "logoutSuccess": "Sesión cerrada",
+    "role": "Tipo de cuenta",
+    "buyer": "Comprador",
+    "agent": "Agente",
+    "loginBtn": "Iniciar sesión",
+    "registerBtn": "Crear una cuenta",
+    "fillAllFields": "Por favor complete todos los campos",
+    "invalidCredentials": "Correo electrónico o contraseña no válidos"
   },
   "validation": {
     "required": "Este campo es obligatorio",
@@ -278,7 +307,7 @@
     "submit": "Enviar",
     "language": "Idioma",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Inglés",
     "back": "Atrás",
     "next": "Siguiente",
     "previous": "Anterior",
@@ -296,7 +325,14 @@
     "remove": "Quitar",
     "actions": "Acciones",
     "active": "Activo",
-    "inactive": "Inactivo"
+    "inactive": "Inactivo",
+    "loadMore": "Cargar más",
+    "errorOccurred": "Se produjo un error",
+    "yes": "Sí",
+    "no": "No",
+    "sar": "RAE",
+    "perNight": "por noche",
+    "perMonth": "por mes"
   },
   "listing": {
     "forSale": "En venta",
@@ -311,7 +347,7 @@
     "areaUnit": "m²",
     "price": "Precio",
     "pricePerSqm": "Precio por m²",
-    "currency": "SAR",
+    "currency": "RAE",
     "perMonth": "/mes",
     "perYear": "/año",
     "perDay": "/día",
@@ -363,7 +399,34 @@
       "expired": "Expirado",
       "draft": "Borrador",
       "archived": "Archivado"
-    }
+    },
+    "sale": "Venta",
+    "rent": "Alquilar",
+    "bedrooms": "Camas",
+    "bathrooms": "Balneario",
+    "propertyTypeLabel": "Tipo",
+    "noDescription": "Sin descripción.",
+    "locationNotSpecified": "Ubicación no especificada",
+    "similarProperties": "Propiedades similares",
+    "bookNow": "Reserva ahora",
+    "saveProperty": "Guardar propiedad",
+    "openInMaps": "Abrir en mapas",
+    "viewOnMap": "Ver en el mapa",
+    "tapToOpenMap": "Toca para abrir el mapa",
+    "sendInquiryTitle": "Enviar consulta",
+    "yourMessage": "tu mensaje",
+    "messagePlaceholder": "Escribe tu mensaje aquí...",
+    "preferredContact": "Contacto preferido",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "sent": "Enviado",
+    "sentBody": "Su consulta fue enviada",
+    "messageTooShort": "Mensaje demasiado corto",
+    "messageTooShortBody": "El mensaje debe tener al menos 10 caracteres.",
+    "actionFailed": "La acción falló",
+    "bookingDevTitle": "Reserva",
+    "bookingDevBody": "El flujo de reservas está en desarrollo. Por favor contacte al agente.",
+    "removeFromSaved": "¿Eliminar esta propiedad de guardado?"
   },
   "search": {
     "filters": "Filtros",
@@ -399,7 +462,29 @@
       "cta": "Enviar solicitud"
     },
     "drawArea": "Dibujar una zona",
-    "clearDrawing": "Borrar dibujo"
+    "clearDrawing": "Borrar dibujo",
+    "flexibleDates": "Soy flexible con las fechas.",
+    "flex1Month": "1 mes",
+    "shortTerm": "Corto plazo",
+    "title": "Buscar",
+    "placeholder": "Buscar propiedades, ciudad...",
+    "noResultsHint": "Prueba diferentes filtros",
+    "cityPlaceholder": "Riad, Yeda...",
+    "priceRange": "Gama de precios",
+    "bedrooms": "Dormitorios",
+    "sort": "Clasificar",
+    "any": "Cualquier",
+    "all": "Todo",
+    "sale": "Venta",
+    "rent": "Alquilar",
+    "apartment": "Apto",
+    "villa": "Villa",
+    "land": "Tierra",
+    "chalet": "Chalet",
+    "farm": "Granja",
+    "sortNewest": "El más nuevo",
+    "sortPriceAsc": "Precio ↑",
+    "sortPriceDesc": "Precio ↓"
   },
   "home": {
     "heroTitle": "Encuentra tu hogar ideal",
@@ -438,8 +523,8 @@
     "newestSort": "Más recientes",
     "priceLowSort": "Precio: bajo",
     "priceHighSort": "Precio: alto",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "Tienda de aplicaciones",
+    "googlePlay": "GooglePlay",
     "statListings": "Anuncios",
     "statAgents": "Agentes",
     "statUsers": "Usuarios",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} anuncios encontrados",
     "clearFilters": "Borrar todo",
     "results": "resultados",
-    "loadMoreListings": "Cargar más anuncios"
+    "loadMoreListings": "Cargar más anuncios",
+    "latestListings": "Últimos listados",
+    "featuredProperties": "Propiedades destacadas",
+    "seeAll": "Ver todo",
+    "quickAccess": "Acceso rápido",
+    "stays": "Corsé",
+    "hotels": "Hoteles",
+    "market": "Mercado",
+    "saved": "Guardado",
+    "tagline": "Bienes Raíces de primer nivel",
+    "categories": {
+      "all": "Todo",
+      "sale": "En venta",
+      "rent": "En alquiler",
+      "chalets": "Chalets",
+      "villas": "Villas",
+      "apartments": "Apartamentos",
+      "land": "Tierra"
+    }
   },
   "empty": {
     "noListings": "Aún no hay anuncios",
@@ -551,15 +654,75 @@
     "recentActivity": "Actividad reciente",
     "browseListings": "Explorar anuncios",
     "goToDashboard": "Ir al panel",
-    "profileUpdated": "Perfil actualizado"
+    "profileUpdated": "Perfil actualizado",
+    "title": "Mi cuenta",
+    "signIn": "Iniciar sesión",
+    "welcome": "Bienvenido a Eawlma",
+    "signInPrompt": "Inicia sesión para acceder a tu cuenta",
+    "createAccount": "Crear una cuenta",
+    "agentDashboard": "Panel de agentes",
+    "myListings": "Mis listados",
+    "addListing": "Agregar listado",
+    "wallet": "Billetera",
+    "commissions": "Comisiones",
+    "myBookings": "Mis Reservas",
+    "myInquiries": "Mis consultas",
+    "inquiries": "Consultas",
+    "account": "Cuenta",
+    "notifications": "Notificaciones",
+    "language": "Idioma",
+    "darkMode": "Modo oscuro",
+    "support": "Configuración y soporte",
+    "settings": "Ajustes",
+    "help": "Ayuda y preguntas frecuentes",
+    "about": "Acerca de",
+    "signOut": "Desconectar",
+    "signOutConfirm": "¿Estás seguro de que deseas cerrar sesión?",
+    "member": "Miembro",
+    "agentRole": "Agente",
+    "admin": "Administración",
+    "chooseLanguage": "Elija idioma",
+    "searchLanguage": "Buscar...",
+    "popular": "Popular",
+    "allLanguages": "Todos los idiomas",
+    "noLanguageMatch": "No hay idioma coincidente"
   },
   "wizard": {
     "basicInfo": "Información básica",
-    "location": "Ubicación",
+    "location": {
+      "street": "Calle",
+      "buildingNumber": "Edificio nro.",
+      "postalCode": "Código Postal",
+      "pinPrompt": "Coloca un marcador para establecer la ubicación exacta",
+      "pinLabel": "Alfiler",
+      "mapUnavailable": "Selector de pines de mapa no disponible. Las coordenadas vuelven a {{lat}}, {{lng}}."
+    },
     "media": "Medios",
     "amenities": "Comodidades",
-    "compliance": "Cumplimiento",
-    "review": "Revisión",
+    "compliance": {
+      "permitNumber": "Número de permiso/FAL",
+      "regaNumber": "Número de licencia REGA",
+      "permitExpiry": "Caducidad del permiso",
+      "preferredContact": "Contacto preferido",
+      "phone": "Teléfono",
+      "publicVisibility": "Visibilidad pública (desmarque solo para enlaces no listados/privados)"
+    },
+    "review": {
+      "summaryTitle": "Resumen del listado",
+      "enhanceWithAi": "Mejorar con IA",
+      "enhancing": "Mejorando…",
+      "aiStubNotice": "AI devolvió un código auxiliar: configure OPENAI_API_KEY en el backend para usar el modelo en vivo.",
+      "descriptionPreview": "Vista previa de la descripción",
+      "emptyDescription": "(vacío)",
+      "type": "Tipo",
+      "titleLabel": "Título",
+      "bedsBaths": "Dormitorios / Baños",
+      "cityDistrict": "Ciudad / Distrito",
+      "coordinates": "Coordenadas",
+      "permit": "Permiso",
+      "regaLicense": "licencia REGA",
+      "visibility": "Visibilidad"
+    },
     "saveDraft": "Guardar borrador",
     "submit": "Enviar para revisión",
     "submitForReview": "Enviar para revisión",
@@ -576,7 +739,103 @@
       "bathrooms": "Baños",
       "parking": "Aparcamiento",
       "yearBuilt": "Año de construcción",
-      "furnishing": "Amueblamiento"
+      "furnishing": "Amueblamiento",
+      "rentPeriod": "Período"
+    },
+    "editListing": "Editar listado",
+    "newListing": "Nuevo listado",
+    "crumbNew": "Nuevo",
+    "validation": {
+      "titleRequired": "Por favor agregue un título en al menos un idioma.",
+      "descriptionRequired": "Por favor agregue una descripción en al menos un idioma.",
+      "priceRequired": "El precio debe ser mayor que cero.",
+      "cityRequired": "Se requiere ciudad.",
+      "pinRequired": "Coloque un marcador en el mapa para la ubicación.",
+      "imageRequired": "Se requiere al menos una imagen antes de publicarla."
+    },
+    "transactionType": {
+      "sale": "Venta",
+      "rent": "Alquilar"
+    },
+    "rentPeriod": {
+      "daily": "A diario",
+      "weekly": "Semanalmente",
+      "monthly": "Mensual",
+      "yearly": "Anual"
+    },
+    "furnishing": {
+      "unfurnished": "Sin muebles",
+      "semi_furnished": "Semi-amueblado",
+      "furnished": "Amueblado"
+    },
+    "visibility": {
+      "public": "Público",
+      "unlisted": "No estante en la lista"
+    },
+    "amenity": {
+      "pool": "Piscina",
+      "garden": "Jardín",
+      "gym": "Gimnasia",
+      "elevator": "Ascensor",
+      "maidRoom": "cuarto de servicio",
+      "driverRoom": "Sala del conductor",
+      "centralAc": "Aire acondicionado centralizado",
+      "kitchenAppliances": "Electrodomésticos de cocina",
+      "security": "seguridad 24 horas al día, 7 días a la semana",
+      "cornerUnit": "Unidad de esquina"
+    },
+    "shortTermAmenity": {
+      "wifi": "wifi",
+      "pool": "Piscina",
+      "parking": "Aparcamiento",
+      "breakfast": "Desayuno",
+      "ac": "Aire acondicionado",
+      "kitchen": "Cocina",
+      "tv": "TELEVISOR",
+      "washer": "Arandela",
+      "workspace": "Espacio de trabajo",
+      "petsAllowed": "Se admiten mascotas",
+      "smokingAllowed": "permitido fumar",
+      "wheelchairAccessible": "Accesible para sillas de ruedas"
+    },
+    "shortTerm": {
+      "title": "Detalles del alquiler a corto plazo",
+      "subtitle": "Los huéspedes reservarán este alojamiento por la noche. Configure reglas de estadía, servicios y niveles de precios.",
+      "dailyRate": "Tarifa diaria (SAR)",
+      "weeklyRate": "Tarifa semanal (SAR, opcional)",
+      "minimumStay": "Estancia mínima (noches)",
+      "maxGuests": "Invitados máximos",
+      "checkIn": "Registrarse",
+      "checkOut": "Verificar",
+      "cancellationPolicy": "Política de cancelación",
+      "cancelFlexible": "Flexible: reembolso completo hasta 24 horas antes",
+      "cancelModerate": "Moderado: reembolso completo hasta 5 días antes",
+      "cancelStrict": "Estricto: reembolso del 50 % hasta 7 días antes",
+      "starRating": "Calificación de estrellas",
+      "hotelName": "Nombre del hotel",
+      "instantBook": "Reserva inmediata",
+      "instantBookHint": "Las reservas se confirman automáticamente sin su aprobación. Deshabilite para revisar cada solicitud primero.",
+      "amenities": "Comodidades",
+      "houseRules": "Reglas de la casa",
+      "houseRulesPlaceholder": "p.ej. No hay fiestas, horas de silencio después de las 10 p.m., no fumar en el interior..."
+    },
+    "mediaStep": {
+      "images": "Imágenes",
+      "imageDropHint": "Arrastra y suelta fotos aquí o haz clic para elegir. JPEG/PNG/WebP hasta 10 MB.",
+      "photoAlt": "Foto de listado",
+      "setCover": "Establecer como portada",
+      "cover": "Cubrir",
+      "videoTour": "Vídeo recorrido",
+      "videoDropHint": "Arrastra un archivo MP4 o haz clic para elegir. Máximo 500 MB.",
+      "videoUploaded": "Vídeo subido: {{nombre}}",
+      "vrTitle": "🥽 Enlace del Tour de Realidad Virtual",
+      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "modelTitle": "Modelo 3D/AR (.glb o .gltf)",
+      "modelDropHint": "Cargue un modelo GLB/GLTF para habilitar AR. Máximo 50 MB.",
+      "modelUploaded": "Modelo subido: {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Toca las comodidades que ofrece esta propiedad. Los mostraremos como filtros en la Búsqueda."
     }
   },
   "subscription": {
@@ -649,7 +908,7 @@
     "title": "Consultas",
     "noResults": "Ninguna consulta coincide con este filtro",
     "empty": "Ninguna consulta coincide con este filtro",
-    "lead": "Lead",
+    "lead": "Dirigir",
     "listing": "Anuncio",
     "contact": "Contacto",
     "date": "Fecha",
@@ -717,6 +976,19 @@
       "confirmed": "Confirmada",
       "paid": "Pagada",
       "disputed": "Disputada"
+    },
+    "oath": {
+      "dialogTitle": "Compromiso de la Comisión",
+      "translatedOath": "Por la presente me comprometo a pagar la comisión acordada al finalizar esta transacción inmobiliaria, y reconozco esta responsabilidad ante Dios y la ley.",
+      "breakdownTitle": "Desglose de comisiones",
+      "agentListingBreakdown": "Comisión de plataforma: <strong>0,5%</strong> del valor de la transacción, pagadera al cierre exitoso de la venta o del arrendamiento.",
+      "buyerAgentCommission": "Comisión del agente: <strong>2,5%</strong> del valor de la transacción.",
+      "buyerPlatformFee": "Tarifa de plataforma: <strong>0,5%</strong> del valor de la transacción.",
+      "acceptError": "No se pudo registrar su aceptación",
+      "agreeCheckbox": "Acepto los términos de la comisión",
+      "decline": "no estoy de acuerdo",
+      "saving": "Ahorro...",
+      "acceptCta": "Acepto y me comprometo"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ Pagado",
       "failed": "Fallido",
       "rejected": "Rechazado"
-    }
+    },
+    "balance": "Saldo actual",
+    "withdraw": "Pago",
+    "noTransactionsHint": "Tus transacciones aparecerán aquí",
+    "sar": "RAE",
+    "inDevelopment": "Esta característica está en desarrollo.",
+    "depositTitle": "Depósito",
+    "payoutTitle": "Pago",
+    "withdrawal": "Retiro"
   },
   "nafath": {
     "loginWith": "Iniciar sesión con Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Contrato n.º",
     "viewContract": "Ver contrato",
     "signedThroughEjar": "Firmado vía Ejar",
-    "noContracts": "Aún no hay contratos de alquiler"
+    "noContracts": "Aún no hay contratos de alquiler",
+    "status": {
+      "draft": "Borrador",
+      "pending_signatures": "Firmas pendientes",
+      "active": "Activo",
+      "expired": "Venció",
+      "cancelled": "Cancelado"
+    }
   },
   "dufaat": {
     "title": "Pagos a plazos Dufaat",
@@ -911,7 +1198,13 @@
     "nextPayment": "Próximo pago",
     "installmentsPaid": "Cuotas pagadas",
     "payNow": "Pagar cuota",
-    "noPlans": "Aún no hay planes Dufaat"
+    "noPlans": "Aún no hay planes Dufaat",
+    "status": {
+      "active": "Activo",
+      "completed": "Terminado",
+      "defaulted": "Incumplido",
+      "cancelled": "Cancelado"
+    }
   },
   "booking": {
     "myBookings": "Mis reservas",
@@ -961,6 +1254,9 @@
       "confirmed": "Confirmada",
       "cancelled": "Cancelada",
       "completed": "Completada"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Invitados máximos: {{count}}"
     }
   },
   "market": {
@@ -1029,7 +1325,7 @@
     "codePlaceholder": "Código promocional",
     "apply": "Aplicar",
     "checking": "Comprobando…",
-    "discount": "Promo",
+    "discount": "Promoción",
     "applyFailed": "No se pudo aplicar la promoción — contacta con soporte.",
     "createNew": "Crear promoción",
     "editTitle": "Editar código promocional",
@@ -1079,5 +1375,71 @@
       "medium": "Confianza media",
       "low": "Confianza baja"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Buscar por nombre o especialidad",
+    "allCities": "Todas las ciudades",
+    "cityRiyadh": "Riad",
+    "cityJeddah": "Yeda",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Ningún agente coincide con su búsqueda",
+    "emptyBody": "Pruebe con un nombre o ciudad diferente.",
+    "agency": "Bienes raíces",
+    "verified": "Verificado",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} listados activos",
+    "viewProfile": "Ver perfil"
+  },
+  "myListings": {
+    "countSelected": "{{count}} seleccionado",
+    "activateAll": "Activar todo",
+    "deactivateAll": "Desactivar todo",
+    "deleteAll": "eliminar todo",
+    "colViews": "Vistas",
+    "colInquiries": "Consultas",
+    "boostFeature": "Impulso (característica)",
+    "duplicate": "Duplicado",
+    "deleteConfirmTitle": "¿Eliminar {{count}} listados?",
+    "deleteConfirmDescription": "Esta acción elimina temporalmente la lista y ya no aparecerá públicamente."
+  },
+  "saved": {
+    "title": "Guardado",
+    "empty": "No hay propiedades guardadas",
+    "emptyPrompt": "Guarde las propiedades que le gusten tocando ❤️",
+    "signInPrompt": "Inicia sesión para guardar propiedades",
+    "removeTitle": "Eliminar",
+    "removePrompt": "¿Eliminar esta propiedad de guardado?"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "empty": "Sin notificaciones",
+    "emptyHint": "Tus alertas aparecerán aquí",
+    "markAllRead": "Marcar todo como leído",
+    "notification": "Notificación"
+  },
+  "bookings": {
+    "title": "Mis Reservas",
+    "host": "Como anfitrión",
+    "guest": "Como invitado",
+    "noBookings": "Aún no hay reservas",
+    "noBookingsHint": "Tus reservas aparecerán aquí",
+    "checkIn": "Registrarse",
+    "checkOut": "Verificar",
+    "guests": "Huéspedes",
+    "nights": "noches",
+    "total": "Total",
+    "status": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmado",
+      "cancelled": "Cancelado",
+      "completed": "Terminado"
+    }
+  },
+  "tabs": {
+    "home": "Hogar",
+    "search": "Buscar",
+    "saved": "Guardado",
+    "messages": "Mensajes",
+    "profile": "Perfil"
   }
 }

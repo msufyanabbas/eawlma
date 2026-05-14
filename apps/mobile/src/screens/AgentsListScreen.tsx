@@ -4,8 +4,8 @@ import {
 } from 'react-native';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
-import { useRTL } from '../hooks/useRTL';
 import { agentsApi, listingsApi } from '../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import Header from '../components/Header';
@@ -20,7 +20,7 @@ const { width: W } = Dimensions.get('window');
 // via `/agents/:id`. Each owner is annotated with its listing count.
 export default function AgentsListScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr } = useRTL();
+  const { t } = useTranslation();
 
   const discover = useQuery({
     queryKey: ['agents-discover'],
@@ -70,7 +70,7 @@ export default function AgentsListScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'الوكلاء' : 'Agents'} onBack={() => navigation.goBack()} />
+      <Header title={t('agents.title')} onBack={() => navigation.goBack()} />
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -92,7 +92,7 @@ export default function AgentsListScreen({ navigation }: any) {
             const cardWidth = (W - SIZES.lg * 2 - SIZES.sm) / 2;
             const fullName =
               `${item.firstName || ''} ${item.lastName || ''}`.trim() ||
-              (isAr ? 'وكيل' : 'Agent');
+              t('agents.agent');
             return (
               <TouchableOpacity
                 style={[styles.card, { width: cardWidth, backgroundColor: colors.surface, marginBottom: SIZES.sm }]}
@@ -120,7 +120,7 @@ export default function AgentsListScreen({ navigation }: any) {
                 )}
                 <View style={styles.statsRow}>
                   <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>
-                    {item.listingCount} {isAr ? 'إعلان' : 'listings'}
+                    {item.listingCount} {t('agents.listingsShort')}
                   </Text>
                   {item.averageRating != null && (
                     <Text style={[TYPOGRAPHY.caption, { color: colors.warning }]}>
@@ -134,8 +134,8 @@ export default function AgentsListScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="people-outline"
-              title={isAr ? 'لا يوجد وكلاء' : 'No agents found'}
-              subtitle={isAr ? 'حاول لاحقاً' : 'Try again later'}
+              title={t('agents.noAgentsFound')}
+              subtitle={t('agents.tryLater')}
             />
           }
         />

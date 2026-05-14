@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "इओल्मा",
     "tagline": "सऊदी अरब में अपनी आदर्श संपत्ति खोजें"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "कोई भी मूल्य",
     "upTo500": "500 SAR तक",
     "upTo1000": "1,000 SAR तक",
-    "upTo2500": "2,500 SAR तक"
+    "upTo2500": "2,500 SAR तक",
+    "hotelChip": "होटल"
   },
   "messages": {
     "startConversation": "बातचीत शुरू करें",
@@ -147,7 +148,14 @@
     "showOriginal": "मूल दिखाएं",
     "showTranslation": "अनुवाद दिखाएं",
     "online": "ऑनलाइन",
-    "lastSeen": "अंतिम बार देखा गया"
+    "lastSeen": "अंतिम बार देखा गया",
+    "title": "संदेशों",
+    "noMessages": "अभी तक कोई संदेश नहीं",
+    "noMessagesPrompt": "लिस्टिंग पेजों से एजेंटों से संपर्क करें",
+    "signInPrompt": "अपने संदेश देखने के लिए साइन इन करें",
+    "chat": "बात करना",
+    "user": "उपयोगकर्ता",
+    "noMessagesShort": "कोई संदेश नहीं"
   },
   "hosting": {
     "title": "होस्टिंग",
@@ -166,7 +174,8 @@
     "dailyRate": "दैनिक दर",
     "weeklyRate": "साप्ताहिक दर",
     "guestReviews": "मेहमान समीक्षाएं",
-    "noReviews": "अभी तक कोई समीक्षा नहीं — जब मेहमान चेक आउट करते हैं और अपने ठहराव का मूल्यांकन करते हैं, तो वे यहां दिखाई देंगे।"
+    "noReviews": "अभी तक कोई समीक्षा नहीं — जब मेहमान चेक आउट करते हैं और अपने ठहराव का मूल्यांकन करते हैं, तो वे यहां दिखाई देंगे।",
+    "guestFallback": "अतिथि"
   },
   "buyerDeals": {
     "title": "मेरे सौदे",
@@ -216,7 +225,20 @@
     "favorAgent": "एजेंट के पक्ष में — कमीशन बनाएं",
     "favorBuyer": "खरीदार के पक्ष में — सौदा रद्द करें",
     "cancelDeal": "सौदा रद्द करें — कोई कमीशन नहीं",
-    "resolutionHint": "दोनों पक्षों को इन नोट्स के साथ सूचित किया जाएगा।"
+    "resolutionHint": "दोनों पक्षों को इन नोट्स के साथ सूचित किया जाएगा।",
+    "other": "अन्य",
+    "buyerLower": "क्रेता",
+    "agentLower": "प्रतिनिधि",
+    "otherLower": "अन्य",
+    "anonymous": "गुमनाम",
+    "resolveTitle": "विवाद सुलझाएं",
+    "resolveDesc": "इस विवाद का परिणाम चुनें",
+    "favorAgentDesc": "कमीशन की पुष्टि की जाएगी और एजेंट को भुगतान किया जाएगा",
+    "favorBuyerDesc": "कमीशन रद्द कर दिया जायेगा",
+    "cancelDealDesc": "डील और कमीशन दोनों रद्द",
+    "adminNotes": "व्यवस्थापक नोट (वैकल्पिक)",
+    "resolvedSuccess": "विवाद सफलतापूर्वक हल हो गया",
+    "resolvedError": "विवाद सुलझाने में असफल"
   },
   "auth": {
     "login": "साइन इन",
@@ -252,7 +274,14 @@
     "agreeTerms": "खाता बनाकर आप हमारी शर्तों और गोपनीयता नीति से सहमत होते हैं",
     "loginSuccess": "सफलतापूर्वक साइन इन किया गया",
     "registerSuccess": "खाता सफलतापूर्वक बनाया गया",
-    "logoutSuccess": "साइन आउट हो गया"
+    "logoutSuccess": "साइन आउट हो गया",
+    "role": "खाता प्रकार",
+    "buyer": "क्रेता",
+    "agent": "प्रतिनिधि",
+    "loginBtn": "दाखिल करना",
+    "registerBtn": "खाता बनाएं",
+    "fillAllFields": "कृपया सभी क्षेत्रों को भरें",
+    "invalidCredentials": "अमान्य ईमेल या पासवर्ड"
   },
   "validation": {
     "required": "यह फ़ील्ड आवश्यक है",
@@ -277,8 +306,8 @@
     "filter": "फ़िल्टर",
     "submit": "जमा करें",
     "language": "भाषा",
-    "arabic": "العربية",
-    "english": "English",
+    "arabic": "धन्यवाद",
+    "english": "अंग्रेज़ी",
     "back": "वापस",
     "next": "अगला",
     "previous": "पिछला",
@@ -296,7 +325,14 @@
     "remove": "हटाएं",
     "actions": "क्रियाएं",
     "active": "सक्रिय",
-    "inactive": "निष्क्रिय"
+    "inactive": "निष्क्रिय",
+    "loadMore": "और लोड करें",
+    "errorOccurred": "एक त्रुटि पाई गई",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "sar": "एसएआर",
+    "perNight": "प्रति रात",
+    "perMonth": "प्रति महीने"
   },
   "listing": {
     "forSale": "बिक्री के लिए",
@@ -308,10 +344,10 @@
     "beds": "बेड",
     "baths": "बाथ",
     "area": "क्षेत्रफल",
-    "areaUnit": "m²",
+    "areaUnit": "वर्ग मीटर",
     "price": "मूल्य",
     "pricePerSqm": "प्रति m² मूल्य",
-    "currency": "SAR",
+    "currency": "एसएआर",
     "perMonth": "/माह",
     "perYear": "/वर्ष",
     "perDay": "/दिन",
@@ -363,7 +399,34 @@
       "expired": "समाप्त",
       "draft": "मसौदा",
       "archived": "संग्रहीत"
-    }
+    },
+    "sale": "बिक्री",
+    "rent": "किराया",
+    "bedrooms": "बेड",
+    "bathrooms": "स्नान",
+    "propertyTypeLabel": "प्रकार",
+    "noDescription": "कोई विवरण नहीं.",
+    "locationNotSpecified": "स्थान निर्दिष्ट नहीं है",
+    "similarProperties": "समान गुण",
+    "bookNow": "अभी बुक करें",
+    "saveProperty": "संपत्ति बचाएं",
+    "openInMaps": "मानचित्र में खोलें",
+    "viewOnMap": "मानचित्र पर देखें",
+    "tapToOpenMap": "मानचित्र खोलने के लिए टैप करें",
+    "sendInquiryTitle": "जांच भेजें",
+    "yourMessage": "आपका संदेश",
+    "messagePlaceholder": "यहां अपना संदेश लिखें...",
+    "preferredContact": "पसंदीदा संपर्क",
+    "phone": "फ़ोन",
+    "email": "ईमेल",
+    "sent": "भेजा",
+    "sentBody": "आपकी पूछताछ भेज दी गई है",
+    "messageTooShort": "संदेश बहुत छोटा है",
+    "messageTooShortBody": "संदेश कम से कम 10 अक्षर का होना चाहिए",
+    "actionFailed": "क्रिया: विफल रही है",
+    "bookingDevTitle": "बुकिंग",
+    "bookingDevBody": "बुकिंग प्रवाह विकास में है. कृपया एजेंट से संपर्क करें.",
+    "removeFromSaved": "इस संपत्ति को सहेजे गए से हटाएं?"
   },
   "search": {
     "filters": "फ़िल्टर",
@@ -399,7 +462,29 @@
       "cta": "संपत्ति अनुरोध जमा करें"
     },
     "drawArea": "एक क्षेत्र बनाएं",
-    "clearDrawing": "ड्राइंग साफ़ करें"
+    "clearDrawing": "ड्राइंग साफ़ करें",
+    "flexibleDates": "मैं तारीखों को लेकर लचीला हूं",
+    "flex1Month": "1 महीना",
+    "shortTerm": "लघु अवधि",
+    "title": "खोज",
+    "placeholder": "संपत्तियां, शहर खोजें...",
+    "noResultsHint": "विभिन्न फ़िल्टर आज़माएँ",
+    "cityPlaceholder": "रियाद, जेद्दा...",
+    "priceRange": "मूल्य सीमा",
+    "bedrooms": "बेडरूम",
+    "sort": "क्रम से लगाना",
+    "any": "कोई",
+    "all": "सभी",
+    "sale": "बिक्री",
+    "rent": "किराया",
+    "apartment": "उपयुक्त",
+    "villa": "विला",
+    "land": "भूमि",
+    "chalet": "षाले",
+    "farm": "खेत",
+    "sortNewest": "नवीनतम",
+    "sortPriceAsc": "कीमत ↑",
+    "sortPriceDesc": "कीमत ↓"
   },
   "home": {
     "heroTitle": "अपना आदर्श घर खोजें",
@@ -438,8 +523,8 @@
     "newestSort": "नवीनतम",
     "priceLowSort": "मूल्य: कम",
     "priceHighSort": "मूल्य: अधिक",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "ऐप स्टोर",
+    "googlePlay": "गूगल प्ले",
     "statListings": "लिस्टिंग",
     "statAgents": "एजेंट",
     "statUsers": "उपयोगकर्ता",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} लिस्टिंग मिलीं",
     "clearFilters": "सभी साफ़ करें",
     "results": "परिणाम",
-    "loadMoreListings": "और लिस्टिंग लोड करें"
+    "loadMoreListings": "और लिस्टिंग लोड करें",
+    "latestListings": "नवीनतम सूचियाँ",
+    "featuredProperties": "विशेष गुण",
+    "seeAll": "सभी देखें",
+    "quickAccess": "त्वरित पहुँच",
+    "stays": "रिहाइश",
+    "hotels": "होटल",
+    "market": "बाज़ार",
+    "saved": "सहेजा गया",
+    "tagline": "प्रीमियर रियल एस्टेट",
+    "categories": {
+      "all": "सभी",
+      "sale": "बिक्री के लिए",
+      "rent": "किराए के लिए",
+      "chalets": "शैले",
+      "villas": "विला",
+      "apartments": "अपार्टमेंट",
+      "land": "भूमि"
+    }
   },
   "empty": {
     "noListings": "अभी तक कोई लिस्टिंग नहीं",
@@ -551,15 +654,75 @@
     "recentActivity": "हाल की गतिविधि",
     "browseListings": "लिस्टिंग ब्राउज़ करें",
     "goToDashboard": "डैशबोर्ड पर जाएं",
-    "profileUpdated": "प्रोफ़ाइल अपडेट की गई"
+    "profileUpdated": "प्रोफ़ाइल अपडेट की गई",
+    "title": "मेरा खाता",
+    "signIn": "दाखिल करना",
+    "welcome": "इवल्मा में आपका स्वागत है",
+    "signInPrompt": "अपने अकांउट तक पहुंचने के लिए साइन इन करें",
+    "createAccount": "खाता बनाएं",
+    "agentDashboard": "एजेंट डैशबोर्ड",
+    "myListings": "मेरी सूचियाँ",
+    "addListing": "सूची जोड़ें",
+    "wallet": "बटुआ",
+    "commissions": "आयोगों",
+    "myBookings": "मेरी बुकिंग",
+    "myInquiries": "मेरी पूछताछ",
+    "inquiries": "पूछताछ",
+    "account": "खाता",
+    "notifications": "सूचनाएं",
+    "language": "भाषा",
+    "darkMode": "डार्क मोड",
+    "support": "सेटिंग्स और समर्थन",
+    "settings": "सेटिंग्स",
+    "help": "सहायता एवं अक्सर पूछे जाने वाले प्रश्न",
+    "about": "के बारे में",
+    "signOut": "साइन आउट",
+    "signOutConfirm": "क्या आप द्वारा साइन आउट किया जाना सुनिश्चित है?",
+    "member": "सदस्य",
+    "agentRole": "प्रतिनिधि",
+    "admin": "व्यवस्थापक",
+    "chooseLanguage": "भाषा चुनें",
+    "searchLanguage": "खोज...",
+    "popular": "लोकप्रिय",
+    "allLanguages": "सभी भाषाएँ",
+    "noLanguageMatch": "कोई मेल खाती भाषा नहीं"
   },
   "wizard": {
     "basicInfo": "बुनियादी जानकारी",
-    "location": "स्थान",
+    "location": {
+      "street": "गली",
+      "buildingNumber": "कोई बिल्डिंग।",
+      "postalCode": "डाक कोड",
+      "pinPrompt": "सटीक स्थान सेट करने के लिए एक पिन डालें",
+      "pinLabel": "नत्थी करना",
+      "mapUnavailable": "मानचित्र पिन पिकर अनुपलब्ध. निर्देशांक वापस {{lat}}, {{lng}} पर आ जाते हैं।"
+    },
     "media": "मीडिया",
     "amenities": "सुविधाएं",
-    "compliance": "अनुपालन",
-    "review": "समीक्षा",
+    "compliance": {
+      "permitNumber": "परमिट/एफएएल नंबर",
+      "regaNumber": "REGA लाइसेंस संख्या",
+      "permitExpiry": "परमिट की समाप्ति",
+      "preferredContact": "पसंदीदा संपर्क",
+      "phone": "फ़ोन",
+      "publicVisibility": "सार्वजनिक दृश्यता (केवल असूचीबद्ध/निजी लिंक के लिए अनचेक करें)"
+    },
+    "review": {
+      "summaryTitle": "लिस्टिंग सारांश",
+      "enhanceWithAi": "एआई के साथ सुधारें",
+      "enhancing": "बढ़ा रहा है...",
+      "aiStubNotice": "AI ने एक स्टब लौटाया - लाइव मॉडल का उपयोग करने के लिए बैकएंड पर OPENAI_API_KEY सेट करें।",
+      "descriptionPreview": "विवरण पूर्वावलोकन",
+      "emptyDescription": "(खाली)",
+      "type": "प्रकार",
+      "titleLabel": "शीर्षक",
+      "bedsBaths": "शयनकक्ष/स्नानघर",
+      "cityDistrict": "सिटी डिस्ट्रिक",
+      "coordinates": "COORDINATES",
+      "permit": "आज्ञा देना",
+      "regaLicense": "रेगा लाइसेंस",
+      "visibility": "दृश्यता"
+    },
     "saveDraft": "मसौदा सहेजें",
     "submit": "समीक्षा के लिए जमा करें",
     "submitForReview": "समीक्षा के लिए जमा करें",
@@ -576,7 +739,103 @@
       "bathrooms": "बाथरूम",
       "parking": "पार्किंग",
       "yearBuilt": "निर्माण वर्ष",
-      "furnishing": "साज-सज्जा"
+      "furnishing": "साज-सज्जा",
+      "rentPeriod": "अवधि"
+    },
+    "editListing": "एडिट लिस्टिंग",
+    "newListing": "नई सूची",
+    "crumbNew": "नया",
+    "validation": {
+      "titleRequired": "कृपया कम से कम एक भाषा में शीर्षक जोड़ें।",
+      "descriptionRequired": "कृपया कम से कम एक भाषा में विवरण जोड़ें.",
+      "priceRequired": "कीमत शून्य से अधिक होनी चाहिए.",
+      "cityRequired": "शहर की आवश्यकता है.",
+      "pinRequired": "स्थान के लिए मानचित्र पर एक पिन डालें.",
+      "imageRequired": "प्रकाशन से पहले कम से कम एक छवि आवश्यक है."
+    },
+    "transactionType": {
+      "sale": "बिक्री",
+      "rent": "किराया"
+    },
+    "rentPeriod": {
+      "daily": "दैनिक",
+      "weekly": "साप्ताहिक",
+      "monthly": "महीने के",
+      "yearly": "सालाना"
+    },
+    "furnishing": {
+      "unfurnished": "बिना असबाब",
+      "semi_furnished": "अर्ध-सुसज्जित",
+      "furnished": "सुसज्जित"
+    },
+    "visibility": {
+      "public": "जनता",
+      "unlisted": "गैर-सूचीबद्ध"
+    },
+    "amenity": {
+      "pool": "पूल",
+      "garden": "बगीचा",
+      "gym": "जिम",
+      "elevator": "लिफ़्ट",
+      "maidRoom": "नौकरानी कक्ष",
+      "driverRoom": "ड्राइवर कक्ष",
+      "centralAc": "सेंट्रल ए.सी",
+      "kitchenAppliances": "रसोई उपकरण",
+      "security": "24/7 सुरक्षा",
+      "cornerUnit": "कोने की इकाई"
+    },
+    "shortTermAmenity": {
+      "wifi": "वाईफ़ाई",
+      "pool": "पूल",
+      "parking": "पार्किंग",
+      "breakfast": "नाश्ता",
+      "ac": "एयर कंडीशनिंग",
+      "kitchen": "रसोईघर",
+      "tv": "टीवी",
+      "washer": "वॉशर",
+      "workspace": "कार्यस्थान",
+      "petsAllowed": "पालतू जानवरों को अनुमति है",
+      "smokingAllowed": "धूम्रपान की अनुमति",
+      "wheelchairAccessible": "व्हीलचेयर के पहुंचने योग्य"
+    },
+    "shortTerm": {
+      "title": "अल्पकालिक किराये का विवरण",
+      "subtitle": "मेहमान इस लिस्टिंग को रात तक बुक कर लेंगे। ठहरने के नियम, सुविधाएं और मूल्य निर्धारण स्तर कॉन्फ़िगर करें।",
+      "dailyRate": "दैनिक दर (एसएआर)",
+      "weeklyRate": "साप्ताहिक दर (एसएआर, वैकल्पिक)",
+      "minimumStay": "न्यूनतम प्रवास (रात)",
+      "maxGuests": "अधिकतम अतिथि",
+      "checkIn": "चेक इन",
+      "checkOut": "चेक आउट",
+      "cancellationPolicy": "रद्दीकरण नीति",
+      "cancelFlexible": "लचीला - 24 घंटे पहले तक पूर्ण वापसी",
+      "cancelModerate": "मध्यम - 5 दिन पहले तक पूर्ण वापसी",
+      "cancelStrict": "सख्त - 7 दिन पहले तक 50% रिफंड",
+      "starRating": "स्टार रेटिंग",
+      "hotelName": "होटल का नाम",
+      "instantBook": "तुरंत किताब",
+      "instantBookHint": "आपकी मंजूरी के बिना बुकिंग स्वत: पुष्टि हो जाती है। पहले प्रत्येक अनुरोध की समीक्षा करना अक्षम करें.",
+      "amenities": "सुविधाएं",
+      "houseRules": "घर के नियम",
+      "houseRulesPlaceholder": "जैसे कोई पार्टी नहीं, रात 10 बजे के बाद शांत समय, घर के अंदर धूम्रपान नहीं..."
+    },
+    "mediaStep": {
+      "images": "इमेजिस",
+      "imageDropHint": "फ़ोटो को यहां खींचें और छोड़ें, या चुनने के लिए क्लिक करें। 10 एमबी तक जेपीईजी/पीएनजी/वेबपी।",
+      "photoAlt": "फ़ोटो सूचीबद्ध करना",
+      "setCover": "कवर के रूप में सेट करें",
+      "cover": "ढकना",
+      "videoTour": "वीडियो टूर",
+      "videoDropHint": "चुनने के लिए MP4 फ़ाइल खींचें या क्लिक करें। अधिकतम 500 एमबी.",
+      "videoUploaded": "वीडियो अपलोड किया गया - {{नाम}}",
+      "vrTitle": "🥽वर्चुअल रियलिटी टूर लिंक",
+      "vrPlaceholder": "https://… (मैटरपोर्ट, कुउला, आदि)",
+      "modelTitle": "3डी/एआर मॉडल (.glb या .gltf)",
+      "modelDropHint": "AR को सक्षम करने के लिए GLB/GLTF मॉडल अपलोड करें। अधिकतम 50 एमबी.",
+      "modelUploaded": "मॉडल अपलोड किया गया - {{नाम}}"
+    },
+    "amenitiesStep": {
+      "hint": "इस संपत्ति द्वारा प्रदान की जाने वाली सुविधाओं पर टैप करें। हम उन्हें खोज पर फ़िल्टर के रूप में प्रदर्शित करेंगे।"
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "पुष्टि की गई",
       "paid": "भुगतान किया गया",
       "disputed": "विवादित"
+    },
+    "oath": {
+      "dialogTitle": "आयोग की प्रतिबद्धता",
+      "translatedOath": "मैं इस रियल एस्टेट लेनदेन के पूरा होने पर सहमत कमीशन का भुगतान करने के लिए प्रतिबद्ध हूं, और भगवान और कानून के समक्ष इस जिम्मेदारी को स्वीकार करता हूं।",
+      "breakdownTitle": "कमीशन टूटना",
+      "agentListingBreakdown": "प्लेटफ़ॉर्म कमीशन: लेनदेन मूल्य का <strong>0.5%</strong>, जो सफल बिक्री या लीज़ बंद होने पर देय है।",
+      "buyerAgentCommission": "एजेंट कमीशन: लेनदेन मूल्य का <strong>2.5%</strong>।",
+      "buyerPlatformFee": "प्लेटफ़ॉर्म शुल्क: लेनदेन मूल्य का <strong>0.5%</strong>।",
+      "acceptError": "आपकी स्वीकृति दर्ज नहीं की जा सकी",
+      "agreeCheckbox": "मैं कमीशन की शर्तों से सहमत हूं",
+      "decline": "मैं सहमत नहीं हूँ",
+      "saving": "सहेजा जा रहा है...",
+      "acceptCta": "मैं स्वीकार करता हूं और प्रतिबद्ध हूं"
     }
   },
   "moderation": {
@@ -740,8 +1012,8 @@
     "bulkApproveConfirm": "सभी स्वीकृत करें",
     "actionFailed": "एक मॉडरेशन कार्रवाई विफल हो गई — पुनः प्रयास करें।",
     "preview": {
-      "bedroomsShort": "{{count}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bedroomsShort": "{{गिनती}} बीआर",
+      "bathroomsShort": "{{गिनती}} बी.ए",
       "vrTourAvailable": "VR टूर उपलब्ध",
       "vrTourSection": "VR / 360° टूर",
       "locationSection": "स्थान",
@@ -876,7 +1148,15 @@
       "paid": "✓ भुगतान किया गया",
       "failed": "विफल",
       "rejected": "अस्वीकृत"
-    }
+    },
+    "balance": "वर्तमान शेष",
+    "withdraw": "भुगतान",
+    "noTransactionsHint": "आपके लेन-देन यहां दिखाई देंगे",
+    "sar": "एसएआर",
+    "inDevelopment": "यह सुविधा विकास में है",
+    "depositTitle": "जमा",
+    "payoutTitle": "भुगतान",
+    "withdrawal": "निकासी"
   },
   "nafath": {
     "loginWith": "Nafath के साथ साइन इन करें"
@@ -896,7 +1176,14 @@
     "contractNumber": "अनुबंध #",
     "viewContract": "अनुबंध देखें",
     "signedThroughEjar": "Ejar के माध्यम से हस्ताक्षरित",
-    "noContracts": "अभी तक कोई किराये का अनुबंध नहीं"
+    "noContracts": "अभी तक कोई किराये का अनुबंध नहीं",
+    "status": {
+      "draft": "मसौदा",
+      "pending_signatures": "लंबित हस्ताक्षर",
+      "active": "सक्रिय",
+      "expired": "खत्म हो चुका",
+      "cancelled": "रद्द कर दिया गया"
+    }
   },
   "dufaat": {
     "title": "Dufaat किस्तें",
@@ -911,7 +1198,13 @@
     "nextPayment": "अगला भुगतान",
     "installmentsPaid": "किस्तें भुगतान की गईं",
     "payNow": "किस्त का भुगतान करें",
-    "noPlans": "अभी तक कोई Dufaat योजना नहीं"
+    "noPlans": "अभी तक कोई Dufaat योजना नहीं",
+    "status": {
+      "active": "सक्रिय",
+      "completed": "पुरा होना।",
+      "defaulted": "चूक",
+      "cancelled": "रद्द कर दिया गया"
+    }
   },
   "booking": {
     "myBookings": "मेरी बुकिंग",
@@ -961,6 +1254,9 @@
       "confirmed": "पुष्टि की गई",
       "cancelled": "रद्द",
       "completed": "पूर्ण"
+    },
+    "calendar": {
+      "maxGuestsHelper": "अधिकतम अतिथि: {{गिनती}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "मध्यम विश्वास",
       "low": "निम्न विश्वास"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "नाम या विशेषता के आधार पर खोजें",
+    "allCities": "सभी शहर",
+    "cityRiyadh": "रियाद",
+    "cityJeddah": "जेद्दा",
+    "cityDammam": "DAMMAM",
+    "emptyTitle": "कोई भी एजेंट आपकी खोज से मेल नहीं खाता",
+    "emptyBody": "कोई भिन्न नाम या शहर आज़माएँ.",
+    "agency": "इओल्मा रियल एस्टेट",
+    "verified": "सत्यापित",
+    "respondsUnder2h": "<2 घंटे",
+    "activeListingsCount": "सक्रिय सूचियाँ {{गिनती करें।''",
+    "viewProfile": "प्रोफ़ाइल देखें"
+  },
+  "myListings": {
+    "countSelected": "{{गिनती}} चयनित",
+    "activateAll": "सभी को सक्रिय करें",
+    "deactivateAll": "सभी को निष्क्रिय करें",
+    "deleteAll": "सभी हटा दो",
+    "colViews": "दृश्य",
+    "colInquiries": "पूछताछ",
+    "boostFeature": "बूस्ट (सुविधा)",
+    "duplicate": "डुप्लिकेट",
+    "deleteConfirmTitle": "{{गिनती}} सूची हटाएं?",
+    "deleteConfirmDescription": "यह क्रिया लिस्टिंग को सॉफ्ट-डिलीट कर देती है - यह अब सार्वजनिक रूप से दिखाई नहीं देगी।"
+  },
+  "saved": {
+    "title": "सहेजा गया",
+    "empty": "कोई सहेजी गई संपत्ति नहीं",
+    "emptyPrompt": "❤️ टैप करके अपनी पसंदीदा संपत्तियों को सहेजें",
+    "signInPrompt": "संपत्तियों को सहेजने के लिए साइन इन करें",
+    "removeTitle": "निकालना",
+    "removePrompt": "इस संपत्ति को सहेजे गए से हटाएं?"
+  },
+  "notifications": {
+    "title": "सूचनाएं",
+    "empty": "कोई सूचना नहीं",
+    "emptyHint": "आपके अलर्ट यहां दिखाई देंगे",
+    "markAllRead": "सभी को पढ़ा हुआ मार्क करें",
+    "notification": "अधिसूचना"
+  },
+  "bookings": {
+    "title": "मेरी बुकिंग",
+    "host": "मेजबान के रूप में",
+    "guest": "अतिथि के रूप में",
+    "noBookings": "अभी तक कोई बुकिंग नहीं",
+    "noBookingsHint": "आपकी बुकिंग यहां दिखाई देगी",
+    "checkIn": "चेक इन",
+    "checkOut": "चेक आउट",
+    "guests": "अतिथियों",
+    "nights": "नाइट्स",
+    "total": "कुल",
+    "status": {
+      "pending": "लंबित",
+      "confirmed": "की पुष्टि",
+      "cancelled": "रद्द कर दिया गया",
+      "completed": "पुरा होना।"
+    }
+  },
+  "tabs": {
+    "home": "घर",
+    "search": "खोज",
+    "saved": "सहेजा गया",
+    "messages": "संदेशों",
+    "profile": "प्रोफ़ाइल"
   }
 }

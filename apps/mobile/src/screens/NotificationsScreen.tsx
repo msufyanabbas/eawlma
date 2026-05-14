@@ -6,6 +6,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { notificationsApi } from '../api';
@@ -26,7 +27,8 @@ const TYPE_ICON: Record<string, keyof typeof Ionicons.glyphMap> = {
 
 export default function NotificationsScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const qc = useQueryClient();
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
@@ -63,7 +65,7 @@ export default function NotificationsScreen({ navigation }: any) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <Header
-        title={isAr ? 'الإشعارات' : 'Notifications'}
+        title={t('notifications.title')}
         onBack={() => navigation.goBack()}
         rightAction={
           unreadCount > 0 ? (
@@ -113,7 +115,7 @@ export default function NotificationsScreen({ navigation }: any) {
                     style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}
                     numberOfLines={1}
                   >
-                    {item.title || (isAr ? 'إشعار' : 'Notification')}
+                    {item.title || t('notifications.notification')}
                   </Text>
                   <Text
                     style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2, textAlign }]}
@@ -134,8 +136,8 @@ export default function NotificationsScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="notifications-off-outline"
-              title={isAr ? 'لا توجد إشعارات' : 'No notifications'}
-              subtitle={isAr ? 'ستظهر إشعاراتك هنا' : 'Your alerts will appear here'}
+              title={t('notifications.empty')}
+              subtitle={t('notifications.emptyHint')}
             />
           }
         />

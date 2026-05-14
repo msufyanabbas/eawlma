@@ -108,7 +108,7 @@
     "anyType": "Semua jenis",
     "typeEntireHome": "Seluruh rumah",
     "typeRoom": "Kamar pribadi",
-    "typeChalet": "Chalet",
+    "typeChalet": "pondok",
     "typeRestHouse": "Rumah peristirahatan",
     "typeFarm": "Peternakan"
   },
@@ -127,7 +127,8 @@
     "anyPrice": "Semua harga",
     "upTo500": "Hingga 500 SAR",
     "upTo1000": "Hingga 1.000 SAR",
-    "upTo2500": "Hingga 2.500 SAR"
+    "upTo2500": "Hingga 2.500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Mulai percakapan",
@@ -146,8 +147,15 @@
     "translatedFrom": "Diterjemahkan dari {{lang}}",
     "showOriginal": "Tampilkan asli",
     "showTranslation": "Tampilkan terjemahan",
-    "online": "Online",
-    "lastSeen": "Terakhir terlihat"
+    "online": "On line",
+    "lastSeen": "Terakhir terlihat",
+    "title": "Pesan",
+    "noMessages": "Belum ada pesan",
+    "noMessagesPrompt": "Hubungi agen dari halaman daftar",
+    "signInPrompt": "Masuk untuk melihat pesan Anda",
+    "chat": "Mengobrol",
+    "user": "Pengguna",
+    "noMessagesShort": "Tidak ada pesan"
   },
   "hosting": {
     "title": "Menjadi tuan rumah",
@@ -166,7 +174,8 @@
     "dailyRate": "Tarif harian",
     "weeklyRate": "Tarif mingguan",
     "guestReviews": "Ulasan tamu",
-    "noReviews": "Belum ada ulasan — setelah tamu check-out dan menilai penginapan mereka, ulasan akan muncul di sini."
+    "noReviews": "Belum ada ulasan — setelah tamu check-out dan menilai penginapan mereka, ulasan akan muncul di sini.",
+    "guestFallback": "Tamu"
   },
   "buyerDeals": {
     "title": "Transaksi saya",
@@ -216,7 +225,20 @@
     "favorAgent": "Berpihak pada agen — buat komisi",
     "favorBuyer": "Berpihak pada pembeli — batalkan transaksi",
     "cancelDeal": "Batalkan transaksi — tanpa komisi",
-    "resolutionHint": "Kedua pihak akan diberitahu dengan catatan ini."
+    "resolutionHint": "Kedua pihak akan diberitahu dengan catatan ini.",
+    "other": "Lainnya",
+    "buyerLower": "pembeli",
+    "agentLower": "agen",
+    "otherLower": "lainnya",
+    "anonymous": "Anonim",
+    "resolveTitle": "Selesaikan perselisihan",
+    "resolveDesc": "Pilih hasil dari perselisihan ini",
+    "favorAgentDesc": "Komisi akan dikonfirmasi dan dibayarkan kepada agen",
+    "favorBuyerDesc": "Komisi akan dibatalkan",
+    "cancelDealDesc": "Kesepakatan dan komisi keduanya dibatalkan",
+    "adminNotes": "Catatan admin (opsional)",
+    "resolvedSuccess": "Sengketa berhasil diselesaikan",
+    "resolvedError": "Gagal menyelesaikan perselisihan"
   },
   "auth": {
     "login": "Masuk",
@@ -228,7 +250,7 @@
     "registerTitle": "Buat akun Anda",
     "registerSubtitle": "Bergabunglah dengan Eawlma dan mulai perjalanan properti Anda",
     "joinEawlma": "Bergabung dengan Eawlma",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Nomor telepon",
     "password": "Kata sandi",
     "confirmPassword": "Konfirmasi kata sandi",
@@ -252,7 +274,14 @@
     "agreeTerms": "Dengan membuat akun, Anda menyetujui Syarat dan Kebijakan Privasi kami",
     "loginSuccess": "Berhasil masuk",
     "registerSuccess": "Akun berhasil dibuat",
-    "logoutSuccess": "Berhasil keluar"
+    "logoutSuccess": "Berhasil keluar",
+    "role": "Jenis Akun",
+    "buyer": "Pembeli",
+    "agent": "Agen",
+    "loginBtn": "Masuk",
+    "registerBtn": "Buat Akun",
+    "fillAllFields": "Silakan isi semua kolom",
+    "invalidCredentials": "Email atau kata sandi tidak valid"
   },
   "validation": {
     "required": "Bidang ini wajib diisi",
@@ -272,13 +301,13 @@
     "confirm": "Konfirmasi",
     "save": "Simpan",
     "delete": "Hapus",
-    "edit": "Edit",
+    "edit": "Sunting",
     "search": "Cari",
-    "filter": "Filter",
+    "filter": "Menyaring",
     "submit": "Kirim",
     "language": "Bahasa",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Bahasa inggris",
     "back": "Kembali",
     "next": "Berikutnya",
     "previous": "Sebelumnya",
@@ -296,7 +325,14 @@
     "remove": "Hapus",
     "actions": "Tindakan",
     "active": "Aktif",
-    "inactive": "Tidak aktif"
+    "inactive": "Tidak aktif",
+    "loadMore": "Muat lebih banyak",
+    "errorOccurred": "Terjadi kesalahan",
+    "yes": "Ya",
+    "no": "TIDAK",
+    "sar": "SAR",
+    "perNight": "per malam",
+    "perMonth": "per bulan"
   },
   "listing": {
     "forSale": "Dijual",
@@ -322,7 +358,7 @@
     "save": "Simpan",
     "share": "Bagikan",
     "callAgent": "Hubungi agen",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Ada apa",
     "scheduleTour": "Jadwalkan tur",
     "scheduleATour": "Jadwalkan tur",
     "contactAgent": "Hubungi Agen",
@@ -363,7 +399,34 @@
       "expired": "Kedaluwarsa",
       "draft": "Draf",
       "archived": "Diarsipkan"
-    }
+    },
+    "sale": "Penjualan",
+    "rent": "Menyewa",
+    "bedrooms": "Tempat tidur",
+    "bathrooms": "Mandi",
+    "propertyTypeLabel": "Jenis",
+    "noDescription": "Tidak ada deskripsi.",
+    "locationNotSpecified": "Lokasi tidak ditentukan",
+    "similarProperties": "Properti Serupa",
+    "bookNow": "Pesan Sekarang",
+    "saveProperty": "Simpan Properti",
+    "openInMaps": "Buka di Peta",
+    "viewOnMap": "Lihat di Peta",
+    "tapToOpenMap": "Ketuk untuk membuka peta",
+    "sendInquiryTitle": "Kirim Pertanyaan",
+    "yourMessage": "Pesan Anda",
+    "messagePlaceholder": "Tulis pesan Anda di sini...",
+    "preferredContact": "Kontak pilihan",
+    "phone": "Telepon",
+    "email": "E-mail",
+    "sent": "Terkirim",
+    "sentBody": "Permintaan Anda telah dikirim",
+    "messageTooShort": "Pesan terlalu pendek",
+    "messageTooShortBody": "Pesan minimal harus 10 karakter",
+    "actionFailed": "Tindakan gagal",
+    "bookingDevTitle": "Pemesanan",
+    "bookingDevBody": "Alur pemesanan sedang dalam pengembangan. Silakan hubungi agennya.",
+    "removeFromSaved": "Hapus properti ini dari penyimpanan?"
   },
   "search": {
     "filters": "Filter",
@@ -399,7 +462,29 @@
       "cta": "Kirim permintaan properti"
     },
     "drawArea": "Gambar area",
-    "clearDrawing": "Hapus gambar"
+    "clearDrawing": "Hapus gambar",
+    "flexibleDates": "Saya fleksibel dengan tanggal",
+    "flex1Month": "1 bulan",
+    "shortTerm": "Jangka pendek",
+    "title": "Mencari",
+    "placeholder": "Cari properti, kota...",
+    "noResultsHint": "Coba filter yang berbeda",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Kisaran Harga",
+    "bedrooms": "Kamar tidur",
+    "sort": "Menyortir",
+    "any": "Setiap",
+    "all": "Semua",
+    "sale": "Penjualan",
+    "rent": "Menyewa",
+    "apartment": "Tepat",
+    "villa": "Vila",
+    "land": "Tanah",
+    "chalet": "pondok",
+    "farm": "Peternakan",
+    "sortNewest": "Terbaru",
+    "sortPriceAsc": "Harga ↑",
+    "sortPriceDesc": "Harga ↓"
   },
   "home": {
     "heroTitle": "Temukan rumah sempurna Anda",
@@ -438,8 +523,8 @@
     "newestSort": "Terbaru",
     "priceLowSort": "Harga: Rendah",
     "priceHighSort": "Harga: Tinggi",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "Toko Aplikasi",
+    "googlePlay": "Google Bermain",
     "statListings": "Iklan",
     "statAgents": "Agen",
     "statUsers": "Pengguna",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} iklan ditemukan",
     "clearFilters": "Hapus semua",
     "results": "hasil",
-    "loadMoreListings": "Muat lebih banyak iklan"
+    "loadMoreListings": "Muat lebih banyak iklan",
+    "latestListings": "Daftar Terbaru",
+    "featuredProperties": "Properti Unggulan",
+    "seeAll": "Lihat semuanya",
+    "quickAccess": "Akses Cepat",
+    "stays": "Tetap",
+    "hotels": "Hotel",
+    "market": "Pasar",
+    "saved": "Disimpan",
+    "tagline": "Real Estat Utama",
+    "categories": {
+      "all": "Semua",
+      "sale": "Untuk dijual",
+      "rent": "Untuk Disewakan",
+      "chalets": "chalet",
+      "villas": "Vila",
+      "apartments": "Apartemen",
+      "land": "Tanah"
+    }
   },
   "empty": {
     "noListings": "Belum ada iklan",
@@ -476,7 +579,7 @@
     "support": "Dukungan",
     "help": "Pusat bantuan",
     "helpCenter": "Pusat bantuan",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Ada apa",
     "callUs": "Hubungi kami",
     "needHelp": "Butuh bantuan? Bicara dengan kami di WhatsApp.",
     "cr": "Registrasi Komersial",
@@ -505,17 +608,17 @@
     "subtitle": "Tim kami merespons dalam 24 jam. Untuk pertanyaan iklan atau akun yang mendesak, WhatsApp adalah saluran tercepat.",
     "sendMessage": "Kirim pesan kepada kami",
     "name": "Nama Anda",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Telepon (opsional)",
     "message": "Pesan",
     "send": "Kirim pesan",
     "sentSuccess": "Terima kasih! Tim kami akan merespons dalam 24 jam.",
     "emailUs": "Email kami",
     "emailReplies": "Balasan dalam 24 jam pada hari kerja",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Ada apa",
     "whatsappHours": "Min–Kam, 09:00 – 18:00 (AST)",
     "office": "Kantor",
-    "officeAddress": "King Fahd Road, Riyadh",
+    "officeAddress": "Jalan Raja Fahd, Riyadh",
     "officePostal": "Arab Saudi 12345"
   },
   "privacy": {
@@ -533,8 +636,8 @@
     "land": "Tanah",
     "commercial": "Komersial",
     "studio": "Studio",
-    "penthouse": "Penthouse",
-    "townhouse": "Townhouse"
+    "penthouse": "penthouse",
+    "townhouse": "rumah kota"
   },
   "profile": {
     "personalInformation": "Informasi pribadi",
@@ -542,8 +645,8 @@
     "firstName": "Nama depan",
     "lastName": "Nama belakang",
     "phone": "Telepon",
-    "email": "Email",
-    "bio": "Bio",
+    "email": "E-mail",
+    "bio": "Biografi",
     "avatar": "URL Avatar",
     "saveChanges": "Simpan perubahan",
     "savedProperties": "Properti tersimpan",
@@ -551,15 +654,75 @@
     "recentActivity": "Aktivitas terbaru",
     "browseListings": "Jelajahi iklan",
     "goToDashboard": "Buka dasbor",
-    "profileUpdated": "Profil diperbarui"
+    "profileUpdated": "Profil diperbarui",
+    "title": "Akun Saya",
+    "signIn": "Masuk",
+    "welcome": "Selamat datang di Ewlma",
+    "signInPrompt": "Masuk untuk mengakses akun Anda",
+    "createAccount": "Buat Akun",
+    "agentDashboard": "Dasbor Agen",
+    "myListings": "Daftar Saya",
+    "addListing": "Tambahkan Daftar",
+    "wallet": "Dompet",
+    "commissions": "Komisi",
+    "myBookings": "Pemesanan Saya",
+    "myInquiries": "Pertanyaan saya",
+    "inquiries": "Pertanyaan",
+    "account": "Akun",
+    "notifications": "Pemberitahuan",
+    "language": "Bahasa",
+    "darkMode": "Mode Gelap",
+    "support": "Pengaturan & Dukungan",
+    "settings": "Pengaturan",
+    "help": "Bantuan & FAQ",
+    "about": "Tentang",
+    "signOut": "Keluar",
+    "signOutConfirm": "Apakah Anda yakin ingin keluar?",
+    "member": "Anggota",
+    "agentRole": "Agen",
+    "admin": "Admin",
+    "chooseLanguage": "Pilih Bahasa",
+    "searchLanguage": "Mencari...",
+    "popular": "Populer",
+    "allLanguages": "Semua Bahasa",
+    "noLanguageMatch": "Tidak ada bahasa yang cocok"
   },
   "wizard": {
     "basicInfo": "Info dasar",
-    "location": "Lokasi",
+    "location": {
+      "street": "Jalan",
+      "buildingNumber": "Gedung no.",
+      "postalCode": "kode Pos",
+      "pinPrompt": "Jatuhkan pin untuk mengatur lokasi yang tepat",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Pemilih pin peta tidak tersedia. Koordinat kembali ke {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Fasilitas",
-    "compliance": "Kepatuhan",
-    "review": "Tinjau",
+    "compliance": {
+      "permitNumber": "Nomor izin/FAL",
+      "regaNumber": "Nomor lisensi REGA",
+      "permitExpiry": "Izin habis masa berlakunya",
+      "preferredContact": "Kontak pilihan",
+      "phone": "Telepon",
+      "publicVisibility": "Visibilitas publik (hapus centang untuk tautan tidak terdaftar/pribadi saja)"
+    },
+    "review": {
+      "summaryTitle": "Ringkasan daftar",
+      "enhanceWithAi": "Tingkatkan dengan AI",
+      "enhancing": "Meningkatkan…",
+      "aiStubNotice": "AI mengembalikan sebuah stub — atur OPENAI_API_KEY di backend untuk menggunakan model langsung.",
+      "descriptionPreview": "Pratinjau deskripsi",
+      "emptyDescription": "(kosong)",
+      "type": "Jenis",
+      "titleLabel": "Judul",
+      "bedsBaths": "Kamar Tidur / Kamar Mandi",
+      "cityDistrict": "Kota/Kabupaten",
+      "coordinates": "Koordinat",
+      "permit": "Izin",
+      "regaLicense": "Lisensi REGA",
+      "visibility": "Visibilitas"
+    },
     "saveDraft": "Simpan draf",
     "submit": "Kirim untuk peninjauan",
     "submitForReview": "Kirim untuk peninjauan",
@@ -576,7 +739,103 @@
       "bathrooms": "Kamar mandi",
       "parking": "Parkir",
       "yearBuilt": "Tahun dibangun",
-      "furnishing": "Perabotan"
+      "furnishing": "Perabotan",
+      "rentPeriod": "Periode"
+    },
+    "editListing": "Sunting daftar",
+    "newListing": "Daftar baru",
+    "crumbNew": "Baru",
+    "validation": {
+      "titleRequired": "Harap tambahkan judul dalam setidaknya satu bahasa.",
+      "descriptionRequired": "Harap tambahkan deskripsi dalam setidaknya satu bahasa.",
+      "priceRequired": "Harga harus lebih besar dari nol.",
+      "cityRequired": "Kota diperlukan.",
+      "pinRequired": "Letakkan pin di peta untuk mengetahui lokasinya.",
+      "imageRequired": "Setidaknya satu gambar diperlukan sebelum dipublikasikan."
+    },
+    "transactionType": {
+      "sale": "Penjualan",
+      "rent": "Menyewa"
+    },
+    "rentPeriod": {
+      "daily": "Sehari-hari",
+      "weekly": "Mingguan",
+      "monthly": "Bulanan",
+      "yearly": "Tahunan"
+    },
+    "furnishing": {
+      "unfurnished": "Tak berperabot",
+      "semi_furnished": "Semi-perabotan",
+      "furnished": "Berperabot"
+    },
+    "visibility": {
+      "public": "Publik",
+      "unlisted": "Tidak terdaftar"
+    },
+    "amenity": {
+      "pool": "Kolam",
+      "garden": "Kebun",
+      "gym": "gimnasium",
+      "elevator": "Lift",
+      "maidRoom": "Kamar pembantu",
+      "driverRoom": "Ruang pengemudi",
+      "centralAc": "AC sentral",
+      "kitchenAppliances": "Peralatan dapur",
+      "security": "keamanan 24/7",
+      "cornerUnit": "Satuan sudut"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Kolam",
+      "parking": "Parkir",
+      "breakfast": "Sarapan",
+      "ac": "AC",
+      "kitchen": "Dapur",
+      "tv": "televisi",
+      "washer": "Mesin cuci",
+      "workspace": "Ruang kerja",
+      "petsAllowed": "Hewan peliharaan diperbolehkan",
+      "smokingAllowed": "Merokok diperbolehkan",
+      "wheelchairAccessible": "Dapat diakses kursi roda"
+    },
+    "shortTerm": {
+      "title": "Detail sewa jangka pendek",
+      "subtitle": "Tamu akan memesan tempat ini pada malam hari. Konfigurasikan aturan menginap, fasilitas, dan tingkat harga.",
+      "dailyRate": "Tarif harian (SAR)",
+      "weeklyRate": "Tarif mingguan (SAR, opsional)",
+      "minimumStay": "Minimum menginap (malam)",
+      "maxGuests": "Tamu maksimal",
+      "checkIn": "Lapor masuk",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Kebijakan pembatalan",
+      "cancelFlexible": "Fleksibel — pengembalian dana penuh hingga 24 jam sebelumnya",
+      "cancelModerate": "Sedang — pengembalian dana penuh hingga 5 hari sebelumnya",
+      "cancelStrict": "Ketat — pengembalian dana 50% hingga 7 hari sebelumnya",
+      "starRating": "Peringkat bintang",
+      "hotelName": "Nama hotel",
+      "instantBook": "Pemesanan instan",
+      "instantBookHint": "Pemesanan dikonfirmasi secara otomatis tanpa persetujuan Anda. Nonaktifkan untuk meninjau setiap permintaan terlebih dahulu.",
+      "amenities": "Fasilitas",
+      "houseRules": "Aturan rumah",
+      "houseRulesPlaceholder": "misalnya Dilarang mengadakan pesta, jam tenang setelah pukul 22.00, dilarang merokok di dalam ruangan..."
+    },
+    "mediaStep": {
+      "images": "Gambar",
+      "imageDropHint": "Seret & letakkan foto di sini, atau klik untuk memilih. JPEG / PNG / WebP hingga 10 MB.",
+      "photoAlt": "Foto daftar",
+      "setCover": "Tetapkan sebagai penutup",
+      "cover": "Menutupi",
+      "videoTour": "Tur video",
+      "videoDropHint": "Seret file MP4 atau klik untuk memilih. Maks 500MB.",
+      "videoUploaded": "Video diunggah — {{name}}",
+      "vrTitle": "🥽 Tautan Tur Realitas Virtual",
+      "vrPlaceholder": "https://… (Matterport, Kuula, dll.)",
+      "modelTitle": "Model 3D / AR (.glb atau .gltf)",
+      "modelDropHint": "Unggah model GLB/GLTF untuk mengaktifkan AR. Maks 50 MB.",
+      "modelUploaded": "Model diunggah — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Ketuk fasilitas yang ditawarkan properti ini. Kami akan menampilkannya sebagai filter di Penelusuran."
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "Dikonfirmasi",
       "paid": "Dibayar",
       "disputed": "Disengketakan"
+    },
+    "oath": {
+      "dialogTitle": "Komitmen Komisi",
+      "translatedOath": "Saya dengan ini berkomitmen untuk membayar komisi yang disepakati setelah menyelesaikan transaksi real estat ini, dan mengakui tanggung jawab ini di hadapan Tuhan dan hukum.",
+      "breakdownTitle": "Rincian komisi",
+      "agentListingBreakdown": "Komisi platform: <strong>0,5%</strong> dari nilai transaksi, dibayarkan setelah penjualan atau penutupan sewa berhasil.",
+      "buyerAgentCommission": "Komisi agen: <strong>2,5%</strong> dari nilai transaksi.",
+      "buyerPlatformFee": "Biaya platform: <strong>0,5%</strong> dari nilai transaksi.",
+      "acceptError": "Tidak dapat mencatat penerimaan Anda",
+      "agreeCheckbox": "Saya menyetujui persyaratan komisi",
+      "decline": "Saya tidak setuju",
+      "saving": "Penghematan...",
+      "acceptCta": "Saya Menerima & Berkomitmen"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ Dibayar",
       "failed": "Gagal",
       "rejected": "Ditolak"
-    }
+    },
+    "balance": "Saldo Saat Ini",
+    "withdraw": "Pembayaran",
+    "noTransactionsHint": "Transaksi Anda akan muncul di sini",
+    "sar": "SAR",
+    "inDevelopment": "Fitur ini sedang dalam pengembangan",
+    "depositTitle": "Deposito",
+    "payoutTitle": "Pembayaran",
+    "withdrawal": "Penarikan"
   },
   "nafath": {
     "loginWith": "Masuk dengan Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Kontrak #",
     "viewContract": "Lihat kontrak",
     "signedThroughEjar": "Ditandatangani melalui Ejar",
-    "noContracts": "Belum ada kontrak sewa"
+    "noContracts": "Belum ada kontrak sewa",
+    "status": {
+      "draft": "Draf",
+      "pending_signatures": "Tanda tangan yang tertunda",
+      "active": "Aktif",
+      "expired": "Kedaluwarsa",
+      "cancelled": "Dibatalkan"
+    }
   },
   "dufaat": {
     "title": "Cicilan Dufaat",
@@ -911,13 +1198,19 @@
     "nextPayment": "Pembayaran berikutnya",
     "installmentsPaid": "Cicilan dibayar",
     "payNow": "Bayar cicilan",
-    "noPlans": "Belum ada paket Dufaat"
+    "noPlans": "Belum ada paket Dufaat",
+    "status": {
+      "active": "Aktif",
+      "completed": "Selesai",
+      "defaulted": "Gagal bayar",
+      "cancelled": "Dibatalkan"
+    }
   },
   "booking": {
     "myBookings": "Pemesanan saya",
     "tabGuest": "Sebagai tamu",
     "tabHost": "Sebagai tuan rumah",
-    "checkIn": "Check-in",
+    "checkIn": "Lapor masuk",
     "checkOut": "Check-out",
     "night": "malam",
     "nights": "malam",
@@ -942,7 +1235,7 @@
     "checkInInstructionsPending": "Tuan rumah akan mengirim instruksi 24 jam sebelum check-in.",
     "showAllPhotos": "Tampilkan semua foto",
     "availability": "Ketersediaan",
-    "superhost": "Superhost",
+    "superhost": "HosTeladan",
     "responseRate": "Tingkat respons",
     "datesUnavailable": "Tanggal yang dipilih tumpang tindih dengan pemesanan yang ada.",
     "leaveReview": "Tinggalkan ulasan",
@@ -961,6 +1254,9 @@
       "confirmed": "Dikonfirmasi",
       "cancelled": "Dibatalkan",
       "completed": "Selesai"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Tamu maksimal: {{count}}"
     }
   },
   "market": {
@@ -1000,7 +1296,7 @@
     "items": "item",
     "lists": "wishlist",
     "empty": "Belum ada wishlist — buat di bawah.",
-    "default": "Default",
+    "default": "Bawaan",
     "confirmDelete": "Hapus wishlist ini?",
     "listEmpty": "Wishlist ini kosong",
     "listEmptyDesc": "Telusuri iklan dan ketuk hati untuk menyimpannya di sini.",
@@ -1079,5 +1375,71 @@
       "medium": "Kepercayaan sedang",
       "low": "Kepercayaan rendah"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Cari berdasarkan nama atau spesialisasi",
+    "allCities": "Semua Kota",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Sial",
+    "emptyTitle": "Tidak ada agen yang cocok dengan pencarian Anda",
+    "emptyBody": "Coba nama atau kota lain.",
+    "agency": "Real Estat Ewlma",
+    "verified": "Terverifikasi",
+    "respondsUnder2h": "< 2 jam",
+    "activeListingsCount": "{{count}} listingan aktif",
+    "viewProfile": "Lihat Profil"
+  },
+  "myListings": {
+    "countSelected": "{{hitungan}} dipilih",
+    "activateAll": "Aktifkan semua",
+    "deactivateAll": "Nonaktifkan semua",
+    "deleteAll": "Hapus semua",
+    "colViews": "Tampilan",
+    "colInquiries": "Pertanyaan",
+    "boostFeature": "Peningkatan (fitur)",
+    "duplicate": "Duplikat",
+    "deleteConfirmTitle": "Hapus {{count}} daftar?",
+    "deleteConfirmDescription": "Tindakan ini akan menghapus sementara listingan tersebut — listingan tersebut tidak akan muncul lagi secara publik."
+  },
+  "saved": {
+    "title": "Disimpan",
+    "empty": "Tidak ada properti yang disimpan",
+    "emptyPrompt": "Simpan properti yang Anda suka dengan mengetuk ❤️",
+    "signInPrompt": "Masuk untuk menyimpan properti",
+    "removeTitle": "Menghapus",
+    "removePrompt": "Hapus properti ini dari penyimpanan?"
+  },
+  "notifications": {
+    "title": "Pemberitahuan",
+    "empty": "Tidak ada pemberitahuan",
+    "emptyHint": "Peringatan Anda akan muncul di sini",
+    "markAllRead": "Tandai semua sebagai telah dibaca",
+    "notification": "Pemberitahuan"
+  },
+  "bookings": {
+    "title": "Pemesanan Saya",
+    "host": "Sebagai tuan rumah",
+    "guest": "Sebagai tamu",
+    "noBookings": "Belum ada pemesanan",
+    "noBookingsHint": "Pemesanan Anda akan muncul di sini",
+    "checkIn": "Lapor masuk",
+    "checkOut": "Check-out",
+    "guests": "Tamu",
+    "nights": "malam",
+    "total": "Total",
+    "status": {
+      "pending": "Tertunda",
+      "confirmed": "Dikonfirmasi",
+      "cancelled": "Dibatalkan",
+      "completed": "Selesai"
+    }
+  },
+  "tabs": {
+    "home": "Rumah",
+    "search": "Mencari",
+    "saved": "Disimpan",
+    "messages": "Pesan",
+    "profile": "Profil"
   }
 }

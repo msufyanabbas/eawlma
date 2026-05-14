@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "อูลมา",
     "tagline": "ค้นพบอสังหาริมทรัพย์ในฝันของคุณในซาอุดีอาระเบีย"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "ราคาใดก็ได้",
     "upTo500": "สูงสุด 500 SAR",
     "upTo1000": "สูงสุด 1,000 SAR",
-    "upTo2500": "สูงสุด 2,500 SAR"
+    "upTo2500": "สูงสุด 2,500 SAR",
+    "hotelChip": "โรงแรม"
   },
   "messages": {
     "startConversation": "เริ่มการสนทนา",
@@ -147,7 +148,14 @@
     "showOriginal": "แสดงต้นฉบับ",
     "showTranslation": "แสดงการแปล",
     "online": "ออนไลน์",
-    "lastSeen": "เห็นล่าสุด"
+    "lastSeen": "เห็นล่าสุด",
+    "title": "ข้อความ",
+    "noMessages": "ยังไม่มีข้อความ",
+    "noMessagesPrompt": "ติดต่อตัวแทนจากหน้ารายการ",
+    "signInPrompt": "ลงชื่อเข้าใช้เพื่อดูข้อความของคุณ",
+    "chat": "แชท",
+    "user": "ผู้ใช้",
+    "noMessagesShort": "ไม่มีข้อความ"
   },
   "hosting": {
     "title": "การเป็นเจ้าของที่พัก",
@@ -166,7 +174,8 @@
     "dailyRate": "อัตรารายวัน",
     "weeklyRate": "อัตรารายสัปดาห์",
     "guestReviews": "รีวิวจากผู้เข้าพัก",
-    "noReviews": "ยังไม่มีรีวิว — เมื่อผู้เข้าพักเช็คเอาท์และให้คะแนนการพักของพวกเขา จะปรากฏที่นี่"
+    "noReviews": "ยังไม่มีรีวิว — เมื่อผู้เข้าพักเช็คเอาท์และให้คะแนนการพักของพวกเขา จะปรากฏที่นี่",
+    "guestFallback": "แขก"
   },
   "buyerDeals": {
     "title": "ดีลของฉัน",
@@ -216,7 +225,20 @@
     "favorAgent": "เข้าข้างตัวแทน — สร้างค่าคอมมิชชั่น",
     "favorBuyer": "เข้าข้างผู้ซื้อ — ยกเลิกดีล",
     "cancelDeal": "ยกเลิกดีล — ไม่มีค่าคอมมิชชั่น",
-    "resolutionHint": "ทั้งสองฝ่ายจะได้รับแจ้งด้วยบันทึกเหล่านี้"
+    "resolutionHint": "ทั้งสองฝ่ายจะได้รับแจ้งด้วยบันทึกเหล่านี้",
+    "other": "อื่น",
+    "buyerLower": "ผู้ซื้อ",
+    "agentLower": "ตัวแทน",
+    "otherLower": "อื่น",
+    "anonymous": "ไม่ระบุชื่อ",
+    "resolveTitle": "แก้ไขข้อพิพาท",
+    "resolveDesc": "เลือกผลลัพธ์สำหรับข้อพิพาทนี้",
+    "favorAgentDesc": "ค่าคอมมิชชันจะได้รับการยืนยันและจ่ายให้กับตัวแทน",
+    "favorBuyerDesc": "ค่าคอมมิชชั่นจะถูกยกเลิก",
+    "cancelDealDesc": "ข้อตกลงและค่าคอมมิชชั่นถูกยกเลิกทั้งคู่",
+    "adminNotes": "หมายเหตุของผู้ดูแลระบบ (ไม่บังคับ)",
+    "resolvedSuccess": "แก้ไขข้อขัดแย้งเรียบร้อยแล้ว",
+    "resolvedError": "ไม่สามารถแก้ไขข้อโต้แย้งได้"
   },
   "auth": {
     "login": "เข้าสู่ระบบ",
@@ -252,7 +274,14 @@
     "agreeTerms": "การสร้างบัญชีถือว่าคุณยอมรับข้อกำหนดและนโยบายความเป็นส่วนตัวของเรา",
     "loginSuccess": "เข้าสู่ระบบสำเร็จ",
     "registerSuccess": "สร้างบัญชีสำเร็จ",
-    "logoutSuccess": "ออกจากระบบแล้ว"
+    "logoutSuccess": "ออกจากระบบแล้ว",
+    "role": "ประเภทบัญชี",
+    "buyer": "ผู้ซื้อ",
+    "agent": "ตัวแทน",
+    "loginBtn": "เข้าสู่ระบบ",
+    "registerBtn": "สร้างบัญชี",
+    "fillAllFields": "กรุณากรอกข้อมูลให้ครบทุกช่อง",
+    "invalidCredentials": "อีเมลหรือรหัสผ่านไม่ถูกต้อง"
   },
   "validation": {
     "required": "ต้องกรอกข้อมูลนี้",
@@ -278,7 +307,7 @@
     "submit": "ส่ง",
     "language": "ภาษา",
     "arabic": "العربية",
-    "english": "English",
+    "english": "ภาษาอังกฤษ",
     "back": "ย้อนกลับ",
     "next": "ถัดไป",
     "previous": "ก่อนหน้า",
@@ -296,7 +325,14 @@
     "remove": "ลบออก",
     "actions": "การดำเนินการ",
     "active": "ใช้งานอยู่",
-    "inactive": "ไม่ใช้งาน"
+    "inactive": "ไม่ใช้งาน",
+    "loadMore": "โหลดเพิ่ม",
+    "errorOccurred": "เกิดข้อผิดพลาด",
+    "yes": "ใช่",
+    "no": "เลขที่",
+    "sar": "เขตซาร์",
+    "perNight": "ต่อคืน",
+    "perMonth": "ต่อเดือน"
   },
   "listing": {
     "forSale": "ขาย",
@@ -311,7 +347,7 @@
     "areaUnit": "ตร.ม.",
     "price": "ราคา",
     "pricePerSqm": "ราคาต่อ ตร.ม.",
-    "currency": "SAR",
+    "currency": "เขตซาร์",
     "perMonth": "/เดือน",
     "perYear": "/ปี",
     "perDay": "/วัน",
@@ -322,7 +358,7 @@
     "save": "บันทึก",
     "share": "แชร์",
     "callAgent": "โทรหาตัวแทน",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "วอทส์แอพพ์",
     "scheduleTour": "นัดหมายเยี่ยมชม",
     "scheduleATour": "นัดหมายเยี่ยมชม",
     "contactAgent": "ติดต่อตัวแทน",
@@ -363,7 +399,34 @@
       "expired": "หมดอายุ",
       "draft": "ฉบับร่าง",
       "archived": "เก็บถาวรแล้ว"
-    }
+    },
+    "sale": "ขาย",
+    "rent": "เช่า",
+    "bedrooms": "เตียง",
+    "bathrooms": "อาบน้ำ",
+    "propertyTypeLabel": "พิมพ์",
+    "noDescription": "ไม่มีคำอธิบาย",
+    "locationNotSpecified": "ไม่ได้ระบุสถานที่",
+    "similarProperties": "คุณสมบัติที่คล้ายกัน",
+    "bookNow": "จองตอนนี้",
+    "saveProperty": "บันทึกทรัพย์สิน",
+    "openInMaps": "เปิดในแผนที่",
+    "viewOnMap": "ดูบนแผนที่",
+    "tapToOpenMap": "แตะเพื่อเปิดแผนที่",
+    "sendInquiryTitle": "ส่งคำถาม",
+    "yourMessage": "ข้อความของคุณ",
+    "messagePlaceholder": "เขียนข้อความของคุณที่นี่...",
+    "preferredContact": "การติดต่อที่ต้องการ",
+    "phone": "โทรศัพท์",
+    "email": "อีเมล",
+    "sent": "ส่งแล้ว",
+    "sentBody": "คำถามของคุณถูกส่งไปแล้ว",
+    "messageTooShort": "ข้อความสั้นเกินไป",
+    "messageTooShortBody": "ข้อความต้องมีอย่างน้อย 10 ตัวอักษร",
+    "actionFailed": "การดำเนินการล้มเหลว",
+    "bookingDevTitle": "การจอง",
+    "bookingDevBody": "ขั้นตอนการจองอยู่ระหว่างการพัฒนา กรุณาติดต่อตัวแทน.",
+    "removeFromSaved": "ลบคุณสมบัตินี้ออกจากที่บันทึกไว้หรือไม่"
   },
   "search": {
     "filters": "ตัวกรอง",
@@ -399,7 +462,29 @@
       "cta": "ส่งคำขออสังหาริมทรัพย์"
     },
     "drawArea": "วาดพื้นที่",
-    "clearDrawing": "ล้างการวาด"
+    "clearDrawing": "ล้างการวาด",
+    "flexibleDates": "ฉันมีความยืดหยุ่นในการออกเดท",
+    "flex1Month": "1 เดือน",
+    "shortTerm": "ระยะสั้น",
+    "title": "ค้นหา",
+    "placeholder": "ค้นหาคุณสมบัติ เมือง...",
+    "noResultsHint": "ลองใช้ตัวกรองอื่น",
+    "cityPlaceholder": "ริยาด, เจดดาห์...",
+    "priceRange": "ช่วงราคา",
+    "bedrooms": "ห้องนอน",
+    "sort": "เรียงลำดับ",
+    "any": "ใดๆ",
+    "all": "ทั้งหมด",
+    "sale": "ขาย",
+    "rent": "เช่า",
+    "apartment": "อพาร์ทเมนท์",
+    "villa": "วิลล่า",
+    "land": "ที่ดิน",
+    "chalet": "ชาเล่ต์",
+    "farm": "ฟาร์ม",
+    "sortNewest": "ใหม่ล่าสุด",
+    "sortPriceAsc": "ราคา↑",
+    "sortPriceDesc": "ราคา ↓"
   },
   "home": {
     "heroTitle": "ค้นหาบ้านในฝันของคุณ",
@@ -438,7 +523,7 @@
     "newestSort": "ใหม่ที่สุด",
     "priceLowSort": "ราคา: ต่ำ",
     "priceHighSort": "ราคา: สูง",
-    "appStore": "App Store",
+    "appStore": "แอพสโตร์",
     "googlePlay": "Google Play",
     "statListings": "ประกาศ",
     "statAgents": "ตัวแทน",
@@ -447,7 +532,25 @@
     "resultsCount": "พบ {{count}} ประกาศ",
     "clearFilters": "ล้างทั้งหมด",
     "results": "ผลลัพธ์",
-    "loadMoreListings": "โหลดประกาศเพิ่มเติม"
+    "loadMoreListings": "โหลดประกาศเพิ่มเติม",
+    "latestListings": "รายการล่าสุด",
+    "featuredProperties": "คุณสมบัติเด่น",
+    "seeAll": "ดูทั้งหมด",
+    "quickAccess": "เข้าถึงด่วน",
+    "stays": "เข้าพัก",
+    "hotels": "โรงแรม",
+    "market": "ตลาด",
+    "saved": "บันทึกแล้ว",
+    "tagline": "พรีเมียร์ เรียลเอสเตท",
+    "categories": {
+      "all": "ทั้งหมด",
+      "sale": "ขาย",
+      "rent": "ให้เช่า",
+      "chalets": "ชาเล่ต์",
+      "villas": "วิลล่า",
+      "apartments": "อพาร์ตเมนต์",
+      "land": "ที่ดิน"
+    }
   },
   "empty": {
     "noListings": "ยังไม่มีประกาศ",
@@ -476,7 +579,7 @@
     "support": "การสนับสนุน",
     "help": "ศูนย์ช่วยเหลือ",
     "helpCenter": "ศูนย์ช่วยเหลือ",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "วอทส์แอพพ์",
     "callUs": "โทรหาเรา",
     "needHelp": "ต้องการความช่วยเหลือ? พูดคุยกับเราทาง WhatsApp",
     "cr": "การจดทะเบียนพาณิชย์",
@@ -512,7 +615,7 @@
     "sentSuccess": "ขอบคุณ! ทีมของเราจะตอบกลับภายใน 24 ชั่วโมง",
     "emailUs": "อีเมลเรา",
     "emailReplies": "ตอบกลับภายใน 24 ชม. ในวันธรรมดา",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "วอทส์แอพพ์",
     "whatsappHours": "อา.–พฤ., 9:00 – 18:00 (AST)",
     "office": "สำนักงาน",
     "officeAddress": "King Fahd Road, ริยาด",
@@ -551,15 +654,75 @@
     "recentActivity": "กิจกรรมล่าสุด",
     "browseListings": "เรียกดูประกาศ",
     "goToDashboard": "ไปที่แดชบอร์ด",
-    "profileUpdated": "อัปเดตโปรไฟล์แล้ว"
+    "profileUpdated": "อัปเดตโปรไฟล์แล้ว",
+    "title": "บัญชีของฉัน",
+    "signIn": "เข้าสู่ระบบ",
+    "welcome": "ยินดีต้อนรับสู่ Eawlma",
+    "signInPrompt": "ลงชื่อเข้าใช้เพื่อเข้าถึงบัญชีของคุณ",
+    "createAccount": "สร้างบัญชี",
+    "agentDashboard": "แดชบอร์ดตัวแทน",
+    "myListings": "รายการของฉัน",
+    "addListing": "เพิ่มรายการ",
+    "wallet": "กระเป๋าสตางค์",
+    "commissions": "ค่าคอมมิชชั่น",
+    "myBookings": "การจองของฉัน",
+    "myInquiries": "คำถามของฉัน",
+    "inquiries": "สอบถามรายละเอียดเพิ่มเติม",
+    "account": "บัญชี",
+    "notifications": "การแจ้งเตือน",
+    "language": "ภาษา",
+    "darkMode": "โหมดมืด",
+    "support": "การตั้งค่าและการสนับสนุน",
+    "settings": "การตั้งค่า",
+    "help": "ความช่วยเหลือและคำถามที่พบบ่อย",
+    "about": "เกี่ยวกับ",
+    "signOut": "ออกจากระบบ",
+    "signOutConfirm": "คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?",
+    "member": "สมาชิก",
+    "agentRole": "ตัวแทน",
+    "admin": "ผู้ดูแลระบบ",
+    "chooseLanguage": "เลือกภาษา",
+    "searchLanguage": "ค้นหา...",
+    "popular": "เป็นที่นิยม",
+    "allLanguages": "ทุกภาษา",
+    "noLanguageMatch": "ไม่มีภาษาที่ตรงกัน"
   },
   "wizard": {
     "basicInfo": "ข้อมูลพื้นฐาน",
-    "location": "ที่ตั้ง",
+    "location": {
+      "street": "ถนน",
+      "buildingNumber": "อาคารเลขที่",
+      "postalCode": "รหัสไปรษณีย์",
+      "pinPrompt": "ปักหมุดเพื่อกำหนดตำแหน่งที่แน่นอน",
+      "pinLabel": "เข็มหมุด",
+      "mapUnavailable": "เครื่องมือเลือกหมุดแผนที่ไม่พร้อมใช้งาน พิกัดถอยกลับไปที่ {{lat}}, {{lng}}"
+    },
     "media": "สื่อ",
     "amenities": "สิ่งอำนวยความสะดวก",
-    "compliance": "การปฏิบัติตาม",
-    "review": "ตรวจสอบ",
+    "compliance": {
+      "permitNumber": "ใบอนุญาต / หมายเลข FAL",
+      "regaNumber": "หมายเลขใบอนุญาต REGA",
+      "permitExpiry": "ใบอนุญาตหมดอายุ",
+      "preferredContact": "การติดต่อที่ต้องการ",
+      "phone": "โทรศัพท์",
+      "publicVisibility": "การเปิดเผยต่อสาธารณะ (ยกเลิกการเลือกลิงก์ที่ไม่แสดง / ส่วนตัวเท่านั้น)"
+    },
+    "review": {
+      "summaryTitle": "สรุปรายการ",
+      "enhanceWithAi": "เสริมประสิทธิภาพด้วย AI",
+      "enhancing": "กำลังเพิ่มประสิทธิภาพ...",
+      "aiStubNotice": "AI ส่งคืน stub — ตั้งค่า OPENAI_API_KEY บนแบ็กเอนด์เพื่อใช้โมเดลสด",
+      "descriptionPreview": "ดูตัวอย่างคำอธิบาย",
+      "emptyDescription": "(ว่างเปล่า)",
+      "type": "พิมพ์",
+      "titleLabel": "ชื่อ",
+      "bedsBaths": "ห้องนอน/ห้องน้ำ",
+      "cityDistrict": "เมือง / อำเภอ",
+      "coordinates": "พิกัด",
+      "permit": "อนุญาต",
+      "regaLicense": "ใบอนุญาต REGA",
+      "visibility": "การมองเห็น"
+    },
     "saveDraft": "บันทึกฉบับร่าง",
     "submit": "ส่งเพื่อตรวจสอบ",
     "submitForReview": "ส่งเพื่อตรวจสอบ",
@@ -576,7 +739,103 @@
       "bathrooms": "ห้องน้ำ",
       "parking": "ที่จอดรถ",
       "yearBuilt": "ปีที่สร้าง",
-      "furnishing": "เฟอร์นิเจอร์"
+      "furnishing": "เฟอร์นิเจอร์",
+      "rentPeriod": "ระยะเวลา"
+    },
+    "editListing": "แก้ไขรายการ",
+    "newListing": "รายการใหม่",
+    "crumbNew": "ใหม่",
+    "validation": {
+      "titleRequired": "โปรดเพิ่มชื่อในภาษาอย่างน้อยหนึ่งภาษา",
+      "descriptionRequired": "โปรดเพิ่มคำอธิบายอย่างน้อยหนึ่งภาษา",
+      "priceRequired": "ราคาต้องมากกว่าศูนย์",
+      "cityRequired": "ต้องระบุเมือง",
+      "pinRequired": "ปักหมุดบนแผนที่เพื่อระบุตำแหน่ง",
+      "imageRequired": "ต้องมีอย่างน้อยหนึ่งภาพก่อนที่จะเผยแพร่"
+    },
+    "transactionType": {
+      "sale": "ขาย",
+      "rent": "เช่า"
+    },
+    "rentPeriod": {
+      "daily": "รายวัน",
+      "weekly": "รายสัปดาห์",
+      "monthly": "รายเดือน",
+      "yearly": "เป็นประจำทุกปี"
+    },
+    "furnishing": {
+      "unfurnished": "ไม่มีเฟอร์นิเจอร์",
+      "semi_furnished": "ตกแต่งกึ่งเฟอร์",
+      "furnished": "ตกแต่งแล้ว"
+    },
+    "visibility": {
+      "public": "สาธารณะ",
+      "unlisted": "ไม่อยู่ในรายการ"
+    },
+    "amenity": {
+      "pool": "สระน้ำ",
+      "garden": "สวน",
+      "gym": "โรงยิม",
+      "elevator": "ลิฟต์",
+      "maidRoom": "ห้องแม่บ้าน",
+      "driverRoom": "ห้องคนขับ",
+      "centralAc": "เซ็นทรัลแอร์",
+      "kitchenAppliances": "เครื่องใช้ในครัว",
+      "security": "การรักษาความปลอดภัยตลอด 24 ชั่วโมงทุกวัน",
+      "cornerUnit": "ห้องมุม"
+    },
+    "shortTermAmenity": {
+      "wifi": "อินเตอร์เน็ตไร้สาย",
+      "pool": "สระน้ำ",
+      "parking": "ที่จอดรถ",
+      "breakfast": "อาหารเช้า",
+      "ac": "เครื่องปรับอากาศ",
+      "kitchen": "ครัว",
+      "tv": "ทีวี",
+      "washer": "เครื่องซักผ้า",
+      "workspace": "พื้นที่ทำงาน",
+      "petsAllowed": "อนุญาตให้นำสัตว์เลี้ยงเข้าได้",
+      "smokingAllowed": "อนุญาตให้สูบบุหรี่ได้",
+      "wheelchairAccessible": "สามารถใช้เก้าอี้รถเข็นได้"
+    },
+    "shortTerm": {
+      "title": "รายละเอียดการเช่าระยะสั้น",
+      "subtitle": "ผู้เข้าพักจะจองที่พักนี้ในเวลากลางคืน กำหนดค่ากฎการเข้าพัก สิ่งอำนวยความสะดวก และระดับราคา",
+      "dailyRate": "อัตรารายวัน (SAR)",
+      "weeklyRate": "อัตรารายสัปดาห์ (SAR, ไม่บังคับ)",
+      "minimumStay": "การเข้าพักขั้นต่ำ (คืน)",
+      "maxGuests": "แขกแม็กซ์",
+      "checkIn": "เช็คอิน",
+      "checkOut": "เช็คเอาท์",
+      "cancellationPolicy": "นโยบายการยกเลิก",
+      "cancelFlexible": "ยืดหยุ่น — คืนเงินเต็มจำนวนสูงสุด 24 ชั่วโมงก่อน",
+      "cancelModerate": "ปานกลาง — คืนเงินเต็มจำนวนสูงสุด 5 วันก่อน",
+      "cancelStrict": "เข้มงวด — คืนเงิน 50% สูงสุด 7 วันก่อน",
+      "starRating": "ระดับดาว",
+      "hotelName": "ชื่อโรงแรม",
+      "instantBook": "หนังสือทันที",
+      "instantBookHint": "การจองยืนยันอัตโนมัติโดยไม่ได้รับการอนุมัติจากคุณ ปิดใช้เพื่อตรวจสอบคำขอแต่ละรายการก่อน",
+      "amenities": "สิ่งอำนวยความสะดวก",
+      "houseRules": "กฎของที่พัก",
+      "houseRulesPlaceholder": "เช่น ห้ามจัดงานปาร์ตี้, เวลาที่เงียบสงบหลัง 22.00 น., ห้ามสูบบุหรี่ในอาคาร..."
+    },
+    "mediaStep": {
+      "images": "รูปภาพ",
+      "imageDropHint": "ลากและวางรูปภาพที่นี่ หรือคลิกเพื่อเลือก JPEG / PNG / WebP สูงสุด 10 MB",
+      "photoAlt": "ภาพรายการ",
+      "setCover": "ตั้งเป็นปก",
+      "cover": "ปิดบัง",
+      "videoTour": "ทัวร์ชมวิดีโอ",
+      "videoDropHint": "ลากไฟล์ MP4 หรือคลิกเพื่อเลือก สูงสุด 500 เมกะไบต์",
+      "videoUploaded": "อัปโหลดวิดีโอแล้ว — {{name}}",
+      "vrTitle": "🥽 ลิงค์ทัวร์เสมือนจริง",
+      "vrPlaceholder": "https://… (Matterport, Kuula ฯลฯ)",
+      "modelTitle": "โมเดล 3 มิติ / AR (.glb หรือ .gltf)",
+      "modelDropHint": "อัปโหลดโมเดล GLB/GLTF เพื่อเปิดใช้งาน AR สูงสุด 50 เมกะไบต์",
+      "modelUploaded": "อัปโหลดแบบจำลองแล้ว — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "แตะสิ่งอำนวยความสะดวกที่ที่พักแห่งนี้นำเสนอ เราจะแสดงสิ่งเหล่านี้เป็นตัวกรองในการค้นหา"
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "ยืนยันแล้ว",
       "paid": "ชำระแล้ว",
       "disputed": "โต้แย้ง"
+    },
+    "oath": {
+      "dialogTitle": "ความมุ่งมั่นของคณะกรรมการ",
+      "translatedOath": "ฉันตกลงที่จะจ่ายค่าคอมมิชชันตามที่ตกลงไว้เมื่อธุรกรรมอสังหาริมทรัพย์นี้เสร็จสิ้น และรับทราบความรับผิดชอบนี้ต่อพระเจ้าและกฎหมาย",
+      "breakdownTitle": "รายละเอียดค่าคอมมิชชัน",
+      "agentListingBreakdown": "ค่าคอมมิชชันแพลตฟอร์ม: <strong>0.5%</strong> ของมูลค่าธุรกรรม ชำระเมื่อการขายหรือการปิดสัญญาเช่าสำเร็จ",
+      "buyerAgentCommission": "ค่าคอมมิชชั่นตัวแทน: <strong>2.5%</strong> ของมูลค่าธุรกรรม",
+      "buyerPlatformFee": "ค่าธรรมเนียมแพลตฟอร์ม: <strong>0.5%</strong> ของมูลค่าธุรกรรม",
+      "acceptError": "ไม่สามารถบันทึกการยอมรับของคุณได้",
+      "agreeCheckbox": "ฉันยอมรับเงื่อนไขค่าคอมมิชชั่น",
+      "decline": "ฉันไม่เห็นด้วย",
+      "saving": "ประหยัด...",
+      "acceptCta": "ฉันยอมรับและตกลง"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ ชำระแล้ว",
       "failed": "ล้มเหลว",
       "rejected": "ถูกปฏิเสธ"
-    }
+    },
+    "balance": "ยอดคงเหลือปัจจุบัน",
+    "withdraw": "การจ่ายเงิน",
+    "noTransactionsHint": "ธุรกรรมของคุณจะปรากฏที่นี่",
+    "sar": "เขตซาร์",
+    "inDevelopment": "คุณลักษณะนี้อยู่ระหว่างการพัฒนา",
+    "depositTitle": "เงินฝาก",
+    "payoutTitle": "การจ่ายเงิน",
+    "withdrawal": "การถอนเงิน"
   },
   "nafath": {
     "loginWith": "เข้าสู่ระบบด้วย Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "สัญญา #",
     "viewContract": "ดูสัญญา",
     "signedThroughEjar": "ลงนามผ่าน Ejar",
-    "noContracts": "ยังไม่มีสัญญาเช่า"
+    "noContracts": "ยังไม่มีสัญญาเช่า",
+    "status": {
+      "draft": "ร่าง",
+      "pending_signatures": "อยู่ระหว่างการลงนาม",
+      "active": "คล่องแคล่ว",
+      "expired": "หมดอายุแล้ว",
+      "cancelled": "ยกเลิก"
+    }
   },
   "dufaat": {
     "title": "การผ่อนชำระ Dufaat",
@@ -911,7 +1198,13 @@
     "nextPayment": "การชำระเงินครั้งถัดไป",
     "installmentsPaid": "งวดที่ชำระแล้ว",
     "payNow": "ชำระงวด",
-    "noPlans": "ยังไม่มีแผน Dufaat"
+    "noPlans": "ยังไม่มีแผน Dufaat",
+    "status": {
+      "active": "คล่องแคล่ว",
+      "completed": "สมบูรณ์",
+      "defaulted": "ผิดนัด",
+      "cancelled": "ยกเลิก"
+    }
   },
   "booking": {
     "myBookings": "การจองของฉัน",
@@ -942,7 +1235,7 @@
     "checkInInstructionsPending": "เจ้าของที่พักจะส่งคำแนะนำ 24 ชม. ก่อนเช็คอิน",
     "showAllPhotos": "แสดงรูปภาพทั้งหมด",
     "availability": "ความพร้อมใช้",
-    "superhost": "Superhost",
+    "superhost": "เจ้าของที่พักดีเด่น",
     "responseRate": "อัตราการตอบกลับ",
     "datesUnavailable": "วันที่เลือกซ้อนทับกับการจองที่มีอยู่",
     "leaveReview": "เขียนรีวิว",
@@ -961,6 +1254,9 @@
       "confirmed": "ยืนยันแล้ว",
       "cancelled": "ยกเลิกแล้ว",
       "completed": "เสร็จสิ้น"
+    },
+    "calendar": {
+      "maxGuestsHelper": "แขกสูงสุด: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "ความเชื่อมั่นปานกลาง",
       "low": "ความเชื่อมั่นต่ำ"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "ค้นหาตามชื่อหรือความเชี่ยวชาญ",
+    "allCities": "เมืองทั้งหมด",
+    "cityRiyadh": "ริยาด",
+    "cityJeddah": "เจดดาห์",
+    "cityDammam": "ดัมมัม",
+    "emptyTitle": "ไม่มีตัวแทนที่ตรงกับการค้นหาของคุณ",
+    "emptyBody": "ลองใช้ชื่อหรือเมืองอื่น",
+    "agency": "เอื้อมมา เรียลเอสเตท",
+    "verified": "ตรวจสอบแล้ว",
+    "respondsUnder2h": "< 2 ชม",
+    "activeListingsCount": "รายการที่ใช้งานอยู่ {{count}} รายการ",
+    "viewProfile": "ดูโปรไฟล์"
+  },
+  "myListings": {
+    "countSelected": "เลือกแล้ว {{count}}",
+    "activateAll": "เปิดใช้งานทั้งหมด",
+    "deactivateAll": "ปิดการใช้งานทั้งหมด",
+    "deleteAll": "ลบทั้งหมด",
+    "colViews": "จำนวนการดู",
+    "colInquiries": "สอบถามรายละเอียดเพิ่มเติม",
+    "boostFeature": "เพิ่ม (คุณสมบัติ)",
+    "duplicate": "ทำซ้ำ",
+    "deleteConfirmTitle": "ลบรายการ {{count}} รายการหรือไม่",
+    "deleteConfirmDescription": "การดำเนินการนี้จะลบรายการออกอย่างนุ่มนวล - รายการจะไม่ปรากฏต่อสาธารณะอีกต่อไป"
+  },
+  "saved": {
+    "title": "บันทึกแล้ว",
+    "empty": "ไม่มีคุณสมบัติที่บันทึกไว้",
+    "emptyPrompt": "บันทึกคุณสมบัติที่คุณชอบโดยแตะ ❤️",
+    "signInPrompt": "ลงชื่อเข้าใช้เพื่อบันทึกคุณสมบัติ",
+    "removeTitle": "ลบ",
+    "removePrompt": "ลบคุณสมบัตินี้ออกจากที่บันทึกไว้หรือไม่"
+  },
+  "notifications": {
+    "title": "การแจ้งเตือน",
+    "empty": "ไม่มีการแจ้งเตือน",
+    "emptyHint": "การแจ้งเตือนของคุณจะปรากฏที่นี่",
+    "markAllRead": "ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว",
+    "notification": "การแจ้งเตือน"
+  },
+  "bookings": {
+    "title": "การจองของฉัน",
+    "host": "ในฐานะเจ้าภาพ",
+    "guest": "ในฐานะแขก",
+    "noBookings": "ยังไม่มีการจอง",
+    "noBookingsHint": "การจองของคุณจะปรากฏที่นี่",
+    "checkIn": "เช็คอิน",
+    "checkOut": "เช็คเอาท์",
+    "guests": "แขก",
+    "nights": "คืน",
+    "total": "ทั้งหมด",
+    "status": {
+      "pending": "รอดำเนินการ",
+      "confirmed": "ยืนยันแล้ว",
+      "cancelled": "ยกเลิก",
+      "completed": "สมบูรณ์"
+    }
+  },
+  "tabs": {
+    "home": "บ้าน",
+    "search": "ค้นหา",
+    "saved": "บันทึกแล้ว",
+    "messages": "ข้อความ",
+    "profile": "ประวัติโดยย่อ"
   }
 }

@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -23,7 +24,8 @@ const STATUS_COLOURS: Record<string, string> = {
 
 export default function BookingsListScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const { user } = useAuthStore();
   const isAgent = user?.role === 'agent' || user?.role === 'agency_owner';
   const [tab, setTab] = useState<'guest' | 'host'>(isAgent ? 'host' : 'guest');
@@ -39,7 +41,7 @@ export default function BookingsListScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'الحجوزات' : 'Bookings'} onBack={() => navigation.goBack()} />
+      <Header title={t('bookings.title')} onBack={() => navigation.goBack()} />
 
       {isAgent && (
         <View style={[
@@ -51,13 +53,13 @@ export default function BookingsListScreen({ navigation }: any) {
           },
         ]}>
           <TabBtn
-            label={isAr ? 'كضيف' : 'As guest'}
+            label={t('bookings.guest')}
             active={tab === 'guest'}
             onPress={() => setTab('guest')}
             colors={colors}
           />
           <TabBtn
-            label={isAr ? 'كمضيف' : 'As host'}
+            label={t('bookings.host')}
             active={tab === 'host'}
             onPress={() => setTab('host')}
             colors={colors}
@@ -105,7 +107,7 @@ export default function BookingsListScreen({ navigation }: any) {
                   <Ionicons name="calendar-outline" size={18} color={colors.primary} />
                   <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, flex: 1, marginHorizontal: SIZES.sm, textAlign }]} numberOfLines={1}>
                     {item.listingTitle || item.listing?.titleAr || item.listing?.titleEn ||
-                      (isAr ? 'حجز' : 'Booking')}
+                      t('booking.bookNow')}
                   </Text>
                   <View style={[styles.badge, { backgroundColor: statusColor + '22' }]}>
                     <Text style={[TYPOGRAPHY.caption, { color: statusColor, fontWeight: '800' }]}>
@@ -116,12 +118,12 @@ export default function BookingsListScreen({ navigation }: any) {
 
                 <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: SIZES.sm, textAlign }]}>
                   {item.checkIn?.slice(0, 10)} → {item.checkOut?.slice(0, 10)}
-                  {nights != null ? `  ·  ${nights} ${isAr ? 'ليلة' : 'nights'}` : ''}
+                  {nights != null ? `  ·  ${nights} ${t('booking.nights')}` : ''}
                 </Text>
 
                 {item.totalAmount != null && (
                   <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary, marginTop: SIZES.xs, textAlign }]}>
-                    {Number(item.totalAmount).toLocaleString()} {isAr ? 'ر.س' : 'SAR'}
+                    {Number(item.totalAmount).toLocaleString()} {t('common.sar')}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -130,8 +132,8 @@ export default function BookingsListScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="calendar-outline"
-              title={isAr ? 'لا توجد حجوزات' : 'No bookings yet'}
-              subtitle={isAr ? 'ستظهر حجوزاتك هنا' : 'Your bookings will appear here'}
+              title={t('bookings.noBookings')}
+              subtitle={t('bookings.noBookingsHint')}
             />
           }
         />

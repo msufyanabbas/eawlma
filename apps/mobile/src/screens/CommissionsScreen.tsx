@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, FlatList, RefreshControl,
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { commissionsApi } from '../api';
@@ -17,6 +18,7 @@ type Status = 'pending' | 'confirmed' | 'paid' | 'cancelled' | string;
 export default function CommissionsScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
     queryKey: ['commissions-mine'],
@@ -28,14 +30,14 @@ export default function CommissionsScreen({ navigation }: any) {
   const statusMeta = (s: Status) => {
     switch (s) {
       case 'confirmed':
-        return { color: colors.success, labelAr: 'مؤكدة', labelEn: 'Confirmed' };
+        return { color: colors.success, label: t('commission.status.confirmed') };
       case 'paid':
-        return { color: colors.primary, labelAr: 'مدفوعة', labelEn: 'Paid' };
+        return { color: colors.primary, label: t('commission.status.paid') };
       case 'cancelled':
-        return { color: colors.error, labelAr: 'ملغاة', labelEn: 'Cancelled' };
+        return { color: colors.error, label: t('commission.status.cancelled') };
       case 'pending':
       default:
-        return { color: colors.warning, labelAr: 'معلّقة', labelEn: 'Pending' };
+        return { color: colors.warning, label: t('commission.status.pending') };
     }
   };
 
@@ -45,7 +47,7 @@ export default function CommissionsScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'العمولات' : 'Commissions'} onBack={() => navigation.goBack()} />
+      <Header title={t('commission.title')} onBack={() => navigation.goBack()} />
 
       {isLoading ? (
         <LoadingSpinner />
@@ -65,7 +67,7 @@ export default function CommissionsScreen({ navigation }: any) {
           ListHeaderComponent={
             <View style={[styles.summary, { backgroundColor: colors.primary }]}>
               <Text style={[TYPOGRAPHY.body, { color: 'rgba(255,255,255,0.85)' }]}>
-                {isAr ? 'إجمالي العمولات المكتسبة' : 'Total Earned'}
+                {t('commission.totalEarned')}
               </Text>
               <PriceText
                 value={totalEarned}
@@ -73,17 +75,15 @@ export default function CommissionsScreen({ navigation }: any) {
                 currencyStyle={[TYPOGRAPHY.h3, { color: '#FFF' }]}
               />
               <Text style={[TYPOGRAPHY.small, { color: 'rgba(255,255,255,0.75)', marginTop: SIZES.sm }]}>
-                {isAr
-                  ? `من ${items.length} عملية`
-                  : `from ${items.length} transactions`}
+                {t('commission.fromTxn', { count: items.length })}
               </Text>
             </View>
           }
           renderItem={({ item }: any) => {
             const meta = statusMeta(item.status);
-            const title = item.listingTitleAr && isAr
+            const title = (isAr && item.listingTitleAr)
               ? item.listingTitleAr
-              : item.listingTitleEn || item.listing?.titleAr || item.listing?.titleEn || (isAr ? 'عمولة' : 'Commission');
+              : item.listingTitleEn || item.listing?.titleAr || item.listing?.titleEn || t('commission.commission');
             return (
               <View style={[styles.card, { backgroundColor: colors.surface }]}>
                 <View style={[styles.cardHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
@@ -95,7 +95,7 @@ export default function CommissionsScreen({ navigation }: any) {
                   </Text>
                   <View style={[styles.badge, { backgroundColor: meta.color + '20' }]}>
                     <Text style={[TYPOGRAPHY.caption, { color: meta.color, fontWeight: '800', textTransform: 'uppercase' }]}>
-                      {isAr ? meta.labelAr : meta.labelEn}
+                      {meta.label}
                     </Text>
                   </View>
                 </View>
@@ -103,7 +103,7 @@ export default function CommissionsScreen({ navigation }: any) {
                 {item.transactionValue != null && (
                   <View style={[styles.row, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
                     <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>
-                      {isAr ? 'قيمة الصفقة' : 'Deal value'}
+                      {t('commission.dealValue')}
                     </Text>
                     <PriceText
                       value={item.transactionValue}
@@ -115,7 +115,7 @@ export default function CommissionsScreen({ navigation }: any) {
 
                 <View style={[styles.row, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
                   <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>
-                    {isAr ? 'العمولة' : 'Commission'}
+                    {t('commission.commission')}
                   </Text>
                   <PriceText
                     value={item.amount}
@@ -135,8 +135,8 @@ export default function CommissionsScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="receipt-outline"
-              title={isAr ? 'لا توجد عمولات' : 'No commissions yet'}
-              subtitle={isAr ? 'ستظهر العمولات هنا بعد إغلاق الصفقات' : 'Earnings will appear after closing deals'}
+              title={t('commission.noCommissionsTitle')}
+              subtitle={t('commission.earningsHint')}
             />
           }
         />

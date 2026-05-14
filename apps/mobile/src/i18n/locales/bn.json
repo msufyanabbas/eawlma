@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "ইওলমা",
     "tagline": "সৌদি আরবে আপনার নিখুঁত সম্পত্তি আবিষ্কার করুন"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "যেকোনো মূল্য",
     "upTo500": "৫০০ SAR পর্যন্ত",
     "upTo1000": "১,০০০ SAR পর্যন্ত",
-    "upTo2500": "২,৫০০ SAR পর্যন্ত"
+    "upTo2500": "২,৫০০ SAR পর্যন্ত",
+    "hotelChip": "হোটেল"
   },
   "messages": {
     "startConversation": "কথোপকথন শুরু করুন",
@@ -147,7 +148,14 @@
     "showOriginal": "মূল দেখান",
     "showTranslation": "অনুবাদ দেখান",
     "online": "অনলাইন",
-    "lastSeen": "শেষ দেখা"
+    "lastSeen": "শেষ দেখা",
+    "title": "বার্তা",
+    "noMessages": "এখনও কোন বার্তা নেই",
+    "noMessagesPrompt": "তালিকাভুক্ত পৃষ্ঠাগুলি থেকে এজেন্টদের সাথে যোগাযোগ করুন",
+    "signInPrompt": "আপনার বার্তা দেখতে সাইন ইন করুন",
+    "chat": "চ্যাট",
+    "user": "ব্যবহারকারী",
+    "noMessagesShort": "কোনো বার্তা নেই"
   },
   "hosting": {
     "title": "হোস্টিং",
@@ -166,7 +174,8 @@
     "dailyRate": "দৈনিক হার",
     "weeklyRate": "সাপ্তাহিক হার",
     "guestReviews": "অতিথি পর্যালোচনা",
-    "noReviews": "এখনও কোনো পর্যালোচনা নেই — অতিথিরা চেক আউট এবং তাদের থাকার রেট করার পরে, সেগুলি এখানে দেখা যাবে।"
+    "noReviews": "এখনও কোনো পর্যালোচনা নেই — অতিথিরা চেক আউট এবং তাদের থাকার রেট করার পরে, সেগুলি এখানে দেখা যাবে।",
+    "guestFallback": "অতিথি"
   },
   "buyerDeals": {
     "title": "আমার চুক্তি",
@@ -216,7 +225,20 @@
     "favorAgent": "এজেন্টের পক্ষে — কমিশন তৈরি করুন",
     "favorBuyer": "ক্রেতার পক্ষে — চুক্তি বাতিল করুন",
     "cancelDeal": "চুক্তি বাতিল করুন — কোনো কমিশন নেই",
-    "resolutionHint": "এই নোটগুলির সাথে উভয় পক্ষকে অবহিত করা হবে।"
+    "resolutionHint": "এই নোটগুলির সাথে উভয় পক্ষকে অবহিত করা হবে।",
+    "other": "অন্যান্য",
+    "buyerLower": "ক্রেতা",
+    "agentLower": "এজেন্ট",
+    "otherLower": "অন্যান্য",
+    "anonymous": "বেনামী",
+    "resolveTitle": "| বিবাদ মীমাংসা করুন",
+    "resolveDesc": "এই বিরোধের জন্য ফলাফল নির্বাচন করুন",
+    "favorAgentDesc": "কমিশন নিশ্চিত করা হবে এবং এজেন্টকে অর্থ প্রদান করা হবে",
+    "favorBuyerDesc": "কমিশন বাতিল করা হবে",
+    "cancelDealDesc": "চুক্তি এবং কমিশন উভয়ই বাতিল",
+    "adminNotes": "অ্যাডমিন নোট (ঐচ্ছিক)",
+    "resolvedSuccess": "বিরোধ সফলভাবে সমাধান করা হয়েছে",
+    "resolvedError": "বিরোধ মীমাংসা করতে ব্যর্থ"
   },
   "auth": {
     "login": "সাইন ইন",
@@ -252,7 +274,14 @@
     "agreeTerms": "অ্যাকাউন্ট তৈরি করে আপনি আমাদের শর্তাবলী এবং গোপনীয়তা নীতিতে সম্মত হন",
     "loginSuccess": "সফলভাবে সাইন ইন হয়েছে",
     "registerSuccess": "অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে",
-    "logoutSuccess": "সাইন আউট হয়েছে"
+    "logoutSuccess": "সাইন আউট হয়েছে",
+    "role": "৷ অ্যাকাউন্টের ধরন",
+    "buyer": "ক্রেতা",
+    "agent": "| এজেন্ট",
+    "loginBtn": "| সাইন ইন",
+    "registerBtn": "| অ্যাকাউন্ট তৈরি করুন",
+    "fillAllFields": "| অনুগ্রহ করে সমস্ত ক্ষেত্র পূরণ করুন",
+    "invalidCredentials": "অবৈধ ইমেল বা পাসওয়ার্ড"
   },
   "validation": {
     "required": "এই ক্ষেত্রটি প্রয়োজনীয়",
@@ -278,7 +307,7 @@
     "submit": "জমা দিন",
     "language": "ভাষা",
     "arabic": "العربية",
-    "english": "English",
+    "english": "| ইংরেজি",
     "back": "পিছনে",
     "next": "পরবর্তী",
     "previous": "পূর্ববর্তী",
@@ -296,7 +325,14 @@
     "remove": "সরান",
     "actions": "ক্রিয়া",
     "active": "সক্রিয়",
-    "inactive": "নিষ্ক্রিয়"
+    "inactive": "নিষ্ক্রিয়",
+    "loadMore": "| আরো লোড করুন",
+    "errorOccurred": "| একটি ত্রুটি ঘটেছে",
+    "yes": "৷ হ্যাঁ",
+    "no": "| না",
+    "sar": "| SAR",
+    "perNight": "| প্রতি রাতে",
+    "perMonth": "প্রতি মাসে"
   },
   "listing": {
     "forSale": "বিক্রয়ের জন্য",
@@ -322,7 +358,7 @@
     "save": "সংরক্ষণ",
     "share": "শেয়ার করুন",
     "callAgent": "এজেন্টকে কল করুন",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "হোয়াটসঅ্যাপ",
     "scheduleTour": "ট্যুর নির্ধারণ করুন",
     "scheduleATour": "একটি ট্যুর নির্ধারণ করুন",
     "contactAgent": "এজেন্টের সাথে যোগাযোগ",
@@ -363,7 +399,34 @@
       "expired": "মেয়াদোত্তীর্ণ",
       "draft": "খসড়া",
       "archived": "আর্কাইভ"
-    }
+    },
+    "sale": "বিক্রয়",
+    "rent": "ভাড়া",
+    "bedrooms": "শয্যা",
+    "bathrooms": "স্নান",
+    "propertyTypeLabel": "টাইপ",
+    "noDescription": "কোন বর্ণনা নেই।",
+    "locationNotSpecified": "অবস্থান নির্দিষ্ট করা হয়নি",
+    "similarProperties": "অনুরূপ বৈশিষ্ট্য",
+    "bookNow": "এখন বুক করুন",
+    "saveProperty": "সম্পত্তি সংরক্ষণ করুন",
+    "openInMaps": "ম্যাপে খুলুন",
+    "viewOnMap": "মানচিত্রে দেখুন",
+    "tapToOpenMap": "মানচিত্র খুলতে আলতো চাপুন",
+    "sendInquiryTitle": "তদন্ত পাঠান",
+    "yourMessage": "আপনার বার্তা",
+    "messagePlaceholder": "এখানে আপনার বার্তা লিখুন...",
+    "preferredContact": "পছন্দের যোগাযোগ",
+    "phone": "ফোন",
+    "email": "ইমেইল",
+    "sent": "পাঠানো হয়েছে",
+    "sentBody": "আপনার তদন্ত পাঠানো হয়েছে",
+    "messageTooShort": "বার্তাটি খুব ছোট",
+    "messageTooShortBody": "বার্তা কমপক্ষে 10 অক্ষরের হতে হবে",
+    "actionFailed": "অ্যাকশন ব্যর্থ হয়েছে",
+    "bookingDevTitle": "বুকিং",
+    "bookingDevBody": "বুকিং প্রবাহ উন্নয়নশীল. অনুগ্রহ করে এজেন্টের সাথে যোগাযোগ করুন।",
+    "removeFromSaved": "সংরক্ষিত থেকে এই সম্পত্তি সরান?"
   },
   "search": {
     "filters": "ফিল্টার",
@@ -399,7 +462,29 @@
       "cta": "সম্পত্তি অনুরোধ জমা দিন"
     },
     "drawArea": "একটি এলাকা আঁকুন",
-    "clearDrawing": "অঙ্কন সাফ করুন"
+    "clearDrawing": "অঙ্কন সাফ করুন",
+    "flexibleDates": "আমি তারিখের সাথে নমনীয়",
+    "flex1Month": "1 মাস",
+    "shortTerm": "স্বল্পমেয়াদী",
+    "title": "অনুসন্ধান করুন",
+    "placeholder": "বৈশিষ্ট্য অনুসন্ধান করুন, শহর...",
+    "noResultsHint": "বিভিন্ন ফিল্টার চেষ্টা করুন",
+    "cityPlaceholder": "রিয়াদ, জেদ্দা...",
+    "priceRange": "মূল্য পরিসীমা",
+    "bedrooms": "বেডরুম",
+    "sort": "সাজান",
+    "any": "যে কোন",
+    "all": "সব",
+    "sale": "বিক্রয়",
+    "rent": "ভাড়া",
+    "apartment": "এপ্ট",
+    "villa": "ভিলা",
+    "land": "জমি",
+    "chalet": "শ্যালেট",
+    "farm": "খামার",
+    "sortNewest": "নতুন",
+    "sortPriceAsc": "মূল্য ↑",
+    "sortPriceDesc": "দাম ↓"
   },
   "home": {
     "heroTitle": "আপনার নিখুঁত বাড়ি খুঁজুন",
@@ -438,8 +523,8 @@
     "newestSort": "নতুনতম",
     "priceLowSort": "মূল্য: কম",
     "priceHighSort": "মূল্য: বেশি",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "অ্যাপ স্টোর",
+    "googlePlay": "| Google Play",
     "statListings": "তালিকা",
     "statAgents": "এজেন্ট",
     "statUsers": "ব্যবহারকারী",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} তালিকা পাওয়া গেছে",
     "clearFilters": "সব সাফ করুন",
     "results": "ফলাফল",
-    "loadMoreListings": "আরও তালিকা লোড করুন"
+    "loadMoreListings": "আরও তালিকা লোড করুন",
+    "latestListings": "সর্বশেষ তালিকা",
+    "featuredProperties": "| বৈশিষ্ট্যযুক্ত বৈশিষ্ট্য",
+    "seeAll": "সব দেখুন",
+    "quickAccess": "|৷ দ্রুত অ্যাক্সেস",
+    "stays": "থাকে",
+    "hotels": "| হোটেল",
+    "market": "| বাজার",
+    "saved": "সংরক্ষিত",
+    "tagline": "প্রিমিয়ার রিয়েল এস্টেট",
+    "categories": {
+      "all": "সব",
+      "sale": "বিক্রয়ের জন্য",
+      "rent": "| ভাড়ার জন্য",
+      "chalets": "শ্যালেটস",
+      "villas": "ভিলাস",
+      "apartments": "| অ্যাপার্টমেন্ট",
+      "land": "জমি"
+    }
   },
   "empty": {
     "noListings": "এখনও কোনো তালিকা নেই",
@@ -476,7 +579,7 @@
     "support": "সহায়তা",
     "help": "সহায়তা কেন্দ্র",
     "helpCenter": "সহায়তা কেন্দ্র",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "| WhatsApp",
     "callUs": "আমাদের কল করুন",
     "needHelp": "সাহায্য দরকার? WhatsApp-এ আমাদের সাথে কথা বলুন।",
     "cr": "বাণিজ্যিক নিবন্ধন",
@@ -512,7 +615,7 @@
     "sentSuccess": "ধন্যবাদ! আমাদের টিম ২৪ ঘন্টার মধ্যে সাড়া দেবে।",
     "emailUs": "আমাদের ইমেইল করুন",
     "emailReplies": "কর্মদিবসে ২৪ ঘন্টার মধ্যে উত্তর",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "| WhatsApp",
     "whatsappHours": "রবি–বৃহস্পতি, ৯:০০ – ১৮:০০ (AST)",
     "office": "অফিস",
     "officeAddress": "কিং ফাহাদ রোড, রিয়াদ",
@@ -551,15 +654,75 @@
     "recentActivity": "সাম্প্রতিক কার্যকলাপ",
     "browseListings": "তালিকা ব্রাউজ করুন",
     "goToDashboard": "ড্যাশবোর্ডে যান",
-    "profileUpdated": "প্রোফাইল আপডেট করা হয়েছে"
+    "profileUpdated": "প্রোফাইল আপডেট করা হয়েছে",
+    "title": "| আমার অ্যাকাউন্ট",
+    "signIn": "| সাইন ইন করুন",
+    "welcome": "Eawlma স্বাগতম",
+    "signInPrompt": "আপনার অ্যাকাউন্ট অ্যাক্সেস করতে সাইন ইন করুন",
+    "createAccount": "অ্যাকাউন্ট তৈরি করুন",
+    "agentDashboard": "এজেন্ট ড্যাশবোর্ড",
+    "myListings": "আমার তালিকা",
+    "addListing": "তালিকা যোগ করুন",
+    "wallet": "ওয়ালেট",
+    "commissions": "কমিশন",
+    "myBookings": "আমার বুকিং",
+    "myInquiries": "আমার জিজ্ঞাসা",
+    "inquiries": "জিজ্ঞাসাবাদ",
+    "account": "হিসাব",
+    "notifications": "বিজ্ঞপ্তি",
+    "language": "ভাষা",
+    "darkMode": "ডার্ক মোড",
+    "support": "সেটিংস এবং সমর্থন",
+    "settings": "সেটিংস",
+    "help": "সাহায্য এবং FAQ",
+    "about": "সম্পর্কে",
+    "signOut": "সাইন আউট",
+    "signOutConfirm": "আপনি কি নিশ্চিত আপনি সাইন আউট করতে চান?",
+    "member": "সদস্য",
+    "agentRole": "এজেন্ট",
+    "admin": "অ্যাডমিন",
+    "chooseLanguage": "ভাষা নির্বাচন করুন",
+    "searchLanguage": "অনুসন্ধান করুন...",
+    "popular": "জনপ্রিয়",
+    "allLanguages": "সমস্ত ভাষা",
+    "noLanguageMatch": "কোন মিলিত ভাষা"
   },
   "wizard": {
     "basicInfo": "মৌলিক তথ্য",
-    "location": "অবস্থান",
+    "location": {
+      "street": "রাস্তা",
+      "buildingNumber": "বিল্ডিং নং।",
+      "postalCode": "পোস্টাল কোড",
+      "pinPrompt": "সঠিক অবস্থান সেট করতে একটি পিন ড্রপ করুন",
+      "pinLabel": "পিন",
+      "mapUnavailable": "মানচিত্র পিন পিকার অনুপলব্ধ. স্থানাঙ্কগুলি {{lat}}, {{lng}}-এ ফিরে আসে।"
+    },
     "media": "মিডিয়া",
     "amenities": "সুবিধা",
-    "compliance": "সম্মতি",
-    "review": "পর্যালোচনা",
+    "compliance": {
+      "permitNumber": "পারমিট/এফএএল নম্বর",
+      "regaNumber": "REGA লাইসেন্স নম্বর",
+      "permitExpiry": "পারমিটের মেয়াদ শেষ",
+      "preferredContact": "পছন্দের যোগাযোগ",
+      "phone": "ফোন",
+      "publicVisibility": "সর্বজনীন দৃশ্যমানতা (শুধু তালিকাবিহীন/ ব্যক্তিগত লিঙ্কের জন্য টিক চিহ্ন মুক্ত করুন)"
+    },
+    "review": {
+      "summaryTitle": "তালিকার সারাংশ",
+      "enhanceWithAi": "AI দিয়ে উন্নত করুন",
+      "enhancing": "উন্নত করা হচ্ছে...",
+      "aiStubNotice": "AI একটি স্টাব ফিরিয়ে দিয়েছে — লাইভ মডেল ব্যবহার করতে ব্যাকএন্ডে OPENAI_API_KEY সেট করুন।",
+      "descriptionPreview": "বর্ণনার পূর্বরূপ",
+      "emptyDescription": "(খালি)",
+      "type": "টাইপ",
+      "titleLabel": "শিরোনাম",
+      "bedsBaths": "বেডরুম / বাথরুম",
+      "cityDistrict": "শহর/জেলা",
+      "coordinates": "স্থানাঙ্ক",
+      "permit": "অনুমতি",
+      "regaLicense": "REGA লাইসেন্স",
+      "visibility": "দৃশ্যমানতা"
+    },
     "saveDraft": "খসড়া সংরক্ষণ করুন",
     "submit": "পর্যালোচনার জন্য জমা দিন",
     "submitForReview": "পর্যালোচনার জন্য জমা দিন",
@@ -576,7 +739,103 @@
       "bathrooms": "বাথরুম",
       "parking": "পার্কিং",
       "yearBuilt": "নির্মাণ বছর",
-      "furnishing": "সাজসজ্জা"
+      "furnishing": "সাজসজ্জা",
+      "rentPeriod": "সময়কাল"
+    },
+    "editListing": "তালিকা সম্পাদনা করুন",
+    "newListing": "নতুন তালিকা",
+    "crumbNew": "নতুন",
+    "validation": {
+      "titleRequired": "অন্তত একটি ভাষায় একটি শিরোনাম যোগ করুন.",
+      "descriptionRequired": "অন্তত একটি ভাষায় একটি বিবরণ যোগ করুন.",
+      "priceRequired": "মূল্য শূন্যের বেশি হতে হবে।",
+      "cityRequired": "শহর প্রয়োজন.",
+      "pinRequired": "অবস্থানের জন্য মানচিত্রে একটি পিন ড্রপ করুন।",
+      "imageRequired": "প্রকাশ করার আগে অন্তত একটি ছবি প্রয়োজন৷"
+    },
+    "transactionType": {
+      "sale": "বিক্রয়",
+      "rent": "ভাড়া"
+    },
+    "rentPeriod": {
+      "daily": "দৈনিক",
+      "weekly": "সাপ্তাহিক",
+      "monthly": "মাসিক",
+      "yearly": "বার্ষিক"
+    },
+    "furnishing": {
+      "unfurnished": "সজ্জিত",
+      "semi_furnished": "আধা-সজ্জিত",
+      "furnished": "সজ্জিত"
+    },
+    "visibility": {
+      "public": "পাবলিক",
+      "unlisted": "তালিকাভুক্ত নয়"
+    },
+    "amenity": {
+      "pool": "পুল",
+      "garden": "| বাগান",
+      "gym": "| জিম",
+      "elevator": "লিফট",
+      "maidRoom": "কাজের মেয়ের ঘর",
+      "driverRoom": "| ড্রাইভার রুম",
+      "centralAc": "সেন্ট্রাল এসি",
+      "kitchenAppliances": "রান্নাঘরের যন্ত্রপাতি",
+      "security": "24/7 নিরাপত্তা",
+      "cornerUnit": "| কর্নার ইউনিট"
+    },
+    "shortTermAmenity": {
+      "wifi": "| Wi-Fi",
+      "pool": "পুল",
+      "parking": "| পার্কিং",
+      "breakfast": "| প্রাতঃরাশ",
+      "ac": "এয়ার কন্ডিশনার",
+      "kitchen": "| রান্নাঘর",
+      "tv": "| টিভি",
+      "washer": "| ধোয়ার",
+      "workspace": "| কর্মক্ষেত্র",
+      "petsAllowed": "পোষা প্রাণী অনুমোদিত",
+      "smokingAllowed": "ধূমপান অনুমোদিত",
+      "wheelchairAccessible": "হুইলচেয়ার অ্যাক্সেসযোগ্য"
+    },
+    "shortTerm": {
+      "title": "স্বল্পমেয়াদী ভাড়ার বিবরণ",
+      "subtitle": "অতিথিরা রাতের মধ্যে এই তালিকা বুক করবেন। থাকার নিয়ম, সুযোগ-সুবিধা এবং মূল্যের স্তর কনফিগার করুন।",
+      "dailyRate": "দৈনিক হার (SAR)",
+      "weeklyRate": "সাপ্তাহিক হার (SAR, ঐচ্ছিক)",
+      "minimumStay": "ন্যূনতম অবস্থান (রাত্রি)",
+      "maxGuests": "সর্বোচ্চ অতিথি",
+      "checkIn": "চেক-ইন",
+      "checkOut": "চেক-আউট",
+      "cancellationPolicy": "বাতিলকরণ নীতি",
+      "cancelFlexible": "নমনীয় — 24 ঘন্টা আগে পর্যন্ত সম্পূর্ণ ফেরত",
+      "cancelModerate": "মাঝারি — 5 দিন আগে পর্যন্ত সম্পূর্ণ ফেরত",
+      "cancelStrict": "কঠোর — 7 দিন আগে পর্যন্ত 50% ফেরত",
+      "starRating": "স্টার রেটিং",
+      "hotelName": "হোটেলের নাম",
+      "instantBook": "তাত্ক্ষণিক বই",
+      "instantBookHint": "বুকিং স্বয়ংক্রিয়ভাবে আপনার অনুমোদন ছাড়া নিশ্চিত. প্রথমে প্রতিটি অনুরোধ পর্যালোচনা করতে অক্ষম করুন।",
+      "amenities": "সুযোগ-সুবিধা",
+      "houseRules": "ঘরের নিয়ম",
+      "houseRulesPlaceholder": "যেমন কোনও পার্টি নেই, রাত 10 টার পরে শান্ত ঘন্টা, ধূমপান নেই..."
+    },
+    "mediaStep": {
+      "images": "ছবি",
+      "imageDropHint": "এখানে ফটো টেনে আনুন এবং ড্রপ করুন, অথবা বেছে নিতে ক্লিক করুন। JPEG/PNG/WebP 10 MB পর্যন্ত।",
+      "photoAlt": "তালিকার ফটো",
+      "setCover": "কভার হিসাবে সেট করুন",
+      "cover": "আবরণ",
+      "videoTour": "ভিডিও ট্যুর",
+      "videoDropHint": "একটি MP4 ফাইল টেনে আনুন বা বেছে নিতে ক্লিক করুন। সর্বোচ্চ 500 MB",
+      "videoUploaded": "ভিডিও আপলোড করা হয়েছে — {{name}}",
+      "vrTitle": "🥽 ভার্চুয়াল রিয়েলিটি ট্যুর লিঙ্ক",
+      "vrPlaceholder": "https://… (ম্যাটারপোর্ট, কুলা, ইত্যাদি)",
+      "modelTitle": "3D / AR মডেল (.glb বা .gltf)",
+      "modelDropHint": "AR সক্ষম করতে একটি GLB/GLTF মডেল আপলোড করুন৷ সর্বোচ্চ 50 এমবি।",
+      "modelUploaded": "মডেল আপলোড করা হয়েছে — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "এই প্রপার্টি যে সুবিধাগুলি অফার করে তাতে ট্যাপ করুন। আমরা অনুসন্ধানে ফিল্টার হিসাবে সেগুলিকে দেখাব৷"
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "নিশ্চিত",
       "paid": "প্রদত্ত",
       "disputed": "বিতর্কিত"
+    },
+    "oath": {
+      "dialogTitle": "কমিশনের প্রতিশ্রুতি",
+      "translatedOath": "আমি এতদ্বারা এই রিয়েল এস্টেট লেনদেন সম্পূর্ণ হওয়ার পরে সম্মত কমিশন প্রদানের প্রতিশ্রুতিবদ্ধ, এবং ঈশ্বর এবং আইনের সামনে এই দায়িত্ব স্বীকার করছি।",
+      "breakdownTitle": "কমিশন ভাঙ্গন",
+      "agentListingBreakdown": "প্ল্যাটফর্ম কমিশন: লেনদেনের মূল্যের <strong>0.5%</strong>, সফলভাবে বিক্রয় বা ইজারা বন্ধ হলে প্রদেয়।",
+      "buyerAgentCommission": "এজেন্ট কমিশন: লেনদেনের মূল্যের <strong>2.5%</strong>।",
+      "buyerPlatformFee": "প্ল্যাটফর্ম ফি: লেনদেনের মূল্যের <strong>0.5%</strong>।",
+      "acceptError": "আপনার গ্রহণযোগ্যতা রেকর্ড করা যায়নি",
+      "agreeCheckbox": "আমি কমিশন শর্তাবলী সম্মত",
+      "decline": "আমি রাজি নই",
+      "saving": "সংরক্ষণ করা হচ্ছে...",
+      "acceptCta": "আমি স্বীকার করি এবং প্রতিশ্রুতিবদ্ধ"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ প্রদত্ত",
       "failed": "ব্যর্থ",
       "rejected": "প্রত্যাখ্যাত"
-    }
+    },
+    "balance": "বর্তমান ব্যালেন্স",
+    "withdraw": "পেআউট",
+    "noTransactionsHint": "আপনার লেনদেন এখানে প্রদর্শিত হবে",
+    "sar": "SAR",
+    "inDevelopment": "এই বৈশিষ্ট্য উন্নয়নশীল",
+    "depositTitle": "জমা",
+    "payoutTitle": "পেআউট",
+    "withdrawal": "প্রত্যাহার"
   },
   "nafath": {
     "loginWith": "Nafath দিয়ে সাইন ইন করুন"
@@ -896,7 +1176,14 @@
     "contractNumber": "চুক্তি #",
     "viewContract": "চুক্তি দেখুন",
     "signedThroughEjar": "Ejar এর মাধ্যমে স্বাক্ষরিত",
-    "noContracts": "এখনও কোনো ভাড়া চুক্তি নেই"
+    "noContracts": "এখনও কোনো ভাড়া চুক্তি নেই",
+    "status": {
+      "draft": "খসড়া",
+      "pending_signatures": "মুলতুবি স্বাক্ষর",
+      "active": "সক্রিয়",
+      "expired": "মেয়াদ শেষ",
+      "cancelled": "বাতিল"
+    }
   },
   "dufaat": {
     "title": "Dufaat কিস্তি",
@@ -911,7 +1198,13 @@
     "nextPayment": "পরবর্তী পেমেন্ট",
     "installmentsPaid": "প্রদত্ত কিস্তি",
     "payNow": "কিস্তি প্রদান করুন",
-    "noPlans": "এখনও কোনো Dufaat পরিকল্পনা নেই"
+    "noPlans": "এখনও কোনো Dufaat পরিকল্পনা নেই",
+    "status": {
+      "active": "সক্রিয়",
+      "completed": "সম্পন্ন",
+      "defaulted": "ডিফল্ট",
+      "cancelled": "বাতিল"
+    }
   },
   "booking": {
     "myBookings": "আমার বুকিং",
@@ -961,6 +1254,9 @@
       "confirmed": "নিশ্চিত",
       "cancelled": "বাতিল",
       "completed": "সম্পূর্ণ"
+    },
+    "calendar": {
+      "maxGuestsHelper": "সর্বাধিক অতিথি: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "মাঝারি আত্মবিশ্বাস",
       "low": "নিম্ন আত্মবিশ্বাস"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "নাম বা বিশেষত্ব দ্বারা অনুসন্ধান করুন",
+    "allCities": "সমস্ত শহর",
+    "cityRiyadh": "রিয়াদ",
+    "cityJeddah": "জেদ্দা",
+    "cityDammam": "দাম্মাম",
+    "emptyTitle": "কোন এজেন্ট আপনার অনুসন্ধান মেলে না",
+    "emptyBody": "একটি ভিন্ন নাম বা শহর চেষ্টা করুন.",
+    "agency": "Eawlma রিয়েল এস্টেট",
+    "verified": "যাচাই করা হয়েছে",
+    "respondsUnder2h": "< 2 ঘন্টা",
+    "activeListingsCount": "{{count}}টি সক্রিয় তালিকা",
+    "viewProfile": "প্রোফাইল দেখুন"
+  },
+  "myListings": {
+    "countSelected": "{{count}}টি নির্বাচিত৷",
+    "activateAll": "সব সক্রিয় করুন",
+    "deactivateAll": "সব নিষ্ক্রিয় করুন",
+    "deleteAll": "সব মুছে দিন",
+    "colViews": "ভিউ",
+    "colInquiries": "জিজ্ঞাসাবাদ",
+    "boostFeature": "বুস্ট (বৈশিষ্ট্য)",
+    "duplicate": "ডুপ্লিকেট",
+    "deleteConfirmTitle": "{{count}}টি তালিকা(গুলি) মুছবেন?",
+    "deleteConfirmDescription": "এই ক্রিয়াটি তালিকাটিকে নরম-মুছে দেয় — এটি আর সর্বজনীনভাবে প্রদর্শিত হবে না।"
+  },
+  "saved": {
+    "title": "সংরক্ষিত",
+    "empty": "কোনো সংরক্ষিত বৈশিষ্ট্য নেই",
+    "emptyPrompt": "❤️ ট্যাপ করে আপনার পছন্দের বৈশিষ্ট্যগুলি সংরক্ষণ করুন",
+    "signInPrompt": "বৈশিষ্ট্য সংরক্ষণ করতে সাইন ইন করুন",
+    "removeTitle": "সরান",
+    "removePrompt": "সংরক্ষিত থেকে এই সম্পত্তি সরান?"
+  },
+  "notifications": {
+    "title": "বিজ্ঞপ্তি",
+    "empty": "কোন বিজ্ঞপ্তি নেই",
+    "emptyHint": "আপনার সতর্কতা এখানে প্রদর্শিত হবে",
+    "markAllRead": "সব পড়া হিসেবে চিহ্নিত করুন",
+    "notification": "বিজ্ঞপ্তি"
+  },
+  "bookings": {
+    "title": "আমার বুকিং",
+    "host": "হোস্ট হিসেবে",
+    "guest": "অতিথি হিসেবে",
+    "noBookings": "এখনো কোনো বুকিং নেই",
+    "noBookingsHint": "আপনার বুকিং এখানে প্রদর্শিত হবে",
+    "checkIn": "চেক-ইন",
+    "checkOut": "চেক-আউট",
+    "guests": "অতিথিরা",
+    "nights": "রাত",
+    "total": "মোট",
+    "status": {
+      "pending": "মুলতুবি",
+      "confirmed": "নিশ্চিত করা হয়েছে",
+      "cancelled": "বাতিল",
+      "completed": "সম্পন্ন"
+    }
+  },
+  "tabs": {
+    "home": "বাড়ি",
+    "search": "অনুসন্ধান করুন",
+    "saved": "সংরক্ষিত",
+    "messages": "বার্তা",
+    "profile": "| প্রোফাইল"
   }
 }

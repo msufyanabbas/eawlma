@@ -5,8 +5,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { agentsApi } from '../api';
-import { useRTL } from '../hooks/useRTL';
 import { useTheme } from '../hooks/useTheme';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import Header from '../components/Header';
@@ -19,8 +19,8 @@ const { width: W } = Dimensions.get('window');
 
 export default function AgentProfileScreen({ navigation, route }: any) {
   const { id } = route.params;
-  const { isAr } = useRTL();
   const { colors } = useTheme();
+  const { t } = useTranslation();
 
   const { data: agentData, isLoading } = useQuery({
     queryKey: ['agent', id],
@@ -49,13 +49,13 @@ export default function AgentProfileScreen({ navigation, route }: any) {
   if (isLoading) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background }}>
-        <Header title={isAr ? 'الوكيل' : 'Agent'} onBack={() => navigation.goBack()} />
+        <Header title={t('agents.agent')} onBack={() => navigation.goBack()} />
         <LoadingSpinner />
       </View>
     );
   }
 
-  const fullName = `${agent.firstName || ''} ${agent.lastName || ''}`.trim() || (isAr ? 'وكيل' : 'Agent');
+  const fullName = `${agent.firstName || ''} ${agent.lastName || ''}`.trim() || t('agents.agent');
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -76,9 +76,9 @@ export default function AgentProfileScreen({ navigation, route }: any) {
           )}
 
           <View style={styles.statsRow}>
-            <Stat label={isAr ? 'إعلانات' : 'Listings'} value={listings.length} colors={colors} />
-            <Stat label={isAr ? 'تقييمات' : 'Reviews'} value={agent.reviewCount || 0} colors={colors} />
-            <Stat label={isAr ? 'متوسط ⭐' : 'Rating'} value={agent.averageRating?.toFixed(1) || '—'} colors={colors} />
+            <Stat label={t('agents.listings')} value={listings.length} colors={colors} />
+            <Stat label={t('agents.reviews')} value={agent.reviewCount || 0} colors={colors} />
+            <Stat label={t('agents.rating')} value={agent.averageRating?.toFixed(1) || '—'} colors={colors} />
           </View>
 
           <View style={styles.actionsRow}>
@@ -89,7 +89,7 @@ export default function AgentProfileScreen({ navigation, route }: any) {
             >
               <Ionicons name="call" size={18} color="#FFF" />
               <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>
-                {isAr ? 'اتصال' : 'Call'}
+                {t('agents.call')}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -108,19 +108,19 @@ export default function AgentProfileScreen({ navigation, route }: any) {
           >
             <Ionicons name="star-outline" size={16} color={colors.primary} />
             <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary }]}>
-              {isAr ? 'عرض التقييمات' : 'View Reviews'}
+              {t('agents.viewReviews')}
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.section}>
           <Text style={[TYPOGRAPHY.h4, { color: colors.text, marginHorizontal: SIZES.lg, marginBottom: SIZES.md }]}>
-            {isAr ? 'الإعلانات' : 'Listings'}
+            {t('agents.listings')}
           </Text>
           {listings.length === 0 ? (
             <EmptyState
               icon="home-outline"
-              title={isAr ? 'لا توجد إعلانات' : 'No listings'}
+              title={t('agents.noListings')}
             />
           ) : (
             <View style={styles.grid}>

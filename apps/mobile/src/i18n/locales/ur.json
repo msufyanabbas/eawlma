@@ -163,7 +163,14 @@
     "showOriginal": "اصل دکھائیں",
     "showTranslation": "ترجمہ دکھائیں",
     "online": "آن لائن",
-    "lastSeen": "آخری بار دیکھا گیا"
+    "lastSeen": "آخری بار دیکھا گیا",
+    "title": "Messages",
+    "noMessages": "No messages yet",
+    "noMessagesPrompt": "Contact agents from listing pages",
+    "signInPrompt": "Sign in to see your messages",
+    "chat": "Chat",
+    "user": "User",
+    "noMessagesShort": "No messages"
   },
   "hosting": {
     "title": "میزبانی",
@@ -282,7 +289,14 @@
     "agreeTerms": "اکاؤنٹ بنا کر آپ ہماری شرائط اور رازداری کی پالیسی سے اتفاق کرتے ہیں",
     "loginSuccess": "کامیابی سے سائن ان ہو گئے",
     "registerSuccess": "اکاؤنٹ کامیابی سے بن گیا",
-    "logoutSuccess": "سائن آؤٹ ہو گئے"
+    "logoutSuccess": "سائن آؤٹ ہو گئے",
+    "role": "Account Type",
+    "buyer": "Buyer",
+    "agent": "Agent",
+    "loginBtn": "Sign In",
+    "registerBtn": "Create Account",
+    "fillAllFields": "Please fill all fields",
+    "invalidCredentials": "Invalid email or password"
   },
   "validation": {
     "required": "یہ خانہ ضروری ہے",
@@ -328,7 +342,13 @@
     "actions": "اقدامات",
     "active": "فعال",
     "inactive": "غیر فعال",
-    "loadMore": "مزید لوڈ کریں"
+    "loadMore": "مزید لوڈ کریں",
+    "errorOccurred": "An error occurred",
+    "yes": "Yes",
+    "no": "No",
+    "sar": "SAR",
+    "perNight": "per night",
+    "perMonth": "per month"
   },
   "listing": {
     "forSale": "برائے فروخت",
@@ -395,7 +415,34 @@
       "expired": "ختم شدہ",
       "draft": "مسودہ",
       "archived": "آرکائیو شدہ"
-    }
+    },
+    "sale": "Sale",
+    "rent": "Rent",
+    "bedrooms": "Beds",
+    "bathrooms": "غسل",
+    "propertyTypeLabel": "قسم",
+    "noDescription": "کوئی تفصیل نہیں۔",
+    "locationNotSpecified": "مقام متعین نہیں کیا گیا",
+    "similarProperties": "اسی طرح کی خصوصیات",
+    "bookNow": "ابھی بک کرو",
+    "saveProperty": "پراپرٹی محفوظ کریں",
+    "openInMaps": "Maps میں کھولیں",
+    "viewOnMap": "نقشے پر دیکھیں",
+    "tapToOpenMap": "نقشہ کھولنے کے لیے تھپتھپائیں",
+    "sendInquiryTitle": "انکوائری بھیجیں",
+    "yourMessage": "آپ کا پیغام",
+    "messagePlaceholder": "| اپنا پیغام یہاں لکھیں...",
+    "preferredContact": "ترجیحی رابطہ",
+    "phone": "| فون",
+    "email": "| ای میل",
+    "sent": "| بھیجا گیا",
+    "sentBody": "| آپ کی انکوائری بھیج دی گئی",
+    "messageTooShort": "| پیغام بہت چھوٹا ہے",
+    "messageTooShortBody": "پیغام کم از کم 10 حروف کا ہونا چاہیے",
+    "actionFailed": "کارروائی ناکام",
+    "bookingDevTitle": "بکنگ",
+    "bookingDevBody": "| بکنگ کا بہاؤ ترقی میں ہے۔ براہ کرم ایجنٹ سے رابطہ کریں۔",
+    "removeFromSaved": "اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟"
   },
   "search": {
     "filters": "فلٹرز",
@@ -434,7 +481,26 @@
     "clearDrawing": "ڈرائنگ صاف کریں",
     "flexibleDates": "میری تاریخیں لچکدار ہیں",
     "flex1Month": "1 ماہ",
-    "shortTerm": "مختصر مدت"
+    "shortTerm": "مختصر مدت",
+    "title": "تلاش کریں۔",
+    "placeholder": "پراپرٹیز تلاش کریں، شہر...",
+    "noResultsHint": "مختلف فلٹرز آزمائیں",
+    "cityPlaceholder": "ریاض، جدہ...",
+    "priceRange": "قیمت کی حد",
+    "bedrooms": "بیڈ رومز",
+    "sort": "| ترتیب دیں",
+    "any": "| کوئی بھی",
+    "all": "| تمام",
+    "sale": "فروخت",
+    "rent": "| کرایہ",
+    "apartment": "| Apt",
+    "villa": "ولا",
+    "land": "زمین",
+    "chalet": "| چیلیٹ",
+    "farm": "| فارم",
+    "sortNewest": "| تازہ ترین",
+    "sortPriceAsc": "قیمت ↑",
+    "sortPriceDesc": "قیمت ↓"
   },
   "home": {
     "heroTitle": "اپنا مثالی گھر تلاش کریں",
@@ -491,6 +557,24 @@
       "rent": "کرایہ",
       "commercial": "تجارتی",
       "search": "تلاش"
+    },
+    "latestListings": "تازہ ترین فہرستیں",
+    "featuredProperties": "| نمایاں پراپرٹیز",
+    "seeAll": "سب دیکھیں",
+    "quickAccess": "| فوری رسائی",
+    "stays": "رہتا ہے",
+    "hotels": "| ہوٹلز",
+    "market": "| بازار",
+    "saved": "محفوظ کیا گیا",
+    "tagline": "پریمیئر ریئل اسٹیٹ",
+    "categories": {
+      "all": "تمام",
+      "sale": "برائے فروخت",
+      "rent": "| کرایہ کے لیے",
+      "chalets": "| چیلیٹس",
+      "villas": "ولاز",
+      "apartments": "| اپارٹمنٹس",
+      "land": "زمین"
     }
   },
   "empty": {
@@ -596,15 +680,75 @@
     "recentActivity": "حالیہ سرگرمی",
     "browseListings": "جائیدادیں دیکھیں",
     "goToDashboard": "ڈیش بورڈ",
-    "profileUpdated": "پروفائل اپ ڈیٹ ہو گئی"
+    "profileUpdated": "پروفائل اپ ڈیٹ ہو گئی",
+    "title": "| میرا اکاؤنٹ",
+    "signIn": "| سائن ان کریں",
+    "welcome": "| Eawlma",
+    "signInPrompt": "میں خوش آمدید اپنے اکاؤنٹ تک رسائی کے لیے سائن ان کریں",
+    "createAccount": "اکاؤنٹ بنائیں",
+    "agentDashboard": "| ایجنٹ ڈیش بورڈ",
+    "myListings": "میری فہرستیں",
+    "addListing": "فہرست شامل کریں",
+    "wallet": "پرس",
+    "commissions": "کمیشنز",
+    "myBookings": "| میری بکنگ",
+    "myInquiries": "میری پوچھ گچھ",
+    "inquiries": "پوچھ گچھ",
+    "account": "| اکاؤنٹ",
+    "notifications": "| اطلاعات",
+    "language": "زبان",
+    "darkMode": "ڈارک موڈ",
+    "support": "سیٹنگز اور سپورٹ",
+    "settings": "ترتیبات",
+    "help": "| مدد اور اکثر پوچھے گئے سوالات",
+    "about": "کے بارے میں",
+    "signOut": "سائن آؤٹ",
+    "signOutConfirm": "| کیا آپ واقعی سائن آؤٹ کرنا چاہتے ہیں؟",
+    "member": "ممبر",
+    "agentRole": "ایجنٹ",
+    "admin": "| ایڈمن",
+    "chooseLanguage": "زبان کا انتخاب کریں",
+    "searchLanguage": "تلاش کریں...",
+    "popular": "مقبول",
+    "allLanguages": "تمام زبانیں",
+    "noLanguageMatch": "کوئی مماثل زبان نہیں"
   },
   "wizard": {
     "basicInfo": "بنیادی معلومات",
-    "location": "مقام",
+    "location": {
+      "street": "گلی",
+      "buildingNumber": "بلڈنگ نمبر",
+      "postalCode": "پوسٹل کوڈ",
+      "pinPrompt": "صحیح مقام کے لیے پن رکھیں",
+      "pinLabel": "پن",
+      "mapUnavailable": "نقشہ پر پن منتخب کرنا دستیاب نہیں۔ پہلے سے طے شدہ کوآرڈینیٹس: {{lat}}, {{lng}}۔"
+    },
     "media": "میڈیا",
     "amenities": "سہولیات",
-    "compliance": "تعمیل",
-    "review": "نظرثانی",
+    "compliance": {
+      "permitNumber": "پرمٹ / FAL نمبر",
+      "regaNumber": "REGA لائسنس نمبر",
+      "permitExpiry": "پرمٹ کی میعاد",
+      "preferredContact": "ترجیحی رابطہ",
+      "phone": "فون",
+      "publicVisibility": "عوامی نمائش (نجی لنک کے لیے غیر فعال کریں)"
+    },
+    "review": {
+      "summaryTitle": "لسٹنگ کا خلاصہ",
+      "enhanceWithAi": "AI کے ذریعے بہتر بنائیں",
+      "enhancing": "بہتر کیا جا رہا ہے…",
+      "aiStubNotice": "AI نے ٹیمپلیٹ جواب دیا — لائیو ماڈل استعمال کرنے کے لیے بیک اینڈ پر OPENAI_API_KEY سیٹ کریں۔",
+      "descriptionPreview": "تفصیل کا پیش منظر",
+      "emptyDescription": "(خالی)",
+      "type": "قسم",
+      "titleLabel": "عنوان",
+      "bedsBaths": "کمرے / باتھ روم",
+      "cityDistrict": "شہر / ضلع",
+      "coordinates": "کوآرڈینیٹس",
+      "permit": "پرمٹ",
+      "regaLicense": "REGA لائسنس",
+      "visibility": "نمائش"
+    },
     "saveDraft": "مسودہ محفوظ کریں",
     "submit": "جمع کروائیں",
     "submitForReview": "نظرثانی کے لیے جمع کروائیں",
@@ -701,14 +845,6 @@
       "houseRules": "گھر کے قواعد",
       "houseRulesPlaceholder": "مثلاً: پارٹیاں منع، رات 10 بجے کے بعد خاموشی، اندر تمباکو نوشی منع..."
     },
-    "location": {
-      "street": "گلی",
-      "buildingNumber": "بلڈنگ نمبر",
-      "postalCode": "پوسٹل کوڈ",
-      "pinPrompt": "صحیح مقام کے لیے پن رکھیں",
-      "pinLabel": "پن",
-      "mapUnavailable": "نقشہ پر پن منتخب کرنا دستیاب نہیں۔ پہلے سے طے شدہ کوآرڈینیٹس: {{lat}}, {{lng}}۔"
-    },
     "mediaStep": {
       "images": "تصاویر",
       "imageDropHint": "تصاویر یہاں کھینچ کر چھوڑیں، یا منتخب کرنے کے لیے کلک کریں۔ JPEG / PNG / WebP، 10 MB تک۔",
@@ -726,30 +862,6 @@
     },
     "amenitiesStep": {
       "hint": "اس جائیداد میں موجود سہولیات پر ٹیپ کریں۔ یہ تلاش میں فلٹرز کے طور پر ظاہر ہوں گی۔"
-    },
-    "compliance": {
-      "permitNumber": "پرمٹ / FAL نمبر",
-      "regaNumber": "REGA لائسنس نمبر",
-      "permitExpiry": "پرمٹ کی میعاد",
-      "preferredContact": "ترجیحی رابطہ",
-      "phone": "فون",
-      "publicVisibility": "عوامی نمائش (نجی لنک کے لیے غیر فعال کریں)"
-    },
-    "review": {
-      "summaryTitle": "لسٹنگ کا خلاصہ",
-      "enhanceWithAi": "AI کے ذریعے بہتر بنائیں",
-      "enhancing": "بہتر کیا جا رہا ہے…",
-      "aiStubNotice": "AI نے ٹیمپلیٹ جواب دیا — لائیو ماڈل استعمال کرنے کے لیے بیک اینڈ پر OPENAI_API_KEY سیٹ کریں۔",
-      "descriptionPreview": "تفصیل کا پیش منظر",
-      "emptyDescription": "(خالی)",
-      "type": "قسم",
-      "titleLabel": "عنوان",
-      "bedsBaths": "کمرے / باتھ روم",
-      "cityDistrict": "شہر / ضلع",
-      "coordinates": "کوآرڈینیٹس",
-      "permit": "پرمٹ",
-      "regaLicense": "REGA لائسنس",
-      "visibility": "نمائش"
     }
   },
   "subscription": {
@@ -1033,7 +1145,14 @@
       "paid": "✓ ادا شدہ",
       "failed": "ناکام",
       "rejected": "مسترد"
-    }
+    },
+    "withdraw": "ادائیگی",
+    "noTransactionsHint": "| آپ کے لین دین یہاں ظاہر ہوں گے",
+    "sar": "SAR",
+    "inDevelopment": "| یہ خصوصیت ترقی میں ہے",
+    "depositTitle": "جمع",
+    "payoutTitle": "ادائیگی",
+    "withdrawal": "| واپسی"
   },
   "nafath": {
     "loginWith": "نفاذ سے سائن ان کریں"
@@ -1294,5 +1413,45 @@
       "medium": "درمیانہ اعتماد",
       "low": "کم اعتماد"
     }
+  },
+  "saved": {
+    "title": "| محفوظ کیا گیا",
+    "empty": "کوئی محفوظ شدہ پراپرٹیز نہیں",
+    "emptyPrompt": "❤️ پر ٹیپ کرکے اپنی پسند کی پراپرٹیز کو محفوظ کریں۔",
+    "signInPrompt": "پراپرٹیز کو بچانے کے لیے سائن ان کریں",
+    "removeTitle": "ہٹائیں",
+    "removePrompt": "| اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟"
+  },
+  "notifications": {
+    "title": "اطلاعات",
+    "empty": "کوئی اطلاع نہیں",
+    "emptyHint": "آپ کے انتباہات یہاں ظاہر ہوں گے",
+    "markAllRead": "سبھی کو پڑھا ہوا نشان زد کریں",
+    "notification": "اطلاع"
+  },
+  "bookings": {
+    "title": "| میری بکنگ",
+    "host": "بطور میزبان",
+    "guest": "بطور مہمان",
+    "noBookings": "ابھی تک کوئی بکنگ نہیں",
+    "noBookingsHint": "آپ کی بکنگ یہاں ظاہر ہوگی",
+    "checkIn": "چیک ان",
+    "checkOut": "| چیک آؤٹ",
+    "guests": "مہمانوں",
+    "nights": "| راتیں",
+    "total": "کل",
+    "status": {
+      "pending": "زیر التواء",
+      "confirmed": "تصدیق شدہ",
+      "cancelled": "منسوخ کر دیا گیا",
+      "completed": "مکمل"
+    }
+  },
+  "tabs": {
+    "home": "| ہوم",
+    "search": "| تلاش کریں",
+    "saved": "| محفوظ کیا گیا۔",
+    "messages": "پیغامات",
+    "profile": "| پروفائل"
   }
 }

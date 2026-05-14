@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, RefreshControl,
 } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
@@ -12,17 +13,19 @@ import ListingCard from '../components/ListingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 
-const STAY_TYPES = [
-  { labelAr: 'الكل', labelEn: 'All', value: 'chalet,farm,rest_house,hotel_room' },
-  { labelAr: 'شاليهات', labelEn: 'Chalets', value: 'chalet' },
-  { labelAr: 'مزارع', labelEn: 'Farms', value: 'farm' },
-  { labelAr: 'استراحات', labelEn: 'Rest Houses', value: 'rest_house' },
-  { labelAr: 'فنادق', labelEn: 'Hotels', value: 'hotel_room' },
-];
-
 export default function StaysScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
+
+  const STAY_TYPES = [
+    { label: t('stays.typeAll'), value: 'chalet,farm,rest_house,hotel_room' },
+    { label: t('stays.chalets'), value: 'chalet' },
+    { label: t('stays.farms'), value: 'farm' },
+    { label: t('stays.restHouses'), value: 'rest_house' },
+    { label: t('stays.hotelsLabel'), value: 'hotel_room' },
+  ];
+
   const [propType, setPropType] = useState(STAY_TYPES[0].value);
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
@@ -40,16 +43,14 @@ export default function StaysScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={isAr ? 'الإقامات' : 'Stays'} onBack={() => navigation.goBack()} />
+      <Header title={t('nav.stays')} onBack={() => navigation.goBack()} />
 
       <View style={[styles.intro, { backgroundColor: colors.primary }]}>
         <Text style={[TYPOGRAPHY.h3, { color: '#FFF', textAlign }]}>
-          {isAr ? 'احجز إقامتك القادمة' : 'Book your next stay'}
+          {t('stays.bookNext')}
         </Text>
         <Text style={[TYPOGRAPHY.body, { color: 'rgba(255,255,255,0.85)', marginTop: SIZES.xs, textAlign }]}>
-          {isAr
-            ? 'شاليهات، مزارع، استراحات وفنادق'
-            : 'Chalets, farms, rest houses and hotels'}
+          {t('stays.subtitleMix')}
         </Text>
       </View>
 
@@ -59,23 +60,23 @@ export default function StaysScreen({ navigation }: any) {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={[styles.chipsRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}
         >
-          {STAY_TYPES.map(t => {
-            const active = propType === t.value;
+          {STAY_TYPES.map(opt => {
+            const active = propType === opt.value;
             return (
               <TouchableOpacity
-                key={t.value}
+                key={opt.value}
                 style={[
                   styles.chip,
                   { borderColor: colors.border, backgroundColor: colors.background },
                   active && { backgroundColor: colors.primary, borderColor: colors.primary },
                 ]}
-                onPress={() => setPropType(t.value)}
+                onPress={() => setPropType(opt.value)}
               >
                 <Text style={[
                   TYPOGRAPHY.small,
                   { color: active ? '#FFF' : colors.textSecondary, fontWeight: '600' },
                 ]}>
-                  {isAr ? t.labelAr : t.labelEn}
+                  {opt.label}
                 </Text>
               </TouchableOpacity>
             );
@@ -100,8 +101,8 @@ export default function StaysScreen({ navigation }: any) {
           {listings.length === 0 ? (
             <EmptyState
               icon="bed-outline"
-              title={isAr ? 'لا توجد إقامات متاحة' : 'No stays available'}
-              subtitle={isAr ? 'جرّب تصنيفاً آخر' : 'Try another category'}
+              title={t('stays.noStays')}
+              subtitle={t('stays.tryAnother')}
             />
           ) : (
             <View style={styles.grid}>

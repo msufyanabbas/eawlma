@@ -127,7 +127,8 @@
     "anyPrice": "Bei yoyote",
     "upTo500": "Hadi 500 SAR",
     "upTo1000": "Hadi 1,000 SAR",
-    "upTo2500": "Hadi 2,500 SAR"
+    "upTo2500": "Hadi 2,500 SAR",
+    "hotelChip": "Hoteli"
   },
   "messages": {
     "startConversation": "Anza mazungumzo",
@@ -147,7 +148,14 @@
     "showOriginal": "Onyesha asili",
     "showTranslation": "Onyesha tafsiri",
     "online": "Mtandaoni",
-    "lastSeen": "Imeonekana mwisho"
+    "lastSeen": "Imeonekana mwisho",
+    "title": "Ujumbe",
+    "noMessages": "Bado hakuna ujumbe",
+    "noMessagesPrompt": "Wasiliana na mawakala kutoka kwa kurasa za orodha",
+    "signInPrompt": "Ingia ili kuona ujumbe wako",
+    "chat": "Soga",
+    "user": "Mtumiaji",
+    "noMessagesShort": "Hakuna ujumbe"
   },
   "hosting": {
     "title": "Kukaribisha",
@@ -166,7 +174,8 @@
     "dailyRate": "Bei ya kila siku",
     "weeklyRate": "Bei ya kila wiki",
     "guestReviews": "Hakiki za wageni",
-    "noReviews": "Hakuna hakiki bado — wageni wakitoka na kukagua malazi yao, zitaonekana hapa."
+    "noReviews": "Hakuna hakiki bado — wageni wakitoka na kukagua malazi yao, zitaonekana hapa.",
+    "guestFallback": "Mgeni"
   },
   "buyerDeals": {
     "title": "Mikataba yangu",
@@ -216,7 +225,20 @@
     "favorAgent": "Kuunga mkono wakala — unda tume",
     "favorBuyer": "Kuunga mkono mnunuzi — ghairi mkataba",
     "cancelDeal": "Ghairi mkataba — hakuna tume",
-    "resolutionHint": "Pande zote mbili zitajulishwa kwa maelezo haya."
+    "resolutionHint": "Pande zote mbili zitajulishwa kwa maelezo haya.",
+    "other": "Nyingine",
+    "buyerLower": "mnunuzi",
+    "agentLower": "wakala",
+    "otherLower": "nyingine",
+    "anonymous": "Asiyejulikana",
+    "resolveTitle": "Suluhisha mzozo",
+    "resolveDesc": "Chagua matokeo ya mzozo huu",
+    "favorAgentDesc": "Tume itathibitishwa na kulipwa kwa wakala",
+    "favorBuyerDesc": "Tume itaghairiwa",
+    "cancelDealDesc": "Dili na tume zote zimeghairiwa",
+    "adminNotes": "Vidokezo vya msimamizi (si lazima)",
+    "resolvedSuccess": "Mzozo umesuluhishwa",
+    "resolvedError": "Imeshindwa kutatua mzozo"
   },
   "auth": {
     "login": "Ingia",
@@ -252,7 +274,14 @@
     "agreeTerms": "Kwa kuunda akaunti unakubali Masharti yetu na Sera ya Faragha",
     "loginSuccess": "Umeingia kwa mafanikio",
     "registerSuccess": "Akaunti imeundwa kwa mafanikio",
-    "logoutSuccess": "Umetoka"
+    "logoutSuccess": "Umetoka",
+    "role": "Aina ya Akaunti",
+    "buyer": "Mnunuzi",
+    "agent": "Wakala",
+    "loginBtn": "Ingia",
+    "registerBtn": "Fungua Akaunti",
+    "fillAllFields": "Tafadhali jaza sehemu zote",
+    "invalidCredentials": "Barua pepe au nenosiri batili"
   },
   "validation": {
     "required": "Sehemu hii inahitajika",
@@ -278,7 +307,7 @@
     "submit": "Wasilisha",
     "language": "Lugha",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Kiingereza",
     "back": "Rudi",
     "next": "Inayofuata",
     "previous": "Iliyotangulia",
@@ -296,7 +325,14 @@
     "remove": "Ondoa",
     "actions": "Hatua",
     "active": "Inafanya kazi",
-    "inactive": "Haifanyi kazi"
+    "inactive": "Haifanyi kazi",
+    "loadMore": "Pakia zaidi",
+    "errorOccurred": "Hitilafu imetokea",
+    "yes": "Ndiyo",
+    "no": "Hapana",
+    "sar": "SAR",
+    "perNight": "kwa usiku",
+    "perMonth": "kwa mwezi"
   },
   "listing": {
     "forSale": "Inauzwa",
@@ -363,7 +399,34 @@
       "expired": "Imeisha",
       "draft": "Rasimu",
       "archived": "Imehifadhiwa"
-    }
+    },
+    "sale": "Uuzaji",
+    "rent": "Kodisha",
+    "bedrooms": "Vitanda",
+    "bathrooms": "Bafu",
+    "propertyTypeLabel": "Aina",
+    "noDescription": "Hakuna maelezo.",
+    "locationNotSpecified": "Mahali hapajabainishwa",
+    "similarProperties": "Sifa Zinazofanana",
+    "bookNow": "Weka Nafasi Sasa",
+    "saveProperty": "Hifadhi Mali",
+    "openInMaps": "Fungua katika Ramani",
+    "viewOnMap": "Tazama kwenye Ramani",
+    "tapToOpenMap": "Gusa ili kufungua ramani",
+    "sendInquiryTitle": "Tuma Uchunguzi",
+    "yourMessage": "Ujumbe wako",
+    "messagePlaceholder": "Andika ujumbe wako hapa...",
+    "preferredContact": "Anwani unayopendelea",
+    "phone": "Simu",
+    "email": "Barua pepe",
+    "sent": "Imetumwa",
+    "sentBody": "Uchunguzi wako ulitumwa",
+    "messageTooShort": "Ujumbe mfupi sana",
+    "messageTooShortBody": "Ujumbe lazima uwe na angalau vibambo 10",
+    "actionFailed": "Kitendo kimeshindwa",
+    "bookingDevTitle": "Kuhifadhi",
+    "bookingDevBody": "Mtiririko wa kuhifadhi unatengenezwa. Tafadhali wasiliana na wakala.",
+    "removeFromSaved": "Ungependa kuondoa kipengee hiki kutoka kwa zilizohifadhiwa?"
   },
   "search": {
     "filters": "Vichujio",
@@ -399,7 +462,29 @@
       "cta": "Wasilisha ombi la mali"
     },
     "drawArea": "Chora eneo",
-    "clearDrawing": "Futa mchoro"
+    "clearDrawing": "Futa mchoro",
+    "flexibleDates": "Ninabadilika na tarehe",
+    "flex1Month": "mwezi 1",
+    "shortTerm": "Muda mfupi",
+    "title": "Tafuta",
+    "placeholder": "Tafuta mali, jiji...",
+    "noResultsHint": "Jaribu vichujio tofauti",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Kiwango cha Bei",
+    "bedrooms": "Vyumba vya kulala",
+    "sort": "Panga",
+    "any": "Yoyote",
+    "all": "Wote",
+    "sale": "Uuzaji",
+    "rent": "Kodisha",
+    "apartment": "Apt",
+    "villa": "Villa",
+    "land": "Ardhi",
+    "chalet": "Chalet",
+    "farm": "Shamba",
+    "sortNewest": "Mpya zaidi",
+    "sortPriceAsc": "Bei ↑",
+    "sortPriceDesc": "Bei ↓"
   },
   "home": {
     "heroTitle": "Pata nyumba yako kamili",
@@ -438,7 +523,7 @@
     "newestSort": "Mpya zaidi",
     "priceLowSort": "Bei: Chini",
     "priceHighSort": "Bei: Juu",
-    "appStore": "App Store",
+    "appStore": "Duka la Programu",
     "googlePlay": "Google Play",
     "statListings": "Matangazo",
     "statAgents": "Mawakala",
@@ -447,7 +532,25 @@
     "resultsCount": "Matangazo {{count}} yaliyopatikana",
     "clearFilters": "Futa yote",
     "results": "matokeo",
-    "loadMoreListings": "Pakua matangazo zaidi"
+    "loadMoreListings": "Pakua matangazo zaidi",
+    "latestListings": "Orodha za hivi punde",
+    "featuredProperties": "Sifa Zilizoangaziwa",
+    "seeAll": "Tazama zote",
+    "quickAccess": "Ufikiaji wa Haraka",
+    "stays": "Anakaa",
+    "hotels": "Hoteli",
+    "market": "Soko",
+    "saved": "Imehifadhiwa",
+    "tagline": "Premier Real Estate",
+    "categories": {
+      "all": "Wote",
+      "sale": "Inauzwa",
+      "rent": "Kwa Kukodisha",
+      "chalets": "Chalets",
+      "villas": "Majumba ya kifahari",
+      "apartments": "Vyumba",
+      "land": "Ardhi"
+    }
   },
   "empty": {
     "noListings": "Hakuna matangazo bado",
@@ -515,7 +618,7 @@
     "whatsapp": "WhatsApp",
     "whatsappHours": "Jpili–Alh, 9:00 – 18:00 (AST)",
     "office": "Ofisi",
-    "officeAddress": "King Fahd Road, Riyadh",
+    "officeAddress": "Barabara ya King Fahd, Riyadh",
     "officePostal": "Saudi Arabia 12345"
   },
   "privacy": {
@@ -533,7 +636,7 @@
     "land": "Ardhi",
     "commercial": "Biashara",
     "studio": "Studio",
-    "penthouse": "Penthouse",
+    "penthouse": "Upenu",
     "townhouse": "Nyumba ya mjini"
   },
   "profile": {
@@ -551,15 +654,75 @@
     "recentActivity": "Shughuli za hivi karibuni",
     "browseListings": "Vinjari matangazo",
     "goToDashboard": "Nenda kwa dashibodi",
-    "profileUpdated": "Wasifu umesasishwa"
+    "profileUpdated": "Wasifu umesasishwa",
+    "title": "Akaunti Yangu",
+    "signIn": "Ingia",
+    "welcome": "Karibu Eawlma",
+    "signInPrompt": "Ingia ili kufikia akaunti yako",
+    "createAccount": "Fungua Akaunti",
+    "agentDashboard": "Dashibodi ya Wakala",
+    "myListings": "Orodha Zangu",
+    "addListing": "Ongeza Orodha",
+    "wallet": "Mkoba",
+    "commissions": "Tume",
+    "myBookings": "Uhifadhi Wangu",
+    "myInquiries": "Maswali Yangu",
+    "inquiries": "Maswali",
+    "account": "Akaunti",
+    "notifications": "Arifa",
+    "language": "Lugha",
+    "darkMode": "Hali ya Giza",
+    "support": "Mipangilio na Usaidizi",
+    "settings": "Mipangilio",
+    "help": "Usaidizi na Maswali Yanayoulizwa Mara kwa Mara",
+    "about": "Kuhusu",
+    "signOut": "Ondoka",
+    "signOutConfirm": "Je, una uhakika unataka kuondoka?",
+    "member": "Mwanachama",
+    "agentRole": "Wakala",
+    "admin": "Msimamizi",
+    "chooseLanguage": "Chagua Lugha",
+    "searchLanguage": "Tafuta...",
+    "popular": "Maarufu",
+    "allLanguages": "Lugha Zote",
+    "noLanguageMatch": "Hakuna lugha inayolingana"
   },
   "wizard": {
     "basicInfo": "Maelezo ya msingi",
-    "location": "Mahali",
+    "location": {
+      "street": "Mtaa",
+      "buildingNumber": "Jengo nambari.",
+      "postalCode": "Msimbo wa posta",
+      "pinPrompt": "Dondosha pini ili kuweka eneo halisi",
+      "pinLabel": "Bandika",
+      "mapUnavailable": "Kiteua kipini cha ramani hakipatikani. Viwianishi vinarudi kwa {{lat}}, {{lng}}."
+    },
     "media": "Vyombo vya habari",
     "amenities": "Huduma",
-    "compliance": "Kufuata",
-    "review": "Kagua",
+    "compliance": {
+      "permitNumber": "Ruhusa / nambari ya FAL",
+      "regaNumber": "Nambari ya leseni ya REGA",
+      "permitExpiry": "Kuisha kwa idhini",
+      "preferredContact": "Anwani unayopendelea",
+      "phone": "Simu",
+      "publicVisibility": "Mwonekano wa umma (batilisha uteuzi kwa kiungo kisichoorodheshwa / cha faragha pekee)"
+    },
+    "review": {
+      "summaryTitle": "Muhtasari wa orodha",
+      "enhanceWithAi": "Boresha na AI",
+      "enhancing": "Inaboresha...",
+      "aiStubNotice": "AI ilirejesha mbegu - weka OPENAI_API_KEY kwenye sehemu ya nyuma ili kutumia modeli ya moja kwa moja.",
+      "descriptionPreview": "Onyesho la kukagua maelezo",
+      "emptyDescription": "(tupu)",
+      "type": "Aina",
+      "titleLabel": "Kichwa",
+      "bedsBaths": "Vyumba vya kulala / Bafu",
+      "cityDistrict": "City / District",
+      "coordinates": "Kuratibu",
+      "permit": "Permit",
+      "regaLicense": "REGA license",
+      "visibility": "Mwonekano"
+    },
     "saveDraft": "Hifadhi rasimu",
     "submit": "Wasilisha kwa mapitio",
     "submitForReview": "Wasilisha kwa mapitio",
@@ -576,7 +739,103 @@
       "bathrooms": "Bafu",
       "parking": "Maegesho",
       "yearBuilt": "Mwaka uliojengwa",
-      "furnishing": "Samani"
+      "furnishing": "Samani",
+      "rentPeriod": "Kipindi"
+    },
+    "editListing": "Badilisha tangazo",
+    "newListing": "Orodha mpya",
+    "crumbNew": "Mpya",
+    "validation": {
+      "titleRequired": "Tafadhali ongeza kichwa katika angalau lugha moja.",
+      "descriptionRequired": "Tafadhali ongeza maelezo katika angalau lugha moja.",
+      "priceRequired": "Bei lazima iwe kubwa kuliko sifuri.",
+      "cityRequired": "Jiji linahitajika.",
+      "pinRequired": "Dondosha pini kwenye ramani kwa eneo.",
+      "imageRequired": "Angalau picha moja inahitajika kabla ya kuchapishwa."
+    },
+    "transactionType": {
+      "sale": "Uuzaji",
+      "rent": "Kodisha"
+    },
+    "rentPeriod": {
+      "daily": "Kila siku",
+      "weekly": "Kila wiki",
+      "monthly": "Kila mwezi",
+      "yearly": "Kila mwaka"
+    },
+    "furnishing": {
+      "unfurnished": "Isiyo na samani",
+      "semi_furnished": "Semi-furnished",
+      "furnished": "Samani"
+    },
+    "visibility": {
+      "public": "Hadharani",
+      "unlisted": "Haijaorodheshwa"
+    },
+    "amenity": {
+      "pool": "Bwawa",
+      "garden": "Bustani",
+      "gym": "Gym",
+      "elevator": "Lifti",
+      "maidRoom": "Chumba cha mjakazi",
+      "driverRoom": "Chumba cha dereva",
+      "centralAc": "AC ya kati",
+      "kitchenAppliances": "Vifaa vya jikoni",
+      "security": "Usalama wa 24/7",
+      "cornerUnit": "Kitengo cha kona"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Bwawa",
+      "parking": "Maegesho",
+      "breakfast": "Kifungua kinywa",
+      "ac": "Kiyoyozi",
+      "kitchen": "Jikoni",
+      "tv": "TV",
+      "washer": "Washer",
+      "workspace": "Nafasi ya kazi",
+      "petsAllowed": "Wanyama wa kipenzi wanaruhusiwa",
+      "smokingAllowed": "Uvutaji sigara unaruhusiwa",
+      "wheelchairAccessible": "Kiti cha magurudumu kinapatikana"
+    },
+    "shortTerm": {
+      "title": "Maelezo ya kukodisha kwa muda mfupi",
+      "subtitle": "Wageni watahifadhi orodha hii kabla ya usiku. Sanidi sheria za kukaa, vistawishi na viwango vya bei.",
+      "dailyRate": "Kiwango cha kila siku (SAR)",
+      "weeklyRate": "Kiwango cha kila wiki (SAR, hiari)",
+      "minimumStay": "Kiwango cha chini cha kukaa (usiku)",
+      "maxGuests": "Max wageni",
+      "checkIn": "Ingia",
+      "checkOut": "Ondoka",
+      "cancellationPolicy": "Sera ya kughairi",
+      "cancelFlexible": "Inaweza kubadilika - kurejesha pesa kamili hadi saa 24 kabla",
+      "cancelModerate": "Wastani - urejeshewa pesa kamili hadi siku 5 kabla",
+      "cancelStrict": "Madhubuti - kurejesha 50% hadi siku 7 kabla",
+      "starRating": "Ukadiriaji wa nyota",
+      "hotelName": "Jina la hoteli",
+      "instantBook": "Kitabu cha papo hapo",
+      "instantBookHint": "Thibitisha nafasi kiotomatiki bila idhini yako. Lemaza kukagua kila ombi kwanza.",
+      "amenities": "Vistawishi",
+      "houseRules": "Sheria za nyumbani",
+      "houseRulesPlaceholder": "k.m. Hakuna karamu, saa za utulivu baada ya 10 jioni, hakuna kuvuta sigara ndani ya nyumba..."
+    },
+    "mediaStep": {
+      "images": "Picha",
+      "imageDropHint": "Buruta na udondoshe picha hapa, au ubofye ili uchague. JPEG / PNG / WebP hadi MB 10.",
+      "photoAlt": "Picha ya orodha",
+      "setCover": "Weka kama kifuniko",
+      "cover": "Jalada",
+      "videoTour": "Ziara ya video",
+      "videoDropHint": "Buruta faili ya MP4 au bofya ili kuchagua. Upeo wa 500 MB.",
+      "videoUploaded": "Video imepakiwa — {{name}}",
+      "vrTitle": "🥽 Kiungo cha Ziara ya Uhalisia Pepe",
+      "vrPlaceholder": "https://… (Matterport, Kuula, nk.)",
+      "modelTitle": "Muundo wa 3D / AR (.glb au .gltf)",
+      "modelDropHint": "Pakia muundo wa GLB/GLTF ili kuwezesha Uhalisia Pepe. Upeo wa 50 MB.",
+      "modelUploaded": "Muundo umepakiwa — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Gusa huduma ambazo mali hii inatoa. Tutazionyesha kama vichujio kwenye Utafutaji."
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "Imethibitishwa",
       "paid": "Imelipwa",
       "disputed": "Inapingwa"
+    },
+    "oath": {
+      "dialogTitle": "Ahadi ya Tume",
+      "translatedOath": "Kwa hili ninajitolea kulipa kamisheni iliyokubaliwa baada ya kukamilika kwa shughuli hii ya mali isiyohamishika, na kukiri wajibu huu mbele ya Mungu na sheria.",
+      "breakdownTitle": "Uchanganuzi wa tume",
+      "agentListingBreakdown": "Tume ya Mfumo: <strong>0.5%</strong> ya thamani ya muamala, inayolipwa baada ya mauzo kufanikiwa au kufungwa kwa kukodisha.",
+      "buyerAgentCommission": "Tume ya wakala: <strong>2.5%</strong> ya thamani ya muamala.",
+      "buyerPlatformFee": "Ada ya mfumo: <strong>0.5%</strong> ya thamani ya muamala.",
+      "acceptError": "Haikuweza kurekodi kukubali kwako",
+      "agreeCheckbox": "Ninakubali masharti ya tume",
+      "decline": "sikubaliani",
+      "saving": "Inahifadhi...",
+      "acceptCta": "Nakubali & Kujitolea"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ Imelipwa",
       "failed": "Imeshindwa",
       "rejected": "Imekataliwa"
-    }
+    },
+    "balance": "Salio la Sasa",
+    "withdraw": "Malipo",
+    "noTransactionsHint": "Miamala yako itaonekana hapa",
+    "sar": "SAR",
+    "inDevelopment": "Kipengele hiki kiko katika maendeleo",
+    "depositTitle": "Amana",
+    "payoutTitle": "Malipo",
+    "withdrawal": "Uondoaji"
   },
   "nafath": {
     "loginWith": "Ingia na Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Mkataba #",
     "viewContract": "Angalia mkataba",
     "signedThroughEjar": "Umetiwa saini kupitia Ejar",
-    "noContracts": "Hakuna mikataba ya kukodisha bado"
+    "noContracts": "Hakuna mikataba ya kukodisha bado",
+    "status": {
+      "draft": "Rasimu",
+      "pending_signatures": "Sahihi zinazosubiri",
+      "active": "Inayotumika",
+      "expired": "Muda wake umeisha",
+      "cancelled": "Imeghairiwa"
+    }
   },
   "dufaat": {
     "title": "Mkupuo wa Dufaat",
@@ -911,7 +1198,13 @@
     "nextPayment": "Malipo yajayo",
     "installmentsPaid": "Mikupuo iliyolipwa",
     "payNow": "Lipa mkupuo",
-    "noPlans": "Hakuna mipango ya Dufaat bado"
+    "noPlans": "Hakuna mipango ya Dufaat bado",
+    "status": {
+      "active": "Inayotumika",
+      "completed": "Imekamilika",
+      "defaulted": "Chaguomsingi",
+      "cancelled": "Imeghairiwa"
+    }
   },
   "booking": {
     "myBookings": "Mahifadhi yangu",
@@ -942,7 +1235,7 @@
     "checkInInstructionsPending": "Mwenyeji atatuma maagizo saa 24 kabla ya kuingia.",
     "showAllPhotos": "Onyesha picha zote",
     "availability": "Upatikanaji",
-    "superhost": "Superhost",
+    "superhost": "mwenyeji bingwa",
     "responseRate": "Kiwango cha majibu",
     "datesUnavailable": "Tarehe zilizochaguliwa zinapishana na uhifadhi uliopo.",
     "leaveReview": "Acha hakiki",
@@ -961,6 +1254,9 @@
       "confirmed": "Imethibitishwa",
       "cancelled": "Imeghairiwa",
       "completed": "Imekamilika"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Wageni wa juu zaidi: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "Imani ya wastani",
       "low": "Imani ya chini"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Tafuta kwa jina au utaalamu",
+    "allCities": "Miji Yote",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Hakuna mawakala wanaolingana na utafutaji wako",
+    "emptyBody": "Jaribu jina au jiji tofauti.",
+    "agency": "Mali isiyohamishika ya Eawlma",
+    "verified": "Imethibitishwa",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} matangazo amilifu",
+    "viewProfile": "Tazama Wasifu"
+  },
+  "myListings": {
+    "countSelected": "{{count}} zimechaguliwa",
+    "activateAll": "Washa zote",
+    "deactivateAll": "Zima zote",
+    "deleteAll": "Futa zote",
+    "colViews": "Maoni",
+    "colInquiries": "Maswali",
+    "boostFeature": "Kuongeza (kipengele)",
+    "duplicate": "Nakala",
+    "deleteConfirmTitle": "Je, ungependa kufuta tangazo {{count}}?",
+    "deleteConfirmDescription": "Kitendo hiki kinafuta tangazo kwa urahisi - halitaonekana tena hadharani."
+  },
+  "saved": {
+    "title": "Imehifadhiwa",
+    "empty": "Hakuna sifa zilizohifadhiwa",
+    "emptyPrompt": "Hifadhi sifa unazopenda kwa kugonga ❤️",
+    "signInPrompt": "Ingia ili kuhifadhi sifa",
+    "removeTitle": "Ondoa",
+    "removePrompt": "Ungependa kuondoa kipengee hiki kutoka kwa zilizohifadhiwa?"
+  },
+  "notifications": {
+    "title": "Arifa",
+    "empty": "Hakuna arifa",
+    "emptyHint": "Arifa zako zitaonekana hapa",
+    "markAllRead": "Weka alama zote kama zimesomwa",
+    "notification": "Taarifa"
+  },
+  "bookings": {
+    "title": "Uhifadhi Wangu",
+    "host": "Kama mwenyeji",
+    "guest": "Kama mgeni",
+    "noBookings": "Bado hakuna uhifadhi",
+    "noBookingsHint": "Uhifadhi wako utaonekana hapa",
+    "checkIn": "Ingia",
+    "checkOut": "Ondoka",
+    "guests": "Wageni",
+    "nights": "usiku",
+    "total": "Jumla",
+    "status": {
+      "pending": "Inasubiri",
+      "confirmed": "Imethibitishwa",
+      "cancelled": "Imeghairiwa",
+      "completed": "Imekamilika"
+    }
+  },
+  "tabs": {
+    "home": "Nyumbani",
+    "search": "Tafuta",
+    "saved": "Imehifadhiwa",
+    "messages": "Ujumbe",
+    "profile": "Wasifu"
   }
 }

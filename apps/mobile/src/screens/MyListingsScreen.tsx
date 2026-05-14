@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import SmartImage from '../components/SmartImage';
 import { listingCoverUrl } from '../utils/listingImages';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
@@ -15,17 +16,18 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import PriceText from '../components/PriceText';
 
-const STATUSES = [
-  { labelAr: 'الكل', labelEn: 'All', value: '' },
-  { labelAr: 'نشط', labelEn: 'Active', value: 'active' },
-  { labelAr: 'معلّق', labelEn: 'Pending', value: 'pending_review' },
-  { labelAr: 'منتهي', labelEn: 'Expired', value: 'expired' },
-];
-
 export default function MyListingsScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const [status, setStatus] = useState('');
+
+  const STATUSES = [
+    { label: t('search.all'), value: '' },
+    { label: t('listing.status.active'), value: 'active' },
+    { label: t('listing.status.pending'), value: 'pending_review' },
+    { label: t('listing.status.expired'), value: 'expired' },
+  ];
 
   const { data, isLoading } = useQuery({
     queryKey: ['my-listings'],
@@ -38,7 +40,7 @@ export default function MyListingsScreen({ navigation }: any) {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <Header
-        title={isAr ? 'إعلاناتي' : 'My Listings'}
+        title={t('profile.myListings')}
         onBack={() => navigation.goBack()}
         rightAction={
           <TouchableOpacity onPress={() => navigation.navigate('AddListing')} hitSlop={8}>
@@ -61,7 +63,7 @@ export default function MyListingsScreen({ navigation }: any) {
               onPress={() => setStatus(s.value)}
             >
               <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.textSecondary, fontWeight: '600' }]}>
-                {isAr ? s.labelAr : s.labelEn}
+                {s.label}
               </Text>
             </TouchableOpacity>
           );
@@ -98,7 +100,7 @@ export default function MyListingsScreen({ navigation }: any) {
                 />
                 <Text style={[TYPOGRAPHY.small, { color: colors.success, marginTop: 4, fontWeight: '600' }]}>
                   {item.status === 'active' || item.status === 'published'
-                    ? (isAr ? '● نشط' : '● Active')
+                    ? `● ${t('listing.status.active')}`
                     : `● ${item.status}`}
                 </Text>
               </TouchableOpacity>
@@ -115,8 +117,8 @@ export default function MyListingsScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="home-outline"
-              title={isAr ? 'لا توجد إعلانات' : 'No listings yet'}
-              actionLabel={isAr ? 'إضافة إعلان' : 'Add Listing'}
+              title={t('empty.noListings')}
+              actionLabel={t('profile.addListing')}
               onAction={() => navigation.navigate('AddListing')}
             />
           }
