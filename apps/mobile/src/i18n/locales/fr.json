@@ -110,7 +110,16 @@
     "typeRoom": "Chambre privée",
     "typeChalet": "Chalet",
     "typeRestHouse": "Maison de repos",
-    "typeFarm": "Ferme"
+    "typeFarm": "Ferme",
+    "typeAll": "Tous",
+    "chalets": "Chalets",
+    "farms": "Fermes",
+    "restHouses": "Maisons de repos",
+    "hotelsLabel": "Hôtels",
+    "bookNext": "Réservez votre prochain séjour",
+    "subtitleMix": "Chalets, fermes, maisons de repos et hôtels",
+    "noStays": "Aucun séjour disponible",
+    "tryAnother": "Essayez une autre catégorie"
   },
   "hotels": {
     "title": "Hôtels",
@@ -128,7 +137,10 @@
     "upTo500": "Jusqu'à 500 SAR",
     "upTo1000": "Jusqu'à 1 000 SAR",
     "upTo2500": "Jusqu'à 2 500 SAR",
-    "hotelChip": "Hôtel"
+    "hotelChip": "Hôtel",
+    "bookStay": "Réserver un séjour à l'hôtel",
+    "nightly": "Chambres d'hôtel pour les séjours d'une nuit",
+    "noHotels": "Aucun hôtel disponible"
   },
   "messages": {
     "startConversation": "Démarrez la conversation",
@@ -281,7 +293,16 @@
     "loginBtn": "Se connecter",
     "registerBtn": "Créer un compte",
     "fillAllFields": "Veuillez remplir tous les champs",
-    "invalidCredentials": "Email ou mot de passe invalide"
+    "invalidCredentials": "Email ou mot de passe invalide",
+    "fillRequired": "Veuillez remplir tous les champs obligatoires",
+    "registerFailed": "L'enregistrement a échoué, réessayez",
+    "pwWeak": "Faible",
+    "pwFair": "Foire",
+    "pwGood": "Bien",
+    "pwStrong": "Fort",
+    "firstNamePlaceholder": "Jean",
+    "lastNamePlaceholder": "Biche",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Ce champ est obligatoire",
@@ -601,7 +622,10 @@
       "agents": "Agents vérifiés",
       "cities": "Villes",
       "support": "Prise en charge"
-    }
+    },
+    "appAbout": "À propos de l'application",
+    "appDescription": "Eawlma est une plateforme immobilière mettant en relation les acheteurs et les locataires avec des agents de confiance dans toute l'Arabie Saoudite. Découvrez votre propriété idéale, réservez un court séjour et discutez directement avec les agents.",
+    "website": "Site Web"
   },
   "contact": {
     "title": "Contactez-nous",
@@ -753,10 +777,7 @@
       "pinRequired": "Déposez une épingle sur la carte pour l'emplacement.",
       "imageRequired": "Au moins une image est requise avant la publication."
     },
-    "transactionType": {
-      "sale": "Vente",
-      "rent": "Louer"
-    },
+    "transactionType": "Type de transaction",
     "rentPeriod": {
       "daily": "Quotidien",
       "weekly": "Hebdomadaire",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Appuyez sur les commodités offertes par cette propriété. Nous les afficherons sous forme de filtres dans la recherche."
-    }
+    },
+    "stepProperty": "Type de propriété",
+    "stepDetails": "Détails",
+    "stepLocation": "Localisation",
+    "stepSpecs": "Spécifications",
+    "stepReview": "Revoir",
+    "stepCount": "Étape {{current}} de {{total}} : {{title}}",
+    "addListing": "Ajouter une annonce",
+    "forSale": "À vendre",
+    "forRent": "À louer",
+    "propertyType": "Type de propriété",
+    "apartment": "Appartement",
+    "villa": "Villa",
+    "land": "Terrain",
+    "chalet": "Chalet",
+    "farm": "Ferme",
+    "restHouse": "Maison de repos",
+    "office": "Bureau",
+    "shop": "Boutique",
+    "titleArLabel": "Titre arabe *",
+    "titleEnLabel": "Titre anglais",
+    "priceLabel": "Prix ​​(SAR) *",
+    "areaLabel": "Superficie (m²)",
+    "descArLabel": "Description arabe",
+    "descPlaceholder": "Description détaillée de la propriété...",
+    "city": "Ville *",
+    "district": "Quartier *",
+    "districtPlaceholder": "par ex. Al Olaya",
+    "bedroomsLabel": "Chambres",
+    "bathroomsLabel": "Salles de bains",
+    "reviewListing": "Examiner la liste",
+    "transaction": "Transaction",
+    "title": "Titre",
+    "price": "Prix ​​",
+    "bedrooms": "Chambres",
+    "back": "Retour",
+    "next": "Suivant",
+    "publish": "Publier une annonce",
+    "errorTitle": "Erreur",
+    "successTitle": "Succès",
+    "fillRequired": "Veuillez remplir les champs obligatoires",
+    "addedSuccess": "Annonce ajoutée avec succès",
+    "ok": "OK",
+    "somethingWrong": "Quelque chose s'est mal passé",
+    "editTitle": "Modifier la liste",
+    "missing": "Champs manquants",
+    "fillBasic": "Veuillez remplir les champs obligatoires",
+    "savedTitle": "Enregistré",
+    "savedBody": "Annonce mise à jour",
+    "updateFailed": "Échec de la mise à jour de",
+    "deleteTitle": "Supprimer la liste",
+    "deleteBody": "Es-tu sûr? Cela ne peut pas être annulé.",
+    "deleteFailed": "Échec de la suppression de",
+    "delete": "Supprimer",
+    "deleteListing": "Supprimer la liste",
+    "titleArEdit": "Titre (arabe) *",
+    "titleEnEdit": "Titre (anglais)",
+    "transactionTypeShort": "Type de transaction",
+    "priceShort": "Prix ​​*",
+    "cityShort": "Ville",
+    "districtShort": "Quartier",
+    "bedsShort": "Lits",
+    "bathsShort": "Bains",
+    "areaShort": "Superficie",
+    "description": "Description",
+    "saveChanges": "Enregistrer les modifications",
+    "sale": "Vente",
+    "rent": "Louer"
   },
   "subscription": {
     "title": "Abonnement",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Redirection vers Authentica.sa…",
     "otpComing": "Vous recevrez un OTP sous peu pour terminer la vérification.",
     "profileUpdated": "Profil mis à jour.",
-    "deleteLabel": "Supprimer"
+    "deleteLabel": "Supprimer",
+    "appearance": "Apparence",
+    "languageRegion": "Langue et région",
+    "pushNotifications": "Notifications push",
+    "emailNotifications": "Notifications par e-mail",
+    "privacyAccount": "Confidentialité et compte",
+    "areYouSure": "Es-tu sûr?"
   },
   "inquiries": {
     "title": "Demandes",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Résolution de l'admin",
       "closedFor": "Transaction clôturée pour {{value}}",
       "closedOn": " le {{date}}"
-    }
+    },
+    "received": "Reçu",
+    "sent": "Envoyé",
+    "single": "Demande",
+    "noInquiriesYet": "Aucune demande pour l'instant",
+    "appearHere": "Vos demandes apparaîtront ici"
   },
   "commission": {
     "title": "Commissions",
@@ -975,7 +1074,8 @@
       "pending": "En attente",
       "confirmed": "Confirmée",
       "paid": "Payée",
-      "disputed": "Contestée"
+      "disputed": "Contestée",
+      "cancelled": "Annulé"
     },
     "oath": {
       "dialogTitle": "Engagement de la Commission",
@@ -989,7 +1089,11 @@
       "decline": "Je ne suis pas d'accord",
       "saving": "Enregistrement...",
       "acceptCta": "J'accepte et m'engage"
-    }
+    },
+    "dealValue": "Valeur de la transaction",
+    "commission": "Commission",
+    "fromTxn": "à partir de {{count}} transactions",
+    "earningsHint": "Les gains apparaîtront après la clôture des transactions"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} en attente",
@@ -1070,7 +1174,22 @@
     "contactUs": "Contactez-nous",
     "noResultsTitle": "Aucune réponse correspondante",
     "noResultsBody": "Essayez un autre mot-clé ou contactez notre équipe directement.",
-    "respondsIn": "Notre équipe répond sous 24 heures."
+    "respondsIn": "Notre équipe répond sous 24 heures.",
+    "faqTitle": "Foire aux questions",
+    "faqs": {
+      "q1": "Comment rechercher un bien ?",
+      "a1": "Appuyez sur l'onglet Rechercher en bas, puis choisissez les filtres qui vous conviennent (prix, type, ville).",
+      "q2": "Comment contacter un agent ?",
+      "a2": "Ouvrez la liste, puis appuyez sur « Envoyer une demande » ou utilisez les boutons d'appel/WhatsApp sur la carte d'agent.",
+      "q3": "Puis-je réserver des chalets et des fermes ?",
+      "a3": "Oui — ouvrez n'importe quelle annonce de chalet/ferme/maison de repos et appuyez sur « Réserver maintenant » pour choisir les dates.",
+      "q4": "Comment sauvegarder une propriété pour plus tard ?",
+      "a4": "Appuyez sur l'icône en forme de cœur sur la liste. Les éléments enregistrés se trouvent sous l'onglet Enregistré.",
+      "q5": "L'application est-elle gratuite ?",
+      "a5": "Oui, gratuit pour les demandeurs de propriété. Les agents paient une commission uniquement après une transaction réussie.",
+      "q6": "Comment changer la langue de l'application ?",
+      "a6": "Onglet Profil → Paramètres → Langue. Choisissez parmi 38 langues prises en charge."
+    }
   },
   "welcome": {
     "step1Title": "Cherchez-vous à acheter ou à louer ?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Nombre maximum d'invités : {{count}}"
-    }
+    },
+    "title": "Réservez votre séjour",
+    "shortTitle": "Livre",
+    "created": "Réservation créée",
+    "createdBody": "Réservation créée. Vous serez redirigé vers le paiement.",
+    "error": "Erreur",
+    "failed": "La réservation a échoué",
+    "invalidDates": "Dates invalides",
+    "invalidDatesBody": "Utilisez le format AAAA-MM-JJ",
+    "tooShort": "Trop court",
+    "tooShortBody": "La réservation doit être d'au moins 1 nuit",
+    "perNight": "SAR / nuit",
+    "notesOptional": "Notes (facultatif)",
+    "notesPlaceholder": "Toute demande particulière...",
+    "totalLabel": "Total"
   },
   "market": {
     "title": "Tendances du marché",
@@ -1277,7 +1410,10 @@
     "totalListings": "Total des annonces",
     "listingCount": "Annonces actives",
     "viewMarket": "Voir le marché",
-    "miniTrend": "Tendance du marché local"
+    "miniTrend": "Tendance du marché local",
+    "trendTitle": "Tendance des prix (12 mois)",
+    "avgByDistrict": "Moyenne ﷼/m² par quartier",
+    "cityPlaceholder": "Riyad, Djeddah..."
   },
   "errors": {
     "generic": "Une erreur inattendue est survenue",
@@ -1388,7 +1524,18 @@
     "verified": "Vérifié",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} annonces actives",
-    "viewProfile": "Voir le profil"
+    "viewProfile": "Voir le profil",
+    "agent": "Agent",
+    "listings": "Annonces",
+    "reviews": "Avis",
+    "rating": "Note",
+    "noListings": "Aucune annonce",
+    "viewReviews": "Voir les avis",
+    "call": "Appeler",
+    "title": "Agents",
+    "listingsShort": "annonces",
+    "noAgentsFound": "Aucun agent trouvé",
+    "tryLater": "Réessayez plus tard"
   },
   "myListings": {
     "countSelected": "{{count}} sélectionnés",
@@ -1441,5 +1588,12 @@
     "saved": "Enregistré",
     "messages": "Messages",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Avis",
+    "user": "Utilisateur",
+    "ownerReply": "Réponse du propriétaire :",
+    "empty": "Pas encore de commentaires",
+    "beFirst": "Soyez le premier à donner votre avis"
   }
 }

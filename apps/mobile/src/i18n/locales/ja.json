@@ -110,7 +110,16 @@
     "typeRoom": "個室",
     "typeChalet": "シャレー",
     "typeRestHouse": "別荘",
-    "typeFarm": "農場"
+    "typeFarm": "農場",
+    "typeAll": "全て",
+    "chalets": "シャレー",
+    "farms": "農場",
+    "restHouses": "レストハウス",
+    "hotelsLabel": "ホテル",
+    "bookNext": "次回の宿泊を予約する",
+    "subtitleMix": "シャレー、農園、レストハウス、ホテル",
+    "noStays": "宿泊はできません",
+    "tryAnother": "別のカテゴリを試してください"
   },
   "hotels": {
     "title": "ホテル",
@@ -128,7 +137,10 @@
     "upTo500": "500 SAR まで",
     "upTo1000": "1,000 SAR まで",
     "upTo2500": "2,500 SAR まで",
-    "hotelChip": "ホテル"
+    "hotelChip": "ホテル",
+    "bookStay": "ホテルの宿泊を予約する",
+    "nightly": "毎晩滞在するホテルの客室",
+    "noHotels": "利用可能なホテルはありません"
   },
   "messages": {
     "startConversation": "会話を始める",
@@ -281,7 +293,16 @@
     "loginBtn": "サインイン",
     "registerBtn": "アカウントを作成する",
     "fillAllFields": "すべてのフィールドに入力してください",
-    "invalidCredentials": "無効な電子メールまたはパスワード"
+    "invalidCredentials": "無効な電子メールまたはパスワード",
+    "fillRequired": "必須フィールドをすべて入力してください",
+    "registerFailed": "登録に失敗しました。もう一度お試しください",
+    "pwWeak": "弱い",
+    "pwFair": "公平",
+    "pwGood": "良い",
+    "pwStrong": "強い",
+    "firstNamePlaceholder": "ジョン",
+    "lastNamePlaceholder": "ドウ",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "この項目は必須です",
@@ -601,7 +622,10 @@
       "agents": "認証エージェント",
       "cities": "都市",
       "support": "サポート"
-    }
+    },
+    "appAbout": "アプリについて",
+    "appDescription": "Eawlma は、サウジアラビア全土で買い手と借り手を信頼できるエージェントと結び付ける不動産プラットフォームです。完璧な物件を見つけて短期滞在を予約し、エージェントと直接チャットしましょう。",
+    "website": "Webサイト"
   },
   "contact": {
     "title": "お問い合わせ",
@@ -753,10 +777,7 @@
       "pinRequired": "地図上にその場所のピンをドロップします。",
       "imageRequired": "公開する前に少なくとも 1 つの画像が必要です。"
     },
-    "transactionType": {
-      "sale": "販売",
-      "rent": "家賃"
-    },
+    "transactionType": "取引タイプ",
     "rentPeriod": {
       "daily": "毎日",
       "weekly": "毎週",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "この施設が提供するアメニティをタップします。それらは検索上のフィルターとして表示されます。"
-    }
+    },
+    "stepProperty": "プロパティの種類",
+    "stepDetails": "詳細",
+    "stepLocation": "位置",
+    "stepSpecs": "仕様",
+    "stepReview": "レビュー",
+    "stepCount": "ステップ {{current}} / {{total}}: {{title}}",
+    "addListing": "リストの追加",
+    "forSale": "販売用",
+    "forRent": "賃貸用",
+    "propertyType": "プロパティの種類",
+    "apartment": "アパート",
+    "villa": "ヴィラ",
+    "land": "土地",
+    "chalet": "シャレー",
+    "farm": "農場",
+    "restHouse": "レストハウス",
+    "office": "オフィス",
+    "shop": "店",
+    "titleArLabel": "アラビア語のタイトル *",
+    "titleEnLabel": "英語タイトル",
+    "priceLabel": "価格 (SAR) *",
+    "areaLabel": "面積(㎡)",
+    "descArLabel": "アラビア語の説明",
+    "descPlaceholder": "プロパティの詳細な説明...",
+    "city": "市 *",
+    "district": "地区 *",
+    "districtPlaceholder": "例えばアル オラヤ",
+    "bedroomsLabel": "寝室",
+    "bathroomsLabel": "バスルーム",
+    "reviewListing": "レビューリスト",
+    "transaction": "取引",
+    "title": "タイトル",
+    "price": "価格",
+    "bedrooms": "寝室",
+    "back": "戻る",
+    "next": "次",
+    "publish": "リストの公開",
+    "errorTitle": "エラー",
+    "successTitle": "成功",
+    "fillRequired": "必須フィールドに入力してください",
+    "addedSuccess": "リストが正常に追加されました",
+    "ok": "わかりました",
+    "somethingWrong": "何か問題が発生しました",
+    "editTitle": "リストの編集",
+    "missing": "欠落しているフィールド",
+    "fillBasic": "必須フィールドに入力してください",
+    "savedTitle": "保存されました",
+    "savedBody": "リストが更新されました",
+    "updateFailed": "更新に失敗しました",
+    "deleteTitle": "リストの削除",
+    "deleteBody": "本気ですか？これを元に戻すことはできません。",
+    "deleteFailed": "削除に失敗しました",
+    "delete": "消去",
+    "deleteListing": "リストの削除",
+    "titleArEdit": "タイトル (アラビア語) *",
+    "titleEnEdit": "タイトル（英語）",
+    "transactionTypeShort": "取引タイプ",
+    "priceShort": "価格 *",
+    "cityShort": "市",
+    "districtShort": "地区",
+    "bedsShort": "ベッド",
+    "bathsShort": "お風呂",
+    "areaShort": "エリア",
+    "description": "説明",
+    "saveChanges": "変更を保存",
+    "sale": "販売",
+    "rent": "家賃"
   },
   "subscription": {
     "title": "サブスクリプション",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Authentica.sa にリダイレクト中…",
     "otpComing": "認証を完了するための OTP が間もなく届きます。",
     "profileUpdated": "プロフィールを更新しました。",
-    "deleteLabel": "削除"
+    "deleteLabel": "削除",
+    "appearance": "外観",
+    "languageRegion": "言語と地域",
+    "pushNotifications": "プッシュ通知",
+    "emailNotifications": "電子メール通知",
+    "privacyAccount": "プライバシーとアカウント",
+    "areYouSure": "本気ですか？"
   },
   "inquiries": {
     "title": "問い合わせ",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "管理者の解決",
       "closedFor": "{{value}} で取引成立",
       "closedOn": " · {{date}}"
-    }
+    },
+    "received": "受け取った",
+    "sent": "送信済み",
+    "single": "問い合わせ",
+    "noInquiriesYet": "まだお問い合わせはありません",
+    "appearHere": "お問い合わせはここに表示されます"
   },
   "commission": {
     "title": "手数料",
@@ -975,7 +1074,8 @@
       "pending": "保留中",
       "confirmed": "確認済み",
       "paid": "支払い済み",
-      "disputed": "係争中"
+      "disputed": "係争中",
+      "cancelled": "キャンセル"
     },
     "oath": {
       "dialogTitle": "手数料のコミットメント",
@@ -989,7 +1089,11 @@
       "decline": "同意しません",
       "saving": "保存中...",
       "acceptCta": "同意してコミットします"
-    }
+    },
+    "dealValue": "取引額",
+    "commission": "手数料",
+    "fromTxn": "{{count}} 件のトランザクションから",
+    "earningsHint": "収益は取引が成立した後に表示されます"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} 件の保留",
@@ -1070,7 +1174,22 @@
     "contactUs": "お問い合わせ",
     "noResultsTitle": "一致する回答が見つかりません",
     "noResultsBody": "別のキーワードを試すか、私たちのチームに直接ご連絡ください。",
-    "respondsIn": "私たちのチームは24時間以内に対応します。"
+    "respondsIn": "私たちのチームは24時間以内に対応します。",
+    "faqTitle": "よくある質問",
+    "faqs": {
+      "q1": "物件を探すにはどうすればよいですか？",
+      "a1": "下部にある「検索」タブをタップし、自分に合ったフィルター (価格、タイプ、都市) を選択します。",
+      "q2": "エージェントに連絡するにはどうすればよいですか?",
+      "a2": "リストを開き、[問い合わせを送信] をタップするか、エージェント カードの通話/WhatsApp ボタンを使用します。",
+      "q3": "シャレーや農場を予約できますか?",
+      "a3": "はい - シャレー / ファーム / レストハウスのリストを開いて、[今すぐ予約] をタップして日付を選択します。",
+      "q4": "後で使用できるようにプロパティを保存するにはどうすればよいですか?",
+      "a4": "リスト上のハートのアイコンをタップします。保存されたアイテムは、「保存済み」タブの下に表示されます。",
+      "q5": "アプリは無料ですか?",
+      "a5": "はい - 不動産をお探しの方は無料です。エージェントは取引が成立した場合にのみ手数料を支払います。",
+      "q6": "アプリの言語を変更するにはどうすればよいですか?",
+      "a6": "「プロフィール」タブ→「設定」→「言語」。サポートされている 38 の言語から選択します。"
+    }
   },
   "welcome": {
     "step1Title": "購入ですか?賃貸ですか?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "最大ゲスト数: {{count}}"
-    }
+    },
+    "title": "宿泊を予約する",
+    "shortTitle": "本",
+    "created": "予約が作成されました",
+    "createdBody": "予約が作成されました。支払いにリダイレクトされます。",
+    "error": "エラー",
+    "failed": "予約に失敗しました",
+    "invalidDates": "無効な日付",
+    "invalidDatesBody": "YYYY-MM-DD形式を使用してください",
+    "tooShort": "短すぎる",
+    "tooShortBody": "少なくとも1泊のご予約が必要です",
+    "perNight": "特別料金 / 夜",
+    "notesOptional": "注記 (オプション)",
+    "notesPlaceholder": "特別なご要望がございましたら...",
+    "totalLabel": "合計"
   },
   "market": {
     "title": "マーケットインサイト",
@@ -1277,7 +1410,10 @@
     "totalListings": "総物件数",
     "listingCount": "公開中の物件",
     "viewMarket": "マーケットを見る",
-    "miniTrend": "地域マーケットトレンド"
+    "miniTrend": "地域マーケットトレンド",
+    "trendTitle": "価格推移（12ヶ月）",
+    "avgByDistrict": "地区別の平均﷼/㎡",
+    "cityPlaceholder": "リヤド、ジッダ…"
   },
   "errors": {
     "generic": "予期しないエラーが発生しました",
@@ -1388,7 +1524,18 @@
     "verified": "確認済み",
     "respondsUnder2h": "< 2 時間",
     "activeListingsCount": "{{count}} 件のアクティブなリスト",
-    "viewProfile": "プロフィールを見る"
+    "viewProfile": "プロフィールを見る",
+    "agent": "エージェント",
+    "listings": "リスト",
+    "reviews": "レビュー",
+    "rating": "評価",
+    "noListings": "リストはありません",
+    "viewReviews": "レビューを見る",
+    "call": "電話",
+    "title": "エージェント",
+    "listingsShort": "リスト",
+    "noAgentsFound": "エージェントが見つかりませんでした",
+    "tryLater": "後でもう一度試してください"
   },
   "myListings": {
     "countSelected": "{{count}} 個が選択されました",
@@ -1441,5 +1588,12 @@
     "saved": "保存されました",
     "messages": "メッセージ",
     "profile": "プロフィール"
+  },
+  "reviews": {
+    "title": "レビュー",
+    "user": "ユーザー",
+    "ownerReply": "オーナーの返答:",
+    "empty": "まだレビューはありません",
+    "beFirst": "最初にレビューしてみませんか"
   }
 }

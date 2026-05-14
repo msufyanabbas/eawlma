@@ -110,7 +110,16 @@
     "typeRoom": "Privatzimmer",
     "typeChalet": "Chalet",
     "typeRestHouse": "Rasthaus",
-    "typeFarm": "Bauernhof"
+    "typeFarm": "Bauernhof",
+    "typeAll": "Alle",
+    "chalets": "Chalets",
+    "farms": "Bauernhöfe",
+    "restHouses": "Rasthäuser",
+    "hotelsLabel": "Hotels",
+    "bookNext": "Buchen Sie Ihren nächsten Aufenthalt",
+    "subtitleMix": "Chalets, farms, rest houses and hotels",
+    "noStays": "Keine Aufenthalte verfügbar",
+    "tryAnother": "Versuchen Sie es mit einer anderen Kategorie"
   },
   "hotels": {
     "title": "Hotels",
@@ -128,7 +137,10 @@
     "upTo500": "Bis zu 500 SAR",
     "upTo1000": "Bis zu 1.000 SAR",
     "upTo2500": "Bis zu 2.500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Buchen Sie einen Hotelaufenthalt",
+    "nightly": "Hotelzimmer für Übernachtungen",
+    "noHotels": "Keine Hotels verfügbar"
   },
   "messages": {
     "startConversation": "Starten Sie das Gespräch",
@@ -281,7 +293,16 @@
     "loginBtn": "Anmelden",
     "registerBtn": "Konto erstellen",
     "fillAllFields": "Bitte füllen Sie alle Felder aus",
-    "invalidCredentials": "Ungültige E-Mail-Adresse oder ungültiges Passwort"
+    "invalidCredentials": "Ungültige E-Mail-Adresse oder ungültiges Passwort",
+    "fillRequired": "Bitte füllen Sie alle Pflichtfelder aus",
+    "registerFailed": "Registration failed, try again",
+    "pwWeak": "Schwach",
+    "pwFair": "Fair",
+    "pwGood": "Gut",
+    "pwStrong": "Stark",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
@@ -306,7 +327,7 @@
     "filter": "Filter",
     "submit": "Senden",
     "language": "Sprache",
-    "arabic": "العربية",
+    "arabic": "Zurück",
     "english": "Englisch",
     "back": "Zurück",
     "next": "Weiter",
@@ -601,7 +622,10 @@
       "agents": "Verifizierte Makler",
       "cities": "Städte",
       "support": "Unterstützung"
-    }
+    },
+    "appAbout": "Über die App",
+    "appDescription": "Eawlma ist eine Immobilienplattform, die Käufer und Mieter mit vertrauenswürdigen Maklern in ganz Saudi-Arabien verbindet. Entdecken Sie Ihre perfekte Immobilie, buchen Sie einen Kurzaufenthalt und chatten Sie direkt mit den Maklern.",
+    "website": "Webseite"
   },
   "contact": {
     "title": "Kontakt aufnehmen",
@@ -753,10 +777,7 @@
       "pinRequired": "Setzen Sie eine Stecknadel für den Standort auf der Karte.",
       "imageRequired": "Vor der Veröffentlichung ist mindestens ein Bild erforderlich."
     },
-    "transactionType": {
-      "sale": "Verkauf",
-      "rent": "Mieten"
-    },
+    "transactionType": "Transaktionstyp",
     "rentPeriod": {
       "daily": "Täglich",
       "weekly": "Wöchentlich",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Nutzen Sie die Annehmlichkeiten, die diese Unterkunft bietet. Wir werden sie als Filter in der Suche anzeigen."
-    }
+    },
+    "stepProperty": "Immobilientyp",
+    "stepDetails": "Einzelheiten",
+    "stepLocation": "Standort",
+    "stepSpecs": "Spezifikationen",
+    "stepReview": "Rezension",
+    "stepCount": "Schritt {{current}} von {{total}}: {{title}}",
+    "addListing": "Eintrag hinzufügen",
+    "forSale": "Zu verkaufen",
+    "forRent": "Zu vermieten",
+    "propertyType": "Immobilientyp",
+    "apartment": "Wohnung",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Bauernhof",
+    "restHouse": "Rasthaus",
+    "office": "Büro",
+    "shop": "Geschäft",
+    "titleArLabel": "Arabischer Titel *",
+    "titleEnLabel": "Englischer Titel",
+    "priceLabel": "Preis (SAR) *",
+    "areaLabel": "Fläche (m²)",
+    "descArLabel": "Arabische Beschreibung",
+    "descPlaceholder": "Ausführliche Objektbeschreibung...",
+    "city": "Stadt *",
+    "district": "Bezirk *",
+    "districtPlaceholder": "z.B. Al Olaya",
+    "bedroomsLabel": "Schlafzimmer",
+    "bathroomsLabel": "Badezimmer",
+    "reviewListing": "Rezensionsliste",
+    "transaction": "Transaktion",
+    "title": "Titel",
+    "price": "Preis",
+    "bedrooms": "Schlafzimmer",
+    "back": "Zurück",
+    "next": "Nächste",
+    "publish": "Eintrag veröffentlichen",
+    "errorTitle": "Fehler",
+    "successTitle": "Erfolg",
+    "fillRequired": "Bitte füllen Sie die Pflichtfelder aus",
+    "addedSuccess": "Eintrag erfolgreich hinzugefügt",
+    "ok": "OK",
+    "somethingWrong": "Etwas ist schief gelaufen",
+    "editTitle": "Eintrag bearbeiten",
+    "missing": "Fehlende Felder",
+    "fillBasic": "Bitte füllen Sie die Pflichtfelder aus",
+    "savedTitle": "Gespeichert",
+    "savedBody": "Eintrag aktualisiert",
+    "updateFailed": "Aktualisierung fehlgeschlagen",
+    "deleteTitle": "Eintrag löschen",
+    "deleteBody": "Bist du sicher? Dies kann nicht rückgängig gemacht werden.",
+    "deleteFailed": "Fehler beim Löschen",
+    "delete": "Löschen",
+    "deleteListing": "Eintrag löschen",
+    "titleArEdit": "Titel (Arabisch) *",
+    "titleEnEdit": "Titel (Englisch)",
+    "transactionTypeShort": "Transaktionstyp",
+    "priceShort": "Preis *",
+    "cityShort": "Stadt",
+    "districtShort": "Bezirk",
+    "bedsShort": "Betten",
+    "bathsShort": "Bad",
+    "areaShort": "Bereich",
+    "description": "Beschreibung",
+    "saveChanges": "Änderungen speichern",
+    "sale": "Verkauf",
+    "rent": "Mieten"
   },
   "subscription": {
     "title": "Abonnement",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Weiterleitung zu Authentica.sa…",
     "otpComing": "Sie erhalten in Kürze einen OTP zur Verifizierung.",
     "profileUpdated": "Profil aktualisiert.",
-    "deleteLabel": "Löschen"
+    "deleteLabel": "Löschen",
+    "appearance": "Aussehen",
+    "languageRegion": "Sprache & Region",
+    "pushNotifications": "Push-Benachrichtigungen",
+    "emailNotifications": "E-Mail-Benachrichtigungen",
+    "privacyAccount": "Datenschutz & Konto",
+    "areYouSure": "Bist du sicher?"
   },
   "inquiries": {
     "title": "Anfragen",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Admin-Lösung",
       "closedFor": "Abschluss für {{value}}",
       "closedOn": " am {{date}}"
-    }
+    },
+    "received": "Empfangen",
+    "sent": "Gesendet",
+    "single": "Anfrage",
+    "noInquiriesYet": "No inquiries yet",
+    "appearHere": "Your inquiries will appear here"
   },
   "commission": {
     "title": "Provisionen",
@@ -975,7 +1074,8 @@
       "pending": "Ausstehend",
       "confirmed": "Bestätigt",
       "paid": "Bezahlt",
-      "disputed": "Bestritten"
+      "disputed": "Bestritten",
+      "cancelled": "Abgebrochen"
     },
     "oath": {
       "dialogTitle": "Verpflichtung der Kommission",
@@ -989,7 +1089,11 @@
       "decline": "zu Ich stimme",
       "saving": "nicht zu Speichern...",
       "acceptCta": "Ich akzeptiere und verpflichte mich"
-    }
+    },
+    "dealValue": "Dealwert",
+    "commission": "Provision",
+    "fromTxn": "aus {{count}} Transaktionen",
+    "earningsHint": "Die Einnahmen werden nach Abschluss der Geschäfte angezeigt"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} ausstehend",
@@ -1070,7 +1174,22 @@
     "contactUs": "Kontaktieren Sie uns",
     "noResultsTitle": "Keine passenden Antworten",
     "noResultsBody": "Versuchen Sie ein anderes Schlüsselwort oder kontaktieren Sie unser Team direkt.",
-    "respondsIn": "Unser Team antwortet innerhalb von 24 Stunden."
+    "respondsIn": "Unser Team antwortet innerhalb von 24 Stunden.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": {
+      "q1": "How do I search for a property?",
+      "a1": "Tippen Sie unten auf die Registerkarte „Suchen“ und wählen Sie dann die für Sie passenden Filter aus (Preis, Typ, Stadt).",
+      "q2": "How do I contact an agent?",
+      "a2": "Öffnen Sie den Eintrag und tippen Sie dann auf „Anfrage senden“ oder verwenden Sie die Anruf-/WhatsApp-Schaltflächen auf der Agentenkarte.",
+      "q3": "Kann ich Chalets und Bauernhöfe buchen?",
+      "a3": "Ja – öffnen Sie ein beliebiges Chalet-, Bauernhof- oder Rasthaus-Inserat und tippen Sie auf „Jetzt buchen“, um Daten auszuwählen.",
+      "q4": "How do I save a property for later?",
+      "a4": "Tap the heart icon on the listing. Saved items live under the Saved tab.",
+      "q5": "Ist die App kostenlos?",
+      "a5": "Yes — free for property seekers. Makler zahlen erst nach einem erfolgreichen Abschluss eine Provision.",
+      "q6": "How do I change the app language?",
+      "a6": "Profile tab → Settings → Language. Pick from 38 supported languages."
+    }
   },
   "welcome": {
     "step1Title": "Möchten Sie kaufen oder mieten?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Max. Gäste: {{count}}"
-    }
+    },
+    "title": "Book your stay",
+    "shortTitle": "Buch",
+    "created": "Booking created",
+    "createdBody": "Buchung erstellt. You will be redirected to payment.",
+    "error": "Fehler",
+    "failed": "Booking failed",
+    "invalidDates": "Invalid dates",
+    "invalidDatesBody": "Verwenden Sie das Format JJJJ-MM-TT",
+    "tooShort": "Zu kurz",
+    "tooShortBody": "Booking must be at least 1 night",
+    "perNight": "SAR / Nacht",
+    "notesOptional": "Notizen (optional)",
+    "notesPlaceholder": "Any special requests...",
+    "totalLabel": "Gesamt"
   },
   "market": {
     "title": "Markteinblicke",
@@ -1277,7 +1410,10 @@
     "totalListings": "Anzeigen gesamt",
     "listingCount": "Aktive Anzeigen",
     "viewMarket": "Markt ansehen",
-    "miniTrend": "Lokaler Markttrend"
+    "miniTrend": "Lokaler Markttrend",
+    "trendTitle": "Price trend (12 months)",
+    "avgByDistrict": "Durchschnittlich ﷼/m² nach Bezirk",
+    "cityPlaceholder": "Riad, Jeddah..."
   },
   "errors": {
     "generic": "Ein unerwarteter Fehler ist aufgetreten",
@@ -1388,7 +1524,18 @@
     "verified": "Verifiziert",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} aktive Einträge",
-    "viewProfile": "Profil anzeigen"
+    "viewProfile": "Profil anzeigen",
+    "agent": "Agent",
+    "listings": "Einträge",
+    "reviews": "Bewertungen",
+    "rating": "Bewertung",
+    "noListings": "Keine Einträge",
+    "viewReviews": "Bewertungen anzeigen",
+    "call": "Rufen Sie",
+    "title": "auf Agenten",
+    "listingsShort": "Auflistungen",
+    "noAgentsFound": "Keine Agenten gefunden",
+    "tryLater": "Versuchen Sie es später erneut"
   },
   "myListings": {
     "countSelected": "{{count}} ausgewählt",
@@ -1441,5 +1588,12 @@
     "saved": "Gespeichert",
     "messages": "Nachrichten",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Bewertungen",
+    "user": "Benutzer",
+    "ownerReply": "Antwort des Besitzers:",
+    "empty": "Noch keine Bewertungen",
+    "beFirst": "Seien Sie der Erste, der eine Bewertung abgibt"
   }
 }

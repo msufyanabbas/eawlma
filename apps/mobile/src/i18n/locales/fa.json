@@ -110,7 +110,16 @@
     "typeRoom": "اتاق خصوصی",
     "typeChalet": "ویلا",
     "typeRestHouse": "خانه استراحت",
-    "typeFarm": "مزرعه"
+    "typeFarm": "مزرعه",
+    "typeAll": "همه",
+    "chalets": "کلبه های کلبه",
+    "farms": "مزارع",
+    "restHouses": "خانه های استراحت",
+    "hotelsLabel": "هتل ها",
+    "bookNext": "اقامت بعدی خود را رزرو کنید",
+    "subtitleMix": "کلبه، مزرعه، استراحتگاه و هتل",
+    "noStays": "هیچ اقامتی در دسترس نیست",
+    "tryAnother": "دسته دیگری را امتحان کنید"
   },
   "hotels": {
     "title": "هتل‌ها",
@@ -128,7 +137,10 @@
     "upTo500": "تا ۵۰۰ SAR",
     "upTo1000": "تا ۱٬۰۰۰ SAR",
     "upTo2500": "تا ۲٬۵۰۰ SAR",
-    "hotelChip": "هتل"
+    "hotelChip": "هتل",
+    "bookStay": "رزرو اقامت در هتل",
+    "nightly": "اتاق های هتل برای اقامت شبانه",
+    "noHotels": "هیچ هتلی موجود نیست"
   },
   "messages": {
     "startConversation": "گفتگو را شروع کنید",
@@ -281,7 +293,9 @@
     "loginBtn": "وارد شوید",
     "registerBtn": "ایجاد حساب",
     "fillAllFields": "لطفاً تمام فیلدها را پر کنید",
-    "invalidCredentials": "ایمیل یا رمز عبور نامعتبر"
+    "invalidCredentials": "ایمیل یا رمز عبور نامعتبر",
+    "fillRequired": "لطفاً تمام فیلدهای الزامی را پر کنید",
+    "registerFailed": "ثبت نام انجام نشد، دوباره امتحان کنید"
   },
   "validation": {
     "required": "این فیلد الزامی است",
@@ -1388,7 +1402,18 @@
     "verified": "تایید شده است",
     "respondsUnder2h": "< 2 ساعت",
     "activeListingsCount": "{{count}} فهرست فعال",
-    "viewProfile": "مشاهده نمایه"
+    "viewProfile": "مشاهده نمایه",
+    "agent": "نماینده",
+    "listings": "لیست ها",
+    "reviews": "نظرات",
+    "rating": "رتبه",
+    "noListings": "بدون لیست",
+    "viewReviews": "مشاهده نظرات",
+    "call": "تماس",
+    "title": "نمایندگان",
+    "listingsShort": "لیست ها",
+    "noAgentsFound": "هیچ عاملی یافت نشد",
+    "tryLater": "بعداً دوباره امتحان کنید"
   },
   "myListings": {
     "countSelected": "{{count}} انتخاب شد",

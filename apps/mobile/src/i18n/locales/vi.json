@@ -110,7 +110,16 @@
     "typeRoom": "Phòng riêng",
     "typeChalet": "Nhà nghỉ",
     "typeRestHouse": "Nhà nghỉ dưỡng",
-    "typeFarm": "Trang trại"
+    "typeFarm": "Trang trại",
+    "typeAll": "Tất cả",
+    "chalets": "Nhà gỗ",
+    "farms": "Trang trại",
+    "restHouses": "Rest Houses",
+    "hotelsLabel": "Khách sạn",
+    "bookNext": "Book your next stay",
+    "subtitleMix": "Nhà gỗ, trang trại, nhà nghỉ và khách sạn",
+    "noStays": "No stays available",
+    "tryAnother": "Try another category"
   },
   "hotels": {
     "title": "Khách sạn",
@@ -128,7 +137,10 @@
     "upTo500": "Lên đến 500 SAR",
     "upTo1000": "Lên đến 1.000 SAR",
     "upTo2500": "Lên đến 2.500 SAR",
-    "hotelChip": "Khách sạn"
+    "hotelChip": "Khách sạn",
+    "bookStay": "Book a hotel stay",
+    "nightly": "Phòng khách sạn nghỉ qua đêm",
+    "noHotels": "No hotels available"
   },
   "messages": {
     "startConversation": "Bắt đầu cuộc trò chuyện",
@@ -281,7 +293,16 @@
     "loginBtn": "Đăng nhập",
     "registerBtn": "Tạo tài khoản",
     "fillAllFields": "Vui lòng điền vào tất cả các trường",
-    "invalidCredentials": "Email hoặc mật khẩu không hợp lệ"
+    "invalidCredentials": "Email hoặc mật khẩu không hợp lệ",
+    "fillRequired": "Vui lòng điền vào tất cả các trường bắt buộc",
+    "registerFailed": "Đăng ký không thành công, hãy thử lại",
+    "pwWeak": "Yếu đuối",
+    "pwFair": "Hội chợ",
+    "pwGood": "Tốt",
+    "pwStrong": "Mạnh",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Nai",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Trường này là bắt buộc",
@@ -601,7 +622,10 @@
       "agents": "Môi giới đã xác minh",
       "cities": "Thành phố",
       "support": "Hỗ trợ"
-    }
+    },
+    "appAbout": "Giới thiệu về ứng dụng",
+    "appDescription": "Eawlma là một nền tảng bất động sản kết nối người mua và người thuê với các đại lý đáng tin cậy trên khắp Ả Rập Saudi. Khám phá chỗ nghỉ hoàn hảo của bạn, đặt kỳ nghỉ ngắn ngày và trò chuyện trực tiếp với đại lý.",
+    "website": "Trang web"
   },
   "contact": {
     "title": "Liên hệ với chúng tôi",
@@ -753,10 +777,7 @@
       "pinRequired": "Thả ghim trên bản đồ cho vị trí.",
       "imageRequired": "Cần có ít nhất một hình ảnh trước khi xuất bản."
     },
-    "transactionType": {
-      "sale": "Doanh thu",
-      "rent": "Thuê"
-    },
+    "transactionType": "Loại giao dịch",
     "rentPeriod": {
       "daily": "Hằng ngày",
       "weekly": "hàng tuần",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Nhấn vào các tiện nghi nơi lưu trú này cung cấp. Chúng tôi sẽ hiển thị chúng dưới dạng bộ lọc trên Tìm kiếm."
-    }
+    },
+    "stepProperty": "Loại tài sản",
+    "stepDetails": "Chi tiết",
+    "stepLocation": "Vị trí",
+    "stepSpecs": "Thông số kỹ thuật",
+    "stepReview": "Ôn tập",
+    "stepCount": "Bước {{current}} trong tổng số {{total}}: {{title}}",
+    "addListing": "Thêm danh sách",
+    "forSale": "Cần bán",
+    "forRent": "Cho thuê",
+    "propertyType": "Loại tài sản",
+    "apartment": "Căn hộ",
+    "villa": "biệt thự",
+    "land": "Đất",
+    "chalet": "Nhà gỗ",
+    "farm": "Nông trại",
+    "restHouse": "Nhà nghỉ",
+    "office": "Văn phòng",
+    "shop": "Cửa hàng",
+    "titleArLabel": "Tiêu đề tiếng Ả Rập *",
+    "titleEnLabel": "Tiêu đề tiếng Anh",
+    "priceLabel": "Giá (SAR) *",
+    "areaLabel": "Diện tích (m2)",
+    "descArLabel": "Mô tả tiếng Ả Rập",
+    "descPlaceholder": "Mô tả chi tiết tài sản...",
+    "city": "Thành phố *",
+    "district": "Huyện *",
+    "districtPlaceholder": "ví dụ. Al Olaya",
+    "bedroomsLabel": "Phòng ngủ",
+    "bathroomsLabel": "Phòng tắm",
+    "reviewListing": "Đánh giá danh sách",
+    "transaction": "Giao dịch",
+    "title": "Tiêu đề",
+    "price": "Giá",
+    "bedrooms": "Phòng ngủ",
+    "back": "Mặt sau",
+    "next": "Kế tiếp",
+    "publish": "Xuất bản danh sách",
+    "errorTitle": "Lỗi",
+    "successTitle": "Thành công",
+    "fillRequired": "Vui lòng điền vào các trường bắt buộc",
+    "addedSuccess": "Danh sách được thêm thành công",
+    "ok": "ĐƯỢC RỒI",
+    "somethingWrong": "Đã xảy ra lỗi",
+    "editTitle": "Chỉnh sửa danh sách",
+    "missing": "Thiếu trường",
+    "fillBasic": "Vui lòng điền vào các trường bắt buộc",
+    "savedTitle": "Đã lưu",
+    "savedBody": "Đã cập nhật danh sách",
+    "updateFailed": "Không thể cập nhật",
+    "deleteTitle": "Xóa danh sách",
+    "deleteBody": "Bạn có chắc không? Điều này không thể hoàn tác được.",
+    "deleteFailed": "Không thể xóa",
+    "delete": "Xóa bỏ",
+    "deleteListing": "Xóa danh sách",
+    "titleArEdit": "Tiêu đề (tiếng Ả Rập) *",
+    "titleEnEdit": "Tiêu đề (tiếng Anh)",
+    "transactionTypeShort": "Loại giao dịch",
+    "priceShort": "Giá *",
+    "cityShort": "Thành phố",
+    "districtShort": "Huyện",
+    "bedsShort": "Giường",
+    "bathsShort": "Phòng tắm",
+    "areaShort": "Khu vực",
+    "description": "Sự miêu tả",
+    "saveChanges": "Lưu thay đổi",
+    "sale": "Doanh thu",
+    "rent": "Thuê"
   },
   "subscription": {
     "title": "Gói đăng ký",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Đang chuyển hướng đến Authentica.sa…",
     "otpComing": "Bạn sẽ nhận được OTP ngay để hoàn tất xác minh.",
     "profileUpdated": "Hồ sơ đã được cập nhật.",
-    "deleteLabel": "Xóa"
+    "deleteLabel": "Xóa",
+    "appearance": "Vẻ bề ngoài",
+    "languageRegion": "Ngôn ngữ & khu vực",
+    "pushNotifications": "Thông báo đẩy",
+    "emailNotifications": "Thông báo qua email",
+    "privacyAccount": "Quyền riêng tư và tài khoản",
+    "areYouSure": "Bạn có chắc không?"
   },
   "inquiries": {
     "title": "Yêu cầu",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Giải quyết của quản trị viên",
       "closedFor": "Giao dịch đóng với giá {{value}}",
       "closedOn": " vào {{date}}"
-    }
+    },
+    "received": "Đã nhận",
+    "sent": "Đã gửi",
+    "single": "Cuộc điều tra",
+    "noInquiriesYet": "Chưa có yêu cầu nào",
+    "appearHere": "Yêu cầu của bạn sẽ xuất hiện ở đây"
   },
   "commission": {
     "title": "Hoa hồng",
@@ -975,7 +1074,8 @@
       "pending": "Đang chờ",
       "confirmed": "Đã xác nhận",
       "paid": "Đã thanh toán",
-      "disputed": "Tranh chấp"
+      "disputed": "Tranh chấp",
+      "cancelled": "Đã hủy"
     },
     "oath": {
       "dialogTitle": "Cam kết hoa hồng",
@@ -989,7 +1089,11 @@
       "decline": "tôi không đồng ý",
       "saving": "Đang lưu...",
       "acceptCta": "Tôi chấp nhận và cam kết"
-    }
+    },
+    "dealValue": "Giá trị giao dịch",
+    "commission": "Nhiệm vụ",
+    "fromTxn": "từ {{count}} giao dịch",
+    "earningsHint": "Thu nhập sẽ xuất hiện sau khi kết thúc giao dịch"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} đang chờ",
@@ -1070,7 +1174,22 @@
     "contactUs": "Liên hệ với chúng tôi",
     "noResultsTitle": "Không có câu trả lời phù hợp",
     "noResultsBody": "Thử từ khóa khác, hoặc liên hệ trực tiếp với đội ngũ của chúng tôi.",
-    "respondsIn": "Đội ngũ của chúng tôi phản hồi trong vòng 24 giờ."
+    "respondsIn": "Đội ngũ của chúng tôi phản hồi trong vòng 24 giờ.",
+    "faqTitle": "Câu hỏi thường gặp",
+    "faqs": {
+      "q1": "Làm thế nào để tôi tìm kiếm một tài sản?",
+      "a1": "Nhấn vào tab Tìm kiếm ở dưới cùng, sau đó chọn bộ lọc phù hợp với bạn (giá, loại, thành phố).",
+      "q2": "Làm cách nào để liên hệ với đại lý?",
+      "a2": "Mở danh sách, sau đó nhấn \"Gửi yêu cầu\" hoặc sử dụng nút gọi/WhatsApp trên thẻ đại lý.",
+      "q3": "Tôi có thể đặt nhà gỗ và trang trại không?",
+      "a3": "Có - mở bất kỳ danh sách nhà gỗ / trang trại / nhà nghỉ nào và nhấn \"Đặt ngay\" để chọn ngày.",
+      "q4": "Làm cách nào để lưu tài sản cho sau này?",
+      "a4": "Nhấn vào biểu tượng trái tim trên danh sách. Các mục đã lưu nằm trong tab Đã lưu.",
+      "q5": "Ứng dụng này có miễn phí không?",
+      "a5": "Có - miễn phí cho người tìm kiếm tài sản. Đại lý chỉ trả hoa hồng sau khi giao dịch thành công.",
+      "q6": "Làm cách nào để thay đổi ngôn ngữ ứng dụng?",
+      "a6": "Tab hồ sơ → Cài đặt → Ngôn ngữ. Chọn từ 38 ngôn ngữ được hỗ trợ."
+    }
   },
   "welcome": {
     "step1Title": "Bạn muốn mua hay thuê?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Số khách tối đa: {{count}}"
-    }
+    },
+    "title": "Đặt kỳ nghỉ của bạn",
+    "shortTitle": "Sách",
+    "created": "Đã tạo đặt chỗ",
+    "createdBody": "Đã tạo đặt chỗ. Bạn sẽ được chuyển hướng đến thanh toán.",
+    "error": "Lỗi",
+    "failed": "Đặt phòng không thành công",
+    "invalidDates": "Ngày không hợp lệ",
+    "invalidDatesBody": "Sử dụng định dạng YYYY-MM-DD",
+    "tooShort": "Quá ngắn",
+    "tooShortBody": "Đặt phòng phải ít nhất 1 đêm",
+    "perNight": "SAR / đêm",
+    "notesOptional": "Ghi chú (tùy chọn)",
+    "notesPlaceholder": "Mọi yêu cầu đặc biệt...",
+    "totalLabel": "Tổng cộng"
   },
   "market": {
     "title": "Thông tin thị trường",
@@ -1277,7 +1410,10 @@
     "totalListings": "Tổng tin đăng",
     "listingCount": "Tin đăng đang hoạt động",
     "viewMarket": "Xem thị trường",
-    "miniTrend": "Xu hướng thị trường địa phương"
+    "miniTrend": "Xu hướng thị trường địa phương",
+    "trendTitle": "Xu hướng giá (12 tháng)",
+    "avgByDistrict": "Trung bình ﷼/m2 theo quận",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "Đã xảy ra lỗi không mong muốn",
@@ -1388,7 +1524,18 @@
     "verified": "Đã xác minh",
     "respondsUnder2h": "< 2 giờ",
     "activeListingsCount": "{{count}} danh sách đang hoạt động",
-    "viewProfile": "Xem hồ sơ"
+    "viewProfile": "Xem hồ sơ",
+    "agent": "Đại lý",
+    "listings": "Danh sách",
+    "reviews": "Đánh giá",
+    "rating": "Đánh giá",
+    "noListings": "Không có danh sách",
+    "viewReviews": "Xem đánh giá",
+    "call": "Gọi",
+    "title": "Đại lý",
+    "listingsShort": "danh sách",
+    "noAgentsFound": "Không tìm thấy đại lý nào",
+    "tryLater": "Hãy thử lại sau"
   },
   "myListings": {
     "countSelected": "{{đếm}} đã được chọn",
@@ -1441,5 +1588,12 @@
     "saved": "Đã lưu",
     "messages": "Tin nhắn",
     "profile": "Hồ sơ"
+  },
+  "reviews": {
+    "title": "Đánh giá",
+    "user": "người dùng",
+    "ownerReply": "Câu trả lời của chủ sở hữu:",
+    "empty": "Chưa có đánh giá nào",
+    "beFirst": "Hãy là người đầu tiên đánh giá"
   }
 }

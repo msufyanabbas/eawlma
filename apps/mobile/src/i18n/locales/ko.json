@@ -110,7 +110,16 @@
     "typeRoom": "개인실",
     "typeChalet": "샬레",
     "typeRestHouse": "별장",
-    "typeFarm": "농장"
+    "typeFarm": "농장",
+    "typeAll": "모두",
+    "chalets": "샬레",
+    "farms": "전원",
+    "restHouses": "휴게소",
+    "hotelsLabel": "호텔",
+    "bookNext": "다음 숙박을 예약하세요",
+    "subtitleMix": "샬레, 농장, 휴게소 및 호텔",
+    "noStays": "숙박 불가",
+    "tryAnother": "다른 카테고리를 시도해 보세요"
   },
   "hotels": {
     "title": "호텔",
@@ -128,7 +137,10 @@
     "upTo500": "최대 500 SAR",
     "upTo1000": "최대 1,000 SAR",
     "upTo2500": "최대 2,500 SAR",
-    "hotelChip": "호텔"
+    "hotelChip": "호텔",
+    "bookStay": "호텔 숙박 예약",
+    "nightly": "야간 숙박을 위한 호텔 객실",
+    "noHotels": "이용 가능한 호텔이 없습니다."
   },
   "messages": {
     "startConversation": "대화 시작",
@@ -281,7 +293,16 @@
     "loginBtn": "로그인",
     "registerBtn": "계정 만들기",
     "fillAllFields": "모든 필드를 작성해 주세요.",
-    "invalidCredentials": "잘못된 이메일 또는 비밀번호"
+    "invalidCredentials": "잘못된 이메일 또는 비밀번호",
+    "fillRequired": "필수 입력란을 모두 작성해 주세요.",
+    "registerFailed": "등록에 실패했습니다. 다시 시도해 주세요.",
+    "pwWeak": "약한",
+    "pwFair": "공정한",
+    "pwGood": "좋은",
+    "pwStrong": "강한",
+    "firstNamePlaceholder": "남자",
+    "lastNamePlaceholder": "암사슴",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "이 필드는 필수입니다",
@@ -601,7 +622,10 @@
       "agents": "인증 중개인",
       "cities": "도시",
       "support": "지원"
-    }
+    },
+    "appAbout": "앱 정보",
+    "appDescription": "Eawlma는 구매자와 임차인을 사우디아라비아 전역의 신뢰할 수 있는 에이전트와 연결하는 부동산 플랫폼입니다. 완벽한 부동산을 찾아 단기 숙박을 예약하고 에이전트와 직접 채팅하세요.",
+    "website": "웹사이트"
   },
   "contact": {
     "title": "문의하기",
@@ -753,10 +777,7 @@
       "pinRequired": "지도에 해당 위치에 대한 핀을 놓습니다.",
       "imageRequired": "게시하려면 이미지가 하나 이상 필요합니다."
     },
-    "transactionType": {
-      "sale": "판매",
-      "rent": "임차료"
-    },
+    "transactionType": "거래 유형",
     "rentPeriod": {
       "daily": "일일",
       "weekly": "주간",
@@ -804,12 +825,12 @@
       "dailyRate": "일일 요금(SAR)",
       "weeklyRate": "주간 요금(SAR, 선택 사항)",
       "minimumStay": "최소 체류 기간(박)",
-      "maxGuests": "Max guests",
+      "maxGuests": "최대 손님",
       "checkIn": "체크인",
       "checkOut": "점검",
       "cancellationPolicy": "취소 정책",
       "cancelFlexible": "유연함 - 최대 24시간 전까지 전액 환불",
-      "cancelModerate": "Moderate — full refund up to 5 days before",
+      "cancelModerate": "보통 — 5일 전까지 전액 환불",
       "cancelStrict": "엄격 — 7일 전까지 50% 환불",
       "starRating": "별점",
       "hotelName": "호텔 이름",
@@ -822,8 +843,8 @@
     "mediaStep": {
       "images": "이미지",
       "imageDropHint": "여기에 사진을 드래그 앤 드롭하거나 클릭하여 선택하세요. JPEG/PNG/WebP 최대 10MB.",
-      "photoAlt": "Listing photo",
-      "setCover": "Set as cover",
+      "photoAlt": "숙소 사진",
+      "setCover": "표지로 설정",
       "cover": "씌우다",
       "videoTour": "비디오 투어",
       "videoDropHint": "MP4 파일을 드래그하거나 클릭하여 선택하세요. 최대 500MB.",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "이 숙박 시설이 제공하는 편의 시설을 탭하세요. 검색에 필터로 표시됩니다."
-    }
+    },
+    "stepProperty": "부동산 유형",
+    "stepDetails": "세부",
+    "stepLocation": "위치",
+    "stepSpecs": "명세서",
+    "stepReview": "검토",
+    "stepCount": "{{total}} 단계 중 {{current}} 단계: {{title}}",
+    "addListing": "목록 추가",
+    "forSale": "판매용",
+    "forRent": "임대용",
+    "propertyType": "부동산 유형",
+    "apartment": "아파트",
+    "villa": "별장",
+    "land": "땅",
+    "chalet": "샬레",
+    "farm": "농장",
+    "restHouse": "레스트하우스",
+    "office": "사무실",
+    "shop": "가게",
+    "titleArLabel": "아랍어 제목 *",
+    "titleEnLabel": "영문제목",
+    "priceLabel": "가격(SAR) *",
+    "areaLabel": "면적(m²)",
+    "descArLabel": "아랍어 설명",
+    "descPlaceholder": "자세한 속성 설명...",
+    "city": "도시 *",
+    "district": "구역 *",
+    "districtPlaceholder": "예를 들어 알 올라야",
+    "bedroomsLabel": "침실",
+    "bathroomsLabel": "욕실",
+    "reviewListing": "리뷰 목록",
+    "transaction": "거래",
+    "title": "제목",
+    "price": "가격",
+    "bedrooms": "침실",
+    "back": "뒤쪽에",
+    "next": "다음",
+    "publish": "목록 게시",
+    "errorTitle": "오류",
+    "successTitle": "성공",
+    "fillRequired": "필수 입력란을 작성해주세요",
+    "addedSuccess": "목록이 성공적으로 추가되었습니다.",
+    "ok": "좋아요",
+    "somethingWrong": "문제가 발생했습니다.",
+    "editTitle": "목록 편집",
+    "missing": "누락된 필드",
+    "fillBasic": "필수 입력란을 작성해주세요.",
+    "savedTitle": "저장됨",
+    "savedBody": "목록이 업데이트되었습니다.",
+    "updateFailed": "업데이트하지 못했습니다.",
+    "deleteTitle": "목록 삭제",
+    "deleteBody": "확실합니까? 이 작업은 취소할 수 없습니다.",
+    "deleteFailed": "삭제하지 못했습니다.",
+    "delete": "삭제",
+    "deleteListing": "목록 삭제",
+    "titleArEdit": "제목(아랍어) *",
+    "titleEnEdit": "제목(영문)",
+    "transactionTypeShort": "거래 유형",
+    "priceShort": "가격 *",
+    "cityShort": "도시",
+    "districtShort": "구역",
+    "bedsShort": "침대",
+    "bathsShort": "온천",
+    "areaShort": "영역",
+    "description": "설명",
+    "saveChanges": "변경 사항 저장",
+    "sale": "판매",
+    "rent": "임차료"
   },
   "subscription": {
     "title": "구독",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Authentica.sa로 리디렉션 중…",
     "otpComing": "인증을 완료하기 위한 OTP를 곧 받으실 것입니다.",
     "profileUpdated": "프로필이 업데이트되었습니다.",
-    "deleteLabel": "삭제"
+    "deleteLabel": "삭제",
+    "appearance": "모습",
+    "languageRegion": "언어 및 지역",
+    "pushNotifications": "푸시 알림",
+    "emailNotifications": "이메일 알림",
+    "privacyAccount": "개인정보 보호 및 계정",
+    "areYouSure": "확실합니까?"
   },
   "inquiries": {
     "title": "문의",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "관리자 해결",
       "closedFor": "{{value}}에 거래 성사",
       "closedOn": " · {{date}}"
-    }
+    },
+    "received": "받았다",
+    "sent": "전송된",
+    "single": "문의",
+    "noInquiriesYet": "아직 문의가 없습니다",
+    "appearHere": "문의사항이 여기에 표시됩니다."
   },
   "commission": {
     "title": "수수료",
@@ -975,7 +1074,8 @@
       "pending": "대기 중",
       "confirmed": "확정됨",
       "paid": "지급됨",
-      "disputed": "분쟁 중"
+      "disputed": "분쟁 중",
+      "cancelled": "취소"
     },
     "oath": {
       "dialogTitle": "커미션 약속",
@@ -989,7 +1089,11 @@
       "decline": "나는 동의하지 않는다",
       "saving": "절약...",
       "acceptCta": "나는 동의하고 약속합니다"
-    }
+    },
+    "dealValue": "거래 가치",
+    "commission": "수수료",
+    "fromTxn": "{{count}} 거래에서",
+    "earningsHint": "거래가 종료되면 수익이 표시됩니다."
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}}건 대기 중",
@@ -1070,7 +1174,22 @@
     "contactUs": "문의하기",
     "noResultsTitle": "일치하는 답변 없음",
     "noResultsBody": "다른 키워드를 시도하거나 저희 팀에 직접 문의하세요.",
-    "respondsIn": "저희 팀은 24시간 이내에 답변드립니다."
+    "respondsIn": "저희 팀은 24시간 이내에 답변드립니다.",
+    "faqTitle": "자주 묻는 질문",
+    "faqs": {
+      "q1": "부동산을 어떻게 검색하나요?",
+      "a1": "하단의 검색 탭을 누른 다음 적합한 필터(가격, 유형, 도시)를 선택하세요.",
+      "q2": "상담원에게 어떻게 연락하나요?",
+      "a2": "목록을 연 다음 \"문의 보내기\"를 탭하거나 상담원 카드에 있는 통화/WhatsApp 버튼을 사용하세요.",
+      "q3": "샬레와 농장을 예약할 수 있나요?",
+      "a3": "예. 샬레/농장/휴게소 목록을 열고 \"지금 예약\"을 눌러 날짜를 선택하세요.",
+      "q4": "나중을 위해 부동산을 어떻게 저장하나요?",
+      "a4": "목록에서 하트 아이콘을 탭하세요. 저장된 항목은 저장됨 탭 아래에 있습니다.",
+      "q5": "앱은 무료인가요?",
+      "a5": "예 — 부동산을 찾는 사람에게는 무료입니다. 에이전트는 성공적인 거래 후에만 수수료를 지불합니다.",
+      "q6": "앱 언어를 어떻게 변경하나요?",
+      "a6": "프로필 탭 → 설정 → 언어. 지원되는 38개 언어 중에서 선택하세요."
+    }
   },
   "welcome": {
     "step1Title": "구매하시겠습니까, 임대하시겠습니까?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "최대 손님: {{count}}"
-    }
+    },
+    "title": "숙박 예약",
+    "shortTitle": "책",
+    "created": "예약이 생성되었습니다",
+    "createdBody": "예약이 생성되었습니다. 결제로 리디렉션됩니다.",
+    "error": "오류",
+    "failed": "예약 실패",
+    "invalidDates": "잘못된 날짜",
+    "invalidDatesBody": "YYYY-MM-DD 형식을 사용하세요.",
+    "tooShort": "너무 짧음",
+    "tooShortBody": "최소 1박 이상 예약해야 합니다",
+    "perNight": "SAR / 밤",
+    "notesOptional": "메모(선택사항)",
+    "notesPlaceholder": "특별한 요청이 있으신가요?",
+    "totalLabel": "총"
   },
   "market": {
     "title": "시장 인사이트",
@@ -1277,7 +1410,10 @@
     "totalListings": "총 매물",
     "listingCount": "활성 매물",
     "viewMarket": "시장 보기",
-    "miniTrend": "지역 시장 추세"
+    "miniTrend": "지역 시장 추세",
+    "trendTitle": "가격 추세(12개월)",
+    "avgByDistrict": "지구별 평균 ﷼/m²",
+    "cityPlaceholder": "리야드, 제다..."
   },
   "errors": {
     "generic": "예기치 않은 오류가 발생했습니다",
@@ -1388,7 +1524,18 @@
     "verified": "확인됨",
     "respondsUnder2h": "2시간 미만",
     "activeListingsCount": "{{count}}개의 활성 목록",
-    "viewProfile": "프로필 보기"
+    "viewProfile": "프로필 보기",
+    "agent": "대리인",
+    "listings": "목록",
+    "reviews": "리뷰",
+    "rating": "평가",
+    "noListings": "목록이 없습니다",
+    "viewReviews": "리뷰 보기",
+    "call": "부르다",
+    "title": "자치령 대표",
+    "listingsShort": "목록",
+    "noAgentsFound": "에이전트를 찾을 수 없습니다.",
+    "tryLater": "나중에 다시 시도해 보세요"
   },
   "myListings": {
     "countSelected": "{{count}}개 선택됨",
@@ -1441,5 +1588,12 @@
     "saved": "저장됨",
     "messages": "메시지",
     "profile": "윤곽"
+  },
+  "reviews": {
+    "title": "리뷰",
+    "user": "사용자",
+    "ownerReply": "소유자 답변:",
+    "empty": "아직 리뷰가 없습니다",
+    "beFirst": "가장 먼저 리뷰를 작성해 보세요"
   }
 }

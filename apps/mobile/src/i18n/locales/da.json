@@ -127,7 +127,8 @@
     "anyPrice": "Enhver pris",
     "upTo500": "Op til 500 SAR",
     "upTo1000": "Op til 1.000 SAR",
-    "upTo2500": "Op til 2.500 SAR"
+    "upTo2500": "Op til 2.500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Start samtalen",
@@ -147,7 +148,14 @@
     "showOriginal": "Vis original",
     "showTranslation": "Vis oversættelse",
     "online": "Online",
-    "lastSeen": "Sidst set"
+    "lastSeen": "Sidst set",
+    "title": "Beskeder",
+    "noMessages": "Ingen beskeder endnu",
+    "noMessagesPrompt": "Kontakt agenter fra noteringssider",
+    "signInPrompt": "Log ind for at se dine beskeder",
+    "chat": "Chat",
+    "user": "Bruger",
+    "noMessagesShort": "Ingen meddelelser"
   },
   "hosting": {
     "title": "Værtskab",
@@ -166,7 +174,8 @@
     "dailyRate": "Daglig sats",
     "weeklyRate": "Ugentlig sats",
     "guestReviews": "Gæsteanmeldelser",
-    "noReviews": "Ingen anmeldelser endnu — når gæster tjekker ud og vurderer deres ophold, vises de her."
+    "noReviews": "Ingen anmeldelser endnu — når gæster tjekker ud og vurderer deres ophold, vises de her.",
+    "guestFallback": "Gæst"
   },
   "buyerDeals": {
     "title": "Mine handler",
@@ -216,7 +225,20 @@
     "favorAgent": "Til fordel for mægler — opret kommission",
     "favorBuyer": "Til fordel for køber — annuller handel",
     "cancelDeal": "Annuller handel — ingen kommission",
-    "resolutionHint": "Begge parter underrettes med disse noter."
+    "resolutionHint": "Begge parter underrettes med disse noter.",
+    "other": "Andet",
+    "buyerLower": "køber",
+    "agentLower": "agent",
+    "otherLower": "andet",
+    "anonymous": "Anonym",
+    "resolveTitle": "Løs tvist",
+    "resolveDesc": "Vælg resultatet for denne tvist",
+    "favorAgentDesc": "Kommission vil blive bekræftet og udbetalt til agent",
+    "favorBuyerDesc": "Kommissionen vil blive annulleret",
+    "cancelDealDesc": "Aftale og kommission er begge annulleret",
+    "adminNotes": "Admin noter (valgfrit)",
+    "resolvedSuccess": "Tvisten løst med succes",
+    "resolvedError": "Kunne ikke løse tvist"
   },
   "auth": {
     "login": "Log ind",
@@ -252,7 +274,14 @@
     "agreeTerms": "Ved at oprette en konto accepterer du vores Vilkår og Privatlivspolitik",
     "loginSuccess": "Logget ind",
     "registerSuccess": "Konto oprettet",
-    "logoutSuccess": "Logget ud"
+    "logoutSuccess": "Logget ud",
+    "role": "Kontotype",
+    "buyer": "Køber",
+    "agent": "Agent",
+    "loginBtn": "Log ind",
+    "registerBtn": "Opret konto",
+    "fillAllFields": "Udfyld venligst alle felter",
+    "invalidCredentials": "Ugyldig e-mail eller adgangskode"
   },
   "validation": {
     "required": "Dette felt er påkrævet",
@@ -278,7 +307,7 @@
     "submit": "Indsend",
     "language": "Sprog",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Engelsk",
     "back": "Tilbage",
     "next": "Næste",
     "previous": "Forrige",
@@ -296,7 +325,14 @@
     "remove": "Fjern",
     "actions": "Handlinger",
     "active": "Aktiv",
-    "inactive": "Inaktiv"
+    "inactive": "Inaktiv",
+    "loadMore": "Indlæs mere",
+    "errorOccurred": "Der opstod en fejl",
+    "yes": "Ja",
+    "no": "Nej",
+    "sar": "SAR",
+    "perNight": "pr. nat",
+    "perMonth": "måned"
   },
   "listing": {
     "forSale": "Til salg",
@@ -363,7 +399,34 @@
       "expired": "Udløbet",
       "draft": "Kladde",
       "archived": "Arkiveret"
-    }
+    },
+    "sale": "Udsalg",
+    "rent": "Leje",
+    "bedrooms": "Senge",
+    "bathrooms": "Bade",
+    "propertyTypeLabel": "Indtast",
+    "noDescription": "Ingen beskrivelse.",
+    "locationNotSpecified": "Placering ikke specificeret",
+    "similarProperties": "Lignende egenskaber",
+    "bookNow": "Book nu",
+    "saveProperty": "Gem ejendom",
+    "openInMaps": "Åbn i Maps",
+    "viewOnMap": "Se på kort",
+    "tapToOpenMap": "Tap to open map",
+    "sendInquiryTitle": "Send forespørgsel",
+    "yourMessage": "Din besked",
+    "messagePlaceholder": "Skriv din besked her...",
+    "preferredContact": "Foretrukken kontakt",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "sent": "Sendt",
+    "sentBody": "Din forespørgsel blev sendt",
+    "messageTooShort": "Beskeden er for kort",
+    "messageTooShortBody": "Beskeden skal være på mindst 10 tegn",
+    "actionFailed": "Handling mislykkedes",
+    "bookingDevTitle": "Booking",
+    "bookingDevBody": "Booking flow er under udvikling. Kontakt venligst agenten.",
+    "removeFromSaved": "Vil du fjerne denne ejendom fra gemt?"
   },
   "search": {
     "filters": "Filtre",
@@ -399,7 +462,29 @@
       "cta": "Indsend ejendomsanmodning"
     },
     "drawArea": "Tegn et område",
-    "clearDrawing": "Ryd tegning"
+    "clearDrawing": "Ryd tegning",
+    "flexibleDates": "Jeg er fleksibel med datoer",
+    "flex1Month": "1 måned",
+    "shortTerm": "Kortsigtet",
+    "title": "Søg",
+    "placeholder": "Søg ejendomme, by...",
+    "noResultsHint": "Prøv forskellige filtre",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Prisinterval",
+    "bedrooms": "Soveværelser",
+    "sort": "Sorter",
+    "any": "Enhver",
+    "all": "Alle",
+    "sale": "Udsalg",
+    "rent": "Leje",
+    "apartment": "Apt",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "sortNewest": "Nyeste",
+    "sortPriceAsc": "Pris ↑",
+    "sortPriceDesc": "Pris ↓"
   },
   "home": {
     "heroTitle": "Find dit perfekte hjem",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} annoncer fundet",
     "clearFilters": "Ryd alle",
     "results": "resultater",
-    "loadMoreListings": "Indlæs flere annoncer"
+    "loadMoreListings": "Indlæs flere annoncer",
+    "latestListings": "Seneste opslag",
+    "featuredProperties": "Udvalgte ejendomme",
+    "seeAll": "Se alle",
+    "quickAccess": "Hurtig adgang",
+    "stays": "Forbliver",
+    "hotels": "Hoteller",
+    "market": "Marked",
+    "saved": "Gemt",
+    "tagline": "Premier Real Estate",
+    "categories": {
+      "all": "Alle",
+      "sale": "Til salg",
+      "rent": "Til leje",
+      "chalets": "Hytter",
+      "villas": "Villaer",
+      "apartments": "Lejligheder",
+      "land": "Land"
+    }
   },
   "empty": {
     "noListings": "Ingen annoncer endnu",
@@ -551,15 +654,75 @@
     "recentActivity": "Seneste aktivitet",
     "browseListings": "Gennemse annoncer",
     "goToDashboard": "Gå til dashboard",
-    "profileUpdated": "Profil opdateret"
+    "profileUpdated": "Profil opdateret",
+    "title": "Min konto",
+    "signIn": "Log ind",
+    "welcome": "Velkommen til Eawlma",
+    "signInPrompt": "Log ind for at få adgang til din konto",
+    "createAccount": "Opret konto",
+    "agentDashboard": "Agent Dashboard",
+    "myListings": "Mine opslag",
+    "addListing": "Tilføj fortegnelse",
+    "wallet": "Tegnebog",
+    "commissions": "Kommissioner",
+    "myBookings": "Mine reservationer",
+    "myInquiries": "Mine forespørgsler",
+    "inquiries": "Forespørgsler",
+    "account": "Konto",
+    "notifications": "Meddelelser",
+    "language": "Sprog",
+    "darkMode": "Mørk tilstand",
+    "support": "Indstillinger og support",
+    "settings": "Indstillinger",
+    "help": "Hjælp & FAQ",
+    "about": "Om",
+    "signOut": "Log ud",
+    "signOutConfirm": "Er du sikker på, at du vil logge ud?",
+    "member": "Medlem",
+    "agentRole": "Agent",
+    "admin": "Admin",
+    "chooseLanguage": "Vælg sprog",
+    "searchLanguage": "Søg...",
+    "popular": "Populær",
+    "allLanguages": "Alle sprog",
+    "noLanguageMatch": "Intet matchende sprog"
   },
   "wizard": {
     "basicInfo": "Grundlæggende info",
-    "location": "Placering",
+    "location": {
+      "street": "Gade",
+      "buildingNumber": "Bygningsnr.",
+      "postalCode": "Postnummer",
+      "pinPrompt": "Slip en pin for at indstille den nøjagtige placering",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Kortnålsvælgeren er ikke tilgængelig. Koordinater falder tilbage til {{lat}}, {{lng}}."
+    },
     "media": "Medier",
     "amenities": "Faciliteter",
-    "compliance": "Overholdelse",
-    "review": "Gennemgang",
+    "compliance": {
+      "permitNumber": "Tilladelse / FAL nummer",
+      "regaNumber": "REGA-licensnummer",
+      "permitExpiry": "Tilladelses udløb",
+      "preferredContact": "Foretrukken kontakt",
+      "phone": "Telefon",
+      "publicVisibility": "Offentlig synlighed (fjern markeringen for kun unoteret/privat link)"
+    },
+    "review": {
+      "summaryTitle": "Listeoversigt",
+      "enhanceWithAi": "Forbedre med AI",
+      "enhancing": "Forbedrer…",
+      "aiStubNotice": "AI returnerede en stub — sæt OPENAI_API_KEY på backend for at bruge live-modellen.",
+      "descriptionPreview": "Forhåndsvisning af beskrivelse",
+      "emptyDescription": "(tom)",
+      "type": "Indtast",
+      "titleLabel": "Titel",
+      "bedsBaths": "Soveværelser / Badeværelser",
+      "cityDistrict": "By / Distrikt",
+      "coordinates": "Koordinater",
+      "permit": "Tillad",
+      "regaLicense": "REGA-licens",
+      "visibility": "Synlighed"
+    },
     "saveDraft": "Gem kladde",
     "submit": "Indsend til gennemgang",
     "submitForReview": "Indsend til gennemgang",
@@ -576,7 +739,103 @@
       "bathrooms": "Badeværelser",
       "parking": "Parkering",
       "yearBuilt": "Byggeår",
-      "furnishing": "Møblering"
+      "furnishing": "Møblering",
+      "rentPeriod": "Periode"
+    },
+    "editListing": "Rediger liste",
+    "newListing": "Ny liste",
+    "crumbNew": "Ny",
+    "validation": {
+      "titleRequired": "Tilføj venligst en titel på mindst ét ​​sprog.",
+      "descriptionRequired": "Tilføj venligst en beskrivelse på mindst ét ​​sprog.",
+      "priceRequired": "Prisen skal være større end nul.",
+      "cityRequired": "By er påkrævet.",
+      "pinRequired": "Slip en nål på kortet for placeringen.",
+      "imageRequired": "Der kræves mindst ét ​​billede før publicering."
+    },
+    "transactionType": {
+      "sale": "Udsalg",
+      "rent": "Leje"
+    },
+    "rentPeriod": {
+      "daily": "Dagligt",
+      "weekly": "Ugentlig",
+      "monthly": "Månedlig",
+      "yearly": "Årlig"
+    },
+    "furnishing": {
+      "unfurnished": "Umøbleret",
+      "semi_furnished": "Halvmøbleret",
+      "furnished": "Møbleret"
+    },
+    "visibility": {
+      "public": "Offentlig",
+      "unlisted": "Unoteret"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Have",
+      "gym": "Gym",
+      "elevator": "Elevator",
+      "maidRoom": "Stuepigeværelse",
+      "driverRoom": "Førerrum",
+      "centralAc": "Central AC",
+      "kitchenAppliances": "Køkkenmaskiner",
+      "security": "24/7 sikkerhed",
+      "cornerUnit": "Hjørneenhed"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Parkering",
+      "breakfast": "Morgenmad",
+      "ac": "Aircondition",
+      "kitchen": "Køkken",
+      "tv": "TV",
+      "washer": "Skive",
+      "workspace": "Arbejdsområde",
+      "petsAllowed": "Husdyr tilladt",
+      "smokingAllowed": "Rygning tilladt",
+      "wheelchairAccessible": "Kørestolsadgang"
+    },
+    "shortTerm": {
+      "title": "Korttidsudlejning detaljer",
+      "subtitle": "Gæster vil booke dette opslag om natten. Konfigurer opholdsregler, faciliteter og prisniveauer.",
+      "dailyRate": "Dagskurs (SAR)",
+      "weeklyRate": "Ugentlig pris (SAR, valgfri)",
+      "minimumStay": "Minimum ophold (nætter)",
+      "maxGuests": "Max gæster",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Afbestillingspolitik",
+      "cancelFlexible": "Fleksibel — fuld refusion op til 24 timer før",
+      "cancelModerate": "Moderat — fuld refusion op til 5 dage før",
+      "cancelStrict": "Strenge — 50 % refusion op til 7 dage før",
+      "starRating": "Stjernebedømmelse",
+      "hotelName": "Hotelnavn",
+      "instantBook": "Øjeblikkelig bog",
+      "instantBookHint": "Bookinger bekræftes automatisk uden din godkendelse. Deaktiver for at gennemgå hver anmodning først.",
+      "amenities": "Faciliteter",
+      "houseRules": "Husregler",
+      "houseRulesPlaceholder": "f.eks. Ingen fester, stille timer efter kl. 22, ingen rygning indendørs..."
+    },
+    "mediaStep": {
+      "images": "Billeder",
+      "imageDropHint": "Træk og slip billeder her, eller klik for at vælge. JPEG / PNG / WebP op til 10 MB.",
+      "photoAlt": "Listebillede",
+      "setCover": "Sæt som cover",
+      "cover": "Cover",
+      "videoTour": "Videotur",
+      "videoDropHint": "Træk en MP4-fil, eller klik for at vælge. Max 500 MB.",
+      "videoUploaded": "Video uploadet — {{navn}}",
+      "vrTitle": "🥽 Virtual Reality Tour Link",
+      "vrPlaceholder": "https://... (Matterport, Kuula osv.)",
+      "modelTitle": "3D/AR-model (.glb eller .gltf)",
+      "modelDropHint": "Upload en GLB/GLTF-model for at aktivere AR. Max 50 MB.",
+      "modelUploaded": "Model uploadet — {{navn}}"
+    },
+    "amenitiesStep": {
+      "hint": "Tryk på de faciliteter, som denne ejendom tilbyder. Vi viser dem som filtre på Søgning."
     }
   },
   "subscription": {
@@ -649,7 +908,7 @@
     "title": "Forespørgsler",
     "noResults": "Ingen forespørgsler matcher dette filter",
     "empty": "Ingen forespørgsler matcher dette filter",
-    "lead": "Lead",
+    "lead": "Bly",
     "listing": "Annonce",
     "contact": "Kontakt",
     "date": "Dato",
@@ -717,6 +976,19 @@
       "confirmed": "Bekræftet",
       "paid": "Betalt",
       "disputed": "Bestridt"
+    },
+    "oath": {
+      "dialogTitle": "Kommissionens forpligtelse",
+      "translatedOath": "Jeg forpligter mig hermed til at betale den aftalte kommission efter gennemførelsen af ​​denne ejendomshandel, og anerkender dette ansvar over for Gud og loven.",
+      "breakdownTitle": "Kommissionsfordeling",
+      "agentListingBreakdown": "Platformprovision: <strong>0,5 %</strong> af transaktionsværdien, der betales ved vellykket salg eller lukning af leasing.",
+      "buyerAgentCommission": "Agentprovision: <strong>2,5 %</strong> af transaktionsværdien.",
+      "buyerPlatformFee": "Platformgebyr: <strong>0,5 %</strong> af transaktionsværdien.",
+      "acceptError": "Kunne ikke registrere din accept",
+      "agreeCheckbox": "Jeg accepterer provisionsbetingelserne",
+      "decline": "Jeg er ikke enig",
+      "saving": "Gemmer...",
+      "acceptCta": "Jeg accepterer og forpligter"
     }
   },
   "moderation": {
@@ -726,7 +998,7 @@
     "queueEmpty": "Modereringskøen er tom.",
     "colTitle": "Titel",
     "colReference": "Reference",
-    "colType": "Type",
+    "colType": "Indtast",
     "colCity": "By",
     "colPrice": "Pris",
     "colSubmitted": "Indsendt",
@@ -821,7 +1093,7 @@
     "subtitle": "Fortæl os, hvad du har brug for — mæglere kontakter dig inden for 24t",
     "propertyType": "Ejendomstype",
     "city": "By",
-    "minBudget": "Min budget",
+    "minBudget": "Minimum budget",
     "maxBudget": "Maks budget",
     "bedrooms": "Soveværelser",
     "message": "Yderligere detaljer",
@@ -838,7 +1110,7 @@
     "depositHint": "I produktion dirigerer dette til Moyasar-kassen. I dev krediteres midlerne med det samme.",
     "transactions": "Transaktionshistorik",
     "noTransactions": "Ingen transaktioner endnu",
-    "type": "Type",
+    "type": "Indtast",
     "txnDeposit": "Indbetaling",
     "txnWithdrawal": "Udbetaling",
     "txnCommissionPayment": "Kommissionsbetaling",
@@ -876,7 +1148,15 @@
       "paid": "✓ Betalt",
       "failed": "Mislykket",
       "rejected": "Afvist"
-    }
+    },
+    "balance": "Nuværende saldo",
+    "withdraw": "Udbetaling",
+    "noTransactionsHint": "Dine transaktioner vises her",
+    "sar": "SAR",
+    "inDevelopment": "Denne funktion er under udvikling",
+    "depositTitle": "Indbetaling",
+    "payoutTitle": "Udbetaling",
+    "withdrawal": "Tilbagetrækning"
   },
   "nafath": {
     "loginWith": "Log ind med Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Kontrakt #",
     "viewContract": "Vis kontrakt",
     "signedThroughEjar": "Underskrevet via Ejar",
-    "noContracts": "Ingen lejekontrakter endnu"
+    "noContracts": "Ingen lejekontrakter endnu",
+    "status": {
+      "draft": "Udkast",
+      "pending_signatures": "Afventende underskrifter",
+      "active": "Aktiv",
+      "expired": "Udløbet",
+      "cancelled": "Annulleret"
+    }
   },
   "dufaat": {
     "title": "Dufaat-rater",
@@ -911,7 +1198,13 @@
     "nextPayment": "Næste betaling",
     "installmentsPaid": "Betalte rater",
     "payNow": "Betal rate",
-    "noPlans": "Ingen Dufaat-planer endnu"
+    "noPlans": "Ingen Dufaat-planer endnu",
+    "status": {
+      "active": "Aktiv",
+      "completed": "Udført",
+      "defaulted": "Standard",
+      "cancelled": "Annulleret"
+    }
   },
   "booking": {
     "myBookings": "Mine bookinger",
@@ -961,6 +1254,9 @@
       "confirmed": "Bekræftet",
       "cancelled": "Annulleret",
       "completed": "Fuldført"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Maks. gæster: {{count}}"
     }
   },
   "market": {
@@ -1045,7 +1341,7 @@
     "active": "Aktiv",
     "maxDiscount": "Maks rabat (SAR)",
     "maxDiscountHint": "Begrænser værdien for procentrabatter. Lad være tom for ingen grænse.",
-    "minBooking": "Min booking (SAR)",
+    "minBooking": "Min reservation (SAR)",
     "maxUses": "Maks anvendelser (tom = ubegrænset)",
     "validFrom": "Gyldig fra",
     "validUntil": "Gyldig til",
@@ -1079,5 +1375,71 @@
       "medium": "Medium tillid",
       "low": "Lav tillid"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Søg efter navn eller speciale",
+    "allCities": "Alle byer",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Ingen agenter matcher din søgning",
+    "emptyBody": "Prøv et andet navn eller by.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Verificeret",
+    "respondsUnder2h": "< 2t",
+    "activeListingsCount": "{{count}} aktive fortegnelser",
+    "viewProfile": "Se profil"
+  },
+  "myListings": {
+    "countSelected": "{{count}} valgt",
+    "activateAll": "Aktiver alle",
+    "deactivateAll": "Deaktiver alle",
+    "deleteAll": "Slet alle",
+    "colViews": "Visninger",
+    "colInquiries": "Forespørgsler",
+    "boostFeature": "Boost (funktion)",
+    "duplicate": "Dublet",
+    "deleteConfirmTitle": "Vil du slette {{count}} fortegnelser?",
+    "deleteConfirmDescription": "Denne handling soft-sletter fortegnelsen - den vises ikke længere offentligt."
+  },
+  "saved": {
+    "title": "Gemt",
+    "empty": "Ingen gemte ejendomme",
+    "emptyPrompt": "Gem egenskaber, du kan lide, ved at trykke på ❤️",
+    "signInPrompt": "Log ind for at gemme ejendomme",
+    "removeTitle": "Fjerne",
+    "removePrompt": "Vil du fjerne denne ejendom fra gemt?"
+  },
+  "notifications": {
+    "title": "Meddelelser",
+    "empty": "Ingen meddelelser",
+    "emptyHint": "Dine advarsler vises her",
+    "markAllRead": "Marker alle som læst",
+    "notification": "Meddelelse"
+  },
+  "bookings": {
+    "title": "Mine reservationer",
+    "host": "Som vært",
+    "guest": "Som gæst",
+    "noBookings": "Ingen reservationer endnu",
+    "noBookingsHint": "Dine reservationer vises her",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Gæster",
+    "nights": "nætter",
+    "total": "I alt",
+    "status": {
+      "pending": "Afventer",
+      "confirmed": "Bekræftet",
+      "cancelled": "Annulleret",
+      "completed": "Udført"
+    }
+  },
+  "tabs": {
+    "home": "Hjem",
+    "search": "Søg",
+    "saved": "Gemt",
+    "messages": "Beskeder",
+    "profile": "Profil"
   }
 }

@@ -110,7 +110,16 @@
     "typeRoom": "Özel oda",
     "typeChalet": "Şale",
     "typeRestHouse": "Dinlenme evi",
-    "typeFarm": "Çiftlik"
+    "typeFarm": "Çiftlik",
+    "typeAll": "Tüm",
+    "chalets": "Dağ evleri",
+    "farms": "Çiftlikler",
+    "restHouses": "Dinlenme Evleri",
+    "hotelsLabel": "Oteller",
+    "bookNext": "Bir sonraki konaklamanız için rezervasyon yapın",
+    "subtitleMix": "Dağ evleri, çiftlikler, dinlenme evleri ve oteller",
+    "noStays": "Konaklama mevcut değil",
+    "tryAnother": "Başka bir kategori deneyin"
   },
   "hotels": {
     "title": "Oteller",
@@ -128,7 +137,10 @@
     "upTo500": "500 SAR'a kadar",
     "upTo1000": "1.000 SAR'a kadar",
     "upTo2500": "2.500 SAR'a kadar",
-    "hotelChip": "Otel"
+    "hotelChip": "Otel",
+    "bookStay": "Otel konaklaması rezervasyonu yapın",
+    "nightly": "Gecelik konaklamalar için otel odaları",
+    "noHotels": "Otel yok"
   },
   "messages": {
     "startConversation": "Sohbeti başlat",
@@ -281,7 +293,16 @@
     "loginBtn": "Oturum aç",
     "registerBtn": "Hesap oluşturmak",
     "fillAllFields": "Lütfen tüm alanları doldurun",
-    "invalidCredentials": "Geçersiz e-posta veya şifre"
+    "invalidCredentials": "Geçersiz e-posta veya şifre",
+    "fillRequired": "Lütfen gerekli tüm alanları doldurun",
+    "registerFailed": "Kayıt başarısız oldu, tekrar deneyin",
+    "pwWeak": "Zayıf",
+    "pwFair": "Adil",
+    "pwGood": "İyi",
+    "pwStrong": "Güçlü",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Bu alan zorunludur",
@@ -601,7 +622,10 @@
       "agents": "Doğrulanmış emlakçılar",
       "cities": "Şehirler",
       "support": "Destek"
-    }
+    },
+    "appAbout": "Uygulama hakkında",
+    "appDescription": "Eawlma, alıcıları ve kiracıları Suudi Arabistan'daki güvenilir acentelerle buluşturan bir emlak platformudur. Mükemmel mülkünüzü keşfedin, kısa bir konaklama rezervasyonu yapın ve acentelerle doğrudan sohbet edin.",
+    "website": "Web sitesi"
   },
   "contact": {
     "title": "İletişime geçin",
@@ -753,10 +777,7 @@
       "pinRequired": "Konum için haritaya bir raptiye bırakın.",
       "imageRequired": "Yayınlanmadan önce en az bir görsel gereklidir."
     },
-    "transactionType": {
-      "sale": "Satış",
-      "rent": "Kira"
-    },
+    "transactionType": "İşlem Türü",
     "rentPeriod": {
       "daily": "Günlük",
       "weekly": "Haftalık",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Bu tesisin sunduğu olanaklara dokunun. Bunları Arama'da filtreler olarak göstereceğiz."
-    }
+    },
+    "stepProperty": "Emlak Tipi",
+    "stepDetails": "Detaylar",
+    "stepLocation": "Konum",
+    "stepSpecs": "Özellikler",
+    "stepReview": "Gözden geçirmek",
+    "stepCount": "{{total}} adımının {{current}}. adımı: {{title}}",
+    "addListing": "İlan Ekle",
+    "forSale": "Satılık",
+    "forRent": "Kiralık",
+    "propertyType": "Emlak Tipi",
+    "apartment": "Daire",
+    "villa": "Villa",
+    "land": "Kara",
+    "chalet": "Dağ evi",
+    "farm": "Çiftlik",
+    "restHouse": "Dinlenme Evi",
+    "office": "Ofis",
+    "shop": "Mağaza",
+    "titleArLabel": "Arapça Başlık *",
+    "titleEnLabel": "İngilizce Başlık",
+    "priceLabel": "Fiyat (SAR) *",
+    "areaLabel": "Alan (m²)",
+    "descArLabel": "Arapça Açıklama",
+    "descPlaceholder": "Detaylı mülk açıklaması...",
+    "city": "Şehir *",
+    "district": "Semt *",
+    "districtPlaceholder": "örneğin Al Olaya",
+    "bedroomsLabel": "Yatak odaları",
+    "bathroomsLabel": "Banyolar",
+    "reviewListing": "İlanı İncele",
+    "transaction": "İşlem",
+    "title": "Başlık",
+    "price": "Fiyat",
+    "bedrooms": "Yatak odaları",
+    "back": "Geri",
+    "next": "Sonraki",
+    "publish": "İlanı Yayınla",
+    "errorTitle": "Hata",
+    "successTitle": "Başarı",
+    "fillRequired": "Lütfen gerekli alanları doldurun",
+    "addedSuccess": "İlan başarıyla eklendi",
+    "ok": "TAMAM",
+    "somethingWrong": "Bir şeyler ters gitti",
+    "editTitle": "İlanı Düzenle",
+    "missing": "Eksik alanlar",
+    "fillBasic": "Lütfen gerekli alanları doldurun",
+    "savedTitle": "Kaydedildi",
+    "savedBody": "İlan güncellendi",
+    "updateFailed": "Güncelleme başarısız oldu",
+    "deleteTitle": "İlanı sil",
+    "deleteBody": "Emin misin? Bu geri alınamaz.",
+    "deleteFailed": "Silinemedi",
+    "delete": "Silmek",
+    "deleteListing": "İlanı Sil",
+    "titleArEdit": "Başlık (Arapça) *",
+    "titleEnEdit": "Başlık (İngilizce)",
+    "transactionTypeShort": "İşlem Türü",
+    "priceShort": "Fiyat *",
+    "cityShort": "Şehir",
+    "districtShort": "Semt",
+    "bedsShort": "Yataklar",
+    "bathsShort": "Hamamlar",
+    "areaShort": "Alan",
+    "description": "Tanım",
+    "saveChanges": "Değişiklikleri Kaydet",
+    "sale": "Satış",
+    "rent": "Kira"
   },
   "subscription": {
     "title": "Abonelik",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Authentica.sa'ya yönlendiriliyor…",
     "otpComing": "Doğrulamayı tamamlamak için kısa süre içinde bir OTP alacaksınız.",
     "profileUpdated": "Profil güncellendi.",
-    "deleteLabel": "Sil"
+    "deleteLabel": "Sil",
+    "appearance": "Dış görünüş",
+    "languageRegion": "Dil ve bölge",
+    "pushNotifications": "Anında bildirimler",
+    "emailNotifications": "E-posta bildirimleri",
+    "privacyAccount": "Gizlilik ve hesap",
+    "areYouSure": "Emin misin?"
   },
   "inquiries": {
     "title": "Sorular",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Yönetici çözümü",
       "closedFor": "Anlaşma {{value}} için kapatıldı",
       "closedOn": " {{date}} tarihinde"
-    }
+    },
+    "received": "Kabul edilmiş",
+    "sent": "Gönderilmiş",
+    "single": "Sorgu",
+    "noInquiriesYet": "Henüz soruşturma yok",
+    "appearHere": "Sorularınız burada görünecek"
   },
   "commission": {
     "title": "Komisyonlar",
@@ -975,7 +1074,8 @@
       "pending": "Beklemede",
       "confirmed": "Onaylandı",
       "paid": "Ödendi",
-      "disputed": "Tartışmalı"
+      "disputed": "Tartışmalı",
+      "cancelled": "İptal edildi"
     },
     "oath": {
       "dialogTitle": "Komisyon Taahhüdü",
@@ -989,7 +1089,11 @@
       "decline": "katılmıyorum",
       "saving": "Kaydediliyor...",
       "acceptCta": "Kabul Ediyorum & Taahhüt Ediyorum"
-    }
+    },
+    "dealValue": "Anlaşma değeri",
+    "commission": "Komisyon",
+    "fromTxn": "{{count}} işlemden",
+    "earningsHint": "Kazançlar anlaşmalar tamamlandıktan sonra görünecek"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} beklemede",
@@ -1070,7 +1174,22 @@
     "contactUs": "Bizimle iletişime geçin",
     "noResultsTitle": "Eşleşen yanıt yok",
     "noResultsBody": "Farklı bir anahtar kelime deneyin veya doğrudan ekibimizle iletişime geçin.",
-    "respondsIn": "Ekibimiz 24 saat içinde yanıt verir."
+    "respondsIn": "Ekibimiz 24 saat içinde yanıt verir.",
+    "faqTitle": "Sıkça Sorulan Sorular",
+    "faqs": {
+      "q1": "Bir mülkü nasıl arayabilirim?",
+      "a1": "Alt kısımdaki Arama sekmesine dokunun ve ardından size uygun filtreleri seçin (fiyat, tür, şehir).",
+      "q2": "Bir acenteyle nasıl iletişime geçebilirim?",
+      "a2": "İlanı açın, ardından \"Sorgu Gönder\"e dokunun veya temsilci kartındaki arama/WhatsApp düğmelerini kullanın.",
+      "q3": "Dağ evleri ve çiftlikler için rezervasyon yapabilir miyim?",
+      "a3": "Evet — herhangi bir dağ evi/çiftlik/dinlenme evi listesini açın ve tarihleri ​​seçmek için \"Şimdi Rezervasyon Yap\"a dokunun.",
+      "q4": "Bir mülkü daha sonra kullanmak üzere nasıl kaydederim?",
+      "a4": "Listedeki kalp simgesine dokunun. Kaydedilen öğeler Kaydedilenler sekmesi altında yayınlanır.",
+      "q5": "Uygulama ücretsiz mi?",
+      "a5": "Evet - mülk arayanlar için ücretsiz. Acenteler ancak başarılı bir anlaşma sonrasında komisyon öderler.",
+      "q6": "Uygulama dilini nasıl değiştiririm?",
+      "a6": "Profil sekmesi → Ayarlar → Dil. Desteklenen 38 dil arasından seçim yapın."
+    }
   },
   "welcome": {
     "step1Title": "Satın almak mı kiralamak mı istiyorsunuz?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Maksimum misafir sayısı: {{count}}"
-    }
+    },
+    "title": "Konaklamanızı ayırtın",
+    "shortTitle": "Kitap",
+    "created": "Rezervasyon oluşturuldu",
+    "createdBody": "Rezervasyon oluşturuldu. Ödemeye yönlendirileceksiniz.",
+    "error": "Hata",
+    "failed": "Rezervasyon başarısız oldu",
+    "invalidDates": "Geçersiz tarihler",
+    "invalidDatesBody": "YYYY-AA-GG biçimini kullanın",
+    "tooShort": "Çok kısa",
+    "tooShortBody": "Rezervasyon en az 1 gecelik olmalıdır",
+    "perNight": "SAR / gece",
+    "notesOptional": "Notlar (isteğe bağlı)",
+    "notesPlaceholder": "Herhangi bir özel istek...",
+    "totalLabel": "Toplam"
   },
   "market": {
     "title": "Piyasa içgörüleri",
@@ -1277,7 +1410,10 @@
     "totalListings": "Toplam ilan",
     "listingCount": "Aktif ilanlar",
     "viewMarket": "Piyasayı görüntüle",
-    "miniTrend": "Yerel piyasa trendi"
+    "miniTrend": "Yerel piyasa trendi",
+    "trendTitle": "Fiyat eğilimi (12 ay)",
+    "avgByDistrict": "Bölgeye göre ortalama ﷼/m²",
+    "cityPlaceholder": "Riyad, Cidde..."
   },
   "errors": {
     "generic": "Beklenmedik bir hata oluştu",
@@ -1388,7 +1524,18 @@
     "verified": "Doğrulandı",
     "respondsUnder2h": "< 2 saat",
     "activeListingsCount": "{{count}} aktif listeleme",
-    "viewProfile": "Profili Görüntüle"
+    "viewProfile": "Profili Görüntüle",
+    "agent": "Ajan",
+    "listings": "İlanlar",
+    "reviews": "Yorumlar",
+    "rating": "Derecelendirme",
+    "noListings": "Liste yok",
+    "viewReviews": "Yorumları Görüntüle",
+    "call": "Arama",
+    "title": "Temsilciler",
+    "listingsShort": "listeler",
+    "noAgentsFound": "Hiçbir aracı bulunamadı",
+    "tryLater": "Daha sonra tekrar deneyin"
   },
   "myListings": {
     "countSelected": "{{count}} seçildi",
@@ -1441,5 +1588,12 @@
     "saved": "Kaydedildi",
     "messages": "Mesajlar",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Yorumlar",
+    "user": "Kullanıcı",
+    "ownerReply": "Sahibinin yanıtı:",
+    "empty": "Henüz yorum yok",
+    "beFirst": "İlk yorum yapan siz olun"
   }
 }

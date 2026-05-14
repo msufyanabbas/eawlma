@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "ఈవ్ల్మా",
     "tagline": "సౌదీ అరేబియాలో మీ సరైన ఆస్తిని కనుగొనండి"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "ఏదైనా ధర",
     "upTo500": "500 SAR వరకు",
     "upTo1000": "1,000 SAR వరకు",
-    "upTo2500": "2,500 SAR వరకు"
+    "upTo2500": "2,500 SAR వరకు",
+    "hotelChip": "హోటల్"
   },
   "messages": {
     "startConversation": "సంభాషణను ప్రారంభించండి",
@@ -147,7 +148,14 @@
     "showOriginal": "అసలు చూపించు",
     "showTranslation": "అనువాదాన్ని చూపించు",
     "online": "ఆన్‌లైన్",
-    "lastSeen": "చివరిగా చూసినప్పుడు"
+    "lastSeen": "చివరిగా చూసినప్పుడు",
+    "title": "సందేశాలు",
+    "noMessages": "ఇంకా సందేశాలు లేవు",
+    "noMessagesPrompt": "జాబితా పేజీల నుండి ఏజెంట్లను సంప్రదించండి",
+    "signInPrompt": "మీ సందేశాలను చూడటానికి సైన్ ఇన్ చేయండి",
+    "chat": "చాట్ చేయండి",
+    "user": "వినియోగదారు",
+    "noMessagesShort": "సందేశాలు లేవు"
   },
   "hosting": {
     "title": "హోస్టింగ్",
@@ -166,7 +174,8 @@
     "dailyRate": "రోజువారీ రేటు",
     "weeklyRate": "వారపు రేటు",
     "guestReviews": "అతిథి సమీక్షలు",
-    "noReviews": "ఇంకా సమీక్షలు లేవు — అతిథులు చెక్ అవుట్ చేసి తమ నివాసాన్ని రేట్ చేసిన తర్వాత, అవి ఇక్కడ కనిపిస్తాయి."
+    "noReviews": "ఇంకా సమీక్షలు లేవు — అతిథులు చెక్ అవుట్ చేసి తమ నివాసాన్ని రేట్ చేసిన తర్వాత, అవి ఇక్కడ కనిపిస్తాయి.",
+    "guestFallback": "అతిథి"
   },
   "buyerDeals": {
     "title": "నా డీల్‌లు",
@@ -216,7 +225,20 @@
     "favorAgent": "ఏజెంట్‌కు అనుకూలంగా — కమీషన్‌ను సృష్టించండి",
     "favorBuyer": "కొనుగోలుదారుకు అనుకూలంగా — డీల్‌ను రద్దు చేయండి",
     "cancelDeal": "డీల్‌ను రద్దు చేయండి — కమీషన్ లేదు",
-    "resolutionHint": "ఈ గమనికలతో రెండు పక్షాలకూ తెలియజేయబడుతుంది."
+    "resolutionHint": "ఈ గమనికలతో రెండు పక్షాలకూ తెలియజేయబడుతుంది.",
+    "other": "ఇతర",
+    "buyerLower": "కొనుగోలుదారు",
+    "agentLower": "ఏజెంట్",
+    "otherLower": "ఇతర",
+    "anonymous": "అనామకుడు",
+    "resolveTitle": "వివాదాన్ని పరిష్కరించండి",
+    "resolveDesc": "ఈ వివాదానికి ఫలితాన్ని ఎంచుకోండి",
+    "favorAgentDesc": "కమిషన్ నిర్ధారించబడుతుంది మరియు ఏజెంట్‌కు చెల్లించబడుతుంది",
+    "favorBuyerDesc": "కమీషన్ రద్దు చేయబడుతుంది",
+    "cancelDealDesc": "డీల్ మరియు కమీషన్ రెండూ రద్దు చేయబడ్డాయి",
+    "adminNotes": "అడ్మిన్ నోట్స్ (ఐచ్ఛికం)",
+    "resolvedSuccess": "వివాదం విజయవంతంగా పరిష్కరించబడింది",
+    "resolvedError": "వివాదాన్ని పరిష్కరించడంలో విఫలమైంది"
   },
   "auth": {
     "login": "సైన్ ఇన్",
@@ -252,7 +274,14 @@
     "agreeTerms": "ఖాతాను సృష్టించడం ద్వారా మీరు మా నిబంధనలు మరియు గోప్యతా విధానానికి అంగీకరిస్తారు",
     "loginSuccess": "విజయవంతంగా సైన్ ఇన్ అయ్యారు",
     "registerSuccess": "ఖాతా విజయవంతంగా సృష్టించబడింది",
-    "logoutSuccess": "సైన్ అవుట్ అయ్యారు"
+    "logoutSuccess": "సైన్ అవుట్ అయ్యారు",
+    "role": "ఖాతా రకం",
+    "buyer": "కొనుగోలుదారు",
+    "agent": "ఏజెంట్",
+    "loginBtn": "సైన్ ఇన్ చేయండి",
+    "registerBtn": "ఖాతాను సృష్టించండి",
+    "fillAllFields": "దయచేసి అన్ని ఫీల్డ్‌లను పూరించండి",
+    "invalidCredentials": "చెల్లని ఇమెయిల్ లేదా పాస్‌వర్డ్"
   },
   "validation": {
     "required": "ఈ ఫీల్డ్ అవసరం",
@@ -278,7 +307,7 @@
     "submit": "సమర్పించండి",
     "language": "భాష",
     "arabic": "العربية",
-    "english": "English",
+    "english": "ఇంగ్లీష్",
     "back": "వెనుక",
     "next": "తదుపరి",
     "previous": "మునుపటి",
@@ -296,7 +325,14 @@
     "remove": "తీసివేయండి",
     "actions": "చర్యలు",
     "active": "క్రియాశీలం",
-    "inactive": "నిష్క్రియం"
+    "inactive": "నిష్క్రియం",
+    "loadMore": "మరింత లోడ్ చేయండి",
+    "errorOccurred": "ఒక లోపం సంభవించింది",
+    "yes": "అవును",
+    "no": "నం",
+    "sar": "SAR",
+    "perNight": "రాత్రికి",
+    "perMonth": "నెలకు"
   },
   "listing": {
     "forSale": "అమ్మకానికి",
@@ -363,7 +399,34 @@
       "expired": "గడువు ముగిసింది",
       "draft": "డ్రాఫ్ట్",
       "archived": "ఆర్కైవ్ చేయబడింది"
-    }
+    },
+    "sale": "అమ్మకం",
+    "rent": "అద్దె",
+    "bedrooms": "పడకలు",
+    "bathrooms": "స్నానాలు",
+    "propertyTypeLabel": "టైప్ చేయండి",
+    "noDescription": "వివరణ లేదు.",
+    "locationNotSpecified": "స్థానం పేర్కొనబడలేదు",
+    "similarProperties": "సారూప్య లక్షణాలు",
+    "bookNow": "ఇప్పుడే బుక్ చేయండి",
+    "saveProperty": "ఆస్తిని సేవ్ చేయండి",
+    "openInMaps": "మ్యాప్స్‌లో తెరవండి",
+    "viewOnMap": "మ్యాప్‌లో వీక్షించండి",
+    "tapToOpenMap": "మ్యాప్‌ని తెరవడానికి నొక్కండి",
+    "sendInquiryTitle": "విచారణ పంపండి",
+    "yourMessage": "మీ సందేశం",
+    "messagePlaceholder": "మీ సందేశాన్ని ఇక్కడ వ్రాయండి...",
+    "preferredContact": "ఇష్టపడే పరిచయం",
+    "phone": "ఫోన్",
+    "email": "ఇమెయిల్",
+    "sent": "పంపబడింది",
+    "sentBody": "మీ విచారణ పంపబడింది",
+    "messageTooShort": "సందేశం చాలా చిన్నది",
+    "messageTooShortBody": "సందేశం తప్పనిసరిగా కనీసం 10 అక్షరాలు ఉండాలి",
+    "actionFailed": "చర్య విఫలమైంది",
+    "bookingDevTitle": "బుకింగ్",
+    "bookingDevBody": "బుకింగ్ ఫ్లో అభివృద్ధిలో ఉంది. దయచేసి ఏజెంట్‌ని సంప్రదించండి.",
+    "removeFromSaved": "సేవ్ చేసిన వాటి నుండి ఈ ప్రాపర్టీని తీసివేయాలా?"
   },
   "search": {
     "filters": "ఫిల్టర్‌లు",
@@ -399,7 +462,29 @@
       "cta": "ఆస్తి అభ్యర్థనను సమర్పించండి"
     },
     "drawArea": "ఒక ప్రాంతాన్ని గీయండి",
-    "clearDrawing": "డ్రాయింగ్‌ను క్లియర్ చేయండి"
+    "clearDrawing": "డ్రాయింగ్‌ను క్లియర్ చేయండి",
+    "flexibleDates": "నేను తేదీలతో అనువుగా ఉన్నాను",
+    "flex1Month": "1 నెల",
+    "shortTerm": "స్వల్పకాలిక",
+    "title": "శోధించండి",
+    "placeholder": "శోధన లక్షణాలు, నగరం...",
+    "noResultsHint": "విభిన్న ఫిల్టర్‌లను ప్రయత్నించండి",
+    "cityPlaceholder": "రియాద్, జెద్దా...",
+    "priceRange": "ధర పరిధి",
+    "bedrooms": "బెడ్ రూములు",
+    "sort": "క్రమబద్ధీకరించు",
+    "any": "ఏదైనా",
+    "all": "అన్నీ",
+    "sale": "అమ్మకం",
+    "rent": "అద్దె",
+    "apartment": "సముచితం",
+    "villa": "విల్లా",
+    "land": "భూమి",
+    "chalet": "చాలెట్",
+    "farm": "పొలం",
+    "sortNewest": "సరికొత్త",
+    "sortPriceAsc": "ధర ↑",
+    "sortPriceDesc": "ధర ↓"
   },
   "home": {
     "heroTitle": "మీ సరైన ఇంటిని కనుగొనండి",
@@ -438,7 +523,7 @@
     "newestSort": "కొత్తవి",
     "priceLowSort": "ధర: తక్కువ",
     "priceHighSort": "ధర: ఎక్కువ",
-    "appStore": "App Store",
+    "appStore": "యాప్ స్టోర్",
     "googlePlay": "Google Play",
     "statListings": "ప్రకటనలు",
     "statAgents": "ఏజెంట్లు",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} ప్రకటనలు కనుగొనబడ్డాయి",
     "clearFilters": "అన్నీ క్లియర్ చేయండి",
     "results": "ఫలితాలు",
-    "loadMoreListings": "మరిన్ని ప్రకటనలను లోడ్ చేయండి"
+    "loadMoreListings": "మరిన్ని ప్రకటనలను లోడ్ చేయండి",
+    "latestListings": "తాజా జాబితాలు",
+    "featuredProperties": "ఫీచర్ చేయబడిన లక్షణాలు",
+    "seeAll": "అన్నీ చూడండి",
+    "quickAccess": "త్వరిత యాక్సెస్",
+    "stays": "ఉంటాడు",
+    "hotels": "హోటల్స్",
+    "market": "మార్కెట్",
+    "saved": "సేవ్ చేయబడింది",
+    "tagline": "ప్రీమియర్ రియల్ ఎస్టేట్",
+    "categories": {
+      "all": "అన్నీ",
+      "sale": "అమ్మకానికి",
+      "rent": "అద్దెకు",
+      "chalets": "చాలెట్లు",
+      "villas": "విల్లాలు",
+      "apartments": "అపార్టుమెంట్లు",
+      "land": "భూమి"
+    }
   },
   "empty": {
     "noListings": "ఇంకా ప్రకటనలు లేవు",
@@ -551,15 +654,75 @@
     "recentActivity": "ఇటీవలి కార్యకలాపం",
     "browseListings": "ప్రకటనలను బ్రౌజ్ చేయండి",
     "goToDashboard": "డాష్‌బోర్డ్‌కు వెళ్ళండి",
-    "profileUpdated": "ప్రొఫైల్ నవీకరించబడింది"
+    "profileUpdated": "ప్రొఫైల్ నవీకరించబడింది",
+    "title": "నా ఖాతా",
+    "signIn": "సైన్ ఇన్ చేయండి",
+    "welcome": "Eawlma కు స్వాగతం",
+    "signInPrompt": "మీ ఖాతాను యాక్సెస్ చేయడానికి సైన్ ఇన్ చేయండి",
+    "createAccount": "ఖాతాను సృష్టించండి",
+    "agentDashboard": "ఏజెంట్ డాష్‌బోర్డ్",
+    "myListings": "నా జాబితాలు",
+    "addListing": "జాబితాను జోడించండి",
+    "wallet": "వాలెట్",
+    "commissions": "కమీషన్లు",
+    "myBookings": "నా బుకింగ్‌లు",
+    "myInquiries": "నా విచారణలు",
+    "inquiries": "విచారణలు",
+    "account": "ఖాతా",
+    "notifications": "నోటిఫికేషన్‌లు",
+    "language": "భాష",
+    "darkMode": "డార్క్ మోడ్",
+    "support": "సెట్టింగ్‌లు & మద్దతు",
+    "settings": "సెట్టింగ్‌లు",
+    "help": "సహాయం & తరచుగా అడిగే ప్రశ్నలు",
+    "about": "గురించి",
+    "signOut": "సైన్ అవుట్ చేయండి",
+    "signOutConfirm": "మీరు ఖచ్చితంగా సైన్ అవుట్ చేయాలనుకుంటున్నారా?",
+    "member": "సభ్యుడు",
+    "agentRole": "ఏజెంట్",
+    "admin": "అడ్మిన్",
+    "chooseLanguage": "భాషను ఎంచుకోండి",
+    "searchLanguage": "శోధన...",
+    "popular": "జనాదరణ పొందినది",
+    "allLanguages": "అన్ని భాషలు",
+    "noLanguageMatch": "సరిపోలే భాష లేదు"
   },
   "wizard": {
     "basicInfo": "ప్రాథమిక సమాచారం",
-    "location": "స్థానం",
+    "location": {
+      "street": "వీధి",
+      "buildingNumber": "భవనం నెం.",
+      "postalCode": "పోస్టల్ కోడ్",
+      "pinPrompt": "ఖచ్చితమైన స్థానాన్ని సెట్ చేయడానికి పిన్‌ను వదలండి",
+      "pinLabel": "పిన్ చేయండి",
+      "mapUnavailable": "మ్యాప్ పిన్ పికర్ అందుబాటులో లేదు. కోఆర్డినేట్‌లు {{lat}}, {{lng}}కి తిరిగి వస్తాయి."
+    },
     "media": "మీడియా",
     "amenities": "సౌకర్యాలు",
-    "compliance": "అనుసరణ",
-    "review": "సమీక్ష",
+    "compliance": {
+      "permitNumber": "అనుమతి / FAL నంబర్",
+      "regaNumber": "REGA లైసెన్స్ నంబర్",
+      "permitExpiry": "అనుమతి గడువు ముగిసింది",
+      "preferredContact": "ఇష్టపడే పరిచయం",
+      "phone": "ఫోన్",
+      "publicVisibility": "పబ్లిక్ విజిబిలిటీ (జాబితా చేయని / ప్రైవేట్ లింక్ కోసం మాత్రమే ఎంపిక చేయవద్దు)"
+    },
+    "review": {
+      "summaryTitle": "జాబితా సారాంశం",
+      "enhanceWithAi": "AIతో మెరుగుపరచండి",
+      "enhancing": "మెరుగుపరుస్తోంది...",
+      "aiStubNotice": "AI ఒక స్టబ్‌ను అందించింది — ప్రత్యక్ష నమూనాను ఉపయోగించడానికి బ్యాక్‌ఎండ్‌లో OPENAI_API_KEYని సెట్ చేయండి.",
+      "descriptionPreview": "వివరణ ప్రివ్యూ",
+      "emptyDescription": "(ఖాళీ)",
+      "type": "టైప్ చేయండి",
+      "titleLabel": "శీర్షిక",
+      "bedsBaths": "బెడ్ రూములు / స్నానపు గదులు",
+      "cityDistrict": "నగరం / జిల్లా",
+      "coordinates": "కోఆర్డినేట్లు",
+      "permit": "అనుమతి",
+      "regaLicense": "REGA లైసెన్స్",
+      "visibility": "దృశ్యమానత"
+    },
     "saveDraft": "డ్రాఫ్ట్‌ను సేవ్ చేయండి",
     "submit": "సమీక్ష కోసం సమర్పించండి",
     "submitForReview": "సమీక్ష కోసం సమర్పించండి",
@@ -576,7 +739,103 @@
       "bathrooms": "స్నానపు గదులు",
       "parking": "పార్కింగ్",
       "yearBuilt": "నిర్మించిన సంవత్సరం",
-      "furnishing": "ఫర్నిచర్"
+      "furnishing": "ఫర్నిచర్",
+      "rentPeriod": "కాలం"
+    },
+    "editListing": "జాబితాను సవరించండి",
+    "newListing": "కొత్త జాబితా",
+    "crumbNew": "కొత్తది",
+    "validation": {
+      "titleRequired": "దయచేసి కనీసం ఒక భాషలో శీర్షికను జోడించండి.",
+      "descriptionRequired": "దయచేసి కనీసం ఒక భాషలో వివరణను జోడించండి.",
+      "priceRequired": "ధర తప్పనిసరిగా సున్నా కంటే ఎక్కువగా ఉండాలి.",
+      "cityRequired": "నగరం అవసరం.",
+      "pinRequired": "స్థానం కోసం మ్యాప్‌పై పిన్‌ను వదలండి.",
+      "imageRequired": "ప్రచురించడానికి ముందు కనీసం ఒక చిత్రం అవసరం."
+    },
+    "transactionType": {
+      "sale": "అమ్మకం",
+      "rent": "అద్దె"
+    },
+    "rentPeriod": {
+      "daily": "రోజువారీ",
+      "weekly": "వారానికోసారి",
+      "monthly": "నెలవారీ",
+      "yearly": "సంవత్సరానికి"
+    },
+    "furnishing": {
+      "unfurnished": "అమర్చనిది",
+      "semi_furnished": "సెమీ ఫర్నిష్డ్",
+      "furnished": "అమర్చిన"
+    },
+    "visibility": {
+      "public": "పబ్లిక్",
+      "unlisted": "జాబితా చేయబడలేదు"
+    },
+    "amenity": {
+      "pool": "కొలను",
+      "garden": "తోట",
+      "gym": "వ్యాయామశాల",
+      "elevator": "ఎలివేటర్",
+      "maidRoom": "పనిమనిషి గది",
+      "driverRoom": "డ్రైవర్ గది",
+      "centralAc": "సెంట్రల్ AC",
+      "kitchenAppliances": "వంటగది ఉపకరణాలు",
+      "security": "24/7 భద్రత",
+      "cornerUnit": "కార్నర్ యూనిట్"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "కొలను",
+      "parking": "పార్కింగ్",
+      "breakfast": "అల్పాహారం",
+      "ac": "ఎయిర్ కండిషనింగ్",
+      "kitchen": "వంటగది",
+      "tv": "టీవీ",
+      "washer": "వాషర్",
+      "workspace": "కార్యస్థలం",
+      "petsAllowed": "పెంపుడు జంతువులు అనుమతించబడతాయి",
+      "smokingAllowed": "ధూమపానం అనుమతించబడింది",
+      "wheelchairAccessible": "వీల్ చైర్ అందుబాటులో ఉంది"
+    },
+    "shortTerm": {
+      "title": "స్వల్పకాలిక అద్దె వివరాలు",
+      "subtitle": "అతిథులు రాత్రికి ఈ జాబితాను బుక్ చేస్తారు. బస నియమాలు, సౌకర్యాలు మరియు ధరల స్థాయిలను కాన్ఫిగర్ చేయండి.",
+      "dailyRate": "రోజువారీ రేటు (SAR)",
+      "weeklyRate": "వారపు రేటు (SAR, ఐచ్ఛికం)",
+      "minimumStay": "కనీస బస (రాత్రులు)",
+      "maxGuests": "గరిష్ట అతిథులు",
+      "checkIn": "చెక్-ఇన్",
+      "checkOut": "చెక్-అవుట్",
+      "cancellationPolicy": "రద్దు విధానం",
+      "cancelFlexible": "ఫ్లెక్సిబుల్ — 24 గంటల ముందు వరకు పూర్తి వాపసు",
+      "cancelModerate": "మితమైన — 5 రోజుల ముందు వరకు పూర్తి వాపసు",
+      "cancelStrict": "కఠినమైనది - 7 రోజుల ముందు వరకు 50% వాపసు",
+      "starRating": "స్టార్ రేటింగ్",
+      "hotelName": "హోటల్ పేరు",
+      "instantBook": "తక్షణ పుస్తకం",
+      "instantBookHint": "మీ ఆమోదం లేకుండానే బుకింగ్‌లు స్వయంచాలకంగా నిర్ధారిస్తాయి. ముందుగా ప్రతి అభ్యర్థనను సమీక్షించడాన్ని నిలిపివేయండి.",
+      "amenities": "సౌకర్యాలు",
+      "houseRules": "గృహ నియమాలు",
+      "houseRulesPlaceholder": "ఉదా పార్టీలు వద్దు, రాత్రి 10 గంటల తర్వాత నిశ్శబ్ద గంటలు, ఇంట్లో పొగతాగడం మానుకోండి..."
+    },
+    "mediaStep": {
+      "images": "చిత్రాలు",
+      "imageDropHint": "ఫోటోలను ఇక్కడకు లాగి వదలండి లేదా ఎంచుకోవడానికి క్లిక్ చేయండి. JPEG / PNG / WebP 10 MB వరకు.",
+      "photoAlt": "జాబితా ఫోటో",
+      "setCover": "కవర్‌గా సెట్ చేయండి",
+      "cover": "కవర్",
+      "videoTour": "వీడియో పర్యటన",
+      "videoDropHint": "MP4 ఫైల్‌ని లాగండి లేదా ఎంచుకోవడానికి క్లిక్ చేయండి. గరిష్టంగా 500 MB.",
+      "videoUploaded": "వీడియో అప్‌లోడ్ చేయబడింది — {{name}}",
+      "vrTitle": "🥽 వర్చువల్ రియాలిటీ టూర్ లింక్",
+      "vrPlaceholder": "https://... (మాటర్‌పోర్ట్, కులా, మొదలైనవి)",
+      "modelTitle": "3D / AR మోడల్ (.glb లేదా .gltf)",
+      "modelDropHint": "ARని ప్రారంభించడానికి GLB/GLTF మోడల్‌ని అప్‌లోడ్ చేయండి. గరిష్టంగా 50 MB.",
+      "modelUploaded": "మోడల్ అప్‌లోడ్ చేయబడింది — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "ఈ ప్రాపర్టీ అందించే సౌకర్యాలను నొక్కండి. మేము వాటిని శోధనలో ఫిల్టర్‌లుగా చూపుతాము."
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "నిర్ధారించబడింది",
       "paid": "చెల్లించబడింది",
       "disputed": "వివాదం"
+    },
+    "oath": {
+      "dialogTitle": "కమిషన్ నిబద్ధత",
+      "translatedOath": "నేను ఈ రియల్ ఎస్టేట్ లావాదేవీని పూర్తి చేసిన తర్వాత అంగీకరించిన కమీషన్‌ను చెల్లించడానికి కట్టుబడి ఉన్నాను మరియు దేవుడు మరియు చట్టం ముందు ఈ బాధ్యతను అంగీకరిస్తున్నాను.",
+      "breakdownTitle": "కమీషన్ విచ్ఛిన్నం",
+      "agentListingBreakdown": "ప్లాట్‌ఫారమ్ కమీషన్: లావాదేవీ విలువలో <strong>0.5%</strong>, విజయవంతమైన అమ్మకం లేదా లీజు మూసివేతపై చెల్లించబడుతుంది.",
+      "buyerAgentCommission": "ఏజెంట్ కమిషన్: లావాదేవీ విలువలో <strong>2.5%</strong>.",
+      "buyerPlatformFee": "ప్లాట్‌ఫారమ్ రుసుము: లావాదేవీ విలువలో <strong>0.5%</strong>.",
+      "acceptError": "మీ అంగీకారాన్ని రికార్డ్ చేయడం సాధ్యపడలేదు",
+      "agreeCheckbox": "నేను కమిషన్ నిబంధనలను అంగీకరిస్తున్నాను",
+      "decline": "నేను ఒప్పుకోను",
+      "saving": "సేవ్ చేస్తోంది...",
+      "acceptCta": "నేను అంగీకరిస్తున్నాను & కట్టుబడి ఉన్నాను"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ చెల్లించబడింది",
       "failed": "విఫలమైంది",
       "rejected": "తిరస్కరించబడింది"
-    }
+    },
+    "balance": "ప్రస్తుత బ్యాలెన్స్",
+    "withdraw": "చెల్లింపు",
+    "noTransactionsHint": "మీ లావాదేవీలు ఇక్కడ కనిపిస్తాయి",
+    "sar": "SAR",
+    "inDevelopment": "ఈ లక్షణం అభివృద్ధిలో ఉంది",
+    "depositTitle": "డిపాజిట్ చేయండి",
+    "payoutTitle": "చెల్లింపు",
+    "withdrawal": "ఉపసంహరణ"
   },
   "nafath": {
     "loginWith": "Nafath తో సైన్ ఇన్ చేయండి"
@@ -896,7 +1176,14 @@
     "contractNumber": "ఒప్పందం #",
     "viewContract": "ఒప్పందాన్ని చూడండి",
     "signedThroughEjar": "Ejar ద్వారా సంతకం చేయబడింది",
-    "noContracts": "ఇంకా అద్దె ఒప్పందాలు లేవు"
+    "noContracts": "ఇంకా అద్దె ఒప్పందాలు లేవు",
+    "status": {
+      "draft": "డ్రాఫ్ట్",
+      "pending_signatures": "పెండింగ్ సంతకాలు",
+      "active": "చురుకుగా",
+      "expired": "గడువు ముగిసింది",
+      "cancelled": "రద్దు చేయబడింది"
+    }
   },
   "dufaat": {
     "title": "Dufaat వాయిదాలు",
@@ -911,7 +1198,13 @@
     "nextPayment": "తదుపరి చెల్లింపు",
     "installmentsPaid": "చెల్లించిన వాయిదాలు",
     "payNow": "వాయిదా చెల్లించండి",
-    "noPlans": "ఇంకా Dufaat ప్లాన్‌లు లేవు"
+    "noPlans": "ఇంకా Dufaat ప్లాన్‌లు లేవు",
+    "status": {
+      "active": "చురుకుగా",
+      "completed": "పూర్తయింది",
+      "defaulted": "డిఫాల్ట్ చేయబడింది",
+      "cancelled": "రద్దు చేయబడింది"
+    }
   },
   "booking": {
     "myBookings": "నా బుకింగ్‌లు",
@@ -961,6 +1254,9 @@
       "confirmed": "ధృవీకరించబడింది",
       "cancelled": "రద్దు చేయబడింది",
       "completed": "పూర్తయింది"
+    },
+    "calendar": {
+      "maxGuestsHelper": "గరిష్ట అతిథులు: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "మధ్యస్థ విశ్వాసం",
       "low": "తక్కువ విశ్వాసం"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "పేరు లేదా ప్రత్యేకత ద్వారా శోధించండి",
+    "allCities": "అన్ని నగరాలు",
+    "cityRiyadh": "రియాద్",
+    "cityJeddah": "జెడ్డా",
+    "cityDammam": "దమ్మామ్",
+    "emptyTitle": "మీ శోధనకు ఏ ఏజెంట్లు సరిపోలలేదు",
+    "emptyBody": "వేరే పేరు లేదా నగరాన్ని ప్రయత్నించండి.",
+    "agency": "Eawlma రియల్ ఎస్టేట్",
+    "verified": "ధృవీకరించబడింది",
+    "respondsUnder2h": "< 2గం",
+    "activeListingsCount": "{{count}} సక్రియ జాబితాలు",
+    "viewProfile": "ప్రొఫైల్‌ని వీక్షించండి"
+  },
+  "myListings": {
+    "countSelected": "{{count}} ఎంచుకోబడింది",
+    "activateAll": "అన్నింటినీ యాక్టివేట్ చేయండి",
+    "deactivateAll": "అన్నింటినీ డియాక్టివేట్ చేయండి",
+    "deleteAll": "అన్నింటినీ తొలగించండి",
+    "colViews": "వీక్షణలు",
+    "colInquiries": "విచారణలు",
+    "boostFeature": "బూస్ట్ (లక్షణం)",
+    "duplicate": "నకిలీ",
+    "deleteConfirmTitle": "{{count}} జాబితా(ల)ని తొలగించాలా?",
+    "deleteConfirmDescription": "ఈ చర్య జాబితాను సాఫ్ట్-తొలగిస్తుంది - ఇది ఇకపై పబ్లిక్‌గా కనిపించదు."
+  },
+  "saved": {
+    "title": "సేవ్ చేయబడింది",
+    "empty": "సేవ్ చేయబడిన ప్రాపర్టీలు లేవు",
+    "emptyPrompt": "❤️ నొక్కడం ద్వారా మీకు నచ్చిన లక్షణాలను సేవ్ చేయండి",
+    "signInPrompt": "లక్షణాలను సేవ్ చేయడానికి సైన్ ఇన్ చేయండి",
+    "removeTitle": "తొలగించు",
+    "removePrompt": "సేవ్ చేసిన వాటి నుండి ఈ ప్రాపర్టీని తీసివేయాలా?"
+  },
+  "notifications": {
+    "title": "నోటిఫికేషన్‌లు",
+    "empty": "నోటిఫికేషన్‌లు లేవు",
+    "emptyHint": "మీ హెచ్చరికలు ఇక్కడ కనిపిస్తాయి",
+    "markAllRead": "అన్నింటినీ చదివినట్లుగా గుర్తించండి",
+    "notification": "నోటిఫికేషన్"
+  },
+  "bookings": {
+    "title": "నా బుకింగ్‌లు",
+    "host": "హోస్ట్‌గా",
+    "guest": "అతిథిగా",
+    "noBookings": "ఇంకా బుకింగ్‌లు లేవు",
+    "noBookingsHint": "మీ బుకింగ్‌లు ఇక్కడ కనిపిస్తాయి",
+    "checkIn": "చెక్-ఇన్",
+    "checkOut": "చెక్-అవుట్",
+    "guests": "అతిథులు",
+    "nights": "రాత్రులు",
+    "total": "మొత్తం",
+    "status": {
+      "pending": "పెండింగ్‌లో ఉంది",
+      "confirmed": "నిర్ధారించారు",
+      "cancelled": "రద్దు చేయబడింది",
+      "completed": "పూర్తయింది"
+    }
+  },
+  "tabs": {
+    "home": "హోమ్",
+    "search": "శోధించండి",
+    "saved": "సేవ్ చేయబడింది",
+    "messages": "సందేశాలు",
+    "profile": "ప్రొఫైల్"
   }
 }

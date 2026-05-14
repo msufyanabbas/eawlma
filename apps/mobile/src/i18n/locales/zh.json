@@ -110,7 +110,16 @@
     "typeRoom": "独立房间",
     "typeChalet": "小屋",
     "typeRestHouse": "度假屋",
-    "typeFarm": "农场"
+    "typeFarm": "农场",
+    "typeAll": "全部",
+    "chalets": "小木屋",
+    "farms": "农场",
+    "restHouses": "休息所",
+    "hotelsLabel": "酒店",
+    "bookNext": "预订您的下次住宿",
+    "subtitleMix": "小木屋、农场、招待所和酒店",
+    "noStays": "没有可用的住宿",
+    "tryAnother": "尝试其他类别"
   },
   "hotels": {
     "title": "酒店",
@@ -128,7 +137,10 @@
     "upTo500": "最高 500 SAR",
     "upTo1000": "最高 1,000 SAR",
     "upTo2500": "最高 2,500 SAR",
-    "hotelChip": "酒店"
+    "hotelChip": "酒店",
+    "bookStay": "预订酒店住宿",
+    "nightly": "夜间住宿的酒店客房",
+    "noHotels": "无可用酒店"
   },
   "messages": {
     "startConversation": "开始对话",
@@ -281,7 +293,16 @@
     "loginBtn": "登入",
     "registerBtn": "创建账户",
     "fillAllFields": "请填写所有字段",
-    "invalidCredentials": "电子邮件或密码无效"
+    "invalidCredentials": "电子邮件或密码无效",
+    "fillRequired": "请填写所有必填字段",
+    "registerFailed": "注册失败，请重试",
+    "pwWeak": "虚弱的",
+    "pwFair": "公平的",
+    "pwGood": "好的",
+    "pwStrong": "强的",
+    "firstNamePlaceholder": "约翰",
+    "lastNamePlaceholder": "美国能源部",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "此字段为必填",
@@ -601,7 +622,10 @@
       "agents": "认证经纪人",
       "cities": "城市",
       "support": "客服支持"
-    }
+    },
+    "appAbout": "关于应用程序",
+    "appDescription": "Eawlma 是一个房地产平台，将买家和租户与沙特阿拉伯各地值得信赖的代理商联系起来。发现您的完美房产、预订短期住宿并直接与代理商聊天。",
+    "website": "网站"
   },
   "contact": {
     "title": "联系我们",
@@ -753,10 +777,7 @@
       "pinRequired": "在地图上放置一个图钉来确定该位置。",
       "imageRequired": "发布前至少需要一张图像。"
     },
-    "transactionType": {
-      "sale": "销售",
-      "rent": "租"
-    },
+    "transactionType": "交易类型",
     "rentPeriod": {
       "daily": "日常的",
       "weekly": "每周",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "点击该酒店提供的设施。我们会将它们作为搜索过滤器显示。"
-    }
+    },
+    "stepProperty": "物业类型",
+    "stepDetails": "细节",
+    "stepLocation": "地点",
+    "stepSpecs": "规格",
+    "stepReview": "审查",
+    "stepCount": "第 {{current}} 步，共 {{total}} 步：{{title}}",
+    "addListing": "添加列表",
+    "forSale": "出售",
+    "forRent": "出租",
+    "propertyType": "物业类型",
+    "apartment": "公寓",
+    "villa": "别墅",
+    "land": "土地",
+    "chalet": "小木屋",
+    "farm": "农场",
+    "restHouse": "休息所",
+    "office": "办公室",
+    "shop": "店铺",
+    "titleArLabel": "阿拉伯语标题 *",
+    "titleEnLabel": "英文标题",
+    "priceLabel": "价格（SAR）*",
+    "areaLabel": "面积（平方米）",
+    "descArLabel": "阿拉伯语描述",
+    "descPlaceholder": "详细属性说明...",
+    "city": "城市 *",
+    "district": "区 *",
+    "districtPlaceholder": "例如奥拉亚",
+    "bedroomsLabel": "卧室",
+    "bathroomsLabel": "浴室",
+    "reviewListing": "审核列表",
+    "transaction": "交易",
+    "title": "标题",
+    "price": "价格",
+    "bedrooms": "卧室",
+    "back": "后退",
+    "next": "下一个",
+    "publish": "发布清单",
+    "errorTitle": "错误",
+    "successTitle": "成功",
+    "fillRequired": "请填写必填字段",
+    "addedSuccess": "列表添加成功",
+    "ok": "好的",
+    "somethingWrong": "出了点问题",
+    "editTitle": "编辑列表",
+    "missing": "缺失字段",
+    "fillBasic": "请填写必填字段",
+    "savedTitle": "已保存",
+    "savedBody": "清单已更新",
+    "updateFailed": "更新失败",
+    "deleteTitle": "删除列表",
+    "deleteBody": "你确定吗？此操作无法撤消。",
+    "deleteFailed": "删除失败",
+    "delete": "删除",
+    "deleteListing": "删除列表",
+    "titleArEdit": "标题（阿拉伯语）*",
+    "titleEnEdit": "标题（英文）",
+    "transactionTypeShort": "交易类型",
+    "priceShort": "价格 *",
+    "cityShort": "城市",
+    "districtShort": "区",
+    "bedsShort": "床位",
+    "bathsShort": "浴场",
+    "areaShort": "区域",
+    "description": "描述",
+    "saveChanges": "保存更改",
+    "sale": "销售",
+    "rent": "租"
   },
   "subscription": {
     "title": "订阅",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "正在跳转至 Authentica.sa…",
     "otpComing": "您将很快收到一个一次性验证码以完成认证。",
     "profileUpdated": "个人资料已更新。",
-    "deleteLabel": "删除"
+    "deleteLabel": "删除",
+    "appearance": "外貌",
+    "languageRegion": "语言和地区",
+    "pushNotifications": "推送通知",
+    "emailNotifications": "电子邮件通知",
+    "privacyAccount": "隐私和帐户",
+    "areYouSure": "你确定吗？"
   },
   "inquiries": {
     "title": "询盘",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "管理员处理结果",
       "closedFor": "成交金额 {{value}}",
       "closedOn": ",于 {{date}}"
-    }
+    },
+    "received": "已收到",
+    "sent": "发送",
+    "single": "询问",
+    "noInquiriesYet": "还没有询盘",
+    "appearHere": "您的询问将出现在这里"
   },
   "commission": {
     "title": "佣金",
@@ -975,7 +1074,8 @@
       "pending": "待处理",
       "confirmed": "已确认",
       "paid": "已支付",
-      "disputed": "有争议"
+      "disputed": "有争议",
+      "cancelled": "取消"
     },
     "oath": {
       "dialogTitle": "佣金承诺",
@@ -985,11 +1085,15 @@
       "buyerAgentCommission": "代理佣金：交易金额的<strong>2.5%</strong>。",
       "buyerPlatformFee": "平台费用：交易金额的<strong>0.5%</strong>。",
       "acceptError": "无法记录您的接受情况",
-      "agreeCheckbox": "I agree to commission terms",
+      "agreeCheckbox": "我同意佣金条款",
       "decline": "我不同意",
       "saving": "保存...",
       "acceptCta": "我接受并承诺"
-    }
+    },
+    "dealValue": "交易价值",
+    "commission": "委员会",
+    "fromTxn": "来自 {{count}} 笔交易",
+    "earningsHint": "收益将在交易完成后出现"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} 待审核",
@@ -1070,7 +1174,22 @@
     "contactUs": "联系我们",
     "noResultsTitle": "没有匹配的回答",
     "noResultsBody": "尝试其他关键词,或直接联系我们的团队。",
-    "respondsIn": "我们的团队会在 24 小时内回复。"
+    "respondsIn": "我们的团队会在 24 小时内回复。",
+    "faqTitle": "常见问题解答",
+    "faqs": {
+      "q1": "我如何寻找房产？",
+      "a1": "点击底部的“搜索”选项卡，然后选择适合您的过滤器（价格、类型、城市）。",
+      "q2": "我如何联系代理？",
+      "a2": "打开列表，然后点击“发送查询”或使用代理卡上的通话/WhatsApp 按钮。",
+      "q3": "我可以预订小屋和农场吗？",
+      "a3": "是的 — 打开任何木屋/农场/休息室列表，然后点击“立即预订”来选择日期。",
+      "q4": "如何保存财产以供日后使用？",
+      "a4": "点击列表中的心形图标。已保存的项目位于“已保存”选项卡下。",
+      "q5": "该应用程序是免费的吗？",
+      "a5": "是的——对购房者免费。代理商只有在交易成功后才支付佣金。",
+      "q6": "如何更改应用程序语言？",
+      "a6": "“配置文件”选项卡→“设置”→“语言”。从 38 种受支持的语言中进行选择。"
+    }
   },
   "welcome": {
     "step1Title": "想买房还是租房?",
@@ -1153,7 +1272,7 @@
     "withdraw": "支出",
     "noTransactionsHint": "您的交易将出现在这里",
     "sar": "SAR",
-    "inDevelopment": "This feature is in development",
+    "inDevelopment": "此功能正在开发中",
     "depositTitle": "订金",
     "payoutTitle": "支出",
     "withdrawal": "提款"
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "最多宾客人数：{{count}}"
-    }
+    },
+    "title": "预订住宿",
+    "shortTitle": "书",
+    "created": "预订已创建",
+    "createdBody": "预订已创建。您将被重定向到付款。",
+    "error": "错误",
+    "failed": "预订失败",
+    "invalidDates": "无效日期",
+    "invalidDatesBody": "使用 YYYY-MM-DD 格式",
+    "tooShort": "过短",
+    "tooShortBody": "预订必须至少 1 晚",
+    "perNight": "特别行政区 / 夜间",
+    "notesOptional": "注释（可选）",
+    "notesPlaceholder": "有什么特殊要求...",
+    "totalLabel": "全部的"
   },
   "market": {
     "title": "市场洞察",
@@ -1277,7 +1410,10 @@
     "totalListings": "房源总数",
     "listingCount": "活跃房源",
     "viewMarket": "查看市场",
-    "miniTrend": "本地市场趋势"
+    "miniTrend": "本地市场趋势",
+    "trendTitle": "价格趋势（12个月）",
+    "avgByDistrict": "各地区平均 ﷼/m²",
+    "cityPlaceholder": "利雅得、吉达..."
   },
   "errors": {
     "generic": "发生意外错误",
@@ -1388,7 +1524,18 @@
     "verified": "已验证",
     "respondsUnder2h": "<2小时",
     "activeListingsCount": "{{count}} 个活跃列表",
-    "viewProfile": "查看资料"
+    "viewProfile": "查看资料",
+    "agent": "代理人",
+    "listings": "房源",
+    "reviews": "评论",
+    "rating": "等级",
+    "noListings": "没有房源",
+    "viewReviews": "查看评论",
+    "call": "称呼",
+    "title": "代理商",
+    "listingsShort": "列表",
+    "noAgentsFound": "没有找到代理",
+    "tryLater": "稍后再试"
   },
   "myListings": {
     "countSelected": "已选择 {{count}} 个",
@@ -1441,5 +1588,12 @@
     "saved": "已保存",
     "messages": "留言",
     "profile": "轮廓"
+  },
+  "reviews": {
+    "title": "评论",
+    "user": "用户",
+    "ownerReply": "楼主回复:",
+    "empty": "还没有评论",
+    "beFirst": "成为第一个评论的人"
   }
 }

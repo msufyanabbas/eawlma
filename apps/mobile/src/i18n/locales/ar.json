@@ -353,7 +353,7 @@
     "submit": "إرسال",
     "language": "اللغة",
     "arabic": "العربية",
-    "english": "English",
+    "english": "إنجليزي",
     "back": "رجوع",
     "next": "التالي",
     "previous": "السابق",
@@ -803,7 +803,7 @@
       "imageRequired": "يلزم رفع صورة واحدة على الأقل قبل النشر."
     },
     "transactionType": {
-      "sale": "بيع",
+      "sale": "أُوكَازيُون",
       "rent": "إيجار"
     },
     "rentPeriod": {
@@ -893,7 +893,6 @@
     "stepReview": "المراجعة",
     "stepCount": "الخطوة {{current}} من {{total}}: {{title}}",
     "addListing": "إضافة إعلان",
-    "transactionType": "نوع المعاملة",
     "forSale": "للبيع",
     "forRent": "للإيجار",
     "propertyType": "نوع العقار",
@@ -954,7 +953,6 @@
     "saveChanges": "حفظ التغييرات",
     "sale": "للبيع",
     "rent": "للإيجار"
-
   },
   "subscription": {
     "title": "الاشتراك",

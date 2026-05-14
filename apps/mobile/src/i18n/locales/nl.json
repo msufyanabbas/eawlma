@@ -4,7 +4,7 @@
     "tagline": "Ontdek uw perfecte woning in Saoedi-Arabië"
   },
   "nav": {
-    "home": "Home",
+    "home": "Thuis",
     "search": "Zoeken",
     "buy": "Kopen",
     "rent": "Huren",
@@ -36,7 +36,7 @@
     "newListing": "Nieuwe advertentie",
     "inquiries": "Aanvragen",
     "messages": "Berichten",
-    "analytics": "Analytics",
+    "analytics": "Analyse",
     "subscription": "Abonnement",
     "payments": "Betalingen",
     "settings": "Instellingen",
@@ -127,7 +127,8 @@
     "anyPrice": "Elke prijs",
     "upTo500": "Tot 500 SAR",
     "upTo1000": "Tot 1.000 SAR",
-    "upTo2500": "Tot 2.500 SAR"
+    "upTo2500": "Tot 2.500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Start het gesprek",
@@ -147,7 +148,14 @@
     "showOriginal": "Origineel tonen",
     "showTranslation": "Vertaling tonen",
     "online": "Online",
-    "lastSeen": "Laatst gezien"
+    "lastSeen": "Laatst gezien",
+    "title": "Berichten",
+    "noMessages": "Nog geen berichten",
+    "noMessagesPrompt": "Neem contact op met agenten vanaf de vermeldingspagina's",
+    "signInPrompt": "Meld u aan om uw berichten te bekijken",
+    "chat": "Chat",
+    "user": "Gebruiker",
+    "noMessagesShort": "Geen berichten"
   },
   "hosting": {
     "title": "Verhuur",
@@ -166,7 +174,8 @@
     "dailyRate": "Dagtarief",
     "weeklyRate": "Weektarief",
     "guestReviews": "Gastbeoordelingen",
-    "noReviews": "Nog geen beoordelingen — zodra gasten uitchecken en hun verblijf beoordelen, verschijnen ze hier."
+    "noReviews": "Nog geen beoordelingen — zodra gasten uitchecken en hun verblijf beoordelen, verschijnen ze hier.",
+    "guestFallback": "Gast"
   },
   "buyerDeals": {
     "title": "Mijn deals",
@@ -216,7 +225,20 @@
     "favorAgent": "Ten gunste van makelaar — commissie creëren",
     "favorBuyer": "Ten gunste van koper — deal annuleren",
     "cancelDeal": "Deal annuleren — geen commissie",
-    "resolutionHint": "Beide partijen worden op de hoogte gebracht met deze notities."
+    "resolutionHint": "Beide partijen worden op de hoogte gebracht met deze notities.",
+    "other": "Overige",
+    "buyerLower": "koper",
+    "agentLower": "agent",
+    "otherLower": "andere",
+    "anonymous": "Anoniem",
+    "resolveTitle": "Geschil oplossen",
+    "resolveDesc": "Kies de uitkomst voor dit geschil",
+    "favorAgentDesc": "De commissie wordt bevestigd en betaald aan agent",
+    "favorBuyerDesc": "Commissie wordt geannuleerd",
+    "cancelDealDesc": "Deal en commissie zijn beide geannuleerd",
+    "adminNotes": "Beheernotities (optioneel)",
+    "resolvedSuccess": "Geschil succesvol opgelost",
+    "resolvedError": "Kan geschil"
   },
   "auth": {
     "login": "Inloggen",
@@ -252,7 +274,14 @@
     "agreeTerms": "Door een account aan te maken, gaat u akkoord met onze Voorwaarden en Privacybeleid",
     "loginSuccess": "Succesvol ingelogd",
     "registerSuccess": "Account succesvol aangemaakt",
-    "logoutSuccess": "Uitgelogd"
+    "logoutSuccess": "Uitgelogd",
+    "role": "niet oplossen Accounttype",
+    "buyer": "Koper",
+    "agent": "Agent",
+    "loginBtn": "Inloggen",
+    "registerBtn": "Account aanmaken",
+    "fillAllFields": "Vul alle velden in",
+    "invalidCredentials": "Ongeldig e-mailadres of wachtwoord"
   },
   "validation": {
     "required": "Dit veld is verplicht",
@@ -278,7 +307,7 @@
     "submit": "Versturen",
     "language": "Taal",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Engels",
     "back": "Terug",
     "next": "Volgende",
     "previous": "Vorige",
@@ -296,7 +325,14 @@
     "remove": "Verwijderen",
     "actions": "Acties",
     "active": "Actief",
-    "inactive": "Inactief"
+    "inactive": "Inactief",
+    "loadMore": "Meer laden",
+    "errorOccurred": "Er is een fout opgetreden",
+    "yes": "Ja",
+    "no": "Nee",
+    "sar": "SAR",
+    "perNight": "per nacht",
+    "perMonth": "per maand"
   },
   "listing": {
     "forSale": "Te koop",
@@ -363,7 +399,34 @@
       "expired": "Verlopen",
       "draft": "Concept",
       "archived": "Gearchiveerd"
-    }
+    },
+    "sale": "Uitverkoop",
+    "rent": "Huur",
+    "bedrooms": "Bedden",
+    "bathrooms": "Baden",
+    "propertyTypeLabel": "Typ",
+    "noDescription": "Geen beschrijving.",
+    "locationNotSpecified": "Locatie niet gespecificeerd",
+    "similarProperties": "Vergelijkbare eigendommen",
+    "bookNow": "Boek nu",
+    "saveProperty": "Eigenschap opslaan",
+    "openInMaps": "Openen in Kaarten",
+    "viewOnMap": "Bekijk op kaart",
+    "tapToOpenMap": "Tik om de kaart te openen",
+    "sendInquiryTitle": "Onderzoek verzenden",
+    "yourMessage": "Jouw bericht",
+    "messagePlaceholder": "Schrijf hier uw bericht...",
+    "preferredContact": "Voorkeurscontact",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "sent": "Verzonden",
+    "sentBody": "Uw aanvraag is verzonden",
+    "messageTooShort": "Bericht te kort",
+    "messageTooShortBody": "Het bericht moet minimaal 10 tekens lang zijn",
+    "actionFailed": "Actie mislukt",
+    "bookingDevTitle": "Boeking",
+    "bookingDevBody": "De boekingsstroom is in ontwikkeling. Neem dan contact op met de makelaar.",
+    "removeFromSaved": "Deze eigenschap verwijderen uit opgeslagen?"
   },
   "search": {
     "filters": "Filters",
@@ -399,7 +462,29 @@
       "cta": "Vastgoedaanvraag indienen"
     },
     "drawArea": "Teken een gebied",
-    "clearDrawing": "Tekening wissen"
+    "clearDrawing": "Tekening wissen",
+    "flexibleDates": "Ik ben flexibel met data",
+    "flex1Month": "1 maand",
+    "shortTerm": "Korte termijn",
+    "title": "Zoek",
+    "placeholder": "Zoek eigendommen, stad...",
+    "noResultsHint": "Probeer verschillende filters",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Prijsklasse",
+    "bedrooms": "Slaapkamers",
+    "sort": "Sorteren",
+    "any": "Elke",
+    "all": "Alles",
+    "sale": "Uitverkoop",
+    "rent": "Huur",
+    "apartment": "Apt",
+    "villa": "Villa",
+    "land": "Landen",
+    "chalet": "Chalet",
+    "farm": "Boerderij",
+    "sortNewest": "Nieuwste",
+    "sortPriceAsc": "Prijs ↑",
+    "sortPriceDesc": "Prijs ↓"
   },
   "home": {
     "heroTitle": "Vind uw perfecte huis",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} advertenties gevonden",
     "clearFilters": "Alles wissen",
     "results": "resultaten",
-    "loadMoreListings": "Meer advertenties laden"
+    "loadMoreListings": "Meer advertenties laden",
+    "latestListings": "Laatste aanbiedingen",
+    "featuredProperties": "Aanbevolen eigenschappen",
+    "seeAll": "Bekijk alles",
+    "quickAccess": "Snelle toegang",
+    "stays": "Blijft",
+    "hotels": "Hotels",
+    "market": "Markt",
+    "saved": "Opgeslagen",
+    "tagline": "Premier onroerend goed",
+    "categories": {
+      "all": "Alles",
+      "sale": "Te koop",
+      "rent": "Te huur",
+      "chalets": "Chalets",
+      "villas": "Villa's",
+      "apartments": "Appartementen",
+      "land": "Landen"
+    }
   },
   "empty": {
     "noListings": "Nog geen advertenties",
@@ -462,7 +565,7 @@
     "tagline": "Eawlma is de vertrouwde vastgoedmarktplaats van het Koninkrijk — ontdek, plaats en verhuur woningen in heel Saoedi-Arabië met vertrouwen.",
     "company": "Bedrijf",
     "about": "Over ons",
-    "contact": "Contact",
+    "contact": "Neem contact op met",
     "legal": "Juridisch",
     "privacy": "Privacybeleid",
     "privacyPolicy": "Privacybeleid",
@@ -551,15 +654,75 @@
     "recentActivity": "Recente activiteit",
     "browseListings": "Advertenties bekijken",
     "goToDashboard": "Naar dashboard",
-    "profileUpdated": "Profiel bijgewerkt"
+    "profileUpdated": "Profiel bijgewerkt",
+    "title": "Mijn account",
+    "signIn": "Aanmelden",
+    "welcome": "Welkom bij Eawlma",
+    "signInPrompt": "Meld u aan om toegang te krijgen tot uw account",
+    "createAccount": "Account aanmaken",
+    "agentDashboard": "Agentdashboard",
+    "myListings": "Mijn vermeldingen",
+    "addListing": "Voeg vermelding toe",
+    "wallet": "Portemonnee",
+    "commissions": "Commissies",
+    "myBookings": "Mijn boekingen",
+    "myInquiries": "Mijn vragen",
+    "inquiries": "Vragen",
+    "account": "Rekening",
+    "notifications": "Meldingen",
+    "language": "Taal",
+    "darkMode": "Donkere modus",
+    "support": "Instellingen en ondersteuning",
+    "settings": "Instellingen",
+    "help": "Hulp en veelgestelde vragen",
+    "about": "Over",
+    "signOut": "Afmelden",
+    "signOutConfirm": "Weet u zeker dat u zich wilt afmelden?",
+    "member": "Lid",
+    "agentRole": "Agent",
+    "admin": "Beheerder",
+    "chooseLanguage": "Kies Taal",
+    "searchLanguage": "Zoeken...",
+    "popular": "Populair",
+    "allLanguages": "Alle talen",
+    "noLanguageMatch": "Geen overeenkomende taal"
   },
   "wizard": {
     "basicInfo": "Basisinformatie",
-    "location": "Locatie",
+    "location": {
+      "street": "Straat",
+      "buildingNumber": "Gebouwnr.",
+      "postalCode": "Postcode",
+      "pinPrompt": "Plaats een speld om de exacte locatie in te stellen",
+      "pinLabel": "Vastzetten",
+      "mapUnavailable": "Kaartpinkiezer niet beschikbaar. De coördinaten vallen terug naar {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Voorzieningen",
-    "compliance": "Naleving",
-    "review": "Beoordeling",
+    "compliance": {
+      "permitNumber": "Vergunning / FAL-nummer",
+      "regaNumber": "REGA-licentienummer",
+      "permitExpiry": "Vervaldatum vergunning",
+      "preferredContact": "Voorkeurscontact",
+      "phone": "Telefoon",
+      "publicVisibility": "Publieke zichtbaarheid (verwijder het vinkje voor alleen niet-vermelde/privélinks)"
+    },
+    "review": {
+      "summaryTitle": "Lijstoverzicht",
+      "enhanceWithAi": "Verbeter met AI",
+      "enhancing": "Verbeteren...",
+      "aiStubNotice": "AI heeft een stub geretourneerd - stel OPENAI_API_KEY in op de backend om het live-model te gebruiken.",
+      "descriptionPreview": "Voorbeeld van beschrijving",
+      "emptyDescription": "(leeg)",
+      "type": "Typ",
+      "titleLabel": "Titel",
+      "bedsBaths": "Slaapkamers / Badkamers",
+      "cityDistrict": "Stad/district",
+      "coordinates": "Coördinaten",
+      "permit": "Toestaan ​​",
+      "regaLicense": "REGA-licentie",
+      "visibility": "Zichtbaarheid"
+    },
     "saveDraft": "Concept opslaan",
     "submit": "Indienen ter beoordeling",
     "submitForReview": "Indienen ter beoordeling",
@@ -576,7 +739,103 @@
       "bathrooms": "Badkamers",
       "parking": "Parkeren",
       "yearBuilt": "Bouwjaar",
-      "furnishing": "Meubilering"
+      "furnishing": "Meubilering",
+      "rentPeriod": "Periode"
+    },
+    "editListing": "Advertentie bewerken",
+    "newListing": "Nieuwe aanbieding",
+    "crumbNew": "Nieuw",
+    "validation": {
+      "titleRequired": "Voeg een titel toe in ten minste één taal.",
+      "descriptionRequired": "Voeg een beschrijving toe in ten minste één taal.",
+      "priceRequired": "De prijs moet groter zijn dan nul.",
+      "cityRequired": "Stad is vereist.",
+      "pinRequired": "Plaats een speld op de kaart voor de locatie.",
+      "imageRequired": "Er is ten minste één afbeelding vereist voordat deze wordt gepubliceerd."
+    },
+    "transactionType": {
+      "sale": "Uitverkoop",
+      "rent": "Huur"
+    },
+    "rentPeriod": {
+      "daily": "Dagelijks",
+      "weekly": "Wekelijks",
+      "monthly": "Maandelijks",
+      "yearly": "Jaarlijks"
+    },
+    "furnishing": {
+      "unfurnished": "Gestoffeerd",
+      "semi_furnished": "Gestoffeerd",
+      "furnished": "Gemeubileerd"
+    },
+    "visibility": {
+      "public": "Openbaar",
+      "unlisted": "Niet-beursgenoteerd"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Tuin",
+      "gym": "Sportschool",
+      "elevator": "Lift",
+      "maidRoom": "Meidkamer",
+      "driverRoom": "Chauffeurskamer",
+      "centralAc": "Centrale AC",
+      "kitchenAppliances": "Keukenapparatuur",
+      "security": "24/7 beveiliging",
+      "cornerUnit": "Hoekelement"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Parkeren",
+      "breakfast": "Ontbijt",
+      "ac": "Airconditioning",
+      "kitchen": "Keuken",
+      "tv": "TV",
+      "washer": "Sluitring",
+      "workspace": "Werkruimte",
+      "petsAllowed": "Huisdieren toegestaan ​​",
+      "smokingAllowed": "Roken toegestaan ​​",
+      "wheelchairAccessible": "Rolstoeltoegankelijk"
+    },
+    "shortTerm": {
+      "title": "Details van kortetermijnverhuur",
+      "subtitle": "Gasten boeken deze accommodatie per nacht. Configureer verblijfsregels, voorzieningen en prijsniveaus.",
+      "dailyRate": "Dagtarief (SAR)",
+      "weeklyRate": "Weektarief (SAR, optioneel)",
+      "minimumStay": "Minimum verblijf (nachten)",
+      "maxGuests": "Max gasten",
+      "checkIn": "Inchecken",
+      "checkOut": "Afrekenen",
+      "cancellationPolicy": "Annuleringsbeleid",
+      "cancelFlexible": "Flexibel — volledige terugbetaling tot 24 uur vóór",
+      "cancelModerate": "Matig — volledige terugbetaling tot 5 dagen vóór",
+      "cancelStrict": "Strikt — 50% restitutie tot 7 dagen vóór",
+      "starRating": "Sterrenbeoordeling",
+      "hotelName": "Hotelnaam",
+      "instantBook": "Direct boeken",
+      "instantBookHint": "Boekingen worden automatisch bevestigd zonder uw goedkeuring. Schakel uit om elk verzoek eerst te beoordelen.",
+      "amenities": "Voorzieningen",
+      "houseRules": "Huisregels",
+      "houseRulesPlaceholder": "bijv. Geen feestjes, rustige uren na 22.00 uur, niet roken binnenshuis..."
+    },
+    "mediaStep": {
+      "images": "Afbeeldingen",
+      "imageDropHint": "Sleep hier foto's en zet ze neer, of klik om te kiezen. JPEG/PNG/WebP tot 10 MB.",
+      "photoAlt": "Advertentiefoto",
+      "setCover": "Instellen als cover",
+      "cover": "Omslag",
+      "videoTour": "Videotour",
+      "videoDropHint": "Sleep een MP4-bestand of klik om te kiezen. Maximaal 500 MB.",
+      "videoUploaded": "Video geüpload — {{name}}",
+      "vrTitle": "🥽 Virtual Reality-tourlink",
+      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "modelTitle": "3D/AR-model (.glb of .gltf)",
+      "modelDropHint": "Upload een GLB/GLTF-model om AR in te schakelen. Maximaal 50 MB.",
+      "modelUploaded": "Model geüpload — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Maak gebruik van de voorzieningen die deze accommodatie biedt. We laten ze zien als filters op Zoeken."
     }
   },
   "subscription": {
@@ -649,9 +908,9 @@
     "title": "Aanvragen",
     "noResults": "Geen aanvragen komen overeen met dit filter",
     "empty": "Geen aanvragen komen overeen met dit filter",
-    "lead": "Lead",
+    "lead": "Leid",
     "listing": "Advertentie",
-    "contact": "Contact",
+    "contact": "Neem contact op met",
     "date": "Datum",
     "status": "Status",
     "statuses": {
@@ -717,6 +976,19 @@
       "confirmed": "Bevestigd",
       "paid": "Betaald",
       "disputed": "Betwist"
+    },
+    "oath": {
+      "dialogTitle": "Commissieverplichting",
+      "translatedOath": "Ik verbind mij hierbij tot het betalen van de overeengekomen commissie na voltooiing van deze vastgoedtransactie, en erken deze verantwoordelijkheid tegenover God en de wet.",
+      "breakdownTitle": "Uitsplitsing van de commissie",
+      "agentListingBreakdown": "Platformcommissie: <strong>0,5%</strong> van de transactiewaarde, betaalbaar bij succesvolle verkoop of huurovereenkomst.",
+      "buyerAgentCommission": "Agentcommissie: <strong>2,5%</strong> van de transactiewaarde.",
+      "buyerPlatformFee": "Platformkosten: <strong>0,5%</strong> van de transactiewaarde.",
+      "acceptError": "Kan uw acceptatie",
+      "agreeCheckbox": "niet registreren Ik ga akkoord met de commissievoorwaarden",
+      "decline": "Ik ben het er niet mee eens",
+      "saving": "Opslaan...",
+      "acceptCta": "Ik accepteer en ga akkoord"
     }
   },
   "moderation": {
@@ -726,7 +998,7 @@
     "queueEmpty": "De moderatiewachtrij is leeg.",
     "colTitle": "Titel",
     "colReference": "Referentie",
-    "colType": "Type",
+    "colType": "Typ",
     "colCity": "Stad",
     "colPrice": "Prijs",
     "colSubmitted": "Ingediend",
@@ -743,7 +1015,7 @@
       "bedroomsShort": "{{count}} SK",
       "bathroomsShort": "{{count}} BK",
       "vrTourAvailable": "VR-tour beschikbaar",
-      "vrTourSection": "VR / 360° tour",
+      "vrTourSection": "VR / 360°-rondleiding",
       "locationSection": "Locatie",
       "mapUnavailable": "Kaartvoorbeeld niet beschikbaar",
       "approve": "Goedkeuren",
@@ -821,8 +1093,8 @@
     "subtitle": "Vertel ons wat u nodig heeft — makelaars nemen binnen 24 uur contact op",
     "propertyType": "Vastgoedtype",
     "city": "Stad",
-    "minBudget": "Min budget",
-    "maxBudget": "Max budget",
+    "minBudget": "Min. budget",
+    "maxBudget": "Maximaal budget",
     "bedrooms": "Slaapkamers",
     "message": "Aanvullende details",
     "contactPhone": "Telefoonnummer",
@@ -838,7 +1110,7 @@
     "depositHint": "In productie wordt dit doorgestuurd naar Moyasar checkout. In ontwikkeling worden de fondsen onmiddellijk bijgeschreven.",
     "transactions": "Transactiegeschiedenis",
     "noTransactions": "Nog geen transacties",
-    "type": "Type",
+    "type": "Typ",
     "txnDeposit": "Storting",
     "txnWithdrawal": "Opname",
     "txnCommissionPayment": "Commissiebetaling",
@@ -876,7 +1148,15 @@
       "paid": "✓ Betaald",
       "failed": "Mislukt",
       "rejected": "Afgewezen"
-    }
+    },
+    "balance": "Huidig ​​saldo",
+    "withdraw": "Uitbetaling",
+    "noTransactionsHint": "Uw transacties verschijnen hier",
+    "sar": "SAR",
+    "inDevelopment": "Deze functie is in ontwikkeling",
+    "depositTitle": "Storting",
+    "payoutTitle": "Uitbetaling",
+    "withdrawal": "Intrekking"
   },
   "nafath": {
     "loginWith": "Inloggen met Nafath"
@@ -893,10 +1173,17 @@
     "tenantNationalId": "Nationale ID huurder",
     "submit": "Indienen bij Ejar",
     "contractCreated": "Contract ingediend bij Ejar",
-    "contractNumber": "Contract #",
+    "contractNumber": "Contractnr.",
     "viewContract": "Contract bekijken",
     "signedThroughEjar": "Ondertekend via Ejar",
-    "noContracts": "Nog geen huurcontracten"
+    "noContracts": "Nog geen huurcontracten",
+    "status": {
+      "draft": "Concept",
+      "pending_signatures": "Handtekeningen in behandeling",
+      "active": "Actief",
+      "expired": "Verlopen",
+      "cancelled": "Geannuleerd"
+    }
   },
   "dufaat": {
     "title": "Dufaat termijnen",
@@ -904,14 +1191,20 @@
     "applyNow": "Aanvragen voor Dufaat",
     "calloutTitle": "Betaal huur maandelijks met Dufaat",
     "calloutBody": "Verdeel {{amount}} SAR huur over 12 betaalbare maandelijkse termijnen — Sharia-conform, zonder rente.",
-    "plan": "Plan",
+    "plan": "Plannen",
     "monthlyPayment": "Maandelijkse betaling",
     "totalAnnual": "Totale jaarlijkse huur",
     "platformFee": "Platformkosten",
     "nextPayment": "Volgende betaling",
     "installmentsPaid": "Termijnen betaald",
     "payNow": "Termijn betalen",
-    "noPlans": "Nog geen Dufaat-plannen"
+    "noPlans": "Nog geen Dufaat-plannen",
+    "status": {
+      "active": "Actief",
+      "completed": "Voltooid",
+      "defaulted": "Standaard",
+      "cancelled": "Geannuleerd"
+    }
   },
   "booking": {
     "myBookings": "Mijn boekingen",
@@ -961,6 +1254,9 @@
       "confirmed": "Bevestigd",
       "cancelled": "Geannuleerd",
       "completed": "Voltooid"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Max. aantal gasten: {{count}}"
     }
   },
   "market": {
@@ -997,7 +1293,7 @@
     "name": "Naam",
     "namePlaceholder": "Naam van lijst",
     "emoji": "Emoji (optioneel)",
-    "items": "items",
+    "items": "artikelen",
     "lists": "verlanglijsten",
     "empty": "Nog geen verlanglijsten — maak er hieronder een aan.",
     "default": "Standaard",
@@ -1035,7 +1331,7 @@
     "editTitle": "Promotiecode bewerken",
     "confirmDelete": "Promotiecode verwijderen?",
     "empty": "Nog geen promotiecodes.",
-    "code": "Code",
+    "code": "Codeer",
     "value": "Kortingswaarde",
     "applicableTo": "Geldt voor",
     "uses": "Gebruik",
@@ -1079,5 +1375,71 @@
       "medium": "Gemiddelde betrouwbaarheid",
       "low": "Lage betrouwbaarheid"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Zoek op naam of specialiteit",
+    "allCities": "Alle steden",
+    "cityRiyadh": "Riyad",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Er zijn geen agenten die overeenkomen met uw zoekopdracht",
+    "emptyBody": "Probeer een andere naam of stad.",
+    "agency": "Eawlma onroerend goed",
+    "verified": "Geverifieerd",
+    "respondsUnder2h": "< 2u",
+    "activeListingsCount": "{{count}} actieve vermeldingen",
+    "viewProfile": "Bekijk profiel"
+  },
+  "myListings": {
+    "countSelected": "{{count}} geselecteerd",
+    "activateAll": "Activeer alles",
+    "deactivateAll": "Alles deactiveren",
+    "deleteAll": "Alles verwijderen",
+    "colViews": "Weergaven",
+    "colInquiries": "Vragen",
+    "boostFeature": "Boost (functie)",
+    "duplicate": "Dupliceer",
+    "deleteConfirmTitle": "{{count}} vermelding(en) verwijderen?",
+    "deleteConfirmDescription": "Met deze actie wordt de vermelding voorlopig verwijderd. Deze wordt niet langer openbaar weergegeven."
+  },
+  "saved": {
+    "title": "Opgeslagen",
+    "empty": "Geen opgeslagen eigenschappen",
+    "emptyPrompt": "Bewaar eigenschappen die u leuk vindt door op ❤️",
+    "signInPrompt": "te tikken Meld u aan om eigenschappen op te slaan",
+    "removeTitle": "Verwijder",
+    "removePrompt": "Deze eigenschap verwijderen uit opgeslagen?"
+  },
+  "notifications": {
+    "title": "Meldingen",
+    "empty": "Geen meldingen",
+    "emptyHint": "Uw waarschuwingen verschijnen hier",
+    "markAllRead": "Markeer alles als gelezen",
+    "notification": "Melding"
+  },
+  "bookings": {
+    "title": "Mijn boekingen",
+    "host": "Als gastheer",
+    "guest": "Als gast",
+    "noBookings": "Nog geen boekingen",
+    "noBookingsHint": "Uw boekingen verschijnen hier",
+    "checkIn": "Inchecken",
+    "checkOut": "Afrekenen",
+    "guests": "Gasten",
+    "nights": "nachten",
+    "total": "Totaal",
+    "status": {
+      "pending": "In behandeling",
+      "confirmed": "Bevestigd",
+      "cancelled": "Geannuleerd",
+      "completed": "Voltooid"
+    }
+  },
+  "tabs": {
+    "home": "Thuis",
+    "search": "Zoek",
+    "saved": "Opgeslagen",
+    "messages": "Berichten",
+    "profile": "Profiel"
   }
 }

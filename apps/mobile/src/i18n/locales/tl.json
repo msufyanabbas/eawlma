@@ -110,7 +110,16 @@
     "typeRoom": "Pribadong silid",
     "typeChalet": "Chalet",
     "typeRestHouse": "Rest house",
-    "typeFarm": "Sakahan"
+    "typeFarm": "Sakahan",
+    "typeAll": "Lahat",
+    "chalets": "Mga chalet",
+    "farms": "Mga sakahan",
+    "restHouses": "Mga Rest House",
+    "hotelsLabel": "Mga hotel",
+    "bookNext": "I-book ang iyong susunod na pananatili",
+    "subtitleMix": "Mga chalet, bukid, rest house at hotel",
+    "noStays": "Walang available na pananatili",
+    "tryAnother": "Subukan ang ibang kategorya"
   },
   "hotels": {
     "title": "Mga hotel",
@@ -128,7 +137,10 @@
     "upTo500": "Hanggang 500 SAR",
     "upTo1000": "Hanggang 1,000 SAR",
     "upTo2500": "Hanggang 2,500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Mag-book ng pamamalagi sa hotel",
+    "nightly": "Mga kuwarto sa hotel para sa gabi-gabing pananatili",
+    "noHotels": "Walang available na hotel"
   },
   "messages": {
     "startConversation": "Simulan ang pag-uusap",
@@ -281,7 +293,16 @@
     "loginBtn": "Mag-sign In",
     "registerBtn": "Lumikha ng Account",
     "fillAllFields": "Mangyaring punan ang lahat ng mga field",
-    "invalidCredentials": "Di-wastong email o password"
+    "invalidCredentials": "Di-wastong email o password",
+    "fillRequired": "Mangyaring punan ang lahat ng kinakailangang field",
+    "registerFailed": "Nabigo ang pagpaparehistro, subukang muli",
+    "pwWeak": "Mahina",
+    "pwFair": "Patas",
+    "pwGood": "Maganda",
+    "pwStrong": "Malakas",
+    "firstNamePlaceholder": "John",
+    "lastNamePlaceholder": "Doe",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Kinakailangan ang field na ito",
@@ -601,7 +622,10 @@
       "agents": "Napatunayang ahente",
       "cities": "Mga lungsod",
       "support": "Suporta"
-    }
+    },
+    "appAbout": "Tungkol sa app",
+    "appDescription": "Ang Eawlma ay isang real estate platform na nagkokonekta sa mga mamimili at nangungupahan sa mga pinagkakatiwalaang ahente sa buong Saudi Arabia. Tuklasin ang iyong perpektong property, mag-book ng maikling pamamalagi, at direktang makipag-chat sa mga ahente.",
+    "website": "Website"
   },
   "contact": {
     "title": "Makipag-ugnayan",
@@ -753,10 +777,7 @@
       "pinRequired": "Mag-drop ng pin sa mapa para sa lokasyon.",
       "imageRequired": "Hindi bababa sa isang larawan ang kailangan bago i-publish."
     },
-    "transactionType": {
-      "sale": "Sale",
-      "rent": "upa"
-    },
+    "transactionType": "Uri ng Transaksyon",
     "rentPeriod": {
       "daily": "Araw-araw",
       "weekly": "Lingguhan",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "I-tap ang mga amenity na inaalok ng property na ito. Ipapakita namin ang mga ito bilang mga filter sa Paghahanap."
-    }
+    },
+    "stepProperty": "Uri ng Ari-arian",
+    "stepDetails": "Mga Detalye",
+    "stepLocation": "Lokasyon",
+    "stepSpecs": "Mga Detalye",
+    "stepReview": "Suriin",
+    "stepCount": "Hakbang {{current}} ng {{total}}: {{title}}",
+    "addListing": "Magdagdag ng Listahan",
+    "forSale": "Binebenta",
+    "forRent": "For Rent",
+    "propertyType": "Uri ng Ari-arian",
+    "apartment": "Apartment",
+    "villa": "Villa",
+    "land": "Lupa",
+    "chalet": "Chalet",
+    "farm": "Bukid",
+    "restHouse": "Rest House",
+    "office": "Opisina",
+    "shop": "Mamili",
+    "titleArLabel": "Pamagat ng Arabic *",
+    "titleEnLabel": "Pamagat sa Ingles",
+    "priceLabel": "Presyo (SAR) *",
+    "areaLabel": "Lugar (m²)",
+    "descArLabel": "Paglalarawan ng Arabic",
+    "descPlaceholder": "Detalyadong paglalarawan ng ari-arian...",
+    "city": "Lungsod *",
+    "district": "Distrito *",
+    "districtPlaceholder": "hal. Al Olaya",
+    "bedroomsLabel": "Mga Silid-tulugan",
+    "bathroomsLabel": "Mga Banyo",
+    "reviewListing": "Listahan ng Review",
+    "transaction": "Transaksyon",
+    "title": "Pamagat",
+    "price": "Presyo",
+    "bedrooms": "Mga Silid-tulugan",
+    "back": "Bumalik",
+    "next": "Susunod",
+    "publish": "I-publish ang Listahan",
+    "errorTitle": "Error",
+    "successTitle": "Tagumpay",
+    "fillRequired": "Mangyaring punan ang mga kinakailangang field",
+    "addedSuccess": "Matagumpay na naidagdag ang listahan",
+    "ok": "OK",
+    "somethingWrong": "Nagkaproblema",
+    "editTitle": "I-edit ang Listahan",
+    "missing": "Mga nawawalang field",
+    "fillBasic": "Mangyaring punan ang mga kinakailangang field",
+    "savedTitle": "Na-save",
+    "savedBody": "Na-update ang listahan",
+    "updateFailed": "Nabigong i-update",
+    "deleteTitle": "Tanggalin ang listahan",
+    "deleteBody": "Sigurado ka ba? Hindi na ito maaaring bawiin.",
+    "deleteFailed": "Nabigong tanggalin",
+    "delete": "Tanggalin",
+    "deleteListing": "Tanggalin ang Listahan",
+    "titleArEdit": "Pamagat (Arabic) *",
+    "titleEnEdit": "Pamagat (Ingles)",
+    "transactionTypeShort": "Uri ng Transaksyon",
+    "priceShort": "Presyo *",
+    "cityShort": "Lungsod",
+    "districtShort": "Distrito",
+    "bedsShort": "Mga kama",
+    "bathsShort": "Mga paliguan",
+    "areaShort": "Lugar",
+    "description": "Paglalarawan",
+    "saveChanges": "I-save ang Mga Pagbabago",
+    "sale": "Sale",
+    "rent": "Rentahan"
   },
   "subscription": {
     "title": "Subskripsyon",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Inire-redirect sa Authentica.sa…",
     "otpComing": "Makakatanggap ka ng OTP sa lalong madaling panahon upang kumpletuhin ang pagberipika.",
     "profileUpdated": "Na-update ang profile.",
-    "deleteLabel": "Tanggalin"
+    "deleteLabel": "Tanggalin",
+    "appearance": "Hitsura",
+    "languageRegion": "Wika at rehiyon",
+    "pushNotifications": "Push notifications",
+    "emailNotifications": "Mga notification sa email",
+    "privacyAccount": "Privacy at account",
+    "areYouSure": "Sigurado ka ba?"
   },
   "inquiries": {
     "title": "Mga tanong",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Resolusyon ng admin",
       "closedFor": "Isinara ang deal sa halagang {{value}}",
       "closedOn": " noong {{date}}"
-    }
+    },
+    "received": "Natanggap",
+    "sent": "Ipinadala",
+    "single": "Pagtatanong",
+    "noInquiriesYet": "Wala pang mga katanungan",
+    "appearHere": "Ang iyong mga katanungan ay lalabas dito"
   },
   "commission": {
     "title": "Mga komisyon",
@@ -975,7 +1074,8 @@
       "pending": "Nakabinbin",
       "confirmed": "Nakumpirma",
       "paid": "Bayad na",
-      "disputed": "Pinagdedebate"
+      "disputed": "Pinagdedebate",
+      "cancelled": "Kinansela"
     },
     "oath": {
       "dialogTitle": "Commitment ng Komisyon",
@@ -989,7 +1089,11 @@
       "decline": "Hindi ako sang-ayon",
       "saving": "Nagse-save...",
       "acceptCta": "Tinatanggap Ko at Nangako"
-    }
+    },
+    "dealValue": "Halaga ng deal",
+    "commission": "Komisyon",
+    "fromTxn": "mula sa {{count}} na mga transaksyon",
+    "earningsHint": "Lalabas ang mga kita pagkatapos isara ang mga deal"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} nakabinbin",
@@ -1070,7 +1174,22 @@
     "contactUs": "Makipag-ugnayan sa amin",
     "noResultsTitle": "Walang tumutugmang sagot",
     "noResultsBody": "Subukan ang ibang keyword, o makipag-ugnayan sa aming koponan nang direkta.",
-    "respondsIn": "Tumutugon ang aming koponan sa loob ng 24 oras."
+    "respondsIn": "Tumutugon ang aming koponan sa loob ng 24 oras.",
+    "faqTitle": "Mga Madalas Itanong",
+    "faqs": {
+      "q1": "Paano ako maghahanap ng property?",
+      "a1": "I-tap ang tab na Paghahanap sa ibaba, pagkatapos ay pumili ng mga filter na nababagay sa iyo (presyo, uri, lungsod).",
+      "q2": "Paano ako makikipag-ugnayan sa isang ahente?",
+      "a2": "Buksan ang listing, pagkatapos ay i-tap ang \"Send Inquiry\" o gamitin ang call/WhatsApp buttons sa agent card.",
+      "q3": "Maaari ba akong mag-book ng mga chalet at bukid?",
+      "a3": "Oo — magbukas ng anumang listahan ng chalet / farm / rest-house at i-tap ang \"Mag-book Ngayon\" para pumili ng mga petsa.",
+      "q4": "How do I save a property for later?",
+      "a4": "I-tap ang icon ng puso sa listahan. Naka-save na mga item live sa ilalim ng Na-save na tab.",
+      "q5": "Libre ba ang app?",
+      "a5": "Oo — libre para sa mga naghahanap ng ari-arian. Ang mga ahente ay nagbabayad lamang ng komisyon pagkatapos ng matagumpay na pakikitungo.",
+      "q6": "Paano ko babaguhin ang wika ng app?",
+      "a6": "Tab ng Profile → Mga Setting → Wika. Pumili mula sa 38 sinusuportahang wika."
+    }
   },
   "welcome": {
     "step1Title": "Bumibili o nangungupahan?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Pinakamaraming bisita: {{count}}"
-    }
+    },
+    "title": "I-book ang iyong pananatili",
+    "shortTitle": "Aklat",
+    "created": "Nagawa ang booking",
+    "createdBody": "Nagawa ang booking. Ire-redirect ka sa pagbabayad.",
+    "error": "Error",
+    "failed": "Nabigo ang booking",
+    "invalidDates": "Mga di-wastong petsa",
+    "invalidDatesBody": "Gamitin ang format na YYYY-MM-DD",
+    "tooShort": "Masyadong maikli",
+    "tooShortBody": "Booking must be at least 1 night",
+    "perNight": "SAR / gabi",
+    "notesOptional": "Mga Tala (opsyonal)",
+    "notesPlaceholder": "Anumang mga espesyal na kahilingan...",
+    "totalLabel": "Kabuuan"
   },
   "market": {
     "title": "Mga insight ng merkado",
@@ -1277,7 +1410,10 @@
     "totalListings": "Kabuuang mga listing",
     "listingCount": "Aktibong mga listing",
     "viewMarket": "Tingnan ang merkado",
-    "miniTrend": "Lokal na trend ng merkado"
+    "miniTrend": "Lokal na trend ng merkado",
+    "trendTitle": "Trend ng presyo (12 buwan)",
+    "avgByDistrict": "Avg ﷼/m² ayon sa distrito",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "Naganap ang hindi inaasahang error",
@@ -1388,7 +1524,18 @@
     "verified": "Na-verify",
     "respondsUnder2h": "< 2h",
     "activeListingsCount": "{{count}} aktibong listahan",
-    "viewProfile": "Tingnan ang Profile"
+    "viewProfile": "Tingnan ang Profile",
+    "agent": "Ahente",
+    "listings": "Mga Listahan",
+    "reviews": "Mga Review",
+    "rating": "Rating",
+    "noListings": "Walang mga listahan",
+    "viewReviews": "Tingnan ang Mga Review",
+    "call": "Tumawag",
+    "title": "Mga Ahente",
+    "listingsShort": "mga listahan",
+    "noAgentsFound": "Walang nakitang ahente",
+    "tryLater": "Subukan ulit mamaya"
   },
   "myListings": {
     "countSelected": "{{count}} ang napili",
@@ -1441,5 +1588,12 @@
     "saved": "Na-save",
     "messages": "Mga Mensahe",
     "profile": "Profile"
+  },
+  "reviews": {
+    "title": "Mga Review",
+    "user": "User",
+    "ownerReply": "Sagot ng may-ari:",
+    "empty": "Wala pang mga review",
+    "beFirst": "Maunang mag-review"
   }
 }

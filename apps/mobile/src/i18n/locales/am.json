@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "ኢዩልማ",
     "tagline": "በሳዑዲ አረቢያ ውስጥ ፍጹም ንብረትዎን ያግኙ"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "ማንኛውም ዋጋ",
     "upTo500": "እስከ 500 SAR",
     "upTo1000": "እስከ 1,000 SAR",
-    "upTo2500": "እስከ 2,500 SAR"
+    "upTo2500": "እስከ 2,500 SAR",
+    "hotelChip": "ሆቴል"
   },
   "messages": {
     "startConversation": "ውይይት ጀምር",
@@ -147,7 +148,14 @@
     "showOriginal": "ኦርጅናሉን አሳይ",
     "showTranslation": "ትርጉሙን አሳይ",
     "online": "በመስመር ላይ",
-    "lastSeen": "መጨረሻ የታየው"
+    "lastSeen": "መጨረሻ የታየው",
+    "title": "መልዕክቶች",
+    "noMessages": "እስካሁን ምንም መልዕክቶች የሉም",
+    "noMessagesPrompt": "ከዝርዝር ገጾች ወኪሎችን ያግኙ",
+    "signInPrompt": "መልዕክቶችዎን ለማየት ይግቡ",
+    "chat": "ተወያይ",
+    "user": "ተጠቃሚ",
+    "noMessagesShort": "ምንም መልዕክቶች የሉም"
   },
   "hosting": {
     "title": "አስተናጋጅነት",
@@ -166,7 +174,8 @@
     "dailyRate": "የቀን ተመን",
     "weeklyRate": "የሳምንት ተመን",
     "guestReviews": "የእንግዳ ግምገማዎች",
-    "noReviews": "ገና ግምገማዎች የሉም — እንግዶች ካስወጡ እና ቆይታቸውን ካደነቁ በኋላ እዚህ ይታያሉ።"
+    "noReviews": "ገና ግምገማዎች የሉም — እንግዶች ካስወጡ እና ቆይታቸውን ካደነቁ በኋላ እዚህ ይታያሉ።",
+    "guestFallback": "እንግዳ"
   },
   "buyerDeals": {
     "title": "የእኔ ስምምነቶች",
@@ -216,7 +225,20 @@
     "favorAgent": "ለወኪሉ ድጋፍ — ኮሚሽን ፍጠር",
     "favorBuyer": "ለገዢው ድጋፍ — ስምምነቱን ሰርዝ",
     "cancelDeal": "ስምምነቱን ሰርዝ — ኮሚሽን የለም",
-    "resolutionHint": "ሁለቱም ወገኖች በእነዚህ ማስታወሻዎች ይነገራቸዋል።"
+    "resolutionHint": "ሁለቱም ወገኖች በእነዚህ ማስታወሻዎች ይነገራቸዋል።",
+    "other": "ሌላ",
+    "buyerLower": "ገዢ",
+    "agentLower": "ወኪል",
+    "otherLower": "ሌላ",
+    "anonymous": "ስም የለሽ",
+    "resolveTitle": "አለመግባባቶችን መፍታት",
+    "resolveDesc": "ለዚህ ሙግት ውጤቱን ይምረጡ",
+    "favorAgentDesc": "ኮሚሽኑ ተረጋግጦ ለተወካዩ ይከፈላል።",
+    "favorBuyerDesc": "ኮሚሽኑ ይሰረዛል",
+    "cancelDealDesc": "ስምምነት እና ኮሚሽን ሁለቱም ተሰርዘዋል",
+    "adminNotes": "የአስተዳዳሪ ማስታወሻዎች (አማራጭ)",
+    "resolvedSuccess": "አለመግባባት በተሳካ ሁኔታ ተፈቷል።",
+    "resolvedError": "አለመግባባትን መፍታት አልተቻለም"
   },
   "auth": {
     "login": "ግባ",
@@ -252,7 +274,14 @@
     "agreeTerms": "መለያ በመፍጠር የእኛን ውሎች እና የግላዊነት ፖሊሲ ይስማማሉ",
     "loginSuccess": "በተሳካ ሁኔታ ገብተዋል",
     "registerSuccess": "መለያው በተሳካ ሁኔታ ተፈጥሯል",
-    "logoutSuccess": "ወጥተዋል"
+    "logoutSuccess": "ወጥተዋል",
+    "role": "የመለያ አይነት",
+    "buyer": "ገዢ",
+    "agent": "ወኪል",
+    "loginBtn": "ይግቡ",
+    "registerBtn": "መለያ ፍጠር",
+    "fillAllFields": "እባክዎ ሁሉንም መስኮች ይሙሉ",
+    "invalidCredentials": "የተሳሳተ ኢሜይል ወይም የይለፍ ቃል"
   },
   "validation": {
     "required": "ይህ መስክ ያስፈልጋል",
@@ -278,7 +307,7 @@
     "submit": "አስገባ",
     "language": "ቋንቋ",
     "arabic": "العربية",
-    "english": "English",
+    "english": "እንግሊዝኛ",
     "back": "ተመለስ",
     "next": "ቀጣይ",
     "previous": "ቀዳሚ",
@@ -296,7 +325,14 @@
     "remove": "አስወግድ",
     "actions": "ድርጊቶች",
     "active": "ንቁ",
-    "inactive": "ንቁ ያልሆነ"
+    "inactive": "ንቁ ያልሆነ",
+    "loadMore": "ተጨማሪ ጫን",
+    "errorOccurred": "ስህተት ተከስቷል።",
+    "yes": "አዎ",
+    "no": "አይ",
+    "sar": "SAR",
+    "perNight": "በአንድ ሌሊት",
+    "perMonth": "በወር"
   },
   "listing": {
     "forSale": "ለሽያጭ",
@@ -363,7 +399,34 @@
       "expired": "አብቅቷል",
       "draft": "ረቂቅ",
       "archived": "ተቀምጧል"
-    }
+    },
+    "sale": "ሽያጭ",
+    "rent": "ይከራዩ",
+    "bedrooms": "አልጋዎች",
+    "bathrooms": "መታጠቢያዎች",
+    "propertyTypeLabel": "ዓይነት",
+    "noDescription": "መግለጫ የለም።",
+    "locationNotSpecified": "አካባቢ አልተገለጸም።",
+    "similarProperties": "ተመሳሳይ ባህሪያት",
+    "bookNow": "አሁን ያዝ",
+    "saveProperty": "ንብረት አስቀምጥ",
+    "openInMaps": "በካርታዎች ውስጥ ክፈት",
+    "viewOnMap": "በካርታው ላይ ይመልከቱ",
+    "tapToOpenMap": "ካርታ ለመክፈት መታ ያድርጉ",
+    "sendInquiryTitle": "ጥያቄ ላክ",
+    "yourMessage": "መልእክትህ",
+    "messagePlaceholder": "መልእክትህን እዚህ ጻፍ...",
+    "preferredContact": "ተመራጭ ዕውቂያ",
+    "phone": "ስልክ",
+    "email": "ኢሜይል",
+    "sent": "ተልኳል።",
+    "sentBody": "ጥያቄዎ ተልኳል።",
+    "messageTooShort": "መልእክት በጣም አጭር ነው።",
+    "messageTooShortBody": "መልእክት ቢያንስ 10 ቁምፊዎች መሆን አለበት።",
+    "actionFailed": "እርምጃ አልተሳካም።",
+    "bookingDevTitle": "ቦታ ማስያዝ",
+    "bookingDevBody": "የቦታ ማስያዝ ፍሰት በልማት ላይ ነው። እባክዎን ወኪሉን ያነጋግሩ።",
+    "removeFromSaved": "ይህ ንብረት ከተቀመጠው ይወገድ?"
   },
   "search": {
     "filters": "ማጣሪያዎች",
@@ -399,7 +462,29 @@
       "cta": "የንብረት ጥያቄ አስገባ"
     },
     "drawArea": "አካባቢ ሳል",
-    "clearDrawing": "ስዕል አጽዳ"
+    "clearDrawing": "ስዕል አጽዳ",
+    "flexibleDates": "ከቀናት ጋር ተለዋዋጭ ነኝ",
+    "flex1Month": "1 ወር",
+    "shortTerm": "የአጭር ጊዜ",
+    "title": "ፈልግ",
+    "placeholder": "ንብረቶችን፣ ከተማ...",
+    "noResultsHint": "የተለያዩ ማጣሪያዎችን ይሞክሩ",
+    "cityPlaceholder": "ሪያድ፣ ጅዳ...",
+    "priceRange": "የዋጋ ክልል",
+    "bedrooms": "መኝታ ቤቶች",
+    "sort": "ደርድር",
+    "any": "ማንኛውም",
+    "all": "ሁሉም",
+    "sale": "ሽያጭ",
+    "rent": "ይከራዩ",
+    "apartment": "አፕ",
+    "villa": "ቪላ",
+    "land": "መሬት",
+    "chalet": "ቻሌት",
+    "farm": "እርሻ",
+    "sortNewest": "አዲሱ",
+    "sortPriceAsc": "ዋጋ ↑",
+    "sortPriceDesc": "ዋጋ ↓"
   },
   "home": {
     "heroTitle": "ፍጹም ቤትዎን ያግኙ",
@@ -438,8 +523,8 @@
     "newestSort": "አዲሱ",
     "priceLowSort": "ዋጋ: ዝቅተኛ",
     "priceHighSort": "ዋጋ: ከፍተኛ",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "የመተግበሪያ መደብር",
+    "googlePlay": "ጎግል ፕሌይ",
     "statListings": "ማስታወቂያዎች",
     "statAgents": "ወኪሎች",
     "statUsers": "ተጠቃሚዎች",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} ማስታወቂያዎች ተገኝተዋል",
     "clearFilters": "ሁሉንም አጽዳ",
     "results": "ውጤቶች",
-    "loadMoreListings": "ተጨማሪ ማስታወቂያዎች ጫን"
+    "loadMoreListings": "ተጨማሪ ማስታወቂያዎች ጫን",
+    "latestListings": "የቅርብ ጊዜ ዝርዝሮች",
+    "featuredProperties": "ተለይተው የቀረቡ ንብረቶች",
+    "seeAll": "ሁሉንም ይመልከቱ",
+    "quickAccess": "ፈጣን መዳረሻ",
+    "stays": "ይቆያል",
+    "hotels": "ሆቴሎች",
+    "market": "ገበያ",
+    "saved": "ተቀምጧል",
+    "tagline": "ፕሪሚየር ሪል እስቴት",
+    "categories": {
+      "all": "ሁሉም",
+      "sale": "የሚሸጥ ፡ ለሽያጭ የቀረበ",
+      "rent": "ለኪራይ",
+      "chalets": "ቻሌቶች",
+      "villas": "ቪላዎች",
+      "apartments": "አፓርታማዎች",
+      "land": "መሬት"
+    }
   },
   "empty": {
     "noListings": "ገና ማስታወቂያዎች የሉም",
@@ -551,15 +654,75 @@
     "recentActivity": "የቅርብ ጊዜ እንቅስቃሴ",
     "browseListings": "ማስታወቂያዎችን ይመልከቱ",
     "goToDashboard": "ወደ ዳሽቦርድ ይሂዱ",
-    "profileUpdated": "መገለጫ ተዘምኗል"
+    "profileUpdated": "መገለጫ ተዘምኗል",
+    "title": "የእኔ መለያ",
+    "signIn": "ይግቡ",
+    "welcome": "ወደ Eawlma እንኳን በደህና መጡ",
+    "signInPrompt": "መለያዎን ለመድረስ ይግቡ",
+    "createAccount": "መለያ ፍጠር",
+    "agentDashboard": "ወኪል ዳሽቦርድ",
+    "myListings": "የእኔ ዝርዝሮች",
+    "addListing": "ዝርዝር አክል",
+    "wallet": "የኪስ ቦርሳ",
+    "commissions": "ኮሚሽኖች",
+    "myBookings": "የእኔ ምዝገባዎች",
+    "myInquiries": "የእኔ ጥያቄዎች",
+    "inquiries": "ጥያቄዎች",
+    "account": "መለያ",
+    "notifications": "ማሳወቂያዎች",
+    "language": "ቋንቋ",
+    "darkMode": "ጨለማ ሁነታ",
+    "support": "ቅንብሮች እና ድጋፍ",
+    "settings": "ቅንብሮች",
+    "help": "እገዛ እና የሚጠየቁ ጥያቄዎች",
+    "about": "ስለ",
+    "signOut": "ዘግተህ ውጣ",
+    "signOutConfirm": "እርግጠኛ ነህ ዘግተህ መውጣት ትፈልጋለህ?",
+    "member": "አባል",
+    "agentRole": "ወኪል",
+    "admin": "አስተዳዳሪ",
+    "chooseLanguage": "ቋንቋ ይምረጡ",
+    "searchLanguage": "ፈልግ...",
+    "popular": "ታዋቂ",
+    "allLanguages": "ሁሉም ቋንቋዎች",
+    "noLanguageMatch": "የሚዛመድ ቋንቋ የለም።"
   },
   "wizard": {
     "basicInfo": "መሰረታዊ መረጃ",
-    "location": "ቦታ",
+    "location": {
+      "street": "ጎዳና",
+      "buildingNumber": "የግንባታ ቁጥር.",
+      "postalCode": "የፖስታ መላኪያ ኮድ",
+      "pinPrompt": "ትክክለኛውን ቦታ ለማዘጋጀት ፒን ጣል ያድርጉ",
+      "pinLabel": "ፒን",
+      "mapUnavailable": "የካርታ ፒን መራጭ የለም። መጋጠሚያዎች ወደ {{lat}}፣ {{lng}} ይመለሳሉ።"
+    },
     "media": "ሚዲያ",
     "amenities": "መገልገያዎች",
-    "compliance": "መከበር",
-    "review": "ግምገማ",
+    "compliance": {
+      "permitNumber": "ፍቃድ / FAL ቁጥር",
+      "regaNumber": "REGA የፍቃድ ቁጥር",
+      "permitExpiry": "የፍቃድ ጊዜው ያበቃል",
+      "preferredContact": "ተመራጭ ዕውቂያ",
+      "phone": "ስልክ",
+      "publicVisibility": "ይፋዊ ታይነት (ያልተዘረዘረ/የግል ማገናኛ ብቻ ምልክት ያንሱ)"
+    },
+    "review": {
+      "summaryTitle": "የዝርዝር ማጠቃለያ",
+      "enhanceWithAi": "በ AI ያሻሽሉ።",
+      "enhancing": "በማሻሻል ላይ…",
+      "aiStubNotice": "AI አንድ ቁራጭ መልሷል - የቀጥታ ሞዴሉን ለመጠቀም OPENAI_API_KEY በጀርባው ላይ አዘጋጅ።",
+      "descriptionPreview": "መግለጫ ቅድመ እይታ",
+      "emptyDescription": "(ባዶ)",
+      "type": "ዓይነት",
+      "titleLabel": "ርዕስ",
+      "bedsBaths": "መኝታ ቤቶች / መታጠቢያ ቤቶች",
+      "cityDistrict": "ከተማ / አውራጃ",
+      "coordinates": "መጋጠሚያዎች",
+      "permit": "ፍቃድ",
+      "regaLicense": "REGA ፈቃድ",
+      "visibility": "ታይነት"
+    },
     "saveDraft": "ረቂቅ አስቀምጥ",
     "submit": "ለግምገማ አስገባ",
     "submitForReview": "ለግምገማ አስገባ",
@@ -576,7 +739,103 @@
       "bathrooms": "መታጠቢያ ቤቶች",
       "parking": "ፓርኪንግ",
       "yearBuilt": "የተገነባበት ዓመት",
-      "furnishing": "ቤት እቃዎች"
+      "furnishing": "ቤት እቃዎች",
+      "rentPeriod": "ጊዜ"
+    },
+    "editListing": "ዝርዝር አርትዕ",
+    "newListing": "አዲስ ዝርዝር",
+    "crumbNew": "አዲስ",
+    "validation": {
+      "titleRequired": "እባክዎ ቢያንስ በአንድ ቋንቋ ርዕስ ያክሉ።",
+      "descriptionRequired": "እባክዎ መግለጫ ቢያንስ በአንድ ቋንቋ ያክሉ።",
+      "priceRequired": "ዋጋው ከዜሮ በላይ መሆን አለበት።",
+      "cityRequired": "ከተማ ያስፈልጋል።",
+      "pinRequired": "ለቦታው በካርታው ላይ ፒን ጣል ያድርጉ።",
+      "imageRequired": "ከማተምዎ በፊት ቢያንስ አንድ ምስል ያስፈልጋል።"
+    },
+    "transactionType": {
+      "sale": "ሽያጭ",
+      "rent": "ይከራዩ"
+    },
+    "rentPeriod": {
+      "daily": "በየቀኑ",
+      "weekly": "በየሳምንቱ",
+      "monthly": "ወርሃዊ",
+      "yearly": "በየአመቱ"
+    },
+    "furnishing": {
+      "unfurnished": "ያልታሸገ",
+      "semi_furnished": "ከፊል-የተሰራ",
+      "furnished": "ተዘጋጅቷል።"
+    },
+    "visibility": {
+      "public": "የህዝብ",
+      "unlisted": "ያልተዘረዘረ"
+    },
+    "amenity": {
+      "pool": "ገንዳ",
+      "garden": "የአትክልት ቦታ",
+      "gym": "ጂም",
+      "elevator": "ሊፍት",
+      "maidRoom": "ገረድ ክፍል",
+      "driverRoom": "የመንጃ ክፍል",
+      "centralAc": "ማዕከላዊ ኤሲ",
+      "kitchenAppliances": "የወጥ ቤት እቃዎች",
+      "security": "24/7 ደህንነት",
+      "cornerUnit": "የማዕዘን ክፍል"
+    },
+    "shortTermAmenity": {
+      "wifi": "ዋይ ፋይ",
+      "pool": "ገንዳ",
+      "parking": "የመኪና ማቆሚያ",
+      "breakfast": "ቁርስ",
+      "ac": "የአየር ማቀዝቀዣ",
+      "kitchen": "ወጥ ቤት",
+      "tv": "ቲቪ",
+      "washer": "ማጠቢያ",
+      "workspace": "የስራ ቦታ",
+      "petsAllowed": "የቤት እንስሳት ተፈቅደዋል",
+      "smokingAllowed": "ማጨስ ተፈቅዷል",
+      "wheelchairAccessible": "የተሽከርካሪ ወንበር ተደራሽ"
+    },
+    "shortTerm": {
+      "title": "የአጭር ጊዜ የኪራይ ዝርዝሮች",
+      "subtitle": "እንግዶች ይህን ዝርዝር በምሽት ያስይዙታል። የመቆያ ደንቦችን፣ ምቾቶችን እና የዋጋ ደረጃዎችን ያዋቅሩ።",
+      "dailyRate": "ዕለታዊ ተመን (SAR)",
+      "weeklyRate": "ሳምንታዊ ዋጋ (SAR፣ አማራጭ)",
+      "minimumStay": "ዝቅተኛ ቆይታ (ምሽቶች)",
+      "maxGuests": "ከፍተኛ እንግዶች",
+      "checkIn": "ያረጋግጡ",
+      "checkOut": "ተመዝግበው ይውጡ",
+      "cancellationPolicy": "የስረዛ መመሪያ",
+      "cancelFlexible": "ተለዋዋጭ - እስከ 24 ሰዓታት በፊት ሙሉ ተመላሽ ገንዘብ",
+      "cancelModerate": "መጠነኛ - እስከ 5 ቀናት በፊት ሙሉ ገንዘብ ተመላሽ ማድረግ",
+      "cancelStrict": "ጥብቅ - 50% ተመላሽ ገንዘብ እስከ 7 ቀናት በፊት",
+      "starRating": "የኮከብ ደረጃ",
+      "hotelName": "የሆቴል ስም",
+      "instantBook": "ፈጣን መጽሐፍ",
+      "instantBookHint": "ቦታ ማስያዝ ያለእርስዎ ፍቃድ በራስ-አረጋግጥ። መጀመሪያ እያንዳንዱን ጥያቄ ለመገምገም አሰናክል።",
+      "amenities": "መገልገያዎች",
+      "houseRules": "የቤት ደንቦች",
+      "houseRulesPlaceholder": "ለምሳሌ. ድግስ የለም፣ ከምሽቱ 10 ሰአት በኋላ ፀጥ ያለ ሰአት፣ ቤት ውስጥ ማጨስ የለም..."
+    },
+    "mediaStep": {
+      "images": "ምስሎች",
+      "imageDropHint": "ፎቶዎችን ይጎትቱ እና እዚህ ይጣሉ ወይም ለመምረጥ ጠቅ ያድርጉ። JPEG / PNG / WebP እስከ 10 ሜባ.",
+      "photoAlt": "ፎቶ መዘርዘር",
+      "setCover": "እንደ ሽፋን ያዘጋጁ",
+      "cover": "ሽፋን",
+      "videoTour": "የቪዲዮ ጉብኝት",
+      "videoDropHint": "የMP4 ፋይል ይጎትቱ ወይም ለመምረጥ ጠቅ ያድርጉ። ከፍተኛው 500 ሜባ",
+      "videoUploaded": "ቪዲዮ ተሰቅሏል — {{ስም}}",
+      "vrTitle": "🥽 ምናባዊ እውነታ ጉብኝት ሊንክ",
+      "vrPlaceholder": "https://… (Matterport፣ Kuula፣ ወዘተ.)",
+      "modelTitle": "3D/ኤአር ሞዴል (.glb ወይም .gltf)",
+      "modelDropHint": "ኤአርን ለማንቃት የGLB/GLTF ሞዴል ይስቀሉ። ከፍተኛው 50 ሜባ",
+      "modelUploaded": "ሞዴል ተሰቅሏል — {{ስም}}"
+    },
+    "amenitiesStep": {
+      "hint": "ይህ ንብረት የሚያቀርባቸውን መገልገያዎች ይንኩ። በፍለጋ ላይ እንደ ማጣሪያ እናደርጋቸዋለን።"
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "ተረጋግጧል",
       "paid": "የተከፈለ",
       "disputed": "ተከራክሯል"
+    },
+    "oath": {
+      "dialogTitle": "የኮሚሽኑ ቁርጠኝነት",
+      "translatedOath": "ይህን የሪል እስቴት ግብይት እንደጨረሰ የተስማማውን ኮሚሽን ለመክፈል ቃል እገባለሁ፣ እና ይህን ሃላፊነት በእግዚአብሔር እና በህግ ፊት እውቅና እሰጣለሁ።",
+      "breakdownTitle": "የኮሚሽኑ ብልሽት",
+      "agentListingBreakdown": "የመድረክ ኮሚሽን፡ ከግብይቱ ዋጋ <strong>0.5%</strong>፣ በተሳካ ሽያጭ ወይም በሊዝ መዘጋት የሚከፈል።",
+      "buyerAgentCommission": "ወኪል ኮሚሽን፡ የግብይቱን ዋጋ <strong>2.5%</strong>።",
+      "buyerPlatformFee": "የመድረክ ክፍያ፡ የግብይቱ ዋጋ <strong>0.5%</strong>።",
+      "acceptError": "ተቀባይነትዎን መመዝገብ አልተቻለም",
+      "agreeCheckbox": "በኮሚሽን ውሎች እስማማለሁ።",
+      "decline": "አልስማማም።",
+      "saving": "በማስቀመጥ ላይ...",
+      "acceptCta": "እቀበላለሁ እና እፈፅማለሁ።"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ ተከፍሏል",
       "failed": "አልተሳካም",
       "rejected": "ተቀባይነት አላገኘም"
-    }
+    },
+    "balance": "የአሁኑ ሚዛን",
+    "withdraw": "ክፍያ",
+    "noTransactionsHint": "የእርስዎ ግብይቶች እዚህ ይታያሉ",
+    "sar": "SAR",
+    "inDevelopment": "ይህ ባህሪ በልማት ላይ ነው።",
+    "depositTitle": "ተቀማጭ ገንዘብ",
+    "payoutTitle": "ክፍያ",
+    "withdrawal": "መውጣት"
   },
   "nafath": {
     "loginWith": "በ Nafath ይግቡ"
@@ -896,7 +1176,14 @@
     "contractNumber": "ውል #",
     "viewContract": "ውል ይመልከቱ",
     "signedThroughEjar": "በ Ejar በኩል የተፈረመ",
-    "noContracts": "ገና የኪራይ ውሎች የሉም"
+    "noContracts": "ገና የኪራይ ውሎች የሉም",
+    "status": {
+      "draft": "ረቂቅ",
+      "pending_signatures": "በመጠባበቅ ላይ ያሉ ፊርማዎች",
+      "active": "ንቁ",
+      "expired": "ጊዜው አልፎበታል።",
+      "cancelled": "ተሰርዟል።"
+    }
   },
   "dufaat": {
     "title": "የ Dufaat ክፍያዎች",
@@ -911,7 +1198,13 @@
     "nextPayment": "ቀጣይ ክፍያ",
     "installmentsPaid": "የተከፈሉ ክፍያዎች",
     "payNow": "ክፍያ ይክፈሉ",
-    "noPlans": "ገና የ Dufaat እቅዶች የሉም"
+    "noPlans": "ገና የ Dufaat እቅዶች የሉም",
+    "status": {
+      "active": "ንቁ",
+      "completed": "ተጠናቀቀ",
+      "defaulted": "ነባሪ",
+      "cancelled": "ተሰርዟል።"
+    }
   },
   "booking": {
     "myBookings": "የእኔ የቦታ ማስያዣዎች",
@@ -942,7 +1235,7 @@
     "checkInInstructionsPending": "አስተናጋጅ ከመግቢያ 24 ሰዓታት በፊት መመሪያዎችን ይልካል።",
     "showAllPhotos": "ሁሉንም ፎቶዎች አሳይ",
     "availability": "መገኘት",
-    "superhost": "Superhost",
+    "superhost": "ሱፐርሆስት",
     "responseRate": "የምላሽ ምጣኔ",
     "datesUnavailable": "የተመረጡት ቀኖች ካሉ የቦታ ማስያዣ ጋር ይደራረባሉ።",
     "leaveReview": "ግምገማ ይተዉ",
@@ -961,6 +1254,9 @@
       "confirmed": "ተረጋግጧል",
       "cancelled": "ተሰርዟል",
       "completed": "ተጠናቋል"
+    },
+    "calendar": {
+      "maxGuestsHelper": "ከፍተኛ እንግዶች፡ {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "መካከለኛ መተማመን",
       "low": "ዝቅተኛ መተማመን"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "በስም ወይም በልዩ ሁኔታ ይፈልጉ",
+    "allCities": "ሁሉም ከተሞች",
+    "cityRiyadh": "ሪያድ",
+    "cityJeddah": "ጄዳህ",
+    "cityDammam": "ድማ",
+    "emptyTitle": "ከእርስዎ ፍለጋ ጋር የሚዛመዱ ምንም ወኪሎች የሉም",
+    "emptyBody": "ሌላ ስም ወይም ከተማ ይሞክሩ።",
+    "agency": "Eawlma ሪል እስቴት",
+    "verified": "የተረጋገጠ",
+    "respondsUnder2h": "< 2ሰ",
+    "activeListingsCount": "{{count}} ንቁ ዝርዝሮች",
+    "viewProfile": "መገለጫ ይመልከቱ"
+  },
+  "myListings": {
+    "countSelected": "{{count}} ተመርጧል",
+    "activateAll": "ሁሉንም አግብር",
+    "deactivateAll": "ሁሉንም አቦዝን",
+    "deleteAll": "ሁሉንም ሰርዝ",
+    "colViews": "እይታዎች",
+    "colInquiries": "ጥያቄዎች",
+    "boostFeature": "ማሳደግ (ባህሪ)",
+    "duplicate": "ማባዛት።",
+    "deleteConfirmTitle": "{{count}} ዝርዝር(ዎች) ይሰረዝ?",
+    "deleteConfirmDescription": "ይህ እርምጃ ዝርዝሩን ይሰርዛል - ከአሁን በኋላ በይፋ አይታይም።"
+  },
+  "saved": {
+    "title": "ተቀምጧል",
+    "empty": "ምንም የተቀመጡ ንብረቶች የሉም",
+    "emptyPrompt": "❤️ ን መታ በማድረግ የወደዷቸውን ንብረቶች ያስቀምጡ",
+    "signInPrompt": "ንብረቶችን ለማስቀመጥ ይግቡ",
+    "removeTitle": "አስወግድ",
+    "removePrompt": "ይህ ንብረት ከተቀመጠው ይወገድ?"
+  },
+  "notifications": {
+    "title": "ማሳወቂያዎች",
+    "empty": "ምንም ማሳወቂያዎች የሉም",
+    "emptyHint": "ማንቂያዎችዎ እዚህ ይታያሉ",
+    "markAllRead": "ሁሉንም እንደተነበቡ ምልክት ያድርጉበት",
+    "notification": "ማስታወቂያ"
+  },
+  "bookings": {
+    "title": "የእኔ ምዝገባዎች",
+    "host": "እንደ አስተናጋጅ",
+    "guest": "እንደ እንግዳ",
+    "noBookings": "እስካሁን ምንም የተያዙ ቦታዎች የሉም",
+    "noBookingsHint": "ቦታ ማስያዝዎ እዚህ ይታያል",
+    "checkIn": "ያረጋግጡ",
+    "checkOut": "ተመዝግበው ይውጡ",
+    "guests": "እንግዶች",
+    "nights": "ምሽቶች",
+    "total": "ጠቅላላ",
+    "status": {
+      "pending": "በመጠባበቅ ላይ",
+      "confirmed": "ተረጋግጧል",
+      "cancelled": "ተሰርዟል።",
+      "completed": "ተጠናቀቀ"
+    }
+  },
+  "tabs": {
+    "home": "ቤት",
+    "search": "ፈልግ",
+    "saved": "ተቀምጧል",
+    "messages": "መልዕክቶች",
+    "profile": "መገለጫ"
   }
 }

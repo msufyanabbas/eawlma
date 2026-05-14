@@ -4,7 +4,7 @@
     "tagline": "Scopri la tua proprietà perfetta in Arabia Saudita"
   },
   "nav": {
-    "home": "Home",
+    "home": "Inizio",
     "search": "Cerca",
     "buy": "Acquista",
     "rent": "Affitta",
@@ -15,7 +15,7 @@
     "notifications": "Notifiche",
     "profile": "Profilo",
     "logout": "Esci",
-    "dashboard": "Dashboard",
+    "dashboard": "Cruscotto",
     "admin": "Amministratore",
     "settings": "Impostazioni",
     "searchPlaceholder": "Cerca per città, quartiere o riferimento",
@@ -127,7 +127,8 @@
     "anyPrice": "Qualsiasi prezzo",
     "upTo500": "Fino a 500 SAR",
     "upTo1000": "Fino a 1.000 SAR",
-    "upTo2500": "Fino a 2.500 SAR"
+    "upTo2500": "Fino a 2.500 SAR",
+    "hotelChip": "Albergo"
   },
   "messages": {
     "startConversation": "Inizia la conversazione",
@@ -146,8 +147,15 @@
     "translatedFrom": "Tradotto da {{lang}}",
     "showOriginal": "Mostra originale",
     "showTranslation": "Mostra traduzione",
-    "online": "Online",
-    "lastSeen": "Ultimo accesso"
+    "online": "In linea",
+    "lastSeen": "Ultimo accesso",
+    "title": "Messaggi",
+    "noMessages": "Ancora nessun messaggio",
+    "noMessagesPrompt": "Contatta gli agenti dalle pagine dell'elenco",
+    "signInPrompt": "Accedi per vedere i tuoi messaggi",
+    "chat": "Chatta",
+    "user": "Utente",
+    "noMessagesShort": "Nessun messaggio"
   },
   "hosting": {
     "title": "Hosting",
@@ -166,7 +174,8 @@
     "dailyRate": "Tariffa giornaliera",
     "weeklyRate": "Tariffa settimanale",
     "guestReviews": "Recensioni degli ospiti",
-    "noReviews": "Ancora nessuna recensione — una volta che gli ospiti completano il soggiorno e valutano, appariranno qui."
+    "noReviews": "Ancora nessuna recensione — una volta che gli ospiti completano il soggiorno e valutano, appariranno qui.",
+    "guestFallback": "Ospite"
   },
   "buyerDeals": {
     "title": "I miei accordi",
@@ -216,7 +225,20 @@
     "favorAgent": "A favore dell'agente — crea commissione",
     "favorBuyer": "A favore dell'acquirente — annulla accordo",
     "cancelDeal": "Annulla accordo — nessuna commissione",
-    "resolutionHint": "Entrambe le parti saranno notificate con queste note."
+    "resolutionHint": "Entrambe le parti saranno notificate con queste note.",
+    "other": "Altro",
+    "buyerLower": "acquirente",
+    "agentLower": "agente",
+    "otherLower": "altro",
+    "anonymous": "Anonimo",
+    "resolveTitle": "Risolvere la controversia",
+    "resolveDesc": "Scegli l'esito di questa controversia",
+    "favorAgentDesc": "La commissione sarà confermata e pagata all'agente",
+    "favorBuyerDesc": "La commissione verrà annullata",
+    "cancelDealDesc": "L'affare e la commissione sono stati entrambi annullati",
+    "adminNotes": "Note di amministrazione (facoltativo)",
+    "resolvedSuccess": "La controversia è stata risolta con successo",
+    "resolvedError": "Impossibile risolvere la controversia"
   },
   "auth": {
     "login": "Accedi",
@@ -228,7 +250,7 @@
     "registerTitle": "Crea il tuo account",
     "registerSubtitle": "Unisciti a Eawlma e inizia il tuo percorso immobiliare",
     "joinEawlma": "Unisciti a Eawlma",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Numero di telefono",
     "password": "Password",
     "confirmPassword": "Conferma password",
@@ -252,7 +274,14 @@
     "agreeTerms": "Creando un account accetti i nostri Termini e l'Informativa sulla Privacy",
     "loginSuccess": "Accesso effettuato con successo",
     "registerSuccess": "Account creato con successo",
-    "logoutSuccess": "Disconnesso"
+    "logoutSuccess": "Disconnesso",
+    "role": "Tipo di conto",
+    "buyer": "Acquirente",
+    "agent": "Agente",
+    "loginBtn": "Accedi",
+    "registerBtn": "Crea account",
+    "fillAllFields": "Compila tutti i campi",
+    "invalidCredentials": "Email o password non valide"
   },
   "validation": {
     "required": "Questo campo è obbligatorio",
@@ -278,7 +307,7 @@
     "submit": "Invia",
     "language": "Lingua",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Inglese",
     "back": "Indietro",
     "next": "Avanti",
     "previous": "Precedente",
@@ -296,7 +325,14 @@
     "remove": "Rimuovi",
     "actions": "Azioni",
     "active": "Attivo",
-    "inactive": "Inattivo"
+    "inactive": "Inattivo",
+    "loadMore": "Carica altro",
+    "errorOccurred": "Si è verificato un errore",
+    "yes": "Sì",
+    "no": "No",
+    "sar": "SAR",
+    "perNight": "a notte",
+    "perMonth": "al mese"
   },
   "listing": {
     "forSale": "In vendita",
@@ -363,7 +399,34 @@
       "expired": "Scaduto",
       "draft": "Bozza",
       "archived": "Archiviato"
-    }
+    },
+    "sale": "Vendita",
+    "rent": "Affitta",
+    "bedrooms": "Letti",
+    "bathrooms": "Bagni",
+    "propertyTypeLabel": "Digitare",
+    "noDescription": "Nessuna descrizione.",
+    "locationNotSpecified": "Posizione non specificata",
+    "similarProperties": "Proprietà simili",
+    "bookNow": "Prenota ora",
+    "saveProperty": "Salva proprietà",
+    "openInMaps": "Apri in Mappe",
+    "viewOnMap": "Visualizza sulla mappa",
+    "tapToOpenMap": "Tocca per aprire la mappa",
+    "sendInquiryTitle": "Invia richiesta",
+    "yourMessage": "Il tuo messaggio",
+    "messagePlaceholder": "Scrivi il tuo messaggio qui...",
+    "preferredContact": "Contatto preferito",
+    "phone": "Telefono",
+    "email": "E-mail",
+    "sent": "Inviato",
+    "sentBody": "La tua richiesta è stata inviata",
+    "messageTooShort": "Messaggio troppo breve",
+    "messageTooShortBody": "Il messaggio deve contenere almeno 10 caratteri",
+    "actionFailed": "Azione non riuscita",
+    "bookingDevTitle": "Prenotazione",
+    "bookingDevBody": "Il flusso di prenotazione è in fase di sviluppo. Si prega di contattare l'agente.",
+    "removeFromSaved": "Rimuovere questa proprietà da quella salvata?"
   },
   "search": {
     "filters": "Filtri",
@@ -399,7 +462,29 @@
       "cta": "Invia richiesta immobiliare"
     },
     "drawArea": "Disegna un'area",
-    "clearDrawing": "Cancella disegno"
+    "clearDrawing": "Cancella disegno",
+    "flexibleDates": "Sono flessibile con le date",
+    "flex1Month": "1 mese",
+    "shortTerm": "A breve termine",
+    "title": "Cerca",
+    "placeholder": "Cerca immobili, città...",
+    "noResultsHint": "Prova diversi filtri",
+    "cityPlaceholder": "Riad, Jeddah...",
+    "priceRange": "Fascia di prezzo",
+    "bedrooms": "Camere da letto",
+    "sort": "Ordina",
+    "any": "Qualsiasi",
+    "all": "Tutto",
+    "sale": "Vendita",
+    "rent": "Affitta",
+    "apartment": "Adatto",
+    "villa": "Villa",
+    "land": "Terreno",
+    "chalet": "Chalet",
+    "farm": "Fattoria",
+    "sortNewest": "Più recente",
+    "sortPriceAsc": "Prezzo ↑",
+    "sortPriceDesc": "Prezzo ↓"
   },
   "home": {
     "heroTitle": "Trova la tua casa perfetta",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} annunci trovati",
     "clearFilters": "Cancella tutto",
     "results": "risultati",
-    "loadMoreListings": "Carica altri annunci"
+    "loadMoreListings": "Carica altri annunci",
+    "latestListings": "Ultimi annunci",
+    "featuredProperties": "Proprietà in primo piano",
+    "seeAll": "Vedi tutto",
+    "quickAccess": "Accesso rapido",
+    "stays": "Resta",
+    "hotels": "Alberghi",
+    "market": "Mercato",
+    "saved": "Salvato",
+    "tagline": "Immobiliare di prima qualità",
+    "categories": {
+      "all": "Tutti",
+      "sale": "In vendita",
+      "rent": "In Affitto",
+      "chalets": "Chalet",
+      "villas": "Ville",
+      "apartments": "Appartamenti",
+      "land": "Terreno"
+    }
   },
   "empty": {
     "noListings": "Ancora nessun annuncio",
@@ -505,7 +608,7 @@
     "subtitle": "Il nostro team risponde entro 24 ore. Per domande urgenti su annunci o account, WhatsApp è il canale più rapido.",
     "sendMessage": "Inviaci un messaggio",
     "name": "Il tuo nome",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Telefono (opzionale)",
     "message": "Messaggio",
     "send": "Invia messaggio",
@@ -542,7 +645,7 @@
     "firstName": "Nome",
     "lastName": "Cognome",
     "phone": "Telefono",
-    "email": "Email",
+    "email": "E-mail",
     "bio": "Biografia",
     "avatar": "URL avatar",
     "saveChanges": "Salva modifiche",
@@ -551,15 +654,75 @@
     "recentActivity": "Attività recente",
     "browseListings": "Sfoglia annunci",
     "goToDashboard": "Vai alla dashboard",
-    "profileUpdated": "Profilo aggiornato"
+    "profileUpdated": "Profilo aggiornato",
+    "title": "Il mio account",
+    "signIn": "Accedi",
+    "welcome": "Benvenuti a Eawlma",
+    "signInPrompt": "Accedi per accedere al tuo account",
+    "createAccount": "Crea account",
+    "agentDashboard": "Dashboard dell'agente",
+    "myListings": "I miei annunci",
+    "addListing": "Aggiungi elenco",
+    "wallet": "Portafoglio",
+    "commissions": "Commissioni",
+    "myBookings": "Le mie prenotazioni",
+    "myInquiries": "Le mie richieste",
+    "inquiries": "Richieste",
+    "account": "Conto",
+    "notifications": "Notifiche",
+    "language": "Lingua",
+    "darkMode": "Modalità oscura",
+    "support": "Impostazioni e supporto",
+    "settings": "Impostazioni",
+    "help": "Aiuto e domande frequenti",
+    "about": "Informazioni su",
+    "signOut": "Esci",
+    "signOutConfirm": "Sei sicuro di voler uscire?",
+    "member": "Membro",
+    "agentRole": "Agente",
+    "admin": "Amministratore",
+    "chooseLanguage": "Scegli la lingua",
+    "searchLanguage": "Cerca...",
+    "popular": "Popolare",
+    "allLanguages": "Tutte le lingue",
+    "noLanguageMatch": "Nessuna lingua corrispondente"
   },
   "wizard": {
     "basicInfo": "Informazioni di base",
-    "location": "Posizione",
-    "media": "Media",
+    "location": {
+      "street": "Via",
+      "buildingNumber": "Edificio n.",
+      "postalCode": "Codice postale",
+      "pinPrompt": "Rilascia un segnaposto per impostare la posizione esatta",
+      "pinLabel": "Punta",
+      "mapUnavailable": "Selettore segnaposto della mappa non disponibile. Le coordinate tornano a {{lat}}, {{lng}}."
+    },
+    "media": "Multimedia",
     "amenities": "Servizi",
-    "compliance": "Conformità",
-    "review": "Revisione",
+    "compliance": {
+      "permitNumber": "Numero permesso/FAL",
+      "regaNumber": "Numero di licenza REGA",
+      "permitExpiry": "Scadenza permesso",
+      "preferredContact": "Contatto preferito",
+      "phone": "Telefono",
+      "publicVisibility": "Visibilità pubblica (deseleziona solo per i collegamenti non elencati/privati)"
+    },
+    "review": {
+      "summaryTitle": "Riepilogo elenco",
+      "enhanceWithAi": "Migliora con l'intelligenza artificiale",
+      "enhancing": "Miglioramento…",
+      "aiStubNotice": "L'intelligenza artificiale ha restituito uno stub: imposta OPENAI_API_KEY sul backend per utilizzare il modello live.",
+      "descriptionPreview": "Anteprima della descrizione",
+      "emptyDescription": "(vuoto)",
+      "type": "Digitare",
+      "titleLabel": "Titolo",
+      "bedsBaths": "Camere da letto/Bagni",
+      "cityDistrict": "Città/distretto",
+      "coordinates": "Coordinate",
+      "permit": "Autorizza",
+      "regaLicense": "Licenza REGA",
+      "visibility": "Visibilità"
+    },
     "saveDraft": "Salva bozza",
     "submit": "Invia per revisione",
     "submitForReview": "Invia per revisione",
@@ -576,7 +739,103 @@
       "bathrooms": "Bagni",
       "parking": "Parcheggio",
       "yearBuilt": "Anno di costruzione",
-      "furnishing": "Arredamento"
+      "furnishing": "Arredamento",
+      "rentPeriod": "Periodo"
+    },
+    "editListing": "Modifica elenco",
+    "newListing": "Nuova inserzione",
+    "crumbNew": "Nuovo",
+    "validation": {
+      "titleRequired": "Aggiungi un titolo in almeno una lingua.",
+      "descriptionRequired": "Aggiungi una descrizione in almeno una lingua.",
+      "priceRequired": "Il prezzo deve essere maggiore di zero.",
+      "cityRequired": "La città è obbligatoria.",
+      "pinRequired": "Rilascia un segnaposto sulla mappa per la posizione.",
+      "imageRequired": "È richiesta almeno un'immagine prima della pubblicazione."
+    },
+    "transactionType": {
+      "sale": "Vendita",
+      "rent": "Affitta"
+    },
+    "rentPeriod": {
+      "daily": "Giornaliero",
+      "weekly": "Settimanale",
+      "monthly": "Mensile",
+      "yearly": "Annuale"
+    },
+    "furnishing": {
+      "unfurnished": "Non arredato",
+      "semi_furnished": "Semiarredato",
+      "furnished": "Arredato"
+    },
+    "visibility": {
+      "public": "Pubblico",
+      "unlisted": "Non elencato"
+    },
+    "amenity": {
+      "pool": "Piscina",
+      "garden": "Giardino",
+      "gym": "Palestra",
+      "elevator": "Ascensore",
+      "maidRoom": "Sala di servizio",
+      "driverRoom": "Sala conducente",
+      "centralAc": "AC centrale",
+      "kitchenAppliances": "Elettrodomestici da cucina",
+      "security": "Sicurezza 24 ore su 24, 7 giorni su 7",
+      "cornerUnit": "Elemento angolare"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Piscina",
+      "parking": "Parcheggio",
+      "breakfast": "Colazione",
+      "ac": "Aria condizionata",
+      "kitchen": "Cucina",
+      "tv": "TV",
+      "washer": "Rondella",
+      "workspace": "Area di lavoro",
+      "petsAllowed": "Animali ammessi",
+      "smokingAllowed": "È permesso fumare",
+      "wheelchairAccessible": "Accessibile in sedia a rotelle"
+    },
+    "shortTerm": {
+      "title": "Dettagli noleggio a breve termine",
+      "subtitle": "Gli ospiti prenoteranno questo annuncio entro la notte. Configura regole di soggiorno, servizi e fasce di prezzo.",
+      "dailyRate": "Tariffa giornaliera (SAR)",
+      "weeklyRate": "Tariffa settimanale (SAR, opzionale)",
+      "minimumStay": "Soggiorno minimo (notti)",
+      "maxGuests": "Ospiti massimi",
+      "checkIn": "Arrivo",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Politica di cancellazione",
+      "cancelFlexible": "Flessibile: rimborso completo fino a 24 ore prima",
+      "cancelModerate": "Moderato: rimborso completo fino a 5 giorni prima",
+      "cancelStrict": "Rigido: rimborso del 50% fino a 7 giorni prima del",
+      "starRating": "Valutazione in stelle",
+      "hotelName": "Nome dell'hotel",
+      "instantBook": "Prenotazione istantanea",
+      "instantBookHint": "Le prenotazioni si confermano automaticamente senza la tua approvazione. Disattiva per esaminare prima ogni richiesta.",
+      "amenities": "Servizi",
+      "houseRules": "Regole della casa",
+      "houseRulesPlaceholder": "per esempio. Niente feste, orari tranquilli dopo le 22:00, divieto di fumare in casa..."
+    },
+    "mediaStep": {
+      "images": "Immagini",
+      "imageDropHint": "Trascina e rilascia le foto qui oppure fai clic per scegliere. JPEG/PNG/WebP fino a 10 MB.",
+      "photoAlt": "Foto dell'elenco",
+      "setCover": "Imposta come copertina",
+      "cover": "Copertina",
+      "videoTour": "Video tour",
+      "videoDropHint": "Trascina un file MP4 o fai clic per scegliere. Massimo 500MB.",
+      "videoUploaded": "Video caricato — {{name}}",
+      "vrTitle": "🥽 Link al tour in realtà virtuale",
+      "vrPlaceholder": "https://… (Matterport, Kuula, ecc.)",
+      "modelTitle": "Modello 3D/AR (.glb o .gltf)",
+      "modelDropHint": "Carica un modello GLB/GLTF per abilitare AR. Massimo 50MB.",
+      "modelUploaded": "Modello caricato — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Tocca i servizi offerti da questa struttura. Li mostreremo come filtri nella Ricerca."
     }
   },
   "subscription": {
@@ -649,7 +908,7 @@
     "title": "Richieste",
     "noResults": "Nessuna richiesta corrisponde a questo filtro",
     "empty": "Nessuna richiesta corrisponde a questo filtro",
-    "lead": "Lead",
+    "lead": "Conduttore",
     "listing": "Annuncio",
     "contact": "Contatto",
     "date": "Data",
@@ -717,6 +976,19 @@
       "confirmed": "Confermato",
       "paid": "Pagato",
       "disputed": "Contestato"
+    },
+    "oath": {
+      "dialogTitle": "Impegno della Commissione",
+      "translatedOath": "Con la presente mi impegno a pagare la commissione concordata al completamento di questa transazione immobiliare e riconosco questa responsabilità davanti a Dio e alla legge.",
+      "breakdownTitle": "Ripartizione delle commissioni",
+      "agentListingBreakdown": "Commissione della piattaforma: <strong>0,5%</strong> del valore della transazione, pagabile al momento della vendita o della chiusura del contratto di locazione.",
+      "buyerAgentCommission": "Commissione dell'agente: <strong>2,5%</strong> del valore della transazione.",
+      "buyerPlatformFee": "Commissione della piattaforma: <strong>0,5%</strong> del valore della transazione.",
+      "acceptError": "Impossibile registrare la tua accettazione",
+      "agreeCheckbox": "Accetto i termini della commissione",
+      "decline": "Non sono d'accordo",
+      "saving": "Salvataggio in corso...",
+      "acceptCta": "Accetto e mi impegno"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ Pagato",
       "failed": "Fallito",
       "rejected": "Rifiutato"
-    }
+    },
+    "balance": "Saldo corrente",
+    "withdraw": "Pagamento",
+    "noTransactionsHint": "Le tue transazioni appariranno qui",
+    "sar": "SAR",
+    "inDevelopment": "Questa funzionalità è in fase di sviluppo",
+    "depositTitle": "Deposito",
+    "payoutTitle": "Pagamento",
+    "withdrawal": "Ritiro"
   },
   "nafath": {
     "loginWith": "Accedi con Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Contratto n.",
     "viewContract": "Visualizza contratto",
     "signedThroughEjar": "Firmato tramite Ejar",
-    "noContracts": "Ancora nessun contratto di locazione"
+    "noContracts": "Ancora nessun contratto di locazione",
+    "status": {
+      "draft": "Bozza",
+      "pending_signatures": "Firme in sospeso",
+      "active": "Attivo",
+      "expired": "Scaduto",
+      "cancelled": "Annullato"
+    }
   },
   "dufaat": {
     "title": "Rateazioni Dufaat",
@@ -911,13 +1198,19 @@
     "nextPayment": "Prossimo pagamento",
     "installmentsPaid": "Rate pagate",
     "payNow": "Paga rata",
-    "noPlans": "Ancora nessun piano Dufaat"
+    "noPlans": "Ancora nessun piano Dufaat",
+    "status": {
+      "active": "Attivo",
+      "completed": "Completato",
+      "defaulted": "Predefinito",
+      "cancelled": "Annullato"
+    }
   },
   "booking": {
     "myBookings": "Le mie prenotazioni",
     "tabGuest": "Come ospite",
     "tabHost": "Come host",
-    "checkIn": "Check-in",
+    "checkIn": "Arrivo",
     "checkOut": "Check-out",
     "night": "notte",
     "nights": "notti",
@@ -961,6 +1254,9 @@
       "confirmed": "Confermata",
       "cancelled": "Annullata",
       "completed": "Completata"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Ospiti massimi: {{count}}"
     }
   },
   "market": {
@@ -1070,7 +1366,7 @@
     "analyzing": "Analisi dei prezzi di mercato…",
     "recommended": "Prezzo consigliato",
     "range": "Intervallo suggerito",
-    "perSqm": "Per m²",
+    "perSqm": "Al m²",
     "marketAvg": "Media di mercato",
     "comparables": "Annunci comparabili",
     "usePrice": "Usa il prezzo suggerito",
@@ -1079,5 +1375,71 @@
       "medium": "Affidabilità media",
       "low": "Bassa affidabilità"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Cerca per nome o specialità",
+    "allCities": "Tutte le città",
+    "cityRiyadh": "Riad",
+    "cityJeddah": "Gedda",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Nessun agente corrisponde alla tua ricerca",
+    "emptyBody": "Prova un nome o una città diversa.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Verificato",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} inserzioni attive",
+    "viewProfile": "Visualizza profilo"
+  },
+  "myListings": {
+    "countSelected": "{{count}} selezionato",
+    "activateAll": "Attiva tutto",
+    "deactivateAll": "Disattiva tutto",
+    "deleteAll": "Elimina tutto",
+    "colViews": "Visualizzazioni",
+    "colInquiries": "Richieste",
+    "boostFeature": "Potenziamento (funzione)",
+    "duplicate": "Duplicato",
+    "deleteConfirmTitle": "Eliminare {{count}} inserzioni?",
+    "deleteConfirmDescription": "Questa azione elimina temporaneamente l'elenco: non verrà più visualizzato pubblicamente."
+  },
+  "saved": {
+    "title": "Salvato",
+    "empty": "Nessuna proprietà salvata",
+    "emptyPrompt": "Salva le proprietà che ti piacciono toccando ❤️",
+    "signInPrompt": "Accedi per salvare le proprietà",
+    "removeTitle": "Rimuovi",
+    "removePrompt": "Rimuovere questa proprietà da quella salvata?"
+  },
+  "notifications": {
+    "title": "Notifiche",
+    "empty": "Nessuna notifica",
+    "emptyHint": "I tuoi avvisi verranno visualizzati qui",
+    "markAllRead": "Segna tutto come letto",
+    "notification": "Notifica"
+  },
+  "bookings": {
+    "title": "Le mie prenotazioni",
+    "host": "Come ospite",
+    "guest": "Come ospite",
+    "noBookings": "Ancora nessuna prenotazione",
+    "noBookingsHint": "Le tue prenotazioni appariranno qui",
+    "checkIn": "Arrivo",
+    "checkOut": "Check-out",
+    "guests": "Ospiti",
+    "nights": "notti",
+    "total": "Totale",
+    "status": {
+      "pending": "In attesa",
+      "confirmed": "Confermato",
+      "cancelled": "Annullato",
+      "completed": "Completato"
+    }
+  },
+  "tabs": {
+    "home": "Inizio",
+    "search": "Cerca",
+    "saved": "Salvato",
+    "messages": "Messaggi",
+    "profile": "Profilo"
   }
 }

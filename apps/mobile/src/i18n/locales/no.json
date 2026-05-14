@@ -127,7 +127,8 @@
     "anyPrice": "Enhver pris",
     "upTo500": "Opptil 500 SAR",
     "upTo1000": "Opptil 1 000 SAR",
-    "upTo2500": "Opptil 2 500 SAR"
+    "upTo2500": "Opptil 2 500 SAR",
+    "hotelChip": "Hotell"
   },
   "messages": {
     "startConversation": "Start samtalen",
@@ -147,7 +148,14 @@
     "showOriginal": "Vis original",
     "showTranslation": "Vis oversettelse",
     "online": "Pålogget",
-    "lastSeen": "Sist sett"
+    "lastSeen": "Sist sett",
+    "title": "Meldinger",
+    "noMessages": "Ingen meldinger ennå",
+    "noMessagesPrompt": "Kontakt agenter fra oppføringssider",
+    "signInPrompt": "Logg på for å se meldingene dine",
+    "chat": "Chat",
+    "user": "Bruker",
+    "noMessagesShort": "Ingen meldinger"
   },
   "hosting": {
     "title": "Vertskap",
@@ -166,7 +174,8 @@
     "dailyRate": "Daglig sats",
     "weeklyRate": "Ukentlig sats",
     "guestReviews": "Gjesteanmeldelser",
-    "noReviews": "Ingen anmeldelser ennå — når gjester sjekker ut og vurderer oppholdet sitt, vises de her."
+    "noReviews": "Ingen anmeldelser ennå — når gjester sjekker ut og vurderer oppholdet sitt, vises de her.",
+    "guestFallback": "Gjest"
   },
   "buyerDeals": {
     "title": "Mine avtaler",
@@ -216,7 +225,20 @@
     "favorAgent": "I meglerens favør — opprett provisjon",
     "favorBuyer": "I kjøperens favør — kanseller avtale",
     "cancelDeal": "Kanseller avtale — ingen provisjon",
-    "resolutionHint": "Begge parter varsles med disse notatene."
+    "resolutionHint": "Begge parter varsles med disse notatene.",
+    "other": "Annet",
+    "buyerLower": "kjøper",
+    "agentLower": "agent",
+    "otherLower": "annet",
+    "anonymous": "Anonym",
+    "resolveTitle": "Løs tvist",
+    "resolveDesc": "Velg utfallet for denne tvisten",
+    "favorAgentDesc": "Provisjon vil bli bekreftet og utbetalt til agent",
+    "favorBuyerDesc": "Kommisjonen vil bli kansellert",
+    "cancelDealDesc": "Avtale og provisjon er begge kansellert",
+    "adminNotes": "Administratormerknader (valgfritt)",
+    "resolvedSuccess": "Tvisten ble løst",
+    "resolvedError": "Kunne ikke løse tvisten"
   },
   "auth": {
     "login": "Logg inn",
@@ -252,7 +274,14 @@
     "agreeTerms": "Ved å opprette en konto godtar du våre vilkår og personvernerklæring",
     "loginSuccess": "Logget inn",
     "registerSuccess": "Konto opprettet",
-    "logoutSuccess": "Logget ut"
+    "logoutSuccess": "Logget ut",
+    "role": "Kontotype",
+    "buyer": "Kjøper",
+    "agent": "Agent",
+    "loginBtn": "Logg på",
+    "registerBtn": "Opprett konto",
+    "fillAllFields": "Vennligst fyll ut alle felter",
+    "invalidCredentials": "Ugyldig e-postadresse eller passord"
   },
   "validation": {
     "required": "Dette feltet er obligatorisk",
@@ -278,7 +307,7 @@
     "submit": "Send inn",
     "language": "Språk",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Engelsk",
     "back": "Tilbake",
     "next": "Neste",
     "previous": "Forrige",
@@ -296,7 +325,14 @@
     "remove": "Fjern",
     "actions": "Handlinger",
     "active": "Aktiv",
-    "inactive": "Inaktiv"
+    "inactive": "Inaktiv",
+    "loadMore": "Last inn mer",
+    "errorOccurred": "Det oppstod en feil",
+    "yes": "Ja",
+    "no": "Nei",
+    "sar": "SAR",
+    "perNight": "per natt",
+    "perMonth": "per måned"
   },
   "listing": {
     "forSale": "Til salgs",
@@ -363,7 +399,34 @@
       "expired": "Utløpt",
       "draft": "Utkast",
       "archived": "Arkivert"
-    }
+    },
+    "sale": "Salg",
+    "rent": "Lei",
+    "bedrooms": "Senger",
+    "bathrooms": "Baths",
+    "propertyTypeLabel": "Skriv",
+    "noDescription": "Ingen beskrivelse.",
+    "locationNotSpecified": "Plassering ikke spesifisert",
+    "similarProperties": "Lignende egenskaper",
+    "bookNow": "Bestill nå",
+    "saveProperty": "Lagre eiendom",
+    "openInMaps": "Åpne i Maps",
+    "viewOnMap": "Vis på kart",
+    "tapToOpenMap": "Trykk for å åpne kart",
+    "sendInquiryTitle": "Send forespørsel",
+    "yourMessage": "Din melding",
+    "messagePlaceholder": "Skriv din melding her...",
+    "preferredContact": "Foretrukket kontakt",
+    "phone": "Telefon",
+    "email": "E-post",
+    "sent": "Sendt",
+    "sentBody": "Din forespørsel ble sendt",
+    "messageTooShort": "Meldingen er for kort",
+    "messageTooShortBody": "Meldingen må inneholde minst 10 tegn",
+    "actionFailed": "Handlingen mislyktes",
+    "bookingDevTitle": "Booking",
+    "bookingDevBody": "Bookingflyt er i utvikling. Ta kontakt med agenten.",
+    "removeFromSaved": "Vil du fjerne denne egenskapen fra lagret?"
   },
   "search": {
     "filters": "Filtre",
@@ -399,7 +462,29 @@
       "cta": "Send eiendomsforespørsel"
     },
     "drawArea": "Tegn et område",
-    "clearDrawing": "Tøm tegning"
+    "clearDrawing": "Tøm tegning",
+    "flexibleDates": "Jeg er fleksibel med datoer",
+    "flex1Month": "1 måned",
+    "shortTerm": "Kortsiktig",
+    "title": "Søk",
+    "placeholder": "Søk eiendommer, by...",
+    "noResultsHint": "Prøv forskjellige filtre",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Prisklasse",
+    "bedrooms": "Soverom",
+    "sort": "Sorter",
+    "any": "Alle",
+    "all": "Alle",
+    "sale": "Salg",
+    "rent": "Lei",
+    "apartment": "Apt",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "sortNewest": "Nyeste",
+    "sortPriceAsc": "Pris ↑",
+    "sortPriceDesc": "Pris ↓"
   },
   "home": {
     "heroTitle": "Finn ditt perfekte hjem",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} annonser funnet",
     "clearFilters": "Tøm alle",
     "results": "resultater",
-    "loadMoreListings": "Last inn flere annonser"
+    "loadMoreListings": "Last inn flere annonser",
+    "latestListings": "Siste oppføringer",
+    "featuredProperties": "Utvalgte egenskaper",
+    "seeAll": "Se alle",
+    "quickAccess": "Rask tilgang",
+    "stays": "Opphold",
+    "hotels": "Hoteller",
+    "market": "Marked",
+    "saved": "Lagret",
+    "tagline": "Premier Eiendom",
+    "categories": {
+      "all": "Alle",
+      "sale": "Til salgs",
+      "rent": "Til leie",
+      "chalets": "Hytter",
+      "villas": "Villaer",
+      "apartments": "Leiligheter",
+      "land": "Jord"
+    }
   },
   "empty": {
     "noListings": "Ingen annonser ennå",
@@ -551,15 +654,75 @@
     "recentActivity": "Nylig aktivitet",
     "browseListings": "Bla gjennom annonser",
     "goToDashboard": "Gå til dashbord",
-    "profileUpdated": "Profil oppdatert"
+    "profileUpdated": "Profil oppdatert",
+    "title": "Min konto",
+    "signIn": "Logg på",
+    "welcome": "Velkommen til Eawlma",
+    "signInPrompt": "Logg på for å få tilgang til kontoen din",
+    "createAccount": "Opprett konto",
+    "agentDashboard": "Agent Dashboard",
+    "myListings": "Mine oppføringer",
+    "addListing": "Legg til oppføring",
+    "wallet": "Lommebok",
+    "commissions": "Provisjoner",
+    "myBookings": "Mine bestillinger",
+    "myInquiries": "Mine forespørsler",
+    "inquiries": "Forespørsler",
+    "account": "Konto",
+    "notifications": "Varsler",
+    "language": "Språk",
+    "darkMode": "Mørk modus",
+    "support": "Innstillinger og støtte",
+    "settings": "Innstillinger",
+    "help": "Hjelp og vanlige spørsmål",
+    "about": "Om",
+    "signOut": "Logg ut",
+    "signOutConfirm": "Er du sikker på at du vil logge av?",
+    "member": "Medlem",
+    "agentRole": "Agent",
+    "admin": "Admin",
+    "chooseLanguage": "Velg språk",
+    "searchLanguage": "Søk...",
+    "popular": "Populær",
+    "allLanguages": "Alle språk",
+    "noLanguageMatch": "Ingen samsvarende språk"
   },
   "wizard": {
     "basicInfo": "Grunnleggende info",
-    "location": "Beliggenhet",
+    "location": {
+      "street": "Gate",
+      "buildingNumber": "Byggnr.",
+      "postalCode": "Postnummer",
+      "pinPrompt": "Slipp en nål for å angi den nøyaktige plasseringen",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Kartnålsvelgeren er utilgjengelig. Koordinatene faller tilbake til {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Fasiliteter",
-    "compliance": "Overholdelse",
-    "review": "Gjennomgang",
+    "compliance": {
+      "permitNumber": "Tillatelse / FAL nummer",
+      "regaNumber": "REGA-lisensnummer",
+      "permitExpiry": "Tillatelsesutløp",
+      "preferredContact": "Foretrukket kontakt",
+      "phone": "Telefon",
+      "publicVisibility": "Offentlig synlighet (fjern merket for kun uoppført / privat lenke)"
+    },
+    "review": {
+      "summaryTitle": "Oppsummering av oppføringen",
+      "enhanceWithAi": "Forbedre med AI",
+      "enhancing": "Forbedrer…",
+      "aiStubNotice": "AI returnerte en stubbe — sett OPENAI_API_KEY på backend for å bruke live-modellen.",
+      "descriptionPreview": "Forhåndsvisning av beskrivelse",
+      "emptyDescription": "(tom)",
+      "type": "Skriv",
+      "titleLabel": "Tittel",
+      "bedsBaths": "Soverom / bad",
+      "cityDistrict": "By/distrikt",
+      "coordinates": "Koordinater",
+      "permit": "Tillat",
+      "regaLicense": "REGA-lisens",
+      "visibility": "Synlighet"
+    },
     "saveDraft": "Lagre utkast",
     "submit": "Send til gjennomgang",
     "submitForReview": "Send til gjennomgang",
@@ -576,7 +739,103 @@
       "bathrooms": "Bad",
       "parking": "Parkering",
       "yearBuilt": "Byggeår",
-      "furnishing": "Møblering"
+      "furnishing": "Møblering",
+      "rentPeriod": "Periode"
+    },
+    "editListing": "Rediger oppføring",
+    "newListing": "Ny oppføring",
+    "crumbNew": "Ny",
+    "validation": {
+      "titleRequired": "Vennligst legg til en tittel på minst ett språk.",
+      "descriptionRequired": "Vennligst legg til en beskrivelse på minst ett språk.",
+      "priceRequired": "Prisen må være større enn null.",
+      "cityRequired": "By er påkrevd.",
+      "pinRequired": "Sett en nål på kartet for plasseringen.",
+      "imageRequired": "Minst ett bilde kreves før publisering."
+    },
+    "transactionType": {
+      "sale": "Salg",
+      "rent": "Leie"
+    },
+    "rentPeriod": {
+      "daily": "Daglig",
+      "weekly": "Ukentlig",
+      "monthly": "Månedlig",
+      "yearly": "Årlig"
+    },
+    "furnishing": {
+      "unfurnished": "Umøblert",
+      "semi_furnished": "Halvmøblert",
+      "furnished": "Møblert"
+    },
+    "visibility": {
+      "public": "Offentlig",
+      "unlisted": "Unotert"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Hage",
+      "gym": "Treningsstudio",
+      "elevator": "Heis",
+      "maidRoom": "Maid room",
+      "driverRoom": "Driver rom",
+      "centralAc": "Sentral AC",
+      "kitchenAppliances": "Kjøkkenmaskiner",
+      "security": "24/7 sikkerhet",
+      "cornerUnit": "Hjørneenhet"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Parkering",
+      "breakfast": "Frokost",
+      "ac": "Air condition",
+      "kitchen": "Kjøkken",
+      "tv": "TV",
+      "washer": "Skive",
+      "workspace": "Arbeidsområde",
+      "petsAllowed": "Husdyr tillatt",
+      "smokingAllowed": "Røyking tillatt",
+      "wheelchairAccessible": "Tilrettelagt for rullestolbrukere"
+    },
+    "shortTerm": {
+      "title": "Detaljer om korttidsleie",
+      "subtitle": "Gjestene vil bestille denne oppføringen i løpet av natten. Konfigurer oppholdsregler, fasiliteter og prisnivåer.",
+      "dailyRate": "Daglig rate (SAR)",
+      "weeklyRate": "Ukentlig rate (SAR, valgfritt)",
+      "minimumStay": "Minimum opphold (netter)",
+      "maxGuests": "Maks gjester",
+      "checkIn": "Innsjekking",
+      "checkOut": "Utsjekking",
+      "cancellationPolicy": "Avbestillingsregler",
+      "cancelFlexible": "Fleksibel — full refusjon opptil 24 timer før",
+      "cancelModerate": "Moderat — full refusjon inntil 5 dager før",
+      "cancelStrict": "Strenge — 50 % refusjon opptil 7 dager før",
+      "starRating": "Stjernerangering",
+      "hotelName": "Hotellnavn",
+      "instantBook": "Øyeblikkelig bok",
+      "instantBookHint": "Bestillinger bekreftes automatisk uten din godkjenning. Deaktiver for å gjennomgå hver forespørsel først.",
+      "amenities": "Fasiliteter",
+      "houseRules": "Husregler",
+      "houseRulesPlaceholder": "f.eks. Ingen fester, stille timer etter 22:00, ingen røyking innendørs..."
+    },
+    "mediaStep": {
+      "images": "Bilder",
+      "imageDropHint": "Dra og slipp bilder her, eller klikk for å velge. JPEG / PNG / WebP opptil 10 MB.",
+      "photoAlt": "Oppføringsbilde",
+      "setCover": "Sett som omslag",
+      "cover": "Cover",
+      "videoTour": "Videotur",
+      "videoDropHint": "Dra en MP4-fil eller klikk for å velge. Maks 500 MB.",
+      "videoUploaded": "Video lastet opp — {{navn}}",
+      "vrTitle": "🥽 Virtual Reality Tour Link",
+      "vrPlaceholder": "https://... (Matterport, Kuula, etc.)",
+      "modelTitle": "3D / AR-modell (.glb eller .gltf)",
+      "modelDropHint": "Last opp en GLB/GLTF-modell for å aktivere AR. Maks 50 MB.",
+      "modelUploaded": "Modell lastet opp — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Trykk på fasilitetene denne eiendommen tilbyr. Vi viser dem som filtre på Søk."
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "Bekreftet",
       "paid": "Betalt",
       "disputed": "Bestridt"
+    },
+    "oath": {
+      "dialogTitle": "Kommisjonsforpliktelse",
+      "translatedOath": "Jeg forplikter meg herved til å betale den avtalte provisjonen ved gjennomføring av denne eiendomstransaksjonen, og erkjenner dette ansvaret overfor Gud og loven.",
+      "breakdownTitle": "Provisjonsfordeling",
+      "agentListingBreakdown": "Plattformprovisjon: <strong>0,5 %</strong> av transaksjonsverdien, betales ved vellykket salg eller lukking av leasing.",
+      "buyerAgentCommission": "Agentprovisjon: <strong>2,5 %</strong> av transaksjonsverdien.",
+      "buyerPlatformFee": "Plattformavgift: <strong>0,5 %</strong> av transaksjonsverdien.",
+      "acceptError": "Kunne ikke registrere godkjenningen din",
+      "agreeCheckbox": "Jeg godtar provisjonsvilkårene",
+      "decline": "Jeg er ikke enig",
+      "saving": "Lagrer...",
+      "acceptCta": "Jeg godtar og forplikter"
     }
   },
   "moderation": {
@@ -726,7 +998,7 @@
     "queueEmpty": "Modereringskøen er tom.",
     "colTitle": "Tittel",
     "colReference": "Referanse",
-    "colType": "Type",
+    "colType": "Skriv",
     "colCity": "By",
     "colPrice": "Pris",
     "colSubmitted": "Innsendt",
@@ -838,7 +1110,7 @@
     "depositHint": "I produksjon dirigerer dette til Moyasar-kassen. I dev krediteres midlene umiddelbart.",
     "transactions": "Transaksjonshistorikk",
     "noTransactions": "Ingen transaksjoner ennå",
-    "type": "Type",
+    "type": "Skriv",
     "txnDeposit": "Innskudd",
     "txnWithdrawal": "Uttak",
     "txnCommissionPayment": "Provisjonsbetaling",
@@ -876,7 +1148,15 @@
       "paid": "✓ Betalt",
       "failed": "Mislyktes",
       "rejected": "Avvist"
-    }
+    },
+    "balance": "Gjeldende saldo",
+    "withdraw": "Utbetaling",
+    "noTransactionsHint": "Transaksjonene dine vil vises her",
+    "sar": "SAR",
+    "inDevelopment": "Denne funksjonen er under utvikling",
+    "depositTitle": "Innskudd",
+    "payoutTitle": "Utbetaling",
+    "withdrawal": "Uttak"
   },
   "nafath": {
     "loginWith": "Logg inn med Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Kontrakt #",
     "viewContract": "Vis kontrakt",
     "signedThroughEjar": "Signert via Ejar",
-    "noContracts": "Ingen leiekontrakter ennå"
+    "noContracts": "Ingen leiekontrakter ennå",
+    "status": {
+      "draft": "Utkast",
+      "pending_signatures": "Ventende signaturer",
+      "active": "Aktiv",
+      "expired": "Utløpt",
+      "cancelled": "Avbrutt"
+    }
   },
   "dufaat": {
     "title": "Dufaat-avdrag",
@@ -911,7 +1198,13 @@
     "nextPayment": "Neste betaling",
     "installmentsPaid": "Betalte avdrag",
     "payNow": "Betal avdrag",
-    "noPlans": "Ingen Dufaat-planer ennå"
+    "noPlans": "Ingen Dufaat-planer ennå",
+    "status": {
+      "active": "Aktiv",
+      "completed": "Fullført",
+      "defaulted": "Standard",
+      "cancelled": "Avbrutt"
+    }
   },
   "booking": {
     "myBookings": "Mine bookinger",
@@ -961,6 +1254,9 @@
       "confirmed": "Bekreftet",
       "cancelled": "Avbrutt",
       "completed": "Fullført"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Maks gjester: {{count}}"
     }
   },
   "market": {
@@ -1045,7 +1341,7 @@
     "active": "Aktiv",
     "maxDiscount": "Maks rabatt (SAR)",
     "maxDiscountHint": "Begrenser verdien for prosentrabatter. La være tom for ingen grense.",
-    "minBooking": "Min booking (SAR)",
+    "minBooking": "Min bestilling (SAR)",
     "maxUses": "Maks bruk (tom = ubegrenset)",
     "validFrom": "Gyldig fra",
     "validUntil": "Gyldig til",
@@ -1079,5 +1375,71 @@
       "medium": "Middels konfidens",
       "low": "Lav konfidens"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Søk etter navn eller spesialitet",
+    "allCities": "Alle byer",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Ingen agenter samsvarer med søket ditt",
+    "emptyBody": "Prøv et annet navn eller by.",
+    "agency": "Eawlma Eiendom",
+    "verified": "Verifisert",
+    "respondsUnder2h": "< 2t",
+    "activeListingsCount": "{{count}} aktive oppføringer",
+    "viewProfile": "Vis profil"
+  },
+  "myListings": {
+    "countSelected": "{{count}} valgt",
+    "activateAll": "Aktiver alle",
+    "deactivateAll": "Deaktiver alle",
+    "deleteAll": "Slett alle",
+    "colViews": "Visninger",
+    "colInquiries": "Forespørsler",
+    "boostFeature": "Boost (funksjon)",
+    "duplicate": "Duplikat",
+    "deleteConfirmTitle": "Vil du slette {{count}} oppføring(er)?",
+    "deleteConfirmDescription": "Denne handlingen myker sletter oppføringen – den vil ikke lenger vises offentlig."
+  },
+  "saved": {
+    "title": "Lagret",
+    "empty": "Ingen lagrede eiendommer",
+    "emptyPrompt": "Lagre egenskaper du liker ved å trykke ❤️",
+    "signInPrompt": "Logg på for å lagre eiendommer",
+    "removeTitle": "Fjern",
+    "removePrompt": "Vil du fjerne denne egenskapen fra lagret?"
+  },
+  "notifications": {
+    "title": "Varsler",
+    "empty": "Ingen varsler",
+    "emptyHint": "Dine varsler vil vises her",
+    "markAllRead": "Merk alle som lest",
+    "notification": "Melding"
+  },
+  "bookings": {
+    "title": "Mine bestillinger",
+    "host": "Som vert",
+    "guest": "Som gjest",
+    "noBookings": "Ingen bestillinger ennå",
+    "noBookingsHint": "Dine bestillinger vil vises her",
+    "checkIn": "Innsjekking",
+    "checkOut": "Utsjekking",
+    "guests": "Gjester",
+    "nights": "netter",
+    "total": "Totalt",
+    "status": {
+      "pending": "Venter",
+      "confirmed": "Bekreftet",
+      "cancelled": "Avbrutt",
+      "completed": "Fullført"
+    }
+  },
+  "tabs": {
+    "home": "Hjem",
+    "search": "Søk",
+    "saved": "Lagret",
+    "messages": "Meldinger",
+    "profile": "Profil"
   }
 }

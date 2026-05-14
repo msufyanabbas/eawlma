@@ -111,7 +111,16 @@
     "typeRoom": "نجی کمرہ",
     "typeChalet": "شالے",
     "typeRestHouse": "آرام گاہ",
-    "typeFarm": "فارم"
+    "typeFarm": "فارم",
+    "typeAll": "تمام",
+    "chalets": "چیلیٹس",
+    "farms": "فارمز",
+    "restHouses": "| ریسٹ ہاؤسز",
+    "hotelsLabel": "ہوٹلز",
+    "bookNext": "| اپنا اگلا قیام بک کرو",
+    "subtitleMix": "| چیلٹس، فارمز، ریسٹ ہاؤس اور ہوٹل",
+    "noStays": "کوئی قیام دستیاب نہیں",
+    "tryAnother": "دوسرا زمرہ آزمائیں"
   },
   "hotels": {
     "title": "ہوٹل",
@@ -129,7 +138,10 @@
     "upTo500": "500 ریال تک",
     "upTo1000": "1,000 ریال تک",
     "upTo2500": "2,500 ریال تک",
-    "hotelChip": "ہوٹل"
+    "hotelChip": "ہوٹل",
+    "bookStay": "ہوٹل میں قیام بک کرو",
+    "nightly": "| رات کے قیام کے لیے ہوٹل کے کمرے",
+    "noHotels": "کوئی ہوٹل دستیاب نہیں"
   },
   "agents": {
     "searchPlaceholder": "نام یا تخصص کے ذریعے تلاش کریں",
@@ -143,7 +155,18 @@
     "verified": "تصدیق شدہ",
     "respondsUnder2h": "‎< 2 گھنٹے",
     "activeListingsCount": "{{count}} فعال فہرستیں",
-    "viewProfile": "پروفائل دیکھیں"
+    "viewProfile": "پروفائل دیکھیں",
+    "agent": "| ایجنٹ",
+    "listings": "| فہرستیں",
+    "reviews": "جائزے",
+    "rating": "درجہ بندی",
+    "noListings": "| کوئی فہرست نہیں",
+    "viewReviews": "| جائزے دیکھیں",
+    "call": "کال کریں",
+    "title": "ایجنٹس",
+    "listingsShort": "فہرستیں",
+    "noAgentsFound": "| کوئی ایجنٹ نہیں ملا",
+    "tryLater": "بعد میں دوبارہ کوشش کریں"
   },
   "messages": {
     "startConversation": "گفتگو شروع کریں",
@@ -164,13 +187,13 @@
     "showTranslation": "ترجمہ دکھائیں",
     "online": "آن لائن",
     "lastSeen": "آخری بار دیکھا گیا",
-    "title": "Messages",
-    "noMessages": "No messages yet",
-    "noMessagesPrompt": "Contact agents from listing pages",
-    "signInPrompt": "Sign in to see your messages",
-    "chat": "Chat",
-    "user": "User",
-    "noMessagesShort": "No messages"
+    "title": "پیغامات",
+    "noMessages": "| ابھی تک کوئی پیغامات نہیں ہیں۔",
+    "noMessagesPrompt": "فہرست کے صفحات سے ایجنٹوں سے رابطہ کریں",
+    "signInPrompt": "اپنے پیغامات دیکھنے کے لیے سائن ان کریں",
+    "chat": "چیٹ",
+    "user": "صارف",
+    "noMessagesShort": "کوئی پیغام نہیں"
   },
   "hosting": {
     "title": "میزبانی",
@@ -290,13 +313,22 @@
     "loginSuccess": "کامیابی سے سائن ان ہو گئے",
     "registerSuccess": "اکاؤنٹ کامیابی سے بن گیا",
     "logoutSuccess": "سائن آؤٹ ہو گئے",
-    "role": "Account Type",
-    "buyer": "Buyer",
-    "agent": "Agent",
-    "loginBtn": "Sign In",
-    "registerBtn": "Create Account",
-    "fillAllFields": "Please fill all fields",
-    "invalidCredentials": "Invalid email or password"
+    "role": "| اکاؤنٹ کی قسم",
+    "buyer": "خریدار",
+    "agent": "| ایجنٹ",
+    "loginBtn": "| سائن ان کریں",
+    "registerBtn": "| اکاؤنٹ بنائیں",
+    "fillAllFields": "| براہ کرم تمام فیلڈز کو بھریں",
+    "invalidCredentials": "غلط ای میل یا پاس ورڈ",
+    "fillRequired": "براہ کرم تمام مطلوبہ فیلڈز کو پُر کریں",
+    "registerFailed": "| رجسٹریشن ناکام، دوبارہ کوشش کریں",
+    "pwWeak": "کمزور",
+    "pwFair": "میلہ",
+    "pwGood": "| اچھا",
+    "pwStrong": "| مضبوط",
+    "firstNamePlaceholder": "| جان",
+    "lastNamePlaceholder": "ڈو",
+    "phonePlaceholder": "| +966 5X XXX XXXX"
   },
   "validation": {
     "required": "یہ خانہ ضروری ہے",
@@ -322,7 +354,7 @@
     "submit": "جمع کروائیں",
     "language": "زبان",
     "arabic": "العربية",
-    "english": "English",
+    "english": "انگریزی",
     "urdu": "اردو",
     "back": "پچھلا",
     "next": "اگلا",
@@ -343,12 +375,12 @@
     "active": "فعال",
     "inactive": "غیر فعال",
     "loadMore": "مزید لوڈ کریں",
-    "errorOccurred": "An error occurred",
-    "yes": "Yes",
-    "no": "No",
-    "sar": "SAR",
-    "perNight": "per night",
-    "perMonth": "per month"
+    "errorOccurred": "| ایک خرابی پیش آگئی",
+    "yes": "جی ہاں",
+    "no": "نہیں",
+    "sar": "| SAR",
+    "perNight": "| فی رات",
+    "perMonth": "| فی مہینہ"
   },
   "listing": {
     "forSale": "برائے فروخت",
@@ -416,9 +448,9 @@
       "draft": "مسودہ",
       "archived": "آرکائیو شدہ"
     },
-    "sale": "Sale",
-    "rent": "Rent",
-    "bedrooms": "Beds",
+    "sale": "| فروخت",
+    "rent": "| کرایہ",
+    "bedrooms": "| بستر",
     "bathrooms": "غسل",
     "propertyTypeLabel": "قسم",
     "noDescription": "کوئی تفصیل نہیں۔",
@@ -626,7 +658,10 @@
       "agents": "تصدیق شدہ ایجنٹس",
       "cities": "شہر",
       "support": "سپورٹ"
-    }
+    },
+    "appAbout": "| ایپ کے بارے میں",
+    "appDescription": "Eawlma ایک رئیل اسٹیٹ پلیٹ فارم ہے جو خریداروں اور کرایہ داروں کو پورے سعودی عرب میں بھروسہ مند ایجنٹوں سے جوڑتا ہے۔ اپنی بہترین جائیداد دریافت کریں، مختصر قیام کی بکنگ کریں، اور ایجنٹوں سے براہ راست بات چیت کریں۔",
+    "website": "ویب سائٹ"
   },
   "contact": {
     "title": "رابطہ کریں",
@@ -779,10 +814,7 @@
       "pinRequired": "نقشہ پر مقام کا پن رکھیں۔",
       "imageRequired": "شائع کرنے سے پہلے کم از کم ایک تصویر لازمی ہے۔"
     },
-    "transactionType": {
-      "sale": "فروخت",
-      "rent": "کرایہ"
-    },
+    "transactionType": "لین دین کی قسم",
     "rentPeriod": {
       "daily": "روزانہ",
       "weekly": "ہفتہ وار",
@@ -862,7 +894,74 @@
     },
     "amenitiesStep": {
       "hint": "اس جائیداد میں موجود سہولیات پر ٹیپ کریں۔ یہ تلاش میں فلٹرز کے طور پر ظاہر ہوں گی۔"
-    }
+    },
+    "stepProperty": "پراپرٹی کی قسم",
+    "stepDetails": "تفصیلات",
+    "stepLocation": "مقام",
+    "stepSpecs": "تفصیلات",
+    "stepReview": "| جائزہ لیں",
+    "stepCount": "{{total}} کا {{موجودہ}} مرحلہ: {{title}}",
+    "addListing": "فہرست شامل کریں",
+    "forSale": "برائے فروخت",
+    "forRent": "| کرایہ کے لیے",
+    "propertyType": "| پراپرٹی کی قسم",
+    "apartment": "اپارٹمنٹ",
+    "villa": "ولا",
+    "land": "زمین",
+    "chalet": "| چیلیٹ",
+    "farm": "فارم",
+    "restHouse": "| ریسٹ ہاؤس",
+    "office": "آفس",
+    "shop": "دکان",
+    "titleArLabel": "عربی عنوان *",
+    "titleEnLabel": "انگریزی عنوان",
+    "priceLabel": "قیمت (SAR) *",
+    "areaLabel": "رقبہ (m²)",
+    "descArLabel": "عربی تفصیل",
+    "descPlaceholder": "تفصیلی جائیداد کی تفصیل...",
+    "city": "شہر *",
+    "district": "ضلع *",
+    "districtPlaceholder": "جیسے آل اولیا",
+    "bedroomsLabel": "بیڈ رومز",
+    "bathroomsLabel": "| باتھ رومز",
+    "reviewListing": "| فہرست کا جائزہ لیں",
+    "transaction": "لین دین",
+    "title": "عنوان",
+    "price": "| قیمت",
+    "bedrooms": "بیڈ رومز",
+    "back": "| واپس",
+    "next": "اگلا",
+    "publish": "فہرست شائع کریں",
+    "errorTitle": "خرابی",
+    "successTitle": "| کامیابی",
+    "fillRequired": "براہ کرم مطلوبہ فیلڈ پُر کریں",
+    "addedSuccess": "فہرست کامیابی کے ساتھ شامل کی گئی",
+    "ok": "| ٹھیک ہے",
+    "somethingWrong": "کچھ غلط ہو گیا",
+    "editTitle": "فہرست میں ترمیم کریں",
+    "missing": "غائب فیلڈز",
+    "fillBasic": "| براہ کرم مطلوبہ فیلڈ پُر کریں",
+    "savedTitle": "محفوظ کیا گیا",
+    "savedBody": "فہرست اپ ڈیٹ کی گئی",
+    "updateFailed": "اپ ڈیٹ کرنے میں ناکام",
+    "deleteTitle": "فہرست کو حذف کریں",
+    "deleteBody": "کیا آپ کو یقین ہے؟ اسے کالعدم نہیں کیا جا سکتا۔",
+    "deleteFailed": "حذف کرنے میں ناکام",
+    "delete": "حذف کریں",
+    "deleteListing": "فہرست کو حذف کریں",
+    "titleArEdit": "عنوان (عربی) *",
+    "titleEnEdit": "عنوان (انگریزی)",
+    "transactionTypeShort": "لین دین کی قسم",
+    "priceShort": "قیمت *",
+    "cityShort": "شہر",
+    "districtShort": "| ضلع",
+    "bedsShort": "| بستر",
+    "bathsShort": "| غسل",
+    "areaShort": "علاقہ",
+    "description": "تفصیل",
+    "saveChanges": "تبدیلیاں محفوظ کریں",
+    "sale": "فروخت",
+    "rent": "| کرایہ"
   },
   "subscription": {
     "title": "سبسکرپشن",
@@ -928,7 +1027,13 @@
     "redirectingToAuthentica": "Authentica.sa پر منتقل کیا جا رہا ہے…",
     "otpComing": "تصدیق مکمل کرنے کے لیے آپ کو جلد OTP موصول ہوگا۔",
     "profileUpdated": "پروفائل اپ ڈیٹ ہو گئی۔",
-    "deleteLabel": "حذف کریں"
+    "deleteLabel": "حذف کریں",
+    "appearance": "| ظاہری شکل",
+    "languageRegion": "زبان اور علاقہ",
+    "pushNotifications": "پش اطلاعات",
+    "emailNotifications": "ای میل اطلاعات",
+    "privacyAccount": "رازداری اور اکاؤنٹ",
+    "areYouSure": "کیا آپ کو یقین ہے؟"
   },
   "inquiries": {
     "title": "استفسارات",
@@ -980,7 +1085,12 @@
       "adminResolutionHeading": "ایڈمن کا فیصلہ",
       "closedFor": "ڈیل {{value}} میں بند",
       "closedOn": " بتاریخ {{date}}"
-    }
+    },
+    "received": "موصول ہوا",
+    "sent": "بھیجا گیا",
+    "single": "| انکوائری",
+    "noInquiriesYet": "ابھی تک کوئی پوچھ گچھ نہیں",
+    "appearHere": "آپ کی پوچھ گچھ یہاں ظاہر ہوگی"
   },
   "commission": {
     "title": "کمیشن",
@@ -1001,7 +1111,8 @@
       "pending": "زیرِ التواء",
       "confirmed": "تصدیق شدہ",
       "paid": "ادا شدہ",
-      "disputed": "متنازع"
+      "disputed": "متنازع",
+      "cancelled": "منسوخ کر دیا گیا"
     },
     "oath": {
       "dialogTitle": "کمیشن کا عہد",
@@ -1015,7 +1126,11 @@
       "decline": "میں متفق نہیں",
       "saving": "محفوظ ہو رہا ہے...",
       "acceptCta": "میں قبول اور عہد کرتا ہوں"
-    }
+    },
+    "dealValue": "ڈیل ویلیو",
+    "commission": "| کمیشن",
+    "fromTxn": "{{count}} لین دین سے",
+    "earningsHint": "سودے بند ہونے کے بعد آمدنی ظاہر ہوگی"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} زیرِ التواء",
@@ -1096,7 +1211,22 @@
     "contactUs": "رابطہ کریں",
     "noResultsTitle": "کوئی مماثل جواب نہیں",
     "noResultsBody": "مختلف کلیدی لفظ آزمائیں، یا براہ راست ہماری ٹیم سے رابطہ کریں۔",
-    "respondsIn": "ہماری ٹیم 24 گھنٹوں میں جواب دیتی ہے۔"
+    "respondsIn": "ہماری ٹیم 24 گھنٹوں میں جواب دیتی ہے۔",
+    "faqTitle": "اکثر پوچھے گئے سوالات",
+    "faqs": {
+      "q1": "میں پراپرٹی کی تلاش کیسے کروں؟",
+      "a1": "نیچے تلاش کے ٹیب کو تھپتھپائیں، پھر ایسے فلٹرز منتخب کریں جو آپ کے مطابق ہوں (قیمت، قسم، شہر)۔",
+      "q2": "میں کسی ایجنٹ سے کیسے رابطہ کروں؟",
+      "a2": "فہرست کھولیں، پھر \"انکوائری بھیجیں\" پر ٹیپ کریں یا ایجنٹ کارڈ پر کال/واٹس ایپ بٹن استعمال کریں۔",
+      "q3": "کیا میں چیلیٹ اور فارم بک کر سکتا ہوں؟",
+      "a3": "ہاں — کوئی بھی چیلیٹ/فارم/ریسٹ ہاؤس کی فہرست کھولیں اور تاریخیں چننے کے لیے \"ابھی بک کرو\" پر ٹیپ کریں۔",
+      "q4": "میں بعد میں کسی پراپرٹی کو کیسے بچا سکتا ہوں؟",
+      "a4": "فہرست پر ہارٹ آئیکن کو تھپتھپائیں۔ محفوظ کردہ آئٹمز محفوظ شدہ ٹیب کے نیچے رہتے ہیں۔",
+      "q5": "کیا ایپ مفت ہے؟",
+      "a5": "ہاں — جائیداد کے متلاشیوں کے لیے مفت۔ کامیاب معاہدے کے بعد ہی ایجنٹ کمیشن ادا کرتے ہیں۔",
+      "q6": "میں ایپ کی زبان کیسے تبدیل کروں؟",
+      "a6": "پروفائل ٹیب → ترتیبات → زبان۔ 38 تعاون یافتہ زبانوں میں سے چنیں۔"
+    }
   },
   "wallet": {
     "title": "بٹوہ",
@@ -1265,7 +1395,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "زیادہ سے زیادہ مہمان: {{count}}"
-    }
+    },
+    "title": "| اپنا قیام بک کرو",
+    "shortTitle": "| کتاب",
+    "created": "بکنگ ہو گئی",
+    "createdBody": "| بکنگ بنائی گئی۔ آپ کو ادائیگی پر بھیج دیا جائے گا۔",
+    "error": "خرابی",
+    "failed": "| بکنگ ناکام",
+    "invalidDates": "غلط تاریخیں",
+    "invalidDatesBody": "YYYY-MM-DD فارمیٹ استعمال کریں",
+    "tooShort": "بہت مختصر",
+    "tooShortBody": "| بکنگ کم از کم 1 رات ہونی چاہیے",
+    "perNight": "SAR / رات",
+    "notesOptional": "نوٹس (اختیاری)",
+    "notesPlaceholder": "کوئی خاص درخواستیں...",
+    "totalLabel": "کل"
   },
   "market": {
     "title": "مارکیٹ بصیرت",
@@ -1285,7 +1429,10 @@
     "totalListings": "کل فہرستیں",
     "listingCount": "فعال فہرستیں",
     "viewMarket": "مارکیٹ دیکھیں",
-    "miniTrend": "مقامی مارکیٹ کا رجحان"
+    "miniTrend": "مقامی مارکیٹ کا رجحان",
+    "trendTitle": "قیمت کا رجحان (12 ماہ)",
+    "avgByDistrict": "ضلع کے لحاظ سے اوسط ﷼/m²",
+    "cityPlaceholder": "ریاض، جدہ..."
   },
   "errors": {
     "generic": "غیر متوقع خرابی پیش آگئی",
@@ -1453,5 +1600,12 @@
     "saved": "| محفوظ کیا گیا۔",
     "messages": "پیغامات",
     "profile": "| پروفائل"
+  },
+  "reviews": {
+    "title": "جائزے",
+    "user": "صارف",
+    "ownerReply": "مالک کا جواب:",
+    "empty": "ابھی تک کوئی جائزہ نہیں",
+    "beFirst": "جائزہ لینے والے پہلے فرد بنیں۔"
   }
 }

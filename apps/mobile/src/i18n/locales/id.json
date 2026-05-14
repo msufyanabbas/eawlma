@@ -110,7 +110,16 @@
     "typeRoom": "Kamar pribadi",
     "typeChalet": "pondok",
     "typeRestHouse": "Rumah peristirahatan",
-    "typeFarm": "Peternakan"
+    "typeFarm": "Peternakan",
+    "typeAll": "Semua",
+    "chalets": "chalet",
+    "farms": "Peternakan",
+    "restHouses": "Rumah Peristirahatan",
+    "hotelsLabel": "Hotel",
+    "bookNext": "Pesan penginapan Anda berikutnya",
+    "subtitleMix": "Chalet, peternakan, rumah peristirahatan dan hotel",
+    "noStays": "Tidak ada penginapan yang tersedia",
+    "tryAnother": "Coba kategori lain"
   },
   "hotels": {
     "title": "Hotel",
@@ -128,7 +137,10 @@
     "upTo500": "Hingga 500 SAR",
     "upTo1000": "Hingga 1.000 SAR",
     "upTo2500": "Hingga 2.500 SAR",
-    "hotelChip": "Hotel"
+    "hotelChip": "Hotel",
+    "bookStay": "Pesan penginapan di hotel",
+    "nightly": "Kamar hotel untuk menginap semalam",
+    "noHotels": "Tidak ada hotel yang tersedia"
   },
   "messages": {
     "startConversation": "Mulai percakapan",
@@ -281,7 +293,16 @@
     "loginBtn": "Masuk",
     "registerBtn": "Buat Akun",
     "fillAllFields": "Silakan isi semua kolom",
-    "invalidCredentials": "Email atau kata sandi tidak valid"
+    "invalidCredentials": "Email atau kata sandi tidak valid",
+    "fillRequired": "Silakan isi semua bidang yang wajib diisi",
+    "registerFailed": "Pendaftaran gagal, coba lagi",
+    "pwWeak": "Lemah",
+    "pwFair": "Adil",
+    "pwGood": "Bagus",
+    "pwStrong": "Kuat",
+    "firstNamePlaceholder": "Yohanes",
+    "lastNamePlaceholder": "Kelinci betina",
+    "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
     "required": "Bidang ini wajib diisi",
@@ -601,7 +622,10 @@
       "agents": "Agen terverifikasi",
       "cities": "Kota",
       "support": "Dukungan"
-    }
+    },
+    "appAbout": "Tentang aplikasi",
+    "appDescription": "Eawlma adalah platform real estate yang menghubungkan pembeli dan penyewa dengan agen terpercaya di seluruh Arab Saudi. Temukan properti sempurna Anda, pesan penginapan singkat, dan mengobrol langsung dengan agen.",
+    "website": "Situs web"
   },
   "contact": {
     "title": "Hubungi kami",
@@ -753,10 +777,7 @@
       "pinRequired": "Letakkan pin di peta untuk mengetahui lokasinya.",
       "imageRequired": "Setidaknya satu gambar diperlukan sebelum dipublikasikan."
     },
-    "transactionType": {
-      "sale": "Penjualan",
-      "rent": "Menyewa"
-    },
+    "transactionType": "Jenis Transaksi",
     "rentPeriod": {
       "daily": "Sehari-hari",
       "weekly": "Mingguan",
@@ -836,7 +857,74 @@
     },
     "amenitiesStep": {
       "hint": "Ketuk fasilitas yang ditawarkan properti ini. Kami akan menampilkannya sebagai filter di Penelusuran."
-    }
+    },
+    "stepProperty": "Tipe Properti",
+    "stepDetails": "Detail",
+    "stepLocation": "Lokasi",
+    "stepSpecs": "Spesifikasi",
+    "stepReview": "Tinjauan",
+    "stepCount": "Langkah {{saat ini}} dari {{total}}: {{title}}",
+    "addListing": "Tambahkan Daftar",
+    "forSale": "Untuk dijual",
+    "forRent": "Untuk Disewakan",
+    "propertyType": "Tipe Properti",
+    "apartment": "Apartemen",
+    "villa": "Vila",
+    "land": "Tanah",
+    "chalet": "pondok",
+    "farm": "Peternakan",
+    "restHouse": "Rumah Peristirahatan",
+    "office": "Kantor",
+    "shop": "Toko",
+    "titleArLabel": "Judul Arab *",
+    "titleEnLabel": "Judul Bahasa Inggris",
+    "priceLabel": "Harga (SAR) *",
+    "areaLabel": "Luas (m²)",
+    "descArLabel": "Deskripsi Arab",
+    "descPlaceholder": "Deskripsi detail properti...",
+    "city": "Kota *",
+    "district": "Daerah *",
+    "districtPlaceholder": "misalnya Al Olaya",
+    "bedroomsLabel": "Kamar tidur",
+    "bathroomsLabel": "Kamar mandi",
+    "reviewListing": "Tinjau Daftar",
+    "transaction": "Transaksi",
+    "title": "Judul",
+    "price": "Harga",
+    "bedrooms": "Kamar tidur",
+    "back": "Kembali",
+    "next": "Berikutnya",
+    "publish": "Publikasikan Daftar",
+    "errorTitle": "Kesalahan",
+    "successTitle": "Kesuksesan",
+    "fillRequired": "Silakan isi kolom yang wajib diisi",
+    "addedSuccess": "Daftar berhasil ditambahkan",
+    "ok": "OKE",
+    "somethingWrong": "Ada yang tidak beres",
+    "editTitle": "Sunting Daftar",
+    "missing": "Bidang yang hilang",
+    "fillBasic": "Silakan isi kolom yang wajib diisi",
+    "savedTitle": "Disimpan",
+    "savedBody": "Daftar diperbarui",
+    "updateFailed": "Gagal memperbarui",
+    "deleteTitle": "Hapus daftar",
+    "deleteBody": "Apa kamu yakin? Hal ini tidak dapat dibatalkan.",
+    "deleteFailed": "Gagal menghapus",
+    "delete": "Menghapus",
+    "deleteListing": "Hapus Daftar",
+    "titleArEdit": "Judul (Arab) *",
+    "titleEnEdit": "Judul (Bahasa Inggris)",
+    "transactionTypeShort": "Jenis Transaksi",
+    "priceShort": "Harga *",
+    "cityShort": "Kota",
+    "districtShort": "Daerah",
+    "bedsShort": "Tempat tidur",
+    "bathsShort": "Mandi",
+    "areaShort": "Daerah",
+    "description": "Keterangan",
+    "saveChanges": "Simpan Perubahan",
+    "sale": "Penjualan",
+    "rent": "Menyewa"
   },
   "subscription": {
     "title": "Langganan",
@@ -902,7 +990,13 @@
     "redirectingToAuthentica": "Mengalihkan ke Authentica.sa…",
     "otpComing": "Anda akan menerima OTP segera untuk menyelesaikan verifikasi.",
     "profileUpdated": "Profil diperbarui.",
-    "deleteLabel": "Hapus"
+    "deleteLabel": "Hapus",
+    "appearance": "Penampilan",
+    "languageRegion": "Bahasa & wilayah",
+    "pushNotifications": "Pemberitahuan push",
+    "emailNotifications": "Pemberitahuan email",
+    "privacyAccount": "Privasi & akun",
+    "areYouSure": "Apa kamu yakin?"
   },
   "inquiries": {
     "title": "Pertanyaan",
@@ -954,7 +1048,12 @@
       "adminResolutionHeading": "Resolusi admin",
       "closedFor": "Transaksi ditutup sebesar {{value}}",
       "closedOn": " pada {{date}}"
-    }
+    },
+    "received": "Diterima",
+    "sent": "Terkirim",
+    "single": "Pertanyaan",
+    "noInquiriesYet": "Belum ada pertanyaan",
+    "appearHere": "Pertanyaan Anda akan muncul di sini"
   },
   "commission": {
     "title": "Komisi",
@@ -975,7 +1074,8 @@
       "pending": "Tertunda",
       "confirmed": "Dikonfirmasi",
       "paid": "Dibayar",
-      "disputed": "Disengketakan"
+      "disputed": "Disengketakan",
+      "cancelled": "Dibatalkan"
     },
     "oath": {
       "dialogTitle": "Komitmen Komisi",
@@ -989,7 +1089,11 @@
       "decline": "Saya tidak setuju",
       "saving": "Penghematan...",
       "acceptCta": "Saya Menerima & Berkomitmen"
-    }
+    },
+    "dealValue": "Nilai kesepakatan",
+    "commission": "Komisi",
+    "fromTxn": "dari {{count}} transaksi",
+    "earningsHint": "Penghasilan akan muncul setelah penutupan transaksi"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} tertunda",
@@ -1070,7 +1174,22 @@
     "contactUs": "Hubungi kami",
     "noResultsTitle": "Tidak ada jawaban yang cocok",
     "noResultsBody": "Coba kata kunci berbeda, atau hubungi tim kami langsung.",
-    "respondsIn": "Tim kami merespons dalam 24 jam."
+    "respondsIn": "Tim kami merespons dalam 24 jam.",
+    "faqTitle": "Pertanyaan yang Sering Diajukan",
+    "faqs": {
+      "q1": "Bagaimana cara mencari properti?",
+      "a1": "Ketuk tab Pencarian di bagian bawah, lalu pilih filter yang sesuai dengan Anda (harga, jenis, kota).",
+      "q2": "Bagaimana cara menghubungi agen?",
+      "a2": "Buka daftar, lalu ketuk \"Kirim Permintaan\" atau gunakan tombol telepon/WhatsApp di kartu agen.",
+      "q3": "Bisakah saya memesan chalet dan peternakan?",
+      "a3": "Ya — buka daftar chalet / peternakan / rumah peristirahatan mana pun dan ketuk \"Pesan Sekarang\" untuk memilih tanggal.",
+      "q4": "Bagaimana cara menyimpan properti untuk nanti?",
+      "a4": "Ketuk ikon hati pada daftar. Item yang disimpan berada di bawah tab Tersimpan.",
+      "q5": "Apakah aplikasinya gratis?",
+      "a5": "Ya — gratis untuk pencari properti. Agen membayar komisi hanya setelah kesepakatan berhasil.",
+      "q6": "Bagaimana cara mengubah bahasa aplikasi?",
+      "a6": "Tab Profil → Pengaturan → Bahasa. Pilih dari 38 bahasa yang didukung."
+    }
   },
   "welcome": {
     "step1Title": "Ingin membeli atau menyewa?",
@@ -1257,7 +1376,21 @@
     },
     "calendar": {
       "maxGuestsHelper": "Tamu maksimal: {{count}}"
-    }
+    },
+    "title": "Pesan penginapan Anda",
+    "shortTitle": "Buku",
+    "created": "Pemesanan dibuat",
+    "createdBody": "Pemesanan dibuat. Anda akan diarahkan ke pembayaran.",
+    "error": "Kesalahan",
+    "failed": "Pemesanan gagal",
+    "invalidDates": "Tanggal tidak valid",
+    "invalidDatesBody": "Gunakan format YYYY-MM-DD",
+    "tooShort": "Terlalu pendek",
+    "tooShortBody": "Pemesanan harus minimal 1 malam",
+    "perNight": "SAR / malam",
+    "notesOptional": "Catatan (opsional)",
+    "notesPlaceholder": "Permintaan khusus apa pun...",
+    "totalLabel": "Total"
   },
   "market": {
     "title": "Wawasan pasar",
@@ -1277,7 +1410,10 @@
     "totalListings": "Total iklan",
     "listingCount": "Iklan aktif",
     "viewMarket": "Lihat pasar",
-    "miniTrend": "Tren pasar lokal"
+    "miniTrend": "Tren pasar lokal",
+    "trendTitle": "Tren harga (12 bulan)",
+    "avgByDistrict": "Rata-rata ﷼/m² menurut distrik",
+    "cityPlaceholder": "Riyadh, Jeddah..."
   },
   "errors": {
     "generic": "Terjadi kesalahan tak terduga",
@@ -1388,7 +1524,18 @@
     "verified": "Terverifikasi",
     "respondsUnder2h": "< 2 jam",
     "activeListingsCount": "{{count}} listingan aktif",
-    "viewProfile": "Lihat Profil"
+    "viewProfile": "Lihat Profil",
+    "agent": "Agen",
+    "listings": "Daftar",
+    "reviews": "Ulasan",
+    "rating": "Peringkat",
+    "noListings": "Tidak ada daftar",
+    "viewReviews": "Lihat Ulasan",
+    "call": "Panggilan",
+    "title": "Agen",
+    "listingsShort": "daftar",
+    "noAgentsFound": "Tidak ada agen yang ditemukan",
+    "tryLater": "Coba lagi nanti"
   },
   "myListings": {
     "countSelected": "{{hitungan}} dipilih",
@@ -1441,5 +1588,12 @@
     "saved": "Disimpan",
     "messages": "Pesan",
     "profile": "Profil"
+  },
+  "reviews": {
+    "title": "Ulasan",
+    "user": "Pengguna",
+    "ownerReply": "Balasan pemilik:",
+    "empty": "Belum ada ulasan",
+    "beFirst": "Jadilah orang pertama yang mengulas"
   }
 }

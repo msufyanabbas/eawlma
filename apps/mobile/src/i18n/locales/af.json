@@ -127,7 +127,8 @@
     "anyPrice": "Enige prys",
     "upTo500": "Tot 500 SAR",
     "upTo1000": "Tot 1 000 SAR",
-    "upTo2500": "Tot 2 500 SAR"
+    "upTo2500": "Tot 2 500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Begin die gesprek",
@@ -147,7 +148,14 @@
     "showOriginal": "Wys oorspronklik",
     "showTranslation": "Wys vertaling",
     "online": "Aanlyn",
-    "lastSeen": "Laaste gesien"
+    "lastSeen": "Laaste gesien",
+    "title": "Boodskappe",
+    "noMessages": "Nog geen boodskappe nie",
+    "noMessagesPrompt": "Kontak agente vanaf lysbladsye",
+    "signInPrompt": "Meld aan om jou boodskappe te sien",
+    "chat": "Klets",
+    "user": "Gebruiker",
+    "noMessagesShort": "Geen boodskappe"
   },
   "hosting": {
     "title": "Gasheerskap",
@@ -166,7 +174,8 @@
     "dailyRate": "Daaglikse tarief",
     "weeklyRate": "Weeklikse tarief",
     "guestReviews": "Gas-resensies",
-    "noReviews": "Nog geen resensies nie — sodra gaste uitteken en hul verblyf evalueer, sal hulle hier verskyn."
+    "noReviews": "Nog geen resensies nie — sodra gaste uitteken en hul verblyf evalueer, sal hulle hier verskyn.",
+    "guestFallback": "Gas"
   },
   "buyerDeals": {
     "title": "My transaksies",
@@ -216,7 +225,20 @@
     "favorAgent": "Bevoordeel agent — skep kommissie",
     "favorBuyer": "Bevoordeel koper — kanselleer transaksie",
     "cancelDeal": "Kanselleer transaksie — geen kommissie",
-    "resolutionHint": "Albei partye sal met hierdie aantekeninge in kennis gestel word."
+    "resolutionHint": "Albei partye sal met hierdie aantekeninge in kennis gestel word.",
+    "other": "Ander",
+    "buyerLower": "koper",
+    "agentLower": "agent",
+    "otherLower": "ander",
+    "anonymous": "Anoniem",
+    "resolveTitle": "Los dispuut op",
+    "resolveDesc": "Kies die uitkoms vir hierdie dispuut",
+    "favorAgentDesc": "Kommissie sal bevestig en aan agent",
+    "favorBuyerDesc": "betaal word Kommissie sal gekanselleer word",
+    "cancelDealDesc": "Handeling en kommissie is albei gekanselleer",
+    "adminNotes": "Admin notas (opsioneel)",
+    "resolvedSuccess": "Dispuut suksesvol opgelos",
+    "resolvedError": "Kon nie dispuut oplos nie"
   },
   "auth": {
     "login": "Teken in",
@@ -252,7 +274,14 @@
     "agreeTerms": "Deur 'n rekening te skep, stem jy in tot ons Bepalings en Privaatheidsbeleid",
     "loginSuccess": "Suksesvol ingeteken",
     "registerSuccess": "Rekening suksesvol geskep",
-    "logoutSuccess": "Uitgeteken"
+    "logoutSuccess": "Uitgeteken",
+    "role": "Rekeningtipe",
+    "buyer": "Koper",
+    "agent": "Agent",
+    "loginBtn": "Teken in",
+    "registerBtn": "Skep rekening",
+    "fillAllFields": "Vul asseblief alle velde",
+    "invalidCredentials": "in Ongeldige e-pos of wagwoord"
   },
   "validation": {
     "required": "Hierdie veld is verpligtend",
@@ -278,7 +307,7 @@
     "submit": "Dien in",
     "language": "Taal",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Engels",
     "back": "Terug",
     "next": "Volgende",
     "previous": "Vorige",
@@ -296,7 +325,14 @@
     "remove": "Verwyder",
     "actions": "Aksies",
     "active": "Aktief",
-    "inactive": "Onaktief"
+    "inactive": "Onaktief",
+    "loadMore": "Laai meer",
+    "errorOccurred": "'n Fout het voorgekom",
+    "yes": "Ja",
+    "no": "Nee",
+    "sar": "SAR",
+    "perNight": "per nag",
+    "perMonth": "per maand"
   },
   "listing": {
     "forSale": "Te koop",
@@ -363,7 +399,34 @@
       "expired": "Verval",
       "draft": "Konsep",
       "archived": "Geargiveer"
-    }
+    },
+    "sale": "Verkoop",
+    "rent": "Huur",
+    "bedrooms": "Beddens",
+    "bathrooms": "Baddens",
+    "propertyTypeLabel": "Tik",
+    "noDescription": "Geen beskrywing nie.",
+    "locationNotSpecified": "Ligging nie gespesifiseer nie",
+    "similarProperties": "Soortgelyke eienskappe",
+    "bookNow": "Bespreek nou",
+    "saveProperty": "Stoor eiendom",
+    "openInMaps": "Maak oop in Maps",
+    "viewOnMap": "Bekyk op kaart",
+    "tapToOpenMap": "Tik om kaart oop te maak",
+    "sendInquiryTitle": "Stuur navraag",
+    "yourMessage": "Jou boodskap",
+    "messagePlaceholder": "Skryf jou boodskap hier...",
+    "preferredContact": "Voorkeur kontak",
+    "phone": "Telefoon",
+    "email": "E-pos",
+    "sent": "Gestuur",
+    "sentBody": "Jou navraag is gestuur",
+    "messageTooShort": "Boodskap te kort",
+    "messageTooShortBody": "Boodskap moet ten minste 10 karakters",
+    "actionFailed": "wees Aksie het misluk",
+    "bookingDevTitle": "Bespreking",
+    "bookingDevBody": "Besprekingsvloei is in ontwikkeling. Kontak asseblief die agent.",
+    "removeFromSaved": "Verwyder hierdie eiendom van gestoor?"
   },
   "search": {
     "filters": "Filters",
@@ -399,7 +462,29 @@
       "cta": "Dien eiendomsversoek in"
     },
     "drawArea": "Teken 'n area",
-    "clearDrawing": "Maak tekening skoon"
+    "clearDrawing": "Maak tekening skoon",
+    "flexibleDates": "Ek is buigsaam met datums",
+    "flex1Month": "1 maand",
+    "shortTerm": "Korttermyn",
+    "title": "Soek",
+    "placeholder": "Soek eiendomme, stad...",
+    "noResultsHint": "Probeer verskillende filters",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Prysreeks",
+    "bedrooms": "Slaapkamers",
+    "sort": "Sorteer",
+    "any": "Enige",
+    "all": "Alles",
+    "sale": "Verkoop",
+    "rent": "Huur",
+    "apartment": "Apt",
+    "villa": "Villa",
+    "land": "Grond",
+    "chalet": "Chalet",
+    "farm": "Plaas",
+    "sortNewest": "Nuutste",
+    "sortPriceAsc": "Prys ↑",
+    "sortPriceDesc": "Prys ↓"
   },
   "home": {
     "heroTitle": "Vind jou perfekte tuiste",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} advertensies gevind",
     "clearFilters": "Maak alles skoon",
     "results": "resultate",
-    "loadMoreListings": "Laai meer advertensies"
+    "loadMoreListings": "Laai meer advertensies",
+    "latestListings": "Jongste inskrywings",
+    "featuredProperties": "Uitgestalte eiendomme",
+    "seeAll": "Sien alles",
+    "quickAccess": "Vinnige toegang",
+    "stays": "Bly",
+    "hotels": "Hotelle",
+    "market": "Mark",
+    "saved": "Gestoor",
+    "tagline": "Premier Real Estate",
+    "categories": {
+      "all": "Almal",
+      "sale": "Te Koop",
+      "rent": "Te Huur",
+      "chalets": "Chalets",
+      "villas": "Villas",
+      "apartments": "Woonstelle",
+      "land": "Grond"
+    }
   },
   "empty": {
     "noListings": "Nog geen advertensies nie",
@@ -551,15 +654,75 @@
     "recentActivity": "Onlangse aktiwiteit",
     "browseListings": "Blaai deur advertensies",
     "goToDashboard": "Gaan na paneelbord",
-    "profileUpdated": "Profiel opgedateer"
+    "profileUpdated": "Profiel opgedateer",
+    "title": "My rekening",
+    "signIn": "Teken in",
+    "welcome": "Welkom by Eawlma",
+    "signInPrompt": "Meld aan om toegang tot jou rekening te kry",
+    "createAccount": "Skep rekening",
+    "agentDashboard": "Agent Dashboard",
+    "myListings": "My inskrywings",
+    "addListing": "Voeg lysinskrywing by",
+    "wallet": "Beursie",
+    "commissions": "Kommissies",
+    "myBookings": "My besprekings",
+    "myInquiries": "My Navrae",
+    "inquiries": "Navrae",
+    "account": "Rekening",
+    "notifications": "Kennisgewings",
+    "language": "Taal",
+    "darkMode": "Donker modus",
+    "support": "Instellings en ondersteuning",
+    "settings": "Instellings",
+    "help": "Hulp & Gereelde Vrae",
+    "about": "Oor",
+    "signOut": "Teken uit",
+    "signOutConfirm": "Is jy seker jy wil afmeld?",
+    "member": "Lid",
+    "agentRole": "Agent",
+    "admin": "Admin",
+    "chooseLanguage": "Kies Taal",
+    "searchLanguage": "Soek...",
+    "popular": "Gewilde",
+    "allLanguages": "Alle tale",
+    "noLanguageMatch": "Geen ooreenstemmende taal"
   },
   "wizard": {
     "basicInfo": "Basiese inligting",
-    "location": "Ligging",
+    "location": {
+      "street": "Straat",
+      "buildingNumber": "Gebou nr.",
+      "postalCode": "Poskode",
+      "pinPrompt": "Los 'n speld om die presiese ligging te stel",
+      "pinLabel": "Speld",
+      "mapUnavailable": "Kaartspeldkieser is nie beskikbaar nie. Koördinate val terug na {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Geriewe",
-    "compliance": "Nakoming",
-    "review": "Hersiening",
+    "compliance": {
+      "permitNumber": "Permit / FAL nommer",
+      "regaNumber": "REGA-lisensienommer",
+      "permitExpiry": "Toestemming verval",
+      "preferredContact": "Voorkeur kontak",
+      "phone": "Telefoon",
+      "publicVisibility": "Publieke sigbaarheid (ontmerk slegs vir ongelyste / private skakel)"
+    },
+    "review": {
+      "summaryTitle": "Lysopsomming",
+      "enhanceWithAi": "Verbeter met AI",
+      "enhancing": "Verbeter ...",
+      "aiStubNotice": "KI het 'n stomp teruggestuur - stel OPENAI_API_KEY op die agterkant om die lewendige model te gebruik.",
+      "descriptionPreview": "Beskrywing voorskou",
+      "emptyDescription": "(leeg)",
+      "type": "Tik",
+      "titleLabel": "Titel",
+      "bedsBaths": "Slaapkamers / Badkamers",
+      "cityDistrict": "Stad / Distrik",
+      "coordinates": "Koördinate",
+      "permit": "Permit",
+      "regaLicense": "REGA-lisensie",
+      "visibility": "Sigbaarheid"
+    },
     "saveDraft": "Stoor konsep",
     "submit": "Dien in vir hersiening",
     "submitForReview": "Dien in vir hersiening",
@@ -576,7 +739,103 @@
       "bathrooms": "Badkamers",
       "parking": "Parkering",
       "yearBuilt": "Jaar gebou",
-      "furnishing": "Meublement"
+      "furnishing": "Meublement",
+      "rentPeriod": "Periode"
+    },
+    "editListing": "Wysig lysinskrywing",
+    "newListing": "Nuwe aanbieding",
+    "crumbNew": "Nuwe",
+    "validation": {
+      "titleRequired": "Voeg asseblief 'n titel in ten minste een taal by.",
+      "descriptionRequired": "Voeg asseblief 'n beskrywing in ten minste een taal by.",
+      "priceRequired": "Prys moet groter as nul wees.",
+      "cityRequired": "Stad word vereis.",
+      "pinRequired": "Los 'n speld op die kaart vir die ligging.",
+      "imageRequired": "Ten minste een prent word vereis voor publikasie."
+    },
+    "transactionType": {
+      "sale": "Verkoop",
+      "rent": "Huur"
+    },
+    "rentPeriod": {
+      "daily": "Daagliks",
+      "weekly": "Weeklikse",
+      "monthly": "Maandeliks",
+      "yearly": "Jaarlikse"
+    },
+    "furnishing": {
+      "unfurnished": "Ongemeubileerd",
+      "semi_furnished": "Semi-gemeubileerd",
+      "furnished": "Gemeubileerd"
+    },
+    "visibility": {
+      "public": "Publiek",
+      "unlisted": "Ongenoteerde"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Tuin",
+      "gym": "Gimnasium",
+      "elevator": "Hysbak",
+      "maidRoom": "Slaapkamer",
+      "driverRoom": "Bestuurderkamer",
+      "centralAc": "Sentrale AC",
+      "kitchenAppliances": "Kombuistoebehore",
+      "security": "24/7 sekuriteit",
+      "cornerUnit": "Hoek eenheid"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Parkering",
+      "breakfast": "Ontbyt",
+      "ac": "Lugversorging",
+      "kitchen": "Kombuis",
+      "tv": "TV",
+      "washer": "Wasmasjien",
+      "workspace": "Werkspasie",
+      "petsAllowed": "Troeteldiere toegelaat",
+      "smokingAllowed": "Rook toegelaat",
+      "wheelchairAccessible": "Rolstoeltoeganklik"
+    },
+    "shortTerm": {
+      "title": "Korttermynhuurbesonderhede",
+      "subtitle": "Gaste sal hierdie lysinskrywing deur die nag bespreek. Stel verblyfreëls, geriewe en prysvlakke op.",
+      "dailyRate": "Daaglikse koers (SAR)",
+      "weeklyRate": "Weeklikse tarief (SAR, opsioneel)",
+      "minimumStay": "Minimum verblyf (nagte)",
+      "maxGuests": "Maksimum gaste",
+      "checkIn": "Aanmelding",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Kansellasiebeleid",
+      "cancelFlexible": "Buigsaam — volle terugbetaling tot 24 uur voor",
+      "cancelModerate": "Matig — volle terugbetaling tot 5 dae voor",
+      "cancelStrict": "Streng — 50% terugbetaling tot 7 dae voor",
+      "starRating": "Stergradering",
+      "hotelName": "Hotelnaam",
+      "instantBook": "Kitsboek",
+      "instantBookHint": "Besprekings outomaties bevestig sonder jou goedkeuring. Deaktiveer om eers elke versoek te hersien.",
+      "amenities": "Geriewe",
+      "houseRules": "Huisreëls",
+      "houseRulesPlaceholder": "bv. Geen partytjies, stil ure na 22:00, geen rook binnenshuis..."
+    },
+    "mediaStep": {
+      "images": "Prente",
+      "imageDropHint": "Sleep en los foto's hier, of klik om te kies. JPEG / PNG / WebP tot 10 MB.",
+      "photoAlt": "Lysfoto",
+      "setCover": "Stel as omslag",
+      "cover": "Omslag",
+      "videoTour": "Videotoer",
+      "videoDropHint": "Sleep 'n MP4-lêer of klik om te kies. Maksimum 500 MB.",
+      "videoUploaded": "Video opgelaai — {{name}}",
+      "vrTitle": "🥽 Virtual Reality Tour Skakel",
+      "vrPlaceholder": "https://... (Matterport, Kuula, ens.)",
+      "modelTitle": "3D / AR-model (.glb of .gltf)",
+      "modelDropHint": "Laai 'n GLB/GLTF-model op om AR te aktiveer. Maksimum 50 MB.",
+      "modelUploaded": "Model opgelaai — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Tik op die geriewe wat hierdie eiendom bied. Ons sal hulle as filters op Search na vore bring."
     }
   },
   "subscription": {
@@ -717,6 +976,19 @@
       "confirmed": "Bevestig",
       "paid": "Betaal",
       "disputed": "Betwis"
+    },
+    "oath": {
+      "dialogTitle": "Kommissie-verbintenis",
+      "translatedOath": "Ek verbind my hiermee om die ooreengekome kommissie te betaal na voltooiing van hierdie eiendomstransaksie, en erken hierdie verantwoordelikheid voor God en die wet.",
+      "breakdownTitle": "Kommissie-verdeling",
+      "agentListingBreakdown": "Platformkommissie: <strong>0.5%</strong> van die transaksiewaarde, betaalbaar by suksesvolle verkoop of huursluiting.",
+      "buyerAgentCommission": "Agentkommissie: <strong>2,5%</strong> van die transaksiewaarde.",
+      "buyerPlatformFee": "Platformfooi: <strong>0.5%</strong> van die transaksiewaarde.",
+      "acceptError": "Kon nie jou aanvaarding aanteken nie",
+      "agreeCheckbox": "Ek stem in tot kommissiebepalings",
+      "decline": "Ek stem nie saam nie",
+      "saving": "Stoor tans...",
+      "acceptCta": "Ek aanvaar en verbind"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ Betaal",
       "failed": "Misluk",
       "rejected": "Verwerp"
-    }
+    },
+    "balance": "Huidige balans",
+    "withdraw": "Uitbetaling",
+    "noTransactionsHint": "Jou transaksies sal hier verskyn",
+    "sar": "SAR",
+    "inDevelopment": "Hierdie kenmerk is in ontwikkeling",
+    "depositTitle": "Deposito",
+    "payoutTitle": "Uitbetaling",
+    "withdrawal": "Onttrekking"
   },
   "nafath": {
     "loginWith": "Teken in met Nafath"
@@ -896,7 +1176,14 @@
     "contractNumber": "Kontrak #",
     "viewContract": "Bekyk kontrak",
     "signedThroughEjar": "Onderteken via Ejar",
-    "noContracts": "Nog geen huurkontrakte nie"
+    "noContracts": "Nog geen huurkontrakte nie",
+    "status": {
+      "draft": "Konsep",
+      "pending_signatures": "Hangende handtekeninge",
+      "active": "Aktief",
+      "expired": "Verval",
+      "cancelled": "Gekanselleer"
+    }
   },
   "dufaat": {
     "title": "Dufaat-paaiemente",
@@ -904,14 +1191,20 @@
     "applyNow": "Doen aansoek vir Dufaat",
     "calloutTitle": "Betaal huur maandeliks met Dufaat",
     "calloutBody": "Versprei {{amount}} SAR huur in 12 bekostigbare maandelikse paaiemente — Shariah-versoenbaar, geen rente nie.",
-    "plan": "Plan",
+    "plan": "Beplan",
     "monthlyPayment": "Maandelikse betaling",
     "totalAnnual": "Totale jaarlikse huur",
     "platformFee": "Platform-fooi",
     "nextPayment": "Volgende betaling",
     "installmentsPaid": "Paaiemente betaal",
     "payNow": "Betaal paaiement",
-    "noPlans": "Nog geen Dufaat-planne nie"
+    "noPlans": "Nog geen Dufaat-planne nie",
+    "status": {
+      "active": "Aktief",
+      "completed": "Voltooi",
+      "defaulted": "Verstek",
+      "cancelled": "Gekanselleer"
+    }
   },
   "booking": {
     "myBookings": "My besprekings",
@@ -961,6 +1254,9 @@
       "confirmed": "Bevestig",
       "cancelled": "Gekanselleer",
       "completed": "Voltooi"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Maksimum gaste: {{tel}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "Medium vertroue",
       "low": "Lae vertroue"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Soek volgens naam of spesialiteit",
+    "allCities": "Alle stede",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Geen agente pas by jou soektog nie",
+    "emptyBody": "Probeer 'n ander naam of stad.",
+    "agency": "Eawlma Eiendom",
+    "verified": "Geverifieer",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} aktiewe lyste",
+    "viewProfile": "Bekyk profiel"
+  },
+  "myListings": {
+    "countSelected": "{{count}} gekies",
+    "activateAll": "Aktiveer alles",
+    "deactivateAll": "Deaktiveer alle",
+    "deleteAll": "Vee alles uit",
+    "colViews": "Views",
+    "colInquiries": "Navrae",
+    "boostFeature": "Boost (kenmerk)",
+    "duplicate": "Duplikaat",
+    "deleteConfirmTitle": "Vee {{count}} lysinskrywing(s) uit?",
+    "deleteConfirmDescription": "Hierdie handeling vee die lysinskrywing sag uit – dit sal nie meer publiek verskyn nie."
+  },
+  "saved": {
+    "title": "Gestoor",
+    "empty": "Geen gestoorde eiendomme",
+    "emptyPrompt": "Stoor eiendomme waarvan jy hou deur op ❤️",
+    "signInPrompt": "te tik Meld aan om eiendomme te stoor",
+    "removeTitle": "Verwyder",
+    "removePrompt": "Verwyder hierdie eiendom van gestoor?"
+  },
+  "notifications": {
+    "title": "Kennisgewings",
+    "empty": "Geen kennisgewings",
+    "emptyHint": "Jou waarskuwings sal hier verskyn",
+    "markAllRead": "Merk alles as gelees",
+    "notification": "Kennisgewing"
+  },
+  "bookings": {
+    "title": "My besprekings",
+    "host": "As gasheer",
+    "guest": "As gas",
+    "noBookings": "Nog geen besprekings nie",
+    "noBookingsHint": "Jou besprekings sal hier verskyn",
+    "checkIn": "Aanmelding",
+    "checkOut": "Check-out",
+    "guests": "Gaste",
+    "nights": "nagte",
+    "total": "Totaal",
+    "status": {
+      "pending": "Hangende",
+      "confirmed": "Bevestig",
+      "cancelled": "Gekanselleer",
+      "completed": "Voltooi"
+    }
+  },
+  "tabs": {
+    "home": "Tuis",
+    "search": "Soek",
+    "saved": "Gestoor",
+    "messages": "Boodskappe",
+    "profile": "Profiel"
   }
 }

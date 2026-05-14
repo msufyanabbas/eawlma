@@ -127,7 +127,8 @@
     "anyPrice": "Orice preț",
     "upTo500": "Până la 500 SAR",
     "upTo1000": "Până la 1.000 SAR",
-    "upTo2500": "Până la 2.500 SAR"
+    "upTo2500": "Până la 2.500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Începe conversația",
@@ -147,7 +148,14 @@
     "showOriginal": "Arată originalul",
     "showTranslation": "Arată traducerea",
     "online": "Online",
-    "lastSeen": "Văzut ultima dată"
+    "lastSeen": "Văzut ultima dată",
+    "title": "Mesaje",
+    "noMessages": "Niciun mesaj încă",
+    "noMessagesPrompt": "Contactați agenții din paginile de listare",
+    "signInPrompt": "Conectați-vă pentru a vă vedea mesajele",
+    "chat": "Chat",
+    "user": "Utilizator",
+    "noMessagesShort": "Niciun mesaj"
   },
   "hosting": {
     "title": "Găzduire",
@@ -166,7 +174,8 @@
     "dailyRate": "Tarif zilnic",
     "weeklyRate": "Tarif săptămânal",
     "guestReviews": "Recenzii oaspeți",
-    "noReviews": "Nicio recenzie încă — odată ce oaspeții se cazează și își evaluează sejurul, vor apărea aici."
+    "noReviews": "Nicio recenzie încă — odată ce oaspeții se cazează și își evaluează sejurul, vor apărea aici.",
+    "guestFallback": "Oaspete"
   },
   "buyerDeals": {
     "title": "Tranzacțiile mele",
@@ -216,7 +225,20 @@
     "favorAgent": "În favoarea agentului — creează comision",
     "favorBuyer": "În favoarea cumpărătorului — anulează tranzacția",
     "cancelDeal": "Anulează tranzacția — fără comision",
-    "resolutionHint": "Ambele părți vor fi notificate cu aceste notițe."
+    "resolutionHint": "Ambele părți vor fi notificate cu aceste notițe.",
+    "other": "Altele",
+    "buyerLower": "cumpărător",
+    "agentLower": "agent",
+    "otherLower": "altele",
+    "anonymous": "Anonim",
+    "resolveTitle": "Rezolvați disputa",
+    "resolveDesc": "Alegeți rezultatul acestei dispute",
+    "favorAgentDesc": "Comisionul va fi confirmat și plătit agentului",
+    "favorBuyerDesc": "Comisionul va fi anulat",
+    "cancelDealDesc": "Ofertă și comision ambele anulate",
+    "adminNotes": "Note de administrator (opțional)",
+    "resolvedSuccess": "Disputa rezolvată cu succes",
+    "resolvedError": "Nu s-a rezolvat disputa"
   },
   "auth": {
     "login": "Conectare",
@@ -252,7 +274,14 @@
     "agreeTerms": "Prin crearea unui cont ești de acord cu Termenii și Politica de confidențialitate",
     "loginSuccess": "Conectat cu succes",
     "registerSuccess": "Cont creat cu succes",
-    "logoutSuccess": "Deconectat"
+    "logoutSuccess": "Deconectat",
+    "role": "Tip de cont",
+    "buyer": "Cumpărător",
+    "agent": "Agent",
+    "loginBtn": "Conectați-vă",
+    "registerBtn": "Creează cont",
+    "fillAllFields": "Vă rugăm să completați toate câmpurile",
+    "invalidCredentials": "E-mail sau parolă nevalidă"
   },
   "validation": {
     "required": "Acest câmp este obligatoriu",
@@ -278,7 +307,7 @@
     "submit": "Trimite",
     "language": "Limbă",
     "arabic": "العربية",
-    "english": "English",
+    "english": "engleză",
     "back": "Înapoi",
     "next": "Următorul",
     "previous": "Anterior",
@@ -296,7 +325,14 @@
     "remove": "Elimină",
     "actions": "Acțiuni",
     "active": "Activ",
-    "inactive": "Inactiv"
+    "inactive": "Inactiv",
+    "loadMore": "Încărcați mai multe",
+    "errorOccurred": "A apărut o eroare",
+    "yes": "Da",
+    "no": "Nu",
+    "sar": "SAR",
+    "perNight": "pe noapte",
+    "perMonth": "pe lună"
   },
   "listing": {
     "forSale": "De vânzare",
@@ -363,7 +399,34 @@
       "expired": "Expirat",
       "draft": "Ciornă",
       "archived": "Arhivat"
-    }
+    },
+    "sale": "Vanzare",
+    "rent": "Închiriere",
+    "bedrooms": "Paturi",
+    "bathrooms": "Băi",
+    "propertyTypeLabel": "Tip",
+    "noDescription": "Fără descriere.",
+    "locationNotSpecified": "Locația nu este specificată",
+    "similarProperties": "Proprietăți similare",
+    "bookNow": "Rezervă acum",
+    "saveProperty": "Salvați proprietate",
+    "openInMaps": "Deschide în Maps",
+    "viewOnMap": "Vizualizare pe hartă",
+    "tapToOpenMap": "Atingeți pentru a deschide harta",
+    "sendInquiryTitle": "Trimiteți întrebare",
+    "yourMessage": "Mesajul dvs.",
+    "messagePlaceholder": "Scrie mesajul tau aici...",
+    "preferredContact": "Contact preferat",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "sent": "Trimis",
+    "sentBody": "Întrebarea dvs. a fost trimisă",
+    "messageTooShort": "Mesaj prea scurt",
+    "messageTooShortBody": "Mesajul trebuie să aibă cel puțin 10 caractere",
+    "actionFailed": "Acțiunea eșuată",
+    "bookingDevTitle": "Rezervare",
+    "bookingDevBody": "Fluxul de rezervări este în curs de dezvoltare. Vă rugăm să contactați agentul.",
+    "removeFromSaved": "Eliminați această proprietate din salvate?"
   },
   "search": {
     "filters": "Filtre",
@@ -399,7 +462,29 @@
       "cta": "Trimite cerere de proprietate"
     },
     "drawArea": "Desenează o zonă",
-    "clearDrawing": "Șterge desenul"
+    "clearDrawing": "Șterge desenul",
+    "flexibleDates": "Sunt flexibil cu datele",
+    "flex1Month": "1 lună",
+    "shortTerm": "Pe termen scurt",
+    "title": "Căutare",
+    "placeholder": "Caută proprietăți, oraș...",
+    "noResultsHint": "Încercați diferite filtre",
+    "cityPlaceholder": "Riad, Jedda...",
+    "priceRange": "Gama de preț",
+    "bedrooms": "Dormitoare",
+    "sort": "Sortează",
+    "any": "Orice",
+    "all": "Toate",
+    "sale": "Vanzare",
+    "rent": "Chirie",
+    "apartment": "Apt",
+    "villa": "Vila",
+    "land": "Teren",
+    "chalet": "Cabana",
+    "farm": "Ferma",
+    "sortNewest": "Cele mai noi",
+    "sortPriceAsc": "Preț ↑",
+    "sortPriceDesc": "Preț ↓"
   },
   "home": {
     "heroTitle": "Găsește casa perfectă",
@@ -447,7 +532,25 @@
     "resultsCount": "{{count}} anunțuri găsite",
     "clearFilters": "Șterge tot",
     "results": "rezultate",
-    "loadMoreListings": "Încarcă mai multe anunțuri"
+    "loadMoreListings": "Încarcă mai multe anunțuri",
+    "latestListings": "Ultimele listări",
+    "featuredProperties": "Proprietăți prezentate",
+    "seeAll": "Vezi toate",
+    "quickAccess": "Acces rapid",
+    "stays": "Sejururi",
+    "hotels": "Hoteluri",
+    "market": "Piața",
+    "saved": "Salvat",
+    "tagline": "Premier Real Estate",
+    "categories": {
+      "all": "Toate",
+      "sale": "De Vanzare",
+      "rent": "De Inchiriere",
+      "chalets": "Cabana",
+      "villas": "Vile",
+      "apartments": "Apartamente",
+      "land": "Teren"
+    }
   },
   "empty": {
     "noListings": "Niciun anunț încă",
@@ -551,15 +654,75 @@
     "recentActivity": "Activitate recentă",
     "browseListings": "Răsfoiește anunțuri",
     "goToDashboard": "Mergi la panou",
-    "profileUpdated": "Profil actualizat"
+    "profileUpdated": "Profil actualizat",
+    "title": "Contul meu",
+    "signIn": "Conectați-vă",
+    "welcome": "Bun venit la Eawlma",
+    "signInPrompt": "Conectați-vă pentru a vă accesa contul",
+    "createAccount": "Creează cont",
+    "agentDashboard": "Tabloul de bord agent",
+    "myListings": "Anunturile mele",
+    "addListing": "Adăugați lista",
+    "wallet": "Portofel",
+    "commissions": "Comisioane",
+    "myBookings": "Rezervările mele",
+    "myInquiries": "Întrebările mele",
+    "inquiries": "Întrebări",
+    "account": "Cont",
+    "notifications": "Notificări",
+    "language": "Limba",
+    "darkMode": "Modul întunecat",
+    "support": "Setări și asistență",
+    "settings": "Setări",
+    "help": "Ajutor și întrebări frecvente",
+    "about": "Despre",
+    "signOut": "Deconectați-vă",
+    "signOutConfirm": "Sigur doriți să vă deconectați?",
+    "member": "Membru",
+    "agentRole": "Agent",
+    "admin": "Administrator",
+    "chooseLanguage": "Alegeți limba",
+    "searchLanguage": "Caută...",
+    "popular": "Popular",
+    "allLanguages": "Toate limbile",
+    "noLanguageMatch": "Nicio limbă care se potrivește"
   },
   "wizard": {
     "basicInfo": "Informații de bază",
-    "location": "Locație",
+    "location": {
+      "street": "Strada",
+      "buildingNumber": "Cladirea nr.",
+      "postalCode": "Cod poștal",
+      "pinPrompt": "Aruncă un pin pentru a seta locația exactă",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Selectorul de indicatori pentru hartă nu este disponibil. Coordonatele revin la {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Facilități",
-    "compliance": "Conformitate",
-    "review": "Revizuire",
+    "compliance": {
+      "permitNumber": "Permis / număr FAL",
+      "regaNumber": "Numărul licenței REGA",
+      "permitExpiry": "Expirarea permisului",
+      "preferredContact": "Contact preferat",
+      "phone": "Telefon",
+      "publicVisibility": "Vizibilitate publică (debifați numai pentru linkul nelistat/privat)"
+    },
+    "review": {
+      "summaryTitle": "Rezumatul listei",
+      "enhanceWithAi": "Îmbunătățiți cu AI",
+      "enhancing": "Îmbunătățirea…",
+      "aiStubNotice": "AI a returnat un stub — setați OPENAI_API_KEY pe backend pentru a utiliza modelul live.",
+      "descriptionPreview": "Previzualizare descriere",
+      "emptyDescription": "(gol)",
+      "type": "Tip",
+      "titleLabel": "Titlu",
+      "bedsBaths": "Dormitoare / Băi",
+      "cityDistrict": "Oraș / Sector",
+      "coordinates": "Coordonate",
+      "permit": "Permis",
+      "regaLicense": "Licență REGA",
+      "visibility": "Vizibilitate"
+    },
     "saveDraft": "Salvează ciorna",
     "submit": "Trimite pentru revizuire",
     "submitForReview": "Trimite pentru revizuire",
@@ -576,7 +739,103 @@
       "bathrooms": "Băi",
       "parking": "Parcare",
       "yearBuilt": "An construcție",
-      "furnishing": "Mobilare"
+      "furnishing": "Mobilare",
+      "rentPeriod": "Perioada"
+    },
+    "editListing": "Editați lista",
+    "newListing": "Listare nouă",
+    "crumbNew": "Nou",
+    "validation": {
+      "titleRequired": "Vă rugăm să adăugați un titlu în cel puțin o limbă.",
+      "descriptionRequired": "Vă rugăm să adăugați o descriere în cel puțin o limbă.",
+      "priceRequired": "Prețul trebuie să fie mai mare decât zero.",
+      "cityRequired": "Orașul este necesar.",
+      "pinRequired": "Aruncă un indicator pe hartă pentru locație.",
+      "imageRequired": "Este necesară cel puțin o imagine înainte de publicare."
+    },
+    "transactionType": {
+      "sale": "Vânzare",
+      "rent": "Închiriere"
+    },
+    "rentPeriod": {
+      "daily": "Zilnic",
+      "weekly": "Săptămânal",
+      "monthly": "Lunar",
+      "yearly": "Anual"
+    },
+    "furnishing": {
+      "unfurnished": "Nemobilat",
+      "semi_furnished": "Semimobilat",
+      "furnished": "Mobilat"
+    },
+    "visibility": {
+      "public": "Public",
+      "unlisted": "Nelistat"
+    },
+    "amenity": {
+      "pool": "Piscina",
+      "garden": "Grădină",
+      "gym": "Sală de sport",
+      "elevator": "Lift",
+      "maidRoom": "Cameră de serviciu",
+      "driverRoom": "Cameră șofer",
+      "centralAc": "AC central",
+      "kitchenAppliances": "Aparate de bucătărie",
+      "security": "Securitate 24/7",
+      "cornerUnit": "Unitate de colț"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Piscina",
+      "parking": "Parcare",
+      "breakfast": "Mic dejun",
+      "ac": "Aer condiționat",
+      "kitchen": "Bucătărie",
+      "tv": "TV",
+      "washer": "Saiba",
+      "workspace": "Spațiu de lucru",
+      "petsAllowed": "Se admit animale de companie",
+      "smokingAllowed": "Fumatul permis",
+      "wheelchairAccessible": "Accesibil cu scaunul cu rotile"
+    },
+    "shortTerm": {
+      "title": "Detalii de închiriere pe termen scurt",
+      "subtitle": "Oaspeții vor rezerva această listă până la noapte. Configurați regulile de ședere, facilitățile și nivelurile de prețuri.",
+      "dailyRate": "Tarif zilnic (SAR)",
+      "weeklyRate": "Tarif săptămânal (SAR, opțional)",
+      "minimumStay": "Sejur minim (nopti)",
+      "maxGuests": "Max invitați",
+      "checkIn": "Înregistrare",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Politica de anulare",
+      "cancelFlexible": "Flexibil — rambursare completă cu până la 24 de ore înainte",
+      "cancelModerate": "Moderat — rambursare completă cu până la 5 zile înainte",
+      "cancelStrict": "Strict — 50% rambursare cu până la 7 zile înainte",
+      "starRating": "Evaluare pe stele",
+      "hotelName": "Nume hotel",
+      "instantBook": "Carte instantanee",
+      "instantBookHint": "Rezervările se confirmă automat fără aprobarea dvs. Dezactivați pentru a examina mai întâi fiecare solicitare.",
+      "amenities": "Facilități",
+      "houseRules": "Regulile casei",
+      "houseRulesPlaceholder": "de ex. Fără petreceri, ore liniștite după ora 22, fumat interzis..."
+    },
+    "mediaStep": {
+      "images": "Imagini",
+      "imageDropHint": "Trageți și plasați fotografiile aici sau faceți clic pentru a alege. JPEG / PNG / WebP până la 10 MB.",
+      "photoAlt": "Fotografie de listare",
+      "setCover": "Setați ca copertă",
+      "cover": "Coperta",
+      "videoTour": "Tur video",
+      "videoDropHint": "Trageți un fișier MP4 sau faceți clic pentru a alege. Maxim 500 MB.",
+      "videoUploaded": "Video încărcat — {{name}}",
+      "vrTitle": "🥽 Link pentru turul de realitate virtuală",
+      "vrPlaceholder": "https://… (Matterport, Kuula etc.)",
+      "modelTitle": "Model 3D/AR (.glb sau .gltf)",
+      "modelDropHint": "Încărcați un model GLB/GLTF pentru a activa RA. Maxim 50 MB.",
+      "modelUploaded": "Model încărcat — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Atingeți facilitățile oferite de această proprietate. Le vom prezenta ca filtre în Căutare."
     }
   },
   "subscription": {
@@ -649,7 +908,7 @@
     "title": "Cereri",
     "noResults": "Nicio cerere nu se potrivește acestui filtru",
     "empty": "Nicio cerere nu se potrivește acestui filtru",
-    "lead": "Lead",
+    "lead": "Plumb",
     "listing": "Anunț",
     "contact": "Contact",
     "date": "Dată",
@@ -717,6 +976,19 @@
       "confirmed": "Confirmat",
       "paid": "Plătit",
       "disputed": "Disputat"
+    },
+    "oath": {
+      "dialogTitle": "Angajamentul Comisiei",
+      "translatedOath": "Prin prezenta, mă angajez să plătesc comisionul convenit la finalizarea acestei tranzacții imobiliare și recunosc această responsabilitate în fața lui Dumnezeu și a legii.",
+      "breakdownTitle": "Defalcarea comisiilor",
+      "agentListingBreakdown": "Comision platformă: <strong>0,5%</strong> din valoarea tranzacției, plătibil la vânzarea cu succes sau la încheierea contractului de închiriere.",
+      "buyerAgentCommission": "Comision agent: <strong>2,5%</strong> din valoarea tranzacției.",
+      "buyerPlatformFee": "Taxa platformei: <strong>0,5%</strong> din valoarea tranzacției.",
+      "acceptError": "Nu s-a putut înregistra acceptarea dvs",
+      "agreeCheckbox": "Sunt de acord cu termenii comisionului",
+      "decline": "Nu sunt de acord",
+      "saving": "Se salvează...",
+      "acceptCta": "Accept și mă angajez"
     }
   },
   "moderation": {
@@ -876,7 +1148,15 @@
       "paid": "✓ Plătit",
       "failed": "Eșuat",
       "rejected": "Respins"
-    }
+    },
+    "balance": "Sold curent",
+    "withdraw": "Plată",
+    "noTransactionsHint": "Tranzacțiile dvs. vor apărea aici",
+    "sar": "SAR",
+    "inDevelopment": "Această caracteristică este în dezvoltare",
+    "depositTitle": "Depozit",
+    "payoutTitle": "Plată",
+    "withdrawal": "Retragere"
   },
   "nafath": {
     "loginWith": "Conectează-te cu Nafath"
@@ -893,10 +1173,17 @@
     "tenantNationalId": "ID național chiriaș",
     "submit": "Trimite la Ejar",
     "contractCreated": "Contract trimis la Ejar",
-    "contractNumber": "Contract #",
+    "contractNumber": "Contractul #",
     "viewContract": "Vezi contractul",
     "signedThroughEjar": "Semnat prin Ejar",
-    "noContracts": "Niciun contract de închiriere încă"
+    "noContracts": "Niciun contract de închiriere încă",
+    "status": {
+      "draft": "Ciornă",
+      "pending_signatures": "Semnături în așteptare",
+      "active": "Activ",
+      "expired": "A expirat",
+      "cancelled": "Anulat"
+    }
   },
   "dufaat": {
     "title": "Rate Dufaat",
@@ -911,13 +1198,19 @@
     "nextPayment": "Următoarea plată",
     "installmentsPaid": "Rate plătite",
     "payNow": "Plătește rata",
-    "noPlans": "Niciun plan Dufaat încă"
+    "noPlans": "Niciun plan Dufaat încă",
+    "status": {
+      "active": "Activ",
+      "completed": "Finalizat",
+      "defaulted": "Implicit",
+      "cancelled": "Anulat"
+    }
   },
   "booking": {
     "myBookings": "Rezervările mele",
     "tabGuest": "Ca oaspete",
     "tabHost": "Ca gazdă",
-    "checkIn": "Check-in",
+    "checkIn": "Înregistrare",
     "checkOut": "Check-out",
     "night": "noapte",
     "nights": "nopți",
@@ -961,6 +1254,9 @@
       "confirmed": "Confirmat",
       "cancelled": "Anulat",
       "completed": "Finalizat"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Max invitați: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1375,71 @@
       "medium": "Încredere medie",
       "low": "Încredere scăzută"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Căutați după nume sau specialitate",
+    "allCities": "Toate orașele",
+    "cityRiyadh": "Riad",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Niciun agent nu corespunde căutării dvs.",
+    "emptyBody": "Încercați un alt nume sau alt oraș.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Verificat",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} înregistrări active",
+    "viewProfile": "Vezi profilul"
+  },
+  "myListings": {
+    "countSelected": "{{count}} selectat",
+    "activateAll": "Activați toate",
+    "deactivateAll": "Dezactivați toate",
+    "deleteAll": "Ștergeți toate",
+    "colViews": "Vizualizări",
+    "colInquiries": "Întrebări",
+    "boostFeature": "Boost (funcție)",
+    "duplicate": "Duplicat",
+    "deleteConfirmTitle": "Ștergeți {{count}} înregistrări?",
+    "deleteConfirmDescription": "Această acțiune șterge ușor lista - nu va mai apărea public."
+  },
+  "saved": {
+    "title": "Salvat",
+    "empty": "Nicio proprietate salvată",
+    "emptyPrompt": "Salvați proprietățile care vă plac atingând ❤️",
+    "signInPrompt": "Conectați-vă pentru a salva proprietăți",
+    "removeTitle": "Eliminați",
+    "removePrompt": "Eliminați această proprietate din salvate?"
+  },
+  "notifications": {
+    "title": "Notificări",
+    "empty": "Fără notificări",
+    "emptyHint": "Alertele dvs. vor apărea aici",
+    "markAllRead": "Marcați totul ca citit",
+    "notification": "Notificare"
+  },
+  "bookings": {
+    "title": "Rezervările mele",
+    "host": "Ca gazdă",
+    "guest": "Ca invitat",
+    "noBookings": "Nicio rezervare inca",
+    "noBookingsHint": "Rezervările dvs. vor apărea aici",
+    "checkIn": "Înregistrare",
+    "checkOut": "Check-out",
+    "guests": "Invitați",
+    "nights": "nopți",
+    "total": "Total",
+    "status": {
+      "pending": "În așteptare",
+      "confirmed": "Confirmat",
+      "cancelled": "Anulat",
+      "completed": "Finalizat"
+    }
+  },
+  "tabs": {
+    "home": "Acasă",
+    "search": "Căutare",
+    "saved": "Salvat",
+    "messages": "Mesaje",
+    "profile": "Profil"
   }
 }
