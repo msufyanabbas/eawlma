@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useQueries, useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -19,7 +20,8 @@ import UserAvatar from '../components/UserAvatar';
 // non-agents) and we render a generic fallback for them.
 export default function MessagesScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, isRTL, textAlign } = useRTL();
+  const { isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const { isAuthenticated, user } = useAuthStore();
   const currentUserId = user?.id;
 
@@ -81,12 +83,12 @@ export default function MessagesScreen({ navigation }: any) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
         <View style={[styles.header, { backgroundColor: colors.primary }]}>
-          <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{isAr ? 'الرسائل' : 'Messages'}</Text>
+          <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{t('messages.title')}</Text>
         </View>
         <EmptyState
           icon="chatbubbles-outline"
-          title={isAr ? 'سجل دخولك لرؤية رسائلك' : 'Sign in to see your messages'}
-          actionLabel={isAr ? 'تسجيل الدخول' : 'Sign In'}
+          title={t('messages.signInPrompt')}
+          actionLabel={t('auth.loginBtn')}
           onAction={() => navigation.navigate('Login')}
         />
       </SafeAreaView>
@@ -96,7 +98,7 @@ export default function MessagesScreen({ navigation }: any) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
-        <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{isAr ? 'الرسائل' : 'Messages'}</Text>
+        <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{t('messages.title')}</Text>
       </View>
       <FlatList
         data={conversations}
@@ -114,12 +116,12 @@ export default function MessagesScreen({ navigation }: any) {
           const other = getOtherParty(item);
           const displayName = other
             ? `${other.firstName || ''} ${other.lastName || ''}`.trim()
-            : (isAr ? 'مستخدم' : 'User');
+            : t('messages.user');
           const preview =
             item.lastMessagePreview ||
             item.lastMessage?.body ||
             item.lastMessage?.content ||
-            (isAr ? 'لا توجد رسائل' : 'No messages');
+            t('messages.noMessagesShort');
           return (
             <TouchableOpacity
               style={[
@@ -157,8 +159,8 @@ export default function MessagesScreen({ navigation }: any) {
         ListEmptyComponent={
           <EmptyState
             icon="chatbubbles-outline"
-            title={isAr ? 'لا توجد رسائل' : 'No messages yet'}
-            subtitle={isAr ? 'تواصل مع الوكلاء عبر صفحة العقار' : 'Contact agents from listing pages'}
+            title={t('messages.noMessages')}
+            subtitle={t('messages.noMessagesPrompt')}
           />
         }
       />

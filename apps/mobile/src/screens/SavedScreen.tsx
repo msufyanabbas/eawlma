@@ -5,6 +5,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -16,7 +17,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function SavedScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr } = useRTL();
+  useRTL();
+  const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
   const qc = useQueryClient();
 
@@ -42,12 +44,12 @@ export default function SavedScreen({ navigation }: any) {
 
   const confirmRemove = (item: any) => {
     Alert.alert(
-      isAr ? 'إزالة' : 'Remove',
-      isAr ? 'هل تريد إزالة هذا العقار من المحفوظات؟' : 'Remove this property from saved?',
+      t('saved.removeTitle'),
+      t('saved.removePrompt'),
       [
-        { text: isAr ? 'إلغاء' : 'Cancel', style: 'cancel' },
+        { text: t('common.cancel'), style: 'cancel' },
         {
-          text: isAr ? 'إزالة' : 'Remove',
+          text: t('saved.removeTitle'),
           style: 'destructive',
           onPress: () => unsave.mutate(item.id),
         },
@@ -60,13 +62,13 @@ export default function SavedScreen({ navigation }: any) {
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
         <View style={{ backgroundColor: colors.primary, padding: SIZES.lg }}>
           <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>
-            {isAr ? 'المحفوظات' : 'Saved'}
+            {t('saved.title')}
           </Text>
         </View>
         <EmptyState
           icon="heart-outline"
-          title={isAr ? 'سجل دخولك لحفظ العقارات' : 'Sign in to save properties'}
-          actionLabel={isAr ? 'تسجيل الدخول' : 'Sign In'}
+          title={t('saved.signInPrompt')}
+          actionLabel={t('auth.loginBtn')}
           onAction={() => navigation.navigate('Login')}
         />
       </SafeAreaView>
@@ -77,7 +79,7 @@ export default function SavedScreen({ navigation }: any) {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
       <View style={{ backgroundColor: colors.primary, padding: SIZES.lg }}>
         <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>
-          {isAr ? 'المحفوظات' : 'Saved'}
+          {t('saved.title')}
         </Text>
       </View>
       {isLoading ? (
@@ -123,10 +125,8 @@ export default function SavedScreen({ navigation }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="heart-outline"
-              title={isAr ? 'لا توجد عقارات محفوظة' : 'No saved properties'}
-              subtitle={isAr
-                ? 'احفظ العقارات التي تعجبك بالضغط على ❤️'
-                : 'Save properties you like by tapping ❤️'}
+              title={t('saved.empty')}
+              subtitle={t('saved.emptyPrompt')}
             />
           }
         />

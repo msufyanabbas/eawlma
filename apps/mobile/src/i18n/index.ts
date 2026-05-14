@@ -91,11 +91,6 @@ const resources = {
 
 export const SUPPORTED_LOCALES = Object.keys(resources);
 
-/** True if switching from `from` to `to` flips the document direction. */
-export function isRTLLang(code: string): boolean {
-  return RTL_LANGUAGES.includes(code);
-}
-
 export async function initI18n(): Promise<void> {
   const stored = await AsyncStorage.getItem(LANGUAGE_KEY);
   const lang = stored && SUPPORTED_LOCALES.includes(stored) ? stored : 'ar';

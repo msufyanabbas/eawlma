@@ -6,6 +6,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
@@ -18,19 +19,20 @@ import { listingCoverUrl } from '../utils/listingImages';
 
 const { width: W } = Dimensions.get('window');
 
-const CATEGORIES = [
-  { labelAr: 'الكل', labelEn: 'All', value: '' },
-  { labelAr: 'للبيع', labelEn: 'Sale', value: 'sale' },
-  { labelAr: 'للإيجار', labelEn: 'Rent', value: 'rent' },
-  { labelAr: 'شاليهات', labelEn: 'Chalets', value: 'chalet' },
-  { labelAr: 'فلل', labelEn: 'Villas', value: 'villa' },
-  { labelAr: 'شقق', labelEn: 'Apts', value: 'apartment' },
-  { labelAr: 'أراضي', labelEn: 'Land', value: 'land' },
+const CATEGORY_VALUES: { key: string; value: string }[] = [
+  { key: 'all',        value: '' },
+  { key: 'sale',       value: 'sale' },
+  { key: 'rent',       value: 'rent' },
+  { key: 'chalets',    value: 'chalet' },
+  { key: 'villas',     value: 'villa' },
+  { key: 'apartments', value: 'apartment' },
+  { key: 'land',       value: 'land' },
 ];
 
 export default function HomeScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign } = useRTL();
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('');
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
@@ -68,9 +70,9 @@ export default function HomeScreen({ navigation }: any) {
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
         <View style={[styles.headerTop, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
           <View>
-            <Text style={[TYPOGRAPHY.h1, { color: '#FFF', textAlign }]}>عالمة</Text>
+            <Text style={[TYPOGRAPHY.h1, { color: '#FFF', textAlign }]}>{isAr ? 'عالمة' : 'Eawlma'}</Text>
             <Text style={[TYPOGRAPHY.small, { color: 'rgba(255,255,255,0.75)', marginTop: 2, textAlign }]}>
-              {isAr ? 'منصة العقارات الأولى' : 'Premier Real Estate'}
+              {t('home.tagline')}
             </Text>
           </View>
           <TouchableOpacity
@@ -87,7 +89,7 @@ export default function HomeScreen({ navigation }: any) {
         >
           <Ionicons name="search" size={18} color={colors.textSecondary} />
           <Text style={[TYPOGRAPHY.body, { flex: 1, color: colors.textSecondary, textAlign }]}>
-            {isAr ? 'ابحث عن عقار، حي، مدينة...' : 'Search properties...'}
+            {t('home.searchPlaceholder')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -98,11 +100,11 @@ export default function HomeScreen({ navigation }: any) {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.categoriesContent}
         >
-          {CATEGORIES.map(cat => {
+          {CATEGORY_VALUES.map(cat => {
             const active = activeCategory === cat.value;
             return (
               <TouchableOpacity
-                key={cat.value}
+                key={cat.value || 'all'}
                 style={[
                   styles.categoryChip,
                   { borderColor: colors.border, backgroundColor: colors.surface },
@@ -114,7 +116,7 @@ export default function HomeScreen({ navigation }: any) {
                   TYPOGRAPHY.small,
                   { color: active ? '#FFF' : colors.textSecondary, fontWeight: '600' },
                 ]}>
-                  {isAr ? cat.labelAr : cat.labelEn}
+                  {t(`home.categories.${cat.key}`)}
                 </Text>
               </TouchableOpacity>
             );
@@ -140,31 +142,31 @@ export default function HomeScreen({ navigation }: any) {
         >
           <QuickTile
             icon="bed-outline"
-            label={isAr ? 'الإقامات' : 'Stays'}
+            label={t('home.stays')}
             colors={colors}
             onPress={() => navigation.navigate('Stays')}
           />
           <QuickTile
             icon="business-outline"
-            label={isAr ? 'الفنادق' : 'Hotels'}
+            label={t('home.hotels')}
             colors={colors}
             onPress={() => navigation.navigate('Hotels')}
           />
           <QuickTile
             icon="people-outline"
-            label={isAr ? 'الوكلاء' : 'Agents'}
+            label={t('home.agents')}
             colors={colors}
             onPress={() => navigation.navigate('AgentsList')}
           />
           <QuickTile
             icon="trending-up-outline"
-            label={isAr ? 'السوق' : 'Market'}
+            label={t('home.market')}
             colors={colors}
             onPress={() => navigation.navigate('Market')}
           />
           <QuickTile
             icon="heart-outline"
-            label={isAr ? 'محفوظات' : 'Saved'}
+            label={t('home.saved')}
             colors={colors}
             onPress={() => navigation.navigate('Saved')}
           />
@@ -174,11 +176,11 @@ export default function HomeScreen({ navigation }: any) {
           <View style={styles.section}>
             <View style={[styles.sectionHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
               <Text style={[TYPOGRAPHY.h4, { color: colors.text, textAlign }]}>
-                {isAr ? '⭐ مميزة' : '⭐ Featured'}
+                {t('home.featuredProperties')}
               </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Search')}>
                 <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
-                  {isAr ? 'عرض الكل' : 'See all'}
+                  {t('home.seeAll')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -202,13 +204,13 @@ export default function HomeScreen({ navigation }: any) {
                     <View style={[styles.featuredBadge, { backgroundColor: colors.secondary }]}>
                       <Text style={[TYPOGRAPHY.caption, { color: '#FFF', fontWeight: '800' }]}>
                         {item.transactionType === 'rent'
-                          ? (isAr ? 'إيجار' : 'Rent')
-                          : (isAr ? 'بيع' : 'Sale')}
+                          ? t('listing.rent')
+                          : t('listing.sale')}
                       </Text>
                     </View>
                     <View>
                       <Text style={[TYPOGRAPHY.h4, { color: '#FFF' }]}>
-                        {Number(item.price || 0).toLocaleString()} {isAr ? 'ر.س' : 'SAR'}
+                        {Number(item.price || 0).toLocaleString()} {t('listing.currency')}
                       </Text>
                       <Text
                         style={[TYPOGRAPHY.body, { color: 'rgba(255,255,255,0.9)', marginTop: 2 }]}
@@ -233,11 +235,11 @@ export default function HomeScreen({ navigation }: any) {
         <View style={styles.section}>
           <View style={[styles.sectionHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
             <Text style={[TYPOGRAPHY.h4, { color: colors.text, textAlign }]}>
-              {isAr ? '🏠 أحدث العقارات' : '🏠 Latest Listings'}
+              {t('home.latestListings')}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Search')}>
               <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
-                {isAr ? 'عرض الكل' : 'See all'}
+                {t('home.seeAll')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -247,7 +249,7 @@ export default function HomeScreen({ navigation }: any) {
           ) : listings.length === 0 ? (
             <EmptyState
               icon="home-outline"
-              title={isAr ? 'لا توجد عقارات' : 'No listings found'}
+              title={t('search.noResults')}
             />
           ) : (
             <View style={styles.grid}>

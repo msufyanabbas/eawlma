@@ -1,19 +1,18 @@
 import React, { useMemo, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
-  TouchableOpacity, Switch, Modal, FlatList, TextInput, Alert,
+  TouchableOpacity, Switch, Modal, FlatList, TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
-import * as Updates from 'expo-updates';
-import i18n from '../i18n';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
 import { useUIStore } from '../store/ui.store';
 import { authApi } from '../api';
-import { changeLanguage, isRTLLang } from '../i18n';
+import { changeLanguage } from '../i18n';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 
 type LangEntry = { code: string; name: string; flag: string; popular?: boolean };
@@ -63,6 +62,7 @@ const ALL_LANGUAGES: LangEntry[] = [
 export default function ProfileScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign, lang } = useRTL();
+  const { t } = useTranslation();
   const { user, isAuthenticated, logout } = useAuthStore();
   const { isDarkMode, toggleDarkMode } = useUIStore();
   const [showLangPicker, setShowLangPicker] = useState(false);
@@ -80,34 +80,8 @@ export default function ProfileScreen({ navigation }: any) {
   };
 
   const handleLanguageChange = async (code: string) => {
-    // Capture the previous language BEFORE we flip it — otherwise the RTL
-    // comparison below always reads the new language and returns false.
-    const prevLang = i18n.language;
     await changeLanguage(code);
     setShowLangPicker(false);
-
-    // Switching between LTR and RTL flips I18nManager.forceRTL, but React
-    // Native only re-lays-out the existing trees on a full JS reload.
-    if (isRTLLang(prevLang) !== isRTLLang(code)) {
-      Alert.alert(
-        isAr ? 'إعادة التشغيل' : 'Restart Required',
-        isAr
-          ? 'يجب إعادة تشغيل التطبيق لتطبيق تغيير اتجاه الواجهة'
-          : 'The app needs to restart to apply the new layout direction',
-        [
-          {
-            text: isAr ? 'لاحقاً' : 'Later',
-            style: 'cancel',
-          },
-          {
-            text: isAr ? 'إعادة التشغيل الآن' : 'Restart Now',
-            onPress: () => {
-              Updates.reloadAsync().catch(() => undefined);
-            },
-          },
-        ],
-      );
-    }
   };
 
   const currentLangName = ALL_LANGUAGES.find(l => l.code === lang)?.name;
@@ -116,23 +90,23 @@ export default function ProfileScreen({ navigation }: any) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
         <View style={[styles.header, { backgroundColor: colors.primary }]}>
-          <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{isAr ? 'حسابي' : 'Profile'}</Text>
+          <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{t('profile.title')}</Text>
         </View>
         <ScrollView>
           <View style={styles.guestBox}>
             <Ionicons name="person-circle-outline" size={80} color={colors.border} />
             <Text style={[TYPOGRAPHY.h3, { color: colors.text, marginTop: SIZES.lg, textAlign: 'center' }]}>
-              {isAr ? 'مرحباً بك في عالمة' : 'Welcome to Eawlma'}
+              {t('profile.welcome')}
             </Text>
             <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, textAlign: 'center', marginTop: SIZES.sm, marginBottom: SIZES.xl }]}>
-              {isAr ? 'سجل دخولك للوصول إلى حسابك' : 'Sign in to access your account'}
+              {t('profile.signInPrompt')}
             </Text>
             <TouchableOpacity
               style={[styles.loginBtn, { backgroundColor: colors.primary }]}
               onPress={() => navigation.navigate('Login')}
             >
               <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
-                {isAr ? 'تسجيل الدخول' : 'Sign In'}
+                {t('profile.signIn')}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -140,23 +114,23 @@ export default function ProfileScreen({ navigation }: any) {
               onPress={() => navigation.navigate('Register')}
             >
               <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary, fontSize: SIZES.bodyLg }]}>
-                {isAr ? 'إنشاء حساب جديد' : 'Create Account'}
+                {t('profile.createAccount')}
               </Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.settingsSection}>
-            <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'الإعدادات' : 'Settings'}</SectionLabel>
+            <SectionLabel colors={colors} textAlign={textAlign}>{t('profile.settings')}</SectionLabel>
             <SettingRow
               icon="language-outline"
-              label={isAr ? 'اللغة' : 'Language'}
+              label={t('profile.language')}
               value={currentLangName}
               onPress={() => setShowLangPicker(true)}
               colors={colors}
               isRTL={isRTL}
               textAlign={textAlign}
             />
-            <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} isAr={isAr} isRTL={isRTL} textAlign={textAlign} />
+            <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} darkModeLabel={t('profile.darkMode')} isRTL={isRTL} textAlign={textAlign} />
           </View>
         </ScrollView>
         <LangPickerModal
@@ -164,7 +138,7 @@ export default function ProfileScreen({ navigation }: any) {
           onClose={() => setShowLangPicker(false)}
           onSelect={handleLanguageChange}
           currentLang={lang}
-          isAr={isAr}
+          t={t}
           isRTL={isRTL}
           textAlign={textAlign}
           colors={colors}
@@ -179,7 +153,7 @@ export default function ProfileScreen({ navigation }: any) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
-        <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{isAr ? 'حسابي' : 'My Account'}</Text>
+        <Text style={[TYPOGRAPHY.h3, { color: '#FFF' }]}>{t('profile.title')}</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={[
@@ -213,9 +187,7 @@ export default function ProfileScreen({ navigation }: any) {
               },
             ]}>
               <Text style={[TYPOGRAPHY.small, { color: colors.primary, fontWeight: '700' }]}>
-                {isAdmin ? (isAr ? 'مدير النظام' : 'Admin') :
-                 isAgent ? (isAr ? 'وكيل عقاري' : 'Agent') :
-                 (isAr ? 'عضو' : 'Member')}
+                {isAdmin ? t('profile.admin') : isAgent ? t('profile.agentRole') : t('profile.member')}
               </Text>
             </View>
           </View>
@@ -223,31 +195,31 @@ export default function ProfileScreen({ navigation }: any) {
 
         {isAgent && (
           <View style={styles.menuSection}>
-            <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'لوحة الوكيل' : 'Agent Dashboard'}</SectionLabel>
-            <SettingRow icon="home-outline" label={isAr ? 'إعلاناتي' : 'My Listings'} onPress={() => navigation.navigate('MyListings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-            <SettingRow icon="add-circle-outline" label={isAr ? 'إضافة إعلان' : 'Add Listing'} onPress={() => navigation.navigate('AddListing')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-            <SettingRow icon="mail-unread-outline" label={isAr ? 'الاستفسارات' : 'Inquiries'} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-            <SettingRow icon="wallet-outline" label={isAr ? 'المحفظة' : 'Wallet'} onPress={() => navigation.navigate('Wallet')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-            <SettingRow icon="receipt-outline" label={isAr ? 'العمولات' : 'Commissions'} onPress={() => navigation.navigate('Commissions')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SectionLabel colors={colors} textAlign={textAlign}>{t('profile.agentDashboard')}</SectionLabel>
+            <SettingRow icon="home-outline" label={t('profile.myListings')} onPress={() => navigation.navigate('MyListings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="add-circle-outline" label={t('profile.addListing')} onPress={() => navigation.navigate('AddListing')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="mail-unread-outline" label={t('profile.inquiries')} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="wallet-outline" label={t('profile.wallet')} onPress={() => navigation.navigate('Wallet')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="receipt-outline" label={t('profile.commissions')} onPress={() => navigation.navigate('Commissions')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           </View>
         )}
 
         <View style={styles.menuSection}>
-          <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'الحساب' : 'Account'}</SectionLabel>
+          <SectionLabel colors={colors} textAlign={textAlign}>{t('profile.account')}</SectionLabel>
           {!isAgent && (
-            <SettingRow icon="mail-unread-outline" label={isAr ? 'استفساراتي' : 'My Inquiries'} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+            <SettingRow icon="mail-unread-outline" label={t('profile.myInquiries')} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           )}
-          <SettingRow icon="calendar-outline" label={isAr ? 'حجوزاتي' : 'My Bookings'} onPress={() => navigation.navigate('Bookings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-          <SettingRow icon="notifications-outline" label={isAr ? 'الإشعارات' : 'Notifications'} onPress={() => navigation.navigate('Notifications')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-          <SettingRow icon="language-outline" label={isAr ? 'اللغة' : 'Language'} value={currentLangName} onPress={() => setShowLangPicker(true)} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-          <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} isAr={isAr} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="calendar-outline" label={t('profile.myBookings')} onPress={() => navigation.navigate('Bookings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="notifications-outline" label={t('profile.notifications')} onPress={() => navigation.navigate('Notifications')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="language-outline" label={t('profile.language')} value={currentLangName} onPress={() => setShowLangPicker(true)} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} darkModeLabel={t('profile.darkMode')} isRTL={isRTL} textAlign={textAlign} />
         </View>
 
         <View style={styles.menuSection}>
-          <SectionLabel colors={colors} textAlign={textAlign}>{isAr ? 'الإعدادات والدعم' : 'Settings & Support'}</SectionLabel>
-          <SettingRow icon="settings-outline" label={isAr ? 'الإعدادات' : 'Settings'} onPress={() => navigation.navigate('Settings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-          <SettingRow icon="help-circle-outline" label={isAr ? 'المساعدة' : 'Help & FAQ'} onPress={() => navigation.navigate('Help')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
-          <SettingRow icon="information-circle-outline" label={isAr ? 'حول' : 'About'} onPress={() => navigation.navigate('About')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SectionLabel colors={colors} textAlign={textAlign}>{t('profile.support')}</SectionLabel>
+          <SettingRow icon="settings-outline" label={t('profile.settings')} onPress={() => navigation.navigate('Settings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="help-circle-outline" label={t('profile.help')} onPress={() => navigation.navigate('Help')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="information-circle-outline" label={t('profile.about')} onPress={() => navigation.navigate('About')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
         </View>
 
         <TouchableOpacity
@@ -263,7 +235,7 @@ export default function ProfileScreen({ navigation }: any) {
         >
           <Ionicons name="log-out-outline" size={20} color={colors.error} />
           <Text style={[TYPOGRAPHY.bodyBold, { color: colors.error, fontSize: SIZES.bodyLg }]}>
-            {isAr ? 'تسجيل الخروج' : 'Sign Out'}
+            {t('profile.signOut')}
           </Text>
         </TouchableOpacity>
 
@@ -275,7 +247,7 @@ export default function ProfileScreen({ navigation }: any) {
         onClose={() => setShowLangPicker(false)}
         onSelect={handleLanguageChange}
         currentLang={lang}
-        isAr={isAr}
+        t={t}
         isRTL={isRTL}
         textAlign={textAlign}
         colors={colors}
@@ -342,7 +314,7 @@ function SettingRow({ icon, label, value, onPress, colors, isRTL, textAlign }: a
   );
 }
 
-function DarkModeRow({ isDarkMode, toggleDarkMode, colors, isAr, isRTL, textAlign }: any) {
+function DarkModeRow({ isDarkMode, toggleDarkMode, colors, darkModeLabel, isRTL, textAlign }: any) {
   return (
     <View style={[
       styles.settingRow,
@@ -363,7 +335,7 @@ function DarkModeRow({ isDarkMode, toggleDarkMode, colors, isAr, isRTL, textAlig
           <Ionicons name="moon-outline" size={20} color={colors.primary} />
         </View>
         <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}>
-          {isAr ? 'الوضع الليلي' : 'Dark Mode'}
+          {darkModeLabel}
         </Text>
       </View>
       <Switch
@@ -376,7 +348,7 @@ function DarkModeRow({ isDarkMode, toggleDarkMode, colors, isAr, isRTL, textAlig
   );
 }
 
-function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL, textAlign, colors }: any) {
+function LangPickerModal({ visible, onClose, onSelect, currentLang, t, isRTL, textAlign, colors }: any) {
   const [search, setSearch] = useState('');
 
   const { popular, others } = useMemo(() => {
@@ -426,7 +398,7 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL,
           },
         ]}>
           <Text style={[TYPOGRAPHY.h3, { color: colors.text }]}>
-            {isAr ? 'اختر اللغة' : 'Choose Language'}
+            {t('profile.chooseLanguage')}
           </Text>
           <TouchableOpacity onPress={onClose}>
             <Ionicons name="close" size={24} color={colors.text} />
@@ -445,7 +417,7 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL,
           <TextInput
             value={search}
             onChangeText={setSearch}
-            placeholder={isAr ? 'بحث...' : 'Search...'}
+            placeholder={t('profile.searchLanguage')}
             placeholderTextColor={colors.textSecondary}
             style={[
               { flex: 1, color: colors.text, fontSize: SIZES.body, textAlign, marginHorizontal: SIZES.sm },
@@ -462,7 +434,7 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL,
               {popular.length > 0 && (
                 <>
                   <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign }]}>
-                    {isAr ? 'الأكثر شيوعاً' : 'Popular'}
+                    {t('profile.popular')}
                   </Text>
                   {popular.map(renderRow)}
                 </>
@@ -470,7 +442,7 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL,
               {others.length > 0 && (
                 <>
                   <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign, marginTop: SIZES.md }]}>
-                    {isAr ? 'جميع اللغات' : 'All Languages'}
+                    {t('profile.allLanguages')}
                   </Text>
                   {others.map(renderRow)}
                 </>
@@ -480,7 +452,7 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, isAr, isRTL,
                   TYPOGRAPHY.body,
                   { color: colors.textSecondary, textAlign: 'center', padding: SIZES.xl },
                 ]}>
-                  {isAr ? 'لا توجد لغة بهذا الاسم' : 'No matching language'}
+                  {t('profile.noLanguageMatch')}
                 </Text>
               )}
             </View>

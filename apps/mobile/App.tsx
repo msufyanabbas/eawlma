@@ -88,11 +88,11 @@ function MainTabs() {
   // ternary only handled Arabic vs English and silently fell back to English
   // for the other 36. The translation keys already ship in every locale JSON.
   const tabs = [
-    { name: 'Home',     component: HomeScreen,     label: t('nav.home'),          icon: 'home' },
-    { name: 'Search',   component: SearchScreen,   label: t('nav.search'),        icon: 'search' },
-    { name: 'Saved',    component: SavedScreen,    label: t('nav.favorites'),     icon: 'heart' },
-    { name: 'Messages', component: MessagesScreen, label: t('nav.messages'),      icon: 'chatbubbles' },
-    { name: 'Profile',  component: ProfileScreen,  label: t('nav.profile'),       icon: 'person' },
+    { name: 'Home',     component: HomeScreen,     label: t('tabs.home'),     icon: 'home' },
+    { name: 'Search',   component: SearchScreen,   label: t('tabs.search'),   icon: 'search' },
+    { name: 'Saved',    component: SavedScreen,    label: t('tabs.saved'),    icon: 'heart' },
+    { name: 'Messages', component: MessagesScreen, label: t('tabs.messages'), icon: 'chatbubbles' },
+    { name: 'Profile',  component: ProfileScreen,  label: t('tabs.profile'),  icon: 'person' },
   ];
 
   // React Navigation bottom tabs don't auto-flip for RTL. Reverse the order

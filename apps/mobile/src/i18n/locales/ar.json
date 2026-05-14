@@ -162,7 +162,14 @@
     "showOriginal": "عرض النص الأصلي",
     "showTranslation": "عرض الترجمة",
     "online": "متصل",
-    "lastSeen": "آخر ظهور"
+    "lastSeen": "آخر ظهور",
+    "title": "الرسائل",
+    "noMessages": "لا توجد رسائل",
+    "noMessagesPrompt": "تواصل مع الوكلاء عبر صفحة العقار",
+    "signInPrompt": "سجل دخولك لرؤية رسائلك",
+    "chat": "محادثة",
+    "user": "مستخدم",
+    "noMessagesShort": "لا توجد رسائل"
   },
   "hosting": {
     "title": "الاستضافة",
@@ -281,7 +288,14 @@
     "agreeTerms": "بإنشاء الحساب فإنك توافق على الشروط وسياسة الخصوصية",
     "loginSuccess": "تم تسجيل الدخول بنجاح",
     "registerSuccess": "تم إنشاء حسابك بنجاح",
-    "logoutSuccess": "تم تسجيل الخروج"
+    "logoutSuccess": "تم تسجيل الخروج",
+    "role": "نوع الحساب",
+    "buyer": "مشتري",
+    "agent": "وكيل",
+    "loginBtn": "دخول",
+    "registerBtn": "إنشاء حساب",
+    "fillAllFields": "يرجى تعبئة جميع الحقول",
+    "invalidCredentials": "بيانات الدخول غير صحيحة"
   },
   "validation": {
     "required": "هذا الحقل مطلوب",
@@ -326,7 +340,13 @@
     "actions": "إجراءات",
     "active": "نشط",
     "inactive": "غير نشط",
-    "loadMore": "تحميل المزيد"
+    "loadMore": "تحميل المزيد",
+    "errorOccurred": "حدث خطأ",
+    "yes": "نعم",
+    "no": "لا",
+    "sar": "ر.س",
+    "perNight": "في الليلة",
+    "perMonth": "شهرياً"
   },
   "listing": {
     "forSale": "للبيع",
@@ -393,7 +413,34 @@
       "expired": "منتهي",
       "draft": "مسودة",
       "archived": "مؤرشف"
-    }
+    },
+    "sale": "بيع",
+    "rent": "إيجار",
+    "bedrooms": "غرف",
+    "bathrooms": "حمامات",
+    "propertyTypeLabel": "النوع",
+    "noDescription": "لا يوجد وصف.",
+    "locationNotSpecified": "الموقع غير محدد",
+    "similarProperties": "إعلانات مشابهة",
+    "bookNow": "احجز الآن",
+    "saveProperty": "حفظ العقار",
+    "openInMaps": "فتح في الخرائط",
+    "viewOnMap": "عرض على الخريطة",
+    "tapToOpenMap": "اضغط لفتح الخريطة",
+    "sendInquiryTitle": "إرسال استفسار",
+    "yourMessage": "رسالتك",
+    "messagePlaceholder": "اكتب رسالتك هنا...",
+    "preferredContact": "طريقة التواصل المفضلة",
+    "phone": "هاتف",
+    "email": "بريد",
+    "sent": "تم الإرسال",
+    "sentBody": "تم إرسال استفسارك بنجاح",
+    "messageTooShort": "الرسالة قصيرة",
+    "messageTooShortBody": "يجب أن تكون الرسالة 10 أحرف على الأقل",
+    "actionFailed": "فشلت العملية",
+    "bookingDevTitle": "الحجز",
+    "bookingDevBody": "صفحة الحجز قيد التطوير. حتى ذلك الحين تواصل مع الوكيل مباشرة.",
+    "removeFromSaved": "هل تريد إزالة هذا العقار من المحفوظات؟"
   },
   "search": {
     "filters": "الفلاتر",
@@ -432,7 +479,26 @@
     "clearDrawing": "مسح الرسم",
     "flexibleDates": "تواريخي مرنة",
     "flex1Month": "شهر واحد",
-    "shortTerm": "قصيرة المدى"
+    "shortTerm": "قصيرة المدى",
+    "title": "بحث",
+    "placeholder": "ابحث...",
+    "noResultsHint": "جرّب فلاتر مختلفة",
+    "cityPlaceholder": "الرياض، جدة...",
+    "priceRange": "نطاق السعر",
+    "bedrooms": "غرف النوم",
+    "sort": "الترتيب",
+    "any": "الكل",
+    "all": "الكل",
+    "sale": "للبيع",
+    "rent": "للإيجار",
+    "apartment": "شقة",
+    "villa": "فيلا",
+    "land": "أرض",
+    "chalet": "شاليه",
+    "farm": "مزرعة",
+    "sortNewest": "الأحدث",
+    "sortPriceAsc": "السعر ↑",
+    "sortPriceDesc": "السعر ↓"
   },
   "home": {
     "heroTitle": "اعثر على منزلك المثالي",
@@ -480,7 +546,25 @@
     "resultsCount": "{{count}} نتيجة",
     "clearFilters": "مسح الفلاتر",
     "results": "نتيجة",
-    "loadMoreListings": "عرض المزيد"
+    "loadMoreListings": "عرض المزيد",
+    "latestListings": "🏠 أحدث العقارات",
+    "featuredProperties": "⭐ عقارات مميزة",
+    "seeAll": "عرض الكل",
+    "quickAccess": "وصول سريع",
+    "stays": "الإقامات",
+    "hotels": "فنادق",
+    "market": "السوق",
+    "saved": "المحفوظات",
+    "tagline": "منصة العقارات الأولى",
+    "categories": {
+      "all": "الكل",
+      "sale": "للبيع",
+      "rent": "للإيجار",
+      "chalets": "شاليهات",
+      "villas": "فلل",
+      "apartments": "شقق",
+      "land": "أراضي"
+    }
   },
   "empty": {
     "noListings": "لا توجد إعلانات بعد",
@@ -584,15 +668,75 @@
     "recentActivity": "النشاط الأخير",
     "browseListings": "تصفح العقارات",
     "goToDashboard": "لوحة التحكم",
-    "profileUpdated": "تم تحديث الملف"
+    "profileUpdated": "تم تحديث الملف",
+    "title": "حسابي",
+    "signIn": "تسجيل الدخول",
+    "welcome": "مرحباً بك في عالمة",
+    "signInPrompt": "سجل دخولك للوصول إلى حسابك",
+    "createAccount": "إنشاء حساب جديد",
+    "agentDashboard": "لوحة الوكيل",
+    "myListings": "إعلاناتي",
+    "addListing": "إضافة إعلان",
+    "wallet": "المحفظة",
+    "commissions": "العمولات",
+    "myBookings": "حجوزاتي",
+    "myInquiries": "استفساراتي",
+    "inquiries": "الاستفسارات",
+    "account": "الحساب",
+    "notifications": "الإشعارات",
+    "language": "اللغة",
+    "darkMode": "الوضع الليلي",
+    "support": "الإعدادات والدعم",
+    "settings": "الإعدادات",
+    "help": "المساعدة",
+    "about": "حول",
+    "signOut": "تسجيل الخروج",
+    "signOutConfirm": "هل تريد تسجيل الخروج؟",
+    "member": "عضو",
+    "agentRole": "وكيل عقاري",
+    "admin": "مدير النظام",
+    "chooseLanguage": "اختر اللغة",
+    "searchLanguage": "بحث...",
+    "popular": "الأكثر شيوعاً",
+    "allLanguages": "جميع اللغات",
+    "noLanguageMatch": "لا توجد لغة بهذا الاسم"
   },
   "wizard": {
     "basicInfo": "المعلومات الأساسية",
-    "location": "الموقع",
+    "location": {
+      "street": "الشارع",
+      "buildingNumber": "رقم المبنى",
+      "postalCode": "الرمز البريدي",
+      "pinPrompt": "حدد الموقع الدقيق على الخريطة",
+      "pinLabel": "الإحداثيات",
+      "mapUnavailable": "اختيار الموقع على الخريطة غير متاح. الإحداثيات الافتراضية: {{lat}}, {{lng}}."
+    },
     "media": "الصور والوسائط",
     "amenities": "المرافق",
-    "compliance": "الامتثال",
-    "review": "مراجعة ونشر",
+    "compliance": {
+      "permitNumber": "رقم التصريح / FAL",
+      "regaNumber": "رقم رخصة الهيئة العامة للعقار (REGA)",
+      "permitExpiry": "تاريخ انتهاء التصريح",
+      "preferredContact": "وسيلة التواصل المفضلة",
+      "phone": "هاتف",
+      "publicVisibility": "إظهار للعموم (ألغِ التحديد للوصول عبر رابط خاص فقط)"
+    },
+    "review": {
+      "summaryTitle": "ملخص الإعلان",
+      "enhanceWithAi": "تحسين بالذكاء الاصطناعي",
+      "enhancing": "جارٍ التحسين…",
+      "aiStubNotice": "تم إرجاع نموذج تجريبي — اضبط OPENAI_API_KEY في الخادم لاستخدام النموذج الفعلي.",
+      "descriptionPreview": "معاينة الوصف",
+      "emptyDescription": "(فارغ)",
+      "type": "النوع",
+      "titleLabel": "العنوان",
+      "bedsBaths": "غرف النوم / دورات المياه",
+      "cityDistrict": "المدينة / الحي",
+      "coordinates": "الإحداثيات",
+      "permit": "التصريح",
+      "regaLicense": "رخصة REGA",
+      "visibility": "الإظهار"
+    },
     "saveDraft": "حفظ كمسودة",
     "submit": "تقديم للمراجعة",
     "submitForReview": "تقديم للمراجعة",
@@ -689,14 +833,6 @@
       "houseRules": "قواعد المنزل",
       "houseRulesPlaceholder": "مثل: ممنوع الحفلات، ساعات الهدوء بعد العاشرة، ممنوع التدخين..."
     },
-    "location": {
-      "street": "الشارع",
-      "buildingNumber": "رقم المبنى",
-      "postalCode": "الرمز البريدي",
-      "pinPrompt": "حدد الموقع الدقيق على الخريطة",
-      "pinLabel": "الإحداثيات",
-      "mapUnavailable": "اختيار الموقع على الخريطة غير متاح. الإحداثيات الافتراضية: {{lat}}, {{lng}}."
-    },
     "mediaStep": {
       "images": "الصور",
       "imageDropHint": "اسحب وأفلت الصور هنا، أو انقر للاختيار. JPEG / PNG / WebP حتى 10 ميغابايت.",
@@ -714,30 +850,6 @@
     },
     "amenitiesStep": {
       "hint": "اضغط على المرافق التي يوفرها العقار. ستظهر كفلاتر في صفحة البحث."
-    },
-    "compliance": {
-      "permitNumber": "رقم التصريح / FAL",
-      "regaNumber": "رقم رخصة الهيئة العامة للعقار (REGA)",
-      "permitExpiry": "تاريخ انتهاء التصريح",
-      "preferredContact": "وسيلة التواصل المفضلة",
-      "phone": "هاتف",
-      "publicVisibility": "إظهار للعموم (ألغِ التحديد للوصول عبر رابط خاص فقط)"
-    },
-    "review": {
-      "summaryTitle": "ملخص الإعلان",
-      "enhanceWithAi": "تحسين بالذكاء الاصطناعي",
-      "enhancing": "جارٍ التحسين…",
-      "aiStubNotice": "تم إرجاع نموذج تجريبي — اضبط OPENAI_API_KEY في الخادم لاستخدام النموذج الفعلي.",
-      "descriptionPreview": "معاينة الوصف",
-      "emptyDescription": "(فارغ)",
-      "type": "النوع",
-      "titleLabel": "العنوان",
-      "bedsBaths": "غرف النوم / دورات المياه",
-      "cityDistrict": "المدينة / الحي",
-      "coordinates": "الإحداثيات",
-      "permit": "التصريح",
-      "regaLicense": "رخصة REGA",
-      "visibility": "الإظهار"
     }
   },
   "subscription": {
@@ -1050,7 +1162,15 @@
       "paid": "✓ تم الدفع",
       "failed": "فشل",
       "rejected": "مرفوض"
-    }
+    },
+    "balance": "الرصيد الحالي",
+    "withdraw": "سحب",
+    "noTransactionsHint": "ستظهر معاملاتك هنا",
+    "sar": "ر.س",
+    "inDevelopment": "هذه الخاصية قيد التطوير",
+    "depositTitle": "إيداع",
+    "payoutTitle": "سحب",
+    "withdrawal": "سحب"
   },
   "nafath": {
     "loginWith": "تسجيل الدخول عبر نفاذ"
@@ -1281,5 +1401,45 @@
       "medium": "ثقة متوسطة",
       "low": "ثقة منخفضة"
     }
+  },
+  "saved": {
+    "title": "المحفوظات",
+    "empty": "لا توجد عقارات محفوظة",
+    "emptyPrompt": "احفظ العقارات التي تعجبك بالضغط على ❤️",
+    "signInPrompt": "سجل دخولك لحفظ العقارات",
+    "removeTitle": "إزالة",
+    "removePrompt": "هل تريد إزالة هذا العقار من المحفوظات؟"
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "empty": "لا توجد إشعارات",
+    "emptyHint": "ستظهر إشعاراتك هنا",
+    "markAllRead": "تحديد الكل كمقروء",
+    "notification": "إشعار"
+  },
+  "bookings": {
+    "title": "حجوزاتي",
+    "host": "كمضيف",
+    "guest": "كضيف",
+    "noBookings": "لا توجد حجوزات",
+    "noBookingsHint": "ستظهر حجوزاتك هنا",
+    "checkIn": "تاريخ الوصول",
+    "checkOut": "تاريخ المغادرة",
+    "guests": "عدد الضيوف",
+    "nights": "ليلة",
+    "total": "الإجمالي",
+    "status": {
+      "pending": "قيد الانتظار",
+      "confirmed": "مؤكد",
+      "cancelled": "ملغى",
+      "completed": "مكتمل"
+    }
+  },
+  "tabs": {
+    "home": "الرئيسية",
+    "search": "بحث",
+    "saved": "محفوظات",
+    "messages": "رسائل",
+    "profile": "حسابي"
   }
 }

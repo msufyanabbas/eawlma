@@ -6,6 +6,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
@@ -15,29 +16,38 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 
 const TRANSACTION_TYPES = [
-  { labelAr: 'الكل', labelEn: 'All', value: '' },
-  { labelAr: 'للبيع', labelEn: 'Sale', value: 'sale' },
-  { labelAr: 'للإيجار', labelEn: 'Rent', value: 'rent' },
+  { key: 'all',  value: '' },
+  { key: 'sale', value: 'sale' },
+  { key: 'rent', value: 'rent' },
 ];
 
 const PROPERTY_TYPES = [
-  { labelAr: 'الكل', labelEn: 'All', value: '' },
-  { labelAr: 'شقة', labelEn: 'Apt', value: 'apartment' },
-  { labelAr: 'فيلا', labelEn: 'Villa', value: 'villa' },
-  { labelAr: 'أرض', labelEn: 'Land', value: 'land' },
-  { labelAr: 'شاليه', labelEn: 'Chalet', value: 'chalet' },
-  { labelAr: 'مزرعة', labelEn: 'Farm', value: 'farm' },
+  { key: 'all',       value: '' },
+  { key: 'apartment', value: 'apartment' },
+  { key: 'villa',     value: 'villa' },
+  { key: 'land',      value: 'land' },
+  { key: 'chalet',    value: 'chalet' },
+  { key: 'farm',      value: 'farm' },
 ];
 
 const SORT_OPTIONS = [
-  { labelAr: 'الأحدث', labelEn: 'Newest', value: 'newest' },
-  { labelAr: 'السعر ↑', labelEn: 'Price ↑', value: 'price_asc' },
-  { labelAr: 'السعر ↓', labelEn: 'Price ↓', value: 'price_desc' },
+  { key: 'sortNewest',   value: 'newest' },
+  { key: 'sortPriceAsc', value: 'price_asc' },
+  { key: 'sortPriceDesc',value: 'price_desc' },
+];
+
+const BEDROOM_OPTIONS = [
+  { key: 'any', value: '' },
+  { key: '1+', value: '1' },
+  { key: '2+', value: '2' },
+  { key: '3+', value: '3' },
+  { key: '4+', value: '4' },
 ];
 
 export default function SearchScreen({ navigation, route }: any) {
   const { colors } = useTheme();
-  const { isAr, textAlign } = useRTL();
+  const { textAlign } = useRTL();
+  const { t } = useTranslation();
   const [query, setQuery] = useState(route?.params?.query || '');
   const [txType, setTxType] = useState('');
   const [propType, setPropType] = useState('');
@@ -83,7 +93,7 @@ export default function SearchScreen({ navigation, route }: any) {
             <Ionicons name="search" size={18} color={colors.textSecondary} />
             <TextInput
               style={[styles.searchInput, { color: colors.text, textAlign }]}
-              placeholder={isAr ? 'ابحث...' : 'Search...'}
+              placeholder={t('search.placeholder')}
               placeholderTextColor={colors.textSecondary}
               value={query}
               onChangeText={setQuery}
@@ -114,26 +124,26 @@ export default function SearchScreen({ navigation, route }: any) {
 
         {showFilters && (
           <View style={styles.filtersBox}>
-            <FilterLabel colors={colors} textAlign={textAlign}>{isAr ? 'النوع' : 'Type'}</FilterLabel>
-            <Chips items={TRANSACTION_TYPES} value={txType} onChange={setTxType} isAr={isAr} colors={colors} />
+            <FilterLabel colors={colors} textAlign={textAlign}>{t('search.type')}</FilterLabel>
+            <Chips items={TRANSACTION_TYPES} ns="search" value={txType} onChange={setTxType} t={t} colors={colors} />
 
-            <FilterLabel colors={colors} textAlign={textAlign}>{isAr ? 'نوع العقار' : 'Property'}</FilterLabel>
-            <Chips items={PROPERTY_TYPES} value={propType} onChange={setPropType} isAr={isAr} colors={colors} />
+            <FilterLabel colors={colors} textAlign={textAlign}>{t('search.propertyType')}</FilterLabel>
+            <Chips items={PROPERTY_TYPES} ns="search" value={propType} onChange={setPropType} t={t} colors={colors} />
 
-            <FilterLabel colors={colors} textAlign={textAlign}>{isAr ? 'المدينة' : 'City'}</FilterLabel>
+            <FilterLabel colors={colors} textAlign={textAlign}>{t('search.city')}</FilterLabel>
             <TextInput
               style={[styles.cityInput, { backgroundColor: colors.background, color: colors.text, borderColor: colors.border, textAlign }]}
-              placeholder={isAr ? 'الرياض، جدة...' : 'Riyadh, Jeddah...'}
+              placeholder={t('search.cityPlaceholder')}
               placeholderTextColor={colors.textSecondary}
               value={city}
               onChangeText={setCity}
             />
 
-            <FilterLabel colors={colors} textAlign={textAlign}>{isAr ? 'نطاق السعر' : 'Price Range'}</FilterLabel>
+            <FilterLabel colors={colors} textAlign={textAlign}>{t('search.priceRange')}</FilterLabel>
             <View style={{ flexDirection: 'row', gap: SIZES.sm }}>
               <TextInput
                 style={[styles.cityInput, { flex: 1, backgroundColor: colors.background, color: colors.text, borderColor: colors.border, textAlign }]}
-                placeholder={isAr ? 'الحد الأدنى' : 'Min'}
+                placeholder={t('search.minPrice')}
                 placeholderTextColor={colors.textSecondary}
                 value={minPrice}
                 onChangeText={setMinPrice}
@@ -141,7 +151,7 @@ export default function SearchScreen({ navigation, route }: any) {
               />
               <TextInput
                 style={[styles.cityInput, { flex: 1, backgroundColor: colors.background, color: colors.text, borderColor: colors.border, textAlign }]}
-                placeholder={isAr ? 'الحد الأقصى' : 'Max'}
+                placeholder={t('search.maxPrice')}
                 placeholderTextColor={colors.textSecondary}
                 value={maxPrice}
                 onChangeText={setMaxPrice}
@@ -149,30 +159,18 @@ export default function SearchScreen({ navigation, route }: any) {
               />
             </View>
 
-            <FilterLabel colors={colors} textAlign={textAlign}>{isAr ? 'غرف النوم' : 'Bedrooms'}</FilterLabel>
-            <Chips
-              items={[
-                { labelAr: 'الكل', labelEn: 'Any', value: '' },
-                { labelAr: '1+', labelEn: '1+', value: '1' },
-                { labelAr: '2+', labelEn: '2+', value: '2' },
-                { labelAr: '3+', labelEn: '3+', value: '3' },
-                { labelAr: '4+', labelEn: '4+', value: '4' },
-              ]}
-              value={bedrooms}
-              onChange={setBedrooms}
-              isAr={isAr}
-              colors={colors}
-            />
+            <FilterLabel colors={colors} textAlign={textAlign}>{t('search.bedrooms')}</FilterLabel>
+            <Chips items={BEDROOM_OPTIONS} ns="search" value={bedrooms} onChange={setBedrooms} t={t} colors={colors} />
 
-            <FilterLabel colors={colors} textAlign={textAlign}>{isAr ? 'الترتيب' : 'Sort'}</FilterLabel>
-            <Chips items={SORT_OPTIONS} value={sort} onChange={setSort} isAr={isAr} colors={colors} />
+            <FilterLabel colors={colors} textAlign={textAlign}>{t('search.sort')}</FilterLabel>
+            <Chips items={SORT_OPTIONS} ns="search" value={sort} onChange={setSort} t={t} colors={colors} />
 
             <TouchableOpacity
               style={[styles.applyBtn, { backgroundColor: colors.primary }]}
               onPress={() => { refetch(); setShowFilters(false); }}
             >
               <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF' }]}>
-                {isAr ? 'تطبيق الفلاتر' : 'Apply Filters'}
+                {t('search.applyFilters')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -181,7 +179,7 @@ export default function SearchScreen({ navigation, route }: any) {
         <View style={[styles.resultsBar, { borderTopColor: colors.divider }]}>
           <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary }]}>
             <Text style={{ color: colors.primary, fontWeight: '800' }}>{results.length}</Text>
-            {' '}{isAr ? 'نتيجة' : 'results'}
+            {' '}{t('search.results')}
           </Text>
         </View>
       </View>
@@ -203,8 +201,8 @@ export default function SearchScreen({ navigation, route }: any) {
           ListEmptyComponent={
             <EmptyState
               icon="search-outline"
-              title={isAr ? 'لا توجد نتائج' : 'No results found'}
-              subtitle={isAr ? 'جرّب فلاتر مختلفة' : 'Try different filters'}
+              title={t('search.noResults')}
+              subtitle={t('search.noResultsHint')}
             />
           }
         />
@@ -221,23 +219,27 @@ function FilterLabel({ children, colors, textAlign }: any) {
   );
 }
 
-function Chips({ items, value, onChange, isAr, colors }: any) {
+function Chips({ items, value, onChange, ns, t, colors }: any) {
   return (
     <View style={styles.chipsRow}>
-      {items.map((t: any) => {
-        const active = value === t.value;
+      {items.map((item: any) => {
+        const active = value === item.value;
+        // Most keys live under `<ns>.<key>`; the bedroom shortcuts ("1+",
+        // "2+", ...) are literal labels and don't have a translation entry.
+        const literal = ['1+', '2+', '3+', '4+'].includes(item.key);
+        const label = literal ? item.key : t(`${ns}.${item.key}`);
         return (
           <TouchableOpacity
-            key={String(t.value)}
+            key={String(item.value) || item.key}
             style={[
               styles.chip,
               { backgroundColor: colors.surface, borderColor: colors.border },
               active && { backgroundColor: colors.primary, borderColor: colors.primary },
             ]}
-            onPress={() => onChange(t.value)}
+            onPress={() => onChange(item.value)}
           >
             <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.text, fontWeight: '600' }]}>
-              {isAr ? t.labelAr : t.labelEn}
+              {label}
             </Text>
           </TouchableOpacity>
         );

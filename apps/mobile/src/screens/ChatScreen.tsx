@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -27,6 +28,7 @@ export default function ChatScreen({ navigation, route }: any) {
   const { conversationId, recipientName } = route.params;
   const { colors } = useTheme();
   const { isAr, isRTL } = useRTL();
+  const { t } = useTranslation();
   const { user } = useAuthStore();
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
@@ -83,7 +85,7 @@ export default function ChatScreen({ navigation, route }: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      <Header title={recipientName || (isAr ? 'محادثة' : 'Chat')} onBack={() => navigation.goBack()} />
+      <Header title={recipientName || t('messages.chat')} onBack={() => navigation.goBack()} />
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -131,8 +133,8 @@ export default function ChatScreen({ navigation, route }: any) {
             <View style={{ transform: [{ scaleY: -1 }] }}>
               <EmptyState
                 icon="chatbubble-outline"
-                title={isAr ? 'لا توجد رسائل بعد' : 'No messages yet'}
-                subtitle={isAr ? 'ابدأ المحادثة الآن' : 'Send the first message'}
+                title={t('messages.noMessages')}
+                subtitle={t('messages.startConversation')}
               />
             </View>
           }
@@ -153,7 +155,7 @@ export default function ChatScreen({ navigation, route }: any) {
             ]}
             value={draft}
             onChangeText={setDraft}
-            placeholder={isAr ? 'اكتب رسالة...' : 'Type a message...'}
+            placeholder={t('messages.typeMessage')}
             placeholderTextColor={colors.textSecondary}
             multiline
             textAlign={isAr ? 'right' : 'left'}

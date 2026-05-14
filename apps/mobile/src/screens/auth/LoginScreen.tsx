@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks/useTheme';
 import { useRTL } from '../../hooks/useRTL';
 import { useAuthStore } from '../../store/auth.store';
@@ -15,6 +16,7 @@ import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
 export default function LoginScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, textAlign, backIcon } = useRTL();
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +26,7 @@ export default function LoginScreen({ navigation }: any) {
 
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
-      setError(isAr ? 'يرجى تعبئة جميع الحقول' : 'Please fill all fields');
+      setError(t('auth.fillAllFields'));
       return;
     }
     setLoading(true);
@@ -36,8 +38,7 @@ export default function LoginScreen({ navigation }: any) {
       navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
     } catch (e: any) {
       setError(
-        e.response?.data?.message ||
-        (isAr ? 'بيانات الدخول غير صحيحة' : 'Invalid credentials')
+        e.response?.data?.message || t('auth.invalidCredentials'),
       );
     } finally {
       setLoading(false);
@@ -57,13 +58,13 @@ export default function LoginScreen({ navigation }: any) {
 
           <View style={styles.logoSection}>
             <View style={[styles.logo, { backgroundColor: colors.primary }]}>
-              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>عالمة</Text>
+              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>{isAr ? 'عالمة' : 'Eawlma'}</Text>
             </View>
             <Text style={[TYPOGRAPHY.h2, { color: colors.text }]}>
-              {isAr ? 'تسجيل الدخول' : 'Sign In'}
+              {t('auth.login')}
             </Text>
             <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: SIZES.sm }]}>
-              {isAr ? 'أهلاً بعودتك!' : 'Welcome back!'}
+              {t('auth.welcomeBack')}
             </Text>
           </View>
 
@@ -77,7 +78,7 @@ export default function LoginScreen({ navigation }: any) {
           <View style={styles.form}>
             <View>
               <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
-                {isAr ? 'البريد الإلكتروني' : 'Email'}
+                {t('auth.email')}
               </Text>
               <TextInput
                 style={[styles.input, { backgroundColor: colors.surface, borderColor: colors.border, color: colors.text, textAlign }]}
@@ -92,7 +93,7 @@ export default function LoginScreen({ navigation }: any) {
 
             <View>
               <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
-                {isAr ? 'كلمة المرور' : 'Password'}
+                {t('auth.password')}
               </Text>
               <View style={[styles.passwordBox, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <TextInput
@@ -122,14 +123,14 @@ export default function LoginScreen({ navigation }: any) {
                 <ActivityIndicator color="#FFF" />
               ) : (
                 <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
-                  {isAr ? 'دخول' : 'Sign In'}
+                  {t('auth.loginBtn')}
                 </Text>
               )}
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.linkBtn} onPress={() => navigation.navigate('Register')}>
               <Text style={[TYPOGRAPHY.body, { color: colors.primary, fontWeight: '600' }]}>
-                {isAr ? 'ليس لديك حساب؟ سجل الآن' : "Don't have an account? Register"}
+                {t('auth.noAccount')}
               </Text>
             </TouchableOpacity>
           </View>

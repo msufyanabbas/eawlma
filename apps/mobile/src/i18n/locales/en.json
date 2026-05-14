@@ -162,7 +162,14 @@
     "showOriginal": "Show original",
     "showTranslation": "Show translation",
     "online": "Online",
-    "lastSeen": "Last seen"
+    "lastSeen": "Last seen",
+    "title": "Messages",
+    "noMessages": "No messages yet",
+    "noMessagesPrompt": "Contact agents from listing pages",
+    "signInPrompt": "Sign in to see your messages",
+    "chat": "Chat",
+    "user": "User",
+    "noMessagesShort": "No messages"
   },
   "hosting": {
     "title": "Hosting",
@@ -281,7 +288,14 @@
     "agreeTerms": "By creating an account you agree to our Terms and Privacy Policy",
     "loginSuccess": "Signed in successfully",
     "registerSuccess": "Account created successfully",
-    "logoutSuccess": "Signed out"
+    "logoutSuccess": "Signed out",
+    "role": "Account Type",
+    "buyer": "Buyer",
+    "agent": "Agent",
+    "loginBtn": "Sign In",
+    "registerBtn": "Create Account",
+    "fillAllFields": "Please fill all fields",
+    "invalidCredentials": "Invalid email or password"
   },
   "validation": {
     "required": "This field is required",
@@ -326,7 +340,13 @@
     "actions": "Actions",
     "active": "Active",
     "inactive": "Inactive",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "errorOccurred": "An error occurred",
+    "yes": "Yes",
+    "no": "No",
+    "sar": "SAR",
+    "perNight": "per night",
+    "perMonth": "per month"
   },
   "listing": {
     "forSale": "For sale",
@@ -393,7 +413,34 @@
       "expired": "Expired",
       "draft": "Draft",
       "archived": "Archived"
-    }
+    },
+    "sale": "Sale",
+    "rent": "Rent",
+    "bedrooms": "Beds",
+    "bathrooms": "Baths",
+    "propertyTypeLabel": "Type",
+    "noDescription": "No description.",
+    "locationNotSpecified": "Location not specified",
+    "similarProperties": "Similar Properties",
+    "bookNow": "Book Now",
+    "saveProperty": "Save Property",
+    "openInMaps": "Open in Maps",
+    "viewOnMap": "View on Map",
+    "tapToOpenMap": "Tap to open map",
+    "sendInquiryTitle": "Send Inquiry",
+    "yourMessage": "Your message",
+    "messagePlaceholder": "Write your message here...",
+    "preferredContact": "Preferred contact",
+    "phone": "Phone",
+    "email": "Email",
+    "sent": "Sent",
+    "sentBody": "Your inquiry was sent",
+    "messageTooShort": "Message too short",
+    "messageTooShortBody": "Message must be at least 10 characters",
+    "actionFailed": "Action failed",
+    "bookingDevTitle": "Booking",
+    "bookingDevBody": "Booking flow is in development. Please contact the agent.",
+    "removeFromSaved": "Remove this property from saved?"
   },
   "search": {
     "filters": "Filters",
@@ -432,7 +479,26 @@
     "clearDrawing": "Clear drawing",
     "flexibleDates": "I'm flexible with dates",
     "flex1Month": "1 month",
-    "shortTerm": "Short-term"
+    "shortTerm": "Short-term",
+    "title": "Search",
+    "placeholder": "Search properties, city...",
+    "noResultsHint": "Try different filters",
+    "cityPlaceholder": "Riyadh, Jeddah...",
+    "priceRange": "Price Range",
+    "bedrooms": "Bedrooms",
+    "sort": "Sort",
+    "any": "Any",
+    "all": "All",
+    "sale": "Sale",
+    "rent": "Rent",
+    "apartment": "Apt",
+    "villa": "Villa",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Farm",
+    "sortNewest": "Newest",
+    "sortPriceAsc": "Price ↑",
+    "sortPriceDesc": "Price ↓"
   },
   "home": {
     "heroTitle": "Find your perfect home",
@@ -480,7 +546,25 @@
     "resultsCount": "{{count}} listings found",
     "clearFilters": "Clear all",
     "results": "results",
-    "loadMoreListings": "Load more listings"
+    "loadMoreListings": "Load more listings",
+    "latestListings": "Latest Listings",
+    "featuredProperties": "Featured Properties",
+    "seeAll": "See all",
+    "quickAccess": "Quick Access",
+    "stays": "Stays",
+    "hotels": "Hotels",
+    "market": "Market",
+    "saved": "Saved",
+    "tagline": "Premier Real Estate",
+    "categories": {
+      "all": "All",
+      "sale": "For Sale",
+      "rent": "For Rent",
+      "chalets": "Chalets",
+      "villas": "Villas",
+      "apartments": "Apartments",
+      "land": "Land"
+    }
   },
   "empty": {
     "noListings": "No listings yet",
@@ -584,15 +668,75 @@
     "recentActivity": "Recent activity",
     "browseListings": "Browse listings",
     "goToDashboard": "Go to dashboard",
-    "profileUpdated": "Profile updated"
+    "profileUpdated": "Profile updated",
+    "title": "My Account",
+    "signIn": "Sign In",
+    "welcome": "Welcome to Eawlma",
+    "signInPrompt": "Sign in to access your account",
+    "createAccount": "Create Account",
+    "agentDashboard": "Agent Dashboard",
+    "myListings": "My Listings",
+    "addListing": "Add Listing",
+    "wallet": "Wallet",
+    "commissions": "Commissions",
+    "myBookings": "My Bookings",
+    "myInquiries": "My Inquiries",
+    "inquiries": "Inquiries",
+    "account": "Account",
+    "notifications": "Notifications",
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "support": "Settings & Support",
+    "settings": "Settings",
+    "help": "Help & FAQ",
+    "about": "About",
+    "signOut": "Sign Out",
+    "signOutConfirm": "Are you sure you want to sign out?",
+    "member": "Member",
+    "agentRole": "Agent",
+    "admin": "Admin",
+    "chooseLanguage": "Choose Language",
+    "searchLanguage": "Search...",
+    "popular": "Popular",
+    "allLanguages": "All Languages",
+    "noLanguageMatch": "No matching language"
   },
   "wizard": {
     "basicInfo": "Basic info",
-    "location": "Location",
+    "location": {
+      "street": "Street",
+      "buildingNumber": "Building no.",
+      "postalCode": "Postal code",
+      "pinPrompt": "Drop a pin to set the exact location",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Map pin picker unavailable. Coordinates fall back to {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Amenities",
-    "compliance": "Compliance",
-    "review": "Review",
+    "compliance": {
+      "permitNumber": "Permit / FAL number",
+      "regaNumber": "REGA license number",
+      "permitExpiry": "Permit expiry",
+      "preferredContact": "Preferred contact",
+      "phone": "Phone",
+      "publicVisibility": "Public visibility (uncheck for unlisted / private link only)"
+    },
+    "review": {
+      "summaryTitle": "Listing summary",
+      "enhanceWithAi": "Enhance with AI",
+      "enhancing": "Enhancing…",
+      "aiStubNotice": "AI returned a stub — set OPENAI_API_KEY on the backend to use the live model.",
+      "descriptionPreview": "Description preview",
+      "emptyDescription": "(empty)",
+      "type": "Type",
+      "titleLabel": "Title",
+      "bedsBaths": "Bedrooms / Bathrooms",
+      "cityDistrict": "City / District",
+      "coordinates": "Coordinates",
+      "permit": "Permit",
+      "regaLicense": "REGA license",
+      "visibility": "Visibility"
+    },
     "saveDraft": "Save draft",
     "submit": "Submit for review",
     "submitForReview": "Submit for review",
@@ -689,14 +833,6 @@
       "houseRules": "House rules",
       "houseRulesPlaceholder": "e.g. No parties, quiet hours after 10pm, no smoking indoors..."
     },
-    "location": {
-      "street": "Street",
-      "buildingNumber": "Building no.",
-      "postalCode": "Postal code",
-      "pinPrompt": "Drop a pin to set the exact location",
-      "pinLabel": "Pin",
-      "mapUnavailable": "Map pin picker unavailable. Coordinates fall back to {{lat}}, {{lng}}."
-    },
     "mediaStep": {
       "images": "Images",
       "imageDropHint": "Drag & drop photos here, or click to choose. JPEG / PNG / WebP up to 10 MB.",
@@ -714,30 +850,6 @@
     },
     "amenitiesStep": {
       "hint": "Tap the amenities this property offers. We'll surface them as filters on Search."
-    },
-    "compliance": {
-      "permitNumber": "Permit / FAL number",
-      "regaNumber": "REGA license number",
-      "permitExpiry": "Permit expiry",
-      "preferredContact": "Preferred contact",
-      "phone": "Phone",
-      "publicVisibility": "Public visibility (uncheck for unlisted / private link only)"
-    },
-    "review": {
-      "summaryTitle": "Listing summary",
-      "enhanceWithAi": "Enhance with AI",
-      "enhancing": "Enhancing…",
-      "aiStubNotice": "AI returned a stub — set OPENAI_API_KEY on the backend to use the live model.",
-      "descriptionPreview": "Description preview",
-      "emptyDescription": "(empty)",
-      "type": "Type",
-      "titleLabel": "Title",
-      "bedsBaths": "Bedrooms / Bathrooms",
-      "cityDistrict": "City / District",
-      "coordinates": "Coordinates",
-      "permit": "Permit",
-      "regaLicense": "REGA license",
-      "visibility": "Visibility"
     }
   },
   "subscription": {
@@ -1050,7 +1162,15 @@
       "paid": "✓ Paid",
       "failed": "Failed",
       "rejected": "Rejected"
-    }
+    },
+    "balance": "Current Balance",
+    "withdraw": "Payout",
+    "noTransactionsHint": "Your transactions will appear here",
+    "sar": "SAR",
+    "inDevelopment": "This feature is in development",
+    "depositTitle": "Deposit",
+    "payoutTitle": "Payout",
+    "withdrawal": "Withdrawal"
   },
   "nafath": {
     "loginWith": "Sign in with Nafath"
@@ -1281,5 +1401,45 @@
       "medium": "Medium confidence",
       "low": "Low confidence"
     }
+  },
+  "saved": {
+    "title": "Saved",
+    "empty": "No saved properties",
+    "emptyPrompt": "Save properties you like by tapping ❤️",
+    "signInPrompt": "Sign in to save properties",
+    "removeTitle": "Remove",
+    "removePrompt": "Remove this property from saved?"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "emptyHint": "Your alerts will appear here",
+    "markAllRead": "Mark all as read",
+    "notification": "Notification"
+  },
+  "bookings": {
+    "title": "My Bookings",
+    "host": "As host",
+    "guest": "As guest",
+    "noBookings": "No bookings yet",
+    "noBookingsHint": "Your bookings will appear here",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "nights": "nights",
+    "total": "Total",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed"
+    }
+  },
+  "tabs": {
+    "home": "Home",
+    "search": "Search",
+    "saved": "Saved",
+    "messages": "Messages",
+    "profile": "Profile"
   }
 }

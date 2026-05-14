@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Constants from 'expo-constants';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -44,6 +45,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   const { id } = route.params;
   const { colors } = useTheme();
   const { isAr, isRTL, backIcon, textAlign } = useRTL();
+  const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
   const qc = useQueryClient();
   const [showInquiry, setShowInquiry] = useState(false);
@@ -58,18 +60,34 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   const listing: any = data?.data || {};
   const agent: any = listing.agent || listing.user || {};
 
-  // One-time dev assertion to make missing keys / unreachable Static Maps
-  // requests easy to spot in the Metro log. Silent in production.
+  // Dev-only diagnostics so unreachable Static Maps requests / missing keys
+  // are easy to spot in the Metro log. Silent in production.
   useEffect(() => {
     if (!__DEV__) return;
     const keyOk = !!GOOGLE_MAPS_KEY && GOOGLE_MAPS_KEY !== 'YOUR_GOOGLE_MAPS_API_KEY_HERE';
     if (!keyOk) {
       // eslint-disable-next-line no-console
       console.warn('[maps] googleMapsApiKey is missing or still a placeholder.');
-    } else if (listing?.lat != null && listing?.lng != null) {
-      // eslint-disable-next-line no-console
-      console.log('[maps] static URL:', buildStaticMapUrl(listing.lat, listing.lng).slice(0, 140));
+      return;
     }
+    if (listing?.lat == null || listing?.lng == null) return;
+    const url = buildStaticMapUrl(listing.lat, listing.lng);
+    // eslint-disable-next-line no-console
+    console.log('[maps] static URL:', url.slice(0, 140));
+    fetch(url)
+      .then(async r => {
+        // eslint-disable-next-line no-console
+        console.log('[maps] HTTP', r.status, '·', r.headers.get('content-type'));
+        if (r.status !== 200) {
+          const body = await r.text();
+          // eslint-disable-next-line no-console
+          console.error('[maps] error body:', body.slice(0, 200));
+        }
+      })
+      .catch(err => {
+        // eslint-disable-next-line no-console
+        console.error('[maps] fetch failed:', err?.message);
+      });
   }, [listing?.lat, listing?.lng]);
 
   const { data: similarData } = useQuery({
@@ -135,8 +153,8 @@ export default function ListingDetailScreen({ navigation, route }: any) {
       qc.invalidateQueries({ queryKey: ['saved-listings'] });
     } catch (e: any) {
       Alert.alert(
-        isAr ? 'خطأ' : 'Error',
-        e?.response?.data?.message || (isAr ? 'فشلت العملية' : 'Action failed'),
+        t('common.error'),
+        e?.response?.data?.message || t('listing.actionFailed'),
       );
     } finally {
       setSaving(false);
@@ -161,9 +179,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   if (listing.hasCentralAC) amenities.push(isAr ? 'تكييف مركزي' : 'Central AC');
   if (listing.hasSecurity) amenities.push(isAr ? 'أمن' : 'Security');
 
-  const primaryLabel = isStay
-    ? (isAr ? 'احجز الآن' : 'Book Now')
-    : (isAr ? 'إرسال استفسار' : 'Send Inquiry');
+  const primaryLabel = isStay ? t('listing.bookNow') : t('listing.sendInquiry');
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -196,9 +212,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
             { backgroundColor: listing.transactionType === 'rent' ? colors.success : colors.secondary },
           ]}>
             <Text style={[TYPOGRAPHY.small, { color: '#FFF', fontWeight: '800' }]}>
-              {listing.transactionType === 'rent'
-                ? (isAr ? 'للإيجار' : 'For Rent')
-                : (isAr ? 'للبيع' : 'For Sale')}
+              {listing.transactionType === 'rent' ? t('listing.forRent') : t('listing.forSale')}
             </Text>
           </View>
         </View>
@@ -221,32 +235,32 @@ export default function ListingDetailScreen({ navigation, route }: any) {
 
           <View style={[styles.statsRow, { backgroundColor: colors.surface }]}>
             {listing.bedrooms != null && (
-              <Stat icon="bed-outline" value={listing.bedrooms} label={isAr ? 'غرف' : 'Beds'} colors={colors} />
+              <Stat icon="bed-outline" value={listing.bedrooms} label={t('listing.bedrooms')} colors={colors} />
             )}
             {listing.bathrooms != null && (
-              <Stat icon="water-outline" value={listing.bathrooms} label={isAr ? 'حمامات' : 'Baths'} colors={colors} />
+              <Stat icon="water-outline" value={listing.bathrooms} label={t('listing.bathrooms')} colors={colors} />
             )}
             {listing.area != null && (
-              <Stat icon="resize-outline" value={listing.area} label="م²" colors={colors} />
+              <Stat icon="resize-outline" value={listing.area} label="m²" colors={colors} />
             )}
             {listing.propertyType && (
-              <Stat icon="business-outline" value={listing.propertyType} label={isAr ? 'النوع' : 'Type'} colors={colors} />
+              <Stat icon="business-outline" value={listing.propertyType} label={t('listing.propertyTypeLabel')} colors={colors} />
             )}
           </View>
 
           <SectionTitle colors={colors} textAlign={textAlign}>
-            {isAr ? 'الوصف' : 'Description'}
+            {t('listing.description')}
           </SectionTitle>
           <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, lineHeight: 22, textAlign }]}>
-            {isAr
-              ? (listing.descriptionAr || listing.descriptionEn || 'لا يوجد وصف.')
-              : (listing.descriptionEn || listing.descriptionAr || 'No description.')}
+            {(isAr
+              ? (listing.descriptionAr || listing.descriptionEn)
+              : (listing.descriptionEn || listing.descriptionAr)) || t('listing.noDescription')}
           </Text>
 
           {amenities.length > 0 && (
             <>
               <SectionTitle colors={colors} textAlign={textAlign}>
-                {isAr ? 'المرافق' : 'Amenities'}
+                {t('listing.amenities')}
               </SectionTitle>
               <View style={styles.amenitiesGrid}>
                 {amenities.map(a => (
@@ -281,7 +295,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                   )}
                 </View>
                 <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign }]}>
-                  {isAr ? 'وكيل عقاري' : 'Real Estate Agent'}
+                  {t('listing.agent')}
                 </Text>
               </View>
               {agent.phone && (
@@ -306,7 +320,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
           {(listing.lat || listing.lng || listing.city) && (
             <>
               <SectionTitle colors={colors} textAlign={textAlign}>
-                {isAr ? 'الموقع' : 'Location'}
+                {t('listing.location')}
               </SectionTitle>
               {listing?.lat != null && listing?.lng != null ? (
                 <TouchableOpacity
@@ -331,7 +345,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                   <View style={[styles.openMapsBtn, { backgroundColor: colors.primary }]}>
                     <Ionicons name="navigate" size={14} color="#FFF" />
                     <Text style={[TYPOGRAPHY.caption, { color: '#FFF', fontWeight: '700' }]}>
-                      {isAr ? 'فتح في الخرائط' : 'Open in Maps'}
+                      {t('listing.openInMaps')}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -348,10 +362,10 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                   <Ionicons name="location-outline" size={32} color={colors.textSecondary} />
                   <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, marginTop: 8, textAlign: 'center' }]}>
                     {[listing.district, listing.city].filter(Boolean).join(', ') ||
-                      (isAr ? 'الموقع غير محدد' : 'Location not specified')}
+                      t('listing.locationNotSpecified')}
                   </Text>
                   <Text style={[TYPOGRAPHY.small, { color: colors.primary, marginTop: 4 }]}>
-                    {isAr ? 'اضغط لفتح الخريطة' : 'Tap to open map'}
+                    {t('listing.tapToOpenMap')}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -361,7 +375,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
           {similar.length > 0 && (
             <>
               <SectionTitle colors={colors} textAlign={textAlign}>
-                {isAr ? 'إعلانات مشابهة' : 'Similar Listings'}
+                {t('listing.similarProperties')}
               </SectionTitle>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: SIZES.sm }}>
                 {similar.map(item => (
@@ -400,7 +414,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
         onClose={() => setShowInquiry(false)}
         listingId={id}
         colors={colors}
-        isAr={isAr}
+        t={t}
         isRTL={isRTL}
         textAlign={textAlign}
       />
@@ -409,7 +423,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
 }
 
 function InquiryModal({
-  visible, onClose, listingId, colors, isAr, isRTL, textAlign,
+  visible, onClose, listingId, colors, t, isRTL, textAlign,
 }: any) {
   const [message, setMessage] = useState('');
   const [contact, setContact] = useState<'phone' | 'email' | 'whatsapp'>('phone');
@@ -424,25 +438,19 @@ function InquiryModal({
     onSuccess: () => {
       setMessage('');
       onClose();
-      Alert.alert(
-        isAr ? 'تم الإرسال' : 'Sent',
-        isAr ? 'تم إرسال استفسارك بنجاح' : 'Your inquiry was sent',
-      );
+      Alert.alert(t('listing.sent'), t('listing.sentBody'));
     },
     onError: (err: any) => {
       Alert.alert(
-        isAr ? 'خطأ' : 'Error',
-        err?.response?.data?.message || (isAr ? 'فشل الإرسال' : 'Failed to send'),
+        t('common.error'),
+        err?.response?.data?.message || t('listing.actionFailed'),
       );
     },
   });
 
   const submit = () => {
     if (message.trim().length < 10) {
-      Alert.alert(
-        isAr ? 'الرسالة قصيرة' : 'Message too short',
-        isAr ? 'يجب أن تكون الرسالة 10 أحرف على الأقل' : 'Message must be at least 10 characters',
-      );
+      Alert.alert(t('listing.messageTooShort'), t('listing.messageTooShortBody'));
       return;
     }
     send.mutate();
@@ -454,7 +462,7 @@ function InquiryModal({
         <View style={[modalStyles.sheet, { backgroundColor: colors.surface }]}>
           <View style={[modalStyles.header, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
             <Text style={[TYPOGRAPHY.h3, { color: colors.text }]}>
-              {isAr ? 'إرسال استفسار' : 'Send Inquiry'}
+              {t('listing.sendInquiryTitle')}
             </Text>
             <TouchableOpacity onPress={onClose}>
               <Ionicons name="close" size={24} color={colors.text} />
@@ -462,13 +470,13 @@ function InquiryModal({
           </View>
 
           <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginBottom: SIZES.xs, textAlign }]}>
-            {isAr ? 'رسالتك' : 'Your message'}
+            {t('listing.yourMessage')}
           </Text>
           <TextInput
             value={message}
             onChangeText={setMessage}
             multiline
-            placeholder={isAr ? 'اكتب رسالتك هنا...' : 'Write your message here...'}
+            placeholder={t('listing.messagePlaceholder')}
             placeholderTextColor={colors.textSecondary}
             style={[
               modalStyles.textarea,
@@ -482,7 +490,7 @@ function InquiryModal({
           />
 
           <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: SIZES.md, marginBottom: SIZES.xs, textAlign }]}>
-            {isAr ? 'طريقة التواصل المفضلة' : 'Preferred contact'}
+            {t('listing.preferredContact')}
           </Text>
           <View style={[modalStyles.chipsRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
             {(['phone', 'whatsapp', 'email'] as const).map(c => {
@@ -501,10 +509,10 @@ function InquiryModal({
                 >
                   <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.text, fontWeight: '600' }]}>
                     {c === 'phone'
-                      ? (isAr ? 'هاتف' : 'Phone')
+                      ? t('listing.phone')
                       : c === 'whatsapp'
-                        ? 'WhatsApp'
-                        : (isAr ? 'بريد' : 'Email')}
+                        ? t('listing.whatsapp')
+                        : t('listing.email')}
                   </Text>
                 </TouchableOpacity>
               );
@@ -520,7 +528,7 @@ function InquiryModal({
               <ActivityIndicator color="#FFF" />
             ) : (
               <Text style={[TYPOGRAPHY.bodyBold, { color: '#FFF', fontSize: SIZES.bodyLg }]}>
-                {isAr ? 'إرسال' : 'Send'}
+                {t('messages.send')}
               </Text>
             )}
           </TouchableOpacity>
