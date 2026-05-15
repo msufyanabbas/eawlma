@@ -61,6 +61,24 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   const listing: any = data?.data || {};
   const agent: any = listing.agent || listing.user || {};
 
+  // Prefer the server-side translation (Accept-Language driven) over the
+  // raw AR/EN fields. The backend populates titleTranslated /
+  // descriptionTranslated when the viewer's locale differs from the
+  // listing's sourceLocale and no curated translation row exists.
+  const displayTitle =
+    listing.titleTranslated ||
+    (isAr
+      ? (listing.titleAr || listing.title || listing.titleEn)
+      : (listing.titleEn || listing.title || listing.titleAr)) ||
+    listing.referenceCode ||
+    '';
+  const displayDescription =
+    listing.descriptionTranslated ||
+    (isAr
+      ? (listing.descriptionAr || listing.description || listing.descriptionEn)
+      : (listing.descriptionEn || listing.description || listing.descriptionAr)) ||
+    '';
+
   // Dev-only diagnostics so unreachable Static Maps requests / missing keys
   // are easy to spot in the Metro log. Silent in production.
   useEffect(() => {
@@ -115,9 +133,12 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   const handleWhatsApp = () => {
     const phone = agent.phone?.replace(/\D/g, '');
     if (!phone) return;
+    const title = listing.titleTranslated
+      || (isAr ? (listing.titleAr || listing.title) : (listing.titleEn || listing.title))
+      || '';
     const msg = isAr
-      ? `مرحباً، أنا مهتم بإعلان: ${listing.titleAr || ''}`
-      : `Hello, I'm interested in: ${listing.titleEn || ''}`;
+      ? `مرحباً، أنا مهتم بإعلان: ${title}`
+      : `Hello, I'm interested in: ${title}`;
     Linking.openURL(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
   };
 
@@ -142,9 +163,9 @@ export default function ListingDetailScreen({ navigation, route }: any) {
     const priceText = isAr
       ? `${formatPrice(price, 'ar')} ر.س`
       : `${price.toLocaleString()} SAR`;
-    const title = isAr
+    const title = displayTitle || (isAr
       ? (listing?.titleAr || listing?.titleEn || '')
-      : (listing?.titleEn || listing?.titleAr || '');
+      : (listing?.titleEn || listing?.titleAr || ''));
     const loc = [listing?.district, listing?.city].filter(Boolean).join(', ');
     const url = `https://eawlma.sa/listings/${listing?.id || id}`;
     try {
@@ -252,7 +273,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
             currencyStyle={[TYPOGRAPHY.h4, { color: colors.primary }]}
           />
           <Text style={[TYPOGRAPHY.h4, { color: colors.text, marginTop: SIZES.sm, textAlign }]}>
-            {isAr ? (listing.titleAr || listing.titleEn) : (listing.titleEn || listing.titleAr)}
+            {displayTitle}
           </Text>
           <View style={[styles.locRow, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
             <Ionicons name="location" size={16} color={colors.primary} />
@@ -280,9 +301,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
             {t('listing.description')}
           </SectionTitle>
           <Text style={[TYPOGRAPHY.body, { color: colors.textSecondary, lineHeight: 22, textAlign }]}>
-            {(isAr
-              ? (listing.descriptionAr || listing.descriptionEn)
-              : (listing.descriptionEn || listing.descriptionAr)) || t('listing.noDescription')}
+            {displayDescription || t('listing.noDescription')}
           </Text>
 
           {amenities.length > 0 && (
@@ -365,7 +384,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                   style={styles.mapContainer}
                   onPress={() => {
                     const label = encodeURIComponent(
-                      listing.titleAr || listing.titleEn || 'Property',
+                      displayTitle || listing.titleAr || listing.titleEn || 'Property',
                     );
                     const url = Platform.select({
                       ios: `maps:0,0?q=${label}@${listing.lat},${listing.lng}`,

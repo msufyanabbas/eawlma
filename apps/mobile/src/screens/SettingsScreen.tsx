@@ -16,7 +16,14 @@ export default function SettingsScreen({ navigation }: any) {
   const { isRTL, textAlign } = useRTL();
   const { t } = useTranslation();
   const { isDarkMode, toggleDarkMode } = useUIStore();
-  const { isAuthenticated, logout } = useAuthStore();
+  const { isAuthenticated, logout, user } = useAuthStore();
+
+  // Switch's onValueChange passes the new boolean as the first arg; our
+  // toggleDarkMode signature accepts an optional userId, so wrap to avoid
+  // the boolean being interpreted as a user identifier.
+  const handleToggleDarkMode = () => {
+    void toggleDarkMode(user?.id ?? null);
+  };
   const [pushEnabled, setPushEnabled] = useState(true);
   const [emailEnabled, setEmailEnabled] = useState(true);
 
@@ -49,7 +56,7 @@ export default function SettingsScreen({ navigation }: any) {
           icon="moon-outline"
           label={t('profile.darkMode')}
           value={isDarkMode}
-          onValueChange={toggleDarkMode}
+          onValueChange={handleToggleDarkMode}
           colors={colors}
           isRTL={isRTL}
           textAlign={textAlign}

@@ -82,14 +82,25 @@ export default function ProfileScreen({ navigation }: any) {
     await logout();
   };
 
+  const setStoredLanguage = useUIStore((s) => s.setLanguage);
+
   const handleLanguageChange = async (code: string) => {
     setChangingLang(true);
     try {
+      // Persist + sync to backend (when signed in), then apply i18n so the
+      // next render picks up the new locale + RTL direction.
+      await setStoredLanguage(code, user?.id ?? null);
       await changeLanguage(code);
       setShowLangPicker(false);
     } finally {
       setChangingLang(false);
     }
+  };
+
+  // Switch's onValueChange passes the new boolean as the first arg. Our
+  // toggleDarkMode signature expects an optional userId, so we wrap.
+  const handleToggleDarkMode = () => {
+    void toggleDarkMode(user?.id ?? null);
   };
 
   const currentLangName = ALL_LANGUAGES.find(l => l.code === lang)?.name;
@@ -138,7 +149,7 @@ export default function ProfileScreen({ navigation }: any) {
               isRTL={isRTL}
               textAlign={textAlign}
             />
-            <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} darkModeLabel={t('profile.darkMode')} isRTL={isRTL} textAlign={textAlign} />
+            <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={handleToggleDarkMode} colors={colors} darkModeLabel={t('profile.darkMode')} isRTL={isRTL} textAlign={textAlign} />
           </View>
         </ScrollView>
         <LangPickerModal

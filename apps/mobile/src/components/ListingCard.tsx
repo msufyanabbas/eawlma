@@ -16,6 +16,8 @@ interface Listing {
   titleAr?: string;
   titleEn?: string;
   title?: string;
+  /** Server-side machine translation in the viewer's Accept-Language. */
+  titleTranslated?: string;
   price: number;
   city?: string;
   district?: string;
@@ -34,6 +36,9 @@ interface Props {
 }
 
 export function getListingTitle(item: Listing, isAr: boolean): string {
+  // Prefer the server-translated copy when present; falls back to the
+  // canonical AR/EN fields when the backend wasn't able to translate.
+  if (item.titleTranslated) return item.titleTranslated;
   if (isAr) return item.titleAr || item.title || item.titleEn || '';
   return item.titleEn || item.title || item.titleAr || '';
 }

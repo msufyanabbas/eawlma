@@ -52,6 +52,11 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 8, name: 'preferred_locale', default: 'ar' })
   preferredLocale: string;
 
+  // Per-user UI theme synced across devices. The mobile + web stores write
+  // this on toggle so signing in from another device picks the same theme.
+  @Column({ type: 'varchar', length: 10, name: 'preferred_theme', default: 'light' })
+  preferredTheme: 'light' | 'dark';
+
   @Column({ type: 'boolean', name: 'email_verified', default: false })
   emailVerified: boolean;
 

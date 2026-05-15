@@ -14,6 +14,7 @@ import { ListingPricingService } from './listing-pricing.service';
 import { ListingPricingController } from './listing-pricing.controller';
 import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
 import { NotificationsModule } from '../notifications/notifications.module';
+import { TranslationModule } from '../translation/translation.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { NotificationsModule } from '../notifications/notifications.module';
     ]),
     forwardRef(() => SubscriptionsModule),
     NotificationsModule,
+    TranslationModule,
   ],
   providers: [ListingsService, ListingPricingService],
   controllers: [ListingsController, ListingPricingController],

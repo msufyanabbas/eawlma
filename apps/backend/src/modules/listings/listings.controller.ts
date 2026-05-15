@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   HttpCode,
   HttpStatus,
   Param,
@@ -133,6 +134,7 @@ export class ListingsController {
     @Param('id', ParseUUIDPipe) id: string,
     @CurrentUser() viewer: RequestUser | undefined,
     @Req() req: Request,
+    @Headers('accept-language') acceptLanguage?: string,
   ): Promise<ListingResponseDto> {
     const listing = await this.listingsService.findPublicById(id, viewer);
     // Record view counter + analytics event, but only for public viewers
@@ -156,7 +158,8 @@ export class ListingsController {
     if (viewer && viewer.id === listing.ownerId) {
       dto.checkInInstructions = listing.checkInInstructions;
     }
-    return dto;
+    // Translate title/description for non-source viewers.
+    return this.listingsService.attachTranslatedCopy(dto, acceptLanguage);
   }
 
   @ApiBearerAuth('access-token')

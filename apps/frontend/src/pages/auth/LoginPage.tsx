@@ -16,9 +16,12 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
+import i18n from 'i18next';
+
 import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
+import { useUiStore } from '@/store/ui.store';
 import { GA } from '@/utils/analytics';
 import { AuthLayout } from './AuthLayout';
 
@@ -26,6 +29,7 @@ export function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const setSession = useAuthStore((s) => s.setSession);
+  const loadPreferencesFromBackend = useUiStore((s) => s.loadFromBackend);
 
   const schema = z.object({
     email: z.string().min(1, t('validation.required')).email(t('validation.emailInvalid')),
@@ -45,8 +49,16 @@ export function LoginPage() {
 
   const loginMutation = useMutation({
     mutationFn: (values: FormValues) => authApi.login(values),
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       setSession(data.user, data.tokens);
+      // Sync per-account language + theme from the backend, then apply the
+      // language change so the next render uses it (we don't reload — the
+      // RTL switch already happens on i18n.changeLanguage in App.tsx).
+      await loadPreferencesFromBackend();
+      const savedLang = localStorage.getItem('eawlma.locale');
+      if (savedLang && i18n.language !== savedLang) {
+        await i18n.changeLanguage(savedLang);
+      }
       GA.login('password');
       void navigate({ to: '/' });
     },
@@ -55,7 +67,7 @@ export function LoginPage() {
   const onSubmit = (values: FormValues) => loginMutation.mutate(values);
 
   const handleNafathLogin = () => {
-    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3000';
     window.location.href = `${apiUrl}/api/v1/auth/nafath/authorize`;
   };
 

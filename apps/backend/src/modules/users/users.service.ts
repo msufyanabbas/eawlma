@@ -13,6 +13,7 @@ import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { UserEntity } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 
 const ARGON_OPTIONS: argon2.Options = {
   type: argon2.argon2id,
@@ -145,6 +146,13 @@ export class UsersService {
     if (dto.licenseNumber !== undefined) user.licenseNumber = dto.licenseNumber.trim() || null;
     if (dto.registrationNumber !== undefined) user.registrationNumber = dto.registrationNumber.trim() || null;
 
+    return this.users.save(user);
+  }
+
+  async updatePreferences(userId: string, dto: UpdatePreferencesDto): Promise<UserEntity> {
+    const user = await this.findByIdOrFail(userId);
+    if (dto.preferredLanguage !== undefined) user.preferredLocale = dto.preferredLanguage;
+    if (dto.preferredTheme !== undefined) user.preferredTheme = dto.preferredTheme;
     return this.users.save(user);
   }
 

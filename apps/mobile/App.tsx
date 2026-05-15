@@ -16,7 +16,7 @@ import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-quer
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
-import { initI18n } from './src/i18n';
+import { initI18n, changeLanguage } from './src/i18n';
 import { useAuthStore } from './src/store/auth.store';
 import { useUIStore } from './src/store/ui.store';
 import { useTheme } from './src/hooks/useTheme';
@@ -184,6 +184,21 @@ export default function App() {
       await loadPreferences();
       await loadFromStorage();
       await initI18n();
+
+      // If the user is already signed in, pull their saved language/theme
+      // from the backend so a returning user sees the same prefs they set
+      // on web or another device. We apply the language afterwards so the
+      // RTL flip from changeLanguage takes effect immediately.
+      const { isAuthenticated } = useAuthStore.getState();
+      if (isAuthenticated) {
+        const before = useUIStore.getState().language;
+        await useUIStore.getState().loadFromBackend();
+        const after = useUIStore.getState().language;
+        if (after && after !== before) {
+          await changeLanguage(after);
+        }
+      }
+
       setReady(true);
     }
     bootstrap();

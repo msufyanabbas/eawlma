@@ -26,6 +26,7 @@ import { RequestUser } from '../../common/decorators/current-user.decorator';
 import { KafkaService } from '../../common/kafka/kafka.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { NotificationsService } from '../notifications/notifications.service';
+import { TranslationService } from '../translation/translation.service';
 
 import { ListingEntity } from './entities/listing.entity';
 import { ListingMediaEntity } from './entities/listing-media.entity';
@@ -73,7 +74,66 @@ export class ListingsService {
     @Inject(forwardRef(() => SubscriptionsService))
     private readonly subscriptionsService: SubscriptionsService,
     private readonly notificationsService: NotificationsService,
+    private readonly translationService: TranslationService,
   ) {}
+
+  // ---------------------------------------------------------------------------
+  // Auto-translation for non-source locales
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Translate a listing's title + description into `targetLanguage` using
+   * the Google Translate gtx endpoint, and stash the result on
+   * `titleTranslated` / `descriptionTranslated` so the API response carries
+   * a ready-to-render copy for the viewer.
+   *
+   * Skips translation when:
+   *  - target is the listing's source locale (already correct),
+   *  - target matches an existing real translation row, or
+   *  - target falls back to English/Arabic — those are the canonical fields
+   *    and the frontend already handles them.
+   *
+   * Failures are swallowed: translation is decorative, never required.
+   */
+  async attachTranslatedCopy<T extends Record<string, any>>(
+    listing: T,
+    targetLanguage: string | undefined | null,
+  ): Promise<T & { titleTranslated?: string; descriptionTranslated?: string }> {
+    if (!listing || !targetLanguage) return listing;
+    const target = targetLanguage.split(',')[0]?.split('-')[0]?.toLowerCase();
+    if (!target) return listing;
+
+    const source = (listing.sourceLocale ?? 'ar').toLowerCase();
+    if (target === source) return listing;
+
+    // If an existing real translation row matches the target, prefer that
+    // over Google's machine-generated copy.
+    const existing = Array.isArray(listing.translations)
+      ? listing.translations.find(
+          (t: any) =>
+            typeof t?.locale === 'string' && t.locale.toLowerCase() === target,
+        )
+      : null;
+    if (existing && existing.title && existing.description) return listing;
+
+    const title = typeof listing.title === 'string' ? listing.title : '';
+    const description = typeof listing.description === 'string' ? listing.description : '';
+    if (!title && !description) return listing;
+
+    try {
+      const [titleTranslated, descriptionTranslated] = await Promise.all([
+        title ? this.translationService.translate(title, target) : Promise.resolve(''),
+        description ? this.translationService.translate(description, target) : Promise.resolve(''),
+      ]);
+      return {
+        ...listing,
+        titleTranslated: titleTranslated || undefined,
+        descriptionTranslated: descriptionTranslated || undefined,
+      };
+    } catch {
+      return listing;
+    }
+  }
 
   // ---------------------------------------------------------------------------
   // Create

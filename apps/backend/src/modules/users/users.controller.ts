@@ -35,6 +35,7 @@ import { UserEntity } from './entities/user.entity';
 import type { HostStats } from '@eawlma/shared-types';
 import { NotFoundException } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 import {
   UpdateUserRoleDto,
   UpdateUserStatusDto,
@@ -121,6 +122,17 @@ export class UsersController {
     @Body() dto: UpdateProfileDto,
   ): Promise<UserResponseDto> {
     const updated = await this.usersService.updateProfile(userId, dto);
+    return UserResponseDto.fromEntity(updated);
+  }
+
+  @Patch('me/preferences')
+  @ApiOperation({ summary: 'Update the current user language + theme preferences' })
+  @ApiOkResponse({ type: UserResponseDto })
+  async updatePreferences(
+    @CurrentUser('id') userId: string,
+    @Body() dto: UpdatePreferencesDto,
+  ): Promise<UserResponseDto> {
+    const updated = await this.usersService.updatePreferences(userId, dto);
     return UserResponseDto.fromEntity(updated);
   }
 

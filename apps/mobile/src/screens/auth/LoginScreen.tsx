@@ -10,7 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../hooks/useTheme';
 import { useRTL } from '../../hooks/useRTL';
 import { useAuthStore } from '../../store/auth.store';
+import { useUIStore } from '../../store/ui.store';
 import { authApi } from '../../api';
+import { changeLanguage } from '../../i18n';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
 
 export default function LoginScreen({ navigation }: any) {
@@ -23,6 +25,7 @@ export default function LoginScreen({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { setUser, setToken } = useAuthStore();
+  const loadPreferencesFromBackend = useUIStore((s) => s.loadFromBackend);
 
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
@@ -35,6 +38,14 @@ export default function LoginScreen({ navigation }: any) {
       const { user, tokens } = await authApi.login(email.trim(), password);
       setToken(tokens.accessToken);
       setUser(user);
+      // Pull saved language + theme from the backend, then apply the language
+      // so the next render uses it (including the RTL flip).
+      const beforeLang = useUIStore.getState().language;
+      await loadPreferencesFromBackend();
+      const afterLang = useUIStore.getState().language;
+      if (afterLang && afterLang !== beforeLang) {
+        await changeLanguage(afterLang);
+      }
       navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
     } catch (e: any) {
       setError(

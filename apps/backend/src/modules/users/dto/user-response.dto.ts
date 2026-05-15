@@ -15,6 +15,7 @@ export class UserResponseDto {
   @Expose() @ApiProperty({ nullable: true }) avatarUrl: string | null;
   @Expose() @ApiProperty({ nullable: true }) bio: string | null;
   @Expose() @ApiProperty() preferredLocale: string;
+  @Expose() @ApiProperty({ enum: ['light', 'dark'] }) preferredTheme: 'light' | 'dark';
   @Expose() @ApiProperty() emailVerified: boolean;
   @Expose() @ApiProperty() phoneVerified: boolean;
   @Expose() @ApiProperty({ enum: VerificationStatus }) identityVerificationStatus: VerificationStatus;
@@ -45,6 +46,7 @@ export class UserResponseDto {
     dto.avatarUrl = user.avatarUrl;
     dto.bio = user.bio;
     dto.preferredLocale = user.preferredLocale;
+    dto.preferredTheme = user.preferredTheme ?? 'light';
     dto.emailVerified = user.emailVerified;
     dto.phoneVerified = user.phoneVerified;
     dto.identityVerificationStatus = user.identityVerificationStatus;

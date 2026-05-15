@@ -84,8 +84,10 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 
   const switchLanguage = (lng: UiLanguage) => {
     void i18n.changeLanguage(lng);
-    setLanguage(lng);
-    localStorage.setItem('eawlma.locale', lng);
+    // The store handles persisting to localStorage + the backend (when a
+    // user id is available) so a returning user sees the same language on
+    // any other device they sign into.
+    setLanguage(lng, user?.id ?? null);
   };
 
   const handleLogout = async () => {
@@ -254,7 +256,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
           <Tooltip title={t(isDark ? 'common.lightMode' : 'common.darkMode')}>
             <IconButton
               size="small"
-              onClick={toggleThemeMode}
+              onClick={() => toggleThemeMode(user?.id ?? null)}
               aria-label="toggle theme"
               sx={{ color: 'text.secondary' }}
             >

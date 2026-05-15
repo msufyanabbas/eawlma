@@ -70,6 +70,13 @@ export class ListingResponseDto {
   @ApiProperty() title: string;
   @ApiProperty() description: string;
 
+  // Server-side machine-translated copy in the viewer's Accept-Language.
+  // Populated by the listings/search controllers when the viewer's locale
+  // differs from the listing's sourceLocale and no real translation row
+  // exists. Absent when no translation was attempted or it failed.
+  @ApiPropertyOptional({ nullable: true }) titleTranslated?: string;
+  @ApiPropertyOptional({ nullable: true }) descriptionTranslated?: string;
+
   @ApiProperty() price: number;
   @ApiProperty() currency: string;
   @ApiPropertyOptional({ enum: RentPeriod, nullable: true }) rentPeriod: RentPeriod | null;
