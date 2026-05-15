@@ -365,7 +365,8 @@
     "no": "아니요",
     "sar": "특별 행정구",
     "perNight": "1박당",
-    "perMonth": "매월"
+    "perMonth": "매월",
+    "ok": "좋아요"
   },
   "listing": {
     "forSale": "판매용",
@@ -1629,5 +1630,26 @@
     "privacy": "개인 정보 보호 정책",
     "terms": "서비스 약관",
     "lastUpdated": "마지막 업데이트"
+  },
+  "notifTypes": {
+    "new_inquiry": "새로운 문의",
+    "inquiry_update": "문의 업데이트",
+    "inquiry": "문의",
+    "new_message": "새 메시지",
+    "message": "메시지",
+    "booking": "예약",
+    "booking_confirmed": "예약이 확인되었습니다",
+    "booking_cancelled": "예약이 취소되었습니다",
+    "booking_update": "예약 업데이트",
+    "commission": "수수료",
+    "commission_created": "커미션 생성됨",
+    "deal_closed": "거래 종료",
+    "listing": "목록 업데이트",
+    "listing_approved": "목록 승인됨",
+    "listing_rejected": "목록이 거부됨",
+    "payout": "지불금",
+    "payout_processed": "지급 처리됨",
+    "dispute_resolved": "분쟁 해결",
+    "system": "체계"
   }
 }

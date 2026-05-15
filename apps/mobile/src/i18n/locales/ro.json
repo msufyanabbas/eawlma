@@ -365,7 +365,8 @@
     "no": "Nu",
     "sar": "SAR",
     "perNight": "pe noapte",
-    "perMonth": "pe lună"
+    "perMonth": "pe lună",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "De vânzare",
@@ -1629,5 +1630,26 @@
     "privacy": "Politica de confidențialitate",
     "terms": "Termeni și condiții",
     "lastUpdated": "Ultima actualizare"
+  },
+  "notifTypes": {
+    "new_inquiry": "Întrebare nouă",
+    "inquiry_update": "Actualizare de anchetă",
+    "inquiry": "Întrebare",
+    "new_message": "Mesaj nou",
+    "message": "Mesaj",
+    "booking": "Rezervare",
+    "booking_confirmed": "Rezervare confirmată",
+    "booking_cancelled": "Rezervare anulată",
+    "booking_update": "Actualizare rezervare",
+    "commission": "Comisia",
+    "commission_created": "Comisia creată",
+    "deal_closed": "Ofertă închisă",
+    "listing": "Actualizare listă",
+    "listing_approved": "Listare aprobată",
+    "listing_rejected": "Listare respinsă",
+    "payout": "Plată",
+    "payout_processed": "Plată procesată",
+    "dispute_resolved": "Disputa Rezolvată",
+    "system": "Sistem"
   }
 }

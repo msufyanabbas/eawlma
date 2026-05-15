@@ -39,7 +39,12 @@ const ENGLISH_OATH =
 const oathTextFor = (type: OathType) =>
   `${ARABIC_OATH}\n\n${ENGLISH_OATH}\n\nOath type: ${type}`;
 
-const localStorageKeyFor = (type: OathType) => `commission_oath_${type}`;
+// Per-user key so signing out and signing back in as a different account does
+// NOT inherit the previous user's acceptance. Anonymous (pre-login) users get
+// a shared "_anon" slot, which is cleared along with everything else on logout
+// via clearOathStorage().
+const localStorageKeyFor = (type: OathType, userId: string | null | undefined) =>
+  `commission_oath_${userId || 'anon'}_${type}`;
 
 /**
  * Bilingual commission commitment modal. Required before agents publish a
@@ -57,6 +62,7 @@ export function CommissionOathModal({
   const theme = useTheme();
   const { t, i18n } = useTranslation();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const userId = useAuthStore((s) => s.user?.id);
   const [agreed, setAgreed] = useState(false);
 
   // Reset the checkbox each time the dialog re-opens — accidental re-acceptance
@@ -74,7 +80,7 @@ export function CommissionOathModal({
       }),
     onSuccess: () => {
       try {
-        localStorage.setItem(localStorageKeyFor(oathType), new Date().toISOString());
+        localStorage.setItem(localStorageKeyFor(oathType, userId), new Date().toISOString());
       } catch {
         /* localStorage may be disabled in private mode — ignore */
       }
@@ -88,7 +94,7 @@ export function CommissionOathModal({
     // for authenticated agents.
     if (!isAuthenticated) {
       try {
-        localStorage.setItem(localStorageKeyFor(oathType), new Date().toISOString());
+        localStorage.setItem(localStorageKeyFor(oathType, userId), new Date().toISOString());
       } catch {
         /* ignore */
       }
@@ -244,10 +250,31 @@ export function CommissionOathModal({
 }
 
 /** Helper used by callers to know whether they should bypass the modal. */
-export function hasLocallyAcceptedOath(oathType: OathType): boolean {
+export function hasLocallyAcceptedOath(
+  oathType: OathType,
+  userId: string | null | undefined,
+): boolean {
   try {
-    return Boolean(localStorage.getItem(localStorageKeyFor(oathType)));
+    return Boolean(localStorage.getItem(localStorageKeyFor(oathType, userId)));
   } catch {
     return false;
+  }
+}
+
+/**
+ * Wipes every cached oath acceptance from localStorage. Called from
+ * auth.store.clearSession so a logout doesn't leak the previous user's
+ * acceptance to the next user on the same device.
+ */
+export function clearOathStorage(): void {
+  try {
+    const toRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('commission_oath_')) toRemove.push(key);
+    }
+    for (const k of toRemove) localStorage.removeItem(k);
+  } catch {
+    /* localStorage may be disabled — ignore */
   }
 }

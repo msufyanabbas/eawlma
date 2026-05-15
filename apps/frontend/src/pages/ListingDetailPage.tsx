@@ -1090,7 +1090,7 @@ export function ListingDetailPage() {
                       // Buyers must accept the commission oath before sending
                       // their first inquiry. The modal records acceptance once
                       // and we cache it locally so subsequent sends don't gate.
-                      if (!hasLocallyAcceptedOath('buyer_purchase')) {
+                      if (!hasLocallyAcceptedOath('buyer_purchase', sessionUser?.id)) {
                         setOathOpen(true);
                         return;
                       }

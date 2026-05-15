@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
-import { agentsApi, messagesApi } from '../api';
+import { agentsApi, listingsApi, messagesApi } from '../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import EmptyState from '../components/EmptyState';
 import UserAvatar from '../components/UserAvatar';
@@ -20,7 +20,7 @@ import UserAvatar from '../components/UserAvatar';
 // non-agents) and we render a generic fallback for them.
 export default function MessagesScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isRTL, textAlign } = useRTL();
+  const { isAr, isRTL, textAlign } = useRTL();
   const { t } = useTranslation();
   const { isAuthenticated, user } = useAuthStore();
   const currentUserId = user?.id;
@@ -79,6 +79,69 @@ export default function MessagesScreen({ navigation }: any) {
     return otherId ? partiesById.get(otherId) : null;
   };
 
+  // Resolve listing titles for the sidebar — same approach as the web app's
+  // MessagesPage. Buyer-only conversations may not surface here (the agent
+  // endpoint hides non-agent users) so we fall back to "Conversation".
+  const listingIds = useMemo(() => {
+    const set = new Set<string>();
+    for (const c of conversations) {
+      if (c?.listingId) set.add(c.listingId);
+    }
+    return Array.from(set);
+  }, [conversations]);
+
+  const listingQueries = useQueries({
+    queries: listingIds.map(id => ({
+      queryKey: ['listing', id],
+      queryFn: () => listingsApi.getById(id),
+      staleTime: 5 * 60_000,
+      retry: false,
+    })),
+  });
+
+  const listingsById = useMemo(() => {
+    const out = new Map<string, any>();
+    listingIds.forEach((id, idx) => {
+      const data: any = (listingQueries[idx]?.data as any)?.data || listingQueries[idx]?.data;
+      if (data?.id) out.set(id, data);
+    });
+    return out;
+  }, [listingIds, listingQueries]);
+
+  const getConversationTitle = (conv: any): string => {
+    const other = getOtherParty(conv);
+    if (other?.firstName) {
+      return `${other.firstName} ${other.lastName || ''}`.trim();
+    }
+    const listing = conv?.listingId ? listingsById.get(conv.listingId) : null;
+    if (listing) {
+      return isAr
+        ? (listing.titleAr || listing.titleEn || listing.title)
+        : (listing.titleEn || listing.titleAr || listing.title);
+    }
+    return t('messages.user');
+  };
+
+  const getConversationSubtitle = (conv: any): string => {
+    const listing = conv?.listingId ? listingsById.get(conv.listingId) : null;
+    const other = getOtherParty(conv);
+    // When we already used the person's name as title, surface the listing
+    // title as the subtitle so the row still gives context.
+    if (other?.firstName && listing) {
+      const lTitle = isAr
+        ? (listing.titleAr || listing.titleEn || listing.title)
+        : (listing.titleEn || listing.titleAr || listing.title);
+      if (lTitle) return lTitle;
+    }
+    const preview =
+      conv.lastMessagePreview ||
+      conv.lastMessage?.body ||
+      conv.lastMessage?.content ||
+      '';
+    if (!preview) return t('messages.noMessagesShort');
+    return preview.length > 60 ? preview.slice(0, 60) + '…' : preview;
+  };
+
   if (!isAuthenticated) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
@@ -114,14 +177,8 @@ export default function MessagesScreen({ navigation }: any) {
         }
         renderItem={({ item }: any) => {
           const other = getOtherParty(item);
-          const displayName = other
-            ? `${other.firstName || ''} ${other.lastName || ''}`.trim()
-            : t('messages.user');
-          const preview =
-            item.lastMessagePreview ||
-            item.lastMessage?.body ||
-            item.lastMessage?.content ||
-            t('messages.noMessagesShort');
+          const displayName = getConversationTitle(item);
+          const subtitle = getConversationSubtitle(item);
           return (
             <TouchableOpacity
               style={[
@@ -143,7 +200,7 @@ export default function MessagesScreen({ navigation }: any) {
                   {displayName}
                 </Text>
                 <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2, textAlign }]} numberOfLines={1}>
-                  {preview}
+                  {subtitle}
                 </Text>
               </View>
               {item.unreadCount > 0 && (

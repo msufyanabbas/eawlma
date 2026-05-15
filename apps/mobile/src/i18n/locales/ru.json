@@ -365,7 +365,8 @@
     "no": "Нет",
     "sar": "САР",
     "perNight": "за ночь",
-    "perMonth": "помесячно"
+    "perMonth": "помесячно",
+    "ok": "ХОРОШО"
   },
   "listing": {
     "forSale": "Продажа",
@@ -1629,5 +1630,26 @@
     "privacy": "политика конфиденциальности",
     "terms": "Условия использования",
     "lastUpdated": "Последнее обновление"
+  },
+  "notifTypes": {
+    "new_inquiry": "Новый запрос",
+    "inquiry_update": "Обновление запроса",
+    "inquiry": "Расследование",
+    "new_message": "Новое сообщение",
+    "message": "Сообщение",
+    "booking": "Бронирование",
+    "booking_confirmed": "Бронирование подтверждено",
+    "booking_cancelled": "Бронирование отменено",
+    "booking_update": "Обновление бронирования",
+    "commission": "Комиссия",
+    "commission_created": "Комиссия создана",
+    "deal_closed": "Сделка закрыта",
+    "listing": "Обновление листинга",
+    "listing_approved": "Листинг одобрен",
+    "listing_rejected": "Листинг отклонен",
+    "payout": "Выплата",
+    "payout_processed": "Выплата обработана",
+    "dispute_resolved": "Спор разрешен",
+    "system": "Система"
   }
 }

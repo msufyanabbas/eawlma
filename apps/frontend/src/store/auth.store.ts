@@ -46,7 +46,22 @@ export const useAuthStore = create<AuthState>()(
 
       setUser: (user) => set({ user }),
 
-      clearSession: () => set({ user: null, tokens: null, isAuthenticated: false }),
+      clearSession: () => {
+        // Wipe per-user oath acceptances — leaving them behind would let the
+        // next user signing in on this device skip the commission commitment
+        // modal because of a key the previous user wrote.
+        try {
+          const toRemove: string[] = [];
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith('commission_oath_')) toRemove.push(key);
+          }
+          for (const k of toRemove) localStorage.removeItem(k);
+        } catch {
+          /* localStorage may be disabled — ignore */
+        }
+        set({ user: null, tokens: null, isAuthenticated: false });
+      },
 
       getAccessToken: () => get().tokens?.accessToken ?? null,
       getRefreshToken: () => get().tokens?.refreshToken ?? null,

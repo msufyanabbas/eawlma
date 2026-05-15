@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity, Switch, Modal, FlatList, TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,6 +15,7 @@ import { useUIStore } from '../store/ui.store';
 import { authApi } from '../api';
 import { changeLanguage } from '../i18n';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
+import UserAvatar from '../components/UserAvatar';
 
 type LangEntry = { code: string; name: string; flag: string; popular?: boolean };
 
@@ -66,6 +68,7 @@ export default function ProfileScreen({ navigation }: any) {
   const { user, isAuthenticated, logout } = useAuthStore();
   const { isDarkMode, toggleDarkMode } = useUIStore();
   const [showLangPicker, setShowLangPicker] = useState(false);
+  const [changingLang, setChangingLang] = useState(false);
 
   const { data: meData } = useQuery({
     queryKey: ['me'],
@@ -80,8 +83,13 @@ export default function ProfileScreen({ navigation }: any) {
   };
 
   const handleLanguageChange = async (code: string) => {
-    await changeLanguage(code);
-    setShowLangPicker(false);
+    setChangingLang(true);
+    try {
+      await changeLanguage(code);
+      setShowLangPicker(false);
+    } finally {
+      setChangingLang(false);
+    }
   };
 
   const currentLangName = ALL_LANGUAGES.find(l => l.code === lang)?.name;
@@ -142,6 +150,7 @@ export default function ProfileScreen({ navigation }: any) {
           isRTL={isRTL}
           textAlign={textAlign}
           colors={colors}
+          loading={changingLang}
         />
       </SafeAreaView>
     );
@@ -160,18 +169,14 @@ export default function ProfileScreen({ navigation }: any) {
           styles.profileCard,
           { backgroundColor: colors.surface, flexDirection: isRTL ? 'row-reverse' : 'row' },
         ]}>
-          <View style={[
-            styles.profileAvatar,
-            {
-              backgroundColor: colors.primary,
+          <UserAvatar
+            user={currentUser}
+            size={64}
+            style={{
               marginRight: isRTL ? 0 : SIZES.lg,
               marginLeft: isRTL ? SIZES.lg : 0,
-            },
-          ]}>
-            <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>
-              {currentUser?.firstName?.[0]}{currentUser?.lastName?.[0]}
-            </Text>
-          </View>
+            }}
+          />
           <View style={styles.profileInfo}>
             <Text style={[TYPOGRAPHY.h4, { color: colors.text, textAlign }]}>
               {currentUser?.firstName} {currentUser?.lastName}
@@ -355,7 +360,7 @@ function DarkModeRow({ isDarkMode, toggleDarkMode, colors, darkModeLabel, isRTL,
   );
 }
 
-function LangPickerModal({ visible, onClose, onSelect, currentLang, t, isRTL, textAlign, colors }: any) {
+function LangPickerModal({ visible, onClose, onSelect, currentLang, t, isRTL, textAlign, colors, loading }: any) {
   const [search, setSearch] = useState('');
 
   const { popular, others } = useMemo(() => {
@@ -432,39 +437,48 @@ function LangPickerModal({ visible, onClose, onSelect, currentLang, t, isRTL, te
           />
         </View>
 
-        <FlatList
-          data={[]}
-          renderItem={null as any}
-          keyExtractor={(_, i) => String(i)}
-          ListHeaderComponent={
-            <View>
-              {popular.length > 0 && (
-                <>
-                  <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign }]}>
-                    {t('profile.popular')}
+        {loading ? (
+          <View style={styles.langLoading}>
+            <ActivityIndicator color={colors.primary} size="large" />
+            <Text style={[styles.langLoadingText, { color: colors.text }]}>
+              {t('common.loading')}
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={[]}
+            renderItem={null as any}
+            keyExtractor={(_, i) => String(i)}
+            ListHeaderComponent={
+              <View>
+                {popular.length > 0 && (
+                  <>
+                    <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign }]}>
+                      {t('profile.popular')}
+                    </Text>
+                    {popular.map(renderRow)}
+                  </>
+                )}
+                {others.length > 0 && (
+                  <>
+                    <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign, marginTop: SIZES.md }]}>
+                      {t('profile.allLanguages')}
+                    </Text>
+                    {others.map(renderRow)}
+                  </>
+                )}
+                {popular.length === 0 && others.length === 0 && (
+                  <Text style={[
+                    TYPOGRAPHY.body,
+                    { color: colors.textSecondary, textAlign: 'center', padding: SIZES.xl },
+                  ]}>
+                    {t('profile.noLanguageMatch')}
                   </Text>
-                  {popular.map(renderRow)}
-                </>
-              )}
-              {others.length > 0 && (
-                <>
-                  <Text style={[styles.groupLabel, { color: colors.textSecondary, textAlign, marginTop: SIZES.md }]}>
-                    {t('profile.allLanguages')}
-                  </Text>
-                  {others.map(renderRow)}
-                </>
-              )}
-              {popular.length === 0 && others.length === 0 && (
-                <Text style={[
-                  TYPOGRAPHY.body,
-                  { color: colors.textSecondary, textAlign: 'center', padding: SIZES.xl },
-                ]}>
-                  {t('profile.noLanguageMatch')}
-                </Text>
-              )}
-            </View>
-          }
-        />
+                )}
+              </View>
+            }
+          />
+        )}
       </View>
     </Modal>
   );
@@ -490,4 +504,6 @@ const styles = StyleSheet.create({
   searchBox: { alignItems: 'center', marginHorizontal: SIZES.lg, marginTop: SIZES.md, paddingHorizontal: SIZES.md, height: 44, borderRadius: SIZES.borderRadius, borderWidth: 1 },
   langRow: { alignItems: 'center', paddingHorizontal: SIZES.lg, paddingVertical: SIZES.md, borderBottomWidth: 1 },
   groupLabel: { textTransform: 'uppercase', letterSpacing: 0.8, fontSize: 11, fontWeight: '700', paddingHorizontal: SIZES.lg, paddingTop: SIZES.md, paddingBottom: SIZES.xs },
+  langLoading: { flex: 1, justifyContent: 'center', alignItems: 'center', gap: SIZES.md },
+  langLoadingText: { fontSize: SIZES.body, fontFamily: 'Tajawal_500Medium' },
 });

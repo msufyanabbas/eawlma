@@ -365,7 +365,8 @@
     "no": "Não",
     "sar": "RAE",
     "perNight": "por noite",
-    "perMonth": "por mês"
+    "perMonth": "por mês",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Para venda",
@@ -1629,5 +1630,26 @@
     "privacy": "política de Privacidade",
     "terms": "Termos de Serviço",
     "lastUpdated": "Última atualização"
+  },
+  "notifTypes": {
+    "new_inquiry": "Nova consulta",
+    "inquiry_update": "Atualização de consulta",
+    "inquiry": "Investigação",
+    "new_message": "Nova mensagem",
+    "message": "Mensagem",
+    "booking": "Reserva",
+    "booking_confirmed": "Reserva confirmada",
+    "booking_cancelled": "Reserva cancelada",
+    "booking_update": "Atualização de reserva",
+    "commission": "Comissão",
+    "commission_created": "Comissão criada",
+    "deal_closed": "Negócio fechado",
+    "listing": "Atualização de listagem",
+    "listing_approved": "Listagem aprovada",
+    "listing_rejected": "Listagem rejeitada",
+    "payout": "Pagamento",
+    "payout_processed": "Pagamento processado",
+    "dispute_resolved": "Disputa resolvida",
+    "system": "Sistema"
   }
 }

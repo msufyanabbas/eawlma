@@ -392,7 +392,8 @@
     "no": "نہیں",
     "sar": "| SAR",
     "perNight": "| فی رات",
-    "perMonth": "| فی مہینہ"
+    "perMonth": "| فی مہینہ",
+    "ok": "| ٹھیک ہے"
   },
   "listing": {
     "forSale": "برائے فروخت",
@@ -1641,5 +1642,26 @@
     "privacy": "رازداری کی پالیسی",
     "terms": "سروس کی شرائط",
     "lastUpdated": "آخری بار اپ ڈیٹ"
+  },
+  "notifTypes": {
+    "new_inquiry": "نئی انکوائری",
+    "inquiry_update": "انکوائری اپ ڈیٹ",
+    "inquiry": "انکوائری",
+    "new_message": "نیا پیغام",
+    "message": "پیغام",
+    "booking": "بکنگ",
+    "booking_confirmed": "| بکنگ کی تصدیق ہو گئی",
+    "booking_cancelled": "بکنگ منسوخ کر دی گئی",
+    "booking_update": "بکنگ اپ ڈیٹ",
+    "commission": "کمیشن",
+    "commission_created": "کمیشن بنایا گیا",
+    "deal_closed": "ڈیل بند",
+    "listing": "فہرست سازی کی تازہ کاری",
+    "listing_approved": "فہرست سازی منظور",
+    "listing_rejected": "فہرست کو مسترد کر دیا گیا",
+    "payout": "ادائیگی",
+    "payout_processed": "| ادائیگی پر کارروائی کی گئی",
+    "dispute_resolved": "تنازعہ حل ہو گیا",
+    "system": "سسٹم"
   }
 }

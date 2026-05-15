@@ -365,7 +365,8 @@
     "no": "いいえ",
     "sar": "SAR",
     "perNight": "一晩あたり",
-    "perMonth": "月あたり"
+    "perMonth": "月あたり",
+    "ok": "わかりました"
   },
   "listing": {
     "forSale": "売買",
@@ -1629,5 +1630,26 @@
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
     "lastUpdated": "最終更新日"
+  },
+  "notifTypes": {
+    "new_inquiry": "新規お問い合わせ",
+    "inquiry_update": "お問い合わせの更新",
+    "inquiry": "問い合わせ",
+    "new_message": "新しいメッセージ",
+    "message": "メッセージ",
+    "booking": "予約",
+    "booking_confirmed": "予約が確認されました",
+    "booking_cancelled": "予約がキャンセルされました",
+    "booking_update": "予約の更新",
+    "commission": "手数料",
+    "commission_created": "コミッションが作成されました",
+    "deal_closed": "取引完了",
+    "listing": "リストの更新",
+    "listing_approved": "上場承認済み",
+    "listing_rejected": "リストの拒否",
+    "payout": "支払い",
+    "payout_processed": "支払いが処理されました",
+    "dispute_resolved": "紛争解決済み",
+    "system": "システム"
   }
 }

@@ -365,7 +365,8 @@
     "no": "เลขที่",
     "sar": "เขตซาร์",
     "perNight": "ต่อคืน",
-    "perMonth": "ต่อเดือน"
+    "perMonth": "ต่อเดือน",
+    "ok": "ตกลง"
   },
   "listing": {
     "forSale": "ขาย",
@@ -1629,5 +1630,26 @@
     "privacy": "นโยบายความเป็นส่วนตัว",
     "terms": "ข้อกำหนดในการให้บริการ",
     "lastUpdated": "อัปเดตล่าสุด"
+  },
+  "notifTypes": {
+    "new_inquiry": "สอบถามใหม่",
+    "inquiry_update": "สอบถามข้อมูลอัพเดต",
+    "inquiry": "สอบถามรายละเอียดเพิ่มเติม",
+    "new_message": "ข้อความใหม่",
+    "message": "ข้อความ",
+    "booking": "การจอง",
+    "booking_confirmed": "ยืนยันการจองแล้ว",
+    "booking_cancelled": "การจองถูกยกเลิก",
+    "booking_update": "อัพเดตการจอง",
+    "commission": "คณะกรรมการ",
+    "commission_created": "สร้างคอมมิชชันแล้ว",
+    "deal_closed": "ปิดดีลแล้ว",
+    "listing": "อัพเดทรายการ",
+    "listing_approved": "อนุมัติรายการแล้ว",
+    "listing_rejected": "รายการถูกปฏิเสธ",
+    "payout": "การจ่ายเงิน",
+    "payout_processed": "ดำเนินการจ่ายเงินแล้ว",
+    "dispute_resolved": "ข้อพิพาทได้รับการแก้ไขแล้ว",
+    "system": "ระบบ"
   }
 }

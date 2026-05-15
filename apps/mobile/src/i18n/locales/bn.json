@@ -339,7 +339,7 @@
     "filter": "ফিল্টার",
     "submit": "জমা দিন",
     "language": "ভাষা",
-    "arabic": "العربية",
+    "arabic": "| العربية",
     "english": "| ইংরেজি",
     "back": "পিছনে",
     "next": "পরবর্তী",
@@ -365,7 +365,8 @@
     "no": "| না",
     "sar": "| SAR",
     "perNight": "| প্রতি রাতে",
-    "perMonth": "প্রতি মাসে"
+    "perMonth": "প্রতি মাসে",
+    "ok": "| ঠিক আছে"
   },
   "listing": {
     "forSale": "বিক্রয়ের জন্য",
@@ -1129,7 +1130,7 @@
     "actionFailed": "একটি মডারেশন ক্রিয়া ব্যর্থ হয়েছে — আবার চেষ্টা করুন।",
     "preview": {
       "bedroomsShort": "| {{count}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bathroomsShort": "| {{count}} BA",
       "vrTourAvailable": "VR ট্যুর উপলব্ধ",
       "vrTourSection": "VR / ৩৬০° ট্যুর",
       "locationSection": "অবস্থান",
@@ -1629,5 +1630,26 @@
     "privacy": "গোপনীয়তা নীতি",
     "terms": "পরিষেবার শর্তাবলী",
     "lastUpdated": "সর্বশেষ আপডেট"
+  },
+  "notifTypes": {
+    "new_inquiry": "নতুন অনুসন্ধান",
+    "inquiry_update": "তদন্ত আপডেট",
+    "inquiry": "তদন্ত",
+    "new_message": "নতুন বার্তা",
+    "message": "বার্তা",
+    "booking": "বুকিং",
+    "booking_confirmed": "| বুকিং নিশ্চিত",
+    "booking_cancelled": "বুকিং বাতিল করা হয়েছে",
+    "booking_update": "বুকিং আপডেট",
+    "commission": "কমিশন",
+    "commission_created": "কমিশন তৈরি করা হয়েছে",
+    "deal_closed": "চুক্তি বন্ধ",
+    "listing": "তালিকা আপডেট",
+    "listing_approved": "তালিকা অনুমোদিত",
+    "listing_rejected": "তালিকা প্রত্যাখ্যাত",
+    "payout": "পেআউট",
+    "payout_processed": "| পেআউট প্রক্রিয়া করা হয়েছে",
+    "dispute_resolved": "বিরোধ নিষ্পত্তি",
+    "system": "সিস্টেম"
   }
 }

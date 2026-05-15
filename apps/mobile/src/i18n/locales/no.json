@@ -365,7 +365,8 @@
     "no": "Nei",
     "sar": "SAR",
     "perNight": "per natt",
-    "perMonth": "per måned"
+    "perMonth": "per måned",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Til salgs",
@@ -931,7 +932,7 @@
     "cityShort": "By",
     "districtShort": "Distrikt",
     "bedsShort": "Senger",
-    "bathsShort": "Baths",
+    "bathsShort": "Bad",
     "areaShort": "Område",
     "description": "Beskrivelse",
     "saveChanges": "Lagre endringer",
@@ -1629,5 +1630,26 @@
     "privacy": "Personvernerklæring",
     "terms": "Vilkår for bruk",
     "lastUpdated": "Sist oppdatert"
+  },
+  "notifTypes": {
+    "new_inquiry": "Ny forespørsel",
+    "inquiry_update": "Forespørselsoppdatering",
+    "inquiry": "Forespørsel",
+    "new_message": "Ny melding",
+    "message": "Melding",
+    "booking": "Booking",
+    "booking_confirmed": "Bestilling bekreftet",
+    "booking_cancelled": "Bestilling kansellert",
+    "booking_update": "Bookingoppdatering",
+    "commission": "Kommisjon",
+    "commission_created": "Kommisjon opprettet",
+    "deal_closed": "Avtalen er stengt",
+    "listing": "Oppdatering av oppføringen",
+    "listing_approved": "Oppføring godkjent",
+    "listing_rejected": "Oppføring avvist",
+    "payout": "Utbetaling",
+    "payout_processed": "Utbetaling behandlet",
+    "dispute_resolved": "Tvist løst",
+    "system": "System"
   }
 }

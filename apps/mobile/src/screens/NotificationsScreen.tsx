@@ -53,6 +53,66 @@ export default function NotificationsScreen({ navigation }: any) {
     } catch {}
   };
 
+  // Maps backend notification.type to the in-app screen the user expects to
+  // land on. Falls back to staying on the Notifications screen for types we
+  // don't recognize so a tap never feels broken.
+  const handleNotificationTap = (notif: any) => {
+    const isUnread = !notif.readAt && !notif.isRead;
+    if (isUnread) void markRead(notif.id);
+
+    const type: string = notif.type || '';
+    const data: any = notif.data || notif.payload || {};
+
+    switch (type) {
+      case 'new_inquiry':
+      case 'inquiry_update':
+      case 'inquiry':
+        navigation.navigate('Inquiries');
+        return;
+      case 'new_message':
+      case 'message':
+        if (data.conversationId) {
+          navigation.navigate('Chat', {
+            conversationId: data.conversationId,
+            recipientName: data.senderName,
+          });
+        } else {
+          navigation.navigate('MainTabs', { screen: 'Messages' });
+        }
+        return;
+      case 'booking':
+      case 'booking_update':
+      case 'booking_confirmed':
+      case 'booking_cancelled':
+        navigation.navigate('Bookings');
+        return;
+      case 'commission':
+      case 'commission_created':
+      case 'deal_closed':
+        navigation.navigate('Commissions');
+        return;
+      case 'payout':
+      case 'payout_processed':
+        navigation.navigate('Wallet');
+        return;
+      case 'listing':
+      case 'listing_approved':
+      case 'listing_rejected':
+        navigation.navigate('MyListings');
+        return;
+      default:
+        // Unknown type — no navigation, mark-as-read already happened above.
+        return;
+    }
+  };
+
+  const getNotificationTitle = (notif: any): string => {
+    const type = notif.type;
+    if (!type) return notif.title || t('notifications.notification');
+    const translated = t(`notifTypes.${type}`, { defaultValue: '' });
+    return translated || notif.title || t('notifications.notification');
+  };
+
   const formatTime = (iso?: string): string => {
     if (!iso) return '';
     try {
@@ -105,7 +165,7 @@ export default function NotificationsScreen({ navigation }: any) {
                   },
                   isUnread && { borderLeftColor: colors.primary, backgroundColor: colors.primary + '08' },
                 ]}
-                onPress={() => isUnread && markRead(item.id)}
+                onPress={() => handleNotificationTap(item)}
               >
                 <View style={[styles.iconBox, { backgroundColor: colors.primary + '15' }]}>
                   <Ionicons name={iconName} size={20} color={colors.primary} />
@@ -115,7 +175,7 @@ export default function NotificationsScreen({ navigation }: any) {
                     style={[TYPOGRAPHY.bodyBold, { color: colors.text, textAlign }]}
                     numberOfLines={1}
                   >
-                    {item.title || t('notifications.notification')}
+                    {getNotificationTitle(item)}
                   </Text>
                   <Text
                     style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 2, textAlign }]}

@@ -309,11 +309,11 @@
     "fillRequired": "Bitte füllen Sie alle Pflichtfelder aus",
     "registerFailed": "Registrierung fehlgeschlagen, versuchen Sie es erneut",
     "pwWeak": "Schwach",
-    "pwFair": "Fair",
+    "pwFair": "Gerecht",
     "pwGood": "Gut",
     "pwStrong": "Stark",
     "firstNamePlaceholder": "John",
-    "lastNamePlaceholder": "Doe",
+    "lastNamePlaceholder": "Damhirschkuh",
     "phonePlaceholder": "+966 5X XXX XXXX"
   },
   "validation": {
@@ -365,7 +365,8 @@
     "no": "NEIN",
     "sar": "SAR",
     "perNight": "pro Nacht",
-    "perMonth": "pro Monat"
+    "perMonth": "pro Monat",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Zu verkaufen",
@@ -1629,5 +1630,26 @@
     "privacy": "Datenschutzrichtlinie",
     "terms": "Nutzungsbedingungen",
     "lastUpdated": "Zuletzt aktualisiert"
+  },
+  "notifTypes": {
+    "new_inquiry": "New Inquiry",
+    "inquiry_update": "Anfrageaktualisierung",
+    "inquiry": "Anfrage",
+    "new_message": "New Message",
+    "message": "Message",
+    "booking": "Buchung",
+    "booking_confirmed": "Buchung bestätigt",
+    "booking_cancelled": "Buchung storniert",
+    "booking_update": "Buchungsaktualisierung",
+    "commission": "Provision",
+    "commission_created": "Kommission erstellt",
+    "deal_closed": "Deal Closed",
+    "listing": "Eintragsaktualisierung",
+    "listing_approved": "Eintrag genehmigt",
+    "listing_rejected": "Eintrag abgelehnt",
+    "payout": "Auszahlung",
+    "payout_processed": "Payout Processed",
+    "dispute_resolved": "Streit beigelegt",
+    "system": "System"
   }
 }

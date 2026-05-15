@@ -15,7 +15,7 @@ import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
 
 export default function LoginScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { isAr, textAlign, backIcon } = useRTL();
+  const { isAr, isRTL, textAlign, backIcon } = useRTL();
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,7 +52,10 @@ export default function LoginScreen({ navigation }: any) {
         style={{ flex: 1 }}
       >
         <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
-          <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
+          <TouchableOpacity
+            style={[styles.backBtn, { alignSelf: isRTL ? 'flex-end' : 'flex-start' }]}
+            onPress={() => navigation.goBack()}
+          >
             <Ionicons name={backIcon} size={24} color={colors.text} />
           </TouchableOpacity>
 

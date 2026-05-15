@@ -365,7 +365,8 @@
     "no": "Nee",
     "sar": "SAR",
     "perNight": "per nag",
-    "perMonth": "per maand"
+    "perMonth": "per maand",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Te koop",
@@ -839,7 +840,7 @@
       "minimumStay": "Minimum verblyf (nagte)",
       "maxGuests": "Maksimum gaste",
       "checkIn": "Aanmelding",
-      "checkOut": "Check-out",
+      "checkOut": "Uitklok",
       "cancellationPolicy": "Kansellasiebeleid",
       "cancelFlexible": "Buigsaam — volle terugbetaling tot 24 uur voor",
       "cancelModerate": "Matig — volle terugbetaling tot 5 dae voor",
@@ -1629,5 +1630,26 @@
     "privacy": "Privaatheidsbeleid",
     "terms": "Diensbepalings",
     "lastUpdated": "Laas opgedateer"
+  },
+  "notifTypes": {
+    "new_inquiry": "Nuwe navraag",
+    "inquiry_update": "Navraagopdatering",
+    "inquiry": "Navraag",
+    "new_message": "Nuwe boodskap",
+    "message": "Boodskap",
+    "booking": "Bespreking",
+    "booking_confirmed": "Bespreking bevestig",
+    "booking_cancelled": "Bespreking gekanselleer",
+    "booking_update": "Besprekingsopdatering",
+    "commission": "Kommissie",
+    "commission_created": "Kommissie geskep",
+    "deal_closed": "Handeling gesluit",
+    "listing": "Noteringsopdatering",
+    "listing_approved": "Notering goedgekeur",
+    "listing_rejected": "Notering verwerp",
+    "payout": "Uitbetaling",
+    "payout_processed": "Uitbetaling verwerk",
+    "dispute_resolved": "Dispuut opgelos",
+    "system": "Stelsel"
   }
 }

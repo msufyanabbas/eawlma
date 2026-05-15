@@ -365,7 +365,8 @@
     "no": "నం",
     "sar": "SAR",
     "perNight": "రాత్రికి",
-    "perMonth": "నెలకు"
+    "perMonth": "నెలకు",
+    "ok": "సరే"
   },
   "listing": {
     "forSale": "అమ్మకానికి",
@@ -1629,5 +1630,26 @@
     "privacy": "గోప్యతా విధానం",
     "terms": "సేవా నిబంధనలు",
     "lastUpdated": "చివరిగా నవీకరించబడింది"
+  },
+  "notifTypes": {
+    "new_inquiry": "కొత్త విచారణ",
+    "inquiry_update": "విచారణ నవీకరణ",
+    "inquiry": "విచారణ",
+    "new_message": "కొత్త సందేశం",
+    "message": "సందేశం",
+    "booking": "బుకింగ్",
+    "booking_confirmed": "బుకింగ్ నిర్ధారించబడింది",
+    "booking_cancelled": "బుకింగ్ రద్దు చేయబడింది",
+    "booking_update": "బుకింగ్ అప్‌డేట్",
+    "commission": "కమిషన్",
+    "commission_created": "కమిషన్ సృష్టించబడింది",
+    "deal_closed": "డీల్ క్లోజ్ చేయబడింది",
+    "listing": "జాబితా నవీకరణ",
+    "listing_approved": "జాబితా ఆమోదించబడింది",
+    "listing_rejected": "జాబితా తిరస్కరించబడింది",
+    "payout": "చెల్లింపు",
+    "payout_processed": "చెల్లింపు ప్రాసెస్ చేయబడింది",
+    "dispute_resolved": "వివాదం పరిష్కరించబడింది",
+    "system": "వ్యవస్థ"
   }
 }

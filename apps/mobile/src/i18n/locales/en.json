@@ -129,6 +129,27 @@
     "terms": "Terms of Service",
     "lastUpdated": "Last updated"
   },
+  "notifTypes": {
+    "new_inquiry": "New Inquiry",
+    "inquiry_update": "Inquiry Update",
+    "inquiry": "Inquiry",
+    "new_message": "New Message",
+    "message": "Message",
+    "booking": "Booking",
+    "booking_confirmed": "Booking Confirmed",
+    "booking_cancelled": "Booking Cancelled",
+    "booking_update": "Booking Update",
+    "commission": "Commission",
+    "commission_created": "Commission Created",
+    "deal_closed": "Deal Closed",
+    "listing": "Listing Update",
+    "listing_approved": "Listing Approved",
+    "listing_rejected": "Listing Rejected",
+    "payout": "Payout",
+    "payout_processed": "Payout Processed",
+    "dispute_resolved": "Dispute Resolved",
+    "system": "System"
+  },
   "stays": {
     "title": "Short-term stays",
     "heroTitle": "Find your perfect stay in Saudi Arabia",
@@ -412,7 +433,8 @@
     "no": "No",
     "sar": "SAR",
     "perNight": "per night",
-    "perMonth": "per month"
+    "perMonth": "per month",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "For sale",

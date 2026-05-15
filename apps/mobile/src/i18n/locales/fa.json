@@ -365,7 +365,8 @@
     "no": "نه",
     "sar": "SAR",
     "perNight": "در هر شب",
-    "perMonth": "در هر ماه"
+    "perMonth": "در هر ماه",
+    "ok": "خوب"
   },
   "listing": {
     "forSale": "برای فروش",
@@ -1629,5 +1630,26 @@
     "privacy": "سیاست حفظ حریم خصوصی",
     "terms": "شرایط خدمات",
     "lastUpdated": "آخرین به روز رسانی"
+  },
+  "notifTypes": {
+    "new_inquiry": "استعلام جدید",
+    "inquiry_update": "به روز رسانی استعلام",
+    "inquiry": "استعلام",
+    "new_message": "پیام جدید",
+    "message": "پیام",
+    "booking": "رزرو",
+    "booking_confirmed": "رزرو تایید شد",
+    "booking_cancelled": "رزرو لغو شد",
+    "booking_update": "به روز رسانی رزرو",
+    "commission": "کمیسیون",
+    "commission_created": "کمیسیون ایجاد شد",
+    "deal_closed": "معامله بسته شد",
+    "listing": "به روز رسانی لیست",
+    "listing_approved": "لیست تایید شد",
+    "listing_rejected": "فهرست رد شد",
+    "payout": "پرداخت",
+    "payout_processed": "پرداخت پردازش شد",
+    "dispute_resolved": "اختلاف حل شد",
+    "system": "سیستم"
   }
 }

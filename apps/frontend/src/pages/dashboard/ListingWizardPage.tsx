@@ -50,6 +50,7 @@ import {
 
 import { listingsApi } from '@/api/listings.api';
 import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
+import { useAuthStore } from '@/store/auth.store';
 import { storageApi } from '@/api/storage.api';
 import { aiApi, type PriceSuggestion } from '@/api/ai.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
@@ -209,6 +210,7 @@ export function ListingWizardPage() {
   const params = useParams({ strict: false }) as { id?: string };
   const editingId = params.id;
   const isEdit = Boolean(editingId);
+  const userId = useAuthStore((s) => s.user?.id);
 
   const [step, setStep] = useState(0);
   const [state, setState] = useState<WizardState>(initialState);
@@ -460,7 +462,7 @@ export function ListingWizardPage() {
                   // Agents must commit to the platform commission before
                   // pushing a listing live. The modal records the oath, then
                   // we re-trigger submission.
-                  if (!hasLocallyAcceptedOath('agent_listing')) {
+                  if (!hasLocallyAcceptedOath('agent_listing', userId)) {
                     setOathOpen(true);
                     return;
                   }

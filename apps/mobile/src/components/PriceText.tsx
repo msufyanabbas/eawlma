@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TextStyle, StyleProp } from 'react-native';
 import { useRTL } from '../hooks/useRTL';
+import { formatPrice } from '../utils/formatters';
 
 interface Props {
   value: number | string | null | undefined;
@@ -9,9 +10,9 @@ interface Props {
 }
 
 export default function PriceText({ value, style, currencyStyle }: Props) {
-  const { isAr } = useRTL();
+  const { isAr, lang } = useRTL();
   const n = Number(value);
-  const display = Number.isFinite(n) ? n.toLocaleString() : '—';
+  const display = Number.isFinite(n) ? formatPrice(n, lang) : '—';
   return (
     <Text style={style}>
       {display}

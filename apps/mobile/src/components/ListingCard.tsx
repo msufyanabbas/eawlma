@@ -7,6 +7,7 @@ import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import PriceText from './PriceText';
 import SmartImage from './SmartImage';
 import { listingCoverUrl } from '../utils/listingImages';
+import { formatNumber } from '../utils/formatters';
 
 const { width: W } = Dimensions.get('window');
 
@@ -78,17 +79,17 @@ export default function ListingCard({ item, variant = 'grid', onPress }: Props) 
             {item.bedrooms != null && (
               <View style={styles.stat}>
                 <Ionicons name="bed-outline" size={11} color={colors.textSecondary} />
-                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{item.bedrooms}</Text>
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{formatNumber(item.bedrooms)}</Text>
               </View>
             )}
             {item.bathrooms != null && (
               <View style={styles.stat}>
                 <Ionicons name="water-outline" size={11} color={colors.textSecondary} />
-                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{item.bathrooms}</Text>
+                <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{formatNumber(item.bathrooms)}</Text>
               </View>
             )}
             {item.area != null && (
-              <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{item.area}م²</Text>
+              <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{formatNumber(item.area)}م²</Text>
             )}
           </View>
         </View>
@@ -130,17 +131,17 @@ export default function ListingCard({ item, variant = 'grid', onPress }: Props) 
             {item.bedrooms != null && (
               <View style={styles.stat}>
                 <Ionicons name="bed-outline" size={11} color={colors.textSecondary} />
-                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{item.bedrooms}</Text>
+                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{formatNumber(item.bedrooms)}</Text>
               </View>
             )}
             {item.bathrooms != null && (
               <View style={styles.stat}>
                 <Ionicons name="water-outline" size={11} color={colors.textSecondary} />
-                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{item.bathrooms}</Text>
+                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{formatNumber(item.bathrooms)}</Text>
               </View>
             )}
             {item.area != null && (
-              <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{item.area}م²</Text>
+              <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{formatNumber(item.area)}م²</Text>
             )}
           </View>
         )}

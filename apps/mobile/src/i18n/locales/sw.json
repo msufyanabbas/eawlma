@@ -365,7 +365,8 @@
     "no": "Hapana",
     "sar": "SAR",
     "perNight": "kwa usiku",
-    "perMonth": "kwa mwezi"
+    "perMonth": "kwa mwezi",
+    "ok": "Sawa"
   },
   "listing": {
     "forSale": "Inauzwa",
@@ -1629,5 +1630,26 @@
     "privacy": "Sera ya Faragha",
     "terms": "Masharti ya Huduma",
     "lastUpdated": "Ilisasishwa mwisho"
+  },
+  "notifTypes": {
+    "new_inquiry": "Uchunguzi Mpya",
+    "inquiry_update": "Uchunguzi Mwisho",
+    "inquiry": "Uchunguzi",
+    "new_message": "Ujumbe Mpya",
+    "message": "Ujumbe",
+    "booking": "Kuhifadhi",
+    "booking_confirmed": "Uhifadhi Umethibitishwa",
+    "booking_cancelled": "Uhifadhi Umeghairiwa",
+    "booking_update": "Sasisho la Kuhifadhi",
+    "commission": "Tume",
+    "commission_created": "Tume Imeundwa",
+    "deal_closed": "Mpango Umefungwa",
+    "listing": "Sasisho la Kuorodhesha",
+    "listing_approved": "Uorodheshaji Umeidhinishwa",
+    "listing_rejected": "Uorodheshaji Umekataliwa",
+    "payout": "Malipo",
+    "payout_processed": "Malipo Yamechakatwa",
+    "dispute_resolved": "Mzozo Umetatuliwa",
+    "system": "Mfumo"
   }
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity, Linking, Dimensions, Platform, Image,
-  Modal, TextInput, Alert, ActivityIndicator,
+  Modal, TextInput, Alert, ActivityIndicator, Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,6 +20,7 @@ import ListingCard from '../components/ListingCard';
 import SmartImage from '../components/SmartImage';
 import UserAvatar from '../components/UserAvatar';
 import { listingCoverUrl } from '../utils/listingImages';
+import { formatNumber, formatPrice } from '../utils/formatters';
 
 // Google Maps Static API key — wired through Expo extra so a single value in
 // app.json (and the matching .env entry) drives Android/iOS native config and
@@ -136,6 +137,27 @@ export default function ListingDetailScreen({ navigation, route }: any) {
     setShowInquiry(true);
   };
 
+  const handleShare = async () => {
+    const price = Number(listing?.price ?? 0);
+    const priceText = isAr
+      ? `${formatPrice(price, 'ar')} ر.س`
+      : `${price.toLocaleString()} SAR`;
+    const title = isAr
+      ? (listing?.titleAr || listing?.titleEn || '')
+      : (listing?.titleEn || listing?.titleAr || '');
+    const loc = [listing?.district, listing?.city].filter(Boolean).join(', ');
+    const url = `https://eawlma.sa/listings/${listing?.id || id}`;
+    try {
+      await Share.share({
+        message: `${title}\n${priceText}${loc ? `\n${loc}` : ''}\n${url}`,
+        url, // iOS only
+        title,
+      });
+    } catch (e) {
+      if (__DEV__) console.log('[share] failed:', e);
+    }
+  };
+
   const handleToggleSave = async () => {
     if (!isAuthenticated) {
       navigation.navigate('Login');
@@ -186,11 +208,17 @@ export default function ListingDetailScreen({ navigation, route }: any) {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={styles.heroBox}>
           <SmartImage uri={listingCoverUrl(listing)} style={styles.heroImage} fallbackIconSize={64} />
-          <SafeAreaView style={styles.heroNav} edges={['top']}>
+          <SafeAreaView
+            style={[
+              styles.heroNav,
+              { flexDirection: isRTL ? 'row-reverse' : 'row' },
+            ]}
+            edges={['top']}
+          >
             <TouchableOpacity style={styles.iconBtn} onPress={() => navigation.goBack()}>
               <Ionicons name={backIcon} size={22} color="#FFF" />
             </TouchableOpacity>
-            <View style={styles.heroActions}>
+            <View style={[styles.heroActions, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
               <TouchableOpacity style={styles.iconBtn} onPress={handleToggleSave} disabled={saving}>
                 {saving ? (
                   <ActivityIndicator color="#FFF" size="small" />
@@ -202,7 +230,7 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                   />
                 )}
               </TouchableOpacity>
-              <TouchableOpacity style={styles.iconBtn}>
+              <TouchableOpacity style={styles.iconBtn} onPress={handleShare}>
                 <Ionicons name="share-outline" size={22} color="#FFF" />
               </TouchableOpacity>
             </View>
@@ -235,13 +263,13 @@ export default function ListingDetailScreen({ navigation, route }: any) {
 
           <View style={[styles.statsRow, { backgroundColor: colors.surface }]}>
             {listing.bedrooms != null && (
-              <Stat icon="bed-outline" value={listing.bedrooms} label={t('listing.bedrooms')} colors={colors} />
+              <Stat icon="bed-outline" value={formatNumber(listing.bedrooms)} label={t('listing.bedrooms')} colors={colors} />
             )}
             {listing.bathrooms != null && (
-              <Stat icon="water-outline" value={listing.bathrooms} label={t('listing.bathrooms')} colors={colors} />
+              <Stat icon="water-outline" value={formatNumber(listing.bathrooms)} label={t('listing.bathrooms')} colors={colors} />
             )}
             {listing.area != null && (
-              <Stat icon="resize-outline" value={listing.area} label="m²" colors={colors} />
+              <Stat icon="resize-outline" value={formatNumber(listing.area)} label="m²" colors={colors} />
             )}
             {listing.propertyType && (
               <Stat icon="business-outline" value={listing.propertyType} label={t('listing.propertyTypeLabel')} colors={colors} />
@@ -262,11 +290,21 @@ export default function ListingDetailScreen({ navigation, route }: any) {
               <SectionTitle colors={colors} textAlign={textAlign}>
                 {t('listing.amenities')}
               </SectionTitle>
-              <View style={styles.amenitiesGrid}>
+              <View style={[
+                styles.amenitiesGrid,
+                { flexDirection: isRTL ? 'row-reverse' : 'row' },
+              ]}>
                 {amenities.map(a => (
                   <View
                     key={a}
-                    style={[styles.amenityChip, { backgroundColor: colors.primary + '10', borderColor: colors.primary + '30' }]}
+                    style={[
+                      styles.amenityChip,
+                      {
+                        backgroundColor: colors.primary + '10',
+                        borderColor: colors.primary + '30',
+                        flexDirection: isRTL ? 'row-reverse' : 'row',
+                      },
+                    ]}
                   >
                     <Ionicons name="checkmark-circle" size={14} color={colors.primary} />
                     <Text style={[TYPOGRAPHY.small, { color: colors.text }]}>{a}</Text>
@@ -342,7 +380,15 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                     style={styles.mapImage}
                     resizeMode="cover"
                   />
-                  <View style={[styles.openMapsBtn, { backgroundColor: colors.primary }]}>
+                  <View style={[
+                    styles.openMapsBtn,
+                    {
+                      backgroundColor: colors.primary,
+                      flexDirection: isRTL ? 'row-reverse' : 'row',
+                      right: isRTL ? undefined : 12,
+                      left: isRTL ? 12 : undefined,
+                    },
+                  ]}>
                     <Ionicons name="navigate" size={14} color="#FFF" />
                     <Text style={[TYPOGRAPHY.caption, { color: '#FFF', fontWeight: '700' }]}>
                       {t('listing.openInMaps')}

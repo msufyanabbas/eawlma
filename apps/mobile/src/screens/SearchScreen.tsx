@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, Text, StyleSheet, FlatList,
+  View, Text, StyleSheet, FlatList, ScrollView,
   TouchableOpacity, TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,6 +14,20 @@ import { SIZES, TYPOGRAPHY } from '../theme';
 import ListingCard from '../components/ListingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
+import { formatNumber } from '../utils/formatters';
+
+const CITIES = [
+  { ar: 'الرياض',         en: 'Riyadh',  value: 'Riyadh' },
+  { ar: 'جدة',             en: 'Jeddah',  value: 'Jeddah' },
+  { ar: 'الدمام',          en: 'Dammam',  value: 'Dammam' },
+  { ar: 'مكة المكرمة',     en: 'Makkah',  value: 'Makkah' },
+  { ar: 'المدينة المنورة', en: 'Madinah', value: 'Madinah' },
+  { ar: 'الطائف',          en: 'Taif',    value: 'Taif' },
+  { ar: 'تبوك',            en: 'Tabuk',   value: 'Tabuk' },
+  { ar: 'أبها',            en: 'Abha',    value: 'Abha' },
+  { ar: 'القصيم',          en: 'Qassim',  value: 'Qassim' },
+  { ar: 'حائل',            en: 'Hail',    value: 'Hail' },
+];
 
 const TRANSACTION_TYPES = [
   { key: 'all',  value: '' },
@@ -46,7 +60,7 @@ const BEDROOM_OPTIONS = [
 
 export default function SearchScreen({ navigation, route }: any) {
   const { colors } = useTheme();
-  const { textAlign } = useRTL();
+  const { isAr, isRTL, textAlign } = useRTL();
   const { t } = useTranslation();
   const [query, setQuery] = useState(route?.params?.query || '');
   const [txType, setTxType] = useState('');
@@ -125,19 +139,51 @@ export default function SearchScreen({ navigation, route }: any) {
         {showFilters && (
           <View style={styles.filtersBox}>
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.type')}</FilterLabel>
-            <Chips items={TRANSACTION_TYPES} ns="search" value={txType} onChange={setTxType} t={t} colors={colors} />
+            <Chips items={TRANSACTION_TYPES} ns="search" value={txType} onChange={setTxType} t={t} colors={colors} isRTL={isRTL} />
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.propertyType')}</FilterLabel>
-            <Chips items={PROPERTY_TYPES} ns="search" value={propType} onChange={setPropType} t={t} colors={colors} />
+            <Chips items={PROPERTY_TYPES} ns="search" value={propType} onChange={setPropType} t={t} colors={colors} isRTL={isRTL} />
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.city')}</FilterLabel>
-            <TextInput
-              style={[styles.cityInput, { backgroundColor: colors.background, color: colors.text, borderColor: colors.border, textAlign }]}
-              placeholder={t('search.cityPlaceholder')}
-              placeholderTextColor={colors.textSecondary}
-              value={city}
-              onChangeText={setCity}
-            />
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View style={{
+                flexDirection: isRTL ? 'row-reverse' : 'row',
+                gap: SIZES.sm,
+                paddingVertical: SIZES.sm,
+                paddingHorizontal: 2,
+              }}>
+                <TouchableOpacity
+                  style={[
+                    styles.chip,
+                    { backgroundColor: colors.surface, borderColor: colors.border },
+                    !city && { backgroundColor: colors.primary, borderColor: colors.primary },
+                  ]}
+                  onPress={() => setCity('')}
+                >
+                  <Text style={[TYPOGRAPHY.small, { color: !city ? '#FFF' : colors.text, fontWeight: '600' }]}>
+                    {t('search.all')}
+                  </Text>
+                </TouchableOpacity>
+                {CITIES.map(c => {
+                  const active = city === c.value;
+                  return (
+                    <TouchableOpacity
+                      key={c.value}
+                      style={[
+                        styles.chip,
+                        { backgroundColor: colors.surface, borderColor: colors.border },
+                        active && { backgroundColor: colors.primary, borderColor: colors.primary },
+                      ]}
+                      onPress={() => setCity(c.value)}
+                    >
+                      <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.text, fontWeight: '600' }]}>
+                        {isAr ? c.ar : c.en}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </ScrollView>
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.priceRange')}</FilterLabel>
             <View style={{ flexDirection: 'row', gap: SIZES.sm }}>
@@ -160,10 +206,10 @@ export default function SearchScreen({ navigation, route }: any) {
             </View>
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.bedrooms')}</FilterLabel>
-            <Chips items={BEDROOM_OPTIONS} ns="search" value={bedrooms} onChange={setBedrooms} t={t} colors={colors} />
+            <Chips items={BEDROOM_OPTIONS} ns="search" value={bedrooms} onChange={setBedrooms} t={t} colors={colors} isRTL={isRTL} />
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.sort')}</FilterLabel>
-            <Chips items={SORT_OPTIONS} ns="search" value={sort} onChange={setSort} t={t} colors={colors} />
+            <Chips items={SORT_OPTIONS} ns="search" value={sort} onChange={setSort} t={t} colors={colors} isRTL={isRTL} />
 
             <TouchableOpacity
               style={[styles.applyBtn, { backgroundColor: colors.primary }]}
@@ -219,15 +265,19 @@ function FilterLabel({ children, colors, textAlign }: any) {
   );
 }
 
-function Chips({ items, value, onChange, ns, t, colors }: any) {
+function Chips({ items, value, onChange, ns, t, colors, isRTL }: any) {
   return (
-    <View style={styles.chipsRow}>
+    <View style={[styles.chipsRow, isRTL && { flexDirection: 'row-reverse' }]}>
       {items.map((item: any) => {
         const active = value === item.value;
         // Most keys live under `<ns>.<key>`; the bedroom shortcuts ("1+",
-        // "2+", ...) are literal labels and don't have a translation entry.
+        // "2+", ...) are literal labels and don't have a translation entry,
+        // but we still rewrite the leading digit to Arabic-Indic when the
+        // active locale calls for it.
         const literal = ['1+', '2+', '3+', '4+'].includes(item.key);
-        const label = literal ? item.key : t(`${ns}.${item.key}`);
+        const label = literal
+          ? `${formatNumber(item.key.charAt(0))}+`
+          : t(`${ns}.${item.key}`);
         return (
           <TouchableOpacity
             key={String(item.value) || item.key}

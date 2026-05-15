@@ -365,7 +365,8 @@
     "no": "छैन",
     "sar": "| SAR",
     "perNight": "प्रति रात",
-    "perMonth": "प्रति महिना"
+    "perMonth": "प्रति महिना",
+    "ok": "ठीक छ"
   },
   "listing": {
     "forSale": "बिक्रीको लागि",
@@ -1629,5 +1630,26 @@
     "privacy": "गोपनीयता नीति",
     "terms": "| सेवा सर्तहरू",
     "lastUpdated": "| पछिल्लो अपडेट"
+  },
+  "notifTypes": {
+    "new_inquiry": "नयाँ सोधपुछ",
+    "inquiry_update": "सोधपुछ अपडेट",
+    "inquiry": "सोधपुछ",
+    "new_message": "नयाँ सन्देश",
+    "message": "सन्देश",
+    "booking": "बुकिङ",
+    "booking_confirmed": "बुकिङ पुष्टि भयो",
+    "booking_cancelled": "बुकिङ रद्द गरियो",
+    "booking_update": "बुकिङ अपडेट",
+    "commission": "आयोग",
+    "commission_created": "आयोग गठन गरेको छ",
+    "deal_closed": "सम्झौता बन्द",
+    "listing": "सूचीकरण अपडेट",
+    "listing_approved": "सूचीकरण स्वीकृत",
+    "listing_rejected": "सूचीकरण अस्वीकार गरियो",
+    "payout": "भुक्तानी",
+    "payout_processed": "भुक्तानी प्रशोधन गरियो",
+    "dispute_resolved": "विवाद समाधान भयो",
+    "system": "प्रणाली"
   }
 }

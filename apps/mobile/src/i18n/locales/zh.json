@@ -365,7 +365,8 @@
     "no": "不",
     "sar": "SAR",
     "perNight": "每晚",
-    "perMonth": "每月"
+    "perMonth": "每月",
+    "ok": "好的"
   },
   "listing": {
     "forSale": "出售",
@@ -1629,5 +1630,26 @@
     "privacy": "隐私政策",
     "terms": "服务条款",
     "lastUpdated": "最后更新"
+  },
+  "notifTypes": {
+    "new_inquiry": "新询盘",
+    "inquiry_update": "询价更新",
+    "inquiry": "询问",
+    "new_message": "新消息",
+    "message": "信息",
+    "booking": "预订",
+    "booking_confirmed": "预订已确认",
+    "booking_cancelled": "预订已取消",
+    "booking_update": "预订更新",
+    "commission": "委员会",
+    "commission_created": "委员会已创建",
+    "deal_closed": "交易结束",
+    "listing": "列表更新",
+    "listing_approved": "上市获批",
+    "listing_rejected": "上市被拒绝",
+    "payout": "支出",
+    "payout_processed": "付款已处理",
+    "dispute_resolved": "争议已解决",
+    "system": "系统"
   }
 }

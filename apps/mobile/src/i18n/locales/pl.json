@@ -365,7 +365,8 @@
     "no": "NIE",
     "sar": "SAR",
     "perNight": "za noc",
-    "perMonth": "na miesiąc"
+    "perMonth": "na miesiąc",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Na sprzedaż",
@@ -1629,5 +1630,26 @@
     "privacy": "Polityka prywatności",
     "terms": "Warunki świadczenia usług",
     "lastUpdated": "Ostatnia aktualizacja"
+  },
+  "notifTypes": {
+    "new_inquiry": "Nowe zapytanie",
+    "inquiry_update": "Aktualizacja zapytania",
+    "inquiry": "Zapytanie",
+    "new_message": "Nowa wiadomość",
+    "message": "Wiadomość",
+    "booking": "Rezerwacja",
+    "booking_confirmed": "Rezerwacja potwierdzona",
+    "booking_cancelled": "Rezerwacja anulowana",
+    "booking_update": "Aktualizacja rezerwacji",
+    "commission": "Zamawiać",
+    "commission_created": "Komisja utworzona",
+    "deal_closed": "Transakcja zamknięta",
+    "listing": "Aktualizacja aukcji",
+    "listing_approved": "Lista zatwierdzona",
+    "listing_rejected": "Lista odrzucona",
+    "payout": "Wypłata",
+    "payout_processed": "Wypłata przetworzona",
+    "dispute_resolved": "Spór rozwiązany",
+    "system": "System"
   }
 }

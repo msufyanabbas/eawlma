@@ -365,7 +365,8 @@
     "no": "KHÔNG",
     "sar": "SAR",
     "perNight": "mỗi đêm",
-    "perMonth": "mỗi tháng"
+    "perMonth": "mỗi tháng",
+    "ok": "ĐƯỢC RỒI"
   },
   "listing": {
     "forSale": "Đang bán",
@@ -1629,5 +1630,26 @@
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản dịch vụ",
     "lastUpdated": "Cập nhật lần cuối"
+  },
+  "notifTypes": {
+    "new_inquiry": "Yêu cầu mới",
+    "inquiry_update": "Cập nhật yêu cầu",
+    "inquiry": "Cuộc điều tra",
+    "new_message": "Tin nhắn mới",
+    "message": "Tin nhắn",
+    "booking": "Đặt chỗ",
+    "booking_confirmed": "Đã xác nhận đặt chỗ",
+    "booking_cancelled": "Đặt chỗ đã bị hủy",
+    "booking_update": "Cập nhật đặt chỗ",
+    "commission": "Nhiệm vụ",
+    "commission_created": "Hoa hồng được tạo",
+    "deal_closed": "Đã đóng giao dịch",
+    "listing": "Cập nhật danh sách",
+    "listing_approved": "Danh sách đã được phê duyệt",
+    "listing_rejected": "Danh sách bị từ chối",
+    "payout": "Thanh toán",
+    "payout_processed": "Khoản thanh toán đã được xử lý",
+    "dispute_resolved": "Tranh chấp đã được giải quyết",
+    "system": "Hệ thống"
   }
 }

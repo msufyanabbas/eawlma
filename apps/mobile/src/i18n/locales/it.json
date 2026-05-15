@@ -182,7 +182,7 @@
     "noMessagesShort": "Nessun messaggio"
   },
   "hosting": {
-    "title": "Hosting",
+    "title": "Ospitare",
     "subtitle": "Gestisci affitti a breve termine — prenotazioni, approvazione immediata, prezzi e recensioni.",
     "noShortTerm": "Non hai ancora annunci a breve termine. Modifica un annuncio e scegli un tipo di proprietà a breve termine per iniziare l'hosting.",
     "activeListing": "Annuncio a breve termine attivo",
@@ -362,10 +362,11 @@
     "loadMore": "Carica altro",
     "errorOccurred": "Si è verificato un errore",
     "yes": "Sì",
-    "no": "No",
+    "no": "NO",
     "sar": "SAR",
     "perNight": "a notte",
-    "perMonth": "al mese"
+    "perMonth": "al mese",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "In vendita",
@@ -377,7 +378,7 @@
     "beds": "Letti",
     "baths": "Bagni",
     "area": "Superficie",
-    "areaUnit": "m²",
+    "areaUnit": "mq",
     "price": "Prezzo",
     "pricePerSqm": "Prezzo al m²",
     "currency": "SAR",
@@ -391,7 +392,7 @@
     "save": "Salva",
     "share": "Condividi",
     "callAgent": "Chiama l'agente",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Whatsapp",
     "scheduleTour": "Programma visita",
     "scheduleATour": "Programma una visita",
     "contactAgent": "Contatta l'agente",
@@ -651,7 +652,7 @@
     "sentSuccess": "Grazie! Il nostro team risponderà entro 24 ore.",
     "emailUs": "Inviaci un'email",
     "emailReplies": "Risposte entro 24h nei giorni feriali",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Whatsapp",
     "whatsappHours": "Dom–Gio, 9:00 – 18:00 (AST)",
     "office": "Ufficio",
     "officeAddress": "King Fahd Road, Riyad",
@@ -818,7 +819,7 @@
       "cornerUnit": "Elemento angolare"
     },
     "shortTermAmenity": {
-      "wifi": "Wi-Fi",
+      "wifi": "Wifi",
       "pool": "Piscina",
       "parking": "Parcheggio",
       "breakfast": "Colazione",
@@ -1629,5 +1630,26 @@
     "privacy": "Informativa sulla privacy",
     "terms": "Termini di servizio",
     "lastUpdated": "Ultimo aggiornamento"
+  },
+  "notifTypes": {
+    "new_inquiry": "Nuova richiesta",
+    "inquiry_update": "Aggiornamento richiesta",
+    "inquiry": "Richiesta",
+    "new_message": "Nuovo messaggio",
+    "message": "Messaggio",
+    "booking": "Prenotazione",
+    "booking_confirmed": "Prenotazione confermata",
+    "booking_cancelled": "Prenotazione annullata",
+    "booking_update": "Aggiornamento prenotazione",
+    "commission": "Commissione",
+    "commission_created": "Creata la Commissione",
+    "deal_closed": "Affare chiuso",
+    "listing": "Aggiornamento elenco",
+    "listing_approved": "Inserzione approvata",
+    "listing_rejected": "Annuncio rifiutato",
+    "payout": "Pagamento",
+    "payout_processed": "Pagamento elaborato",
+    "dispute_resolved": "Controversia risolta",
+    "system": "Sistema"
   }
 }

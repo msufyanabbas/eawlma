@@ -365,7 +365,8 @@
     "no": "नहीं",
     "sar": "एसएआर",
     "perNight": "प्रति रात",
-    "perMonth": "प्रति महीने"
+    "perMonth": "प्रति महीने",
+    "ok": "ठीक है"
   },
   "listing": {
     "forSale": "बिक्री के लिए",
@@ -1629,5 +1630,26 @@
     "privacy": "गोपनीयता नीति",
     "terms": "सेवा की शर्तें",
     "lastUpdated": "आखरी अपडेट"
+  },
+  "notifTypes": {
+    "new_inquiry": "नई पूछताछ",
+    "inquiry_update": "पूछताछ अद्यतन",
+    "inquiry": "जाँच करना",
+    "new_message": "नया सन्देश",
+    "message": "संदेश",
+    "booking": "बुकिंग",
+    "booking_confirmed": "बुकिंग संपुष्ट",
+    "booking_cancelled": "बुकिंग रद्द",
+    "booking_update": "बुकिंग अद्यतन",
+    "commission": "आयोग",
+    "commission_created": "आयोग बनाया गया",
+    "deal_closed": "डील बंद",
+    "listing": "लिस्टिंग अद्यतन",
+    "listing_approved": "सूची स्वीकृत",
+    "listing_rejected": "सूची अस्वीकृत",
+    "payout": "भुगतान",
+    "payout_processed": "भुगतान संसाधित",
+    "dispute_resolved": "विवाद सुलझ गया",
+    "system": "प्रणाली"
   }
 }

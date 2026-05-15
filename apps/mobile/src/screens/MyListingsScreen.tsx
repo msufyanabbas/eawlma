@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, Text, StyleSheet, FlatList, TouchableOpacity,
+  View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import SmartImage from '../components/SmartImage';
@@ -49,7 +49,17 @@ export default function MyListingsScreen({ navigation }: any) {
         }
       />
 
-      <View style={[styles.statusBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={[styles.statusBar, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}
+        contentContainerStyle={{
+          flexDirection: isRTL ? 'row-reverse' : 'row',
+          gap: SIZES.sm,
+          paddingHorizontal: SIZES.lg,
+          paddingVertical: SIZES.sm,
+        }}
+      >
         {STATUSES.map(s => {
           const active = status === s.value;
           return (
@@ -68,7 +78,7 @@ export default function MyListingsScreen({ navigation }: any) {
             </TouchableOpacity>
           );
         })}
-      </View>
+      </ScrollView>
 
       {isLoading ? (
         <LoadingSpinner />
@@ -129,7 +139,7 @@ export default function MyListingsScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  statusBar: { flexDirection: 'row', gap: SIZES.sm, padding: SIZES.md, borderBottomWidth: 1 },
+  statusBar: { borderBottomWidth: 1, maxHeight: 56, flexGrow: 0 },
   statusChip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1 },
   card: { borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', ...SHADOWS.sm },
   thumbBox: { width: 100, height: 100 },

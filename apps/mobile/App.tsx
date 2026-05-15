@@ -61,6 +61,7 @@ import AdminCommissionsScreen from './src/screens/admin/AdminCommissionsScreen';
 import AdminPayoutsScreen from './src/screens/admin/AdminPayoutsScreen';
 import AdminDisputesScreen from './src/screens/admin/AdminDisputesScreen';
 import AdminPromosScreen from './src/screens/admin/AdminPromosScreen';
+import { useWebSocket } from './src/hooks/useWebSocket';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -200,8 +201,19 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
         <StatusBar style="auto" />
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <AppContent />
+      </SafeAreaProvider>
+    </QueryClientProvider>
+  );
+}
+
+// Sits inside QueryClientProvider so useWebSocket can call useQueryClient.
+function AppContent() {
+  useWebSocket();
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="MainTabs" component={MainTabs} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
@@ -236,7 +248,5 @@ export default function App() {
             <Stack.Screen name="AdminPromos" component={AdminPromosScreen} />
           </Stack.Navigator>
         </NavigationContainer>
-      </SafeAreaProvider>
-    </QueryClientProvider>
   );
 }

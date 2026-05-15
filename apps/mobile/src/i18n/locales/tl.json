@@ -365,7 +365,8 @@
     "no": "Hindi",
     "sar": "SAR",
     "perNight": "bawat gabi",
-    "perMonth": "bawat buwan"
+    "perMonth": "bawat buwan",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Ipinagbibili",
@@ -1629,5 +1630,26 @@
     "privacy": "Patakaran sa Privacy",
     "terms": "Mga Tuntunin ng Serbisyo",
     "lastUpdated": "Huling na-update"
+  },
+  "notifTypes": {
+    "new_inquiry": "Bagong Pagtatanong",
+    "inquiry_update": "Update sa Pagtatanong",
+    "inquiry": "Pagtatanong",
+    "new_message": "Bagong Mensahe",
+    "message": "Mensahe",
+    "booking": "Booking",
+    "booking_confirmed": "Nakumpirma ang Booking",
+    "booking_cancelled": "Kinansela ang Booking",
+    "booking_update": "Update sa Pag-book",
+    "commission": "Komisyon",
+    "commission_created": "Nagawa ang Komisyon",
+    "deal_closed": "Isinara ang Deal",
+    "listing": "Update sa Listahan",
+    "listing_approved": "Naaprubahan ang Listahan",
+    "listing_rejected": "Tinanggihan ang Listahan",
+    "payout": "Payout",
+    "payout_processed": "Naproseso ang Payout",
+    "dispute_resolved": "Nalutas ang Dispute",
+    "system": "System"
   }
 }

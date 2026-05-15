@@ -365,7 +365,8 @@
     "no": "HAYIR",
     "sar": "SAR",
     "perNight": "gecelik",
-    "perMonth": "aylık"
+    "perMonth": "aylık",
+    "ok": "TAMAM"
   },
   "listing": {
     "forSale": "Satılık",
@@ -1629,5 +1630,26 @@
     "privacy": "Gizlilik Politikası",
     "terms": "Hizmet Şartları",
     "lastUpdated": "Son güncelleme"
+  },
+  "notifTypes": {
+    "new_inquiry": "Yeni Sorgulama",
+    "inquiry_update": "Sorgu Güncellemesi",
+    "inquiry": "Sorgu",
+    "new_message": "Yeni Mesaj",
+    "message": "Mesaj",
+    "booking": "Rezervasyon",
+    "booking_confirmed": "Rezervasyon Onaylandı",
+    "booking_cancelled": "Rezervasyon İptal Edildi",
+    "booking_update": "Rezervasyon Güncellemesi",
+    "commission": "Komisyon",
+    "commission_created": "Komisyon Oluşturuldu",
+    "deal_closed": "Anlaşma Kapandı",
+    "listing": "Liste Güncellemesi",
+    "listing_approved": "Listeleme Onaylandı",
+    "listing_rejected": "Listeleme Reddedildi",
+    "payout": "Ödeme",
+    "payout_processed": "Ödeme İşleme Alındı",
+    "dispute_resolved": "Anlaşmazlık Çözüldü",
+    "system": "Sistem"
   }
 }

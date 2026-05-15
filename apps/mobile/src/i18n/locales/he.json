@@ -365,7 +365,8 @@
     "no": "לא",
     "sar": "SAR",
     "perNight": "ללילה",
-    "perMonth": "לחודש"
+    "perMonth": "לחודש",
+    "ok": "אישור"
   },
   "listing": {
     "forSale": "למכירה",
@@ -1629,5 +1630,26 @@
     "privacy": "מדיניות פרטיות",
     "terms": "תנאים והגבלות",
     "lastUpdated": "עודכן לאחרונה"
+  },
+  "notifTypes": {
+    "new_inquiry": "חקירה חדשה",
+    "inquiry_update": "עדכון חקירה",
+    "inquiry": "חקירה",
+    "new_message": "הודעה חדשה",
+    "message": "הודעה",
+    "booking": "הזמנה",
+    "booking_confirmed": "ההזמנה אושרה",
+    "booking_cancelled": "ההזמנה בוטלה",
+    "booking_update": "עדכון הזמנה",
+    "commission": "עמלה",
+    "commission_created": "הוועדה נוצרה",
+    "deal_closed": "העסקה נסגרה",
+    "listing": "עדכון רישום",
+    "listing_approved": "הרישום אושר",
+    "listing_rejected": "רישום נדחה",
+    "payout": "תשלום",
+    "payout_processed": "התשלום עובד",
+    "dispute_resolved": "מחלוקת נפתרה",
+    "system": "מערכת"
   }
 }

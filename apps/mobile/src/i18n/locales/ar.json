@@ -129,6 +129,27 @@
     "terms": "شروط الخدمة",
     "lastUpdated": "آخر تحديث"
   },
+  "notifTypes": {
+    "new_inquiry": "استفسار جديد",
+    "inquiry_update": "تحديث الاستفسار",
+    "inquiry": "استفسار",
+    "new_message": "رسالة جديدة",
+    "message": "رسالة",
+    "booking": "حجز",
+    "booking_confirmed": "تأكيد الحجز",
+    "booking_cancelled": "إلغاء الحجز",
+    "booking_update": "تحديث الحجز",
+    "commission": "عمولة",
+    "commission_created": "عمولة جديدة",
+    "deal_closed": "تم إغلاق الصفقة",
+    "listing": "تحديث الإعلان",
+    "listing_approved": "تمت الموافقة على الإعلان",
+    "listing_rejected": "تم رفض الإعلان",
+    "payout": "دفعة",
+    "payout_processed": "تمت معالجة الدفعة",
+    "dispute_resolved": "تم حل النزاع",
+    "system": "النظام"
+  },
   "stays": {
     "title": "إقامات قصيرة",
     "heroTitle": "اعثر على إقامتك المثالية في المملكة",
@@ -412,7 +433,8 @@
     "no": "لا",
     "sar": "ر.س",
     "perNight": "في الليلة",
-    "perMonth": "شهرياً"
+    "perMonth": "شهرياً",
+    "ok": "موافق"
   },
   "listing": {
     "forSale": "للبيع",

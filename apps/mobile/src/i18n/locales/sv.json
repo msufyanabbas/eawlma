@@ -365,7 +365,8 @@
     "no": "Nej",
     "sar": "SAR",
     "perNight": "per natt",
-    "perMonth": "per månad"
+    "perMonth": "per månad",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Till salu",
@@ -885,7 +886,7 @@
     "land": "Land",
     "chalet": "Chalet",
     "farm": "Gård",
-    "restHouse": "Rest House",
+    "restHouse": "Resthus",
     "office": "Kontor",
     "shop": "Handla",
     "titleArLabel": "Arabisk titel *",
@@ -1629,5 +1630,26 @@
     "privacy": "Sekretesspolicy",
     "terms": "Användarvillkor",
     "lastUpdated": "Senast uppdaterad"
+  },
+  "notifTypes": {
+    "new_inquiry": "Ny förfrågan",
+    "inquiry_update": "Förfrågningsuppdatering",
+    "inquiry": "Förfrågan",
+    "new_message": "Nytt meddelande",
+    "message": "Meddelande",
+    "booking": "Bokning",
+    "booking_confirmed": "Bokning bekräftad",
+    "booking_cancelled": "Bokning avbruten",
+    "booking_update": "Bokningsuppdatering",
+    "commission": "Kommissionen",
+    "commission_created": "Kommissionen skapad",
+    "deal_closed": "Affären stängd",
+    "listing": "Listningsuppdatering",
+    "listing_approved": "Listan godkänd",
+    "listing_rejected": "Lista avvisad",
+    "payout": "Utbetalning",
+    "payout_processed": "Utbetalning behandlad",
+    "dispute_resolved": "Tvist löst",
+    "system": "System"
   }
 }

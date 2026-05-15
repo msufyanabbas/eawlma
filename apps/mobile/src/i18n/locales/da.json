@@ -365,7 +365,8 @@
     "no": "Nej",
     "sar": "SAR",
     "perNight": "pr. nat",
-    "perMonth": "måned"
+    "perMonth": "måned",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Til salg",
@@ -1629,5 +1630,26 @@
     "privacy": "Privatlivspolitik",
     "terms": "Servicevilkår",
     "lastUpdated": "Sidst opdateret"
+  },
+  "notifTypes": {
+    "new_inquiry": "Ny forespørgsel",
+    "inquiry_update": "Forespørgselsopdatering",
+    "inquiry": "Forespørgsel",
+    "new_message": "Ny besked",
+    "message": "Meddelelse",
+    "booking": "Booking",
+    "booking_confirmed": "Booking bekræftet",
+    "booking_cancelled": "Booking annulleret",
+    "booking_update": "Bookingopdatering",
+    "commission": "Kommissionen",
+    "commission_created": "Kommissionen oprettet",
+    "deal_closed": "Deal lukket",
+    "listing": "Listeopdatering",
+    "listing_approved": "Fortegnelse godkendt",
+    "listing_rejected": "Fortegnelse afvist",
+    "payout": "Udbetaling",
+    "payout_processed": "Udbetaling behandlet",
+    "dispute_resolved": "Tvist løst",
+    "system": "System"
   }
 }

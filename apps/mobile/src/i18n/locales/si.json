@@ -365,7 +365,8 @@
     "no": "නැත",
     "sar": "SAR",
     "perNight": "රාත්රියකට",
-    "perMonth": "මසකට"
+    "perMonth": "මසකට",
+    "ok": "හරි"
   },
   "listing": {
     "forSale": "විකිණීමට",
@@ -1629,5 +1630,26 @@
     "privacy": "රහස්යතා ප්රතිපත්තිය",
     "terms": "සේවා කොන්දේසි",
     "lastUpdated": "අවසන් වරට යාවත්කාලීන කරන ලදී"
+  },
+  "notifTypes": {
+    "new_inquiry": "නව විමසුම",
+    "inquiry_update": "විමසීම් යාවත්කාලීන කිරීම",
+    "inquiry": "විමසුම",
+    "new_message": "නව පණිවිඩය",
+    "message": "පණිවිඩය",
+    "booking": "වෙන්කරවා ගැනීම",
+    "booking_confirmed": "වෙන්කරවා ගැනීම තහවුරු කර ඇත",
+    "booking_cancelled": "වෙන්කරවා ගැනීම අවලංගු කරන ලදී",
+    "booking_update": "වෙන්කිරීම් යාවත්කාලීන කිරීම",
+    "commission": "කොමිෂන් සභාව",
+    "commission_created": "කොමිෂන් සභාව නිර්මාණය කර ඇත",
+    "deal_closed": "ගනුදෙනුව වසා ඇත",
+    "listing": "ලැයිස්තු යාවත්කාලීන කිරීම",
+    "listing_approved": "ලැයිස්තුගත කිරීම අනුමතයි",
+    "listing_rejected": "ලැයිස්තුගත කිරීම ප්‍රතික්ෂේප විය",
+    "payout": "ගෙවීම",
+    "payout_processed": "ගෙවීම් සකස් කර ඇත",
+    "dispute_resolved": "ආරවුල විසඳා ඇත",
+    "system": "පද්ධතිය"
   }
 }

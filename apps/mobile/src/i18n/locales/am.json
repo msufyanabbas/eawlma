@@ -365,7 +365,8 @@
     "no": "አይ",
     "sar": "SAR",
     "perNight": "በአንድ ሌሊት",
-    "perMonth": "በወር"
+    "perMonth": "በወር",
+    "ok": "እሺ"
   },
   "listing": {
     "forSale": "ለሽያጭ",
@@ -612,7 +613,7 @@
     "support": "ድጋፍ",
     "help": "የእገዛ ማዕከል",
     "helpCenter": "የእገዛ ማዕከል",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "ዋትስአፕ",
     "callUs": "ይደውሉልን",
     "needHelp": "እርዳታ ይፈልጋሉ? በ WhatsApp ያነጋግሩን።",
     "cr": "የንግድ ምዝገባ",
@@ -651,7 +652,7 @@
     "sentSuccess": "አመሰግናለሁ! ቡድናችን በ24 ሰዓታት ውስጥ ይመልሳል።",
     "emailUs": "ኢሜል ላኩልን",
     "emailReplies": "በስራ ቀናት ውስጥ በ 24 ሰዓታት ውስጥ ምላሾች",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "ዋትስአፕ",
     "whatsappHours": "እሁ–ሐሙ፣ 9:00 – 18:00 (AST)",
     "office": "ቢሮ",
     "officeAddress": "ኪንግ ፋህድ መንገድ፣ ሪያድ",
@@ -1629,5 +1630,26 @@
     "privacy": "የግላዊነት ፖሊሲ",
     "terms": "የአገልግሎት ውል",
     "lastUpdated": "ለመጨረሻ ጊዜ የዘመነው"
+  },
+  "notifTypes": {
+    "new_inquiry": "አዲስ ጥያቄ",
+    "inquiry_update": "የጥያቄ ማሻሻያ",
+    "inquiry": "ጥያቄ",
+    "new_message": "አዲስ መልእክት",
+    "message": "መልእክት",
+    "booking": "ቦታ ማስያዝ",
+    "booking_confirmed": "ቦታ ማስያዝ ተረጋግጧል",
+    "booking_cancelled": "ቦታ ማስያዝ ተሰርዟል።",
+    "booking_update": "ቦታ ማስያዝ ዝማኔ",
+    "commission": "ኮሚሽን",
+    "commission_created": "ኮሚሽን ተፈጠረ",
+    "deal_closed": "ድርድር ተዘግቷል።",
+    "listing": "የዝርዝር ማሻሻያ",
+    "listing_approved": "ዝርዝር ጸድቋል",
+    "listing_rejected": "ዝርዝር ውድቅ ተደርጓል",
+    "payout": "ክፍያ",
+    "payout_processed": "ክፍያ ተፈፅሟል",
+    "dispute_resolved": "አለመግባባቱ ተፈቷል።",
+    "system": "ስርዓት"
   }
 }

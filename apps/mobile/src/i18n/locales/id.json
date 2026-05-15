@@ -365,7 +365,8 @@
     "no": "TIDAK",
     "sar": "SAR",
     "perNight": "per malam",
-    "perMonth": "per bulan"
+    "perMonth": "per bulan",
+    "ok": "OKE"
   },
   "listing": {
     "forSale": "Dijual",
@@ -1629,5 +1630,26 @@
     "privacy": "Kebijakan Privasi",
     "terms": "Ketentuan Layanan",
     "lastUpdated": "Terakhir diperbarui"
+  },
+  "notifTypes": {
+    "new_inquiry": "Pertanyaan Baru",
+    "inquiry_update": "Pembaruan Permintaan",
+    "inquiry": "Pertanyaan",
+    "new_message": "Pesan Baru",
+    "message": "Pesan",
+    "booking": "Pemesanan",
+    "booking_confirmed": "Pemesanan Dikonfirmasi",
+    "booking_cancelled": "Pemesanan Dibatalkan",
+    "booking_update": "Pembaruan Pemesanan",
+    "commission": "Komisi",
+    "commission_created": "Komisi Dibuat",
+    "deal_closed": "Kesepakatan Ditutup",
+    "listing": "Pembaruan Daftar",
+    "listing_approved": "Daftar Disetujui",
+    "listing_rejected": "Daftar Ditolak",
+    "payout": "Pembayaran",
+    "payout_processed": "Pembayaran Diproses",
+    "dispute_resolved": "Sengketa Terselesaikan",
+    "system": "Sistem"
   }
 }

@@ -365,7 +365,8 @@
     "no": "नाही",
     "sar": "SAR",
     "perNight": "प्रति रात्र",
-    "perMonth": "दरमहा"
+    "perMonth": "दरमहा",
+    "ok": "ठीक आहे"
   },
   "listing": {
     "forSale": "विक्रीसाठी",
@@ -1129,7 +1130,7 @@
     "actionFailed": "एक मॉडरेशन क्रिया अयशस्वी झाली — पुन्हा प्रयत्न करा.",
     "preview": {
       "bedroomsShort": "{{count}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bathroomsShort": "{{गणना}} BA",
       "vrTourAvailable": "VR टूर उपलब्ध",
       "vrTourSection": "VR / 360° टूर",
       "locationSection": "स्थान",
@@ -1629,5 +1630,26 @@
     "privacy": "गोपनीयता धोरण",
     "terms": "सेवा अटी",
     "lastUpdated": "शेवटचे अपडेट केले"
+  },
+  "notifTypes": {
+    "new_inquiry": "नवीन चौकशी",
+    "inquiry_update": "चौकशी अद्यतन",
+    "inquiry": "चौकशी",
+    "new_message": "नवीन संदेश",
+    "message": "संदेश",
+    "booking": "बुकिंग",
+    "booking_confirmed": "बुकिंग कन्फर्म",
+    "booking_cancelled": "बुकिंग रद्द",
+    "booking_update": "बुकिंग अपडेट",
+    "commission": "आयोग",
+    "commission_created": "आयोग तयार केला",
+    "deal_closed": "डील बंद",
+    "listing": "सूची अद्यतन",
+    "listing_approved": "सूची मंजूर",
+    "listing_rejected": "सूची नाकारली",
+    "payout": "पेआउट",
+    "payout_processed": "पेआउट प्रक्रिया केली",
+    "dispute_resolved": "वाद मिटला",
+    "system": "प्रणाली"
   }
 }

@@ -365,7 +365,8 @@
     "no": "Ei",
     "sar": "SAR",
     "perNight": "per yö",
-    "perMonth": "kuukaudessa"
+    "perMonth": "kuukaudessa",
+    "ok": "OK"
   },
   "listing": {
     "forSale": "Myynnissä",
@@ -1616,7 +1617,7 @@
     "showOriginal": "Näytä alkuperäinen",
     "showTranslation": "Näytä käännös",
     "translating": "Käännetään...",
-    "online": "Online",
+    "online": "verkossa",
     "delivered": "Toimitettu"
   },
   "roles": {
@@ -1629,5 +1630,26 @@
     "privacy": "Tietosuojakäytäntö",
     "terms": "Palveluehdot",
     "lastUpdated": "Viimeksi päivitetty"
+  },
+  "notifTypes": {
+    "new_inquiry": "Uusi kysely",
+    "inquiry_update": "Kyselyn päivitys",
+    "inquiry": "Tiedustelu",
+    "new_message": "Uusi viesti",
+    "message": "Viesti",
+    "booking": "Varaus",
+    "booking_confirmed": "Varaus vahvistettu",
+    "booking_cancelled": "Varaus peruutettu",
+    "booking_update": "Varauspäivitys",
+    "commission": "Komissio",
+    "commission_created": "Komissio luotu",
+    "deal_closed": "Kauppa suljettu",
+    "listing": "Listauksen päivitys",
+    "listing_approved": "Listaus hyväksytty",
+    "listing_rejected": "Ilmoitus hylätty",
+    "payout": "Maksu",
+    "payout_processed": "Maksu käsitelty",
+    "dispute_resolved": "Kiista ratkaistu",
+    "system": "Järjestelmä"
   }
 }

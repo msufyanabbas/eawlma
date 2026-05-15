@@ -11,12 +11,24 @@ import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
 import { SIZES, SHADOWS } from '../theme';
+import { formatPrice } from '../utils/formatters';
 
-const CITIES = ['الرياض', 'جدة', 'الدمام', 'مكة المكرمة', 'المدينة المنورة', 'الطائف', 'تبوك', 'أبها'];
+// Saudi cities — bilingual labels keyed by canonical English value so the
+// backend receives a stable string regardless of UI language.
+const CITIES = [
+  { ar: 'الرياض',         en: 'Riyadh',  value: 'Riyadh' },
+  { ar: 'جدة',             en: 'Jeddah',  value: 'Jeddah' },
+  { ar: 'الدمام',          en: 'Dammam',  value: 'Dammam' },
+  { ar: 'مكة المكرمة',     en: 'Makkah',  value: 'Makkah' },
+  { ar: 'المدينة المنورة', en: 'Madinah', value: 'Madinah' },
+  { ar: 'الطائف',          en: 'Taif',    value: 'Taif' },
+  { ar: 'تبوك',            en: 'Tabuk',   value: 'Tabuk' },
+  { ar: 'أبها',            en: 'Abha',    value: 'Abha' },
+];
 
 export default function AddListingScreen({ navigation }: any) {
   const { colors } = useTheme();
-  const { textAlign, backIcon } = useRTL();
+  const { isAr, isRTL, textAlign, backIcon } = useRTL();
   const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -105,7 +117,13 @@ export default function AddListingScreen({ navigation }: any) {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      <View style={[styles.header, { backgroundColor: colors.primary }]}>
+      <View style={[
+        styles.header,
+        {
+          backgroundColor: colors.primary,
+          flexDirection: isRTL ? 'row-reverse' : 'row',
+        },
+      ]}>
         <TouchableOpacity onPress={goBack} style={styles.backBtn}>
           <Ionicons name={backIcon as any} size={24} color="#FFF" />
         </TouchableOpacity>
@@ -116,7 +134,13 @@ export default function AddListingScreen({ navigation }: any) {
       </View>
 
       <View style={[styles.progressContainer, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
-        <View style={[styles.progressBar, { backgroundColor: colors.border }]}>
+        <View style={[
+          styles.progressBar,
+          {
+            backgroundColor: colors.border,
+            alignItems: isRTL ? 'flex-end' : 'flex-start',
+          },
+        ]}>
           <View style={[
             styles.progressFill,
             {
@@ -248,29 +272,35 @@ export default function AddListingScreen({ navigation }: any) {
             <Text style={[styles.stepTitle, { color: colors.text, textAlign }]}>
               {t('wizard.city')}
             </Text>
-            <View style={styles.citiesGrid}>
-              {CITIES.map(city => (
-                <TouchableOpacity
-                  key={city}
-                  style={[
-                    styles.cityBtn,
-                    { borderColor: colors.border, backgroundColor: colors.surface },
-                    form.city === city && {
-                      borderColor: colors.primary,
-                      backgroundColor: colors.primary + '15',
-                    }
-                  ]}
-                  onPress={() => update('city', city)}
-                >
-                  <Text style={[
-                    styles.cityBtnText,
-                    { color: colors.text },
-                    form.city === city && { color: colors.primary, fontWeight: '700' }
-                  ]}>
-                    {city}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+            <View style={[
+              styles.citiesGrid,
+              { flexDirection: isRTL ? 'row-reverse' : 'row' },
+            ]}>
+              {CITIES.map(city => {
+                const active = form.city === city.value;
+                return (
+                  <TouchableOpacity
+                    key={city.value}
+                    style={[
+                      styles.cityBtn,
+                      { borderColor: colors.border, backgroundColor: colors.surface },
+                      active && {
+                        borderColor: colors.primary,
+                        backgroundColor: colors.primary + '15',
+                      },
+                    ]}
+                    onPress={() => update('city', city.value)}
+                  >
+                    <Text style={[
+                      styles.cityBtnText,
+                      { color: colors.text, textAlign },
+                      active && { color: colors.primary, fontWeight: '700' },
+                    ]}>
+                      {isAr ? city.ar : city.en}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
             <FormField
               label={t('wizard.district')}
@@ -321,14 +351,23 @@ export default function AddListingScreen({ navigation }: any) {
               { label: t('wizard.transaction'), value: form.transactionType },
               { label: t('wizard.propertyType'), value: form.propertyType },
               { label: t('wizard.title'), value: form.titleAr || form.titleEn },
-              { label: t('wizard.price'), value: form.price ? `${Number(form.price).toLocaleString()} ${t('common.sar')}` : '-' },
+              { label: t('wizard.price'), value: form.price ? `${formatPrice(Number(form.price))} ${t('common.sar')}` : '-' },
               { label: t('wizard.city').replace(' *', ''), value: form.city },
               { label: t('wizard.district').replace(' *', ''), value: form.district },
               { label: t('wizard.bedrooms'), value: form.bedrooms },
             ].map(row => (
-              <View key={row.label} style={[styles.reviewRow, { borderBottomColor: colors.divider }]}>
-                <Text style={[styles.reviewLabel, { color: colors.textSecondary }]}>{row.label}</Text>
-                <Text style={[styles.reviewValue, { color: colors.text }]}>{row.value || '-'}</Text>
+              <View
+                key={row.label}
+                style={[
+                  styles.reviewRow,
+                  {
+                    borderBottomColor: colors.divider,
+                    flexDirection: isRTL ? 'row-reverse' : 'row',
+                  },
+                ]}
+              >
+                <Text style={[styles.reviewLabel, { color: colors.textSecondary, textAlign }]}>{row.label}</Text>
+                <Text style={[styles.reviewValue, { color: colors.text, textAlign }]}>{row.value || '-'}</Text>
               </View>
             ))}
           </View>
@@ -338,6 +377,7 @@ export default function AddListingScreen({ navigation }: any) {
       <View style={[styles.bottomBar, {
         backgroundColor: colors.surface,
         borderTopColor: colors.border,
+        flexDirection: isRTL ? 'row-reverse' : 'row',
       }]}>
         {step > 0 && (
           <TouchableOpacity
@@ -403,7 +443,7 @@ function FormField({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: SIZES.lg, paddingTop: SIZES.xl },
+  header: { alignItems: 'center', justifyContent: 'space-between', padding: SIZES.lg, paddingTop: SIZES.xl },
   backBtn: { width: 40, height: 40, justifyContent: 'center', alignItems: 'center' },
   headerTitle: { fontSize: SIZES.title, fontWeight: '800', color: '#FFF' },
   progressContainer: { padding: SIZES.lg, borderBottomWidth: 1 },
@@ -419,16 +459,16 @@ const styles = StyleSheet.create({
   propTypeBtn: { width: '22%', aspectRatio: 1, borderRadius: SIZES.borderRadiusLg, borderWidth: 2, justifyContent: 'center', alignItems: 'center' },
   propTypeIcon: { fontSize: 24, marginBottom: 4 },
   propTypeText: { fontSize: 10, fontWeight: '600', textAlign: 'center' },
-  citiesGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: SIZES.sm },
+  citiesGrid: { flexWrap: 'wrap', gap: SIZES.sm },
   cityBtn: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.sm, borderRadius: SIZES.borderRadiusFull, borderWidth: 1.5 },
   cityBtnText: { fontSize: SIZES.body },
   specsRow: { flexDirection: 'row', gap: SIZES.md },
   reviewCard: { borderRadius: SIZES.borderRadiusXl, padding: SIZES.xl, ...SHADOWS.sm },
   reviewTitle: { fontSize: SIZES.h3, fontWeight: '800', marginBottom: SIZES.xl },
-  reviewRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: SIZES.md, borderBottomWidth: 1 },
+  reviewRow: { justifyContent: 'space-between', paddingVertical: SIZES.md, borderBottomWidth: 1 },
   reviewLabel: { fontSize: SIZES.body },
   reviewValue: { fontSize: SIZES.body, fontWeight: '600' },
-  bottomBar: { flexDirection: 'row', gap: SIZES.md, padding: SIZES.lg, borderTopWidth: 1 },
+  bottomBar: { gap: SIZES.md, padding: SIZES.lg, borderTopWidth: 1 },
   prevBtn: { flex: 1, height: 52, justifyContent: 'center', alignItems: 'center', borderRadius: SIZES.borderRadiusLg, borderWidth: 2 },
   prevBtnText: { fontSize: SIZES.bodyLg, fontWeight: '700' },
   nextBtn: { flex: 2, height: 52, justifyContent: 'center', alignItems: 'center', borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },

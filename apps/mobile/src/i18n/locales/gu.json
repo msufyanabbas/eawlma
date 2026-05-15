@@ -339,7 +339,7 @@
     "filter": "ફિલ્ટર",
     "submit": "સબમિટ કરો",
     "language": "ભાષા",
-    "arabic": "العربية",
+    "arabic": "| العربية",
     "english": "| અંગ્રેજી",
     "back": "પાછળ",
     "next": "આગળ",
@@ -365,7 +365,8 @@
     "no": "| ના",
     "sar": "| SAR",
     "perNight": "| રાત્રિ દીઠ",
-    "perMonth": "દર મહિને"
+    "perMonth": "દર મહિને",
+    "ok": "| ઓકે"
   },
   "listing": {
     "forSale": "વેચાણ માટે",
@@ -1283,7 +1284,7 @@
     "balance": "વર્તમાન બેલેન્સ",
     "withdraw": "ચૂકવણી",
     "noTransactionsHint": "તમારા વ્યવહારો અહીં દેખાશે",
-    "sar": "SAR",
+    "sar": "| SAR",
     "inDevelopment": "આ સુવિધા વિકાસમાં છે",
     "depositTitle": "જમા",
     "payoutTitle": "ચૂકવણી",
@@ -1629,5 +1630,26 @@
     "privacy": "ગોપનીયતા નીતિ",
     "terms": "| સેવાની શરતો",
     "lastUpdated": "છેલ્લું અપડેટ"
+  },
+  "notifTypes": {
+    "new_inquiry": "નવી પૂછપરછ",
+    "inquiry_update": "પૂછપરછ અપડેટ",
+    "inquiry": "| પૂછપરછ",
+    "new_message": "નવો સંદેશ",
+    "message": "સંદેશ",
+    "booking": "બુકિંગ",
+    "booking_confirmed": "| બુકિંગ કન્ફર્મ થયું",
+    "booking_cancelled": "| બુકિંગ રદ",
+    "booking_update": "બુકિંગ અપડેટ",
+    "commission": "કમિશન",
+    "commission_created": "કમિશન બનાવ્યું",
+    "deal_closed": "ડીલ બંધ",
+    "listing": "લિસ્ટિંગ અપડેટ",
+    "listing_approved": "લિસ્ટિંગ મંજૂર",
+    "listing_rejected": "| લિસ્ટિંગ નામંજૂર",
+    "payout": "ચૂકવણી",
+    "payout_processed": "| ચૂકવણીની પ્રક્રિયા",
+    "dispute_resolved": "વિવાદ ઉકેલાયો",
+    "system": "સિસ્ટમ"
   }
 }
