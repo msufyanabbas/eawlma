@@ -93,7 +93,19 @@
       "matched": "Dipadankan",
       "closed": "Ditutup"
     },
-    "disputes": "Pertikaian"
+    "disputes": "Pertikaian",
+    "panel": "Panel Pentadbiran",
+    "dashboard": "Papan Pemuka Pentadbir",
+    "totalUsers": "Jumlah Pengguna",
+    "totalListings": "Jumlah Penyenaraian",
+    "pendingReview": "Menunggu Semakan",
+    "totalBookings": "Jumlah Tempahan",
+    "revenue": "Hasil Platform",
+    "management": "Pengurusan",
+    "moderation": "Kesederhanaan",
+    "allClear": "Tiada ulasan belum selesai",
+    "rejectListing": "Tolak Penyenaraian",
+    "rejectReason": "Masukkan sebab penolakan"
   },
   "stays": {
     "title": "Penginapan jangka pendek",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Jawapan pemilik:",
     "empty": "Tiada ulasan lagi",
     "beFirst": "Jadilah yang pertama mengulas"
+  },
+  "chat": {
+    "title": "Sembang",
+    "typeMessage": "Taip mesej...",
+    "send": "Hantar",
+    "translated": "Diterjemah",
+    "showOriginal": "Tunjukkan asal",
+    "showTranslation": "Tunjukkan terjemahan",
+    "translating": "Menterjemah...",
+    "online": "Dalam Talian",
+    "delivered": "Dihantar"
+  },
+  "roles": {
+    "user": "Pembeli",
+    "agent": "ejen",
+    "agency_owner": "Pemilik Agensi",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Dasar Privasi",
+    "terms": "Syarat Perkhidmatan",
+    "lastUpdated": "Kemas kini terakhir"
   }
 }

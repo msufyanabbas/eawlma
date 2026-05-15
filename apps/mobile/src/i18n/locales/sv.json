@@ -93,7 +93,19 @@
       "matched": "Matchad",
       "closed": "Stängd"
     },
-    "disputes": "Tvister"
+    "disputes": "Tvister",
+    "panel": "Adminpanel",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Totalt antal användare",
+    "totalListings": "Totalt antal annonser",
+    "pendingReview": "Väntar på granskning",
+    "totalBookings": "Totalt antal bokningar",
+    "revenue": "Plattformsintäkter",
+    "management": "Hantering",
+    "moderation": "Moderering",
+    "allClear": "Inga väntande recensioner",
+    "rejectListing": "Avvisa notering",
+    "rejectReason": "Ange skäl för avslag"
   },
   "stays": {
     "title": "Korttidsboenden",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Ägarens svar:",
     "empty": "Inga recensioner ännu",
     "beFirst": "Bli den första att recensera"
+  },
+  "chat": {
+    "title": "Chatta",
+    "typeMessage": "Skriv ett meddelande...",
+    "send": "Skicka",
+    "translated": "Översatt",
+    "showOriginal": "Visa original",
+    "showTranslation": "Visa översättning",
+    "translating": "Översätter...",
+    "online": "Online",
+    "delivered": "Levereras"
+  },
+  "roles": {
+    "user": "Köpare",
+    "agent": "Agent",
+    "agency_owner": "Byråägare",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Sekretesspolicy",
+    "terms": "Användarvillkor",
+    "lastUpdated": "Senast uppdaterad"
   }
 }

@@ -93,7 +93,19 @@
       "matched": "Potrivit",
       "closed": "Închis"
     },
-    "disputes": "Dispute"
+    "disputes": "Dispute",
+    "panel": "Panoul de administrare",
+    "dashboard": "Tabloul de bord administrativ",
+    "totalUsers": "Total utilizatori",
+    "totalListings": "Total listări",
+    "pendingReview": "În așteptarea examinării",
+    "totalBookings": "Total rezervări",
+    "revenue": "Venitul platformei",
+    "management": "Management",
+    "moderation": "Moderație",
+    "allClear": "Nicio recenzie în așteptare",
+    "rejectListing": "Respinge lista",
+    "rejectReason": "Introduceți motivul respingerii"
   },
   "stays": {
     "title": "Sejururi pe termen scurt",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Răspunsul proprietarului:",
     "empty": "Nicio recenzie încă",
     "beFirst": "Fii primul care scrie o recenzie"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Tastați un mesaj...",
+    "send": "Trimite",
+    "translated": "Tradus",
+    "showOriginal": "Afișați originalul",
+    "showTranslation": "Arată traducerea",
+    "translating": "Se traduce...",
+    "online": "Online",
+    "delivered": "Livrat"
+  },
+  "roles": {
+    "user": "Cumpărător",
+    "agent": "Agent",
+    "agency_owner": "Proprietar agenție",
+    "admin": "Administrator"
+  },
+  "legal": {
+    "privacy": "Politica de confidențialitate",
+    "terms": "Termeni și condiții",
+    "lastUpdated": "Ultima actualizare"
   }
 }

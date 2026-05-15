@@ -93,7 +93,41 @@
       "matched": "Matched",
       "closed": "Closed"
     },
-    "disputes": "Disputes"
+    "disputes": "Open Disputes",
+    "panel": "Admin Panel",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Total Users",
+    "totalListings": "Total Listings",
+    "pendingReview": "Pending Review",
+    "totalBookings": "Total Bookings",
+    "revenue": "Platform Revenue",
+    "management": "Management",
+    "moderation": "Moderation",
+    "allClear": "No pending reviews",
+    "rejectListing": "Reject Listing",
+    "rejectReason": "Enter rejection reason"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Type a message...",
+    "send": "Send",
+    "translated": "Translated",
+    "showOriginal": "Show original",
+    "showTranslation": "Show translation",
+    "translating": "Translating...",
+    "online": "Online",
+    "delivered": "Delivered"
+  },
+  "roles": {
+    "user": "Buyer",
+    "agent": "Agent",
+    "agency_owner": "Agency Owner",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "lastUpdated": "Last updated"
   },
   "stays": {
     "title": "Short-term stays",

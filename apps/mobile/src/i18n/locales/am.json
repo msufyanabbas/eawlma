@@ -93,7 +93,19 @@
       "matched": "ተዛምዷል",
       "closed": "ተዘግቷል"
     },
-    "disputes": "ክርክሮች"
+    "disputes": "ክርክሮች",
+    "panel": "የአስተዳዳሪ ፓነል",
+    "dashboard": "የአስተዳዳሪ ዳሽቦርድ",
+    "totalUsers": "አጠቃላይ ተጠቃሚዎች",
+    "totalListings": "አጠቃላይ ዝርዝሮች",
+    "pendingReview": "በመጠባበቅ ላይ ያለ ግምገማ",
+    "totalBookings": "ጠቅላላ የተያዙ ቦታዎች",
+    "revenue": "የመድረክ ገቢ",
+    "management": "አስተዳደር",
+    "moderation": "ልከኝነት",
+    "allClear": "ምንም በመጠባበቅ ላይ ያሉ ግምገማዎች የሉም",
+    "rejectListing": "ዝርዝርን አትቀበል",
+    "rejectReason": "ውድቅ የተደረገበትን ምክንያት አስገባ"
   },
   "stays": {
     "title": "የአጭር ጊዜ ቆይታዎች",
@@ -1595,5 +1607,27 @@
     "ownerReply": "የባለቤት ምላሽ፡-",
     "empty": "እስካሁን ምንም ግምገማዎች የሉም",
     "beFirst": "ለመገምገም የመጀመሪያው ይሁኑ"
+  },
+  "chat": {
+    "title": "ተወያይ",
+    "typeMessage": "መልእክት ተይብ...",
+    "send": "ላክ",
+    "translated": "ተተርጉሟል",
+    "showOriginal": "ዋናውን አሳይ",
+    "showTranslation": "ትርጉሙን አሳይ",
+    "translating": "መተርጎም...",
+    "online": "በመስመር ላይ",
+    "delivered": "ደረሰ"
+  },
+  "roles": {
+    "user": "ገዢ",
+    "agent": "ወኪል",
+    "agency_owner": "የኤጀንሲው ባለቤት",
+    "admin": "አስተዳዳሪ"
+  },
+  "legal": {
+    "privacy": "የግላዊነት ፖሊሲ",
+    "terms": "የአገልግሎት ውል",
+    "lastUpdated": "ለመጨረሻ ጊዜ የዘመነው"
   }
 }

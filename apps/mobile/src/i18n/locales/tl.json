@@ -93,7 +93,19 @@
       "matched": "Tumugma",
       "closed": "Sarado"
     },
-    "disputes": "Mga hindi pagkakasundo"
+    "disputes": "Mga hindi pagkakasundo",
+    "panel": "Admin Panel",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Kabuuang Mga User",
+    "totalListings": "Kabuuang Listahan",
+    "pendingReview": "Nakabinbing Pagsusuri",
+    "totalBookings": "Kabuuang Mga Booking",
+    "revenue": "Kita sa Platform",
+    "management": "Pamamahala",
+    "moderation": "Moderation",
+    "allClear": "Walang mga nakabinbing review",
+    "rejectListing": "Tanggihan ang Listahan",
+    "rejectReason": "Ilagay ang dahilan ng pagtanggi"
   },
   "stays": {
     "title": "Maikling-panahong tuluyan",
@@ -993,7 +1005,7 @@
     "deleteLabel": "Tanggalin",
     "appearance": "Hitsura",
     "languageRegion": "Wika at rehiyon",
-    "pushNotifications": "Push notifications",
+    "pushNotifications": "Mga push notification",
     "emailNotifications": "Mga notification sa email",
     "privacyAccount": "Privacy at account",
     "areYouSure": "Sigurado ka ba?"
@@ -1183,7 +1195,7 @@
       "a2": "Buksan ang listing, pagkatapos ay i-tap ang \"Send Inquiry\" o gamitin ang call/WhatsApp buttons sa agent card.",
       "q3": "Maaari ba akong mag-book ng mga chalet at bukid?",
       "a3": "Oo — magbukas ng anumang listahan ng chalet / farm / rest-house at i-tap ang \"Mag-book Ngayon\" para pumili ng mga petsa.",
-      "q4": "How do I save a property for later?",
+      "q4": "Paano ako magse-save ng property para sa ibang pagkakataon?",
       "a4": "I-tap ang icon ng puso sa listahan. Naka-save na mga item live sa ilalim ng Na-save na tab.",
       "q5": "Libre ba ang app?",
       "a5": "Oo — libre para sa mga naghahanap ng ari-arian. Ang mga ahente ay nagbabayad lamang ng komisyon pagkatapos ng matagumpay na pakikitungo.",
@@ -1386,7 +1398,7 @@
     "invalidDates": "Mga di-wastong petsa",
     "invalidDatesBody": "Gamitin ang format na YYYY-MM-DD",
     "tooShort": "Masyadong maikli",
-    "tooShortBody": "Booking must be at least 1 night",
+    "tooShortBody": "Ang booking ay dapat na hindi bababa sa 1 gabi",
     "perNight": "SAR / gabi",
     "notesOptional": "Mga Tala (opsyonal)",
     "notesPlaceholder": "Anumang mga espesyal na kahilingan...",
@@ -1591,9 +1603,31 @@
   },
   "reviews": {
     "title": "Mga Review",
-    "user": "User",
+    "user": "Gumagamit",
     "ownerReply": "Sagot ng may-ari:",
     "empty": "Wala pang mga review",
     "beFirst": "Maunang mag-review"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Mag-type ng mensahe...",
+    "send": "Ipadala",
+    "translated": "Isinalin",
+    "showOriginal": "Ipakita ang orihinal",
+    "showTranslation": "Ipakita ang pagsasalin",
+    "translating": "Nagsasalin...",
+    "online": "Online",
+    "delivered": "Naihatid"
+  },
+  "roles": {
+    "user": "Mamimili",
+    "agent": "Ahente",
+    "agency_owner": "May-ari ng Ahensya",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Patakaran sa Privacy",
+    "terms": "Mga Tuntunin ng Serbisyo",
+    "lastUpdated": "Huling na-update"
   }
 }

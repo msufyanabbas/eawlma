@@ -93,7 +93,19 @@
       "matched": "Đã khớp",
       "closed": "Đã đóng"
     },
-    "disputes": "Tranh chấp"
+    "disputes": "Tranh chấp",
+    "panel": "Bảng quản trị",
+    "dashboard": "Trang tổng quan dành cho quản trị viên",
+    "totalUsers": "Tổng số người dùng",
+    "totalListings": "Tổng số danh sách",
+    "pendingReview": "Đang chờ xem xét",
+    "totalBookings": "Tổng số lượt đặt chỗ",
+    "revenue": "Doanh thu nền tảng",
+    "management": "Sự quản lý",
+    "moderation": "Kiểm duyệt",
+    "allClear": "Không có đánh giá đang chờ xử lý",
+    "rejectListing": "Từ chối danh sách",
+    "rejectReason": "Nhập lý do từ chối"
   },
   "stays": {
     "title": "Lưu trú ngắn hạn",
@@ -114,12 +126,12 @@
     "typeAll": "Tất cả",
     "chalets": "Nhà gỗ",
     "farms": "Trang trại",
-    "restHouses": "Rest Houses",
+    "restHouses": "Nhà nghỉ",
     "hotelsLabel": "Khách sạn",
-    "bookNext": "Book your next stay",
+    "bookNext": "Đặt kỳ nghỉ tiếp theo của bạn",
     "subtitleMix": "Nhà gỗ, trang trại, nhà nghỉ và khách sạn",
-    "noStays": "No stays available",
-    "tryAnother": "Try another category"
+    "noStays": "Không có thời gian lưu trú",
+    "tryAnother": "Hãy thử danh mục khác"
   },
   "hotels": {
     "title": "Khách sạn",
@@ -138,9 +150,9 @@
     "upTo1000": "Lên đến 1.000 SAR",
     "upTo2500": "Lên đến 2.500 SAR",
     "hotelChip": "Khách sạn",
-    "bookStay": "Book a hotel stay",
+    "bookStay": "Đặt phòng khách sạn",
     "nightly": "Phòng khách sạn nghỉ qua đêm",
-    "noHotels": "No hotels available"
+    "noHotels": "Không có khách sạn nào"
   },
   "messages": {
     "startConversation": "Bắt đầu cuộc trò chuyện",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Câu trả lời của chủ sở hữu:",
     "empty": "Chưa có đánh giá nào",
     "beFirst": "Hãy là người đầu tiên đánh giá"
+  },
+  "chat": {
+    "title": "Trò chuyện",
+    "typeMessage": "Nhập tin nhắn...",
+    "send": "Gửi",
+    "translated": "Đã dịch",
+    "showOriginal": "Hiển thị bản gốc",
+    "showTranslation": "Hiển thị bản dịch",
+    "translating": "Đang dịch...",
+    "online": "Trực tuyến",
+    "delivered": "Đã giao hàng"
+  },
+  "roles": {
+    "user": "Người mua",
+    "agent": "Đại lý",
+    "agency_owner": "Chủ đại lý",
+    "admin": "Quản trị viên"
+  },
+  "legal": {
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản dịch vụ",
+    "lastUpdated": "Cập nhật lần cuối"
   }
 }

@@ -93,7 +93,19 @@
       "matched": "મેળ ખાય છે",
       "closed": "બંધ"
     },
-    "disputes": "વિવાદો"
+    "disputes": "વિવાદો",
+    "panel": "એડમિન પેનલ",
+    "dashboard": "એડમિન ડેશબોર્ડ",
+    "totalUsers": "કુલ વપરાશકર્તાઓ",
+    "totalListings": "કુલ સૂચિઓ",
+    "pendingReview": "બાકી સમીક્ષા",
+    "totalBookings": "કુલ બુકિંગ",
+    "revenue": "પ્લેટફોર્મ આવક",
+    "management": "મેનેજમેન્ટ",
+    "moderation": "મધ્યસ્થતા",
+    "allClear": "કોઈ બાકી સમીક્ષાઓ નથી",
+    "rejectListing": "સૂચિને નકારો",
+    "rejectReason": "અસ્વીકારનું કારણ દાખલ કરો"
   },
   "stays": {
     "title": "ટૂંકા ગાળાનું રહેવાસ",
@@ -302,7 +314,7 @@
     "pwStrong": "મજબૂત",
     "firstNamePlaceholder": "જ્હોન",
     "lastNamePlaceholder": "ડો",
-    "phonePlaceholder": "+966 5X XXX XXXX"
+    "phonePlaceholder": "| +966 5X XXX XXXX"
   },
   "validation": {
     "required": "આ ફીલ્ડ આવશ્યક છે",
@@ -365,7 +377,7 @@
     "beds": "બેડ",
     "baths": "બાથ",
     "area": "વિસ્તાર",
-    "areaUnit": "m²",
+    "areaUnit": "| m²",
     "price": "કિંમત",
     "pricePerSqm": "પ્રતિ m² કિંમત",
     "currency": "SAR",
@@ -1116,8 +1128,8 @@
     "bulkApproveConfirm": "બધાને મંજૂર કરો",
     "actionFailed": "એક મધ્યસ્થી ક્રિયા નિષ્ફળ થઈ — ફરી પ્રયાસ કરો.",
     "preview": {
-      "bedroomsShort": "{{count}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bedroomsShort": "| {{ગણતરી}} BR",
+      "bathroomsShort": "{{ગણતરી}} BA",
       "vrTourAvailable": "VR ટૂર ઉપલબ્ધ",
       "vrTourSection": "VR / 360° ટૂર",
       "locationSection": "સ્થાન",
@@ -1595,5 +1607,27 @@
     "ownerReply": "માલિકનો જવાબ:",
     "empty": "હજુ સુધી કોઈ સમીક્ષા નથી",
     "beFirst": "સમીક્ષા કરનાર પ્રથમ બનો"
+  },
+  "chat": {
+    "title": "ચેટ",
+    "typeMessage": "સંદેશ લખો...",
+    "send": "મોકલો",
+    "translated": "અનુવાદિત",
+    "showOriginal": "| મૂળ બતાવો",
+    "showTranslation": "| અનુવાદ બતાવો",
+    "translating": "અનુવાદ કરી રહ્યું છે...",
+    "online": "ઑનલાઇન",
+    "delivered": "| વિતરિત"
+  },
+  "roles": {
+    "user": "ખરીદનાર",
+    "agent": "| એજન્ટ",
+    "agency_owner": "| એજન્સી માલિક",
+    "admin": "એડમિન"
+  },
+  "legal": {
+    "privacy": "ગોપનીયતા નીતિ",
+    "terms": "| સેવાની શરતો",
+    "lastUpdated": "છેલ્લું અપડેટ"
   }
 }

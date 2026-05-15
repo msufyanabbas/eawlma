@@ -93,7 +93,19 @@
       "matched": "הותאם",
       "closed": "סגור"
     },
-    "disputes": "מחלוקות"
+    "disputes": "מחלוקות",
+    "panel": "פאנל ניהול",
+    "dashboard": "לוח המחוונים לניהול",
+    "totalUsers": "סה\"כ משתמשים",
+    "totalListings": "סה\"כ רישומים",
+    "pendingReview": "ממתין לסקירה",
+    "totalBookings": "סך ההזמנות",
+    "revenue": "הכנסות מהפלטפורמה",
+    "management": "ניהול",
+    "moderation": "ניהול",
+    "allClear": "אין ביקורות ממתינות",
+    "rejectListing": "דחה רישום",
+    "rejectReason": "הזן את סיבת הדחייה"
   },
   "stays": {
     "title": "אירוח לטווח קצר",
@@ -1595,5 +1607,27 @@
     "ownerReply": "תשובת הבעלים:",
     "empty": "אין עדיין ביקורות",
     "beFirst": "היה הראשון לכתוב ביקורת"
+  },
+  "chat": {
+    "title": "צ'אט",
+    "typeMessage": "הקלד הודעה...",
+    "send": "שלח",
+    "translated": "תורגם",
+    "showOriginal": "הצג מקורי",
+    "showTranslation": "הצג תרגום",
+    "translating": "מתרגם...",
+    "online": "מקוון",
+    "delivered": "נמסר"
+  },
+  "roles": {
+    "user": "קונה",
+    "agent": "סוכן",
+    "agency_owner": "בעל סוכנות",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאים והגבלות",
+    "lastUpdated": "עודכן לאחרונה"
   }
 }

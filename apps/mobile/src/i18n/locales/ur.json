@@ -94,7 +94,19 @@
       "matched": "مماثل",
       "closed": "بند"
     },
-    "disputes": "تنازعات"
+    "disputes": "تنازعات",
+    "panel": "ایڈمن پینل",
+    "dashboard": "ایڈمن ڈیش بورڈ",
+    "totalUsers": "کل صارفین",
+    "totalListings": "کل فہرستیں",
+    "pendingReview": "زیر التواء جائزہ",
+    "totalBookings": "کل بکنگ",
+    "revenue": "پلیٹ فارم ریونیو",
+    "management": "مینجمنٹ",
+    "moderation": "اعتدال",
+    "allClear": "کوئی زیر التواء جائزے نہیں",
+    "rejectListing": "فہرست کو مسترد کریں",
+    "rejectReason": "مسترد کرنے کی وجہ درج کریں"
   },
   "stays": {
     "title": "مختصر مدتی قیامیں",
@@ -353,7 +365,7 @@
     "filter": "فلٹر",
     "submit": "جمع کروائیں",
     "language": "زبان",
-    "arabic": "العربية",
+    "arabic": "| العربية",
     "english": "انگریزی",
     "urdu": "اردو",
     "back": "پچھلا",
@@ -1607,5 +1619,27 @@
     "ownerReply": "مالک کا جواب:",
     "empty": "ابھی تک کوئی جائزہ نہیں",
     "beFirst": "جائزہ لینے والے پہلے فرد بنیں۔"
+  },
+  "chat": {
+    "title": "چیٹ",
+    "typeMessage": "ایک پیغام ٹائپ کریں...",
+    "send": "بھیجیں",
+    "translated": "ترجمہ شدہ",
+    "showOriginal": "| اصل دکھائیں",
+    "showTranslation": "| ترجمہ دکھائیں",
+    "translating": "ترجمہ کر رہا ہے...",
+    "online": "آن لائن",
+    "delivered": "| ڈیلیور کیا گیا"
+  },
+  "roles": {
+    "user": "خریدار",
+    "agent": "| ایجنٹ",
+    "agency_owner": "| ایجنسی کا مالک",
+    "admin": "ایڈمن"
+  },
+  "legal": {
+    "privacy": "رازداری کی پالیسی",
+    "terms": "سروس کی شرائط",
+    "lastUpdated": "آخری بار اپ ڈیٹ"
   }
 }

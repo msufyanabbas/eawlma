@@ -93,7 +93,19 @@
       "matched": "जुळला",
       "closed": "बंद"
     },
-    "disputes": "विवाद"
+    "disputes": "विवाद",
+    "panel": "प्रशासन पॅनेल",
+    "dashboard": "प्रशासन डॅशबोर्ड",
+    "totalUsers": "एकूण वापरकर्ते",
+    "totalListings": "एकूण सूची",
+    "pendingReview": "प्रलंबित पुनरावलोकन",
+    "totalBookings": "एकूण बुकिंग",
+    "revenue": "प्लॅटफॉर्म महसूल",
+    "management": "व्यवस्थापन",
+    "moderation": "संयत",
+    "allClear": "कोणतीही प्रलंबित पुनरावलोकने नाहीत",
+    "rejectListing": "सूची नाकारणे",
+    "rejectReason": "नाकारण्याचे कारण एंटर करा"
   },
   "stays": {
     "title": "अल्पकालीन मुक्काम",
@@ -1595,5 +1607,27 @@
     "ownerReply": "मालकाचे उत्तर:",
     "empty": "अद्याप कोणतेही पुनरावलोकन नाही",
     "beFirst": "| पुनरावलोकन करणारे पहिले व्हा"
+  },
+  "chat": {
+    "title": "गप्पा",
+    "typeMessage": "संदेश टाइप करा...",
+    "send": "पाठवा",
+    "translated": "अनुवादित",
+    "showOriginal": "मूळ दाखवा",
+    "showTranslation": "भाषांतर दाखवा",
+    "translating": "भाषांतर करत आहे...",
+    "online": "ऑनलाइन",
+    "delivered": "वितरित केले"
+  },
+  "roles": {
+    "user": "खरेदीदार",
+    "agent": "एजंट",
+    "agency_owner": "एजन्सी मालक",
+    "admin": "ॲडमिन"
+  },
+  "legal": {
+    "privacy": "गोपनीयता धोरण",
+    "terms": "सेवा अटी",
+    "lastUpdated": "शेवटचे अपडेट केले"
   }
 }

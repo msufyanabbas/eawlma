@@ -93,7 +93,19 @@
       "matched": "Cocok",
       "closed": "Ditutup"
     },
-    "disputes": "Sengketa"
+    "disputes": "Sengketa",
+    "panel": "Panel Admin",
+    "dashboard": "Dasbor Admin",
+    "totalUsers": "Jumlah Pengguna",
+    "totalListings": "Daftar Total",
+    "pendingReview": "Peninjauan Tertunda",
+    "totalBookings": "Jumlah Pemesanan",
+    "revenue": "Pendapatan Platform",
+    "management": "Pengelolaan",
+    "moderation": "Moderasi",
+    "allClear": "Tidak ada peninjauan yang tertunda",
+    "rejectListing": "Tolak Daftar",
+    "rejectReason": "Masukkan alasan penolakan"
   },
   "stays": {
     "title": "Penginapan jangka pendek",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Balasan pemilik:",
     "empty": "Belum ada ulasan",
     "beFirst": "Jadilah orang pertama yang mengulas"
+  },
+  "chat": {
+    "title": "Mengobrol",
+    "typeMessage": "Ketik pesan...",
+    "send": "Mengirim",
+    "translated": "Diterjemahkan",
+    "showOriginal": "Tampilkan yang asli",
+    "showTranslation": "Tampilkan terjemahan",
+    "translating": "Menerjemahkan...",
+    "online": "On line",
+    "delivered": "Terkirim"
+  },
+  "roles": {
+    "user": "Pembeli",
+    "agent": "Agen",
+    "agency_owner": "Pemilik Agensi",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Layanan",
+    "lastUpdated": "Terakhir diperbarui"
   }
 }

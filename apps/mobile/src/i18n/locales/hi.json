@@ -93,7 +93,19 @@
       "matched": "मिलान किया गया",
       "closed": "बंद"
     },
-    "disputes": "विवाद"
+    "disputes": "विवाद",
+    "panel": "व्यवस्थापक पैनल",
+    "dashboard": "व्यवस्थापक डैशबोर्ड",
+    "totalUsers": "कुल उपयोगकर्ता",
+    "totalListings": "कुल सूचियाँ",
+    "pendingReview": "समीक्षा लंबित",
+    "totalBookings": "कुल बुकिंग",
+    "revenue": "प्लेटफार्म राजस्व",
+    "management": "प्रबंध",
+    "moderation": "संयम",
+    "allClear": "कोई समीक्षा लंबित नहीं",
+    "rejectListing": "सूचीकरण अस्वीकार करें",
+    "rejectReason": "अस्वीकृति का कारण दर्ज करें"
   },
   "stays": {
     "title": "अल्पकालिक ठहराव",
@@ -1595,5 +1607,27 @@
     "ownerReply": "मालिक का उत्तर:",
     "empty": "अभी तक कोई समीक्षा नहीं",
     "beFirst": "समीक्षा करने वाले प्रथम व्यक्ति बनें"
+  },
+  "chat": {
+    "title": "बात करना",
+    "typeMessage": "एक संदेश टाइप करें...",
+    "send": "भेजना",
+    "translated": "अनुवाद",
+    "showOriginal": "मूल दिखाएं",
+    "showTranslation": "अनुवाद दिखाएँ",
+    "translating": "अनुवाद हो रहा है...",
+    "online": "ऑनलाइन",
+    "delivered": "पहुंचा दिया"
+  },
+  "roles": {
+    "user": "क्रेता",
+    "agent": "प्रतिनिधि",
+    "agency_owner": "एजेंसी मालिक",
+    "admin": "व्यवस्थापक"
+  },
+  "legal": {
+    "privacy": "गोपनीयता नीति",
+    "terms": "सेवा की शर्तें",
+    "lastUpdated": "आखरी अपडेट"
   }
 }

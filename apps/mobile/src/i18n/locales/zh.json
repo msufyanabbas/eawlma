@@ -93,7 +93,19 @@
       "matched": "已匹配",
       "closed": "已关闭"
     },
-    "disputes": "争议"
+    "disputes": "争议",
+    "panel": "管理面板",
+    "dashboard": "管理仪表板",
+    "totalUsers": "用户总数",
+    "totalListings": "总房源",
+    "pendingReview": "待审核",
+    "totalBookings": "总预订量",
+    "revenue": "平台收入",
+    "management": "管理",
+    "moderation": "适度",
+    "allClear": "没有待审核",
+    "rejectListing": "拒绝上市",
+    "rejectReason": "输入拒绝原因"
   },
   "stays": {
     "title": "短期住宿",
@@ -1595,5 +1607,27 @@
     "ownerReply": "楼主回复:",
     "empty": "还没有评论",
     "beFirst": "成为第一个评论的人"
+  },
+  "chat": {
+    "title": "聊天",
+    "typeMessage": "输入消息...",
+    "send": "发送",
+    "translated": "已翻译",
+    "showOriginal": "显示原件",
+    "showTranslation": "显示翻译",
+    "translating": "翻译...",
+    "online": "在线的",
+    "delivered": "发表"
+  },
+  "roles": {
+    "user": "买方",
+    "agent": "代理人",
+    "agency_owner": "代理业主",
+    "admin": "行政"
+  },
+  "legal": {
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "lastUpdated": "最后更新"
   }
 }

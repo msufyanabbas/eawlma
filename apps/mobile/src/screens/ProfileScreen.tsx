@@ -193,6 +193,13 @@ export default function ProfileScreen({ navigation }: any) {
           </View>
         </View>
 
+        {isAdmin && (
+          <View style={styles.menuSection}>
+            <SectionLabel colors={colors} textAlign={textAlign}>{t('admin.panel')}</SectionLabel>
+            <SettingRow icon="speedometer-outline" label={t('admin.dashboard')} onPress={() => navigation.navigate('AdminDashboard')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          </View>
+        )}
+
         {isAgent && (
           <View style={styles.menuSection}>
             <SectionLabel colors={colors} textAlign={textAlign}>{t('profile.agentDashboard')}</SectionLabel>

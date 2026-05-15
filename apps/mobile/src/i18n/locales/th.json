@@ -93,7 +93,19 @@
       "matched": "จับคู่แล้ว",
       "closed": "ปิด"
     },
-    "disputes": "ข้อพิพาท"
+    "disputes": "ข้อพิพาท",
+    "panel": "แผงผู้ดูแลระบบ",
+    "dashboard": "แดชบอร์ดผู้ดูแลระบบ",
+    "totalUsers": "ผู้ใช้ทั้งหมด",
+    "totalListings": "รายการทั้งหมด",
+    "pendingReview": "รอการตรวจสอบ",
+    "totalBookings": "ยอดจองทั้งหมด",
+    "revenue": "รายได้จากแพลตฟอร์ม",
+    "management": "การจัดการ",
+    "moderation": "การกลั่นกรอง",
+    "allClear": "ไม่มีการตรวจสอบที่รอดำเนินการ",
+    "rejectListing": "ปฏิเสธรายการ",
+    "rejectReason": "ป้อนเหตุผลในการปฏิเสธ"
   },
   "stays": {
     "title": "ที่พักระยะสั้น",
@@ -1595,5 +1607,27 @@
     "ownerReply": "เจ้าของตอบกลับ:",
     "empty": "ยังไม่มีรีวิว",
     "beFirst": "เป็นคนแรกที่รีวิว"
+  },
+  "chat": {
+    "title": "แชท",
+    "typeMessage": "พิมพ์ข้อความ...",
+    "send": "ส่ง",
+    "translated": "แปลแล้ว",
+    "showOriginal": "แสดงต้นฉบับ",
+    "showTranslation": "แสดงคำแปล",
+    "translating": "กำลังแปล...",
+    "online": "ออนไลน์",
+    "delivered": "จัดส่งแล้ว"
+  },
+  "roles": {
+    "user": "ผู้ซื้อ",
+    "agent": "ตัวแทน",
+    "agency_owner": "เจ้าของหน่วยงาน",
+    "admin": "ผู้ดูแลระบบ"
+  },
+  "legal": {
+    "privacy": "นโยบายความเป็นส่วนตัว",
+    "terms": "ข้อกำหนดในการให้บริการ",
+    "lastUpdated": "อัปเดตล่าสุด"
   }
 }

@@ -93,7 +93,19 @@
       "matched": "Emparejada",
       "closed": "Cerrada"
     },
-    "disputes": "Disputas"
+    "disputes": "Disputas",
+    "panel": "Panel de administración",
+    "dashboard": "Panel de administración",
+    "totalUsers": "Usuarios totales",
+    "totalListings": "Listados totales",
+    "pendingReview": "Revisión pendiente",
+    "totalBookings": "Reservas totales",
+    "revenue": "Ingresos de la plataforma",
+    "management": "Gestión",
+    "moderation": "Moderación",
+    "allClear": "No hay revisiones pendientes",
+    "rejectListing": "Rechazar listado",
+    "rejectReason": "Ingrese el motivo del rechazo"
   },
   "stays": {
     "title": "Estancias cortas",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Respuesta del propietario:",
     "empty": "Aún no hay reseñas",
     "beFirst": "Sé el primero en opinar"
+  },
+  "chat": {
+    "title": "Charlar",
+    "typeMessage": "Escribe un mensaje...",
+    "send": "Enviar",
+    "translated": "Traducido",
+    "showOriginal": "Mostrar original",
+    "showTranslation": "Mostrar traducción",
+    "translating": "Traductorio...",
+    "online": "En línea",
+    "delivered": "Entregado"
+  },
+  "roles": {
+    "user": "Comprador",
+    "agent": "Agente",
+    "agency_owner": "Propietario de la agencia",
+    "admin": "Administración"
+  },
+  "legal": {
+    "privacy": "política de privacidad",
+    "terms": "Términos de servicio",
+    "lastUpdated": "Última actualización"
   }
 }

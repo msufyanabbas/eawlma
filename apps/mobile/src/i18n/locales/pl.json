@@ -93,7 +93,19 @@
       "matched": "Dopasowane",
       "closed": "Zamknięte"
     },
-    "disputes": "Spory"
+    "disputes": "Spory",
+    "panel": "Panel administracyjny",
+    "dashboard": "Panel administracyjny",
+    "totalUsers": "Całkowita liczba użytkowników",
+    "totalListings": "Łączna liczba ofert",
+    "pendingReview": "Oczekuje na recenzję",
+    "totalBookings": "Łączna liczba rezerwacji",
+    "revenue": "Przychody platformy",
+    "management": "Kierownictwo",
+    "moderation": "Umiar",
+    "allClear": "Brak oczekujących recenzji",
+    "rejectListing": "Odrzuć aukcję",
+    "rejectReason": "Wpisz powód odrzucenia"
   },
   "stays": {
     "title": "Pobyty krótkoterminowe",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Odpowiedź właściciela:",
     "empty": "Nie ma jeszcze żadnych recenzji",
     "beFirst": "Bądź pierwszą osobą, która napisze recenzję"
+  },
+  "chat": {
+    "title": "Pogawędzić",
+    "typeMessage": "Wpisz wiadomość...",
+    "send": "Wysłać",
+    "translated": "Przetłumaczony",
+    "showOriginal": "Pokaż oryginał",
+    "showTranslation": "Pokaż tłumaczenie",
+    "translating": "Tłumaczenie...",
+    "online": "W Internecie",
+    "delivered": "Dostarczony"
+  },
+  "roles": {
+    "user": "Kupujący",
+    "agent": "Agent",
+    "agency_owner": "Właściciel Agencji",
+    "admin": "Administrator"
+  },
+  "legal": {
+    "privacy": "Polityka prywatności",
+    "terms": "Warunki świadczenia usług",
+    "lastUpdated": "Ostatnia aktualizacja"
   }
 }

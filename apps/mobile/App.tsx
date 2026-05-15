@@ -52,6 +52,15 @@ import AboutScreen from './src/screens/AboutScreen';
 import HelpScreen from './src/screens/HelpScreen';
 import BookingsListScreen from './src/screens/BookingsListScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
+import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
+import TermsScreen from './src/screens/TermsScreen';
+import AdminDashboardScreen from './src/screens/admin/AdminDashboardScreen';
+import AdminModerationScreen from './src/screens/admin/AdminModerationScreen';
+import AdminUsersScreen from './src/screens/admin/AdminUsersScreen';
+import AdminCommissionsScreen from './src/screens/admin/AdminCommissionsScreen';
+import AdminPayoutsScreen from './src/screens/admin/AdminPayoutsScreen';
+import AdminDisputesScreen from './src/screens/admin/AdminDisputesScreen';
+import AdminPromosScreen from './src/screens/admin/AdminPromosScreen';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -216,6 +225,15 @@ export default function App() {
             <Stack.Screen name="Help" component={HelpScreen} />
             <Stack.Screen name="Bookings" component={BookingsListScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
+            <Stack.Screen name="Terms" component={TermsScreen} />
+            <Stack.Screen name="AdminDashboard" component={AdminDashboardScreen} />
+            <Stack.Screen name="AdminModeration" component={AdminModerationScreen} />
+            <Stack.Screen name="AdminUsers" component={AdminUsersScreen} />
+            <Stack.Screen name="AdminCommissions" component={AdminCommissionsScreen} />
+            <Stack.Screen name="AdminPayouts" component={AdminPayoutsScreen} />
+            <Stack.Screen name="AdminDisputes" component={AdminDisputesScreen} />
+            <Stack.Screen name="AdminPromos" component={AdminPromosScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

@@ -95,7 +95,15 @@ export default function SettingsScreen({ navigation }: any) {
         <NavRow
           icon="shield-checkmark-outline"
           label={t('footer.privacyPolicy')}
-          onPress={() => navigation.navigate('About')}
+          onPress={() => navigation.navigate('PrivacyPolicy')}
+          colors={colors}
+          isRTL={isRTL}
+          textAlign={textAlign}
+        />
+        <NavRow
+          icon="document-text-outline"
+          label={t('footer.termsOfService')}
+          onPress={() => navigation.navigate('Terms')}
           colors={colors}
           isRTL={isRTL}
           textAlign={textAlign}

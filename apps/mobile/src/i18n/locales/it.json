@@ -93,7 +93,19 @@
       "matched": "Abbinata",
       "closed": "Chiusa"
     },
-    "disputes": "Controversie"
+    "disputes": "Controversie",
+    "panel": "Pannello di amministrazione",
+    "dashboard": "Pannello di amministrazione",
+    "totalUsers": "Utenti totali",
+    "totalListings": "Elenchi totali",
+    "pendingReview": "In attesa di revisione",
+    "totalBookings": "Prenotazioni totali",
+    "revenue": "Entrate della piattaforma",
+    "management": "Gestione",
+    "moderation": "Moderazione",
+    "allClear": "Nessuna recensione in sospeso",
+    "rejectListing": "Rifiuta elenco",
+    "rejectReason": "Inserisci il motivo del rifiuto"
   },
   "stays": {
     "title": "Soggiorni a breve termine",
@@ -827,7 +839,7 @@
       "minimumStay": "Soggiorno minimo (notti)",
       "maxGuests": "Ospiti massimi",
       "checkIn": "Arrivo",
-      "checkOut": "Check-out",
+      "checkOut": "Guardare",
       "cancellationPolicy": "Politica di cancellazione",
       "cancelFlexible": "Flessibile: rimborso completo fino a 24 ore prima",
       "cancelModerate": "Moderato: rimborso completo fino a 5 giorni prima",
@@ -846,7 +858,7 @@
       "photoAlt": "Foto dell'elenco",
       "setCover": "Imposta come copertina",
       "cover": "Copertina",
-      "videoTour": "Video tour",
+      "videoTour": "Videotour",
       "videoDropHint": "Trascina un file MP4 o fai clic per scegliere. Massimo 500MB.",
       "videoUploaded": "Video caricato — {{name}}",
       "vrTitle": "🥽 Link al tour in realtà virtuale",
@@ -1330,7 +1342,7 @@
     "tabGuest": "Come ospite",
     "tabHost": "Come host",
     "checkIn": "Arrivo",
-    "checkOut": "Check-out",
+    "checkOut": "Guardare",
     "night": "notte",
     "nights": "notti",
     "guests": "Ospiti",
@@ -1354,7 +1366,7 @@
     "checkInInstructionsPending": "L'host invierà le istruzioni 24h prima del check-in.",
     "showAllPhotos": "Mostra tutte le foto",
     "availability": "Disponibilità",
-    "superhost": "Superhost",
+    "superhost": "Superospite",
     "responseRate": "Tasso di risposta",
     "datesUnavailable": "Le date selezionate si sovrappongono a una prenotazione esistente.",
     "leaveReview": "Lascia una recensione",
@@ -1461,7 +1473,7 @@
     "codePlaceholder": "Codice promozionale",
     "apply": "Applica",
     "checking": "Verifica in corso…",
-    "discount": "Promo",
+    "discount": "promozionale",
     "applyFailed": "La promo non può essere applicata — contatta il supporto.",
     "createNew": "Crea promo",
     "editTitle": "Modifica codice promozionale",
@@ -1571,7 +1583,7 @@
     "noBookings": "Ancora nessuna prenotazione",
     "noBookingsHint": "Le tue prenotazioni appariranno qui",
     "checkIn": "Arrivo",
-    "checkOut": "Check-out",
+    "checkOut": "Guardare",
     "guests": "Ospiti",
     "nights": "notti",
     "total": "Totale",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Risposta del proprietario:",
     "empty": "Ancora nessuna recensione",
     "beFirst": "Sii il primo a recensire"
+  },
+  "chat": {
+    "title": "Chatta",
+    "typeMessage": "Digita un messaggio...",
+    "send": "Invia",
+    "translated": "Tradotto",
+    "showOriginal": "Mostra originale",
+    "showTranslation": "Mostra traduzione",
+    "translating": "Traduzione in corso...",
+    "online": "In linea",
+    "delivered": "Consegnato"
+  },
+  "roles": {
+    "user": "Acquirente",
+    "agent": "Agente",
+    "agency_owner": "Proprietario dell'agenzia",
+    "admin": "Amministratore"
+  },
+  "legal": {
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio",
+    "lastUpdated": "Ultimo aggiornamento"
   }
 }

@@ -93,7 +93,19 @@
       "matched": "매칭됨",
       "closed": "종료됨"
     },
-    "disputes": "분쟁"
+    "disputes": "분쟁",
+    "panel": "관리자 패널",
+    "dashboard": "관리 대시보드",
+    "totalUsers": "총 사용자",
+    "totalListings": "총 목록",
+    "pendingReview": "검토 대기 중",
+    "totalBookings": "총 예약",
+    "revenue": "플랫폼 수익",
+    "management": "관리",
+    "moderation": "절도",
+    "allClear": "대기 중인 리뷰가 없습니다.",
+    "rejectListing": "리스팅 거부",
+    "rejectReason": "거부 사유를 입력하세요."
   },
   "stays": {
     "title": "단기 숙소",
@@ -1595,5 +1607,27 @@
     "ownerReply": "소유자 답변:",
     "empty": "아직 리뷰가 없습니다",
     "beFirst": "가장 먼저 리뷰를 작성해 보세요"
+  },
+  "chat": {
+    "title": "채팅",
+    "typeMessage": "메시지를 입력하세요...",
+    "send": "보내다",
+    "translated": "번역됨",
+    "showOriginal": "원본 보기",
+    "showTranslation": "번역 표시",
+    "translating": "번역 중...",
+    "online": "온라인",
+    "delivered": "배달됨"
+  },
+  "roles": {
+    "user": "사는 사람",
+    "agent": "대리인",
+    "agency_owner": "대행사 소유자",
+    "admin": "관리자"
+  },
+  "legal": {
+    "privacy": "개인 정보 보호 정책",
+    "terms": "서비스 약관",
+    "lastUpdated": "마지막 업데이트"
   }
 }

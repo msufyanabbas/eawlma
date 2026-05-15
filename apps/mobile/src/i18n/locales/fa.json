@@ -93,7 +93,19 @@
       "matched": "تطبیق‌داده‌شده",
       "closed": "بسته"
     },
-    "disputes": "اختلافات"
+    "disputes": "اختلافات",
+    "panel": "پنل مدیریت",
+    "dashboard": "داشبورد مدیریت",
+    "totalUsers": "مجموع کاربران",
+    "totalListings": "کل لیست ها",
+    "pendingReview": "در انتظار بررسی",
+    "totalBookings": "مجموع رزروها",
+    "revenue": "درآمد پلتفرم",
+    "management": "مدیریت",
+    "moderation": "اعتدال",
+    "allClear": "هیچ بررسی معلقی وجود ندارد",
+    "rejectListing": "رد لیست",
+    "rejectReason": "دلیل رد را وارد کنید"
   },
   "stays": {
     "title": "اقامتگاه‌های کوتاه‌مدت",
@@ -1595,5 +1607,27 @@
     "ownerReply": "پاسخ مالک:",
     "empty": "هنوز هیچ بررسی وجود ندارد",
     "beFirst": "اولین نفری باشید که نظر می دهد"
+  },
+  "chat": {
+    "title": "چت",
+    "typeMessage": "یک پیام تایپ کنید...",
+    "send": "ارسال",
+    "translated": "ترجمه شده",
+    "showOriginal": "نمایش اصلی",
+    "showTranslation": "نمایش ترجمه",
+    "translating": "ترجمه...",
+    "online": "آنلاین",
+    "delivered": "تحویل"
+  },
+  "roles": {
+    "user": "خریدار",
+    "agent": "نماینده",
+    "agency_owner": "مالک آژانس",
+    "admin": "مدیر"
+  },
+  "legal": {
+    "privacy": "سیاست حفظ حریم خصوصی",
+    "terms": "شرایط خدمات",
+    "lastUpdated": "آخرین به روز رسانی"
   }
 }

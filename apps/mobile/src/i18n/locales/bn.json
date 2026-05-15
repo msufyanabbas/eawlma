@@ -93,7 +93,19 @@
       "matched": "মিলেছে",
       "closed": "বন্ধ"
     },
-    "disputes": "বিরোধ"
+    "disputes": "বিরোধ",
+    "panel": "অ্যাডমিন প্যানেল",
+    "dashboard": "অ্যাডমিন ড্যাশবোর্ড",
+    "totalUsers": "মোট ব্যবহারকারী",
+    "totalListings": "মোট তালিকা",
+    "pendingReview": "মুলতুবি পর্যালোচনা",
+    "totalBookings": "মোট বুকিং",
+    "revenue": "প্ল্যাটফর্ম আয়",
+    "management": "ব্যবস্থাপনা",
+    "moderation": "সংযম",
+    "allClear": "কোনো মুলতুবি পর্যালোচনা নেই",
+    "rejectListing": "তালিকা প্রত্যাখ্যান",
+    "rejectReason": "প্রত্যাখ্যানের কারণ লিখুন"
   },
   "stays": {
     "title": "স্বল্পমেয়াদী থাকা",
@@ -302,7 +314,7 @@
     "pwStrong": "শক্তিশালী",
     "firstNamePlaceholder": "জন",
     "lastNamePlaceholder": "ডো",
-    "phonePlaceholder": "+966 5X XXX XXXX"
+    "phonePlaceholder": "| +966 5X XXX XXXX"
   },
   "validation": {
     "required": "এই ক্ষেত্রটি প্রয়োজনীয়",
@@ -365,7 +377,7 @@
     "beds": "বিছানা",
     "baths": "বাথ",
     "area": "এলাকা",
-    "areaUnit": "m²",
+    "areaUnit": "| m²",
     "price": "মূল্য",
     "pricePerSqm": "প্রতি m² মূল্য",
     "currency": "SAR",
@@ -1116,7 +1128,7 @@
     "bulkApproveConfirm": "সব অনুমোদন করুন",
     "actionFailed": "একটি মডারেশন ক্রিয়া ব্যর্থ হয়েছে — আবার চেষ্টা করুন।",
     "preview": {
-      "bedroomsShort": "{{count}} BR",
+      "bedroomsShort": "| {{count}} BR",
       "bathroomsShort": "{{count}} BA",
       "vrTourAvailable": "VR ট্যুর উপলব্ধ",
       "vrTourSection": "VR / ৩৬০° ট্যুর",
@@ -1595,5 +1607,27 @@
     "ownerReply": "মালিকের উত্তর:",
     "empty": "এখনো কোন রিভিউ নেই",
     "beFirst": "পর্যালোচনা করা প্রথম হতে"
+  },
+  "chat": {
+    "title": "চ্যাট",
+    "typeMessage": "একটি বার্তা টাইপ করুন...",
+    "send": "পাঠান",
+    "translated": "অনূদিত",
+    "showOriginal": "|৷ আসল দেখান",
+    "showTranslation": "|৷ অনুবাদ দেখান",
+    "translating": "অনুবাদ করা হচ্ছে...",
+    "online": "অনলাইন",
+    "delivered": "| বিতরণ করা হয়েছে"
+  },
+  "roles": {
+    "user": "ক্রেতা",
+    "agent": "| এজেন্ট",
+    "agency_owner": "| এজেন্সির মালিক",
+    "admin": "অ্যাডমিন"
+  },
+  "legal": {
+    "privacy": "গোপনীয়তা নীতি",
+    "terms": "পরিষেবার শর্তাবলী",
+    "lastUpdated": "সর্বশেষ আপডেট"
   }
 }

@@ -93,7 +93,19 @@
       "matched": "マッチ済み",
       "closed": "クローズ済み"
     },
-    "disputes": "紛争"
+    "disputes": "紛争",
+    "panel": "管理者パネル",
+    "dashboard": "管理者ダッシュボード",
+    "totalUsers": "総ユーザー数",
+    "totalListings": "総出品数",
+    "pendingReview": "審査待ち",
+    "totalBookings": "総予約数",
+    "revenue": "プラットフォーム収益",
+    "management": "管理",
+    "moderation": "節度",
+    "allClear": "保留中のレビューはありません",
+    "rejectListing": "リストの拒否",
+    "rejectReason": "拒否理由を入力してください"
   },
   "stays": {
     "title": "短期滞在",
@@ -1595,5 +1607,27 @@
     "ownerReply": "オーナーの返答:",
     "empty": "まだレビューはありません",
     "beFirst": "最初にレビューしてみませんか"
+  },
+  "chat": {
+    "title": "チャット",
+    "typeMessage": "メッセージを入力してください...",
+    "send": "送信",
+    "translated": "翻訳済み",
+    "showOriginal": "オリジナルを表示",
+    "showTranslation": "翻訳を表示",
+    "translating": "翻訳中...",
+    "online": "オンライン",
+    "delivered": "納品済み"
+  },
+  "roles": {
+    "user": "買い手",
+    "agent": "エージェント",
+    "agency_owner": "代理店オーナー",
+    "admin": "管理者"
+  },
+  "legal": {
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "lastUpdated": "最終更新日"
   }
 }

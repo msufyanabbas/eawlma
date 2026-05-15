@@ -93,7 +93,19 @@
       "matched": "Matchet",
       "closed": "Lukket"
     },
-    "disputes": "Tvister"
+    "disputes": "Tvister",
+    "panel": "Administrasjonspanel",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Totalt antall brukere",
+    "totalListings": "Totale oppføringer",
+    "pendingReview": "Venter på anmeldelse",
+    "totalBookings": "Totale bestillinger",
+    "revenue": "Plattforminntekter",
+    "management": "Ledelse",
+    "moderation": "Moderering",
+    "allClear": "Ingen ventende anmeldelser",
+    "rejectListing": "Avvis oppføring",
+    "rejectReason": "Angi årsak til avvisning"
   },
   "stays": {
     "title": "Korttidsopphold",
@@ -424,7 +436,7 @@
     "sale": "Salg",
     "rent": "Lei",
     "bedrooms": "Senger",
-    "bathrooms": "Baths",
+    "bathrooms": "Bad",
     "propertyTypeLabel": "Skriv",
     "noDescription": "Ingen beskrivelse.",
     "locationNotSpecified": "Plassering ikke spesifisert",
@@ -870,7 +882,7 @@
     "propertyType": "Eiendomstype",
     "apartment": "Leilighet",
     "villa": "Villa",
-    "land": "Land",
+    "land": "Jord",
     "chalet": "Chalet",
     "farm": "Gård",
     "restHouse": "Rest House",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Eiers svar:",
     "empty": "Ingen anmeldelser ennå",
     "beFirst": "Vær den første til å anmelde"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Skriv inn en melding...",
+    "send": "Send",
+    "translated": "Oversatt",
+    "showOriginal": "Vis original",
+    "showTranslation": "Vis oversettelse",
+    "translating": "Oversetter...",
+    "online": "Online",
+    "delivered": "Levert"
+  },
+  "roles": {
+    "user": "Kjøper",
+    "agent": "Agent",
+    "agency_owner": "Byråeier",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Personvernerklæring",
+    "terms": "Vilkår for bruk",
+    "lastUpdated": "Sist oppdatert"
   }
 }

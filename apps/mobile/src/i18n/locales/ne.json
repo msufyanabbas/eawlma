@@ -93,7 +93,19 @@
       "matched": "मिलेको",
       "closed": "बन्द"
     },
-    "disputes": "विवादहरू"
+    "disputes": "विवादहरू",
+    "panel": "व्यवस्थापक प्यानल",
+    "dashboard": "प्रशासक ड्यासबोर्ड",
+    "totalUsers": "कुल प्रयोगकर्ताहरू",
+    "totalListings": "कुल सूची",
+    "pendingReview": "विचाराधीन समीक्षा",
+    "totalBookings": "कुल बुकिङ",
+    "revenue": "प्लेटफर्म राजस्व",
+    "management": "व्यवस्थापन",
+    "moderation": "मध्यस्थता",
+    "allClear": "कुनै विचाराधीन समीक्षाहरू छैनन्",
+    "rejectListing": "सूची अस्वीकार गर्नुहोस्",
+    "rejectReason": "अस्वीकार कारण प्रविष्ट गर्नुहोस्"
   },
   "stays": {
     "title": "अल्पकालीन बसाइ",
@@ -302,7 +314,7 @@
     "pwStrong": "बलियो",
     "firstNamePlaceholder": "जोन",
     "lastNamePlaceholder": "डो",
-    "phonePlaceholder": "+966 5X XXX XXXX"
+    "phonePlaceholder": "| +966 5X XXX XXXX"
   },
   "validation": {
     "required": "यो फिल्ड आवश्यक छ",
@@ -351,7 +363,7 @@
     "errorOccurred": "एउटा त्रुटि भयो",
     "yes": "हो",
     "no": "छैन",
-    "sar": "SAR",
+    "sar": "| SAR",
     "perNight": "प्रति रात",
     "perMonth": "प्रति महिना"
   },
@@ -365,7 +377,7 @@
     "beds": "बेडहरू",
     "baths": "बाथहरू",
     "area": "क्षेत्रफल",
-    "areaUnit": "m²",
+    "areaUnit": "| m²",
     "price": "मूल्य",
     "pricePerSqm": "प्रति m² मूल्य",
     "currency": "SAR",
@@ -806,7 +818,7 @@
       "cornerUnit": "कुना एकाई"
     },
     "shortTermAmenity": {
-      "wifi": "Wi-Fi",
+      "wifi": "| Wi-Fi",
       "pool": "पोखरी",
       "parking": "पार्किङ",
       "breakfast": "बिहानको खाजा",
@@ -1116,8 +1128,8 @@
     "bulkApproveConfirm": "सबै अनुमोदन गर्नुहोस्",
     "actionFailed": "एक मध्यस्थता कार्य असफल भयो — फेरि प्रयास गर्नुहोस्।",
     "preview": {
-      "bedroomsShort": "{{count}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bedroomsShort": "{{गणना}} BR",
+      "bathroomsShort": "{{गणना}} BA",
       "vrTourAvailable": "VR टुर उपलब्ध",
       "vrTourSection": "VR / ३६०° टुर",
       "locationSection": "स्थान",
@@ -1595,5 +1607,27 @@
     "ownerReply": "मालिकको जवाफ:",
     "empty": "अहिलेसम्म कुनै समीक्षा छैन",
     "beFirst": "| समीक्षा गर्ने पहिलो हुनुहोस्"
+  },
+  "chat": {
+    "title": "च्याट",
+    "typeMessage": "सन्देश टाइप गर्नुहोस्...",
+    "send": "पठाउनुहोस्",
+    "translated": "अनुवादित",
+    "showOriginal": "मौलिक देखाउनुहोस्",
+    "showTranslation": "अनुवाद देखाउनुहोस्",
+    "translating": "अनुवाद गर्दै...",
+    "online": "अनलाइन",
+    "delivered": "डेलिभर गरियो"
+  },
+  "roles": {
+    "user": "खरिदकर्ता",
+    "agent": "एजेन्ट",
+    "agency_owner": "एजेन्सी मालिक",
+    "admin": "व्यवस्थापक"
+  },
+  "legal": {
+    "privacy": "गोपनीयता नीति",
+    "terms": "| सेवा सर्तहरू",
+    "lastUpdated": "| पछिल्लो अपडेट"
   }
 }

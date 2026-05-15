@@ -93,7 +93,19 @@
       "matched": "Yhdistetty",
       "closed": "Suljettu"
     },
-    "disputes": "Riidat"
+    "disputes": "Riidat",
+    "panel": "Hallintapaneeli",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Käyttäjiä yhteensä",
+    "totalListings": "Ilmoitukset yhteensä",
+    "pendingReview": "Odottaa tarkistusta",
+    "totalBookings": "Varaukset yhteensä",
+    "revenue": "Alustan tuotto",
+    "management": "Hallinto",
+    "moderation": "Maltillisuus",
+    "allClear": "Ei odottavia arvosteluja",
+    "rejectListing": "Hylkää listaus",
+    "rejectReason": "Anna hylkäämisen syy"
   },
   "stays": {
     "title": "Lyhytaikaiset majoitukset",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Omistajan vastaus:",
     "empty": "Ei arvosteluja vielä",
     "beFirst": "Arvostele ensimmäisenä"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Kirjoita viesti...",
+    "send": "Lähetä",
+    "translated": "Käännetty",
+    "showOriginal": "Näytä alkuperäinen",
+    "showTranslation": "Näytä käännös",
+    "translating": "Käännetään...",
+    "online": "Online",
+    "delivered": "Toimitettu"
+  },
+  "roles": {
+    "user": "Ostaja",
+    "agent": "Agentti",
+    "agency_owner": "Toimiston omistaja",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Tietosuojakäytäntö",
+    "terms": "Palveluehdot",
+    "lastUpdated": "Viimeksi päivitetty"
   }
 }

@@ -93,7 +93,19 @@
       "matched": "Gekoppeld",
       "closed": "Gesloten"
     },
-    "disputes": "Geschillen"
+    "disputes": "Geschillen",
+    "panel": "Beheerderspaneel",
+    "dashboard": "Beheerdersdashboard",
+    "totalUsers": "Totaal aantal gebruikers",
+    "totalListings": "Totaal aantal vermeldingen",
+    "pendingReview": "In afwachting van beoordeling",
+    "totalBookings": "Totaal aantal boekingen",
+    "revenue": "Platforminkomsten",
+    "management": "Beheer",
+    "moderation": "Moderatie",
+    "allClear": "Geen beoordelingen in behandeling",
+    "rejectListing": "Aanbieding weigeren",
+    "rejectReason": "Voer de afwijzingsreden"
   },
   "stays": {
     "title": "Kortdurende verblijven",
@@ -794,7 +806,7 @@
       "unlisted": "Niet-beursgenoteerd"
     },
     "amenity": {
-      "pool": "Pool",
+      "pool": "Zwembad",
       "garden": "Tuin",
       "gym": "Sportschool",
       "elevator": "Lift",
@@ -806,8 +818,8 @@
       "cornerUnit": "Hoekelement"
     },
     "shortTermAmenity": {
-      "wifi": "Wi-Fi",
-      "pool": "Pool",
+      "wifi": "Wifi",
+      "pool": "Zwembad",
       "parking": "Parkeren",
       "breakfast": "Ontbijt",
       "ac": "Airconditioning",
@@ -917,7 +929,7 @@
     "transactionTypeShort": "Transactietype",
     "priceShort": "Prijs *",
     "cityShort": "Stad",
-    "districtShort": "District",
+    "districtShort": "Wijk",
     "bedsShort": "Bedden",
     "bathsShort": "Baden",
     "areaShort": "Gebied",
@@ -1413,7 +1425,7 @@
     "miniTrend": "Lokale markttrend",
     "trendTitle": "Prijsontwikkeling (12 maanden)",
     "avgByDistrict": "Gem. ﷼/m² per wijk",
-    "cityPlaceholder": "Riyadh, Jeddah..."
+    "cityPlaceholder": "Riyad, Jeddah..."
   },
   "errors": {
     "generic": "Er is een onverwachte fout opgetreden",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Antwoord van de eigenaar:",
     "empty": "Nog geen beoordelingen",
     "beFirst": "Wees de eerste om te beoordelen"
+  },
+  "chat": {
+    "title": "in Chat",
+    "typeMessage": "Typ een bericht...",
+    "send": "Verzenden",
+    "translated": "Vertaald",
+    "showOriginal": "Origineel tonen",
+    "showTranslation": "Laat vertaling zien",
+    "translating": "Vertalen...",
+    "online": "Online",
+    "delivered": "Afgeleverd"
+  },
+  "roles": {
+    "user": "Koper",
+    "agent": "Agent",
+    "agency_owner": "Eigenaar van het bureau",
+    "admin": "Beheerder"
+  },
+  "legal": {
+    "privacy": "Privacybeleid",
+    "terms": "Servicevoorwaarden",
+    "lastUpdated": "Laatst bijgewerkt"
   }
 }

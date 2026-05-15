@@ -93,7 +93,19 @@
       "matched": "Combinado",
       "closed": "Fechado"
     },
-    "disputes": "Disputas"
+    "disputes": "Disputas",
+    "panel": "Painel de administração",
+    "dashboard": "Painel de administração",
+    "totalUsers": "Total de usuários",
+    "totalListings": "Listagens totais",
+    "pendingReview": "Revisão pendente",
+    "totalBookings": "Total de reservas",
+    "revenue": "Receita da plataforma",
+    "management": "Gerenciamento",
+    "moderation": "Moderação",
+    "allClear": "Nenhuma revisão pendente",
+    "rejectListing": "Lista rejeitada",
+    "rejectReason": "Insira o motivo da rejeição"
   },
   "stays": {
     "title": "Estadias de curta duração",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Resposta do proprietário:",
     "empty": "Ainda não há avaliações",
     "beFirst": "Seja o primeiro a avaliar"
+  },
+  "chat": {
+    "title": "Bater papo",
+    "typeMessage": "Digite uma mensagem...",
+    "send": "Enviar",
+    "translated": "Traduzido",
+    "showOriginal": "Mostrar original",
+    "showTranslation": "Mostrar tradução",
+    "translating": "Traduzindo...",
+    "online": "On-line",
+    "delivered": "Entregue"
+  },
+  "roles": {
+    "user": "Comprador",
+    "agent": "Agente",
+    "agency_owner": "Proprietário da agência",
+    "admin": "Administrador"
+  },
+  "legal": {
+    "privacy": "política de Privacidade",
+    "terms": "Termos de Serviço",
+    "lastUpdated": "Última atualização"
   }
 }

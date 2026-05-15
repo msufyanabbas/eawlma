@@ -93,7 +93,19 @@
       "matched": "Associée",
       "closed": "Fermée"
     },
-    "disputes": "Litiges"
+    "disputes": "Litiges",
+    "panel": "Panneau d'administration",
+    "dashboard": "Tableau de bord d'administration",
+    "totalUsers": "Nombre total d'utilisateurs",
+    "totalListings": "Total des annonces",
+    "pendingReview": "En attente d'examen",
+    "totalBookings": "Total des réservations",
+    "revenue": "Revenus de la plateforme",
+    "management": "Gestion",
+    "moderation": "Modération",
+    "allClear": "Aucun avis en attente",
+    "rejectListing": "Rejeter la liste",
+    "rejectReason": "Entrez le motif du rejet"
   },
   "stays": {
     "title": "Séjours courts",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Réponse du propriétaire :",
     "empty": "Pas encore de commentaires",
     "beFirst": "Soyez le premier à donner votre avis"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Tapez un message...",
+    "send": "Envoyer",
+    "translated": "Traduit",
+    "showOriginal": "Afficher l'original",
+    "showTranslation": "Afficher la traduction",
+    "translating": "Traduction...",
+    "online": "En ligne",
+    "delivered": "Livré"
+  },
+  "roles": {
+    "user": "Acheteur",
+    "agent": "Agent",
+    "agency_owner": "Propriétaire de l'agence",
+    "admin": "Administrateur"
+  },
+  "legal": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour"
   }
 }

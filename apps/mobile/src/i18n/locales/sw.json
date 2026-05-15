@@ -93,7 +93,19 @@
       "matched": "Imeoanishwa",
       "closed": "Imefungwa"
     },
-    "disputes": "Migogoro"
+    "disputes": "Migogoro",
+    "panel": "Paneli ya Msimamizi",
+    "dashboard": "Dashibodi ya Msimamizi",
+    "totalUsers": "Jumla ya Watumiaji",
+    "totalListings": "Jumla ya Orodha",
+    "pendingReview": "Inasubiri Mapitio",
+    "totalBookings": "Jumla ya Hifadhi",
+    "revenue": "Mapato ya Jukwaa",
+    "management": "Usimamizi",
+    "moderation": "Kiasi",
+    "allClear": "Hakuna ukaguzi unaosubiri",
+    "rejectListing": "Kataa Kuorodhesha",
+    "rejectReason": "Ingiza sababu ya kukataa"
   },
   "stays": {
     "title": "Malazi ya muda mfupi",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Jibu la mmiliki:",
     "empty": "Bado hakuna hakiki",
     "beFirst": "Kuwa wa kwanza kukagua"
+  },
+  "chat": {
+    "title": "Soga",
+    "typeMessage": "Andika ujumbe...",
+    "send": "Tuma",
+    "translated": "Imetafsiriwa",
+    "showOriginal": "Onyesha asili",
+    "showTranslation": "Onyesha tafsiri",
+    "translating": "Inatafsiri...",
+    "online": "Mtandaoni",
+    "delivered": "Imewasilishwa"
+  },
+  "roles": {
+    "user": "Mnunuzi",
+    "agent": "Wakala",
+    "agency_owner": "Mmiliki wa Wakala",
+    "admin": "Msimamizi"
+  },
+  "legal": {
+    "privacy": "Sera ya Faragha",
+    "terms": "Masharti ya Huduma",
+    "lastUpdated": "Ilisasishwa mwisho"
   }
 }

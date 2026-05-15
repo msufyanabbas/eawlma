@@ -93,7 +93,19 @@
       "matched": "Gepas",
       "closed": "Gesluit"
     },
-    "disputes": "Dispute"
+    "disputes": "Dispute",
+    "panel": "Administrasiepaneel",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Totale gebruikers",
+    "totalListings": "Totale lysinskrywings",
+    "pendingReview": "Hangende resensie",
+    "totalBookings": "Totale besprekings",
+    "revenue": "Platforminkomste",
+    "management": "Bestuur",
+    "moderation": "Moderering",
+    "allClear": "Geen hangende resensies",
+    "rejectListing": "Verwerp lysinskrywing",
+    "rejectReason": "Voer rede vir verwerping"
   },
   "stays": {
     "title": "Korttermyn verblywe",
@@ -1571,7 +1583,7 @@
     "noBookings": "Nog geen besprekings nie",
     "noBookingsHint": "Jou besprekings sal hier verskyn",
     "checkIn": "Aanmelding",
-    "checkOut": "Check-out",
+    "checkOut": "Uitklok",
     "guests": "Gaste",
     "nights": "nagte",
     "total": "Totaal",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Eienaar antwoord:",
     "empty": "Nog geen resensies",
     "beFirst": "Wees die eerste om te hersien"
+  },
+  "chat": {
+    "title": "in Klets",
+    "typeMessage": "Tik 'n boodskap...",
+    "send": "Stuur",
+    "translated": "Vertaal",
+    "showOriginal": "Wys oorspronklike",
+    "showTranslation": "Wys vertaling",
+    "translating": "Vertaal...",
+    "online": "Aanlyn",
+    "delivered": "Afgelewer"
+  },
+  "roles": {
+    "user": "Koper",
+    "agent": "Agent",
+    "agency_owner": "Agentskapeienaar",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Privaatheidsbeleid",
+    "terms": "Diensbepalings",
+    "lastUpdated": "Laas opgedateer"
   }
 }

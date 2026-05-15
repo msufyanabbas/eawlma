@@ -93,7 +93,41 @@
       "matched": "مطابق",
       "closed": "مغلق"
     },
-    "disputes": "النزاعات"
+    "disputes": "النزاعات المفتوحة",
+    "panel": "لوحة الإدارة",
+    "dashboard": "لوحة تحكم المدير",
+    "totalUsers": "إجمالي المستخدمين",
+    "totalListings": "إجمالي الإعلانات",
+    "pendingReview": "بانتظار المراجعة",
+    "totalBookings": "إجمالي الحجوزات",
+    "revenue": "إيرادات المنصة",
+    "management": "الإدارة",
+    "moderation": "مراجعة الإعلانات",
+    "allClear": "لا توجد إعلانات معلقة",
+    "rejectListing": "رفض الإعلان",
+    "rejectReason": "أدخل سبب الرفض"
+  },
+  "chat": {
+    "title": "المحادثة",
+    "typeMessage": "اكتب رسالة...",
+    "send": "إرسال",
+    "translated": "مترجم",
+    "showOriginal": "عرض الأصل",
+    "showTranslation": "عرض الترجمة",
+    "translating": "جارٍ الترجمة...",
+    "online": "متصل",
+    "delivered": "تم التسليم"
+  },
+  "roles": {
+    "user": "مشتري",
+    "agent": "وكيل",
+    "agency_owner": "مالك وكالة",
+    "admin": "مدير"
+  },
+  "legal": {
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "lastUpdated": "آخر تحديث"
   },
   "stays": {
     "title": "إقامات قصيرة",

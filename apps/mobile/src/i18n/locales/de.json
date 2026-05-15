@@ -93,7 +93,19 @@
       "matched": "Zugeordnet",
       "closed": "Geschlossen"
     },
-    "disputes": "Streitfälle"
+    "disputes": "Streitfälle",
+    "panel": "Admin-Panel",
+    "dashboard": "Admin-Dashboard",
+    "totalUsers": "Gesamtzahl der Benutzer",
+    "totalListings": "Gesamteinträge",
+    "pendingReview": "Ausstehende Überprüfung",
+    "totalBookings": "Gesamtbuchungen",
+    "revenue": "Plattformumsatz",
+    "management": "Verwaltung",
+    "moderation": "Moderation",
+    "allClear": "Keine ausstehenden Bewertungen",
+    "rejectListing": "Eintrag ablehnen",
+    "rejectReason": "Geben Sie den Ablehnungsgrund"
   },
   "stays": {
     "title": "Kurzaufenthalte",
@@ -117,7 +129,7 @@
     "restHouses": "Rasthäuser",
     "hotelsLabel": "Hotels",
     "bookNext": "Buchen Sie Ihren nächsten Aufenthalt",
-    "subtitleMix": "Chalets, farms, rest houses and hotels",
+    "subtitleMix": "Chalets, Bauernhöfe, Rasthäuser und Hotels",
     "noStays": "Keine Aufenthalte verfügbar",
     "tryAnother": "Versuchen Sie es mit einer anderen Kategorie"
   },
@@ -295,7 +307,7 @@
     "fillAllFields": "Bitte füllen Sie alle Felder aus",
     "invalidCredentials": "Ungültige E-Mail-Adresse oder ungültiges Passwort",
     "fillRequired": "Bitte füllen Sie alle Pflichtfelder aus",
-    "registerFailed": "Registration failed, try again",
+    "registerFailed": "Registrierung fehlgeschlagen, versuchen Sie es erneut",
     "pwWeak": "Schwach",
     "pwFair": "Fair",
     "pwGood": "Gut",
@@ -1052,8 +1064,8 @@
     "received": "Empfangen",
     "sent": "Gesendet",
     "single": "Anfrage",
-    "noInquiriesYet": "No inquiries yet",
-    "appearHere": "Your inquiries will appear here"
+    "noInquiriesYet": "Noch keine Anfragen",
+    "appearHere": "Ihre Anfragen werden hier angezeigt"
   },
   "commission": {
     "title": "Provisionen",
@@ -1175,20 +1187,20 @@
     "noResultsTitle": "Keine passenden Antworten",
     "noResultsBody": "Versuchen Sie ein anderes Schlüsselwort oder kontaktieren Sie unser Team direkt.",
     "respondsIn": "Unser Team antwortet innerhalb von 24 Stunden.",
-    "faqTitle": "Frequently Asked Questions",
+    "faqTitle": "Häufig gestellte Fragen",
     "faqs": {
-      "q1": "How do I search for a property?",
+      "q1": "Wie suche ich nach einer Immobilie?",
       "a1": "Tippen Sie unten auf die Registerkarte „Suchen“ und wählen Sie dann die für Sie passenden Filter aus (Preis, Typ, Stadt).",
-      "q2": "How do I contact an agent?",
+      "q2": "Wie kontaktiere ich einen Agenten?",
       "a2": "Öffnen Sie den Eintrag und tippen Sie dann auf „Anfrage senden“ oder verwenden Sie die Anruf-/WhatsApp-Schaltflächen auf der Agentenkarte.",
       "q3": "Kann ich Chalets und Bauernhöfe buchen?",
       "a3": "Ja – öffnen Sie ein beliebiges Chalet-, Bauernhof- oder Rasthaus-Inserat und tippen Sie auf „Jetzt buchen“, um Daten auszuwählen.",
-      "q4": "How do I save a property for later?",
-      "a4": "Tap the heart icon on the listing. Saved items live under the Saved tab.",
+      "q4": "Wie speichere ich eine Immobilie für später?",
+      "a4": "Tippen Sie im Eintrag auf das Herzsymbol. Gespeicherte Elemente werden auf der Registerkarte „Gespeichert“ angezeigt.",
       "q5": "Ist die App kostenlos?",
       "a5": "Yes — free for property seekers. Makler zahlen erst nach einem erfolgreichen Abschluss eine Provision.",
-      "q6": "How do I change the app language?",
-      "a6": "Profile tab → Settings → Language. Pick from 38 supported languages."
+      "q6": "Wie ändere ich die App-Sprache?",
+      "a6": "Registerkarte „Profil“ → Einstellungen → Sprache. Wählen Sie aus 38 unterstützten Sprachen."
     }
   },
   "welcome": {
@@ -1310,7 +1322,7 @@
     "applyNow": "Dufaat beantragen",
     "calloutTitle": "Miete monatlich mit Dufaat zahlen",
     "calloutBody": "Verteilen Sie {{amount}} SAR Miete auf 12 erschwingliche Monatsraten — Scharia-konform, ohne Zinsen.",
-    "plan": "Plan",
+    "plan": "Planen",
     "monthlyPayment": "Monatsrate",
     "totalAnnual": "Gesamtjahresmiete",
     "platformFee": "Plattformgebühr",
@@ -1329,7 +1341,7 @@
     "myBookings": "Meine Buchungen",
     "tabGuest": "Als Gast",
     "tabHost": "Als Gastgeber",
-    "checkIn": "Check-in",
+    "checkIn": "Einchecken",
     "checkOut": "Auschecken",
     "night": "Nacht",
     "nights": "Nächte",
@@ -1377,19 +1389,19 @@
     "calendar": {
       "maxGuestsHelper": "Max. Gäste: {{count}}"
     },
-    "title": "Book your stay",
+    "title": "Buchen Sie Ihren Aufenthalt",
     "shortTitle": "Buch",
-    "created": "Booking created",
+    "created": "Buchung erstellt",
     "createdBody": "Buchung erstellt. You will be redirected to payment.",
     "error": "Fehler",
-    "failed": "Booking failed",
-    "invalidDates": "Invalid dates",
+    "failed": "Die Buchung ist fehlgeschlagen",
+    "invalidDates": "Ungültige Daten",
     "invalidDatesBody": "Verwenden Sie das Format JJJJ-MM-TT",
     "tooShort": "Zu kurz",
-    "tooShortBody": "Booking must be at least 1 night",
+    "tooShortBody": "Die Buchung muss mindestens 1 Nacht betragen",
     "perNight": "SAR / Nacht",
     "notesOptional": "Notizen (optional)",
-    "notesPlaceholder": "Any special requests...",
+    "notesPlaceholder": "Eventuelle Sonderwünsche...",
     "totalLabel": "Gesamt"
   },
   "market": {
@@ -1411,7 +1423,7 @@
     "listingCount": "Aktive Anzeigen",
     "viewMarket": "Markt ansehen",
     "miniTrend": "Lokaler Markttrend",
-    "trendTitle": "Price trend (12 months)",
+    "trendTitle": "Preisentwicklung (12 Monate)",
     "avgByDistrict": "Durchschnittlich ﷼/m² nach Bezirk",
     "cityPlaceholder": "Riad, Jeddah..."
   },
@@ -1595,5 +1607,27 @@
     "ownerReply": "Antwort des Besitzers:",
     "empty": "Noch keine Bewertungen",
     "beFirst": "Seien Sie der Erste, der eine Bewertung abgibt"
+  },
+  "chat": {
+    "title": "ein Chat",
+    "typeMessage": "Geben Sie eine Nachricht ein...",
+    "send": "Senden",
+    "translated": "Übersetzt",
+    "showOriginal": "Original anzeigen",
+    "showTranslation": "Übersetzung anzeigen",
+    "translating": "Übersetzen...",
+    "online": "Online",
+    "delivered": "Geliefert"
+  },
+  "roles": {
+    "user": "Käufer",
+    "agent": "Agent",
+    "agency_owner": "Agenturinhaber",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert"
   }
 }

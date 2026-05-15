@@ -70,7 +70,7 @@ export default function AboutScreen({ navigation }: any) {
         <Row
           icon="document-text-outline"
           label={t('footer.termsOfService')}
-          onPress={() => Linking.openURL('https://eawlma.com/terms').catch(() => undefined)}
+          onPress={() => navigation.navigate('Terms')}
           colors={colors}
           isRTL={isRTL}
           textAlign={textAlign}
@@ -78,7 +78,7 @@ export default function AboutScreen({ navigation }: any) {
         <Row
           icon="shield-checkmark-outline"
           label={t('footer.privacyPolicy')}
-          onPress={() => Linking.openURL('https://eawlma.com/privacy').catch(() => undefined)}
+          onPress={() => navigation.navigate('PrivacyPolicy')}
           colors={colors}
           isRTL={isRTL}
           textAlign={textAlign}

@@ -93,7 +93,19 @@
       "matched": "Matchet",
       "closed": "Lukket"
     },
-    "disputes": "Tvister"
+    "disputes": "Tvister",
+    "panel": "Admin Panel",
+    "dashboard": "Admin Dashboard",
+    "totalUsers": "Samlet antal brugere",
+    "totalListings": "Samlet fortegnelse",
+    "pendingReview": "Afventer anmeldelse",
+    "totalBookings": "Samlede reservationer",
+    "revenue": "Platformindtægter",
+    "management": "Ledelse",
+    "moderation": "Moderering",
+    "allClear": "Ingen afventende anmeldelser",
+    "rejectListing": "Afvis fortegnelse",
+    "rejectReason": "Indtast årsag til afvisning"
   },
   "stays": {
     "title": "Kortvarige ophold",
@@ -718,7 +730,7 @@
       "buildingNumber": "Bygningsnr.",
       "postalCode": "Postnummer",
       "pinPrompt": "Slip en pin for at indstille den nøjagtige placering",
-      "pinLabel": "Pin",
+      "pinLabel": "Stift",
       "mapUnavailable": "Kortnålsvælgeren er ikke tilgængelig. Koordinater falder tilbage til {{lat}}, {{lng}}."
     },
     "media": "Medier",
@@ -1595,5 +1607,27 @@
     "ownerReply": "Ejersvar:",
     "empty": "Ingen anmeldelser endnu",
     "beFirst": "Vær den første til at anmelde"
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Skriv en besked...",
+    "send": "Send",
+    "translated": "Oversat",
+    "showOriginal": "Vis original",
+    "showTranslation": "Vis oversættelse",
+    "translating": "Oversætter...",
+    "online": "Online",
+    "delivered": "Leveret"
+  },
+  "roles": {
+    "user": "Køber",
+    "agent": "Agent",
+    "agency_owner": "Agenturejer",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Privatlivspolitik",
+    "terms": "Servicevilkår",
+    "lastUpdated": "Sidst opdateret"
   }
 }
