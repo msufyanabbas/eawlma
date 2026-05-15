@@ -432,7 +432,10 @@
       "rejected": "却下",
       "expired": "期限切れ",
       "draft": "下書き",
-      "archived": "アーカイブ済み"
+      "archived": "アーカイブ済み",
+      "pending_review": "検討中",
+      "sold": "販売済み",
+      "rented": "レンタル済み"
     },
     "sale": "販売",
     "rent": "家賃",
@@ -460,7 +463,22 @@
     "actionFailed": "アクションが失敗しました",
     "bookingDevTitle": "予約",
     "bookingDevBody": "予約フローは開発中です。代理店にご連絡ください。",
-    "removeFromSaved": "このプロパティを保存済みから削除しますか?"
+    "removeFromSaved": "このプロパティを保存済みから削除しますか?",
+    "sqm": "㎡",
+    "type": "タイプ",
+    "floor": "床",
+    "age": "年",
+    "parking": "駐車場",
+    "furnished": "家具付き",
+    "unfurnished": "家具なし",
+    "perNight": "/夜",
+    "verifiedAgent": "認証済みエージェント",
+    "newListing": "新しい",
+    "sold": "販売済み",
+    "rented": "レンタル済み",
+    "available": "利用可能",
+    "pending": "保留中",
+    "expired": "期限切れ"
   },
   "search": {
     "filters": "フィルター",
@@ -1651,5 +1669,55 @@
     "payout_processed": "支払いが処理されました",
     "dispute_resolved": "紛争解決済み",
     "system": "システム"
+  },
+  "agent": {
+    "verified": "確認済み",
+    "verifiedAgent": "認証済みエージェント",
+    "licensed": "ライセンス済み",
+    "falLicense": "FALライセンス取得済み",
+    "listings": "リスト",
+    "reviews": "レビュー",
+    "rating": "評価",
+    "responseTime": "応答時間",
+    "memberSince": "メンバー歴",
+    "contactAgent": "エージェントに連絡する",
+    "viewProfile": "プロフィールを見る",
+    "sendMessage": "メッセージを送信する"
+  },
+  "property": {
+    "villa": "ヴィラ",
+    "apartment": "アパート",
+    "land": "土地",
+    "chalet": "シャレー",
+    "farm": "農場",
+    "restHouse": "レストハウス",
+    "office": "オフィス",
+    "shop": "店",
+    "warehouse": "倉庫",
+    "hotel": "ホテルの部屋",
+    "entireHome": "家全体",
+    "room": "部屋"
+  },
+  "amenities": {
+    "pool": "スイミングプール",
+    "gym": "ジム",
+    "parking": "駐車場",
+    "security": "安全",
+    "elevator": "エレベーター",
+    "garden": "庭",
+    "balcony": "バルコニー",
+    "maidRoom": "メイドルーム",
+    "driverRoom": "運転室",
+    "storage": "保管室",
+    "centralAC": "セントラルエアコン",
+    "internet": "インターネット",
+    "satellite": "衛星テレビ",
+    "furnished": "家具付き",
+    "kitchen": "台所",
+    "laundry": "ランドリールーム"
+  },
+  "compare": {
+    "add": "比較に追加",
+    "remove": "比較から削除"
   }
 }

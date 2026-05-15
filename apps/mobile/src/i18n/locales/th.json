@@ -432,7 +432,10 @@
       "rejected": "ถูกปฏิเสธ",
       "expired": "หมดอายุ",
       "draft": "ฉบับร่าง",
-      "archived": "เก็บถาวรแล้ว"
+      "archived": "เก็บถาวรแล้ว",
+      "pending_review": "อยู่ระหว่างการตรวจสอบ",
+      "sold": "ขายแล้ว",
+      "rented": "เช่าแล้ว"
     },
     "sale": "ขาย",
     "rent": "เช่า",
@@ -460,7 +463,22 @@
     "actionFailed": "การดำเนินการล้มเหลว",
     "bookingDevTitle": "การจอง",
     "bookingDevBody": "ขั้นตอนการจองอยู่ระหว่างการพัฒนา กรุณาติดต่อตัวแทน.",
-    "removeFromSaved": "ลบคุณสมบัตินี้ออกจากที่บันทึกไว้หรือไม่"
+    "removeFromSaved": "ลบคุณสมบัตินี้ออกจากที่บันทึกไว้หรือไม่",
+    "sqm": "ตร.ม",
+    "type": "พิมพ์",
+    "floor": "พื้น",
+    "age": "อายุ",
+    "parking": "ที่จอดรถ",
+    "furnished": "ตกแต่งแล้ว",
+    "unfurnished": "ไม่มีเฟอร์นิเจอร์",
+    "perNight": "/กลางคืน",
+    "verifiedAgent": "ตัวแทนที่ได้รับการยืนยัน",
+    "newListing": "ใหม่",
+    "sold": "ขายแล้ว",
+    "rented": "เช่าแล้ว",
+    "available": "มีอยู่",
+    "pending": "รอดำเนินการ",
+    "expired": "หมดอายุแล้ว"
   },
   "search": {
     "filters": "ตัวกรอง",
@@ -1651,5 +1669,55 @@
     "payout_processed": "ดำเนินการจ่ายเงินแล้ว",
     "dispute_resolved": "ข้อพิพาทได้รับการแก้ไขแล้ว",
     "system": "ระบบ"
+  },
+  "agent": {
+    "verified": "ตรวจสอบแล้ว",
+    "verifiedAgent": "ตัวแทนที่ได้รับการยืนยัน",
+    "licensed": "ได้รับใบอนุญาต",
+    "falLicense": "FAL ได้รับใบอนุญาต",
+    "listings": "รายการ",
+    "reviews": "รีวิว",
+    "rating": "เรตติ้ง",
+    "responseTime": "เวลาตอบสนอง",
+    "memberSince": "สมาชิกตั้งแต่",
+    "contactAgent": "ติดต่อตัวแทน",
+    "viewProfile": "ดูโปรไฟล์",
+    "sendMessage": "ส่งข้อความ"
+  },
+  "property": {
+    "villa": "วิลล่า",
+    "apartment": "อพาร์ตเมนต์",
+    "land": "ที่ดิน",
+    "chalet": "ชาเล่ต์",
+    "farm": "ฟาร์ม",
+    "restHouse": "บ้านพัก",
+    "office": "สำนักงาน",
+    "shop": "ร้านค้า",
+    "warehouse": "คลังสินค้า",
+    "hotel": "ห้องพักโรงแรม",
+    "entireHome": "บ้านทั้งหลัง",
+    "room": "ห้อง"
+  },
+  "amenities": {
+    "pool": "สระว่ายน้ำ",
+    "gym": "โรงยิม",
+    "parking": "ที่จอดรถ",
+    "security": "ความปลอดภัย",
+    "elevator": "ลิฟต์",
+    "garden": "สวน",
+    "balcony": "ระเบียง",
+    "maidRoom": "ห้องแม่บ้าน",
+    "driverRoom": "ห้องคนขับ",
+    "storage": "ห้องเก็บของ",
+    "centralAC": "เครื่องปรับอากาศส่วนกลาง",
+    "internet": "อินเทอร์เน็ต",
+    "satellite": "ทีวีดาวเทียม",
+    "furnished": "ตกแต่งแล้ว",
+    "kitchen": "ครัว",
+    "laundry": "ห้องซักรีด"
+  },
+  "compare": {
+    "add": "เพิ่มเพื่อเปรียบเทียบ",
+    "remove": "ลบออกจากการเปรียบเทียบ"
   }
 }

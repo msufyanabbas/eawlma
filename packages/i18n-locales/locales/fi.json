@@ -127,7 +127,8 @@
     "anyPrice": "Mikä tahansa hinta",
     "upTo500": "Enintään 500 SAR",
     "upTo1000": "Enintään 1 000 SAR",
-    "upTo2500": "Enintään 2 500 SAR"
+    "upTo2500": "Enintään 2 500 SAR",
+    "hotelChip": "Hotelli"
   },
   "messages": {
     "startConversation": "Aloita keskustelu",
@@ -166,7 +167,8 @@
     "dailyRate": "Päiväkohtainen hinta",
     "weeklyRate": "Viikkohinta",
     "guestReviews": "Vieraiden arvostelut",
-    "noReviews": "Ei vielä arvosteluja — kun vieraat kirjautuvat ulos ja arvioivat majoituksensa, ne näkyvät täällä."
+    "noReviews": "Ei vielä arvosteluja — kun vieraat kirjautuvat ulos ja arvioivat majoituksensa, ne näkyvät täällä.",
+    "guestFallback": "Vieras"
   },
   "buyerDeals": {
     "title": "Omat kaupat",
@@ -216,7 +218,20 @@
     "favorAgent": "Välittäjän eduksi — luo palkkio",
     "favorBuyer": "Ostajan eduksi — peruuta kauppa",
     "cancelDeal": "Peruuta kauppa — ei palkkiota",
-    "resolutionHint": "Molemmille osapuolille ilmoitetaan näillä muistiinpanoilla."
+    "resolutionHint": "Molemmille osapuolille ilmoitetaan näillä muistiinpanoilla.",
+    "other": "Muut",
+    "buyerLower": "ostaja",
+    "agentLower": "agentti",
+    "otherLower": "muu",
+    "anonymous": "Nimetön",
+    "resolveTitle": "Ratkaise riita",
+    "resolveDesc": "Valitse tämän kiistan tulos",
+    "favorAgentDesc": "Välityspalkkio vahvistetaan ja maksetaan edustajalle",
+    "favorBuyerDesc": "Provisio peruutetaan",
+    "cancelDealDesc": "Sekä kauppa että provisio peruutettiin",
+    "adminNotes": "Järjestelmänvalvojan huomautukset (valinnainen)",
+    "resolvedSuccess": "Kiista ratkaistu onnistuneesti",
+    "resolvedError": "Kiistan ratkaiseminen epäonnistui"
   },
   "auth": {
     "login": "Kirjaudu sisään",
@@ -278,7 +293,7 @@
     "submit": "Lähetä",
     "language": "Kieli",
     "arabic": "العربية",
-    "english": "English",
+    "english": "englanti",
     "back": "Takaisin",
     "next": "Seuraava",
     "previous": "Edellinen",
@@ -296,7 +311,8 @@
     "remove": "Poista",
     "actions": "Toiminnot",
     "active": "Aktiivinen",
-    "inactive": "Ei aktiivinen"
+    "inactive": "Ei aktiivinen",
+    "loadMore": "Lataa lisää"
   },
   "listing": {
     "forSale": "Myynnissä",
@@ -362,8 +378,28 @@
       "rejected": "Hylätty",
       "expired": "Vanhentunut",
       "draft": "Luonnos",
-      "archived": "Arkistoitu"
-    }
+      "archived": "Arkistoitu",
+      "pending_review": "Tarkistuksessa",
+      "sold": "myyty",
+      "rented": "Vuokrattu"
+    },
+    "bedrooms": "Makuuhuoneita",
+    "bathrooms": "Kylpyhuoneet",
+    "sqm": "m²",
+    "type": "Tyyppi",
+    "floor": "Kerros",
+    "age": "Ikä",
+    "parking": "Pysäköinti",
+    "furnished": "Kalustettu",
+    "unfurnished": "Kalustamaton",
+    "perNight": "/yö",
+    "verifiedAgent": "Vahvistettu edustaja",
+    "newListing": "Uusi",
+    "sold": "myyty",
+    "rented": "Vuokrattu",
+    "available": "Saatavilla",
+    "pending": "Odottaa",
+    "expired": "Vanhentunut"
   },
   "search": {
     "filters": "Suodattimet",
@@ -399,7 +435,10 @@
       "cta": "Lähetä kiinteistöpyyntö"
     },
     "drawArea": "Piirrä alue",
-    "clearDrawing": "Tyhjennä piirros"
+    "clearDrawing": "Tyhjennä piirros",
+    "flexibleDates": "Olen joustava treffeille",
+    "flex1Month": "1 kuukausi",
+    "shortTerm": "Lyhytaikainen"
   },
   "home": {
     "heroTitle": "Löydä täydellinen kotisi",
@@ -438,7 +477,7 @@
     "newestSort": "Uusimmat",
     "priceLowSort": "Hinta: matala",
     "priceHighSort": "Hinta: korkea",
-    "appStore": "App Store",
+    "appStore": "App Storesta",
     "googlePlay": "Google Play",
     "statListings": "Ilmoitukset",
     "statAgents": "Välittäjät",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Perustiedot",
-    "location": "Sijainti",
+    "location": {
+      "street": "Street",
+      "buildingNumber": "Rakennus nro",
+      "postalCode": "Postinumero",
+      "pinPrompt": "Aseta tarkka sijainti pudottamalla merkki",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Kartan nastan poimija ei ole käytettävissä. Koordinaatit ovat takaisin {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Mukavuudet",
-    "compliance": "Vaatimustenmukaisuus",
-    "review": "Tarkistus",
+    "compliance": {
+      "permitNumber": "Lupa / FAL-numero",
+      "regaNumber": "REGA-lisenssinumero",
+      "permitExpiry": "Luvan voimassaolo päättyy",
+      "preferredContact": "Yhteydenotto mieluiten",
+      "phone": "Puhelin",
+      "publicVisibility": "Julkinen näkyvyys (poista valinta vain piilotettujen / yksityisten linkkien kohdalla)"
+    },
+    "review": {
+      "summaryTitle": "Listauksen yhteenveto",
+      "enhanceWithAi": "Paranna tekoälyllä",
+      "enhancing": "Tehostetaan…",
+      "aiStubNotice": "AI palautti tynkän — aseta OPENAI_API_KEY taustajärjestelmässä käyttämään live-mallia.",
+      "descriptionPreview": "Kuvauksen esikatselu",
+      "emptyDescription": "(tyhjä)",
+      "type": "Tyyppi",
+      "titleLabel": "Otsikko",
+      "bedsBaths": "Makuuhuoneet / kylpyhuoneet",
+      "cityDistrict": "Kaupunki/piiri",
+      "coordinates": "Koordinaatit",
+      "permit": "Lupa",
+      "regaLicense": "REGA lisenssi",
+      "visibility": "Näkyvyys"
+    },
     "saveDraft": "Tallenna luonnos",
     "submit": "Lähetä tarkistukseen",
     "submitForReview": "Lähetä tarkistukseen",
@@ -576,7 +644,103 @@
       "bathrooms": "Kylpyhuoneet",
       "parking": "Pysäköinti",
       "yearBuilt": "Rakennusvuosi",
-      "furnishing": "Kalustus"
+      "furnishing": "Kalustus",
+      "rentPeriod": "Kausi"
+    },
+    "editListing": "Muokkaa luetteloa",
+    "newListing": "Uusi listaus",
+    "crumbNew": "Uusi",
+    "validation": {
+      "titleRequired": "Lisää otsikko vähintään yhdellä kielellä.",
+      "descriptionRequired": "Lisää kuvaus vähintään yhdellä kielellä.",
+      "priceRequired": "Hinnan on oltava suurempi kuin nolla.",
+      "cityRequired": "Kaupunki vaaditaan.",
+      "pinRequired": "Pudota paikkaan merkki kartalle.",
+      "imageRequired": "Vähintään yksi kuva vaaditaan ennen julkaisua."
+    },
+    "transactionType": {
+      "sale": "Myynti",
+      "rent": "Vuokrata"
+    },
+    "rentPeriod": {
+      "daily": "Päivittäin",
+      "weekly": "Viikoittain",
+      "monthly": "Kuukausittain",
+      "yearly": "Vuosittain"
+    },
+    "furnishing": {
+      "unfurnished": "Kalustamaton",
+      "semi_furnished": "Puoliksi kalustettu",
+      "furnished": "Kalustettu"
+    },
+    "visibility": {
+      "public": "Julkinen",
+      "unlisted": "Piilotettu"
+    },
+    "amenity": {
+      "pool": "Allas",
+      "garden": "Puutarha",
+      "gym": "Kuntosali",
+      "elevator": "Hissi",
+      "maidRoom": "Maid huone",
+      "driverRoom": "Kuljettajan huone",
+      "centralAc": "Keski AC",
+      "kitchenAppliances": "Keittiökoneet",
+      "security": "24/7 turvallisuus",
+      "cornerUnit": "Kulmayksikkö"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Allas",
+      "parking": "Pysäköinti",
+      "breakfast": "Aamiainen",
+      "ac": "Ilmastointi",
+      "kitchen": "Keittiö",
+      "tv": "TV",
+      "washer": "Pesukone",
+      "workspace": "Työtila",
+      "petsAllowed": "Lemmikkieläimet sallittu",
+      "smokingAllowed": "Tupakointi sallittu",
+      "wheelchairAccessible": "Pääsy pyörätuolilla"
+    },
+    "shortTerm": {
+      "title": "Lyhytaikaisen vuokrauksen tiedot",
+      "subtitle": "Vieraat varaavat tämän listan iltaan mennessä. Määritä oleskelusäännöt, mukavuudet ja hintatasot.",
+      "dailyRate": "Päivähinta (SAR)",
+      "weeklyRate": "Viikkohinta (SAR, valinnainen)",
+      "minimumStay": "Minimiperilläoloaika (yöt)",
+      "maxGuests": "Max vieraita",
+      "checkIn": "Sisäänkirjautuminen",
+      "checkOut": "Uloskirjautuminen",
+      "cancellationPolicy": "Peruutusehdot",
+      "cancelFlexible": "Joustava – täysi hyvitys jopa 24 tuntia ennen",
+      "cancelModerate": "Keskitasoinen – täysi hyvitys enintään 5 päivää ennen",
+      "cancelStrict": "Tiukka – 50 %:n hyvitys enintään 7 päivää ennen",
+      "starRating": "Tähtiluokitus",
+      "hotelName": "Hotellin nimi",
+      "instantBook": "Välitön kirja",
+      "instantBookHint": "Varaukset vahvistetaan automaattisesti ilman hyväksyntääsi. Poista käytöstä jokaisen pyynnön tarkistaminen ensin.",
+      "amenities": "Palvelut",
+      "houseRules": "Talon säännöt",
+      "houseRulesPlaceholder": "esim. Ei juhlia, hiljaiset tunnit klo 22 jälkeen, ei tupakointia sisätiloissa..."
+    },
+    "mediaStep": {
+      "images": "Kuvat",
+      "imageDropHint": "Vedä ja pudota kuvat tähän tai valitse napsauttamalla. JPEG / PNG / WebP jopa 10 Mt.",
+      "photoAlt": "Listauksen valokuva",
+      "setCover": "Aseta kanneksi",
+      "cover": "Kansi",
+      "videoTour": "Videokierros",
+      "videoDropHint": "Vedä MP4-tiedosto tai valitse se napsauttamalla. Enintään 500 MB.",
+      "videoUploaded": "Video ladattu – {{name}}",
+      "vrTitle": "🥽 Linkki virtuaalitodellisuuteen",
+      "vrPlaceholder": "https://… (Matterport, Kuula jne.)",
+      "modelTitle": "3D-/AR-malli (.glb tai .gltf)",
+      "modelDropHint": "Lataa GLB/GLTF-malli ottaaksesi AR käyttöön. Enintään 50 MB.",
+      "modelUploaded": "Malli ladattu – {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Napauta tämän kiinteistön tarjoamia mukavuuksia. Näytämme ne suodattimina Haussa."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "Vahvistettu",
       "paid": "Maksettu",
       "disputed": "Riitautettu"
+    },
+    "oath": {
+      "dialogTitle": "komission sitoumus",
+      "translatedOath": "Sitoudun täten maksamaan sovitun provision tämän kiinteistökaupan päätyttyä ja tunnustan tämän vastuun Jumalan ja lain edessä.",
+      "breakdownTitle": "Komission erittely",
+      "agentListingBreakdown": "Alustan palkkio: <strong>0,5 %</strong> tapahtuman arvosta, maksetaan onnistuneen myynnin tai vuokrasopimuksen päättämisen yhteydessä.",
+      "buyerAgentCommission": "Agenttipalkkio: <strong>2,5 %</strong> tapahtuman arvosta.",
+      "buyerPlatformFee": "Alustamaksu: <strong>0,5 %</strong> tapahtuman arvosta.",
+      "acceptError": "Hyväksyntääsi ei voitu tallentaa",
+      "agreeCheckbox": "Hyväksyn toimeksiantoehdot",
+      "decline": "En ole samaa mieltä",
+      "saving": "Tallennetaan...",
+      "acceptCta": "Hyväksyn & Sitoudun"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Sopimus #",
     "viewContract": "Näytä sopimus",
     "signedThroughEjar": "Allekirjoitettu Ejarin kautta",
-    "noContracts": "Ei vielä vuokrasopimuksia"
+    "noContracts": "Ei vielä vuokrasopimuksia",
+    "status": {
+      "draft": "Luonnos",
+      "pending_signatures": "Odottavat allekirjoitukset",
+      "active": "Aktiivinen",
+      "expired": "Vanhentunut",
+      "cancelled": "Peruutettu"
+    }
   },
   "dufaat": {
     "title": "Dufaat-osamaksut",
@@ -911,7 +1095,13 @@
     "nextPayment": "Seuraava maksu",
     "installmentsPaid": "Maksetut osamaksut",
     "payNow": "Maksa osamaksu",
-    "noPlans": "Ei vielä Dufaat-suunnitelmia"
+    "noPlans": "Ei vielä Dufaat-suunnitelmia",
+    "status": {
+      "active": "Aktiivinen",
+      "completed": "Valmis",
+      "defaulted": "Oletusasetus",
+      "cancelled": "Peruutettu"
+    }
   },
   "booking": {
     "myBookings": "Omat varaukset",
@@ -961,6 +1151,9 @@
       "confirmed": "Vahvistettu",
       "cancelled": "Peruutettu",
       "completed": "Valmis"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Vieraiden enimmäismäärä: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Keskitason luottamus",
       "low": "Matala luottamus"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Hae nimen tai erikoisalan mukaan",
+    "allCities": "Kaikki kaupungit",
+    "cityRiyadh": "Riad",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Yksikään agentti ei vastaa hakuasi",
+    "emptyBody": "Kokeile toista nimeä tai kaupunkia.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Vahvistettu",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} aktiivista yritystietoa",
+    "viewProfile": "Näytä profiili"
+  },
+  "agent": {
+    "verified": "Vahvistettu",
+    "verifiedAgent": "Vahvistettu edustaja",
+    "licensed": "Lisensoitu",
+    "falLicense": "FAL-lisensoitu",
+    "listings": "Listaukset",
+    "reviews": "Arvostelut",
+    "rating": "Luokitus",
+    "responseTime": "Vastausaika",
+    "memberSince": "Jäsen vuodesta",
+    "contactAgent": "Ota yhteyttä edustajaan",
+    "viewProfile": "Näytä profiili",
+    "sendMessage": "Lähetä Viesti"
+  },
+  "property": {
+    "villa": "Huvila",
+    "apartment": "Huoneisto",
+    "land": "Maa",
+    "chalet": "Chalet",
+    "farm": "Maatila",
+    "restHouse": "Lepotalo",
+    "office": "Toimisto",
+    "shop": "Kauppa",
+    "warehouse": "Varasto",
+    "hotel": "Hotellihuone",
+    "entireHome": "Koko Koti",
+    "room": "Huone"
+  },
+  "amenities": {
+    "pool": "Uima-allas",
+    "gym": "Kuntosali",
+    "parking": "Pysäköinti",
+    "security": "Turvallisuus",
+    "elevator": "Hissi",
+    "garden": "Puutarha",
+    "balcony": "Parveke",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Kuljettajahuone",
+    "storage": "Varastohuone",
+    "centralAC": "Keski-ilmastointi",
+    "internet": "Internet",
+    "satellite": "Satelliitti-tv",
+    "furnished": "Kalustettu",
+    "kitchen": "Keittiö",
+    "laundry": "Pesutupa"
+  },
+  "compare": {
+    "add": "Lisää vertailuun",
+    "remove": "Poista vertailusta"
+  },
+  "myListings": {
+    "countSelected": "{{count}} valittu",
+    "activateAll": "Aktivoi kaikki",
+    "deactivateAll": "Poista kaikki käytöstä",
+    "deleteAll": "Poista kaikki",
+    "colViews": "Näkymät",
+    "colInquiries": "Tiedustelut",
+    "boostFeature": "Tehostus (ominaisuus)",
+    "duplicate": "Kopioi",
+    "deleteConfirmTitle": "Poistetaanko {{count}} yritystietoa?",
+    "deleteConfirmDescription": "Tämä toiminto poistaa tiedot pehmeästi – ne eivät enää näy julkisesti."
   }
 }

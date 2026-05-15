@@ -432,7 +432,10 @@
       "rejected": "거절됨",
       "expired": "만료됨",
       "draft": "초안",
-      "archived": "보관됨"
+      "archived": "보관됨",
+      "pending_review": "검토중",
+      "sold": "판매된",
+      "rented": "임대"
     },
     "sale": "판매",
     "rent": "임차료",
@@ -460,7 +463,22 @@
     "actionFailed": "작업 실패",
     "bookingDevTitle": "예약",
     "bookingDevBody": "예약 흐름이 개발 중입니다. 대리인에게 문의하시기 바랍니다.",
-    "removeFromSaved": "저장된 속성에서 이 속성을 삭제하시겠습니까?"
+    "removeFromSaved": "저장된 속성에서 이 속성을 삭제하시겠습니까?",
+    "sqm": "m²",
+    "type": "유형",
+    "floor": "바닥",
+    "age": "나이",
+    "parking": "주차",
+    "furnished": "가구",
+    "unfurnished": "가구 없음",
+    "perNight": "/밤",
+    "verifiedAgent": "검증된 에이전트",
+    "newListing": "새로운",
+    "sold": "판매된",
+    "rented": "임대",
+    "available": "사용 가능",
+    "pending": "보류 중",
+    "expired": "만료됨"
   },
   "search": {
     "filters": "필터",
@@ -1651,5 +1669,55 @@
     "payout_processed": "지급 처리됨",
     "dispute_resolved": "분쟁 해결",
     "system": "체계"
+  },
+  "agent": {
+    "verified": "확인됨",
+    "verifiedAgent": "검증된 에이전트",
+    "licensed": "라이센스가 있는",
+    "falLicense": "FAL 라이센스",
+    "listings": "목록",
+    "reviews": "리뷰",
+    "rating": "평가",
+    "responseTime": "응답 시간",
+    "memberSince": "회원가입 이후",
+    "contactAgent": "상담원에게 연락하기",
+    "viewProfile": "프로필 보기",
+    "sendMessage": "메시지 보내기"
+  },
+  "property": {
+    "villa": "별장",
+    "apartment": "아파트",
+    "land": "땅",
+    "chalet": "샬레",
+    "farm": "농장",
+    "restHouse": "레스트하우스",
+    "office": "사무실",
+    "shop": "가게",
+    "warehouse": "창고",
+    "hotel": "호텔 룸",
+    "entireHome": "집 전체",
+    "room": "방"
+  },
+  "amenities": {
+    "pool": "수영장",
+    "gym": "체육관",
+    "parking": "주차",
+    "security": "보안",
+    "elevator": "엘리베이터",
+    "garden": "정원",
+    "balcony": "발코니",
+    "maidRoom": "메이드룸",
+    "driverRoom": "운전실",
+    "storage": "보관실",
+    "centralAC": "중앙 에어컨",
+    "internet": "인터넷",
+    "satellite": "위성 TV",
+    "furnished": "가구",
+    "kitchen": "주방",
+    "laundry": "세탁실"
+  },
+  "compare": {
+    "add": "비교에 추가",
+    "remove": "비교에서 제거"
   }
 }

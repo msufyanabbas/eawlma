@@ -127,7 +127,8 @@
     "anyPrice": "Vilket pris som helst",
     "upTo500": "Upp till 500 SAR",
     "upTo1000": "Upp till 1 000 SAR",
-    "upTo2500": "Upp till 2 500 SAR"
+    "upTo2500": "Upp till 2 500 SAR",
+    "hotelChip": "Hotell"
   },
   "messages": {
     "startConversation": "Starta konversationen",
@@ -166,7 +167,8 @@
     "dailyRate": "Daglig taxa",
     "weeklyRate": "Veckotaxa",
     "guestReviews": "Gästrecensioner",
-    "noReviews": "Inga recensioner ännu — när gäster checkar ut och betygsätter sin vistelse visas de här."
+    "noReviews": "Inga recensioner ännu — när gäster checkar ut och betygsätter sin vistelse visas de här.",
+    "guestFallback": "Gäst"
   },
   "buyerDeals": {
     "title": "Mina affärer",
@@ -216,7 +218,20 @@
     "favorAgent": "Gynna mäklaren — skapa provision",
     "favorBuyer": "Gynna köparen — avbryt affären",
     "cancelDeal": "Avbryt affär — ingen provision",
-    "resolutionHint": "Båda parter meddelas med dessa anteckningar."
+    "resolutionHint": "Båda parter meddelas med dessa anteckningar.",
+    "other": "Övrigt",
+    "buyerLower": "köpare",
+    "agentLower": "agent",
+    "otherLower": "annat",
+    "anonymous": "Anonym",
+    "resolveTitle": "Lös tvist",
+    "resolveDesc": "Välj resultatet för denna tvist",
+    "favorAgentDesc": "Provision kommer att bekräftas och betalas ut till agenten",
+    "favorBuyerDesc": "Kommissionen kommer att avbrytas",
+    "cancelDealDesc": "Affären och provisionen annullerades båda",
+    "adminNotes": "Admin-anteckningar (valfritt)",
+    "resolvedSuccess": "Tvisten löstes framgångsrikt",
+    "resolvedError": "Det gick inte att lösa tvisten"
   },
   "auth": {
     "login": "Logga in",
@@ -278,7 +293,7 @@
     "submit": "Skicka",
     "language": "Språk",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Engelska",
     "back": "Tillbaka",
     "next": "Nästa",
     "previous": "Föregående",
@@ -296,7 +311,8 @@
     "remove": "Ta bort",
     "actions": "Åtgärder",
     "active": "Aktiv",
-    "inactive": "Inaktiv"
+    "inactive": "Inaktiv",
+    "loadMore": "Ladda mer"
   },
   "listing": {
     "forSale": "Till salu",
@@ -362,8 +378,28 @@
       "rejected": "Avvisad",
       "expired": "Utgången",
       "draft": "Utkast",
-      "archived": "Arkiverad"
-    }
+      "archived": "Arkiverad",
+      "pending_review": "Under granskning",
+      "sold": "Såld",
+      "rented": "Uthyres"
+    },
+    "bedrooms": "Sovrum",
+    "bathrooms": "Badrum",
+    "sqm": "m²",
+    "type": "Skriv",
+    "floor": "Golv",
+    "age": "Ålder",
+    "parking": "Parkering",
+    "furnished": "Möblerad",
+    "unfurnished": "Omöblerad",
+    "perNight": "/natt",
+    "verifiedAgent": "Verifierad agent",
+    "newListing": "Ny",
+    "sold": "Såld",
+    "rented": "Uthyres",
+    "available": "Tillgänglig",
+    "pending": "Väntar",
+    "expired": "Utgått"
   },
   "search": {
     "filters": "Filter",
@@ -399,7 +435,10 @@
       "cta": "Skicka fastighetsförfrågan"
     },
     "drawArea": "Rita ett område",
-    "clearDrawing": "Rensa ritning"
+    "clearDrawing": "Rensa ritning",
+    "flexibleDates": "Jag är flexibel med datum",
+    "flex1Month": "1 månad",
+    "shortTerm": "Kortsiktig"
   },
   "home": {
     "heroTitle": "Hitta ditt perfekta hem",
@@ -473,7 +512,7 @@
     "forRent": "Till uthyrning",
     "agents": "Mäklare",
     "search": "Sök",
-    "support": "Support",
+    "support": "Stöd",
     "help": "Hjälpcenter",
     "helpCenter": "Hjälpcenter",
     "whatsapp": "WhatsApp",
@@ -497,7 +536,7 @@
       "properties": "Fastigheter",
       "agents": "Verifierade mäklare",
       "cities": "Städer",
-      "support": "Support"
+      "support": "Stöd"
     }
   },
   "contact": {
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Grundläggande info",
-    "location": "Plats",
+    "location": {
+      "street": "Gata",
+      "buildingNumber": "Byggnadsnr.",
+      "postalCode": "Postnummer",
+      "pinPrompt": "Släpp en nål för att ställa in den exakta platsen",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Kartnålsväljaren är inte tillgänglig. Koordinaterna faller tillbaka till {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Bekvämligheter",
-    "compliance": "Efterlevnad",
-    "review": "Granskning",
+    "compliance": {
+      "permitNumber": "Tillstånd / FAL nummer",
+      "regaNumber": "REGA-licensnummer",
+      "permitExpiry": "Tillståndsutgång",
+      "preferredContact": "Föredragen kontakt",
+      "phone": "Telefon",
+      "publicVisibility": "Offentlig synlighet (avmarkera endast för olistad/privat länk)"
+    },
+    "review": {
+      "summaryTitle": "Listningssammanfattning",
+      "enhanceWithAi": "Förbättra med AI",
+      "enhancing": "Förbättrar...",
+      "aiStubNotice": "AI returnerade en stubb — ställ in OPENAI_API_KEY på backend för att använda livemodellen.",
+      "descriptionPreview": "Förhandsgranskning av beskrivning",
+      "emptyDescription": "(tom)",
+      "type": "Skriv",
+      "titleLabel": "Titel",
+      "bedsBaths": "Sovrum / badrum",
+      "cityDistrict": "Stad/distrikt",
+      "coordinates": "Koordinater",
+      "permit": "Tillåt",
+      "regaLicense": "REGA-licens",
+      "visibility": "Synlighet"
+    },
     "saveDraft": "Spara utkast",
     "submit": "Skicka för granskning",
     "submitForReview": "Skicka för granskning",
@@ -576,7 +644,103 @@
       "bathrooms": "Badrum",
       "parking": "Parkering",
       "yearBuilt": "Byggår",
-      "furnishing": "Möblering"
+      "furnishing": "Möblering",
+      "rentPeriod": "Period"
+    },
+    "editListing": "Redigera lista",
+    "newListing": "Ny notering",
+    "crumbNew": "Ny",
+    "validation": {
+      "titleRequired": "Vänligen lägg till en titel på minst ett språk.",
+      "descriptionRequired": "Lägg till en beskrivning på minst ett språk.",
+      "priceRequired": "Priset måste vara högre än noll.",
+      "cityRequired": "Stad krävs.",
+      "pinRequired": "Sätt en nål på kartan för platsen.",
+      "imageRequired": "Minst en bild krävs innan publicering."
+    },
+    "transactionType": {
+      "sale": "Försäljning",
+      "rent": "Hyr"
+    },
+    "rentPeriod": {
+      "daily": "Dagligen",
+      "weekly": "Veckovis",
+      "monthly": "Månatlig",
+      "yearly": "Årlig"
+    },
+    "furnishing": {
+      "unfurnished": "Omöblerad",
+      "semi_furnished": "Halvmöblerad",
+      "furnished": "Möblerad"
+    },
+    "visibility": {
+      "public": "Offentlig",
+      "unlisted": "Onoterat"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Trädgård",
+      "gym": "Gym",
+      "elevator": "Hiss",
+      "maidRoom": "Städerum",
+      "driverRoom": "Förarrum",
+      "centralAc": "Central AC",
+      "kitchenAppliances": "Köksmaskiner",
+      "security": "24/7 säkerhet",
+      "cornerUnit": "Hörnenhet"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Parkering",
+      "breakfast": "Frukost",
+      "ac": "Luftkonditionering",
+      "kitchen": "Kök",
+      "tv": "TV",
+      "washer": "Bricka",
+      "workspace": "Arbetsyta",
+      "petsAllowed": "Husdjur tillåtna",
+      "smokingAllowed": "Rökning tillåten",
+      "wheelchairAccessible": "Rullstolsanpassat"
+    },
+    "shortTerm": {
+      "title": "Information om korttidsuthyrning",
+      "subtitle": "Gästerna kommer att boka denna annons på natten. Konfigurera vistelseregler, bekvämligheter och prisnivåer.",
+      "dailyRate": "Dagskurs (SAR)",
+      "weeklyRate": "Veckopris (SAR, valfritt)",
+      "minimumStay": "Minsta vistelse (nätter)",
+      "maxGuests": "Max gäster",
+      "checkIn": "Incheckning",
+      "checkOut": "Utcheckning",
+      "cancellationPolicy": "Avbokningsregler",
+      "cancelFlexible": "Flexibel — full återbetalning upp till 24 timmar före",
+      "cancelModerate": "Måttlig — full återbetalning upp till 5 dagar före",
+      "cancelStrict": "Strikt — 50 % återbetalning upp till 7 dagar före",
+      "starRating": "Stjärnbetyg",
+      "hotelName": "Hotellnamn",
+      "instantBook": "Omedelbar bok",
+      "instantBookHint": "Bokningar bekräftas automatiskt utan ditt godkännande. Inaktivera för att granska varje begäran först.",
+      "amenities": "Bekvämligheter",
+      "houseRules": "Husregler",
+      "houseRulesPlaceholder": "till exempel Inga fester, tysta timmar efter 22.00, ingen rökning inomhus..."
+    },
+    "mediaStep": {
+      "images": "Bilder",
+      "imageDropHint": "Dra och släpp foton här eller klicka för att välja. JPEG / PNG / WebP upp till 10 MB.",
+      "photoAlt": "Lista foto",
+      "setCover": "Sätt som omslag",
+      "cover": "Omslag",
+      "videoTour": "Videoturné",
+      "videoDropHint": "Dra en MP4-fil eller klicka för att välja. Max 500 MB.",
+      "videoUploaded": "Video uppladdad — {{name}}",
+      "vrTitle": "🥽 Virtual Reality Tour Länk",
+      "vrPlaceholder": "https://... (Matterport, Kuula, etc.)",
+      "modelTitle": "3D/AR-modell (.glb eller .gltf)",
+      "modelDropHint": "Ladda upp en GLB/GLTF-modell för att aktivera AR. Max 50 MB.",
+      "modelUploaded": "Modell uppladdad — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Tryck på bekvämligheterna som den här fastigheten erbjuder. Vi visar dem som filter på Sök."
     }
   },
   "subscription": {
@@ -649,7 +813,7 @@
     "title": "Förfrågningar",
     "noResults": "Inga förfrågningar matchar detta filter",
     "empty": "Inga förfrågningar matchar detta filter",
-    "lead": "Lead",
+    "lead": "Bly",
     "listing": "Annons",
     "contact": "Kontakt",
     "date": "Datum",
@@ -717,6 +881,19 @@
       "confirmed": "Bekräftad",
       "paid": "Betald",
       "disputed": "Bestridd"
+    },
+    "oath": {
+      "dialogTitle": "Kommissionens åtagande",
+      "translatedOath": "Jag förbinder mig härmed att betala den överenskomna provisionen efter slutförandet av denna fastighetsaffär och erkänner detta ansvar inför Gud och lagen.",
+      "breakdownTitle": "Provisionsfördelning",
+      "agentListingBreakdown": "Plattformsprovision: <strong>0,5 %</strong> av transaktionsvärdet, betalas vid framgångsrik försäljning eller avslutande av leasing.",
+      "buyerAgentCommission": "Agentprovision: <strong>2,5 %</strong> av transaktionsvärdet.",
+      "buyerPlatformFee": "Plattformsavgift: <strong>0,5 %</strong> av transaktionsvärdet.",
+      "acceptError": "Kunde inte spela in ditt godkännande",
+      "agreeCheckbox": "Jag godkänner provisionsvillkoren",
+      "decline": "Jag håller inte med",
+      "saving": "Sparar...",
+      "acceptCta": "Jag accepterar och binder"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Avtal #",
     "viewContract": "Visa avtal",
     "signedThroughEjar": "Undertecknat via Ejar",
-    "noContracts": "Inga hyresavtal ännu"
+    "noContracts": "Inga hyresavtal ännu",
+    "status": {
+      "draft": "Utkast",
+      "pending_signatures": "Väntande signaturer",
+      "active": "Aktiv",
+      "expired": "Utgått",
+      "cancelled": "Avbruten"
+    }
   },
   "dufaat": {
     "title": "Dufaat-avbetalningar",
@@ -904,14 +1088,20 @@
     "applyNow": "Ansök om Dufaat",
     "calloutTitle": "Betala hyra månadsvis med Dufaat",
     "calloutBody": "Sprid {{amount}} SAR hyra över 12 prisvärda månadsavbetalningar — sharia-kompatibelt, ingen ränta.",
-    "plan": "Plan",
+    "plan": "Planera",
     "monthlyPayment": "Månadsbetalning",
     "totalAnnual": "Total årshyra",
     "platformFee": "Plattformsavgift",
     "nextPayment": "Nästa betalning",
     "installmentsPaid": "Avbetalningar betalda",
     "payNow": "Betala avbetalning",
-    "noPlans": "Inga Dufaat-planer ännu"
+    "noPlans": "Inga Dufaat-planer ännu",
+    "status": {
+      "active": "Aktiv",
+      "completed": "Slutförd",
+      "defaulted": "Standard",
+      "cancelled": "Avbruten"
+    }
   },
   "booking": {
     "myBookings": "Mina bokningar",
@@ -961,6 +1151,9 @@
       "confirmed": "Bekräftad",
       "cancelled": "Avbruten",
       "completed": "Slutförd"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Max gäster: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Medel konfidens",
       "low": "Låg konfidens"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Sök på namn eller specialitet",
+    "allCities": "Alla städer",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Inga agenter matchar din sökning",
+    "emptyBody": "Prova ett annat namn eller stad.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Verifierad",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} aktiva listor",
+    "viewProfile": "Visa profil"
+  },
+  "agent": {
+    "verified": "Verifierad",
+    "verifiedAgent": "Verifierad agent",
+    "licensed": "Licensierad",
+    "falLicense": "FAL-licensierad",
+    "listings": "Listor",
+    "reviews": "Recensioner",
+    "rating": "Betyg",
+    "responseTime": "Svarstid",
+    "memberSince": "Medlem sedan",
+    "contactAgent": "Kontakta agent",
+    "viewProfile": "Visa profil",
+    "sendMessage": "Skicka meddelande"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Lägenhet",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Odla",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handla",
+    "warehouse": "Lager",
+    "hotel": "Hotellrum",
+    "entireHome": "Hela hemmet",
+    "room": "Rum"
+  },
+  "amenities": {
+    "pool": "Pool",
+    "gym": "Gym",
+    "parking": "Parkering",
+    "security": "Säkerhet",
+    "elevator": "Hiss",
+    "garden": "Trädgård",
+    "balcony": "Balkong",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driver Room",
+    "storage": "Förråd",
+    "centralAC": "Central A/C",
+    "internet": "Internet",
+    "satellite": "Satellit-TV",
+    "furnished": "Möblerad",
+    "kitchen": "Kök",
+    "laundry": "Tvättstuga"
+  },
+  "compare": {
+    "add": "Lägg till för att jämföra",
+    "remove": "Ta bort från jämförelse"
+  },
+  "myListings": {
+    "countSelected": "{{count}} markerade",
+    "activateAll": "Aktivera alla",
+    "deactivateAll": "Inaktivera alla",
+    "deleteAll": "Ta bort alla",
+    "colViews": "Visningar",
+    "colInquiries": "Förfrågningar",
+    "boostFeature": "Boost (funktion)",
+    "duplicate": "Duplicera",
+    "deleteConfirmTitle": "Vill du ta bort {{count}} listor?",
+    "deleteConfirmDescription": "Den här åtgärden tar bort listningen mjukt – den kommer inte längre att visas offentligt."
   }
 }

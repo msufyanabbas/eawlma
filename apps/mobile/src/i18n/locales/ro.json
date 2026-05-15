@@ -432,7 +432,10 @@
       "rejected": "Respins",
       "expired": "Expirat",
       "draft": "Ciornă",
-      "archived": "Arhivat"
+      "archived": "Arhivat",
+      "pending_review": "În curs de revizuire",
+      "sold": "Vândut",
+      "rented": "Închiriat"
     },
     "sale": "Vanzare",
     "rent": "Închiriere",
@@ -460,7 +463,22 @@
     "actionFailed": "Acțiunea eșuată",
     "bookingDevTitle": "Rezervare",
     "bookingDevBody": "Fluxul de rezervări este în curs de dezvoltare. Vă rugăm să contactați agentul.",
-    "removeFromSaved": "Eliminați această proprietate din salvate?"
+    "removeFromSaved": "Eliminați această proprietate din salvate?",
+    "sqm": "m²",
+    "type": "Tip",
+    "floor": "Etajul",
+    "age": "Vârsta",
+    "parking": "Parcare",
+    "furnished": "Mobilat",
+    "unfurnished": "Nemobilat",
+    "perNight": "/noapte",
+    "verifiedAgent": "Agent verificat",
+    "newListing": "Nou",
+    "sold": "Vândut",
+    "rented": "Închiriat",
+    "available": "Disponibil",
+    "pending": "În așteptare",
+    "expired": "A expirat"
   },
   "search": {
     "filters": "Filtre",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Plată procesată",
     "dispute_resolved": "Disputa Rezolvată",
     "system": "Sistem"
+  },
+  "agent": {
+    "verified": "Verificat",
+    "verifiedAgent": "Agent verificat",
+    "licensed": "Licențiat",
+    "falLicense": "Licențiat FAL",
+    "listings": "Listări",
+    "reviews": "Recenzii",
+    "rating": "Evaluare",
+    "responseTime": "Timp de răspuns",
+    "memberSince": "Membru din",
+    "contactAgent": "Contactați agentul",
+    "viewProfile": "Vezi profilul",
+    "sendMessage": "Trimite mesaj"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Apartament",
+    "land": "Teren",
+    "chalet": "Cabana",
+    "farm": "Ferma",
+    "restHouse": "Casa de odihnă",
+    "office": "Birou",
+    "shop": "Magazin",
+    "warehouse": "Depozit",
+    "hotel": "Cameră de hotel",
+    "entireHome": "Întreaga casă",
+    "room": "Cameră"
+  },
+  "amenities": {
+    "pool": "Piscina",
+    "gym": "Sală de sport",
+    "parking": "Parcare",
+    "security": "Securitate",
+    "elevator": "Lift",
+    "garden": "Grădină",
+    "balcony": "Balcon",
+    "maidRoom": "Cameră de serviciu",
+    "driverRoom": "Cameră șofer",
+    "storage": "Depozit",
+    "centralAC": "A/C central",
+    "internet": "Internet",
+    "satellite": "TV prin satelit",
+    "furnished": "Mobilat",
+    "kitchen": "Bucătărie",
+    "laundry": "Spălătorie"
+  },
+  "compare": {
+    "add": "Adaugă pentru a compara",
+    "remove": "Eliminați din comparație"
   }
 }

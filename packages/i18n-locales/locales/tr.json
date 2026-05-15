@@ -127,7 +127,8 @@
     "anyPrice": "Herhangi bir fiyat",
     "upTo500": "500 SAR'a kadar",
     "upTo1000": "1.000 SAR'a kadar",
-    "upTo2500": "2.500 SAR'a kadar"
+    "upTo2500": "2.500 SAR'a kadar",
+    "hotelChip": "Otel"
   },
   "messages": {
     "startConversation": "Sohbeti başlat",
@@ -166,7 +167,8 @@
     "dailyRate": "Günlük ücret",
     "weeklyRate": "Haftalık ücret",
     "guestReviews": "Misafir değerlendirmeleri",
-    "noReviews": "Henüz değerlendirme yok — misafirler ayrılıp konaklamalarını değerlendirdiğinde burada görünecektir."
+    "noReviews": "Henüz değerlendirme yok — misafirler ayrılıp konaklamalarını değerlendirdiğinde burada görünecektir.",
+    "guestFallback": "Misafir"
   },
   "buyerDeals": {
     "title": "Anlaşmalarım",
@@ -216,7 +218,20 @@
     "favorAgent": "Emlakçı lehine — komisyon oluştur",
     "favorBuyer": "Alıcı lehine — anlaşmayı iptal et",
     "cancelDeal": "Anlaşmayı iptal et — komisyon yok",
-    "resolutionHint": "Her iki taraf da bu notlarla bilgilendirilecektir."
+    "resolutionHint": "Her iki taraf da bu notlarla bilgilendirilecektir.",
+    "other": "Diğer",
+    "buyerLower": "alıcı",
+    "agentLower": "ajan",
+    "otherLower": "diğer",
+    "anonymous": "Anonim",
+    "resolveTitle": "Anlaşmazlığı çöz",
+    "resolveDesc": "Bu anlaşmazlığın sonucunu seçin",
+    "favorAgentDesc": "Komisyon onaylanacak ve acenteye ödenecek",
+    "favorBuyerDesc": "Komisyon iptal edilecek",
+    "cancelDealDesc": "Hem anlaşma hem de komisyon iptal edildi",
+    "adminNotes": "Yönetici notları (isteğe bağlı)",
+    "resolvedSuccess": "Anlaşmazlık başarıyla çözüldü",
+    "resolvedError": "Anlaşmazlık çözülemedi"
   },
   "auth": {
     "login": "Giriş yap",
@@ -278,7 +293,7 @@
     "submit": "Gönder",
     "language": "Dil",
     "arabic": "العربية",
-    "english": "English",
+    "english": "İngilizce",
     "back": "Geri",
     "next": "İleri",
     "previous": "Önceki",
@@ -296,7 +311,8 @@
     "remove": "Kaldır",
     "actions": "İşlemler",
     "active": "Aktif",
-    "inactive": "Pasif"
+    "inactive": "Pasif",
+    "loadMore": "Daha fazlasını yükle"
   },
   "listing": {
     "forSale": "Satılık",
@@ -362,8 +378,28 @@
       "rejected": "Reddedildi",
       "expired": "Süresi doldu",
       "draft": "Taslak",
-      "archived": "Arşivlendi"
-    }
+      "archived": "Arşivlendi",
+      "pending_review": "İnceleniyor",
+      "sold": "Satılmış",
+      "rented": "Kiralandı"
+    },
+    "bedrooms": "Yatak odaları",
+    "bathrooms": "Banyolar",
+    "sqm": "m²",
+    "type": "Tip",
+    "floor": "Zemin",
+    "age": "Yaş",
+    "parking": "Otopark",
+    "furnished": "Mobilyalı",
+    "unfurnished": "Mobilyasız",
+    "perNight": "/gece",
+    "verifiedAgent": "Doğrulanmış Temsilci",
+    "newListing": "Yeni",
+    "sold": "Satılmış",
+    "rented": "Kiralandı",
+    "available": "Mevcut",
+    "pending": "Askıda olması",
+    "expired": "Günü geçmiş"
   },
   "search": {
     "filters": "Filtreler",
@@ -399,7 +435,10 @@
       "cta": "Mülk talebi gönder"
     },
     "drawArea": "Bir alan çiz",
-    "clearDrawing": "Çizimi temizle"
+    "clearDrawing": "Çizimi temizle",
+    "flexibleDates": "Tarihler konusunda esnek davranıyorum",
+    "flex1Month": "1 ay",
+    "shortTerm": "Kısa vadeli"
   },
   "home": {
     "heroTitle": "Mükemmel evinizi bulun",
@@ -438,7 +477,7 @@
     "newestSort": "En yeni",
     "priceLowSort": "Fiyat: düşük",
     "priceHighSort": "Fiyat: yüksek",
-    "appStore": "App Store",
+    "appStore": "Uygulama Mağazası",
     "googlePlay": "Google Play",
     "statListings": "İlanlar",
     "statAgents": "Emlakçılar",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Temel bilgiler",
-    "location": "Konum",
+    "location": {
+      "street": "Sokak",
+      "buildingNumber": "Bina no.",
+      "postalCode": "Posta Kodu",
+      "pinPrompt": "Tam konumu ayarlamak için bir raptiye bırakın",
+      "pinLabel": "Sabitle",
+      "mapUnavailable": "Harita raptiye seçici kullanılamıyor. Koordinatlar {{lat}}, {{lng}}'ye geri döner."
+    },
     "media": "Medya",
     "amenities": "Olanaklar",
-    "compliance": "Uyumluluk",
-    "review": "İnceleme",
+    "compliance": {
+      "permitNumber": "İzin / FAL numarası",
+      "regaNumber": "REGA lisans numarası",
+      "permitExpiry": "İzin süresinin dolması",
+      "preferredContact": "Tercih edilen iletişim",
+      "phone": "Telefon",
+      "publicVisibility": "Herkese açık görünürlük (yalnızca liste dışı/özel bağlantının işaretini kaldırın)"
+    },
+    "review": {
+      "summaryTitle": "Listeleme özeti",
+      "enhanceWithAi": "Yapay zeka ile geliştirin",
+      "enhancing": "Geliştiriliyor…",
+      "aiStubNotice": "Yapay zeka bir saplama döndürdü; canlı modeli kullanmak için arka uçta OPENAI_API_KEY ayarını yapın.",
+      "descriptionPreview": "Açıklama önizlemesi",
+      "emptyDescription": "(boş)",
+      "type": "Tip",
+      "titleLabel": "Başlık",
+      "bedsBaths": "Yatak odaları / Banyolar",
+      "cityDistrict": "İl / İlçe",
+      "coordinates": "Koordinatlar",
+      "permit": "İzin vermek",
+      "regaLicense": "REGA lisansı",
+      "visibility": "Görünürlük"
+    },
     "saveDraft": "Taslağı kaydet",
     "submit": "İncelemeye gönder",
     "submitForReview": "İncelemeye gönder",
@@ -576,7 +644,103 @@
       "bathrooms": "Banyo",
       "parking": "Otopark",
       "yearBuilt": "Yapım yılı",
-      "furnishing": "Eşya durumu"
+      "furnishing": "Eşya durumu",
+      "rentPeriod": "Dönem"
+    },
+    "editListing": "İlanı düzenle",
+    "newListing": "Yeni liste",
+    "crumbNew": "Yeni",
+    "validation": {
+      "titleRequired": "Lütfen en az bir dilde bir başlık ekleyin.",
+      "descriptionRequired": "Lütfen en az bir dilde bir açıklama ekleyin.",
+      "priceRequired": "Fiyat sıfırdan büyük olmalıdır.",
+      "cityRequired": "Şehir gereklidir.",
+      "pinRequired": "Konum için haritaya bir raptiye bırakın.",
+      "imageRequired": "Yayınlanmadan önce en az bir görsel gereklidir."
+    },
+    "transactionType": {
+      "sale": "Satış",
+      "rent": "Kira"
+    },
+    "rentPeriod": {
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "monthly": "Aylık",
+      "yearly": "Yıllık"
+    },
+    "furnishing": {
+      "unfurnished": "Mobilyasız",
+      "semi_furnished": "Yarı mobilyalı",
+      "furnished": "Mobilyalı"
+    },
+    "visibility": {
+      "public": "Halk",
+      "unlisted": "Liste dışı"
+    },
+    "amenity": {
+      "pool": "Havuz",
+      "garden": "Bahçe",
+      "gym": "Spor salonu",
+      "elevator": "Asansör",
+      "maidRoom": "Hizmetçi odası",
+      "driverRoom": "Sürücü odası",
+      "centralAc": "Merkezi klima",
+      "kitchenAppliances": "Mutfak aletleri",
+      "security": "7/24 güvenlik",
+      "cornerUnit": "Köşe ünitesi"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wifi",
+      "pool": "Havuz",
+      "parking": "Otopark",
+      "breakfast": "Kahvaltı",
+      "ac": "Klima",
+      "kitchen": "Mutfak",
+      "tv": "TV",
+      "washer": "Yıkayıcı",
+      "workspace": "Çalışma alanı",
+      "petsAllowed": "Evcil hayvanlara izin verilir",
+      "smokingAllowed": "Sigara içilebilir",
+      "wheelchairAccessible": "Tekerlekli sandalye erişimine uygun"
+    },
+    "shortTerm": {
+      "title": "Kısa süreli kiralama ayrıntıları",
+      "subtitle": "Misafirler bu kayıt için gece rezervasyonunu yapacaktır. Konaklama kurallarını, olanakları ve fiyatlandırma katmanlarını yapılandırın.",
+      "dailyRate": "Günlük ücret (SAR)",
+      "weeklyRate": "Haftalık ücret (SAR, isteğe bağlı)",
+      "minimumStay": "Minimum konaklama (gece)",
+      "maxGuests": "Maksimum misafir",
+      "checkIn": "Giriş",
+      "checkOut": "Çıkış yapmak",
+      "cancellationPolicy": "İptal politikası",
+      "cancelFlexible": "Esnek — 24 saat öncesine kadar tam para iadesi",
+      "cancelModerate": "Orta — 5 gün öncesine kadar tam para iadesi",
+      "cancelStrict": "Katı — 7 gün öncesine kadar %50 geri ödeme",
+      "starRating": "Yıldız derecelendirmesi",
+      "hotelName": "Otel adı",
+      "instantBook": "Anında rezervasyon",
+      "instantBookHint": "Rezervasyonlar onayınız olmadan otomatik olarak onaylanır. Önce her isteğin incelenmesini devre dışı bırakın.",
+      "amenities": "Olanaklar",
+      "houseRules": "Ev kuralları",
+      "houseRulesPlaceholder": "örneğin Parti yok, saat 22:00'den sonra sessizlik var, kapalı alanda sigara içilmiyor..."
+    },
+    "mediaStep": {
+      "images": "Görseller",
+      "imageDropHint": "Fotoğrafları buraya sürükleyip bırakın veya seçmek için tıklayın. JPEG / PNG / WebP 10 MB'a kadar.",
+      "photoAlt": "Fotoğraf listeleniyor",
+      "setCover": "Kapak olarak ayarla",
+      "cover": "Kapak",
+      "videoTour": "Video turu",
+      "videoDropHint": "Bir MP4 dosyasını sürükleyin veya seçmek için tıklayın. Maksimum 500 MB.",
+      "videoUploaded": "Video yüklendi — {{name}}",
+      "vrTitle": "🥽 Sanal Gerçeklik Turu Bağlantısı",
+      "vrPlaceholder": "https://… (Matterport, Kuula, vb.)",
+      "modelTitle": "3D / AR modeli (.glb veya .gltf)",
+      "modelDropHint": "AR'yi etkinleştirmek için bir GLB/GLTF modeli yükleyin. Maksimum 50 MB.",
+      "modelUploaded": "Model yüklendi — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Bu tesisin sunduğu olanaklara dokunun. Bunları Arama'da filtreler olarak göstereceğiz."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "Onaylandı",
       "paid": "Ödendi",
       "disputed": "Tartışmalı"
+    },
+    "oath": {
+      "dialogTitle": "Komisyon Taahhüdü",
+      "translatedOath": "Bu gayrimenkul işleminin tamamlanmasının ardından kararlaştırılan komisyonu ödemeyi taahhüt ediyorum ve bu sorumluluğu Tanrı ve kanun önünde kabul ediyorum.",
+      "breakdownTitle": "Komisyon dökümü",
+      "agentListingBreakdown": "Platform komisyonu: İşlem değerinin <strong>%0,5'i</strong>; başarılı satış veya kiralama kapanışı sonrasında ödenecektir.",
+      "buyerAgentCommission": "Temsilci komisyonu: İşlem değerinin <strong>%2,5'i</strong>.",
+      "buyerPlatformFee": "Platform ücreti: İşlem değerinin <strong>%0,5'i</strong>.",
+      "acceptError": "Kabulünüz kaydedilemedi",
+      "agreeCheckbox": "Komisyon şartlarını kabul ediyorum",
+      "decline": "katılmıyorum",
+      "saving": "Kaydediliyor...",
+      "acceptCta": "Kabul Ediyorum & Taahhüt Ediyorum"
     }
   },
   "moderation": {
@@ -853,7 +1030,7 @@
     "pendingCommissionsBody": "Onaylanan komisyonları doğrudan cüzdan bakiyenizden ödeyin. Platform ücreti otomatik olarak ayrılır.",
     "commissionFor": "İlan için komisyon",
     "agentShare": "Emlakçı",
-    "platformShare": "Platform",
+    "platformShare": "platformu",
     "payNow": "Şimdi öde",
     "commissionPendingNotice": "Yönetici onayı bekleniyor",
     "insufficientBalance": "Yetersiz bakiye",
@@ -896,7 +1073,14 @@
     "contractNumber": "Sözleşme #",
     "viewContract": "Sözleşmeyi görüntüle",
     "signedThroughEjar": "Ejar üzerinden imzalandı",
-    "noContracts": "Henüz kira sözleşmesi yok"
+    "noContracts": "Henüz kira sözleşmesi yok",
+    "status": {
+      "draft": "Taslak",
+      "pending_signatures": "İmzalar bekleniyor",
+      "active": "Aktif",
+      "expired": "Günü geçmiş",
+      "cancelled": "İptal edildi"
+    }
   },
   "dufaat": {
     "title": "Dufaat taksitleri",
@@ -904,14 +1088,20 @@
     "applyNow": "Dufaat'a başvur",
     "calloutTitle": "Dufaat ile kirayı aylık ödeyin",
     "calloutBody": "{{amount}} SAR kirayı 12 uygun aylık taksite yayın — Şeriata uygun, faizsiz.",
-    "plan": "Plan",
+    "plan": "Planı",
     "monthlyPayment": "Aylık ödeme",
     "totalAnnual": "Toplam yıllık kira",
     "platformFee": "Platform ücreti",
     "nextPayment": "Sonraki ödeme",
     "installmentsPaid": "Ödenen taksitler",
     "payNow": "Taksit öde",
-    "noPlans": "Henüz Dufaat planı yok"
+    "noPlans": "Henüz Dufaat planı yok",
+    "status": {
+      "active": "Aktif",
+      "completed": "Tamamlanmış",
+      "defaulted": "Varsayılan",
+      "cancelled": "İptal edildi"
+    }
   },
   "booking": {
     "myBookings": "Rezervasyonlarım",
@@ -961,6 +1151,9 @@
       "confirmed": "Onaylandı",
       "cancelled": "İptal edildi",
       "completed": "Tamamlandı"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Maksimum misafir sayısı: {{count}}"
     }
   },
   "market": {
@@ -1029,7 +1222,7 @@
     "codePlaceholder": "Promosyon kodu",
     "apply": "Uygula",
     "checking": "Kontrol ediliyor…",
-    "discount": "Promo",
+    "discount": "Promosyon",
     "applyFailed": "Promosyon uygulanamadı — destekle iletişime geçin.",
     "createNew": "Promosyon oluştur",
     "editTitle": "Promosyon kodunu düzenle",
@@ -1079,5 +1272,81 @@
       "medium": "Orta güven",
       "low": "Düşük güven"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "İsme veya uzmanlığa göre arayın",
+    "allCities": "Tüm Şehirler",
+    "cityRiyadh": "Riyad",
+    "cityJeddah": "Cidde",
+    "cityDammam": "Ed-Dammam",
+    "emptyTitle": "Aramanızla eşleşen temsilci yok",
+    "emptyBody": "Farklı bir ad veya şehir deneyin.",
+    "agency": "Eawlma Emlak",
+    "verified": "Doğrulandı",
+    "respondsUnder2h": "< 2 saat",
+    "activeListingsCount": "{{count}} aktif listeleme",
+    "viewProfile": "Profili Görüntüle"
+  },
+  "agent": {
+    "verified": "Doğrulandı",
+    "verifiedAgent": "Doğrulanmış Temsilci",
+    "licensed": "Lisanslı",
+    "falLicense": "FAL Lisanslı",
+    "listings": "İlanlar",
+    "reviews": "Yorumlar",
+    "rating": "Derecelendirme",
+    "responseTime": "Tepki Süresi",
+    "memberSince": "Üyelik Tarihi",
+    "contactAgent": "Temsilciyle iletişime geçin",
+    "viewProfile": "Profili Görüntüle",
+    "sendMessage": "Mesaj Gönder"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Daire",
+    "land": "Kara",
+    "chalet": "Dağ evi",
+    "farm": "Çiftlik",
+    "restHouse": "Dinlenme Evi",
+    "office": "Ofis",
+    "shop": "Mağaza",
+    "warehouse": "Depo",
+    "hotel": "Otel Odası",
+    "entireHome": "Tüm Ev",
+    "room": "Oda"
+  },
+  "amenities": {
+    "pool": "Yüzme havuzu",
+    "gym": "Spor salonu",
+    "parking": "Otopark",
+    "security": "Güvenlik",
+    "elevator": "Asansör",
+    "garden": "Bahçe",
+    "balcony": "Balkon",
+    "maidRoom": "Hizmetçi Odası",
+    "driverRoom": "Sürücü Odası",
+    "storage": "Depo Odası",
+    "centralAC": "Merkezi klima",
+    "internet": "internet",
+    "satellite": "Uydu TV",
+    "furnished": "Mobilyalı",
+    "kitchen": "Mutfak",
+    "laundry": "Çamaşır Odası"
+  },
+  "compare": {
+    "add": "Karşılaştırmak için ekle",
+    "remove": "Karşılaştırmadan kaldır"
+  },
+  "myListings": {
+    "countSelected": "{{count}} seçildi",
+    "activateAll": "Tümünü etkinleştir",
+    "deactivateAll": "Tümünü devre dışı bırak",
+    "deleteAll": "Tümünü sil",
+    "colViews": "Görünümler",
+    "colInquiries": "Sorular",
+    "boostFeature": "Güçlendirme (özellik)",
+    "duplicate": "Kopyalamak",
+    "deleteConfirmTitle": "{{count}} liste silinsin mi?",
+    "deleteConfirmDescription": "Bu işlem, girişi geçici olarak siler; liste artık herkese açık olarak görünmez."
   }
 }

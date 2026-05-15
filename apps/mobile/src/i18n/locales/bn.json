@@ -432,7 +432,10 @@
       "rejected": "প্রত্যাখ্যাত",
       "expired": "মেয়াদোত্তীর্ণ",
       "draft": "খসড়া",
-      "archived": "আর্কাইভ"
+      "archived": "আর্কাইভ",
+      "pending_review": "পর্যালোচনার অধীনে",
+      "sold": "| বিক্রি হয়েছে",
+      "rented": "ভাড়া করা"
     },
     "sale": "বিক্রয়",
     "rent": "ভাড়া",
@@ -460,7 +463,22 @@
     "actionFailed": "অ্যাকশন ব্যর্থ হয়েছে",
     "bookingDevTitle": "বুকিং",
     "bookingDevBody": "বুকিং প্রবাহ উন্নয়নশীল. অনুগ্রহ করে এজেন্টের সাথে যোগাযোগ করুন।",
-    "removeFromSaved": "সংরক্ষিত থেকে এই সম্পত্তি সরান?"
+    "removeFromSaved": "সংরক্ষিত থেকে এই সম্পত্তি সরান?",
+    "sqm": "m²",
+    "type": "প্রকার",
+    "floor": "মেঝে",
+    "age": "| বয়স",
+    "parking": "| পার্কিং",
+    "furnished": "| সজ্জিত",
+    "unfurnished": "| অসজ্জিত",
+    "perNight": "| /রাত্রি",
+    "verifiedAgent": "| যাচাইকৃত এজেন্ট",
+    "newListing": "নতুন",
+    "sold": "| বিক্রি হয়েছে",
+    "rented": "ভাড়া করা",
+    "available": "| উপলব্ধ",
+    "pending": "মুলতুবি",
+    "expired": "মেয়াদ শেষ"
   },
   "search": {
     "filters": "ফিল্টার",
@@ -1651,5 +1669,55 @@
     "payout_processed": "| পেআউট প্রক্রিয়া করা হয়েছে",
     "dispute_resolved": "বিরোধ নিষ্পত্তি",
     "system": "সিস্টেম"
+  },
+  "agent": {
+    "verified": "| যাচাইকৃত",
+    "verifiedAgent": "|৷ যাচাইকৃত এজেন্ট",
+    "licensed": "লাইসেন্সপ্রাপ্ত",
+    "falLicense": "FAL লাইসেন্সপ্রাপ্ত",
+    "listings": "তালিকা",
+    "reviews": "রিভিউ",
+    "rating": "রেটিং",
+    "responseTime": "| প্রতিক্রিয়ার সময়",
+    "memberSince": "যেহেতু সদস্য",
+    "contactAgent": "যোগাযোগ এজেন্ট",
+    "viewProfile": "| প্রোফাইল দেখুন",
+    "sendMessage": "বার্তা পাঠান"
+  },
+  "property": {
+    "villa": "ভিলা",
+    "apartment": "অ্যাপার্টমেন্ট",
+    "land": "জমি",
+    "chalet": "| শ্যালেট",
+    "farm": "| খামার",
+    "restHouse": "| রেস্ট হাউস",
+    "office": "| অফিস",
+    "shop": "দোকান",
+    "warehouse": "গুদাম",
+    "hotel": "হোটেল রুম",
+    "entireHome": "| পুরো বাড়ি",
+    "room": "রুম"
+  },
+  "amenities": {
+    "pool": "| সুইমিং পুল",
+    "gym": "জিম",
+    "parking": "পার্কিং",
+    "security": "| নিরাপত্তা",
+    "elevator": "| লিফট",
+    "garden": "বাগান",
+    "balcony": "| ব্যালকনি",
+    "maidRoom": "কাজের মেয়ের ঘর",
+    "driverRoom": "ড্রাইভার রুম",
+    "storage": "স্টোরেজ রুম",
+    "centralAC": "সেন্ট্রাল এ/সি",
+    "internet": "| ইন্টারনেট",
+    "satellite": "স্যাটেলাইট টিভি",
+    "furnished": "সজ্জিত",
+    "kitchen": "| রান্নাঘর",
+    "laundry": "| লন্ড্রি রুম"
+  },
+  "compare": {
+    "add": "তুলনা করতে যোগ করুন",
+    "remove": "তুলনা থেকে সরান"
   }
 }

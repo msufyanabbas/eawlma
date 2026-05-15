@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "عالمة",
+    "name": "عولمة",
     "tagline": "اكتشف عقارك المثالي في المملكة العربية السعودية"
   },
   "nav": {
@@ -307,7 +307,7 @@
     "submit": "إرسال",
     "language": "اللغة",
     "arabic": "العربية",
-    "english": "English",
+    "english": "إنجليزي",
     "back": "رجوع",
     "next": "التالي",
     "previous": "السابق",
@@ -335,18 +335,35 @@
     "bedroom_plural": "غرف",
     "bathroom": "حمام",
     "bathroom_plural": "حمامات",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "دورات المياه",
     "beds": "غرف",
     "baths": "حمامات",
     "area": "المساحة",
     "areaUnit": "م²",
+    "sqm": "م²",
+    "type": "النوع",
+    "floor": "الطابق",
+    "age": "عمر البناء",
+    "parking": "موقف سيارات",
+    "furnished": "مفروش",
+    "unfurnished": "غير مفروش",
     "price": "السعر",
     "pricePerSqm": "سعر المتر",
     "currency": "ر.س",
     "perMonth": "/شهر",
+    "perNight": "/ ليلة",
     "perYear": "/سنة",
     "perDay": "/يوم",
     "verified": "موثق",
+    "verifiedAgent": "وكيل موثق",
     "featured": "مميز",
+    "newListing": "جديد",
+    "sold": "مباع",
+    "rented": "مؤجر",
+    "available": "متاح",
+    "pending": "قيد المراجعة",
+    "expired": "منتهي",
     "new": "جديد",
     "saved": "محفوظ",
     "save": "حفظ",
@@ -389,11 +406,64 @@
     "status": {
       "active": "نشط",
       "pending": "قيد المراجعة",
+      "pending_review": "قيد المراجعة",
       "rejected": "مرفوض",
-      "expired": "منتهي",
+      "expired": "منتهي الصلاحية",
       "draft": "مسودة",
-      "archived": "مؤرشف"
+      "archived": "مؤرشف",
+      "sold": "تم البيع",
+      "rented": "تم التأجير"
     }
+  },
+  "agent": {
+    "verified": "موثق",
+    "verifiedAgent": "وكيل موثق",
+    "licensed": "مرخص",
+    "falLicense": "مرخص فال",
+    "listings": "الإعلانات",
+    "reviews": "التقييمات",
+    "rating": "التقييم",
+    "responseTime": "وقت الاستجابة",
+    "memberSince": "عضو منذ",
+    "contactAgent": "تواصل مع الوكيل",
+    "viewProfile": "عرض الملف",
+    "sendMessage": "إرسال رسالة"
+  },
+  "property": {
+    "villa": "فيلا",
+    "apartment": "شقة",
+    "land": "أرض",
+    "chalet": "شاليه",
+    "farm": "مزرعة",
+    "restHouse": "استراحة",
+    "office": "مكتب",
+    "shop": "محل تجاري",
+    "warehouse": "مستودع",
+    "hotel": "غرفة فندقية",
+    "entireHome": "منزل كامل",
+    "room": "غرفة"
+  },
+  "amenities": {
+    "pool": "مسبح",
+    "gym": "صالة رياضية",
+    "parking": "موقف سيارات",
+    "security": "حراسة أمنية",
+    "elevator": "مصعد",
+    "garden": "حديقة",
+    "balcony": "شرفة",
+    "maidRoom": "غرفة عاملة",
+    "driverRoom": "غرفة سائق",
+    "storage": "غرفة تخزين",
+    "centralAC": "تكييف مركزي",
+    "internet": "إنترنت",
+    "satellite": "قنوات فضائية",
+    "furnished": "مفروش",
+    "kitchen": "مطبخ",
+    "laundry": "غرفة غسيل"
+  },
+  "compare": {
+    "add": "إضافة للمقارنة",
+    "remove": "إزالة من المقارنة"
   },
   "search": {
     "filters": "الفلاتر",
@@ -588,11 +658,40 @@
   },
   "wizard": {
     "basicInfo": "المعلومات الأساسية",
-    "location": "الموقع",
+    "location": {
+      "street": "الشارع",
+      "buildingNumber": "رقم المبنى",
+      "postalCode": "الرمز البريدي",
+      "pinPrompt": "حدد الموقع الدقيق على الخريطة",
+      "pinLabel": "الإحداثيات",
+      "mapUnavailable": "اختيار الموقع على الخريطة غير متاح. الإحداثيات الافتراضية: {{lat}}, {{lng}}."
+    },
     "media": "الصور والوسائط",
     "amenities": "المرافق",
-    "compliance": "الامتثال",
-    "review": "مراجعة ونشر",
+    "compliance": {
+      "permitNumber": "رقم التصريح / FAL",
+      "regaNumber": "رقم رخصة الهيئة العامة للعقار (REGA)",
+      "permitExpiry": "تاريخ انتهاء التصريح",
+      "preferredContact": "وسيلة التواصل المفضلة",
+      "phone": "هاتف",
+      "publicVisibility": "إظهار للعموم (ألغِ التحديد للوصول عبر رابط خاص فقط)"
+    },
+    "review": {
+      "summaryTitle": "ملخص الإعلان",
+      "enhanceWithAi": "تحسين بالذكاء الاصطناعي",
+      "enhancing": "جارٍ التحسين…",
+      "aiStubNotice": "تم إرجاع نموذج تجريبي — اضبط OPENAI_API_KEY في الخادم لاستخدام النموذج الفعلي.",
+      "descriptionPreview": "معاينة الوصف",
+      "emptyDescription": "(فارغ)",
+      "type": "النوع",
+      "titleLabel": "العنوان",
+      "bedsBaths": "غرف النوم / دورات المياه",
+      "cityDistrict": "المدينة / الحي",
+      "coordinates": "الإحداثيات",
+      "permit": "التصريح",
+      "regaLicense": "رخصة REGA",
+      "visibility": "الإظهار"
+    },
     "saveDraft": "حفظ كمسودة",
     "submit": "تقديم للمراجعة",
     "submitForReview": "تقديم للمراجعة",
@@ -689,14 +788,6 @@
       "houseRules": "قواعد المنزل",
       "houseRulesPlaceholder": "مثل: ممنوع الحفلات، ساعات الهدوء بعد العاشرة، ممنوع التدخين..."
     },
-    "location": {
-      "street": "الشارع",
-      "buildingNumber": "رقم المبنى",
-      "postalCode": "الرمز البريدي",
-      "pinPrompt": "حدد الموقع الدقيق على الخريطة",
-      "pinLabel": "الإحداثيات",
-      "mapUnavailable": "اختيار الموقع على الخريطة غير متاح. الإحداثيات الافتراضية: {{lat}}, {{lng}}."
-    },
     "mediaStep": {
       "images": "الصور",
       "imageDropHint": "اسحب وأفلت الصور هنا، أو انقر للاختيار. JPEG / PNG / WebP حتى 10 ميغابايت.",
@@ -714,30 +805,6 @@
     },
     "amenitiesStep": {
       "hint": "اضغط على المرافق التي يوفرها العقار. ستظهر كفلاتر في صفحة البحث."
-    },
-    "compliance": {
-      "permitNumber": "رقم التصريح / FAL",
-      "regaNumber": "رقم رخصة الهيئة العامة للعقار (REGA)",
-      "permitExpiry": "تاريخ انتهاء التصريح",
-      "preferredContact": "وسيلة التواصل المفضلة",
-      "phone": "هاتف",
-      "publicVisibility": "إظهار للعموم (ألغِ التحديد للوصول عبر رابط خاص فقط)"
-    },
-    "review": {
-      "summaryTitle": "ملخص الإعلان",
-      "enhanceWithAi": "تحسين بالذكاء الاصطناعي",
-      "enhancing": "جارٍ التحسين…",
-      "aiStubNotice": "تم إرجاع نموذج تجريبي — اضبط OPENAI_API_KEY في الخادم لاستخدام النموذج الفعلي.",
-      "descriptionPreview": "معاينة الوصف",
-      "emptyDescription": "(فارغ)",
-      "type": "النوع",
-      "titleLabel": "العنوان",
-      "bedsBaths": "غرف النوم / دورات المياه",
-      "cityDistrict": "المدينة / الحي",
-      "coordinates": "الإحداثيات",
-      "permit": "التصريح",
-      "regaLicense": "رخصة REGA",
-      "visibility": "الإظهار"
     }
   },
   "subscription": {

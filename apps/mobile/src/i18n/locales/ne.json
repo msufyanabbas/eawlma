@@ -432,7 +432,10 @@
       "rejected": "अस्वीकृत",
       "expired": "म्याद सकिएको",
       "draft": "मस्यौदा",
-      "archived": "अभिलेखित"
+      "archived": "अभिलेखित",
+      "pending_review": "समीक्षा अन्तर्गत",
+      "sold": "बेचियो",
+      "rented": "भाडामा लिएको"
     },
     "sale": "बिक्री",
     "rent": "भाडा",
@@ -460,7 +463,22 @@
     "actionFailed": "कार्य असफल भयो",
     "bookingDevTitle": "बुकिङ",
     "bookingDevBody": "बुकिङ प्रवाह विकासमा छ। कृपया एजेन्टलाई सम्पर्क गर्नुहोस्।",
-    "removeFromSaved": "यो सम्पत्ति सेभ गरिएकोबाट हटाउने हो?"
+    "removeFromSaved": "यो सम्पत्ति सेभ गरिएकोबाट हटाउने हो?",
+    "sqm": "m²",
+    "type": "टाइप गर्नुहोस्",
+    "floor": "भुइँ",
+    "age": "उमेर",
+    "parking": "पार्किङ",
+    "furnished": "सुसज्जित",
+    "unfurnished": "असंगत",
+    "perNight": "/रात",
+    "verifiedAgent": "प्रमाणित एजेन्ट",
+    "newListing": "नयाँ",
+    "sold": "बेचियो",
+    "rented": "भाडामा लिएको",
+    "available": "उपलब्ध छ",
+    "pending": "विचाराधीन",
+    "expired": "म्याद सकियो"
   },
   "search": {
     "filters": "फिल्टरहरू",
@@ -1651,5 +1669,55 @@
     "payout_processed": "भुक्तानी प्रशोधन गरियो",
     "dispute_resolved": "विवाद समाधान भयो",
     "system": "प्रणाली"
+  },
+  "agent": {
+    "verified": "प्रमाणित",
+    "verifiedAgent": "प्रमाणित एजेन्ट",
+    "licensed": "इजाजतपत्र प्राप्त",
+    "falLicense": "FAL लाइसेन्स",
+    "listings": "सूचीहरू",
+    "reviews": "समीक्षाहरू",
+    "rating": "मूल्याङ्कन",
+    "responseTime": "प्रतिक्रिया समय",
+    "memberSince": "यता सदस्य",
+    "contactAgent": "सम्पर्क एजेन्ट",
+    "viewProfile": "प्रोफाइल हेर्नुहोस्",
+    "sendMessage": "सन्देश पठाउनुहोस्"
+  },
+  "property": {
+    "villa": "भिल्ला",
+    "apartment": "अपार्टमेन्ट",
+    "land": "जमिन",
+    "chalet": "च्यालेट",
+    "farm": "खेत",
+    "restHouse": "विश्राम गृह",
+    "office": "कार्यालय",
+    "shop": "पसल",
+    "warehouse": "गोदाम",
+    "hotel": "होटल कोठा",
+    "entireHome": "सम्पूर्ण घर",
+    "room": "कोठा"
+  },
+  "amenities": {
+    "pool": "पौंडी पोखरी",
+    "gym": "जिम",
+    "parking": "पार्किङ",
+    "security": "सुरक्षा",
+    "elevator": "लिफ्ट",
+    "garden": "बगैचा",
+    "balcony": "| बालकनी",
+    "maidRoom": "| दासी कोठा",
+    "driverRoom": "| चालक कोठा",
+    "storage": "भण्डारण कोठा",
+    "centralAC": "केन्द्रीय A/C",
+    "internet": "| इन्टरनेट",
+    "satellite": "स्याटेलाइट टिभी",
+    "furnished": "सुसज्जित",
+    "kitchen": "| भान्सा",
+    "laundry": "| लुगा धुने कोठा"
+  },
+  "compare": {
+    "add": "| तुलना गर्न थप्नुहोस्",
+    "remove": "तुलनाबाट हटाउनुहोस्"
   }
 }

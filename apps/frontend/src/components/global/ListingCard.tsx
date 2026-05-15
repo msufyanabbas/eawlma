@@ -29,6 +29,7 @@ import { type MouseEvent } from 'react';
 import { listingCoverUrl } from '@/utils/listingImages';
 import { getListingTitle, getListingLocation } from '@/utils/listingText';
 import { whatsappListingUrl } from '@/utils/whatsapp';
+import { formatNumber, formatPrice } from '@/utils/formatters';
 import { SaveToWishlistButton } from '@/components/global/SaveToWishlistButton';
 
 interface ListingCardProps {
@@ -77,7 +78,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   // a denormalised `agent.fullName`, fall back to a clean "Verified Agent"
   // label rather than rendering UUID-character noise like "7" or "F".
   const agentName = (listing as unknown as { agent?: { fullName?: string } }).agent?.fullName;
-  const agentDisplay = agentName?.trim() || 'Verified Agent';
+  const agentDisplay = agentName?.trim() || t('listing.verifiedAgent');
   const agentInitials = (agentName?.trim()?.[0] ?? 'A').toUpperCase();
   const isSale = listing.type === ListingType.SALE;
   // Featured listings come from owners who already passed the publish gate, so
@@ -239,7 +240,13 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
           {/* Top inline-end: stacked column of action icons so they don't
            *  crowd the status chips even when all three appear. */}
           <Stack direction="column" spacing={0.5} sx={{ position: 'absolute', top: 8, insetInlineEnd: 8 }}>
-            <Tooltip title={compareHas ? 'Remove from compare' : 'Add to compare'}>
+            <Tooltip
+              title={
+                compareHas
+                  ? t('compare.remove', { defaultValue: 'Remove from compare' })
+                  : t('compare.add', { defaultValue: 'Add to compare' })
+              }
+            >
               <IconButton
                 onClick={handleCompareClick}
                 size="small"
@@ -253,7 +260,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 <CompareArrowsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Share on WhatsApp">
+            <Tooltip title={t('listing.whatsapp')}>
               <IconButton
                 onClick={handleWhatsAppShare}
                 size="small"
@@ -305,7 +312,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             }}
           >
             <Typography sx={{ fontSize: '0.95rem', fontWeight: 800, lineHeight: 1.2 }}>
-              {Number(listing.price).toLocaleString(activeLocale)}
+              {formatPrice(Number(listing.price), activeLocale)}
               <Typography component="span" variant="caption" sx={{ ml: 0.5, opacity: 0.92 }}>
                 {t('listing.currency')}
                 {!isSale && listing.rentPeriod ? rentSuffix(t, listing.rentPeriod) : ''}
@@ -357,7 +364,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
           </Stack>
           {pricePerSqm && (
             <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mb: 0.5 }}>
-              {pricePerSqm.toLocaleString(activeLocale)} {t('listing.currency')}/m²
+              {formatPrice(pricePerSqm, activeLocale)} {t('listing.currency')}/{t('listing.sqm')}
             </Typography>
           )}
 
@@ -374,7 +381,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <BedIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
                 <Typography variant="caption" sx={{ fontWeight: 600 }}>
-                  {listing.bedrooms}
+                  {formatNumber(listing.bedrooms, activeLocale)}
                 </Typography>
               </Stack>
             )}
@@ -382,7 +389,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <BathIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
                 <Typography variant="caption" sx={{ fontWeight: 600 }}>
-                  {listing.bathrooms}
+                  {formatNumber(listing.bathrooms, activeLocale)}
                 </Typography>
               </Stack>
             )}
@@ -390,7 +397,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               <Stack direction="row" spacing={0.5} alignItems="center">
                 <AreaIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
                 <Typography variant="caption" sx={{ fontWeight: 600 }}>
-                  {Number(listing.area).toLocaleString(activeLocale)} {t('listing.areaUnit')}
+                  {formatNumber(Number(listing.area), activeLocale)} {t('listing.areaUnit')}
                 </Typography>
               </Stack>
             )}
@@ -434,7 +441,7 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
             <Tooltip title={t('listing.verified', { defaultValue: 'Verified' })}>
               <VerifiedIcon sx={{ fontSize: 16, color: theme.eawlma.accent }} />
             </Tooltip>
-            <Tooltip title="WhatsApp">
+            <Tooltip title={t('listing.whatsapp')}>
               <IconButton
                 onClick={handleWhatsAppShare}
                 size="small"

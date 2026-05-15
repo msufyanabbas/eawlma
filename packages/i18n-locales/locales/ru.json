@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "Иулма",
     "tagline": "Найдите идеальную недвижимость в Саудовской Аравии"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "Любая цена",
     "upTo500": "До 500 SAR",
     "upTo1000": "До 1 000 SAR",
-    "upTo2500": "До 2 500 SAR"
+    "upTo2500": "До 2 500 SAR",
+    "hotelChip": "Отель"
   },
   "messages": {
     "startConversation": "Начать разговор",
@@ -166,7 +167,8 @@
     "dailyRate": "Тариф за день",
     "weeklyRate": "Тариф за неделю",
     "guestReviews": "Отзывы гостей",
-    "noReviews": "Отзывов пока нет — как только гости выпишутся и оценят проживание, они появятся здесь."
+    "noReviews": "Отзывов пока нет — как только гости выпишутся и оценят проживание, они появятся здесь.",
+    "guestFallback": "Гость"
   },
   "buyerDeals": {
     "title": "Мои сделки",
@@ -216,7 +218,20 @@
     "favorAgent": "В пользу агента — создать комиссию",
     "favorBuyer": "В пользу покупателя — отменить сделку",
     "cancelDeal": "Отменить сделку — без комиссии",
-    "resolutionHint": "Обе стороны получат уведомление с этими заметками."
+    "resolutionHint": "Обе стороны получат уведомление с этими заметками.",
+    "other": "Другой",
+    "buyerLower": "покупатель",
+    "agentLower": "агент",
+    "otherLower": "другой",
+    "anonymous": "Анонимный",
+    "resolveTitle": "Разрешить спор",
+    "resolveDesc": "Выберите исход этого спора",
+    "favorAgentDesc": "Комиссия будет подтверждена и выплачена агенту",
+    "favorBuyerDesc": "Комиссия будет отменена",
+    "cancelDealDesc": "Сделка и комиссия отменены",
+    "adminNotes": "Заметки администратора (необязательно)",
+    "resolvedSuccess": "Спор успешно разрешен",
+    "resolvedError": "Не удалось разрешить спор"
   },
   "auth": {
     "login": "Войти",
@@ -277,8 +292,8 @@
     "filter": "Фильтр",
     "submit": "Отправить",
     "language": "Язык",
-    "arabic": "العربية",
-    "english": "English",
+    "arabic": "عربية",
+    "english": "Английский",
     "back": "Назад",
     "next": "Далее",
     "previous": "Предыдущий",
@@ -296,7 +311,8 @@
     "remove": "Удалить",
     "actions": "Действия",
     "active": "Активен",
-    "inactive": "Неактивен"
+    "inactive": "Неактивен",
+    "loadMore": "Загрузить больше"
   },
   "listing": {
     "forSale": "Продажа",
@@ -311,7 +327,7 @@
     "areaUnit": "м²",
     "price": "Цена",
     "pricePerSqm": "Цена за м²",
-    "currency": "SAR",
+    "currency": "САР",
     "perMonth": "/мес",
     "perYear": "/год",
     "perDay": "/день",
@@ -362,8 +378,28 @@
       "rejected": "Отклонено",
       "expired": "Истекло",
       "draft": "Черновик",
-      "archived": "Архивировано"
-    }
+      "archived": "Архивировано",
+      "pending_review": "На рассмотрении",
+      "sold": "Продал",
+      "rented": "Сдан в аренду"
+    },
+    "bedrooms": "Спальни",
+    "bathrooms": "Ванные комнаты",
+    "sqm": "м²",
+    "type": "Тип",
+    "floor": "Пол",
+    "age": "Возраст",
+    "parking": "Стоянка",
+    "furnished": "Меблированный",
+    "unfurnished": "Без мебели",
+    "perNight": "/ночь",
+    "verifiedAgent": "Проверенный агент",
+    "newListing": "Новый",
+    "sold": "Продал",
+    "rented": "Сдан в аренду",
+    "available": "Доступный",
+    "pending": "В ожидании",
+    "expired": "Истекший"
   },
   "search": {
     "filters": "Фильтры",
@@ -399,7 +435,10 @@
       "cta": "Отправить запрос на недвижимость"
     },
     "drawArea": "Нарисовать область",
-    "clearDrawing": "Очистить рисунок"
+    "clearDrawing": "Очистить рисунок",
+    "flexibleDates": "Я гибко подхожу к датам",
+    "flex1Month": "1 месяц",
+    "shortTerm": "Короткий срок"
   },
   "home": {
     "heroTitle": "Найдите идеальный дом",
@@ -438,8 +477,8 @@
     "newestSort": "Новые",
     "priceLowSort": "Цена: низкая",
     "priceHighSort": "Цена: высокая",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "Магазин приложений",
+    "googlePlay": "Гугл Плей",
     "statListings": "Объявления",
     "statAgents": "Агенты",
     "statUsers": "Пользователи",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Основная информация",
-    "location": "Местоположение",
+    "location": {
+      "street": "Улица",
+      "buildingNumber": "№ здания.",
+      "postalCode": "Почтовый индекс",
+      "pinPrompt": "Отметьте булавкой, чтобы указать точное местоположение",
+      "pinLabel": "Приколоть",
+      "mapUnavailable": "Средство выбора точек на карте недоступно. Координаты возвращаются к {{lat}}, {{lng}}."
+    },
     "media": "Медиа",
     "amenities": "Удобства",
-    "compliance": "Соответствие",
-    "review": "Проверка",
+    "compliance": {
+      "permitNumber": "Разрешение / номер FAL",
+      "regaNumber": "Номер лицензии РЕГА",
+      "permitExpiry": "Срок действия разрешения",
+      "preferredContact": "Предпочитаемый контакт",
+      "phone": "Телефон",
+      "publicVisibility": "Публичная видимость (снимите флажок только для частных или частных ссылок)"
+    },
+    "review": {
+      "summaryTitle": "Краткое описание листинга",
+      "enhanceWithAi": "Улучшение с помощью ИИ",
+      "enhancing": "Улучшение…",
+      "aiStubNotice": "AI вернул заглушку — установите OPENAI_API_KEY на бэкэнде, чтобы использовать живую модель.",
+      "descriptionPreview": "Предварительный просмотр описания",
+      "emptyDescription": "(пустой)",
+      "type": "Тип",
+      "titleLabel": "Заголовок",
+      "bedsBaths": "Спальни/Ванные комнаты",
+      "cityDistrict": "Город/Район",
+      "coordinates": "Координаты",
+      "permit": "Разрешать",
+      "regaLicense": "лицензия РЕГА",
+      "visibility": "Видимость"
+    },
     "saveDraft": "Сохранить черновик",
     "submit": "Отправить на проверку",
     "submitForReview": "Отправить на проверку",
@@ -576,7 +644,103 @@
       "bathrooms": "Ванные",
       "parking": "Парковка",
       "yearBuilt": "Год постройки",
-      "furnishing": "Меблировка"
+      "furnishing": "Меблировка",
+      "rentPeriod": "Период"
+    },
+    "editListing": "Редактировать объявление",
+    "newListing": "Новое объявление",
+    "crumbNew": "Новый",
+    "validation": {
+      "titleRequired": "Пожалуйста, добавьте название хотя бы на одном языке.",
+      "descriptionRequired": "Пожалуйста, добавьте описание хотя бы на одном языке.",
+      "priceRequired": "Цена должна быть больше нуля.",
+      "cityRequired": "Город обязателен.",
+      "pinRequired": "Отметьте местоположение на карте.",
+      "imageRequired": "Для публикации необходимо хотя бы одно изображение."
+    },
+    "transactionType": {
+      "sale": "Распродажа",
+      "rent": "Арендовать"
+    },
+    "rentPeriod": {
+      "daily": "Ежедневно",
+      "weekly": "Еженедельно",
+      "monthly": "Ежемесячно",
+      "yearly": "Ежегодно"
+    },
+    "furnishing": {
+      "unfurnished": "Без мебели",
+      "semi_furnished": "Полумеблированная",
+      "furnished": "Меблированный"
+    },
+    "visibility": {
+      "public": "Общественный",
+      "unlisted": "Частный"
+    },
+    "amenity": {
+      "pool": "Бассейн",
+      "garden": "Сад",
+      "gym": "Спортзал",
+      "elevator": "Лифт",
+      "maidRoom": "Комната для горничной",
+      "driverRoom": "Комната водителя",
+      "centralAc": "Центральный кондиционер",
+      "kitchenAppliances": "Кухонная техника",
+      "security": "Круглосуточная охрана",
+      "cornerUnit": "Угловой модуль"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Бассейн",
+      "parking": "Стоянка",
+      "breakfast": "Завтрак",
+      "ac": "Кондиционер",
+      "kitchen": "Кухня",
+      "tv": "ТВ",
+      "washer": "Шайба",
+      "workspace": "Рабочая область",
+      "petsAllowed": "Домашние животные разрешены",
+      "smokingAllowed": "Курение разрешено",
+      "wheelchairAccessible": "Доступно для инвалидных колясок"
+    },
+    "shortTerm": {
+      "title": "Подробности краткосрочной аренды",
+      "subtitle": "Гости забронируют это жилье ночью. Настройте правила пребывания, удобства и уровни цен.",
+      "dailyRate": "Дневная ставка (SAR)",
+      "weeklyRate": "Недельная ставка (SAR, необязательно)",
+      "minimumStay": "Минимальный срок пребывания (ночей)",
+      "maxGuests": "Макс. гостей",
+      "checkIn": "Регистрироваться",
+      "checkOut": "Проверить",
+      "cancellationPolicy": "Политика отмены",
+      "cancelFlexible": "Гибкий — полный возврат средств не позднее, чем за 24 часа.",
+      "cancelModerate": "Умеренный — полный возврат средств не позднее, чем за 5 дней до",
+      "cancelStrict": "Строгий — возврат 50% за 7 дней до даты",
+      "starRating": "Звездный рейтинг",
+      "hotelName": "Название отеля",
+      "instantBook": "Мгновенное бронирование",
+      "instantBookHint": "Бронирование автоматически подтверждается без вашего одобрения. Отключите возможность просмотра каждого запроса в первую очередь.",
+      "amenities": "Удобства",
+      "houseRules": "Правила дома",
+      "houseRulesPlaceholder": "например Никаких вечеринок, тишина после 22:00, курение в помещении запрещено..."
+    },
+    "mediaStep": {
+      "images": "Изображения",
+      "imageDropHint": "Перетащите фотографии сюда или нажмите, чтобы выбрать. JPEG/PNG/WebP до 10 МБ.",
+      "photoAlt": "Фото объявления",
+      "setCover": "Установить в качестве обложки",
+      "cover": "Крышка",
+      "videoTour": "Видео тур",
+      "videoDropHint": "Перетащите файл MP4 или щелкните, чтобы выбрать. Макс 500 МБ.",
+      "videoUploaded": "Видео загружено — {{name}}",
+      "vrTitle": "🥽 Ссылка на тур по виртуальной реальности",
+      "vrPlaceholder": "https://… (Маттерпорт, Куула и т. д.)",
+      "modelTitle": "3D/AR-модель (.glb или .gltf)",
+      "modelDropHint": "Загрузите модель GLB/GLTF, чтобы включить AR. Макс 50 МБ.",
+      "modelUploaded": "Модель загружена — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Нажмите на удобства, которые предлагает этот объект размещения. Мы будем отображать их в качестве фильтров в Поиске."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "Подтверждено",
       "paid": "Оплачено",
       "disputed": "Оспаривается"
+    },
+    "oath": {
+      "dialogTitle": "Обязательства Комиссии",
+      "translatedOath": "Настоящим я обязуюсь выплатить согласованную комиссию по завершении этой сделки с недвижимостью и признаю эту ответственность перед Богом и законом.",
+      "breakdownTitle": "Разбивка комиссии",
+      "agentListingBreakdown": "Комиссия платформы: <strong>0,5%</strong> от стоимости транзакции, выплачивается при успешной продаже или заключении аренды.",
+      "buyerAgentCommission": "Комиссия агента: <strong>2,5 %</strong> от суммы транзакции.",
+      "buyerPlatformFee": "Комиссия платформы: <strong>0,5%</strong> от суммы транзакции.",
+      "acceptError": "Не удалось записать ваше согласие",
+      "agreeCheckbox": "Я согласен с условиями комиссии",
+      "decline": "Я не согласен",
+      "saving": "Сохранение...",
+      "acceptCta": "Я принимаю и обязуюсь"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Договор №",
     "viewContract": "Просмотреть договор",
     "signedThroughEjar": "Подписано через Ejar",
-    "noContracts": "Договоров аренды пока нет"
+    "noContracts": "Договоров аренды пока нет",
+    "status": {
+      "draft": "Черновик",
+      "pending_signatures": "Ожидающие подписи",
+      "active": "Активный",
+      "expired": "Истекший",
+      "cancelled": "Отменено"
+    }
   },
   "dufaat": {
     "title": "Рассрочка Dufaat",
@@ -911,7 +1095,13 @@
     "nextPayment": "Следующий платёж",
     "installmentsPaid": "Оплаченные платежи",
     "payNow": "Оплатить платёж",
-    "noPlans": "Планов Dufaat пока нет"
+    "noPlans": "Планов Dufaat пока нет",
+    "status": {
+      "active": "Активный",
+      "completed": "Завершенный",
+      "defaulted": "По умолчанию",
+      "cancelled": "Отменено"
+    }
   },
   "booking": {
     "myBookings": "Мои бронирования",
@@ -961,6 +1151,9 @@
       "confirmed": "Подтверждено",
       "cancelled": "Отменено",
       "completed": "Завершено"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Максимальное количество гостей: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Средняя уверенность",
       "low": "Низкая уверенность"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Поиск по имени или специальности",
+    "allCities": "Все города",
+    "cityRiyadh": "Эр-Рияд",
+    "cityJeddah": "Джидда",
+    "cityDammam": "Даммам",
+    "emptyTitle": "Нет агентов, соответствующих вашему запросу",
+    "emptyBody": "Попробуйте другое имя или город.",
+    "agency": "Иулма Недвижимость",
+    "verified": "Проверено",
+    "respondsUnder2h": "< 2 часа",
+    "activeListingsCount": "{{count}} активных объявлений",
+    "viewProfile": "Посмотреть профиль"
+  },
+  "agent": {
+    "verified": "Проверено",
+    "verifiedAgent": "Проверенный агент",
+    "licensed": "Лицензированный",
+    "falLicense": "Лицензия ФАЛ",
+    "listings": "Объявления",
+    "reviews": "Отзывы",
+    "rating": "Рейтинг",
+    "responseTime": "Время ответа",
+    "memberSince": "Участник с",
+    "contactAgent": "Связаться с агентом",
+    "viewProfile": "Посмотреть профиль",
+    "sendMessage": "Отправить сообщение"
+  },
+  "property": {
+    "villa": "Вилла",
+    "apartment": "Квартира",
+    "land": "Земля",
+    "chalet": "Шале",
+    "farm": "Ферма",
+    "restHouse": "Дом отдыха",
+    "office": "Офис",
+    "shop": "Магазин",
+    "warehouse": "Склад",
+    "hotel": "Гостиничный номер",
+    "entireHome": "Весь дом",
+    "room": "Комната"
+  },
+  "amenities": {
+    "pool": "Бассейн",
+    "gym": "Спортзал",
+    "parking": "Стоянка",
+    "security": "Безопасность",
+    "elevator": "Лифт",
+    "garden": "Сад",
+    "balcony": "Балкон",
+    "maidRoom": "Комната горничной",
+    "driverRoom": "Комната водителя",
+    "storage": "Кладовая",
+    "centralAC": "Центральный кондиционер",
+    "internet": "Интернет",
+    "satellite": "Спутниковое телевидение",
+    "furnished": "Меблированный",
+    "kitchen": "Кухня",
+    "laundry": "Прачечная"
+  },
+  "compare": {
+    "add": "Добавить для сравнения",
+    "remove": "Удалить из сравнения"
+  },
+  "myListings": {
+    "countSelected": "{{count}} выбрано",
+    "activateAll": "Активировать все",
+    "deactivateAll": "Деактивировать все",
+    "deleteAll": "Удалить все",
+    "colViews": "Просмотры",
+    "colInquiries": "Запросы",
+    "boostFeature": "Повышение (функция)",
+    "duplicate": "Дублировать",
+    "deleteConfirmTitle": "Удалить объявления ({{count}})?",
+    "deleteConfirmDescription": "Это действие приведет к мягкому удалению объявления — оно больше не будет отображаться публично."
   }
 }

@@ -127,7 +127,8 @@
     "anyPrice": "Anumang presyo",
     "upTo500": "Hanggang 500 SAR",
     "upTo1000": "Hanggang 1,000 SAR",
-    "upTo2500": "Hanggang 2,500 SAR"
+    "upTo2500": "Hanggang 2,500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Simulan ang pag-uusap",
@@ -150,7 +151,7 @@
     "lastSeen": "Huling nakita"
   },
   "hosting": {
-    "title": "Hosting",
+    "title": "Pagho-host",
     "subtitle": "Pamahalaan ang maikling-panahong upa — mga booking, instant approval, presyo at mga review.",
     "noShortTerm": "Wala ka pang maikling-panahong mga listing. I-edit ang isang listing at pumili ng maikling-panahong uri ng ari-arian upang magsimulang mag-host.",
     "activeListing": "Aktibong maikling-panahong listing",
@@ -166,12 +167,13 @@
     "dailyRate": "Pang-araw na rate",
     "weeklyRate": "Pang-linggong rate",
     "guestReviews": "Mga review ng bisita",
-    "noReviews": "Wala pang mga review — kapag nag-check out ang mga bisita at nirate ang kanilang tuluyan, lalabas dito."
+    "noReviews": "Wala pang mga review — kapag nag-check out ang mga bisita at nirate ang kanilang tuluyan, lalabas dito.",
+    "guestFallback": "panauhin"
   },
   "buyerDeals": {
     "title": "Aking mga deal",
     "subtitle": "Kumpirmahin o pagdebatehan ang mga deal na isinara ng mga ahente sa iyong mga tanong.",
-    "listing": "Listing",
+    "listing": "Listahan",
     "amount": "Halaga",
     "closedAt": "Sinarado noong",
     "status": "Katayuan",
@@ -191,7 +193,7 @@
   "adminDisputes": {
     "title": "Mga hindi pagkakasundo",
     "subtitle": "Lahat ng pinagdedebateng deal na naghihintay ng resolusyon ng admin.",
-    "listing": "Listing",
+    "listing": "Listahan",
     "agent": "Ahente",
     "buyer": "Mamimili",
     "amount": "Halaga",
@@ -216,7 +218,20 @@
     "favorAgent": "Pabor sa ahente — lumikha ng komisyon",
     "favorBuyer": "Pabor sa mamimili — kanselahin ang deal",
     "cancelDeal": "Kanselahin ang deal — walang komisyon",
-    "resolutionHint": "Aabisuhan ang parehong panig ng mga talang ito."
+    "resolutionHint": "Aabisuhan ang parehong panig ng mga talang ito.",
+    "other": "Iba pa",
+    "buyerLower": "mamimili",
+    "agentLower": "ahente",
+    "otherLower": "iba pa",
+    "anonymous": "Anonymous",
+    "resolveTitle": "Lutasin ang hindi pagkakaunawaan",
+    "resolveDesc": "Piliin ang resulta para sa hindi pagkakaunawaan na ito",
+    "favorAgentDesc": "Kukumpirmahin ang komisyon at babayaran sa ahente",
+    "favorBuyerDesc": "Kakanselahin ang komisyon",
+    "cancelDealDesc": "Parehong kinansela ang deal at komisyon",
+    "adminNotes": "Mga tala ng admin (opsyonal)",
+    "resolvedSuccess": "Matagumpay na naresolba ang hindi pagkakaunawaan",
+    "resolvedError": "Nabigong lutasin ang hindi pagkakaunawaan"
   },
   "auth": {
     "login": "Mag-sign in",
@@ -296,7 +311,8 @@
     "remove": "Alisin",
     "actions": "Mga aksyon",
     "active": "Aktibo",
-    "inactive": "Hindi aktibo"
+    "inactive": "Hindi aktibo",
+    "loadMore": "Mag-load ng higit pa"
   },
   "listing": {
     "forSale": "Ipinagbibili",
@@ -344,9 +360,9 @@
     "monthlyPayment": "Buwanang bayad",
     "totalPayment": "Kabuuang bayad",
     "totalInterest": "Kabuuang interes",
-    "downPayment": "Down payment",
+    "downPayment": "Paunang bayad",
     "loanTerm": "Termino ng pautang",
-    "interestRate": "Interest rate",
+    "interestRate": "Rate ng interes",
     "message": "Mensahe",
     "fairPrice": {
       "great": "💚 Magaling na presyo",
@@ -362,8 +378,28 @@
       "rejected": "Tinanggihan",
       "expired": "Nag-expire na",
       "draft": "Draft",
-      "archived": "Naka-archive"
-    }
+      "archived": "Naka-archive",
+      "pending_review": "Sa ilalim ng Pagsusuri",
+      "sold": "Nabenta",
+      "rented": "Nirentahan"
+    },
+    "bedrooms": "Mga Silid-tulugan",
+    "bathrooms": "Mga Banyo",
+    "sqm": "m²",
+    "type": "Uri",
+    "floor": "Floor",
+    "age": "Edad",
+    "parking": "Paradahan",
+    "furnished": "Furnished",
+    "unfurnished": "Unfurnished",
+    "perNight": "/night",
+    "verifiedAgent": "Na-verify na Ahente",
+    "newListing": "Bago",
+    "sold": "Nabenta",
+    "rented": "Nirentahan",
+    "available": "Available",
+    "pending": "Nakabinbin",
+    "expired": "Nag-expire"
   },
   "search": {
     "filters": "Mga filter",
@@ -399,7 +435,10 @@
       "cta": "Isumite ang kahilingan sa ari-arian"
     },
     "drawArea": "Gumuhit ng lugar",
-    "clearDrawing": "I-clear ang pagguhit"
+    "clearDrawing": "I-clear ang pagguhit",
+    "flexibleDates": "May kakayahang umangkop ako sa mga petsa",
+    "flex1Month": "1 buwan",
+    "shortTerm": "Panandaliang"
   },
   "home": {
     "heroTitle": "Hanapin ang iyong perpektong tahanan",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Pangunahing impormasyon",
-    "location": "Lokasyon",
+    "location": {
+      "street": "Kalye",
+      "buildingNumber": "Building no.",
+      "postalCode": "Postal code",
+      "pinPrompt": "Mag-drop ng pin upang itakda ang eksaktong lokasyon",
+      "pinLabel": "Pin",
+      "mapUnavailable": "Hindi available ang tagapili ng pin ng mapa. Ang mga coordinate ay bumabalik sa {{lat}}, {{lng}}."
+    },
     "media": "Media",
     "amenities": "Mga amenidad",
-    "compliance": "Pagsunod",
-    "review": "Suriin",
+    "compliance": {
+      "permitNumber": "Numero ng permit / FAL",
+      "regaNumber": "Numero ng lisensya ng REGA",
+      "permitExpiry": "Pag-expire ng permit",
+      "preferredContact": "Ginustong contact",
+      "phone": "Telepono",
+      "publicVisibility": "Pampublikong visibility (alisan ng check para sa hindi nakalista / pribadong link lang)"
+    },
+    "review": {
+      "summaryTitle": "Buod ng listahan",
+      "enhanceWithAi": "Pahusayin gamit ang AI",
+      "enhancing": "Pinapahusay…",
+      "aiStubNotice": "Nagbalik ang AI ng stub — itakda ang OPENAI_API_KEY sa backend para gamitin ang live na modelo.",
+      "descriptionPreview": "Preview ng paglalarawan",
+      "emptyDescription": "(walang laman)",
+      "type": "Uri",
+      "titleLabel": "Pamagat",
+      "bedsBaths": "Mga Silid-tulugan / Banyo",
+      "cityDistrict": "Lungsod / Distrito",
+      "coordinates": "Mga Coordinate",
+      "permit": "Pahintulot",
+      "regaLicense": "Lisensya ng REGA",
+      "visibility": "Visibility"
+    },
     "saveDraft": "I-save ang draft",
     "submit": "Isumite para sa pagsusuri",
     "submitForReview": "Isumite para sa pagsusuri",
@@ -576,7 +644,103 @@
       "bathrooms": "Mga banyo",
       "parking": "Paradahan",
       "yearBuilt": "Taong itinayo",
-      "furnishing": "Mga muwebles"
+      "furnishing": "Mga muwebles",
+      "rentPeriod": "Panahon"
+    },
+    "editListing": "I-edit ang listahan",
+    "newListing": "Bagong listahan",
+    "crumbNew": "Bago",
+    "validation": {
+      "titleRequired": "Mangyaring magdagdag ng pamagat sa hindi bababa sa isang wika.",
+      "descriptionRequired": "Mangyaring magdagdag ng paglalarawan sa hindi bababa sa isang wika.",
+      "priceRequired": "Ang presyo ay dapat na mas malaki kaysa sa zero.",
+      "cityRequired": "Kinakailangan ang lungsod.",
+      "pinRequired": "Mag-drop ng pin sa mapa para sa lokasyon.",
+      "imageRequired": "Hindi bababa sa isang larawan ang kailangan bago i-publish."
+    },
+    "transactionType": {
+      "sale": "Sale",
+      "rent": "Rentahan"
+    },
+    "rentPeriod": {
+      "daily": "Araw-araw",
+      "weekly": "Lingguhan",
+      "monthly": "Buwanang",
+      "yearly": "Taun-taon"
+    },
+    "furnishing": {
+      "unfurnished": "Unfurnished",
+      "semi_furnished": "Semi-furnished",
+      "furnished": "Furnished"
+    },
+    "visibility": {
+      "public": "Pampubliko",
+      "unlisted": "Hindi nakalista"
+    },
+    "amenity": {
+      "pool": "Pool",
+      "garden": "Hardin",
+      "gym": "Gym",
+      "elevator": "Elevator",
+      "maidRoom": "Maid room",
+      "driverRoom": "Driver room",
+      "centralAc": "Central AC",
+      "kitchenAppliances": "Mga gamit sa kusina",
+      "security": "24/7 na seguridad",
+      "cornerUnit": "Corner unit"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Pool",
+      "parking": "Paradahan",
+      "breakfast": "Almusal",
+      "ac": "Air conditioning",
+      "kitchen": "Kusina",
+      "tv": "TV",
+      "washer": "Washer",
+      "workspace": "Workspace",
+      "petsAllowed": "Pinapayagan ang mga alagang hayop",
+      "smokingAllowed": "Pinapayagan ang paninigarilyo",
+      "wheelchairAccessible": "Naa-access ang wheelchair"
+    },
+    "shortTerm": {
+      "title": "Mga detalye ng panandaliang rental",
+      "subtitle": "Ibu-book ng mga bisita ang listahang ito sa gabi. I-configure ang mga panuntunan sa pananatili, amenities, at mga tier ng pagpepresyo.",
+      "dailyRate": "Daily rate (SAR)",
+      "weeklyRate": "Lingguhang rate (SAR, opsyonal)",
+      "minimumStay": "Minimum na pananatili (mga gabi)",
+      "maxGuests": "Pinakamaraming bisita",
+      "checkIn": "Mag-check-in",
+      "checkOut": "Check-out",
+      "cancellationPolicy": "Patakaran sa pagkansela",
+      "cancelFlexible": "Flexible — buong refund hanggang 24 na oras bago",
+      "cancelModerate": "Moderate — buong refund hanggang 5 araw bago",
+      "cancelStrict": "Mahigpit — 50% refund hanggang 7 araw bago",
+      "starRating": "Star rating",
+      "hotelName": "Pangalan ng hotel",
+      "instantBook": "Instant book",
+      "instantBookHint": "Awtomatikong kumpirmahin ng mga booking nang wala ang iyong pag-apruba. Huwag paganahin na suriin muna ang bawat kahilingan.",
+      "amenities": "Mga Pasilidad",
+      "houseRules": "Mga panuntunan sa bahay",
+      "houseRulesPlaceholder": "hal. Walang party, tahimik na oras pagkalipas ng 10pm, bawal manigarilyo sa loob ng bahay..."
+    },
+    "mediaStep": {
+      "images": "Mga imahe",
+      "imageDropHint": "I-drag at i-drop ang mga larawan dito, o i-click upang pumili. JPEG / PNG / WebP hanggang 10 MB.",
+      "photoAlt": "Listahan ng larawan",
+      "setCover": "Itakda bilang pabalat",
+      "cover": "Cover",
+      "videoTour": "Video tour",
+      "videoDropHint": "Mag-drag ng MP4 file o i-click para pumili. Max 500 MB.",
+      "videoUploaded": "Na-upload ang video — {{name}}",
+      "vrTitle": "🥽 Virtual Reality Tour Link",
+      "vrPlaceholder": "https://… (Matterport, Kuula, atbp.)",
+      "modelTitle": "3D / AR na modelo (.glb o .gltf)",
+      "modelDropHint": "Mag-upload ng modelong GLB/GLTF para paganahin ang AR. Max na 50 MB.",
+      "modelUploaded": "Modelong na-upload — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "I-tap ang mga amenity na inaalok ng property na ito. Ipapakita namin ang mga ito bilang mga filter sa Paghahanap."
     }
   },
   "subscription": {
@@ -650,7 +814,7 @@
     "noResults": "Walang tanong na tumutugma sa filter na ito",
     "empty": "Walang tanong na tumutugma sa filter na ito",
     "lead": "Lead",
-    "listing": "Listing",
+    "listing": "Listahan",
     "contact": "Kontak",
     "date": "Petsa",
     "status": "Katayuan",
@@ -668,7 +832,7 @@
     "anonymousLeadLong": "Hindi nagpapakilalang lead — makipag-ugnayan sa pamamagitan ng email o telepono",
     "drawerTitle": "Detalye ng tanong",
     "anonymous": "Hindi nagpapakilala",
-    "listingLabel": "Listing",
+    "listingLabel": "Listahan",
     "messageLabel": "Mensahe",
     "viewPublicPage": "Tingnan ang pampublikong pahina",
     "agentNotesLabel": "Mga tala ng ahente (na-save sa blur)",
@@ -706,7 +870,7 @@
     "paidHeader": "Bayad na",
     "noCommissionsTitle": "Wala pang mga komisyon",
     "noCommissionsBody": "Sa sandaling magsara ang isang listing, lalabas dito ang iyong komisyon na may buong breakdown at katayuan.",
-    "colListing": "Listing",
+    "colListing": "Listahan",
     "colTransactionValue": "Halaga ng transaksyon",
     "colRate": "Rate",
     "colYouEarn": "Iyong kinikita",
@@ -717,6 +881,19 @@
       "confirmed": "Nakumpirma",
       "paid": "Bayad na",
       "disputed": "Pinagdedebate"
+    },
+    "oath": {
+      "dialogTitle": "Commitment ng Komisyon",
+      "translatedOath": "Ako ay nangangako sa pagbabayad ng napagkasunduang komisyon sa pagtatapos ng transaksyong ito sa real estate, at kinikilala ang responsibilidad na ito sa harap ng Diyos at ng batas.",
+      "breakdownTitle": "Pagkasira ng komisyon",
+      "agentListingBreakdown": "Komisyon sa platform: <strong>0.5%</strong> ng halaga ng transaksyon, na babayaran sa matagumpay na pagbebenta o pagsasara ng lease.",
+      "buyerAgentCommission": "Komisyon ng ahente: <strong>2.5%</strong> ng halaga ng transaksyon.",
+      "buyerPlatformFee": "Bayad sa platform: <strong>0.5%</strong> ng halaga ng transaksyon.",
+      "acceptError": "Hindi maitala ang iyong pagtanggap",
+      "agreeCheckbox": "Sumasang-ayon ako sa mga tuntunin ng komisyon",
+      "decline": "Hindi ako sang-ayon",
+      "saving": "Nagse-save...",
+      "acceptCta": "Tinatanggap Ko at Nangako"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Kontrata #",
     "viewContract": "Tingnan ang kontrata",
     "signedThroughEjar": "Nilagdaan sa pamamagitan ng Ejar",
-    "noContracts": "Wala pang mga kontrata ng upa"
+    "noContracts": "Wala pang mga kontrata ng upa",
+    "status": {
+      "draft": "Draft",
+      "pending_signatures": "Mga nakabinbing lagda",
+      "active": "Aktibo",
+      "expired": "Nag-expire",
+      "cancelled": "Kinansela"
+    }
   },
   "dufaat": {
     "title": "Mga installment ng Dufaat",
@@ -911,13 +1095,19 @@
     "nextPayment": "Susunod na bayad",
     "installmentsPaid": "Bayad na mga installment",
     "payNow": "Bayaran ang installment",
-    "noPlans": "Wala pang mga plano ng Dufaat"
+    "noPlans": "Wala pang mga plano ng Dufaat",
+    "status": {
+      "active": "Aktibo",
+      "completed": "Nakumpleto",
+      "defaulted": "Defaulted",
+      "cancelled": "Kinansela"
+    }
   },
   "booking": {
     "myBookings": "Aking mga booking",
     "tabGuest": "Bilang bisita",
     "tabHost": "Bilang host",
-    "checkIn": "Check-in",
+    "checkIn": "Mag-check-in",
     "checkOut": "Check-out",
     "night": "gabi",
     "nights": "mga gabi",
@@ -961,6 +1151,9 @@
       "confirmed": "Nakumpirma",
       "cancelled": "Kinansela",
       "completed": "Natapos"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Pinakamaraming bisita: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Katamtamang kumpiyansa",
       "low": "Mababang kumpiyansa"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Maghanap ayon sa pangalan o espesyalidad",
+    "allCities": "Lahat ng Lungsod",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Walang mga ahente na tumutugma sa iyong paghahanap",
+    "emptyBody": "Subukan ang ibang pangalan o lungsod.",
+    "agency": "Eawlma Real Estate",
+    "verified": "Na-verify",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} aktibong listahan",
+    "viewProfile": "Tingnan ang Profile"
+  },
+  "agent": {
+    "verified": "Na-verify",
+    "verifiedAgent": "Na-verify na Ahente",
+    "licensed": "Lisensyado",
+    "falLicense": "FAL Licensed",
+    "listings": "Mga Listahan",
+    "reviews": "Mga Review",
+    "rating": "Rating",
+    "responseTime": "Oras ng Pagtugon",
+    "memberSince": "Miyembro Simula",
+    "contactAgent": "Makipag-ugnayan sa Ahente",
+    "viewProfile": "Tingnan ang Profile",
+    "sendMessage": "Magpadala ng Mensahe"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Apartment",
+    "land": "Lupa",
+    "chalet": "Chalet",
+    "farm": "Bukid",
+    "restHouse": "Rest House",
+    "office": "Opisina",
+    "shop": "Mamili",
+    "warehouse": "Warehouse",
+    "hotel": "Kwarto ng Hotel",
+    "entireHome": "Buong Bahay",
+    "room": "Kwarto"
+  },
+  "amenities": {
+    "pool": "Swimming Pool",
+    "gym": "Gym",
+    "parking": "Paradahan",
+    "security": "Seguridad",
+    "elevator": "Elevator",
+    "garden": "Hardin",
+    "balcony": "Balkonahe",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driver Room",
+    "storage": "Storage Room",
+    "centralAC": "Central A/C",
+    "internet": "Internet",
+    "satellite": "Satellite TV",
+    "furnished": "Furnished",
+    "kitchen": "Kusina",
+    "laundry": "Laundry Room"
+  },
+  "compare": {
+    "add": "Idagdag upang ihambing",
+    "remove": "Alisin sa paghahambing"
+  },
+  "myListings": {
+    "countSelected": "{{count}} ang napili",
+    "activateAll": "I-activate lahat",
+    "deactivateAll": "I-deactivate lahat",
+    "deleteAll": "Tanggalin lahat",
+    "colViews": "Mga View",
+    "colInquiries": "Mga Tanong",
+    "boostFeature": "Boost (tampok)",
+    "duplicate": "Duplicate",
+    "deleteConfirmTitle": "Tanggalin ang {{count}} (mga) listahan?",
+    "deleteConfirmDescription": "Ang pagkilos na ito ay mahinang tinatanggal ang listahan — hindi na ito lalabas sa publiko."
   }
 }

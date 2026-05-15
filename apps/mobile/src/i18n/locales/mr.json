@@ -432,7 +432,10 @@
       "rejected": "नाकारलेले",
       "expired": "कालबाह्य",
       "draft": "मसुदा",
-      "archived": "संग्रहित"
+      "archived": "संग्रहित",
+      "pending_review": "पुनरावलोकन अंतर्गत",
+      "sold": "विकले",
+      "rented": "भाड्याने घेतले"
     },
     "sale": "विक्री",
     "rent": "भाड्याने",
@@ -460,7 +463,22 @@
     "actionFailed": "कृती अयशस्वी",
     "bookingDevTitle": "बुकिंग",
     "bookingDevBody": "बुकिंग प्रवाह विकसित होत आहे. कृपया एजंटशी संपर्क साधा.",
-    "removeFromSaved": "जतन केलेल्या मधून ही मालमत्ता काढून टाकायची?"
+    "removeFromSaved": "जतन केलेल्या मधून ही मालमत्ता काढून टाकायची?",
+    "sqm": "m²",
+    "type": "प्रकार",
+    "floor": "मजला",
+    "age": "वय",
+    "parking": "पार्किंग",
+    "furnished": "सुसज्ज",
+    "unfurnished": "असभ्य",
+    "perNight": "/रात्र",
+    "verifiedAgent": "सत्यापित एजंट",
+    "newListing": "नवीन",
+    "sold": "विकले",
+    "rented": "भाड्याने घेतले",
+    "available": "उपलब्ध",
+    "pending": "प्रलंबित",
+    "expired": "कालबाह्य"
   },
   "search": {
     "filters": "फिल्टर्स",
@@ -1651,5 +1669,55 @@
     "payout_processed": "पेआउट प्रक्रिया केली",
     "dispute_resolved": "वाद मिटला",
     "system": "प्रणाली"
+  },
+  "agent": {
+    "verified": "सत्यापित",
+    "verifiedAgent": "सत्यापित एजंट",
+    "licensed": "परवाना",
+    "falLicense": "FAL परवानाकृत",
+    "listings": "सूची",
+    "reviews": "पुनरावलोकने",
+    "rating": "रेटिंग",
+    "responseTime": "प्रतिसाद वेळ",
+    "memberSince": "पासून सदस्य",
+    "contactAgent": "संपर्क एजंट",
+    "viewProfile": "प्रोफाइल पहा",
+    "sendMessage": "संदेश पाठवा"
+  },
+  "property": {
+    "villa": "व्हिला",
+    "apartment": "अपार्टमेंट",
+    "land": "जमीन",
+    "chalet": "चाळे",
+    "farm": "शेत",
+    "restHouse": "विश्रामगृह",
+    "office": "कार्यालय",
+    "shop": "दुकान",
+    "warehouse": "कोठार",
+    "hotel": "हॉटेल रूम",
+    "entireHome": "संपूर्ण घर",
+    "room": "खोली"
+  },
+  "amenities": {
+    "pool": "जलतरण तलाव",
+    "gym": "जिम",
+    "parking": "पार्किंग",
+    "security": "सुरक्षा",
+    "elevator": "| लिफ्ट",
+    "garden": "बाग",
+    "balcony": "| बाल्कनी",
+    "maidRoom": "| दासी खोली",
+    "driverRoom": "| ड्रायव्हर रूम",
+    "storage": "स्टोरेज रूम",
+    "centralAC": "सेंट्रल A/C",
+    "internet": "| इंटरनेट",
+    "satellite": "सॅटेलाइट टीव्ही",
+    "furnished": "सुसज्ज",
+    "kitchen": "| किचन",
+    "laundry": "| लॉन्ड्री रूम"
+  },
+  "compare": {
+    "add": "तुलना करण्यासाठी जोडा",
+    "remove": "तुलना मधून काढा"
   }
 }

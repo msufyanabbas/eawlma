@@ -432,7 +432,10 @@
       "rejected": "ප්‍රතික්ෂේපිත",
       "expired": "කල් ඉකුත් වී ඇත",
       "draft": "කෙටුම්පත",
-      "archived": "ලේඛනාගත"
+      "archived": "ලේඛනාගත",
+      "pending_review": "සමාලෝචනය යටතේ",
+      "sold": "විකුණුවා",
+      "rented": "කුලියට ගත්තා"
     },
     "sale": "විකිණීම",
     "rent": "කුලියට",
@@ -460,7 +463,22 @@
     "actionFailed": "ක්‍රියාව අසාර්ථක විය",
     "bookingDevTitle": "වෙන්කරවා ගැනීම",
     "bookingDevBody": "වෙන්කරවා ගැනීමේ ප්‍රවාහය සංවර්ධනය වෙමින් පවතී. කරුණාකර නියෝජිතයා අමතන්න.",
-    "removeFromSaved": "මෙම දේපල සුරැකීමෙන් ඉවත් කරන්නද?"
+    "removeFromSaved": "මෙම දේපල සුරැකීමෙන් ඉවත් කරන්නද?",
+    "sqm": "m²",
+    "type": "ටයිප් කරන්න",
+    "floor": "මහල",
+    "age": "වයස",
+    "parking": "වාහන නැවැත්වීම",
+    "furnished": "සපයා ඇත",
+    "unfurnished": "ගෘහභාණ්ඩ නොකළ",
+    "perNight": "/ රාත්රිය",
+    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
+    "newListing": "අලුත්",
+    "sold": "විකුණුවා",
+    "rented": "කුලියට ගත්තා",
+    "available": "ලබා ගත හැක",
+    "pending": "පොරොත්තුවෙන්",
+    "expired": "කල් ඉකුත් වී ඇත"
   },
   "search": {
     "filters": "පෙරහන්",
@@ -1651,5 +1669,55 @@
     "payout_processed": "ගෙවීම් සකස් කර ඇත",
     "dispute_resolved": "ආරවුල විසඳා ඇත",
     "system": "පද්ධතිය"
+  },
+  "agent": {
+    "verified": "තහවුරු කර ඇත",
+    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
+    "licensed": "බලපත්‍රලාභී",
+    "falLicense": "FAL බලපත්‍රලාභී",
+    "listings": "ලැයිස්තුගත කිරීම්",
+    "reviews": "සමාලෝචන",
+    "rating": "ශ්රේණිගත කිරීම",
+    "responseTime": "ප්‍රතිචාර කාලය",
+    "memberSince": "සාමාජිකයා සිට",
+    "contactAgent": "නියෝජිතයා අමතන්න",
+    "viewProfile": "පැතිකඩ බලන්න",
+    "sendMessage": "පණිවිඩයක් යවන්න"
+  },
+  "property": {
+    "villa": "විලා",
+    "apartment": "මහල් නිවාසය",
+    "land": "ඉඩම",
+    "chalet": "චාලට්",
+    "farm": "ගොවිපල",
+    "restHouse": "තානායම",
+    "office": "කාර්යාලය",
+    "shop": "සාප්පු යන්න",
+    "warehouse": "ගබඩාව",
+    "hotel": "හෝටල් කාමරය",
+    "entireHome": "මුළු නිවස",
+    "room": "කාමරය"
+  },
+  "amenities": {
+    "pool": "පිහිනුම් තටාකය",
+    "gym": "ජිම්",
+    "parking": "වාහන නැවැත්වීම",
+    "security": "ආරක්ෂාව",
+    "elevator": "සෝපානය",
+    "garden": "උද්යානය",
+    "balcony": "බැල්කනිය",
+    "maidRoom": "සේවිකාව කාමරය",
+    "driverRoom": "රියදුරු කාමරය",
+    "storage": "ගබඩා කාමරය",
+    "centralAC": "මධ්‍යම ඒ/සී",
+    "internet": "අන්තර්ජාලය",
+    "satellite": "චන්ද්රිකා රූපවාහිනිය",
+    "furnished": "සපයා ඇත",
+    "kitchen": "කුස්සිය",
+    "laundry": "රෙදි සෝදන කාමරය"
+  },
+  "compare": {
+    "add": "සංසන්දනය කිරීමට එකතු කරන්න",
+    "remove": "සංසන්දනය කිරීමෙන් ඉවත් කරන්න"
   }
 }

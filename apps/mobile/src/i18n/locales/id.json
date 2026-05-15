@@ -432,7 +432,10 @@
       "rejected": "Ditolak",
       "expired": "Kedaluwarsa",
       "draft": "Draf",
-      "archived": "Diarsipkan"
+      "archived": "Diarsipkan",
+      "pending_review": "Sedang Ditinjau",
+      "sold": "Terjual",
+      "rented": "Sewaan"
     },
     "sale": "Penjualan",
     "rent": "Menyewa",
@@ -460,7 +463,22 @@
     "actionFailed": "Tindakan gagal",
     "bookingDevTitle": "Pemesanan",
     "bookingDevBody": "Alur pemesanan sedang dalam pengembangan. Silakan hubungi agennya.",
-    "removeFromSaved": "Hapus properti ini dari penyimpanan?"
+    "removeFromSaved": "Hapus properti ini dari penyimpanan?",
+    "sqm": "m²",
+    "type": "Jenis",
+    "floor": "Lantai",
+    "age": "Usia",
+    "parking": "Parkir",
+    "furnished": "Berperabot",
+    "unfurnished": "Tak berperabot",
+    "perNight": "/malam",
+    "verifiedAgent": "Agen Terverifikasi",
+    "newListing": "Baru",
+    "sold": "Terjual",
+    "rented": "Sewaan",
+    "available": "Tersedia",
+    "pending": "Tertunda",
+    "expired": "Kedaluwarsa"
   },
   "search": {
     "filters": "Filter",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Pembayaran Diproses",
     "dispute_resolved": "Sengketa Terselesaikan",
     "system": "Sistem"
+  },
+  "agent": {
+    "verified": "Terverifikasi",
+    "verifiedAgent": "Agen Terverifikasi",
+    "licensed": "Berlisensi",
+    "falLicense": "Berlisensi FAL",
+    "listings": "Daftar",
+    "reviews": "Ulasan",
+    "rating": "Peringkat",
+    "responseTime": "Waktu Respons",
+    "memberSince": "Anggota Sejak",
+    "contactAgent": "Hubungi Agen",
+    "viewProfile": "Lihat Profil",
+    "sendMessage": "Kirim Pesan"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Apartemen",
+    "land": "Tanah",
+    "chalet": "pondok",
+    "farm": "Peternakan",
+    "restHouse": "Rumah Peristirahatan",
+    "office": "Kantor",
+    "shop": "Toko",
+    "warehouse": "Gudang",
+    "hotel": "Kamar Hotel",
+    "entireHome": "Seluruh Rumah",
+    "room": "Ruang"
+  },
+  "amenities": {
+    "pool": "Kolam renang",
+    "gym": "gimnasium",
+    "parking": "Parkir",
+    "security": "Keamanan",
+    "elevator": "Lift",
+    "garden": "Kebun",
+    "balcony": "Balkon",
+    "maidRoom": "Kamar Pembantu",
+    "driverRoom": "Ruang Pengemudi",
+    "storage": "Ruang Penyimpanan",
+    "centralAC": "AC sentral",
+    "internet": "Internet",
+    "satellite": "televisi satelit",
+    "furnished": "Berperabot",
+    "kitchen": "Dapur",
+    "laundry": "Ruang Binatu"
+  },
+  "compare": {
+    "add": "Tambahkan untuk membandingkan",
+    "remove": "Hapus dari perbandingan"
   }
 }

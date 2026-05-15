@@ -127,7 +127,8 @@
     "anyPrice": "Dowolna cena",
     "upTo500": "Do 500 SAR",
     "upTo1000": "Do 1 000 SAR",
-    "upTo2500": "Do 2 500 SAR"
+    "upTo2500": "Do 2 500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Rozpocznij rozmowę",
@@ -146,7 +147,7 @@
     "translatedFrom": "Przetłumaczone z {{lang}}",
     "showOriginal": "Pokaż oryginał",
     "showTranslation": "Pokaż tłumaczenie",
-    "online": "Online",
+    "online": "W Internecie",
     "lastSeen": "Ostatnio widziany"
   },
   "hosting": {
@@ -166,7 +167,8 @@
     "dailyRate": "Stawka dzienna",
     "weeklyRate": "Stawka tygodniowa",
     "guestReviews": "Recenzje gości",
-    "noReviews": "Brak recenzji — gdy goście się wymeldują i ocenią swój pobyt, pojawią się tutaj."
+    "noReviews": "Brak recenzji — gdy goście się wymeldują i ocenią swój pobyt, pojawią się tutaj.",
+    "guestFallback": "Gość"
   },
   "buyerDeals": {
     "title": "Moje transakcje",
@@ -216,7 +218,20 @@
     "favorAgent": "Na korzyść agenta — utwórz prowizję",
     "favorBuyer": "Na korzyść kupującego — anuluj transakcję",
     "cancelDeal": "Anuluj transakcję — bez prowizji",
-    "resolutionHint": "Obie strony zostaną powiadomione z tymi notatkami."
+    "resolutionHint": "Obie strony zostaną powiadomione z tymi notatkami.",
+    "other": "Inny",
+    "buyerLower": "kupujący",
+    "agentLower": "agent",
+    "otherLower": "Inny",
+    "anonymous": "Anonimowy",
+    "resolveTitle": "Rozwiąż spór",
+    "resolveDesc": "Wybierz wynik tego sporu",
+    "favorAgentDesc": "Prowizja zostanie potwierdzona i wypłacona agentowi",
+    "favorBuyerDesc": "Komisja zostanie anulowana",
+    "cancelDealDesc": "Zarówno transakcja, jak i prowizja anulowane",
+    "adminNotes": "Notatki administratora (opcjonalnie)",
+    "resolvedSuccess": "Spór został pomyślnie rozwiązany",
+    "resolvedError": "Nie udało się rozwiązać sporu"
   },
   "auth": {
     "login": "Zaloguj się",
@@ -278,7 +293,7 @@
     "submit": "Wyślij",
     "language": "Język",
     "arabic": "العربية",
-    "english": "English",
+    "english": "angielski",
     "back": "Wstecz",
     "next": "Dalej",
     "previous": "Poprzednie",
@@ -296,7 +311,8 @@
     "remove": "Usuń",
     "actions": "Działania",
     "active": "Aktywne",
-    "inactive": "Nieaktywne"
+    "inactive": "Nieaktywne",
+    "loadMore": "Załaduj więcej"
   },
   "listing": {
     "forSale": "Na sprzedaż",
@@ -362,8 +378,28 @@
       "rejected": "Odrzucone",
       "expired": "Wygasłe",
       "draft": "Wersja robocza",
-      "archived": "Zarchiwizowane"
-    }
+      "archived": "Zarchiwizowane",
+      "pending_review": "W trakcie przeglądu",
+      "sold": "Sprzedany",
+      "rented": "Wynajęty"
+    },
+    "bedrooms": "Sypialnie",
+    "bathrooms": "Łazienki",
+    "sqm": "m²",
+    "type": "Typ",
+    "floor": "Podłoga",
+    "age": "Wiek",
+    "parking": "Parking",
+    "furnished": "Umeblowany",
+    "unfurnished": "Nieumeblowane",
+    "perNight": "/noc",
+    "verifiedAgent": "Zweryfikowany agent",
+    "newListing": "Nowy",
+    "sold": "Sprzedany",
+    "rented": "Wynajęty",
+    "available": "Dostępny",
+    "pending": "Aż do",
+    "expired": "Wygasły"
   },
   "search": {
     "filters": "Filtry",
@@ -399,7 +435,10 @@
       "cta": "Złóż zgłoszenie nieruchomości"
     },
     "drawArea": "Narysuj obszar",
-    "clearDrawing": "Wyczyść rysunek"
+    "clearDrawing": "Wyczyść rysunek",
+    "flexibleDates": "Jestem elastyczny jeśli chodzi o daty",
+    "flex1Month": "1 miesiąc",
+    "shortTerm": "Krótkoterminowe"
   },
   "home": {
     "heroTitle": "Znajdź swój idealny dom",
@@ -438,7 +477,7 @@
     "newestSort": "Najnowsze",
     "priceLowSort": "Cena: niska",
     "priceHighSort": "Cena: wysoka",
-    "appStore": "App Store",
+    "appStore": "Sklep z aplikacjami",
     "googlePlay": "Google Play",
     "statListings": "Ogłoszenia",
     "statAgents": "Agenci",
@@ -533,7 +572,7 @@
     "land": "Działka",
     "commercial": "Komercyjna",
     "studio": "Kawalerka",
-    "penthouse": "Penthouse",
+    "penthouse": "Daszek",
     "townhouse": "Dom szeregowy"
   },
   "profile": {
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Podstawowe informacje",
-    "location": "Lokalizacja",
-    "media": "Media",
+    "location": {
+      "street": "Ulica",
+      "buildingNumber": "Budynek nr.",
+      "postalCode": "Kod pocztowy",
+      "pinPrompt": "Upuść pinezkę, aby ustawić dokładną lokalizację",
+      "pinLabel": "Szpilka",
+      "mapUnavailable": "Selektor pinezek mapy jest niedostępny. Współrzędne wracają do {{lat}}, {{lng}}."
+    },
+    "media": "Głoska bezdźwięczna",
     "amenities": "Udogodnienia",
-    "compliance": "Zgodność",
-    "review": "Przegląd",
+    "compliance": {
+      "permitNumber": "Zezwolenie / numer FAL",
+      "regaNumber": "Numer licencji REGA",
+      "permitExpiry": "Wygaśnięcie pozwolenia",
+      "preferredContact": "Preferowany kontakt",
+      "phone": "Telefon",
+      "publicVisibility": "Widoczność publiczna (odznacz tylko w przypadku linków niepublicznych/prywatnych)"
+    },
+    "review": {
+      "summaryTitle": "Podsumowanie aukcji",
+      "enhanceWithAi": "Ulepszaj dzięki sztucznej inteligencji",
+      "enhancing": "Ulepszanie…",
+      "aiStubNotice": "AI zwróciła kod pośredniczący — ustaw OPENAI_API_KEY na backendzie, aby używać aktywnego modelu.",
+      "descriptionPreview": "Podgląd opisu",
+      "emptyDescription": "(pusty)",
+      "type": "Typ",
+      "titleLabel": "Tytuł",
+      "bedsBaths": "Sypialnie / Łazienki",
+      "cityDistrict": "Miasto/dzielnica",
+      "coordinates": "Współrzędne",
+      "permit": "Zezwolenie",
+      "regaLicense": "Licencja REGA",
+      "visibility": "Widoczność"
+    },
     "saveDraft": "Zapisz wersję roboczą",
     "submit": "Wyślij do przeglądu",
     "submitForReview": "Wyślij do przeglądu",
@@ -576,7 +644,103 @@
       "bathrooms": "Łazienki",
       "parking": "Parking",
       "yearBuilt": "Rok budowy",
-      "furnishing": "Umeblowanie"
+      "furnishing": "Umeblowanie",
+      "rentPeriod": "Okres"
+    },
+    "editListing": "Edytuj listę",
+    "newListing": "Nowe zestawienie",
+    "crumbNew": "Nowy",
+    "validation": {
+      "titleRequired": "Dodaj tytuł w co najmniej jednym języku.",
+      "descriptionRequired": "Dodaj opis w co najmniej jednym języku.",
+      "priceRequired": "Cena musi być większa od zera.",
+      "cityRequired": "Miasto jest wymagane.",
+      "pinRequired": "Umieść pinezkę na mapie, aby wskazać lokalizację.",
+      "imageRequired": "Przed publikacją wymagany jest co najmniej jeden obraz."
+    },
+    "transactionType": {
+      "sale": "Sprzedaż",
+      "rent": "Wynajem"
+    },
+    "rentPeriod": {
+      "daily": "Codziennie",
+      "weekly": "Tygodnik",
+      "monthly": "Miesięczny",
+      "yearly": "Rocznie"
+    },
+    "furnishing": {
+      "unfurnished": "Nieumeblowane",
+      "semi_furnished": "Częściowo umeblowane",
+      "furnished": "Umeblowany"
+    },
+    "visibility": {
+      "public": "Publiczny",
+      "unlisted": "Nie katalogowany"
+    },
+    "amenity": {
+      "pool": "Basen",
+      "garden": "Ogród",
+      "gym": "Sala gimnastyczna",
+      "elevator": "Winda",
+      "maidRoom": "Pokój pokojówki",
+      "driverRoom": "Pokój kierowcy",
+      "centralAc": "Centralna klimatyzacja",
+      "kitchenAppliances": "Sprzęt kuchenny",
+      "security": "Ochrona 24 godziny na dobę, 7 dni w tygodniu",
+      "cornerUnit": "Jednostka narożna"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Basen",
+      "parking": "Parking",
+      "breakfast": "Śniadanie",
+      "ac": "Klimatyzacja",
+      "kitchen": "Kuchnia",
+      "tv": "telewizja",
+      "washer": "Pralka",
+      "workspace": "Obszar roboczy",
+      "petsAllowed": "Zwierzęta dozwolone",
+      "smokingAllowed": "Palenie dozwolone",
+      "wheelchairAccessible": "Dostępny dla wózków inwalidzkich"
+    },
+    "shortTerm": {
+      "title": "Szczegóły wynajmu krótkoterminowego",
+      "subtitle": "Goście zarezerwują tę ofertę na noc. Skonfiguruj zasady pobytu, udogodnienia i poziomy cenowe.",
+      "dailyRate": "Stawka dzienna (SAR)",
+      "weeklyRate": "Stawka tygodniowa (SAR, opcjonalnie)",
+      "minimumStay": "Minimalny pobyt (noce)",
+      "maxGuests": "Maks. gości",
+      "checkIn": "Zameldować się",
+      "checkOut": "Wymeldować się",
+      "cancellationPolicy": "Zasady anulowania",
+      "cancelFlexible": "Elastyczny — pełny zwrot pieniędzy do 24 godzin wcześniej",
+      "cancelModerate": "Umiarkowany — pełny zwrot pieniędzy do 5 dni wcześniej",
+      "cancelStrict": "Ścisłe — zwrot 50% do 7 dni wcześniej",
+      "starRating": "Ocena gwiazdkowa",
+      "hotelName": "Nazwa hotelu",
+      "instantBook": "Książka natychmiastowa",
+      "instantBookHint": "Rezerwacje są potwierdzane automatycznie bez Twojej zgody. Wyłącz możliwość sprawdzenia każdego żądania w pierwszej kolejności.",
+      "amenities": "Udogodnienia",
+      "houseRules": "Zasady domu",
+      "houseRulesPlaceholder": "np. Zakaz imprez, cisza po 22:00, zakaz palenia w pomieszczeniach..."
+    },
+    "mediaStep": {
+      "images": "Obrazy",
+      "imageDropHint": "Przeciągnij i upuść zdjęcia tutaj lub kliknij, aby wybrać. JPEG/PNG/WebP do 10 MB.",
+      "photoAlt": "Zdjęcie z aukcji",
+      "setCover": "Ustaw jako okładkę",
+      "cover": "Okładka",
+      "videoTour": "Wycieczka wideo",
+      "videoDropHint": "Przeciągnij plik MP4 lub kliknij, aby wybrać. Maks. 500MB.",
+      "videoUploaded": "Przesłany film — {{name}}",
+      "vrTitle": "🥽 Link do wycieczki w wirtualnej rzeczywistości",
+      "vrPlaceholder": "https://… (Matterport, Kuula itp.)",
+      "modelTitle": "Model 3D / AR (.glb lub .gltf)",
+      "modelDropHint": "Prześlij model GLB/GLTF, aby włączyć AR. Maks. 50MB.",
+      "modelUploaded": "Przesłano model — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Kliknij udogodnienia, jakie oferuje ten obiekt. Wyświetlimy je jako filtry w wyszukiwarce."
     }
   },
   "subscription": {
@@ -649,7 +813,7 @@
     "title": "Zapytania",
     "noResults": "Żadne zapytania nie pasują do tego filtra",
     "empty": "Żadne zapytania nie pasują do tego filtra",
-    "lead": "Lead",
+    "lead": "Ołów",
     "listing": "Ogłoszenie",
     "contact": "Kontakt",
     "date": "Data",
@@ -717,6 +881,19 @@
       "confirmed": "Potwierdzone",
       "paid": "Wypłacone",
       "disputed": "Sporne"
+    },
+    "oath": {
+      "dialogTitle": "Zobowiązanie Komisji",
+      "translatedOath": "Niniejszym zobowiązuję się do zapłaty uzgodnionej prowizji po zakończeniu transakcji dotyczącej nieruchomości i przyjmuję tę odpowiedzialność przed Bogiem i prawem.",
+      "breakdownTitle": "Podział prowizji",
+      "agentListingBreakdown": "Prowizja platformy: <strong>0,5%</strong> wartości transakcji, płatna po pomyślnej sprzedaży lub zamknięciu umowy najmu.",
+      "buyerAgentCommission": "Prowizja agenta: <strong>2,5%</strong> wartości transakcji.",
+      "buyerPlatformFee": "Opłata za platformę: <strong>0,5%</strong> wartości transakcji.",
+      "acceptError": "Nie udało się zarejestrować Twojej akceptacji",
+      "agreeCheckbox": "Zgadzam się na warunki prowizji",
+      "decline": "Nie zgadzam się",
+      "saving": "Oszczędność...",
+      "acceptCta": "Akceptuję i zobowiązuję się"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Umowa #",
     "viewContract": "Zobacz umowę",
     "signedThroughEjar": "Podpisane przez Ejar",
-    "noContracts": "Brak umów najmu"
+    "noContracts": "Brak umów najmu",
+    "status": {
+      "draft": "Projekt",
+      "pending_signatures": "Oczekujące podpisy",
+      "active": "Aktywny",
+      "expired": "Wygasły",
+      "cancelled": "Odwołany"
+    }
   },
   "dufaat": {
     "title": "Raty Dufaat",
@@ -911,7 +1095,13 @@
     "nextPayment": "Następna płatność",
     "installmentsPaid": "Zapłacone raty",
     "payNow": "Zapłać ratę",
-    "noPlans": "Brak planów Dufaat"
+    "noPlans": "Brak planów Dufaat",
+    "status": {
+      "active": "Aktywny",
+      "completed": "Zakończony",
+      "defaulted": "Domyślne",
+      "cancelled": "Odwołany"
+    }
   },
   "booking": {
     "myBookings": "Moje rezerwacje",
@@ -961,6 +1151,9 @@
       "confirmed": "Potwierdzone",
       "cancelled": "Anulowane",
       "completed": "Zakończone"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Maksymalna liczba gości: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Średnia pewność",
       "low": "Niska pewność"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Szukaj według nazwy lub specjalności",
+    "allCities": "Wszystkie miasta",
+    "cityRiyadh": "Rijad",
+    "cityJeddah": "Jeddach",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Żaden agent nie pasuje do Twojego wyszukiwania",
+    "emptyBody": "Wypróbuj inną nazwę lub miasto.",
+    "agency": "Nieruchomości Eawlmy",
+    "verified": "Zweryfikowano",
+    "respondsUnder2h": "< 2 godz",
+    "activeListingsCount": "{{count}} aktywnych ofert",
+    "viewProfile": "Zobacz profil"
+  },
+  "agent": {
+    "verified": "Zweryfikowano",
+    "verifiedAgent": "Zweryfikowany agent",
+    "licensed": "Upoważniony",
+    "falLicense": "Licencja FAL",
+    "listings": "Oferty",
+    "reviews": "Recenzje",
+    "rating": "Ocena",
+    "responseTime": "Czas reakcji",
+    "memberSince": "Członek od",
+    "contactAgent": "Skontaktuj się z agentem",
+    "viewProfile": "Zobacz profil",
+    "sendMessage": "Wyślij wiadomość"
+  },
+  "property": {
+    "villa": "Willa",
+    "apartment": "Apartament",
+    "land": "Grunt",
+    "chalet": "Szalet",
+    "farm": "Gospodarstwo",
+    "restHouse": "Dom Wypoczynkowy",
+    "office": "Biuro",
+    "shop": "Sklep",
+    "warehouse": "Magazyn",
+    "hotel": "Pokój hotelowy",
+    "entireHome": "Cały dom",
+    "room": "Pokój"
+  },
+  "amenities": {
+    "pool": "Basen",
+    "gym": "Sala gimnastyczna",
+    "parking": "Parking",
+    "security": "Bezpieczeństwo",
+    "elevator": "Winda",
+    "garden": "Ogród",
+    "balcony": "Balkon",
+    "maidRoom": "Pokój pokojówki",
+    "driverRoom": "Pokój kierowcy",
+    "storage": "Magazyn",
+    "centralAC": "Centralna klimatyzacja",
+    "internet": "Internet",
+    "satellite": "Telewizja satelitarna",
+    "furnished": "Umeblowany",
+    "kitchen": "Kuchnia",
+    "laundry": "Pralnia"
+  },
+  "compare": {
+    "add": "Dodaj do porównania",
+    "remove": "Usuń z porównania"
+  },
+  "myListings": {
+    "countSelected": "Wybrano {{count}}",
+    "activateAll": "Aktywuj wszystko",
+    "deactivateAll": "Dezaktywuj wszystko",
+    "deleteAll": "Usuń wszystko",
+    "colViews": "Widoki",
+    "colInquiries": "Zapytania",
+    "boostFeature": "Wzmocnienie (funkcja)",
+    "duplicate": "Duplikat",
+    "deleteConfirmTitle": "Usunąć wpisy ({{count}})?",
+    "deleteConfirmDescription": "Ta czynność powoduje trwałe usunięcie wpisu — nie będzie on już wyświetlany publicznie."
   }
 }

@@ -432,7 +432,10 @@
       "rejected": "નકારેલ",
       "expired": "સમાપ્ત",
       "draft": "ડ્રાફ્ટ",
-      "archived": "આર્કાઇવ"
+      "archived": "આર્કાઇવ",
+      "pending_review": "સમીક્ષા હેઠળ",
+      "sold": "| વેચાયેલ",
+      "rented": "ભાડે આપેલ"
     },
     "sale": "વેચાણ",
     "rent": "ભાડે",
@@ -460,7 +463,22 @@
     "actionFailed": "ક્રિયા નિષ્ફળ",
     "bookingDevTitle": "બુકિંગ",
     "bookingDevBody": "બુકિંગ પ્રવાહ વિકાસમાં છે. કૃપા કરીને એજન્ટનો સંપર્ક કરો.",
-    "removeFromSaved": "સાચવેલમાંથી આ મિલકત દૂર કરીએ?"
+    "removeFromSaved": "સાચવેલમાંથી આ મિલકત દૂર કરીએ?",
+    "sqm": "m²",
+    "type": "પ્રકાર",
+    "floor": "ફ્લોર",
+    "age": "| ઉંમર",
+    "parking": "| પાર્કિંગ",
+    "furnished": "| સજ્જ",
+    "unfurnished": "| અનફર્નિશ્ડ",
+    "perNight": "| /રાત",
+    "verifiedAgent": "| ચકાસાયેલ એજન્ટ",
+    "newListing": "નવું",
+    "sold": "| વેચાયેલ",
+    "rented": "ભાડે આપેલ",
+    "available": "| ઉપલબ્ધ",
+    "pending": "બાકી",
+    "expired": "સમાપ્ત"
   },
   "search": {
     "filters": "ફિલ્ટર્સ",
@@ -1651,5 +1669,55 @@
     "payout_processed": "| ચૂકવણીની પ્રક્રિયા",
     "dispute_resolved": "વિવાદ ઉકેલાયો",
     "system": "સિસ્ટમ"
+  },
+  "agent": {
+    "verified": "| ચકાસાયેલ",
+    "verifiedAgent": "| ચકાસાયેલ એજન્ટ",
+    "licensed": "લાઇસન્સ થયેલ",
+    "falLicense": "FAL લાયસન્સ",
+    "listings": "સૂચિઓ",
+    "reviews": "સમીક્ષાઓ",
+    "rating": "રેટિંગ",
+    "responseTime": "| પ્રતિભાવ સમય",
+    "memberSince": "ત્યારથી સભ્ય",
+    "contactAgent": "સંપર્ક એજન્ટ",
+    "viewProfile": "| પ્રોફાઇલ જુઓ",
+    "sendMessage": "સંદેશ મોકલો"
+  },
+  "property": {
+    "villa": "વિલા",
+    "apartment": "એપાર્ટમેન્ટ",
+    "land": "જમીન",
+    "chalet": "| ચેલેટ",
+    "farm": "| ફાર્મ",
+    "restHouse": "| રેસ્ટ હાઉસ",
+    "office": "| ઓફિસ",
+    "shop": "દુકાન",
+    "warehouse": "વેરહાઉસ",
+    "hotel": "હોટેલ રૂમ",
+    "entireHome": "| આખું ઘર",
+    "room": "| રૂમ"
+  },
+  "amenities": {
+    "pool": "| સ્વિમિંગ પૂલ",
+    "gym": "જિમ",
+    "parking": "પાર્કિંગ",
+    "security": "| સુરક્ષા",
+    "elevator": "| એલિવેટર",
+    "garden": "ગાર્ડન",
+    "balcony": "| બાલ્કની",
+    "maidRoom": "નોકરડી રૂમ",
+    "driverRoom": "ડ્રાઈવર રૂમ",
+    "storage": "સ્ટોરેજ રૂમ",
+    "centralAC": "સેન્ટ્રલ A/C",
+    "internet": "| ઈન્ટરનેટ",
+    "satellite": "સેટેલાઇટ ટીવી",
+    "furnished": "સજ્જ",
+    "kitchen": "| રસોડું",
+    "laundry": "| લોન્ડ્રી રૂમ"
+  },
+  "compare": {
+    "add": "સરખામણીમાં ઉમેરો",
+    "remove": "સરખામણીમાંથી દૂર કરો"
   }
 }

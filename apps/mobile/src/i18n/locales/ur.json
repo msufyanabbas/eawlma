@@ -459,7 +459,10 @@
       "rejected": "مسترد",
       "expired": "ختم شدہ",
       "draft": "مسودہ",
-      "archived": "آرکائیو شدہ"
+      "archived": "آرکائیو شدہ",
+      "pending_review": "Under Review",
+      "sold": "Sold",
+      "rented": "Rented"
     },
     "sale": "| فروخت",
     "rent": "| کرایہ",
@@ -487,7 +490,22 @@
     "actionFailed": "کارروائی ناکام",
     "bookingDevTitle": "بکنگ",
     "bookingDevBody": "| بکنگ کا بہاؤ ترقی میں ہے۔ براہ کرم ایجنٹ سے رابطہ کریں۔",
-    "removeFromSaved": "اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟"
+    "removeFromSaved": "اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟",
+    "sqm": "m²",
+    "type": "Type",
+    "floor": "Floor",
+    "age": "Age",
+    "parking": "Parking",
+    "furnished": "Furnished",
+    "unfurnished": "Unfurnished",
+    "perNight": "/night",
+    "verifiedAgent": "Verified Agent",
+    "newListing": "New",
+    "sold": "Sold",
+    "rented": "Rented",
+    "available": "Available",
+    "pending": "Pending",
+    "expired": "Expired"
   },
   "search": {
     "filters": "فلٹرز",
@@ -1663,5 +1681,55 @@
     "payout_processed": "| ادائیگی پر کارروائی کی گئی",
     "dispute_resolved": "تنازعہ حل ہو گیا",
     "system": "سسٹم"
+  },
+  "agent": {
+    "verified": "Verified",
+    "verifiedAgent": "Verified Agent",
+    "licensed": "Licensed",
+    "falLicense": "FAL Licensed",
+    "listings": "Listings",
+    "reviews": "Reviews",
+    "rating": "Rating",
+    "responseTime": "رسپانس ٹائم",
+    "memberSince": "ممبر چونکہ",
+    "contactAgent": "ایجنٹ سے رابطہ کریں",
+    "viewProfile": "| پروفائل دیکھیں",
+    "sendMessage": "پیغام بھیجیں"
+  },
+  "property": {
+    "villa": "ولا",
+    "apartment": "اپارٹمنٹ",
+    "land": "زمین",
+    "chalet": "| چیلیٹ",
+    "farm": "| فارم",
+    "restHouse": "| ریسٹ ہاؤس",
+    "office": "آفس",
+    "shop": "دکان",
+    "warehouse": "گودام",
+    "hotel": "ہوٹل کا کمرہ",
+    "entireHome": "| پورا گھر",
+    "room": "کمرہ"
+  },
+  "amenities": {
+    "pool": "| سوئمنگ پول",
+    "gym": "جم",
+    "parking": "پارکنگ",
+    "security": "| سیکورٹی",
+    "elevator": "| لفٹ",
+    "garden": "باغ",
+    "balcony": "| بالکونی",
+    "maidRoom": "| نوکرانی کا کمرہ",
+    "driverRoom": "ڈرائیور کا کمرہ",
+    "storage": "اسٹوریج روم",
+    "centralAC": "سینٹرل A/C",
+    "internet": "انٹرنیٹ",
+    "satellite": "سیٹلائٹ ٹی وی",
+    "furnished": "فرنشڈ",
+    "kitchen": "| باورچی خانہ",
+    "laundry": "| لانڈری کا کمرہ"
+  },
+  "compare": {
+    "add": "موازنہ کرنے کے لیے شامل کریں",
+    "remove": "موازنہ سے ہٹائیں"
   }
 }

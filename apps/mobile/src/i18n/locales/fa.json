@@ -432,7 +432,10 @@
       "rejected": "رد شده",
       "expired": "منقضی‌شده",
       "draft": "پیش‌نویس",
-      "archived": "بایگانی‌شده"
+      "archived": "بایگانی‌شده",
+      "pending_review": "تحت بررسی",
+      "sold": "فروخته شد",
+      "rented": "اجاره ای"
     },
     "sale": "فروش",
     "rent": "اجاره",
@@ -460,7 +463,22 @@
     "actionFailed": "اقدام ناموفق بود",
     "bookingDevTitle": "رزرو",
     "bookingDevBody": "جریان رزرو در حال توسعه است. لطفا با نماینده تماس بگیرید.",
-    "removeFromSaved": "این ویژگی از ذخیره شده حذف شود؟"
+    "removeFromSaved": "این ویژگی از ذخیره شده حذف شود؟",
+    "sqm": "متر مربع",
+    "type": "نوع",
+    "floor": "طبقه",
+    "age": "سن",
+    "parking": "پارکینگ",
+    "furnished": "مبله",
+    "unfurnished": "بدون مبله",
+    "perNight": "/شب",
+    "verifiedAgent": "نماینده تایید شده",
+    "newListing": "جدید",
+    "sold": "فروخته شد",
+    "rented": "اجاره ای",
+    "available": "موجود",
+    "pending": "در انتظار",
+    "expired": "منقضی شده"
   },
   "search": {
     "filters": "فیلترها",
@@ -1651,5 +1669,55 @@
     "payout_processed": "پرداخت پردازش شد",
     "dispute_resolved": "اختلاف حل شد",
     "system": "سیستم"
+  },
+  "agent": {
+    "verified": "تایید شده",
+    "verifiedAgent": "نماینده تایید شده",
+    "licensed": "دارای مجوز",
+    "falLicense": "دارای مجوز FAL",
+    "listings": "لیست ها",
+    "reviews": "بررسی ها",
+    "rating": "رتبه بندی",
+    "responseTime": "زمان پاسخگویی",
+    "memberSince": "عضو از",
+    "contactAgent": "با نماینده تماس بگیرید",
+    "viewProfile": "مشاهده نمایه",
+    "sendMessage": "ارسال پیام"
+  },
+  "property": {
+    "villa": "ویلا",
+    "apartment": "آپارتمان",
+    "land": "زمین",
+    "chalet": "کلبه کلبه",
+    "farm": "مزرعه",
+    "restHouse": "خانه استراحت",
+    "office": "دفتر",
+    "shop": "خرید کنید",
+    "warehouse": "انبار",
+    "hotel": "اتاق هتل",
+    "entireHome": "کل خانه",
+    "room": "اتاق"
+  },
+  "amenities": {
+    "pool": "استخر شنا",
+    "gym": "ورزشگاه",
+    "parking": "پارکینگ",
+    "security": "امنیت",
+    "elevator": "آسانسور",
+    "garden": "باغ",
+    "balcony": "بالکن",
+    "maidRoom": "اتاق خدمتکار",
+    "driverRoom": "اتاق راننده",
+    "storage": "انباری",
+    "centralAC": "تهویه مطبوع مرکزی",
+    "internet": "اینترنت",
+    "satellite": "تلویزیون ماهواره ای",
+    "furnished": "مبله",
+    "kitchen": "آشپزخانه",
+    "laundry": "لاندری روم"
+  },
+  "compare": {
+    "add": "اضافه کردن به مقایسه",
+    "remove": "حذف از مقایسه"
   }
 }

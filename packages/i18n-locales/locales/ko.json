@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "이울마",
     "tagline": "사우디아라비아에서 완벽한 부동산을 찾아보세요"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "모든 가격",
     "upTo500": "최대 500 SAR",
     "upTo1000": "최대 1,000 SAR",
-    "upTo2500": "최대 2,500 SAR"
+    "upTo2500": "최대 2,500 SAR",
+    "hotelChip": "호텔"
   },
   "messages": {
     "startConversation": "대화 시작",
@@ -166,7 +167,8 @@
     "dailyRate": "1박 요금",
     "weeklyRate": "주간 요금",
     "guestReviews": "게스트 리뷰",
-    "noReviews": "리뷰 없음 — 게스트가 체크아웃하고 평가를 남기면 여기에 표시됩니다."
+    "noReviews": "리뷰 없음 — 게스트가 체크아웃하고 평가를 남기면 여기에 표시됩니다.",
+    "guestFallback": "손님"
   },
   "buyerDeals": {
     "title": "내 거래",
@@ -216,7 +218,20 @@
     "favorAgent": "중개인 손 — 수수료 생성",
     "favorBuyer": "구매자 손 — 거래 취소",
     "cancelDeal": "거래 취소 — 수수료 없음",
-    "resolutionHint": "양쪽에 이 메모와 함께 알림이 발송됩니다."
+    "resolutionHint": "양쪽에 이 메모와 함께 알림이 발송됩니다.",
+    "other": "다른",
+    "buyerLower": "사는 사람",
+    "agentLower": "대리인",
+    "otherLower": "다른",
+    "anonymous": "익명의",
+    "resolveTitle": "분쟁 해결",
+    "resolveDesc": "이 분쟁의 결과를 선택하세요.",
+    "favorAgentDesc": "수수료가 확정되어 대리인에게 지급됩니다.",
+    "favorBuyerDesc": "커미션이 취소됩니다",
+    "cancelDealDesc": "거래 및 커미션 모두 취소됨",
+    "adminNotes": "관리자 메모(선택사항)",
+    "resolvedSuccess": "분쟁이 성공적으로 해결되었습니다",
+    "resolvedError": "분쟁을 해결하지 못했습니다."
   },
   "auth": {
     "login": "로그인",
@@ -277,8 +292,8 @@
     "filter": "필터",
     "submit": "제출",
     "language": "언어",
-    "arabic": "العربية",
-    "english": "English",
+    "arabic": "아랍어",
+    "english": "영어",
     "back": "뒤로",
     "next": "다음",
     "previous": "이전",
@@ -296,7 +311,8 @@
     "remove": "제거",
     "actions": "작업",
     "active": "활성",
-    "inactive": "비활성"
+    "inactive": "비활성",
+    "loadMore": "더 로드하기"
   },
   "listing": {
     "forSale": "판매용",
@@ -311,7 +327,7 @@
     "areaUnit": "m²",
     "price": "가격",
     "pricePerSqm": "m²당 가격",
-    "currency": "SAR",
+    "currency": "특별 행정구",
     "perMonth": "/월",
     "perYear": "/년",
     "perDay": "/일",
@@ -322,7 +338,7 @@
     "save": "저장",
     "share": "공유",
     "callAgent": "중개인에게 전화",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "왓츠앱",
     "scheduleTour": "방문 일정",
     "scheduleATour": "방문 예약",
     "contactAgent": "중개인에게 연락",
@@ -362,8 +378,28 @@
       "rejected": "거절됨",
       "expired": "만료됨",
       "draft": "초안",
-      "archived": "보관됨"
-    }
+      "archived": "보관됨",
+      "pending_review": "검토중",
+      "sold": "판매된",
+      "rented": "임대"
+    },
+    "bedrooms": "침실",
+    "bathrooms": "욕실",
+    "sqm": "m²",
+    "type": "유형",
+    "floor": "바닥",
+    "age": "나이",
+    "parking": "주차",
+    "furnished": "가구",
+    "unfurnished": "가구 없음",
+    "perNight": "/밤",
+    "verifiedAgent": "검증된 에이전트",
+    "newListing": "새로운",
+    "sold": "판매된",
+    "rented": "임대",
+    "available": "사용 가능",
+    "pending": "보류 중",
+    "expired": "만료됨"
   },
   "search": {
     "filters": "필터",
@@ -399,7 +435,10 @@
       "cta": "매물 요청 제출"
     },
     "drawArea": "영역 그리기",
-    "clearDrawing": "그리기 지우기"
+    "clearDrawing": "그리기 지우기",
+    "flexibleDates": "나는 날짜에 융통성이 있다",
+    "flex1Month": "1개월",
+    "shortTerm": "단기"
   },
   "home": {
     "heroTitle": "완벽한 집을 찾아보세요",
@@ -438,8 +477,8 @@
     "newestSort": "최신순",
     "priceLowSort": "가격: 낮은",
     "priceHighSort": "가격: 높은",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "앱스토어",
+    "googlePlay": "구글 플레이",
     "statListings": "매물",
     "statAgents": "중개인",
     "statUsers": "사용자",
@@ -476,13 +515,13 @@
     "support": "지원",
     "help": "도움말 센터",
     "helpCenter": "도움말 센터",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "왓츠앱",
     "callUs": "전화하기",
     "needHelp": "도움이 필요하신가요? WhatsApp으로 문의하세요.",
     "cr": "상업 등록",
     "regaLicensed": "사우디 부동산총국 라이선스",
     "location": "사우디아라비아 리야드",
-    "rights": "All rights reserved"
+    "rights": "모든 권리 보유"
   },
   "about": {
     "title": "Eawlma 소개",
@@ -512,7 +551,7 @@
     "sentSuccess": "감사합니다! 팀이 24시간 이내에 답변드립니다.",
     "emailUs": "이메일 문의",
     "emailReplies": "평일 24시간 이내 답변",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "왓츠앱",
     "whatsappHours": "일~목, 9:00 – 18:00 (AST)",
     "office": "사무실",
     "officeAddress": "리야드 킹 파드 로드",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "기본 정보",
-    "location": "위치",
+    "location": {
+      "street": "거리",
+      "buildingNumber": "건물번호",
+      "postalCode": "우편번호",
+      "pinPrompt": "핀을 놓아 정확한 위치를 설정하세요.",
+      "pinLabel": "핀",
+      "mapUnavailable": "지도 핀 선택기를 사용할 수 없습니다. 좌표는 {{lat}}, {{lng}}로 대체됩니다."
+    },
     "media": "미디어",
     "amenities": "편의시설",
-    "compliance": "규정 준수",
-    "review": "검토",
+    "compliance": {
+      "permitNumber": "허가 / FAL 번호",
+      "regaNumber": "REGA 라이센스 번호",
+      "permitExpiry": "만료 허가",
+      "preferredContact": "선호하는 연락처",
+      "phone": "핸드폰",
+      "publicVisibility": "공개 가시성(미등록/비공개 링크만 선택 취소)"
+    },
+    "review": {
+      "summaryTitle": "목록 요약",
+      "enhanceWithAi": "AI로 향상",
+      "enhancing": "강화 중…",
+      "aiStubNotice": "AI가 스텁을 반환했습니다. 라이브 모델을 사용하려면 백엔드에서 OPENAI_API_KEY를 설정하세요.",
+      "descriptionPreview": "설명 미리보기",
+      "emptyDescription": "(비어 있는)",
+      "type": "유형",
+      "titleLabel": "제목",
+      "bedsBaths": "침실 / 욕실",
+      "cityDistrict": "시/군",
+      "coordinates": "좌표",
+      "permit": "허용하다",
+      "regaLicense": "REGA 라이센스",
+      "visibility": "시계"
+    },
     "saveDraft": "초안 저장",
     "submit": "검토 제출",
     "submitForReview": "검토 제출",
@@ -576,7 +644,103 @@
       "bathrooms": "욕실",
       "parking": "주차",
       "yearBuilt": "건축 연도",
-      "furnishing": "가구 옵션"
+      "furnishing": "가구 옵션",
+      "rentPeriod": "기간"
+    },
+    "editListing": "목록 수정",
+    "newListing": "새 목록",
+    "crumbNew": "새로운",
+    "validation": {
+      "titleRequired": "하나 이상의 언어로 제목을 추가하세요.",
+      "descriptionRequired": "하나 이상의 언어로 설명을 추가하세요.",
+      "priceRequired": "가격은 0보다 커야 합니다.",
+      "cityRequired": "도시는 필수 항목입니다.",
+      "pinRequired": "지도에 해당 위치에 대한 핀을 놓습니다.",
+      "imageRequired": "게시하려면 이미지가 하나 이상 필요합니다."
+    },
+    "transactionType": {
+      "sale": "판매",
+      "rent": "임차료"
+    },
+    "rentPeriod": {
+      "daily": "일일",
+      "weekly": "주간",
+      "monthly": "월간 간행물",
+      "yearly": "매년"
+    },
+    "furnishing": {
+      "unfurnished": "가구 없음",
+      "semi_furnished": "반가구",
+      "furnished": "가구"
+    },
+    "visibility": {
+      "public": "공공의",
+      "unlisted": "미등록"
+    },
+    "amenity": {
+      "pool": "수영장",
+      "garden": "정원",
+      "gym": "체육관",
+      "elevator": "엘리베이터",
+      "maidRoom": "메이드룸",
+      "driverRoom": "운전실",
+      "centralAc": "중앙 AC",
+      "kitchenAppliances": "주방용품",
+      "security": "연중무휴 보안",
+      "cornerUnit": "코너유닛"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "수영장",
+      "parking": "주차",
+      "breakfast": "아침",
+      "ac": "공기 조절",
+      "kitchen": "주방",
+      "tv": "TV",
+      "washer": "세탁기",
+      "workspace": "작업공간",
+      "petsAllowed": "애완동물 허용",
+      "smokingAllowed": "흡연 가능",
+      "wheelchairAccessible": "휠체어 이용 가능"
+    },
+    "shortTerm": {
+      "title": "단기렌트 내역",
+      "subtitle": "손님은 밤까지 이 숙소를 예약할 것입니다. 숙박 규칙, 편의 시설 및 가격 책정 계층을 구성합니다.",
+      "dailyRate": "일일 요금(SAR)",
+      "weeklyRate": "주간 요금(SAR, 선택 사항)",
+      "minimumStay": "최소 체류 기간(박)",
+      "maxGuests": "최대 손님",
+      "checkIn": "체크인",
+      "checkOut": "점검",
+      "cancellationPolicy": "취소 정책",
+      "cancelFlexible": "유연함 - 최대 24시간 전까지 전액 환불",
+      "cancelModerate": "보통 — 5일 전까지 전액 환불",
+      "cancelStrict": "엄격 — 7일 전까지 50% 환불",
+      "starRating": "별점",
+      "hotelName": "호텔 이름",
+      "instantBook": "즉석 예약",
+      "instantBookHint": "귀하의 승인 없이 예약이 자동으로 확인됩니다. 각 요청을 먼저 검토하려면 비활성화하세요.",
+      "amenities": "예의",
+      "houseRules": "하우스 룰",
+      "houseRulesPlaceholder": "예를 들어 파티 금지, 오후 10시 이후 조용한 시간, 실내 흡연 금지..."
+    },
+    "mediaStep": {
+      "images": "이미지",
+      "imageDropHint": "여기에 사진을 드래그 앤 드롭하거나 클릭하여 선택하세요. JPEG/PNG/WebP 최대 10MB.",
+      "photoAlt": "숙소 사진",
+      "setCover": "표지로 설정",
+      "cover": "씌우다",
+      "videoTour": "비디오 투어",
+      "videoDropHint": "MP4 파일을 드래그하거나 클릭하여 선택하세요. 최대 500MB.",
+      "videoUploaded": "업로드된 동영상 — {{name}}",
+      "vrTitle": "🥽 가상 현실 투어 링크",
+      "vrPlaceholder": "https://… (Matterport, Kuula 등)",
+      "modelTitle": "3D/AR 모델(.glb 또는 .gltf)",
+      "modelDropHint": "AR을 활성화하려면 GLB/GLTF 모델을 업로드하세요. 최대 50MB.",
+      "modelUploaded": "업로드된 모델 — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "이 숙박 시설이 제공하는 편의 시설을 탭하세요. 검색에 필터로 표시됩니다."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "확정됨",
       "paid": "지급됨",
       "disputed": "분쟁 중"
+    },
+    "oath": {
+      "dialogTitle": "커미션 약속",
+      "translatedOath": "나는 이로써 이 부동산 거래가 완료되면 합의된 수수료를 지불할 것을 약속하며, 하나님과 법 앞에서 이 책임을 인정합니다.",
+      "breakdownTitle": "커미션 내역",
+      "agentListingBreakdown": "플랫폼 수수료: 거래 가치의 <strong>0.5%</strong>, 성공적인 판매 또는 임대 종료 시 지불됩니다.",
+      "buyerAgentCommission": "에이전트 수수료: 거래 가치의 <strong>2.5%</strong>.",
+      "buyerPlatformFee": "플랫폼 수수료: 거래 가치의 <strong>0.5%</strong>",
+      "acceptError": "수락을 기록할 수 없습니다.",
+      "agreeCheckbox": "커미션 약관에 동의합니다.",
+      "decline": "나는 동의하지 않는다",
+      "saving": "절약...",
+      "acceptCta": "나는 동의하고 약속합니다"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "계약 번호",
     "viewContract": "계약 보기",
     "signedThroughEjar": "Ejar를 통해 서명됨",
-    "noContracts": "임대 계약 없음"
+    "noContracts": "임대 계약 없음",
+    "status": {
+      "draft": "초안",
+      "pending_signatures": "서명 대기 중",
+      "active": "활동적인",
+      "expired": "만료됨",
+      "cancelled": "취소"
+    }
   },
   "dufaat": {
     "title": "Dufaat 할부",
@@ -911,7 +1095,13 @@
     "nextPayment": "다음 결제",
     "installmentsPaid": "납부한 할부",
     "payNow": "할부 결제",
-    "noPlans": "Dufaat 플랜 없음"
+    "noPlans": "Dufaat 플랜 없음",
+    "status": {
+      "active": "활동적인",
+      "completed": "완전한",
+      "defaulted": "기본값",
+      "cancelled": "취소"
+    }
   },
   "booking": {
     "myBookings": "내 예약",
@@ -961,6 +1151,9 @@
       "confirmed": "확정됨",
       "cancelled": "취소됨",
       "completed": "완료됨"
+    },
+    "calendar": {
+      "maxGuestsHelper": "최대 손님: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "중간 신뢰도",
       "low": "낮은 신뢰도"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "이름이나 전문 분야로 검색",
+    "allCities": "모든 도시",
+    "cityRiyadh": "리야드",
+    "cityJeddah": "제다",
+    "cityDammam": "담맘",
+    "emptyTitle": "검색어와 일치하는 상담원이 없습니다.",
+    "emptyBody": "다른 이름이나 도시를 사용해 보세요.",
+    "agency": "Eawlma 부동산",
+    "verified": "확인됨",
+    "respondsUnder2h": "2시간 미만",
+    "activeListingsCount": "{{count}}개의 활성 목록",
+    "viewProfile": "프로필 보기"
+  },
+  "agent": {
+    "verified": "확인됨",
+    "verifiedAgent": "검증된 에이전트",
+    "licensed": "라이센스가 있는",
+    "falLicense": "FAL 라이센스",
+    "listings": "목록",
+    "reviews": "리뷰",
+    "rating": "평가",
+    "responseTime": "응답 시간",
+    "memberSince": "회원가입 이후",
+    "contactAgent": "상담원에게 연락하기",
+    "viewProfile": "프로필 보기",
+    "sendMessage": "메시지 보내기"
+  },
+  "property": {
+    "villa": "별장",
+    "apartment": "아파트",
+    "land": "땅",
+    "chalet": "샬레",
+    "farm": "농장",
+    "restHouse": "레스트하우스",
+    "office": "사무실",
+    "shop": "가게",
+    "warehouse": "창고",
+    "hotel": "호텔 룸",
+    "entireHome": "집 전체",
+    "room": "방"
+  },
+  "amenities": {
+    "pool": "수영장",
+    "gym": "체육관",
+    "parking": "주차",
+    "security": "보안",
+    "elevator": "엘리베이터",
+    "garden": "정원",
+    "balcony": "발코니",
+    "maidRoom": "메이드룸",
+    "driverRoom": "운전실",
+    "storage": "보관실",
+    "centralAC": "중앙 에어컨",
+    "internet": "인터넷",
+    "satellite": "위성 TV",
+    "furnished": "가구",
+    "kitchen": "주방",
+    "laundry": "세탁실"
+  },
+  "compare": {
+    "add": "비교에 추가",
+    "remove": "비교에서 제거"
+  },
+  "myListings": {
+    "countSelected": "{{count}}개 선택됨",
+    "activateAll": "모두 활성화",
+    "deactivateAll": "모두 비활성화",
+    "deleteAll": "모두 삭제",
+    "colViews": "조회수",
+    "colInquiries": "문의사항",
+    "boostFeature": "부스트(기능)",
+    "duplicate": "복제하다",
+    "deleteConfirmTitle": "{{count}}개의 목록을 삭제하시겠습니까?",
+    "deleteConfirmDescription": "이 작업을 수행하면 목록이 일시 삭제되어 더 이상 공개적으로 표시되지 않습니다."
   }
 }

@@ -127,7 +127,8 @@
     "anyPrice": "ඕනෑම මිලක්",
     "upTo500": "500 SAR දක්වා",
     "upTo1000": "1,000 SAR දක්වා",
-    "upTo2500": "2,500 SAR දක්වා"
+    "upTo2500": "2,500 SAR දක්වා",
+    "hotelChip": "හෝටලය"
   },
   "messages": {
     "startConversation": "සංවාදය ආරම්භ කරන්න",
@@ -166,7 +167,8 @@
     "dailyRate": "දෛනික අනුපාතය",
     "weeklyRate": "සතිපතා අනුපාතය",
     "guestReviews": "අමුත්තන්ගේ සමාලෝචන",
-    "noReviews": "තවම සමාලෝචන නැත — අමුත්තන් පිටවී ඔවුන්ගේ නවාතැන් ශ්‍රේණිගත කළ පසු, ඒවා මෙහි දිස්වනු ඇත."
+    "noReviews": "තවම සමාලෝචන නැත — අමුත්තන් පිටවී ඔවුන්ගේ නවාතැන් ශ්‍රේණිගත කළ පසු, ඒවා මෙහි දිස්වනු ඇත.",
+    "guestFallback": "අමුත්තා"
   },
   "buyerDeals": {
     "title": "මගේ ගනුදෙනු",
@@ -216,7 +218,20 @@
     "favorAgent": "නියෝජිතට පක්ෂපාතී — කොමිස් සාදන්න",
     "favorBuyer": "ගැනුම්කරුට පක්ෂපාතී — ගනුදෙනුව අවලංගු කරන්න",
     "cancelDeal": "ගනුදෙනුව අවලංගු කරන්න — කොමිස් නැත",
-    "resolutionHint": "මෙම සටහන් සමඟ දෙපාර්ශ්වයටම දන්වනු ලැබේ."
+    "resolutionHint": "මෙම සටහන් සමඟ දෙපාර්ශ්වයටම දන්වනු ලැබේ.",
+    "other": "වෙනත්",
+    "buyerLower": "ගැනුම්කරු",
+    "agentLower": "නියෝජිතයා",
+    "otherLower": "වෙනත්",
+    "anonymous": "නිර්නාමික",
+    "resolveTitle": "ආරවුල විසඳන්න",
+    "resolveDesc": "මෙම ආරවුල සඳහා ප්‍රතිඵලය තෝරන්න",
+    "favorAgentDesc": "කොමිෂන් සභාව තහවුරු කර නියෝජිතයාට ගෙවනු ලැබේ",
+    "favorBuyerDesc": "කොමිෂන් සභාව අවලංගු කරනු ලැබේ",
+    "cancelDealDesc": "ගනුදෙනුව සහ කොමිස් දෙකම අවලංගු විය",
+    "adminNotes": "පරිපාලක සටහන් (විකල්ප)",
+    "resolvedSuccess": "ආරවුල සාර්ථකව විසඳා ඇත",
+    "resolvedError": "ආරවුල විසඳීමට අසමත් විය"
   },
   "auth": {
     "login": "පුරනය වන්න",
@@ -278,7 +293,7 @@
     "submit": "ඉදිරිපත් කරන්න",
     "language": "භාෂාව",
     "arabic": "العربية",
-    "english": "English",
+    "english": "ඉංග්රීසි",
     "back": "ආපසු",
     "next": "ඊළඟ",
     "previous": "පෙර",
@@ -296,7 +311,8 @@
     "remove": "ඉවත් කරන්න",
     "actions": "ක්‍රියාවන්",
     "active": "ක්‍රියාකාරී",
-    "inactive": "අක්‍රිය"
+    "inactive": "අක්‍රිය",
+    "loadMore": "වැඩිපුර පටවන්න"
   },
   "listing": {
     "forSale": "විකිණීමට",
@@ -362,8 +378,28 @@
       "rejected": "ප්‍රතික්ෂේපිත",
       "expired": "කල් ඉකුත් වී ඇත",
       "draft": "කෙටුම්පත",
-      "archived": "ලේඛනාගත"
-    }
+      "archived": "ලේඛනාගත",
+      "pending_review": "සමාලෝචනය යටතේ",
+      "sold": "විකුණුවා",
+      "rented": "කුලියට ගත්තා"
+    },
+    "bedrooms": "නිදන කාමර",
+    "bathrooms": "නානකාමර",
+    "sqm": "m²",
+    "type": "ටයිප් කරන්න",
+    "floor": "මහල",
+    "age": "වයස",
+    "parking": "වාහන නැවැත්වීම",
+    "furnished": "සපයා ඇත",
+    "unfurnished": "ගෘහභාණ්ඩ නොකළ",
+    "perNight": "/ රාත්රිය",
+    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
+    "newListing": "අලුත්",
+    "sold": "විකුණුවා",
+    "rented": "කුලියට ගත්තා",
+    "available": "ලබා ගත හැක",
+    "pending": "පොරොත්තුවෙන්",
+    "expired": "කල් ඉකුත් වී ඇත"
   },
   "search": {
     "filters": "පෙරහන්",
@@ -399,7 +435,10 @@
       "cta": "දේපල ඉල්ලීම ඉදිරිපත් කරන්න"
     },
     "drawArea": "ප්‍රදේශයක් අඳින්න",
-    "clearDrawing": "චිත්‍රය හිස් කරන්න"
+    "clearDrawing": "චිත්‍රය හිස් කරන්න",
+    "flexibleDates": "මම දින සමඟ නම්‍යශීලීයි",
+    "flex1Month": "මාස 1 යි",
+    "shortTerm": "කෙටි කාලීන"
   },
   "home": {
     "heroTitle": "ඔබේ පරිපූර්ණ නිවස සොයා ගන්න",
@@ -438,7 +477,7 @@
     "newestSort": "අලුත්ම",
     "priceLowSort": "මිල: අඩු",
     "priceHighSort": "මිල: ඉහළ",
-    "appStore": "App Store",
+    "appStore": "යෙදුම් වෙළඳසැල",
     "googlePlay": "Google Play",
     "statListings": "දැන්වීම්",
     "statAgents": "නියෝජිතයින්",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "මූලික තොරතුරු",
-    "location": "ස්ථානය",
+    "location": {
+      "street": "වීදිය",
+      "buildingNumber": "ගොඩනැගිලි අංක.",
+      "postalCode": "තැපැල් කේතය",
+      "pinPrompt": "නිශ්චිත ස්ථානය සැකසීමට පින් එකක් දමන්න",
+      "pinLabel": "පින් කරන්න",
+      "mapUnavailable": "සිතියම් පින් පිකර් නොමැත. ඛණ්ඩාංක {{lat}}, {{lng}} වෙත ආපසු වැටේ."
+    },
     "media": "මාධ්‍ය",
     "amenities": "පහසුකම්",
-    "compliance": "අනුකූලතාව",
-    "review": "සමාලෝචනය",
+    "compliance": {
+      "permitNumber": "අවසරය / FAL අංකය",
+      "regaNumber": "REGA බලපත්‍ර අංකය",
+      "permitExpiry": "අවසරය කල් ඉකුත් වීම",
+      "preferredContact": "කැමති සම්බන්ධතාවය",
+      "phone": "දුරකථනය",
+      "publicVisibility": "පොදු දෘශ්‍යතාව (ලැයිස්තුගත නොකළ / පුද්ගලික සබැඳිය සඳහා පමණක් පරීක්ෂා නොකරන්න)"
+    },
+    "review": {
+      "summaryTitle": "ලැයිස්තුගත සාරාංශය",
+      "enhanceWithAi": "AI සමඟ වැඩිදියුණු කරන්න",
+      "enhancing": "වැඩි දියුණු කරමින්...",
+      "aiStubNotice": "AI විසින් අංකුරයක් ආපසු ලබා දී ඇත - සජීවී ආකෘතිය භාවිතා කිරීමට පසු අන්තයේ OPENAI_API_KEY සකසන්න.",
+      "descriptionPreview": "විස්තර පෙරදසුන",
+      "emptyDescription": "(හිස්)",
+      "type": "ටයිප් කරන්න",
+      "titleLabel": "මාතෘකාව",
+      "bedsBaths": "නිදන කාමර / නානකාමර",
+      "cityDistrict": "නගරය / දිස්ත්රික්කය",
+      "coordinates": "ඛණ්ඩාංක",
+      "permit": "අවසරය",
+      "regaLicense": "REGA බලපත්‍රය",
+      "visibility": "දෘශ්‍යතාව"
+    },
     "saveDraft": "කෙටුම්පත සුරකින්න",
     "submit": "සමාලෝචනය සඳහා ඉදිරිපත් කරන්න",
     "submitForReview": "සමාලෝචනය සඳහා ඉදිරිපත් කරන්න",
@@ -576,7 +644,103 @@
       "bathrooms": "නාන කාමර",
       "parking": "වාහන නැවැත්වීම",
       "yearBuilt": "ඉදිකරන ලද වසර",
-      "furnishing": "ගෘහ භාණ්ඩ"
+      "furnishing": "ගෘහ භාණ්ඩ",
+      "rentPeriod": "කාලසීමාව"
+    },
+    "editListing": "ලැයිස්තුගත කිරීම සංස්කරණය කරන්න",
+    "newListing": "නව ලැයිස්තුගත කිරීම",
+    "crumbNew": "අලුත්",
+    "validation": {
+      "titleRequired": "කරුණාකර අවම වශයෙන් එක් භාෂාවකින් මාතෘකාවක් එක් කරන්න.",
+      "descriptionRequired": "කරුණාකර අවම වශයෙන් එක් භාෂාවකින් විස්තරයක් එක් කරන්න.",
+      "priceRequired": "මිල බිංදුවට වඩා වැඩි විය යුතුය.",
+      "cityRequired": "නගරය අවශ්ය වේ.",
+      "pinRequired": "ස්ථානය සඳහා සිතියම මත පින් එකක් දමන්න.",
+      "imageRequired": "ප්‍රකාශනය කිරීමට පෙර අවම වශයෙන් එක් රූපයක්වත් අවශ්‍ය වේ."
+    },
+    "transactionType": {
+      "sale": "විකිණීම",
+      "rent": "කුලියට"
+    },
+    "rentPeriod": {
+      "daily": "දිනපතා",
+      "weekly": "සතිපතා",
+      "monthly": "මාසිකව",
+      "yearly": "වාර්ෂිකව"
+    },
+    "furnishing": {
+      "unfurnished": "ගෘහභාණ්ඩ නොකළ",
+      "semi_furnished": "අර්ධ ගෘහ භාණ්ඩ",
+      "furnished": "සපයා ඇත"
+    },
+    "visibility": {
+      "public": "පොදු",
+      "unlisted": "ලැයිස්තුගත නොකළ"
+    },
+    "amenity": {
+      "pool": "තටාකය",
+      "garden": "උද්යානය",
+      "gym": "ජිම්",
+      "elevator": "සෝපානය",
+      "maidRoom": "සේවිකාව කාමරය",
+      "driverRoom": "රියදුරු කාමරය",
+      "centralAc": "මධ්‍යම ඒසී",
+      "kitchenAppliances": "මුළුතැන්ගෙයි උපකරණ",
+      "security": "24/7 ආරක්ෂාව",
+      "cornerUnit": "කෝනර් ඒකකය"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wifi",
+      "pool": "තටාකය",
+      "parking": "වාහන නැවැත්වීම",
+      "breakfast": "උදෑසන ආහාරය",
+      "ac": "වායු සමීකරණය කිරීම",
+      "kitchen": "කුස්සිය",
+      "tv": "රූපවාහිනිය",
+      "washer": "රෙදි සෝදන යන්ත්ර",
+      "workspace": "වැඩබිම",
+      "petsAllowed": "සුරතල් සතුන් සඳහා අවසර ඇත",
+      "smokingAllowed": "දුම් පානයට අවසර ඇත",
+      "wheelchairAccessible": "රෝද පුටුවට ප්‍රවේශ විය හැකිය"
+    },
+    "shortTerm": {
+      "title": "කෙටි කාලීන කුලී විස්තර",
+      "subtitle": "අමුත්තන් රාත්‍රිය වන විට මෙම ලැයිස්තුගත කිරීම වෙන්කරවා ගනු ඇත. රැඳී සිටීමේ නීති, පහසුකම්, සහ මිලකරණ මට්ටම් වින්‍යාස කරන්න.",
+      "dailyRate": "දෛනික අනුපාතය (SAR)",
+      "weeklyRate": "සතිපතා අනුපාතය (SAR, විකල්ප)",
+      "minimumStay": "අවම රැඳී සිටීම (රාත්‍රී)",
+      "maxGuests": "උපරිම අමුත්තන්",
+      "checkIn": "පැමිණීම වාර්තා කරන්න",
+      "checkOut": "පරීක්ෂාකාරී වන්න",
+      "cancellationPolicy": "අවලංගු කිරීමේ ප්රතිපත්තිය",
+      "cancelFlexible": "නම්‍යශීලී - පැය 24කට පෙර සම්පූර්ණ ආපසු ගෙවීම",
+      "cancelModerate": "මධ්‍යස්ථ - දින 5කට පෙර සම්පූර්ණ ආපසු ගෙවීම",
+      "cancelStrict": "දැඩි - දින 7 කට පෙර 50% ආපසු ගෙවීම",
+      "starRating": "තරු ශ්රේණිගත කිරීම",
+      "hotelName": "හෝටලයේ නම",
+      "instantBook": "ක්ෂණික පොත",
+      "instantBookHint": "ඔබේ අනුමැතියකින් තොරව වෙන් කිරීම් ස්වයංක්‍රීයව තහවුරු වේ. එක් එක් ඉල්ලීම පළමුව සමාලෝචනය කිරීමට අබල කරන්න.",
+      "amenities": "පහසුකම්",
+      "houseRules": "නිවසේ නීති",
+      "houseRulesPlaceholder": "උදා. සාද නැත, රාත්‍රී 10 න් පසු නිස්කලංක පැය, ගෘහස්ථව දුම් නොබොන්න..."
+    },
+    "mediaStep": {
+      "images": "රූප",
+      "imageDropHint": "ඡායාරූප මෙතැනට ඇද දමන්න, නැතහොත් තේරීමට ක්ලික් කරන්න. JPEG / PNG / WebP 10 MB දක්වා.",
+      "photoAlt": "ඡායාරූප ලැයිස්තුගත කිරීම",
+      "setCover": "ආවරණයක් ලෙස සකසන්න",
+      "cover": "ආවරණය කරන්න",
+      "videoTour": "වීඩියෝ චාරිකාව",
+      "videoDropHint": "MP4 ගොනුවක් අදින්න හෝ තේරීමට ක්ලික් කරන්න. උපරිම 500 MB.",
+      "videoUploaded": "වීඩියෝව උඩුගත කර ඇත — {{name}}",
+      "vrTitle": "🥽 Virtual Reality Tour සබැඳිය",
+      "vrPlaceholder": "https://... (Matterport, Kuula, etc.)",
+      "modelTitle": "3D / AR ආකෘතිය (.glb හෝ .gltf)",
+      "modelDropHint": "AR සබල කිරීමට GLB/GLTF ආකෘතියක් උඩුගත කරන්න. උපරිම 50 MB.",
+      "modelUploaded": "උඩුගත කළ ආකෘතිය — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "මෙම දේපල ලබා දෙන පහසුකම් තට්ටු කරන්න. අපි ඒවා සෙවුමේ පෙරහන් ලෙස මතු කරන්නෙමු."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "තහවුරු කළ",
       "paid": "ගෙවූ",
       "disputed": "ආරවුල්"
+    },
+    "oath": {
+      "dialogTitle": "කොමිස් කැපවීම",
+      "translatedOath": "මෙම නිශ්චල දේපල ගනුදෙනුව අවසන් වූ පසු එකඟ වූ කොමිස් මුදල ගෙවීමට මම මෙයින් බැඳී සිටින අතර දෙවියන් වහන්සේ සහ නීතිය ඉදිරියේ මෙම වගකීම පිළිගනිමි.",
+      "breakdownTitle": "කොමිෂන් සභාව බිඳ වැටීම",
+      "agentListingBreakdown": "වේදිකා කොමිස්: ගනුදෙනු වටිනාකමින් <strong>0.5%</strong>, සාර්ථක විකිණීමෙන් හෝ කල්බදු වසා දැමීමෙන් පසු ගෙවිය යුතුය.",
+      "buyerAgentCommission": "නියෝජිත කොමිස්: ගනුදෙනු වටිනාකමින් <strong>2.5%</strong>.",
+      "buyerPlatformFee": "වේදිකා ගාස්තුව: ගනුදෙනු වටිනාකමින් <strong>0.5%</strong>.",
+      "acceptError": "ඔබගේ පිළිගැනීම වාර්තා කිරීමට නොහැකි විය",
+      "agreeCheckbox": "කොමිෂන් සභා කොන්දේසි වලට මම එකඟ වෙමි",
+      "decline": "මම එකඟ නැහැ",
+      "saving": "සුරකිමින්...",
+      "acceptCta": "මම පිළිගනිමි සහ කැප වෙමි"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "ගිවිසුම් #",
     "viewContract": "ගිවිසුම බලන්න",
     "signedThroughEjar": "Ejar හරහා අත්සන් කරන ලදී",
-    "noContracts": "තවම කුලී ගිවිසුම් නැත"
+    "noContracts": "තවම කුලී ගිවිසුම් නැත",
+    "status": {
+      "draft": "කෙටුම්පත",
+      "pending_signatures": "පොරොත්තු අත්සන්",
+      "active": "ක්රියාකාරී",
+      "expired": "කල් ඉකුත් වී ඇත",
+      "cancelled": "අවලංගු කළා"
+    }
   },
   "dufaat": {
     "title": "Dufaat වාරික",
@@ -911,7 +1095,13 @@
     "nextPayment": "ඊළඟ ගෙවීම",
     "installmentsPaid": "ගෙවූ වාරික",
     "payNow": "වාරිකය ගෙවන්න",
-    "noPlans": "තවම Dufaat සැලසුම් නැත"
+    "noPlans": "තවම Dufaat සැලසුම් නැත",
+    "status": {
+      "active": "ක්රියාකාරී",
+      "completed": "සම්පූර්ණ කළා",
+      "defaulted": "පෙරනිමිය",
+      "cancelled": "අවලංගු කළා"
+    }
   },
   "booking": {
     "myBookings": "මගේ වෙන් කිරීම්",
@@ -961,6 +1151,9 @@
       "confirmed": "තහවුරු කළ",
       "cancelled": "අවලංගු",
       "completed": "සම්පූර්ණ"
+    },
+    "calendar": {
+      "maxGuestsHelper": "උපරිම අමුත්තන්: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "මධ්‍යම විශ්වාසය",
       "low": "අඩු විශ්වාසය"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "නම හෝ විශේෂත්වය අනුව සොයන්න",
+    "allCities": "සියලුම නගර",
+    "cityRiyadh": "රියාද්",
+    "cityJeddah": "ජෙඩා",
+    "cityDammam": "දාමම්",
+    "emptyTitle": "ඔබේ සෙවුමට ගැලපෙන නියෝජිතයන් නැත",
+    "emptyBody": "වෙනත් නමක් හෝ නගරයක් උත්සාහ කරන්න.",
+    "agency": "Eawlma නිශ්චල දේපල",
+    "verified": "තහවුරු කර ඇත",
+    "respondsUnder2h": "< පැ. 2",
+    "activeListingsCount": "{{count}} ක්‍රියාකාරී ලැයිස්තුගත කිරීම්",
+    "viewProfile": "පැතිකඩ බලන්න"
+  },
+  "agent": {
+    "verified": "තහවුරු කර ඇත",
+    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
+    "licensed": "බලපත්‍රලාභී",
+    "falLicense": "FAL බලපත්‍රලාභී",
+    "listings": "ලැයිස්තුගත කිරීම්",
+    "reviews": "සමාලෝචන",
+    "rating": "ශ්රේණිගත කිරීම",
+    "responseTime": "ප්‍රතිචාර කාලය",
+    "memberSince": "සාමාජිකයා සිට",
+    "contactAgent": "නියෝජිතයා අමතන්න",
+    "viewProfile": "පැතිකඩ බලන්න",
+    "sendMessage": "පණිවිඩයක් යවන්න"
+  },
+  "property": {
+    "villa": "විලා",
+    "apartment": "මහල් නිවාසය",
+    "land": "ඉඩම",
+    "chalet": "චාලට්",
+    "farm": "ගොවිපල",
+    "restHouse": "තානායම",
+    "office": "කාර්යාලය",
+    "shop": "සාප්පු යන්න",
+    "warehouse": "ගබඩාව",
+    "hotel": "හෝටල් කාමරය",
+    "entireHome": "මුළු නිවස",
+    "room": "කාමරය"
+  },
+  "amenities": {
+    "pool": "පිහිනුම් තටාකය",
+    "gym": "ජිම්",
+    "parking": "වාහන නැවැත්වීම",
+    "security": "ආරක්ෂාව",
+    "elevator": "සෝපානය",
+    "garden": "උද්යානය",
+    "balcony": "බැල්කනිය",
+    "maidRoom": "සේවිකාව කාමරය",
+    "driverRoom": "රියදුරු කාමරය",
+    "storage": "ගබඩා කාමරය",
+    "centralAC": "මධ්‍යම ඒ/සී",
+    "internet": "අන්තර්ජාලය",
+    "satellite": "චන්ද්රිකා රූපවාහිනිය",
+    "furnished": "සපයා ඇත",
+    "kitchen": "කුස්සිය",
+    "laundry": "රෙදි සෝදන කාමරය"
+  },
+  "compare": {
+    "add": "සංසන්දනය කිරීමට එකතු කරන්න",
+    "remove": "සංසන්දනය කිරීමෙන් ඉවත් කරන්න"
+  },
+  "myListings": {
+    "countSelected": "{{count}} තෝරා ඇත",
+    "activateAll": "සියල්ල සක්රිය කරන්න",
+    "deactivateAll": "සියල්ල අක්‍රිය කරන්න",
+    "deleteAll": "සියල්ල මකන්න",
+    "colViews": "දසුන්",
+    "colInquiries": "විමසීම්",
+    "boostFeature": "බූස්ට් (විශේෂාංගය)",
+    "duplicate": "අනුපිටපත් කරන්න",
+    "deleteConfirmTitle": "{{count}} ලැයිස්තුගත කිරීම්(s) මකන්නද?",
+    "deleteConfirmDescription": "මෙම ක්‍රියාව ලැයිස්තුගත කිරීම මෘදු ලෙස මකා දමයි - එය තවදුරටත් ප්‍රසිද්ධියේ නොපෙන්වයි."
   }
 }

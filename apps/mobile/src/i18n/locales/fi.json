@@ -432,7 +432,10 @@
       "rejected": "Hylätty",
       "expired": "Vanhentunut",
       "draft": "Luonnos",
-      "archived": "Arkistoitu"
+      "archived": "Arkistoitu",
+      "pending_review": "Tarkistuksessa",
+      "sold": "myyty",
+      "rented": "Vuokrattu"
     },
     "sale": "Myynti",
     "rent": "Vuokrata",
@@ -460,7 +463,22 @@
     "actionFailed": "Toiminto epäonnistui",
     "bookingDevTitle": "Varaus",
     "bookingDevBody": "Varausvirta on kehitteillä. Ota yhteyttä edustajaan.",
-    "removeFromSaved": "Poistetaanko tämä omaisuus tallennetuista?"
+    "removeFromSaved": "Poistetaanko tämä omaisuus tallennetuista?",
+    "sqm": "m²",
+    "type": "Tyyppi",
+    "floor": "Kerros",
+    "age": "Ikä",
+    "parking": "Pysäköinti",
+    "furnished": "Kalustettu",
+    "unfurnished": "Kalustamaton",
+    "perNight": "/yö",
+    "verifiedAgent": "Vahvistettu edustaja",
+    "newListing": "Uusi",
+    "sold": "myyty",
+    "rented": "Vuokrattu",
+    "available": "Saatavilla",
+    "pending": "Odottaa",
+    "expired": "Vanhentunut"
   },
   "search": {
     "filters": "Suodattimet",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Maksu käsitelty",
     "dispute_resolved": "Kiista ratkaistu",
     "system": "Järjestelmä"
+  },
+  "agent": {
+    "verified": "Vahvistettu",
+    "verifiedAgent": "Vahvistettu edustaja",
+    "licensed": "Lisensoitu",
+    "falLicense": "FAL-lisensoitu",
+    "listings": "Listaukset",
+    "reviews": "Arvostelut",
+    "rating": "Luokitus",
+    "responseTime": "Vastausaika",
+    "memberSince": "Jäsen vuodesta",
+    "contactAgent": "Ota yhteyttä edustajaan",
+    "viewProfile": "Näytä profiili",
+    "sendMessage": "Lähetä Viesti"
+  },
+  "property": {
+    "villa": "Huvila",
+    "apartment": "Huoneisto",
+    "land": "Maa",
+    "chalet": "Chalet",
+    "farm": "Maatila",
+    "restHouse": "Lepotalo",
+    "office": "Toimisto",
+    "shop": "Kauppa",
+    "warehouse": "Varasto",
+    "hotel": "Hotellihuone",
+    "entireHome": "Koko Koti",
+    "room": "Huone"
+  },
+  "amenities": {
+    "pool": "Uima-allas",
+    "gym": "Kuntosali",
+    "parking": "Pysäköinti",
+    "security": "Turvallisuus",
+    "elevator": "Hissi",
+    "garden": "Puutarha",
+    "balcony": "Parveke",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Kuljettajahuone",
+    "storage": "Varastohuone",
+    "centralAC": "Keski-ilmastointi",
+    "internet": "Internet",
+    "satellite": "Satelliitti-tv",
+    "furnished": "Kalustettu",
+    "kitchen": "Keittiö",
+    "laundry": "Pesutupa"
+  },
+  "compare": {
+    "add": "Lisää vertailuun",
+    "remove": "Poista vertailusta"
   }
 }

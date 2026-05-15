@@ -432,7 +432,10 @@
       "rejected": "Avvisad",
       "expired": "Utgången",
       "draft": "Utkast",
-      "archived": "Arkiverad"
+      "archived": "Arkiverad",
+      "pending_review": "Under granskning",
+      "sold": "Såld",
+      "rented": "Uthyres"
     },
     "sale": "Försäljning",
     "rent": "Hyr",
@@ -460,7 +463,22 @@
     "actionFailed": "Åtgärden misslyckades",
     "bookingDevTitle": "Bokning",
     "bookingDevBody": "Bokningsflödet är under utveckling. Vänligen kontakta agenten.",
-    "removeFromSaved": "Vill du ta bort den här egenskapen från sparad?"
+    "removeFromSaved": "Vill du ta bort den här egenskapen från sparad?",
+    "sqm": "m²",
+    "type": "Skriv",
+    "floor": "Golv",
+    "age": "Ålder",
+    "parking": "Parkering",
+    "furnished": "Möblerad",
+    "unfurnished": "Omöblerad",
+    "perNight": "/natt",
+    "verifiedAgent": "Verifierad agent",
+    "newListing": "Ny",
+    "sold": "Såld",
+    "rented": "Uthyres",
+    "available": "Tillgänglig",
+    "pending": "Väntar",
+    "expired": "Utgått"
   },
   "search": {
     "filters": "Filter",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Utbetalning behandlad",
     "dispute_resolved": "Tvist löst",
     "system": "System"
+  },
+  "agent": {
+    "verified": "Verifierad",
+    "verifiedAgent": "Verifierad agent",
+    "licensed": "Licensierad",
+    "falLicense": "FAL-licensierad",
+    "listings": "Listor",
+    "reviews": "Recensioner",
+    "rating": "Betyg",
+    "responseTime": "Svarstid",
+    "memberSince": "Medlem sedan",
+    "contactAgent": "Kontakta agent",
+    "viewProfile": "Visa profil",
+    "sendMessage": "Skicka meddelande"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Lägenhet",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handla",
+    "warehouse": "Lager",
+    "hotel": "Hotellrum",
+    "entireHome": "Hela hemmet",
+    "room": "Rum"
+  },
+  "amenities": {
+    "pool": "Pool",
+    "gym": "Gym",
+    "parking": "Parkering",
+    "security": "Säkerhet",
+    "elevator": "Hiss",
+    "garden": "Trädgård",
+    "balcony": "Balkong",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driver Room",
+    "storage": "Förråd",
+    "centralAC": "Central A/C",
+    "internet": "Internet",
+    "satellite": "Satellit-TV",
+    "furnished": "Möblerad",
+    "kitchen": "Kök",
+    "laundry": "Tvättstuga"
+  },
+  "compare": {
+    "add": "Lägg till för att jämföra",
+    "remove": "Ta bort från jämförelse"
   }
 }

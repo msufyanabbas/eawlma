@@ -394,8 +394,28 @@
       "rejected": "مسترد",
       "expired": "ختم شدہ",
       "draft": "مسودہ",
-      "archived": "آرکائیو شدہ"
-    }
+      "archived": "آرکائیو شدہ",
+      "pending_review": "Under Review",
+      "sold": "Sold",
+      "rented": "Rented"
+    },
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "sqm": "m²",
+    "type": "Type",
+    "floor": "Floor",
+    "age": "Age",
+    "parking": "Parking",
+    "furnished": "Furnished",
+    "unfurnished": "Unfurnished",
+    "perNight": "/night",
+    "verifiedAgent": "Verified Agent",
+    "newListing": "New",
+    "sold": "Sold",
+    "rented": "Rented",
+    "available": "Available",
+    "pending": "Pending",
+    "expired": "Expired"
   },
   "search": {
     "filters": "فلٹرز",
@@ -600,11 +620,40 @@
   },
   "wizard": {
     "basicInfo": "بنیادی معلومات",
-    "location": "مقام",
+    "location": {
+      "street": "گلی",
+      "buildingNumber": "بلڈنگ نمبر",
+      "postalCode": "پوسٹل کوڈ",
+      "pinPrompt": "صحیح مقام کے لیے پن رکھیں",
+      "pinLabel": "پن",
+      "mapUnavailable": "نقشہ پر پن منتخب کرنا دستیاب نہیں۔ پہلے سے طے شدہ کوآرڈینیٹس: {{lat}}, {{lng}}۔"
+    },
     "media": "میڈیا",
     "amenities": "سہولیات",
-    "compliance": "تعمیل",
-    "review": "نظرثانی",
+    "compliance": {
+      "permitNumber": "پرمٹ / FAL نمبر",
+      "regaNumber": "REGA لائسنس نمبر",
+      "permitExpiry": "پرمٹ کی میعاد",
+      "preferredContact": "ترجیحی رابطہ",
+      "phone": "فون",
+      "publicVisibility": "عوامی نمائش (نجی لنک کے لیے غیر فعال کریں)"
+    },
+    "review": {
+      "summaryTitle": "لسٹنگ کا خلاصہ",
+      "enhanceWithAi": "AI کے ذریعے بہتر بنائیں",
+      "enhancing": "بہتر کیا جا رہا ہے…",
+      "aiStubNotice": "AI نے ٹیمپلیٹ جواب دیا — لائیو ماڈل استعمال کرنے کے لیے بیک اینڈ پر OPENAI_API_KEY سیٹ کریں۔",
+      "descriptionPreview": "تفصیل کا پیش منظر",
+      "emptyDescription": "(خالی)",
+      "type": "قسم",
+      "titleLabel": "عنوان",
+      "bedsBaths": "کمرے / باتھ روم",
+      "cityDistrict": "شہر / ضلع",
+      "coordinates": "کوآرڈینیٹس",
+      "permit": "پرمٹ",
+      "regaLicense": "REGA لائسنس",
+      "visibility": "نمائش"
+    },
     "saveDraft": "مسودہ محفوظ کریں",
     "submit": "جمع کروائیں",
     "submitForReview": "نظرثانی کے لیے جمع کروائیں",
@@ -701,14 +750,6 @@
       "houseRules": "گھر کے قواعد",
       "houseRulesPlaceholder": "مثلاً: پارٹیاں منع، رات 10 بجے کے بعد خاموشی، اندر تمباکو نوشی منع..."
     },
-    "location": {
-      "street": "گلی",
-      "buildingNumber": "بلڈنگ نمبر",
-      "postalCode": "پوسٹل کوڈ",
-      "pinPrompt": "صحیح مقام کے لیے پن رکھیں",
-      "pinLabel": "پن",
-      "mapUnavailable": "نقشہ پر پن منتخب کرنا دستیاب نہیں۔ پہلے سے طے شدہ کوآرڈینیٹس: {{lat}}, {{lng}}۔"
-    },
     "mediaStep": {
       "images": "تصاویر",
       "imageDropHint": "تصاویر یہاں کھینچ کر چھوڑیں، یا منتخب کرنے کے لیے کلک کریں۔ JPEG / PNG / WebP، 10 MB تک۔",
@@ -726,30 +767,6 @@
     },
     "amenitiesStep": {
       "hint": "اس جائیداد میں موجود سہولیات پر ٹیپ کریں۔ یہ تلاش میں فلٹرز کے طور پر ظاہر ہوں گی۔"
-    },
-    "compliance": {
-      "permitNumber": "پرمٹ / FAL نمبر",
-      "regaNumber": "REGA لائسنس نمبر",
-      "permitExpiry": "پرمٹ کی میعاد",
-      "preferredContact": "ترجیحی رابطہ",
-      "phone": "فون",
-      "publicVisibility": "عوامی نمائش (نجی لنک کے لیے غیر فعال کریں)"
-    },
-    "review": {
-      "summaryTitle": "لسٹنگ کا خلاصہ",
-      "enhanceWithAi": "AI کے ذریعے بہتر بنائیں",
-      "enhancing": "بہتر کیا جا رہا ہے…",
-      "aiStubNotice": "AI نے ٹیمپلیٹ جواب دیا — لائیو ماڈل استعمال کرنے کے لیے بیک اینڈ پر OPENAI_API_KEY سیٹ کریں۔",
-      "descriptionPreview": "تفصیل کا پیش منظر",
-      "emptyDescription": "(خالی)",
-      "type": "قسم",
-      "titleLabel": "عنوان",
-      "bedsBaths": "کمرے / باتھ روم",
-      "cityDistrict": "شہر / ضلع",
-      "coordinates": "کوآرڈینیٹس",
-      "permit": "پرمٹ",
-      "regaLicense": "REGA لائسنس",
-      "visibility": "نمائش"
     }
   },
   "subscription": {
@@ -1294,5 +1311,55 @@
       "medium": "درمیانہ اعتماد",
       "low": "کم اعتماد"
     }
+  },
+  "agent": {
+    "verified": "Verified",
+    "verifiedAgent": "Verified Agent",
+    "licensed": "Licensed",
+    "falLicense": "FAL لائسنس یافتہ",
+    "listings": "فہرستیں",
+    "reviews": "جائزے",
+    "rating": "درجہ بندی",
+    "responseTime": "| رسپانس ٹائم",
+    "memberSince": "ممبر چونکہ",
+    "contactAgent": "ایجنٹ سے رابطہ کریں",
+    "viewProfile": "| پروفائل دیکھیں",
+    "sendMessage": "پیغام بھیجیں"
+  },
+  "property": {
+    "villa": "ولا",
+    "apartment": "اپارٹمنٹ",
+    "land": "زمین",
+    "chalet": "| چیلیٹ",
+    "farm": "| فارم",
+    "restHouse": "| ریسٹ ہاؤس",
+    "office": "آفس",
+    "shop": "دکان",
+    "warehouse": "گودام",
+    "hotel": "ہوٹل کا کمرہ",
+    "entireHome": "| پورا گھر",
+    "room": "کمرہ"
+  },
+  "amenities": {
+    "pool": "| سوئمنگ پول",
+    "gym": "جم",
+    "parking": "پارکنگ",
+    "security": "| سیکورٹی",
+    "elevator": "لفٹ",
+    "garden": "باغ",
+    "balcony": "| بالکونی",
+    "maidRoom": "| نوکرانی کا کمرہ",
+    "driverRoom": "ڈرائیور کا کمرہ",
+    "storage": "اسٹوریج روم",
+    "centralAC": "سینٹرل A/C",
+    "internet": "انٹرنیٹ",
+    "satellite": "سیٹلائٹ ٹی وی",
+    "furnished": "فرنشڈ",
+    "kitchen": "| باورچی خانہ",
+    "laundry": "| لانڈری کا کمرہ"
+  },
+  "compare": {
+    "add": "موازنہ کرنے کے لیے شامل کریں",
+    "remove": "موازنہ سے ہٹا دیں۔"
   }
 }

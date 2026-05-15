@@ -432,7 +432,10 @@
       "rejected": "Reddedildi",
       "expired": "Süresi doldu",
       "draft": "Taslak",
-      "archived": "Arşivlendi"
+      "archived": "Arşivlendi",
+      "pending_review": "İnceleniyor",
+      "sold": "Satılmış",
+      "rented": "Kiralandı"
     },
     "sale": "Satış",
     "rent": "Kira",
@@ -460,7 +463,22 @@
     "actionFailed": "İşlem başarısız oldu",
     "bookingDevTitle": "Rezervasyon",
     "bookingDevBody": "Rezervasyon akışı geliştirilme aşamasındadır. Lütfen acenteyle iletişime geçin.",
-    "removeFromSaved": "Bu mülk kaydedilenlerden kaldırılsın mı?"
+    "removeFromSaved": "Bu mülk kaydedilenlerden kaldırılsın mı?",
+    "sqm": "m²",
+    "type": "Tip",
+    "floor": "Zemin",
+    "age": "Yaş",
+    "parking": "Otopark",
+    "furnished": "Mobilyalı",
+    "unfurnished": "Mobilyasız",
+    "perNight": "/gece",
+    "verifiedAgent": "Doğrulanmış Temsilci",
+    "newListing": "Yeni",
+    "sold": "Satılmış",
+    "rented": "Kiralandı",
+    "available": "Mevcut",
+    "pending": "Askıda olması",
+    "expired": "Günü geçmiş"
   },
   "search": {
     "filters": "Filtreler",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Ödeme İşleme Alındı",
     "dispute_resolved": "Anlaşmazlık Çözüldü",
     "system": "Sistem"
+  },
+  "agent": {
+    "verified": "Doğrulandı",
+    "verifiedAgent": "Doğrulanmış Temsilci",
+    "licensed": "Lisanslı",
+    "falLicense": "FAL Lisanslı",
+    "listings": "İlanlar",
+    "reviews": "Yorumlar",
+    "rating": "Derecelendirme",
+    "responseTime": "Tepki Süresi",
+    "memberSince": "Üyelik Tarihi",
+    "contactAgent": "Temsilciyle iletişime geçin",
+    "viewProfile": "Profili Görüntüle",
+    "sendMessage": "Mesaj Gönder"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Daire",
+    "land": "Kara",
+    "chalet": "Dağ evi",
+    "farm": "Çiftlik",
+    "restHouse": "Dinlenme Evi",
+    "office": "Ofis",
+    "shop": "Mağaza",
+    "warehouse": "Depo",
+    "hotel": "Otel Odası",
+    "entireHome": "Tüm Ev",
+    "room": "Oda"
+  },
+  "amenities": {
+    "pool": "Yüzme havuzu",
+    "gym": "Spor salonu",
+    "parking": "Otopark",
+    "security": "Güvenlik",
+    "elevator": "Asansör",
+    "garden": "Bahçe",
+    "balcony": "Balkon",
+    "maidRoom": "Hizmetçi Odası",
+    "driverRoom": "Sürücü Odası",
+    "storage": "Depo Odası",
+    "centralAC": "Merkezi klima",
+    "internet": "internet",
+    "satellite": "Uydu TV",
+    "furnished": "Mobilyalı",
+    "kitchen": "Mutfak",
+    "laundry": "Çamaşır Odası"
+  },
+  "compare": {
+    "add": "Karşılaştırmak için ekle",
+    "remove": "Karşılaştırmadan kaldır"
   }
 }

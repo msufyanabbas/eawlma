@@ -432,7 +432,10 @@
       "rejected": "ተቀባይነት አላገኘም",
       "expired": "አብቅቷል",
       "draft": "ረቂቅ",
-      "archived": "ተቀምጧል"
+      "archived": "ተቀምጧል",
+      "pending_review": "በግምገማ ላይ",
+      "sold": "የተሸጠ",
+      "rented": "ተከራይቷል።"
     },
     "sale": "ሽያጭ",
     "rent": "ይከራዩ",
@@ -460,7 +463,22 @@
     "actionFailed": "እርምጃ አልተሳካም።",
     "bookingDevTitle": "ቦታ ማስያዝ",
     "bookingDevBody": "የቦታ ማስያዝ ፍሰት በልማት ላይ ነው። እባክዎን ወኪሉን ያነጋግሩ።",
-    "removeFromSaved": "ይህ ንብረት ከተቀመጠው ይወገድ?"
+    "removeFromSaved": "ይህ ንብረት ከተቀመጠው ይወገድ?",
+    "sqm": "m²",
+    "type": "ዓይነት",
+    "floor": "ወለል",
+    "age": "ዕድሜ",
+    "parking": "የመኪና ማቆሚያ",
+    "furnished": "ተዘጋጅቷል።",
+    "unfurnished": "ያልታሸገ",
+    "perNight": "/ለሊት",
+    "verifiedAgent": "የተረጋገጠ ወኪል",
+    "newListing": "አዲስ",
+    "sold": "የተሸጠ",
+    "rented": "ተከራይቷል።",
+    "available": "ይገኛል።",
+    "pending": "በመጠባበቅ ላይ",
+    "expired": "ጊዜው አልፎበታል።"
   },
   "search": {
     "filters": "ማጣሪያዎች",
@@ -1651,5 +1669,55 @@
     "payout_processed": "ክፍያ ተፈፅሟል",
     "dispute_resolved": "አለመግባባቱ ተፈቷል።",
     "system": "ስርዓት"
+  },
+  "agent": {
+    "verified": "የተረጋገጠ",
+    "verifiedAgent": "የተረጋገጠ ወኪል",
+    "licensed": "ፈቃድ ያለው",
+    "falLicense": "FAL ፈቃድ ያለው",
+    "listings": "ዝርዝሮች",
+    "reviews": "ግምገማዎች",
+    "rating": "ደረጃ መስጠት",
+    "responseTime": "የምላሽ ጊዜ",
+    "memberSince": "አባል ጀምሮ",
+    "contactAgent": "የእውቂያ ወኪል",
+    "viewProfile": "መገለጫ ይመልከቱ",
+    "sendMessage": "መልእክት ላክ"
+  },
+  "property": {
+    "villa": "ቪላ",
+    "apartment": "አፓርትመንት",
+    "land": "መሬት",
+    "chalet": "ቻሌት",
+    "farm": "እርሻ",
+    "restHouse": "ማረፊያ ቤት",
+    "office": "ቢሮ",
+    "shop": "ይግዙ",
+    "warehouse": "መጋዘን",
+    "hotel": "የሆቴል ክፍል",
+    "entireHome": "መላው ቤት",
+    "room": "ክፍል"
+  },
+  "amenities": {
+    "pool": "የመዋኛ ገንዳ",
+    "gym": "ጂም",
+    "parking": "የመኪና ማቆሚያ",
+    "security": "ደህንነት",
+    "elevator": "ሊፍት",
+    "garden": "የአትክልት ቦታ",
+    "balcony": "በረንዳ",
+    "maidRoom": "ገረድ ክፍል",
+    "driverRoom": "የአሽከርካሪ ክፍል",
+    "storage": "የማጠራቀሚያ ክፍል",
+    "centralAC": "ማዕከላዊ ኤ/ሲ",
+    "internet": "ኢንተርኔት",
+    "satellite": "የሳተላይት ቲቪ",
+    "furnished": "ተዘጋጅቷል።",
+    "kitchen": "ወጥ ቤት",
+    "laundry": "የልብስ ማጠቢያ ክፍል"
+  },
+  "compare": {
+    "add": "ለማነፃፀር ያክሉ",
+    "remove": "ከንፅፅር አስወግድ"
   }
 }

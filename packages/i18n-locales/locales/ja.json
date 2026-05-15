@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "イーウルマ",
     "tagline": "サウジアラビアで理想の物件を見つけよう"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "すべての価格",
     "upTo500": "500 SAR まで",
     "upTo1000": "1,000 SAR まで",
-    "upTo2500": "2,500 SAR まで"
+    "upTo2500": "2,500 SAR まで",
+    "hotelChip": "ホテル"
   },
   "messages": {
     "startConversation": "会話を始める",
@@ -166,7 +167,8 @@
     "dailyRate": "1泊料金",
     "weeklyRate": "週料金",
     "guestReviews": "ゲストレビュー",
-    "noReviews": "まだレビューはありません — ゲストがチェックアウトして評価をすると、ここに表示されます。"
+    "noReviews": "まだレビューはありません — ゲストがチェックアウトして評価をすると、ここに表示されます。",
+    "guestFallback": "ゲスト"
   },
   "buyerDeals": {
     "title": "マイ取引",
@@ -216,7 +218,20 @@
     "favorAgent": "エージェント側を支持 — 手数料を作成",
     "favorBuyer": "購入者側を支持 — 取引キャンセル",
     "cancelDeal": "取引キャンセル — 手数料なし",
-    "resolutionHint": "双方にこのメモとともに通知が送信されます。"
+    "resolutionHint": "双方にこのメモとともに通知が送信されます。",
+    "other": "他の",
+    "buyerLower": "買い手",
+    "agentLower": "エージェント",
+    "otherLower": "他の",
+    "anonymous": "匿名",
+    "resolveTitle": "紛争を解決する",
+    "resolveDesc": "この論争の結果を選択してください",
+    "favorAgentDesc": "コミッションは確認され、エージェントに支払われます",
+    "favorBuyerDesc": "コミッションはキャンセルされます",
+    "cancelDealDesc": "取引と手数料の両方がキャンセルされました",
+    "adminNotes": "管理者メモ (オプション)",
+    "resolvedSuccess": "紛争は無事に解決されました",
+    "resolvedError": "紛争の解決に失敗しました"
   },
   "auth": {
     "login": "サインイン",
@@ -277,8 +292,8 @@
     "filter": "フィルター",
     "submit": "送信",
     "language": "言語",
-    "arabic": "العربية",
-    "english": "English",
+    "arabic": "ああ",
+    "english": "英語",
     "back": "戻る",
     "next": "次へ",
     "previous": "前へ",
@@ -296,7 +311,8 @@
     "remove": "削除",
     "actions": "アクション",
     "active": "有効",
-    "inactive": "無効"
+    "inactive": "無効",
+    "loadMore": "さらにロードする"
   },
   "listing": {
     "forSale": "売買",
@@ -308,7 +324,7 @@
     "beds": "ベッド",
     "baths": "バスルーム",
     "area": "面積",
-    "areaUnit": "m²",
+    "areaUnit": "㎡",
     "price": "価格",
     "pricePerSqm": "m²あたり価格",
     "currency": "SAR",
@@ -322,7 +338,7 @@
     "save": "保存",
     "share": "共有",
     "callAgent": "エージェントに電話",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "ワッツアップ",
     "scheduleTour": "内見予約",
     "scheduleATour": "内見を予約",
     "contactAgent": "エージェントに連絡",
@@ -362,8 +378,28 @@
       "rejected": "却下",
       "expired": "期限切れ",
       "draft": "下書き",
-      "archived": "アーカイブ済み"
-    }
+      "archived": "アーカイブ済み",
+      "pending_review": "検討中",
+      "sold": "販売済み",
+      "rented": "レンタル済み"
+    },
+    "bedrooms": "寝室",
+    "bathrooms": "バスルーム",
+    "sqm": "㎡",
+    "type": "タイプ",
+    "floor": "床",
+    "age": "年",
+    "parking": "駐車場",
+    "furnished": "家具付き",
+    "unfurnished": "家具なし",
+    "perNight": "/夜",
+    "verifiedAgent": "認証済みエージェント",
+    "newListing": "新しい",
+    "sold": "販売済み",
+    "rented": "レンタル済み",
+    "available": "利用可能",
+    "pending": "保留中",
+    "expired": "期限切れ"
   },
   "search": {
     "filters": "フィルター",
@@ -399,7 +435,10 @@
       "cta": "物件リクエストを送信"
     },
     "drawArea": "エリアを描画",
-    "clearDrawing": "描画をクリア"
+    "clearDrawing": "描画をクリア",
+    "flexibleDates": "日程については柔軟に対応します",
+    "flex1Month": "1ヶ月",
+    "shortTerm": "短期"
   },
   "home": {
     "heroTitle": "理想の住まいを見つけよう",
@@ -438,8 +477,8 @@
     "newestSort": "新着順",
     "priceLowSort": "価格: 安",
     "priceHighSort": "価格: 高",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "アプリストア",
+    "googlePlay": "Googleプレイ",
     "statListings": "物件",
     "statAgents": "エージェント",
     "statUsers": "ユーザー",
@@ -476,13 +515,13 @@
     "support": "サポート",
     "help": "ヘルプセンター",
     "helpCenter": "ヘルプセンター",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "ワッツアップ",
     "callUs": "お電話",
     "needHelp": "サポートが必要ですか?WhatsApp でご連絡ください。",
     "cr": "商業登録",
     "regaLicensed": "サウジアラビア不動産総局認可",
     "location": "サウジアラビア リヤド",
-    "rights": "All rights reserved"
+    "rights": "無断転載を禁じます"
   },
   "about": {
     "title": "Eawlma について",
@@ -512,7 +551,7 @@
     "sentSuccess": "ありがとうございます!チームが24時間以内に対応します。",
     "emailUs": "メールでお問い合わせ",
     "emailReplies": "平日24時間以内に返信",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "ワッツアップ",
     "whatsappHours": "日~木 9:00 – 18:00 (AST)",
     "office": "オフィス",
     "officeAddress": "リヤド キング・ファハド・ロード",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "基本情報",
-    "location": "所在地",
+    "location": {
+      "street": "通り",
+      "buildingNumber": "建物番号",
+      "postalCode": "郵便番号",
+      "pinPrompt": "ピンをドロップして正確な位置を設定します",
+      "pinLabel": "ピン",
+      "mapUnavailable": "マップピンピッカーは使用できません。座標は {{lat}}、{{lng}} に戻ります。"
+    },
     "media": "メディア",
     "amenities": "設備",
-    "compliance": "コンプライアンス",
-    "review": "確認",
+    "compliance": {
+      "permitNumber": "許可/FAL番号",
+      "regaNumber": "REGAライセンス番号",
+      "permitExpiry": "許可の有効期限",
+      "preferredContact": "優先連絡先",
+      "phone": "電話",
+      "publicVisibility": "公開公開 (非公開/プライベート リンクの場合のみチェックを外します)"
+    },
+    "review": {
+      "summaryTitle": "リストの概要",
+      "enhanceWithAi": "AIで強化する",
+      "enhancing": "強化中…",
+      "aiStubNotice": "AI はスタブを返しました — ライブ モデルを使用するようにバックエンドで OPENAI_API_KEY を設定します。",
+      "descriptionPreview": "説明プレビュー",
+      "emptyDescription": "（空の）",
+      "type": "タイプ",
+      "titleLabel": "タイトル",
+      "bedsBaths": "寝室・バスルーム",
+      "cityDistrict": "市区町村",
+      "coordinates": "座標",
+      "permit": "許可する",
+      "regaLicense": "REGAライセンス",
+      "visibility": "可視性"
+    },
     "saveDraft": "下書きを保存",
     "submit": "審査に送信",
     "submitForReview": "審査に送信",
@@ -576,7 +644,103 @@
       "bathrooms": "バスルーム",
       "parking": "駐車場",
       "yearBuilt": "建築年",
-      "furnishing": "家具"
+      "furnishing": "家具",
+      "rentPeriod": "期間"
+    },
+    "editListing": "リストの編集",
+    "newListing": "新規上場",
+    "crumbNew": "新しい",
+    "validation": {
+      "titleRequired": "少なくとも 1 つの言語でタイトルを追加してください。",
+      "descriptionRequired": "少なくとも 1 つの言語で説明を追加してください。",
+      "priceRequired": "価格はゼロより大きくなければなりません。",
+      "cityRequired": "市区町村は必須です。",
+      "pinRequired": "地図上にその場所のピンをドロップします。",
+      "imageRequired": "公開する前に少なくとも 1 つの画像が必要です。"
+    },
+    "transactionType": {
+      "sale": "販売",
+      "rent": "家賃"
+    },
+    "rentPeriod": {
+      "daily": "毎日",
+      "weekly": "毎週",
+      "monthly": "毎月",
+      "yearly": "毎年"
+    },
+    "furnishing": {
+      "unfurnished": "家具なし",
+      "semi_furnished": "半家具付き",
+      "furnished": "家具付き"
+    },
+    "visibility": {
+      "public": "公共",
+      "unlisted": "非上場"
+    },
+    "amenity": {
+      "pool": "プール",
+      "garden": "庭",
+      "gym": "ジム",
+      "elevator": "エレベーター",
+      "maidRoom": "メイドルーム",
+      "driverRoom": "運転室",
+      "centralAc": "セントラルエアコン",
+      "kitchenAppliances": "キッチン家電",
+      "security": "24時間365日のセキュリティ",
+      "cornerUnit": "コーナーユニット"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "プール",
+      "parking": "駐車場",
+      "breakfast": "朝食",
+      "ac": "空調",
+      "kitchen": "台所",
+      "tv": "テレビ",
+      "washer": "ワッシャー",
+      "workspace": "ワークスペース",
+      "petsAllowed": "ペット可",
+      "smokingAllowed": "喫煙可",
+      "wheelchairAccessible": "車椅子対応"
+    },
+    "shortTerm": {
+      "title": "短期レンタルの詳細",
+      "subtitle": "ゲストは夜までにこのリストを予約します。滞在ルール、アメニティ、価格帯を設定します。",
+      "dailyRate": "日額料金 (SAR)",
+      "weeklyRate": "週次料金 (SAR、オプション)",
+      "minimumStay": "最低宿泊日数（泊数）",
+      "maxGuests": "最大ゲスト数",
+      "checkIn": "チェックイン",
+      "checkOut": "チェックアウト",
+      "cancellationPolicy": "キャンセルポリシー",
+      "cancelFlexible": "柔軟 — 24 時間前までは全額返金",
+      "cancelModerate": "中程度 — 5日前までに全額返金",
+      "cancelStrict": "厳格 — 7日前までは50％返金",
+      "starRating": "星評価",
+      "hotelName": "ホテル名",
+      "instantBook": "インスタントブック",
+      "instantBookHint": "予約はお客様の承認なしで自動確認されます。最初に各リクエストを確認できないようにします。",
+      "amenities": "アメニティ",
+      "houseRules": "ハウスルール",
+      "houseRulesPlaceholder": "例えばパーティー禁止、午後10時以降は静か、屋内禁煙…。"
+    },
+    "mediaStep": {
+      "images": "画像",
+      "imageDropHint": "ここに写真をドラッグ アンド ドロップするか、クリックして選択します。 JPEG / PNG / WebP 最大 10 MB。",
+      "photoAlt": "出品写真",
+      "setCover": "カバーとして設定する",
+      "cover": "カバー",
+      "videoTour": "ビデオツアー",
+      "videoDropHint": "MP4 ファイルをドラッグするか、クリックして選択します。最大500MB。",
+      "videoUploaded": "アップロードされたビデオ — {{name}}",
+      "vrTitle": "🥽 バーチャル リアリティ ツアー リンク",
+      "vrPlaceholder": "https://… (Matterport、Kuula など)",
+      "modelTitle": "3D / AR モデル (.glb または .gltf)",
+      "modelDropHint": "GLB/GLTF モデルをアップロードして AR を有効にします。最大50MB。",
+      "modelUploaded": "アップロードされたモデル — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "この施設が提供するアメニティをタップします。それらは検索上のフィルターとして表示されます。"
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "確認済み",
       "paid": "支払い済み",
       "disputed": "係争中"
+    },
+    "oath": {
+      "dialogTitle": "手数料のコミットメント",
+      "translatedOath": "私は、この不動産取引の完了時に合意された手数料を支払うことを約束し、神と法律の前でこの責任を認めます。",
+      "breakdownTitle": "手数料の内訳",
+      "agentListingBreakdown": "プラットフォーム手数料: 取引額の<strong>0.5%</strong>。売却またはリースの成立時に支払われます。",
+      "buyerAgentCommission": "エージェント手数料: 取引額の<strong>2.5%</strong>。",
+      "buyerPlatformFee": "プラットフォーム手数料: 取引額の<strong>0.5%</strong>。",
+      "acceptError": "承諾を記録できませんでした",
+      "agreeCheckbox": "コミッション規約に同意します",
+      "decline": "同意しません",
+      "saving": "保存中...",
+      "acceptCta": "同意してコミットします"
     }
   },
   "moderation": {
@@ -740,7 +917,7 @@
     "bulkApproveConfirm": "すべて承認",
     "actionFailed": "審査アクションが失敗しました — もう一度お試しください。",
     "preview": {
-      "bedroomsShort": "{{count}} BR",
+      "bedroomsShort": "{{カウント}} BR",
       "bathroomsShort": "{{count}} BA",
       "vrTourAvailable": "VR ツアー利用可能",
       "vrTourSection": "VR / 360° ツアー",
@@ -896,7 +1073,14 @@
     "contractNumber": "契約番号",
     "viewContract": "契約を表示",
     "signedThroughEjar": "Ejar で署名済み",
-    "noContracts": "賃貸契約はまだありません"
+    "noContracts": "賃貸契約はまだありません",
+    "status": {
+      "draft": "下書き",
+      "pending_signatures": "保留中の署名",
+      "active": "アクティブ",
+      "expired": "期限切れ",
+      "cancelled": "キャンセル"
+    }
   },
   "dufaat": {
     "title": "Dufaat 分割払い",
@@ -911,7 +1095,13 @@
     "nextPayment": "次回支払い",
     "installmentsPaid": "支払い済み回数",
     "payNow": "分割払いを支払う",
-    "noPlans": "Dufaat プランはまだありません"
+    "noPlans": "Dufaat プランはまだありません",
+    "status": {
+      "active": "アクティブ",
+      "completed": "完了",
+      "defaulted": "デフォルト",
+      "cancelled": "キャンセル"
+    }
   },
   "booking": {
     "myBookings": "マイ予約",
@@ -961,6 +1151,9 @@
       "confirmed": "確定",
       "cancelled": "キャンセル済み",
       "completed": "完了"
+    },
+    "calendar": {
+      "maxGuestsHelper": "最大ゲスト数: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "中信頼度",
       "low": "低信頼度"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "名前や専門分野で検索する",
+    "allCities": "すべての都市",
+    "cityRiyadh": "リヤド",
+    "cityJeddah": "ジェッダ",
+    "cityDammam": "ダンマーム",
+    "emptyTitle": "検索に一致するエージェントはありません",
+    "emptyBody": "別の名前または都市を試してください。",
+    "agency": "イーウルマ不動産",
+    "verified": "確認済み",
+    "respondsUnder2h": "< 2 時間",
+    "activeListingsCount": "{{count}} 件のアクティブなリスト",
+    "viewProfile": "プロフィールを見る"
+  },
+  "agent": {
+    "verified": "確認済み",
+    "verifiedAgent": "認証済みエージェント",
+    "licensed": "ライセンス済み",
+    "falLicense": "FALライセンス取得済み",
+    "listings": "リスト",
+    "reviews": "レビュー",
+    "rating": "評価",
+    "responseTime": "応答時間",
+    "memberSince": "メンバー歴",
+    "contactAgent": "エージェントに連絡する",
+    "viewProfile": "プロフィールを見る",
+    "sendMessage": "メッセージを送信する"
+  },
+  "property": {
+    "villa": "ヴィラ",
+    "apartment": "アパート",
+    "land": "土地",
+    "chalet": "シャレー",
+    "farm": "農場",
+    "restHouse": "レストハウス",
+    "office": "オフィス",
+    "shop": "店",
+    "warehouse": "倉庫",
+    "hotel": "ホテルの部屋",
+    "entireHome": "家全体",
+    "room": "部屋"
+  },
+  "amenities": {
+    "pool": "スイミングプール",
+    "gym": "ジム",
+    "parking": "駐車場",
+    "security": "安全",
+    "elevator": "エレベーター",
+    "garden": "庭",
+    "balcony": "バルコニー",
+    "maidRoom": "メイドルーム",
+    "driverRoom": "運転室",
+    "storage": "保管室",
+    "centralAC": "セントラルエアコン",
+    "internet": "インターネット",
+    "satellite": "衛星テレビ",
+    "furnished": "家具付き",
+    "kitchen": "台所",
+    "laundry": "ランドリールーム"
+  },
+  "compare": {
+    "add": "比較に追加",
+    "remove": "比較から削除"
+  },
+  "myListings": {
+    "countSelected": "{{count}} 個が選択されました",
+    "activateAll": "すべてをアクティブ化する",
+    "deactivateAll": "すべてを無効化する",
+    "deleteAll": "すべて削除",
+    "colViews": "ビュー",
+    "colInquiries": "お問い合わせ",
+    "boostFeature": "ブースト（機能）",
+    "duplicate": "重複",
+    "deleteConfirmTitle": "{{count}} 件のリストを削除しますか?",
+    "deleteConfirmDescription": "この操作によりリストがソフト削除され、一般公開されなくなります。"
   }
 }

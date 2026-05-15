@@ -432,7 +432,10 @@
       "rejected": "Verwerp",
       "expired": "Verval",
       "draft": "Konsep",
-      "archived": "Geargiveer"
+      "archived": "Geargiveer",
+      "pending_review": "Onder hersiening",
+      "sold": "Verkoop",
+      "rented": "Gehuur"
     },
     "sale": "Verkoop",
     "rent": "Huur",
@@ -460,7 +463,22 @@
     "actionFailed": "wees Aksie het misluk",
     "bookingDevTitle": "Bespreking",
     "bookingDevBody": "Besprekingsvloei is in ontwikkeling. Kontak asseblief die agent.",
-    "removeFromSaved": "Verwyder hierdie eiendom van gestoor?"
+    "removeFromSaved": "Verwyder hierdie eiendom van gestoor?",
+    "sqm": "m²",
+    "type": "Tik",
+    "floor": "Vloer",
+    "age": "Ouderdom",
+    "parking": "Parkering",
+    "furnished": "Gemeubileerd",
+    "unfurnished": "Ongemeubileerd",
+    "perNight": "/nag",
+    "verifiedAgent": "Geverifieerde agent",
+    "newListing": "Nuwe",
+    "sold": "Verkoop",
+    "rented": "Gehuur",
+    "available": "Beskikbaar",
+    "pending": "Hangende",
+    "expired": "Verval"
   },
   "search": {
     "filters": "Filters",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Uitbetaling verwerk",
     "dispute_resolved": "Dispuut opgelos",
     "system": "Stelsel"
+  },
+  "agent": {
+    "verified": "Geverifieer",
+    "verifiedAgent": "Geverifieerde agent",
+    "licensed": "Gelisensieerde",
+    "falLicense": "FAL gelisensieer",
+    "listings": "Inskrywings",
+    "reviews": "Resensies",
+    "rating": "Gradering",
+    "responseTime": "Reaksie Tyd",
+    "memberSince": "Lid sedert",
+    "contactAgent": "Kontak Agent",
+    "viewProfile": "Bekyk profiel",
+    "sendMessage": "Stuur Boodskap"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Woonstel",
+    "land": "Grond",
+    "chalet": "Chalet",
+    "farm": "Plaas",
+    "restHouse": "Rushuis",
+    "office": "Kantoor",
+    "shop": "Winkel",
+    "warehouse": "Pakhuis",
+    "hotel": "Hotelkamer",
+    "entireHome": "Hele huis",
+    "room": "Kamer"
+  },
+  "amenities": {
+    "pool": "Swembad",
+    "gym": "Gimnasium",
+    "parking": "Parkering",
+    "security": "Sekuriteit",
+    "elevator": "Hysbak",
+    "garden": "Tuin",
+    "balcony": "Balkon",
+    "maidRoom": "Meid Kamer",
+    "driverRoom": "Bestuurder Kamer",
+    "storage": "Stoorkamer",
+    "centralAC": "Sentrale lugversorging",
+    "internet": "Internet",
+    "satellite": "Satelliet-TV",
+    "furnished": "Gemeubileerd",
+    "kitchen": "Kombuis",
+    "laundry": "Waskamer"
+  },
+  "compare": {
+    "add": "Voeg by om te vergelyk",
+    "remove": "Verwyder uit vergelyking"
   }
 }

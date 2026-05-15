@@ -127,7 +127,8 @@
     "anyPrice": "Bất kỳ giá nào",
     "upTo500": "Lên đến 500 SAR",
     "upTo1000": "Lên đến 1.000 SAR",
-    "upTo2500": "Lên đến 2.500 SAR"
+    "upTo2500": "Lên đến 2.500 SAR",
+    "hotelChip": "Khách sạn"
   },
   "messages": {
     "startConversation": "Bắt đầu cuộc trò chuyện",
@@ -166,7 +167,8 @@
     "dailyRate": "Giá theo ngày",
     "weeklyRate": "Giá theo tuần",
     "guestReviews": "Đánh giá của khách",
-    "noReviews": "Chưa có đánh giá nào — khi khách trả phòng và đánh giá lưu trú, đánh giá sẽ xuất hiện ở đây."
+    "noReviews": "Chưa có đánh giá nào — khi khách trả phòng và đánh giá lưu trú, đánh giá sẽ xuất hiện ở đây.",
+    "guestFallback": "Khách mời"
   },
   "buyerDeals": {
     "title": "Giao dịch của tôi",
@@ -216,7 +218,20 @@
     "favorAgent": "Ủng hộ môi giới — tạo hoa hồng",
     "favorBuyer": "Ủng hộ người mua — hủy giao dịch",
     "cancelDeal": "Hủy giao dịch — không có hoa hồng",
-    "resolutionHint": "Cả hai bên sẽ được thông báo với những ghi chú này."
+    "resolutionHint": "Cả hai bên sẽ được thông báo với những ghi chú này.",
+    "other": "Khác",
+    "buyerLower": "người mua",
+    "agentLower": "đại lý",
+    "otherLower": "khác",
+    "anonymous": "Vô danh",
+    "resolveTitle": "Giải quyết tranh chấp",
+    "resolveDesc": "Chọn kết quả cho tranh chấp này",
+    "favorAgentDesc": "Hoa hồng sẽ được xác nhận và trả cho đại lý",
+    "favorBuyerDesc": "Hoa hồng sẽ bị hủy bỏ",
+    "cancelDealDesc": "Giao dịch và hoa hồng đều bị hủy",
+    "adminNotes": "Ghi chú của quản trị viên (tùy chọn)",
+    "resolvedSuccess": "Tranh chấp được giải quyết thành công",
+    "resolvedError": "Không giải quyết được tranh chấp"
   },
   "auth": {
     "login": "Đăng nhập",
@@ -228,7 +243,7 @@
     "registerTitle": "Tạo tài khoản của bạn",
     "registerSubtitle": "Tham gia Eawlma và bắt đầu hành trình bất động sản của bạn",
     "joinEawlma": "Tham gia Eawlma",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Số điện thoại",
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhận mật khẩu",
@@ -277,8 +292,8 @@
     "filter": "Lọc",
     "submit": "Gửi",
     "language": "Ngôn ngữ",
-    "arabic": "العربية",
-    "english": "English",
+    "arabic": "عربية",
+    "english": "Tiếng Anh",
     "back": "Quay lại",
     "next": "Tiếp theo",
     "previous": "Trước đó",
@@ -296,7 +311,8 @@
     "remove": "Xóa",
     "actions": "Hành động",
     "active": "Đang hoạt động",
-    "inactive": "Không hoạt động"
+    "inactive": "Không hoạt động",
+    "loadMore": "Tải thêm"
   },
   "listing": {
     "forSale": "Đang bán",
@@ -308,7 +324,7 @@
     "beds": "Giường",
     "baths": "Phòng tắm",
     "area": "Diện tích",
-    "areaUnit": "m²",
+    "areaUnit": "mét vuông",
     "price": "Giá",
     "pricePerSqm": "Giá mỗi m²",
     "currency": "SAR",
@@ -362,8 +378,28 @@
       "rejected": "Bị từ chối",
       "expired": "Đã hết hạn",
       "draft": "Bản nháp",
-      "archived": "Đã lưu trữ"
-    }
+      "archived": "Đã lưu trữ",
+      "pending_review": "Đang được xem xét",
+      "sold": "Đã bán",
+      "rented": "Đã thuê"
+    },
+    "bedrooms": "Phòng ngủ",
+    "bathrooms": "Phòng tắm",
+    "sqm": "mét vuông",
+    "type": "Kiểu",
+    "floor": "Sàn nhà",
+    "age": "Tuổi",
+    "parking": "bãi đậu xe",
+    "furnished": "Có nội thất",
+    "unfurnished": "Không có đồ đạc",
+    "perNight": "/đêm",
+    "verifiedAgent": "Đại lý đã được xác minh",
+    "newListing": "Mới",
+    "sold": "Đã bán",
+    "rented": "Đã thuê",
+    "available": "Có sẵn",
+    "pending": "Chưa giải quyết",
+    "expired": "Hết hạn"
   },
   "search": {
     "filters": "Bộ lọc",
@@ -399,7 +435,10 @@
       "cta": "Gửi yêu cầu bất động sản"
     },
     "drawArea": "Vẽ khu vực",
-    "clearDrawing": "Xóa bản vẽ"
+    "clearDrawing": "Xóa bản vẽ",
+    "flexibleDates": "Tôi linh hoạt với ngày tháng",
+    "flex1Month": "1 tháng",
+    "shortTerm": "Ngắn hạn"
   },
   "home": {
     "heroTitle": "Tìm ngôi nhà hoàn hảo của bạn",
@@ -438,7 +477,7 @@
     "newestSort": "Mới nhất",
     "priceLowSort": "Giá: Thấp",
     "priceHighSort": "Giá: Cao",
-    "appStore": "App Store",
+    "appStore": "Cửa hàng ứng dụng",
     "googlePlay": "Google Play",
     "statListings": "Tin đăng",
     "statAgents": "Môi giới",
@@ -505,7 +544,7 @@
     "subtitle": "Đội ngũ của chúng tôi phản hồi trong vòng 24 giờ. Đối với các câu hỏi khẩn cấp về tin đăng hoặc tài khoản, WhatsApp là kênh nhanh nhất.",
     "sendMessage": "Gửi cho chúng tôi một tin nhắn",
     "name": "Tên của bạn",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Điện thoại (tùy chọn)",
     "message": "Tin nhắn",
     "send": "Gửi tin nhắn",
@@ -515,7 +554,7 @@
     "whatsapp": "WhatsApp",
     "whatsappHours": "CN–T5, 9:00 – 18:00 (AST)",
     "office": "Văn phòng",
-    "officeAddress": "King Fahd Road, Riyadh",
+    "officeAddress": "Đường King Fahd, Riyadh",
     "officePostal": "Ả Rập Xê Út 12345"
   },
   "privacy": {
@@ -532,8 +571,8 @@
     "office": "Văn phòng",
     "land": "Đất",
     "commercial": "Thương mại",
-    "studio": "Studio",
-    "penthouse": "Penthouse",
+    "studio": "Phòng thu",
+    "penthouse": "căn hộ áp mái",
     "townhouse": "Nhà phố"
   },
   "profile": {
@@ -542,7 +581,7 @@
     "firstName": "Tên",
     "lastName": "Họ",
     "phone": "Điện thoại",
-    "email": "Email",
+    "email": "E-mail",
     "bio": "Tiểu sử",
     "avatar": "URL Avatar",
     "saveChanges": "Lưu thay đổi",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Thông tin cơ bản",
-    "location": "Vị trí",
+    "location": {
+      "street": "Đường phố",
+      "buildingNumber": "Tòa nhà số",
+      "postalCode": "Mã bưu chính",
+      "pinPrompt": "Thả ghim để đặt vị trí chính xác",
+      "pinLabel": "Ghim",
+      "mapUnavailable": "Công cụ chọn ghim bản đồ không khả dụng. Tọa độ quay trở lại {{lat}}, {{lng}}."
+    },
     "media": "Phương tiện",
     "amenities": "Tiện nghi",
-    "compliance": "Tuân thủ",
-    "review": "Xem xét",
+    "compliance": {
+      "permitNumber": "Số giấy phép / FAL",
+      "regaNumber": "Số giấy phép REGA",
+      "permitExpiry": "Giấy phép hết hạn",
+      "preferredContact": "Địa chỉ liên hệ ưa thích",
+      "phone": "Điện thoại",
+      "publicVisibility": "Khả năng hiển thị công khai (bỏ chọn chỉ liên kết không công khai/riêng tư)"
+    },
+    "review": {
+      "summaryTitle": "Tóm tắt danh sách",
+      "enhanceWithAi": "Tăng cường với AI",
+      "enhancing": "Tăng cường…",
+      "aiStubNotice": "AI đã trả về sơ khai — đặt OPENAI_API_KEY ở phần phụ trợ để sử dụng mô hình trực tiếp.",
+      "descriptionPreview": "xem trước mô tả",
+      "emptyDescription": "(trống)",
+      "type": "Kiểu",
+      "titleLabel": "Tiêu đề",
+      "bedsBaths": "Phòng ngủ / Phòng tắm",
+      "cityDistrict": "Thành Phố/Quận",
+      "coordinates": "tọa độ",
+      "permit": "Cho phép làm gì",
+      "regaLicense": "Giấy phép REGA",
+      "visibility": "Khả năng hiển thị"
+    },
     "saveDraft": "Lưu bản nháp",
     "submit": "Gửi để xem xét",
     "submitForReview": "Gửi để xem xét",
@@ -576,7 +644,103 @@
       "bathrooms": "Phòng tắm",
       "parking": "Đỗ xe",
       "yearBuilt": "Năm xây dựng",
-      "furnishing": "Nội thất"
+      "furnishing": "Nội thất",
+      "rentPeriod": "Giai đoạn"
+    },
+    "editListing": "Chỉnh sửa danh sách",
+    "newListing": "Danh sách mới",
+    "crumbNew": "Mới",
+    "validation": {
+      "titleRequired": "Vui lòng thêm tiêu đề bằng ít nhất một ngôn ngữ.",
+      "descriptionRequired": "Vui lòng thêm mô tả bằng ít nhất một ngôn ngữ.",
+      "priceRequired": "Giá phải lớn hơn 0.",
+      "cityRequired": "Thành phố là bắt buộc.",
+      "pinRequired": "Thả ghim trên bản đồ cho vị trí.",
+      "imageRequired": "Cần có ít nhất một hình ảnh trước khi xuất bản."
+    },
+    "transactionType": {
+      "sale": "Doanh thu",
+      "rent": "Thuê"
+    },
+    "rentPeriod": {
+      "daily": "Hằng ngày",
+      "weekly": "hàng tuần",
+      "monthly": "hàng tháng",
+      "yearly": "Hàng năm"
+    },
+    "furnishing": {
+      "unfurnished": "Không có đồ đạc",
+      "semi_furnished": "Bán nội thất",
+      "furnished": "Có nội thất"
+    },
+    "visibility": {
+      "public": "Công cộng",
+      "unlisted": "Chưa niêm yết"
+    },
+    "amenity": {
+      "pool": "Hồ bơi",
+      "garden": "Vườn",
+      "gym": "phòng tập thể dục",
+      "elevator": "Thang máy",
+      "maidRoom": "Phòng giúp việc",
+      "driverRoom": "Phòng lái xe",
+      "centralAc": "Điều hòa trung tâm",
+      "kitchenAppliances": "Thiết bị nhà bếp",
+      "security": "An ninh 24/7",
+      "cornerUnit": "Căn góc"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Hồ bơi",
+      "parking": "bãi đậu xe",
+      "breakfast": "Bữa sáng",
+      "ac": "Điều hòa không khí",
+      "kitchen": "Phòng bếp",
+      "tv": "TV",
+      "washer": "Máy giặt",
+      "workspace": "Không gian làm việc",
+      "petsAllowed": "Cho phép vật nuôi",
+      "smokingAllowed": "Cho phép hút thuốc",
+      "wheelchairAccessible": "Có thể sử dụng cho xe lăn"
+    },
+    "shortTerm": {
+      "title": "Chi tiết cho thuê ngắn hạn",
+      "subtitle": "Khách sẽ đặt danh sách này vào ban đêm. Định cấu hình các quy tắc lưu trú, tiện nghi và mức giá.",
+      "dailyRate": "Giá hàng ngày (SAR)",
+      "weeklyRate": "Tỷ lệ hàng tuần (SAR, tùy chọn)",
+      "minimumStay": "Thời gian lưu trú tối thiểu (đêm)",
+      "maxGuests": "Khách tối đa",
+      "checkIn": "Đăng ký vào",
+      "checkOut": "Trả phòng",
+      "cancellationPolicy": "Chính sách hủy",
+      "cancelFlexible": "Linh hoạt - hoàn trả đầy đủ tối đa 24 giờ trước",
+      "cancelModerate": "Vừa phải - hoàn trả đầy đủ tối đa 5 ngày trước",
+      "cancelStrict": "Nghiêm ngặt - hoàn tiền 50% tối đa 7 ngày trước",
+      "starRating": "Xếp hạng sao",
+      "hotelName": "Tên khách sạn",
+      "instantBook": "Đặt ngay",
+      "instantBookHint": "Đặt chỗ tự động xác nhận mà không cần sự chấp thuận của bạn. Vô hiệu hóa việc xem xét từng yêu cầu trước.",
+      "amenities": "Tiện nghi",
+      "houseRules": "Nội quy nhà",
+      "houseRulesPlaceholder": "ví dụ. Không tổ chức tiệc tùng, yên tĩnh sau 22h, không hút thuốc trong nhà..."
+    },
+    "mediaStep": {
+      "images": "Hình ảnh",
+      "imageDropHint": "Kéo và thả ảnh vào đây hoặc bấm vào để chọn. JPEG / PNG / WebP lên tới 10 MB.",
+      "photoAlt": "Ảnh danh sách",
+      "setCover": "Đặt làm bìa",
+      "cover": "Che phủ",
+      "videoTour": "Chuyến tham quan bằng video",
+      "videoDropHint": "Kéo tệp MP4 hoặc nhấp để chọn. Tối đa 500 MB.",
+      "videoUploaded": "Video đã tải lên — {{name}}",
+      "vrTitle": "🥽 Liên kết tham quan thực tế ảo",
+      "vrPlaceholder": "https://… (Matterport, Kuula, v.v.)",
+      "modelTitle": "Mô hình 3D/AR (.glb hoặc .gltf)",
+      "modelDropHint": "Tải mô hình GLB/GLTF lên để bật AR. Tối đa 50 MB.",
+      "modelUploaded": "Đã tải lên mô hình — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Nhấn vào các tiện nghi nơi lưu trú này cung cấp. Chúng tôi sẽ hiển thị chúng dưới dạng bộ lọc trên Tìm kiếm."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "Đã xác nhận",
       "paid": "Đã thanh toán",
       "disputed": "Tranh chấp"
+    },
+    "oath": {
+      "dialogTitle": "Cam kết hoa hồng",
+      "translatedOath": "Tôi xin cam kết thanh toán số tiền hoa hồng đã thỏa thuận sau khi hoàn thành giao dịch bất động sản này và thừa nhận trách nhiệm này trước Chúa và pháp luật.",
+      "breakdownTitle": "Phân tích hoa hồng",
+      "agentListingBreakdown": "Hoa hồng nền tảng: <strong>0,5%</strong> giá trị giao dịch, được trả khi bán hoặc hoàn tất hợp đồng thuê thành công.",
+      "buyerAgentCommission": "Hoa hồng đại lý: <strong>2,5%</strong> giá trị giao dịch.",
+      "buyerPlatformFee": "Phí nền tảng: <strong>0,5%</strong> giá trị giao dịch.",
+      "acceptError": "Không thể ghi lại sự chấp nhận của bạn",
+      "agreeCheckbox": "Tôi đồng ý với các điều khoản hoa hồng",
+      "decline": "tôi không đồng ý",
+      "saving": "Đang lưu...",
+      "acceptCta": "Tôi chấp nhận và cam kết"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Hợp đồng #",
     "viewContract": "Xem hợp đồng",
     "signedThroughEjar": "Đã ký qua Ejar",
-    "noContracts": "Chưa có hợp đồng thuê nào"
+    "noContracts": "Chưa có hợp đồng thuê nào",
+    "status": {
+      "draft": "Bản nháp",
+      "pending_signatures": "Đang chờ chữ ký",
+      "active": "Tích cực",
+      "expired": "Hết hạn",
+      "cancelled": "Đã hủy"
+    }
   },
   "dufaat": {
     "title": "Trả góp Dufaat",
@@ -911,7 +1095,13 @@
     "nextPayment": "Khoản thanh toán tiếp theo",
     "installmentsPaid": "Đợt trả góp đã thanh toán",
     "payNow": "Thanh toán đợt",
-    "noPlans": "Chưa có gói Dufaat nào"
+    "noPlans": "Chưa có gói Dufaat nào",
+    "status": {
+      "active": "Tích cực",
+      "completed": "Hoàn thành",
+      "defaulted": "Mặc định",
+      "cancelled": "Đã hủy"
+    }
   },
   "booking": {
     "myBookings": "Đặt phòng của tôi",
@@ -942,7 +1132,7 @@
     "checkInInstructionsPending": "Chủ nhà sẽ gửi hướng dẫn 24h trước khi nhận phòng.",
     "showAllPhotos": "Hiển thị tất cả ảnh",
     "availability": "Tính sẵn có",
-    "superhost": "Superhost",
+    "superhost": "Chủ nhà siêu cấp",
     "responseRate": "Tỷ lệ phản hồi",
     "datesUnavailable": "Ngày đã chọn trùng với một đặt phòng hiện có.",
     "leaveReview": "Để lại đánh giá",
@@ -961,6 +1151,9 @@
       "confirmed": "Đã xác nhận",
       "cancelled": "Đã hủy",
       "completed": "Hoàn thành"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Số khách tối đa: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Độ tin cậy trung bình",
       "low": "Độ tin cậy thấp"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Tìm kiếm theo tên hoặc chuyên ngành",
+    "allCities": "Tất cả thành phố",
+    "cityRiyadh": "Riyadh",
+    "cityJeddah": "Jeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Không có đại lý nào phù hợp với tìm kiếm của bạn",
+    "emptyBody": "Hãy thử tên hoặc thành phố khác.",
+    "agency": "Bất động sản Eawlma",
+    "verified": "Đã xác minh",
+    "respondsUnder2h": "< 2 giờ",
+    "activeListingsCount": "{{count}} danh sách đang hoạt động",
+    "viewProfile": "Xem hồ sơ"
+  },
+  "agent": {
+    "verified": "Đã xác minh",
+    "verifiedAgent": "Đại lý đã được xác minh",
+    "licensed": "Được cấp phép",
+    "falLicense": "FAL được cấp phép",
+    "listings": "Danh sách",
+    "reviews": "Đánh giá",
+    "rating": "Đánh giá",
+    "responseTime": "Thời gian đáp ứng",
+    "memberSince": "Thành viên kể từ",
+    "contactAgent": "Liên hệ đại lý",
+    "viewProfile": "Xem hồ sơ",
+    "sendMessage": "Gửi tin nhắn"
+  },
+  "property": {
+    "villa": "biệt thự",
+    "apartment": "Căn hộ",
+    "land": "Đất",
+    "chalet": "Nhà gỗ",
+    "farm": "Nông trại",
+    "restHouse": "Nhà nghỉ",
+    "office": "Văn phòng",
+    "shop": "Cửa hàng",
+    "warehouse": "Kho",
+    "hotel": "Phòng khách sạn",
+    "entireHome": "Toàn bộ ngôi nhà",
+    "room": "Phòng"
+  },
+  "amenities": {
+    "pool": "Bể bơi",
+    "gym": "phòng tập thể dục",
+    "parking": "bãi đậu xe",
+    "security": "Bảo vệ",
+    "elevator": "Thang máy",
+    "garden": "Vườn",
+    "balcony": "Ban công",
+    "maidRoom": "Phòng giúp việc",
+    "driverRoom": "Phòng tài xế",
+    "storage": "Phòng lưu trữ",
+    "centralAC": "Điều hòa trung tâm",
+    "internet": "internet",
+    "satellite": "Truyền hình vệ tinh",
+    "furnished": "Có nội thất",
+    "kitchen": "Phòng bếp",
+    "laundry": "Phòng giặt ủi"
+  },
+  "compare": {
+    "add": "Thêm để so sánh",
+    "remove": "Xóa khỏi so sánh"
+  },
+  "myListings": {
+    "countSelected": "{{đếm}} đã được chọn",
+    "activateAll": "Kích hoạt tất cả",
+    "deactivateAll": "Vô hiệu hóa tất cả",
+    "deleteAll": "Xóa tất cả",
+    "colViews": "Lượt xem",
+    "colInquiries": "Thắc mắc",
+    "boostFeature": "Tăng cường (tính năng)",
+    "duplicate": "Nhân bản",
+    "deleteConfirmTitle": "Xóa {{count}} danh sách?",
+    "deleteConfirmDescription": "Hành động này sẽ xóa nhẹ danh sách — nó sẽ không còn xuất hiện công khai nữa."
   }
 }

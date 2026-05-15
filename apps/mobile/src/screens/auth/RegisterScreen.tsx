@@ -93,7 +93,7 @@ export default function RegisterScreen({ navigation }: any) {
 
           <View style={styles.logoSection}>
             <View style={[styles.logo, { backgroundColor: colors.primary }]}>
-              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>{isAr ? 'عالمة' : 'Eawlma'}</Text>
+              <Text style={[TYPOGRAPHY.h2, { color: '#FFF' }]}>{isAr ? 'عولمة' : 'Eawlma'}</Text>
             </View>
             <Text style={[TYPOGRAPHY.h2, { color: colors.text }]}>
               {t('auth.createAccount')}

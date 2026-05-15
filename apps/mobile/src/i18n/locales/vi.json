@@ -432,7 +432,10 @@
       "rejected": "Bị từ chối",
       "expired": "Đã hết hạn",
       "draft": "Bản nháp",
-      "archived": "Đã lưu trữ"
+      "archived": "Đã lưu trữ",
+      "pending_review": "Đang được xem xét",
+      "sold": "Đã bán",
+      "rented": "Đã thuê"
     },
     "sale": "Doanh thu",
     "rent": "Thuê",
@@ -460,7 +463,22 @@
     "actionFailed": "Hành động không thành công",
     "bookingDevTitle": "Đặt chỗ",
     "bookingDevBody": "Luồng đặt phòng đang được phát triển. Vui lòng liên hệ với đại lý.",
-    "removeFromSaved": "Xóa thuộc tính này khỏi đã lưu?"
+    "removeFromSaved": "Xóa thuộc tính này khỏi đã lưu?",
+    "sqm": "mét vuông",
+    "type": "Kiểu",
+    "floor": "Sàn nhà",
+    "age": "Tuổi",
+    "parking": "bãi đậu xe",
+    "furnished": "Có nội thất",
+    "unfurnished": "Không có đồ đạc",
+    "perNight": "/đêm",
+    "verifiedAgent": "Đại lý đã được xác minh",
+    "newListing": "Mới",
+    "sold": "Đã bán",
+    "rented": "Đã thuê",
+    "available": "Có sẵn",
+    "pending": "Chưa giải quyết",
+    "expired": "Hết hạn"
   },
   "search": {
     "filters": "Bộ lọc",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Khoản thanh toán đã được xử lý",
     "dispute_resolved": "Tranh chấp đã được giải quyết",
     "system": "Hệ thống"
+  },
+  "agent": {
+    "verified": "Đã xác minh",
+    "verifiedAgent": "Đại lý đã được xác minh",
+    "licensed": "Được cấp phép",
+    "falLicense": "FAL được cấp phép",
+    "listings": "Danh sách",
+    "reviews": "Đánh giá",
+    "rating": "Đánh giá",
+    "responseTime": "Thời gian đáp ứng",
+    "memberSince": "Thành viên kể từ",
+    "contactAgent": "Liên hệ đại lý",
+    "viewProfile": "Xem hồ sơ",
+    "sendMessage": "Gửi tin nhắn"
+  },
+  "property": {
+    "villa": "biệt thự",
+    "apartment": "Căn hộ",
+    "land": "Đất",
+    "chalet": "Nhà gỗ",
+    "farm": "Nông trại",
+    "restHouse": "Nhà nghỉ",
+    "office": "Văn phòng",
+    "shop": "Cửa hàng",
+    "warehouse": "Kho",
+    "hotel": "Phòng khách sạn",
+    "entireHome": "Toàn bộ ngôi nhà",
+    "room": "Phòng"
+  },
+  "amenities": {
+    "pool": "Bể bơi",
+    "gym": "phòng tập thể dục",
+    "parking": "bãi đậu xe",
+    "security": "Bảo vệ",
+    "elevator": "Thang máy",
+    "garden": "Vườn",
+    "balcony": "Ban công",
+    "maidRoom": "Phòng giúp việc",
+    "driverRoom": "Phòng tài xế",
+    "storage": "Phòng lưu trữ",
+    "centralAC": "Điều hòa trung tâm",
+    "internet": "internet",
+    "satellite": "Truyền hình vệ tinh",
+    "furnished": "Có nội thất",
+    "kitchen": "Phòng bếp",
+    "laundry": "Phòng giặt ủi"
+  },
+  "compare": {
+    "add": "Thêm để so sánh",
+    "remove": "Xóa khỏi so sánh"
   }
 }

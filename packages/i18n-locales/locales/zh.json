@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "埃乌尔玛",
     "tagline": "在沙特阿拉伯发现您理想的房产"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "任意价格",
     "upTo500": "最高 500 SAR",
     "upTo1000": "最高 1,000 SAR",
-    "upTo2500": "最高 2,500 SAR"
+    "upTo2500": "最高 2,500 SAR",
+    "hotelChip": "酒店"
   },
   "messages": {
     "startConversation": "开始对话",
@@ -166,7 +167,8 @@
     "dailyRate": "每日费率",
     "weeklyRate": "每周费率",
     "guestReviews": "住客评价",
-    "noReviews": "暂无评价 — 客人退房并打分后,评价会显示在这里。"
+    "noReviews": "暂无评价 — 客人退房并打分后,评价会显示在这里。",
+    "guestFallback": "客人"
   },
   "buyerDeals": {
     "title": "我的交易",
@@ -216,7 +218,20 @@
     "favorAgent": "支持经纪人 — 生成佣金",
     "favorBuyer": "支持买家 — 取消交易",
     "cancelDeal": "取消交易 — 无佣金",
-    "resolutionHint": "双方将收到这些备注的通知。"
+    "resolutionHint": "双方将收到这些备注的通知。",
+    "other": "其他",
+    "buyerLower": "买方",
+    "agentLower": "代理人",
+    "otherLower": "其他",
+    "anonymous": "匿名的",
+    "resolveTitle": "解决争议",
+    "resolveDesc": "选择此争议的结果",
+    "favorAgentDesc": "佣金将被确认并支付给代理",
+    "favorBuyerDesc": "佣金将被取消",
+    "cancelDealDesc": "交易和佣金均取消",
+    "adminNotes": "管理员注释（可选）",
+    "resolvedSuccess": "争议已成功解决",
+    "resolvedError": "未能解决争议"
   },
   "auth": {
     "login": "登录",
@@ -277,8 +292,8 @@
     "filter": "筛选",
     "submit": "提交",
     "language": "语言",
-    "arabic": "العربية",
-    "english": "English",
+    "arabic": "巴黎",
+    "english": "英语",
     "back": "返回",
     "next": "下一步",
     "previous": "上一步",
@@ -296,7 +311,8 @@
     "remove": "移除",
     "actions": "操作",
     "active": "已激活",
-    "inactive": "未激活"
+    "inactive": "未激活",
+    "loadMore": "加载更多"
   },
   "listing": {
     "forSale": "出售",
@@ -362,8 +378,28 @@
       "rejected": "已拒绝",
       "expired": "已过期",
       "draft": "草稿",
-      "archived": "已归档"
-    }
+      "archived": "已归档",
+      "pending_review": "正在审核中",
+      "sold": "卖",
+      "rented": "已租"
+    },
+    "bedrooms": "卧室",
+    "bathrooms": "浴室",
+    "sqm": "平方米",
+    "type": "类型",
+    "floor": "地面",
+    "age": "年龄",
+    "parking": "停車處",
+    "furnished": "家具齐全",
+    "unfurnished": "不带家具",
+    "perNight": "/夜晚",
+    "verifiedAgent": "已验证代理",
+    "newListing": "新的",
+    "sold": "卖",
+    "rented": "已租",
+    "available": "可用的",
+    "pending": "待办的",
+    "expired": "已到期"
   },
   "search": {
     "filters": "筛选",
@@ -399,7 +435,10 @@
       "cta": "提交房源需求"
     },
     "drawArea": "绘制区域",
-    "clearDrawing": "清除绘制"
+    "clearDrawing": "清除绘制",
+    "flexibleDates": "我对日期很灵活",
+    "flex1Month": "1个月",
+    "shortTerm": "短期"
   },
   "home": {
     "heroTitle": "找到您理想的家",
@@ -438,8 +477,8 @@
     "newestSort": "最新",
     "priceLowSort": "价格:低",
     "priceHighSort": "价格:高",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "应用商店",
+    "googlePlay": "谷歌游戏",
     "statListings": "房源",
     "statAgents": "经纪人",
     "statUsers": "用户",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "基本信息",
-    "location": "位置",
+    "location": {
+      "street": "街道",
+      "buildingNumber": "大楼号",
+      "postalCode": "邮政编码",
+      "pinPrompt": "放置图钉以设置确切位置",
+      "pinLabel": "别针",
+      "mapUnavailable": "地图图钉选择器不可用。坐标回退到 {{lat}}、{{lng}}。"
+    },
     "media": "媒体",
     "amenities": "配套设施",
-    "compliance": "合规",
-    "review": "审核",
+    "compliance": {
+      "permitNumber": "许可证/FAL 号",
+      "regaNumber": "REGA 许可证号",
+      "permitExpiry": "许可证到期",
+      "preferredContact": "首选联系方式",
+      "phone": "电话",
+      "publicVisibility": "公共可见性（仅取消选中未列出/私人链接）"
+    },
+    "review": {
+      "summaryTitle": "上市概要",
+      "enhanceWithAi": "通过人工智能增强",
+      "enhancing": "增强…",
+      "aiStubNotice": "AI 返回一个存根 — 在后端设置 OPENAI_API_KEY 以使用实时模型。",
+      "descriptionPreview": "描述预览",
+      "emptyDescription": "（空的）",
+      "type": "类型",
+      "titleLabel": "标题",
+      "bedsBaths": "卧室/浴室",
+      "cityDistrict": "市/区",
+      "coordinates": "坐标",
+      "permit": "允许",
+      "regaLicense": "REGA许可证",
+      "visibility": "能见度"
+    },
     "saveDraft": "保存草稿",
     "submit": "提交审核",
     "submitForReview": "提交审核",
@@ -576,7 +644,103 @@
       "bathrooms": "浴室",
       "parking": "停车位",
       "yearBuilt": "建造年份",
-      "furnishing": "家具情况"
+      "furnishing": "家具情况",
+      "rentPeriod": "时期"
+    },
+    "editListing": "编辑列表",
+    "newListing": "新上市",
+    "crumbNew": "新的",
+    "validation": {
+      "titleRequired": "请添加至少一种语言的标题。",
+      "descriptionRequired": "请添加至少一种语言的描述。",
+      "priceRequired": "价格必须大于零。",
+      "cityRequired": "城市为必填项。",
+      "pinRequired": "在地图上放置一个图钉来确定该位置。",
+      "imageRequired": "发布前至少需要一张图像。"
+    },
+    "transactionType": {
+      "sale": "销售",
+      "rent": "租"
+    },
+    "rentPeriod": {
+      "daily": "日常的",
+      "weekly": "每周",
+      "monthly": "每月",
+      "yearly": "每年"
+    },
+    "furnishing": {
+      "unfurnished": "不带家具",
+      "semi_furnished": "半装修",
+      "furnished": "家具齐全"
+    },
+    "visibility": {
+      "public": "民众",
+      "unlisted": "未上市"
+    },
+    "amenity": {
+      "pool": "水池",
+      "garden": "花园",
+      "gym": "健身房",
+      "elevator": "电梯",
+      "maidRoom": "女仆房",
+      "driverRoom": "驾驶室",
+      "centralAc": "中央空调",
+      "kitchenAppliances": "厨房电器",
+      "security": "24/7 安全",
+      "cornerUnit": "转角单元"
+    },
+    "shortTermAmenity": {
+      "wifi": "无线上网",
+      "pool": "水池",
+      "parking": "停車處",
+      "breakfast": "早餐",
+      "ac": "空调",
+      "kitchen": "厨房",
+      "tv": "电视",
+      "washer": "垫圈",
+      "workspace": "工作空间",
+      "petsAllowed": "允许携带宠物",
+      "smokingAllowed": "允许吸烟",
+      "wheelchairAccessible": "适合轮椅使用者"
+    },
+    "shortTerm": {
+      "title": "短期租赁详情",
+      "subtitle": "客人将在晚上预订此房源。配置住宿规则、设施和定价等级。",
+      "dailyRate": "每日费率（SAR）",
+      "weeklyRate": "每周费率（SAR，可选）",
+      "minimumStay": "最短入住天数（晚数）",
+      "maxGuests": "最多客人数",
+      "checkIn": "报到",
+      "checkOut": "查看",
+      "cancellationPolicy": "取消政策",
+      "cancelFlexible": "灵活 — 提前 24 小时全额退款",
+      "cancelModerate": "中等 — 提前 5 天全额退款",
+      "cancelStrict": "严格 — 7 天前退款 50%",
+      "starRating": "星级",
+      "hotelName": "酒店名称",
+      "instantBook": "即时预订",
+      "instantBookHint": "预订会自动确认，无需您的批准。禁用先审查每个请求。",
+      "amenities": "便利设施",
+      "houseRules": "入住须知",
+      "houseRulesPlaceholder": "例如禁止聚会、晚上 10 点后保持安静、室内禁止吸烟……"
+    },
+    "mediaStep": {
+      "images": "图片",
+      "imageDropHint": "将照片拖放到此处，或单击进行选择。 JPEG / PNG / WebP 最大 10 MB。",
+      "photoAlt": "挂牌照片",
+      "setCover": "设置为封面",
+      "cover": "覆盖",
+      "videoTour": "视频导览",
+      "videoDropHint": "拖动 MP4 文件或单击进行选择。最大 500 MB。",
+      "videoUploaded": "视频已上传 — {{name}}",
+      "vrTitle": "🥽 虚拟现实游览链接",
+      "vrPlaceholder": "https://…（Matterport、Kuula 等）",
+      "modelTitle": "3D/AR 模型（.glb 或 .gltf）",
+      "modelDropHint": "上传 GLB/GLTF 模型以启用 AR。最大 50 MB。",
+      "modelUploaded": "模型已上传 - {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "点击该酒店提供的设施。我们会将它们作为搜索过滤器显示。"
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "已确认",
       "paid": "已支付",
       "disputed": "有争议"
+    },
+    "oath": {
+      "dialogTitle": "佣金承诺",
+      "translatedOath": "我特此承诺在完成本次房地产交易后支付约定的佣金，并在上帝和法律面前承认这一责任。",
+      "breakdownTitle": "佣金明细",
+      "agentListingBreakdown": "平台佣金：交易价值的<strong>0.5%</strong>，在成功出售或租赁结束时支付。",
+      "buyerAgentCommission": "代理佣金：交易金额的<strong>2.5%</strong>。",
+      "buyerPlatformFee": "平台费用：交易金额的<strong>0.5%</strong>。",
+      "acceptError": "无法记录您的接受情况",
+      "agreeCheckbox": "我同意佣金条款",
+      "decline": "我不同意",
+      "saving": "保存...",
+      "acceptCta": "我接受并承诺"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "合同编号",
     "viewContract": "查看合同",
     "signedThroughEjar": "通过 Ejar 签署",
-    "noContracts": "暂无租赁合同"
+    "noContracts": "暂无租赁合同",
+    "status": {
+      "draft": "草稿",
+      "pending_signatures": "待签名",
+      "active": "积极的",
+      "expired": "已到期",
+      "cancelled": "取消"
+    }
   },
   "dufaat": {
     "title": "Dufaat 分期",
@@ -911,7 +1095,13 @@
     "nextPayment": "下次还款",
     "installmentsPaid": "已付期数",
     "payNow": "支付本期",
-    "noPlans": "暂无 Dufaat 方案"
+    "noPlans": "暂无 Dufaat 方案",
+    "status": {
+      "active": "积极的",
+      "completed": "完全的",
+      "defaulted": "违约",
+      "cancelled": "取消"
+    }
   },
   "booking": {
     "myBookings": "我的预订",
@@ -961,6 +1151,9 @@
       "confirmed": "已确认",
       "cancelled": "已取消",
       "completed": "已完成"
+    },
+    "calendar": {
+      "maxGuestsHelper": "最多宾客人数：{{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "中等置信度",
       "low": "低置信度"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "按名称或专业搜索",
+    "allCities": "所有城市",
+    "cityRiyadh": "利雅得",
+    "cityJeddah": "吉达",
+    "cityDammam": "达曼",
+    "emptyTitle": "没有符合您搜索条件的代理商",
+    "emptyBody": "尝试使用不同的名称或城市。",
+    "agency": "欧玛房地产",
+    "verified": "已验证",
+    "respondsUnder2h": "<2小时",
+    "activeListingsCount": "{{count}} 个活跃列表",
+    "viewProfile": "查看资料"
+  },
+  "agent": {
+    "verified": "已验证",
+    "verifiedAgent": "已验证代理",
+    "licensed": "已获得许可",
+    "falLicense": "FAL 许可",
+    "listings": "房源",
+    "reviews": "评论",
+    "rating": "等级",
+    "responseTime": "响应时间",
+    "memberSince": "会员自",
+    "contactAgent": "联系代理",
+    "viewProfile": "查看资料",
+    "sendMessage": "发送消息"
+  },
+  "property": {
+    "villa": "别墅",
+    "apartment": "公寓",
+    "land": "土地",
+    "chalet": "小木屋",
+    "farm": "农场",
+    "restHouse": "休息所",
+    "office": "办公室",
+    "shop": "店铺",
+    "warehouse": "仓库",
+    "hotel": "酒店房间",
+    "entireHome": "整套房子",
+    "room": "房间"
+  },
+  "amenities": {
+    "pool": "游泳池",
+    "gym": "健身房",
+    "parking": "停車處",
+    "security": "安全",
+    "elevator": "电梯",
+    "garden": "花园",
+    "balcony": "阳台",
+    "maidRoom": "女仆房",
+    "driverRoom": "司机室",
+    "storage": "储藏室",
+    "centralAC": "中央空调",
+    "internet": "互联网",
+    "satellite": "卫星电视",
+    "furnished": "家具齐全",
+    "kitchen": "厨房",
+    "laundry": "洗衣房"
+  },
+  "compare": {
+    "add": "添加比较",
+    "remove": "从比较中删除"
+  },
+  "myListings": {
+    "countSelected": "已选择 {{count}} 个",
+    "activateAll": "全部激活",
+    "deactivateAll": "全部停用",
+    "deleteAll": "全部删除",
+    "colViews": "意见",
+    "colInquiries": "查询",
+    "boostFeature": "提升（功能）",
+    "duplicate": "复制",
+    "deleteConfirmTitle": "删除 {{count}} 个列表？",
+    "deleteConfirmDescription": "此操作会软删除该列表 - 它将不再公开出现。"
   }
 }

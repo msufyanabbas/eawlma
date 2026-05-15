@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "Eawma",
     "tagline": "Ontdek uw perfecte woning in Saoedi-Arabië"
   },
   "nav": {
@@ -432,7 +432,10 @@
       "rejected": "Afgewezen",
       "expired": "Verlopen",
       "draft": "Concept",
-      "archived": "Gearchiveerd"
+      "archived": "Gearchiveerd",
+      "pending_review": "Onder beoordeling",
+      "sold": "Verkocht",
+      "rented": "Verhuurd"
     },
     "sale": "Uitverkoop",
     "rent": "Huur",
@@ -460,7 +463,22 @@
     "actionFailed": "Actie mislukt",
     "bookingDevTitle": "Boeking",
     "bookingDevBody": "De boekingsstroom is in ontwikkeling. Neem dan contact op met de makelaar.",
-    "removeFromSaved": "Deze eigenschap verwijderen uit opgeslagen?"
+    "removeFromSaved": "Deze eigenschap verwijderen uit opgeslagen?",
+    "sqm": "m²",
+    "type": "Typ",
+    "floor": "Verdieping",
+    "age": "Leeftijd",
+    "parking": "Parkeren",
+    "furnished": "Gemeubileerd",
+    "unfurnished": "Gestoffeerd",
+    "perNight": "/nacht",
+    "verifiedAgent": "Geverifieerde agent",
+    "newListing": "Nieuw",
+    "sold": "Verkocht",
+    "rented": "Verhuurd",
+    "available": "Beschikbaar",
+    "pending": "In behandeling",
+    "expired": "Verlopen"
   },
   "search": {
     "filters": "Filters",
@@ -716,7 +734,7 @@
     "signOut": "Afmelden",
     "signOutConfirm": "Weet u zeker dat u zich wilt afmelden?",
     "member": "Lid",
-    "agentRole": "Agent",
+    "agentRole": "Tussenpersoon",
     "admin": "Beheerder",
     "chooseLanguage": "Kies Taal",
     "searchLanguage": "Zoeken...",
@@ -1622,7 +1640,7 @@
   },
   "roles": {
     "user": "Koper",
-    "agent": "Agent",
+    "agent": "Tussenpersoon",
     "agency_owner": "Eigenaar van het bureau",
     "admin": "Beheerder"
   },
@@ -1651,5 +1669,55 @@
     "payout_processed": "Uitbetaling verwerkt",
     "dispute_resolved": "Geschil opgelost",
     "system": "Systeem"
+  },
+  "agent": {
+    "verified": "Geverifieerd",
+    "verifiedAgent": "Geverifieerde agent",
+    "licensed": "Gelicentieerd",
+    "falLicense": "FAL-licentie",
+    "listings": "Advertenties",
+    "reviews": "Beoordelingen",
+    "rating": "Beoordeling",
+    "responseTime": "Reactietijd",
+    "memberSince": "Lid sinds",
+    "contactAgent": "Neem contact op met agent",
+    "viewProfile": "Bekijk profiel",
+    "sendMessage": "Bericht verzenden"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Appartement",
+    "land": "Landen",
+    "chalet": "Chalet",
+    "farm": "Boerderij",
+    "restHouse": "Rusthuis",
+    "office": "Kantoor",
+    "shop": "Winkel",
+    "warehouse": "Magazijn",
+    "hotel": "Hotelkamer",
+    "entireHome": "Gehele woning",
+    "room": "Kamer"
+  },
+  "amenities": {
+    "pool": "Zwembad",
+    "gym": "Sportschool",
+    "parking": "Parkeren",
+    "security": "Beveiliging",
+    "elevator": "Lift",
+    "garden": "Tuin",
+    "balcony": "Balkon",
+    "maidRoom": "Meidenkamer",
+    "driverRoom": "Bestuurderskamer",
+    "storage": "Opslagruimte",
+    "centralAC": "Centrale airconditioning",
+    "internet": "Internet",
+    "satellite": "Satelliet-tv",
+    "furnished": "Gemeubileerd",
+    "kitchen": "Keuken",
+    "laundry": "Wasruimte"
+  },
+  "compare": {
+    "add": "Optellen om te vergelijken",
+    "remove": "Verwijder uit vergelijking"
   }
 }

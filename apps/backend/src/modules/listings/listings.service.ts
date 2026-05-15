@@ -82,16 +82,23 @@ export class ListingsService {
   // ---------------------------------------------------------------------------
 
   /**
-   * Translate a listing's title + description into `targetLanguage` using
-   * the Google Translate gtx endpoint, and stash the result on
-   * `titleTranslated` / `descriptionTranslated` so the API response carries
-   * a ready-to-render copy for the viewer.
+   * Translate a listing's title + description into the viewer's preferred
+   * language and stash the result on `titleTranslated` /
+   * `descriptionTranslated` so the API response carries a ready-to-render
+   * copy regardless of the listing's source language.
    *
-   * Skips translation when:
-   *  - target is the listing's source locale (already correct),
-   *  - target matches an existing real translation row, or
-   *  - target falls back to English/Arabic — those are the canonical fields
-   *    and the frontend already handles them.
+   * No exceptions: every language the viewer chooses is translated, even
+   * when the stored `sourceLocale` claims a match — the field is unreliable
+   * (lots of listings are stored as `ar` even when the title is English) so
+   * we always run through the translation service. The service detects the
+   * real source via Google's `gtx` auto-detect, caches per (text, target)
+   * for the lifetime of the process, and short-circuits the network call
+   * when the detected source equals the target.
+   *
+   * Skipped only when:
+   *  - no Accept-Language was supplied,
+   *  - a curated translation row already exists for the target locale —
+   *    that human-authored copy beats Google every time.
    *
    * Failures are swallowed: translation is decorative, never required.
    */
@@ -103,18 +110,22 @@ export class ListingsService {
     const target = targetLanguage.split(',')[0]?.split('-')[0]?.toLowerCase();
     if (!target) return listing;
 
-    const source = (listing.sourceLocale ?? 'ar').toLowerCase();
-    if (target === source) return listing;
-
-    // If an existing real translation row matches the target, prefer that
-    // over Google's machine-generated copy.
+    // If a curated translation row matches the target, surface it as the
+    // translated copy so the frontend (which prefers `titleTranslated`)
+    // shows the hand-written text rather than running Google over it.
     const existing = Array.isArray(listing.translations)
       ? listing.translations.find(
           (t: any) =>
             typeof t?.locale === 'string' && t.locale.toLowerCase() === target,
         )
       : null;
-    if (existing && existing.title && existing.description) return listing;
+    if (existing && existing.title && existing.description) {
+      return {
+        ...listing,
+        titleTranslated: existing.title,
+        descriptionTranslated: existing.description,
+      };
+    }
 
     const title = typeof listing.title === 'string' ? listing.title : '';
     const description = typeof listing.description === 'string' ? listing.description : '';
@@ -127,8 +138,8 @@ export class ListingsService {
       ]);
       return {
         ...listing,
-        titleTranslated: titleTranslated || undefined,
-        descriptionTranslated: descriptionTranslated || undefined,
+        titleTranslated: titleTranslated || title || undefined,
+        descriptionTranslated: descriptionTranslated || description || undefined,
       };
     } catch {
       return listing;

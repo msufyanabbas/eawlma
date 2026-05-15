@@ -432,7 +432,10 @@
       "rejected": "Rejeitado",
       "expired": "Expirado",
       "draft": "Rascunho",
-      "archived": "Arquivado"
+      "archived": "Arquivado",
+      "pending_review": "Em revisão",
+      "sold": "Vendido",
+      "rented": "Alugado"
     },
     "sale": "Oferta",
     "rent": "Aluguel",
@@ -460,7 +463,22 @@
     "actionFailed": "Falha na ação",
     "bookingDevTitle": "Reserva",
     "bookingDevBody": "O fluxo de reservas está em desenvolvimento. Entre em contato com o agente.",
-    "removeFromSaved": "Remover esta propriedade dos salvos?"
+    "removeFromSaved": "Remover esta propriedade dos salvos?",
+    "sqm": "m²",
+    "type": "Tipo",
+    "floor": "Chão",
+    "age": "Idade",
+    "parking": "Estacionamento",
+    "furnished": "Mobilado",
+    "unfurnished": "Sem mobília",
+    "perNight": "/noite",
+    "verifiedAgent": "Agente verificado",
+    "newListing": "Novo",
+    "sold": "Vendido",
+    "rented": "Alugado",
+    "available": "Disponível",
+    "pending": "Pendente",
+    "expired": "Expirado"
   },
   "search": {
     "filters": "Filtros",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Pagamento processado",
     "dispute_resolved": "Disputa resolvida",
     "system": "Sistema"
+  },
+  "agent": {
+    "verified": "Verificado",
+    "verifiedAgent": "Agente verificado",
+    "licensed": "Licenciado",
+    "falLicense": "Licenciado FAL",
+    "listings": "Listagens",
+    "reviews": "Avaliações",
+    "rating": "Avaliação",
+    "responseTime": "Tempo de resposta",
+    "memberSince": "Membro desde",
+    "contactAgent": "Agente de contato",
+    "viewProfile": "Ver perfil",
+    "sendMessage": "Enviar mensagem"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Apartamento",
+    "land": "Terra",
+    "chalet": "Chalé",
+    "farm": "Fazenda",
+    "restHouse": "Casa de repouso",
+    "office": "Escritório",
+    "shop": "Comprar",
+    "warehouse": "Armazém",
+    "hotel": "Quarto de hotel",
+    "entireHome": "Casa inteira",
+    "room": "Sala"
+  },
+  "amenities": {
+    "pool": "Piscina",
+    "gym": "Academia",
+    "parking": "Estacionamento",
+    "security": "Segurança",
+    "elevator": "Elevador",
+    "garden": "Jardim",
+    "balcony": "Sacada",
+    "maidRoom": "Quarto de empregada",
+    "driverRoom": "Sala do motorista",
+    "storage": "Sala de armazenamento",
+    "centralAC": "Ar condicionado central",
+    "internet": "Internet",
+    "satellite": "Televisão por satélite",
+    "furnished": "Mobilado",
+    "kitchen": "Cozinha",
+    "laundry": "Lavanderia"
+  },
+  "compare": {
+    "add": "Adicionar para comparar",
+    "remove": "Remover da comparação"
   }
 }

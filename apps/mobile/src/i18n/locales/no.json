@@ -432,7 +432,10 @@
       "rejected": "Avvist",
       "expired": "Utløpt",
       "draft": "Utkast",
-      "archived": "Arkivert"
+      "archived": "Arkivert",
+      "pending_review": "Under vurdering",
+      "sold": "Solgt",
+      "rented": "Utleid"
     },
     "sale": "Salg",
     "rent": "Lei",
@@ -460,7 +463,22 @@
     "actionFailed": "Handlingen mislyktes",
     "bookingDevTitle": "Bestilling",
     "bookingDevBody": "Bookingflyt er i utvikling. Ta kontakt med agenten.",
-    "removeFromSaved": "Vil du fjerne denne egenskapen fra lagret?"
+    "removeFromSaved": "Vil du fjerne denne egenskapen fra lagret?",
+    "sqm": "m²",
+    "type": "Skriv",
+    "floor": "Gulv",
+    "age": "Alder",
+    "parking": "Parkering",
+    "furnished": "Møblert",
+    "unfurnished": "Umøblert",
+    "perNight": "/natt",
+    "verifiedAgent": "Verifisert agent",
+    "newListing": "Ny",
+    "sold": "Solgt",
+    "rented": "Utleid",
+    "available": "Tilgjengelig",
+    "pending": "Venter",
+    "expired": "Utløpt"
   },
   "search": {
     "filters": "Filtre",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Utbetaling behandlet",
     "dispute_resolved": "Tvist løst",
     "system": "System"
+  },
+  "agent": {
+    "verified": "Verifisert",
+    "verifiedAgent": "Verifisert agent",
+    "licensed": "Lisensiert",
+    "falLicense": "FAL-lisensiert",
+    "listings": "Oppføringer",
+    "reviews": "Anmeldelser",
+    "rating": "Rangering",
+    "responseTime": "Responstid",
+    "memberSince": "Medlem siden",
+    "contactAgent": "Kontakt agent",
+    "viewProfile": "Vis profil",
+    "sendMessage": "Send melding"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Leilighet",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handle",
+    "warehouse": "Lager",
+    "hotel": "Hotellrom",
+    "entireHome": "Hele hjemmet",
+    "room": "Rom"
+  },
+  "amenities": {
+    "pool": "Svømmebasseng",
+    "gym": "Treningsstudio",
+    "parking": "Parkering",
+    "security": "Sikkerhet",
+    "elevator": "Heis",
+    "garden": "Hage",
+    "balcony": "Balkong",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driverrom",
+    "storage": "Lagerrom",
+    "centralAC": "Sentral A/C",
+    "internet": "Internett",
+    "satellite": "Satellitt-TV",
+    "furnished": "Møblert",
+    "kitchen": "Kjøkken",
+    "laundry": "Vaskerom"
+  },
+  "compare": {
+    "add": "Legg til for å sammenligne",
+    "remove": "Fjern fra sammenligning"
   }
 }

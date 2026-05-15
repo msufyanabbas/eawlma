@@ -208,7 +208,7 @@
     "amount": "Montant",
     "closedAt": "Clôturée le",
     "status": "Statut",
-    "actions": "Actions",
+    "actions": "Actes",
     "confirm": "Confirmer la transaction",
     "dispute": "Contester",
     "empty": "Aucune transaction pour le moment. Dès qu'un agent marque une transaction comme conclue, elle apparaîtra ici.",
@@ -432,7 +432,10 @@
       "rejected": "Rejetée",
       "expired": "Expirée",
       "draft": "Brouillon",
-      "archived": "Archivée"
+      "archived": "Archivée",
+      "pending_review": "En cours de révision",
+      "sold": "Vendu",
+      "rented": "Loué"
     },
     "sale": "Vente",
     "rent": "Louer",
@@ -460,7 +463,22 @@
     "actionFailed": "L'action a échoué",
     "bookingDevTitle": "Réservation",
     "bookingDevBody": "Le flux de réservation est en cours de développement. Veuillez contacter l'agent.",
-    "removeFromSaved": "Supprimer cette propriété des enregistrements enregistrés ?"
+    "removeFromSaved": "Supprimer cette propriété des enregistrements enregistrés ?",
+    "sqm": "m²",
+    "type": "Tapez",
+    "floor": "Sol",
+    "age": "Âge",
+    "parking": "Stationnement",
+    "furnished": "Meublé",
+    "unfurnished": "Non meublé",
+    "perNight": "/nuit",
+    "verifiedAgent": "Agent vérifié",
+    "newListing": "Nouveau",
+    "sold": "Vendu",
+    "rented": "Loué",
+    "available": "Disponible",
+    "pending": "En attente",
+    "expired": "Expiré"
   },
   "search": {
     "filters": "Filtres",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Paiement traité",
     "dispute_resolved": "Litige résolu",
     "system": "Système"
+  },
+  "agent": {
+    "verified": "Vérifié",
+    "verifiedAgent": "Agent vérifié",
+    "licensed": "Sous licence",
+    "falLicense": "Licence FAL",
+    "listings": "Annonces",
+    "reviews": "Avis",
+    "rating": "Note",
+    "responseTime": "Temps de réponse",
+    "memberSince": "Membre depuis",
+    "contactAgent": "Contacter l'agent",
+    "viewProfile": "View Profile",
+    "sendMessage": "Envoyer un message"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Appartement",
+    "land": "Atterrir",
+    "chalet": "Chalet",
+    "farm": "Ferme",
+    "restHouse": "Maison de repos",
+    "office": "Bureau",
+    "shop": "Boutique",
+    "warehouse": "Entrepôt",
+    "hotel": "Chambre d'hôtel",
+    "entireHome": "Maison entière",
+    "room": "Chambre"
+  },
+  "amenities": {
+    "pool": "Piscine",
+    "gym": "Salle de sport",
+    "parking": "Stationnement",
+    "security": "Sécurité",
+    "elevator": "Ascenseur",
+    "garden": "Jardin",
+    "balcony": "Balcon",
+    "maidRoom": "Chambre de bonne",
+    "driverRoom": "Salle du conducteur",
+    "storage": "Débarras",
+    "centralAC": "A/C centrale",
+    "internet": "Internet",
+    "satellite": "Télévision par satellite",
+    "furnished": "Meublé",
+    "kitchen": "Cuisine",
+    "laundry": "Buanderie"
+  },
+  "compare": {
+    "add": "Ajouter pour comparer",
+    "remove": "Supprimer de la comparaison"
   }
 }

@@ -127,7 +127,8 @@
     "anyPrice": "Qualquer preço",
     "upTo500": "Até 500 SAR",
     "upTo1000": "Até 1.000 SAR",
-    "upTo2500": "Até 2.500 SAR"
+    "upTo2500": "Até 2.500 SAR",
+    "hotelChip": "Hotel"
   },
   "messages": {
     "startConversation": "Iniciar a conversa",
@@ -146,7 +147,7 @@
     "translatedFrom": "Traduzido de {{lang}}",
     "showOriginal": "Mostrar original",
     "showTranslation": "Mostrar tradução",
-    "online": "Online",
+    "online": "On-line",
     "lastSeen": "Visto pela última vez"
   },
   "hosting": {
@@ -166,7 +167,8 @@
     "dailyRate": "Tarifa diária",
     "weeklyRate": "Tarifa semanal",
     "guestReviews": "Avaliações de hóspedes",
-    "noReviews": "Ainda sem avaliações — assim que os hóspedes fizerem check-out e avaliarem a estadia, aparecerão aqui."
+    "noReviews": "Ainda sem avaliações — assim que os hóspedes fizerem check-out e avaliarem a estadia, aparecerão aqui.",
+    "guestFallback": "Convidado"
   },
   "buyerDeals": {
     "title": "Meus negócios",
@@ -216,7 +218,20 @@
     "favorAgent": "A favor do agente — criar comissão",
     "favorBuyer": "A favor do comprador — cancelar negócio",
     "cancelDeal": "Cancelar negócio — sem comissão",
-    "resolutionHint": "Ambas as partes serão notificadas com estas notas."
+    "resolutionHint": "Ambas as partes serão notificadas com estas notas.",
+    "other": "Outro",
+    "buyerLower": "comprador",
+    "agentLower": "agente",
+    "otherLower": "outro",
+    "anonymous": "Anônimo",
+    "resolveTitle": "Resolver disputa",
+    "resolveDesc": "Escolha o resultado desta disputa",
+    "favorAgentDesc": "A comissão será confirmada e paga ao agente",
+    "favorBuyerDesc": "Comissão será cancelada",
+    "cancelDealDesc": "Negociação e comissão canceladas",
+    "adminNotes": "Notas administrativas (opcional)",
+    "resolvedSuccess": "Disputa resolvida com sucesso",
+    "resolvedError": "Não foi possível resolver a disputa"
   },
   "auth": {
     "login": "Entrar",
@@ -228,7 +243,7 @@
     "registerTitle": "Crie a sua conta",
     "registerSubtitle": "Junte-se a Eawlma e comece a sua jornada imobiliária",
     "joinEawlma": "Junte-se a Eawlma",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Número de telefone",
     "password": "Palavra-passe",
     "confirmPassword": "Confirmar palavra-passe",
@@ -278,7 +293,7 @@
     "submit": "Enviar",
     "language": "Idioma",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Inglês",
     "back": "Voltar",
     "next": "Seguinte",
     "previous": "Anterior",
@@ -296,7 +311,8 @@
     "remove": "Remover",
     "actions": "Ações",
     "active": "Ativo",
-    "inactive": "Inativo"
+    "inactive": "Inativo",
+    "loadMore": "Carregar mais"
   },
   "listing": {
     "forSale": "Para venda",
@@ -311,7 +327,7 @@
     "areaUnit": "m²",
     "price": "Preço",
     "pricePerSqm": "Preço por m²",
-    "currency": "SAR",
+    "currency": "RAE",
     "perMonth": "/mês",
     "perYear": "/ano",
     "perDay": "/dia",
@@ -362,8 +378,28 @@
       "rejected": "Rejeitado",
       "expired": "Expirado",
       "draft": "Rascunho",
-      "archived": "Arquivado"
-    }
+      "archived": "Arquivado",
+      "pending_review": "Em revisão",
+      "sold": "Vendido",
+      "rented": "Alugado"
+    },
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "sqm": "m²",
+    "type": "Tipo",
+    "floor": "Chão",
+    "age": "Idade",
+    "parking": "Estacionamento",
+    "furnished": "Mobilado",
+    "unfurnished": "Sem mobília",
+    "perNight": "/noite",
+    "verifiedAgent": "Agente verificado",
+    "newListing": "Novo",
+    "sold": "Vendido",
+    "rented": "Alugado",
+    "available": "Disponível",
+    "pending": "Pendente",
+    "expired": "Expirado"
   },
   "search": {
     "filters": "Filtros",
@@ -399,7 +435,10 @@
       "cta": "Enviar pedido de imóvel"
     },
     "drawArea": "Desenhar uma área",
-    "clearDrawing": "Limpar desenho"
+    "clearDrawing": "Limpar desenho",
+    "flexibleDates": "Sou flexível com datas",
+    "flex1Month": "1 mês",
+    "shortTerm": "Curto prazo"
   },
   "home": {
     "heroTitle": "Encontre a sua casa perfeita",
@@ -438,7 +477,7 @@
     "newestSort": "Mais recentes",
     "priceLowSort": "Preço: baixo",
     "priceHighSort": "Preço: alto",
-    "appStore": "App Store",
+    "appStore": "Loja de aplicativos",
     "googlePlay": "Google Play",
     "statListings": "Anúncios",
     "statAgents": "Agentes",
@@ -463,7 +502,7 @@
     "company": "Empresa",
     "about": "Sobre",
     "contact": "Contacto",
-    "legal": "Legal",
+    "legal": "Jurídico",
     "privacy": "Política de Privacidade",
     "privacyPolicy": "Política de Privacidade",
     "terms": "Termos de Serviço",
@@ -505,7 +544,7 @@
     "subtitle": "A nossa equipa responde em até 24 horas. Para questões urgentes sobre anúncios ou conta, o WhatsApp é o canal mais rápido.",
     "sendMessage": "Envie-nos uma mensagem",
     "name": "O seu nome",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Telefone (opcional)",
     "message": "Mensagem",
     "send": "Enviar mensagem",
@@ -542,7 +581,7 @@
     "firstName": "Primeiro nome",
     "lastName": "Apelido",
     "phone": "Telefone",
-    "email": "Email",
+    "email": "E-mail",
     "bio": "Biografia",
     "avatar": "URL do avatar",
     "saveChanges": "Guardar alterações",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Informações básicas",
-    "location": "Localização",
+    "location": {
+      "street": "Rua",
+      "buildingNumber": "Edifício nº.",
+      "postalCode": "Código postal",
+      "pinPrompt": "Coloque um alfinete para definir a localização exata",
+      "pinLabel": "Alfinete",
+      "mapUnavailable": "Seletor de pin do mapa indisponível. As coordenadas voltam para {{lat}}, {{lng}}."
+    },
     "media": "Multimédia",
     "amenities": "Comodidades",
-    "compliance": "Conformidade",
-    "review": "Revisão",
+    "compliance": {
+      "permitNumber": "Número da licença/FAL",
+      "regaNumber": "Número de licença REGA",
+      "permitExpiry": "Expiração da licença",
+      "preferredContact": "Contato preferencial",
+      "phone": "Telefone",
+      "publicVisibility": "Visibilidade pública (desmarque apenas para links não listados/privados)"
+    },
+    "review": {
+      "summaryTitle": "Resumo da listagem",
+      "enhanceWithAi": "Aprimore com IA",
+      "enhancing": "Melhorando…",
+      "aiStubNotice": "AI retornou um stub – defina OPENAI_API_KEY no backend para usar o modelo ativo.",
+      "descriptionPreview": "Visualização da descrição",
+      "emptyDescription": "(vazio)",
+      "type": "Tipo",
+      "titleLabel": "Título",
+      "bedsBaths": "Quartos / Banheiros",
+      "cityDistrict": "Cidade / Distrito",
+      "coordinates": "Coordenadas",
+      "permit": "Permitir",
+      "regaLicense": "Licença REGA",
+      "visibility": "Visibilidade"
+    },
     "saveDraft": "Guardar rascunho",
     "submit": "Submeter para revisão",
     "submitForReview": "Submeter para revisão",
@@ -576,7 +644,103 @@
       "bathrooms": "Casas de banho",
       "parking": "Estacionamento",
       "yearBuilt": "Ano de construção",
-      "furnishing": "Mobiliário"
+      "furnishing": "Mobiliário",
+      "rentPeriod": "Período"
+    },
+    "editListing": "Editar listagem",
+    "newListing": "Nova listagem",
+    "crumbNew": "Novo",
+    "validation": {
+      "titleRequired": "Adicione um título em pelo menos um idioma.",
+      "descriptionRequired": "Adicione uma descrição em pelo menos um idioma.",
+      "priceRequired": "O preço deve ser maior que zero.",
+      "cityRequired": "A cidade é necessária.",
+      "pinRequired": "Coloque um alfinete no mapa para a localização.",
+      "imageRequired": "É necessária pelo menos uma imagem antes da publicação."
+    },
+    "transactionType": {
+      "sale": "Oferta",
+      "rent": "Aluguel"
+    },
+    "rentPeriod": {
+      "daily": "Diário",
+      "weekly": "Semanalmente",
+      "monthly": "Mensal",
+      "yearly": "Anual"
+    },
+    "furnishing": {
+      "unfurnished": "Sem mobília",
+      "semi_furnished": "Semi-mobiliado",
+      "furnished": "Mobilado"
+    },
+    "visibility": {
+      "public": "Público",
+      "unlisted": "Não listado"
+    },
+    "amenity": {
+      "pool": "Piscina",
+      "garden": "Jardim",
+      "gym": "Academia",
+      "elevator": "Elevador",
+      "maidRoom": "Quarto de empregada",
+      "driverRoom": "Sala do motorista",
+      "centralAc": "Ar condicionado central",
+      "kitchenAppliances": "Utensílios de cozinha",
+      "security": "Segurança 24 horas por dia, 7 dias por semana",
+      "cornerUnit": "Unidade de canto"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-fi",
+      "pool": "Piscina",
+      "parking": "Estacionamento",
+      "breakfast": "Café da manhã",
+      "ac": "Ar condicionado",
+      "kitchen": "Cozinha",
+      "tv": "TV",
+      "washer": "Arruela",
+      "workspace": "Espaço de trabalho",
+      "petsAllowed": "Animais de estimação permitidos",
+      "smokingAllowed": "Permitido fumar",
+      "wheelchairAccessible": "Acessível a cadeiras de rodas"
+    },
+    "shortTerm": {
+      "title": "Detalhes do aluguel de curto prazo",
+      "subtitle": "Os hóspedes reservarão este anúncio à noite. Configure regras de estadia, comodidades e níveis de preços.",
+      "dailyRate": "Taxa diária (SAR)",
+      "weeklyRate": "Taxa semanal (SAR, opcional)",
+      "minimumStay": "Estadia mínima (noites)",
+      "maxGuests": "Máximo de convidados",
+      "checkIn": "Check-in",
+      "checkOut": "Confira",
+      "cancellationPolicy": "Política de cancelamento",
+      "cancelFlexible": "Flexível — reembolso total até 24 horas antes",
+      "cancelModerate": "Moderado – reembolso total até 5 dias antes",
+      "cancelStrict": "Estrito – reembolso de 50% até 7 dias antes",
+      "starRating": "Classificação por estrelas",
+      "hotelName": "Nome do hotel",
+      "instantBook": "Reserva instantânea",
+      "instantBookHint": "As reservas são confirmadas automaticamente sem a sua aprovação. Desative para revisar cada solicitação primeiro.",
+      "amenities": "Comodidades",
+      "houseRules": "Regras da casa",
+      "houseRulesPlaceholder": "por exemplo Não há festas, horário de silêncio depois das 22h, não fumar dentro de casa..."
+    },
+    "mediaStep": {
+      "images": "Imagens",
+      "imageDropHint": "Arraste e solte fotos aqui ou clique para escolher. JPEG/PNG/WebP até 10 MB.",
+      "photoAlt": "Foto do anúncio",
+      "setCover": "Definir como capa",
+      "cover": "Cobrir",
+      "videoTour": "Vídeo tour",
+      "videoDropHint": "Arraste um arquivo MP4 ou clique para escolher. Máximo de 500 MB.",
+      "videoUploaded": "Vídeo enviado — {{name}}",
+      "vrTitle": "🥽 Link do tour de realidade virtual",
+      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "modelTitle": "Modelo 3D/AR (.glb ou .gltf)",
+      "modelDropHint": "Carregue um modelo GLB/GLTF para ativar AR. Máximo de 50 MB.",
+      "modelUploaded": "Modelo enviado — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Toque nas comodidades que esta propriedade oferece. Iremos exibi-los como filtros na Pesquisa."
     }
   },
   "subscription": {
@@ -649,7 +813,7 @@
     "title": "Consultas",
     "noResults": "Nenhuma consulta corresponde a este filtro",
     "empty": "Nenhuma consulta corresponde a este filtro",
-    "lead": "Lead",
+    "lead": "Liderar",
     "listing": "Anúncio",
     "contact": "Contacto",
     "date": "Data",
@@ -717,6 +881,19 @@
       "confirmed": "Confirmado",
       "paid": "Pago",
       "disputed": "Em disputa"
+    },
+    "oath": {
+      "dialogTitle": "Compromisso da Comissão",
+      "translatedOath": "Comprometo-me por este meio a pagar a comissão acordada após a conclusão desta transação imobiliária e reconheço esta responsabilidade perante Deus e a lei.",
+      "breakdownTitle": "Repartição da comissão",
+      "agentListingBreakdown": "Comissão da plataforma: <strong>0,5%</strong> do valor da transação, pagável após venda bem-sucedida ou fechamento do arrendamento.",
+      "buyerAgentCommission": "Comissão do agente: <strong>2,5%</strong> do valor da transação.",
+      "buyerPlatformFee": "Taxa da plataforma: <strong>0,5%</strong> do valor da transação.",
+      "acceptError": "Não foi possível registrar sua aceitação",
+      "agreeCheckbox": "Eu concordo com os termos da comissão",
+      "decline": "eu não concordo",
+      "saving": "Salvando...",
+      "acceptCta": "Eu aceito e me comprometo"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "Contrato n.º",
     "viewContract": "Ver contrato",
     "signedThroughEjar": "Assinado via Ejar",
-    "noContracts": "Ainda sem contratos de arrendamento"
+    "noContracts": "Ainda sem contratos de arrendamento",
+    "status": {
+      "draft": "Rascunho",
+      "pending_signatures": "Assinaturas pendentes",
+      "active": "Ativo",
+      "expired": "Expirado",
+      "cancelled": "Cancelado"
+    }
   },
   "dufaat": {
     "title": "Prestações Dufaat",
@@ -911,14 +1095,20 @@
     "nextPayment": "Próximo pagamento",
     "installmentsPaid": "Prestações pagas",
     "payNow": "Pagar prestação",
-    "noPlans": "Ainda sem planos Dufaat"
+    "noPlans": "Ainda sem planos Dufaat",
+    "status": {
+      "active": "Ativo",
+      "completed": "Concluído",
+      "defaulted": "Padrão",
+      "cancelled": "Cancelado"
+    }
   },
   "booking": {
     "myBookings": "As minhas reservas",
     "tabGuest": "Como hóspede",
     "tabHost": "Como anfitrião",
     "checkIn": "Check-in",
-    "checkOut": "Check-out",
+    "checkOut": "Confira",
     "night": "noite",
     "nights": "noites",
     "guests": "Hóspedes",
@@ -961,6 +1151,9 @@
       "confirmed": "Confirmada",
       "cancelled": "Cancelada",
       "completed": "Concluída"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Máximo de convidados: {{count}}"
     }
   },
   "market": {
@@ -1029,7 +1222,7 @@
     "codePlaceholder": "Código promocional",
     "apply": "Aplicar",
     "checking": "A verificar…",
-    "discount": "Promo",
+    "discount": "Promoção",
     "applyFailed": "A promoção não pôde ser aplicada — contacte o suporte.",
     "createNew": "Criar promoção",
     "editTitle": "Editar código promocional",
@@ -1079,5 +1272,81 @@
       "medium": "Confiança média",
       "low": "Baixa confiança"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Pesquise por nome ou especialidade",
+    "allCities": "Todas as cidades",
+    "cityRiyadh": "Riad",
+    "cityJeddah": "Jidá",
+    "cityDammam": "Droga",
+    "emptyTitle": "Nenhum agente corresponde à sua pesquisa",
+    "emptyBody": "Experimente um nome ou cidade diferente.",
+    "agency": "Eawlma Imobiliária",
+    "verified": "Verificado",
+    "respondsUnder2h": "<2h",
+    "activeListingsCount": "{{count}} listagens ativas",
+    "viewProfile": "Ver perfil"
+  },
+  "agent": {
+    "verified": "Verificado",
+    "verifiedAgent": "Agente verificado",
+    "licensed": "Licenciado",
+    "falLicense": "Licenciado FAL",
+    "listings": "Listagens",
+    "reviews": "Avaliações",
+    "rating": "Avaliação",
+    "responseTime": "Tempo de resposta",
+    "memberSince": "Membro desde",
+    "contactAgent": "Agente de contato",
+    "viewProfile": "Ver perfil",
+    "sendMessage": "Enviar mensagem"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Apartamento",
+    "land": "Terra",
+    "chalet": "Chalé",
+    "farm": "Fazenda",
+    "restHouse": "Casa de repouso",
+    "office": "Escritório",
+    "shop": "Comprar",
+    "warehouse": "Armazém",
+    "hotel": "Quarto de hotel",
+    "entireHome": "Casa inteira",
+    "room": "Sala"
+  },
+  "amenities": {
+    "pool": "Piscina",
+    "gym": "Academia",
+    "parking": "Estacionamento",
+    "security": "Segurança",
+    "elevator": "Elevador",
+    "garden": "Jardim",
+    "balcony": "Sacada",
+    "maidRoom": "Quarto de empregada",
+    "driverRoom": "Sala do motorista",
+    "storage": "Sala de armazenamento",
+    "centralAC": "Ar condicionado central",
+    "internet": "Internet",
+    "satellite": "Televisão por satélite",
+    "furnished": "Mobilado",
+    "kitchen": "Cozinha",
+    "laundry": "Lavanderia"
+  },
+  "compare": {
+    "add": "Adicionar para comparar",
+    "remove": "Remover da comparação"
+  },
+  "myListings": {
+    "countSelected": "{{count}} selecionados",
+    "activateAll": "Ativar tudo",
+    "deactivateAll": "Desativar tudo",
+    "deleteAll": "Excluir tudo",
+    "colViews": "Visualizações",
+    "colInquiries": "Consultas",
+    "boostFeature": "Impulso (recurso)",
+    "duplicate": "Duplicado",
+    "deleteConfirmTitle": "Excluir {{count}} listagens?",
+    "deleteConfirmDescription": "Esta ação exclui a listagem de forma reversível – ela não aparecerá mais publicamente."
   }
 }

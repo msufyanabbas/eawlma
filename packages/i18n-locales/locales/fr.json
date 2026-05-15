@@ -16,7 +16,7 @@
     "profile": "Profil",
     "logout": "Se déconnecter",
     "dashboard": "Tableau de bord",
-    "admin": "Admin",
+    "admin": "Administrateur",
     "settings": "Paramètres",
     "searchPlaceholder": "Recherche par ville, quartier ou référence",
     "signIn": "Se connecter",
@@ -127,7 +127,8 @@
     "anyPrice": "Tous les prix",
     "upTo500": "Jusqu'à 500 SAR",
     "upTo1000": "Jusqu'à 1 000 SAR",
-    "upTo2500": "Jusqu'à 2 500 SAR"
+    "upTo2500": "Jusqu'à 2 500 SAR",
+    "hotelChip": "Hôtel"
   },
   "messages": {
     "startConversation": "Démarrez la conversation",
@@ -166,7 +167,8 @@
     "dailyRate": "Tarif quotidien",
     "weeklyRate": "Tarif hebdomadaire",
     "guestReviews": "Avis des voyageurs",
-    "noReviews": "Aucun avis pour le moment — dès que les voyageurs auront évalué leur séjour, leurs avis apparaîtront ici."
+    "noReviews": "Aucun avis pour le moment — dès que les voyageurs auront évalué leur séjour, leurs avis apparaîtront ici.",
+    "guestFallback": "Invité"
   },
   "buyerDeals": {
     "title": "Mes transactions",
@@ -216,7 +218,20 @@
     "favorAgent": "En faveur de l'agent — créer la commission",
     "favorBuyer": "En faveur de l'acheteur — annuler la transaction",
     "cancelDeal": "Annuler la transaction — pas de commission",
-    "resolutionHint": "Les deux parties seront notifiées avec ces notes."
+    "resolutionHint": "Les deux parties seront notifiées avec ces notes.",
+    "other": "Autre",
+    "buyerLower": "acheteur",
+    "agentLower": "agent",
+    "otherLower": "autre",
+    "anonymous": "Anonyme",
+    "resolveTitle": "Résoudre le litige",
+    "resolveDesc": "Choisissez l'issue de ce litige",
+    "favorAgentDesc": "La commission sera confirmée et payée à l'agent",
+    "favorBuyerDesc": "La commission sera annulée",
+    "cancelDealDesc": "Transaction et commission annulées",
+    "adminNotes": "Notes d'administration (facultatif)",
+    "resolvedSuccess": "Litige résolu avec succès",
+    "resolvedError": "Échec de la résolution du litige"
   },
   "auth": {
     "login": "Se connecter",
@@ -278,7 +293,7 @@
     "submit": "Soumettre",
     "language": "Langue",
     "arabic": "العربية",
-    "english": "English",
+    "english": "Anglais",
     "back": "Retour",
     "next": "Suivant",
     "previous": "Précédent",
@@ -296,7 +311,8 @@
     "remove": "Retirer",
     "actions": "Actions",
     "active": "Actif",
-    "inactive": "Inactif"
+    "inactive": "Inactif",
+    "loadMore": "Charger plus"
   },
   "listing": {
     "forSale": "À vendre",
@@ -357,13 +373,33 @@
     "regaLicensed": "Annonce licenciée REGA",
     "regaLicense": "Licence",
     "status": {
-      "active": "Active",
+      "active": "Actif",
       "pending": "En attente de validation",
       "rejected": "Rejetée",
       "expired": "Expirée",
       "draft": "Brouillon",
-      "archived": "Archivée"
-    }
+      "archived": "Archivée",
+      "pending_review": "En cours de révision",
+      "sold": "Vendu",
+      "rented": "Loué"
+    },
+    "bedrooms": "Chambres",
+    "bathrooms": "Salles de bains",
+    "sqm": "m²",
+    "type": "Tapez",
+    "floor": "Sol",
+    "age": "Âge",
+    "parking": "Stationnement",
+    "furnished": "Meublé",
+    "unfurnished": "Non meublé",
+    "perNight": "/nuit",
+    "verifiedAgent": "Agent vérifié",
+    "newListing": "Nouveau",
+    "sold": "Vendu",
+    "rented": "Loué",
+    "available": "Disponible",
+    "pending": "En attente",
+    "expired": "Expiré"
   },
   "search": {
     "filters": "Filtres",
@@ -399,7 +435,10 @@
       "cta": "Soumettre une demande"
     },
     "drawArea": "Dessiner une zone",
-    "clearDrawing": "Effacer le dessin"
+    "clearDrawing": "Effacer le dessin",
+    "flexibleDates": "Je suis flexible avec les dates",
+    "flex1Month": "1 mois",
+    "shortTerm": "Court terme"
   },
   "home": {
     "heroTitle": "Trouvez votre logement idéal",
@@ -462,7 +501,7 @@
     "tagline": "Eawlma est la place de marché immobilière de confiance du Royaume — découvrez, publiez et louez des biens en Arabie saoudite en toute sérénité.",
     "company": "Entreprise",
     "about": "À propos",
-    "contact": "Contact",
+    "contact": "Contacter",
     "legal": "Mentions légales",
     "privacy": "Politique de confidentialité",
     "privacyPolicy": "Politique de confidentialité",
@@ -473,7 +512,7 @@
     "forRent": "À louer",
     "agents": "Agents",
     "search": "Rechercher",
-    "support": "Support",
+    "support": "Prise en charge",
     "help": "Centre d'aide",
     "helpCenter": "Centre d'aide",
     "whatsapp": "WhatsApp",
@@ -497,7 +536,7 @@
       "properties": "Biens",
       "agents": "Agents vérifiés",
       "cities": "Villes",
-      "support": "Support"
+      "support": "Prise en charge"
     }
   },
   "contact": {
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "Infos de base",
-    "location": "Emplacement",
+    "location": {
+      "street": "Rue",
+      "buildingNumber": "Bâtiment n°",
+      "postalCode": "Code postal",
+      "pinPrompt": "Déposez une épingle pour définir l'emplacement exact",
+      "pinLabel": "Épingler",
+      "mapUnavailable": "Le sélecteur de repères de carte n'est pas disponible. Les coordonnées reviennent à {{lat}}, {{lng}}."
+    },
     "media": "Médias",
     "amenities": "Équipements",
-    "compliance": "Conformité",
-    "review": "Vérification",
+    "compliance": {
+      "permitNumber": "Numéro de permis / FAL",
+      "regaNumber": "Numéro de licence REGA",
+      "permitExpiry": "Expiration du permis",
+      "preferredContact": "Contact privilégié",
+      "phone": "Téléphone",
+      "publicVisibility": "Visibilité publique (décochez pour les liens non répertoriés/privés uniquement)"
+    },
+    "review": {
+      "summaryTitle": "Résumé de l'annonce",
+      "enhanceWithAi": "Améliorez avec l'IA",
+      "enhancing": "Améliorer…",
+      "aiStubNotice": "AI a renvoyé un stub : définissez OPENAI_API_KEY sur le backend pour utiliser le modèle dynamique.",
+      "descriptionPreview": "Aperçu de la description",
+      "emptyDescription": "(vide)",
+      "type": "Tapez",
+      "titleLabel": "Titre",
+      "bedsBaths": "Chambres / Salles de bains",
+      "cityDistrict": "Ville / Quartier",
+      "coordinates": "Coordonnées",
+      "permit": "Permis",
+      "regaLicense": "Licence REGA",
+      "visibility": "Visibilité"
+    },
     "saveDraft": "Enregistrer le brouillon",
     "submit": "Soumettre pour examen",
     "submitForReview": "Soumettre pour examen",
@@ -574,14 +642,110 @@
       "area": "Surface (m²)",
       "bedrooms": "Chambres",
       "bathrooms": "Salles de bain",
-      "parking": "Parking",
+      "parking": "Stationnement",
       "yearBuilt": "Année de construction",
-      "furnishing": "Ameublement"
+      "furnishing": "Ameublement",
+      "rentPeriod": "Période"
+    },
+    "editListing": "Modifier la liste",
+    "newListing": "Nouvelle annonce",
+    "crumbNew": "Nouveau",
+    "validation": {
+      "titleRequired": "Veuillez ajouter un titre dans au moins une langue.",
+      "descriptionRequired": "Veuillez ajouter une description dans au moins une langue.",
+      "priceRequired": "Le prix doit être supérieur à zéro.",
+      "cityRequired": "La ville est obligatoire.",
+      "pinRequired": "Déposez une épingle sur la carte pour l'emplacement.",
+      "imageRequired": "Au moins une image est requise avant la publication."
+    },
+    "transactionType": {
+      "sale": "Vente",
+      "rent": "Louer"
+    },
+    "rentPeriod": {
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
+    },
+    "furnishing": {
+      "unfurnished": "Non meublé",
+      "semi_furnished": "Semi-meublé",
+      "furnished": "Meublé"
+    },
+    "visibility": {
+      "public": "Publique",
+      "unlisted": "Non répertorié"
+    },
+    "amenity": {
+      "pool": "Piscine",
+      "garden": "Jardin",
+      "gym": "Salle de sport",
+      "elevator": "Ascenseur",
+      "maidRoom": "Chambre de bonne",
+      "driverRoom": "Salle du conducteur",
+      "centralAc": "Climatisation centrale",
+      "kitchenAppliances": "Appareils de cuisine",
+      "security": "Sécurité 24h/24 et 7j/7",
+      "cornerUnit": "Unité de coin"
+    },
+    "shortTermAmenity": {
+      "wifi": "Wi-Fi",
+      "pool": "Piscine",
+      "parking": "Stationnement",
+      "breakfast": "Petit-déjeuner",
+      "ac": "Climatisation",
+      "kitchen": "Cuisine",
+      "tv": "TV",
+      "washer": "Rondelle",
+      "workspace": "Espace de travail",
+      "petsAllowed": "Animaux acceptés",
+      "smokingAllowed": "Il est permis de fumer",
+      "wheelchairAccessible": "Accessible aux personnes en fauteuil roulant"
+    },
+    "shortTerm": {
+      "title": "Détails de la location à court terme",
+      "subtitle": "Les clients réserveront cette annonce à la nuit. Configurez les règles de séjour, les commodités et les niveaux de tarification.",
+      "dailyRate": "Tarif journalier (SAR)",
+      "weeklyRate": "Tarif hebdomadaire (SAR, optionnel)",
+      "minimumStay": "Séjour minimum (nuits)",
+      "maxGuests": "Nombre maximum d'invités",
+      "checkIn": "Enregistrement",
+      "checkOut": "Départ",
+      "cancellationPolicy": "Politique d'annulation",
+      "cancelFlexible": "Flexible — remboursement intégral jusqu'à 24 heures avant",
+      "cancelModerate": "Modéré — remboursement intégral jusqu'à 5 jours avant",
+      "cancelStrict": "Strict — Remboursement de 50 % jusqu'à 7 jours avant",
+      "starRating": "Nombre d'étoiles",
+      "hotelName": "Nom de l'hôtel",
+      "instantBook": "Réservation instantanée",
+      "instantBookHint": "Les réservations sont automatiquement confirmées sans votre approbation. Désactivez pour examiner chaque demande en premier.",
+      "amenities": "Commodités",
+      "houseRules": "Règles de la maison",
+      "houseRulesPlaceholder": "par ex. Pas de fêtes, heures calmes après 22h, interdiction de fumer à l'intérieur..."
+    },
+    "mediaStep": {
+      "images": "Images",
+      "imageDropHint": "Faites glisser et déposez des photos ici, ou cliquez pour choisir. JPEG / PNG / WebP jusqu'à 10 Mo.",
+      "photoAlt": "Photo de la liste",
+      "setCover": "Définir comme couverture",
+      "cover": "Couverture",
+      "videoTour": "Visite vidéo",
+      "videoDropHint": "Faites glisser un fichier MP4 ou cliquez pour choisir. Maximum 500 Mo.",
+      "videoUploaded": "Vidéo mise en ligne – {{name}}",
+      "vrTitle": "🥽 Lien de visite en réalité virtuelle",
+      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "modelTitle": "Modèle 3D/AR (.glb ou .gltf)",
+      "modelDropHint": "Téléchargez un modèle GLB/GLTF pour activer la RA. Maximum 50 Mo.",
+      "modelUploaded": "Modèle téléchargé — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "Appuyez sur les commodités offertes par cette propriété. Nous les afficherons sous forme de filtres dans la recherche."
     }
   },
   "subscription": {
     "title": "Abonnement",
-    "plans": "Plans",
+    "plans": "Forfaits",
     "currentPlan": "Plan actuel",
     "upgrade": "Mettre à niveau",
     "monthly": "Mensuel",
@@ -649,9 +813,9 @@
     "title": "Demandes",
     "noResults": "Aucune demande ne correspond à ce filtre",
     "empty": "Aucune demande ne correspond à ce filtre",
-    "lead": "Lead",
+    "lead": "Plomb",
     "listing": "Annonce",
-    "contact": "Contact",
+    "contact": "Contacter",
     "date": "Date",
     "status": "Statut",
     "statuses": {
@@ -717,6 +881,19 @@
       "confirmed": "Confirmée",
       "paid": "Payée",
       "disputed": "Contestée"
+    },
+    "oath": {
+      "dialogTitle": "Engagement de la Commission",
+      "translatedOath": "Je m'engage par la présente à payer la commission convenue à la fin de cette transaction immobilière et reconnaisse cette responsabilité devant Dieu et la loi.",
+      "breakdownTitle": "Répartition des commissions",
+      "agentListingBreakdown": "Commission de plateforme : <strong>0,5 %</strong> de la valeur de la transaction, payable en cas de vente ou de clôture de bail réussie.",
+      "buyerAgentCommission": "Commission d'agent : <strong>2,5 %</strong> de la valeur de la transaction.",
+      "buyerPlatformFee": "Frais de plateforme : <strong>0,5 %</strong> de la valeur de la transaction.",
+      "acceptError": "Impossible d'enregistrer votre acceptation",
+      "agreeCheckbox": "J'accepte les conditions de commission",
+      "decline": "Je ne suis pas d'accord",
+      "saving": "Enregistrement...",
+      "acceptCta": "J'accepte et m'engage"
     }
   },
   "moderation": {
@@ -726,7 +903,7 @@
     "queueEmpty": "La file de modération est vide.",
     "colTitle": "Titre",
     "colReference": "Référence",
-    "colType": "Type",
+    "colType": "Tapez",
     "colCity": "Ville",
     "colPrice": "Prix",
     "colSubmitted": "Soumise",
@@ -838,7 +1015,7 @@
     "depositHint": "En production, cela passe par le paiement Moyasar. En dev, les fonds sont crédités immédiatement.",
     "transactions": "Historique des transactions",
     "noTransactions": "Aucune transaction pour le moment",
-    "type": "Type",
+    "type": "Tapez",
     "txnDeposit": "Dépôt",
     "txnWithdrawal": "Retrait",
     "txnCommissionPayment": "Paiement de commission",
@@ -896,7 +1073,14 @@
     "contractNumber": "Contrat #",
     "viewContract": "Voir le contrat",
     "signedThroughEjar": "Signé via Ejar",
-    "noContracts": "Aucun contrat de location pour le moment"
+    "noContracts": "Aucun contrat de location pour le moment",
+    "status": {
+      "draft": "Brouillon",
+      "pending_signatures": "Signatures en attente",
+      "active": "Actif",
+      "expired": "Expiré",
+      "cancelled": "Annulé"
+    }
   },
   "dufaat": {
     "title": "Mensualités Dufaat",
@@ -911,7 +1095,13 @@
     "nextPayment": "Prochain paiement",
     "installmentsPaid": "Mensualités payées",
     "payNow": "Payer la mensualité",
-    "noPlans": "Aucun plan Dufaat pour le moment"
+    "noPlans": "Aucun plan Dufaat pour le moment",
+    "status": {
+      "active": "Actif",
+      "completed": "Terminé",
+      "defaulted": "Par défaut",
+      "cancelled": "Annulé"
+    }
   },
   "booking": {
     "myBookings": "Mes réservations",
@@ -953,7 +1143,7 @@
     "subRating": {
       "cleanliness": "🧹 Propreté",
       "accuracy": "✅ Exactitude",
-      "communication": "💬 Communication",
+      "communication": "💬Communication",
       "location": "📍 Emplacement"
     },
     "status": {
@@ -961,6 +1151,9 @@
       "confirmed": "Confirmée",
       "cancelled": "Annulée",
       "completed": "Terminée"
+    },
+    "calendar": {
+      "maxGuestsHelper": "Nombre maximum d'invités : {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "Confiance moyenne",
       "low": "Faible confiance"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "Recherche par nom ou spécialité",
+    "allCities": "Toutes les villes",
+    "cityRiyadh": "Riyad",
+    "cityJeddah": "Djeddah",
+    "cityDammam": "Dammam",
+    "emptyTitle": "Aucun agent ne correspond à votre recherche",
+    "emptyBody": "Essayez un autre nom ou une autre ville.",
+    "agency": "Eawlma Immobilier",
+    "verified": "Vérifié",
+    "respondsUnder2h": "< 2h",
+    "activeListingsCount": "{{count}} annonces actives",
+    "viewProfile": "Voir le profil"
+  },
+  "agent": {
+    "verified": "Vérifié",
+    "verifiedAgent": "Agent vérifié",
+    "licensed": "Sous licence",
+    "falLicense": "Licence FAL",
+    "listings": "Annonces",
+    "reviews": "Avis",
+    "rating": "Note",
+    "responseTime": "Temps de réponse",
+    "memberSince": "Membre depuis",
+    "contactAgent": "Contacter l'agent",
+    "viewProfile": "Voir le profil",
+    "sendMessage": "Envoyer un message"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Appartement",
+    "land": "Terrain",
+    "chalet": "Chalet",
+    "farm": "Ferme",
+    "restHouse": "Maison de repos",
+    "office": "Bureau",
+    "shop": "Boutique",
+    "warehouse": "Entrepôt",
+    "hotel": "Chambre d'hôtel",
+    "entireHome": "Maison entière",
+    "room": "Chambre"
+  },
+  "amenities": {
+    "pool": "Piscine",
+    "gym": "Salle de sport",
+    "parking": "Stationnement",
+    "security": "Sécurité",
+    "elevator": "Ascenseur",
+    "garden": "Jardin",
+    "balcony": "Balcon",
+    "maidRoom": "Chambre de bonne",
+    "driverRoom": "Salle du conducteur",
+    "storage": "Débarras",
+    "centralAC": "A/C centrale",
+    "internet": "Internet",
+    "satellite": "Télévision par satellite",
+    "furnished": "Meublé",
+    "kitchen": "Cuisine",
+    "laundry": "Buanderie"
+  },
+  "compare": {
+    "add": "Ajouter pour comparer",
+    "remove": "Supprimer de la comparaison"
+  },
+  "myListings": {
+    "countSelected": "{{count}} sélectionnés",
+    "activateAll": "Activer tout",
+    "deactivateAll": "Désactiver tout",
+    "deleteAll": "Supprimer tout",
+    "colViews": "Vues",
+    "colInquiries": "Demandes",
+    "boostFeature": "Boost (fonctionnalité)",
+    "duplicate": "Dupliquer",
+    "deleteConfirmTitle": "Supprimer {{count}} fiche(s) ?",
+    "deleteConfirmDescription": "Cette action supprime la liste de manière logicielle : elle n'apparaîtra plus publiquement."
   }
 }

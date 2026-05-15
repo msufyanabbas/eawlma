@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useRTL } from '../hooks/useRTL';
 import { useTheme } from '../hooks/useTheme';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
@@ -46,10 +47,13 @@ export function getListingTitle(item: Listing, isAr: boolean): string {
 export default function ListingCard({ item, variant = 'grid', onPress }: Props) {
   const { isAr } = useRTL();
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const tx = item.transactionType || item.type;
   const isRent = tx === 'rent';
   const badgeColor = isRent ? colors.success : colors.primary;
-  const badgeText = isRent ? (isAr ? 'إيجار' : 'Rent') : (isAr ? 'بيع' : 'Sale');
+  // Localized "For Sale" / "For Rent" badge — keeps every supported locale
+  // rendering in its own copy instead of falling back to AR/EN hardcoded.
+  const badgeText = isRent ? t('listing.forRent') : t('listing.forSale');
 
   if (variant === 'list') {
     return (

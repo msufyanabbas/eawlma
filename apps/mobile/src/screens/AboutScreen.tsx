@@ -21,7 +21,7 @@ export default function AboutScreen({ navigation }: any) {
         <View style={{ alignItems: 'center', marginVertical: SIZES.xl }}>
           <View style={[styles.logo, { backgroundColor: colors.primary }]}>
             <Text style={{ fontSize: 36, color: '#FFF', fontFamily: 'Tajawal_800ExtraBold' }}>
-              {isAr ? 'عالمة' : 'Eawlma'}
+              {isAr ? 'عولمة' : 'Eawlma'}
             </Text>
           </View>
           <Text style={[TYPOGRAPHY.h3, { color: colors.text, marginTop: SIZES.md }]}>

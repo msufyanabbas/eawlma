@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawlma",
+    "name": "ایولما",
     "tagline": "ملک ایده‌آل خود را در عربستان سعودی پیدا کنید"
   },
   "nav": {
@@ -127,7 +127,8 @@
     "anyPrice": "هر قیمت",
     "upTo500": "تا ۵۰۰ SAR",
     "upTo1000": "تا ۱٬۰۰۰ SAR",
-    "upTo2500": "تا ۲٬۵۰۰ SAR"
+    "upTo2500": "تا ۲٬۵۰۰ SAR",
+    "hotelChip": "هتل"
   },
   "messages": {
     "startConversation": "گفتگو را شروع کنید",
@@ -166,7 +167,8 @@
     "dailyRate": "نرخ روزانه",
     "weeklyRate": "نرخ هفتگی",
     "guestReviews": "نظرات میهمانان",
-    "noReviews": "هنوز نظری ثبت نشده — پس از تخلیه و امتیازدهی میهمانان، در اینجا نمایش داده می‌شود."
+    "noReviews": "هنوز نظری ثبت نشده — پس از تخلیه و امتیازدهی میهمانان، در اینجا نمایش داده می‌شود.",
+    "guestFallback": "مهمان"
   },
   "buyerDeals": {
     "title": "معاملات من",
@@ -216,7 +218,20 @@
     "favorAgent": "به نفع مشاور — ایجاد کارمزد",
     "favorBuyer": "به نفع خریدار — لغو معامله",
     "cancelDeal": "لغو معامله — بدون کارمزد",
-    "resolutionHint": "این یادداشت‌ها به هر دو طرف اطلاع داده می‌شود."
+    "resolutionHint": "این یادداشت‌ها به هر دو طرف اطلاع داده می‌شود.",
+    "other": "دیگر",
+    "buyerLower": "خریدار",
+    "agentLower": "عامل",
+    "otherLower": "دیگر",
+    "anonymous": "ناشناس",
+    "resolveTitle": "حل اختلاف",
+    "resolveDesc": "نتیجه این اختلاف را انتخاب کنید",
+    "favorAgentDesc": "کمیسیون تایید و به نماینده پرداخت خواهد شد",
+    "favorBuyerDesc": "کمیسیون لغو خواهد شد",
+    "cancelDealDesc": "معامله و کمیسیون هر دو لغو شدند",
+    "adminNotes": "یادداشت های مدیریت (اختیاری)",
+    "resolvedSuccess": "اختلاف با موفقیت حل شد",
+    "resolvedError": "حل اختلاف ناموفق"
   },
   "auth": {
     "login": "ورود",
@@ -278,7 +293,7 @@
     "submit": "ارسال",
     "language": "زبان",
     "arabic": "العربية",
-    "english": "English",
+    "english": "انگلیسی",
     "back": "بازگشت",
     "next": "بعدی",
     "previous": "قبلی",
@@ -296,7 +311,8 @@
     "remove": "حذف",
     "actions": "اقدامات",
     "active": "فعال",
-    "inactive": "غیرفعال"
+    "inactive": "غیرفعال",
+    "loadMore": "بارگیری بیشتر"
   },
   "listing": {
     "forSale": "برای فروش",
@@ -322,7 +338,7 @@
     "save": "ذخیره",
     "share": "اشتراک‌گذاری",
     "callAgent": "تماس با مشاور",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "واتس اپ",
     "scheduleTour": "زمان‌بندی بازدید",
     "scheduleATour": "یک بازدید برنامه‌ریزی کنید",
     "contactAgent": "تماس با مشاور",
@@ -362,8 +378,28 @@
       "rejected": "رد شده",
       "expired": "منقضی‌شده",
       "draft": "پیش‌نویس",
-      "archived": "بایگانی‌شده"
-    }
+      "archived": "بایگانی‌شده",
+      "pending_review": "تحت بررسی",
+      "sold": "فروخته شد",
+      "rented": "اجاره شده است"
+    },
+    "bedrooms": "اتاق خواب",
+    "bathrooms": "حمام",
+    "sqm": "متر مربع",
+    "type": "نوع",
+    "floor": "طبقه",
+    "age": "سن",
+    "parking": "پارکینگ",
+    "furnished": "مبله",
+    "unfurnished": "بدون مبله",
+    "perNight": "/شب",
+    "verifiedAgent": "نماینده تایید شده",
+    "newListing": "جدید",
+    "sold": "فروخته شد",
+    "rented": "اجاره ای",
+    "available": "موجود",
+    "pending": "در انتظار",
+    "expired": "منقضی شده"
   },
   "search": {
     "filters": "فیلترها",
@@ -399,7 +435,10 @@
       "cta": "ارسال درخواست ملک"
     },
     "drawArea": "ترسیم محدوده",
-    "clearDrawing": "پاک کردن ترسیم"
+    "clearDrawing": "پاک کردن ترسیم",
+    "flexibleDates": "من با تاریخ انعطاف پذیر هستم",
+    "flex1Month": "1 ماه",
+    "shortTerm": "کوتاه مدت"
   },
   "home": {
     "heroTitle": "خانه ایده‌آل خود را پیدا کنید",
@@ -438,8 +477,8 @@
     "newestSort": "جدیدترین",
     "priceLowSort": "قیمت: کم",
     "priceHighSort": "قیمت: زیاد",
-    "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "appStore": "اپ استور",
+    "googlePlay": "گوگل پلی",
     "statListings": "آگهی",
     "statAgents": "مشاور",
     "statUsers": "کاربر",
@@ -476,7 +515,7 @@
     "support": "پشتیبانی",
     "help": "مرکز راهنما",
     "helpCenter": "مرکز راهنما",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "واتس اپ",
     "callUs": "با ما تماس بگیرید",
     "needHelp": "به کمک نیاز دارید؟ از طریق WhatsApp با ما صحبت کنید.",
     "cr": "ثبت تجاری",
@@ -512,7 +551,7 @@
     "sentSuccess": "ممنون! تیم ما ظرف ۲۴ ساعت پاسخ می‌دهد.",
     "emailUs": "از طریق ایمیل",
     "emailReplies": "پاسخ ظرف ۲۴ ساعت در روزهای کاری",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "واتس اپ",
     "whatsappHours": "یکشنبه تا پنجشنبه، ۹:۰۰ – ۱۸:۰۰ (AST)",
     "office": "دفتر",
     "officeAddress": "خیابان ملک فهد، ریاض",
@@ -555,11 +594,40 @@
   },
   "wizard": {
     "basicInfo": "اطلاعات پایه",
-    "location": "موقعیت",
+    "location": {
+      "street": "خیابان",
+      "buildingNumber": "ساختمان شماره",
+      "postalCode": "کد پستی",
+      "pinPrompt": "برای تنظیم مکان دقیق، یک پین بیندازید",
+      "pinLabel": "سنجاق",
+      "mapUnavailable": "انتخابگر پین نقشه در دسترس نیست. مختصات به {{lat}}، {{lng}} برمی‌گردند."
+    },
     "media": "رسانه",
     "amenities": "امکانات",
-    "compliance": "انطباق",
-    "review": "بازبینی",
+    "compliance": {
+      "permitNumber": "مجوز / شماره FAL",
+      "regaNumber": "شماره مجوز REGA",
+      "permitExpiry": "انقضای مجوز",
+      "preferredContact": "مخاطب ترجیحی",
+      "phone": "تلفن",
+      "publicVisibility": "نمایان بودن عمومی (فقط پیوند فهرست نشده / خصوصی را علامت بزنید)"
+    },
+    "review": {
+      "summaryTitle": "خلاصه فهرست",
+      "enhanceWithAi": "با هوش مصنوعی تقویت کنید",
+      "enhancing": "در حال افزایش…",
+      "aiStubNotice": "هوش مصنوعی یک خرد برگرداند - OPENAI_API_KEY را در قسمت پشتیبان تنظیم کنید تا از مدل زنده استفاده کنید.",
+      "descriptionPreview": "پیش نمایش توضیحات",
+      "emptyDescription": "(خالی)",
+      "type": "تایپ کنید",
+      "titleLabel": "عنوان",
+      "bedsBaths": "اتاق خواب / حمام",
+      "cityDistrict": "شهر / ناحیه",
+      "coordinates": "مختصات",
+      "permit": "مجوز",
+      "regaLicense": "مجوز REGA",
+      "visibility": "دید"
+    },
     "saveDraft": "ذخیره پیش‌نویس",
     "submit": "ارسال برای بررسی",
     "submitForReview": "ارسال برای بررسی",
@@ -576,7 +644,103 @@
       "bathrooms": "حمام",
       "parking": "پارکینگ",
       "yearBuilt": "سال ساخت",
-      "furnishing": "وضعیت مبلمان"
+      "furnishing": "وضعیت مبلمان",
+      "rentPeriod": "دوره"
+    },
+    "editListing": "ویرایش فهرست",
+    "newListing": "فهرست جدید",
+    "crumbNew": "جدید",
+    "validation": {
+      "titleRequired": "لطفاً عنوانی به حداقل یک زبان اضافه کنید.",
+      "descriptionRequired": "لطفاً توضیحاتی به حداقل یک زبان اضافه کنید.",
+      "priceRequired": "قیمت باید بیشتر از صفر باشد",
+      "cityRequired": "شهر مورد نیاز است.",
+      "pinRequired": "برای مکان، یک پین روی نقشه بیندازید.",
+      "imageRequired": "حداقل یک تصویر قبل از انتشار لازم است."
+    },
+    "transactionType": {
+      "sale": "فروش",
+      "rent": "اجاره"
+    },
+    "rentPeriod": {
+      "daily": "روزانه",
+      "weekly": "هفتگی",
+      "monthly": "ماهانه",
+      "yearly": "سالانه"
+    },
+    "furnishing": {
+      "unfurnished": "بدون مبله",
+      "semi_furnished": "نیمه مبله",
+      "furnished": "مبله شده"
+    },
+    "visibility": {
+      "public": "عمومی",
+      "unlisted": "فهرست نشده"
+    },
+    "amenity": {
+      "pool": "استخر",
+      "garden": "باغ",
+      "gym": "ورزشگاه",
+      "elevator": "آسانسور",
+      "maidRoom": "اتاق خدمتکار",
+      "driverRoom": "اتاق راننده",
+      "centralAc": "AC مرکزی",
+      "kitchenAppliances": "لوازم آشپزخانه",
+      "security": "امنیت 24 ساعته",
+      "cornerUnit": "واحد گوشه"
+    },
+    "shortTermAmenity": {
+      "wifi": "وای فای",
+      "pool": "استخر",
+      "parking": "پارکینگ",
+      "breakfast": "صبحانه",
+      "ac": "تهویه مطبوع",
+      "kitchen": "آشپزخانه",
+      "tv": "تلویزیون",
+      "washer": "واشر",
+      "workspace": "فضای کار",
+      "petsAllowed": "حیوانات خانگی مجاز است",
+      "smokingAllowed": "سیگار کشیدن مجاز است",
+      "wheelchairAccessible": "قابل دسترسی با ویلچر"
+    },
+    "shortTerm": {
+      "title": "جزئیات اجاره کوتاه مدت",
+      "subtitle": "مهمانان این فهرست را تا شب رزرو خواهند کرد. قوانین اقامت، امکانات رفاهی و سطوح قیمت گذاری را پیکربندی کنید.",
+      "dailyRate": "نرخ روزانه (SAR)",
+      "weeklyRate": "نرخ هفتگی (SAR، اختیاری)",
+      "minimumStay": "حداقل اقامت (شب)",
+      "maxGuests": "حداکثر مهمان",
+      "checkIn": "ثبت نام",
+      "checkOut": "چک کردن",
+      "cancellationPolicy": "سیاست لغو",
+      "cancelFlexible": "انعطاف پذیر - بازپرداخت کامل تا 24 ساعت قبل",
+      "cancelModerate": "متوسط ​​- بازپرداخت کامل تا 5 روز قبل",
+      "cancelStrict": "سختگیرانه - 50٪ بازپرداخت تا 7 روز قبل",
+      "starRating": "امتیاز ستاره",
+      "hotelName": "نام هتل",
+      "instantBook": "کتاب فوری",
+      "instantBookHint": "رزروها بدون تأیید شما به طور خودکار تأیید می شوند. برای بررسی هر درخواست ابتدا غیرفعال کنید.",
+      "amenities": "امکانات رفاهی",
+      "houseRules": "قوانین خانه",
+      "houseRulesPlaceholder": "به عنوان مثال ممنوعیت مهمانی، ساعات خلوت بعد از ساعت 10 شب، ممنوعیت سیگار کشیدن در داخل خانه..."
+    },
+    "mediaStep": {
+      "images": "تصاویر",
+      "imageDropHint": "عکس‌ها را اینجا بکشید و رها کنید یا برای انتخاب کلیک کنید. JPEG / PNG / WebP تا 10 مگابایت.",
+      "photoAlt": "عکس لیست",
+      "setCover": "به عنوان پوشش تنظیم کنید",
+      "cover": "پوشش",
+      "videoTour": "تور ویدیویی",
+      "videoDropHint": "یک فایل MP4 را بکشید یا برای انتخاب کلیک کنید. حداکثر 500 مگابایت",
+      "videoUploaded": "ویدیو آپلود شد — {{name}}",
+      "vrTitle": "🥽 لینک تور واقعیت مجازی",
+      "vrPlaceholder": "https://… (Matterport، Kuula، و غیره)",
+      "modelTitle": "مدل سه بعدی / واقعیت افزوده (glb. یا gltf.)",
+      "modelDropHint": "برای فعال کردن AR یک مدل GLB/GLTF آپلود کنید. حداکثر 50 مگابایت",
+      "modelUploaded": "مدل آپلود شد — {{name}}"
+    },
+    "amenitiesStep": {
+      "hint": "روی امکاناتی که این ملک ارائه می دهد ضربه بزنید. ما آنها را به عنوان فیلتر در جستجو نشان خواهیم داد."
     }
   },
   "subscription": {
@@ -717,6 +881,19 @@
       "confirmed": "تأییدشده",
       "paid": "پرداخت‌شده",
       "disputed": "مورد اعتراض"
+    },
+    "oath": {
+      "dialogTitle": "تعهد کمیسیون",
+      "translatedOath": "بدینوسیله متعهد می شوم پس از اتمام این معامله ملکی، کارمزد مورد توافق را پرداخت کنم و این مسئولیت را در برابر خداوند و قانون می پذیرم.",
+      "breakdownTitle": "تفکیک کمیسیون",
+      "agentListingBreakdown": "کمیسیون پلت فرم: <strong>0.5٪</strong> از ارزش تراکنش، قابل پرداخت پس از فروش موفقیت آمیز یا بسته شدن اجاره.",
+      "buyerAgentCommission": "کمیسیون نماینده: <strong>2.5٪</strong> از ارزش معامله.",
+      "buyerPlatformFee": "کارمزد پلتفرم: <strong>0.5٪</strong> از ارزش تراکنش.",
+      "acceptError": "قبولی شما ثبت نشد",
+      "agreeCheckbox": "من با شرایط کمیسیون موافقم",
+      "decline": "من موافق نیستم",
+      "saving": "در حال ذخیره...",
+      "acceptCta": "من می پذیرم و متعهد می شوم"
     }
   },
   "moderation": {
@@ -896,7 +1073,14 @@
     "contractNumber": "شماره قرارداد",
     "viewContract": "مشاهده قرارداد",
     "signedThroughEjar": "امضاشده از طریق Ejar",
-    "noContracts": "هنوز قرارداد اجاره‌ای نیست"
+    "noContracts": "هنوز قرارداد اجاره‌ای نیست",
+    "status": {
+      "draft": "پیش نویس",
+      "pending_signatures": "امضاهای معلق",
+      "active": "فعال",
+      "expired": "منقضی شده است",
+      "cancelled": "لغو شد"
+    }
   },
   "dufaat": {
     "title": "اقساط Dufaat",
@@ -911,7 +1095,13 @@
     "nextPayment": "پرداخت بعدی",
     "installmentsPaid": "اقساط پرداخت‌شده",
     "payNow": "پرداخت قسط",
-    "noPlans": "هنوز طرح Dufaat نیست"
+    "noPlans": "هنوز طرح Dufaat نیست",
+    "status": {
+      "active": "فعال",
+      "completed": "تکمیل شد",
+      "defaulted": "پیش فرض",
+      "cancelled": "لغو شد"
+    }
   },
   "booking": {
     "myBookings": "رزروهای من",
@@ -961,6 +1151,9 @@
       "confirmed": "تأییدشده",
       "cancelled": "لغوشده",
       "completed": "تکمیل‌شده"
+    },
+    "calendar": {
+      "maxGuestsHelper": "حداکثر مهمان: {{count}}"
     }
   },
   "market": {
@@ -1079,5 +1272,81 @@
       "medium": "اعتماد متوسط",
       "low": "اعتماد پایین"
     }
+  },
+  "agents": {
+    "searchPlaceholder": "جستجو بر اساس نام یا تخصص",
+    "allCities": "همه شهرها",
+    "cityRiyadh": "ریاض",
+    "cityJeddah": "جده",
+    "cityDammam": "دمام",
+    "emptyTitle": "هیچ عاملی با جستجوی شما مطابقت ندارد",
+    "emptyBody": "نام یا شهر دیگری را امتحان کنید.",
+    "agency": "املاک Eawlma",
+    "verified": "تایید شده است",
+    "respondsUnder2h": "< 2 ساعت",
+    "activeListingsCount": "{{count}} فهرست فعال",
+    "viewProfile": "مشاهده نمایه"
+  },
+  "agent": {
+    "verified": "تایید شده است",
+    "verifiedAgent": "نماینده تایید شده",
+    "licensed": "دارای مجوز",
+    "falLicense": "دارای مجوز FAL",
+    "listings": "لیست ها",
+    "reviews": "بررسی ها",
+    "rating": "رتبه بندی",
+    "responseTime": "زمان پاسخگویی",
+    "memberSince": "عضو از",
+    "contactAgent": "با نماینده تماس بگیرید",
+    "viewProfile": "مشاهده نمایه",
+    "sendMessage": "ارسال پیام"
+  },
+  "property": {
+    "villa": "ویلا",
+    "apartment": "آپارتمان",
+    "land": "زمین",
+    "chalet": "کلبه کلبه",
+    "farm": "مزرعه",
+    "restHouse": "خانه استراحت",
+    "office": "دفتر",
+    "shop": "خرید کنید",
+    "warehouse": "انبار",
+    "hotel": "اتاق هتل",
+    "entireHome": "کل صفحه اصلی",
+    "room": "اتاق"
+  },
+  "amenities": {
+    "pool": "استخر",
+    "gym": "باشگاه بدنسازی",
+    "parking": "پارکینگ",
+    "security": "امنیت",
+    "elevator": "آسانسور",
+    "garden": "باغ",
+    "balcony": "بالکن",
+    "maidRoom": "اتاق خدمتکار",
+    "driverRoom": "اتاق راننده",
+    "storage": "انباری",
+    "centralAC": "تهویه مطبوع مرکزی",
+    "internet": "اینترنت",
+    "satellite": "تلویزیون ماهواره ای",
+    "furnished": "مبله",
+    "kitchen": "آشپزخانه",
+    "laundry": "لاندری روم"
+  },
+  "compare": {
+    "add": "اضافه کردن به مقایسه",
+    "remove": "حذف از مقایسه"
+  },
+  "myListings": {
+    "countSelected": "{{count}} انتخاب شد",
+    "activateAll": "همه را فعال کنید",
+    "deactivateAll": "همه را غیرفعال کنید",
+    "deleteAll": "همه را حذف کنید",
+    "colViews": "بازدیدها",
+    "colInquiries": "پرس و جوها",
+    "boostFeature": "تقویت (ویژگی)",
+    "duplicate": "تکراری",
+    "deleteConfirmTitle": "{{count}} فهرست(های) حذف شود؟",
+    "deleteConfirmDescription": "این عمل فهرست را به صورت نرم حذف می کند - دیگر به صورت عمومی ظاهر نمی شود."
   }
 }

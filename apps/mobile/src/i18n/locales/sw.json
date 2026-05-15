@@ -432,7 +432,10 @@
       "rejected": "Imekataliwa",
       "expired": "Imeisha",
       "draft": "Rasimu",
-      "archived": "Imehifadhiwa"
+      "archived": "Imehifadhiwa",
+      "pending_review": "Chini ya Ukaguzi",
+      "sold": "Inauzwa",
+      "rented": "Imekodishwa"
     },
     "sale": "Uuzaji",
     "rent": "Kodisha",
@@ -460,7 +463,22 @@
     "actionFailed": "Kitendo kimeshindwa",
     "bookingDevTitle": "Kuhifadhi",
     "bookingDevBody": "Mtiririko wa kuhifadhi unatengenezwa. Tafadhali wasiliana na wakala.",
-    "removeFromSaved": "Ungependa kuondoa kipengee hiki kutoka kwa zilizohifadhiwa?"
+    "removeFromSaved": "Ungependa kuondoa kipengee hiki kutoka kwa zilizohifadhiwa?",
+    "sqm": "m²",
+    "type": "Aina",
+    "floor": "Sakafu",
+    "age": "Umri",
+    "parking": "Maegesho",
+    "furnished": "Samani",
+    "unfurnished": "Isiyo na samani",
+    "perNight": "/usiku",
+    "verifiedAgent": "Wakala Aliyethibitishwa",
+    "newListing": "Mpya",
+    "sold": "Inauzwa",
+    "rented": "Imekodishwa",
+    "available": "Inapatikana",
+    "pending": "Inasubiri",
+    "expired": "Muda wake umeisha"
   },
   "search": {
     "filters": "Vichujio",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Malipo Yamechakatwa",
     "dispute_resolved": "Mzozo Umetatuliwa",
     "system": "Mfumo"
+  },
+  "agent": {
+    "verified": "Imethibitishwa",
+    "verifiedAgent": "Wakala Aliyethibitishwa",
+    "licensed": "Imepewa leseni",
+    "falLicense": "FAL Inayo Leseni",
+    "listings": "Orodha",
+    "reviews": "Ukaguzi",
+    "rating": "Ukadiriaji",
+    "responseTime": "Muda wa Majibu",
+    "memberSince": "Mwanachama Tangu",
+    "contactAgent": "Wasiliana na Wakala",
+    "viewProfile": "Tazama Wasifu",
+    "sendMessage": "Tuma Ujumbe"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Ghorofa",
+    "land": "Ardhi",
+    "chalet": "Chalet",
+    "farm": "Shamba",
+    "restHouse": "Nyumba ya mapumziko",
+    "office": "Ofisi",
+    "shop": "Duka",
+    "warehouse": "Ghala",
+    "hotel": "Chumba cha Hoteli",
+    "entireHome": "Nyumbani Mzima",
+    "room": "Chumba"
+  },
+  "amenities": {
+    "pool": "Dimbwi la Kuogelea",
+    "gym": "Gym",
+    "parking": "Maegesho",
+    "security": "Usalama",
+    "elevator": "Lifti",
+    "garden": "Bustani",
+    "balcony": "Balcony",
+    "maidRoom": "Chumba cha Mjakazi",
+    "driverRoom": "Chumba cha Dereva",
+    "storage": "Chumba cha Kuhifadhi",
+    "centralAC": "A/C ya kati",
+    "internet": "Mtandao",
+    "satellite": "TV ya satelaiti",
+    "furnished": "Samani",
+    "kitchen": "Jikoni",
+    "laundry": "Chumba cha kufulia"
+  },
+  "compare": {
+    "add": "Ongeza ili kulinganisha",
+    "remove": "Ondoa kutoka kwa kulinganisha"
   }
 }

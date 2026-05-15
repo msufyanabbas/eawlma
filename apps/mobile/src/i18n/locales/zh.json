@@ -432,7 +432,10 @@
       "rejected": "已拒绝",
       "expired": "已过期",
       "draft": "草稿",
-      "archived": "已归档"
+      "archived": "已归档",
+      "pending_review": "正在审核中",
+      "sold": "卖",
+      "rented": "已租"
     },
     "sale": "销售",
     "rent": "租",
@@ -460,7 +463,22 @@
     "actionFailed": "操作失败",
     "bookingDevTitle": "预订",
     "bookingDevBody": "预订流程正在开发中。请联系代理商。",
-    "removeFromSaved": "从已保存的属性中删除该属性吗？"
+    "removeFromSaved": "从已保存的属性中删除该属性吗？",
+    "sqm": "平方米",
+    "type": "类型",
+    "floor": "地面",
+    "age": "年龄",
+    "parking": "停車處",
+    "furnished": "家具齐全",
+    "unfurnished": "不带家具",
+    "perNight": "/夜晚",
+    "verifiedAgent": "已验证代理",
+    "newListing": "新的",
+    "sold": "卖",
+    "rented": "已租",
+    "available": "可用的",
+    "pending": "待办的",
+    "expired": "已到期"
   },
   "search": {
     "filters": "筛选",
@@ -1651,5 +1669,55 @@
     "payout_processed": "付款已处理",
     "dispute_resolved": "争议已解决",
     "system": "系统"
+  },
+  "agent": {
+    "verified": "已验证",
+    "verifiedAgent": "已验证代理",
+    "licensed": "已获得许可",
+    "falLicense": "FAL 许可",
+    "listings": "房源",
+    "reviews": "评论",
+    "rating": "等级",
+    "responseTime": "响应时间",
+    "memberSince": "会员自",
+    "contactAgent": "联系代理",
+    "viewProfile": "查看资料",
+    "sendMessage": "发送消息"
+  },
+  "property": {
+    "villa": "别墅",
+    "apartment": "公寓",
+    "land": "土地",
+    "chalet": "小木屋",
+    "farm": "农场",
+    "restHouse": "休息所",
+    "office": "办公室",
+    "shop": "店铺",
+    "warehouse": "仓库",
+    "hotel": "酒店房间",
+    "entireHome": "整套房子",
+    "room": "房间"
+  },
+  "amenities": {
+    "pool": "游泳池",
+    "gym": "健身房",
+    "parking": "停車處",
+    "security": "安全",
+    "elevator": "电梯",
+    "garden": "花园",
+    "balcony": "阳台",
+    "maidRoom": "女仆房",
+    "driverRoom": "司机室",
+    "storage": "储藏室",
+    "centralAC": "中央空调",
+    "internet": "互联网",
+    "satellite": "卫星电视",
+    "furnished": "家具齐全",
+    "kitchen": "厨房",
+    "laundry": "洗衣房"
+  },
+  "compare": {
+    "add": "添加比较",
+    "remove": "从比较中删除"
   }
 }

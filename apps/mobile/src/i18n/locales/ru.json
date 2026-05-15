@@ -432,7 +432,10 @@
       "rejected": "Отклонено",
       "expired": "Истекло",
       "draft": "Черновик",
-      "archived": "Архивировано"
+      "archived": "Архивировано",
+      "pending_review": "На рассмотрении",
+      "sold": "Продал",
+      "rented": "Сдан в аренду"
     },
     "sale": "Распродажа",
     "rent": "Арендовать",
@@ -460,7 +463,22 @@
     "actionFailed": "Действие не выполнено",
     "bookingDevTitle": "Бронирование",
     "bookingDevBody": "Система бронирования находится в разработке. Пожалуйста, свяжитесь с агентом.",
-    "removeFromSaved": "Удалить это свойство из сохраненных?"
+    "removeFromSaved": "Удалить это свойство из сохраненных?",
+    "sqm": "м²",
+    "type": "Тип",
+    "floor": "Пол",
+    "age": "Возраст",
+    "parking": "Стоянка",
+    "furnished": "Меблированный",
+    "unfurnished": "Без мебели",
+    "perNight": "/ночь",
+    "verifiedAgent": "Проверенный агент",
+    "newListing": "Новый",
+    "sold": "Продал",
+    "rented": "Сдан в аренду",
+    "available": "Доступный",
+    "pending": "В ожидании",
+    "expired": "Истекший"
   },
   "search": {
     "filters": "Фильтры",
@@ -1651,5 +1669,55 @@
     "payout_processed": "Выплата обработана",
     "dispute_resolved": "Спор разрешен",
     "system": "Система"
+  },
+  "agent": {
+    "verified": "Проверено",
+    "verifiedAgent": "Проверенный агент",
+    "licensed": "Лицензированный",
+    "falLicense": "Лицензия ФАЛ",
+    "listings": "Объявления",
+    "reviews": "Отзывы",
+    "rating": "Рейтинг",
+    "responseTime": "Время ответа",
+    "memberSince": "Участник с",
+    "contactAgent": "Связаться с агентом",
+    "viewProfile": "Посмотреть профиль",
+    "sendMessage": "Отправить сообщение"
+  },
+  "property": {
+    "villa": "Вилла",
+    "apartment": "Квартира",
+    "land": "Земля",
+    "chalet": "Шале",
+    "farm": "Ферма",
+    "restHouse": "Дом отдыха",
+    "office": "Офис",
+    "shop": "Магазин",
+    "warehouse": "Склад",
+    "hotel": "Гостиничный номер",
+    "entireHome": "Весь дом",
+    "room": "Комната"
+  },
+  "amenities": {
+    "pool": "Бассейн",
+    "gym": "Спортзал",
+    "parking": "Стоянка",
+    "security": "Безопасность",
+    "elevator": "Лифт",
+    "garden": "Сад",
+    "balcony": "Балкон",
+    "maidRoom": "Комната горничной",
+    "driverRoom": "Комната водителя",
+    "storage": "Кладовая",
+    "centralAC": "Центральный кондиционер",
+    "internet": "Интернет",
+    "satellite": "Спутниковое телевидение",
+    "furnished": "Меблированный",
+    "kitchen": "Кухня",
+    "laundry": "Прачечная"
+  },
+  "compare": {
+    "add": "Добавить для сравнения",
+    "remove": "Удалить из сравнения"
   }
 }
