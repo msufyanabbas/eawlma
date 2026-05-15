@@ -1,6 +1,6 @@
 // Quick WebSocket smoke test for the /messaging gateway.
 //
-// Run from the repo root, with a backend running on localhost:3010:
+// Run from the repo root, with a backend running on 192.168.1.125:3010:
 //   node apps/backend/test/ws-smoke.mjs <agentToken> <buyerToken> <conversationId>
 //
 // Exits 0 on success (≥2 message events seen across both clients), 1 otherwise.
@@ -13,7 +13,7 @@ if (!agentToken || !buyerToken || !conversationId) {
   process.exit(2);
 }
 
-const URL = process.env.WS_URL || 'http://localhost:3010/messaging';
+const URL = process.env.WS_URL || 'http://192.168.1.125:3010/messaging';
 
 const agent = ioClient(URL, {
   transports: ['websocket'],

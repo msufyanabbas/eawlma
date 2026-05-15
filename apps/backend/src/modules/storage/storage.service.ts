@@ -160,12 +160,12 @@ export class StorageService implements OnModuleInit {
       //
       // Both routes are mounted at the server root, OUTSIDE the `/api`
       // versioned prefix — so we use only the origin of `app.apiUrl`.
-      const apiUrl = this.config.get<string>('app.apiUrl') ?? 'http://localhost:3000';
+      const apiUrl = this.config.get<string>('app.apiUrl') ?? 'http://192.168.1.125:3000';
       let origin: string;
       try {
         origin = new URL(apiUrl).origin;
       } catch {
-        origin = 'http://localhost:3000';
+        origin = 'http://192.168.1.125:3000';
       }
       const expiresAt = new Date(Date.now() + this.presignTtlSeconds * 1000).toISOString();
       return {

@@ -14,7 +14,7 @@ export function MockNafathPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const apiBase = import.meta.env.VITE_API_URL ?? 'http://localhost:3010/api/v1';
+  const apiBase = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3010/api/v1';
 
   const handleApprove = () => {
     setLoading(true);

@@ -4,11 +4,13 @@
       "Bash(timeout 240 npx playwright test --project=chromium --reporter=list)",
       "Bash(timeout 300 npx playwright test --project=chromium --reporter=list)",
       "Bash(npx playwright *)",
-      "Bash(curl -s -X POST http://localhost:3010/api/v1/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"agent1@eawlma.sa\",\"password\":\"Agent123!\"}')",
+      "Bash(curl -s -X POST http://192.168.1.125:3010/api/v1/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"agent1@eawlma.sa\",\"password\":\"Agent123!\"}')",
       "Bash(npx vite *)",
       "Bash(Get-ChildItem -Path \"C:/Nasser Qahtani Projects/Aqarat/apps/frontend/src\" -Directory)",
       "Bash(Select-Object Name)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(npx expo *)",
+      "Bash(npm install *)"
     ]
   }
 }

@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const API_BASE = process.env.E2E_API_URL ?? 'http://localhost:3010/api/v1';
+const API_BASE = process.env.E2E_API_URL ?? 'http://192.168.1.125:3010/api/v1';
 
 async function firstStayId(page: Page): Promise<string | null> {
   // `bookingType` filter isn't always plumbed through the public search DTO,

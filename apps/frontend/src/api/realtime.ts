@@ -1,7 +1,7 @@
 import { io, Socket } from 'socket.io-client';
 import { useAuthStore } from '@/store/auth.store';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? 'http://localhost:3000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ?? 'http://192.168.1.125:3000';
 
 let socket: Socket | null = null;
 

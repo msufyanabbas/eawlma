@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 
 export const kafkaConfig = registerAs('kafka', () => ({
-  brokers: (process.env.KAFKA_BROKERS ?? 'localhost:9092').split(',').map((s) => s.trim()),
+  brokers: (process.env.KAFKA_BROKERS ?? '192.168.1.125:9092').split(',').map((s) => s.trim()),
   clientId: process.env.KAFKA_CLIENT_ID ?? 'eawlma-backend',
   groupId: process.env.KAFKA_GROUP_ID ?? 'eawlma-backend-group',
   ssl: process.env.KAFKA_SSL === 'true',

@@ -194,7 +194,7 @@ export class AuthService {
       },
     );
 
-    const appUrl = this.config.get<string>('appUrl', 'http://localhost:5173');
+    const appUrl = this.config.get<string>('appUrl', 'http://192.168.1.125:5173');
     const link = `${appUrl}/auth/reset?token=${encodeURIComponent(token)}`;
 
     await this.emailService.sendPasswordReset({

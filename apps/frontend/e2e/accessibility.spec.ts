@@ -31,7 +31,7 @@ test.describe('Accessibility (axe-core)', () => {
   test('listing detail has no critical violations', async ({ page }) => {
     // Skip clicking — the card's `window.location.href` handler isn't always
     // reliable under Playwright. Discover an id via the public search API.
-    const apiBase = process.env.E2E_API_URL ?? 'http://localhost:3010/api/v1';
+    const apiBase = process.env.E2E_API_URL ?? 'http://192.168.1.125:3010/api/v1';
     const res = await page.request.get(`${apiBase}/search/listings?limit=1`);
     const body = (await res.json()) as { data?: { data?: Array<{ id: string }> } };
     const id = body.data?.data?.[0]?.id;

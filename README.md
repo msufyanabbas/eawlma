@@ -97,15 +97,15 @@ npm install
 npm run build:types
 cd apps/backend && npm run migration:run             # apply migrations
 cd ../..
-npm run dev:backend                                  # http://localhost:3000
-npm run dev:frontend                                 # http://localhost:5173
+npm run dev:backend                                  # http://192.168.1.125:3000
+npm run dev:frontend                                 # http://192.168.1.125:5173
 ```
 
-* Swagger UI — <http://localhost:3000/api/docs>
-* Kafka UI — <http://localhost:8095>
-* Postgres — `localhost:5532` (user / pwd / db = `eawlma`)
-* Redis — `localhost:6479`
-* Kafka external listener — `localhost:9094`
+* Swagger UI — <http://192.168.1.125:3000/api/docs>
+* Kafka UI — <http://192.168.1.125:8095>
+* Postgres — `192.168.1.125:5532` (user / pwd / db = `eawlma`)
+* Redis — `192.168.1.125:6479`
+* Kafka external listener — `192.168.1.125:9094`
 
 > Host ports are intentionally non-standard so this stack coexists with other local Postgres / Redis / Kafka.
 
@@ -118,8 +118,8 @@ cp .env.example .env
 docker compose --profile app up -d --build
 ```
 
-* Frontend served at **<http://localhost:8088>** (nginx proxies `/api` → backend, `/socket.io` → backend)
-* Backend exposed at `localhost:3000` for direct testing
+* Frontend served at **<http://192.168.1.125:8088>** (nginx proxies `/api` → backend, `/socket.io` → backend)
+* Backend exposed at `192.168.1.125:3000` for direct testing
 
 ---
 

@@ -140,7 +140,7 @@ export class BookingsService {
     // Create a Moyasar payment intent. In dev (no secret) the client returns
     // a stubbed response and we generate a mock callback URL the frontend
     // navigates to so the success/failure path can still be exercised.
-    const frontendUrl = this.config.get<string>('app.frontendUrl', 'http://localhost:5173');
+    const frontendUrl = this.config.get<string>('app.frontendUrl', 'http://192.168.1.125:5173');
     const callbackBase = `${frontendUrl.replace(/\/$/, '')}/bookings/payment-callback`;
     const callbackUrl =
       `${callbackBase}?bookingId=${saved.id}` +

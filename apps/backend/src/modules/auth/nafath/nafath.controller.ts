@@ -103,7 +103,7 @@ export class NafathController {
 
     const tokens = await this.auth.loginExternalUser(user, { ip, userAgent });
 
-    const frontend = this.config.get<string>('appUrl', 'http://localhost:5173');
+    const frontend = this.config.get<string>('appUrl', 'http://192.168.1.125:5173');
     const target =
       `${frontend}/auth/nafath-callback` +
       `?accessToken=${encodeURIComponent(tokens.tokens.accessToken)}` +

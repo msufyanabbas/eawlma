@@ -70,7 +70,7 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://192.168.1.125:9094
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
@@ -84,7 +84,7 @@ services:
     volumes:
       - kafka-data:/var/lib/kafka/data
     healthcheck:
-      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1 || exit 1"]
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server 192.168.1.125:9092 >/dev/null 2>&1 || exit 1"]
       interval: 15s
       timeout: 10s
       retries: 5
@@ -135,9 +135,9 @@ services:
     environment:
       NODE_ENV: production
       BACKEND_PORT: 3000
-      APP_URL:    ${APP_URL:-http://localhost}
-      API_URL:    ${API_URL:-http://localhost/api}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost,http://localhost:5173}
+      APP_URL:    ${APP_URL:-http://192.168.1.125}
+      API_URL:    ${API_URL:-http://192.168.1.125/api}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://192.168.1.125,http://192.168.1.125:5173}
       JWT_ACCESS_SECRET:  ${JWT_ACCESS_SECRET}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN:-15m}
@@ -169,7 +169,7 @@ services:
       MOYASAR_WEBHOOK_SECRET:  ${MOYASAR_WEBHOOK_SECRET:-}
       GOOGLE_MAPS_API_KEY:     ${GOOGLE_MAPS_API_KEY:-}
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/v1/health"]
+      test: ["CMD", "wget", "-qO-", "http://192.168.1.125:3000/api/v1/health"]
       interval: 15s
       timeout: 5s
       retries: 5
@@ -200,7 +200,7 @@ services:
     ports:
       - "${FRONTEND_PORT:-8088}:80"
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      test: ["CMD", "wget", "-qO-", "http://192.168.1.125/"]
       interval: 30s
       timeout: 5s
       retries: 3

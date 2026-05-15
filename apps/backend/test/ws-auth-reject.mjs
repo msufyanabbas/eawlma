@@ -2,7 +2,7 @@
 // Exits 0 if both unauthenticated and bad-token sockets are rejected.
 import { io as ioClient } from 'socket.io-client';
 
-const URL = process.env.WS_URL || 'http://localhost:3010/messaging';
+const URL = process.env.WS_URL || 'http://192.168.1.125:3010/messaging';
 
 const trial = (label, opts) =>
   new Promise((resolve) => {

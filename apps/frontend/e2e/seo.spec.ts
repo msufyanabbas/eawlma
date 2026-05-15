@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-const API_BASE = process.env.E2E_API_URL ?? 'http://localhost:3010/api/v1';
-const FE_BASE = process.env.E2E_BASE_URL ?? 'http://localhost:5173';
+const API_BASE = process.env.E2E_API_URL ?? 'http://192.168.1.125:3010/api/v1';
+const FE_BASE = process.env.E2E_BASE_URL ?? 'http://192.168.1.125:5173';
 
 test.describe('SEO', () => {
   test('homepage exposes title + description + og:title meta', async ({ page }) => {

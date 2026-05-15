@@ -1,5 +1,5 @@
 config:
-  target: 'http://localhost:3010'
+  target: 'http://192.168.1.125:3010'
   phases:
     - name: Smoke test
       duration: 10

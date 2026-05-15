@@ -9,7 +9,7 @@ export const REDIS_DEFAULT = 'REDIS_DEFAULT';
 const buildRedis = (config: ConfigService, role: string): Redis => {
   const logger = new Logger(`Redis(${role})`);
   const client = new Redis({
-    host: config.get<string>('redis.host', 'localhost'),
+    host: config.get<string>('redis.host', '192.168.1.125'),
     port: config.get<number>('redis.port', 6379),
     password: config.get<string>('redis.password') || undefined,
     db: config.get<number>('redis.db', 0),

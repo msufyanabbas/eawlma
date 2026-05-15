@@ -69,7 +69,7 @@ const ADMIN_PAGES = [
 
 import { request as pwRequest, type APIRequestContext } from '@playwright/test';
 
-const API_BASE = process.env.E2E_API_URL ?? 'http://localhost:3010/api/v1';
+const API_BASE = process.env.E2E_API_URL ?? 'http://192.168.1.125:3010/api/v1';
 
 /**
  * Login rate-limit is 5/min/IP. With ~32 protected tests each calling login

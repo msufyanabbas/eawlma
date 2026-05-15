@@ -32,7 +32,7 @@ export class KafkaService implements OnModuleInit, OnApplicationShutdown {
   constructor(private readonly config: ConfigService) {}
 
   onModuleInit(): void {
-    const brokers = this.config.get<string[]>('kafka.brokers') ?? ['localhost:9094'];
+    const brokers = this.config.get<string[]>('kafka.brokers') ?? ['192.168.1.125:9094'];
     const clientId = this.config.get<string>('kafka.clientId', 'eawlma-backend');
     const ssl = this.config.get<boolean>('kafka.ssl', false);
     const sasl = this.config.get<SASLOptions | undefined>('kafka.sasl');

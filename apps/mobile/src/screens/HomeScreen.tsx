@@ -70,7 +70,7 @@ export default function HomeScreen({ navigation }: any) {
       <View style={[styles.header, { backgroundColor: colors.primary }]}>
         <View style={[styles.headerTop, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
           <View>
-            <Text style={[TYPOGRAPHY.h1, { color: '#FFF', textAlign }]}>{isAr ? 'عالمة' : 'Eawlma'}</Text>
+            <Text style={[TYPOGRAPHY.h1, { color: '#FFF', textAlign }]}>{isAr ? 'عولمة' : 'Eawlma'}</Text>
             <Text style={[TYPOGRAPHY.small, { color: 'rgba(255,255,255,0.75)', marginTop: 2, textAlign }]}>
               {t('home.tagline')}
             </Text>

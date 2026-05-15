@@ -25,7 +25,7 @@ export default function SplashScreen() {
   return (
     <View style={[styles.container, { backgroundColor: COLORS.primary }]}>
       <Animated.View style={[styles.logoBox, { transform: [{ scale }], opacity }]}>
-        <Text style={styles.logoText}>عالمة</Text>
+        <Text style={styles.logoText}>عولمة</Text>
       </Animated.View>
       <Animated.Text style={[styles.tagline, { opacity }]}>
         Eawlma Real Estate

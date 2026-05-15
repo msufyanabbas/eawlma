@@ -14,7 +14,7 @@ const API_URL = process.env.API_URL || 'http://192.168.1.125:3010/api/v1';
 
 module.exports = {
   expo: {
-    name: 'عالمة',
+    name: 'عولمة',
     slug: 'eawlma',
     version: '1.0.0',
     orientation: 'portrait',

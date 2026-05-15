@@ -36,7 +36,7 @@ export class UpdateProfileDto {
   @ApiPropertyOptional()
   @IsOptional()
   // Permissive HTTP(S) check — class-validator's @IsUrl() rejects hosts that
-  // lack a TLD (e.g. http://localhost:3010/...) which is exactly the shape the
+  // lack a TLD (e.g. http://192.168.1.125:3010/...) which is exactly the shape the
   // dev S3 stub returns. We only need to guarantee the value is a string with
   // an http/https protocol; the upload service already controls the URL.
   @Matches(/^https?:\/\/.+/i, { message: 'avatarUrl must be a URL address' })

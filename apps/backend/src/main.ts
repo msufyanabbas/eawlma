@@ -88,7 +88,7 @@ async function bootstrap(): Promise<void> {
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
 
   // CORS — in development we mirror back any Origin so browsers loading the
-  // SPA from `localhost`, `127.0.0.1`, or any LAN IP (e.g. testing on a phone
+  // SPA from `192.168.1.125`, `127.0.0.1`, or any LAN IP (e.g. testing on a phone
   // at `http://192.168.1.125:5173`) all work without curating an allow-list.
   // In production we honour the explicit `CORS_ORIGINS` env list and also
   // accept any 192.168.x.x:5173 origin so on-prem demos work out-of-the-box.
@@ -188,7 +188,7 @@ async function bootstrap(): Promise<void> {
   await app.listen(port, '0.0.0.0');
   Logger.log(`🚀 Eawlma API listening on http://0.0.0.0:${port}/${apiPrefix}`, 'Bootstrap');
   if (!isProduction) {
-    Logger.log(`📖 Swagger UI:    http://localhost:${port}/${apiPrefix}/docs`, 'Bootstrap');
+    Logger.log(`📖 Swagger UI:    http://192.168.1.125:${port}/${apiPrefix}/docs`, 'Bootstrap');
   }
 }
 

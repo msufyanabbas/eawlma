@@ -37,7 +37,7 @@ export class NafathService {
       // realistic Nafath approval screen instead of being silently logged in.
       // The page itself calls our `/auth/nafath/mock-callback` endpoint when
       // the user clicks "Approve".
-      const frontend = this.config.get<string>('appUrl', 'http://localhost:5173');
+      const frontend = this.config.get<string>('appUrl', 'http://192.168.1.125:5173');
       return `${frontend}/auth/nafath-mock`;
     }
     const params = new URLSearchParams({

@@ -61,7 +61,7 @@ export class EmailService implements OnModuleInit {
   async sendWelcomeEmail(user: { email: string; firstName: string }): Promise<void> {
     await this.send({
       to: user.email,
-      subject: 'Welcome to Eawlma! 🏠 / مرحباً بك في عالمة',
+      subject: 'Welcome to Eawlma! 🏠 / مرحباً بك في عولمة',
       html: this.welcomeTemplate(user.firstName),
     });
   }
@@ -134,7 +134,7 @@ export class EmailService implements OnModuleInit {
 
   private brandHeader(): string {
     return `<div style="background:linear-gradient(135deg,#6C63A6,#4A4080);padding:32px;text-align:center;color:white">
-      <h1 style="margin:0;font-size:26px;font-weight:800">🏠 Eawlma / عالمة</h1>
+      <h1 style="margin:0;font-size:26px;font-weight:800">🏠 Eawlma / عولمة</h1>
     </div>`;
   }
 
