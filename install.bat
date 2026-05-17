@@ -20,26 +20,52 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo [1/3] Loading Docker images...
-docker load < images.tar.gz
+echo [1/4] Loading Docker images...
+if not exist images.tar (
+  echo ERROR: images.tar not found!
+  echo Make sure you have all package files.
+  pause
+  exit /b 1
+)
+docker load -i images.tar
+if errorlevel 1 (
+  echo ERROR: Failed to load images!
+  pause
+  exit /b 1
+)
 
 echo.
-echo [2/3] Setting up configuration...
+echo [2/4] Stopping any existing containers...
+docker-compose down --remove-orphans 2>nul
+echo Done.
+
+echo.
+echo [3/4] Setting up configuration...
 if not exist .env (
   copy .env.example .env
   echo.
   echo IMPORTANT: Please edit .env file now!
-  echo Open .env in notepad and set your values.
-  echo Required: JWT_SECRET and JWT_REFRESH_SECRET
+  echo Open .env and set JWT_SECRET and JWT_REFRESH_SECRET
   echo.
   notepad .env
   echo.
-  pause
+  echo Press any key after saving .env to continue...
+  pause > nul
 )
 
 echo.
-echo [3/3] Starting Eawlma platform...
+echo [4/4] Starting Eawlma platform...
 docker-compose up -d
+if errorlevel 1 (
+  echo ERROR: Failed to start platform!
+  echo Run: docker-compose logs
+  pause
+  exit /b 1
+)
+
+echo.
+echo Waiting for services to start...
+timeout /t 10 /nobreak > nul
 
 echo.
 echo ============================================
@@ -55,4 +81,8 @@ echo.
 echo  To stop:  docker-compose down
 echo  Logs:     docker-compose logs -f
 echo ============================================
+echo.
+
+REM Open browser
+start http://localhost
 pause
