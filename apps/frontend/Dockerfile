@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.6
 # -----------------------------------------------------------------------------
-# Aqarat Frontend — multi-stage build
+# Eawlma Frontend — multi-stage build
 # Builds the Vite bundle, then serves it from a tiny nginx:alpine image.
 # -----------------------------------------------------------------------------
 
@@ -31,8 +31,8 @@ COPY --from=deps /repo/apps/frontend/node_modules ./apps/frontend/node_modules
 COPY tsconfig.base.json ./
 COPY packages/shared-types ./packages/shared-types
 COPY apps/frontend ./apps/frontend
-RUN npm run build -w @aqarat/shared-types
-RUN npx --workspace @aqarat/frontend vite build
+RUN npm run build -w @eawlma/shared-types
+RUN npx --workspace @eawlma/frontend vite build
 
 FROM nginx:1.27-alpine AS runtime
 COPY apps/frontend/nginx.conf /etc/nginx/conf.d/default.conf

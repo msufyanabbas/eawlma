@@ -695,7 +695,7 @@ async function upsertUser(params: {
   password: string;
 }): Promise<UserEntity> {
   const usersRepo = dataSource.getRepository(UserEntity);
-  // Match by either email OR phone — older legacy seeds (e.g. admin@aqarat.sa)
+  // Match by either email OR phone — older legacy seeds (e.g. admin@eawlma.sa)
   // own the same phone number under a different email, so we want to claim
   // and rename that row rather than try to INSERT a duplicate.
   const existing =

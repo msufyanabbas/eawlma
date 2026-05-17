@@ -1,0 +1,58 @@
+@echo off
+echo.
+echo  ███████╗ █████╗ ██╗    ██╗██╗     ███╗   ███╗ █████╗
+echo  ██╔════╝██╔══██╗██║    ██║██║     ████╗ ████║██╔══██╗
+echo  █████╗  ███████║██║ █╗ ██║██║     ██╔████╔██║███████║
+echo  ██╔══╝  ██╔══██║██║███╗██║██║     ██║╚██╔╝██║██╔══██║
+echo  ███████╗██║  ██║╚███╔███╔╝███████╗██║ ╚═╝ ██║██║  ██║
+echo  ╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝
+echo.
+echo  Real Estate Platform - Installation
+echo  =====================================
+echo.
+
+REM Check Docker
+docker --version > nul 2>&1
+if errorlevel 1 (
+  echo ERROR: Docker is not installed!
+  echo Please install Docker Desktop from https://docker.com
+  pause
+  exit /b 1
+)
+
+echo [1/3] Loading Docker images...
+docker load < images.tar.gz
+
+echo.
+echo [2/3] Setting up configuration...
+if not exist .env (
+  copy .env.example .env
+  echo.
+  echo IMPORTANT: Please edit .env file now!
+  echo Open .env in notepad and set your values.
+  echo Required: JWT_SECRET and JWT_REFRESH_SECRET
+  echo.
+  notepad .env
+  echo.
+  pause
+)
+
+echo.
+echo [3/3] Starting Eawlma platform...
+docker-compose up -d
+
+echo.
+echo ============================================
+echo  Eawlma is now running!
+echo ============================================
+echo.
+echo  Web App:  http://localhost
+echo  API:      http://localhost:3010
+echo.
+echo  Admin:    admin@eawlma.sa / Admin123!
+echo  Agent:    agent1@eawlma.sa / Agent123!
+echo.
+echo  To stop:  docker-compose down
+echo  Logs:     docker-compose logs -f
+echo ============================================
+pause

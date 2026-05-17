@@ -28,8 +28,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@aqarat/shared-types": ["packages/shared-types/src"],
-      "@aqarat/shared-types/*": ["packages/shared-types/src/*"]
+      "@eawlma/shared-types": ["packages/shared-types/src"],
+      "@eawlma/shared-types/*": ["packages/shared-types/src/*"]
     }
   },
   "exclude": ["node_modules", "dist", "build"]
