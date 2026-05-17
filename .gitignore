@@ -46,3 +46,8 @@ Thumbs.db
 
 # Uploads (local dev)
 apps/backend/uploads/
+
+# Docker export packages
+eawlma-package*/
+*.tar
+*.tar.gz
