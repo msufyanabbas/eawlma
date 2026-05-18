@@ -2,4 +2,6 @@
 **/.git
 **/dist
 **/*.log
+**/.env
+**/.env.*
 apps/mobile
