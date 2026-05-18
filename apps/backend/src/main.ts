@@ -12,6 +12,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { mkdirSync } from 'fs';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { DataSource } from 'typeorm';
 
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
@@ -183,6 +184,17 @@ async function bootstrap(): Promise<void> {
     SwaggerModule.setup(`${apiPrefix}/docs`, app, document, {
       swaggerOptions: { persistAuthorization: true },
     });
+  }
+
+  if (process.env.RUN_MIGRATIONS === 'true') {
+    try {
+      const dataSource = app.get(DataSource);
+      Logger.log('Running pending migrations...', 'Migration');
+      const migrations = await dataSource.runMigrations();
+      Logger.log(`${migrations.length} migrations executed.`, 'Migration');
+    } catch (e) {
+      Logger.error(`Error: ${(e as Error).message}`, 'Migration');
+    }
   }
 
   await app.listen(port, '0.0.0.0');
