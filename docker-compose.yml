@@ -28,15 +28,15 @@ services:
     container_name: eawlma-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-eawlma}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eawlma_dev_password}
-      POSTGRES_DB: ${POSTGRES_DB:-eawlma}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+      POSTGRES_DB: ${POSTGRES_DB:-eawlma_platform}
     ports:
-      - "${POSTGRES_PORT:-5532}:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-eawlma} -d ${POSTGRES_DB:-eawlma}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-eawlma_platform}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -144,9 +144,9 @@ services:
       JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
-      POSTGRES_USER:     ${POSTGRES_USER:-eawlma}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eawlma_dev_password}
-      POSTGRES_DB:       ${POSTGRES_DB:-eawlma}
+      POSTGRES_USER:     ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+      POSTGRES_DB:       ${POSTGRES_DB:-eawlma_platform}
       POSTGRES_SSL:      ${POSTGRES_SSL:-false}
       REDIS_HOST: redis
       REDIS_PORT: 6379
@@ -185,7 +185,7 @@ services:
       context: .
       dockerfile: apps/frontend/Dockerfile
       args:
-        VITE_API_URL:                ${PUBLIC_API_URL:-/}
+        VITE_API_URL:                ${PUBLIC_API_URL:-/api/v1}
         VITE_SOCKET_URL:             ${PUBLIC_SOCKET_URL:-/}
         VITE_GOOGLE_MAPS_API_KEY:    ${GOOGLE_MAPS_API_KEY:-}
         VITE_MOYASAR_PUBLISHABLE_KEY: ${MOYASAR_PUBLISHABLE_KEY:-}
