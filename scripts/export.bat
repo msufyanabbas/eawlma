@@ -38,6 +38,7 @@ echo [4/4] Copying deployment files...
 copy docker-compose.client.yml %FOLDER%\docker-compose.yml
 copy .env.example %FOLDER%\.env.example
 copy install.bat %FOLDER%\install.bat
+copy install.sh %FOLDER%\install.sh
 copy DOCKER.md %FOLDER%\README.md
 
 echo.
