@@ -13,7 +13,10 @@ COPY package.json package-lock.json* tsconfig.base.json ./
 COPY packages/ ./packages/
 COPY apps/frontend/ ./apps/frontend/
 ARG VITE_API_URL=/api/v1
+ARG VITE_SOCKET_URL=/
 ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_SOCKET_URL=$VITE_SOCKET_URL
+RUN printf "VITE_API_URL=%s\nVITE_SOCKET_URL=%s\n" "$VITE_API_URL" "$VITE_SOCKET_URL" > apps/frontend/.env.production
 RUN npm run build -w @eawlma/shared-types
 RUN npx --workspace @eawlma/frontend vite build
 
