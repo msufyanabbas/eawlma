@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:15-alpine
@@ -7,7 +5,7 @@ services:
     environment:
       POSTGRES_DB: eawlma
       POSTGRES_USER: eawlma
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-eawlma_secure_2024}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eawlma_secure_2024}
     volumes:
       - eawlma_postgres:/var/lib/postgresql/data
     healthcheck:
@@ -37,20 +35,21 @@ services:
         condition: service_started
     environment:
       NODE_ENV: production
-      PORT: 3010
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USERNAME: eawlma
-      DB_PASSWORD: ${DB_PASSWORD:-eawlma_secure_2024}
-      DB_NAME: eawlma
-      DATABASE_URL: postgresql://eawlma:${DB_PASSWORD:-eawlma_secure_2024}@postgres:5432/eawlma
+      BACKEND_PORT: 3010
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: eawlma
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eawlma_secure_2024}
+      POSTGRES_DB: eawlma
+      POSTGRES_SSL: "false"
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_2024}
-      JWT_SECRET: ${JWT_SECRET:-change_me_32_chars_minimum_please}
-      JWT_EXPIRES_IN: 7d
-      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-change_me_refresh_32_chars}
-      JWT_REFRESH_EXPIRES_IN: 30d
+      REDIS_DB: 0
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-change_me_in_production_min_32_chars_long_secret}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-change_me_too_in_production_min_32_chars_long}
+      JWT_ACCESS_EXPIRES_IN: 15m
+      JWT_REFRESH_EXPIRES_IN: 7d
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
       AWS_REGION: ${AWS_REGION:-me-south-1}
