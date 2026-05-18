@@ -32,6 +32,10 @@ export class AiTranslationConsumer implements OnModuleInit, OnApplicationShutdow
       this.logger.log('Test environment — AI consumer disabled');
       return;
     }
+    if (process.env.KAFKA_ENABLED === 'false') {
+      this.logger.log('KAFKA_ENABLED=false — AI consumer disabled');
+      return;
+    }
     const brokers = this.config.get<string[]>('kafka.brokers') ?? ['192.168.1.125:9094'];
     const clientId =
       (this.config.get<string>('kafka.clientId') ?? 'eawlma-backend') + '-ai';

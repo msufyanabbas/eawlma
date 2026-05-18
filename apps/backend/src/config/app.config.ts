@@ -45,7 +45,8 @@ export const configValidationSchema = Joi.object({
   JWT_REFRESH_EXPIRES_IN: Joi.string().default('7d'),
 
   // Kafka
-  KAFKA_BROKERS: Joi.string().default('192.168.1.125:9092'),
+  KAFKA_ENABLED: Joi.string().valid('true', 'false').default('true'),
+  KAFKA_BROKERS: Joi.string().allow('').default('192.168.1.125:9092'),
   KAFKA_CLIENT_ID: Joi.string().default('eawlma-backend'),
   KAFKA_GROUP_ID: Joi.string().default('eawlma-backend-group'),
 

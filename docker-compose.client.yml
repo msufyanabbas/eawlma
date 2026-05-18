@@ -54,6 +54,8 @@ services:
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
       AWS_REGION: ${AWS_REGION:-me-south-1}
       AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
+      KAFKA_ENABLED: "false"
+      KAFKA_BROKERS: ""
       RUN_MIGRATIONS: "true"
     ports:
       - "3000:3000"
