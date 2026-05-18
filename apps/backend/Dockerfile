@@ -17,12 +17,13 @@ RUN npm run build -w @eawlma/backend
 
 FROM node:20-alpine AS runtime
 WORKDIR /app
+RUN apk add --no-cache dumb-init
 RUN addgroup -S eawlma && adduser -S eawlma -G eawlma
 COPY --from=deps /repo/node_modules ./node_modules
 COPY --from=deps /repo/package.json ./package.json
 COPY --from=build /repo/apps/backend/dist ./apps/backend/dist
 COPY --from=build /repo/packages ./packages
-RUN apk add --no-cache dumb-init
+RUN mkdir -p /app/logs && chown -R eawlma:eawlma /app
 USER eawlma
 EXPOSE 3010
 ENTRYPOINT ["dumb-init", "--"]
