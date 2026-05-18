@@ -67,8 +67,8 @@ export function LoginPage() {
   const onSubmit = (values: FormValues) => loginMutation.mutate(values);
 
   const handleNafathLogin = () => {
-    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3000';
-    window.location.href = `${apiUrl}/api/v1/auth/nafath/authorize`;
+    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3000/api/v1';
+    window.location.href = `${apiUrl}/auth/nafath/authorize`;
   };
 
   return (

@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { useAuthStore } from '@/store/auth.store';
 
-const baseURL = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3000';
+const baseURL = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3000/api/v1';
 
 export const apiClient: AxiosInstance = axios.create({
-  baseURL: `${baseURL}/api/v1`,
+  baseURL,
   timeout: 30_000,
   withCredentials: false,
   headers: {
@@ -42,7 +42,7 @@ async function tryRefresh(): Promise<string | null> {
 
     try {
       const { data } = await axios.post(
-        `${baseURL}/api/v1/auth/refresh`,
+        `${baseURL}/auth/refresh`,
         { refreshToken },
         { headers: { 'Content-Type': 'application/json' } },
       );

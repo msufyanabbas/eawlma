@@ -62,6 +62,11 @@ services:
 
   frontend:
     image: eawlma-frontend:latest
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        VITE_API_URL: /api/v1
     restart: unless-stopped
     depends_on:
       - backend
