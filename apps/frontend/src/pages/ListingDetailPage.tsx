@@ -1352,6 +1352,7 @@ const CANCELLATION_LABELS: Record<string, string> = {
 };
 
 function ShortTermInfoSections({ listing }: { listing: unknown }) {
+  const { t } = useTranslation();
   const l = listing as {
     bookingType?: string;
     maxGuests?: number | null;
@@ -1377,7 +1378,7 @@ function ShortTermInfoSections({ listing }: { listing: unknown }) {
     <Box sx={{ mb: 4 }}>
       {isHotel && (l.hotelName || l.hotelStarRating) && (
         <Paper variant="outlined" sx={{ p: 2.5, mb: 2 }}>
-          <Typography variant="overline" color="text.secondary">Hotel</Typography>
+          <Typography variant="overline" color="text.secondary">{t('listingDetail.hotelLabel')}</Typography>
           <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mt: 0.5 }}>
             <Typography variant="h6" sx={{ fontWeight: 800 }}>
               {l.hotelName ?? '—'}
@@ -1386,7 +1387,7 @@ function ShortTermInfoSections({ listing }: { listing: unknown }) {
               <Box sx={{ color: '#D4A843', letterSpacing: 1 }}>
                 {'★'.repeat(l.hotelStarRating)}
                 <Typography component="span" variant="caption" color="text.secondary" sx={{ ml: 0.5 }}>
-                  {l.hotelStarRating}-star
+                  {t('listingDetail.starSuffix', { n: l.hotelStarRating })}
                 </Typography>
               </Box>
             ) : null}
@@ -1395,19 +1396,19 @@ function ShortTermInfoSections({ listing }: { listing: unknown }) {
       )}
 
       <Paper variant="outlined" sx={{ p: 2.5, mb: 2 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>Stay details</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>{t('listingDetail.stayDetails')}</Typography>
         <Stack direction="row" spacing={4} flexWrap="wrap" rowGap={1.5}>
           {l.maxGuests ? (
-            <InfoChip label="Max guests" value={String(l.maxGuests)} />
+            <InfoChip label={t('listingDetail.maxGuests')} value={String(l.maxGuests)} />
           ) : null}
           {l.checkInTime ? (
-            <InfoChip label="Check-in" value={`from ${l.checkInTime}`} />
+            <InfoChip label={t('listingDetail.checkIn')} value={t('listingDetail.checkInFrom', { time: l.checkInTime })} />
           ) : null}
           {l.checkOutTime ? (
-            <InfoChip label="Check-out" value={`by ${l.checkOutTime}`} />
+            <InfoChip label={t('listingDetail.checkOut')} value={t('listingDetail.checkOutBy', { time: l.checkOutTime })} />
           ) : null}
           {l.cancellationPolicy ? (
-            <InfoChip label="Cancellation" value={l.cancellationPolicy} />
+            <InfoChip label={t('listingDetail.cancellation')} value={l.cancellationPolicy} />
           ) : null}
         </Stack>
         {l.cancellationPolicy && CANCELLATION_LABELS[l.cancellationPolicy] && (
@@ -1419,7 +1420,7 @@ function ShortTermInfoSections({ listing }: { listing: unknown }) {
 
       {amenities.length > 0 && (
         <Paper variant="outlined" sx={{ p: 2.5, mb: 2 }}>
-          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>What this place offers</Typography>
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1.5 }}>{t('listingDetail.whatThisPlaceOffers')}</Typography>
           <Stack direction="row" flexWrap="wrap" rowGap={1} columnGap={2}>
             {amenities.map(([key]) => {
               const meta = SHORT_TERM_AMENITY_LABELS[key] ?? { label: key, emoji: '✓' };
@@ -1436,7 +1437,7 @@ function ShortTermInfoSections({ listing }: { listing: unknown }) {
 
       {l.houseRules && (
         <Paper variant="outlined" sx={{ p: 2.5 }}>
-          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>House rules</Typography>
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>{t('listingDetail.houseRules')}</Typography>
           <Typography variant="body2" sx={{ whiteSpace: 'pre-line', lineHeight: 1.6 }}>
             {l.houseRules}
           </Typography>

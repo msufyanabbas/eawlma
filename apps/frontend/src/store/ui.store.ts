@@ -1,7 +1,34 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { apiClient } from '@/api/client';
+import { queryClient } from '@/api/queryClient';
 import { usersApi } from '@/api/users.api';
+
+/**
+ * Invalidate every cached query whose result depends on the active locale.
+ * The backend reads `Accept-Language` and returns localized listing copy,
+ * search hits, etc. — without this nudge the cached `ar` payload would
+ * outlive the `setLanguage(...)` call and the UI would render mixed
+ * locales until the staleTime expired. Listed by feature root so a key
+ * like `['listings', id]` is matched by `['listings']`.
+ */
+function invalidateLocaleSensitiveQueries() {
+  for (const key of [
+    ['listings'],
+    ['search'],
+    ['featured'],
+    ['home-listings'],
+    ['agents'],
+    ['notifications'],
+    ['inquiries'],
+    ['messages'],
+    ['conversations'],
+    ['property-requests'],
+    ['users', 'me'],
+  ] as const) {
+    void queryClient.invalidateQueries({ queryKey: key });
+  }
+}
 
 export type ThemeMode = 'light' | 'dark';
 // Any locale code we ship UI translations for. The full list is centralized in
@@ -63,6 +90,9 @@ export const useUiStore = create<UiState>()(
       setLanguage: (language, userId) => {
         set({ language, displayLocale: language });
         persistLocale(language);
+        // Drop cached server payloads keyed by the previous locale so the next
+        // render fetches with the new Accept-Language header.
+        invalidateLocaleSensitiveQueries();
         if (userId) syncToBackend({ preferredLanguage: language });
       },
       setDisplayLocale: (displayLocale) => set({ displayLocale }),

@@ -1352,6 +1352,24 @@
       "low": "Low confidence"
     }
   },
+  "agentReview": {
+    "postFailed": "Could not post review",
+    "posting": "Posting…",
+    "postReview": "Post review"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Stay details",
+    "houseRules": "House rules",
+    "maxGuests": "Max guests",
+    "checkIn": "Check-in",
+    "checkInFrom": "from {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "by {{time}}",
+    "cancellation": "Cancellation",
+    "whatThisPlaceOffers": "What this place offers"
+  },
   "support": {
     "title": "Support",
     "adminSubtitle": "Triage and resolve customer support tickets",

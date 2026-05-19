@@ -13,7 +13,8 @@ import {
   Tajawal_700Bold,
   Tajawal_800ExtraBold,
 } from '@expo-google-fonts/tajawal';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { queryClient } from './src/api/queryClient';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
 
@@ -66,15 +67,6 @@ import AdminDisputesScreen from './src/screens/admin/AdminDisputesScreen';
 import AdminPromosScreen from './src/screens/admin/AdminPromosScreen';
 import { useWebSocket } from './src/hooks/useWebSocket';
 import { linking } from './src/navigation/linking';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 1,
-      staleTime: 30_000,
-    },
-  },
-});
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

@@ -410,18 +410,18 @@ export function AgentProfilePage() {
               fullWidth
             />
             {createReviewMutation.isError && (
-              <Alert severity="error">{reviewToast.msg || 'Could not post review'}</Alert>
+              <Alert severity="error">{reviewToast.msg || t('agentReview.postFailed')}</Alert>
             )}
           </Stack>
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 2 }}>
-          <Button onClick={() => setWriteOpen(false)}>Cancel</Button>
+          <Button onClick={() => setWriteOpen(false)}>{t('common.cancel')}</Button>
           <Button
             variant="contained"
             disabled={draftComment.trim().length < 10 || createReviewMutation.isPending}
             onClick={() => createReviewMutation.mutate()}
           >
-            {createReviewMutation.isPending ? 'Posting…' : 'Post review'}
+            {createReviewMutation.isPending ? t('agentReview.posting') : t('agentReview.postReview')}
           </Button>
         </DialogActions>
       </Dialog>

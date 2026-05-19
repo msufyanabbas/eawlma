@@ -1349,6 +1349,24 @@
       "low": "ثقة منخفضة"
     }
   },
+  "agentReview": {
+    "postFailed": "تعذّر نشر التقييم",
+    "posting": "جارٍ النشر…",
+    "postReview": "نشر التقييم"
+  },
+  "listingDetail": {
+    "hotelLabel": "فندق",
+    "starSuffix": "{{n}} نجوم",
+    "stayDetails": "تفاصيل الإقامة",
+    "houseRules": "قواعد المنزل",
+    "maxGuests": "الحد الأقصى للضيوف",
+    "checkIn": "تسجيل الدخول",
+    "checkInFrom": "من {{time}}",
+    "checkOut": "تسجيل الخروج",
+    "checkOutBy": "قبل {{time}}",
+    "cancellation": "الإلغاء",
+    "whatThisPlaceOffers": "ما يقدمه هذا المكان"
+  },
   "support": {
     "title": "الدعم الفني",
     "adminSubtitle": "تصنيف وحل تذاكر الدعم الفني للعملاء",

@@ -3,6 +3,8 @@ import { initReactI18next } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { I18nManager } from 'react-native';
 
+import { queryClient } from '../api/queryClient';
+
 // Locale JSONs live next to this file (copied from @eawlma/i18n-locales).
 // Keeping them local sidesteps any workspace-symlink edge cases when Metro
 // bundles for production / EAS builds.
@@ -133,6 +135,26 @@ export async function changeLanguage(lang: string): Promise<void> {
     console.log(`[i18n] active="${i18n.language}", nav.home="${i18n.t('nav.home')}"`);
   }
   I18nManager.forceRTL(RTL_LANGUAGES.includes(lang));
+
+  // Drop cached server payloads keyed by the previous locale so the next
+  // useQuery render refetches with the new Accept-Language header. Each
+  // root key here is a feature whose response includes localized strings
+  // (listing titles, agent bios, notifications, etc.).
+  for (const key of [
+    ['listings'],
+    ['search'],
+    ['home-listings'],
+    ['featured'],
+    ['agents'],
+    ['notifications'],
+    ['inquiries'],
+    ['messages'],
+    ['conversations'],
+    ['property-requests'],
+    ['me'],
+  ] as const) {
+    queryClient.invalidateQueries({ queryKey: key });
+  }
 }
 
 export default i18n;
