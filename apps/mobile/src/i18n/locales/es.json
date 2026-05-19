@@ -1751,5 +1751,69 @@
       "resolved": "Resuelto",
       "closed": "Cerrado"
     }
+  },
+  "agentReview": {
+    "postFailed": "No se pudo publicar la reseña",
+    "posting": "Destino…",
+    "postReview": "Publicar revisión"
+  },
+  "adminCommissions": {
+    "listing": "Listado",
+    "buyer": "Comprador",
+    "value": "Valor de la oferta",
+    "platformEarn": "Ganancia de plataforma",
+    "agentEarn": "Agente gana",
+    "status": "Estado",
+    "closedAt": "Cerrado",
+    "allCommissions": "Todas las comisiones",
+    "all": "Todo"
+  },
+  "adminAudit": {
+    "timestamp": "Marca de tiempo",
+    "actor": "Actor",
+    "action": "Acción",
+    "entity": "Entidad",
+    "changed": "Campos modificados"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Fuentes de tráfico",
+    "devices": "Dispositivos",
+    "inquiryFunnel": "Embudo de consultas"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-estrella",
+    "stayDetails": "Detalles de la estancia",
+    "houseRules": "Reglas de la casa",
+    "maxGuests": "Invitados máximos",
+    "checkIn": "Registrarse",
+    "checkInFrom": "desde {{hora}}",
+    "checkOut": "Verificar",
+    "checkOutBy": "por {{hora}}",
+    "cancellation": "Cancelación",
+    "whatThisPlaceOffers": "Lo que ofrece este lugar"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Yeda, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Comparta lo que fue útil, profesional o podría mejorar..."
+  },
+  "adminCommissionsPage": {
+    "title": "Comisiones de plataforma",
+    "subtitle": "Ingresos totales, pagos a agentes y desglose por transacción."
+  },
+  "comparePage": {
+    "emptyTitle": "Nada que comparar todavía"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Clave API de Google Maps no configurada",
+    "missingKeyHint": "Configure VITE_GOOGLE_MAPS_API_KEY para habilitar la vista del mapa.",
+    "loadFailed": "No se pudo cargar el mapa"
+  },
+  "photoGallery": {
+    "close": "Cerca",
+    "previous": "Foto anterior",
+    "next": "siguiente foto"
   }
 }

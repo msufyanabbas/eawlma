@@ -1751,5 +1751,69 @@
       "resolved": "Løst",
       "closed": "Lukket"
     }
+  },
+  "agentReview": {
+    "postFailed": "Kunne ikke legge inn anmeldelse",
+    "posting": "Legger ut...",
+    "postReview": "Legg inn anmeldelse"
+  },
+  "adminCommissions": {
+    "listing": "Oppføring",
+    "buyer": "Kjøper",
+    "value": "Deal Verdi",
+    "platformEarn": "Plattform Tjen",
+    "agentEarn": "Agent Tjen",
+    "status": "Status",
+    "closedAt": "Lukket",
+    "allCommissions": "Alle provisjoner",
+    "all": "Alle"
+  },
+  "adminAudit": {
+    "timestamp": "Tidsstempel",
+    "actor": "Skuespiller",
+    "action": "Handling",
+    "entity": "Entitet",
+    "changed": "Endrede felt"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafikkkilder",
+    "devices": "Enheter",
+    "inquiryFunnel": "Forespørselstrakt"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotell",
+    "starSuffix": "{{n}}-stjerne",
+    "stayDetails": "Oppholdsdetaljer",
+    "houseRules": "Husregler",
+    "maxGuests": "Maks gjester",
+    "checkIn": "Innsjekking",
+    "checkInFrom": "fra {{time}}",
+    "checkOut": "Utsjekking",
+    "checkOutBy": "av {{time}}",
+    "cancellation": "Kansellering",
+    "whatThisPlaceOffers": "Hva dette stedet tilbyr"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Del hva som var nyttig, profesjonelt eller kunne forbedre..."
+  },
+  "adminCommissionsPage": {
+    "title": "Plattformprovisjoner",
+    "subtitle": "Totale inntekter, agentutbetalinger og oversikt per transaksjon."
+  },
+  "comparePage": {
+    "emptyTitle": "Ingenting å sammenligne ennå"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-nøkkel er ikke konfigurert",
+    "missingKeyHint": "Sett VITE_GOOGLE_MAPS_API_KEY for å aktivere kartvisningen.",
+    "loadFailed": "Kunne ikke laste kart"
+  },
+  "photoGallery": {
+    "close": "Lukk",
+    "previous": "Forrige bilde",
+    "next": "Neste bilde"
   }
 }

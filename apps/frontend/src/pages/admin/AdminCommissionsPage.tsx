@@ -113,11 +113,11 @@ export function AdminCommissionsPage() {
       </Helmet>
 
       <PageHeader
-        title="Platform commissions"
-        subtitle="Total revenue, agent payouts, and per-transaction breakdown."
+        title={t('adminCommissionsPage.title')}
+        subtitle={t('adminCommissionsPage.subtitle')}
         action={
           <Button startIcon={<DownloadIcon />} variant="outlined" onClick={exportCsv}>
-            Export CSV
+            {t('common.exportCsv', 'Export CSV')}
           </Button>
         }
       />
@@ -182,16 +182,16 @@ export function AdminCommissionsPage() {
       {/* Table */}
       <Paper sx={{ p: 0, overflow: 'hidden' }}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-          <Typography sx={{ fontWeight: 800 }}>All commissions</Typography>
+          <Typography sx={{ fontWeight: 800 }}>{t('adminCommissions.allCommissions')}</Typography>
           <TextField
             select
             size="small"
-            label="Status"
+            label={t('adminCommissions.status')}
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as CommissionStatus | 'all')}
             sx={{ minWidth: 180 }}
           >
-            <MenuItem value="all">All</MenuItem>
+            <MenuItem value="all">{t('adminCommissions.all')}</MenuItem>
             {STATUS_OPTIONS.map((s) => (
               <MenuItem key={s} value={s}>{STATUS_COLORS[s].label}</MenuItem>
             ))}
@@ -204,20 +204,20 @@ export function AdminCommissionsPage() {
             ))}
           </Box>
         ) : filtered.length === 0 ? (
-          <EmptyState title="No commissions" description="Try a different status filter." />
+          <EmptyState title={t('adminCommissions.noCommissions', 'No commissions')} description={t('adminCommissions.noCommissionsHint', 'Try a different status filter.')} />
         ) : (
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Listing</TableCell>
-                <TableCell>Agent</TableCell>
-                <TableCell>Buyer</TableCell>
-                <TableCell>Value</TableCell>
-                <TableCell>Platform earn</TableCell>
-                <TableCell>Agent earn</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Closed</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>{t('adminCommissions.listing')}</TableCell>
+                <TableCell>{t('admin.agent')}</TableCell>
+                <TableCell>{t('adminCommissions.buyer')}</TableCell>
+                <TableCell>{t('adminCommissions.value')}</TableCell>
+                <TableCell>{t('adminCommissions.platformEarn')}</TableCell>
+                <TableCell>{t('adminCommissions.agentEarn')}</TableCell>
+                <TableCell>{t('adminCommissions.status')}</TableCell>
+                <TableCell>{t('adminCommissions.closedAt')}</TableCell>
+                <TableCell>{t('admin.actions')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

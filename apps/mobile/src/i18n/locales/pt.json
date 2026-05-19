@@ -1751,5 +1751,69 @@
       "resolved": "Resolvido",
       "closed": "Fechado"
     }
+  },
+  "agentReview": {
+    "postFailed": "Não foi possível postar a avaliação",
+    "posting": "Postando…",
+    "postReview": "Publicar revisão"
+  },
+  "adminCommissions": {
+    "listing": "Listagem",
+    "buyer": "Comprador",
+    "value": "Valor do negócio",
+    "platformEarn": "Ganho de plataforma",
+    "agentEarn": "Agente ganha",
+    "status": "Status",
+    "closedAt": "Fechado",
+    "allCommissions": "Todas as comissões",
+    "all": "Todos"
+  },
+  "adminAudit": {
+    "timestamp": "Carimbo de data e hora",
+    "actor": "Ator",
+    "action": "Ação",
+    "entity": "Entidade",
+    "changed": "Campos alterados"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Fontes de tráfego",
+    "devices": "Dispositivos",
+    "inquiryFunnel": "Funil de consulta"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-estrela",
+    "stayDetails": "Detalhes da estadia",
+    "houseRules": "Regras da casa",
+    "maxGuests": "Máximo de convidados",
+    "checkIn": "Check-in",
+    "checkInFrom": "de {{hora}}",
+    "checkOut": "Confira",
+    "checkOutBy": "às {{hora}}",
+    "cancellation": "Cancelamento",
+    "whatThisPlaceOffers": "O que este lugar oferece"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riade, Jidá, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Compartilhe o que foi útil, profissional ou poderia melhorar…"
+  },
+  "adminCommissionsPage": {
+    "title": "Comissões de plataforma",
+    "subtitle": "Receita total, pagamentos de agentes e detalhamento por transação."
+  },
+  "comparePage": {
+    "emptyTitle": "Nada para comparar ainda"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Chave de API do Google Maps não configurada",
+    "missingKeyHint": "Defina VITE_GOOGLE_MAPS_API_KEY para ativar a visualização do mapa.",
+    "loadFailed": "Falha ao carregar o mapa"
+  },
+  "photoGallery": {
+    "close": "Fechar",
+    "previous": "Foto anterior",
+    "next": "Próxima foto"
   }
 }

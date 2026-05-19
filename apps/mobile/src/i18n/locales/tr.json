@@ -1751,5 +1751,69 @@
       "resolved": "Çözüldü",
       "closed": "Kapalı"
     }
+  },
+  "agentReview": {
+    "postFailed": "İnceleme yayınlanamadı",
+    "posting": "Posting…",
+    "postReview": "İnceleme sonrası"
+  },
+  "adminCommissions": {
+    "listing": "Listeleme",
+    "buyer": "Alıcı",
+    "value": "Fırsat Değeri",
+    "platformEarn": "Platform Kazan",
+    "agentEarn": "Temsilci Kazan",
+    "status": "Durum",
+    "closedAt": "Kapalı",
+    "allCommissions": "All Commissions",
+    "all": "Tüm"
+  },
+  "adminAudit": {
+    "timestamp": "Zaman damgası",
+    "actor": "Aktör",
+    "action": "Aksiyon",
+    "entity": "Varlık",
+    "changed": "Changed Fields"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Traffic Sources",
+    "devices": "Cihazlar",
+    "inquiryFunnel": "Inquiry Funnel"
+  },
+  "listingDetail": {
+    "hotelLabel": "Otel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Stay details",
+    "houseRules": "Ev kuralları",
+    "maxGuests": "Max guests",
+    "checkIn": "Giriş",
+    "checkInFrom": "from {{time}}",
+    "checkOut": "Çıkış yapmak",
+    "checkOutBy": "by {{time}}",
+    "cancellation": "İptal",
+    "whatThisPlaceOffers": "Burası neler sunuyor"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyad, Cidde, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Neyin yararlı, profesyonel olduğunu veya geliştirilebileceğini paylaşın…"
+  },
+  "adminCommissionsPage": {
+    "title": "Platform commissions",
+    "subtitle": "Toplam gelir, temsilci ödemeleri ve işlem başına döküm."
+  },
+  "comparePage": {
+    "emptyTitle": "Henüz karşılaştırılacak bir şey yok"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Haritalar API anahtarı yapılandırılmadı",
+    "missingKeyHint": "Harita görünümünü etkinleştirmek için VITE_GOOGLE_MAPS_API_KEY'i ayarlayın.",
+    "loadFailed": "Harita yüklenemedi"
+  },
+  "photoGallery": {
+    "close": "Close",
+    "previous": "Önceki fotoğraf",
+    "next": "Next photo"
   }
 }

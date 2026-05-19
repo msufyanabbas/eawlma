@@ -1751,5 +1751,69 @@
       "resolved": "Imetatuliwa",
       "closed": "Imefungwa"
     }
+  },
+  "agentReview": {
+    "postFailed": "Haikuweza kuchapisha ukaguzi",
+    "posting": "Inachapisha...",
+    "postReview": "Chapisha ukaguzi"
+  },
+  "adminCommissions": {
+    "listing": "Kuorodhesha",
+    "buyer": "Mnunuzi",
+    "value": "Thamani ya Mkataba",
+    "platformEarn": "Jukwaa Pata",
+    "agentEarn": "Ajenti Pata",
+    "status": "Hali",
+    "closedAt": "Imefungwa",
+    "allCommissions": "Tume zote",
+    "all": "Wote"
+  },
+  "adminAudit": {
+    "timestamp": "Muhuri wa saa",
+    "actor": "Mwigizaji",
+    "action": "Kitendo",
+    "entity": "Huluki",
+    "changed": "Sehemu Zilizobadilishwa"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Vyanzo vya Trafiki",
+    "devices": "Vifaa",
+    "inquiryFunnel": "Funeli ya Uchunguzi"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hoteli",
+    "starSuffix": "Nyota {{n}}",
+    "stayDetails": "Kaa maelezo",
+    "houseRules": "Sheria za nyumba",
+    "maxGuests": "Max wageni",
+    "checkIn": "Ingia",
+    "checkInFrom": "kutoka {{time}}",
+    "checkOut": "Ondoka",
+    "checkOutBy": "kwa {{time}}",
+    "cancellation": "Kughairi",
+    "whatThisPlaceOffers": "Mahali hapa hutoa nini"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Shiriki kile ambacho kilikuwa muhimu, kitaalamu, au kinachoweza kuboresha..."
+  },
+  "adminCommissionsPage": {
+    "title": "Tume za jukwaa",
+    "subtitle": "Jumla ya mapato, malipo ya wakala na uchanganuzi wa kila shughuli."
+  },
+  "comparePage": {
+    "emptyTitle": "Hakuna cha kulinganisha bado"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Ufunguo wa API ya Ramani za Google haujasanidiwa",
+    "missingKeyHint": "Weka VITE_GOOGLE_MAPS_API_KEY ili kuwezesha mwonekano wa ramani.",
+    "loadFailed": "Imeshindwa kupakia ramani"
+  },
+  "photoGallery": {
+    "close": "Funga",
+    "previous": "Picha iliyotangulia",
+    "next": "Picha inayofuata"
   }
 }

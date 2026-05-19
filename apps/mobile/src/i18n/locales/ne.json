@@ -1751,5 +1751,69 @@
       "resolved": "समाधान गरियो",
       "closed": "बन्द"
     }
+  },
+  "agentReview": {
+    "postFailed": "समीक्षा पोस्ट गर्न सकिएन",
+    "posting": "पोस्ट गर्दै...",
+    "postReview": "समीक्षा पोस्ट गर्नुहोस्"
+  },
+  "adminCommissions": {
+    "listing": "सूचीकरण",
+    "buyer": "खरिदकर्ता",
+    "value": "सम्झौता मूल्य",
+    "platformEarn": "प्लेटफर्म कमाउनुहोस्",
+    "agentEarn": "एजेन्ट कमाउनुहोस्",
+    "status": "स्थिति",
+    "closedAt": "बन्द",
+    "allCommissions": "सबै आयोगहरू",
+    "all": "सबै"
+  },
+  "adminAudit": {
+    "timestamp": "टाइमस्ट्याम्प",
+    "actor": "अभिनेता",
+    "action": "कार्य",
+    "entity": "संस्था",
+    "changed": "परिवर्तन गरिएका क्षेत्रहरू"
+  },
+  "adminAnalytics": {
+    "trafficSources": "ट्राफिक स्रोतहरू",
+    "devices": "यन्त्रहरू",
+    "inquiryFunnel": "सोधपुछ फनेल"
+  },
+  "listingDetail": {
+    "hotelLabel": "होटल",
+    "starSuffix": "{{n}}-तारा",
+    "stayDetails": "विवरण रहनुहोस्",
+    "houseRules": "घरको नियम",
+    "maxGuests": "अधिकतम अतिथिहरू",
+    "checkIn": "चेक इन",
+    "checkInFrom": "{{समय}} देखि",
+    "checkOut": "चेक-आउट",
+    "checkOutBy": "{{समय}} द्वारा",
+    "cancellation": "रद्द",
+    "whatThisPlaceOffers": "यो ठाउँले के प्रस्ताव गर्छ"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "रियाद, जेद्दा, दमाम..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "के उपयोगी, व्यावसायिक, वा सुधार गर्न सक्छ साझा गर्नुहोस्..."
+  },
+  "adminCommissionsPage": {
+    "title": "प्लेटफर्म आयोगहरू",
+    "subtitle": "कुल राजस्व, एजेन्ट भुक्तानी, र प्रति लेनदेन ब्रेकडाउन।"
+  },
+  "comparePage": {
+    "emptyTitle": "अझै तुलना गर्न केहि छैन"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google नक्सा API कुञ्जी कन्फिगर गरिएको छैन",
+    "missingKeyHint": "नक्सा दृश्य सक्षम गर्न VITE_GOOGLE_MAPS_API_KEY सेट गर्नुहोस्।",
+    "loadFailed": "नक्सा लोड गर्न असफल भयो"
+  },
+  "photoGallery": {
+    "close": "बन्द गर्नुहोस्",
+    "previous": "अघिल्लो तस्बिर",
+    "next": "अर्को फोटो"
   }
 }

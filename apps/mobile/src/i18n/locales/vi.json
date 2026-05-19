@@ -1751,5 +1751,69 @@
       "resolved": "Đã giải quyết",
       "closed": "Đã đóng"
     }
+  },
+  "agentReview": {
+    "postFailed": "Không thể đăng bài đánh giá",
+    "posting": "Đang đăng…",
+    "postReview": "Đăng bài đánh giá"
+  },
+  "adminCommissions": {
+    "listing": "Danh sách",
+    "buyer": "Người mua",
+    "value": "Giá trị giao dịch",
+    "platformEarn": "Nền tảng kiếm tiền",
+    "agentEarn": "Kiếm đại lý",
+    "status": "Trạng thái",
+    "closedAt": "Đã đóng",
+    "allCommissions": "Tất cả hoa hồng",
+    "all": "Tất cả"
+  },
+  "adminAudit": {
+    "timestamp": "Dấu thời gian",
+    "actor": "Diễn viên",
+    "action": "Hoạt động",
+    "entity": "thực thể",
+    "changed": "Trường đã thay đổi"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Nguồn lưu lượng truy cập",
+    "devices": "Thiết bị",
+    "inquiryFunnel": "Kênh yêu cầu"
+  },
+  "listingDetail": {
+    "hotelLabel": "Khách sạn",
+    "starSuffix": "{{n}}-sao",
+    "stayDetails": "Chi tiết lưu trú",
+    "houseRules": "Nội quy nhà",
+    "maxGuests": "Khách tối đa",
+    "checkIn": "Đăng ký vào",
+    "checkInFrom": "từ {{time}}",
+    "checkOut": "Trả phòng",
+    "checkOutBy": "trước {{time}}",
+    "cancellation": "Hủy bỏ",
+    "whatThisPlaceOffers": "Địa điểm này có gì"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Chia sẻ những gì hữu ích, chuyên nghiệp hoặc có thể cải thiện…"
+  },
+  "adminCommissionsPage": {
+    "title": "Hoa hồng nền tảng",
+    "subtitle": "Tổng doanh thu, khoản thanh toán cho đại lý và phân tích trên mỗi giao dịch."
+  },
+  "comparePage": {
+    "emptyTitle": "Chưa có gì để so sánh"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Khóa API Google Maps chưa được định cấu hình",
+    "missingKeyHint": "Đặt VITE_GOOGLE_MAPS_API_KEY để bật chế độ xem bản đồ.",
+    "loadFailed": "Không tải được bản đồ"
+  },
+  "photoGallery": {
+    "close": "Đóng",
+    "previous": "Ảnh trước",
+    "next": "Ảnh tiếp theo"
   }
 }

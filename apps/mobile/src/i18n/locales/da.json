@@ -876,7 +876,7 @@
       "imageDropHint": "Træk og slip billeder her, eller klik for at vælge. JPEG / PNG / WebP op til 10 MB.",
       "photoAlt": "Listebillede",
       "setCover": "Sæt som cover",
-      "cover": "Cover",
+      "cover": "Dække",
       "videoTour": "Videotur",
       "videoDropHint": "Træk en MP4-fil, eller klik for at vælge. Max 500 MB.",
       "videoUploaded": "Video uploadet — {{navn}}",
@@ -1751,5 +1751,69 @@
       "resolved": "Løst",
       "closed": "Lukket"
     }
+  },
+  "agentReview": {
+    "postFailed": "Kunne ikke sende anmeldelse",
+    "posting": "Sender...",
+    "postReview": "Indsend anmeldelse"
+  },
+  "adminCommissions": {
+    "listing": "Fortegnelse",
+    "buyer": "Køber",
+    "value": "Deal værdi",
+    "platformEarn": "Platform Tjen",
+    "agentEarn": "Agent Tjen",
+    "status": "Status",
+    "closedAt": "Lukket",
+    "allCommissions": "Alle provisioner",
+    "all": "Alle"
+  },
+  "adminAudit": {
+    "timestamp": "Tidsstempel",
+    "actor": "Skuespiller",
+    "action": "Handling",
+    "entity": "Enhed",
+    "changed": "Ændrede felter"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafikkilder",
+    "devices": "Enheder",
+    "inquiryFunnel": "Forespørgselstragt"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-stjerne",
+    "stayDetails": "Opholdsdetaljer",
+    "houseRules": "Husregler",
+    "maxGuests": "Max gæster",
+    "checkIn": "Check-in",
+    "checkInFrom": "fra {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "af {{time}}",
+    "cancellation": "Annullering",
+    "whatThisPlaceOffers": "Hvad dette sted tilbyder"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Del, hvad der var nyttigt, professionelt eller kunne forbedre..."
+  },
+  "adminCommissionsPage": {
+    "title": "Platformkommissioner",
+    "subtitle": "Samlet omsætning, agentudbetalinger og opdeling pr. transaktion."
+  },
+  "comparePage": {
+    "emptyTitle": "Intet at sammenligne endnu"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-nøgle er ikke konfigureret",
+    "missingKeyHint": "Indstil VITE_GOOGLE_MAPS_API_KEY for at aktivere kortvisningen.",
+    "loadFailed": "Kunne ikke indlæse kort"
+  },
+  "photoGallery": {
+    "close": "Luk",
+    "previous": "Forrige billede",
+    "next": "Næste billede"
   }
 }

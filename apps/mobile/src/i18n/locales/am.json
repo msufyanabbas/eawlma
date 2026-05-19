@@ -1751,5 +1751,69 @@
       "resolved": "ተፈቷል",
       "closed": "ዝግ"
     }
+  },
+  "agentReview": {
+    "postFailed": "ግምገማን መለጠፍ አልተቻለም",
+    "posting": "በመለጠፍ ላይ…",
+    "postReview": "ግምገማ ይለጥፉ"
+  },
+  "adminCommissions": {
+    "listing": "መዘርዘር",
+    "buyer": "ገዢ",
+    "value": "የስምምነት ዋጋ",
+    "platformEarn": "መድረክ ያግኙ",
+    "agentEarn": "ወኪል ያግኙ",
+    "status": "ሁኔታ",
+    "closedAt": "ዝግ",
+    "allCommissions": "ሁሉም ኮሚሽኖች",
+    "all": "ሁሉም"
+  },
+  "adminAudit": {
+    "timestamp": "የጊዜ ማህተም",
+    "actor": "ተዋናይ",
+    "action": "ድርጊት",
+    "entity": "አካል",
+    "changed": "የተቀየሩ መስኮች"
+  },
+  "adminAnalytics": {
+    "trafficSources": "የትራፊክ ምንጮች",
+    "devices": "መሳሪያዎች",
+    "inquiryFunnel": "የጥያቄ ፋኑኤል"
+  },
+  "listingDetail": {
+    "hotelLabel": "ሆቴል",
+    "starSuffix": "{{n}}-ኮከብ",
+    "stayDetails": "ዝርዝሮችን ይቆዩ",
+    "houseRules": "የቤት ደንቦች",
+    "maxGuests": "ከፍተኛ እንግዶች",
+    "checkIn": "ያረጋግጡ",
+    "checkInFrom": "ከ{{ጊዜ}}",
+    "checkOut": "ተመዝግበው ይውጡ",
+    "checkOutBy": "በ {{ጊዜ}}",
+    "cancellation": "ስረዛ",
+    "whatThisPlaceOffers": "ይህ ቦታ የሚያቀርበው"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ሪያድ፣ ጅዳ፣ ድማም…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "አጋዥ፣ ባለሙያ ወይም ማሻሻል የሚችለውን ያጋሩ…"
+  },
+  "adminCommissionsPage": {
+    "title": "መድረክ ኮሚሽኖች",
+    "subtitle": "ጠቅላላ ገቢ፣ የወኪል ክፍያዎች እና የግብይት ክፍፍል።"
+  },
+  "comparePage": {
+    "emptyTitle": "እስካሁን ምንም የሚወዳደር የለም።"
+  },
+  "searchMap": {
+    "missingKeyTitle": "የጉግል ካርታዎች ኤፒአይ ቁልፍ አልተዋቀረም።",
+    "missingKeyHint": "የካርታውን እይታ ለማንቃት VITE_GOOGLE_MAPS_API_KEY ያዘጋጁ።",
+    "loadFailed": "ካርታ መጫን አልተሳካም።"
+  },
+  "photoGallery": {
+    "close": "ገጠመ",
+    "previous": "የቀድሞ ፎቶ",
+    "next": "የሚቀጥለው ፎቶ"
   }
 }

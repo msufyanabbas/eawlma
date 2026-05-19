@@ -1751,5 +1751,69 @@
       "resolved": "Rozwiązany",
       "closed": "Zamknięte"
     }
+  },
+  "agentReview": {
+    "postFailed": "Nie udało się opublikować recenzji",
+    "posting": "Mianowanie…",
+    "postReview": "Opublikuj recenzję"
+  },
+  "adminCommissions": {
+    "listing": "Wymienianie kolejno",
+    "buyer": "Kupujący",
+    "value": "Wartość transakcji",
+    "platformEarn": "Platforma Zarabiaj",
+    "agentEarn": "Agent Zarabiaj",
+    "status": "Status",
+    "closedAt": "Zamknięte",
+    "allCommissions": "Wszystkie komisje",
+    "all": "Wszystko"
+  },
+  "adminAudit": {
+    "timestamp": "Znacznik czasu",
+    "actor": "Aktor",
+    "action": "Działanie",
+    "entity": "Podmiot",
+    "changed": "Zmienione pola"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Źródła ruchu",
+    "devices": "Urządzenia",
+    "inquiryFunnel": "Lejek zapytań"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-gwiazda",
+    "stayDetails": "Szczegóły pobytu",
+    "houseRules": "Zasady domu",
+    "maxGuests": "Maks. gości",
+    "checkIn": "Zameldować się",
+    "checkInFrom": "od {{czas}}",
+    "checkOut": "Wymeldować się",
+    "checkOutBy": "do {{czas}}",
+    "cancellation": "Anulowanie",
+    "whatThisPlaceOffers": "Co oferuje to miejsce"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Rijad, Dżudda, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Podziel się tym, co było pomocne, profesjonalne lub co mogłoby ulepszyć…"
+  },
+  "adminCommissionsPage": {
+    "title": "Prowizje platformy",
+    "subtitle": "Całkowite przychody, wypłaty agentów i podział na transakcje."
+  },
+  "comparePage": {
+    "emptyTitle": "Nie ma jeszcze nic do porównania"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Klucz API Map Google nie jest skonfigurowany",
+    "missingKeyHint": "Ustaw VITE_GOOGLE_MAPS_API_KEY, aby włączyć widok mapy.",
+    "loadFailed": "Nie udało się załadować mapy"
+  },
+  "photoGallery": {
+    "close": "Zamknąć",
+    "previous": "Poprzednie zdjęcie",
+    "next": "Następne zdjęcie"
   }
 }

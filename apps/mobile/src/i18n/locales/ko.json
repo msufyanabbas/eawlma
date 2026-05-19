@@ -1751,5 +1751,69 @@
       "resolved": "해결됨",
       "closed": "닫은"
     }
+  },
+  "agentReview": {
+    "postFailed": "리뷰를 게시할 수 없습니다.",
+    "posting": "전기…",
+    "postReview": "리뷰 게시"
+  },
+  "adminCommissions": {
+    "listing": "상장",
+    "buyer": "사는 사람",
+    "value": "거래 가치",
+    "platformEarn": "플랫폼 수익",
+    "agentEarn": "에이전트 적립",
+    "status": "상태",
+    "closedAt": "닫은",
+    "allCommissions": "모든 커미션",
+    "all": "모두"
+  },
+  "adminAudit": {
+    "timestamp": "타임스탬프",
+    "actor": "배우",
+    "action": "행동",
+    "entity": "실재",
+    "changed": "변경된 필드"
+  },
+  "adminAnalytics": {
+    "trafficSources": "트래픽 소스",
+    "devices": "장치",
+    "inquiryFunnel": "문의 유입경로"
+  },
+  "listingDetail": {
+    "hotelLabel": "호텔",
+    "starSuffix": "{{n}}성급",
+    "stayDetails": "숙박 세부정보",
+    "houseRules": "하우스 룰",
+    "maxGuests": "최대 손님",
+    "checkIn": "체크인",
+    "checkInFrom": "{{time}}부터",
+    "checkOut": "점검",
+    "checkOutBy": "{{time}}까지",
+    "cancellation": "해제",
+    "whatThisPlaceOffers": "이 장소가 제공하는 것"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "리야드, 제다, 담맘…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "도움이 되었거나, 전문적이거나, 개선할 수 있는 내용을 공유하세요…"
+  },
+  "adminCommissionsPage": {
+    "title": "플랫폼 수수료",
+    "subtitle": "총 수익, 상담원 지불금 및 거래별 분석입니다."
+  },
+  "comparePage": {
+    "emptyTitle": "아직 비교할 것이 없습니다."
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API 키가 구성되지 않았습니다.",
+    "missingKeyHint": "지도 보기를 활성화하려면 VITE_GOOGLE_MAPS_API_KEY를 설정하세요.",
+    "loadFailed": "지도를 로드하지 못했습니다."
+  },
+  "photoGallery": {
+    "close": "닫다",
+    "previous": "이전 사진",
+    "next": "다음 사진"
   }
 }

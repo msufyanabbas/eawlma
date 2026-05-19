@@ -166,9 +166,9 @@ export function ComparePage() {
 
       {listings.length === 0 ? (
         <EmptyState
-          title="Nothing to compare yet"
-          description="Add up to 3 listings from the search results to compare them side by side."
-          ctaLabel="Browse listings"
+          title={t('comparePage.emptyTitle')}
+          description={t('comparePage.emptyDesc', 'Add up to 3 listings from the search results to compare them side by side.')}
+          ctaLabel={t('comparePage.browse', 'Browse listings')}
           onCta={() => void navigate({ to: '/search' as never })}
         />
       ) : (

@@ -926,10 +926,7 @@
       "pinRequired": "Drop a pin on the map for the location.",
       "imageRequired": "At least one image is required before publishing."
     },
-    "transactionType": {
-      "sale": "Sale",
-      "rent": "Rent"
-    },
+    "transactionType": "Transaction Type",
     "rentPeriod": {
       "daily": "Daily",
       "weekly": "Weekly",
@@ -1017,7 +1014,6 @@
     "stepReview": "Review",
     "stepCount": "Step {{current}} of {{total}}: {{title}}",
     "addListing": "Add Listing",
-    "transactionType": "Transaction Type",
     "forSale": "For Sale",
     "forRent": "For Rent",
     "propertyType": "Property Type",
@@ -1755,5 +1751,69 @@
       "resolved": "Resolved",
       "closed": "Closed"
     }
+  },
+  "agentReview": {
+    "postFailed": "Could not post review",
+    "posting": "Posting…",
+    "postReview": "Post review"
+  },
+  "adminCommissions": {
+    "listing": "Listing",
+    "buyer": "Buyer",
+    "value": "Deal Value",
+    "platformEarn": "Platform Earn",
+    "agentEarn": "Agent Earn",
+    "status": "Status",
+    "closedAt": "Closed",
+    "allCommissions": "All Commissions",
+    "all": "All"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Actor",
+    "action": "Action",
+    "entity": "Entity",
+    "changed": "Changed Fields"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Traffic Sources",
+    "devices": "Devices",
+    "inquiryFunnel": "Inquiry Funnel"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Stay details",
+    "houseRules": "House rules",
+    "maxGuests": "Max guests",
+    "checkIn": "Check-in",
+    "checkInFrom": "from {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "by {{time}}",
+    "cancellation": "Cancellation",
+    "whatThisPlaceOffers": "What this place offers"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Share what was helpful, professional, or could improve…"
+  },
+  "adminCommissionsPage": {
+    "title": "Platform commissions",
+    "subtitle": "Total revenue, agent payouts, and per-transaction breakdown."
+  },
+  "comparePage": {
+    "emptyTitle": "Nothing to compare yet"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API key not configured",
+    "missingKeyHint": "Set VITE_GOOGLE_MAPS_API_KEY to enable the map view.",
+    "loadFailed": "Failed to load map"
+  },
+  "photoGallery": {
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo"
   }
 }

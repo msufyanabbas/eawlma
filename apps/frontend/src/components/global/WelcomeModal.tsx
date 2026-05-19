@@ -154,7 +154,7 @@ export function WelcomeModal() {
               autoFocus
               fullWidth
               label={t('search.city')}
-              placeholder="Riyadh, Jeddah, Dammam…"
+              placeholder={t('welcomeModal.cityPlaceholder')}
               value={city}
               onChange={(e) => setCity(e.target.value)}
               InputProps={{

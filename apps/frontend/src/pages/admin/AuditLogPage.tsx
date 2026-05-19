@@ -173,11 +173,11 @@ export function AuditLogPage() {
           <TableHead>
             <TableRow>
               <TableCell sx={{ width: 36 }} />
-              <TableCell>Timestamp</TableCell>
-              <TableCell>Actor</TableCell>
-              <TableCell>Action</TableCell>
-              <TableCell>Entity</TableCell>
-              <TableCell>Changed</TableCell>
+              <TableCell>{t('adminAudit.timestamp')}</TableCell>
+              <TableCell>{t('adminAudit.actor')}</TableCell>
+              <TableCell>{t('adminAudit.action')}</TableCell>
+              <TableCell>{t('adminAudit.entity')}</TableCell>
+              <TableCell>{t('adminAudit.changed')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

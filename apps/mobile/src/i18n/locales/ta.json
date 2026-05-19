@@ -1751,5 +1751,69 @@
       "resolved": "தீர்க்கப்பட்டது",
       "closed": "மூடப்பட்டது"
     }
+  },
+  "agentReview": {
+    "postFailed": "மதிப்பாய்வை இடுகையிட முடியவில்லை",
+    "posting": "இடுகையிடுகிறது…",
+    "postReview": "மதிப்பாய்வை இடுகையிடவும்"
+  },
+  "adminCommissions": {
+    "listing": "பட்டியல்",
+    "buyer": "வாங்குபவர்",
+    "value": "ஒப்பந்த மதிப்பு",
+    "platformEarn": "பிளாட்ஃபார்ம் சம்பாதிக்க",
+    "agentEarn": "முகவர் சம்பாதிக்க",
+    "status": "நிலை",
+    "closedAt": "மூடப்பட்டது",
+    "allCommissions": "அனைத்து கமிஷன்கள்",
+    "all": "அனைத்து"
+  },
+  "adminAudit": {
+    "timestamp": "நேர முத்திரை",
+    "actor": "நடிகர்",
+    "action": "செயல்",
+    "entity": "நிறுவனம்",
+    "changed": "மாற்றப்பட்ட புலங்கள்"
+  },
+  "adminAnalytics": {
+    "trafficSources": "போக்குவரத்து ஆதாரங்கள்",
+    "devices": "சாதனங்கள்",
+    "inquiryFunnel": "விசாரணை புனல்"
+  },
+  "listingDetail": {
+    "hotelLabel": "ஹோட்டல்",
+    "starSuffix": "{{n}}-நட்சத்திரம்",
+    "stayDetails": "தங்கியிருக்க விவரங்கள்",
+    "houseRules": "வீட்டு விதிகள்",
+    "maxGuests": "அதிகபட்ச விருந்தினர்கள்",
+    "checkIn": "செக்-இன்",
+    "checkInFrom": "{{time}} இலிருந்து",
+    "checkOut": "செக்-அவுட்",
+    "checkOutBy": "{{time}} மூலம்",
+    "cancellation": "ரத்து செய்தல்",
+    "whatThisPlaceOffers": "இந்த இடம் என்ன வழங்குகிறது"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ரியாத், ஜித்தா, தம்மாம்…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "பயனுள்ள, தொழில்முறை அல்லது மேம்படுத்தக்கூடியவற்றைப் பகிரவும்..."
+  },
+  "adminCommissionsPage": {
+    "title": "மேடை கமிஷன்கள்",
+    "subtitle": "மொத்த வருவாய், முகவர் செலுத்துதல் மற்றும் ஒரு பரிவர்த்தனை முறிவு."
+  },
+  "comparePage": {
+    "emptyTitle": "இன்னும் ஒப்பிட எதுவும் இல்லை"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API விசை உள்ளமைக்கப்படவில்லை",
+    "missingKeyHint": "வரைபடக் காட்சியை இயக்க VITE_GOOGLE_MAPS_API_KEY ஐ அமைக்கவும்.",
+    "loadFailed": "வரைபடத்தை ஏற்ற முடியவில்லை"
+  },
+  "photoGallery": {
+    "close": "மூடு",
+    "previous": "முந்தைய புகைப்படம்",
+    "next": "அடுத்த புகைப்படம்"
   }
 }

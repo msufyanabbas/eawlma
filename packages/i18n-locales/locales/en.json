@@ -1357,6 +1357,52 @@
     "posting": "Posting…",
     "postReview": "Post review"
   },
+  "adminCommissions": {
+    "listing": "Listing",
+    "buyer": "Buyer",
+    "value": "Deal Value",
+    "platformEarn": "Platform Earn",
+    "agentEarn": "Agent Earn",
+    "status": "Status",
+    "closedAt": "Closed",
+    "allCommissions": "All Commissions",
+    "all": "All"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Actor",
+    "action": "Action",
+    "entity": "Entity",
+    "changed": "Changed Fields"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Traffic Sources",
+    "devices": "Devices",
+    "inquiryFunnel": "Inquiry Funnel"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Share what was helpful, professional, or could improve…"
+  },
+  "adminCommissionsPage": {
+    "title": "Platform commissions",
+    "subtitle": "Total revenue, agent payouts, and per-transaction breakdown."
+  },
+  "comparePage": {
+    "emptyTitle": "Nothing to compare yet"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API key not configured",
+    "missingKeyHint": "Set VITE_GOOGLE_MAPS_API_KEY to enable the map view.",
+    "loadFailed": "Failed to load map"
+  },
+  "photoGallery": {
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo"
+  },
   "listingDetail": {
     "hotelLabel": "Hotel",
     "starSuffix": "{{n}}-star",

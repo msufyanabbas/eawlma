@@ -1751,5 +1751,69 @@
       "resolved": "Opgelost",
       "closed": "Gesloten"
     }
+  },
+  "agentReview": {
+    "postFailed": "Kan recensie niet plaatsen",
+    "posting": "Posten...",
+    "postReview": "Beoordeling plaatsen"
+  },
+  "adminCommissions": {
+    "listing": "Lijst",
+    "buyer": "Koper",
+    "value": "Dealwaarde",
+    "platformEarn": "Platformverdien",
+    "agentEarn": "Agent Verdien",
+    "status": "Status",
+    "closedAt": "Gesloten",
+    "allCommissions": "Alle commissies",
+    "all": "Alles"
+  },
+  "adminAudit": {
+    "timestamp": "Tijdstempel",
+    "actor": "Acteur",
+    "action": "Actie",
+    "entity": "Entiteit",
+    "changed": "Gewijzigde velden"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Verkeersbronnen",
+    "devices": "Apparaten",
+    "inquiryFunnel": "Onderzoekstrechter"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-ster",
+    "stayDetails": "Verblijfsgegevens",
+    "houseRules": "Huisregels",
+    "maxGuests": "Max gasten",
+    "checkIn": "Inchecken",
+    "checkInFrom": "van {{time}}",
+    "checkOut": "Afrekenen",
+    "checkOutBy": "door {{time}}",
+    "cancellation": "Annulering",
+    "whatThisPlaceOffers": "Wat deze plek te bieden heeft"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Deel wat nuttig, professioneel of beter was..."
+  },
+  "adminCommissionsPage": {
+    "title": "Platformcommissies",
+    "subtitle": "Totale omzet, uitbetalingen aan agenten en uitsplitsing per transactie."
+  },
+  "comparePage": {
+    "emptyTitle": "Nog niets te vergelijken"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-sleutel niet geconfigureerd",
+    "missingKeyHint": "Stel VITE_GOOGLE_MAPS_API_KEY in om de kaartweergave in te schakelen.",
+    "loadFailed": "Kan kaart"
+  },
+  "photoGallery": {
+    "close": "niet laden Sluit",
+    "previous": "Vorige foto",
+    "next": "Volgende foto"
   }
 }

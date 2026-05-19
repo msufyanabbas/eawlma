@@ -1751,5 +1751,69 @@
       "resolved": "Risolto",
       "closed": "Chiuso"
     }
+  },
+  "agentReview": {
+    "postFailed": "Impossibile pubblicare la recensione",
+    "posting": "Pubblicazione…",
+    "postReview": "Pubblica recensione"
+  },
+  "adminCommissions": {
+    "listing": "Elenco",
+    "buyer": "Acquirente",
+    "value": "Valore offerta",
+    "platformEarn": "Guadagna dalla piattaforma",
+    "agentEarn": "Guadagna agente",
+    "status": "Stato",
+    "closedAt": "Chiuso",
+    "allCommissions": "Tutte le commissioni",
+    "all": "Tutti"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Attore",
+    "action": "Azione",
+    "entity": "Entità",
+    "changed": "Campi modificati"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Sorgenti di traffico",
+    "devices": "Dispositivi",
+    "inquiryFunnel": "Imbuto di richiesta"
+  },
+  "listingDetail": {
+    "hotelLabel": "Albergo",
+    "starSuffix": "{{n}}-stella",
+    "stayDetails": "Dettagli soggiorno",
+    "houseRules": "Regole della casa",
+    "maxGuests": "Ospiti massimi",
+    "checkIn": "Arrivo",
+    "checkInFrom": "dalle {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "entro le {{time}}",
+    "cancellation": "Cancellazione",
+    "whatThisPlaceOffers": "Cosa offre questo posto"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Condividi ciò che è stato utile, professionale o che potrebbe migliorare…"
+  },
+  "adminCommissionsPage": {
+    "title": "Commissioni della piattaforma",
+    "subtitle": "Entrate totali, pagamenti agli agenti e suddivisione per transazione."
+  },
+  "comparePage": {
+    "emptyTitle": "Ancora niente da confrontare"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Chiave API di Google Maps non configurata",
+    "missingKeyHint": "Imposta VITE_GOOGLE_MAPS_API_KEY per abilitare la visualizzazione della mappa.",
+    "loadFailed": "Impossibile caricare la mappa"
+  },
+  "photoGallery": {
+    "close": "Chiudi",
+    "previous": "Foto precedente",
+    "next": "Foto successiva"
   }
 }

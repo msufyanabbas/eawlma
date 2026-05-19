@@ -1751,5 +1751,69 @@
       "resolved": "נפתר",
       "closed": "סָגוּר"
     }
+  },
+  "agentReview": {
+    "postFailed": "לא ניתן היה לפרסם ביקורת",
+    "posting": "מפרסם...",
+    "postReview": "פרסם ביקורת"
+  },
+  "adminCommissions": {
+    "listing": "רישום",
+    "buyer": "קונה",
+    "value": "ערך עסקה",
+    "platformEarn": "פלטפורמה להרוויח",
+    "agentEarn": "סוכן הרוויח",
+    "status": "סטטוס",
+    "closedAt": "סגור",
+    "allCommissions": "כל העמלות",
+    "all": "הכל"
+  },
+  "adminAudit": {
+    "timestamp": "חותמת זמן",
+    "actor": "שחקן",
+    "action": "פעולה",
+    "entity": "ישות",
+    "changed": "שדות השתנו"
+  },
+  "adminAnalytics": {
+    "trafficSources": "מקורות תנועה",
+    "devices": "התקנים",
+    "inquiryFunnel": "משפך חקירה"
+  },
+  "listingDetail": {
+    "hotelLabel": "מלון",
+    "starSuffix": "{{n}}-כוכב",
+    "stayDetails": "פרטי השהייה",
+    "houseRules": "חוקי בית",
+    "maxGuests": "מקסימום אורחים",
+    "checkIn": "צ'ק-אין",
+    "checkInFrom": "מ-{{זמן}}",
+    "checkOut": "צ'ק-אאוט",
+    "checkOutBy": "מאת {{time}}",
+    "cancellation": "ביטול",
+    "whatThisPlaceOffers": "מה המקום הזה מציע"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ריאד, ג'דה, דמאם..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "שתף מה היה מועיל, מקצועי או יכול לשפר..."
+  },
+  "adminCommissionsPage": {
+    "title": "עמלות פלטפורמה",
+    "subtitle": "סך ההכנסות, תשלומי סוכנים ופירוט לכל עסקה."
+  },
+  "comparePage": {
+    "emptyTitle": "אין עדיין מה להשוות"
+  },
+  "searchMap": {
+    "missingKeyTitle": "מפתח API של מפות Google לא מוגדר",
+    "missingKeyHint": "הגדר את VITE_GOOGLE_MAPS_API_KEY כדי לאפשר את תצוגת המפה.",
+    "loadFailed": "טעינת המפה נכשלה"
+  },
+  "photoGallery": {
+    "close": "סגור",
+    "previous": "תמונה קודמת",
+    "next": "התמונה הבאה"
   }
 }

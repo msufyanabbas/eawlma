@@ -1751,5 +1751,69 @@
       "resolved": "解決済み",
       "closed": "閉店"
     }
+  },
+  "agentReview": {
+    "postFailed": "レビューを投稿できませんでした",
+    "posting": "投稿中…",
+    "postReview": "レビューを投稿する"
+  },
+  "adminCommissions": {
+    "listing": "リスト",
+    "buyer": "買い手",
+    "value": "取引額",
+    "platformEarn": "プラットフォームで獲得",
+    "agentEarn": "エージェントの獲得",
+    "status": "状態",
+    "closedAt": "閉店",
+    "allCommissions": "すべてのコミッション",
+    "all": "全て"
+  },
+  "adminAudit": {
+    "timestamp": "タイムスタンプ",
+    "actor": "俳優",
+    "action": "アクション",
+    "entity": "実在物",
+    "changed": "変更されたフィールド"
+  },
+  "adminAnalytics": {
+    "trafficSources": "トラフィックソース",
+    "devices": "デバイス",
+    "inquiryFunnel": "問い合わせファネル"
+  },
+  "listingDetail": {
+    "hotelLabel": "ホテル",
+    "starSuffix": "{{n}} つ星",
+    "stayDetails": "宿泊詳細",
+    "houseRules": "ハウスルール",
+    "maxGuests": "最大ゲスト数",
+    "checkIn": "チェックイン",
+    "checkInFrom": "{{時間}}から",
+    "checkOut": "チェックアウト",
+    "checkOutBy": "{{時間}}までに",
+    "cancellation": "キャンセル",
+    "whatThisPlaceOffers": "この場所が提供するもの"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "リヤド、ジェッダ、ダンマーム…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "役に立ったこと、専門的なこと、または改善できることを共有してください…"
+  },
+  "adminCommissionsPage": {
+    "title": "プラットフォーム手数料",
+    "subtitle": "総収益、エージェントの支払い、およびトランザクションごとの内訳。"
+  },
+  "comparePage": {
+    "emptyTitle": "まだ比較するものはありません"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API キーが設定されていません",
+    "missingKeyHint": "VITE_GOOGLE_MAPS_API_KEY を設定してマップ ビューを有効にします。",
+    "loadFailed": "マップの読み込みに失敗しました"
+  },
+  "photoGallery": {
+    "close": "近い",
+    "previous": "前の写真",
+    "next": "次の写真"
   }
 }

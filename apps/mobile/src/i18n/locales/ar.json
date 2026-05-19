@@ -1751,5 +1751,69 @@
       "resolved": "محلول",
       "closed": "مغلق"
     }
+  },
+  "agentReview": {
+    "postFailed": "تعذّر نشر التقييم",
+    "posting": "جارٍ النشر…",
+    "postReview": "نشر التقييم"
+  },
+  "adminCommissions": {
+    "listing": "الإعلان",
+    "buyer": "المشتري",
+    "value": "قيمة الصفقة",
+    "platformEarn": "عائد المنصة",
+    "agentEarn": "عائد الوكيل",
+    "status": "الحالة",
+    "closedAt": "تاريخ الإغلاق",
+    "allCommissions": "كل العمولات",
+    "all": "الكل"
+  },
+  "adminAudit": {
+    "timestamp": "التوقيت",
+    "actor": "المنفذ",
+    "action": "الإجراء",
+    "entity": "الكيان",
+    "changed": "الحقول المغيرة"
+  },
+  "adminAnalytics": {
+    "trafficSources": "مصادر الزيارات",
+    "devices": "الأجهزة",
+    "inquiryFunnel": "مسار الاستفسارات"
+  },
+  "listingDetail": {
+    "hotelLabel": "فندق",
+    "starSuffix": "{{n}} نجوم",
+    "stayDetails": "تفاصيل الإقامة",
+    "houseRules": "قواعد المنزل",
+    "maxGuests": "الحد الأقصى للضيوف",
+    "checkIn": "تسجيل الدخول",
+    "checkInFrom": "من {{time}}",
+    "checkOut": "تسجيل الخروج",
+    "checkOutBy": "قبل {{time}}",
+    "cancellation": "الإلغاء",
+    "whatThisPlaceOffers": "ما يقدمه هذا المكان"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "الرياض، جدة، الدمام…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "شارك ما كان مفيدًا أو احترافيًا أو قابلاً للتحسين…"
+  },
+  "adminCommissionsPage": {
+    "title": "عمولات المنصة",
+    "subtitle": "إجمالي الإيرادات وعوائد الوكلاء والتفاصيل لكل عملية."
+  },
+  "comparePage": {
+    "emptyTitle": "لا يوجد ما تتم مقارنته بعد"
+  },
+  "searchMap": {
+    "missingKeyTitle": "مفتاح خرائط جوجل غير مهيأ",
+    "missingKeyHint": "اضبط VITE_GOOGLE_MAPS_API_KEY لتفعيل عرض الخريطة.",
+    "loadFailed": "تعذّر تحميل الخريطة"
+  },
+  "photoGallery": {
+    "close": "إغلاق",
+    "previous": "الصورة السابقة",
+    "next": "الصورة التالية"
   }
 }

@@ -1751,5 +1751,69 @@
       "resolved": "Решено",
       "closed": "Закрыто"
     }
+  },
+  "agentReview": {
+    "postFailed": "Не удалось опубликовать отзыв",
+    "posting": "Публикация…",
+    "postReview": "Опубликовать обзор"
+  },
+  "adminCommissions": {
+    "listing": "Листинг",
+    "buyer": "Покупатель",
+    "value": "Стоимость сделки",
+    "platformEarn": "Платформа Заработок",
+    "agentEarn": "Агент Заработок",
+    "status": "Статус",
+    "closedAt": "Закрыто",
+    "allCommissions": "Все комиссии",
+    "all": "Все"
+  },
+  "adminAudit": {
+    "timestamp": "Временная метка",
+    "actor": "Актер",
+    "action": "Действие",
+    "entity": "Сущность",
+    "changed": "Измененные поля"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Источники трафика",
+    "devices": "Устройства",
+    "inquiryFunnel": "Воронка запросов"
+  },
+  "listingDetail": {
+    "hotelLabel": "Отель",
+    "starSuffix": "{{n}}-звезда",
+    "stayDetails": "Подробности проживания",
+    "houseRules": "Правила дома",
+    "maxGuests": "Макс. гостей",
+    "checkIn": "Регистрироваться",
+    "checkInFrom": "с {{time}}",
+    "checkOut": "Проверить",
+    "checkOutBy": "к {{time}}",
+    "cancellation": "Отмена",
+    "whatThisPlaceOffers": "Что предлагает это место"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Эр-Рияд, Джидда, Даммам…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Поделитесь тем, что было полезно, профессионально или можно было бы улучшить…"
+  },
+  "adminCommissionsPage": {
+    "title": "Комиссии платформы",
+    "subtitle": "Общий доход, выплаты агентам и разбивка по транзакциям."
+  },
+  "comparePage": {
+    "emptyTitle": "Пока нечего сравнивать"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Ключ Google Maps API не настроен.",
+    "missingKeyHint": "Установите VITE_GOOGLE_MAPS_API_KEY, чтобы включить просмотр карты.",
+    "loadFailed": "Не удалось загрузить карту"
+  },
+  "photoGallery": {
+    "close": "Закрывать",
+    "previous": "Предыдущее фото",
+    "next": "Следующее фото"
   }
 }

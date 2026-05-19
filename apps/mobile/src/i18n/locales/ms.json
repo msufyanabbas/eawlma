@@ -1751,5 +1751,69 @@
       "resolved": "Selesai",
       "closed": "tertutup"
     }
+  },
+  "agentReview": {
+    "postFailed": "Tidak dapat menyiarkan ulasan",
+    "posting": "Menyiarkan…",
+    "postReview": "Siarkan ulasan"
+  },
+  "adminCommissions": {
+    "listing": "Penyenaraian",
+    "buyer": "Pembeli",
+    "value": "Nilai Tawaran",
+    "platformEarn": "Platform Peroleh",
+    "agentEarn": "Ejen Perolehi",
+    "status": "Status",
+    "closedAt": "Ditutup",
+    "allCommissions": "Semua Komisen",
+    "all": "Semua"
+  },
+  "adminAudit": {
+    "timestamp": "Cap masa",
+    "actor": "Pelakon",
+    "action": "Tindakan",
+    "entity": "Entiti",
+    "changed": "Medan Berubah"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Sumber Trafik",
+    "devices": "Peranti",
+    "inquiryFunnel": "Corong Pertanyaan"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-bintang",
+    "stayDetails": "Butiran penginapan",
+    "houseRules": "Peraturan rumah",
+    "maxGuests": "Tetamu maksimum",
+    "checkIn": "Daftar masuk",
+    "checkInFrom": "dari {{masa}}",
+    "checkOut": "Daftar keluar",
+    "checkOutBy": "oleh {{masa}}",
+    "cancellation": "Pembatalan",
+    "whatThisPlaceOffers": "Apa yang ditawarkan oleh tempat ini"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Kongsi perkara yang membantu, profesional atau boleh menambah baik…"
+  },
+  "adminCommissionsPage": {
+    "title": "Komisen platform",
+    "subtitle": "Jumlah hasil, pembayaran ejen dan pecahan setiap urus niaga."
+  },
+  "comparePage": {
+    "emptyTitle": "Tiada apa untuk dibandingkan lagi"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Kunci API Peta Google tidak dikonfigurasikan",
+    "missingKeyHint": "Tetapkan VITE_GOOGLE_MAPS_API_KEY untuk mendayakan paparan peta.",
+    "loadFailed": "Gagal memuatkan peta"
+  },
+  "photoGallery": {
+    "close": "Tutup",
+    "previous": "Foto sebelumnya",
+    "next": "Foto seterusnya"
   }
 }

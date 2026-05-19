@@ -1751,5 +1751,69 @@
       "resolved": "حل شد",
       "closed": "بسته شد"
     }
+  },
+  "agentReview": {
+    "postFailed": "امکان ارسال نظر وجود ندارد",
+    "posting": "ارسال…",
+    "postReview": "ارسال بررسی"
+  },
+  "adminCommissions": {
+    "listing": "فهرست کردن",
+    "buyer": "خریدار",
+    "value": "ارزش معامله",
+    "platformEarn": "پلتفرم کسب درآمد",
+    "agentEarn": "عامل کسب درآمد",
+    "status": "وضعیت",
+    "closedAt": "بسته شد",
+    "allCommissions": "همه کمیسیون ها",
+    "all": "همه"
+  },
+  "adminAudit": {
+    "timestamp": "مهر زمان",
+    "actor": "بازیگر",
+    "action": "اقدام",
+    "entity": "موجودیت",
+    "changed": "فیلدهای تغییر یافته"
+  },
+  "adminAnalytics": {
+    "trafficSources": "منابع ترافیک",
+    "devices": "دستگاه ها",
+    "inquiryFunnel": "قیف استعلام"
+  },
+  "listingDetail": {
+    "hotelLabel": "هتل",
+    "starSuffix": "{{n}}-ستاره",
+    "stayDetails": "جزئیات بماند",
+    "houseRules": "قوانین خانه",
+    "maxGuests": "حداکثر مهمان",
+    "checkIn": "ثبت نام",
+    "checkInFrom": "از {{time}}",
+    "checkOut": "چک کردن",
+    "checkOutBy": "توسط {{time}}",
+    "cancellation": "لغو",
+    "whatThisPlaceOffers": "آنچه این مکان ارائه می دهد"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ریاض، جده، دمام…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "آنچه مفید، حرفه ای یا می تواند بهبود یابد را به اشتراک بگذارید…"
+  },
+  "adminCommissionsPage": {
+    "title": "کمیسیون های پلت فرم",
+    "subtitle": "مجموع درآمد، پرداخت های نماینده، و تفکیک هر تراکنش."
+  },
+  "comparePage": {
+    "emptyTitle": "هنوز چیزی برای مقایسه وجود ندارد"
+  },
+  "searchMap": {
+    "missingKeyTitle": "کلید Google Maps API پیکربندی نشده است",
+    "missingKeyHint": "VITE_GOOGLE_MAPS_API_KEY را برای فعال کردن نمای نقشه تنظیم کنید.",
+    "loadFailed": "نقشه بارگیری نشد"
+  },
+  "photoGallery": {
+    "close": "بستن",
+    "previous": "عکس قبلی",
+    "next": "عکس بعدی"
   }
 }

@@ -1078,10 +1078,10 @@ function MapView({ listings }: { listings: Listing[] }) {
   const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
 
   if (!apiKey) {
-    return <EmptyState title="Google Maps API key not configured" description="Set VITE_GOOGLE_MAPS_API_KEY to enable the map view." />;
+    return <EmptyState title={t('searchMap.missingKeyTitle')} description={t('searchMap.missingKeyHint')} />;
   }
   if (loadError) {
-    return <EmptyState title="Failed to load map" description={(loadError as Error).message} />;
+    return <EmptyState title={t('searchMap.loadFailed')} description={(loadError as Error).message} />;
   }
   if (!isLoaded) {
     return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 2 }} />;

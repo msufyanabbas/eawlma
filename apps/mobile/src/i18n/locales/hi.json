@@ -1751,5 +1751,69 @@
       "resolved": "हल किया",
       "closed": "बंद किया हुआ"
     }
+  },
+  "agentReview": {
+    "postFailed": "समीक्षा पोस्ट नहीं की जा सकी",
+    "posting": "पोस्ट किया जा रहा है...",
+    "postReview": "समीक्षा पोस्ट करें"
+  },
+  "adminCommissions": {
+    "listing": "लिस्टिंग",
+    "buyer": "क्रेता",
+    "value": "डील वैल्यू",
+    "platformEarn": "प्लेटफार्म कमाई",
+    "agentEarn": "एजेंट कमाएँ",
+    "status": "स्थिति",
+    "closedAt": "बंद किया हुआ",
+    "allCommissions": "सभी आयोग",
+    "all": "सभी"
+  },
+  "adminAudit": {
+    "timestamp": "समय-चिह्न",
+    "actor": "अभिनेता",
+    "action": "कार्रवाई",
+    "entity": "इकाई",
+    "changed": "फ़ील्ड परिवर्तित"
+  },
+  "adminAnalytics": {
+    "trafficSources": "यातायात स्रोत",
+    "devices": "उपकरण",
+    "inquiryFunnel": "पूछताछ फ़नल"
+  },
+  "listingDetail": {
+    "hotelLabel": "होटल",
+    "starSuffix": "{{n}}-स्टार",
+    "stayDetails": "विवरण रहो",
+    "houseRules": "घर के नियम",
+    "maxGuests": "अधिकतम अतिथि",
+    "checkIn": "चेक इन",
+    "checkInFrom": "{{समय}} से",
+    "checkOut": "चेक आउट",
+    "checkOutBy": "समय तक}}",
+    "cancellation": "रद्द करना",
+    "whatThisPlaceOffers": "यह स्थान क्या प्रदान करता है"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "रियाद, जेद्दा, दम्मम..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "साझा करें कि क्या उपयोगी था, पेशेवर था, या सुधार किया जा सकता था…"
+  },
+  "adminCommissionsPage": {
+    "title": "प्लेटफ़ॉर्म कमीशन",
+    "subtitle": "कुल राजस्व, एजेंट भुगतान और प्रति-लेनदेन विवरण।"
+  },
+  "comparePage": {
+    "emptyTitle": "अभी तक तुलना करने के लिए कुछ भी नहीं है"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google मानचित्र API कुंजी कॉन्फ़िगर नहीं की गई",
+    "missingKeyHint": "मानचित्र दृश्य सक्षम करने के लिए VITE_GOOGLE_MAPS_API_KEY सेट करें।",
+    "loadFailed": "मानचित्र लोड करने में विफल"
+  },
+  "photoGallery": {
+    "close": "बंद करना",
+    "previous": "पिछला फ़ोटो",
+    "next": "अगली फोटो"
   }
 }

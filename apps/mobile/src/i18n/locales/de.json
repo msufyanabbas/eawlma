@@ -1751,5 +1751,69 @@
       "resolved": "Gelöst",
       "closed": "Geschlossen"
     }
+  },
+  "agentReview": {
+    "postFailed": "Bewertung konnte nicht gepostet werden",
+    "posting": "Posten…",
+    "postReview": "Beitragsrezension"
+  },
+  "adminCommissions": {
+    "listing": "Auflistung",
+    "buyer": "Käufer",
+    "value": "Deal-Wert",
+    "platformEarn": "Plattformverdienen",
+    "agentEarn": "Agentenverdienst",
+    "status": "Status",
+    "closedAt": "Geschlossen",
+    "allCommissions": "Alle Provisionen",
+    "all": "Alle"
+  },
+  "adminAudit": {
+    "timestamp": "Zeitstempel",
+    "actor": "Schauspieler",
+    "action": "Aktion",
+    "entity": "Entität",
+    "changed": "Geänderte Felder"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Verkehrsquellen",
+    "devices": "Geräte",
+    "inquiryFunnel": "Anfragetrichter"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Details zum Aufenthalt",
+    "houseRules": "Hausordnung",
+    "maxGuests": "Max. Gäste",
+    "checkIn": "Check-in",
+    "checkInFrom": "von {{time}}",
+    "checkOut": "Auschecken",
+    "checkOutBy": "von {{time}}",
+    "cancellation": "Stornierung",
+    "whatThisPlaceOffers": "Was dieser Ort bietet"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Teilen Sie mit, was hilfreich oder professionell war oder verbessert werden könnte ..."
+  },
+  "adminCommissionsPage": {
+    "title": "Plattformprovisionen",
+    "subtitle": "Gesamtumsatz, Agentenauszahlungen und Aufschlüsselung pro Transaktion."
+  },
+  "comparePage": {
+    "emptyTitle": "Noch nichts zu vergleichen"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps-API-Schlüssel nicht konfiguriert",
+    "missingKeyHint": "Legen Sie VITE_GOOGLE_MAPS_API_KEY fest, um die Kartenansicht zu aktivieren.",
+    "loadFailed": "Karte konnte nicht geladen werden"
+  },
+  "photoGallery": {
+    "close": "Schließen Sie",
+    "previous": "Vorheriges Foto",
+    "next": "Nächstes Foto"
   }
 }

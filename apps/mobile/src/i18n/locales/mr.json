@@ -1751,5 +1751,69 @@
       "resolved": "निराकरण",
       "closed": "बंद"
     }
+  },
+  "agentReview": {
+    "postFailed": "पुनरावलोकन पोस्ट करू शकलो नाही",
+    "posting": "पोस्ट करत आहे...",
+    "postReview": "पुनरावलोकन पोस्ट करा"
+  },
+  "adminCommissions": {
+    "listing": "सूची",
+    "buyer": "खरेदीदार",
+    "value": "डील व्हॅल्यू",
+    "platformEarn": "प्लॅटफॉर्म कमवा",
+    "agentEarn": "एजंट कमवा",
+    "status": "स्थिती",
+    "closedAt": "बंद",
+    "allCommissions": "सर्व कमिशन",
+    "all": "सर्व"
+  },
+  "adminAudit": {
+    "timestamp": "टाईमस्टॅम्प",
+    "actor": "अभिनेता",
+    "action": "कृती",
+    "entity": "अस्तित्व",
+    "changed": "फील्ड बदलले"
+  },
+  "adminAnalytics": {
+    "trafficSources": "रहदारी स्रोत",
+    "devices": "उपकरणे",
+    "inquiryFunnel": "चौकशी फनेल"
+  },
+  "listingDetail": {
+    "hotelLabel": "हॉटेल",
+    "starSuffix": "{{n}}-तारा",
+    "stayDetails": "राहा तपशील",
+    "houseRules": "घराचे नियम",
+    "maxGuests": "कमाल अतिथी",
+    "checkIn": "चेक-इन",
+    "checkInFrom": "{{वेळ}} पासून",
+    "checkOut": "चेक-आउट",
+    "checkOutBy": "{{time}} द्वारे",
+    "cancellation": "रद्द करणे",
+    "whatThisPlaceOffers": "हे ठिकाण काय देते"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "रियाध, जेद्दाह, दम्माम…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "काय उपयुक्त, व्यावसायिक किंवा सुधारू शकते ते शेअर करा..."
+  },
+  "adminCommissionsPage": {
+    "title": "प्लॅटफॉर्म कमिशन",
+    "subtitle": "एकूण महसूल, एजंट पेआउट आणि प्रति-व्यवहार ब्रेकडाउन."
+  },
+  "comparePage": {
+    "emptyTitle": "अद्याप तुलना करण्यासाठी काहीही नाही"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API की कॉन्फिगर केलेली नाही",
+    "missingKeyHint": "नकाशा दृश्य सक्षम करण्यासाठी VITE_GOOGLE_MAPS_API_KEY सेट करा.",
+    "loadFailed": "नकाशा लोड करण्यात अयशस्वी"
+  },
+  "photoGallery": {
+    "close": "बंद करा",
+    "previous": "मागील फोटो",
+    "next": "पुढचा फोटो"
   }
 }

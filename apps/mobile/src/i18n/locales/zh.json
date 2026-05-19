@@ -1751,5 +1751,69 @@
       "resolved": "已解决",
       "closed": "关闭"
     }
+  },
+  "agentReview": {
+    "postFailed": "无法发表评论",
+    "posting": "发布…",
+    "postReview": "评论后"
+  },
+  "adminCommissions": {
+    "listing": "上市",
+    "buyer": "买方",
+    "value": "交易价值",
+    "platformEarn": "平台赚取",
+    "agentEarn": "代理赚",
+    "status": "地位",
+    "closedAt": "关闭",
+    "allCommissions": "所有佣金",
+    "all": "全部"
+  },
+  "adminAudit": {
+    "timestamp": "时间戳",
+    "actor": "演员",
+    "action": "行动",
+    "entity": "实体",
+    "changed": "更改字段"
+  },
+  "adminAnalytics": {
+    "trafficSources": "流量来源",
+    "devices": "设备",
+    "inquiryFunnel": "询价漏斗"
+  },
+  "listingDetail": {
+    "hotelLabel": "酒店",
+    "starSuffix": "{{n}}-星",
+    "stayDetails": "入住详情",
+    "houseRules": "入住须知",
+    "maxGuests": "最多客人数",
+    "checkIn": "报到",
+    "checkInFrom": "从{{时间}}开始",
+    "checkOut": "查看",
+    "checkOutBy": "截至{{时间}}",
+    "cancellation": "消除",
+    "whatThisPlaceOffers": "这个地方提供什么"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "利雅得、吉达、达曼……"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "分享有用的、专业的或可以改进的内容……"
+  },
+  "adminCommissionsPage": {
+    "title": "平台佣金",
+    "subtitle": "总收入、代理支出和每笔交易明细。"
+  },
+  "comparePage": {
+    "emptyTitle": "还没有什么可比较的"
+  },
+  "searchMap": {
+    "missingKeyTitle": "未配置 Google 地图 API 密钥",
+    "missingKeyHint": "设置 VITE_GOOGLE_MAPS_API_KEY 以启用地图视图。",
+    "loadFailed": "加载地图失败"
+  },
+  "photoGallery": {
+    "close": "关闭",
+    "previous": "上一张照片",
+    "next": "下一张照片"
   }
 }

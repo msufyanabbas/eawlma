@@ -406,7 +406,7 @@ export function AgentProfilePage() {
               minRows={4}
               value={draftComment}
               onChange={(e) => setDraftComment(e.target.value)}
-              placeholder="Share what was helpful, professional, or could improve…"
+              placeholder={t('agentReviewForm.commentPlaceholder')}
               fullWidth
             />
             {createReviewMutation.isError && (

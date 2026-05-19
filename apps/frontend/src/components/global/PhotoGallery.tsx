@@ -174,7 +174,7 @@ export function PhotoGallery({ photos, alt }: Props) {
           {/* Close — trailing-edge corner so it flips to the left in RTL. */}
           <IconButton
             onClick={close}
-            aria-label="Close"
+            aria-label={t('photoGallery.close')}
             sx={{
               position: 'absolute',
               top: 16,
@@ -213,7 +213,7 @@ export function PhotoGallery({ photos, alt }: Props) {
           <IconButton
             onClick={goPrev}
             disabled={currentIndex === 0}
-            aria-label="Previous photo"
+            aria-label={t('photoGallery.previous')}
             sx={{
               position: 'absolute',
               insetInlineStart: 16,
@@ -262,7 +262,7 @@ export function PhotoGallery({ photos, alt }: Props) {
           <IconButton
             onClick={goNext}
             disabled={currentIndex === total - 1}
-            aria-label="Next photo"
+            aria-label={t('photoGallery.next')}
             sx={{
               position: 'absolute',
               insetInlineEnd: 16,

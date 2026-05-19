@@ -1751,5 +1751,69 @@
       "resolved": "ઉકેલાયેલ",
       "closed": "બંધ"
     }
+  },
+  "agentReview": {
+    "postFailed": "| સમીક્ષા પોસ્ટ કરી શકાઈ નથી",
+    "posting": "પોસ્ટ કરી રહ્યું છે…",
+    "postReview": "સમીક્ષા પોસ્ટ કરો"
+  },
+  "adminCommissions": {
+    "listing": "| લિસ્ટિંગ",
+    "buyer": "| ખરીદનાર",
+    "value": "| ડીલ વેલ્યુ",
+    "platformEarn": "પ્લેટફોર્મ કમાઓ",
+    "agentEarn": "એજન્ટ કમાઓ",
+    "status": "સ્ટેટસ",
+    "closedAt": "બંધ",
+    "allCommissions": "બધા કમિશન",
+    "all": "| બધા"
+  },
+  "adminAudit": {
+    "timestamp": "ટાઇમસ્ટેમ્પ",
+    "actor": "| અભિનેતા",
+    "action": "| ક્રિયા",
+    "entity": "એન્ટિટી",
+    "changed": "બદલાયેલ ક્ષેત્રો"
+  },
+  "adminAnalytics": {
+    "trafficSources": "ટ્રાફિક સ્ત્રોતો",
+    "devices": "ઉપકરણો",
+    "inquiryFunnel": "| પૂછપરછ ફનલ"
+  },
+  "listingDetail": {
+    "hotelLabel": "હોટેલ",
+    "starSuffix": "{{n}}-સ્ટાર",
+    "stayDetails": "વિગતો રહો",
+    "houseRules": "ઘરના નિયમો",
+    "maxGuests": "મહત્તમ મહેમાનો",
+    "checkIn": "ચેક-ઇન",
+    "checkInFrom": "{{સમય}} થી",
+    "checkOut": "ચેક-આઉટ",
+    "checkOutBy": "{{સમય}} દ્વારા",
+    "cancellation": "રદ્દીકરણ",
+    "whatThisPlaceOffers": "આ સ્થાન શું ઑફર કરે છે"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "રિયાધ, જેદ્દાહ, દમ્મામ…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "શું મદદરૂપ, વ્યાવસાયિક અથવા સુધારી શકે તે શેર કરો..."
+  },
+  "adminCommissionsPage": {
+    "title": "પ્લેટફોર્મ કમિશન",
+    "subtitle": "કુલ આવક, એજન્ટ ચૂકવણી અને વ્યવહાર દીઠ બ્રેકડાઉન."
+  },
+  "comparePage": {
+    "emptyTitle": "હજુ સુધી સરખામણી કરવા માટે કંઈ નથી"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API કી ગોઠવેલ નથી",
+    "missingKeyHint": "નકશા દૃશ્યને સક્ષમ કરવા માટે VITE_GOOGLE_MAPS_API_KEY સેટ કરો.",
+    "loadFailed": "નકશો લોડ કરવામાં નિષ્ફળ"
+  },
+  "photoGallery": {
+    "close": "બંધ કરો",
+    "previous": "અગાઉનો ફોટો",
+    "next": "આગળનો ફોટો"
   }
 }

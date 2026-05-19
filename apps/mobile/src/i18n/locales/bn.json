@@ -1751,5 +1751,69 @@
       "resolved": "সমাধান করা হয়েছে",
       "closed": "বন্ধ"
     }
+  },
+  "agentReview": {
+    "postFailed": "| পর্যালোচনা পোস্ট করা যায়নি",
+    "posting": "৷ পোস্ট করা হচ্ছে...",
+    "postReview": "| পর্যালোচনা পোস্ট করুন"
+  },
+  "adminCommissions": {
+    "listing": "| তালিকা",
+    "buyer": "ক্রেতা",
+    "value": "| ডিল ভ্যালু",
+    "platformEarn": "প্ল্যাটফর্ম আয়",
+    "agentEarn": "এজেন্ট আয়",
+    "status": "স্ট্যাটাস",
+    "closedAt": "বন্ধ",
+    "allCommissions": "সমস্ত কমিশন",
+    "all": "| সব"
+  },
+  "adminAudit": {
+    "timestamp": "টাইমস্ট্যাম্প",
+    "actor": "| অভিনেতা",
+    "action": "| অ্যাকশন",
+    "entity": "সত্তা",
+    "changed": "পরিবর্তিত ক্ষেত্র"
+  },
+  "adminAnalytics": {
+    "trafficSources": "ট্রাফিক উৎস",
+    "devices": "ডিভাইসগুলি",
+    "inquiryFunnel": "|৷ অনুসন্ধান ফানেল"
+  },
+  "listingDetail": {
+    "hotelLabel": "হোটেল",
+    "starSuffix": "{{n}}-স্টার",
+    "stayDetails": "বিস্তারিত থাকুন",
+    "houseRules": "ঘরের নিয়ম",
+    "maxGuests": "সর্বোচ্চ অতিথি",
+    "checkIn": "চেক-ইন",
+    "checkInFrom": "{{সময়}} থেকে",
+    "checkOut": "চেক-আউট",
+    "checkOutBy": "{{সময়}} দ্বারা",
+    "cancellation": "বাতিলকরণ",
+    "whatThisPlaceOffers": "এই জায়গা কি অফার"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "রিয়াদ, জেদ্দা, দাম্মাম…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "কি সহায়ক, পেশাদার, বা উন্নতি করতে পারে তা শেয়ার করুন..."
+  },
+  "adminCommissionsPage": {
+    "title": "প্ল্যাটফর্ম কমিশন",
+    "subtitle": "মোট রাজস্ব, এজেন্ট পেআউট এবং প্রতি-লেনদেন ব্রেকডাউন।"
+  },
+  "comparePage": {
+    "emptyTitle": "এখনও তুলনা করার কিছুই নেই"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API কী কনফিগার করা হয়নি",
+    "missingKeyHint": "মানচিত্র দৃশ্য সক্ষম করতে VITE_GOOGLE_MAPS_API_KEY সেট করুন৷",
+    "loadFailed": "মানচিত্র লোড করতে ব্যর্থ হয়েছে৷"
+  },
+  "photoGallery": {
+    "close": "বন্ধ",
+    "previous": "আগের ছবি",
+    "next": "পরের ছবি"
   }
 }

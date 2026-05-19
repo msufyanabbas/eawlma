@@ -1751,5 +1751,69 @@
       "resolved": "แก้ไขแล้ว",
       "closed": "ปิด"
     }
+  },
+  "agentReview": {
+    "postFailed": "ไม่สามารถโพสต์รีวิวได้",
+    "posting": "กำลังโพสต์...",
+    "postReview": "โพสต์รีวิว"
+  },
+  "adminCommissions": {
+    "listing": "รายการ",
+    "buyer": "ผู้ซื้อ",
+    "value": "มูลค่าการซื้อขาย",
+    "platformEarn": "แพลตฟอร์มรับ",
+    "agentEarn": "ตัวแทนรับ",
+    "status": "สถานะ",
+    "closedAt": "ปิด",
+    "allCommissions": "ค่าคอมมิชชั่นทั้งหมด",
+    "all": "ทั้งหมด"
+  },
+  "adminAudit": {
+    "timestamp": "การประทับเวลา",
+    "actor": "นักแสดงชาย",
+    "action": "การกระทำ",
+    "entity": "เอนทิตี",
+    "changed": "ฟิลด์ที่เปลี่ยนแปลง"
+  },
+  "adminAnalytics": {
+    "trafficSources": "แหล่งที่มาของการเข้าชม",
+    "devices": "อุปกรณ์",
+    "inquiryFunnel": "ช่องทางสอบถาม"
+  },
+  "listingDetail": {
+    "hotelLabel": "โรงแรม",
+    "starSuffix": "{{n}}-ดาว",
+    "stayDetails": "รายละเอียดการเข้าพัก",
+    "houseRules": "กฎของที่พัก",
+    "maxGuests": "แขกแม็กซ์",
+    "checkIn": "เช็คอิน",
+    "checkInFrom": "ตั้งแต่ {{เวลา}}",
+    "checkOut": "เช็คเอาท์",
+    "checkOutBy": "โดย {{เวลา}}",
+    "cancellation": "การยกเลิก",
+    "whatThisPlaceOffers": "สิ่งที่สถานที่แห่งนี้นำเสนอ"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ริยาด, เจดดาห์, ดัมมัม..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "แบ่งปันสิ่งที่มีประโยชน์ เป็นมืออาชีพ หรือสามารถปรับปรุงได้..."
+  },
+  "adminCommissionsPage": {
+    "title": "ค่าคอมมิชชั่นแพลตฟอร์ม",
+    "subtitle": "รายได้ทั้งหมด การจ่ายเงินให้ตัวแทน และรายละเอียดต่อธุรกรรม"
+  },
+  "comparePage": {
+    "emptyTitle": "ยังไม่มีอะไรจะเปรียบเทียบ"
+  },
+  "searchMap": {
+    "missingKeyTitle": "ไม่ได้กำหนดค่าคีย์ Google Maps API",
+    "missingKeyHint": "ตั้งค่า VITE_GOOGLE_MAPS_API_KEY เพื่อเปิดใช้งานมุมมองแผนที่",
+    "loadFailed": "โหลดแผนที่ไม่สำเร็จ"
+  },
+  "photoGallery": {
+    "close": "ปิด",
+    "previous": "รูปภาพก่อนหน้า",
+    "next": "รูปภาพถัดไป"
   }
 }

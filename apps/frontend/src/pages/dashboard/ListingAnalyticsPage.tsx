@@ -177,7 +177,7 @@ export function ListingAnalyticsPage() {
         {/* Sources pie */}
         <Grid item xs={12} md={4}>
           <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Traffic sources</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('adminAnalytics.trafficSources')}</Typography>
             {sourcesQuery.isLoading ? (
               <Skeleton variant="rectangular" height={260} />
             ) : sources.length === 0 ? (
@@ -208,7 +208,7 @@ export function ListingAnalyticsPage() {
         {/* Devices donut */}
         <Grid item xs={12} md={4}>
           <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Devices</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('adminAnalytics.devices')}</Typography>
             {devicesQuery.isLoading ? (
               <Skeleton variant="rectangular" height={260} />
             ) : devices.length === 0 ? (
@@ -240,7 +240,7 @@ export function ListingAnalyticsPage() {
         {/* Funnel bar (rendered as a horizontal bar chart) */}
         <Grid item xs={12} md={4}>
           <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Inquiry funnel</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('adminAnalytics.inquiryFunnel')}</Typography>
             {funnelQuery.isLoading ? (
               <Skeleton variant="rectangular" height={260} />
             ) : (

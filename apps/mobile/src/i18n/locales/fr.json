@@ -930,7 +930,7 @@
     "successTitle": "Succès",
     "fillRequired": "Veuillez remplir les champs obligatoires",
     "addedSuccess": "Annonce ajoutée avec succès",
-    "ok": "OK",
+    "ok": "D'ACCORD",
     "somethingWrong": "Quelque chose s'est mal passé",
     "editTitle": "Modifier la liste",
     "missing": "Champs manquants",
@@ -1751,5 +1751,69 @@
       "resolved": "Résolu",
       "closed": "Fermé"
     }
+  },
+  "agentReview": {
+    "postFailed": "Impossible de publier l'avis",
+    "posting": "Publication…",
+    "postReview": "Post-revue"
+  },
+  "adminCommissions": {
+    "listing": "Annonce",
+    "buyer": "Acheteur",
+    "value": "Valeur de la transaction",
+    "platformEarn": "Plateforme Gagnez",
+    "agentEarn": "Gagner des agents",
+    "status": "Statut",
+    "closedAt": "Fermé",
+    "allCommissions": "Toutes les commissions",
+    "all": "Tous"
+  },
+  "adminAudit": {
+    "timestamp": "Horodatage",
+    "actor": "Acteur",
+    "action": "Action",
+    "entity": "Entité",
+    "changed": "Champs modifiés"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Sources de trafic",
+    "devices": "Appareils",
+    "inquiryFunnel": "Entonnoir de demande"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hôtel",
+    "starSuffix": "{{n}}-étoile",
+    "stayDetails": "Détails du séjour",
+    "houseRules": "Règles de la maison",
+    "maxGuests": "Nombre maximum d'invités",
+    "checkIn": "Enregistrement",
+    "checkInFrom": "à partir de {{time}}",
+    "checkOut": "Départ",
+    "checkOutBy": "d'ici {{time}}",
+    "cancellation": "Annulation",
+    "whatThisPlaceOffers": "Ce que propose cet endroit"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyad, Djeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Partagez ce qui a été utile, professionnel ou pourrait s'améliorer…"
+  },
+  "adminCommissionsPage": {
+    "title": "Commissions de la plateforme",
+    "subtitle": "Revenus totaux, paiements des agents et répartition par transaction."
+  },
+  "comparePage": {
+    "emptyTitle": "Rien à comparer pour l'instant"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Clé API Google Maps non configurée",
+    "missingKeyHint": "Définissez VITE_GOOGLE_MAPS_API_KEY pour activer la vue cartographique.",
+    "loadFailed": "Échec du chargement de la carte"
+  },
+  "photoGallery": {
+    "close": "Fermer",
+    "previous": "Photo précédente",
+    "next": "Photo suivante"
   }
 }

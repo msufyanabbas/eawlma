@@ -1751,5 +1751,69 @@
       "resolved": "S-a rezolvat",
       "closed": "Închis"
     }
+  },
+  "agentReview": {
+    "postFailed": "Nu s-a putut posta recenzia",
+    "posting": "Se postează…",
+    "postReview": "Postează recenzia"
+  },
+  "adminCommissions": {
+    "listing": "Listare",
+    "buyer": "Cumpărător",
+    "value": "Valoarea tranzacției",
+    "platformEarn": "Câștigă platformă",
+    "agentEarn": "Câștigă agent",
+    "status": "Stare",
+    "closedAt": "Închis",
+    "allCommissions": "Toate comisioanele",
+    "all": "Toate"
+  },
+  "adminAudit": {
+    "timestamp": "Marca temporală",
+    "actor": "Actor",
+    "action": "Acțiune",
+    "entity": "Entitatea",
+    "changed": "Câmpuri modificate"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Surse de trafic",
+    "devices": "Dispozitive",
+    "inquiryFunnel": "Pâlnie de anchetă"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-stea",
+    "stayDetails": "Detalii sejur",
+    "houseRules": "Regulile casei",
+    "maxGuests": "Max invitați",
+    "checkIn": "Înregistrare",
+    "checkInFrom": "din {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "de {{time}}",
+    "cancellation": "Anulare",
+    "whatThisPlaceOffers": "Ce oferă acest loc"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Jedda, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Împărtășiți ceea ce a fost util, profesional sau care s-ar putea îmbunătăți..."
+  },
+  "adminCommissionsPage": {
+    "title": "Comisioane platforme",
+    "subtitle": "Venitul total, plățile agenților și defalcarea per tranzacție."
+  },
+  "comparePage": {
+    "emptyTitle": "Nimic de comparat încă"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Cheia API Google Maps nu este configurată",
+    "missingKeyHint": "Setați VITE_GOOGLE_MAPS_API_KEY pentru a activa vizualizarea hărții.",
+    "loadFailed": "Nu s-a putut încărca harta"
+  },
+  "photoGallery": {
+    "close": "Închide",
+    "previous": "Fotografia anterioară",
+    "next": "Poza următoare"
   }
 }

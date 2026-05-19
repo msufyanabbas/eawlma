@@ -1751,5 +1751,69 @@
       "resolved": "Löst",
       "closed": "Stängd"
     }
+  },
+  "agentReview": {
+    "postFailed": "Kunde inte skicka recension",
+    "posting": "Lägger upp...",
+    "postReview": "Skriv recension"
+  },
+  "adminCommissions": {
+    "listing": "Lista",
+    "buyer": "Köpare",
+    "value": "Affärsvärde",
+    "platformEarn": "Plattform Tjäna",
+    "agentEarn": "Agent tjäna",
+    "status": "Status",
+    "closedAt": "Stängd",
+    "allCommissions": "Alla provisioner",
+    "all": "Alla"
+  },
+  "adminAudit": {
+    "timestamp": "Tidsstämpel",
+    "actor": "Skådespelare",
+    "action": "Åtgärd",
+    "entity": "Entitet",
+    "changed": "Ändrade fält"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafikkällor",
+    "devices": "Enheter",
+    "inquiryFunnel": "Förfrågningstratt"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotell",
+    "starSuffix": "{{n}}-stjärna",
+    "stayDetails": "Boendedetaljer",
+    "houseRules": "Husregler",
+    "maxGuests": "Max gäster",
+    "checkIn": "Incheckning",
+    "checkInFrom": "från {{time}}",
+    "checkOut": "Utcheckning",
+    "checkOutBy": "av {{time}}",
+    "cancellation": "Avbokning",
+    "whatThisPlaceOffers": "Vad den här platsen erbjuder"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Dela vad som var användbart, professionellt eller kunde förbättra..."
+  },
+  "adminCommissionsPage": {
+    "title": "Plattformskommissioner",
+    "subtitle": "Totala intäkter, agentutbetalningar och uppdelning per transaktion."
+  },
+  "comparePage": {
+    "emptyTitle": "Inget att jämföra ännu"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-nyckel inte konfigurerad",
+    "missingKeyHint": "Ställ in VITE_GOOGLE_MAPS_API_KEY för att aktivera kartvyn.",
+    "loadFailed": "Det gick inte att ladda kartan"
+  },
+  "photoGallery": {
+    "close": "Stäng",
+    "previous": "Föregående bild",
+    "next": "Nästa foto"
   }
 }

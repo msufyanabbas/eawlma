@@ -876,7 +876,7 @@
       "imageDropHint": "I-drag at i-drop ang mga larawan dito, o i-click upang pumili. JPEG / PNG / WebP hanggang 10 MB.",
       "photoAlt": "Listahan ng larawan",
       "setCover": "Itakda bilang pabalat",
-      "cover": "Cover",
+      "cover": "Takpan",
       "videoTour": "Video tour",
       "videoDropHint": "Mag-drag ng MP4 file o i-click para pumili. Max 500 MB.",
       "videoUploaded": "Na-upload ang video — {{name}}",
@@ -1306,7 +1306,7 @@
     "inDevelopment": "Ang feature na ito ay nasa development",
     "depositTitle": "Deposit",
     "payoutTitle": "Payout",
-    "withdrawal": "Withdrawal"
+    "withdrawal": "Pag-withdraw"
   },
   "nafath": {
     "loginWith": "Mag-sign in gamit ang Nafath"
@@ -1751,5 +1751,69 @@
       "resolved": "Nalutas",
       "closed": "sarado"
     }
+  },
+  "agentReview": {
+    "postFailed": "Hindi makapag-post ng review",
+    "posting": "Nagpo-post…",
+    "postReview": "Mag-post ng pagsusuri"
+  },
+  "adminCommissions": {
+    "listing": "Listahan",
+    "buyer": "Mamimili",
+    "value": "Halaga ng Deal",
+    "platformEarn": "Platform na Kumita",
+    "agentEarn": "Kumita ng Ahente",
+    "status": "Katayuan",
+    "closedAt": "Sarado",
+    "allCommissions": "Lahat ng Komisyon",
+    "all": "Lahat"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Artista",
+    "action": "Aksyon",
+    "entity": "Entity",
+    "changed": "Mga Binagong Field"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Mga Pinagmumulan ng Trapiko",
+    "devices": "Mga Device",
+    "inquiryFunnel": "Inquiry Funnel"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Mga detalye ng stay",
+    "houseRules": "Mga panuntunan sa bahay",
+    "maxGuests": "Pinakamaraming bisita",
+    "checkIn": "Mag-check-in",
+    "checkInFrom": "mula sa {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "sa pamamagitan ng {{time}}",
+    "cancellation": "Pagkansela",
+    "whatThisPlaceOffers": "Ano ang inaalok ng lugar na ito"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Ibahagi kung ano ang nakakatulong, propesyonal, o maaaring mapabuti..."
+  },
+  "adminCommissionsPage": {
+    "title": "Mga komisyon sa platform",
+    "subtitle": "Kabuuang kita, mga payout ng ahente, at breakdown sa bawat transaksyon."
+  },
+  "comparePage": {
+    "emptyTitle": "Wala pang maihahambing"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Hindi na-configure ang Google Maps API key",
+    "missingKeyHint": "Itakda ang VITE_GOOGLE_MAPS_API_KEY upang paganahin ang view ng mapa.",
+    "loadFailed": "Nabigong i-load ang mapa"
+  },
+  "photoGallery": {
+    "close": "Isara",
+    "previous": "Nakaraang larawan",
+    "next": "Susunod na larawan"
   }
 }

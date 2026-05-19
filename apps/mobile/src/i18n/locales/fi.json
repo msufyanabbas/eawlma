@@ -1751,5 +1751,69 @@
       "resolved": "Ratkaistu",
       "closed": "Suljettu"
     }
+  },
+  "agentReview": {
+    "postFailed": "Arvostelua ei voitu lähettää",
+    "posting": "Lähetetään…",
+    "postReview": "Lähetä arvostelu"
+  },
+  "adminCommissions": {
+    "listing": "Listaus",
+    "buyer": "Ostaja",
+    "value": "Sopimuksen arvo",
+    "platformEarn": "Ansaitse alustalla",
+    "agentEarn": "Agentti Ansaitse",
+    "status": "Status",
+    "closedAt": "Suljettu",
+    "allCommissions": "Kaikki provisiot",
+    "all": "Kaikki"
+  },
+  "adminAudit": {
+    "timestamp": "Aikaleima",
+    "actor": "Näyttelijä",
+    "action": "Toiminta",
+    "entity": "Entiteetti",
+    "changed": "Vaihdettu kentät"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Liikenteen lähteet",
+    "devices": "Laitteet",
+    "inquiryFunnel": "Kyselysuppilo"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotelli",
+    "starSuffix": "{{n}} tähteä",
+    "stayDetails": "Pysy yksityiskohdat",
+    "houseRules": "Talon säännöt",
+    "maxGuests": "Max vieraita",
+    "checkIn": "Sisäänkirjautuminen",
+    "checkInFrom": "alkaen {{time}}",
+    "checkOut": "Uloskirjautuminen",
+    "checkOutBy": "tekijä: {{time}}",
+    "cancellation": "Peruutus",
+    "whatThisPlaceOffers": "Mitä tämä paikka tarjoaa"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Jedda, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Jaa, mikä oli hyödyllistä, ammattimaista tai voisi parantaa…"
+  },
+  "adminCommissionsPage": {
+    "title": "Alustan palkkiot",
+    "subtitle": "Kokonaistulot, edustajan maksut ja tapahtumakohtainen erittely."
+  },
+  "comparePage": {
+    "emptyTitle": "Ei vielä mitään verrattavaa"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-avainta ei ole määritetty",
+    "missingKeyHint": "Ota karttanäkymä käyttöön valitsemalla VITE_GOOGLE_MAPS_API_KEY.",
+    "loadFailed": "Kartan lataaminen epäonnistui"
+  },
+  "photoGallery": {
+    "close": "Lähellä",
+    "previous": "Edellinen kuva",
+    "next": "Seuraava kuva"
   }
 }
