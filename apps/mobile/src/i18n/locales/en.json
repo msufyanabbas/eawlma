@@ -1106,7 +1106,9 @@
     "pushNotifications": "Push notifications",
     "emailNotifications": "Email notifications",
     "privacyAccount": "Privacy & account",
-    "areYouSure": "Are you sure?"
+    "areYouSure": "Are you sure?",
+    "pushPermissionDenied": "Notifications are disabled for this app. Open Settings to enable them.",
+    "openSettings": "Open Settings"
   },
   "inquiries": {
     "title": "Inquiries",
@@ -1839,7 +1841,19 @@
     "empty": "No notifications",
     "emptyHint": "Your alerts will appear here",
     "markAllRead": "Mark all as read",
-    "notification": "Notification"
+    "notification": "Notification",
+    "pushEnabled": "Push notifications enabled",
+    "pushDisabled": "Push notifications disabled",
+    "permissionRequired": "Notifications permission is required",
+    "permissionDeniedTitle": "Notifications turned off",
+    "permissionDeniedBody": "Enable notifications in your device settings to receive alerts for messages, inquiries, and listing updates.",
+    "newMessage": "New message",
+    "newInquiry": "New inquiry",
+    "listingApproved": "Listing approved",
+    "listingRejected": "Listing rejected",
+    "bookingUpdate": "Booking update",
+    "paymentUpdate": "Payment update",
+    "supportReply": "Support reply"
   },
   "bookings": {
     "title": "My Bookings",

@@ -393,7 +393,7 @@
     "save": "Opslaan",
     "share": "Delen",
     "callAgent": "Makelaar bellen",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "WhatsAppen",
     "scheduleTour": "Bezichtiging plannen",
     "scheduleATour": "Een bezichtiging plannen",
     "contactAgent": "Contact opnemen met makelaar",
@@ -1031,7 +1031,9 @@
     "pushNotifications": "Pushmeldingen",
     "emailNotifications": "E-mailmeldingen",
     "privacyAccount": "Privacy en account",
-    "areYouSure": "Weet je het zeker?"
+    "areYouSure": "Weet je het zeker?",
+    "pushPermissionDenied": "Meldingen zijn uitgeschakeld voor deze app. Open Instellingen om ze in te schakelen.",
+    "openSettings": "Instellingen openen"
   },
   "inquiries": {
     "title": "Aanvragen",
@@ -1647,7 +1649,19 @@
     "empty": "Geen meldingen",
     "emptyHint": "Uw waarschuwingen verschijnen hier",
     "markAllRead": "Markeer alles als gelezen",
-    "notification": "Melding"
+    "notification": "Melding",
+    "pushEnabled": "Pushmeldingen ingeschakeld",
+    "pushDisabled": "Pushmeldingen uitgeschakeld",
+    "permissionRequired": "Toestemming voor meldingen is vereist",
+    "permissionDeniedTitle": "Meldingen uitgeschakeld",
+    "permissionDeniedBody": "Schakel meldingen in uw apparaatinstellingen in om waarschuwingen te ontvangen voor berichten, vragen en lijstupdates.",
+    "newMessage": "Nieuw bericht",
+    "newInquiry": "Nieuwe aanvraag",
+    "listingApproved": "Vermelding goedgekeurd",
+    "listingRejected": "Advertentie geweigerd",
+    "bookingUpdate": "Boekingsupdate",
+    "paymentUpdate": "Betalingsupdate",
+    "supportReply": "Ondersteuning antwoord"
   },
   "bookings": {
     "title": "Mijn boekingen",

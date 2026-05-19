@@ -1031,7 +1031,9 @@
     "pushNotifications": "Push-meddelelser",
     "emailNotifications": "E-mail-meddelelser",
     "privacyAccount": "Privatliv og konto",
-    "areYouSure": "Er du sikker?"
+    "areYouSure": "Er du sikker?",
+    "pushPermissionDenied": "Notifikationer er deaktiveret for denne app. Åbn Indstillinger for at aktivere dem.",
+    "openSettings": "Åbn Indstillinger"
   },
   "inquiries": {
     "title": "Forespørgsler",
@@ -1647,7 +1649,19 @@
     "empty": "Ingen meddelelser",
     "emptyHint": "Dine advarsler vises her",
     "markAllRead": "Marker alle som læst",
-    "notification": "Meddelelse"
+    "notification": "Meddelelse",
+    "pushEnabled": "Push-meddelelser aktiveret",
+    "pushDisabled": "Push-meddelelser deaktiveret",
+    "permissionRequired": "Notifikationstilladelse er påkrævet",
+    "permissionDeniedTitle": "Meddelelser slået fra",
+    "permissionDeniedBody": "Aktiver meddelelser i dine enhedsindstillinger for at modtage advarsler om beskeder, forespørgsler og opdateringer af liste.",
+    "newMessage": "Ny besked",
+    "newInquiry": "Ny forespørgsel",
+    "listingApproved": "Fortegnelse godkendt",
+    "listingRejected": "Fortegnelse afvist",
+    "bookingUpdate": "Bookingopdatering",
+    "paymentUpdate": "Betalingsopdatering",
+    "supportReply": "Supportsvar"
   },
   "bookings": {
     "title": "Mine reservationer",

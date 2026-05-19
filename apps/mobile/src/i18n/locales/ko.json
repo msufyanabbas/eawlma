@@ -1031,7 +1031,9 @@
     "pushNotifications": "푸시 알림",
     "emailNotifications": "이메일 알림",
     "privacyAccount": "개인정보 보호 및 계정",
-    "areYouSure": "확실합니까?"
+    "areYouSure": "확실합니까?",
+    "pushPermissionDenied": "이 앱에 대한 알림이 비활성화되었습니다. 설정을 열어 활성화하세요.",
+    "openSettings": "설정 열기"
   },
   "inquiries": {
     "title": "문의",
@@ -1647,7 +1649,19 @@
     "empty": "알림 없음",
     "emptyHint": "알림이 여기에 표시됩니다",
     "markAllRead": "모두 읽음으로 표시",
-    "notification": "공고"
+    "notification": "공고",
+    "pushEnabled": "푸시 알림이 활성화되었습니다.",
+    "pushDisabled": "푸시 알림이 비활성화되었습니다.",
+    "permissionRequired": "알림 권한이 필요합니다",
+    "permissionDeniedTitle": "알림이 꺼졌습니다",
+    "permissionDeniedBody": "메시지, 문의, 목록 업데이트에 대한 알림을 받으려면 기기 설정에서 알림을 활성화하세요.",
+    "newMessage": "새 메시지",
+    "newInquiry": "새로운 문의",
+    "listingApproved": "목록이 승인되었습니다.",
+    "listingRejected": "목록이 거부됨",
+    "bookingUpdate": "예약 업데이트",
+    "paymentUpdate": "결제 업데이트",
+    "supportReply": "지원 답변"
   },
   "bookings": {
     "title": "내 예약",

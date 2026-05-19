@@ -1031,7 +1031,9 @@
     "pushNotifications": "プッシュ通知",
     "emailNotifications": "電子メール通知",
     "privacyAccount": "プライバシーとアカウント",
-    "areYouSure": "本気ですか？"
+    "areYouSure": "本気ですか？",
+    "pushPermissionDenied": "このアプリの通知は無効になっています。設定を開いて有効にします。",
+    "openSettings": "設定を開く"
   },
   "inquiries": {
     "title": "問い合わせ",
@@ -1647,7 +1649,19 @@
     "empty": "通知はありません",
     "emptyHint": "アラートがここに表示されます",
     "markAllRead": "すべて既読としてマークする",
-    "notification": "通知"
+    "notification": "通知",
+    "pushEnabled": "プッシュ通知が有効になっています",
+    "pushDisabled": "プッシュ通知が無効になっています",
+    "permissionRequired": "通知許可が必要です",
+    "permissionDeniedTitle": "通知がオフになっています",
+    "permissionDeniedBody": "メッセージ、問い合わせ、リストの更新に関するアラートを受信するには、デバイスの設定で通知を有効にします。",
+    "newMessage": "新しいメッセージ",
+    "newInquiry": "新規お問い合わせ",
+    "listingApproved": "上場承認",
+    "listingRejected": "リスティングが拒否されました",
+    "bookingUpdate": "予約の更新",
+    "paymentUpdate": "支払いの更新",
+    "supportReply": "サポート返信"
   },
   "bookings": {
     "title": "私の予約",

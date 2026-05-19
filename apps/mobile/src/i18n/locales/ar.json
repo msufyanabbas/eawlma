@@ -1106,7 +1106,9 @@
     "pushNotifications": "إشعارات الجوال",
     "emailNotifications": "إشعارات البريد الإلكتروني",
     "privacyAccount": "الخصوصية والحساب",
-    "areYouSure": "هل أنت متأكد؟"
+    "areYouSure": "هل أنت متأكد؟",
+    "pushPermissionDenied": "تم تعطيل الإخطارات لهذا التطبيق. افتح الإعدادات لتمكينها.",
+    "openSettings": "افتح الإعدادات"
   },
   "inquiries": {
     "title": "الاستفسارات",
@@ -1839,7 +1841,19 @@
     "empty": "لا توجد إشعارات",
     "emptyHint": "ستظهر إشعاراتك هنا",
     "markAllRead": "تحديد الكل كمقروء",
-    "notification": "إشعار"
+    "notification": "إشعار",
+    "pushEnabled": "تم تمكين دفع الإخطارات",
+    "pushDisabled": "تم تعطيل إشعارات الدفع",
+    "permissionRequired": "مطلوب إذن الإخطارات",
+    "permissionDeniedTitle": "تم إيقاف الإشعارات",
+    "permissionDeniedBody": "قم بتمكين الإشعارات في إعدادات جهازك لتلقي تنبيهات للرسائل والاستفسارات وتحديثات القائمة.",
+    "newMessage": "رسالة جديدة",
+    "newInquiry": "استفسار جديد",
+    "listingApproved": "تمت الموافقة على الإدراج",
+    "listingRejected": "تم رفض الإدراج",
+    "bookingUpdate": "تحديث الحجز",
+    "paymentUpdate": "تحديث الدفع",
+    "supportReply": "رد الدعم"
   },
   "bookings": {
     "title": "حجوزاتي",

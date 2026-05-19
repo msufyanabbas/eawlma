@@ -75,6 +75,19 @@ module.exports = {
         },
       ],
     },
+    // expo-notifications config plugin: ships the small-icon asset Android
+    // uses for foreground/heads-up notifications. The current PNG is a
+    // placeholder using the app icon — replace with a proper white-on-
+    // transparent monochrome glyph before the public release.
+    plugins: [
+      [
+        'expo-notifications',
+        {
+          icon: './assets/notification-icon.png',
+          color: '#6C63A6',
+        },
+      ],
+    ],
     extra: {
       apiUrl: API_URL,
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,

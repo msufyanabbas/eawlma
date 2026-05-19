@@ -1031,7 +1031,9 @@
     "pushNotifications": "ማሳወቂያዎችን ይግፉ",
     "emailNotifications": "የኢሜል ማሳወቂያዎች",
     "privacyAccount": "ግላዊነት እና መለያ",
-    "areYouSure": "ኧረ"
+    "areYouSure": "ኧረ",
+    "pushPermissionDenied": "ለዚህ መተግበሪያ ማሳወቂያዎች ተሰናክለዋል። እነሱን ለማንቃት ቅንብሮችን ይክፈቱ።",
+    "openSettings": "ቅንብሮችን ይክፈቱ"
   },
   "inquiries": {
     "title": "ጥያቄዎች",
@@ -1647,7 +1649,19 @@
     "empty": "ምንም ማሳወቂያዎች የሉም",
     "emptyHint": "ማንቂያዎችዎ እዚህ ይታያሉ",
     "markAllRead": "ሁሉንም እንደተነበቡ ምልክት ያድርጉበት",
-    "notification": "ማስታወቂያ"
+    "notification": "ማስታወቂያ",
+    "pushEnabled": "የግፋ ማሳወቂያዎች ነቅተዋል።",
+    "pushDisabled": "የግፋ ማሳወቂያዎች ተሰናክለዋል።",
+    "permissionRequired": "የማሳወቂያዎች ፈቃድ ያስፈልጋል",
+    "permissionDeniedTitle": "ማሳወቂያዎች ጠፍተዋል።",
+    "permissionDeniedBody": "የመልእክት፣ የጥያቄዎች እና የዝርዝር ዝመናዎች ማንቂያዎችን ለመቀበል በመሣሪያዎ ቅንብሮች ውስጥ ማሳወቂያዎችን ያንቁ።",
+    "newMessage": "አዲስ መልእክት",
+    "newInquiry": "አዲስ ጥያቄ",
+    "listingApproved": "ዝርዝር ጸድቋል",
+    "listingRejected": "ዝርዝር ተቀባይነት አላገኘም።",
+    "bookingUpdate": "የቦታ ማስያዝ ዝማኔ",
+    "paymentUpdate": "የክፍያ ዝማኔ",
+    "supportReply": "ምላሽ ይደግፉ"
   },
   "bookings": {
     "title": "የእኔ ምዝገባዎች",

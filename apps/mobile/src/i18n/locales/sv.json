@@ -1031,7 +1031,9 @@
     "pushNotifications": "Push-meddelanden",
     "emailNotifications": "E-postmeddelanden",
     "privacyAccount": "Sekretess och konto",
-    "areYouSure": "Är du säker?"
+    "areYouSure": "Är du säker?",
+    "pushPermissionDenied": "Aviseringar är inaktiverade för den här appen. Öppna Inställningar för att aktivera dem.",
+    "openSettings": "Öppna Inställningar"
   },
   "inquiries": {
     "title": "Förfrågningar",
@@ -1647,7 +1649,19 @@
     "empty": "Inga meddelanden",
     "emptyHint": "Dina varningar kommer att visas här",
     "markAllRead": "Markera alla som lästa",
-    "notification": "Meddelande"
+    "notification": "Meddelande",
+    "pushEnabled": "Push-meddelanden aktiverade",
+    "pushDisabled": "Push-meddelanden inaktiverade",
+    "permissionRequired": "Notifieringstillstånd krävs",
+    "permissionDeniedTitle": "Aviseringar avstängda",
+    "permissionDeniedBody": "Aktivera aviseringar i dina enhetsinställningar för att få varningar om meddelanden, förfrågningar och listuppdateringar.",
+    "newMessage": "Nytt meddelande",
+    "newInquiry": "Ny förfrågan",
+    "listingApproved": "Listan godkänd",
+    "listingRejected": "Listan avvisades",
+    "bookingUpdate": "Bokningsuppdatering",
+    "paymentUpdate": "Betalningsuppdatering",
+    "supportReply": "Supportsvar"
   },
   "bookings": {
     "title": "Mina bokningar",

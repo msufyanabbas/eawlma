@@ -1031,7 +1031,9 @@
     "pushNotifications": "पुश सूचना",
     "emailNotifications": "ईमेल सूचना",
     "privacyAccount": "गोपनीयता आणि खाते",
-    "areYouSure": "तुम्हाला खात्री आहे का?"
+    "areYouSure": "तुम्हाला खात्री आहे का?",
+    "pushPermissionDenied": "या ॲपसाठी सूचना अक्षम केल्या आहेत. ते सक्षम करण्यासाठी सेटिंग्ज उघडा.",
+    "openSettings": "सेटिंग्ज उघडा"
   },
   "inquiries": {
     "title": "चौकशी",
@@ -1647,7 +1649,19 @@
     "empty": "कोणत्याही सूचना नाहीत",
     "emptyHint": "तुमच्या सूचना येथे दिसतील",
     "markAllRead": "सर्व वाचलेले म्हणून चिन्हांकित करा",
-    "notification": "सूचना"
+    "notification": "सूचना",
+    "pushEnabled": "पुश सूचना सक्षम",
+    "pushDisabled": "पुश सूचना अक्षम केल्या आहेत",
+    "permissionRequired": "सूचना परवानगी आवश्यक आहे",
+    "permissionDeniedTitle": "सूचना बंद केल्या",
+    "permissionDeniedBody": "संदेश, चौकशी आणि सूची अद्यतनांसाठी सूचना प्राप्त करण्यासाठी तुमच्या डिव्हाइस सेटिंग्जमध्ये सूचना सक्षम करा.",
+    "newMessage": "नवीन संदेश",
+    "newInquiry": "नवीन चौकशी",
+    "listingApproved": "सूची मंजूर",
+    "listingRejected": "सूची नाकारली",
+    "bookingUpdate": "बुकिंग अपडेट",
+    "paymentUpdate": "पेमेंट अपडेट",
+    "supportReply": "समर्थन उत्तर"
   },
   "bookings": {
     "title": "माझे बुकिंग",

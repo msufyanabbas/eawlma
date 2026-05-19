@@ -1031,7 +1031,9 @@
     "pushNotifications": "הודעות דחיפה",
     "emailNotifications": "הודעות דוא\"ל",
     "privacyAccount": "פרטיות וחשבון",
-    "areYouSure": "אתה בטוח?"
+    "areYouSure": "אתה בטוח?",
+    "pushPermissionDenied": "הודעות מושבתות עבור אפליקציה זו. פתח את ההגדרות כדי להפעיל אותם.",
+    "openSettings": "פתח את ההגדרות"
   },
   "inquiries": {
     "title": "פניות",
@@ -1647,7 +1649,19 @@
     "empty": "אין הודעות",
     "emptyHint": "ההתראות שלך יופיעו כאן",
     "markAllRead": "סמן הכל כנקראו",
-    "notification": "הודעה"
+    "notification": "הודעה",
+    "pushEnabled": "התראות דחיפה מופעלות",
+    "pushDisabled": "הודעות דחיפה מושבתות",
+    "permissionRequired": "נדרשת הרשאת הודעות",
+    "permissionDeniedTitle": "התראות כבויות",
+    "permissionDeniedBody": "אפשר התראות בהגדרות המכשיר שלך כדי לקבל התראות על הודעות, פניות ועדכוני רישום.",
+    "newMessage": "הודעה חדשה",
+    "newInquiry": "חקירה חדשה",
+    "listingApproved": "הרישום אושר",
+    "listingRejected": "הרישום נדחה",
+    "bookingUpdate": "עדכון הזמנה",
+    "paymentUpdate": "עדכון תשלום",
+    "supportReply": "תשובת תמיכה"
   },
   "bookings": {
     "title": "ההזמנות שלי",
@@ -1854,7 +1868,7 @@
   "cities": {
     "riyadh": "ריאד",
     "jeddah": "ג'דה",
-    "dammam": "Dammam",
+    "dammam": "דאמאם",
     "mecca": "מכה",
     "medina": "מדינה",
     "khobar": "חובר",

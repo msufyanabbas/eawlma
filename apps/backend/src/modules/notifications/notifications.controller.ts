@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -16,23 +17,52 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
+import { IsIn, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { PaginationQueryDto } from '../../common/dto/pagination.dto';
 
 import { NotificationsService } from './notifications.service';
+import { PushService } from './push.service';
+import { DevicePlatform } from './entities/device-token.entity';
 import {
   MarkNotificationsReadDto,
   NotificationResponseDto,
 } from './dto/notification.dto';
+
+class RegisterDeviceDto {
+  @IsString()
+  @MinLength(10)
+  @MaxLength(512)
+  token: string;
+
+  @IsString()
+  @IsIn(['ios', 'android', 'web'])
+  platform: DevicePlatform;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  deviceModel?: string;
+}
+
+class UnregisterDeviceDto {
+  @IsString()
+  @MinLength(10)
+  @MaxLength(512)
+  token: string;
+}
 
 @ApiTags('notifications')
 @ApiBearerAuth('access-token')
 @Controller({ path: 'notifications', version: '1' })
 @UseGuards(JwtAuthGuard)
 export class NotificationsController {
-  constructor(private readonly notificationsService: NotificationsService) {}
+  constructor(
+    private readonly notificationsService: NotificationsService,
+    private readonly pushService: PushService,
+  ) {}
 
   @Get()
   @ApiOperation({ summary: 'List notifications for the current user' })
@@ -80,5 +110,32 @@ export class NotificationsController {
   async markAllRead(@CurrentUser('id') userId: string) {
     const updated = await this.notificationsService.markAllRead(userId);
     return { updated };
+  }
+
+  // ---- Push device registration ------------------------------------------
+
+  @Post('register-device')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Register an Expo/FCM push token for the current user. Idempotent — re-registering the same token reactivates it.',
+  })
+  async registerDevice(
+    @CurrentUser('id') userId: string,
+    @Body() dto: RegisterDeviceDto,
+  ): Promise<{ success: true }> {
+    await this.pushService.registerToken(userId, dto.token, dto.platform, dto.deviceModel);
+    return { success: true };
+  }
+
+  @Delete('unregister-device')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Soft-disable a push token (sign-out, uninstall, opt-out). The row is kept for audit.',
+  })
+  async unregisterDevice(@Body() dto: UnregisterDeviceDto): Promise<{ success: true }> {
+    await this.pushService.unregisterToken(dto.token);
+    return { success: true };
   }
 }

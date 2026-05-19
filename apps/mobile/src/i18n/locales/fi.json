@@ -1031,7 +1031,9 @@
     "pushNotifications": "Push-ilmoitukset",
     "emailNotifications": "Sähköposti-ilmoitukset",
     "privacyAccount": "Yksityisyys ja tili",
-    "areYouSure": "Oletko varma?"
+    "areYouSure": "Oletko varma?",
+    "pushPermissionDenied": "Ilmoitukset on poistettu käytöstä tässä sovelluksessa. Ota ne käyttöön avaamalla Asetukset.",
+    "openSettings": "Avaa Asetukset"
   },
   "inquiries": {
     "title": "Tiedustelut",
@@ -1647,7 +1649,19 @@
     "empty": "Ei ilmoituksia",
     "emptyHint": "Ilmoituksesi näkyvät täällä",
     "markAllRead": "Merkitse kaikki luetuiksi",
-    "notification": "Ilmoitus"
+    "notification": "Ilmoitus",
+    "pushEnabled": "Push-ilmoitukset käytössä",
+    "pushDisabled": "Push-ilmoitukset pois käytöstä",
+    "permissionRequired": "Ilmoituslupa vaaditaan",
+    "permissionDeniedTitle": "Ilmoitukset pois päältä",
+    "permissionDeniedBody": "Ota ilmoitukset käyttöön laitteesi asetuksissa saadaksesi hälytyksiä viesteistä, tiedusteluista ja listauspäivityksistä.",
+    "newMessage": "Uusi viesti",
+    "newInquiry": "Uusi tiedustelu",
+    "listingApproved": "Listaus hyväksytty",
+    "listingRejected": "Ilmoitus hylätty",
+    "bookingUpdate": "Varauspäivitys",
+    "paymentUpdate": "Maksun päivitys",
+    "supportReply": "Tukivastaus"
   },
   "bookings": {
     "title": "Omat varaukset",

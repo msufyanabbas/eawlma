@@ -1031,7 +1031,9 @@
     "pushNotifications": "Stootkennisgewings",
     "emailNotifications": "E-poskennisgewings",
     "privacyAccount": "Privaatheid en rekening",
-    "areYouSure": "Is jy seker?"
+    "areYouSure": "Is jy seker?",
+    "pushPermissionDenied": "Kennisgewings is vir hierdie toepassing gedeaktiveer. Maak instellings oop om dit te aktiveer.",
+    "openSettings": "Maak Instellings"
   },
   "inquiries": {
     "title": "Navrae",
@@ -1041,7 +1043,7 @@
     "listing": "Advertensie",
     "contact": "Kontak",
     "date": "Datum",
-    "status": "Status",
+    "status": "oop Status",
     "statuses": {
       "new": "Nuut",
       "contacted": "Gekontak",
@@ -1647,7 +1649,19 @@
     "empty": "Geen kennisgewings",
     "emptyHint": "Jou waarskuwings sal hier verskyn",
     "markAllRead": "Merk alles as gelees",
-    "notification": "Kennisgewing"
+    "notification": "Kennisgewing",
+    "pushEnabled": "Stootkennisgewings geaktiveer",
+    "pushDisabled": "Stootkennisgewings gedeaktiveer",
+    "permissionRequired": "Kennisgewingstoestemming word vereis",
+    "permissionDeniedTitle": "Kennisgewings afgeskakel",
+    "permissionDeniedBody": "Aktiveer kennisgewings in jou toestelinstellings om waarskuwings vir boodskappe, navrae en lysbywerkings te ontvang.",
+    "newMessage": "Nuwe boodskap",
+    "newInquiry": "Nuwe navraag",
+    "listingApproved": "Notering goedgekeur",
+    "listingRejected": "Notering verwerp",
+    "bookingUpdate": "Besprekingsopdatering",
+    "paymentUpdate": "Betalingopdatering",
+    "supportReply": "Ondersteuningsantwoord"
   },
   "bookings": {
     "title": "My besprekings",

@@ -1031,7 +1031,9 @@
     "pushNotifications": "Pemberitahuan tolak",
     "emailNotifications": "Pemberitahuan e-mel",
     "privacyAccount": "Privasi & akaun",
-    "areYouSure": "Adakah anda pasti?"
+    "areYouSure": "Adakah anda pasti?",
+    "pushPermissionDenied": "Pemberitahuan dilumpuhkan untuk apl ini. Buka Tetapan untuk membolehkannya.",
+    "openSettings": "Buka Tetapan"
   },
   "inquiries": {
     "title": "Pertanyaan",
@@ -1647,7 +1649,19 @@
     "empty": "Tiada pemberitahuan",
     "emptyHint": "Makluman anda akan dipaparkan di sini",
     "markAllRead": "Tandai semua sebagai dibaca",
-    "notification": "Pemberitahuan"
+    "notification": "Pemberitahuan",
+    "pushEnabled": "Pemberitahuan tolak didayakan",
+    "pushDisabled": "Pemberitahuan tolak dilumpuhkan",
+    "permissionRequired": "Kebenaran pemberitahuan diperlukan",
+    "permissionDeniedTitle": "Pemberitahuan dimatikan",
+    "permissionDeniedBody": "Dayakan pemberitahuan dalam tetapan peranti anda untuk menerima makluman untuk mesej, pertanyaan dan kemas kini penyenaraian.",
+    "newMessage": "Mesej baharu",
+    "newInquiry": "Siasatan baharu",
+    "listingApproved": "Penyenaraian diluluskan",
+    "listingRejected": "Penyenaraian ditolak",
+    "bookingUpdate": "Kemas kini tempahan",
+    "paymentUpdate": "Kemas kini pembayaran",
+    "supportReply": "Balasan sokongan"
   },
   "bookings": {
     "title": "Tempahan Saya",

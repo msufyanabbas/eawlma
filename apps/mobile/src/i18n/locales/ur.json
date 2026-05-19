@@ -1068,7 +1068,9 @@
     "pushNotifications": "پش اطلاعات",
     "emailNotifications": "ای میل اطلاعات",
     "privacyAccount": "رازداری اور اکاؤنٹ",
-    "areYouSure": "کیا آپ کو یقین ہے؟"
+    "areYouSure": "کیا آپ کو یقین ہے؟",
+    "pushPermissionDenied": "اس ایپ کے لیے اطلاعات غیر فعال ہیں۔ انہیں فعال کرنے کے لیے ترتیبات کھولیں۔",
+    "openSettings": "کھولیں ترتیبات"
   },
   "inquiries": {
     "title": "استفسارات",
@@ -1659,7 +1661,19 @@
     "empty": "کوئی اطلاع نہیں",
     "emptyHint": "آپ کے انتباہات یہاں ظاہر ہوں گے",
     "markAllRead": "سبھی کو پڑھا ہوا نشان زد کریں",
-    "notification": "اطلاع"
+    "notification": "اطلاع",
+    "pushEnabled": "| پش نوٹیفیکیشنز کو فعال کر دیا گیا",
+    "pushDisabled": "پش اطلاعات غیر فعال",
+    "permissionRequired": "نوٹیفیکیشن کی اجازت درکار ہے",
+    "permissionDeniedTitle": "نوٹیفیکیشنز آف کر دیے گئے",
+    "permissionDeniedBody": "| پیغامات، استفسارات اور فہرست سازی کے اپ ڈیٹس کے لیے الرٹس موصول کرنے کے لیے اپنے آلے کی ترتیبات میں اطلاعات کو فعال کریں۔",
+    "newMessage": "نیا پیغام",
+    "newInquiry": "| نئی انکوائری",
+    "listingApproved": "فہرست منظور شدہ",
+    "listingRejected": "فہرست کو مسترد کر دیا گیا",
+    "bookingUpdate": "بکنگ اپ ڈیٹ",
+    "paymentUpdate": "| ادائیگی کی تازہ کاری",
+    "supportReply": "سپورٹ جواب"
   },
   "bookings": {
     "title": "| میری بکنگ",

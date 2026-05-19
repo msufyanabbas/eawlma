@@ -1031,7 +1031,9 @@
     "pushNotifications": "තල්ලු දැනුම්දීම්",
     "emailNotifications": "ඊමේල් දැනුම්දීම්",
     "privacyAccount": "පෞද්ගලිකත්වය සහ ගිණුම",
-    "areYouSure": "ඔයාට විශ්වාස ද?"
+    "areYouSure": "ඔයාට විශ්වාස ද?",
+    "pushPermissionDenied": "මෙම යෙදුම සඳහා දැනුම්දීම් අබල කර ඇත. ඒවා සබල කිරීමට සැකසීම් විවෘත කරන්න.",
+    "openSettings": "විවෘත සැකසුම්"
   },
   "inquiries": {
     "title": "විමසීම්",
@@ -1647,7 +1649,19 @@
     "empty": "දැනුම්දීම් නැත",
     "emptyHint": "ඔබේ ඇඟවීම් මෙහි දිස් වනු ඇත",
     "markAllRead": "සියල්ල කියවූ ලෙස ලකුණු කරන්න",
-    "notification": "දැනුම්දීම"
+    "notification": "දැනුම්දීම",
+    "pushEnabled": "තල්ලු දැනුම්දීම් සබල කර ඇත",
+    "pushDisabled": "තල්ලු දැනුම්දීම් අබල කර ඇත",
+    "permissionRequired": "දැනුම්දීම් අවසරය අවශ්‍යයි",
+    "permissionDeniedTitle": "දැනුම්දීම් අක්‍රියයි",
+    "permissionDeniedBody": "පණිවිඩ, විමසීම් සහ ලැයිස්තුගත කිරීමේ යාවත්කාලීන සඳහා ඇඟවීම් ලබා ගැනීමට ඔබගේ උපාංග සැකසීම් තුළ දැනුම්දීම් සබල කරන්න.",
+    "newMessage": "නව පණිවිඩයක්",
+    "newInquiry": "නව පරීක්ෂණයක්",
+    "listingApproved": "ලැයිස්තුගත කිරීම අනුමත කර ඇත",
+    "listingRejected": "ලැයිස්තුගත කිරීම ප්‍රතික්ෂේප විය",
+    "bookingUpdate": "වෙන්කිරීම් යාවත්කාලීන",
+    "paymentUpdate": "| ගෙවීම් යාවත්කාලීන",
+    "supportReply": "| සහාය පිළිතුර"
   },
   "bookings": {
     "title": "මගේ වෙන් කිරීම්",

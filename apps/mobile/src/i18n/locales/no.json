@@ -1031,7 +1031,9 @@
     "pushNotifications": "Push-varsler",
     "emailNotifications": "E-postvarsler",
     "privacyAccount": "Personvern og konto",
-    "areYouSure": "Er du sikker?"
+    "areYouSure": "Er du sikker?",
+    "pushPermissionDenied": "Varsler er deaktivert for denne appen. Åpne Innstillinger for å aktivere dem.",
+    "openSettings": "Åpne Innstillinger"
   },
   "inquiries": {
     "title": "Forespørsler",
@@ -1647,7 +1649,19 @@
     "empty": "Ingen varsler",
     "emptyHint": "Dine varsler vil vises her",
     "markAllRead": "Merk alle som lest",
-    "notification": "Melding"
+    "notification": "Melding",
+    "pushEnabled": "Push-varsler aktivert",
+    "pushDisabled": "Push-varsler deaktivert",
+    "permissionRequired": "Varslingstillatelse kreves",
+    "permissionDeniedTitle": "Varsler slått av",
+    "permissionDeniedBody": "Aktiver varsler i enhetsinnstillingene for å motta varsler om meldinger, forespørsler og oppføringsoppdateringer.",
+    "newMessage": "Ny melding",
+    "newInquiry": "Ny forespørsel",
+    "listingApproved": "Oppføring godkjent",
+    "listingRejected": "Oppføring avvist",
+    "bookingUpdate": "Bookingoppdatering",
+    "paymentUpdate": "Betalingsoppdatering",
+    "supportReply": "Støttesvar"
   },
   "bookings": {
     "title": "Mine bestillinger",

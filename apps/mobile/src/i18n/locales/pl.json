@@ -1031,7 +1031,9 @@
     "pushNotifications": "Powiadomienia push",
     "emailNotifications": "Powiadomienia e-mailowe",
     "privacyAccount": "Prywatność i konto",
-    "areYouSure": "Czy jesteś pewien?"
+    "areYouSure": "Czy jesteś pewien?",
+    "pushPermissionDenied": "Powiadomienia są wyłączone w tej aplikacji. Otwórz Ustawienia, aby je włączyć.",
+    "openSettings": "Otwórz Ustawienia"
   },
   "inquiries": {
     "title": "Zapytania",
@@ -1647,7 +1649,19 @@
     "empty": "Brak powiadomień",
     "emptyHint": "Twoje alerty pojawią się tutaj",
     "markAllRead": "Oznacz wszystkie jako przeczytane",
-    "notification": "Powiadomienie"
+    "notification": "Powiadomienie",
+    "pushEnabled": "Powiadomienia push włączone",
+    "pushDisabled": "Powiadomienia push wyłączone",
+    "permissionRequired": "Wymagane jest zezwolenie na powiadomienia",
+    "permissionDeniedTitle": "Powiadomienia wyłączone",
+    "permissionDeniedBody": "Włącz powiadomienia w ustawieniach urządzenia, aby otrzymywać powiadomienia o wiadomościach, zapytaniach i aktualizacjach ofert.",
+    "newMessage": "Nowa wiadomość",
+    "newInquiry": "Nowe zapytanie",
+    "listingApproved": "Lista zatwierdzona",
+    "listingRejected": "Lista odrzucona",
+    "bookingUpdate": "Aktualizacja rezerwacji",
+    "paymentUpdate": "Aktualizacja płatności",
+    "supportReply": "Odpowiedź wsparcia"
   },
   "bookings": {
     "title": "Moje rezerwacje",

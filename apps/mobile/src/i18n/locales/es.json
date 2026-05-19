@@ -1031,7 +1031,9 @@
     "pushNotifications": "Notificaciones push",
     "emailNotifications": "Notificaciones por correo electrónico",
     "privacyAccount": "Privacidad y cuenta",
-    "areYouSure": "¿Está seguro?"
+    "areYouSure": "¿Está seguro?",
+    "pushPermissionDenied": "Las notificaciones están deshabilitadas para esta aplicación. Abra Configuración para habilitarlos.",
+    "openSettings": "Abrir configuración"
   },
   "inquiries": {
     "title": "Consultas",
@@ -1647,7 +1649,19 @@
     "empty": "Sin notificaciones",
     "emptyHint": "Tus alertas aparecerán aquí",
     "markAllRead": "Marcar todo como leído",
-    "notification": "Notificación"
+    "notification": "Notificación",
+    "pushEnabled": "Notificaciones push habilitadas",
+    "pushDisabled": "Notificaciones push deshabilitadas",
+    "permissionRequired": "Se requiere permiso para notificaciones",
+    "permissionDeniedTitle": "Notificaciones desactivadas",
+    "permissionDeniedBody": "Habilite las notificaciones en la configuración de su dispositivo para recibir alertas de mensajes, consultas y actualizaciones de listados.",
+    "newMessage": "Nuevo mensaje",
+    "newInquiry": "Nueva consulta",
+    "listingApproved": "Listado aprobado",
+    "listingRejected": "Listado rechazado",
+    "bookingUpdate": "Actualización de reserva",
+    "paymentUpdate": "Actualización de pago",
+    "supportReply": "Respuesta de soporte"
   },
   "bookings": {
     "title": "Mis Reservas",

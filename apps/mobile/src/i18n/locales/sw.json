@@ -1031,7 +1031,9 @@
     "pushNotifications": "Arifa za kushinikiza",
     "emailNotifications": "Arifa za barua pepe",
     "privacyAccount": "Faragha na akaunti",
-    "areYouSure": "Je, una uhakika?"
+    "areYouSure": "Je, una uhakika?",
+    "pushPermissionDenied": "Arifa zimezimwa kwa programu hii. Fungua Mipangilio ili kuwasha.",
+    "openSettings": "Fungua Mipangilio"
   },
   "inquiries": {
     "title": "Maswali",
@@ -1647,7 +1649,19 @@
     "empty": "Hakuna arifa",
     "emptyHint": "Arifa zako zitaonekana hapa",
     "markAllRead": "Weka alama zote kama zimesomwa",
-    "notification": "Taarifa"
+    "notification": "Taarifa",
+    "pushEnabled": "Arifa zinazotumwa na programu hata wakati huitumii zimewashwa",
+    "pushDisabled": "Arifa zinazotumwa na programu hata wakati huitumii zimezimwa",
+    "permissionRequired": "Ruhusa ya arifa inahitajika",
+    "permissionDeniedTitle": "Arifa zimezimwa",
+    "permissionDeniedBody": "Washa arifa katika mipangilio ya kifaa chako ili kupokea arifa za ujumbe, maswali na masasisho ya orodha.",
+    "newMessage": "Ujumbe mpya",
+    "newInquiry": "Uchunguzi mpya",
+    "listingApproved": "Uorodheshaji umeidhinishwa",
+    "listingRejected": "Uorodheshaji umekataliwa",
+    "bookingUpdate": "Sasisho la kuhifadhi",
+    "paymentUpdate": "Sasisho la malipo",
+    "supportReply": "Jibu la usaidizi"
   },
   "bookings": {
     "title": "Uhifadhi Wangu",

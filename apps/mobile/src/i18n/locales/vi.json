@@ -1031,7 +1031,9 @@
     "pushNotifications": "Thông báo đẩy",
     "emailNotifications": "Thông báo qua email",
     "privacyAccount": "Quyền riêng tư và tài khoản",
-    "areYouSure": "Bạn có chắc không?"
+    "areYouSure": "Bạn có chắc không?",
+    "pushPermissionDenied": "Thông báo bị vô hiệu hóa cho ứng dụng này. Mở Cài đặt để kích hoạt chúng.",
+    "openSettings": "Mở Cài đặt"
   },
   "inquiries": {
     "title": "Yêu cầu",
@@ -1647,7 +1649,19 @@
     "empty": "Không có thông báo",
     "emptyHint": "Thông báo của bạn sẽ xuất hiện ở đây",
     "markAllRead": "Đánh dấu tất cả là đã đọc",
-    "notification": "Thông báo"
+    "notification": "Thông báo",
+    "pushEnabled": "Đã bật thông báo đẩy",
+    "pushDisabled": "Đã tắt thông báo đẩy",
+    "permissionRequired": "Cần có quyền thông báo",
+    "permissionDeniedTitle": "Đã tắt thông báo",
+    "permissionDeniedBody": "Bật thông báo trong cài đặt thiết bị của bạn để nhận thông báo về tin nhắn, yêu cầu và cập nhật danh sách.",
+    "newMessage": "Tin nhắn mới",
+    "newInquiry": "Yêu cầu mới",
+    "listingApproved": "Danh sách đã được phê duyệt",
+    "listingRejected": "Danh sách bị từ chối",
+    "bookingUpdate": "Cập nhật đặt chỗ",
+    "paymentUpdate": "Cập nhật thanh toán",
+    "supportReply": "Hỗ trợ trả lời"
   },
   "bookings": {
     "title": "Đặt chỗ của tôi",

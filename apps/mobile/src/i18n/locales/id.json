@@ -1031,7 +1031,9 @@
     "pushNotifications": "Pemberitahuan push",
     "emailNotifications": "Pemberitahuan email",
     "privacyAccount": "Privasi & akun",
-    "areYouSure": "Apa kamu yakin?"
+    "areYouSure": "Apa kamu yakin?",
+    "pushPermissionDenied": "Notifikasi dinonaktifkan untuk aplikasi ini. Buka Pengaturan untuk mengaktifkannya.",
+    "openSettings": "Buka Pengaturan"
   },
   "inquiries": {
     "title": "Pertanyaan",
@@ -1647,7 +1649,19 @@
     "empty": "Tidak ada pemberitahuan",
     "emptyHint": "Peringatan Anda akan muncul di sini",
     "markAllRead": "Tandai semua sebagai telah dibaca",
-    "notification": "Pemberitahuan"
+    "notification": "Pemberitahuan",
+    "pushEnabled": "Pemberitahuan push diaktifkan",
+    "pushDisabled": "Notifikasi push dinonaktifkan",
+    "permissionRequired": "Izin notifikasi diperlukan",
+    "permissionDeniedTitle": "Notifikasi dimatikan",
+    "permissionDeniedBody": "Aktifkan notifikasi di pengaturan perangkat Anda untuk menerima peringatan pesan, pertanyaan, dan pembaruan daftar.",
+    "newMessage": "Pesan baru",
+    "newInquiry": "Penyelidikan baru",
+    "listingApproved": "Daftar disetujui",
+    "listingRejected": "Daftar ditolak",
+    "bookingUpdate": "Pembaruan pemesanan",
+    "paymentUpdate": "Pembaruan pembayaran",
+    "supportReply": "Balasan dukungan"
   },
   "bookings": {
     "title": "Pemesanan Saya",

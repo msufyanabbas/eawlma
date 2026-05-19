@@ -1031,7 +1031,9 @@
     "pushNotifications": "Anında bildirimler",
     "emailNotifications": "E-posta bildirimleri",
     "privacyAccount": "Gizlilik ve hesap",
-    "areYouSure": "Emin misin?"
+    "areYouSure": "Emin misin?",
+    "pushPermissionDenied": "Bu uygulama için bildirimler devre dışı bırakıldı. Bunları etkinleştirmek için Ayarlar'ı açın.",
+    "openSettings": "Ayarları Aç"
   },
   "inquiries": {
     "title": "Sorular",
@@ -1647,7 +1649,19 @@
     "empty": "Bildirim yok",
     "emptyHint": "Uyarılarınız burada görünecek",
     "markAllRead": "Tümünü okundu olarak işaretle",
-    "notification": "Bildiri"
+    "notification": "Bildiri",
+    "pushEnabled": "Anında bildirimler etkinleştirildi",
+    "pushDisabled": "Anında bildirimler devre dışı bırakıldı",
+    "permissionRequired": "Bildirim izni gerekli",
+    "permissionDeniedTitle": "Bildirimler kapatıldı",
+    "permissionDeniedBody": "Mesajlar, sorular ve liste güncellemeleri konusunda uyarı almak için cihaz ayarlarınızda bildirimleri etkinleştirin.",
+    "newMessage": "Yeni mesaj",
+    "newInquiry": "Yeni sorgulama",
+    "listingApproved": "Listeleme onaylandı",
+    "listingRejected": "Listeleme reddedildi",
+    "bookingUpdate": "Rezervasyon güncellemesi",
+    "paymentUpdate": "Ödeme güncellemesi",
+    "supportReply": "Destek yanıtı"
   },
   "bookings": {
     "title": "Rezervasyonlarım",

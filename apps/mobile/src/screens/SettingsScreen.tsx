@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert,
+  View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert, Linking, Platform,
 } from 'react-native';
+import * as Notifications from 'expo-notifications';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
 import { useUIStore } from '../store/ui.store';
+import { NotificationService } from '../services/notifications.service';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import Header from '../components/Header';
 
@@ -24,8 +26,62 @@ export default function SettingsScreen({ navigation }: any) {
   const handleToggleDarkMode = () => {
     void toggleDarkMode(user?.id ?? null);
   };
-  const [pushEnabled, setPushEnabled] = useState(true);
+
+  // Push state mirrors the OS permission, not a UI-only flag. Reading on
+  // mount keeps the switch honest if the user toggled the permission from
+  // the system Settings app and came back.
+  const [pushEnabled, setPushEnabled] = useState(false);
+  const [pushBusy, setPushBusy] = useState(false);
   const [emailEnabled, setEmailEnabled] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    void Notifications.getPermissionsAsync().then((p) => {
+      if (mounted) setPushEnabled(p.status === 'granted');
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const handleTogglePush = async (next: boolean) => {
+    if (pushBusy) return;
+    setPushBusy(true);
+    try {
+      if (next) {
+        const token = await NotificationService.registerForPushNotifications();
+        if (token) {
+          setPushEnabled(true);
+        } else {
+          // Permission denied or token mint failed — surface the OS settings
+          // route so the user can flip it without hunting for the app entry.
+          setPushEnabled(false);
+          Alert.alert(
+            t('settings.pushNotifications'),
+            t('settings.pushPermissionDenied'),
+            [
+              { text: t('common.cancel'), style: 'cancel' },
+              {
+                text: t('settings.openSettings'),
+                onPress: () => {
+                  if (Platform.OS === 'ios') {
+                    void Linking.openURL('app-settings:');
+                  } else {
+                    void Linking.openSettings();
+                  }
+                },
+              },
+            ],
+          );
+        }
+      } else {
+        await NotificationService.unregisterDevice();
+        setPushEnabled(false);
+      }
+    } finally {
+      setPushBusy(false);
+    }
+  };
 
   const handleLogout = () => {
     Alert.alert(
@@ -81,7 +137,8 @@ export default function SettingsScreen({ navigation }: any) {
           icon="notifications-outline"
           label={t('settings.pushNotifications')}
           value={pushEnabled}
-          onValueChange={setPushEnabled}
+          onValueChange={handleTogglePush}
+          disabled={pushBusy}
           colors={colors}
           isRTL={isRTL}
           textAlign={textAlign}
@@ -175,7 +232,7 @@ function SectionLabel({ children, colors, textAlign }: any) {
   );
 }
 
-function SwitchRow({ icon, label, value, onValueChange, colors, isRTL, textAlign }: any) {
+function SwitchRow({ icon, label, value, onValueChange, disabled, colors, isRTL, textAlign }: any) {
   return (
     <View style={[
       styles.row,
@@ -193,6 +250,7 @@ function SwitchRow({ icon, label, value, onValueChange, colors, isRTL, textAlign
       <Switch
         value={value}
         onValueChange={onValueChange}
+        disabled={disabled}
         trackColor={{ false: colors.border, true: colors.primary }}
         thumbColor="#FFF"
       />

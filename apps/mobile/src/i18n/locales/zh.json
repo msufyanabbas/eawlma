@@ -1031,7 +1031,9 @@
     "pushNotifications": "推送通知",
     "emailNotifications": "电子邮件通知",
     "privacyAccount": "隐私和帐户",
-    "areYouSure": "你确定吗？"
+    "areYouSure": "你确定吗？",
+    "pushPermissionDenied": "此应用程序的通知已禁用。打开“设置”以启用它们。",
+    "openSettings": "打开设置"
   },
   "inquiries": {
     "title": "询盘",
@@ -1647,7 +1649,19 @@
     "empty": "无通知",
     "emptyHint": "您的提醒将出现在此处",
     "markAllRead": "全部标记为已读",
-    "notification": "通知"
+    "notification": "通知",
+    "pushEnabled": "已启用推送通知",
+    "pushDisabled": "推送通知已禁用",
+    "permissionRequired": "需要通知权限",
+    "permissionDeniedTitle": "通知已关闭",
+    "permissionDeniedBody": "在设备设置中启用通知以接收消息、查询和列表更新的提醒。",
+    "newMessage": "新消息",
+    "newInquiry": "新询价",
+    "listingApproved": "上市获批",
+    "listingRejected": "上市被拒绝",
+    "bookingUpdate": "预订更新",
+    "paymentUpdate": "付款更新",
+    "supportReply": "支持回复"
   },
   "bookings": {
     "title": "我的预订",

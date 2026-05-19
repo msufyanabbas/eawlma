@@ -6,6 +6,15 @@ import { NotificationChannel, NotificationType } from '@eawlma/shared-types';
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
 import { NotificationEntity } from './entities/notification.entity';
 import { UserEntity } from '../users/entities/user.entity';
+import { PushService } from './push.service';
+
+// Map a NotificationType to the Android channel id the mobile client created
+// in NotificationService.registerForPushNotifications(). iOS ignores this.
+function channelFor(type: NotificationType): string {
+  if (type === NotificationType.MESSAGE_RECEIVED) return 'messages';
+  if (type === NotificationType.INQUIRY_RECEIVED) return 'inquiries';
+  return 'default';
+}
 
 export interface CreateNotificationInput {
   userId: string;
@@ -25,6 +34,7 @@ export class NotificationsService {
     private readonly notifications: Repository<NotificationEntity>,
     @InjectRepository(UserEntity)
     private readonly users: Repository<UserEntity>,
+    private readonly pushService: PushService,
   ) {}
 
   /**
@@ -46,7 +56,20 @@ export class NotificationsService {
       body: input.body,
       data: input.data ?? {},
     });
-    return this.notifications.save(entity);
+    const saved = await this.notifications.save(entity);
+
+    // Best-effort push fanout. The user is already past the opt-out gate
+    // above, so we mirror the in-app notification to every registered
+    // device. Push failures are swallowed inside PushService — they must
+    // never break the save path that just persisted the canonical row.
+    void this.pushService.sendToUser(input.userId, {
+      title: input.title,
+      body: input.body,
+      data: { ...(input.data ?? {}), type: input.type, notificationId: saved.id },
+      channelId: channelFor(input.type),
+    });
+
+    return saved;
   }
 
   private async userAllowsType(userId: string, type: NotificationType): Promise<boolean> {

@@ -1031,7 +1031,9 @@
     "pushNotifications": "পুশ বিজ্ঞপ্তি",
     "emailNotifications": "ইমেল বিজ্ঞপ্তি",
     "privacyAccount": "গোপনীয়তা এবং অ্যাকাউন্ট",
-    "areYouSure": "আপনি কি নিশ্চিত?"
+    "areYouSure": "আপনি কি নিশ্চিত?",
+    "pushPermissionDenied": "এই অ্যাপের জন্য বিজ্ঞপ্তি অক্ষম করা হয়েছে। সেগুলি সক্ষম করতে সেটিংস খুলুন৷",
+    "openSettings": "সেটিংস খুলুন"
   },
   "inquiries": {
     "title": "জিজ্ঞাসা",
@@ -1647,7 +1649,19 @@
     "empty": "কোন বিজ্ঞপ্তি নেই",
     "emptyHint": "আপনার সতর্কতা এখানে প্রদর্শিত হবে",
     "markAllRead": "সব পড়া হিসেবে চিহ্নিত করুন",
-    "notification": "বিজ্ঞপ্তি"
+    "notification": "বিজ্ঞপ্তি",
+    "pushEnabled": "পুশ বিজ্ঞপ্তি সক্রিয় করা হয়েছে",
+    "pushDisabled": "পুশ বিজ্ঞপ্তি নিষ্ক্রিয়",
+    "permissionRequired": "বিজ্ঞপ্তি অনুমতি প্রয়োজন",
+    "permissionDeniedTitle": "বিজ্ঞপ্তি বন্ধ",
+    "permissionDeniedBody": "বার্তা, অনুসন্ধান এবং তালিকা আপডেটের জন্য সতর্কতা পেতে আপনার ডিভাইস সেটিংসে বিজ্ঞপ্তিগুলি সক্ষম করুন৷",
+    "newMessage": "নতুন বার্তা",
+    "newInquiry": "নতুন অনুসন্ধান",
+    "listingApproved": "তালিকা অনুমোদিত",
+    "listingRejected": "তালিকা প্রত্যাখ্যান করা হয়েছে",
+    "bookingUpdate": "বুকিং আপডেট",
+    "paymentUpdate": "পেমেন্ট আপডেট",
+    "supportReply": "সমর্থন উত্তর"
   },
   "bookings": {
     "title": "আমার বুকিং",

@@ -1031,7 +1031,9 @@
     "pushNotifications": "सूचनाएं धक्का",
     "emailNotifications": "ईमेल सूचनाएं",
     "privacyAccount": "गोपनीयता और खाता",
-    "areYouSure": "क्या आपको यकीन है?"
+    "areYouSure": "क्या आपको यकीन है?",
+    "pushPermissionDenied": "इस ऐप के लिए सूचनाएं अक्षम हैं. उन्हें सक्षम करने के लिए सेटिंग्स खोलें।",
+    "openSettings": "खुली सेटिंग"
   },
   "inquiries": {
     "title": "पूछताछ",
@@ -1647,7 +1649,19 @@
     "empty": "कोई सूचना नहीं",
     "emptyHint": "आपके अलर्ट यहां दिखाई देंगे",
     "markAllRead": "सभी को पढ़ा हुआ मार्क करें",
-    "notification": "अधिसूचना"
+    "notification": "अधिसूचना",
+    "pushEnabled": "पुश सूचनाएँ सक्षम",
+    "pushDisabled": "पुश सूचनाएँ अक्षम",
+    "permissionRequired": "अधिसूचना अनुमति आवश्यक है",
+    "permissionDeniedTitle": "सूचनाएं बंद कर दी गईं",
+    "permissionDeniedBody": "संदेशों, पूछताछ और लिस्टिंग अपडेट के लिए अलर्ट प्राप्त करने के लिए अपनी डिवाइस सेटिंग्स में सूचनाएं सक्षम करें।",
+    "newMessage": "नया सन्देश",
+    "newInquiry": "नई पूछताछ",
+    "listingApproved": "सूची स्वीकृत",
+    "listingRejected": "सूची अस्वीकृत",
+    "bookingUpdate": "बुकिंग अपडेट",
+    "paymentUpdate": "भुगतान अद्यतन",
+    "supportReply": "समर्थन उत्तर"
   },
   "bookings": {
     "title": "मेरी बुकिंग",

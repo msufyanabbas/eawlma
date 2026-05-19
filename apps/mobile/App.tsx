@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AppState, Text as RNText } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Notifications from 'expo-notifications';
+
+import { NotificationService } from './src/services/notifications.service';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,7 +16,7 @@ import {
   Tajawal_700Bold,
   Tajawal_800ExtraBold,
 } from '@expo-google-fonts/tajawal';
-import { QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { QueryClientProvider, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryClient } from './src/api/queryClient';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
@@ -277,8 +280,72 @@ export default function App() {
 function AppContent() {
   useWebSocket();
 
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const userId = useAuthStore((s) => s.user?.id);
+  const navigationRef = useRef<any>(null);
+  const queryClient = useQueryClient();
+
+  // Register / unregister the push token alongside auth state. Idempotent
+  // server-side, so re-firing this when the user object is rehydrated from
+  // SecureStore is fine.
+  useEffect(() => {
+    if (isAuthenticated && userId) {
+      void NotificationService.registerForPushNotifications();
+    }
+  }, [isAuthenticated, userId]);
+
+  // Wire the foreground + tap handlers. Foreground arrivals invalidate the
+  // bell-icon query so the badge updates without waiting for the next poll.
+  // The tap handler routes to the right screen via the notification's data
+  // payload (which the backend stamps with `type` in PushService).
+  useEffect(() => {
+    const handleTap = (data: Record<string, any> | undefined) => {
+      if (!navigationRef.current || !data) return;
+      const nav = navigationRef.current;
+      const type = String(data.type ?? '');
+      if (type === 'message_received' && data.conversationId) {
+        nav.navigate('Chat', {
+          conversationId: data.conversationId,
+          recipientName: data.senderName ?? '',
+        });
+      } else if (type === 'message_received') {
+        nav.navigate('Messages');
+      } else if (type === 'inquiry_received') {
+        nav.navigate('Inquiries');
+      } else if (type === 'listing_approved' || type === 'listing_rejected') {
+        nav.navigate('MyListings');
+      } else if (type.startsWith('booking_')) {
+        nav.navigate('Bookings');
+      } else if (type === 'commission' || type === 'deal_closed') {
+        nav.navigate('Commissions');
+      } else if (type === 'payment_succeeded' || type === 'payout') {
+        nav.navigate('Wallet');
+      } else if (type === 'support_reply') {
+        nav.navigate('Support');
+      } else {
+        nav.navigate('Notifications');
+      }
+    };
+
+    NotificationService.setupListeners(
+      () => {
+        queryClient.invalidateQueries({ queryKey: ['notifications'] });
+        queryClient.invalidateQueries({ queryKey: ['notifications-unread'] });
+      },
+      (response) => handleTap(response.notification.request.content.data as any),
+    );
+
+    // Cold-start path: if the user launched the app by tapping a notification,
+    // pick that up once nav is ready and route to the right screen.
+    void Notifications.getLastNotificationResponseAsync().then((response) => {
+      if (response) handleTap(response.notification.request.content.data as any);
+    });
+
+    return () => NotificationService.removeListeners();
+  }, [queryClient]);
+
   return (
-    <NavigationContainer linking={linking}>
+    <NavigationContainer ref={navigationRef} linking={linking}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="MainTabs" component={MainTabs} />
             <Stack.Screen name="Login" component={LoginScreen} />

@@ -1031,7 +1031,9 @@
     "pushNotifications": "Notificări push",
     "emailNotifications": "Notificări prin e-mail",
     "privacyAccount": "Confidențialitate și cont",
-    "areYouSure": "esti sigur?"
+    "areYouSure": "esti sigur?",
+    "pushPermissionDenied": "Notificările sunt dezactivate pentru această aplicație. Deschide Setări pentru a le activa.",
+    "openSettings": "Deschide Setări"
   },
   "inquiries": {
     "title": "Cereri",
@@ -1647,7 +1649,19 @@
     "empty": "Fără notificări",
     "emptyHint": "Alertele dvs. vor apărea aici",
     "markAllRead": "Marcați totul ca citit",
-    "notification": "Notificare"
+    "notification": "Notificare",
+    "pushEnabled": "Notificări push activate",
+    "pushDisabled": "Notificările push au fost dezactivate",
+    "permissionRequired": "Este necesară permisiunea de notificări",
+    "permissionDeniedTitle": "Notificări dezactivate",
+    "permissionDeniedBody": "Activați notificările în setările dispozitivului pentru a primi alerte pentru mesaje, întrebări și actualizări de listă.",
+    "newMessage": "Mesaj nou",
+    "newInquiry": "Întrebare nouă",
+    "listingApproved": "Listare aprobată",
+    "listingRejected": "Listare respinsă",
+    "bookingUpdate": "Actualizare rezervare",
+    "paymentUpdate": "Actualizare de plată",
+    "supportReply": "Răspuns de asistență"
   },
   "bookings": {
     "title": "Rezervările mele",

@@ -1031,7 +1031,9 @@
     "pushNotifications": "Mga push notification",
     "emailNotifications": "Mga notification sa email",
     "privacyAccount": "Privacy at account",
-    "areYouSure": "Sigurado ka ba?"
+    "areYouSure": "Sigurado ka ba?",
+    "pushPermissionDenied": "Naka-disable ang mga notification para sa app na ito. Buksan ang Mga Setting upang paganahin ang mga ito.",
+    "openSettings": "Buksan ang Mga Setting"
   },
   "inquiries": {
     "title": "Mga tanong",
@@ -1647,7 +1649,19 @@
     "empty": "Walang mga notification",
     "emptyHint": "Lalabas dito ang iyong mga alerto",
     "markAllRead": "Markahan ang lahat bilang nabasa na",
-    "notification": "Notification"
+    "notification": "Notification",
+    "pushEnabled": "Pinagana ang mga push notification",
+    "pushDisabled": "Na-disable ang mga push notification",
+    "permissionRequired": "Kinakailangan ang pahintulot sa mga notification",
+    "permissionDeniedTitle": "Naka-off ang mga notification",
+    "permissionDeniedBody": "Paganahin ang mga notification sa mga setting ng iyong device upang makatanggap ng mga alerto para sa mga mensahe, katanungan, at mga update sa listahan.",
+    "newMessage": "Bagong mensahe",
+    "newInquiry": "Bagong pagtatanong",
+    "listingApproved": "Inaprubahan ang listahan",
+    "listingRejected": "Tinanggihan ang listahan",
+    "bookingUpdate": "Update sa booking",
+    "paymentUpdate": "Update sa pagbabayad",
+    "supportReply": "Tugon sa suporta"
   },
   "bookings": {
     "title": "Aking Mga Booking",

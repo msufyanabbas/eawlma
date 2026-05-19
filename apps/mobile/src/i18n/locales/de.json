@@ -1031,7 +1031,9 @@
     "pushNotifications": "Push-Benachrichtigungen",
     "emailNotifications": "E-Mail-Benachrichtigungen",
     "privacyAccount": "Datenschutz & Konto",
-    "areYouSure": "Bist du sicher?"
+    "areYouSure": "Bist du sicher?",
+    "pushPermissionDenied": "Benachrichtigungen sind für diese App deaktiviert. Öffnen Sie die Einstellungen, um sie zu aktivieren.",
+    "openSettings": "Öffnen Sie Einstellungen"
   },
   "inquiries": {
     "title": "Anfragen",
@@ -1647,7 +1649,19 @@
     "empty": "Keine Benachrichtigungen",
     "emptyHint": "Ihre Benachrichtigungen werden hier angezeigt",
     "markAllRead": "Alle als gelesen markieren",
-    "notification": "Benachrichtigung"
+    "notification": "Benachrichtigung",
+    "pushEnabled": "Push-Benachrichtigungen aktiviert",
+    "pushDisabled": "Push-Benachrichtigungen deaktiviert",
+    "permissionRequired": "Benachrichtigungsberechtigung ist erforderlich",
+    "permissionDeniedTitle": "Benachrichtigungen deaktiviert",
+    "permissionDeniedBody": "Aktivieren Sie Benachrichtigungen in Ihren Geräteeinstellungen, um Benachrichtigungen für Nachrichten, Anfragen und Eintragsaktualisierungen zu erhalten.",
+    "newMessage": "Neue Nachricht",
+    "newInquiry": "Neue Anfrage",
+    "listingApproved": "Eintrag genehmigt",
+    "listingRejected": "Eintrag abgelehnt",
+    "bookingUpdate": "Buchungsaktualisierung",
+    "paymentUpdate": "Zahlungsaktualisierung",
+    "supportReply": "Support-Antwort"
   },
   "bookings": {
     "title": "Meine Buchungen",

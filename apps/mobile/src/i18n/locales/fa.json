@@ -1031,7 +1031,9 @@
     "pushNotifications": "اعلان های فشاری",
     "emailNotifications": "اعلان های ایمیل",
     "privacyAccount": "حریم خصوصی و حساب",
-    "areYouSure": "مطمئنی؟"
+    "areYouSure": "مطمئنی؟",
+    "pushPermissionDenied": "اعلان‌ها برای این برنامه غیرفعال هستند. تنظیمات را باز کنید تا فعال شوند.",
+    "openSettings": "تنظیمات را باز کنید"
   },
   "inquiries": {
     "title": "استعلام‌ها",
@@ -1647,7 +1649,19 @@
     "empty": "بدون اطلاعیه",
     "emptyHint": "هشدارهای شما در اینجا نمایش داده می شود",
     "markAllRead": "علامت گذاری همه به عنوان خوانده شده",
-    "notification": "اطلاعیه"
+    "notification": "اطلاعیه",
+    "pushEnabled": "اعلان‌های فشاری فعال شد",
+    "pushDisabled": "اعلان‌های فشاری غیرفعال است",
+    "permissionRequired": "مجوز اعلان ها لازم است",
+    "permissionDeniedTitle": "اعلان ها خاموش شد",
+    "permissionDeniedBody": "اعلان‌ها را در تنظیمات دستگاه خود فعال کنید تا هشدارهای مربوط به پیام‌ها، پرسش‌ها و به‌روزرسانی‌های فهرست را دریافت کنید.",
+    "newMessage": "پیام جدید",
+    "newInquiry": "استعلام جدید",
+    "listingApproved": "لیست تایید شد",
+    "listingRejected": "فهرست رد شد",
+    "bookingUpdate": "به روز رسانی رزرو",
+    "paymentUpdate": "به روز رسانی پرداخت",
+    "supportReply": "پاسخ پشتیبانی"
   },
   "bookings": {
     "title": "رزروهای من",

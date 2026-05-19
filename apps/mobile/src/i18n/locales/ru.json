@@ -1031,7 +1031,9 @@
     "pushNotifications": "Push-уведомления",
     "emailNotifications": "Уведомления по электронной почте",
     "privacyAccount": "Конфиденциальность и учетная запись",
-    "areYouSure": "Вы уверены?"
+    "areYouSure": "Вы уверены?",
+    "pushPermissionDenied": "Уведомления для этого приложения отключены. Откройте «Настройки», чтобы включить их.",
+    "openSettings": "Открыть настройки"
   },
   "inquiries": {
     "title": "Запросы",
@@ -1647,7 +1649,19 @@
     "empty": "Нет уведомлений",
     "emptyHint": "Ваши оповещения появятся здесь",
     "markAllRead": "Отметить все как прочитанное",
-    "notification": "Уведомление"
+    "notification": "Уведомление",
+    "pushEnabled": "Push-уведомления включены",
+    "pushDisabled": "Push-уведомления отключены",
+    "permissionRequired": "Требуется разрешение на уведомления.",
+    "permissionDeniedTitle": "Уведомления отключены",
+    "permissionDeniedBody": "Включите уведомления в настройках вашего устройства, чтобы получать оповещения о сообщениях, запросах и обновлениях списков.",
+    "newMessage": "Новое сообщение",
+    "newInquiry": "Новый запрос",
+    "listingApproved": "Объявление одобрено",
+    "listingRejected": "Объявление отклонено",
+    "bookingUpdate": "Обновление бронирования",
+    "paymentUpdate": "Обновление платежа",
+    "supportReply": "Ответ поддержки"
   },
   "bookings": {
     "title": "Мои бронирования",

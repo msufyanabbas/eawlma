@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import * as SecureStore from 'expo-secure-store';
 
+import { NotificationService } from '../services/notifications.service';
+
 export interface User {
   id: string;
   firstName: string;
@@ -32,6 +34,14 @@ export const useAuthStore = create<AuthState>((set) => ({
   setToken: (token) => set({ token }),
 
   logout: async () => {
+    // Unregister the push token first so the backend stops sending pushes
+    // to this device. Failure here must NOT block logout — the user has
+    // already pressed Sign out.
+    try {
+      await NotificationService.unregisterDevice();
+    } catch {
+      /* non-fatal */
+    }
     try {
       await SecureStore.deleteItemAsync('accessToken');
       await SecureStore.deleteItemAsync('refreshToken');
