@@ -1780,7 +1780,8 @@
     "actor": "Akteur",
     "action": "Aksie",
     "entity": "Entiteit",
-    "changed": "Veranderde velde"
+    "changed": "Veranderde velde",
+    "noMatches": "Geen ooreenstemmende oudit-inskrywings"
   },
   "adminAnalytics": {
     "trafficSources": "Verkeersbronne",
@@ -1849,5 +1850,27 @@
     "txSale": "Verkoop",
     "txRent": "Huur",
     "bedsAny": "Enige"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Lys nie gevind nie",
+    "helmetTitle": "Vergelyk lyste"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Kommissies",
+    "revenueByMonth": "Inkomste per maand"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Uitsigte oor tyd"
   }
 }

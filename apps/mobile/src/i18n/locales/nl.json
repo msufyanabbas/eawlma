@@ -841,7 +841,7 @@
       "cornerUnit": "Hoekelement"
     },
     "shortTermAmenity": {
-      "wifi": "Wifi",
+      "wifi": "Wi-Fi",
       "pool": "Zwembad",
       "parking": "Parkeren",
       "breakfast": "Ontbijt",
@@ -1780,7 +1780,8 @@
     "actor": "Acteur",
     "action": "Actie",
     "entity": "Entiteit",
-    "changed": "Gewijzigde velden"
+    "changed": "Gewijzigde velden",
+    "noMatches": "Geen overeenkomende auditgegevens"
   },
   "adminAnalytics": {
     "trafficSources": "Verkeersbronnen",
@@ -1849,5 +1850,27 @@
     "txSale": "Uitverkoop",
     "txRent": "Huur",
     "bedsAny": "Elke"
+  },
+  "cities": {
+    "riyadh": "Riyad",
+    "jeddah": "Djedda",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Lijst niet gevonden",
+    "helmetTitle": "Vergelijk aanbiedingen"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Commissies",
+    "revenueByMonth": "Omzet per maand"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analyse",
+    "viewsOverTime": "Weergaven in de loop van de tijd"
   }
 }

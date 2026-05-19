@@ -1780,7 +1780,8 @@
     "actor": "නළුවා",
     "action": "ක්‍රියාව",
     "entity": "ආයතනය",
-    "changed": "වෙනස් කළ ක්ෂේත්ර"
+    "changed": "වෙනස් කළ ක්ෂේත්ර",
+    "noMatches": "ගැළපෙන විගණන ඇතුළත් කිරීම් නොමැත"
   },
   "adminAnalytics": {
     "trafficSources": "රථවාහන මූලාශ්ර",
@@ -1849,5 +1850,27 @@
     "txSale": "විකිණීම",
     "txRent": "කුලියට",
     "bedsAny": "ඕනෑම"
+  },
+  "cities": {
+    "riyadh": "රියාද්",
+    "jeddah": "ජෙඩා",
+    "dammam": "දාමම්",
+    "mecca": "මක්කම",
+    "medina": "මදීනා",
+    "khobar": "කොබාර්",
+    "taif": "තායිෆ්",
+    "buraidah": "බුරයිදා"
+  },
+  "listingDetailPage": {
+    "notFound": "ලැයිස්තුගත කිරීම හමු නොවීය",
+    "helmetTitle": "ලැයිස්තුගත කිරීම් සසඳන්න"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "කොමිෂන් සභා",
+    "revenueByMonth": "මාසය අනුව ආදායම"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "විශ්ලේෂණ",
+    "viewsOverTime": "කාලයත් සමඟ බැලීම්"
   }
 }

@@ -150,7 +150,7 @@ export function ComparePage() {
   return (
     <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 4, md: 6 } }}>
       <Helmet>
-        <title>Compare listings — {t('app.name')}</title>
+        <title>{t('listingDetailPage.helmetTitle')} — {t('app.name')}</title>
       </Helmet>
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 3 }}>

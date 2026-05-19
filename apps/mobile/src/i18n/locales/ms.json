@@ -1780,7 +1780,8 @@
     "actor": "Pelakon",
     "action": "Tindakan",
     "entity": "Entiti",
-    "changed": "Medan Berubah"
+    "changed": "Medan Berubah",
+    "noMatches": "Tiada entri audit yang sepadan"
   },
   "adminAnalytics": {
     "trafficSources": "Sumber Trafik",
@@ -1849,5 +1850,27 @@
     "txSale": "Jualan",
     "txRent": "Sewa",
     "bedsAny": "Sebarang"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekah",
+    "medina": "Madinah",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Penyenaraian tidak ditemui",
+    "helmetTitle": "Bandingkan penyenaraian"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Komisen",
+    "revenueByMonth": "Hasil mengikut bulan"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analitis",
+    "viewsOverTime": "Tontonan dari semasa ke semasa"
   }
 }

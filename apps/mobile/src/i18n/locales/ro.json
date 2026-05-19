@@ -1780,7 +1780,8 @@
     "actor": "Actorul",
     "action": "Acțiune",
     "entity": "Entitatea",
-    "changed": "Câmpuri modificate"
+    "changed": "Câmpuri modificate",
+    "noMatches": "Nu există intrări de audit care se potrivesc"
   },
   "adminAnalytics": {
     "trafficSources": "Surse de trafic",
@@ -1849,5 +1850,27 @@
     "txSale": "Vanzare",
     "txRent": "Închiriere",
     "bedsAny": "Orice"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Lista nu a fost găsită",
+    "helmetTitle": "Compara listele"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Comisioane",
+    "revenueByMonth": "Venituri pe lună"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Vizualizări de-a lungul timpului"
   }
 }

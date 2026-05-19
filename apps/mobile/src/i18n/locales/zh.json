@@ -1780,7 +1780,8 @@
     "actor": "演员",
     "action": "行动",
     "entity": "实体",
-    "changed": "更改字段"
+    "changed": "更改字段",
+    "noMatches": "没有匹配的审核条目"
   },
   "adminAnalytics": {
     "trafficSources": "流量来源",
@@ -1849,5 +1850,27 @@
     "txSale": "销售",
     "txRent": "租",
     "bedsAny": "任何"
+  },
+  "cities": {
+    "riyadh": "利雅得",
+    "jeddah": "吉达",
+    "dammam": "达曼",
+    "mecca": "麦加",
+    "medina": "麦地那",
+    "khobar": "科巴尔",
+    "taif": "塔伊夫",
+    "buraidah": "布赖代"
+  },
+  "listingDetailPage": {
+    "notFound": "未找到列表",
+    "helmetTitle": "比较列表"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "佣金",
+    "revenueByMonth": "按月收入"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "分析",
+    "viewsOverTime": "随时间推移的观看次数"
   }
 }

@@ -186,7 +186,7 @@ export function AuditLogPage() {
                 <TableRow key={i}><TableCell colSpan={6}><Skeleton /></TableCell></TableRow>
               ))
             ) : (audit?.data?.length ?? 0) === 0 ? (
-              <TableRow><TableCell colSpan={6} sx={{ py: 4, textAlign: 'center', color: 'text.secondary' }}>No matching audit entries</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} sx={{ py: 4, textAlign: 'center', color: 'text.secondary' }}>{t('adminAudit.noMatches')}</TableCell></TableRow>
             ) : (
               (audit?.data ?? []).map((row) => {
                 const isOpen = expanded.has(row.id);

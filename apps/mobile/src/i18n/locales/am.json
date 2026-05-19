@@ -1780,7 +1780,8 @@
     "actor": "ተዋናይ",
     "action": "ድርጊት",
     "entity": "አካል",
-    "changed": "የተቀየሩ መስኮች"
+    "changed": "የተቀየሩ መስኮች",
+    "noMatches": "ምንም ተዛማጅ የኦዲት ግቤቶች የሉም"
   },
   "adminAnalytics": {
     "trafficSources": "የትራፊክ ምንጮች",
@@ -1849,5 +1850,27 @@
     "txSale": "ሽያጭ",
     "txRent": "ይከራዩ",
     "bedsAny": "ማንኛውም"
+  },
+  "cities": {
+    "riyadh": "ሪያድ",
+    "jeddah": "ጄዳህ",
+    "dammam": "ድማ",
+    "mecca": "መካ",
+    "medina": "መዲና",
+    "khobar": "ኮባር",
+    "taif": "ጣኢፍ",
+    "buraidah": "ቡራይዳ"
+  },
+  "listingDetailPage": {
+    "notFound": "ዝርዝር አልተገኘም።",
+    "helmetTitle": "ዝርዝሮችን አወዳድር"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "ኮሚሽኖች",
+    "revenueByMonth": "ገቢ በወር"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "ትንታኔ",
+    "viewsOverTime": "በጊዜ ሂደት እይታዎች"
   }
 }

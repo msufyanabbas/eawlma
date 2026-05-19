@@ -653,7 +653,7 @@
       "properties": "Ejendomme",
       "agents": "Verificerede mæglere",
       "cities": "Byer",
-      "support": "Support"
+      "support": "Støtte"
     },
     "appAbout": "Om appen",
     "appDescription": "Eawlma er en ejendomsplatform, der forbinder købere og lejere med betroede agenter i hele Saudi-Arabien. Oplev din perfekte ejendom, book et kort ophold, og chat direkte med agenter.",
@@ -1780,7 +1780,8 @@
     "actor": "Skuespiller",
     "action": "Handling",
     "entity": "Enhed",
-    "changed": "Ændrede felter"
+    "changed": "Ændrede felter",
+    "noMatches": "Ingen matchende revisionsposter"
   },
   "adminAnalytics": {
     "trafficSources": "Trafikkilder",
@@ -1849,5 +1850,27 @@
     "txSale": "Udsalg",
     "txRent": "Leje",
     "bedsAny": "Enhver"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Fortegnelse ikke fundet",
+    "helmetTitle": "Sammenlign lister"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Kommissioner",
+    "revenueByMonth": "Omsætning pr. måned"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Visninger over tid"
   }
 }

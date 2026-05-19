@@ -1780,7 +1780,8 @@
     "actor": "배우",
     "action": "행동",
     "entity": "실재",
-    "changed": "변경된 필드"
+    "changed": "변경된 필드",
+    "noMatches": "일치하는 감사 항목이 없습니다."
   },
   "adminAnalytics": {
     "trafficSources": "트래픽 소스",
@@ -1849,5 +1850,27 @@
     "txSale": "판매",
     "txRent": "임차료",
     "bedsAny": "어느"
+  },
+  "cities": {
+    "riyadh": "리야드",
+    "jeddah": "제다",
+    "dammam": "담맘",
+    "mecca": "메카",
+    "medina": "메디나",
+    "khobar": "코바르",
+    "taif": "타이프",
+    "buraidah": "부라이다"
+  },
+  "listingDetailPage": {
+    "notFound": "목록을 찾을 수 없습니다",
+    "helmetTitle": "목록 비교"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "커미션",
+    "revenueByMonth": "월별 수익"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "해석학",
+    "viewsOverTime": "시간 경과에 따른 조회수"
   }
 }

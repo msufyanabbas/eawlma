@@ -1780,7 +1780,8 @@
     "actor": "Ator",
     "action": "Ação",
     "entity": "Entidade",
-    "changed": "Campos alterados"
+    "changed": "Campos alterados",
+    "noMatches": "Nenhuma entrada de auditoria correspondente"
   },
   "adminAnalytics": {
     "trafficSources": "Fontes de tráfego",
@@ -1849,5 +1850,27 @@
     "txSale": "Oferta",
     "txRent": "Aluguel",
     "bedsAny": "Qualquer"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jidá",
+    "dammam": "Droga",
+    "mecca": "Meca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Listagem não encontrada",
+    "helmetTitle": "Comparar listagens"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Comissões",
+    "revenueByMonth": "Receita por mês"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Análise",
+    "viewsOverTime": "Visualizações ao longo do tempo"
   }
 }

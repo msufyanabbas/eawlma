@@ -1780,7 +1780,8 @@
     "actor": "שחקן",
     "action": "פעולה",
     "entity": "ישות",
-    "changed": "שדות השתנו"
+    "changed": "שדות השתנו",
+    "noMatches": "אין ערכי ביקורת תואמים"
   },
   "adminAnalytics": {
     "trafficSources": "מקורות תנועה",
@@ -1849,5 +1850,27 @@
     "txSale": "מבצע",
     "txRent": "השכרה",
     "bedsAny": "כל"
+  },
+  "cities": {
+    "riyadh": "ריאד",
+    "jeddah": "ג'דה",
+    "dammam": "Dammam",
+    "mecca": "מכה",
+    "medina": "מדינה",
+    "khobar": "חובר",
+    "taif": "טאיף",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "הרישום לא נמצא",
+    "helmetTitle": "השווה רישומים"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "עמלות",
+    "revenueByMonth": "הכנסה לפי חודש"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "צפיות לאורך זמן"
   }
 }

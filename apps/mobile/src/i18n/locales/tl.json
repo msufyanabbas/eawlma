@@ -1780,7 +1780,8 @@
     "actor": "Artista",
     "action": "Aksyon",
     "entity": "Entity",
-    "changed": "Mga Binagong Field"
+    "changed": "Mga Binagong Field",
+    "noMatches": "Walang tumutugmang mga entry sa pag-audit"
   },
   "adminAnalytics": {
     "trafficSources": "Mga Pinagmumulan ng Trapiko",
@@ -1849,5 +1850,27 @@
     "txSale": "Sale",
     "txRent": "Rentahan",
     "bedsAny": "Anumang"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Hindi nahanap ang listahan",
+    "helmetTitle": "Ihambing ang mga listahan"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Mga komisyon",
+    "revenueByMonth": "Kita ayon sa buwan"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Mga view sa paglipas ng panahon"
   }
 }

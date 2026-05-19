@@ -299,7 +299,7 @@ export function ListingDetailPage() {
             mx: 'auto',
           }}
         >
-          <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>Listing not found</Typography>
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>{t('listingDetailPage.notFound')}</Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
             This property may have been removed or the link is no longer valid.
           </Typography>
@@ -915,7 +915,7 @@ export function ListingDetailPage() {
                 {agent?.isSuperhost && (
                   <Chip
                     icon={<StarIcon sx={{ fontSize: 14, color: '#FFFFFF !important' }} />}
-                    label={`${t('booking.superhost', { defaultValue: 'Superhost' })} / سوبر هوست`}
+                    label={t('booking.superhost', { defaultValue: 'Superhost' })}
                     size="small"
                     sx={{
                       mb: 1,

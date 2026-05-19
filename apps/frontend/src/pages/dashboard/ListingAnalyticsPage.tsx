@@ -104,7 +104,7 @@ export function ListingAnalyticsPage() {
   return (
     <DashboardLayout>
       <Helmet>
-        <title>Analytics — {listing?.referenceCode ?? ''}</title>
+        <title>{t('listingAnalytics.helmetTitle')} — {listing?.referenceCode ?? ''}</title>
       </Helmet>
 
       <PageHeader
@@ -147,7 +147,7 @@ export function ListingAnalyticsPage() {
 
       {/* Views over time */}
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>Views over time</Typography>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>{t('listingAnalytics.viewsOverTime')}</Typography>
         {viewsQuery.isLoading ? (
           <Skeleton variant="rectangular" height={300} />
         ) : (

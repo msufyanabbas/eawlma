@@ -750,7 +750,7 @@
       "buildingNumber": "Byggnadsnr.",
       "postalCode": "Postnummer",
       "pinPrompt": "Släpp en nål för att ställa in den exakta platsen",
-      "pinLabel": "Pin",
+      "pinLabel": "Stift",
       "mapUnavailable": "Kartnålsväljaren är inte tillgänglig. Koordinaterna faller tillbaka till {{lat}}, {{lng}}."
     },
     "media": "Media",
@@ -1780,7 +1780,8 @@
     "actor": "Skådespelare",
     "action": "Åtgärd",
     "entity": "Entitet",
-    "changed": "Ändrade fält"
+    "changed": "Ändrade fält",
+    "noMatches": "Inga matchande revisionsposter"
   },
   "adminAnalytics": {
     "trafficSources": "Trafikkällor",
@@ -1829,7 +1830,7 @@
     "forRent": "Uthyres",
     "apartments": "Lägenheter",
     "villas": "Villor",
-    "land": "Land",
+    "land": "Landa",
     "chalets": "Chalets",
     "farms": "Gårdar",
     "restHouses": "Resthus",
@@ -1849,5 +1850,27 @@
     "txSale": "Försäljning",
     "txRent": "Hyr",
     "bedsAny": "Alla"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Listan hittades inte",
+    "helmetTitle": "Jämför listor"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Provisioner",
+    "revenueByMonth": "Intäkter per månad"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Visningar över tid"
   }
 }

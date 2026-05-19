@@ -1780,7 +1780,8 @@
     "actor": "Attore",
     "action": "Azione",
     "entity": "Entità",
-    "changed": "Campi modificati"
+    "changed": "Campi modificati",
+    "noMatches": "Nessuna voce di controllo corrispondente"
   },
   "adminAnalytics": {
     "trafficSources": "Sorgenti di traffico",
@@ -1795,7 +1796,7 @@
     "maxGuests": "Ospiti massimi",
     "checkIn": "Arrivo",
     "checkInFrom": "dalle {{time}}",
-    "checkOut": "Check-out",
+    "checkOut": "Guardare",
     "checkOutBy": "entro le {{time}}",
     "cancellation": "Cancellazione",
     "whatThisPlaceOffers": "Cosa offre questo posto"
@@ -1849,5 +1850,27 @@
     "txSale": "Vendita",
     "txRent": "Affitta",
     "bedsAny": "Qualsiasi"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jeddah",
+    "dammam": "Maledizione",
+    "mecca": "La Mecca",
+    "medina": "Medina",
+    "khobar": "Chobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Annuncio non trovato",
+    "helmetTitle": "Confronta elenchi"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Commissioni",
+    "revenueByMonth": "Entrate per mese"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analitica",
+    "viewsOverTime": "Visualizzazioni nel tempo"
   }
 }

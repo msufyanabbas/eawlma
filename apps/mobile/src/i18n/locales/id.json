@@ -1780,7 +1780,8 @@
     "actor": "Aktor",
     "action": "Tindakan",
     "entity": "Kesatuan",
-    "changed": "Bidang yang Diubah"
+    "changed": "Bidang yang Diubah",
+    "noMatches": "Tidak ada entri audit yang cocok"
   },
   "adminAnalytics": {
     "trafficSources": "Sumber Lalu Lintas",
@@ -1849,5 +1850,27 @@
     "txSale": "Penjualan",
     "txRent": "Menyewa",
     "bedsAny": "Setiap"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Sial",
+    "mecca": "Mekah",
+    "medina": "Madinah",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Daftar tidak ditemukan",
+    "helmetTitle": "Bandingkan daftar"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Komisi",
+    "revenueByMonth": "Pendapatan per bulan"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analisis",
+    "viewsOverTime": "Tampilan dari waktu ke waktu"
   }
 }

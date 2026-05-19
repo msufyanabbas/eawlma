@@ -340,7 +340,7 @@
     "filter": "ફિલ્ટર",
     "submit": "સબમિટ કરો",
     "language": "ભાષા",
-    "arabic": "| العربية",
+    "arabic": "العربية",
     "english": "| અંગ્રેજી",
     "back": "પાછળ",
     "next": "આગળ",
@@ -1780,7 +1780,8 @@
     "actor": "| અભિનેતા",
     "action": "| ક્રિયા",
     "entity": "એન્ટિટી",
-    "changed": "બદલાયેલ ક્ષેત્રો"
+    "changed": "બદલાયેલ ક્ષેત્રો",
+    "noMatches": "કોઈ મેળ ખાતી ઓડિટ એન્ટ્રીઓ નથી"
   },
   "adminAnalytics": {
     "trafficSources": "ટ્રાફિક સ્ત્રોતો",
@@ -1849,5 +1850,27 @@
     "txSale": "વેચાણ",
     "txRent": "ભાડે",
     "bedsAny": "કોઈપણ"
+  },
+  "cities": {
+    "riyadh": "રિયાધ",
+    "jeddah": "જેદ્દાહ",
+    "dammam": "| દમ્મામ",
+    "mecca": "મક્કા",
+    "medina": "| મદિના",
+    "khobar": "ખોબર",
+    "taif": "તૈફ",
+    "buraidah": "| બુરાઈદાહ"
+  },
+  "listingDetailPage": {
+    "notFound": "| લિસ્ટિંગ મળ્યું નથી",
+    "helmetTitle": "સૂચિઓની સરખામણી કરો"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "કમિશન્સ",
+    "revenueByMonth": "| મહિના દ્વારા આવક"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "એનાલિટિક્સ",
+    "viewsOverTime": "| સમય જતાં દૃશ્યો"
   }
 }

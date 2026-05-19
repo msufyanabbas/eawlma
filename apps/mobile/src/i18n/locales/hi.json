@@ -1780,7 +1780,8 @@
     "actor": "अभिनेता",
     "action": "कार्रवाई",
     "entity": "इकाई",
-    "changed": "फ़ील्ड परिवर्तित"
+    "changed": "फ़ील्ड परिवर्तित",
+    "noMatches": "कोई मेल खाती ऑडिट प्रविष्टियाँ नहीं"
   },
   "adminAnalytics": {
     "trafficSources": "यातायात स्रोत",
@@ -1849,5 +1850,27 @@
     "txSale": "बिक्री",
     "txRent": "किराया",
     "bedsAny": "कोई"
+  },
+  "cities": {
+    "riyadh": "रियाद",
+    "jeddah": "जेद्दा",
+    "dammam": "DAMMAM",
+    "mecca": "मक्का",
+    "medina": "मेडिना",
+    "khobar": "खोबर",
+    "taif": "तैफ",
+    "buraidah": "बुरैदाह"
+  },
+  "listingDetailPage": {
+    "notFound": "सूची नहीं मिली",
+    "helmetTitle": "लिस्टिंग की तुलना करें"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "आयोगों",
+    "revenueByMonth": "महीने के हिसाब से राजस्व"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "एनालिटिक्स",
+    "viewsOverTime": "समय के साथ दृश्य"
   }
 }

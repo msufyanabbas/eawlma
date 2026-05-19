@@ -340,7 +340,7 @@
     "filter": "फिल्टर",
     "submit": "पेश गर्नुहोस्",
     "language": "भाषा",
-    "arabic": "| العربية",
+    "arabic": "العربية",
     "english": "अंग्रेजी",
     "back": "पछाडि",
     "next": "अर्को",
@@ -379,7 +379,7 @@
     "beds": "बेडहरू",
     "baths": "बाथहरू",
     "area": "क्षेत्रफल",
-    "areaUnit": "| m²",
+    "areaUnit": "m²",
     "price": "मूल्य",
     "pricePerSqm": "प्रति m² मूल्य",
     "currency": "SAR",
@@ -841,7 +841,7 @@
       "cornerUnit": "कुना एकाई"
     },
     "shortTermAmenity": {
-      "wifi": "| Wi-Fi",
+      "wifi": "Wi-Fi",
       "pool": "पोखरी",
       "parking": "पार्किङ",
       "breakfast": "बिहानको खाजा",
@@ -1151,8 +1151,8 @@
     "bulkApproveConfirm": "सबै अनुमोदन गर्नुहोस्",
     "actionFailed": "एक मध्यस्थता कार्य असफल भयो — फेरि प्रयास गर्नुहोस्।",
     "preview": {
-      "bedroomsShort": "{{गणना}} BR",
-      "bathroomsShort": "{{गणना}} BA",
+      "bedroomsShort": "{{count}} BR",
+      "bathroomsShort": "{{count}} BA",
       "vrTourAvailable": "VR टुर उपलब्ध",
       "vrTourSection": "VR / ३६०° टुर",
       "locationSection": "स्थान",
@@ -1780,7 +1780,8 @@
     "actor": "अभिनेता",
     "action": "कार्य",
     "entity": "संस्था",
-    "changed": "परिवर्तन गरिएका क्षेत्रहरू"
+    "changed": "परिवर्तन गरिएका क्षेत्रहरू",
+    "noMatches": "कुनै मिल्दो अडिट प्रविष्टिहरू छैनन्"
   },
   "adminAnalytics": {
     "trafficSources": "ट्राफिक स्रोतहरू",
@@ -1849,5 +1850,27 @@
     "txSale": "बिक्री",
     "txRent": "भाडा",
     "bedsAny": "कुनै पनि"
+  },
+  "cities": {
+    "riyadh": "रियाद",
+    "jeddah": "जेद्दा",
+    "dammam": "दमाम",
+    "mecca": "मक्का",
+    "medina": "मदिना",
+    "khobar": "खोबर",
+    "taif": "ताइफ",
+    "buraidah": "बुरैदाह"
+  },
+  "listingDetailPage": {
+    "notFound": "सूची फेला परेन",
+    "helmetTitle": "सूचीहरू तुलना गर्नुहोस्"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "आयोगहरू",
+    "revenueByMonth": "महिना अनुसार राजस्व"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "विश्लेषण",
+    "viewsOverTime": "समयसँगै हेराइहरू"
   }
 }

@@ -1780,7 +1780,8 @@
     "actor": "Diễn viên",
     "action": "Hoạt động",
     "entity": "thực thể",
-    "changed": "Trường đã thay đổi"
+    "changed": "Trường đã thay đổi",
+    "noMatches": "Không có mục kiểm tra phù hợp"
   },
   "adminAnalytics": {
     "trafficSources": "Nguồn lưu lượng truy cập",
@@ -1849,5 +1850,27 @@
     "txSale": "Doanh thu",
     "txRent": "Thuê",
     "bedsAny": "Bất kì"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Thánh địa Mecca",
+    "medina": "Medina",
+    "khobar": "khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Không tìm thấy danh sách",
+    "helmetTitle": "So sánh danh sách"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Hoa hồng",
+    "revenueByMonth": "Doanh thu theo tháng"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Phân tích",
+    "viewsOverTime": "Lượt xem theo thời gian"
   }
 }

@@ -31,15 +31,19 @@ import { SECTION } from '@/theme/layout';
 // Constants — classifieds layout, Eawlma palette
 // ------------------------------------------------------------------
 
-const CITIES_AR_EN: Array<{ ar: string; en: string }> = [
-  { ar: 'الرياض', en: 'Riyadh' },
-  { ar: 'جدة', en: 'Jeddah' },
-  { ar: 'الدمام', en: 'Dammam' },
-  { ar: 'مكة', en: 'Mecca' },
-  { ar: 'المدينة المنورة', en: 'Medina' },
-  { ar: 'الخبر', en: 'Khobar' },
-  { ar: 'الطائف', en: 'Taif' },
-  { ar: 'بريدة', en: 'Buraidah' },
+// Cities pinned to the homepage search dropdown + browse-by-city chip row.
+// `en` is the canonical value that flows into the city query param; `i18nKey`
+// is what users see, so a German/French visitor sees "Riyadh" while an Arabic
+// visitor sees "الرياض" without the page hardcoding either spelling.
+const CITIES: Array<{ en: string; i18nKey: string }> = [
+  { en: 'Riyadh',    i18nKey: 'cities.riyadh' },
+  { en: 'Jeddah',    i18nKey: 'cities.jeddah' },
+  { en: 'Dammam',    i18nKey: 'cities.dammam' },
+  { en: 'Mecca',     i18nKey: 'cities.mecca' },
+  { en: 'Medina',    i18nKey: 'cities.medina' },
+  { en: 'Khobar',    i18nKey: 'cities.khobar' },
+  { en: 'Taif',      i18nKey: 'cities.taif' },
+  { en: 'Buraidah',  i18nKey: 'cities.buraidah' },
 ];
 
 type CategoryDef = {
@@ -115,9 +119,8 @@ function sortToFields(sort: SortOption): { sortField: string; sortOrder: 'ASC' |
 // ------------------------------------------------------------------
 
 export function HomePage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const isAr = i18n.language === 'ar';
   const user = useAuthStore((s) => s.user);
   const savedIds = useSavedStore((s) => s.ids);
   const toggleSaved = useSavedStore((s) => s.toggle);
@@ -279,9 +282,9 @@ export function HomePage() {
             }}
           >
             <MenuItem value="">{t('home.allCities')}</MenuItem>
-            {CITIES_AR_EN.slice(0, 5).map((c) => (
+            {CITIES.slice(0, 5).map((c) => (
               <MenuItem key={c.en} value={c.en}>
-                {isAr ? c.ar : c.en}
+                {t(c.i18nKey)}
               </MenuItem>
             ))}
           </Select>
@@ -660,10 +663,10 @@ export function HomePage() {
             {t('home.browseByCity')}
           </Typography>
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            {CITIES_AR_EN.map((city) => (
+            {CITIES.map((city) => (
               <Chip
                 key={city.en}
-                label={isAr ? city.ar : city.en}
+                label={t(city.i18nKey)}
                 variant="outlined"
                 onClick={() => handleCitySearch(city.en)}
                 sx={{

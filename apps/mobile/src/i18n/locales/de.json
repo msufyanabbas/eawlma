@@ -15,7 +15,7 @@
     "notifications": "Benachrichtigungen",
     "profile": "Profil",
     "logout": "Abmelden",
-    "dashboard": "Dashboard",
+    "dashboard": "Armaturenbrett",
     "admin": "Admin",
     "settings": "Einstellungen",
     "searchPlaceholder": "Stadt, Stadtteil oder Referenz suchen",
@@ -103,7 +103,7 @@
     "totalBookings": "Gesamtbuchungen",
     "revenue": "Plattformumsatz",
     "management": "Verwaltung",
-    "moderation": "Moderation",
+    "moderation": "Mäßigung",
     "allClear": "Keine ausstehenden Bewertungen",
     "rejectListing": "Eintrag ablehnen",
     "rejectReason": "Geben Sie den Ablehnungsgrund"
@@ -340,7 +340,7 @@
     "filter": "Filter",
     "submit": "Senden",
     "language": "Sprache",
-    "arabic": "Zurück",
+    "arabic": "العربية",
     "english": "Englisch",
     "back": "Zurück",
     "next": "Weiter",
@@ -1780,7 +1780,8 @@
     "actor": "Schauspieler",
     "action": "Aktion",
     "entity": "Entität",
-    "changed": "Geänderte Felder"
+    "changed": "Geänderte Felder",
+    "noMatches": "Keine passenden Audit-Einträge"
   },
   "adminAnalytics": {
     "trafficSources": "Verkehrsquellen",
@@ -1849,5 +1850,27 @@
     "txSale": "Verkauf",
     "txRent": "Miete",
     "bedsAny": "Beliebig"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Dschidda",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraida"
+  },
+  "listingDetailPage": {
+    "notFound": "Eintrag nicht gefunden",
+    "helmetTitle": "Angebote vergleichen"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Provisionen",
+    "revenueByMonth": "Umsatz pro Monat"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytik",
+    "viewsOverTime": "Aufrufe im Zeitverlauf"
   }
 }

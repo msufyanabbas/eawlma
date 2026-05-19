@@ -1780,7 +1780,8 @@
     "actor": "నటుడు",
     "action": "చర్య",
     "entity": "ఎంటిటీ",
-    "changed": "మారిన ఫీల్డ్స్"
+    "changed": "మారిన ఫీల్డ్స్",
+    "noMatches": "సరిపోలే ఆడిట్ ఎంట్రీలు లేవు"
   },
   "adminAnalytics": {
     "trafficSources": "ట్రాఫిక్ మూలాలు",
@@ -1849,5 +1850,27 @@
     "txSale": "అమ్మకం",
     "txRent": "అద్దె",
     "bedsAny": "ఏదైనా"
+  },
+  "cities": {
+    "riyadh": "రియాద్",
+    "jeddah": "జెడ్డా",
+    "dammam": "దమ్మామ్",
+    "mecca": "మక్కా",
+    "medina": "మదీనా",
+    "khobar": "ఖోబార్",
+    "taif": "తైఫ్",
+    "buraidah": "బురైదా"
+  },
+  "listingDetailPage": {
+    "notFound": "జాబితా కనుగొనబడలేదు",
+    "helmetTitle": "జాబితాలను సరిపోల్చండి"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "కమీషన్లు",
+    "revenueByMonth": "నెలవారీ ఆదాయం"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "విశ్లేషణలు",
+    "viewsOverTime": "కాలక్రమేణా వీక్షణలు"
   }
 }

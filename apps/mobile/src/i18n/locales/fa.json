@@ -1780,7 +1780,8 @@
     "actor": "بازیگر",
     "action": "اقدام",
     "entity": "موجودیت",
-    "changed": "فیلدهای تغییر یافته"
+    "changed": "فیلدهای تغییر یافته",
+    "noMatches": "هیچ ورودی حسابرسی منطبقی وجود ندارد"
   },
   "adminAnalytics": {
     "trafficSources": "منابع ترافیک",
@@ -1849,5 +1850,27 @@
     "txSale": "فروش",
     "txRent": "اجاره",
     "bedsAny": "هر"
+  },
+  "cities": {
+    "riyadh": "ریاض",
+    "jeddah": "جده",
+    "dammam": "دمام",
+    "mecca": "مکه",
+    "medina": "مدینه",
+    "khobar": "خبر",
+    "taif": "طائف",
+    "buraidah": "بریده"
+  },
+  "listingDetailPage": {
+    "notFound": "فهرست یافت نشد",
+    "helmetTitle": "مقایسه لیست ها"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "کمیسیون ها",
+    "revenueByMonth": "درآمد ماهانه"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "تجزیه و تحلیل",
+    "viewsOverTime": "بازدیدها در طول زمان"
   }
 }

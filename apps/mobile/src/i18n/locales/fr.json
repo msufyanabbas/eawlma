@@ -577,7 +577,7 @@
     "priceLowSort": "Prix : bas",
     "priceHighSort": "Prix : haut",
     "appStore": "App Store",
-    "googlePlay": "Google Play",
+    "googlePlay": "Google Play",
     "statListings": "Annonces",
     "statAgents": "Agents",
     "statUsers": "Utilisateurs",
@@ -1780,7 +1780,8 @@
     "actor": "Acteur",
     "action": "Action",
     "entity": "Entité",
-    "changed": "Champs modifiés"
+    "changed": "Champs modifiés",
+    "noMatches": "Aucune entrée d'audit correspondante"
   },
   "adminAnalytics": {
     "trafficSources": "Sources de trafic",
@@ -1849,5 +1850,27 @@
     "txSale": "Vente",
     "txRent": "Louer",
     "bedsAny": "N'importe quel"
+  },
+  "cities": {
+    "riyadh": "Riyad",
+    "jeddah": "Djeddah",
+    "dammam": "Dammam",
+    "mecca": "La Mecque",
+    "medina": "Médine",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraïdah"
+  },
+  "listingDetailPage": {
+    "notFound": "Annonce introuvable",
+    "helmetTitle": "Comparer les annonces"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Commissions",
+    "revenueByMonth": "Revenu par mois"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analyse",
+    "viewsOverTime": "Vues au fil du temps"
   }
 }

@@ -1780,7 +1780,8 @@
     "actor": "นักแสดงชาย",
     "action": "การกระทำ",
     "entity": "เอนทิตี",
-    "changed": "ฟิลด์ที่เปลี่ยนแปลง"
+    "changed": "ฟิลด์ที่เปลี่ยนแปลง",
+    "noMatches": "ไม่มีรายการตรวจสอบที่ตรงกัน"
   },
   "adminAnalytics": {
     "trafficSources": "แหล่งที่มาของการเข้าชม",
@@ -1849,5 +1850,27 @@
     "txSale": "ขาย",
     "txRent": "เช่า",
     "bedsAny": "ใดๆ"
+  },
+  "cities": {
+    "riyadh": "ริยาด",
+    "jeddah": "เจดดาห์",
+    "dammam": "ดัมมัม",
+    "mecca": "เมกกะ",
+    "medina": "เมดินา",
+    "khobar": "โคบาร์",
+    "taif": "ทาอิฟ",
+    "buraidah": "บูไรดะห์"
+  },
+  "listingDetailPage": {
+    "notFound": "ไม่พบรายการ",
+    "helmetTitle": "เปรียบเทียบรายการ"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "ค่าคอมมิชชั่น",
+    "revenueByMonth": "รายได้ต่อเดือน"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "การวิเคราะห์",
+    "viewsOverTime": "การดูในช่วงเวลาหนึ่ง"
   }
 }

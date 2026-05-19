@@ -1731,7 +1731,7 @@
     "subject": "Aihe",
     "description": "Yksityiskohtainen kuvaus",
     "category": "Luokka",
-    "status": "Status",
+    "status": "Tila",
     "submit": "Lähetä lippu",
     "reply": "Vastata",
     "noTickets": "Ei tukilippuja",
@@ -1780,7 +1780,8 @@
     "actor": "Näyttelijä",
     "action": "Toiminta",
     "entity": "Entiteetti",
-    "changed": "Vaihdettu kentät"
+    "changed": "Vaihdettu kentät",
+    "noMatches": "Ei vastaavia tarkastusmerkintöjä"
   },
   "adminAnalytics": {
     "trafficSources": "Liikenteen lähteet",
@@ -1849,5 +1850,27 @@
     "txSale": "Myynti",
     "txRent": "Vuokrata",
     "bedsAny": "Mikä tahansa"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Tietoa ei löydy",
+    "helmetTitle": "Vertaa listauksia"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "palkkiot",
+    "revenueByMonth": "Tulot kuukausittain"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Näkymät ajan mittaan"
   }
 }

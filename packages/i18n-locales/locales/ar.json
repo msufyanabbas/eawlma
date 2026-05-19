@@ -1371,7 +1371,8 @@
     "actor": "المنفذ",
     "action": "الإجراء",
     "entity": "الكيان",
-    "changed": "الحقول المغيرة"
+    "changed": "الحقول المغيرة",
+    "noMatches": "لا توجد سجلات تطابق البحث"
   },
   "adminAnalytics": {
     "trafficSources": "مصادر الزيارات",
@@ -1427,6 +1428,28 @@
     "txSale": "بيع",
     "txRent": "إيجار",
     "bedsAny": "أي"
+  },
+  "cities": {
+    "riyadh": "الرياض",
+    "jeddah": "جدة",
+    "dammam": "الدمام",
+    "mecca": "مكة",
+    "medina": "المدينة المنورة",
+    "khobar": "الخبر",
+    "taif": "الطائف",
+    "buraidah": "بريدة"
+  },
+  "listingDetailPage": {
+    "notFound": "العقار غير موجود",
+    "helmetTitle": "مقارنة العقارات"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "العمولات",
+    "revenueByMonth": "الإيرادات حسب الشهر"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "الإحصائيات",
+    "viewsOverTime": "المشاهدات عبر الزمن"
   },
   "listingDetail": {
     "hotelLabel": "فندق",

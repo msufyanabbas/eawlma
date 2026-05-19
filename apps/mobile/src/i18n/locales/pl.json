@@ -1780,7 +1780,8 @@
     "actor": "Aktor",
     "action": "Działanie",
     "entity": "Podmiot",
-    "changed": "Zmienione pola"
+    "changed": "Zmienione pola",
+    "noMatches": "Brak pasujących wpisów kontroli"
   },
   "adminAnalytics": {
     "trafficSources": "Źródła ruchu",
@@ -1849,5 +1850,27 @@
     "txSale": "Sprzedaż",
     "txRent": "Wynajem",
     "bedsAny": "Każdy"
+  },
+  "cities": {
+    "riyadh": "Rijad",
+    "jeddah": "Jeddach",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medyna",
+    "khobar": "Chobar",
+    "taif": "Taif",
+    "buraidah": "Burajda"
+  },
+  "listingDetailPage": {
+    "notFound": "Nie znaleziono wpisu",
+    "helmetTitle": "Porównaj oferty"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Prowizje",
+    "revenueByMonth": "Przychody według miesiąca"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analityka",
+    "viewsOverTime": "Wyświetlenia na przestrzeni czasu"
   }
 }

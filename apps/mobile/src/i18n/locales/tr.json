@@ -1780,7 +1780,8 @@
     "actor": "Aktör",
     "action": "Aksiyon",
     "entity": "Varlık",
-    "changed": "Değiştirilen Alanlar"
+    "changed": "Değiştirilen Alanlar",
+    "noMatches": "Eşleşen denetim girişi yok"
   },
   "adminAnalytics": {
     "trafficSources": "Trafik Kaynakları",
@@ -1790,13 +1791,13 @@
   "listingDetail": {
     "hotelLabel": "Otel",
     "starSuffix": "{{n}}-yıldız",
-    "stayDetails": "Stay details",
+    "stayDetails": "Konaklama ayrıntıları",
     "houseRules": "Ev kuralları",
-    "maxGuests": "Max guests",
+    "maxGuests": "Maksimum misafir",
     "checkIn": "Giriş",
     "checkInFrom": "{{time}} tarihinden itibaren",
     "checkOut": "Çıkış yapmak",
-    "checkOutBy": "by {{time}}",
+    "checkOutBy": "{{time}} kadar",
     "cancellation": "İptal",
     "whatThisPlaceOffers": "Burası neler sunuyor"
   },
@@ -1849,5 +1850,27 @@
     "txSale": "Satış",
     "txRent": "Kira",
     "bedsAny": "Herhangi"
+  },
+  "cities": {
+    "riyadh": "Riyad",
+    "jeddah": "Cidde",
+    "dammam": "Ed-Dammam",
+    "mecca": "Mekke",
+    "medina": "Medine",
+    "khobar": "Hobar",
+    "taif": "Taif",
+    "buraidah": "Büreyde"
+  },
+  "listingDetailPage": {
+    "notFound": "İlan bulunamadı",
+    "helmetTitle": "Listeleri karşılaştır"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Komisyonlar",
+    "revenueByMonth": "Aya göre gelir"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analitik",
+    "viewsOverTime": "Zaman içindeki görüntülemeler"
   }
 }

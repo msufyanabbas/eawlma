@@ -1792,7 +1792,8 @@
     "actor": "اداکار",
     "action": "| ایکشن",
     "entity": "ہستی",
-    "changed": "تبدیل شدہ فیلڈز"
+    "changed": "تبدیل شدہ فیلڈز",
+    "noMatches": "| کوئی مماثل آڈٹ اندراجات نہیں"
   },
   "adminAnalytics": {
     "trafficSources": "ٹریفک کے ذرائع",
@@ -1861,5 +1862,27 @@
     "txSale": "فروخت",
     "txRent": "| کرایہ",
     "bedsAny": "| کوئی بھی"
+  },
+  "cities": {
+    "riyadh": "ریاض",
+    "jeddah": "جدہ",
+    "dammam": "| دمام",
+    "mecca": "مکہ",
+    "medina": "| مدینہ",
+    "khobar": "خبر",
+    "taif": "طائف",
+    "buraidah": "| بریدہ"
+  },
+  "listingDetailPage": {
+    "notFound": "| فہرست نہیں ملی",
+    "helmetTitle": "فہرستوں کا موازنہ کریں"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "کمیشنز",
+    "revenueByMonth": "| ماہ کے لحاظ سے آمدنی"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "| تجزیات",
+    "viewsOverTime": "| وقت کے ساتھ ملاحظات"
   }
 }

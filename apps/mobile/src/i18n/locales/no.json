@@ -842,7 +842,7 @@
     },
     "shortTermAmenity": {
       "wifi": "Wi-Fi",
-      "pool": "Pool",
+      "pool": "Basseng",
       "parking": "Parkering",
       "breakfast": "Frokost",
       "ac": "Air condition",
@@ -1780,7 +1780,8 @@
     "actor": "Skuespiller",
     "action": "Handling",
     "entity": "Entitet",
-    "changed": "Endrede felt"
+    "changed": "Endrede felt",
+    "noMatches": "Ingen samsvarende revisjonsoppføringer"
   },
   "adminAnalytics": {
     "trafficSources": "Trafikkkilder",
@@ -1849,5 +1850,27 @@
     "txSale": "Salg",
     "txRent": "Lei",
     "bedsAny": "Alle"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Oppføring ikke funnet",
+    "helmetTitle": "Sammenlign oppføringer"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Provisjoner",
+    "revenueByMonth": "Inntekt etter måned"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Visninger over tid"
   }
 }

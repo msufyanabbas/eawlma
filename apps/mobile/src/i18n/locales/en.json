@@ -1655,7 +1655,8 @@
     "actor": "Actor",
     "action": "Action",
     "entity": "Entity",
-    "changed": "Changed Fields"
+    "changed": "Changed Fields",
+    "noMatches": "No matching audit entries"
   },
   "adminAnalytics": {
     "trafficSources": "Traffic Sources",
@@ -1711,6 +1712,28 @@
     "txSale": "Sale",
     "txRent": "Rent",
     "bedsAny": "Any"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Listing not found",
+    "helmetTitle": "Compare listings"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Commissions",
+    "revenueByMonth": "Revenue by month"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Views over time"
   },
   "listingDetail": {
     "hotelLabel": "Hotel",

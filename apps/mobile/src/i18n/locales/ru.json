@@ -1780,7 +1780,8 @@
     "actor": "Актер",
     "action": "Действие",
     "entity": "Сущность",
-    "changed": "Измененные поля"
+    "changed": "Измененные поля",
+    "noMatches": "Нет соответствующих записей аудита"
   },
   "adminAnalytics": {
     "trafficSources": "Источники трафика",
@@ -1849,5 +1850,27 @@
     "txSale": "Распродажа",
     "txRent": "Арендовать",
     "bedsAny": "Любой"
+  },
+  "cities": {
+    "riyadh": "Эр-Рияд",
+    "jeddah": "Джидда",
+    "dammam": "Даммам",
+    "mecca": "Мекка",
+    "medina": "Медина",
+    "khobar": "Хобар",
+    "taif": "Таиф",
+    "buraidah": "Бурайда"
+  },
+  "listingDetailPage": {
+    "notFound": "Объявление не найдено",
+    "helmetTitle": "Сравнить объявления"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "комиссии",
+    "revenueByMonth": "Выручка по месяцам"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Аналитика",
+    "viewsOverTime": "Просмотры с течением времени"
   }
 }

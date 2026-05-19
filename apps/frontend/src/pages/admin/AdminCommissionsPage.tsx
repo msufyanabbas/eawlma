@@ -109,7 +109,7 @@ export function AdminCommissionsPage() {
   return (
     <AdminLayout>
       <Helmet>
-        <title>Commissions — {t('app.name')}</title>
+        <title>{t('adminCommissionsPage2.helmetTitle')} — {t('app.name')}</title>
       </Helmet>
 
       <PageHeader
@@ -158,7 +158,7 @@ export function AdminCommissionsPage() {
 
       {/* Monthly chart */}
       <Paper sx={{ p: 3 }}>
-        <Typography sx={{ fontWeight: 800, mb: 2 }}>Revenue by month</Typography>
+        <Typography sx={{ fontWeight: 800, mb: 2 }}>{t('adminCommissionsPage2.revenueByMonth')}</Typography>
         <Box sx={{ height: 280 }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={summaryQuery.data?.byMonth ?? []}>

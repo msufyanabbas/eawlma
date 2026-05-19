@@ -1780,7 +1780,8 @@
     "actor": "| অভিনেতা",
     "action": "| অ্যাকশন",
     "entity": "সত্তা",
-    "changed": "পরিবর্তিত ক্ষেত্র"
+    "changed": "পরিবর্তিত ক্ষেত্র",
+    "noMatches": "কোন মিল অডিট এন্ট্রি নেই"
   },
   "adminAnalytics": {
     "trafficSources": "ট্রাফিক উৎস",
@@ -1849,5 +1850,27 @@
     "txSale": "বিক্রয়",
     "txRent": "ভাড়া",
     "bedsAny": "যে কোন"
+  },
+  "cities": {
+    "riyadh": "রিয়াদ",
+    "jeddah": "জেদ্দা",
+    "dammam": "| দাম্মাম",
+    "mecca": "মক্কা",
+    "medina": "| মদিনা",
+    "khobar": "খবর",
+    "taif": "তায়েফ",
+    "buraidah": "| বুরাইদাহ"
+  },
+  "listingDetailPage": {
+    "notFound": "| তালিকা পাওয়া যায়নি",
+    "helmetTitle": "তালিকা তুলনা করুন"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "কমিশন",
+    "revenueByMonth": "| মাস অনুসারে আয়"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "বিশ্লেষণ",
+    "viewsOverTime": "| সময়ের সাথে ভিউ"
   }
 }

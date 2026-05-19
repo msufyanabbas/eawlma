@@ -1780,7 +1780,8 @@
     "actor": "अभिनेता",
     "action": "कृती",
     "entity": "अस्तित्व",
-    "changed": "फील्ड बदलले"
+    "changed": "फील्ड बदलले",
+    "noMatches": "जुळणाऱ्या ऑडिट नोंदी नाहीत"
   },
   "adminAnalytics": {
     "trafficSources": "रहदारी स्रोत",
@@ -1849,5 +1850,27 @@
     "txSale": "विक्री",
     "txRent": "भाड्याने",
     "bedsAny": "कोणतीही"
+  },
+  "cities": {
+    "riyadh": "रियाध",
+    "jeddah": "जेद्दा",
+    "dammam": "दम्मम",
+    "mecca": "मक्का",
+    "medina": "मदिना",
+    "khobar": "खोबर",
+    "taif": "तैफ",
+    "buraidah": "बुराईदाह"
+  },
+  "listingDetailPage": {
+    "notFound": "सूची सापडली नाही",
+    "helmetTitle": "सूचीची तुलना करा"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "कमिशन",
+    "revenueByMonth": "महिन्यानुसार महसूल"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "विश्लेषण",
+    "viewsOverTime": "कालांतराने दृश्ये"
   }
 }

@@ -1780,7 +1780,8 @@
     "actor": "Mwigizaji",
     "action": "Kitendo",
     "entity": "Huluki",
-    "changed": "Sehemu Zilizobadilishwa"
+    "changed": "Sehemu Zilizobadilishwa",
+    "noMatches": "Hakuna maingizo ya ukaguzi yanayolingana"
   },
   "adminAnalytics": {
     "trafficSources": "Vyanzo vya Trafiki",
@@ -1849,5 +1850,27 @@
     "txSale": "Uuzaji",
     "txRent": "Kodisha",
     "bedsAny": "Yoyote"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Makka",
+    "medina": "Madina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Orodha haijapatikana",
+    "helmetTitle": "Linganisha matangazo"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Tume",
+    "revenueByMonth": "Mapato kwa mwezi"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Uchanganuzi",
+    "viewsOverTime": "Maoni baada ya muda"
   }
 }

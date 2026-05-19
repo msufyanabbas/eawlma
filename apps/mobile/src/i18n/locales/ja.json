@@ -1780,7 +1780,8 @@
     "actor": "俳優",
     "action": "アクション",
     "entity": "実在物",
-    "changed": "変更されたフィールド"
+    "changed": "変更されたフィールド",
+    "noMatches": "一致する監査エントリがありません"
   },
   "adminAnalytics": {
     "trafficSources": "トラフィックソース",
@@ -1849,5 +1850,27 @@
     "txSale": "販売",
     "txRent": "家賃",
     "bedsAny": "どれでも"
+  },
+  "cities": {
+    "riyadh": "リヤド",
+    "jeddah": "ジェッダ",
+    "dammam": "ダンマーム",
+    "mecca": "メッカ",
+    "medina": "メディナ",
+    "khobar": "コバール",
+    "taif": "タイフ",
+    "buraidah": "ブライダ"
+  },
+  "listingDetailPage": {
+    "notFound": "リストが見つかりません",
+    "helmetTitle": "リストを比較する"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "手数料",
+    "revenueByMonth": "月ごとの収益"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "分析",
+    "viewsOverTime": "経時的な視聴回数"
   }
 }
