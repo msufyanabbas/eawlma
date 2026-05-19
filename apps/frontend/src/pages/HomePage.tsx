@@ -24,6 +24,7 @@ import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
+import { formatNumber } from '@/utils/formatters';
 import { SECTION } from '@/theme/layout';
 
 // ------------------------------------------------------------------
@@ -43,41 +44,51 @@ const CITIES_AR_EN: Array<{ ar: string; en: string }> = [
 
 type CategoryDef = {
   icon: string;
-  labelEn: string;
-  labelAr: string;
+  i18nKey: string;
   filter: string;
 };
 
 const CATEGORIES: CategoryDef[] = [
-  { icon: '🏠', labelEn: 'All', labelAr: 'الكل', filter: '' },
-  { icon: '🏢', labelEn: 'For Sale', labelAr: 'للبيع', filter: 'sale' },
-  { icon: '🔑', labelEn: 'For Rent', labelAr: 'للإيجار', filter: 'rent' },
-  { icon: '🏙️', labelEn: 'Apartments', labelAr: 'شقق', filter: 'apartment' },
-  { icon: '🏡', labelEn: 'Villas', labelAr: 'فلل', filter: 'villa' },
-  { icon: '🏗️', labelEn: 'Land', labelAr: 'أراضي', filter: 'land' },
-  { icon: '🏖️', labelEn: 'Chalets', labelAr: 'شاليهات', filter: 'chalet' },
-  { icon: '🌾', labelEn: 'Farms', labelAr: 'مزارع', filter: 'farm' },
-  { icon: '🛖', labelEn: 'Rest Houses', labelAr: 'استراحات', filter: 'rest_house' },
-  { icon: '🏨', labelEn: 'Hotels', labelAr: 'فنادق', filter: 'hotel_room' },
-  { icon: '🏬', labelEn: 'Commercial', labelAr: 'تجاري', filter: 'commercial' },
-  { icon: '🏦', labelEn: 'Offices', labelAr: 'مكاتب', filter: 'office' },
+  { icon: '🏠', i18nKey: 'homeCategories.all',         filter: '' },
+  { icon: '🏢', i18nKey: 'homeCategories.forSale',     filter: 'sale' },
+  { icon: '🔑', i18nKey: 'homeCategories.forRent',     filter: 'rent' },
+  { icon: '🏙️', i18nKey: 'homeCategories.apartments',  filter: 'apartment' },
+  { icon: '🏡', i18nKey: 'homeCategories.villas',      filter: 'villa' },
+  { icon: '🏗️', i18nKey: 'homeCategories.land',        filter: 'land' },
+  { icon: '🏖️', i18nKey: 'homeCategories.chalets',     filter: 'chalet' },
+  { icon: '🌾', i18nKey: 'homeCategories.farms',       filter: 'farm' },
+  { icon: '🛖', i18nKey: 'homeCategories.restHouses',  filter: 'rest_house' },
+  { icon: '🏨', i18nKey: 'homeCategories.hotels',      filter: 'hotel_room' },
+  { icon: '🏬', i18nKey: 'homeCategories.commercial',  filter: 'commercial' },
+  { icon: '🏦', i18nKey: 'homeCategories.offices',     filter: 'office' },
 ];
 
-type QuickItem = { en: string; ar: string; type?: ListingType; pt?: PropertyType; city?: string };
+type QuickItem = {
+  // Stable id used as React key; routing context lives in type/pt/city below.
+  id: string;
+  i18nKey: string;
+  type?: ListingType;
+  pt?: PropertyType;
+  city?: string;
+};
 
 const QUICK_BROWSE: QuickItem[] = [
-  { en: 'Apartments for rent', ar: 'شقق للإيجار', type: ListingType.RENT, pt: PropertyType.APARTMENT },
-  { en: 'Villas for sale', ar: 'فلل للبيع', type: ListingType.SALE, pt: PropertyType.VILLA },
-  { en: 'Land for sale', ar: 'أراضي للبيع', type: ListingType.SALE, pt: PropertyType.LAND },
-  { en: 'Chalets', ar: 'شاليهات', pt: PropertyType.CHALET },
-  { en: 'Rest houses', ar: 'استراحات', pt: PropertyType.REST_HOUSE },
-  { en: 'Riyadh', ar: 'الرياض', city: 'Riyadh' },
-  { en: 'Jeddah', ar: 'جدة', city: 'Jeddah' },
+  { id: 'apt-rent', i18nKey: 'homeQuickBrowse.apartmentsForRent', type: ListingType.RENT, pt: PropertyType.APARTMENT },
+  { id: 'vil-sale', i18nKey: 'homeQuickBrowse.villasForSale',     type: ListingType.SALE, pt: PropertyType.VILLA },
+  { id: 'land-sale', i18nKey: 'homeQuickBrowse.landForSale',       type: ListingType.SALE, pt: PropertyType.LAND },
+  { id: 'chalet',    i18nKey: 'homeQuickBrowse.chalets',           pt: PropertyType.CHALET },
+  { id: 'resthouse', i18nKey: 'homeQuickBrowse.restHouses',        pt: PropertyType.REST_HOUSE },
+  { id: 'city-riyadh', i18nKey: 'agents.cityRiyadh', city: 'Riyadh' },
+  { id: 'city-jeddah', i18nKey: 'agents.cityJeddah', city: 'Jeddah' },
 ];
 
 const TX_OPTIONS = ['All', 'Sale', 'Rent'] as const;
 type TxOption = (typeof TX_OPTIONS)[number];
-const TX_LABEL_AR: Record<TxOption, string> = { All: 'الكل', Sale: 'بيع', Rent: 'إيجار' };
+const TX_I18N_KEY: Record<TxOption, string> = {
+  All:  'homeFilters.txAll',
+  Sale: 'homeFilters.txSale',
+  Rent: 'homeFilters.txRent',
+};
 
 const BED_OPTIONS = ['Any', '1', '2', '3', '4', '5+'] as const;
 type BedOption = (typeof BED_OPTIONS)[number];
@@ -367,7 +378,7 @@ export function HomePage() {
               >
                 <Typography sx={{ fontSize: '1.4rem', lineHeight: 1 }}>{cat.icon}</Typography>
                 <Typography variant="caption" fontWeight={600} mt={0.5} whiteSpace="nowrap">
-                  {isAr ? cat.labelAr : cat.labelEn}
+                  {t(cat.i18nKey)}
                 </Typography>
               </Box>
             );
@@ -403,8 +414,8 @@ export function HomePage() {
           </Typography>
           {QUICK_BROWSE.map((item) => (
             <Chip
-              key={item.en}
-              label={isAr ? item.ar : item.en}
+              key={item.id}
+              label={t(item.i18nKey)}
               size="small"
               variant="outlined"
               onClick={() => handleQuickSearch(item)}
@@ -457,7 +468,7 @@ export function HomePage() {
                   {TX_OPTIONS.map((opt) => (
                     <Chip
                       key={opt}
-                      label={isAr ? TX_LABEL_AR[opt] : opt}
+                      label={t(TX_I18N_KEY[opt])}
                       size="small"
                       color={txFilter === opt ? 'primary' : 'default'}
                       onClick={() => setTxFilter(opt)}
@@ -478,7 +489,7 @@ export function HomePage() {
                 <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                   <TextField
                     size="small"
-                    placeholder={isAr ? 'من' : 'Min'}
+                    placeholder={t('search.minPrice')}
                     type="number"
                     sx={{ flex: 1 }}
                     value={minPrice}
@@ -486,7 +497,7 @@ export function HomePage() {
                   />
                   <TextField
                     size="small"
-                    placeholder={isAr ? 'إلى' : 'Max'}
+                    placeholder={t('search.maxPrice')}
                     type="number"
                     sx={{ flex: 1 }}
                     value={maxPrice}
@@ -507,7 +518,7 @@ export function HomePage() {
                   {BED_OPTIONS.map((b) => (
                     <Chip
                       key={b}
-                      label={b}
+                      label={b === 'Any' ? t('homeFilters.bedsAny') : b === '5+' ? `${formatNumber(5)}+` : formatNumber(b)}
                       size="small"
                       color={bedsFilter === b ? 'primary' : 'default'}
                       variant={bedsFilter === b ? 'filled' : 'outlined'}

@@ -458,7 +458,7 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
       </Box>
 
       {/* ============================== SECOND ROW: CATEGORY LINKS ============================== */}
-      {isDesktop && <CategoryNavRow currentPath={location.pathname} isAr={isAr} />}
+      {isDesktop && <CategoryNavRow currentPath={location.pathname} />}
 
       {/* Mobile expandable search */}
       {!isDesktop && mobileSearchOpen && (
@@ -496,17 +496,18 @@ export function Navbar({ onMobileMenuClick }: NavbarProps) {
 // Category nav row — secondary horizontal strip under the main toolbar.
 // ------------------------------------------------------------------
 
-const CATEGORY_LINKS: Array<{ labelEn: string; labelAr: string; to: string }> = [
-  { labelEn: 'Home',   labelAr: 'الرئيسية',   to: '/' },
-  { labelEn: 'Search', labelAr: 'بحث',         to: '/search' },
-  { labelEn: 'Stays',  labelAr: 'إيجار قصير', to: '/stays' },
-  { labelEn: 'Hotels', labelAr: 'فنادق',       to: '/hotels' },
-  { labelEn: 'Agents', labelAr: 'الوكلاء',     to: '/agents' },
-  { labelEn: 'Market', labelAr: 'السوق',       to: '/market' },
-  { labelEn: 'About',  labelAr: 'عن المنصة',  to: '/about' },
+const CATEGORY_LINKS: Array<{ i18nKey: string; to: string }> = [
+  { i18nKey: 'nav.home',   to: '/' },
+  { i18nKey: 'nav.search', to: '/search' },
+  { i18nKey: 'nav.stays',  to: '/stays' },
+  { i18nKey: 'nav.hotels', to: '/hotels' },
+  { i18nKey: 'nav.agents', to: '/agents' },
+  { i18nKey: 'nav.market', to: '/market' },
+  { i18nKey: 'nav.about',  to: '/about' },
 ];
 
-function CategoryNavRow({ currentPath, isAr }: { currentPath: string; isAr: boolean }) {
+function CategoryNavRow({ currentPath }: { currentPath: string }) {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -551,7 +552,7 @@ function CategoryNavRow({ currentPath, isAr }: { currentPath: string; isAr: bool
                 },
               }}
             >
-              {isAr ? link.labelAr : link.labelEn}
+              {t(link.i18nKey)}
             </Box>
           );
         })}

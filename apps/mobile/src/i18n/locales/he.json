@@ -27,7 +27,8 @@
     "stays": "אירוח",
     "shortTermStays": "אירוח לטווח קצר",
     "hotels": "מלונות",
-    "chalets": "צימרים וחוות"
+    "chalets": "צימרים וחוות",
+    "about": "אודות"
   },
   "dashboard": {
     "overview": "סקירה",
@@ -252,7 +253,7 @@
     "resolutionHint": "שני הצדדים יקבלו הודעה עם הערות אלה.",
     "other": "אחר",
     "buyerLower": "קונה",
-    "agentLower": "סוֹכֵן",
+    "agentLower": "סוכן",
     "otherLower": "אחר",
     "anonymous": "אנונימי",
     "resolveTitle": "פתרון מחלוקת",
@@ -437,10 +438,25 @@
       "sold": "נמכר",
       "rented": "מושכר"
     },
+    "bedrooms": "חדרי שינה",
+    "bathrooms": "חדרי אמבטיה",
+    "sqm": "m²",
+    "type": "הקלד",
+    "floor": "קומה",
+    "age": "גיל",
+    "parking": "חניה",
+    "furnished": "מרוהט",
+    "unfurnished": "לא מרוהט",
+    "perNight": "/night",
+    "verifiedAgent": "סוכן מאומת",
+    "newListing": "חדש",
+    "sold": "נמכר",
+    "rented": "מושכר",
+    "available": "זמין",
+    "pending": "בהמתנה",
+    "expired": "פג תוקף",
     "sale": "מבצע",
     "rent": "השכרה",
-    "bedrooms": "מיטות",
-    "bathrooms": "אמבטיות",
     "propertyTypeLabel": "הקלד",
     "noDescription": "אין תיאור.",
     "locationNotSpecified": "מיקום לא צוין",
@@ -463,22 +479,7 @@
     "actionFailed": "הפעולה נכשלה",
     "bookingDevTitle": "הזמנה",
     "bookingDevBody": "זרימת ההזמנות נמצאת בפיתוח. נא לפנות לסוכן.",
-    "removeFromSaved": "להסיר את הנכס הזה מהשמור?",
-    "sqm": "m²",
-    "type": "הקלד",
-    "floor": "קומה",
-    "age": "גיל",
-    "parking": "חניה",
-    "furnished": "מרוהט",
-    "unfurnished": "לא מרוהט",
-    "perNight": "/night",
-    "verifiedAgent": "סוכן מאומת",
-    "newListing": "חדש",
-    "sold": "נמכר",
-    "rented": "מושכר",
-    "available": "זמין",
-    "pending": "בהמתנה",
-    "expired": "פג תוקף"
+    "removeFromSaved": "להסיר את הנכס הזה מהשמור?"
   },
   "search": {
     "filters": "מסננים",
@@ -670,7 +671,7 @@
     "sentSuccess": "תודה! הצוות שלנו יגיב תוך 24 שעות.",
     "emailUs": "כתבו לנו",
     "emailReplies": "תשובות תוך 24 שעות בימי חול",
-    "whatsapp": "וואטסאפ",
+    "whatsapp": "WhatsApp",
     "whatsappHours": "ראשון-חמישי, 9:00 – 18:00 (AST)",
     "office": "משרד",
     "officeAddress": "דרך המלך פאהד, ריאד",
@@ -808,7 +809,10 @@
       "pinRequired": "זרוק סיכה על המפה עבור המיקום.",
       "imageRequired": "נדרשת לפחות תמונה אחת לפני הפרסום."
     },
-    "transactionType": "סוג עסקה",
+    "transactionType": {
+      "sale": "מבצע",
+      "rent": "השכרה"
+    },
     "rentPeriod": {
       "daily": "יומי",
       "weekly": "שבועי",
@@ -825,7 +829,7 @@
       "unlisted": "לא רשום"
     },
     "amenity": {
-      "pool": "בריכה",
+      "pool": "פּוּל",
       "garden": "גן",
       "gym": "חדר כושר",
       "elevator": "מעלית",
@@ -1328,7 +1332,7 @@
     "signedThroughEjar": "נחתם דרך Ejar",
     "noContracts": "אין עדיין חוזי שכירות",
     "status": {
-      "draft": "טְיוּטָה",
+      "draft": "טיוטה",
       "pending_signatures": "חתימות בהמתנה",
       "active": "פעיל",
       "expired": "פג תוקף",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "לא נמצאו סוכנים",
     "tryLater": "נסה שוב מאוחר יותר"
   },
+  "agent": {
+    "verified": "מאומת",
+    "verifiedAgent": "סוכן מאומת",
+    "licensed": "מורשה",
+    "falLicense": "FAL מורשה",
+    "listings": "רישומים",
+    "reviews": "ביקורות",
+    "rating": "דירוג",
+    "responseTime": "זמן תגובה",
+    "memberSince": "חבר מאז",
+    "contactAgent": "צור קשר עם הסוכן",
+    "viewProfile": "צפה בפרופיל",
+    "sendMessage": "שלח הודעה"
+  },
+  "property": {
+    "villa": "וילה",
+    "apartment": "דירה",
+    "land": "קרקע",
+    "chalet": "בקתה",
+    "farm": "חווה",
+    "restHouse": "בית מנוחה",
+    "office": "Office",
+    "shop": "חנות",
+    "warehouse": "מחסן",
+    "hotel": "חדר מלון",
+    "entireHome": "כל הבית",
+    "room": "חדר"
+  },
+  "amenities": {
+    "pool": "בריכת שחייה",
+    "gym": "חדר כושר",
+    "parking": "חניה",
+    "security": "אבטחה",
+    "elevator": "מעלית",
+    "garden": "גן",
+    "balcony": "מרפסת",
+    "maidRoom": "חדר עוזרת",
+    "driverRoom": "חדר נהג",
+    "storage": "מחסן",
+    "centralAC": "מיזוג מרכזי",
+    "internet": "אינטרנט",
+    "satellite": "טלוויזיה בלוויין",
+    "furnished": "מרוהט",
+    "kitchen": "מטבח",
+    "laundry": "חדר כביסה"
+  },
+  "compare": {
+    "add": "הוסף להשוואה",
+    "remove": "הסר מהשוואה"
+  },
   "myListings": {
     "countSelected": "{{count}} נבחרו",
     "activateAll": "הפעל את כל",
@@ -1642,7 +1696,7 @@
     "user": "קונה",
     "agent": "סוכן",
     "agency_owner": "בעל סוכנות",
-    "admin": "Admin"
+    "admin": "מנהל מערכת"
   },
   "legal": {
     "privacy": "מדיניות פרטיות",
@@ -1669,56 +1723,6 @@
     "payout_processed": "התשלום עובד",
     "dispute_resolved": "מחלוקת נפתרה",
     "system": "מערכת"
-  },
-  "agent": {
-    "verified": "מאומת",
-    "verifiedAgent": "סוכן מאומת",
-    "licensed": "מורשה",
-    "falLicense": "FAL מורשה",
-    "listings": "רישומים",
-    "reviews": "ביקורות",
-    "rating": "דירוג",
-    "responseTime": "זמן תגובה",
-    "memberSince": "חבר מאז",
-    "contactAgent": "צור קשר עם הסוכן",
-    "viewProfile": "צפה בפרופיל",
-    "sendMessage": "שלח הודעה"
-  },
-  "property": {
-    "villa": "וילה",
-    "apartment": "דירה",
-    "land": "קרקע",
-    "chalet": "בקתה",
-    "farm": "חווה",
-    "restHouse": "בית מנוחה",
-    "office": "Office",
-    "shop": "חנות",
-    "warehouse": "מחסן",
-    "hotel": "חדר מלון",
-    "entireHome": "כל הבית",
-    "room": "חדר"
-  },
-  "amenities": {
-    "pool": "בריכת שחייה",
-    "gym": "חדר כושר",
-    "parking": "חניה",
-    "security": "אבטחה",
-    "elevator": "מעלית",
-    "garden": "גן",
-    "balcony": "מרפסת",
-    "maidRoom": "חדר עוזרת",
-    "driverRoom": "חדר נהג",
-    "storage": "מחסן",
-    "centralAC": "מיזוג מרכזי",
-    "internet": "אינטרנט",
-    "satellite": "טלוויזיה בלוויין",
-    "furnished": "מרוהט",
-    "kitchen": "מטבח",
-    "laundry": "חדר כביסה"
-  },
-  "compare": {
-    "add": "הוסף להשוואה",
-    "remove": "הסר מהשוואה"
   },
   "support": {
     "title": "תמיכה",
@@ -1750,7 +1754,10 @@
       "in_progress": "בתהליך",
       "resolved": "נפתר",
       "closed": "סָגוּר"
-    }
+    },
+    "adminSubtitle": "בדוק ופתור כרטיסי תמיכת לקוחות",
+    "adminEmptyHint": "אין כרטיסים תואמים למסננים הנוכחיים.",
+    "closedHint": "כרטיס זה סגור - שנה את הסטטוס שלו למעלה כדי להשיב."
   },
   "agentReview": {
     "postFailed": "לא ניתן היה לפרסם ביקורת",
@@ -1815,5 +1822,32 @@
     "close": "סגור",
     "previous": "תמונה קודמת",
     "next": "התמונה הבאה"
+  },
+  "homeCategories": {
+    "all": "הכל",
+    "forSale": "לִמְכִירָה",
+    "forRent": "להשכרה",
+    "apartments": "דירות",
+    "villas": "וילות",
+    "land": "קרקע",
+    "chalets": "בקתות",
+    "farms": "חוות",
+    "restHouses": "בתי מנוחה",
+    "hotels": "מלונות",
+    "commercial": "מסחרי",
+    "offices": "משרדים"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "דירות להשכרה",
+    "villasForSale": "וילות למכירה",
+    "landForSale": "קרקע למכירה",
+    "chalets": "בקתות",
+    "restHouses": "בתי מנוחה"
+  },
+  "homeFilters": {
+    "txAll": "הכל",
+    "txSale": "מבצע",
+    "txRent": "השכרה",
+    "bedsAny": "כל"
   }
 }

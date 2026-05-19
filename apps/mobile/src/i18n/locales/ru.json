@@ -27,7 +27,8 @@
     "stays": "Проживание",
     "shortTermStays": "Краткосрочное проживание",
     "hotels": "Отели",
-    "chalets": "Шале и фермы"
+    "chalets": "Шале и фермы",
+    "about": "О"
   },
   "dashboard": {
     "overview": "Обзор",
@@ -437,10 +438,25 @@
       "sold": "Продал",
       "rented": "Сдан в аренду"
     },
+    "bedrooms": "Спальни",
+    "bathrooms": "Ванные комнаты",
+    "sqm": "м²",
+    "type": "Тип",
+    "floor": "Пол",
+    "age": "Возраст",
+    "parking": "Стоянка",
+    "furnished": "Меблированный",
+    "unfurnished": "Без мебели",
+    "perNight": "/ночь",
+    "verifiedAgent": "Проверенный агент",
+    "newListing": "Новый",
+    "sold": "Продал",
+    "rented": "Сдан в аренду",
+    "available": "Доступный",
+    "pending": "В ожидании",
+    "expired": "Истекший",
     "sale": "Распродажа",
     "rent": "Арендовать",
-    "bedrooms": "Кровати",
-    "bathrooms": "Ванны",
     "propertyTypeLabel": "Тип",
     "noDescription": "Нет описания.",
     "locationNotSpecified": "Местоположение не указано",
@@ -463,22 +479,7 @@
     "actionFailed": "Действие не выполнено",
     "bookingDevTitle": "Бронирование",
     "bookingDevBody": "Система бронирования находится в разработке. Пожалуйста, свяжитесь с агентом.",
-    "removeFromSaved": "Удалить это свойство из сохраненных?",
-    "sqm": "м²",
-    "type": "Тип",
-    "floor": "Пол",
-    "age": "Возраст",
-    "parking": "Стоянка",
-    "furnished": "Меблированный",
-    "unfurnished": "Без мебели",
-    "perNight": "/ночь",
-    "verifiedAgent": "Проверенный агент",
-    "newListing": "Новый",
-    "sold": "Продал",
-    "rented": "Сдан в аренду",
-    "available": "Доступный",
-    "pending": "В ожидании",
-    "expired": "Истекший"
+    "removeFromSaved": "Удалить это свойство из сохраненных?"
   },
   "search": {
     "filters": "Фильтры",
@@ -808,7 +809,10 @@
       "pinRequired": "Отметьте местоположение на карте.",
       "imageRequired": "Для публикации необходимо хотя бы одно изображение."
     },
-    "transactionType": "Тип транзакции",
+    "transactionType": {
+      "sale": "Распродажа",
+      "rent": "Арендовать"
+    },
     "rentPeriod": {
       "daily": "Ежедневно",
       "weekly": "Еженедельно",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Агенты не найдены",
     "tryLater": "Повторите попытку позже"
   },
+  "agent": {
+    "verified": "Проверено",
+    "verifiedAgent": "Проверенный агент",
+    "licensed": "Лицензированный",
+    "falLicense": "Лицензия ФАЛ",
+    "listings": "Объявления",
+    "reviews": "Отзывы",
+    "rating": "Рейтинг",
+    "responseTime": "Время ответа",
+    "memberSince": "Участник с",
+    "contactAgent": "Связаться с агентом",
+    "viewProfile": "Посмотреть профиль",
+    "sendMessage": "Отправить сообщение"
+  },
+  "property": {
+    "villa": "Вилла",
+    "apartment": "Квартира",
+    "land": "Земля",
+    "chalet": "Шале",
+    "farm": "Ферма",
+    "restHouse": "Дом отдыха",
+    "office": "Офис",
+    "shop": "Магазин",
+    "warehouse": "Склад",
+    "hotel": "Гостиничный номер",
+    "entireHome": "Весь дом",
+    "room": "Комната"
+  },
+  "amenities": {
+    "pool": "Бассейн",
+    "gym": "Спортзал",
+    "parking": "Стоянка",
+    "security": "Безопасность",
+    "elevator": "Лифт",
+    "garden": "Сад",
+    "balcony": "Балкон",
+    "maidRoom": "Комната горничной",
+    "driverRoom": "Комната водителя",
+    "storage": "Кладовая",
+    "centralAC": "Центральный кондиционер",
+    "internet": "Интернет",
+    "satellite": "Спутниковое телевидение",
+    "furnished": "Меблированный",
+    "kitchen": "Кухня",
+    "laundry": "Прачечная"
+  },
+  "compare": {
+    "add": "Добавить для сравнения",
+    "remove": "Удалить из сравнения"
+  },
   "myListings": {
     "countSelected": "{{count}} выбрано",
     "activateAll": "Активировать все",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Спор разрешен",
     "system": "Система"
   },
-  "agent": {
-    "verified": "Проверено",
-    "verifiedAgent": "Проверенный агент",
-    "licensed": "Лицензированный",
-    "falLicense": "Лицензия ФАЛ",
-    "listings": "Объявления",
-    "reviews": "Отзывы",
-    "rating": "Рейтинг",
-    "responseTime": "Время ответа",
-    "memberSince": "Участник с",
-    "contactAgent": "Связаться с агентом",
-    "viewProfile": "Посмотреть профиль",
-    "sendMessage": "Отправить сообщение"
-  },
-  "property": {
-    "villa": "Вилла",
-    "apartment": "Квартира",
-    "land": "Земля",
-    "chalet": "Шале",
-    "farm": "Ферма",
-    "restHouse": "Дом отдыха",
-    "office": "Офис",
-    "shop": "Магазин",
-    "warehouse": "Склад",
-    "hotel": "Гостиничный номер",
-    "entireHome": "Весь дом",
-    "room": "Комната"
-  },
-  "amenities": {
-    "pool": "Бассейн",
-    "gym": "Спортзал",
-    "parking": "Стоянка",
-    "security": "Безопасность",
-    "elevator": "Лифт",
-    "garden": "Сад",
-    "balcony": "Балкон",
-    "maidRoom": "Комната горничной",
-    "driverRoom": "Комната водителя",
-    "storage": "Кладовая",
-    "centralAC": "Центральный кондиционер",
-    "internet": "Интернет",
-    "satellite": "Спутниковое телевидение",
-    "furnished": "Меблированный",
-    "kitchen": "Кухня",
-    "laundry": "Прачечная"
-  },
-  "compare": {
-    "add": "Добавить для сравнения",
-    "remove": "Удалить из сравнения"
-  },
   "support": {
     "title": "Поддерживать",
     "myTickets": "Мои билеты",
@@ -1750,7 +1754,10 @@
       "in_progress": "В ходе выполнения",
       "resolved": "Решено",
       "closed": "Закрыто"
-    }
+    },
+    "adminSubtitle": "Сортировка и решение заявок в службу поддержки клиентов",
+    "adminEmptyHint": "Ни один билет не соответствует текущим фильтрам.",
+    "closedHint": "Этот тикет закрыт — измените его статус выше, чтобы ответить."
   },
   "agentReview": {
     "postFailed": "Не удалось опубликовать отзыв",
@@ -1815,5 +1822,32 @@
     "close": "Закрывать",
     "previous": "Предыдущее фото",
     "next": "Следующее фото"
+  },
+  "homeCategories": {
+    "all": "Все",
+    "forSale": "Для продажи",
+    "forRent": "В аренду",
+    "apartments": "Квартиры",
+    "villas": "Виллы",
+    "land": "Земля",
+    "chalets": "Шале",
+    "farms": "Фермы",
+    "restHouses": "Дома отдыха",
+    "hotels": "Отели",
+    "commercial": "Коммерческий",
+    "offices": "Офисы"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Квартиры в аренду",
+    "villasForSale": "Виллы на продажу",
+    "landForSale": "Земля на продажу",
+    "chalets": "Шале",
+    "restHouses": "Дома отдыха"
+  },
+  "homeFilters": {
+    "txAll": "Все",
+    "txSale": "Распродажа",
+    "txRent": "Арендовать",
+    "bedsAny": "Любой"
   }
 }

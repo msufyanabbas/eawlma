@@ -27,7 +27,8 @@
     "stays": "නවාතැන්",
     "shortTermStays": "කෙටි කාලීන නවාතැන්",
     "hotels": "හෝටල්",
-    "chalets": "ෂෙලේ සහ ගොවිපල්"
+    "chalets": "ෂෙලේ සහ ගොවිපල්",
+    "about": "ගැන"
   },
   "dashboard": {
     "overview": "දළ විශ්ලේෂණය",
@@ -437,10 +438,25 @@
       "sold": "විකුණුවා",
       "rented": "කුලියට ගත්තා"
     },
+    "bedrooms": "නිදන කාමර",
+    "bathrooms": "නානකාමර",
+    "sqm": "m²",
+    "type": "ටයිප් කරන්න",
+    "floor": "මහල",
+    "age": "වයස",
+    "parking": "වාහන නැවැත්වීම",
+    "furnished": "සපයා ඇත",
+    "unfurnished": "ගෘහභාණ්ඩ නොකළ",
+    "perNight": "/ රාත්රිය",
+    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
+    "newListing": "අලුත්",
+    "sold": "විකුණුවා",
+    "rented": "කුලියට ගත්තා",
+    "available": "ලබා ගත හැක",
+    "pending": "පොරොත්තුවෙන්",
+    "expired": "කල් ඉකුත් වී ඇත",
     "sale": "විකිණීම",
     "rent": "කුලියට",
-    "bedrooms": "ඇඳන්",
-    "bathrooms": "නාන",
     "propertyTypeLabel": "ටයිප් කරන්න",
     "noDescription": "විස්තරයක් නැත.",
     "locationNotSpecified": "ස්ථානය සඳහන් කර නැත",
@@ -463,22 +479,7 @@
     "actionFailed": "ක්‍රියාව අසාර්ථක විය",
     "bookingDevTitle": "වෙන්කරවා ගැනීම",
     "bookingDevBody": "වෙන්කරවා ගැනීමේ ප්‍රවාහය සංවර්ධනය වෙමින් පවතී. කරුණාකර නියෝජිතයා අමතන්න.",
-    "removeFromSaved": "මෙම දේපල සුරැකීමෙන් ඉවත් කරන්නද?",
-    "sqm": "m²",
-    "type": "ටයිප් කරන්න",
-    "floor": "මහල",
-    "age": "වයස",
-    "parking": "වාහන නැවැත්වීම",
-    "furnished": "සපයා ඇත",
-    "unfurnished": "ගෘහභාණ්ඩ නොකළ",
-    "perNight": "/ රාත්රිය",
-    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
-    "newListing": "අලුත්",
-    "sold": "විකුණුවා",
-    "rented": "කුලියට ගත්තා",
-    "available": "ලබා ගත හැක",
-    "pending": "පොරොත්තුවෙන්",
-    "expired": "කල් ඉකුත් වී ඇත"
+    "removeFromSaved": "මෙම දේපල සුරැකීමෙන් ඉවත් කරන්නද?"
   },
   "search": {
     "filters": "පෙරහන්",
@@ -808,7 +809,10 @@
       "pinRequired": "ස්ථානය සඳහා සිතියම මත පින් එකක් දමන්න.",
       "imageRequired": "ප්‍රකාශනය කිරීමට පෙර අවම වශයෙන් එක් රූපයක්වත් අවශ්‍ය වේ."
     },
-    "transactionType": "ගනුදෙනු වර්ගය",
+    "transactionType": {
+      "sale": "විකිණීම",
+      "rent": "කුලියට"
+    },
     "rentPeriod": {
       "daily": "දිනපතා",
       "weekly": "සතිපතා",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "නියෝජිතයන් හමු නොවීය",
     "tryLater": "පසුව නැවත උත්සාහ කරන්න"
   },
+  "agent": {
+    "verified": "තහවුරු කර ඇත",
+    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
+    "licensed": "බලපත්‍රලාභී",
+    "falLicense": "FAL බලපත්‍රලාභී",
+    "listings": "ලැයිස්තුගත කිරීම්",
+    "reviews": "සමාලෝචන",
+    "rating": "ශ්රේණිගත කිරීම",
+    "responseTime": "ප්‍රතිචාර කාලය",
+    "memberSince": "සාමාජිකයා සිට",
+    "contactAgent": "නියෝජිතයා අමතන්න",
+    "viewProfile": "පැතිකඩ බලන්න",
+    "sendMessage": "පණිවිඩයක් යවන්න"
+  },
+  "property": {
+    "villa": "විලා",
+    "apartment": "මහල් නිවාසය",
+    "land": "ඉඩම",
+    "chalet": "චාලට්",
+    "farm": "ගොවිපල",
+    "restHouse": "තානායම",
+    "office": "කාර්යාලය",
+    "shop": "සාප්පු යන්න",
+    "warehouse": "ගබඩාව",
+    "hotel": "හෝටල් කාමරය",
+    "entireHome": "මුළු නිවස",
+    "room": "කාමරය"
+  },
+  "amenities": {
+    "pool": "පිහිනුම් තටාකය",
+    "gym": "ජිම්",
+    "parking": "වාහන නැවැත්වීම",
+    "security": "ආරක්ෂාව",
+    "elevator": "සෝපානය",
+    "garden": "උද්යානය",
+    "balcony": "බැල්කනිය",
+    "maidRoom": "සේවිකාව කාමරය",
+    "driverRoom": "රියදුරු කාමරය",
+    "storage": "ගබඩා කාමරය",
+    "centralAC": "මධ්‍යම ඒ/සී",
+    "internet": "අන්තර්ජාලය",
+    "satellite": "චන්ද්රිකා රූපවාහිනිය",
+    "furnished": "සපයා ඇත",
+    "kitchen": "කුස්සිය",
+    "laundry": "රෙදි සෝදන කාමරය"
+  },
+  "compare": {
+    "add": "සංසන්දනය කිරීමට එකතු කරන්න",
+    "remove": "සංසන්දනය කිරීමෙන් ඉවත් කරන්න"
+  },
   "myListings": {
     "countSelected": "{{count}} තෝරා ඇත",
     "activateAll": "සියල්ල සක්රිය කරන්න",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "ආරවුල විසඳා ඇත",
     "system": "පද්ධතිය"
   },
-  "agent": {
-    "verified": "තහවුරු කර ඇත",
-    "verifiedAgent": "තහවුරු කළ නියෝජිතයා",
-    "licensed": "බලපත්‍රලාභී",
-    "falLicense": "FAL බලපත්‍රලාභී",
-    "listings": "ලැයිස්තුගත කිරීම්",
-    "reviews": "සමාලෝචන",
-    "rating": "ශ්රේණිගත කිරීම",
-    "responseTime": "ප්‍රතිචාර කාලය",
-    "memberSince": "සාමාජිකයා සිට",
-    "contactAgent": "නියෝජිතයා අමතන්න",
-    "viewProfile": "පැතිකඩ බලන්න",
-    "sendMessage": "පණිවිඩයක් යවන්න"
-  },
-  "property": {
-    "villa": "විලා",
-    "apartment": "මහල් නිවාසය",
-    "land": "ඉඩම",
-    "chalet": "චාලට්",
-    "farm": "ගොවිපල",
-    "restHouse": "තානායම",
-    "office": "කාර්යාලය",
-    "shop": "සාප්පු යන්න",
-    "warehouse": "ගබඩාව",
-    "hotel": "හෝටල් කාමරය",
-    "entireHome": "මුළු නිවස",
-    "room": "කාමරය"
-  },
-  "amenities": {
-    "pool": "පිහිනුම් තටාකය",
-    "gym": "ජිම්",
-    "parking": "වාහන නැවැත්වීම",
-    "security": "ආරක්ෂාව",
-    "elevator": "සෝපානය",
-    "garden": "උද්යානය",
-    "balcony": "බැල්කනිය",
-    "maidRoom": "සේවිකාව කාමරය",
-    "driverRoom": "රියදුරු කාමරය",
-    "storage": "ගබඩා කාමරය",
-    "centralAC": "මධ්‍යම ඒ/සී",
-    "internet": "අන්තර්ජාලය",
-    "satellite": "චන්ද්රිකා රූපවාහිනිය",
-    "furnished": "සපයා ඇත",
-    "kitchen": "කුස්සිය",
-    "laundry": "රෙදි සෝදන කාමරය"
-  },
-  "compare": {
-    "add": "සංසන්දනය කිරීමට එකතු කරන්න",
-    "remove": "සංසන්දනය කිරීමෙන් ඉවත් කරන්න"
-  },
   "support": {
     "title": "සහාය",
     "myTickets": "මගේ ටිකට්",
@@ -1750,7 +1754,10 @@
       "in_progress": "ප්රගතියේ",
       "resolved": "විසඳා ඇත",
       "closed": "වසා ඇත"
-    }
+    },
+    "adminSubtitle": "පාරිභෝගික සහාය ප්‍රවේශපත්‍ර පරීක්ෂා කිරීම සහ විසඳීම",
+    "adminEmptyHint": "වත්මන් පෙරහන්වලට ගැලපෙන ප්‍රවේශපත්‍ර නැත.",
+    "closedHint": "මෙම ප්‍රවේශ පත්‍රය වසා ඇත - පිළිතුරු දීමට එහි ඉහත තත්ත්වය වෙනස් කරන්න."
   },
   "agentReview": {
     "postFailed": "සමාලෝචනය පළ කිරීමට නොහැකි විය",
@@ -1815,5 +1822,32 @@
     "close": "වසන්න",
     "previous": "පෙර ඡායාරූපය",
     "next": "ඊළඟ ඡායාරූපය"
+  },
+  "homeCategories": {
+    "all": "සියල්ල",
+    "forSale": "විකිණීමට ඇත",
+    "forRent": "කුලියට",
+    "apartments": "මහල් නිවාස",
+    "villas": "විලාස්",
+    "land": "ඉඩම",
+    "chalets": "චාලට්",
+    "farms": "ගොවිපලවල්",
+    "restHouses": "විවේකාගාර",
+    "hotels": "හෝටල්",
+    "commercial": "වාණිජමය",
+    "offices": "කාර්යාල"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "මහල් නිවාස කුලියට දීමට",
+    "villasForSale": "විලාස් විකිණීමට ඇත",
+    "landForSale": "ඉඩම විකිණීමට ඇත",
+    "chalets": "චාලට්",
+    "restHouses": "විවේකාගාර"
+  },
+  "homeFilters": {
+    "txAll": "සියල්ල",
+    "txSale": "විකිණීම",
+    "txRent": "කුලියට",
+    "bedsAny": "ඕනෑම"
   }
 }

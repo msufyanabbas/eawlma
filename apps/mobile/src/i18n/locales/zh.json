@@ -27,7 +27,8 @@
     "stays": "短租",
     "shortTermStays": "短期住宿",
     "hotels": "酒店",
-    "chalets": "小屋与农场"
+    "chalets": "小屋与农场",
+    "about": "关于"
   },
   "dashboard": {
     "overview": "概览",
@@ -437,10 +438,25 @@
       "sold": "卖",
       "rented": "已租"
     },
+    "bedrooms": "卧室",
+    "bathrooms": "浴室",
+    "sqm": "平方米",
+    "type": "类型",
+    "floor": "地面",
+    "age": "年龄",
+    "parking": "停車處",
+    "furnished": "家具齐全",
+    "unfurnished": "不带家具",
+    "perNight": "/夜晚",
+    "verifiedAgent": "已验证代理",
+    "newListing": "新的",
+    "sold": "卖",
+    "rented": "已租",
+    "available": "可用的",
+    "pending": "待办的",
+    "expired": "已到期",
     "sale": "销售",
     "rent": "租",
-    "bedrooms": "床位",
-    "bathrooms": "浴场",
     "propertyTypeLabel": "类型",
     "noDescription": "没有描述。",
     "locationNotSpecified": "未指定地点",
@@ -463,22 +479,7 @@
     "actionFailed": "操作失败",
     "bookingDevTitle": "预订",
     "bookingDevBody": "预订流程正在开发中。请联系代理商。",
-    "removeFromSaved": "从已保存的属性中删除该属性吗？",
-    "sqm": "平方米",
-    "type": "类型",
-    "floor": "地面",
-    "age": "年龄",
-    "parking": "停車處",
-    "furnished": "家具齐全",
-    "unfurnished": "不带家具",
-    "perNight": "/夜晚",
-    "verifiedAgent": "已验证代理",
-    "newListing": "新的",
-    "sold": "卖",
-    "rented": "已租",
-    "available": "可用的",
-    "pending": "待办的",
-    "expired": "已到期"
+    "removeFromSaved": "从已保存的属性中删除该属性吗？"
   },
   "search": {
     "filters": "筛选",
@@ -808,7 +809,10 @@
       "pinRequired": "在地图上放置一个图钉来确定该位置。",
       "imageRequired": "发布前至少需要一张图像。"
     },
-    "transactionType": "交易类型",
+    "transactionType": {
+      "sale": "销售",
+      "rent": "租"
+    },
     "rentPeriod": {
       "daily": "日常的",
       "weekly": "每周",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "没有找到代理",
     "tryLater": "稍后再试"
   },
+  "agent": {
+    "verified": "已验证",
+    "verifiedAgent": "已验证代理",
+    "licensed": "已获得许可",
+    "falLicense": "FAL 许可",
+    "listings": "房源",
+    "reviews": "评论",
+    "rating": "等级",
+    "responseTime": "响应时间",
+    "memberSince": "会员自",
+    "contactAgent": "联系代理",
+    "viewProfile": "查看资料",
+    "sendMessage": "发送消息"
+  },
+  "property": {
+    "villa": "别墅",
+    "apartment": "公寓",
+    "land": "土地",
+    "chalet": "小木屋",
+    "farm": "农场",
+    "restHouse": "休息所",
+    "office": "办公室",
+    "shop": "店铺",
+    "warehouse": "仓库",
+    "hotel": "酒店房间",
+    "entireHome": "整套房子",
+    "room": "房间"
+  },
+  "amenities": {
+    "pool": "游泳池",
+    "gym": "健身房",
+    "parking": "停車處",
+    "security": "安全",
+    "elevator": "电梯",
+    "garden": "花园",
+    "balcony": "阳台",
+    "maidRoom": "女仆房",
+    "driverRoom": "司机室",
+    "storage": "储藏室",
+    "centralAC": "中央空调",
+    "internet": "互联网",
+    "satellite": "卫星电视",
+    "furnished": "家具齐全",
+    "kitchen": "厨房",
+    "laundry": "洗衣房"
+  },
+  "compare": {
+    "add": "添加比较",
+    "remove": "从比较中删除"
+  },
   "myListings": {
     "countSelected": "已选择 {{count}} 个",
     "activateAll": "全部激活",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "争议已解决",
     "system": "系统"
   },
-  "agent": {
-    "verified": "已验证",
-    "verifiedAgent": "已验证代理",
-    "licensed": "已获得许可",
-    "falLicense": "FAL 许可",
-    "listings": "房源",
-    "reviews": "评论",
-    "rating": "等级",
-    "responseTime": "响应时间",
-    "memberSince": "会员自",
-    "contactAgent": "联系代理",
-    "viewProfile": "查看资料",
-    "sendMessage": "发送消息"
-  },
-  "property": {
-    "villa": "别墅",
-    "apartment": "公寓",
-    "land": "土地",
-    "chalet": "小木屋",
-    "farm": "农场",
-    "restHouse": "休息所",
-    "office": "办公室",
-    "shop": "店铺",
-    "warehouse": "仓库",
-    "hotel": "酒店房间",
-    "entireHome": "整套房子",
-    "room": "房间"
-  },
-  "amenities": {
-    "pool": "游泳池",
-    "gym": "健身房",
-    "parking": "停車處",
-    "security": "安全",
-    "elevator": "电梯",
-    "garden": "花园",
-    "balcony": "阳台",
-    "maidRoom": "女仆房",
-    "driverRoom": "司机室",
-    "storage": "储藏室",
-    "centralAC": "中央空调",
-    "internet": "互联网",
-    "satellite": "卫星电视",
-    "furnished": "家具齐全",
-    "kitchen": "厨房",
-    "laundry": "洗衣房"
-  },
-  "compare": {
-    "add": "添加比较",
-    "remove": "从比较中删除"
-  },
   "support": {
     "title": "支持",
     "myTickets": "我的门票",
@@ -1750,7 +1754,10 @@
       "in_progress": "进行中",
       "resolved": "已解决",
       "closed": "关闭"
-    }
+    },
+    "adminSubtitle": "分类并解决客户支持票证",
+    "adminEmptyHint": "没有与当前过滤器匹配的票证。",
+    "closedHint": "此票证已关闭 - 更改其上面的状态以进行回复。"
   },
   "agentReview": {
     "postFailed": "无法发表评论",
@@ -1815,5 +1822,32 @@
     "close": "关闭",
     "previous": "上一张照片",
     "next": "下一张照片"
+  },
+  "homeCategories": {
+    "all": "全部",
+    "forSale": "出售",
+    "forRent": "出租",
+    "apartments": "公寓",
+    "villas": "别墅",
+    "land": "土地",
+    "chalets": "小木屋",
+    "farms": "农场",
+    "restHouses": "休息所",
+    "hotels": "酒店",
+    "commercial": "商业的",
+    "offices": "办事处"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "公寓出租",
+    "villasForSale": "出售别墅",
+    "landForSale": "土地出售",
+    "chalets": "小木屋",
+    "restHouses": "休息所"
+  },
+  "homeFilters": {
+    "txAll": "全部",
+    "txSale": "销售",
+    "txRent": "租",
+    "bedsAny": "任何"
   }
 }

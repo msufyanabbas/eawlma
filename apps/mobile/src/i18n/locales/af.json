@@ -27,7 +27,8 @@
     "stays": "Verblywe",
     "shortTermStays": "Korttermyn verblywe",
     "hotels": "Hotelle",
-    "chalets": "Chalets en plase"
+    "chalets": "Chalets en plase",
+    "about": "Oor"
   },
   "dashboard": {
     "overview": "Oorsig",
@@ -437,10 +438,25 @@
       "sold": "Verkoop",
       "rented": "Gehuur"
     },
+    "bedrooms": "Slaapkamers",
+    "bathrooms": "Badkamers",
+    "sqm": "m²",
+    "type": "Tik",
+    "floor": "Vloer",
+    "age": "Ouderdom",
+    "parking": "Parkering",
+    "furnished": "Gemeubileerd",
+    "unfurnished": "Ongemeubileerd",
+    "perNight": "/nag",
+    "verifiedAgent": "Geverifieerde agent",
+    "newListing": "Nuwe",
+    "sold": "Verkoop",
+    "rented": "Gehuur",
+    "available": "Beskikbaar",
+    "pending": "Hangende",
+    "expired": "Verval",
     "sale": "Verkoop",
     "rent": "Huur",
-    "bedrooms": "Beddens",
-    "bathrooms": "Baddens",
     "propertyTypeLabel": "Tik",
     "noDescription": "Geen beskrywing nie.",
     "locationNotSpecified": "Ligging nie gespesifiseer nie",
@@ -463,22 +479,7 @@
     "actionFailed": "wees Aksie het misluk",
     "bookingDevTitle": "Bespreking",
     "bookingDevBody": "Besprekingsvloei is in ontwikkeling. Kontak asseblief die agent.",
-    "removeFromSaved": "Verwyder hierdie eiendom van gestoor?",
-    "sqm": "m²",
-    "type": "Tik",
-    "floor": "Vloer",
-    "age": "Ouderdom",
-    "parking": "Parkering",
-    "furnished": "Gemeubileerd",
-    "unfurnished": "Ongemeubileerd",
-    "perNight": "/nag",
-    "verifiedAgent": "Geverifieerde agent",
-    "newListing": "Nuwe",
-    "sold": "Verkoop",
-    "rented": "Gehuur",
-    "available": "Beskikbaar",
-    "pending": "Hangende",
-    "expired": "Verval"
+    "removeFromSaved": "Verwyder hierdie eiendom van gestoor?"
   },
   "search": {
     "filters": "Filters",
@@ -755,8 +756,8 @@
     "media": "Media",
     "amenities": "Geriewe",
     "compliance": {
-      "permitNumber": "Permit / FAL nommer",
-      "regaNumber": "REGA-lisensienommer",
+      "permitNumber": "Permit / FAL-nommer",
+      "regaNumber": "REGA lisensie nommer",
       "permitExpiry": "Toestemming verval",
       "preferredContact": "Voorkeur kontak",
       "phone": "Telefoon",
@@ -808,7 +809,10 @@
       "pinRequired": "Los 'n speld op die kaart vir die ligging.",
       "imageRequired": "Ten minste een prent word vereis voor publikasie."
     },
-    "transactionType": "Transaksietipe",
+    "transactionType": {
+      "sale": "Verkoop",
+      "rent": "Huur"
+    },
     "rentPeriod": {
       "daily": "Daagliks",
       "weekly": "Weeklikse",
@@ -834,7 +838,7 @@
       "centralAc": "Sentrale AC",
       "kitchenAppliances": "Kombuistoebehore",
       "security": "24/7 sekuriteit",
-      "cornerUnit": "Hoek eenheid"
+      "cornerUnit": "Hoek-eenheid"
     },
     "shortTermAmenity": {
       "wifi": "Wi-Fi",
@@ -858,13 +862,13 @@
       "minimumStay": "Minimum verblyf (nagte)",
       "maxGuests": "Maksimum gaste",
       "checkIn": "Aanmelding",
-      "checkOut": "Uitklok",
+      "checkOut": "Check-out",
       "cancellationPolicy": "Kansellasiebeleid",
       "cancelFlexible": "Buigsaam — volle terugbetaling tot 24 uur voor",
       "cancelModerate": "Matig — volle terugbetaling tot 5 dae voor",
       "cancelStrict": "Streng — 50% terugbetaling tot 7 dae voor",
       "starRating": "Stergradering",
-      "hotelName": "Hotelnaam",
+      "hotelName": "Hotel naam",
       "instantBook": "Kitsboek",
       "instantBookHint": "Besprekings outomaties bevestig sonder jou goedkeuring. Deaktiveer om eers elke versoek te hersien.",
       "amenities": "Geriewe",
@@ -1111,7 +1115,7 @@
     "oath": {
       "dialogTitle": "Kommissie-verbintenis",
       "translatedOath": "Ek verbind my hiermee om die ooreengekome kommissie te betaal na voltooiing van hierdie eiendomstransaksie, en erken hierdie verantwoordelikheid voor God en die wet.",
-      "breakdownTitle": "Kommissie-verdeling",
+      "breakdownTitle": "Kommissie uiteensetting",
       "agentListingBreakdown": "Platformkommissie: <strong>0.5%</strong> van die transaksiewaarde, betaalbaar by suksesvolle verkoop of huursluiting.",
       "buyerAgentCommission": "Agentkommissie: <strong>2,5%</strong> van die transaksiewaarde.",
       "buyerPlatformFee": "Platformfooi: <strong>0.5%</strong> van die transaksiewaarde.",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Geen agente gevind nie",
     "tryLater": "Probeer later weer"
   },
+  "agent": {
+    "verified": "Geverifieer",
+    "verifiedAgent": "Geverifieerde agent",
+    "licensed": "Gelisensieerde",
+    "falLicense": "FAL gelisensieer",
+    "listings": "Inskrywings",
+    "reviews": "Resensies",
+    "rating": "Gradering",
+    "responseTime": "Reaksie Tyd",
+    "memberSince": "Lid sedert",
+    "contactAgent": "Kontak Agent",
+    "viewProfile": "Bekyk profiel",
+    "sendMessage": "Stuur Boodskap"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Woonstel",
+    "land": "Grond",
+    "chalet": "Chalet",
+    "farm": "Plaas",
+    "restHouse": "Rushuis",
+    "office": "Kantoor",
+    "shop": "Winkel",
+    "warehouse": "Pakhuis",
+    "hotel": "Hotelkamer",
+    "entireHome": "Hele huis",
+    "room": "Kamer"
+  },
+  "amenities": {
+    "pool": "Swembad",
+    "gym": "Gimnasium",
+    "parking": "Parkering",
+    "security": "Sekuriteit",
+    "elevator": "Hysbak",
+    "garden": "Tuin",
+    "balcony": "Balkon",
+    "maidRoom": "Meid Kamer",
+    "driverRoom": "Bestuurder Kamer",
+    "storage": "Stoorkamer",
+    "centralAC": "Sentrale lugversorging",
+    "internet": "Internet",
+    "satellite": "Satelliet-TV",
+    "furnished": "Gemeubileerd",
+    "kitchen": "Kombuis",
+    "laundry": "Waskamer"
+  },
+  "compare": {
+    "add": "Voeg by om te vergelyk",
+    "remove": "Verwyder uit vergelyking"
+  },
   "myListings": {
     "countSelected": "{{count}} gekies",
     "activateAll": "Aktiveer alles",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Dispuut opgelos",
     "system": "Stelsel"
   },
-  "agent": {
-    "verified": "Geverifieer",
-    "verifiedAgent": "Geverifieerde agent",
-    "licensed": "Gelisensieerde",
-    "falLicense": "FAL gelisensieer",
-    "listings": "Inskrywings",
-    "reviews": "Resensies",
-    "rating": "Gradering",
-    "responseTime": "Reaksie Tyd",
-    "memberSince": "Lid sedert",
-    "contactAgent": "Kontak Agent",
-    "viewProfile": "Bekyk profiel",
-    "sendMessage": "Stuur Boodskap"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Woonstel",
-    "land": "Grond",
-    "chalet": "Chalet",
-    "farm": "Plaas",
-    "restHouse": "Rushuis",
-    "office": "Kantoor",
-    "shop": "Winkel",
-    "warehouse": "Pakhuis",
-    "hotel": "Hotelkamer",
-    "entireHome": "Hele huis",
-    "room": "Kamer"
-  },
-  "amenities": {
-    "pool": "Swembad",
-    "gym": "Gimnasium",
-    "parking": "Parkering",
-    "security": "Sekuriteit",
-    "elevator": "Hysbak",
-    "garden": "Tuin",
-    "balcony": "Balkon",
-    "maidRoom": "Meid Kamer",
-    "driverRoom": "Bestuurder Kamer",
-    "storage": "Stoorkamer",
-    "centralAC": "Sentrale lugversorging",
-    "internet": "Internet",
-    "satellite": "Satelliet-TV",
-    "furnished": "Gemeubileerd",
-    "kitchen": "Kombuis",
-    "laundry": "Waskamer"
-  },
-  "compare": {
-    "add": "Voeg by om te vergelyk",
-    "remove": "Verwyder uit vergelyking"
-  },
   "support": {
     "title": "Ondersteun",
     "myTickets": "My Kaartjies",
@@ -1750,7 +1754,10 @@
       "in_progress": "oop Aan die gang",
       "resolved": "Opgelos",
       "closed": "Gesluit"
-    }
+    },
+    "adminSubtitle": "Triage en los kliëntedienskaartjies op",
+    "adminEmptyHint": "Geen kaartjies pas by die huidige filters nie.",
+    "closedHint": "Hierdie kaartjie is gesluit - verander sy status hierbo om te antwoord."
   },
   "agentReview": {
     "postFailed": "Kon nie resensie plaas nie",
@@ -1815,5 +1822,32 @@
     "close": "laai nie Sluit",
     "previous": "Vorige foto",
     "next": "Volgende foto"
+  },
+  "homeCategories": {
+    "all": "Alles",
+    "forSale": "Te Koop",
+    "forRent": "Te Huur",
+    "apartments": "Woonstelle",
+    "villas": "Villas",
+    "land": "Grond",
+    "chalets": "Chalets",
+    "farms": "Plase",
+    "restHouses": "Rushuise",
+    "hotels": "Hotelle",
+    "commercial": "Kommersieel",
+    "offices": "Kantore"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Woonstelle te huur",
+    "villasForSale": "Villa's te koop",
+    "landForSale": "Grond te koop",
+    "chalets": "Chalets",
+    "restHouses": "Rushuise"
+  },
+  "homeFilters": {
+    "txAll": "Alles",
+    "txSale": "Verkoop",
+    "txRent": "Huur",
+    "bedsAny": "Enige"
   }
 }

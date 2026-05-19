@@ -27,7 +27,8 @@
     "stays": "Lưu trú",
     "shortTermStays": "Lưu trú ngắn hạn",
     "hotels": "Khách sạn",
-    "chalets": "Nhà nghỉ & trang trại"
+    "chalets": "Nhà nghỉ & trang trại",
+    "about": "Về"
   },
   "dashboard": {
     "overview": "Tổng quan",
@@ -437,10 +438,25 @@
       "sold": "Đã bán",
       "rented": "Đã thuê"
     },
+    "bedrooms": "Phòng ngủ",
+    "bathrooms": "Phòng tắm",
+    "sqm": "mét vuông",
+    "type": "Kiểu",
+    "floor": "Sàn nhà",
+    "age": "Tuổi",
+    "parking": "bãi đậu xe",
+    "furnished": "Có nội thất",
+    "unfurnished": "Không có đồ đạc",
+    "perNight": "/đêm",
+    "verifiedAgent": "Đại lý đã được xác minh",
+    "newListing": "Mới",
+    "sold": "Đã bán",
+    "rented": "Đã thuê",
+    "available": "Có sẵn",
+    "pending": "Chưa giải quyết",
+    "expired": "Hết hạn",
     "sale": "Doanh thu",
     "rent": "Thuê",
-    "bedrooms": "Giường",
-    "bathrooms": "Phòng tắm",
     "propertyTypeLabel": "Kiểu",
     "noDescription": "Không có mô tả.",
     "locationNotSpecified": "Vị trí không được chỉ định",
@@ -463,22 +479,7 @@
     "actionFailed": "Hành động không thành công",
     "bookingDevTitle": "Đặt chỗ",
     "bookingDevBody": "Luồng đặt phòng đang được phát triển. Vui lòng liên hệ với đại lý.",
-    "removeFromSaved": "Xóa thuộc tính này khỏi đã lưu?",
-    "sqm": "mét vuông",
-    "type": "Kiểu",
-    "floor": "Sàn nhà",
-    "age": "Tuổi",
-    "parking": "bãi đậu xe",
-    "furnished": "Có nội thất",
-    "unfurnished": "Không có đồ đạc",
-    "perNight": "/đêm",
-    "verifiedAgent": "Đại lý đã được xác minh",
-    "newListing": "Mới",
-    "sold": "Đã bán",
-    "rented": "Đã thuê",
-    "available": "Có sẵn",
-    "pending": "Chưa giải quyết",
-    "expired": "Hết hạn"
+    "removeFromSaved": "Xóa thuộc tính này khỏi đã lưu?"
   },
   "search": {
     "filters": "Bộ lọc",
@@ -808,7 +809,10 @@
       "pinRequired": "Thả ghim trên bản đồ cho vị trí.",
       "imageRequired": "Cần có ít nhất một hình ảnh trước khi xuất bản."
     },
-    "transactionType": "Loại giao dịch",
+    "transactionType": {
+      "sale": "Doanh thu",
+      "rent": "Thuê"
+    },
     "rentPeriod": {
       "daily": "Hằng ngày",
       "weekly": "hàng tuần",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Không tìm thấy đại lý nào",
     "tryLater": "Hãy thử lại sau"
   },
+  "agent": {
+    "verified": "Đã xác minh",
+    "verifiedAgent": "Đại lý đã được xác minh",
+    "licensed": "Được cấp phép",
+    "falLicense": "FAL được cấp phép",
+    "listings": "Danh sách",
+    "reviews": "Đánh giá",
+    "rating": "Đánh giá",
+    "responseTime": "Thời gian đáp ứng",
+    "memberSince": "Thành viên kể từ",
+    "contactAgent": "Liên hệ đại lý",
+    "viewProfile": "Xem hồ sơ",
+    "sendMessage": "Gửi tin nhắn"
+  },
+  "property": {
+    "villa": "biệt thự",
+    "apartment": "Căn hộ",
+    "land": "Đất",
+    "chalet": "Nhà gỗ",
+    "farm": "Nông trại",
+    "restHouse": "Nhà nghỉ",
+    "office": "Văn phòng",
+    "shop": "Cửa hàng",
+    "warehouse": "Kho",
+    "hotel": "Phòng khách sạn",
+    "entireHome": "Toàn bộ ngôi nhà",
+    "room": "Phòng"
+  },
+  "amenities": {
+    "pool": "Bể bơi",
+    "gym": "phòng tập thể dục",
+    "parking": "bãi đậu xe",
+    "security": "Bảo vệ",
+    "elevator": "Thang máy",
+    "garden": "Vườn",
+    "balcony": "Ban công",
+    "maidRoom": "Phòng giúp việc",
+    "driverRoom": "Phòng tài xế",
+    "storage": "Phòng lưu trữ",
+    "centralAC": "Điều hòa trung tâm",
+    "internet": "internet",
+    "satellite": "Truyền hình vệ tinh",
+    "furnished": "Có nội thất",
+    "kitchen": "Phòng bếp",
+    "laundry": "Phòng giặt ủi"
+  },
+  "compare": {
+    "add": "Thêm để so sánh",
+    "remove": "Xóa khỏi so sánh"
+  },
   "myListings": {
     "countSelected": "{{đếm}} đã được chọn",
     "activateAll": "Kích hoạt tất cả",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Tranh chấp đã được giải quyết",
     "system": "Hệ thống"
   },
-  "agent": {
-    "verified": "Đã xác minh",
-    "verifiedAgent": "Đại lý đã được xác minh",
-    "licensed": "Được cấp phép",
-    "falLicense": "FAL được cấp phép",
-    "listings": "Danh sách",
-    "reviews": "Đánh giá",
-    "rating": "Đánh giá",
-    "responseTime": "Thời gian đáp ứng",
-    "memberSince": "Thành viên kể từ",
-    "contactAgent": "Liên hệ đại lý",
-    "viewProfile": "Xem hồ sơ",
-    "sendMessage": "Gửi tin nhắn"
-  },
-  "property": {
-    "villa": "biệt thự",
-    "apartment": "Căn hộ",
-    "land": "Đất",
-    "chalet": "Nhà gỗ",
-    "farm": "Nông trại",
-    "restHouse": "Nhà nghỉ",
-    "office": "Văn phòng",
-    "shop": "Cửa hàng",
-    "warehouse": "Kho",
-    "hotel": "Phòng khách sạn",
-    "entireHome": "Toàn bộ ngôi nhà",
-    "room": "Phòng"
-  },
-  "amenities": {
-    "pool": "Bể bơi",
-    "gym": "phòng tập thể dục",
-    "parking": "bãi đậu xe",
-    "security": "Bảo vệ",
-    "elevator": "Thang máy",
-    "garden": "Vườn",
-    "balcony": "Ban công",
-    "maidRoom": "Phòng giúp việc",
-    "driverRoom": "Phòng tài xế",
-    "storage": "Phòng lưu trữ",
-    "centralAC": "Điều hòa trung tâm",
-    "internet": "internet",
-    "satellite": "Truyền hình vệ tinh",
-    "furnished": "Có nội thất",
-    "kitchen": "Phòng bếp",
-    "laundry": "Phòng giặt ủi"
-  },
-  "compare": {
-    "add": "Thêm để so sánh",
-    "remove": "Xóa khỏi so sánh"
-  },
   "support": {
     "title": "Ủng hộ",
     "myTickets": "Vé của tôi",
@@ -1750,7 +1754,10 @@
       "in_progress": "Đang tiến hành",
       "resolved": "Đã giải quyết",
       "closed": "Đã đóng"
-    }
+    },
+    "adminSubtitle": "Phân loại và giải quyết các yêu cầu hỗ trợ khách hàng",
+    "adminEmptyHint": "Không có vé phù hợp với các bộ lọc hiện tại.",
+    "closedHint": "Phiếu này đã bị đóng — hãy thay đổi trạng thái của nó ở trên để trả lời."
   },
   "agentReview": {
     "postFailed": "Không thể đăng bài đánh giá",
@@ -1815,5 +1822,32 @@
     "close": "Đóng",
     "previous": "Ảnh trước",
     "next": "Ảnh tiếp theo"
+  },
+  "homeCategories": {
+    "all": "Tất cả",
+    "forSale": "Cần bán",
+    "forRent": "Cho thuê",
+    "apartments": "Căn hộ",
+    "villas": "Biệt thự",
+    "land": "Đất",
+    "chalets": "Nhà gỗ",
+    "farms": "trang trại",
+    "restHouses": "Nhà nghỉ",
+    "hotels": "Khách sạn",
+    "commercial": "Thuộc về thương mại",
+    "offices": "Văn phòng"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Căn hộ cho thuê",
+    "villasForSale": "Biệt thự để bán",
+    "landForSale": "Bán đất",
+    "chalets": "Nhà gỗ",
+    "restHouses": "Nhà nghỉ"
+  },
+  "homeFilters": {
+    "txAll": "Tất cả",
+    "txSale": "Doanh thu",
+    "txRent": "Thuê",
+    "bedsAny": "Bất kì"
   }
 }

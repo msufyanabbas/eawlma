@@ -27,7 +27,8 @@
     "stays": "Estancias",
     "shortTermStays": "Estancias cortas",
     "hotels": "Hoteles",
-    "chalets": "Chalés y granjas"
+    "chalets": "Chalés y granjas",
+    "about": "Acerca de"
   },
   "dashboard": {
     "overview": "Resumen",
@@ -437,10 +438,25 @@
       "sold": "Vendido",
       "rented": "Alquilado"
     },
+    "bedrooms": "Dormitorios",
+    "bathrooms": "Baños",
+    "sqm": "m²",
+    "type": "Tipo",
+    "floor": "Piso",
+    "age": "Edad",
+    "parking": "Aparcamiento",
+    "furnished": "Amueblado",
+    "unfurnished": "Sin muebles",
+    "perNight": "/noche",
+    "verifiedAgent": "Agente verificado",
+    "newListing": "Nuevo",
+    "sold": "Vendido",
+    "rented": "Alquilado",
+    "available": "Disponible",
+    "pending": "Pendiente",
+    "expired": "Venció",
     "sale": "Venta",
     "rent": "Alquilar",
-    "bedrooms": "Camas",
-    "bathrooms": "Balneario",
     "propertyTypeLabel": "Tipo",
     "noDescription": "Sin descripción.",
     "locationNotSpecified": "Ubicación no especificada",
@@ -463,22 +479,7 @@
     "actionFailed": "La acción falló",
     "bookingDevTitle": "Reserva",
     "bookingDevBody": "El flujo de reservas está en desarrollo. Por favor contacte al agente.",
-    "removeFromSaved": "¿Eliminar esta propiedad de guardado?",
-    "sqm": "m²",
-    "type": "Tipo",
-    "floor": "Piso",
-    "age": "Edad",
-    "parking": "Aparcamiento",
-    "furnished": "Amueblado",
-    "unfurnished": "Sin muebles",
-    "perNight": "/noche",
-    "verifiedAgent": "Agente verificado",
-    "newListing": "Nuevo",
-    "sold": "Vendido",
-    "rented": "Alquilado",
-    "available": "Disponible",
-    "pending": "Pendiente",
-    "expired": "Venció"
+    "removeFromSaved": "¿Eliminar esta propiedad de guardado?"
   },
   "search": {
     "filters": "Filtros",
@@ -808,7 +809,10 @@
       "pinRequired": "Coloque un marcador en el mapa para la ubicación.",
       "imageRequired": "Se requiere al menos una imagen antes de publicarla."
     },
-    "transactionType": "Tipo de transacción",
+    "transactionType": {
+      "sale": "Venta",
+      "rent": "Alquilar"
+    },
     "rentPeriod": {
       "daily": "A diario",
       "weekly": "Semanalmente",
@@ -837,7 +841,7 @@
       "cornerUnit": "Unidad de esquina"
     },
     "shortTermAmenity": {
-      "wifi": "wifi",
+      "wifi": "Wifi",
       "pool": "Piscina",
       "parking": "Aparcamiento",
       "breakfast": "Desayuno",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "No se encontraron agentes",
     "tryLater": "Vuelve a intentarlo más tarde"
   },
+  "agent": {
+    "verified": "Verificado",
+    "verifiedAgent": "Agente verificado",
+    "licensed": "Con licencia",
+    "falLicense": "Licencia FAL",
+    "listings": "Listados",
+    "reviews": "Reseñas",
+    "rating": "Clasificación",
+    "responseTime": "Tiempo de respuesta",
+    "memberSince": "Miembro desde",
+    "contactAgent": "Contactar al agente",
+    "viewProfile": "Ver perfil",
+    "sendMessage": "Enviar mensaje"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Departamento",
+    "land": "Tierra",
+    "chalet": "Chalet",
+    "farm": "Granja",
+    "restHouse": "Casa de descanso",
+    "office": "Oficina",
+    "shop": "Comercio",
+    "warehouse": "Depósito",
+    "hotel": "Habitación de hotel",
+    "entireHome": "Casa entera",
+    "room": "Habitación"
+  },
+  "amenities": {
+    "pool": "Piscina",
+    "gym": "Gimnasia",
+    "parking": "Aparcamiento",
+    "security": "Seguridad",
+    "elevator": "Ascensor",
+    "garden": "Jardín",
+    "balcony": "Balcón",
+    "maidRoom": "cuarto de servicio",
+    "driverRoom": "Sala del conductor",
+    "storage": "Trastero",
+    "centralAC": "Aire acondicionado central",
+    "internet": "Internet",
+    "satellite": "Televisión por satélite",
+    "furnished": "Amueblado",
+    "kitchen": "Cocina",
+    "laundry": "cuarto de lavado"
+  },
+  "compare": {
+    "add": "Añadir para comparar",
+    "remove": "Quitar de comparar"
+  },
   "myListings": {
     "countSelected": "{{count}} seleccionado",
     "activateAll": "Activar todo",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Disputa resuelta",
     "system": "Sistema"
   },
-  "agent": {
-    "verified": "Verificado",
-    "verifiedAgent": "Agente verificado",
-    "licensed": "Con licencia",
-    "falLicense": "Licencia FAL",
-    "listings": "Listados",
-    "reviews": "Reseñas",
-    "rating": "Clasificación",
-    "responseTime": "Tiempo de respuesta",
-    "memberSince": "Miembro desde",
-    "contactAgent": "Contactar al agente",
-    "viewProfile": "Ver perfil",
-    "sendMessage": "Enviar mensaje"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Departamento",
-    "land": "Tierra",
-    "chalet": "Chalet",
-    "farm": "Granja",
-    "restHouse": "Casa de descanso",
-    "office": "Oficina",
-    "shop": "Comercio",
-    "warehouse": "Depósito",
-    "hotel": "Habitación de hotel",
-    "entireHome": "Casa entera",
-    "room": "Habitación"
-  },
-  "amenities": {
-    "pool": "Piscina",
-    "gym": "Gimnasia",
-    "parking": "Aparcamiento",
-    "security": "Seguridad",
-    "elevator": "Ascensor",
-    "garden": "Jardín",
-    "balcony": "Balcón",
-    "maidRoom": "cuarto de servicio",
-    "driverRoom": "Sala del conductor",
-    "storage": "Trastero",
-    "centralAC": "Aire acondicionado central",
-    "internet": "Internet",
-    "satellite": "Televisión por satélite",
-    "furnished": "Amueblado",
-    "kitchen": "Cocina",
-    "laundry": "cuarto de lavado"
-  },
-  "compare": {
-    "add": "Añadir para comparar",
-    "remove": "Quitar de comparar"
-  },
   "support": {
     "title": "Apoyo",
     "myTickets": "Mis entradas",
@@ -1750,7 +1754,10 @@
       "in_progress": "En curso",
       "resolved": "Resuelto",
       "closed": "Cerrado"
-    }
+    },
+    "adminSubtitle": "Clasificar y resolver tickets de atención al cliente",
+    "adminEmptyHint": "No hay entradas que coincidan con los filtros actuales.",
+    "closedHint": "Este ticket está cerrado: cambie su estado arriba para responder."
   },
   "agentReview": {
     "postFailed": "No se pudo publicar la reseña",
@@ -1815,5 +1822,32 @@
     "close": "Cerca",
     "previous": "Foto anterior",
     "next": "siguiente foto"
+  },
+  "homeCategories": {
+    "all": "Todo",
+    "forSale": "En venta",
+    "forRent": "En alquiler",
+    "apartments": "Apartamentos",
+    "villas": "Villas",
+    "land": "Tierra",
+    "chalets": "Chalets",
+    "farms": "Granjas",
+    "restHouses": "Casas de descanso",
+    "hotels": "Hoteles",
+    "commercial": "Comercial",
+    "offices": "Oficinas"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartamentos en alquiler",
+    "villasForSale": "Villas en venta",
+    "landForSale": "Terreno en venta",
+    "chalets": "Chalets",
+    "restHouses": "Casas de descanso"
+  },
+  "homeFilters": {
+    "txAll": "Todo",
+    "txSale": "Venta",
+    "txRent": "Alquilar",
+    "bedsAny": "Cualquier"
   }
 }

@@ -27,7 +27,8 @@
     "stays": "Penginapan",
     "shortTermStays": "Penginapan jangka pendek",
     "hotels": "Hotel",
-    "chalets": "Chalet & peternakan"
+    "chalets": "Chalet & peternakan",
+    "about": "Tentang"
   },
   "dashboard": {
     "overview": "Ringkasan",
@@ -437,10 +438,25 @@
       "sold": "Terjual",
       "rented": "Sewaan"
     },
+    "bedrooms": "Kamar tidur",
+    "bathrooms": "Kamar mandi",
+    "sqm": "m²",
+    "type": "Jenis",
+    "floor": "Lantai",
+    "age": "Usia",
+    "parking": "Parkir",
+    "furnished": "Berperabot",
+    "unfurnished": "Tak berperabot",
+    "perNight": "/malam",
+    "verifiedAgent": "Agen Terverifikasi",
+    "newListing": "Baru",
+    "sold": "Terjual",
+    "rented": "Sewaan",
+    "available": "Tersedia",
+    "pending": "Tertunda",
+    "expired": "Kedaluwarsa",
     "sale": "Penjualan",
     "rent": "Menyewa",
-    "bedrooms": "Tempat tidur",
-    "bathrooms": "Mandi",
     "propertyTypeLabel": "Jenis",
     "noDescription": "Tidak ada deskripsi.",
     "locationNotSpecified": "Lokasi tidak ditentukan",
@@ -463,22 +479,7 @@
     "actionFailed": "Tindakan gagal",
     "bookingDevTitle": "Pemesanan",
     "bookingDevBody": "Alur pemesanan sedang dalam pengembangan. Silakan hubungi agennya.",
-    "removeFromSaved": "Hapus properti ini dari penyimpanan?",
-    "sqm": "m²",
-    "type": "Jenis",
-    "floor": "Lantai",
-    "age": "Usia",
-    "parking": "Parkir",
-    "furnished": "Berperabot",
-    "unfurnished": "Tak berperabot",
-    "perNight": "/malam",
-    "verifiedAgent": "Agen Terverifikasi",
-    "newListing": "Baru",
-    "sold": "Terjual",
-    "rented": "Sewaan",
-    "available": "Tersedia",
-    "pending": "Tertunda",
-    "expired": "Kedaluwarsa"
+    "removeFromSaved": "Hapus properti ini dari penyimpanan?"
   },
   "search": {
     "filters": "Filter",
@@ -808,7 +809,10 @@
       "pinRequired": "Letakkan pin di peta untuk mengetahui lokasinya.",
       "imageRequired": "Setidaknya satu gambar diperlukan sebelum dipublikasikan."
     },
-    "transactionType": "Jenis Transaksi",
+    "transactionType": {
+      "sale": "Penjualan",
+      "rent": "Menyewa"
+    },
     "rentPeriod": {
       "daily": "Sehari-hari",
       "weekly": "Mingguan",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Tidak ada agen yang ditemukan",
     "tryLater": "Coba lagi nanti"
   },
+  "agent": {
+    "verified": "Terverifikasi",
+    "verifiedAgent": "Agen Terverifikasi",
+    "licensed": "Berlisensi",
+    "falLicense": "Berlisensi FAL",
+    "listings": "Daftar",
+    "reviews": "Ulasan",
+    "rating": "Peringkat",
+    "responseTime": "Waktu Respons",
+    "memberSince": "Anggota Sejak",
+    "contactAgent": "Hubungi Agen",
+    "viewProfile": "Lihat Profil",
+    "sendMessage": "Kirim Pesan"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Apartemen",
+    "land": "Tanah",
+    "chalet": "pondok",
+    "farm": "Peternakan",
+    "restHouse": "Rumah Peristirahatan",
+    "office": "Kantor",
+    "shop": "Toko",
+    "warehouse": "Gudang",
+    "hotel": "Kamar Hotel",
+    "entireHome": "Seluruh Rumah",
+    "room": "Ruang"
+  },
+  "amenities": {
+    "pool": "Kolam renang",
+    "gym": "gimnasium",
+    "parking": "Parkir",
+    "security": "Keamanan",
+    "elevator": "Lift",
+    "garden": "Kebun",
+    "balcony": "Balkon",
+    "maidRoom": "Kamar Pembantu",
+    "driverRoom": "Ruang Pengemudi",
+    "storage": "Ruang Penyimpanan",
+    "centralAC": "AC sentral",
+    "internet": "Internet",
+    "satellite": "televisi satelit",
+    "furnished": "Berperabot",
+    "kitchen": "Dapur",
+    "laundry": "Ruang Binatu"
+  },
+  "compare": {
+    "add": "Tambahkan untuk membandingkan",
+    "remove": "Hapus dari perbandingan"
+  },
   "myListings": {
     "countSelected": "{{hitungan}} dipilih",
     "activateAll": "Aktifkan semua",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Sengketa Terselesaikan",
     "system": "Sistem"
   },
-  "agent": {
-    "verified": "Terverifikasi",
-    "verifiedAgent": "Agen Terverifikasi",
-    "licensed": "Berlisensi",
-    "falLicense": "Berlisensi FAL",
-    "listings": "Daftar",
-    "reviews": "Ulasan",
-    "rating": "Peringkat",
-    "responseTime": "Waktu Respons",
-    "memberSince": "Anggota Sejak",
-    "contactAgent": "Hubungi Agen",
-    "viewProfile": "Lihat Profil",
-    "sendMessage": "Kirim Pesan"
-  },
-  "property": {
-    "villa": "Vila",
-    "apartment": "Apartemen",
-    "land": "Tanah",
-    "chalet": "pondok",
-    "farm": "Peternakan",
-    "restHouse": "Rumah Peristirahatan",
-    "office": "Kantor",
-    "shop": "Toko",
-    "warehouse": "Gudang",
-    "hotel": "Kamar Hotel",
-    "entireHome": "Seluruh Rumah",
-    "room": "Ruang"
-  },
-  "amenities": {
-    "pool": "Kolam renang",
-    "gym": "gimnasium",
-    "parking": "Parkir",
-    "security": "Keamanan",
-    "elevator": "Lift",
-    "garden": "Kebun",
-    "balcony": "Balkon",
-    "maidRoom": "Kamar Pembantu",
-    "driverRoom": "Ruang Pengemudi",
-    "storage": "Ruang Penyimpanan",
-    "centralAC": "AC sentral",
-    "internet": "Internet",
-    "satellite": "televisi satelit",
-    "furnished": "Berperabot",
-    "kitchen": "Dapur",
-    "laundry": "Ruang Binatu"
-  },
-  "compare": {
-    "add": "Tambahkan untuk membandingkan",
-    "remove": "Hapus dari perbandingan"
-  },
   "support": {
     "title": "Mendukung",
     "myTickets": "Tiket Saya",
@@ -1750,7 +1754,10 @@
       "in_progress": "Sedang Berlangsung",
       "resolved": "Terselesaikan",
       "closed": "Tertutup"
-    }
+    },
+    "adminSubtitle": "Triase dan selesaikan tiket dukungan pelanggan",
+    "adminEmptyHint": "Tidak ada tiket yang cocok dengan filter saat ini.",
+    "closedHint": "Tiket ini ditutup — ubah statusnya di atas untuk membalas."
   },
   "agentReview": {
     "postFailed": "Tidak dapat memposting ulasan",
@@ -1815,5 +1822,32 @@
     "close": "Menutup",
     "previous": "Foto sebelumnya",
     "next": "Foto selanjutnya"
+  },
+  "homeCategories": {
+    "all": "Semua",
+    "forSale": "Untuk dijual",
+    "forRent": "Untuk Disewakan",
+    "apartments": "Apartemen",
+    "villas": "Vila",
+    "land": "Tanah",
+    "chalets": "chalet",
+    "farms": "Peternakan",
+    "restHouses": "Rumah Peristirahatan",
+    "hotels": "Hotel",
+    "commercial": "Komersial",
+    "offices": "Kantor"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartemen untuk disewa",
+    "villasForSale": "Villa untuk dijual",
+    "landForSale": "Tanah untuk dijual",
+    "chalets": "chalet",
+    "restHouses": "Rumah peristirahatan"
+  },
+  "homeFilters": {
+    "txAll": "Semua",
+    "txSale": "Penjualan",
+    "txRent": "Menyewa",
+    "bedsAny": "Setiap"
   }
 }

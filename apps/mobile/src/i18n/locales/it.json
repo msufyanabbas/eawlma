@@ -27,7 +27,8 @@
     "stays": "Soggiorni",
     "shortTermStays": "Soggiorni a breve termine",
     "hotels": "Hotel",
-    "chalets": "Chalet e fattorie"
+    "chalets": "Chalet e fattorie",
+    "about": "Di"
   },
   "dashboard": {
     "overview": "Panoramica",
@@ -437,10 +438,25 @@
       "sold": "Venduto",
       "rented": "Affittato"
     },
+    "bedrooms": "Camere da letto",
+    "bathrooms": "Bagni",
+    "sqm": "mq",
+    "type": "Digitare",
+    "floor": "Piano",
+    "age": "Età",
+    "parking": "Parcheggio",
+    "furnished": "Arredato",
+    "unfurnished": "Non arredato",
+    "perNight": "/notte",
+    "verifiedAgent": "Agente verificato",
+    "newListing": "Nuovo",
+    "sold": "Venduto",
+    "rented": "Affittato",
+    "available": "Disponibile",
+    "pending": "In attesa",
+    "expired": "Scaduto",
     "sale": "Vendita",
     "rent": "Affitta",
-    "bedrooms": "Letti",
-    "bathrooms": "Bagni",
     "propertyTypeLabel": "Digitare",
     "noDescription": "Nessuna descrizione.",
     "locationNotSpecified": "Posizione non specificata",
@@ -463,22 +479,7 @@
     "actionFailed": "Azione non riuscita",
     "bookingDevTitle": "Prenotazione",
     "bookingDevBody": "Il flusso di prenotazione è in fase di sviluppo. Si prega di contattare l'agente.",
-    "removeFromSaved": "Rimuovere questa proprietà da quella salvata?",
-    "sqm": "mq",
-    "type": "Tipo",
-    "floor": "Pavimento",
-    "age": "Età",
-    "parking": "Parcheggio",
-    "furnished": "Arredato",
-    "unfurnished": "Non arredato",
-    "perNight": "/notte",
-    "verifiedAgent": "Agente verificato",
-    "newListing": "Nuovo",
-    "sold": "Venduto",
-    "rented": "Affittato",
-    "available": "Disponibile",
-    "pending": "In attesa di",
-    "expired": "Scaduto"
+    "removeFromSaved": "Rimuovere questa proprietà da quella salvata?"
   },
   "search": {
     "filters": "Filtri",
@@ -808,7 +809,10 @@
       "pinRequired": "Rilascia un segnaposto sulla mappa per la posizione.",
       "imageRequired": "È richiesta almeno un'immagine prima della pubblicazione."
     },
-    "transactionType": "Tipo di transazione",
+    "transactionType": {
+      "sale": "Vendita",
+      "rent": "Affitta"
+    },
     "rentPeriod": {
       "daily": "Giornaliero",
       "weekly": "Settimanale",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Nessun agente trovato",
     "tryLater": "Riprova più tardi"
   },
+  "agent": {
+    "verified": "Verificato",
+    "verifiedAgent": "Agente verificato",
+    "licensed": "Con licenza",
+    "falLicense": "Licenza FAL",
+    "listings": "Elenchi",
+    "reviews": "Recensioni",
+    "rating": "Valutazione",
+    "responseTime": "Tempo di risposta",
+    "memberSince": "Membro dal",
+    "contactAgent": "Contatta l'agente",
+    "viewProfile": "Visualizza profilo",
+    "sendMessage": "Invia messaggio"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Appartamento",
+    "land": "Terreno",
+    "chalet": "Chalet",
+    "farm": "Fattoria",
+    "restHouse": "Casa di Riposo",
+    "office": "Ufficio",
+    "shop": "Acquista",
+    "warehouse": "Magazzino",
+    "hotel": "Camera d'albergo",
+    "entireHome": "Intera casa",
+    "room": "Camera"
+  },
+  "amenities": {
+    "pool": "Piscina",
+    "gym": "Palestra",
+    "parking": "Parcheggio",
+    "security": "Sicurezza",
+    "elevator": "Ascensore",
+    "garden": "Giardino",
+    "balcony": "Balcone",
+    "maidRoom": "Camera di servizio",
+    "driverRoom": "Sala conducente",
+    "storage": "Ripostiglio",
+    "centralAC": "Aria condizionata centralizzata",
+    "internet": "Internet",
+    "satellite": "TV satellitare",
+    "furnished": "Arredato",
+    "kitchen": "Cucina",
+    "laundry": "Lavanderia"
+  },
+  "compare": {
+    "add": "Aggiungi per confrontare",
+    "remove": "Rimuovi dal confronto"
+  },
   "myListings": {
     "countSelected": "{{count}} selezionato",
     "activateAll": "Attiva tutto",
@@ -1576,7 +1630,7 @@
     "colViews": "Visualizzazioni",
     "colInquiries": "Richieste",
     "boostFeature": "Potenziamento (funzione)",
-    "duplicate": "Duplicato",
+    "duplicate": "Duplica",
     "deleteConfirmTitle": "Eliminare {{count}} inserzioni?",
     "deleteConfirmDescription": "Questa azione elimina temporaneamente l'elenco: non verrà più visualizzato pubblicamente."
   },
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Controversia risolta",
     "system": "Sistema"
   },
-  "agent": {
-    "verified": "Verificato",
-    "verifiedAgent": "Agente verificato",
-    "licensed": "Con licenza",
-    "falLicense": "Licenza FAL",
-    "listings": "Elenchi",
-    "reviews": "Recensioni",
-    "rating": "Valutazione",
-    "responseTime": "Tempo di risposta",
-    "memberSince": "Membro dal",
-    "contactAgent": "Contatta l'agente",
-    "viewProfile": "Visualizza profilo",
-    "sendMessage": "Invia messaggio"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Appartamento",
-    "land": "Terreno",
-    "chalet": "Chalet",
-    "farm": "Fattoria",
-    "restHouse": "Casa di Riposo",
-    "office": "Ufficio",
-    "shop": "Acquista",
-    "warehouse": "Magazzino",
-    "hotel": "Camera d'albergo",
-    "entireHome": "Intera casa",
-    "room": "Camera"
-  },
-  "amenities": {
-    "pool": "Piscina",
-    "gym": "Palestra",
-    "parking": "Parcheggio",
-    "security": "Sicurezza",
-    "elevator": "Ascensore",
-    "garden": "Giardino",
-    "balcony": "Balcone",
-    "maidRoom": "Camera di servizio",
-    "driverRoom": "Sala conducente",
-    "storage": "Ripostiglio",
-    "centralAC": "Aria condizionata centralizzata",
-    "internet": "Internet",
-    "satellite": "TV satellitare",
-    "furnished": "Arredato",
-    "kitchen": "Cucina",
-    "laundry": "Lavanderia"
-  },
-  "compare": {
-    "add": "Aggiungi per confrontare",
-    "remove": "Rimuovi dal confronto"
-  },
   "support": {
     "title": "Supporto",
     "myTickets": "I miei biglietti",
@@ -1750,7 +1754,10 @@
       "in_progress": "In corso",
       "resolved": "Risolto",
       "closed": "Chiuso"
-    }
+    },
+    "adminSubtitle": "Valutazione e risoluzione dei ticket di assistenza clienti",
+    "adminEmptyHint": "Nessun biglietto corrisponde ai filtri attuali.",
+    "closedHint": "Questo ticket è chiuso: modifica il suo stato sopra per rispondere."
   },
   "agentReview": {
     "postFailed": "Impossibile pubblicare la recensione",
@@ -1794,7 +1801,7 @@
     "whatThisPlaceOffers": "Cosa offre questo posto"
   },
   "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+    "cityPlaceholder": "Riad, Jeddah, Dammam..."
   },
   "agentReviewForm": {
     "commentPlaceholder": "Condividi ciò che è stato utile, professionale o che potrebbe migliorare…"
@@ -1815,5 +1822,32 @@
     "close": "Chiudi",
     "previous": "Foto precedente",
     "next": "Foto successiva"
+  },
+  "homeCategories": {
+    "all": "Tutto",
+    "forSale": "In vendita",
+    "forRent": "In affitto",
+    "apartments": "Appartamenti",
+    "villas": "Ville",
+    "land": "Terra",
+    "chalets": "Chalet",
+    "farms": "Fattorie",
+    "restHouses": "Case di riposo",
+    "hotels": "Alberghi",
+    "commercial": "Commerciale",
+    "offices": "Uffici"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Appartamenti in affitto",
+    "villasForSale": "Ville in vendita",
+    "landForSale": "Terreno in vendita",
+    "chalets": "Chalet",
+    "restHouses": "Case di riposo"
+  },
+  "homeFilters": {
+    "txAll": "Tutti",
+    "txSale": "Vendita",
+    "txRent": "Affitta",
+    "bedsAny": "Qualsiasi"
   }
 }

@@ -27,7 +27,8 @@
     "stays": "Stays",
     "shortTermStays": "Short-term stays",
     "hotels": "Hotels",
-    "chalets": "Chalets & farms"
+    "chalets": "Chalets & farms",
+    "about": "About"
   },
   "dashboard": {
     "overview": "Overview",
@@ -1402,6 +1403,33 @@
     "close": "Close",
     "previous": "Previous photo",
     "next": "Next photo"
+  },
+  "homeCategories": {
+    "all": "All",
+    "forSale": "For Sale",
+    "forRent": "For Rent",
+    "apartments": "Apartments",
+    "villas": "Villas",
+    "land": "Land",
+    "chalets": "Chalets",
+    "farms": "Farms",
+    "restHouses": "Rest Houses",
+    "hotels": "Hotels",
+    "commercial": "Commercial",
+    "offices": "Offices"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartments for rent",
+    "villasForSale": "Villas for sale",
+    "landForSale": "Land for sale",
+    "chalets": "Chalets",
+    "restHouses": "Rest houses"
+  },
+  "homeFilters": {
+    "txAll": "All",
+    "txSale": "Sale",
+    "txRent": "Rent",
+    "bedsAny": "Any"
   },
   "listingDetail": {
     "hotelLabel": "Hotel",

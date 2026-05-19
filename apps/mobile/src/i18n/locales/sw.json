@@ -27,7 +27,8 @@
     "stays": "Malazi",
     "shortTermStays": "Malazi ya muda mfupi",
     "hotels": "Hoteli",
-    "chalets": "Vibanda na mashamba"
+    "chalets": "Vibanda na mashamba",
+    "about": "Kuhusu"
   },
   "dashboard": {
     "overview": "Muhtasari",
@@ -437,10 +438,25 @@
       "sold": "Inauzwa",
       "rented": "Imekodishwa"
     },
+    "bedrooms": "Vyumba vya kulala",
+    "bathrooms": "Vyumba vya bafu",
+    "sqm": "m²",
+    "type": "Aina",
+    "floor": "Sakafu",
+    "age": "Umri",
+    "parking": "Maegesho",
+    "furnished": "Samani",
+    "unfurnished": "Isiyo na samani",
+    "perNight": "/usiku",
+    "verifiedAgent": "Wakala Aliyethibitishwa",
+    "newListing": "Mpya",
+    "sold": "Inauzwa",
+    "rented": "Imekodishwa",
+    "available": "Inapatikana",
+    "pending": "Inasubiri",
+    "expired": "Muda wake umeisha",
     "sale": "Uuzaji",
     "rent": "Kodisha",
-    "bedrooms": "Vitanda",
-    "bathrooms": "Bafu",
     "propertyTypeLabel": "Aina",
     "noDescription": "Hakuna maelezo.",
     "locationNotSpecified": "Mahali hapajabainishwa",
@@ -463,22 +479,7 @@
     "actionFailed": "Kitendo kimeshindwa",
     "bookingDevTitle": "Kuhifadhi",
     "bookingDevBody": "Mtiririko wa kuhifadhi unatengenezwa. Tafadhali wasiliana na wakala.",
-    "removeFromSaved": "Ungependa kuondoa kipengee hiki kutoka kwa zilizohifadhiwa?",
-    "sqm": "m²",
-    "type": "Aina",
-    "floor": "Sakafu",
-    "age": "Umri",
-    "parking": "Maegesho",
-    "furnished": "Samani",
-    "unfurnished": "Isiyo na samani",
-    "perNight": "/usiku",
-    "verifiedAgent": "Wakala Aliyethibitishwa",
-    "newListing": "Mpya",
-    "sold": "Inauzwa",
-    "rented": "Imekodishwa",
-    "available": "Inapatikana",
-    "pending": "Inasubiri",
-    "expired": "Muda wake umeisha"
+    "removeFromSaved": "Ungependa kuondoa kipengee hiki kutoka kwa zilizohifadhiwa?"
   },
   "search": {
     "filters": "Vichujio",
@@ -808,7 +809,10 @@
       "pinRequired": "Dondosha pini kwenye ramani kwa eneo.",
       "imageRequired": "Angalau picha moja inahitajika kabla ya kuchapishwa."
     },
-    "transactionType": "Aina ya Muamala",
+    "transactionType": {
+      "sale": "Uuzaji",
+      "rent": "Kodisha"
+    },
     "rentPeriod": {
       "daily": "Kila siku",
       "weekly": "Kila wiki",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Hakuna mawakala waliopatikana",
     "tryLater": "Jaribu tena baadaye"
   },
+  "agent": {
+    "verified": "Imethibitishwa",
+    "verifiedAgent": "Wakala Aliyethibitishwa",
+    "licensed": "Imepewa leseni",
+    "falLicense": "FAL Inayo Leseni",
+    "listings": "Orodha",
+    "reviews": "Ukaguzi",
+    "rating": "Ukadiriaji",
+    "responseTime": "Muda wa Majibu",
+    "memberSince": "Mwanachama Tangu",
+    "contactAgent": "Wasiliana na Wakala",
+    "viewProfile": "Tazama Wasifu",
+    "sendMessage": "Tuma Ujumbe"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Ghorofa",
+    "land": "Ardhi",
+    "chalet": "Chalet",
+    "farm": "Shamba",
+    "restHouse": "Nyumba ya mapumziko",
+    "office": "Ofisi",
+    "shop": "Duka",
+    "warehouse": "Ghala",
+    "hotel": "Chumba cha Hoteli",
+    "entireHome": "Nyumbani Mzima",
+    "room": "Chumba"
+  },
+  "amenities": {
+    "pool": "Dimbwi la Kuogelea",
+    "gym": "Gym",
+    "parking": "Maegesho",
+    "security": "Usalama",
+    "elevator": "Lifti",
+    "garden": "Bustani",
+    "balcony": "Balcony",
+    "maidRoom": "Chumba cha Mjakazi",
+    "driverRoom": "Chumba cha Dereva",
+    "storage": "Chumba cha Kuhifadhi",
+    "centralAC": "A/C ya kati",
+    "internet": "Mtandao",
+    "satellite": "TV ya satelaiti",
+    "furnished": "Samani",
+    "kitchen": "Jikoni",
+    "laundry": "Chumba cha kufulia"
+  },
+  "compare": {
+    "add": "Ongeza ili kulinganisha",
+    "remove": "Ondoa kutoka kwa kulinganisha"
+  },
   "myListings": {
     "countSelected": "{{count}} zimechaguliwa",
     "activateAll": "Washa zote",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Mzozo Umetatuliwa",
     "system": "Mfumo"
   },
-  "agent": {
-    "verified": "Imethibitishwa",
-    "verifiedAgent": "Wakala Aliyethibitishwa",
-    "licensed": "Imepewa leseni",
-    "falLicense": "FAL Inayo Leseni",
-    "listings": "Orodha",
-    "reviews": "Ukaguzi",
-    "rating": "Ukadiriaji",
-    "responseTime": "Muda wa Majibu",
-    "memberSince": "Mwanachama Tangu",
-    "contactAgent": "Wasiliana na Wakala",
-    "viewProfile": "Tazama Wasifu",
-    "sendMessage": "Tuma Ujumbe"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Ghorofa",
-    "land": "Ardhi",
-    "chalet": "Chalet",
-    "farm": "Shamba",
-    "restHouse": "Nyumba ya mapumziko",
-    "office": "Ofisi",
-    "shop": "Duka",
-    "warehouse": "Ghala",
-    "hotel": "Chumba cha Hoteli",
-    "entireHome": "Nyumbani Mzima",
-    "room": "Chumba"
-  },
-  "amenities": {
-    "pool": "Dimbwi la Kuogelea",
-    "gym": "Gym",
-    "parking": "Maegesho",
-    "security": "Usalama",
-    "elevator": "Lifti",
-    "garden": "Bustani",
-    "balcony": "Balcony",
-    "maidRoom": "Chumba cha Mjakazi",
-    "driverRoom": "Chumba cha Dereva",
-    "storage": "Chumba cha Kuhifadhi",
-    "centralAC": "A/C ya kati",
-    "internet": "Mtandao",
-    "satellite": "TV ya satelaiti",
-    "furnished": "Samani",
-    "kitchen": "Jikoni",
-    "laundry": "Chumba cha kufulia"
-  },
-  "compare": {
-    "add": "Ongeza ili kulinganisha",
-    "remove": "Ondoa kutoka kwa kulinganisha"
-  },
   "support": {
     "title": "Msaada",
     "myTickets": "Tiketi Zangu",
@@ -1750,7 +1754,10 @@
       "in_progress": "Inaendelea",
       "resolved": "Imetatuliwa",
       "closed": "Imefungwa"
-    }
+    },
+    "adminSubtitle": "Jaribu na utatue tikiti za usaidizi kwa wateja",
+    "adminEmptyHint": "Hakuna tikiti zinazolingana na vichujio vya sasa.",
+    "closedHint": "Tikiti hii imefungwa - badilisha hali yake hapo juu ili kujibu."
   },
   "agentReview": {
     "postFailed": "Haikuweza kuchapisha ukaguzi",
@@ -1815,5 +1822,32 @@
     "close": "Funga",
     "previous": "Picha iliyotangulia",
     "next": "Picha inayofuata"
+  },
+  "homeCategories": {
+    "all": "Wote",
+    "forSale": "Inauzwa",
+    "forRent": "Kwa Kukodisha",
+    "apartments": "Vyumba",
+    "villas": "Majumba ya kifahari",
+    "land": "Ardhi",
+    "chalets": "Chalets",
+    "farms": "Mashamba",
+    "restHouses": "Nyumba za mapumziko",
+    "hotels": "Hoteli",
+    "commercial": "Kibiashara",
+    "offices": "Ofisi"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Ghorofa za kukodisha",
+    "villasForSale": "Villas inauzwa",
+    "landForSale": "Ardhi ya kuuza",
+    "chalets": "Chalets",
+    "restHouses": "Nyumba za kupumzika"
+  },
+  "homeFilters": {
+    "txAll": "Wote",
+    "txSale": "Uuzaji",
+    "txRent": "Kodisha",
+    "bedsAny": "Yoyote"
   }
 }

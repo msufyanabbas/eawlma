@@ -27,7 +27,8 @@
     "stays": "ठहराव",
     "shortTermStays": "अल्पकालिक ठहराव",
     "hotels": "होटल",
-    "chalets": "शैले और फ़ार्म"
+    "chalets": "शैले और फ़ार्म",
+    "about": "के बारे में"
   },
   "dashboard": {
     "overview": "अवलोकन",
@@ -437,10 +438,25 @@
       "sold": "बिका हुआ",
       "rented": "किराये पर लिया हुआ"
     },
+    "bedrooms": "बेडरूम",
+    "bathrooms": "बाथरूम",
+    "sqm": "वर्ग मीटर",
+    "type": "प्रकार",
+    "floor": "ज़मीन",
+    "age": "आयु",
+    "parking": "पार्किंग",
+    "furnished": "सुसज्जित",
+    "unfurnished": "बिना असबाब",
+    "perNight": "/रात",
+    "verifiedAgent": "सत्यापित एजेंट",
+    "newListing": "नया",
+    "sold": "बिका हुआ",
+    "rented": "किराये पर लिया हुआ",
+    "available": "उपलब्ध",
+    "pending": "लंबित",
+    "expired": "खत्म हो चुका",
     "sale": "बिक्री",
     "rent": "किराया",
-    "bedrooms": "बेड",
-    "bathrooms": "स्नान",
     "propertyTypeLabel": "प्रकार",
     "noDescription": "कोई विवरण नहीं.",
     "locationNotSpecified": "स्थान निर्दिष्ट नहीं है",
@@ -463,22 +479,7 @@
     "actionFailed": "क्रिया: विफल रही है",
     "bookingDevTitle": "बुकिंग",
     "bookingDevBody": "बुकिंग प्रवाह विकास में है. कृपया एजेंट से संपर्क करें.",
-    "removeFromSaved": "इस संपत्ति को सहेजे गए से हटाएं?",
-    "sqm": "वर्ग मीटर",
-    "type": "प्रकार",
-    "floor": "ज़मीन",
-    "age": "आयु",
-    "parking": "पार्किंग",
-    "furnished": "सुसज्जित",
-    "unfurnished": "बिना असबाब",
-    "perNight": "/रात",
-    "verifiedAgent": "सत्यापित एजेंट",
-    "newListing": "नया",
-    "sold": "बिका हुआ",
-    "rented": "किराये पर लिया हुआ",
-    "available": "उपलब्ध",
-    "pending": "लंबित",
-    "expired": "खत्म हो चुका"
+    "removeFromSaved": "इस संपत्ति को सहेजे गए से हटाएं?"
   },
   "search": {
     "filters": "फ़िल्टर",
@@ -808,7 +809,10 @@
       "pinRequired": "स्थान के लिए मानचित्र पर एक पिन डालें.",
       "imageRequired": "प्रकाशन से पहले कम से कम एक छवि आवश्यक है."
     },
-    "transactionType": "लेनदेन प्रकार",
+    "transactionType": {
+      "sale": "बिक्री",
+      "rent": "किराया"
+    },
     "rentPeriod": {
       "daily": "दैनिक",
       "weekly": "साप्ताहिक",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "कोई एजेंट नहीं मिला",
     "tryLater": "बाद में पुन: प्रयास"
   },
+  "agent": {
+    "verified": "सत्यापित",
+    "verifiedAgent": "सत्यापित एजेंट",
+    "licensed": "लाइसेंस",
+    "falLicense": "एफएएल लाइसेंस प्राप्त",
+    "listings": "लिस्टिंग",
+    "reviews": "समीक्षा",
+    "rating": "रेटिंग",
+    "responseTime": "प्रतिक्रिया समय",
+    "memberSince": "से सदस्य",
+    "contactAgent": "एजेंट से संपर्क करें",
+    "viewProfile": "प्रोफ़ाइल देखें",
+    "sendMessage": "मेसेज भेजें"
+  },
+  "property": {
+    "villa": "विला",
+    "apartment": "अपार्टमेंट",
+    "land": "भूमि",
+    "chalet": "षाले",
+    "farm": "खेत",
+    "restHouse": "विश्राम गृह",
+    "office": "कार्यालय",
+    "shop": "दुकान",
+    "warehouse": "गोदाम",
+    "hotel": "होटल का कमरा",
+    "entireHome": "पूरा घर",
+    "room": "कमरा"
+  },
+  "amenities": {
+    "pool": "स्विमिंग पूल",
+    "gym": "जिम",
+    "parking": "पार्किंग",
+    "security": "सुरक्षा",
+    "elevator": "लिफ़्ट",
+    "garden": "बगीचा",
+    "balcony": "बालकनी",
+    "maidRoom": "नौकरानी कक्ष",
+    "driverRoom": "ड्राइवर कक्ष",
+    "storage": "भंडारण कक्ष",
+    "centralAC": "सेंट्रल ए/सी",
+    "internet": "इंटरनेट",
+    "satellite": "उपग्रह दूरदर्शन",
+    "furnished": "सुसज्जित",
+    "kitchen": "रसोईघर",
+    "laundry": "कपड़े धोने का कमरा"
+  },
+  "compare": {
+    "add": "तुलना में जोड़ें",
+    "remove": "तुलना से हटाएँ"
+  },
   "myListings": {
     "countSelected": "{{गिनती}} चयनित",
     "activateAll": "सभी को सक्रिय करें",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "विवाद सुलझ गया",
     "system": "प्रणाली"
   },
-  "agent": {
-    "verified": "सत्यापित",
-    "verifiedAgent": "सत्यापित एजेंट",
-    "licensed": "लाइसेंस",
-    "falLicense": "एफएएल लाइसेंस प्राप्त",
-    "listings": "लिस्टिंग",
-    "reviews": "समीक्षा",
-    "rating": "रेटिंग",
-    "responseTime": "प्रतिक्रिया समय",
-    "memberSince": "से सदस्य",
-    "contactAgent": "एजेंट से संपर्क करें",
-    "viewProfile": "प्रोफ़ाइल देखें",
-    "sendMessage": "मेसेज भेजें"
-  },
-  "property": {
-    "villa": "विला",
-    "apartment": "अपार्टमेंट",
-    "land": "भूमि",
-    "chalet": "षाले",
-    "farm": "खेत",
-    "restHouse": "विश्राम गृह",
-    "office": "कार्यालय",
-    "shop": "दुकान",
-    "warehouse": "गोदाम",
-    "hotel": "होटल का कमरा",
-    "entireHome": "पूरा घर",
-    "room": "कमरा"
-  },
-  "amenities": {
-    "pool": "स्विमिंग पूल",
-    "gym": "जिम",
-    "parking": "पार्किंग",
-    "security": "सुरक्षा",
-    "elevator": "लिफ़्ट",
-    "garden": "बगीचा",
-    "balcony": "बालकनी",
-    "maidRoom": "नौकरानी कक्ष",
-    "driverRoom": "ड्राइवर कक्ष",
-    "storage": "भंडारण कक्ष",
-    "centralAC": "सेंट्रल ए/सी",
-    "internet": "इंटरनेट",
-    "satellite": "उपग्रह दूरदर्शन",
-    "furnished": "सुसज्जित",
-    "kitchen": "रसोईघर",
-    "laundry": "कपड़े धोने का कमरा"
-  },
-  "compare": {
-    "add": "तुलना में जोड़ें",
-    "remove": "तुलना से हटाएँ"
-  },
   "support": {
     "title": "सहायता",
     "myTickets": "मेरे टिकट",
@@ -1750,7 +1754,10 @@
       "in_progress": "प्रगति पर है",
       "resolved": "हल किया",
       "closed": "बंद किया हुआ"
-    }
+    },
+    "adminSubtitle": "ग्राहक सहायता टिकटों का परीक्षण और समाधान करें",
+    "adminEmptyHint": "कोई भी टिकट वर्तमान फ़िल्टर से मेल नहीं खाता।",
+    "closedHint": "यह टिकट बंद है - उत्तर देने के लिए ऊपर इसकी स्थिति बदलें।"
   },
   "agentReview": {
     "postFailed": "समीक्षा पोस्ट नहीं की जा सकी",
@@ -1815,5 +1822,32 @@
     "close": "बंद करना",
     "previous": "पिछला फ़ोटो",
     "next": "अगली फोटो"
+  },
+  "homeCategories": {
+    "all": "सभी",
+    "forSale": "बिक्री के लिए",
+    "forRent": "किराए के लिए",
+    "apartments": "अपार्टमेंट",
+    "villas": "विला",
+    "land": "भूमि",
+    "chalets": "शैले",
+    "farms": "फार्म",
+    "restHouses": "विश्राम गृह",
+    "hotels": "होटल",
+    "commercial": "व्यावसायिक",
+    "offices": "कार्यालयों"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "किराए के लिए अपार्टमेंट",
+    "villasForSale": "बिक्री के लिए विला",
+    "landForSale": "बिक्री हेतु भूमि",
+    "chalets": "शैले",
+    "restHouses": "विश्राम गृह"
+  },
+  "homeFilters": {
+    "txAll": "सभी",
+    "txSale": "बिक्री",
+    "txRent": "किराया",
+    "bedsAny": "कोई"
   }
 }

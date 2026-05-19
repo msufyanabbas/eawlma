@@ -27,7 +27,8 @@
     "stays": "Boenden",
     "shortTermStays": "Korttidsboenden",
     "hotels": "Hotell",
-    "chalets": "Stugor och gårdar"
+    "chalets": "Stugor och gårdar",
+    "about": "Om"
   },
   "dashboard": {
     "overview": "Översikt",
@@ -437,10 +438,25 @@
       "sold": "Såld",
       "rented": "Uthyres"
     },
+    "bedrooms": "Sovrum",
+    "bathrooms": "Badrum",
+    "sqm": "m²",
+    "type": "Skriv",
+    "floor": "Golv",
+    "age": "Ålder",
+    "parking": "Parkering",
+    "furnished": "Möblerad",
+    "unfurnished": "Omöblerad",
+    "perNight": "/natt",
+    "verifiedAgent": "Verifierad agent",
+    "newListing": "Ny",
+    "sold": "Såld",
+    "rented": "Uthyres",
+    "available": "Tillgänglig",
+    "pending": "Väntar",
+    "expired": "Utgått",
     "sale": "Försäljning",
     "rent": "Hyr",
-    "bedrooms": "Sängar",
-    "bathrooms": "Bad",
     "propertyTypeLabel": "Skriv",
     "noDescription": "Ingen beskrivning.",
     "locationNotSpecified": "Plats ej specificerad",
@@ -463,22 +479,7 @@
     "actionFailed": "Åtgärden misslyckades",
     "bookingDevTitle": "Bokning",
     "bookingDevBody": "Bokningsflödet är under utveckling. Vänligen kontakta agenten.",
-    "removeFromSaved": "Vill du ta bort den här egenskapen från sparad?",
-    "sqm": "m²",
-    "type": "Skriv",
-    "floor": "Golv",
-    "age": "Ålder",
-    "parking": "Parkering",
-    "furnished": "Möblerad",
-    "unfurnished": "Omöblerad",
-    "perNight": "/natt",
-    "verifiedAgent": "Verifierad agent",
-    "newListing": "Ny",
-    "sold": "Såld",
-    "rented": "Uthyres",
-    "available": "Tillgänglig",
-    "pending": "Väntar",
-    "expired": "Utgått"
+    "removeFromSaved": "Vill du ta bort den här egenskapen från sparad?"
   },
   "search": {
     "filters": "Filter",
@@ -734,7 +735,7 @@
     "signOut": "Logga ut",
     "signOutConfirm": "Är du säker på att du vill logga ut?",
     "member": "Medlem",
-    "agentRole": "Agent",
+    "agentRole": "Ombud",
     "admin": "Admin",
     "chooseLanguage": "Välj språk",
     "searchLanguage": "Sök...",
@@ -808,7 +809,10 @@
       "pinRequired": "Sätt en nål på kartan för platsen.",
       "imageRequired": "Minst en bild krävs innan publicering."
     },
-    "transactionType": "Transaktionstyp",
+    "transactionType": {
+      "sale": "Försäljning",
+      "rent": "Hyr"
+    },
     "rentPeriod": {
       "daily": "Dagligen",
       "weekly": "Veckovis",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Inga agenter hittades",
     "tryLater": "Försök igen senare"
   },
+  "agent": {
+    "verified": "Verifierad",
+    "verifiedAgent": "Verifierad agent",
+    "licensed": "Licensierad",
+    "falLicense": "FAL-licensierad",
+    "listings": "Listor",
+    "reviews": "Recensioner",
+    "rating": "Betyg",
+    "responseTime": "Svarstid",
+    "memberSince": "Medlem sedan",
+    "contactAgent": "Kontakta agent",
+    "viewProfile": "Visa profil",
+    "sendMessage": "Skicka meddelande"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Lägenhet",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Odla",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handla",
+    "warehouse": "Lager",
+    "hotel": "Hotellrum",
+    "entireHome": "Hela hemmet",
+    "room": "Rum"
+  },
+  "amenities": {
+    "pool": "Pool",
+    "gym": "Gym",
+    "parking": "Parkering",
+    "security": "Säkerhet",
+    "elevator": "Hiss",
+    "garden": "Trädgård",
+    "balcony": "Balkong",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driver Room",
+    "storage": "Förråd",
+    "centralAC": "Central A/C",
+    "internet": "Internet",
+    "satellite": "Satellit-TV",
+    "furnished": "Möblerad",
+    "kitchen": "Kök",
+    "laundry": "Tvättstuga"
+  },
+  "compare": {
+    "add": "Lägg till för att jämföra",
+    "remove": "Ta bort från jämförelse"
+  },
   "myListings": {
     "countSelected": "{{count}} markerade",
     "activateAll": "Aktivera alla",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Tvist löst",
     "system": "System"
   },
-  "agent": {
-    "verified": "Verifierad",
-    "verifiedAgent": "Verifierad agent",
-    "licensed": "Licensierad",
-    "falLicense": "FAL-licensierad",
-    "listings": "Listor",
-    "reviews": "Recensioner",
-    "rating": "Betyg",
-    "responseTime": "Svarstid",
-    "memberSince": "Medlem sedan",
-    "contactAgent": "Kontakta agent",
-    "viewProfile": "Visa profil",
-    "sendMessage": "Skicka meddelande"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Lägenhet",
-    "land": "Land",
-    "chalet": "Chalet",
-    "farm": "Gård",
-    "restHouse": "Rest House",
-    "office": "Kontor",
-    "shop": "Handla",
-    "warehouse": "Lager",
-    "hotel": "Hotellrum",
-    "entireHome": "Hela hemmet",
-    "room": "Rum"
-  },
-  "amenities": {
-    "pool": "Pool",
-    "gym": "Gym",
-    "parking": "Parkering",
-    "security": "Säkerhet",
-    "elevator": "Hiss",
-    "garden": "Trädgård",
-    "balcony": "Balkong",
-    "maidRoom": "Maid Room",
-    "driverRoom": "Driver Room",
-    "storage": "Förråd",
-    "centralAC": "Central A/C",
-    "internet": "Internet",
-    "satellite": "Satellit-TV",
-    "furnished": "Möblerad",
-    "kitchen": "Kök",
-    "laundry": "Tvättstuga"
-  },
-  "compare": {
-    "add": "Lägg till för att jämföra",
-    "remove": "Ta bort från jämförelse"
-  },
   "support": {
     "title": "Stöd",
     "myTickets": "Mina biljetter",
@@ -1750,7 +1754,10 @@
       "in_progress": "Pågår",
       "resolved": "Löst",
       "closed": "Stängd"
-    }
+    },
+    "adminSubtitle": "Triage och lös kundsupportbiljetter",
+    "adminEmptyHint": "Inga biljetter matchar de aktuella filtren.",
+    "closedHint": "Den här biljetten är stängd – ändra dess status ovan för att svara."
   },
   "agentReview": {
     "postFailed": "Kunde inte skicka recension",
@@ -1815,5 +1822,32 @@
     "close": "Stäng",
     "previous": "Föregående bild",
     "next": "Nästa foto"
+  },
+  "homeCategories": {
+    "all": "Alla",
+    "forSale": "Till salu",
+    "forRent": "Uthyres",
+    "apartments": "Lägenheter",
+    "villas": "Villor",
+    "land": "Land",
+    "chalets": "Chalets",
+    "farms": "Gårdar",
+    "restHouses": "Resthus",
+    "hotels": "Hotell",
+    "commercial": "Kommersiell",
+    "offices": "Kontor"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Lägenheter att hyra",
+    "villasForSale": "Villor till salu",
+    "landForSale": "Tomt till salu",
+    "chalets": "Chalets",
+    "restHouses": "Rasthus"
+  },
+  "homeFilters": {
+    "txAll": "Alla",
+    "txSale": "Försäljning",
+    "txRent": "Hyr",
+    "bedsAny": "Alla"
   }
 }

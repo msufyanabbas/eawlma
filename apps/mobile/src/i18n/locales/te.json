@@ -27,7 +27,8 @@
     "stays": "నివాసాలు",
     "shortTermStays": "స్వల్పకాలిక నివాసాలు",
     "hotels": "హోటళ్లు",
-    "chalets": "షాలే & ఫామ్‌లు"
+    "chalets": "షాలే & ఫామ్‌లు",
+    "about": "గురించి"
   },
   "dashboard": {
     "overview": "అవలోకనం",
@@ -437,10 +438,25 @@
       "sold": "విక్రయించబడింది",
       "rented": "అద్దెకు తీసుకున్నారు"
     },
+    "bedrooms": "బెడ్ రూములు",
+    "bathrooms": "స్నానపు గదులు",
+    "sqm": "m²",
+    "type": "టైప్ చేయండి",
+    "floor": "అంతస్తు",
+    "age": "వయస్సు",
+    "parking": "పార్కింగ్",
+    "furnished": "అమర్చిన",
+    "unfurnished": "అమర్చనిది",
+    "perNight": "/రాత్రి",
+    "verifiedAgent": "ధృవీకరించబడిన ఏజెంట్",
+    "newListing": "కొత్తది",
+    "sold": "విక్రయించబడింది",
+    "rented": "అద్దెకు తీసుకున్నారు",
+    "available": "అందుబాటులో ఉంది",
+    "pending": "పెండింగ్‌లో ఉంది",
+    "expired": "గడువు ముగిసింది",
     "sale": "అమ్మకం",
     "rent": "అద్దె",
-    "bedrooms": "పడకలు",
-    "bathrooms": "స్నానాలు",
     "propertyTypeLabel": "టైప్ చేయండి",
     "noDescription": "వివరణ లేదు.",
     "locationNotSpecified": "స్థానం పేర్కొనబడలేదు",
@@ -463,22 +479,7 @@
     "actionFailed": "చర్య విఫలమైంది",
     "bookingDevTitle": "బుకింగ్",
     "bookingDevBody": "బుకింగ్ ఫ్లో అభివృద్ధిలో ఉంది. దయచేసి ఏజెంట్‌ని సంప్రదించండి.",
-    "removeFromSaved": "సేవ్ చేసిన వాటి నుండి ఈ ప్రాపర్టీని తీసివేయాలా?",
-    "sqm": "m²",
-    "type": "టైప్ చేయండి",
-    "floor": "అంతస్తు",
-    "age": "వయస్సు",
-    "parking": "పార్కింగ్",
-    "furnished": "అమర్చిన",
-    "unfurnished": "అమర్చనిది",
-    "perNight": "/రాత్రి",
-    "verifiedAgent": "ధృవీకరించబడిన ఏజెంట్",
-    "newListing": "కొత్తది",
-    "sold": "విక్రయించబడింది",
-    "rented": "అద్దెకు తీసుకున్నారు",
-    "available": "అందుబాటులో ఉంది",
-    "pending": "పెండింగ్‌లో ఉంది",
-    "expired": "గడువు ముగిసింది"
+    "removeFromSaved": "సేవ్ చేసిన వాటి నుండి ఈ ప్రాపర్టీని తీసివేయాలా?"
   },
   "search": {
     "filters": "ఫిల్టర్‌లు",
@@ -808,7 +809,10 @@
       "pinRequired": "స్థానం కోసం మ్యాప్‌పై పిన్‌ను వదలండి.",
       "imageRequired": "ప్రచురించడానికి ముందు కనీసం ఒక చిత్రం అవసరం."
     },
-    "transactionType": "లావాదేవీ రకం",
+    "transactionType": {
+      "sale": "అమ్మకం",
+      "rent": "అద్దె"
+    },
     "rentPeriod": {
       "daily": "రోజువారీ",
       "weekly": "వారానికోసారి",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "ఏజెంట్లు కనుగొనబడలేదు",
     "tryLater": "తర్వాత మళ్లీ ప్రయత్నించండి"
   },
+  "agent": {
+    "verified": "ధృవీకరించబడింది",
+    "verifiedAgent": "ధృవీకరించబడిన ఏజెంట్",
+    "licensed": "లైసెన్స్ పొందింది",
+    "falLicense": "FAL లైసెన్స్ పొందింది",
+    "listings": "జాబితాలు",
+    "reviews": "సమీక్షలు",
+    "rating": "రేటింగ్",
+    "responseTime": "ప్రతిస్పందన సమయం",
+    "memberSince": "నుండి సభ్యుడు",
+    "contactAgent": "ఏజెంట్‌ను సంప్రదించండి",
+    "viewProfile": "ప్రొఫైల్‌ని వీక్షించండి",
+    "sendMessage": "సందేశం పంపండి"
+  },
+  "property": {
+    "villa": "విల్లా",
+    "apartment": "అపార్ట్‌మెంట్",
+    "land": "భూమి",
+    "chalet": "చాలెట్",
+    "farm": "పొలం",
+    "restHouse": "రెస్ట్ హౌస్",
+    "office": "కార్యాలయం",
+    "shop": "షాపింగ్ చేయండి",
+    "warehouse": "గిడ్డంగి",
+    "hotel": "హోటల్ గది",
+    "entireHome": "ఇంటి మొత్తం",
+    "room": "గది"
+  },
+  "amenities": {
+    "pool": "స్విమ్మింగ్ పూల్",
+    "gym": "వ్యాయామశాల",
+    "parking": "పార్కింగ్",
+    "security": "భద్రత",
+    "elevator": "ఎలివేటర్",
+    "garden": "తోట",
+    "balcony": "బాల్కనీ",
+    "maidRoom": "పనిమనిషి గది",
+    "driverRoom": "డ్రైవర్ గది",
+    "storage": "నిల్వ గది",
+    "centralAC": "సెంట్రల్ A/C",
+    "internet": "ఇంటర్నెట్",
+    "satellite": "శాటిలైట్ టీవీ",
+    "furnished": "అమర్చిన",
+    "kitchen": "వంటగది",
+    "laundry": "లాండ్రీ గది"
+  },
+  "compare": {
+    "add": "సరిపోల్చడానికి జోడించండి",
+    "remove": "పోలిక నుండి తీసివేయండి"
+  },
   "myListings": {
     "countSelected": "{{count}} ఎంచుకోబడింది",
     "activateAll": "అన్నింటినీ యాక్టివేట్ చేయండి",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "వివాదం పరిష్కరించబడింది",
     "system": "వ్యవస్థ"
   },
-  "agent": {
-    "verified": "ధృవీకరించబడింది",
-    "verifiedAgent": "ధృవీకరించబడిన ఏజెంట్",
-    "licensed": "లైసెన్స్ పొందింది",
-    "falLicense": "FAL లైసెన్స్ పొందింది",
-    "listings": "జాబితాలు",
-    "reviews": "సమీక్షలు",
-    "rating": "రేటింగ్",
-    "responseTime": "ప్రతిస్పందన సమయం",
-    "memberSince": "నుండి సభ్యుడు",
-    "contactAgent": "ఏజెంట్‌ను సంప్రదించండి",
-    "viewProfile": "ప్రొఫైల్‌ని వీక్షించండి",
-    "sendMessage": "సందేశం పంపండి"
-  },
-  "property": {
-    "villa": "విల్లా",
-    "apartment": "అపార్ట్‌మెంట్",
-    "land": "భూమి",
-    "chalet": "చాలెట్",
-    "farm": "పొలం",
-    "restHouse": "రెస్ట్ హౌస్",
-    "office": "కార్యాలయం",
-    "shop": "షాపింగ్ చేయండి",
-    "warehouse": "గిడ్డంగి",
-    "hotel": "హోటల్ గది",
-    "entireHome": "ఇంటి మొత్తం",
-    "room": "గది"
-  },
-  "amenities": {
-    "pool": "స్విమ్మింగ్ పూల్",
-    "gym": "వ్యాయామశాల",
-    "parking": "పార్కింగ్",
-    "security": "భద్రత",
-    "elevator": "ఎలివేటర్",
-    "garden": "తోట",
-    "balcony": "బాల్కనీ",
-    "maidRoom": "పనిమనిషి గది",
-    "driverRoom": "డ్రైవర్ గది",
-    "storage": "నిల్వ గది",
-    "centralAC": "సెంట్రల్ A/C",
-    "internet": "ఇంటర్నెట్",
-    "satellite": "శాటిలైట్ టీవీ",
-    "furnished": "అమర్చిన",
-    "kitchen": "వంటగది",
-    "laundry": "లాండ్రీ గది"
-  },
-  "compare": {
-    "add": "సరిపోల్చడానికి జోడించండి",
-    "remove": "పోలిక నుండి తీసివేయండి"
-  },
   "support": {
     "title": "మద్దతు",
     "myTickets": "నా టిక్కెట్లు",
@@ -1750,7 +1754,10 @@
       "in_progress": "పురోగతిలో ఉంది",
       "resolved": "పరిష్కరించబడింది",
       "closed": "మూసివేయబడింది"
-    }
+    },
+    "adminSubtitle": "కస్టమర్ సపోర్ట్ టిక్కెట్‌లను ట్రయాజ్ చేయండి మరియు పరిష్కరించండి",
+    "adminEmptyHint": "ప్రస్తుత ఫిల్టర్‌లకు టిక్కెట్లు సరిపోలలేదు.",
+    "closedHint": "ఈ టిక్కెట్ మూసివేయబడింది - ప్రత్యుత్తరం ఇవ్వడానికి పైన ఉన్న దాని స్థితిని మార్చండి."
   },
   "agentReview": {
     "postFailed": "సమీక్షను పోస్ట్ చేయడం సాధ్యపడలేదు",
@@ -1815,5 +1822,32 @@
     "close": "మూసివేయి",
     "previous": "మునుపటి ఫోటో",
     "next": "తదుపరి ఫోటో"
+  },
+  "homeCategories": {
+    "all": "అన్నీ",
+    "forSale": "అమ్మకానికి",
+    "forRent": "అద్దెకు",
+    "apartments": "అపార్టుమెంట్లు",
+    "villas": "విల్లాలు",
+    "land": "భూమి",
+    "chalets": "చాలెట్లు",
+    "farms": "పొలాలు",
+    "restHouses": "విశ్రాంతి గృహాలు",
+    "hotels": "హోటల్స్",
+    "commercial": "వాణిజ్యపరమైన",
+    "offices": "కార్యాలయాలు"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "అపార్టుమెంట్లు అద్దెకు",
+    "villasForSale": "అమ్మకానికి విల్లాలు",
+    "landForSale": "భూమి అమ్మకానికి",
+    "chalets": "చాలెట్లు",
+    "restHouses": "విశ్రాంతి గృహాలు"
+  },
+  "homeFilters": {
+    "txAll": "అన్నీ",
+    "txSale": "అమ్మకం",
+    "txRent": "అద్దె",
+    "bedsAny": "ఏదైనా"
   }
 }

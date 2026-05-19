@@ -27,7 +27,8 @@
     "stays": "Opphold",
     "shortTermStays": "Korttidsopphold",
     "hotels": "Hoteller",
-    "chalets": "Hytter og gårder"
+    "chalets": "Hytter og gårder",
+    "about": "Om"
   },
   "dashboard": {
     "overview": "Oversikt",
@@ -437,10 +438,25 @@
       "sold": "Solgt",
       "rented": "Utleid"
     },
+    "bedrooms": "Soverom",
+    "bathrooms": "Bad",
+    "sqm": "m²",
+    "type": "Skriv",
+    "floor": "Gulv",
+    "age": "Alder",
+    "parking": "Parkering",
+    "furnished": "Møblert",
+    "unfurnished": "Umøblert",
+    "perNight": "/natt",
+    "verifiedAgent": "Verifisert agent",
+    "newListing": "Ny",
+    "sold": "Solgt",
+    "rented": "Utleid",
+    "available": "Tilgjengelig",
+    "pending": "Venter",
+    "expired": "Utløpt",
     "sale": "Salg",
     "rent": "Lei",
-    "bedrooms": "Senger",
-    "bathrooms": "Bad",
     "propertyTypeLabel": "Skriv",
     "noDescription": "Ingen beskrivelse.",
     "locationNotSpecified": "Plassering ikke spesifisert",
@@ -463,22 +479,7 @@
     "actionFailed": "Handlingen mislyktes",
     "bookingDevTitle": "Bestilling",
     "bookingDevBody": "Bookingflyt er i utvikling. Ta kontakt med agenten.",
-    "removeFromSaved": "Vil du fjerne denne egenskapen fra lagret?",
-    "sqm": "m²",
-    "type": "Skriv",
-    "floor": "Gulv",
-    "age": "Alder",
-    "parking": "Parkering",
-    "furnished": "Møblert",
-    "unfurnished": "Umøblert",
-    "perNight": "/natt",
-    "verifiedAgent": "Verifisert agent",
-    "newListing": "Ny",
-    "sold": "Solgt",
-    "rented": "Utleid",
-    "available": "Tilgjengelig",
-    "pending": "Venter",
-    "expired": "Utløpt"
+    "removeFromSaved": "Vil du fjerne denne egenskapen fra lagret?"
   },
   "search": {
     "filters": "Filtre",
@@ -808,7 +809,10 @@
       "pinRequired": "Sett en nål på kartet for plasseringen.",
       "imageRequired": "Minst ett bilde kreves før publisering."
     },
-    "transactionType": "Transaksjonstype",
+    "transactionType": {
+      "sale": "Salg",
+      "rent": "Lei"
+    },
     "rentPeriod": {
       "daily": "Daglig",
       "weekly": "Ukentlig",
@@ -838,7 +842,7 @@
     },
     "shortTermAmenity": {
       "wifi": "Wi-Fi",
-      "pool": "Basseng",
+      "pool": "Pool",
       "parking": "Parkering",
       "breakfast": "Frokost",
       "ac": "Air condition",
@@ -869,7 +873,7 @@
       "instantBookHint": "Bestillinger bekreftes automatisk uten din godkjenning. Deaktiver for å gjennomgå hver forespørsel først.",
       "amenities": "Fasiliteter",
       "houseRules": "Husregler",
-      "houseRulesPlaceholder": "f.eks. Ingen fester, stille timer etter 22:00, ingen røyking innendørs..."
+      "houseRulesPlaceholder": "f.eks. Ingen fester, stille timer etter kl. 22.00, ingen røyking innendørs..."
     },
     "mediaStep": {
       "images": "Bilder",
@@ -1115,7 +1119,7 @@
       "agentListingBreakdown": "Plattformprovisjon: <strong>0,5 %</strong> av transaksjonsverdien, betales ved vellykket salg eller lukking av leasing.",
       "buyerAgentCommission": "Agentprovisjon: <strong>2,5 %</strong> av transaksjonsverdien.",
       "buyerPlatformFee": "Plattformavgift: <strong>0,5 %</strong> av transaksjonsverdien.",
-      "acceptError": "Kunne ikke registrere godkjenningen din",
+      "acceptError": "Kunne ikke registrere din aksept",
       "agreeCheckbox": "Jeg godtar provisjonsvilkårene",
       "decline": "Jeg er ikke enig",
       "saving": "Lagrer...",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Ingen agenter funnet",
     "tryLater": "Prøv igjen senere"
   },
+  "agent": {
+    "verified": "Verifisert",
+    "verifiedAgent": "Verifisert agent",
+    "licensed": "Lisensiert",
+    "falLicense": "FAL-lisensiert",
+    "listings": "Oppføringer",
+    "reviews": "Anmeldelser",
+    "rating": "Rangering",
+    "responseTime": "Responstid",
+    "memberSince": "Medlem siden",
+    "contactAgent": "Kontakt agent",
+    "viewProfile": "Vis profil",
+    "sendMessage": "Send melding"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Leilighet",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Rest House",
+    "office": "Kontor",
+    "shop": "Handle",
+    "warehouse": "Lager",
+    "hotel": "Hotellrom",
+    "entireHome": "Hele hjemmet",
+    "room": "Rom"
+  },
+  "amenities": {
+    "pool": "Svømmebasseng",
+    "gym": "Treningsstudio",
+    "parking": "Parkering",
+    "security": "Sikkerhet",
+    "elevator": "Heis",
+    "garden": "Hage",
+    "balcony": "Balkong",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driverrom",
+    "storage": "Lagerrom",
+    "centralAC": "Sentral A/C",
+    "internet": "Internett",
+    "satellite": "Satellitt-TV",
+    "furnished": "Møblert",
+    "kitchen": "Kjøkken",
+    "laundry": "Vaskerom"
+  },
+  "compare": {
+    "add": "Legg til for å sammenligne",
+    "remove": "Fjern fra sammenligning"
+  },
   "myListings": {
     "countSelected": "{{count}} valgt",
     "activateAll": "Aktiver alle",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Tvist løst",
     "system": "System"
   },
-  "agent": {
-    "verified": "Verifisert",
-    "verifiedAgent": "Verifisert agent",
-    "licensed": "Lisensiert",
-    "falLicense": "FAL-lisensiert",
-    "listings": "Oppføringer",
-    "reviews": "Anmeldelser",
-    "rating": "Rangering",
-    "responseTime": "Responstid",
-    "memberSince": "Medlem siden",
-    "contactAgent": "Kontakt agent",
-    "viewProfile": "Vis profil",
-    "sendMessage": "Send melding"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Leilighet",
-    "land": "Land",
-    "chalet": "Chalet",
-    "farm": "Gård",
-    "restHouse": "Rest House",
-    "office": "Kontor",
-    "shop": "Handle",
-    "warehouse": "Lager",
-    "hotel": "Hotellrom",
-    "entireHome": "Hele hjemmet",
-    "room": "Rom"
-  },
-  "amenities": {
-    "pool": "Svømmebasseng",
-    "gym": "Treningsstudio",
-    "parking": "Parkering",
-    "security": "Sikkerhet",
-    "elevator": "Heis",
-    "garden": "Hage",
-    "balcony": "Balkong",
-    "maidRoom": "Maid Room",
-    "driverRoom": "Driverrom",
-    "storage": "Lagerrom",
-    "centralAC": "Sentral A/C",
-    "internet": "Internett",
-    "satellite": "Satellitt-TV",
-    "furnished": "Møblert",
-    "kitchen": "Kjøkken",
-    "laundry": "Vaskerom"
-  },
-  "compare": {
-    "add": "Legg til for å sammenligne",
-    "remove": "Fjern fra sammenligning"
-  },
   "support": {
     "title": "Støtte",
     "myTickets": "Mine billetter",
@@ -1750,7 +1754,10 @@
       "in_progress": "Pågår",
       "resolved": "Løst",
       "closed": "Lukket"
-    }
+    },
+    "adminSubtitle": "Triage og løs kundestøttebilletter",
+    "adminEmptyHint": "Ingen billetter samsvarer med gjeldende filtre.",
+    "closedHint": "Denne billetten er stengt – endre statusen ovenfor for å svare."
   },
   "agentReview": {
     "postFailed": "Kunne ikke legge inn anmeldelse",
@@ -1815,5 +1822,32 @@
     "close": "Lukk",
     "previous": "Forrige bilde",
     "next": "Neste bilde"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Til salgs",
+    "forRent": "Til leie",
+    "apartments": "Leiligheter",
+    "villas": "Villaer",
+    "land": "Jord",
+    "chalets": "Hytter",
+    "farms": "Gårder",
+    "restHouses": "Hvilehus",
+    "hotels": "Hoteller",
+    "commercial": "Kommersiell",
+    "offices": "Kontorer"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Leiligheter til leie",
+    "villasForSale": "Villaer til salgs",
+    "landForSale": "Tomt til salgs",
+    "chalets": "Hytter",
+    "restHouses": "Hvilehus"
+  },
+  "homeFilters": {
+    "txAll": "Alle",
+    "txSale": "Salg",
+    "txRent": "Lei",
+    "bedsAny": "Alle"
   }
 }

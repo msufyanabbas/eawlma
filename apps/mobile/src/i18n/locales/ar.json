@@ -27,7 +27,8 @@
     "stays": "إقامات",
     "shortTermStays": "إقامات قصيرة",
     "hotels": "فنادق",
-    "chalets": "شاليهات ومزارع"
+    "chalets": "شاليهات ومزارع",
+    "about": "عن المنصة"
   },
   "dashboard": {
     "overview": "نظرة عامة",
@@ -93,7 +94,7 @@
       "matched": "مطابق",
       "closed": "مغلق"
     },
-    "disputes": "النزاعات المفتوحة",
+    "disputes": "النزاعات",
     "panel": "لوحة الإدارة",
     "dashboard": "لوحة تحكم المدير",
     "totalUsers": "إجمالي المستخدمين",
@@ -106,49 +107,6 @@
     "allClear": "لا توجد إعلانات معلقة",
     "rejectListing": "رفض الإعلان",
     "rejectReason": "أدخل سبب الرفض"
-  },
-  "chat": {
-    "title": "المحادثة",
-    "typeMessage": "اكتب رسالة...",
-    "send": "إرسال",
-    "translated": "مترجم",
-    "showOriginal": "عرض الأصل",
-    "showTranslation": "عرض الترجمة",
-    "translating": "جارٍ الترجمة...",
-    "online": "متصل",
-    "delivered": "تم التسليم"
-  },
-  "roles": {
-    "user": "مشتري",
-    "agent": "وكيل",
-    "agency_owner": "مالك وكالة",
-    "admin": "مدير"
-  },
-  "legal": {
-    "privacy": "سياسة الخصوصية",
-    "terms": "شروط الخدمة",
-    "lastUpdated": "آخر تحديث"
-  },
-  "notifTypes": {
-    "new_inquiry": "استفسار جديد",
-    "inquiry_update": "تحديث الاستفسار",
-    "inquiry": "استفسار",
-    "new_message": "رسالة جديدة",
-    "message": "رسالة",
-    "booking": "حجز",
-    "booking_confirmed": "تأكيد الحجز",
-    "booking_cancelled": "إلغاء الحجز",
-    "booking_update": "تحديث الحجز",
-    "commission": "عمولة",
-    "commission_created": "عمولة جديدة",
-    "deal_closed": "تم إغلاق الصفقة",
-    "listing": "تحديث الإعلان",
-    "listing_approved": "تمت الموافقة على الإعلان",
-    "listing_rejected": "تم رفض الإعلان",
-    "payout": "دفعة",
-    "payout_processed": "تمت معالجة الدفعة",
-    "dispute_resolved": "تم حل النزاع",
-    "system": "النظام"
   },
   "stays": {
     "title": "إقامات قصيرة",
@@ -443,6 +401,8 @@
     "bedroom_plural": "غرف",
     "bathroom": "حمام",
     "bathroom_plural": "حمامات",
+    "bedrooms": "غرف النوم",
+    "bathrooms": "دورات المياه",
     "beds": "غرف",
     "baths": "حمامات",
     "area": "المساحة",
@@ -522,8 +482,6 @@
     },
     "sale": "بيع",
     "rent": "إيجار",
-    "bedrooms": "غرف النوم",
-    "bathrooms": "دورات المياه",
     "propertyTypeLabel": "النوع",
     "noDescription": "لا يوجد وصف.",
     "locationNotSpecified": "الموقع غير محدد",
@@ -926,7 +884,10 @@
       "pinRequired": "حدد الموقع بدقة على الخريطة.",
       "imageRequired": "يلزم رفع صورة واحدة على الأقل قبل النشر."
     },
-    "transactionType": "نوع المعاملة",
+    "transactionType": {
+      "sale": "بيع",
+      "rent": "إيجار"
+    },
     "rentPeriod": {
       "daily": "يومي",
       "weekly": "أسبوعي",
@@ -1136,16 +1097,16 @@
     "nationalIdLabel": "بطاقة الأحوال أو الإقامة (10 أرقام)",
     "verificationNotConfigured": "مفتاح Authentica.sa غير مهيأ على الخادم — تم تسجيل التحقق كقيد المراجعة لأغراض الاختبار. اضبط AUTHENTICA_API_KEY في الخادم لتفعيل التدفق المباشر.",
     "verificationStarted": "بدأ التحقق.",
+    "redirectingToAuthentica": "جاري التحويل إلى Authentica.sa…",
+    "otpComing": "ستصلك رسالة تحقق قريباً لإكمال العملية.",
+    "profileUpdated": "تم تحديث الملف.",
+    "deleteLabel": "حذف",
     "appearance": "المظهر",
     "languageRegion": "اللغة والمنطقة",
     "pushNotifications": "إشعارات الجوال",
     "emailNotifications": "إشعارات البريد الإلكتروني",
     "privacyAccount": "الخصوصية والحساب",
-    "areYouSure": "هل أنت متأكد؟",
-    "redirectingToAuthentica": "جاري التحويل إلى Authentica.sa…",
-    "otpComing": "ستصلك رسالة تحقق قريباً لإكمال العملية.",
-    "profileUpdated": "تم تحديث الملف.",
-    "deleteLabel": "حذف"
+    "areYouSure": "هل أنت متأكد؟"
   },
   "inquiries": {
     "title": "الاستفسارات",
@@ -1185,11 +1146,6 @@
     "closeDealError": "تعذّر إغلاق الصفقة — حاول مرة أخرى.",
     "closeDealConfirm": "إغلاق الصفقة وإنشاء العمولة",
     "followingUpRef": "متابعة لاستفسارك بخصوص {{ref}}.",
-    "received": "مستلمة",
-    "sent": "مرسلة",
-    "single": "استفسار",
-    "noInquiriesYet": "لا توجد استفسارات",
-    "appearHere": "سيظهر سجل الاستفسارات هنا",
     "deal": {
       "pendingChip": "بانتظار تأكيد المشتري",
       "agentClosedFor": "✅ أغلق الوكيل الصفقة بقيمة {{value}}",
@@ -1202,7 +1158,12 @@
       "adminResolutionHeading": "قرار المشرف",
       "closedFor": "تم إغلاق الصفقة بقيمة {{value}}",
       "closedOn": " بتاريخ {{date}}"
-    }
+    },
+    "received": "مستلمة",
+    "sent": "مرسلة",
+    "single": "استفسار",
+    "noInquiriesYet": "لا توجد استفسارات",
+    "appearHere": "سيظهر سجل الاستفسارات هنا"
   },
   "commission": {
     "title": "العمولات",
@@ -1226,10 +1187,6 @@
       "disputed": "متنازع عليها",
       "cancelled": "ملغاة"
     },
-    "dealValue": "قيمة الصفقة",
-    "commission": "العمولة",
-    "fromTxn": "من {{count}} عملية",
-    "earningsHint": "ستظهر العمولات هنا بعد إغلاق الصفقات",
     "oath": {
       "dialogTitle": "التزام بالأمانة والعمولة",
       "translatedOath": "أتعهد بدفع العمولة المتفق عليها عند إتمام هذه الصفقة العقارية، وأقرّ بهذه المسؤولية أمام الله وأمام القانون.",
@@ -1242,7 +1199,11 @@
       "decline": "لا أوافق",
       "saving": "جارٍ الحفظ...",
       "acceptCta": "أقبل وأتعهد"
-    }
+    },
+    "dealValue": "قيمة الصفقة",
+    "commission": "العمولة",
+    "fromTxn": "من {{count}} عملية",
+    "earningsHint": "ستظهر العمولات هنا بعد إغلاق الصفقات"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} بانتظار المراجعة",
@@ -1673,6 +1634,175 @@
       "low": "ثقة منخفضة"
     }
   },
+  "agentReview": {
+    "postFailed": "تعذّر نشر التقييم",
+    "posting": "جارٍ النشر…",
+    "postReview": "نشر التقييم"
+  },
+  "adminCommissions": {
+    "listing": "الإعلان",
+    "buyer": "المشتري",
+    "value": "قيمة الصفقة",
+    "platformEarn": "عائد المنصة",
+    "agentEarn": "عائد الوكيل",
+    "status": "الحالة",
+    "closedAt": "تاريخ الإغلاق",
+    "allCommissions": "كل العمولات",
+    "all": "الكل"
+  },
+  "adminAudit": {
+    "timestamp": "التوقيت",
+    "actor": "المنفذ",
+    "action": "الإجراء",
+    "entity": "الكيان",
+    "changed": "الحقول المغيرة"
+  },
+  "adminAnalytics": {
+    "trafficSources": "مصادر الزيارات",
+    "devices": "الأجهزة",
+    "inquiryFunnel": "مسار الاستفسارات"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "الرياض، جدة، الدمام…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "شارك ما كان مفيدًا أو احترافيًا أو قابلاً للتحسين…"
+  },
+  "adminCommissionsPage": {
+    "title": "عمولات المنصة",
+    "subtitle": "إجمالي الإيرادات وعوائد الوكلاء والتفاصيل لكل عملية."
+  },
+  "comparePage": {
+    "emptyTitle": "لا يوجد ما تتم مقارنته بعد"
+  },
+  "searchMap": {
+    "missingKeyTitle": "مفتاح خرائط جوجل غير مهيأ",
+    "missingKeyHint": "اضبط VITE_GOOGLE_MAPS_API_KEY لتفعيل عرض الخريطة.",
+    "loadFailed": "تعذّر تحميل الخريطة"
+  },
+  "photoGallery": {
+    "close": "إغلاق",
+    "previous": "الصورة السابقة",
+    "next": "الصورة التالية"
+  },
+  "homeCategories": {
+    "all": "الكل",
+    "forSale": "للبيع",
+    "forRent": "للإيجار",
+    "apartments": "شقق",
+    "villas": "فلل",
+    "land": "أراضي",
+    "chalets": "شاليهات",
+    "farms": "مزارع",
+    "restHouses": "استراحات",
+    "hotels": "فنادق",
+    "commercial": "تجاري",
+    "offices": "مكاتب"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "شقق للإيجار",
+    "villasForSale": "فلل للبيع",
+    "landForSale": "أراضي للبيع",
+    "chalets": "شاليهات",
+    "restHouses": "استراحات"
+  },
+  "homeFilters": {
+    "txAll": "الكل",
+    "txSale": "بيع",
+    "txRent": "إيجار",
+    "bedsAny": "أي"
+  },
+  "listingDetail": {
+    "hotelLabel": "فندق",
+    "starSuffix": "{{n}} نجوم",
+    "stayDetails": "تفاصيل الإقامة",
+    "houseRules": "قواعد المنزل",
+    "maxGuests": "الحد الأقصى للضيوف",
+    "checkIn": "تسجيل الدخول",
+    "checkInFrom": "من {{time}}",
+    "checkOut": "تسجيل الخروج",
+    "checkOutBy": "قبل {{time}}",
+    "cancellation": "الإلغاء",
+    "whatThisPlaceOffers": "ما يقدمه هذا المكان"
+  },
+  "support": {
+    "title": "الدعم الفني",
+    "adminSubtitle": "تصنيف وحل تذاكر الدعم الفني للعملاء",
+    "myTickets": "تذاكري",
+    "newTicket": "تذكرة جديدة",
+    "subject": "الموضوع",
+    "description": "الوصف التفصيلي",
+    "category": "الفئة",
+    "status": "الحالة",
+    "submit": "إرسال التذكرة",
+    "reply": "رد",
+    "noTickets": "لا توجد تذاكر دعم",
+    "noTicketsPrompt": "أنشئ تذكرة جديدة للحصول على المساعدة",
+    "adminEmptyHint": "لا توجد تذاكر تطابق المرشحات الحالية.",
+    "createTicket": "إنشاء تذكرة",
+    "originalDesc": "الوصف الأصلي:",
+    "supportTeam": "فريق الدعم",
+    "writeReply": "اكتب ردك…",
+    "closedHint": "هذه التذكرة مغلقة — غيّر الحالة أعلاه للرد.",
+    "ticketCreated": "تم إنشاء تذكرة الدعم بنجاح",
+    "categories": {
+      "general": "عام",
+      "technical": "تقني",
+      "billing": "مدفوعات",
+      "listing": "إعلان",
+      "account": "حساب",
+      "other": "أخرى"
+    },
+    "statuses": {
+      "open": "مفتوح",
+      "in_progress": "قيد المعالجة",
+      "resolved": "محلول",
+      "closed": "مغلق"
+    }
+  },
+  "chat": {
+    "title": "المحادثة",
+    "typeMessage": "اكتب رسالة...",
+    "send": "إرسال",
+    "translated": "مترجم",
+    "showOriginal": "عرض الأصل",
+    "showTranslation": "عرض الترجمة",
+    "translating": "جارٍ الترجمة...",
+    "online": "متصل",
+    "delivered": "تم التسليم"
+  },
+  "roles": {
+    "user": "مشتري",
+    "agent": "وكيل",
+    "agency_owner": "مالك وكالة",
+    "admin": "مدير"
+  },
+  "legal": {
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "lastUpdated": "آخر تحديث"
+  },
+  "notifTypes": {
+    "new_inquiry": "استفسار جديد",
+    "inquiry_update": "تحديث الاستفسار",
+    "inquiry": "استفسار",
+    "new_message": "رسالة جديدة",
+    "message": "رسالة",
+    "booking": "حجز",
+    "booking_confirmed": "تأكيد الحجز",
+    "booking_cancelled": "إلغاء الحجز",
+    "booking_update": "تحديث الحجز",
+    "commission": "عمولة",
+    "commission_created": "عمولة جديدة",
+    "deal_closed": "تم إغلاق الصفقة",
+    "listing": "تحديث الإعلان",
+    "listing_approved": "تمت الموافقة على الإعلان",
+    "listing_rejected": "تم رفض الإعلان",
+    "payout": "دفعة",
+    "payout_processed": "تمت معالجة الدفعة",
+    "dispute_resolved": "تم حل النزاع",
+    "system": "النظام"
+  },
   "saved": {
     "title": "المحفوظات",
     "empty": "لا توجد عقارات محفوظة",
@@ -1719,101 +1849,5 @@
     "ownerReply": "رد المالك:",
     "empty": "لا توجد تقييمات",
     "beFirst": "كن أول من يقيّم"
-  },
-  "support": {
-    "title": "الدعم الفني",
-    "myTickets": "تذاكري",
-    "newTicket": "تذكرة جديدة",
-    "subject": "الموضوع",
-    "description": "الوصف التفصيلي",
-    "category": "الفئة",
-    "status": "الحالة",
-    "submit": "إرسال التذكرة",
-    "reply": "رد",
-    "noTickets": "لا توجد تذاكر دعم",
-    "noTicketsPrompt": "أنشئ تذكرة جديدة للحصول على المساعدة",
-    "createTicket": "إنشاء تذكرة",
-    "originalDesc": "الوصف الأصلي:",
-    "supportTeam": "فريق الدعم",
-    "writeReply": "اكتب ردك…",
-    "ticketCreated": "تم إنشاء تذكرة الدعم بنجاح",
-    "categories": {
-      "general": "عام",
-      "technical": "تقني",
-      "billing": "مدفوعات",
-      "listing": "إعلان",
-      "account": "حساب",
-      "other": "أخرى"
-    },
-    "statuses": {
-      "open": "مفتوح",
-      "in_progress": "قيد المعالجة",
-      "resolved": "محلول",
-      "closed": "مغلق"
-    }
-  },
-  "agentReview": {
-    "postFailed": "تعذّر نشر التقييم",
-    "posting": "جارٍ النشر…",
-    "postReview": "نشر التقييم"
-  },
-  "adminCommissions": {
-    "listing": "الإعلان",
-    "buyer": "المشتري",
-    "value": "قيمة الصفقة",
-    "platformEarn": "عائد المنصة",
-    "agentEarn": "عائد الوكيل",
-    "status": "الحالة",
-    "closedAt": "تاريخ الإغلاق",
-    "allCommissions": "كل العمولات",
-    "all": "الكل"
-  },
-  "adminAudit": {
-    "timestamp": "التوقيت",
-    "actor": "المنفذ",
-    "action": "الإجراء",
-    "entity": "الكيان",
-    "changed": "الحقول المغيرة"
-  },
-  "adminAnalytics": {
-    "trafficSources": "مصادر الزيارات",
-    "devices": "الأجهزة",
-    "inquiryFunnel": "مسار الاستفسارات"
-  },
-  "listingDetail": {
-    "hotelLabel": "فندق",
-    "starSuffix": "{{n}} نجوم",
-    "stayDetails": "تفاصيل الإقامة",
-    "houseRules": "قواعد المنزل",
-    "maxGuests": "الحد الأقصى للضيوف",
-    "checkIn": "تسجيل الدخول",
-    "checkInFrom": "من {{time}}",
-    "checkOut": "تسجيل الخروج",
-    "checkOutBy": "قبل {{time}}",
-    "cancellation": "الإلغاء",
-    "whatThisPlaceOffers": "ما يقدمه هذا المكان"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "الرياض، جدة، الدمام…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "شارك ما كان مفيدًا أو احترافيًا أو قابلاً للتحسين…"
-  },
-  "adminCommissionsPage": {
-    "title": "عمولات المنصة",
-    "subtitle": "إجمالي الإيرادات وعوائد الوكلاء والتفاصيل لكل عملية."
-  },
-  "comparePage": {
-    "emptyTitle": "لا يوجد ما تتم مقارنته بعد"
-  },
-  "searchMap": {
-    "missingKeyTitle": "مفتاح خرائط جوجل غير مهيأ",
-    "missingKeyHint": "اضبط VITE_GOOGLE_MAPS_API_KEY لتفعيل عرض الخريطة.",
-    "loadFailed": "تعذّر تحميل الخريطة"
-  },
-  "photoGallery": {
-    "close": "إغلاق",
-    "previous": "الصورة السابقة",
-    "next": "الصورة التالية"
   }
 }

@@ -27,7 +27,8 @@
     "stays": "Majoitukset",
     "shortTermStays": "Lyhytaikaiset majoitukset",
     "hotels": "Hotellit",
-    "chalets": "Mökit ja maatilat"
+    "chalets": "Mökit ja maatilat",
+    "about": "Noin"
   },
   "dashboard": {
     "overview": "Yleiskatsaus",
@@ -437,10 +438,25 @@
       "sold": "myyty",
       "rented": "Vuokrattu"
     },
+    "bedrooms": "Makuuhuoneita",
+    "bathrooms": "Kylpyhuoneet",
+    "sqm": "m²",
+    "type": "Tyyppi",
+    "floor": "Kerros",
+    "age": "Ikä",
+    "parking": "Pysäköinti",
+    "furnished": "Kalustettu",
+    "unfurnished": "Kalustamaton",
+    "perNight": "/yö",
+    "verifiedAgent": "Vahvistettu edustaja",
+    "newListing": "Uusi",
+    "sold": "myyty",
+    "rented": "Vuokrattu",
+    "available": "Saatavilla",
+    "pending": "Odottaa",
+    "expired": "Vanhentunut",
     "sale": "Myynti",
     "rent": "Vuokrata",
-    "bedrooms": "Sängyt",
-    "bathrooms": "Kylpyammeet",
     "propertyTypeLabel": "Tyyppi",
     "noDescription": "Ei kuvausta.",
     "locationNotSpecified": "Sijaintia ei ole määritetty",
@@ -463,22 +479,7 @@
     "actionFailed": "Toiminto epäonnistui",
     "bookingDevTitle": "Varaus",
     "bookingDevBody": "Varausvirta on kehitteillä. Ota yhteyttä edustajaan.",
-    "removeFromSaved": "Poistetaanko tämä omaisuus tallennetuista?",
-    "sqm": "m²",
-    "type": "Tyyppi",
-    "floor": "Kerros",
-    "age": "Ikä",
-    "parking": "Pysäköinti",
-    "furnished": "Kalustettu",
-    "unfurnished": "Kalustamaton",
-    "perNight": "/yö",
-    "verifiedAgent": "Vahvistettu edustaja",
-    "newListing": "Uusi",
-    "sold": "myyty",
-    "rented": "Vuokrattu",
-    "available": "Saatavilla",
-    "pending": "Odottaa",
-    "expired": "Vanhentunut"
+    "removeFromSaved": "Poistetaanko tämä omaisuus tallennetuista?"
   },
   "search": {
     "filters": "Suodattimet",
@@ -808,7 +809,10 @@
       "pinRequired": "Pudota paikkaan merkki kartalle.",
       "imageRequired": "Vähintään yksi kuva vaaditaan ennen julkaisua."
     },
-    "transactionType": "Tapahtumatyyppi",
+    "transactionType": {
+      "sale": "Myynti",
+      "rent": "Vuokrata"
+    },
     "rentPeriod": {
       "daily": "Päivittäin",
       "weekly": "Viikoittain",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Agentteja ei löytynyt",
     "tryLater": "Yritä myöhemmin uudelleen"
   },
+  "agent": {
+    "verified": "Vahvistettu",
+    "verifiedAgent": "Vahvistettu edustaja",
+    "licensed": "Lisensoitu",
+    "falLicense": "FAL-lisensoitu",
+    "listings": "Listaukset",
+    "reviews": "Arvostelut",
+    "rating": "Luokitus",
+    "responseTime": "Vastausaika",
+    "memberSince": "Jäsen vuodesta",
+    "contactAgent": "Ota yhteyttä edustajaan",
+    "viewProfile": "Näytä profiili",
+    "sendMessage": "Lähetä Viesti"
+  },
+  "property": {
+    "villa": "Huvila",
+    "apartment": "Huoneisto",
+    "land": "Maa",
+    "chalet": "Chalet",
+    "farm": "Maatila",
+    "restHouse": "Lepotalo",
+    "office": "Toimisto",
+    "shop": "Kauppa",
+    "warehouse": "Varasto",
+    "hotel": "Hotellihuone",
+    "entireHome": "Koko Koti",
+    "room": "Huone"
+  },
+  "amenities": {
+    "pool": "Uima-allas",
+    "gym": "Kuntosali",
+    "parking": "Pysäköinti",
+    "security": "Turvallisuus",
+    "elevator": "Hissi",
+    "garden": "Puutarha",
+    "balcony": "Parveke",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Kuljettajahuone",
+    "storage": "Varastohuone",
+    "centralAC": "Keski-ilmastointi",
+    "internet": "Internet",
+    "satellite": "Satelliitti-tv",
+    "furnished": "Kalustettu",
+    "kitchen": "Keittiö",
+    "laundry": "Pesutupa"
+  },
+  "compare": {
+    "add": "Lisää vertailuun",
+    "remove": "Poista vertailusta"
+  },
   "myListings": {
     "countSelected": "{{count}} valittu",
     "activateAll": "Aktivoi kaikki",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Kiista ratkaistu",
     "system": "Järjestelmä"
   },
-  "agent": {
-    "verified": "Vahvistettu",
-    "verifiedAgent": "Vahvistettu edustaja",
-    "licensed": "Lisensoitu",
-    "falLicense": "FAL-lisensoitu",
-    "listings": "Listaukset",
-    "reviews": "Arvostelut",
-    "rating": "Luokitus",
-    "responseTime": "Vastausaika",
-    "memberSince": "Jäsen vuodesta",
-    "contactAgent": "Ota yhteyttä edustajaan",
-    "viewProfile": "Näytä profiili",
-    "sendMessage": "Lähetä Viesti"
-  },
-  "property": {
-    "villa": "Huvila",
-    "apartment": "Huoneisto",
-    "land": "Maa",
-    "chalet": "Chalet",
-    "farm": "Maatila",
-    "restHouse": "Lepotalo",
-    "office": "Toimisto",
-    "shop": "Kauppa",
-    "warehouse": "Varasto",
-    "hotel": "Hotellihuone",
-    "entireHome": "Koko Koti",
-    "room": "Huone"
-  },
-  "amenities": {
-    "pool": "Uima-allas",
-    "gym": "Kuntosali",
-    "parking": "Pysäköinti",
-    "security": "Turvallisuus",
-    "elevator": "Hissi",
-    "garden": "Puutarha",
-    "balcony": "Parveke",
-    "maidRoom": "Maid Room",
-    "driverRoom": "Kuljettajahuone",
-    "storage": "Varastohuone",
-    "centralAC": "Keski-ilmastointi",
-    "internet": "Internet",
-    "satellite": "Satelliitti-tv",
-    "furnished": "Kalustettu",
-    "kitchen": "Keittiö",
-    "laundry": "Pesutupa"
-  },
-  "compare": {
-    "add": "Lisää vertailuun",
-    "remove": "Poista vertailusta"
-  },
   "support": {
     "title": "Tukea",
     "myTickets": "Omat liput",
@@ -1750,7 +1754,10 @@
       "in_progress": "Käynnissä",
       "resolved": "Ratkaistu",
       "closed": "Suljettu"
-    }
+    },
+    "adminSubtitle": "Triage ja ratkaise asiakastuen liput",
+    "adminEmptyHint": "Yksikään lippu ei vastaa nykyisiä suodattimia.",
+    "closedHint": "Tämä lippu on suljettu – muuta sen tilaa yllä vastataksesi."
   },
   "agentReview": {
     "postFailed": "Arvostelua ei voitu lähettää",
@@ -1815,5 +1822,32 @@
     "close": "Lähellä",
     "previous": "Edellinen kuva",
     "next": "Seuraava kuva"
+  },
+  "homeCategories": {
+    "all": "Kaikki",
+    "forSale": "Myytävänä",
+    "forRent": "Vuokrattavana",
+    "apartments": "Huoneistot",
+    "villas": "Huvilat",
+    "land": "Maa",
+    "chalets": "Lomamökit",
+    "farms": "Maatilat",
+    "restHouses": "Lepotalot",
+    "hotels": "Hotellit",
+    "commercial": "kaupallinen",
+    "offices": "Toimistot"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Asuntoja vuokralle",
+    "villasForSale": "Huviloita myytävänä",
+    "landForSale": "Maata myytävänä",
+    "chalets": "Lomamökit",
+    "restHouses": "Lepotalot"
+  },
+  "homeFilters": {
+    "txAll": "Kaikki",
+    "txSale": "Myynti",
+    "txRent": "Vuokrata",
+    "bedsAny": "Mikä tahansa"
   }
 }

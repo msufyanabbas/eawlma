@@ -27,7 +27,8 @@
     "stays": "Konaklamalar",
     "shortTermStays": "Kısa süreli konaklamalar",
     "hotels": "Oteller",
-    "chalets": "Şaleler ve çiftlikler"
+    "chalets": "Şaleler ve çiftlikler",
+    "about": "Hakkında"
   },
   "dashboard": {
     "overview": "Genel bakış",
@@ -437,10 +438,25 @@
       "sold": "Satılmış",
       "rented": "Kiralandı"
     },
+    "bedrooms": "Yatak odaları",
+    "bathrooms": "Banyolar",
+    "sqm": "m²",
+    "type": "Tip",
+    "floor": "Zemin",
+    "age": "Yaş",
+    "parking": "Otopark",
+    "furnished": "Mobilyalı",
+    "unfurnished": "Mobilyasız",
+    "perNight": "/gece",
+    "verifiedAgent": "Doğrulanmış Temsilci",
+    "newListing": "Yeni",
+    "sold": "Satılmış",
+    "rented": "Kiralandı",
+    "available": "Mevcut",
+    "pending": "Askıda olması",
+    "expired": "Günü geçmiş",
     "sale": "Satış",
     "rent": "Kira",
-    "bedrooms": "Yataklar",
-    "bathrooms": "Hamamlar",
     "propertyTypeLabel": "Tip",
     "noDescription": "Açıklama yok.",
     "locationNotSpecified": "Konum belirtilmedi",
@@ -463,22 +479,7 @@
     "actionFailed": "İşlem başarısız oldu",
     "bookingDevTitle": "Rezervasyon",
     "bookingDevBody": "Rezervasyon akışı geliştirilme aşamasındadır. Lütfen acenteyle iletişime geçin.",
-    "removeFromSaved": "Bu mülk kaydedilenlerden kaldırılsın mı?",
-    "sqm": "m²",
-    "type": "Tip",
-    "floor": "Zemin",
-    "age": "Yaş",
-    "parking": "Otopark",
-    "furnished": "Mobilyalı",
-    "unfurnished": "Mobilyasız",
-    "perNight": "/gece",
-    "verifiedAgent": "Doğrulanmış Temsilci",
-    "newListing": "Yeni",
-    "sold": "Satılmış",
-    "rented": "Kiralandı",
-    "available": "Mevcut",
-    "pending": "Askıda olması",
-    "expired": "Günü geçmiş"
+    "removeFromSaved": "Bu mülk kaydedilenlerden kaldırılsın mı?"
   },
   "search": {
     "filters": "Filtreler",
@@ -808,7 +809,10 @@
       "pinRequired": "Konum için haritaya bir raptiye bırakın.",
       "imageRequired": "Yayınlanmadan önce en az bir görsel gereklidir."
     },
-    "transactionType": "İşlem Türü",
+    "transactionType": {
+      "sale": "Satış",
+      "rent": "Kira"
+    },
     "rentPeriod": {
       "daily": "Günlük",
       "weekly": "Haftalık",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Hiçbir aracı bulunamadı",
     "tryLater": "Daha sonra tekrar deneyin"
   },
+  "agent": {
+    "verified": "Doğrulandı",
+    "verifiedAgent": "Doğrulanmış Temsilci",
+    "licensed": "Lisanslı",
+    "falLicense": "FAL Lisanslı",
+    "listings": "İlanlar",
+    "reviews": "Yorumlar",
+    "rating": "Derecelendirme",
+    "responseTime": "Tepki Süresi",
+    "memberSince": "Üyelik Tarihi",
+    "contactAgent": "Temsilciyle iletişime geçin",
+    "viewProfile": "Profili Görüntüle",
+    "sendMessage": "Mesaj Gönder"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Daire",
+    "land": "Kara",
+    "chalet": "Dağ evi",
+    "farm": "Çiftlik",
+    "restHouse": "Dinlenme Evi",
+    "office": "Ofis",
+    "shop": "Mağaza",
+    "warehouse": "Depo",
+    "hotel": "Otel Odası",
+    "entireHome": "Tüm Ev",
+    "room": "Oda"
+  },
+  "amenities": {
+    "pool": "Yüzme havuzu",
+    "gym": "Spor salonu",
+    "parking": "Otopark",
+    "security": "Güvenlik",
+    "elevator": "Asansör",
+    "garden": "Bahçe",
+    "balcony": "Balkon",
+    "maidRoom": "Hizmetçi Odası",
+    "driverRoom": "Sürücü Odası",
+    "storage": "Depo Odası",
+    "centralAC": "Merkezi klima",
+    "internet": "internet",
+    "satellite": "Uydu TV",
+    "furnished": "Mobilyalı",
+    "kitchen": "Mutfak",
+    "laundry": "Çamaşır Odası"
+  },
+  "compare": {
+    "add": "Karşılaştırmak için ekle",
+    "remove": "Karşılaştırmadan kaldır"
+  },
   "myListings": {
     "countSelected": "{{count}} seçildi",
     "activateAll": "Tümünü etkinleştir",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Anlaşmazlık Çözüldü",
     "system": "Sistem"
   },
-  "agent": {
-    "verified": "Doğrulandı",
-    "verifiedAgent": "Doğrulanmış Temsilci",
-    "licensed": "Lisanslı",
-    "falLicense": "FAL Lisanslı",
-    "listings": "İlanlar",
-    "reviews": "Yorumlar",
-    "rating": "Derecelendirme",
-    "responseTime": "Tepki Süresi",
-    "memberSince": "Üyelik Tarihi",
-    "contactAgent": "Temsilciyle iletişime geçin",
-    "viewProfile": "Profili Görüntüle",
-    "sendMessage": "Mesaj Gönder"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Daire",
-    "land": "Kara",
-    "chalet": "Dağ evi",
-    "farm": "Çiftlik",
-    "restHouse": "Dinlenme Evi",
-    "office": "Ofis",
-    "shop": "Mağaza",
-    "warehouse": "Depo",
-    "hotel": "Otel Odası",
-    "entireHome": "Tüm Ev",
-    "room": "Oda"
-  },
-  "amenities": {
-    "pool": "Yüzme havuzu",
-    "gym": "Spor salonu",
-    "parking": "Otopark",
-    "security": "Güvenlik",
-    "elevator": "Asansör",
-    "garden": "Bahçe",
-    "balcony": "Balkon",
-    "maidRoom": "Hizmetçi Odası",
-    "driverRoom": "Sürücü Odası",
-    "storage": "Depo Odası",
-    "centralAC": "Merkezi klima",
-    "internet": "internet",
-    "satellite": "Uydu TV",
-    "furnished": "Mobilyalı",
-    "kitchen": "Mutfak",
-    "laundry": "Çamaşır Odası"
-  },
-  "compare": {
-    "add": "Karşılaştırmak için ekle",
-    "remove": "Karşılaştırmadan kaldır"
-  },
   "support": {
     "title": "Destek",
     "myTickets": "Biletlerim",
@@ -1750,11 +1754,14 @@
       "in_progress": "Devam etmekte",
       "resolved": "Çözüldü",
       "closed": "Kapalı"
-    }
+    },
+    "adminSubtitle": "Müşteri destek bildirimlerini önceliklendirin ve çözümleyin",
+    "adminEmptyHint": "Mevcut filtrelerle eşleşen bilet yok.",
+    "closedHint": "Bu bildirim kapalı; yanıtlamak için yukarıdaki durumunu değiştirin."
   },
   "agentReview": {
     "postFailed": "İnceleme yayınlanamadı",
-    "posting": "Posting…",
+    "posting": "Yayınlanıyor…",
     "postReview": "İnceleme sonrası"
   },
   "adminCommissions": {
@@ -1765,7 +1772,7 @@
     "agentEarn": "Temsilci Kazan",
     "status": "Durum",
     "closedAt": "Kapalı",
-    "allCommissions": "All Commissions",
+    "allCommissions": "Tüm Komisyonlar",
     "all": "Tüm"
   },
   "adminAudit": {
@@ -1773,21 +1780,21 @@
     "actor": "Aktör",
     "action": "Aksiyon",
     "entity": "Varlık",
-    "changed": "Changed Fields"
+    "changed": "Değiştirilen Alanlar"
   },
   "adminAnalytics": {
-    "trafficSources": "Traffic Sources",
+    "trafficSources": "Trafik Kaynakları",
     "devices": "Cihazlar",
-    "inquiryFunnel": "Inquiry Funnel"
+    "inquiryFunnel": "Sorgulama Hunisi"
   },
   "listingDetail": {
     "hotelLabel": "Otel",
-    "starSuffix": "{{n}}-star",
+    "starSuffix": "{{n}}-yıldız",
     "stayDetails": "Stay details",
     "houseRules": "Ev kuralları",
     "maxGuests": "Max guests",
     "checkIn": "Giriş",
-    "checkInFrom": "from {{time}}",
+    "checkInFrom": "{{time}} tarihinden itibaren",
     "checkOut": "Çıkış yapmak",
     "checkOutBy": "by {{time}}",
     "cancellation": "İptal",
@@ -1800,7 +1807,7 @@
     "commentPlaceholder": "Neyin yararlı, profesyonel olduğunu veya geliştirilebileceğini paylaşın…"
   },
   "adminCommissionsPage": {
-    "title": "Platform commissions",
+    "title": "Platform komisyonları",
     "subtitle": "Toplam gelir, temsilci ödemeleri ve işlem başına döküm."
   },
   "comparePage": {
@@ -1812,8 +1819,35 @@
     "loadFailed": "Harita yüklenemedi"
   },
   "photoGallery": {
-    "close": "Close",
+    "close": "Kapalı",
     "previous": "Önceki fotoğraf",
-    "next": "Next photo"
+    "next": "Sonraki fotoğraf"
+  },
+  "homeCategories": {
+    "all": "Tüm",
+    "forSale": "Satılık",
+    "forRent": "Kiralık",
+    "apartments": "Daireler",
+    "villas": "Villalar",
+    "land": "Kara",
+    "chalets": "Dağ evleri",
+    "farms": "Çiftlikler",
+    "restHouses": "Dinlenme Evleri",
+    "hotels": "Oteller",
+    "commercial": "Reklam",
+    "offices": "Ofisler"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Kiralık daireler",
+    "villasForSale": "Satılık villalar",
+    "landForSale": "Satılık Arsa",
+    "chalets": "Dağ evleri",
+    "restHouses": "Dinlenme evleri"
+  },
+  "homeFilters": {
+    "txAll": "Tüm",
+    "txSale": "Satış",
+    "txRent": "Kira",
+    "bedsAny": "Herhangi"
   }
 }

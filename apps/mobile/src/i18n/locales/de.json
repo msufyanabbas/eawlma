@@ -27,7 +27,8 @@
     "stays": "Aufenthalte",
     "shortTermStays": "Kurzaufenthalte",
     "hotels": "Hotels",
-    "chalets": "Chalets & Bauernhöfe"
+    "chalets": "Chalets & Bauernhöfe",
+    "about": "Über"
   },
   "dashboard": {
     "overview": "Übersicht",
@@ -255,14 +256,14 @@
     "agentLower": "Agent",
     "otherLower": "andere",
     "anonymous": "Anonym",
-    "resolveTitle": "Streit beilegen",
+    "resolveTitle": "Streit klären",
     "resolveDesc": "Wählen Sie den Ausgang dieses Streits",
-    "favorAgentDesc": "Die Provision wird bestätigt und an den Agenten",
-    "favorBuyerDesc": "ausgezahlt Die Provision wird storniert",
-    "cancelDealDesc": "Deal und Provision wurden beide storniert",
+    "favorAgentDesc": "Die Provision wird bestätigt und an den Agenten ausgezahlt",
+    "favorBuyerDesc": "Die Provision wird storniert",
+    "cancelDealDesc": "Sowohl der Deal als auch die Provision wurden storniert",
     "adminNotes": "Admin-Notizen (optional)",
-    "resolvedSuccess": "Streitfall erfolgreich gelöst",
-    "resolvedError": "Streit konnte nicht gelöst werden"
+    "resolvedSuccess": "Streit erfolgreich gelöst",
+    "resolvedError": "Der Streit konnte nicht gelöst werden"
   },
   "auth": {
     "login": "Anmelden",
@@ -433,14 +434,29 @@
       "expired": "Abgelaufen",
       "draft": "Entwurf",
       "archived": "Archiviert",
-      "pending_review": "Wird überprüft",
+      "pending_review": "In Prüfung",
       "sold": "Verkauft",
-      "rented": "Gemietet"
+      "rented": "Vermietet"
     },
+    "bedrooms": "Schlafzimmer",
+    "bathrooms": "Badezimmer",
+    "sqm": "m²",
+    "type": "Typ",
+    "floor": "Boden",
+    "age": "Alter",
+    "parking": "Parken",
+    "furnished": "Möbliert",
+    "unfurnished": "Unmöbliert",
+    "perNight": "/Nacht",
+    "verifiedAgent": "Verifizierter Agent",
+    "newListing": "Neu",
+    "sold": "Verkauft",
+    "rented": "Vermietet",
+    "available": "Verfügbar",
+    "pending": "Ausstehend",
+    "expired": "Abgelaufen",
     "sale": "Verkauf",
     "rent": "Mieten",
-    "bedrooms": "Betten",
-    "bathrooms": "Bad",
     "propertyTypeLabel": "Typ",
     "noDescription": "Keine Beschreibung.",
     "locationNotSpecified": "Standort nicht angegeben",
@@ -463,22 +479,7 @@
     "actionFailed": "Aktion fehlgeschlagen",
     "bookingDevTitle": "Buchung",
     "bookingDevBody": "Der Buchungsablauf befindet sich in der Entwicklung. Bitte kontaktieren Sie den Agenten.",
-    "removeFromSaved": "Diese Eigenschaft aus der Liste „Gespeichert“ entfernen?",
-    "sqm": "m²",
-    "type": "Typ",
-    "floor": "Boden",
-    "age": "Alter",
-    "parking": "Parken",
-    "furnished": "Möbliert",
-    "unfurnished": "Unmöbliert",
-    "perNight": "/Nacht",
-    "verifiedAgent": "Verifizierter Agent",
-    "newListing": "Neu",
-    "sold": "Verkauft",
-    "rented": "Gemietet",
-    "available": "Verfügbar",
-    "pending": "Ausstehend",
-    "expired": "Abgelaufen"
+    "removeFromSaved": "Diese Eigenschaft aus der Liste „Gespeichert“ entfernen?"
   },
   "search": {
     "filters": "Filter",
@@ -515,7 +516,7 @@
     },
     "drawArea": "Bereich zeichnen",
     "clearDrawing": "Zeichnung löschen",
-    "flexibleDates": "Ich bin flexibel bei Terminen",
+    "flexibleDates": "Bei Terminen bin ich flexibel",
     "flex1Month": "1 Monat",
     "shortTerm": "Kurzfristig",
     "title": "Suche",
@@ -748,7 +749,7 @@
       "street": "Straße",
       "buildingNumber": "Gebäudenr.",
       "postalCode": "Postleitzahl",
-      "pinPrompt": "Lassen Sie eine Stecknadel fallen, um die genaue Position festzulegen",
+      "pinPrompt": "Lassen Sie eine Stecknadel fallen, um den genauen Standort festzulegen",
       "pinLabel": "Stift",
       "mapUnavailable": "Karten-Pin-Auswahl nicht verfügbar. Die Koordinaten fallen auf {{lat}}, {{lng}} zurück."
     },
@@ -808,7 +809,10 @@
       "pinRequired": "Setzen Sie eine Stecknadel für den Standort auf der Karte.",
       "imageRequired": "Vor der Veröffentlichung ist mindestens ein Bild erforderlich."
     },
-    "transactionType": "Transaktionstyp",
+    "transactionType": {
+      "sale": "Verkauf",
+      "rent": "Mieten"
+    },
     "rentPeriod": {
       "daily": "Täglich",
       "weekly": "Wöchentlich",
@@ -862,7 +866,7 @@
       "cancellationPolicy": "Stornierungsbedingungen",
       "cancelFlexible": "Flexibel – volle Rückerstattung bis zu 24 Stunden vorher",
       "cancelModerate": "Moderat – volle Rückerstattung bis zu 5 Tage vorher",
-      "cancelStrict": "Streng – 50 % Rückerstattung bis zu 7 Tage vor",
+      "cancelStrict": "Streng – 50 % Rückerstattung bis zu 7 Tage vorher",
       "starRating": "Sternebewertung",
       "hotelName": "Hotelname",
       "instantBook": "Sofortbuchung",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Keine Agenten gefunden",
     "tryLater": "Versuchen Sie es später erneut"
   },
+  "agent": {
+    "verified": "Verifiziert",
+    "verifiedAgent": "Verifizierter Agent",
+    "licensed": "Lizenziert",
+    "falLicense": "FAL-lizenziert",
+    "listings": "Einträge",
+    "reviews": "Bewertungen",
+    "rating": "Bewertung",
+    "responseTime": "Reaktionszeit",
+    "memberSince": "Mitglied seit",
+    "contactAgent": "Kontaktieren Sie den Agenten",
+    "viewProfile": "Profil anzeigen",
+    "sendMessage": "Nachricht senden"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Wohnung",
+    "land": "Land",
+    "chalet": "Chalet",
+    "farm": "Bauernhof",
+    "restHouse": "Rasthaus",
+    "office": "Büro",
+    "shop": "Geschäft",
+    "warehouse": "Lager",
+    "hotel": "Hotelzimmer",
+    "entireHome": "Ganzes Haus",
+    "room": "Zimmer"
+  },
+  "amenities": {
+    "pool": "Schwimmbad",
+    "gym": "Fitnessstudio",
+    "parking": "Parken",
+    "security": "Sicherheit",
+    "elevator": "Aufzug",
+    "garden": "Garten",
+    "balcony": "Balkon",
+    "maidRoom": "Dienstmädchenzimmer",
+    "driverRoom": "Fahrerraum",
+    "storage": "Lagerraum",
+    "centralAC": "Zentrale Klimaanlage",
+    "internet": "Internet",
+    "satellite": "Satellitenfernsehen",
+    "furnished": "Möbliert",
+    "kitchen": "Küche",
+    "laundry": "Waschküche"
+  },
+  "compare": {
+    "add": "Zum Vergleich hinzufügen",
+    "remove": "Aus Vergleich entfernen"
+  },
   "myListings": {
     "countSelected": "{{count}} ausgewählt",
     "activateAll": "Alle",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Streit beigelegt",
     "system": "System"
   },
-  "agent": {
-    "verified": "Verifiziert",
-    "verifiedAgent": "Verifizierter Agent",
-    "licensed": "Lizenziert",
-    "falLicense": "FAL-lizenziert",
-    "listings": "Einträge",
-    "reviews": "Rezensionen",
-    "rating": "Bewertung",
-    "responseTime": "Ansprechzeit",
-    "memberSince": "Mitglied seit",
-    "contactAgent": "Kontaktieren Sie den Agenten",
-    "viewProfile": "Profil anzeigen",
-    "sendMessage": "Nachricht senden"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Wohnung",
-    "land": "Land",
-    "chalet": "Chalet",
-    "farm": "Bauernhof",
-    "restHouse": "Rasthaus",
-    "office": "Büro",
-    "shop": "Geschäft",
-    "warehouse": "Lager",
-    "hotel": "Hotelzimmer",
-    "entireHome": "Ganzes Haus",
-    "room": "Zimmer"
-  },
-  "amenities": {
-    "pool": "Schwimmbad",
-    "gym": "Fitnessstudio",
-    "parking": "Parken",
-    "security": "Sicherheit",
-    "elevator": "Aufzug",
-    "garden": "Garten",
-    "balcony": "Balkon",
-    "maidRoom": "Dienstmädchenzimmer",
-    "driverRoom": "Fahrerraum",
-    "storage": "Lagerraum",
-    "centralAC": "Zentrale Klimaanlage",
-    "internet": "Internet",
-    "satellite": "Satellitenfernsehen",
-    "furnished": "Möbliert",
-    "kitchen": "Küche",
-    "laundry": "Waschküche"
-  },
-  "compare": {
-    "add": "Zum Vergleich hinzufügen",
-    "remove": "Aus Vergleich entfernen"
-  },
   "support": {
     "title": "Unterstützung",
     "myTickets": "Meine Tickets",
@@ -1750,7 +1754,10 @@
       "in_progress": "In Bearbeitung",
       "resolved": "Gelöst",
       "closed": "Geschlossen"
-    }
+    },
+    "adminSubtitle": "Sortieren und lösen Sie Kundensupport-Tickets",
+    "adminEmptyHint": "Keine Tickets entsprechen den aktuellen Filtern.",
+    "closedHint": "Dieses Ticket ist geschlossen – ändern Sie den Status oben in „Antworten“."
   },
   "agentReview": {
     "postFailed": "Bewertung konnte nicht gepostet werden",
@@ -1815,5 +1822,32 @@
     "close": "Schließen Sie",
     "previous": "Vorheriges Foto",
     "next": "Nächstes Foto"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Zu verkaufen",
+    "forRent": "Zu vermieten",
+    "apartments": "Wohnungen",
+    "villas": "Villen",
+    "land": "Land",
+    "chalets": "Chalets",
+    "farms": "Bauernhöfe",
+    "restHouses": "Rasthäuser",
+    "hotels": "Hotels",
+    "commercial": "Kommerziell",
+    "offices": "Büros"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Wohnungen zu vermieten",
+    "villasForSale": "Villen zum Verkauf",
+    "landForSale": "Grundstück zum Verkauf",
+    "chalets": "Chalets",
+    "restHouses": "Rasthäuser"
+  },
+  "homeFilters": {
+    "txAll": "Alle",
+    "txSale": "Verkauf",
+    "txRent": "Miete",
+    "bedsAny": "Beliebig"
   }
 }

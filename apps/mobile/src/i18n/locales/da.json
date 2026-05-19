@@ -27,7 +27,8 @@
     "stays": "Ophold",
     "shortTermStays": "Kortvarige ophold",
     "hotels": "Hoteller",
-    "chalets": "Hytter og gårde"
+    "chalets": "Hytter og gårde",
+    "about": "Om"
   },
   "dashboard": {
     "overview": "Oversigt",
@@ -437,10 +438,25 @@
       "sold": "Solgt",
       "rented": "Lejet"
     },
+    "bedrooms": "Soveværelser",
+    "bathrooms": "Badeværelser",
+    "sqm": "m²",
+    "type": "Indtast",
+    "floor": "Gulv",
+    "age": "Alder",
+    "parking": "Parkering",
+    "furnished": "Møbleret",
+    "unfurnished": "Umøbleret",
+    "perNight": "/nat",
+    "verifiedAgent": "Verificeret agent",
+    "newListing": "Ny",
+    "sold": "Solgt",
+    "rented": "Lejet",
+    "available": "Tilgængelig",
+    "pending": "Afventer",
+    "expired": "Udløbet",
     "sale": "Udsalg",
     "rent": "Leje",
-    "bedrooms": "Senge",
-    "bathrooms": "Bade",
     "propertyTypeLabel": "Indtast",
     "noDescription": "Ingen beskrivelse.",
     "locationNotSpecified": "Placering ikke specificeret",
@@ -463,22 +479,7 @@
     "actionFailed": "Handling mislykkedes",
     "bookingDevTitle": "Booking",
     "bookingDevBody": "Booking flow er under udvikling. Kontakt venligst agenten.",
-    "removeFromSaved": "Vil du fjerne denne ejendom fra gemt?",
-    "sqm": "m²",
-    "type": "Indtast",
-    "floor": "Gulv",
-    "age": "Alder",
-    "parking": "Parkering",
-    "furnished": "Møbleret",
-    "unfurnished": "Umøbleret",
-    "perNight": "/nat",
-    "verifiedAgent": "Verificeret agent",
-    "newListing": "Ny",
-    "sold": "Solgt",
-    "rented": "Lejet",
-    "available": "Tilgængelig",
-    "pending": "Afventer",
-    "expired": "Udløbet"
+    "removeFromSaved": "Vil du fjerne denne ejendom fra gemt?"
   },
   "search": {
     "filters": "Filtre",
@@ -749,7 +750,7 @@
       "buildingNumber": "Bygningsnr.",
       "postalCode": "Postnummer",
       "pinPrompt": "Slip en pin for at indstille den nøjagtige placering",
-      "pinLabel": "Stift",
+      "pinLabel": "Pin",
       "mapUnavailable": "Kortnålsvælgeren er ikke tilgængelig. Koordinater falder tilbage til {{lat}}, {{lng}}."
     },
     "media": "Medier",
@@ -757,7 +758,7 @@
     "compliance": {
       "permitNumber": "Tilladelse / FAL nummer",
       "regaNumber": "REGA-licensnummer",
-      "permitExpiry": "Tilladelses udløb",
+      "permitExpiry": "Tilladelsesudløb",
       "preferredContact": "Foretrukken kontakt",
       "phone": "Telefon",
       "publicVisibility": "Offentlig synlighed (fjern markeringen for kun unoteret/privat link)"
@@ -808,7 +809,10 @@
       "pinRequired": "Slip en nål på kortet for placeringen.",
       "imageRequired": "Der kræves mindst ét ​​billede før publicering."
     },
-    "transactionType": "Transaktionstype",
+    "transactionType": {
+      "sale": "Udsalg",
+      "rent": "Leje"
+    },
     "rentPeriod": {
       "daily": "Dagligt",
       "weekly": "Ugentlig",
@@ -876,7 +880,7 @@
       "imageDropHint": "Træk og slip billeder her, eller klik for at vælge. JPEG / PNG / WebP op til 10 MB.",
       "photoAlt": "Listebillede",
       "setCover": "Sæt som cover",
-      "cover": "Dække",
+      "cover": "Cover",
       "videoTour": "Videotur",
       "videoDropHint": "Træk en MP4-fil, eller klik for at vælge. Max 500 MB.",
       "videoUploaded": "Video uploadet — {{navn}}",
@@ -906,7 +910,7 @@
     "farm": "Gård",
     "restHouse": "Hvilehus",
     "office": "Kontor",
-    "shop": "Shop",
+    "shop": "Butik",
     "titleArLabel": "Arabisk titel *",
     "titleEnLabel": "Engelsk titel",
     "priceLabel": "Pris (SAR) *",
@@ -1508,7 +1512,7 @@
     "active": "Aktiv",
     "maxDiscount": "Maks rabat (SAR)",
     "maxDiscountHint": "Begrænser værdien for procentrabatter. Lad være tom for ingen grænse.",
-    "minBooking": "Min reservation (SAR)",
+    "minBooking": "Minimum booking (SAR)",
     "maxUses": "Maks anvendelser (tom = ubegrænset)",
     "validFrom": "Gyldig fra",
     "validUntil": "Gyldig til",
@@ -1567,6 +1571,56 @@
     "listingsShort": "lister",
     "noAgentsFound": "Ingen agenter fundet",
     "tryLater": "Prøv igen senere"
+  },
+  "agent": {
+    "verified": "Verificeret",
+    "verifiedAgent": "Verificeret agent",
+    "licensed": "Licenseret",
+    "falLicense": "FAL Licenseret",
+    "listings": "Fortegnelser",
+    "reviews": "Anmeldelser",
+    "rating": "Bedømmelse",
+    "responseTime": "Svartid",
+    "memberSince": "Medlem siden",
+    "contactAgent": "Kontakt agent",
+    "viewProfile": "Se profil",
+    "sendMessage": "Send besked"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Lejlighed",
+    "land": "Jord",
+    "chalet": "Chalet",
+    "farm": "Gård",
+    "restHouse": "Hvilehus",
+    "office": "Kontor",
+    "shop": "Shop",
+    "warehouse": "Lager",
+    "hotel": "Hotelværelse",
+    "entireHome": "Hele hjemmet",
+    "room": "Rum"
+  },
+  "amenities": {
+    "pool": "Swimmingpool",
+    "gym": "Gym",
+    "parking": "Parkering",
+    "security": "Sikkerhed",
+    "elevator": "Elevator",
+    "garden": "Have",
+    "balcony": "Balkon",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driver Room",
+    "storage": "Lagerrum",
+    "centralAC": "Central A/C",
+    "internet": "Internet",
+    "satellite": "Satellit-tv",
+    "furnished": "Møbleret",
+    "kitchen": "Køkken",
+    "laundry": "vaskerum"
+  },
+  "compare": {
+    "add": "Tilføj for at sammenligne",
+    "remove": "Fjern fra sammenligning"
   },
   "myListings": {
     "countSelected": "{{count}} valgt",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Tvist løst",
     "system": "System"
   },
-  "agent": {
-    "verified": "Verificeret",
-    "verifiedAgent": "Verificeret agent",
-    "licensed": "Licenseret",
-    "falLicense": "FAL Licenseret",
-    "listings": "Fortegnelser",
-    "reviews": "Anmeldelser",
-    "rating": "Bedømmelse",
-    "responseTime": "Svartid",
-    "memberSince": "Medlem siden",
-    "contactAgent": "Kontakt agent",
-    "viewProfile": "Se profil",
-    "sendMessage": "Send besked"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Lejlighed",
-    "land": "Land",
-    "chalet": "Chalet",
-    "farm": "Gård",
-    "restHouse": "Hvilehus",
-    "office": "Kontor",
-    "shop": "Shop",
-    "warehouse": "Lager",
-    "hotel": "Hotelværelse",
-    "entireHome": "Hele hjemmet",
-    "room": "Rum"
-  },
-  "amenities": {
-    "pool": "Swimmingpool",
-    "gym": "Gym",
-    "parking": "Parkering",
-    "security": "Sikkerhed",
-    "elevator": "Elevator",
-    "garden": "Have",
-    "balcony": "Balkon",
-    "maidRoom": "Maid Room",
-    "driverRoom": "Driver Room",
-    "storage": "Lagerrum",
-    "centralAC": "Central A/C",
-    "internet": "Internet",
-    "satellite": "Satellit-tv",
-    "furnished": "Møbleret",
-    "kitchen": "Køkken",
-    "laundry": "Vaskerum"
-  },
-  "compare": {
-    "add": "Tilføj for at sammenligne",
-    "remove": "Fjern fra sammenligning"
-  },
   "support": {
     "title": "Support",
     "myTickets": "Mine billetter",
@@ -1750,7 +1754,10 @@
       "in_progress": "Igangværende",
       "resolved": "Løst",
       "closed": "Lukket"
-    }
+    },
+    "adminSubtitle": "Triage og løs kundesupportbilletter",
+    "adminEmptyHint": "Ingen billetter matcher de aktuelle filtre.",
+    "closedHint": "Denne billet er lukket - skift dens status ovenfor for at svare."
   },
   "agentReview": {
     "postFailed": "Kunne ikke sende anmeldelse",
@@ -1815,5 +1822,32 @@
     "close": "Luk",
     "previous": "Forrige billede",
     "next": "Næste billede"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Til salg",
+    "forRent": "Til leje",
+    "apartments": "Lejligheder",
+    "villas": "Villaer",
+    "land": "Land",
+    "chalets": "Hytter",
+    "farms": "Gårde",
+    "restHouses": "Hvilehuse",
+    "hotels": "Hoteller",
+    "commercial": "Kommerciel",
+    "offices": "Kontorer"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Lejligheder til leje",
+    "villasForSale": "Villaer til salg",
+    "landForSale": "Grund til salg",
+    "chalets": "Hytter",
+    "restHouses": "Hvilehuse"
+  },
+  "homeFilters": {
+    "txAll": "Alle",
+    "txSale": "Udsalg",
+    "txRent": "Leje",
+    "bedsAny": "Enhver"
   }
 }

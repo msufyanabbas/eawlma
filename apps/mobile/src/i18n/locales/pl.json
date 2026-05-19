@@ -27,7 +27,8 @@
     "stays": "Pobyty",
     "shortTermStays": "Pobyty krótkoterminowe",
     "hotels": "Hotele",
-    "chalets": "Domki i gospodarstwa"
+    "chalets": "Domki i gospodarstwa",
+    "about": "O"
   },
   "dashboard": {
     "overview": "Przegląd",
@@ -437,10 +438,25 @@
       "sold": "Sprzedany",
       "rented": "Wynajęty"
     },
+    "bedrooms": "Sypialnie",
+    "bathrooms": "Łazienki",
+    "sqm": "m²",
+    "type": "Typ",
+    "floor": "Podłoga",
+    "age": "Wiek",
+    "parking": "Parking",
+    "furnished": "Umeblowany",
+    "unfurnished": "Nieumeblowane",
+    "perNight": "/noc",
+    "verifiedAgent": "Zweryfikowany agent",
+    "newListing": "Nowy",
+    "sold": "Sprzedany",
+    "rented": "Wynajęty",
+    "available": "Dostępny",
+    "pending": "Aż do",
+    "expired": "Wygasły",
     "sale": "Sprzedaż",
     "rent": "Wynajem",
-    "bedrooms": "Łóżka",
-    "bathrooms": "Łaźnia",
     "propertyTypeLabel": "Typ",
     "noDescription": "Brak opisu.",
     "locationNotSpecified": "Nie określono lokalizacji",
@@ -463,22 +479,7 @@
     "actionFailed": "Akcja nie powiodła się",
     "bookingDevTitle": "Rezerwacja",
     "bookingDevBody": "Przepływ rezerwacji jest w fazie rozwoju. Skontaktuj się z agentem.",
-    "removeFromSaved": "Usunąć tę usługę z zapisanej?",
-    "sqm": "m²",
-    "type": "Typ",
-    "floor": "Podłoga",
-    "age": "Wiek",
-    "parking": "Parking",
-    "furnished": "Umeblowany",
-    "unfurnished": "Nieumeblowane",
-    "perNight": "/noc",
-    "verifiedAgent": "Zweryfikowany agent",
-    "newListing": "Nowy",
-    "sold": "Sprzedany",
-    "rented": "Wynajęty",
-    "available": "Dostępny",
-    "pending": "Aż do",
-    "expired": "Wygasły"
+    "removeFromSaved": "Usunąć tę usługę z zapisanej?"
   },
   "search": {
     "filters": "Filtry",
@@ -808,7 +809,10 @@
       "pinRequired": "Umieść pinezkę na mapie, aby wskazać lokalizację.",
       "imageRequired": "Przed publikacją wymagany jest co najmniej jeden obraz."
     },
-    "transactionType": "Typ transakcji",
+    "transactionType": {
+      "sale": "Sprzedaż",
+      "rent": "Wynajem"
+    },
     "rentPeriod": {
       "daily": "Codziennie",
       "weekly": "Tygodnik",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Nie znaleziono agentów",
     "tryLater": "Spróbuj ponownie później"
   },
+  "agent": {
+    "verified": "Zweryfikowano",
+    "verifiedAgent": "Zweryfikowany agent",
+    "licensed": "Upoważniony",
+    "falLicense": "Licencja FAL",
+    "listings": "Oferty",
+    "reviews": "Recenzje",
+    "rating": "Ocena",
+    "responseTime": "Czas reakcji",
+    "memberSince": "Członek od",
+    "contactAgent": "Skontaktuj się z agentem",
+    "viewProfile": "Zobacz profil",
+    "sendMessage": "Wyślij wiadomość"
+  },
+  "property": {
+    "villa": "Willa",
+    "apartment": "Apartament",
+    "land": "Grunt",
+    "chalet": "Szalet",
+    "farm": "Gospodarstwo",
+    "restHouse": "Dom Wypoczynkowy",
+    "office": "Biuro",
+    "shop": "Sklep",
+    "warehouse": "Magazyn",
+    "hotel": "Pokój hotelowy",
+    "entireHome": "Cały dom",
+    "room": "Pokój"
+  },
+  "amenities": {
+    "pool": "Basen",
+    "gym": "Sala gimnastyczna",
+    "parking": "Parking",
+    "security": "Bezpieczeństwo",
+    "elevator": "Winda",
+    "garden": "Ogród",
+    "balcony": "Balkon",
+    "maidRoom": "Pokój pokojówki",
+    "driverRoom": "Pokój kierowcy",
+    "storage": "Magazyn",
+    "centralAC": "Centralna klimatyzacja",
+    "internet": "Internet",
+    "satellite": "Telewizja satelitarna",
+    "furnished": "Umeblowany",
+    "kitchen": "Kuchnia",
+    "laundry": "Pralnia"
+  },
+  "compare": {
+    "add": "Dodaj do porównania",
+    "remove": "Usuń z porównania"
+  },
   "myListings": {
     "countSelected": "Wybrano {{count}}",
     "activateAll": "Aktywuj wszystko",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Spór rozwiązany",
     "system": "System"
   },
-  "agent": {
-    "verified": "Zweryfikowano",
-    "verifiedAgent": "Zweryfikowany agent",
-    "licensed": "Upoważniony",
-    "falLicense": "Licencja FAL",
-    "listings": "Oferty",
-    "reviews": "Recenzje",
-    "rating": "Ocena",
-    "responseTime": "Czas reakcji",
-    "memberSince": "Członek od",
-    "contactAgent": "Skontaktuj się z agentem",
-    "viewProfile": "Zobacz profil",
-    "sendMessage": "Wyślij wiadomość"
-  },
-  "property": {
-    "villa": "Willa",
-    "apartment": "Apartament",
-    "land": "Grunt",
-    "chalet": "Szalet",
-    "farm": "Gospodarstwo",
-    "restHouse": "Dom Wypoczynkowy",
-    "office": "Biuro",
-    "shop": "Sklep",
-    "warehouse": "Magazyn",
-    "hotel": "Pokój hotelowy",
-    "entireHome": "Cały dom",
-    "room": "Pokój"
-  },
-  "amenities": {
-    "pool": "Basen",
-    "gym": "Sala gimnastyczna",
-    "parking": "Parking",
-    "security": "Bezpieczeństwo",
-    "elevator": "Winda",
-    "garden": "Ogród",
-    "balcony": "Balkon",
-    "maidRoom": "Pokój pokojówki",
-    "driverRoom": "Pokój kierowcy",
-    "storage": "Magazyn",
-    "centralAC": "Centralna klimatyzacja",
-    "internet": "Internet",
-    "satellite": "Telewizja satelitarna",
-    "furnished": "Umeblowany",
-    "kitchen": "Kuchnia",
-    "laundry": "Pralnia"
-  },
-  "compare": {
-    "add": "Dodaj do porównania",
-    "remove": "Usuń z porównania"
-  },
   "support": {
     "title": "Wsparcie",
     "myTickets": "Moje bilety",
@@ -1750,7 +1754,10 @@
       "in_progress": "W toku",
       "resolved": "Rozwiązany",
       "closed": "Zamknięte"
-    }
+    },
+    "adminSubtitle": "Segreguj i rozwiązuj zgłoszenia do obsługi klienta",
+    "adminEmptyHint": "Żadne bilety nie odpowiadają bieżącym filtrom.",
+    "closedHint": "To zgłoszenie jest zamknięte — zmień jego status powyżej, aby odpowiedzieć."
   },
   "agentReview": {
     "postFailed": "Nie udało się opublikować recenzji",
@@ -1815,5 +1822,32 @@
     "close": "Zamknąć",
     "previous": "Poprzednie zdjęcie",
     "next": "Następne zdjęcie"
+  },
+  "homeCategories": {
+    "all": "Wszystko",
+    "forSale": "Na sprzedaż",
+    "forRent": "Do wynajęcia",
+    "apartments": "Mieszkanie",
+    "villas": "Wille",
+    "land": "Grunt",
+    "chalets": "Domki",
+    "farms": "Farmy",
+    "restHouses": "Domy wypoczynkowe",
+    "hotels": "Hotele",
+    "commercial": "Handlowy",
+    "offices": "Biura"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Mieszkania do wynajęcia",
+    "villasForSale": "Wille na sprzedaż",
+    "landForSale": "Sprzedam działkę",
+    "chalets": "Domki",
+    "restHouses": "Domy wypoczynkowe"
+  },
+  "homeFilters": {
+    "txAll": "Wszystko",
+    "txSale": "Sprzedaż",
+    "txRent": "Wynajem",
+    "bedsAny": "Każdy"
   }
 }

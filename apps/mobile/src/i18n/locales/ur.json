@@ -27,7 +27,8 @@
     "stays": "قیامیں",
     "shortTermStays": "مختصر مدتی قیامیں",
     "hotels": "ہوٹل",
-    "chalets": "شالے اور فارمز"
+    "chalets": "شالے اور فارمز",
+    "about": "کے بارے میں"
   },
   "dashboard": {
     "overview": "جائزہ",
@@ -365,7 +366,7 @@
     "filter": "فلٹر",
     "submit": "جمع کروائیں",
     "language": "زبان",
-    "arabic": "| العربية",
+    "arabic": "العربية",
     "english": "انگریزی",
     "urdu": "اردو",
     "back": "پچھلا",
@@ -464,10 +465,25 @@
       "sold": "فروخت ہوا",
       "rented": "کرایہ پر دیا گیا"
     },
+    "bedrooms": "| بیڈ رومز",
+    "bathrooms": "| باتھ رومز",
+    "sqm": "| m²",
+    "type": "قسم",
+    "floor": "منزل",
+    "age": "| عمر",
+    "parking": "| پارکنگ",
+    "furnished": "| فرنشڈ",
+    "unfurnished": "| نامکمل",
+    "perNight": "/رات",
+    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
+    "newListing": "نیا",
+    "sold": "| فروخت ہوا",
+    "rented": "کرایہ پر دیا گیا",
+    "available": "| دستیاب",
+    "pending": "زیر التواء",
+    "expired": "میعاد ختم",
     "sale": "| فروخت",
     "rent": "| کرایہ",
-    "bedrooms": "| بستر",
-    "bathrooms": "غسل",
     "propertyTypeLabel": "قسم",
     "noDescription": "کوئی تفصیل نہیں۔",
     "locationNotSpecified": "مقام متعین نہیں کیا گیا",
@@ -490,22 +506,7 @@
     "actionFailed": "کارروائی ناکام",
     "bookingDevTitle": "بکنگ",
     "bookingDevBody": "| بکنگ کا بہاؤ ترقی میں ہے۔ براہ کرم ایجنٹ سے رابطہ کریں۔",
-    "removeFromSaved": "اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟",
-    "sqm": "m²",
-    "type": "قسم",
-    "floor": "منزل",
-    "age": "| عمر",
-    "parking": "| پارکنگ",
-    "furnished": "| فرنشڈ",
-    "unfurnished": "| نامکمل",
-    "perNight": "/رات",
-    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
-    "newListing": "نیا",
-    "sold": "| فروخت ہوا",
-    "rented": "کرایہ پر دیا گیا",
-    "available": "| دستیاب",
-    "pending": "زیر التواء",
-    "expired": "میعاد ختم"
+    "removeFromSaved": "اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟"
   },
   "search": {
     "filters": "فلٹرز",
@@ -845,7 +846,10 @@
       "pinRequired": "نقشہ پر مقام کا پن رکھیں۔",
       "imageRequired": "شائع کرنے سے پہلے کم از کم ایک تصویر لازمی ہے۔"
     },
-    "transactionType": "لین دین کی قسم",
+    "transactionType": {
+      "sale": "فروخت",
+      "rent": "کرایہ"
+    },
     "rentPeriod": {
       "daily": "روزانہ",
       "weekly": "ہفتہ وار",
@@ -1592,6 +1596,56 @@
       "low": "کم اعتماد"
     }
   },
+  "agent": {
+    "verified": "| تصدیق شدہ",
+    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
+    "licensed": "لائسنس یافتہ",
+    "falLicense": "FAL لائسنس یافتہ",
+    "listings": "فہرستیں",
+    "reviews": "جائزے",
+    "rating": "درجہ بندی",
+    "responseTime": "| رسپانس ٹائم",
+    "memberSince": "ممبر چونکہ",
+    "contactAgent": "ایجنٹ سے رابطہ کریں",
+    "viewProfile": "| پروفائل دیکھیں",
+    "sendMessage": "پیغام بھیجیں"
+  },
+  "property": {
+    "villa": "ولا",
+    "apartment": "اپارٹمنٹ",
+    "land": "زمین",
+    "chalet": "| چیلیٹ",
+    "farm": "| فارم",
+    "restHouse": "| ریسٹ ہاؤس",
+    "office": "آفس",
+    "shop": "دکان",
+    "warehouse": "گودام",
+    "hotel": "ہوٹل کا کمرہ",
+    "entireHome": "| پورا گھر",
+    "room": "کمرہ"
+  },
+  "amenities": {
+    "pool": "| سوئمنگ پول",
+    "gym": "جم",
+    "parking": "پارکنگ",
+    "security": "| سیکورٹی",
+    "elevator": "لفٹ",
+    "garden": "باغ",
+    "balcony": "| بالکونی",
+    "maidRoom": "| نوکرانی کا کمرہ",
+    "driverRoom": "ڈرائیور کا کمرہ",
+    "storage": "اسٹوریج روم",
+    "centralAC": "سینٹرل A/C",
+    "internet": "انٹرنیٹ",
+    "satellite": "سیٹلائٹ ٹی وی",
+    "furnished": "فرنشڈ",
+    "kitchen": "| باورچی خانہ",
+    "laundry": "| لانڈری کا کمرہ"
+  },
+  "compare": {
+    "add": "موازنہ کرنے کے لیے شامل کریں",
+    "remove": "موازنہ سے ہٹا دیں۔"
+  },
   "saved": {
     "title": "| محفوظ کیا گیا",
     "empty": "کوئی محفوظ شدہ پراپرٹیز نہیں",
@@ -1682,56 +1736,6 @@
     "dispute_resolved": "تنازعہ حل ہو گیا",
     "system": "سسٹم"
   },
-  "agent": {
-    "verified": "| تصدیق شدہ",
-    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
-    "licensed": "لائسنس یافتہ",
-    "falLicense": "FAL لائسنس یافتہ",
-    "listings": "فہرستیں",
-    "reviews": "جائزے",
-    "rating": "درجہ بندی",
-    "responseTime": "رسپانس ٹائم",
-    "memberSince": "ممبر چونکہ",
-    "contactAgent": "ایجنٹ سے رابطہ کریں",
-    "viewProfile": "| پروفائل دیکھیں",
-    "sendMessage": "پیغام بھیجیں"
-  },
-  "property": {
-    "villa": "ولا",
-    "apartment": "اپارٹمنٹ",
-    "land": "زمین",
-    "chalet": "| چیلیٹ",
-    "farm": "| فارم",
-    "restHouse": "| ریسٹ ہاؤس",
-    "office": "آفس",
-    "shop": "دکان",
-    "warehouse": "گودام",
-    "hotel": "ہوٹل کا کمرہ",
-    "entireHome": "| پورا گھر",
-    "room": "کمرہ"
-  },
-  "amenities": {
-    "pool": "| سوئمنگ پول",
-    "gym": "جم",
-    "parking": "پارکنگ",
-    "security": "| سیکورٹی",
-    "elevator": "| لفٹ",
-    "garden": "باغ",
-    "balcony": "| بالکونی",
-    "maidRoom": "| نوکرانی کا کمرہ",
-    "driverRoom": "ڈرائیور کا کمرہ",
-    "storage": "اسٹوریج روم",
-    "centralAC": "سینٹرل A/C",
-    "internet": "انٹرنیٹ",
-    "satellite": "سیٹلائٹ ٹی وی",
-    "furnished": "فرنشڈ",
-    "kitchen": "| باورچی خانہ",
-    "laundry": "| لانڈری کا کمرہ"
-  },
-  "compare": {
-    "add": "موازنہ کرنے کے لیے شامل کریں",
-    "remove": "موازنہ سے ہٹائیں"
-  },
   "support": {
     "title": "| سپورٹ",
     "myTickets": "میرے ٹکٹ",
@@ -1762,7 +1766,10 @@
       "in_progress": "جاری ہے۔",
       "resolved": "حل ہو گیا",
       "closed": "بند"
-    }
+    },
+    "adminSubtitle": "| کسٹمر سپورٹ ٹکٹوں کو ٹرائیج اور حل کریں",
+    "adminEmptyHint": "کوئی ٹکٹ موجودہ فلٹرز سے مماثل نہیں ہے۔",
+    "closedHint": "یہ ٹکٹ بند ہے — جواب دینے کے لیے اوپر اس کی حیثیت تبدیل کریں۔"
   },
   "agentReview": {
     "postFailed": "| جائزہ پوسٹ نہیں کیا جا سکا",
@@ -1827,5 +1834,32 @@
     "close": "بند کریں",
     "previous": "پچھلی تصویر",
     "next": "اگلی تصویر"
+  },
+  "homeCategories": {
+    "all": "| تمام",
+    "forSale": "برائے فروخت",
+    "forRent": "| کرایہ کے لیے",
+    "apartments": "| اپارٹمنٹس",
+    "villas": "ولاز",
+    "land": "| زمین",
+    "chalets": "| چیلیٹس",
+    "farms": "فارمز",
+    "restHouses": "| ریسٹ ہاؤسز",
+    "hotels": "ہوٹلز",
+    "commercial": "| کمرشل",
+    "offices": "| دفاتر"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "اپارٹمنٹ کرایہ کے لیے",
+    "villasForSale": "ولاز برائے فروخت",
+    "landForSale": "زمین برائے فروخت",
+    "chalets": "| چیلیٹس",
+    "restHouses": "ریسٹ ہاؤسز"
+  },
+  "homeFilters": {
+    "txAll": "تمام",
+    "txSale": "فروخت",
+    "txRent": "| کرایہ",
+    "bedsAny": "| کوئی بھی"
   }
 }

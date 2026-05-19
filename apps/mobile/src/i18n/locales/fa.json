@@ -27,7 +27,8 @@
     "stays": "اقامتگاه‌ها",
     "shortTermStays": "اقامتگاه‌های کوتاه‌مدت",
     "hotels": "هتل‌ها",
-    "chalets": "ویلا و مزرعه"
+    "chalets": "ویلا و مزرعه",
+    "about": "درباره"
   },
   "dashboard": {
     "overview": "نمای کلی",
@@ -257,8 +258,8 @@
     "anonymous": "ناشناس",
     "resolveTitle": "حل اختلاف",
     "resolveDesc": "نتیجه این اختلاف را انتخاب کنید",
-    "favorAgentDesc": "کمیسیون تایید و به نماینده",
-    "favorBuyerDesc": "پرداخت خواهد شد کمیسیون لغو خواهد شد",
+    "favorAgentDesc": "کمیسیون تایید و به نماینده پرداخت خواهد شد",
+    "favorBuyerDesc": "کمیسیون لغو خواهد شد",
     "cancelDealDesc": "معامله و کمیسیون هر دو لغو شدند",
     "adminNotes": "یادداشت های مدیریت (اختیاری)",
     "resolvedSuccess": "اختلاف با موفقیت حل شد",
@@ -435,12 +436,27 @@
       "archived": "بایگانی‌شده",
       "pending_review": "تحت بررسی",
       "sold": "فروخته شد",
-      "rented": "اجاره ای"
+      "rented": "اجاره شده است"
     },
+    "bedrooms": "اتاق خواب",
+    "bathrooms": "حمام",
+    "sqm": "متر مربع",
+    "type": "نوع",
+    "floor": "طبقه",
+    "age": "سن",
+    "parking": "پارکینگ",
+    "furnished": "مبله",
+    "unfurnished": "بدون مبله",
+    "perNight": "/شب",
+    "verifiedAgent": "نماینده تایید شده",
+    "newListing": "جدید",
+    "sold": "فروخته شد",
+    "rented": "اجاره ای",
+    "available": "موجود",
+    "pending": "در انتظار",
+    "expired": "منقضی شده",
     "sale": "فروش",
     "rent": "اجاره",
-    "bedrooms": "تخت",
-    "bathrooms": "حمام ها",
     "propertyTypeLabel": "تایپ کنید",
     "noDescription": "بدون شرح",
     "locationNotSpecified": "مکان مشخص نشده است",
@@ -463,22 +479,7 @@
     "actionFailed": "اقدام ناموفق بود",
     "bookingDevTitle": "رزرو",
     "bookingDevBody": "جریان رزرو در حال توسعه است. لطفا با نماینده تماس بگیرید.",
-    "removeFromSaved": "این ویژگی از ذخیره شده حذف شود؟",
-    "sqm": "متر مربع",
-    "type": "نوع",
-    "floor": "طبقه",
-    "age": "سن",
-    "parking": "پارکینگ",
-    "furnished": "مبله",
-    "unfurnished": "بدون مبله",
-    "perNight": "/شب",
-    "verifiedAgent": "نماینده تایید شده",
-    "newListing": "جدید",
-    "sold": "فروخته شد",
-    "rented": "اجاره ای",
-    "available": "موجود",
-    "pending": "در انتظار",
-    "expired": "منقضی شده"
+    "removeFromSaved": "این ویژگی از ذخیره شده حذف شود؟"
   },
   "search": {
     "filters": "فیلترها",
@@ -515,7 +516,7 @@
     },
     "drawArea": "ترسیم محدوده",
     "clearDrawing": "پاک کردن ترسیم",
-    "flexibleDates": "من در مورد تاریخ انعطاف پذیر هستم",
+    "flexibleDates": "من با تاریخ انعطاف پذیر هستم",
     "flex1Month": "1 ماه",
     "shortTerm": "کوتاه مدت",
     "title": "جستجو کنید",
@@ -808,7 +809,10 @@
       "pinRequired": "برای مکان، یک پین روی نقشه بیندازید.",
       "imageRequired": "حداقل یک تصویر قبل از انتشار لازم است."
     },
-    "transactionType": "نوع معامله",
+    "transactionType": {
+      "sale": "فروش",
+      "rent": "اجاره"
+    },
     "rentPeriod": {
       "daily": "روزانه",
       "weekly": "هفتگی",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "هیچ عاملی یافت نشد",
     "tryLater": "بعداً دوباره امتحان کنید"
   },
+  "agent": {
+    "verified": "تایید شده است",
+    "verifiedAgent": "نماینده تایید شده",
+    "licensed": "دارای مجوز",
+    "falLicense": "دارای مجوز FAL",
+    "listings": "لیست ها",
+    "reviews": "بررسی ها",
+    "rating": "رتبه بندی",
+    "responseTime": "زمان پاسخگویی",
+    "memberSince": "عضو از",
+    "contactAgent": "با نماینده تماس بگیرید",
+    "viewProfile": "مشاهده نمایه",
+    "sendMessage": "ارسال پیام"
+  },
+  "property": {
+    "villa": "ویلا",
+    "apartment": "آپارتمان",
+    "land": "زمین",
+    "chalet": "کلبه کلبه",
+    "farm": "مزرعه",
+    "restHouse": "خانه استراحت",
+    "office": "دفتر",
+    "shop": "خرید کنید",
+    "warehouse": "انبار",
+    "hotel": "اتاق هتل",
+    "entireHome": "کل صفحه اصلی",
+    "room": "اتاق"
+  },
+  "amenities": {
+    "pool": "استخر",
+    "gym": "باشگاه بدنسازی",
+    "parking": "پارکینگ",
+    "security": "امنیت",
+    "elevator": "آسانسور",
+    "garden": "باغ",
+    "balcony": "بالکن",
+    "maidRoom": "اتاق خدمتکار",
+    "driverRoom": "اتاق راننده",
+    "storage": "انباری",
+    "centralAC": "تهویه مطبوع مرکزی",
+    "internet": "اینترنت",
+    "satellite": "تلویزیون ماهواره ای",
+    "furnished": "مبله",
+    "kitchen": "آشپزخانه",
+    "laundry": "لاندری روم"
+  },
+  "compare": {
+    "add": "اضافه کردن به مقایسه",
+    "remove": "حذف از مقایسه"
+  },
   "myListings": {
     "countSelected": "{{count}} انتخاب شد",
     "activateAll": "همه را فعال کنید",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "اختلاف حل شد",
     "system": "سیستم"
   },
-  "agent": {
-    "verified": "تایید شده",
-    "verifiedAgent": "نماینده تایید شده",
-    "licensed": "دارای مجوز",
-    "falLicense": "دارای مجوز FAL",
-    "listings": "لیست ها",
-    "reviews": "بررسی ها",
-    "rating": "رتبه بندی",
-    "responseTime": "زمان پاسخگویی",
-    "memberSince": "عضو از",
-    "contactAgent": "با نماینده تماس بگیرید",
-    "viewProfile": "مشاهده نمایه",
-    "sendMessage": "ارسال پیام"
-  },
-  "property": {
-    "villa": "ویلا",
-    "apartment": "آپارتمان",
-    "land": "زمین",
-    "chalet": "کلبه کلبه",
-    "farm": "مزرعه",
-    "restHouse": "خانه استراحت",
-    "office": "دفتر",
-    "shop": "خرید کنید",
-    "warehouse": "انبار",
-    "hotel": "اتاق هتل",
-    "entireHome": "کل خانه",
-    "room": "اتاق"
-  },
-  "amenities": {
-    "pool": "استخر شنا",
-    "gym": "ورزشگاه",
-    "parking": "پارکینگ",
-    "security": "امنیت",
-    "elevator": "آسانسور",
-    "garden": "باغ",
-    "balcony": "بالکن",
-    "maidRoom": "اتاق خدمتکار",
-    "driverRoom": "اتاق راننده",
-    "storage": "انباری",
-    "centralAC": "تهویه مطبوع مرکزی",
-    "internet": "اینترنت",
-    "satellite": "تلویزیون ماهواره ای",
-    "furnished": "مبله",
-    "kitchen": "آشپزخانه",
-    "laundry": "لاندری روم"
-  },
-  "compare": {
-    "add": "اضافه کردن به مقایسه",
-    "remove": "حذف از مقایسه"
-  },
   "support": {
     "title": "پشتیبانی",
     "myTickets": "بلیط های من",
@@ -1750,7 +1754,10 @@
       "in_progress": "در حال انجام",
       "resolved": "حل شد",
       "closed": "بسته شد"
-    }
+    },
+    "adminSubtitle": "تریاژ و حل و فصل بلیط های پشتیبانی مشتری",
+    "adminEmptyHint": "هیچ بلیطی با فیلترهای فعلی مطابقت ندارد.",
+    "closedHint": "این بلیط بسته است - وضعیت آن را در بالا تغییر دهید تا پاسخ دهید."
   },
   "agentReview": {
     "postFailed": "امکان ارسال نظر وجود ندارد",
@@ -1815,5 +1822,32 @@
     "close": "بستن",
     "previous": "عکس قبلی",
     "next": "عکس بعدی"
+  },
+  "homeCategories": {
+    "all": "همه",
+    "forSale": "برای فروش",
+    "forRent": "برای اجاره",
+    "apartments": "آپارتمان ها",
+    "villas": "ویلاها",
+    "land": "زمین",
+    "chalets": "کلبه های کلبه",
+    "farms": "مزارع",
+    "restHouses": "خانه های استراحت",
+    "hotels": "هتل ها",
+    "commercial": "تجاری",
+    "offices": "دفاتر"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "آپارتمان برای اجاره",
+    "villasForSale": "ویلا برای فروش",
+    "landForSale": "زمین برای فروش",
+    "chalets": "کلبه های کلبه",
+    "restHouses": "خانه های استراحت"
+  },
+  "homeFilters": {
+    "txAll": "همه",
+    "txSale": "فروش",
+    "txRent": "اجاره",
+    "bedsAny": "هر"
   }
 }

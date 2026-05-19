@@ -27,7 +27,8 @@
     "stays": "मुक्काम",
     "shortTermStays": "अल्पकालीन मुक्काम",
     "hotels": "हॉटेल्स",
-    "chalets": "शॅले आणि शेते"
+    "chalets": "शॅले आणि शेते",
+    "about": "बद्दल"
   },
   "dashboard": {
     "overview": "विहंगावलोकन",
@@ -437,10 +438,25 @@
       "sold": "विकले",
       "rented": "भाड्याने घेतले"
     },
+    "bedrooms": "शयनकक्ष",
+    "bathrooms": "स्नानगृहे",
+    "sqm": "m²",
+    "type": "प्रकार",
+    "floor": "मजला",
+    "age": "वय",
+    "parking": "पार्किंग",
+    "furnished": "सुसज्ज",
+    "unfurnished": "असभ्य",
+    "perNight": "/रात्र",
+    "verifiedAgent": "सत्यापित एजंट",
+    "newListing": "नवीन",
+    "sold": "विकले",
+    "rented": "भाड्याने घेतले",
+    "available": "उपलब्ध",
+    "pending": "प्रलंबित",
+    "expired": "कालबाह्य",
     "sale": "विक्री",
     "rent": "भाड्याने",
-    "bedrooms": "पलंग",
-    "bathrooms": "आंघोळ",
     "propertyTypeLabel": "प्रकार",
     "noDescription": "वर्णन नाही.",
     "locationNotSpecified": "स्थान निर्दिष्ट नाही",
@@ -463,22 +479,7 @@
     "actionFailed": "कृती अयशस्वी",
     "bookingDevTitle": "बुकिंग",
     "bookingDevBody": "बुकिंग प्रवाह विकसित होत आहे. कृपया एजंटशी संपर्क साधा.",
-    "removeFromSaved": "जतन केलेल्या मधून ही मालमत्ता काढून टाकायची?",
-    "sqm": "m²",
-    "type": "प्रकार",
-    "floor": "मजला",
-    "age": "वय",
-    "parking": "पार्किंग",
-    "furnished": "सुसज्ज",
-    "unfurnished": "असभ्य",
-    "perNight": "/रात्र",
-    "verifiedAgent": "सत्यापित एजंट",
-    "newListing": "नवीन",
-    "sold": "विकले",
-    "rented": "भाड्याने घेतले",
-    "available": "उपलब्ध",
-    "pending": "प्रलंबित",
-    "expired": "कालबाह्य"
+    "removeFromSaved": "जतन केलेल्या मधून ही मालमत्ता काढून टाकायची?"
   },
   "search": {
     "filters": "फिल्टर्स",
@@ -576,7 +577,7 @@
     "priceLowSort": "किंमत: कमी",
     "priceHighSort": "किंमत: जास्त",
     "appStore": "ॲप स्टोअर",
-    "googlePlay": "| Google Play",
+    "googlePlay": "Google Play",
     "statListings": "जाहिराती",
     "statAgents": "एजंट",
     "statUsers": "वापरकर्ते",
@@ -631,7 +632,7 @@
     "support": "समर्थन",
     "help": "मदत केंद्र",
     "helpCenter": "मदत केंद्र",
-    "whatsapp": "| WhatsApp",
+    "whatsapp": "व्हॉट्सॲप",
     "callUs": "आम्हाला कॉल करा",
     "needHelp": "मदत हवी आहे? WhatsApp वर आमच्याशी बोला.",
     "cr": "व्यावसायिक नोंदणी",
@@ -670,7 +671,7 @@
     "sentSuccess": "धन्यवाद! आमची टीम 24 तासांत प्रतिसाद देईल.",
     "emailUs": "आम्हाला ईमेल करा",
     "emailReplies": "कार्य दिवसांवर 24 तासांत उत्तरे",
-    "whatsapp": "| WhatsApp",
+    "whatsapp": "व्हॉट्सॲप",
     "whatsappHours": "रवि–गुरु, 9:00 – 18:00 (AST)",
     "office": "कार्यालय",
     "officeAddress": "किंग फहद रोड, रियाध",
@@ -808,7 +809,10 @@
       "pinRequired": "स्थानासाठी नकाशावर एक पिन टाका.",
       "imageRequired": "प्रकाशित करण्यापूर्वी किमान एक प्रतिमा आवश्यक आहे."
     },
-    "transactionType": "व्यवहाराचा प्रकार",
+    "transactionType": {
+      "sale": "विक्री",
+      "rent": "भाड्याने"
+    },
     "rentPeriod": {
       "daily": "दररोज",
       "weekly": "साप्ताहिक",
@@ -1148,7 +1152,7 @@
     "actionFailed": "एक मॉडरेशन क्रिया अयशस्वी झाली — पुन्हा प्रयत्न करा.",
     "preview": {
       "bedroomsShort": "{{count}} BR",
-      "bathroomsShort": "{{गणना}} BA",
+      "bathroomsShort": "{{count}} BA",
       "vrTourAvailable": "VR टूर उपलब्ध",
       "vrTourSection": "VR / 360° टूर",
       "locationSection": "स्थान",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "कोणतेही एजंट आढळले नाहीत",
     "tryLater": "नंतर पुन्हा प्रयत्न करा"
   },
+  "agent": {
+    "verified": "सत्यापित",
+    "verifiedAgent": "सत्यापित एजंट",
+    "licensed": "परवाना",
+    "falLicense": "FAL परवानाकृत",
+    "listings": "सूची",
+    "reviews": "पुनरावलोकने",
+    "rating": "रेटिंग",
+    "responseTime": "प्रतिसाद वेळ",
+    "memberSince": "पासून सदस्य",
+    "contactAgent": "संपर्क एजंट",
+    "viewProfile": "प्रोफाइल पहा",
+    "sendMessage": "संदेश पाठवा"
+  },
+  "property": {
+    "villa": "व्हिला",
+    "apartment": "अपार्टमेंट",
+    "land": "जमीन",
+    "chalet": "चाळे",
+    "farm": "शेत",
+    "restHouse": "विश्रामगृह",
+    "office": "कार्यालय",
+    "shop": "दुकान",
+    "warehouse": "कोठार",
+    "hotel": "हॉटेल रूम",
+    "entireHome": "| संपूर्ण घर",
+    "room": "| खोली"
+  },
+  "amenities": {
+    "pool": "| जलतरण तलाव",
+    "gym": "जिम",
+    "parking": "पार्किंग",
+    "security": "| सुरक्षा",
+    "elevator": "| लिफ्ट",
+    "garden": "बाग",
+    "balcony": "| बाल्कनी",
+    "maidRoom": "| दासी खोली",
+    "driverRoom": "| ड्रायव्हर रूम",
+    "storage": "स्टोरेज रूम",
+    "centralAC": "सेंट्रल A/C",
+    "internet": "| इंटरनेट",
+    "satellite": "सॅटेलाइट टीव्ही",
+    "furnished": "सुसज्ज",
+    "kitchen": "| किचन",
+    "laundry": "| लॉन्ड्री रूम"
+  },
+  "compare": {
+    "add": "तुलना करण्यासाठी जोडा",
+    "remove": "तुलना मधून काढा"
+  },
   "myListings": {
     "countSelected": "{{count}} निवडले",
     "activateAll": "सर्व सक्रिय करा",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "वाद मिटला",
     "system": "प्रणाली"
   },
-  "agent": {
-    "verified": "सत्यापित",
-    "verifiedAgent": "सत्यापित एजंट",
-    "licensed": "परवाना",
-    "falLicense": "FAL परवानाकृत",
-    "listings": "सूची",
-    "reviews": "पुनरावलोकने",
-    "rating": "रेटिंग",
-    "responseTime": "प्रतिसाद वेळ",
-    "memberSince": "पासून सदस्य",
-    "contactAgent": "संपर्क एजंट",
-    "viewProfile": "प्रोफाइल पहा",
-    "sendMessage": "संदेश पाठवा"
-  },
-  "property": {
-    "villa": "व्हिला",
-    "apartment": "अपार्टमेंट",
-    "land": "जमीन",
-    "chalet": "चाळे",
-    "farm": "शेत",
-    "restHouse": "विश्रामगृह",
-    "office": "कार्यालय",
-    "shop": "दुकान",
-    "warehouse": "कोठार",
-    "hotel": "हॉटेल रूम",
-    "entireHome": "संपूर्ण घर",
-    "room": "खोली"
-  },
-  "amenities": {
-    "pool": "जलतरण तलाव",
-    "gym": "जिम",
-    "parking": "पार्किंग",
-    "security": "सुरक्षा",
-    "elevator": "| लिफ्ट",
-    "garden": "बाग",
-    "balcony": "| बाल्कनी",
-    "maidRoom": "| दासी खोली",
-    "driverRoom": "| ड्रायव्हर रूम",
-    "storage": "स्टोरेज रूम",
-    "centralAC": "सेंट्रल A/C",
-    "internet": "| इंटरनेट",
-    "satellite": "सॅटेलाइट टीव्ही",
-    "furnished": "सुसज्ज",
-    "kitchen": "| किचन",
-    "laundry": "| लॉन्ड्री रूम"
-  },
-  "compare": {
-    "add": "तुलना करण्यासाठी जोडा",
-    "remove": "तुलना मधून काढा"
-  },
   "support": {
     "title": "सपोर्ट",
     "myTickets": "माझी तिकिटे",
@@ -1750,7 +1754,10 @@
       "in_progress": "प्रगतीपथावर",
       "resolved": "निराकरण",
       "closed": "बंद"
-    }
+    },
+    "adminSubtitle": "ट्रायज आणि ग्राहक समर्थन तिकीट निराकरण",
+    "adminEmptyHint": "कोणतीही तिकिटे सध्याच्या फिल्टरशी जुळत नाहीत.",
+    "closedHint": "हे तिकीट बंद आहे — उत्तर देण्यासाठी वरील स्थिती बदला."
   },
   "agentReview": {
     "postFailed": "पुनरावलोकन पोस्ट करू शकलो नाही",
@@ -1815,5 +1822,32 @@
     "close": "बंद करा",
     "previous": "मागील फोटो",
     "next": "पुढचा फोटो"
+  },
+  "homeCategories": {
+    "all": "सर्व",
+    "forSale": "विक्रीसाठी",
+    "forRent": "भाड्याने",
+    "apartments": "अपार्टमेंट",
+    "villas": "व्हिला",
+    "land": "जमीन",
+    "chalets": "चाले",
+    "farms": "शेततळे",
+    "restHouses": "विश्रामगृहे",
+    "hotels": "हॉटेल्स",
+    "commercial": "व्यावसायिक",
+    "offices": "कार्यालये"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "भाड्याने अपार्टमेंट",
+    "villasForSale": "व्हिला विक्रीसाठी",
+    "landForSale": "जमीन विक्रीसाठी",
+    "chalets": "चाले",
+    "restHouses": "विश्रामगृहे"
+  },
+  "homeFilters": {
+    "txAll": "सर्व",
+    "txSale": "विक्री",
+    "txRent": "भाड्याने",
+    "bedsAny": "कोणतीही"
   }
 }

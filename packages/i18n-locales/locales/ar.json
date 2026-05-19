@@ -27,7 +27,8 @@
     "stays": "إقامات",
     "shortTermStays": "إقامات قصيرة",
     "hotels": "فنادق",
-    "chalets": "شاليهات ومزارع"
+    "chalets": "شاليهات ومزارع",
+    "about": "عن المنصة"
   },
   "dashboard": {
     "overview": "نظرة عامة",
@@ -1399,6 +1400,33 @@
     "close": "إغلاق",
     "previous": "الصورة السابقة",
     "next": "الصورة التالية"
+  },
+  "homeCategories": {
+    "all": "الكل",
+    "forSale": "للبيع",
+    "forRent": "للإيجار",
+    "apartments": "شقق",
+    "villas": "فلل",
+    "land": "أراضي",
+    "chalets": "شاليهات",
+    "farms": "مزارع",
+    "restHouses": "استراحات",
+    "hotels": "فنادق",
+    "commercial": "تجاري",
+    "offices": "مكاتب"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "شقق للإيجار",
+    "villasForSale": "فلل للبيع",
+    "landForSale": "أراضي للبيع",
+    "chalets": "شاليهات",
+    "restHouses": "استراحات"
+  },
+  "homeFilters": {
+    "txAll": "الكل",
+    "txSale": "بيع",
+    "txRent": "إيجار",
+    "bedsAny": "أي"
   },
   "listingDetail": {
     "hotelLabel": "فندق",

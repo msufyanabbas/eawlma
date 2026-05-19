@@ -27,7 +27,8 @@
     "stays": "Verblijven",
     "shortTermStays": "Kortdurende verblijven",
     "hotels": "Hotels",
-    "chalets": "Chalets & boerderijen"
+    "chalets": "Chalets & boerderijen",
+    "about": "Over"
   },
   "dashboard": {
     "overview": "Overzicht",
@@ -339,7 +340,7 @@
     "filter": "Filteren",
     "submit": "Versturen",
     "language": "Taal",
-    "arabic": "العربية",
+    "arabic": "niet oplossen العربية",
     "english": "Engels",
     "back": "Terug",
     "next": "Volgende",
@@ -392,7 +393,7 @@
     "save": "Opslaan",
     "share": "Delen",
     "callAgent": "Makelaar bellen",
-    "whatsapp": "WhatsAppen",
+    "whatsapp": "WhatsApp",
     "scheduleTour": "Bezichtiging plannen",
     "scheduleATour": "Een bezichtiging plannen",
     "contactAgent": "Contact opnemen met makelaar",
@@ -437,10 +438,25 @@
       "sold": "Verkocht",
       "rented": "Verhuurd"
     },
+    "bedrooms": "Slaapkamers",
+    "bathrooms": "Badkamers",
+    "sqm": "m²",
+    "type": "Typ",
+    "floor": "Verdieping",
+    "age": "Leeftijd",
+    "parking": "Parkeren",
+    "furnished": "Gemeubileerd",
+    "unfurnished": "Gestoffeerd",
+    "perNight": "/nacht",
+    "verifiedAgent": "Geverifieerde agent",
+    "newListing": "Nieuw",
+    "sold": "Verkocht",
+    "rented": "Verhuurd",
+    "available": "Beschikbaar",
+    "pending": "In behandeling",
+    "expired": "Verlopen",
     "sale": "Uitverkoop",
     "rent": "Huur",
-    "bedrooms": "Bedden",
-    "bathrooms": "Baden",
     "propertyTypeLabel": "Typ",
     "noDescription": "Geen beschrijving.",
     "locationNotSpecified": "Locatie niet gespecificeerd",
@@ -463,22 +479,7 @@
     "actionFailed": "Actie mislukt",
     "bookingDevTitle": "Boeking",
     "bookingDevBody": "De boekingsstroom is in ontwikkeling. Neem dan contact op met de makelaar.",
-    "removeFromSaved": "Deze eigenschap verwijderen uit opgeslagen?",
-    "sqm": "m²",
-    "type": "Typ",
-    "floor": "Verdieping",
-    "age": "Leeftijd",
-    "parking": "Parkeren",
-    "furnished": "Gemeubileerd",
-    "unfurnished": "Gestoffeerd",
-    "perNight": "/nacht",
-    "verifiedAgent": "Geverifieerde agent",
-    "newListing": "Nieuw",
-    "sold": "Verkocht",
-    "rented": "Verhuurd",
-    "available": "Beschikbaar",
-    "pending": "In behandeling",
-    "expired": "Verlopen"
+    "removeFromSaved": "Deze eigenschap verwijderen uit opgeslagen?"
   },
   "search": {
     "filters": "Filters",
@@ -797,7 +798,7 @@
       "furnishing": "Meubilering",
       "rentPeriod": "Periode"
     },
-    "editListing": "Advertentie bewerken",
+    "editListing": "Bewerk vermelding",
     "newListing": "Nieuwe aanbieding",
     "crumbNew": "Nieuw",
     "validation": {
@@ -808,7 +809,10 @@
       "pinRequired": "Plaats een speld op de kaart voor de locatie.",
       "imageRequired": "Er is ten minste één afbeelding vereist voordat deze wordt gepubliceerd."
     },
-    "transactionType": "Transactietype",
+    "transactionType": {
+      "sale": "Uitverkoop",
+      "rent": "Huur"
+    },
     "rentPeriod": {
       "daily": "Dagelijks",
       "weekly": "Wekelijks",
@@ -825,11 +829,11 @@
       "unlisted": "Niet-beursgenoteerd"
     },
     "amenity": {
-      "pool": "Zwembad",
+      "pool": "Pool",
       "garden": "Tuin",
       "gym": "Sportschool",
       "elevator": "Lift",
-      "maidRoom": "Meidkamer",
+      "maidRoom": "Meidenkamer",
       "driverRoom": "Chauffeurskamer",
       "centralAc": "Centrale AC",
       "kitchenAppliances": "Keukenapparatuur",
@@ -858,7 +862,7 @@
       "minimumStay": "Minimum verblijf (nachten)",
       "maxGuests": "Max gasten",
       "checkIn": "Inchecken",
-      "checkOut": "Afrekenen",
+      "checkOut": "Uitchecken",
       "cancellationPolicy": "Annuleringsbeleid",
       "cancelFlexible": "Flexibel — volledige terugbetaling tot 24 uur vóór",
       "cancelModerate": "Matig — volledige terugbetaling tot 5 dagen vóór",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Geen agenten gevonden",
     "tryLater": "Probeer het later opnieuw"
   },
+  "agent": {
+    "verified": "Geverifieerd",
+    "verifiedAgent": "Geverifieerde agent",
+    "licensed": "Gelicentieerd",
+    "falLicense": "FAL-licentie",
+    "listings": "Advertenties",
+    "reviews": "Beoordelingen",
+    "rating": "Beoordeling",
+    "responseTime": "Reactietijd",
+    "memberSince": "Lid sinds",
+    "contactAgent": "Neem contact op met agent",
+    "viewProfile": "Bekijk profiel",
+    "sendMessage": "Bericht verzenden"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Appartement",
+    "land": "Landen",
+    "chalet": "Chalet",
+    "farm": "Boerderij",
+    "restHouse": "Rusthuis",
+    "office": "Kantoor",
+    "shop": "Winkel",
+    "warehouse": "Magazijn",
+    "hotel": "Hotelkamer",
+    "entireHome": "Gehele woning",
+    "room": "Kamer"
+  },
+  "amenities": {
+    "pool": "Zwembad",
+    "gym": "Sportschool",
+    "parking": "Parkeren",
+    "security": "Beveiliging",
+    "elevator": "Lift",
+    "garden": "Tuin",
+    "balcony": "Balkon",
+    "maidRoom": "Meidkamer",
+    "driverRoom": "Bestuurderskamer",
+    "storage": "Berging",
+    "centralAC": "Centrale airconditioning",
+    "internet": "Internet",
+    "satellite": "Satelliet-tv",
+    "furnished": "Gemeubileerd",
+    "kitchen": "Keuken",
+    "laundry": "Wasruimte"
+  },
+  "compare": {
+    "add": "Optellen om te vergelijken",
+    "remove": "Verwijder uit vergelijking"
+  },
   "myListings": {
     "countSelected": "{{count}} geselecteerd",
     "activateAll": "Activeer alles",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Geschil opgelost",
     "system": "Systeem"
   },
-  "agent": {
-    "verified": "Geverifieerd",
-    "verifiedAgent": "Geverifieerde agent",
-    "licensed": "Gelicentieerd",
-    "falLicense": "FAL-licentie",
-    "listings": "Advertenties",
-    "reviews": "Beoordelingen",
-    "rating": "Beoordeling",
-    "responseTime": "Reactietijd",
-    "memberSince": "Lid sinds",
-    "contactAgent": "Neem contact op met agent",
-    "viewProfile": "Bekijk profiel",
-    "sendMessage": "Bericht verzenden"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Appartement",
-    "land": "Landen",
-    "chalet": "Chalet",
-    "farm": "Boerderij",
-    "restHouse": "Rusthuis",
-    "office": "Kantoor",
-    "shop": "Winkel",
-    "warehouse": "Magazijn",
-    "hotel": "Hotelkamer",
-    "entireHome": "Gehele woning",
-    "room": "Kamer"
-  },
-  "amenities": {
-    "pool": "Zwembad",
-    "gym": "Sportschool",
-    "parking": "Parkeren",
-    "security": "Beveiliging",
-    "elevator": "Lift",
-    "garden": "Tuin",
-    "balcony": "Balkon",
-    "maidRoom": "Meidenkamer",
-    "driverRoom": "Bestuurderskamer",
-    "storage": "Opslagruimte",
-    "centralAC": "Centrale airconditioning",
-    "internet": "Internet",
-    "satellite": "Satelliet-tv",
-    "furnished": "Gemeubileerd",
-    "kitchen": "Keuken",
-    "laundry": "Wasruimte"
-  },
-  "compare": {
-    "add": "Optellen om te vergelijken",
-    "remove": "Verwijder uit vergelijking"
-  },
   "support": {
     "title": "Steun",
     "myTickets": "Mijn kaartjes",
@@ -1750,7 +1754,10 @@
       "in_progress": "In uitvoering",
       "resolved": "Opgelost",
       "closed": "Gesloten"
-    }
+    },
+    "adminSubtitle": "Triage en oplossing van klantondersteuningstickets",
+    "adminEmptyHint": "Er zijn geen tickets die overeenkomen met de huidige filters.",
+    "closedHint": "Dit ticket is gesloten. Wijzig de status hierboven om te reageren."
   },
   "agentReview": {
     "postFailed": "Kan recensie niet plaatsen",
@@ -1794,7 +1801,7 @@
     "whatThisPlaceOffers": "Wat deze plek te bieden heeft"
   },
   "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+    "cityPlaceholder": "Riyad, Jeddah, Dammam…"
   },
   "agentReviewForm": {
     "commentPlaceholder": "Deel wat nuttig, professioneel of beter was..."
@@ -1815,5 +1822,32 @@
     "close": "niet laden Sluit",
     "previous": "Vorige foto",
     "next": "Volgende foto"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Te koop",
+    "forRent": "Te huur",
+    "apartments": "Appartementen",
+    "villas": "Villa's",
+    "land": "Landen",
+    "chalets": "Chalets",
+    "farms": "Boerderijen",
+    "restHouses": "Rusthuizen",
+    "hotels": "Hotels",
+    "commercial": "Commercieel",
+    "offices": "Kantoren"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Appartementen te huur",
+    "villasForSale": "Villa's te koop",
+    "landForSale": "Grond te koop",
+    "chalets": "Chalets",
+    "restHouses": "Rusthuizen"
+  },
+  "homeFilters": {
+    "txAll": "Alles",
+    "txSale": "Uitverkoop",
+    "txRent": "Huur",
+    "bedsAny": "Elke"
   }
 }

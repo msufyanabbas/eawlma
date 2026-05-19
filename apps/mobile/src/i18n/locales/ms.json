@@ -27,7 +27,8 @@
     "stays": "Penginapan",
     "shortTermStays": "Penginapan jangka pendek",
     "hotels": "Hotel",
-    "chalets": "Chalet & ladang"
+    "chalets": "Chalet & ladang",
+    "about": "Mengenai"
   },
   "dashboard": {
     "overview": "Gambaran keseluruhan",
@@ -250,7 +251,7 @@
     "favorBuyer": "Memihak pembeli — batalkan urusan",
     "cancelDeal": "Batalkan urusan — tanpa komisen",
     "resolutionHint": "Kedua-dua pihak akan dimaklumkan dengan nota ini.",
-    "other": "Lain",
+    "other": "Lain-lain",
     "buyerLower": "pembeli",
     "agentLower": "ejen",
     "otherLower": "lain",
@@ -437,10 +438,25 @@
       "sold": "Dijual",
       "rented": "Disewa"
     },
+    "bedrooms": "Bilik tidur",
+    "bathrooms": "Bilik air",
+    "sqm": "m²",
+    "type": "Taip",
+    "floor": "Lantai",
+    "age": "Umur",
+    "parking": "Tempat letak kereta",
+    "furnished": "Berperabot",
+    "unfurnished": "Belum dilengkapi",
+    "perNight": "/malam",
+    "verifiedAgent": "Ejen Disahkan",
+    "newListing": "Baharu",
+    "sold": "Dijual",
+    "rented": "Disewa",
+    "available": "Tersedia",
+    "pending": "Menunggu",
+    "expired": "Tamat tempoh",
     "sale": "Jualan",
     "rent": "Sewa",
-    "bedrooms": "Katil",
-    "bathrooms": "Mandi",
     "propertyTypeLabel": "taip",
     "noDescription": "Tiada penerangan.",
     "locationNotSpecified": "Lokasi tidak dinyatakan",
@@ -463,22 +479,7 @@
     "actionFailed": "Tindakan gagal",
     "bookingDevTitle": "Tempahan",
     "bookingDevBody": "Aliran tempahan sedang dalam pembangunan. Sila hubungi ejen.",
-    "removeFromSaved": "Alih keluar harta ini daripada disimpan?",
-    "sqm": "m²",
-    "type": "Taip",
-    "floor": "Lantai",
-    "age": "Umur",
-    "parking": "Tempat letak kereta",
-    "furnished": "Berperabot",
-    "unfurnished": "Belum dilengkapi",
-    "perNight": "/malam",
-    "verifiedAgent": "Ejen Disahkan",
-    "newListing": "Baharu",
-    "sold": "Dijual",
-    "rented": "Disewa",
-    "available": "Tersedia",
-    "pending": "Menunggu",
-    "expired": "Tamat tempoh"
+    "removeFromSaved": "Alih keluar harta ini daripada disimpan?"
   },
   "search": {
     "filters": "Penapis",
@@ -808,7 +809,10 @@
       "pinRequired": "Lepaskan pin pada peta untuk lokasi.",
       "imageRequired": "Sekurang-kurangnya satu imej diperlukan sebelum diterbitkan."
     },
-    "transactionType": "Jenis Transaksi",
+    "transactionType": {
+      "sale": "Jualan",
+      "rent": "Sewa"
+    },
     "rentPeriod": {
       "daily": "Setiap hari",
       "weekly": "Mingguan",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Tiada ejen ditemui",
     "tryLater": "Cuba lagi nanti"
   },
+  "agent": {
+    "verified": "Disahkan",
+    "verifiedAgent": "Ejen Disahkan",
+    "licensed": "Berlesen",
+    "falLicense": "Berlesen FAL",
+    "listings": "Penyenaraian",
+    "reviews": "Ulasan",
+    "rating": "Penilaian",
+    "responseTime": "Masa Respons",
+    "memberSince": "Ahli Sejak",
+    "contactAgent": "Hubungi Ejen",
+    "viewProfile": "Lihat Profil",
+    "sendMessage": "Hantar Mesej"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Pangsapuri",
+    "land": "Tanah",
+    "chalet": "Chalet",
+    "farm": "Ladang",
+    "restHouse": "Rumah Rehat",
+    "office": "Pejabat",
+    "shop": "Beli",
+    "warehouse": "Gudang",
+    "hotel": "Bilik Hotel",
+    "entireHome": "Seluruh Rumah",
+    "room": "Bilik"
+  },
+  "amenities": {
+    "pool": "Kolam Renang",
+    "gym": "Gim",
+    "parking": "Tempat letak kereta",
+    "security": "Keselamatan",
+    "elevator": "Lif",
+    "garden": "Taman",
+    "balcony": "Balkoni",
+    "maidRoom": "Bilik Pembantu Rumah",
+    "driverRoom": "Bilik Pemandu",
+    "storage": "Bilik Storan",
+    "centralAC": "A/C Pusat",
+    "internet": "Internet",
+    "satellite": "TV Satelit",
+    "furnished": "Berperabot",
+    "kitchen": "Dapur",
+    "laundry": "Bilik Dobi"
+  },
+  "compare": {
+    "add": "Tambah untuk membandingkan",
+    "remove": "Alih keluar daripada bandingkan"
+  },
   "myListings": {
     "countSelected": "{{count}} dipilih",
     "activateAll": "Aktifkan semua",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Pertikaian Selesai",
     "system": "Sistem"
   },
-  "agent": {
-    "verified": "Disahkan",
-    "verifiedAgent": "Ejen Disahkan",
-    "licensed": "Berlesen",
-    "falLicense": "Berlesen FAL",
-    "listings": "Penyenaraian",
-    "reviews": "Ulasan",
-    "rating": "Penilaian",
-    "responseTime": "Masa Respons",
-    "memberSince": "Ahli Sejak",
-    "contactAgent": "Hubungi Ejen",
-    "viewProfile": "Lihat Profil",
-    "sendMessage": "Hantar Mesej"
-  },
-  "property": {
-    "villa": "Vila",
-    "apartment": "Pangsapuri",
-    "land": "Tanah",
-    "chalet": "Chalet",
-    "farm": "Ladang",
-    "restHouse": "Rumah Rehat",
-    "office": "Pejabat",
-    "shop": "Beli",
-    "warehouse": "Gudang",
-    "hotel": "Bilik Hotel",
-    "entireHome": "Seluruh Rumah",
-    "room": "Bilik"
-  },
-  "amenities": {
-    "pool": "Kolam Renang",
-    "gym": "Gim",
-    "parking": "Tempat letak kereta",
-    "security": "Keselamatan",
-    "elevator": "Lif",
-    "garden": "Taman",
-    "balcony": "Balkoni",
-    "maidRoom": "Bilik Pembantu Rumah",
-    "driverRoom": "Bilik Pemandu",
-    "storage": "Bilik Storan",
-    "centralAC": "A/C Pusat",
-    "internet": "Internet",
-    "satellite": "TV Satelit",
-    "furnished": "Berperabot",
-    "kitchen": "Dapur",
-    "laundry": "Bilik Dobi"
-  },
-  "compare": {
-    "add": "Tambahkan untuk membandingkan",
-    "remove": "Alih keluar daripada bandingkan"
-  },
   "support": {
     "title": "Sokongan",
     "myTickets": "Tiket Saya",
@@ -1750,7 +1754,10 @@
       "in_progress": "Sedang Berlangsung",
       "resolved": "Selesai",
       "closed": "tertutup"
-    }
+    },
+    "adminSubtitle": "Triage dan selesaikan tiket sokongan pelanggan",
+    "adminEmptyHint": "Tiada tiket yang sepadan dengan penapis semasa.",
+    "closedHint": "Tiket ini ditutup — tukar statusnya di atas untuk membalas."
   },
   "agentReview": {
     "postFailed": "Tidak dapat menyiarkan ulasan",
@@ -1815,5 +1822,32 @@
     "close": "Tutup",
     "previous": "Foto sebelumnya",
     "next": "Foto seterusnya"
+  },
+  "homeCategories": {
+    "all": "Semua",
+    "forSale": "Untuk Dijual",
+    "forRent": "Untuk Disewa",
+    "apartments": "Pangsapuri",
+    "villas": "Vila",
+    "land": "Tanah",
+    "chalets": "Chalet",
+    "farms": "Ladang",
+    "restHouses": "Rumah Rehat",
+    "hotels": "Hotel",
+    "commercial": "Komersial",
+    "offices": "Pejabat"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Pangsapuri untuk disewa",
+    "villasForSale": "Vila untuk dijual",
+    "landForSale": "Tanah untuk dijual",
+    "chalets": "Chalet",
+    "restHouses": "Rumah rehat"
+  },
+  "homeFilters": {
+    "txAll": "Semua",
+    "txSale": "Jualan",
+    "txRent": "Sewa",
+    "bedsAny": "Sebarang"
   }
 }

@@ -27,7 +27,8 @@
     "stays": "短期滞在",
     "shortTermStays": "短期滞在",
     "hotels": "ホテル",
-    "chalets": "シャレー・農場"
+    "chalets": "シャレー・農場",
+    "about": "について"
   },
   "dashboard": {
     "overview": "概要",
@@ -437,10 +438,25 @@
       "sold": "販売済み",
       "rented": "レンタル済み"
     },
+    "bedrooms": "寝室",
+    "bathrooms": "バスルーム",
+    "sqm": "㎡",
+    "type": "タイプ",
+    "floor": "床",
+    "age": "年",
+    "parking": "駐車場",
+    "furnished": "家具付き",
+    "unfurnished": "家具なし",
+    "perNight": "/夜",
+    "verifiedAgent": "認証済みエージェント",
+    "newListing": "新しい",
+    "sold": "販売済み",
+    "rented": "レンタル済み",
+    "available": "利用可能",
+    "pending": "保留中",
+    "expired": "期限切れ",
     "sale": "販売",
     "rent": "家賃",
-    "bedrooms": "ベッド",
-    "bathrooms": "お風呂",
     "propertyTypeLabel": "タイプ",
     "noDescription": "説明はありません。",
     "locationNotSpecified": "場所が指定されていません",
@@ -463,22 +479,7 @@
     "actionFailed": "アクションが失敗しました",
     "bookingDevTitle": "予約",
     "bookingDevBody": "予約フローは開発中です。代理店にご連絡ください。",
-    "removeFromSaved": "このプロパティを保存済みから削除しますか?",
-    "sqm": "㎡",
-    "type": "タイプ",
-    "floor": "床",
-    "age": "年",
-    "parking": "駐車場",
-    "furnished": "家具付き",
-    "unfurnished": "家具なし",
-    "perNight": "/夜",
-    "verifiedAgent": "認証済みエージェント",
-    "newListing": "新しい",
-    "sold": "販売済み",
-    "rented": "レンタル済み",
-    "available": "利用可能",
-    "pending": "保留中",
-    "expired": "期限切れ"
+    "removeFromSaved": "このプロパティを保存済みから削除しますか?"
   },
   "search": {
     "filters": "フィルター",
@@ -808,7 +809,10 @@
       "pinRequired": "地図上にその場所のピンをドロップします。",
       "imageRequired": "公開する前に少なくとも 1 つの画像が必要です。"
     },
-    "transactionType": "取引タイプ",
+    "transactionType": {
+      "sale": "販売",
+      "rent": "家賃"
+    },
     "rentPeriod": {
       "daily": "毎日",
       "weekly": "毎週",
@@ -875,7 +879,7 @@
       "images": "画像",
       "imageDropHint": "ここに写真をドラッグ アンド ドロップするか、クリックして選択します。 JPEG / PNG / WebP 最大 10 MB。",
       "photoAlt": "出品写真",
-      "setCover": "カバーとして設定",
+      "setCover": "カバーとして設定する",
       "cover": "カバー",
       "videoTour": "ビデオツアー",
       "videoDropHint": "MP4 ファイルをドラッグするか、クリックして選択します。最大500MB。",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "エージェントが見つかりませんでした",
     "tryLater": "後でもう一度試してください"
   },
+  "agent": {
+    "verified": "確認済み",
+    "verifiedAgent": "認証済みエージェント",
+    "licensed": "ライセンス済み",
+    "falLicense": "FALライセンス取得済み",
+    "listings": "リスト",
+    "reviews": "レビュー",
+    "rating": "評価",
+    "responseTime": "応答時間",
+    "memberSince": "メンバー歴",
+    "contactAgent": "エージェントに連絡する",
+    "viewProfile": "プロフィールを見る",
+    "sendMessage": "メッセージを送信する"
+  },
+  "property": {
+    "villa": "ヴィラ",
+    "apartment": "アパート",
+    "land": "土地",
+    "chalet": "シャレー",
+    "farm": "農場",
+    "restHouse": "レストハウス",
+    "office": "オフィス",
+    "shop": "店",
+    "warehouse": "倉庫",
+    "hotel": "ホテルの部屋",
+    "entireHome": "家全体",
+    "room": "部屋"
+  },
+  "amenities": {
+    "pool": "スイミングプール",
+    "gym": "ジム",
+    "parking": "駐車場",
+    "security": "安全",
+    "elevator": "エレベーター",
+    "garden": "庭",
+    "balcony": "バルコニー",
+    "maidRoom": "メイドルーム",
+    "driverRoom": "運転室",
+    "storage": "保管室",
+    "centralAC": "セントラルエアコン",
+    "internet": "インターネット",
+    "satellite": "衛星テレビ",
+    "furnished": "家具付き",
+    "kitchen": "台所",
+    "laundry": "ランドリールーム"
+  },
+  "compare": {
+    "add": "比較に追加",
+    "remove": "比較から削除"
+  },
   "myListings": {
     "countSelected": "{{count}} 個が選択されました",
     "activateAll": "すべてをアクティブ化する",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "紛争解決済み",
     "system": "システム"
   },
-  "agent": {
-    "verified": "確認済み",
-    "verifiedAgent": "認証済みエージェント",
-    "licensed": "ライセンス済み",
-    "falLicense": "FALライセンス取得済み",
-    "listings": "リスト",
-    "reviews": "レビュー",
-    "rating": "評価",
-    "responseTime": "応答時間",
-    "memberSince": "メンバー歴",
-    "contactAgent": "エージェントに連絡する",
-    "viewProfile": "プロフィールを見る",
-    "sendMessage": "メッセージを送信する"
-  },
-  "property": {
-    "villa": "ヴィラ",
-    "apartment": "アパート",
-    "land": "土地",
-    "chalet": "シャレー",
-    "farm": "農場",
-    "restHouse": "レストハウス",
-    "office": "オフィス",
-    "shop": "店",
-    "warehouse": "倉庫",
-    "hotel": "ホテルの部屋",
-    "entireHome": "家全体",
-    "room": "部屋"
-  },
-  "amenities": {
-    "pool": "スイミングプール",
-    "gym": "ジム",
-    "parking": "駐車場",
-    "security": "安全",
-    "elevator": "エレベーター",
-    "garden": "庭",
-    "balcony": "バルコニー",
-    "maidRoom": "メイドルーム",
-    "driverRoom": "運転室",
-    "storage": "保管室",
-    "centralAC": "セントラルエアコン",
-    "internet": "インターネット",
-    "satellite": "衛星テレビ",
-    "furnished": "家具付き",
-    "kitchen": "台所",
-    "laundry": "ランドリールーム"
-  },
-  "compare": {
-    "add": "比較に追加",
-    "remove": "比較から削除"
-  },
   "support": {
     "title": "サポート",
     "myTickets": "私のチケット",
@@ -1750,7 +1754,10 @@
       "in_progress": "進行中",
       "resolved": "解決済み",
       "closed": "閉店"
-    }
+    },
+    "adminSubtitle": "カスタマー サポート チケットの優先順位付けと解決",
+    "adminEmptyHint": "現在のフィルターに一致するチケットはありません。",
+    "closedHint": "このチケットはクローズされています。返信するには上記のステータスを変更してください。"
   },
   "agentReview": {
     "postFailed": "レビューを投稿できませんでした",
@@ -1815,5 +1822,32 @@
     "close": "近い",
     "previous": "前の写真",
     "next": "次の写真"
+  },
+  "homeCategories": {
+    "all": "全て",
+    "forSale": "販売用",
+    "forRent": "賃貸用",
+    "apartments": "アパート",
+    "villas": "ヴィラ",
+    "land": "土地",
+    "chalets": "シャレー",
+    "farms": "農場",
+    "restHouses": "レストハウス",
+    "hotels": "ホテル",
+    "commercial": "コマーシャル",
+    "offices": "オフィス"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "賃貸アパート",
+    "villasForSale": "販売中のヴィラ",
+    "landForSale": "販売用土地",
+    "chalets": "シャレー",
+    "restHouses": "レストハウス"
+  },
+  "homeFilters": {
+    "txAll": "全て",
+    "txSale": "販売",
+    "txRent": "家賃",
+    "bedsAny": "どれでも"
   }
 }

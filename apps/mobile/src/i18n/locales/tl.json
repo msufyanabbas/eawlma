@@ -27,7 +27,8 @@
     "stays": "Mga tuluyan",
     "shortTermStays": "Maikling-panahong tuluyan",
     "hotels": "Mga hotel",
-    "chalets": "Mga chalet at sakahan"
+    "chalets": "Mga chalet at sakahan",
+    "about": "Tungkol sa"
   },
   "dashboard": {
     "overview": "Pangkalahatang-ideya",
@@ -199,7 +200,7 @@
     "weeklyRate": "Pang-linggong rate",
     "guestReviews": "Mga review ng bisita",
     "noReviews": "Wala pang mga review — kapag nag-check out ang mga bisita at nirate ang kanilang tuluyan, lalabas dito.",
-    "guestFallback": "Bisita"
+    "guestFallback": "panauhin"
   },
   "buyerDeals": {
     "title": "Aking mga deal",
@@ -437,10 +438,25 @@
       "sold": "Nabenta",
       "rented": "Nirentahan"
     },
+    "bedrooms": "Mga Silid-tulugan",
+    "bathrooms": "Mga Banyo",
+    "sqm": "m²",
+    "type": "Uri",
+    "floor": "Floor",
+    "age": "Edad",
+    "parking": "Paradahan",
+    "furnished": "Furnished",
+    "unfurnished": "Unfurnished",
+    "perNight": "/night",
+    "verifiedAgent": "Na-verify na Ahente",
+    "newListing": "Bago",
+    "sold": "Nabenta",
+    "rented": "Nirentahan",
+    "available": "Available",
+    "pending": "Nakabinbin",
+    "expired": "Nag-expire",
     "sale": "Sale",
     "rent": "Rentahan",
-    "bedrooms": "Mga kama",
-    "bathrooms": "Mga paliguan",
     "propertyTypeLabel": "Uri",
     "noDescription": "Walang paglalarawan.",
     "locationNotSpecified": "Hindi tinukoy ang lokasyon",
@@ -463,22 +479,7 @@
     "actionFailed": "Nabigo ang pagkilos",
     "bookingDevTitle": "Booking",
     "bookingDevBody": "Nasa development na ang daloy ng booking. Mangyaring makipag-ugnayan sa ahente.",
-    "removeFromSaved": "Alisin ang property na ito mula sa naka-save?",
-    "sqm": "m²",
-    "type": "Uri",
-    "floor": "Floor",
-    "age": "Edad",
-    "parking": "Paradahan",
-    "furnished": "Furnished",
-    "unfurnished": "Unfurnished",
-    "perNight": "/night",
-    "verifiedAgent": "Na-verify na Ahente",
-    "newListing": "Bago",
-    "sold": "Nabenta",
-    "rented": "Nirentahan",
-    "available": "Available",
-    "pending": "Nakabinbin",
-    "expired": "Nag-expire"
+    "removeFromSaved": "Alisin ang property na ito mula sa naka-save?"
   },
   "search": {
     "filters": "Mga filter",
@@ -515,7 +516,7 @@
     },
     "drawArea": "Gumuhit ng lugar",
     "clearDrawing": "I-clear ang pagguhit",
-    "flexibleDates": "Flexible ako sa mga date",
+    "flexibleDates": "May kakayahang umangkop ako sa mga petsa",
     "flex1Month": "1 buwan",
     "shortTerm": "Panandaliang",
     "title": "Maghanap",
@@ -808,7 +809,10 @@
       "pinRequired": "Mag-drop ng pin sa mapa para sa lokasyon.",
       "imageRequired": "Hindi bababa sa isang larawan ang kailangan bago i-publish."
     },
-    "transactionType": "Uri ng Transaksyon",
+    "transactionType": {
+      "sale": "Sale",
+      "rent": "Rentahan"
+    },
     "rentPeriod": {
       "daily": "Araw-araw",
       "weekly": "Lingguhan",
@@ -830,7 +834,7 @@
       "gym": "Gym",
       "elevator": "Elevator",
       "maidRoom": "Maid room",
-      "driverRoom": "Kwarto ng driver",
+      "driverRoom": "Driver room",
       "centralAc": "Central AC",
       "kitchenAppliances": "Mga gamit sa kusina",
       "security": "24/7 na seguridad",
@@ -865,18 +869,18 @@
       "cancelStrict": "Mahigpit — 50% refund hanggang 7 araw bago",
       "starRating": "Star rating",
       "hotelName": "Pangalan ng hotel",
-      "instantBook": "Instant na libro",
+      "instantBook": "Instant book",
       "instantBookHint": "Awtomatikong kumpirmahin ng mga booking nang wala ang iyong pag-apruba. Huwag paganahin na suriin muna ang bawat kahilingan.",
       "amenities": "Mga Pasilidad",
       "houseRules": "Mga panuntunan sa bahay",
       "houseRulesPlaceholder": "hal. Walang party, tahimik na oras pagkalipas ng 10pm, bawal manigarilyo sa loob ng bahay..."
     },
     "mediaStep": {
-      "images": "Mga Larawan",
+      "images": "Mga imahe",
       "imageDropHint": "I-drag at i-drop ang mga larawan dito, o i-click upang pumili. JPEG / PNG / WebP hanggang 10 MB.",
       "photoAlt": "Listahan ng larawan",
       "setCover": "Itakda bilang pabalat",
-      "cover": "Takpan",
+      "cover": "Cover",
       "videoTour": "Video tour",
       "videoDropHint": "Mag-drag ng MP4 file o i-click para pumili. Max 500 MB.",
       "videoUploaded": "Na-upload ang video — {{name}}",
@@ -1033,7 +1037,7 @@
     "title": "Mga tanong",
     "noResults": "Walang tanong na tumutugma sa filter na ito",
     "empty": "Walang tanong na tumutugma sa filter na ito",
-    "lead": "Nangunguna",
+    "lead": "Lead",
     "listing": "Listahan",
     "contact": "Kontak",
     "date": "Petsa",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Walang nakitang ahente",
     "tryLater": "Subukan ulit mamaya"
   },
+  "agent": {
+    "verified": "Na-verify",
+    "verifiedAgent": "Na-verify na Ahente",
+    "licensed": "Lisensyado",
+    "falLicense": "FAL Licensed",
+    "listings": "Mga Listahan",
+    "reviews": "Mga Review",
+    "rating": "Rating",
+    "responseTime": "Oras ng Pagtugon",
+    "memberSince": "Miyembro Simula",
+    "contactAgent": "Makipag-ugnayan sa Ahente",
+    "viewProfile": "Tingnan ang Profile",
+    "sendMessage": "Magpadala ng Mensahe"
+  },
+  "property": {
+    "villa": "Villa",
+    "apartment": "Apartment",
+    "land": "Lupa",
+    "chalet": "Chalet",
+    "farm": "Bukid",
+    "restHouse": "Rest House",
+    "office": "Opisina",
+    "shop": "Mamili",
+    "warehouse": "Warehouse",
+    "hotel": "Kwarto ng Hotel",
+    "entireHome": "Buong Bahay",
+    "room": "Kwarto"
+  },
+  "amenities": {
+    "pool": "Swimming Pool",
+    "gym": "Gym",
+    "parking": "Paradahan",
+    "security": "Seguridad",
+    "elevator": "Elevator",
+    "garden": "Hardin",
+    "balcony": "Balkonahe",
+    "maidRoom": "Maid Room",
+    "driverRoom": "Driver Room",
+    "storage": "Storage Room",
+    "centralAC": "Central A/C",
+    "internet": "Internet",
+    "satellite": "Satellite TV",
+    "furnished": "Furnished",
+    "kitchen": "Kusina",
+    "laundry": "Laundry Room"
+  },
+  "compare": {
+    "add": "Idagdag upang ihambing",
+    "remove": "Alisin sa paghahambing"
+  },
   "myListings": {
     "countSelected": "{{count}} ang napili",
     "activateAll": "I-activate lahat",
@@ -1575,7 +1629,7 @@
     "deleteAll": "Tanggalin lahat",
     "colViews": "Mga View",
     "colInquiries": "Mga Tanong",
-    "boostFeature": "Boost (feature)",
+    "boostFeature": "Boost (tampok)",
     "duplicate": "Duplicate",
     "deleteConfirmTitle": "Tanggalin ang {{count}} (mga) listahan?",
     "deleteConfirmDescription": "Ang pagkilos na ito ay mahinang tinatanggal ang listahan — hindi na ito lalabas sa publiko."
@@ -1614,7 +1668,7 @@
     }
   },
   "tabs": {
-    "home": "Home",
+    "home": "Bahay",
     "search": "Maghanap",
     "saved": "Na-save",
     "messages": "Mga Mensahe",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Nalutas ang Dispute",
     "system": "System"
   },
-  "agent": {
-    "verified": "Na-verify",
-    "verifiedAgent": "Na-verify na Ahente",
-    "licensed": "Lisensyado",
-    "falLicense": "FAL Licensed",
-    "listings": "Mga Listahan",
-    "reviews": "Mga Review",
-    "rating": "Rating",
-    "responseTime": "Oras ng Pagtugon",
-    "memberSince": "Miyembro Simula",
-    "contactAgent": "Makipag-ugnayan sa Ahente",
-    "viewProfile": "Tingnan ang Profile",
-    "sendMessage": "Magpadala ng Mensahe"
-  },
-  "property": {
-    "villa": "Villa",
-    "apartment": "Apartment",
-    "land": "Lupa",
-    "chalet": "Chalet",
-    "farm": "Bukid",
-    "restHouse": "Rest House",
-    "office": "Opisina",
-    "shop": "Mamili",
-    "warehouse": "Warehouse",
-    "hotel": "Kwarto ng Hotel",
-    "entireHome": "Buong Bahay",
-    "room": "Kwarto"
-  },
-  "amenities": {
-    "pool": "Swimming Pool",
-    "gym": "Gym",
-    "parking": "Paradahan",
-    "security": "Seguridad",
-    "elevator": "Elevator",
-    "garden": "Hardin",
-    "balcony": "Balkonahe",
-    "maidRoom": "Maid Room",
-    "driverRoom": "Driver Room",
-    "storage": "Storage Room",
-    "centralAC": "Central A/C",
-    "internet": "Internet",
-    "satellite": "Satellite TV",
-    "furnished": "Furnished",
-    "kitchen": "Kusina",
-    "laundry": "Laundry Room"
-  },
-  "compare": {
-    "add": "Idagdag upang ihambing",
-    "remove": "Alisin sa paghahambing"
-  },
   "support": {
     "title": "Suporta",
     "myTickets": "Aking Mga Ticket",
@@ -1750,7 +1754,10 @@
       "in_progress": "Isinasagawa",
       "resolved": "Nalutas",
       "closed": "sarado"
-    }
+    },
+    "adminSubtitle": "Triage at lutasin ang mga ticket sa suporta sa customer",
+    "adminEmptyHint": "Walang mga tiket na tumutugma sa kasalukuyang mga filter.",
+    "closedHint": "Ang tiket na ito ay sarado — baguhin ang katayuan nito sa itaas upang tumugon."
   },
   "agentReview": {
     "postFailed": "Hindi makapag-post ng review",
@@ -1815,5 +1822,32 @@
     "close": "Isara",
     "previous": "Nakaraang larawan",
     "next": "Susunod na larawan"
+  },
+  "homeCategories": {
+    "all": "Lahat",
+    "forSale": "Binebenta",
+    "forRent": "For Rent",
+    "apartments": "Mga apartment",
+    "villas": "Mga Villa",
+    "land": "Lupa",
+    "chalets": "Mga Chalet",
+    "farms": "Mga sakahan",
+    "restHouses": "Mga Rest House",
+    "hotels": "Mga Hotel",
+    "commercial": "Komersyal",
+    "offices": "Mga Opisina"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Mga apartment na inuupahan",
+    "villasForSale": "Mga ibinebentang villa",
+    "landForSale": "Lupang binebenta",
+    "chalets": "Mga Chalet",
+    "restHouses": "Mga rest house"
+  },
+  "homeFilters": {
+    "txAll": "Lahat",
+    "txSale": "Sale",
+    "txRent": "Rentahan",
+    "bedsAny": "Anumang"
   }
 }

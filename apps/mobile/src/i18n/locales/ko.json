@@ -27,7 +27,8 @@
     "stays": "단기 숙소",
     "shortTermStays": "단기 숙소",
     "hotels": "호텔",
-    "chalets": "샬레 및 농장"
+    "chalets": "샬레 및 농장",
+    "about": "에 대한"
   },
   "dashboard": {
     "overview": "개요",
@@ -437,10 +438,25 @@
       "sold": "판매된",
       "rented": "임대"
     },
+    "bedrooms": "침실",
+    "bathrooms": "욕실",
+    "sqm": "m²",
+    "type": "유형",
+    "floor": "바닥",
+    "age": "나이",
+    "parking": "주차",
+    "furnished": "가구",
+    "unfurnished": "가구 없음",
+    "perNight": "/밤",
+    "verifiedAgent": "검증된 에이전트",
+    "newListing": "새로운",
+    "sold": "판매된",
+    "rented": "임대",
+    "available": "사용 가능",
+    "pending": "보류 중",
+    "expired": "만료됨",
     "sale": "판매",
     "rent": "임차료",
-    "bedrooms": "침대",
-    "bathrooms": "온천",
     "propertyTypeLabel": "유형",
     "noDescription": "설명이 없습니다.",
     "locationNotSpecified": "위치가 지정되지 않았습니다.",
@@ -463,22 +479,7 @@
     "actionFailed": "작업 실패",
     "bookingDevTitle": "예약",
     "bookingDevBody": "예약 흐름이 개발 중입니다. 대리인에게 문의하시기 바랍니다.",
-    "removeFromSaved": "저장된 속성에서 이 속성을 삭제하시겠습니까?",
-    "sqm": "m²",
-    "type": "유형",
-    "floor": "바닥",
-    "age": "나이",
-    "parking": "주차",
-    "furnished": "가구",
-    "unfurnished": "가구 없음",
-    "perNight": "/밤",
-    "verifiedAgent": "검증된 에이전트",
-    "newListing": "새로운",
-    "sold": "판매된",
-    "rented": "임대",
-    "available": "사용 가능",
-    "pending": "보류 중",
-    "expired": "만료됨"
+    "removeFromSaved": "저장된 속성에서 이 속성을 삭제하시겠습니까?"
   },
   "search": {
     "filters": "필터",
@@ -808,7 +809,10 @@
       "pinRequired": "지도에 해당 위치에 대한 핀을 놓습니다.",
       "imageRequired": "게시하려면 이미지가 하나 이상 필요합니다."
     },
-    "transactionType": "거래 유형",
+    "transactionType": {
+      "sale": "판매",
+      "rent": "임차료"
+    },
     "rentPeriod": {
       "daily": "일일",
       "weekly": "주간",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "에이전트를 찾을 수 없습니다.",
     "tryLater": "나중에 다시 시도해 보세요"
   },
+  "agent": {
+    "verified": "확인됨",
+    "verifiedAgent": "검증된 에이전트",
+    "licensed": "라이센스가 있는",
+    "falLicense": "FAL 라이센스",
+    "listings": "목록",
+    "reviews": "리뷰",
+    "rating": "평가",
+    "responseTime": "응답 시간",
+    "memberSince": "회원가입 이후",
+    "contactAgent": "상담원에게 연락하기",
+    "viewProfile": "프로필 보기",
+    "sendMessage": "메시지 보내기"
+  },
+  "property": {
+    "villa": "별장",
+    "apartment": "아파트",
+    "land": "땅",
+    "chalet": "샬레",
+    "farm": "농장",
+    "restHouse": "레스트하우스",
+    "office": "사무실",
+    "shop": "가게",
+    "warehouse": "창고",
+    "hotel": "호텔 룸",
+    "entireHome": "집 전체",
+    "room": "방"
+  },
+  "amenities": {
+    "pool": "수영장",
+    "gym": "체육관",
+    "parking": "주차",
+    "security": "보안",
+    "elevator": "엘리베이터",
+    "garden": "정원",
+    "balcony": "발코니",
+    "maidRoom": "메이드룸",
+    "driverRoom": "운전실",
+    "storage": "보관실",
+    "centralAC": "중앙 에어컨",
+    "internet": "인터넷",
+    "satellite": "위성 TV",
+    "furnished": "가구",
+    "kitchen": "주방",
+    "laundry": "세탁실"
+  },
+  "compare": {
+    "add": "비교에 추가",
+    "remove": "비교에서 제거"
+  },
   "myListings": {
     "countSelected": "{{count}}개 선택됨",
     "activateAll": "모두 활성화",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "분쟁 해결",
     "system": "체계"
   },
-  "agent": {
-    "verified": "확인됨",
-    "verifiedAgent": "검증된 에이전트",
-    "licensed": "라이센스가 있는",
-    "falLicense": "FAL 라이센스",
-    "listings": "목록",
-    "reviews": "리뷰",
-    "rating": "평가",
-    "responseTime": "응답 시간",
-    "memberSince": "회원가입 이후",
-    "contactAgent": "상담원에게 연락하기",
-    "viewProfile": "프로필 보기",
-    "sendMessage": "메시지 보내기"
-  },
-  "property": {
-    "villa": "별장",
-    "apartment": "아파트",
-    "land": "땅",
-    "chalet": "샬레",
-    "farm": "농장",
-    "restHouse": "레스트하우스",
-    "office": "사무실",
-    "shop": "가게",
-    "warehouse": "창고",
-    "hotel": "호텔 룸",
-    "entireHome": "집 전체",
-    "room": "방"
-  },
-  "amenities": {
-    "pool": "수영장",
-    "gym": "체육관",
-    "parking": "주차",
-    "security": "보안",
-    "elevator": "엘리베이터",
-    "garden": "정원",
-    "balcony": "발코니",
-    "maidRoom": "메이드룸",
-    "driverRoom": "운전실",
-    "storage": "보관실",
-    "centralAC": "중앙 에어컨",
-    "internet": "인터넷",
-    "satellite": "위성 TV",
-    "furnished": "가구",
-    "kitchen": "주방",
-    "laundry": "세탁실"
-  },
-  "compare": {
-    "add": "비교에 추가",
-    "remove": "비교에서 제거"
-  },
   "support": {
     "title": "지원하다",
     "myTickets": "내 티켓",
@@ -1750,7 +1754,10 @@
       "in_progress": "진행 중",
       "resolved": "해결됨",
       "closed": "닫은"
-    }
+    },
+    "adminSubtitle": "고객 지원 티켓 분류 및 해결",
+    "adminEmptyHint": "현재 필터와 일치하는 티켓이 없습니다.",
+    "closedHint": "이 티켓은 종료되었습니다. 위의 상태를 응답으로 변경하세요."
   },
   "agentReview": {
     "postFailed": "리뷰를 게시할 수 없습니다.",
@@ -1815,5 +1822,32 @@
     "close": "닫다",
     "previous": "이전 사진",
     "next": "다음 사진"
+  },
+  "homeCategories": {
+    "all": "모두",
+    "forSale": "판매용",
+    "forRent": "임대용",
+    "apartments": "아파트",
+    "villas": "빌라",
+    "land": "땅",
+    "chalets": "샬레",
+    "farms": "전원",
+    "restHouses": "휴게소",
+    "hotels": "호텔",
+    "commercial": "광고",
+    "offices": "부엌"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "임대 아파트",
+    "villasForSale": "판매용 빌라",
+    "landForSale": "판매용 토지",
+    "chalets": "샬레",
+    "restHouses": "휴게소"
+  },
+  "homeFilters": {
+    "txAll": "모두",
+    "txSale": "판매",
+    "txRent": "임차료",
+    "bedsAny": "어느"
   }
 }

@@ -27,7 +27,8 @@
     "stays": "Stays",
     "shortTermStays": "Short-term stays",
     "hotels": "Hotels",
-    "chalets": "Chalets & farms"
+    "chalets": "Chalets & farms",
+    "about": "About"
   },
   "dashboard": {
     "overview": "Overview",
@@ -93,7 +94,7 @@
       "matched": "Matched",
       "closed": "Closed"
     },
-    "disputes": "Open Disputes",
+    "disputes": "Disputes",
     "panel": "Admin Panel",
     "dashboard": "Admin Dashboard",
     "totalUsers": "Total Users",
@@ -106,49 +107,6 @@
     "allClear": "No pending reviews",
     "rejectListing": "Reject Listing",
     "rejectReason": "Enter rejection reason"
-  },
-  "chat": {
-    "title": "Chat",
-    "typeMessage": "Type a message...",
-    "send": "Send",
-    "translated": "Translated",
-    "showOriginal": "Show original",
-    "showTranslation": "Show translation",
-    "translating": "Translating...",
-    "online": "Online",
-    "delivered": "Delivered"
-  },
-  "roles": {
-    "user": "Buyer",
-    "agent": "Agent",
-    "agency_owner": "Agency Owner",
-    "admin": "Admin"
-  },
-  "legal": {
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "lastUpdated": "Last updated"
-  },
-  "notifTypes": {
-    "new_inquiry": "New Inquiry",
-    "inquiry_update": "Inquiry Update",
-    "inquiry": "Inquiry",
-    "new_message": "New Message",
-    "message": "Message",
-    "booking": "Booking",
-    "booking_confirmed": "Booking Confirmed",
-    "booking_cancelled": "Booking Cancelled",
-    "booking_update": "Booking Update",
-    "commission": "Commission",
-    "commission_created": "Commission Created",
-    "deal_closed": "Deal Closed",
-    "listing": "Listing Update",
-    "listing_approved": "Listing Approved",
-    "listing_rejected": "Listing Rejected",
-    "payout": "Payout",
-    "payout_processed": "Payout Processed",
-    "dispute_resolved": "Dispute Resolved",
-    "system": "System"
   },
   "stays": {
     "title": "Short-term stays",
@@ -926,7 +884,10 @@
       "pinRequired": "Drop a pin on the map for the location.",
       "imageRequired": "At least one image is required before publishing."
     },
-    "transactionType": "Transaction Type",
+    "transactionType": {
+      "sale": "Sale",
+      "rent": "Rent"
+    },
     "rentPeriod": {
       "daily": "Daily",
       "weekly": "Weekly",
@@ -1136,16 +1097,16 @@
     "nationalIdLabel": "National ID / Iqama (10 digits)",
     "verificationNotConfigured": "Authentica.sa API key isn't configured on the server — your verification has been recorded as pending for testing. Set AUTHENTICA_API_KEY in the backend to use the live flow.",
     "verificationStarted": "Verification started.",
+    "redirectingToAuthentica": "Redirecting to Authentica.sa…",
+    "otpComing": "You'll receive an OTP shortly to complete verification.",
+    "profileUpdated": "Profile updated.",
+    "deleteLabel": "Delete",
     "appearance": "Appearance",
     "languageRegion": "Language & region",
     "pushNotifications": "Push notifications",
     "emailNotifications": "Email notifications",
     "privacyAccount": "Privacy & account",
-    "areYouSure": "Are you sure?",
-    "redirectingToAuthentica": "Redirecting to Authentica.sa…",
-    "otpComing": "You'll receive an OTP shortly to complete verification.",
-    "profileUpdated": "Profile updated.",
-    "deleteLabel": "Delete"
+    "areYouSure": "Are you sure?"
   },
   "inquiries": {
     "title": "Inquiries",
@@ -1185,11 +1146,6 @@
     "closeDealError": "Could not close the deal — try again.",
     "closeDealConfirm": "Close Deal & Generate Commission",
     "followingUpRef": "Following up on your inquiry about {{ref}}.",
-    "received": "Received",
-    "sent": "Sent",
-    "single": "Inquiry",
-    "noInquiriesYet": "No inquiries yet",
-    "appearHere": "Your inquiries will appear here",
     "deal": {
       "pendingChip": "Pending Buyer Confirmation",
       "agentClosedFor": "✅ Agent closed deal for {{value}}",
@@ -1202,7 +1158,12 @@
       "adminResolutionHeading": "Admin resolution",
       "closedFor": "Deal closed for {{value}}",
       "closedOn": " on {{date}}"
-    }
+    },
+    "received": "Received",
+    "sent": "Sent",
+    "single": "Inquiry",
+    "noInquiriesYet": "No inquiries yet",
+    "appearHere": "Your inquiries will appear here"
   },
   "commission": {
     "title": "Commissions",
@@ -1226,10 +1187,6 @@
       "disputed": "Disputed",
       "cancelled": "Cancelled"
     },
-    "dealValue": "Deal value",
-    "commission": "Commission",
-    "fromTxn": "from {{count}} transactions",
-    "earningsHint": "Earnings will appear after closing deals",
     "oath": {
       "dialogTitle": "Commission Commitment",
       "translatedOath": "I hereby commit to paying the agreed commission upon completion of this real estate transaction, and acknowledge this responsibility before God and the law.",
@@ -1242,7 +1199,11 @@
       "decline": "I do not agree",
       "saving": "Saving...",
       "acceptCta": "I Accept & Commit"
-    }
+    },
+    "dealValue": "Deal value",
+    "commission": "Commission",
+    "fromTxn": "from {{count}} transactions",
+    "earningsHint": "Earnings will appear after closing deals"
   },
   "moderation": {
     "pendingCountSubtitle": "{{count}} pending",
@@ -1673,6 +1634,175 @@
       "low": "Low confidence"
     }
   },
+  "agentReview": {
+    "postFailed": "Could not post review",
+    "posting": "Posting…",
+    "postReview": "Post review"
+  },
+  "adminCommissions": {
+    "listing": "Listing",
+    "buyer": "Buyer",
+    "value": "Deal Value",
+    "platformEarn": "Platform Earn",
+    "agentEarn": "Agent Earn",
+    "status": "Status",
+    "closedAt": "Closed",
+    "allCommissions": "All Commissions",
+    "all": "All"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Actor",
+    "action": "Action",
+    "entity": "Entity",
+    "changed": "Changed Fields"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Traffic Sources",
+    "devices": "Devices",
+    "inquiryFunnel": "Inquiry Funnel"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Share what was helpful, professional, or could improve…"
+  },
+  "adminCommissionsPage": {
+    "title": "Platform commissions",
+    "subtitle": "Total revenue, agent payouts, and per-transaction breakdown."
+  },
+  "comparePage": {
+    "emptyTitle": "Nothing to compare yet"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API key not configured",
+    "missingKeyHint": "Set VITE_GOOGLE_MAPS_API_KEY to enable the map view.",
+    "loadFailed": "Failed to load map"
+  },
+  "photoGallery": {
+    "close": "Close",
+    "previous": "Previous photo",
+    "next": "Next photo"
+  },
+  "homeCategories": {
+    "all": "All",
+    "forSale": "For Sale",
+    "forRent": "For Rent",
+    "apartments": "Apartments",
+    "villas": "Villas",
+    "land": "Land",
+    "chalets": "Chalets",
+    "farms": "Farms",
+    "restHouses": "Rest Houses",
+    "hotels": "Hotels",
+    "commercial": "Commercial",
+    "offices": "Offices"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartments for rent",
+    "villasForSale": "Villas for sale",
+    "landForSale": "Land for sale",
+    "chalets": "Chalets",
+    "restHouses": "Rest houses"
+  },
+  "homeFilters": {
+    "txAll": "All",
+    "txSale": "Sale",
+    "txRent": "Rent",
+    "bedsAny": "Any"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Stay details",
+    "houseRules": "House rules",
+    "maxGuests": "Max guests",
+    "checkIn": "Check-in",
+    "checkInFrom": "from {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "by {{time}}",
+    "cancellation": "Cancellation",
+    "whatThisPlaceOffers": "What this place offers"
+  },
+  "support": {
+    "title": "Support",
+    "adminSubtitle": "Triage and resolve customer support tickets",
+    "myTickets": "My Tickets",
+    "newTicket": "New Ticket",
+    "subject": "Subject",
+    "description": "Detailed Description",
+    "category": "Category",
+    "status": "Status",
+    "submit": "Submit Ticket",
+    "reply": "Reply",
+    "noTickets": "No support tickets",
+    "noTicketsPrompt": "Create a new ticket to get help",
+    "adminEmptyHint": "No tickets match the current filters.",
+    "createTicket": "Create Ticket",
+    "originalDesc": "Original description:",
+    "supportTeam": "Support Team",
+    "writeReply": "Write your reply…",
+    "closedHint": "This ticket is closed — change its status above to reply.",
+    "ticketCreated": "Support ticket created successfully",
+    "categories": {
+      "general": "General",
+      "technical": "Technical",
+      "billing": "Billing",
+      "listing": "Listing",
+      "account": "Account",
+      "other": "Other"
+    },
+    "statuses": {
+      "open": "Open",
+      "in_progress": "In Progress",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "typeMessage": "Type a message...",
+    "send": "Send",
+    "translated": "Translated",
+    "showOriginal": "Show original",
+    "showTranslation": "Show translation",
+    "translating": "Translating...",
+    "online": "Online",
+    "delivered": "Delivered"
+  },
+  "roles": {
+    "user": "Buyer",
+    "agent": "Agent",
+    "agency_owner": "Agency Owner",
+    "admin": "Admin"
+  },
+  "legal": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "lastUpdated": "Last updated"
+  },
+  "notifTypes": {
+    "new_inquiry": "New Inquiry",
+    "inquiry_update": "Inquiry Update",
+    "inquiry": "Inquiry",
+    "new_message": "New Message",
+    "message": "Message",
+    "booking": "Booking",
+    "booking_confirmed": "Booking Confirmed",
+    "booking_cancelled": "Booking Cancelled",
+    "booking_update": "Booking Update",
+    "commission": "Commission",
+    "commission_created": "Commission Created",
+    "deal_closed": "Deal Closed",
+    "listing": "Listing Update",
+    "listing_approved": "Listing Approved",
+    "listing_rejected": "Listing Rejected",
+    "payout": "Payout",
+    "payout_processed": "Payout Processed",
+    "dispute_resolved": "Dispute Resolved",
+    "system": "System"
+  },
   "saved": {
     "title": "Saved",
     "empty": "No saved properties",
@@ -1719,101 +1849,5 @@
     "ownerReply": "Owner reply:",
     "empty": "No reviews yet",
     "beFirst": "Be the first to review"
-  },
-  "support": {
-    "title": "Support",
-    "myTickets": "My Tickets",
-    "newTicket": "New Ticket",
-    "subject": "Subject",
-    "description": "Detailed Description",
-    "category": "Category",
-    "status": "Status",
-    "submit": "Submit Ticket",
-    "reply": "Reply",
-    "noTickets": "No support tickets",
-    "noTicketsPrompt": "Create a new ticket to get help",
-    "createTicket": "Create Ticket",
-    "originalDesc": "Original description:",
-    "supportTeam": "Support Team",
-    "writeReply": "Write your reply…",
-    "ticketCreated": "Support ticket created successfully",
-    "categories": {
-      "general": "General",
-      "technical": "Technical",
-      "billing": "Billing",
-      "listing": "Listing",
-      "account": "Account",
-      "other": "Other"
-    },
-    "statuses": {
-      "open": "Open",
-      "in_progress": "In Progress",
-      "resolved": "Resolved",
-      "closed": "Closed"
-    }
-  },
-  "agentReview": {
-    "postFailed": "Could not post review",
-    "posting": "Posting…",
-    "postReview": "Post review"
-  },
-  "adminCommissions": {
-    "listing": "Listing",
-    "buyer": "Buyer",
-    "value": "Deal Value",
-    "platformEarn": "Platform Earn",
-    "agentEarn": "Agent Earn",
-    "status": "Status",
-    "closedAt": "Closed",
-    "allCommissions": "All Commissions",
-    "all": "All"
-  },
-  "adminAudit": {
-    "timestamp": "Timestamp",
-    "actor": "Actor",
-    "action": "Action",
-    "entity": "Entity",
-    "changed": "Changed Fields"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Traffic Sources",
-    "devices": "Devices",
-    "inquiryFunnel": "Inquiry Funnel"
-  },
-  "listingDetail": {
-    "hotelLabel": "Hotel",
-    "starSuffix": "{{n}}-star",
-    "stayDetails": "Stay details",
-    "houseRules": "House rules",
-    "maxGuests": "Max guests",
-    "checkIn": "Check-in",
-    "checkInFrom": "from {{time}}",
-    "checkOut": "Check-out",
-    "checkOutBy": "by {{time}}",
-    "cancellation": "Cancellation",
-    "whatThisPlaceOffers": "What this place offers"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Share what was helpful, professional, or could improve…"
-  },
-  "adminCommissionsPage": {
-    "title": "Platform commissions",
-    "subtitle": "Total revenue, agent payouts, and per-transaction breakdown."
-  },
-  "comparePage": {
-    "emptyTitle": "Nothing to compare yet"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Google Maps API key not configured",
-    "missingKeyHint": "Set VITE_GOOGLE_MAPS_API_KEY to enable the map view.",
-    "loadFailed": "Failed to load map"
-  },
-  "photoGallery": {
-    "close": "Close",
-    "previous": "Previous photo",
-    "next": "Next photo"
   }
 }

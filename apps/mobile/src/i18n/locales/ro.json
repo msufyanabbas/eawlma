@@ -27,7 +27,8 @@
     "stays": "Sejururi",
     "shortTermStays": "Sejururi pe termen scurt",
     "hotels": "Hoteluri",
-    "chalets": "Cabane și ferme"
+    "chalets": "Cabane și ferme",
+    "about": "Despre"
   },
   "dashboard": {
     "overview": "Prezentare generală",
@@ -199,7 +200,7 @@
     "weeklyRate": "Tarif săptămânal",
     "guestReviews": "Recenzii oaspeți",
     "noReviews": "Nicio recenzie încă — odată ce oaspeții se cazează și își evaluează sejurul, vor apărea aici.",
-    "guestFallback": "Oaspete"
+    "guestFallback": "Invitat"
   },
   "buyerDeals": {
     "title": "Tranzacțiile mele",
@@ -437,10 +438,25 @@
       "sold": "Vândut",
       "rented": "Închiriat"
     },
+    "bedrooms": "Dormitoare",
+    "bathrooms": "Băi",
+    "sqm": "m²",
+    "type": "Tip",
+    "floor": "Etajul",
+    "age": "Vârsta",
+    "parking": "Parcare",
+    "furnished": "Mobilat",
+    "unfurnished": "Nemobilat",
+    "perNight": "/noapte",
+    "verifiedAgent": "Agent verificat",
+    "newListing": "Nou",
+    "sold": "Vândut",
+    "rented": "Închiriat",
+    "available": "Disponibil",
+    "pending": "În așteptare",
+    "expired": "A expirat",
     "sale": "Vanzare",
     "rent": "Închiriere",
-    "bedrooms": "Paturi",
-    "bathrooms": "Băi",
     "propertyTypeLabel": "Tip",
     "noDescription": "Fără descriere.",
     "locationNotSpecified": "Locația nu este specificată",
@@ -463,22 +479,7 @@
     "actionFailed": "Acțiunea eșuată",
     "bookingDevTitle": "Rezervare",
     "bookingDevBody": "Fluxul de rezervări este în curs de dezvoltare. Vă rugăm să contactați agentul.",
-    "removeFromSaved": "Eliminați această proprietate din salvate?",
-    "sqm": "m²",
-    "type": "Tip",
-    "floor": "Etajul",
-    "age": "Vârsta",
-    "parking": "Parcare",
-    "furnished": "Mobilat",
-    "unfurnished": "Nemobilat",
-    "perNight": "/noapte",
-    "verifiedAgent": "Agent verificat",
-    "newListing": "Nou",
-    "sold": "Vândut",
-    "rented": "Închiriat",
-    "available": "Disponibil",
-    "pending": "În așteptare",
-    "expired": "A expirat"
+    "removeFromSaved": "Eliminați această proprietate din salvate?"
   },
   "search": {
     "filters": "Filtre",
@@ -763,7 +764,7 @@
       "publicVisibility": "Vizibilitate publică (debifați numai pentru linkul nelistat/privat)"
     },
     "review": {
-      "summaryTitle": "Rezumatul listei",
+      "summaryTitle": "Rezumatul listării",
       "enhanceWithAi": "Îmbunătățiți cu AI",
       "enhancing": "Îmbunătățirea…",
       "aiStubNotice": "AI a returnat un stub — setați OPENAI_API_KEY pe backend pentru a utiliza modelul live.",
@@ -808,7 +809,10 @@
       "pinRequired": "Aruncă un indicator pe hartă pentru locație.",
       "imageRequired": "Este necesară cel puțin o imagine înainte de publicare."
     },
-    "transactionType": "Tipul tranzacției",
+    "transactionType": {
+      "sale": "Vanzare",
+      "rent": "Chirie"
+    },
     "rentPeriod": {
       "daily": "Zilnic",
       "weekly": "Săptămânal",
@@ -841,7 +845,7 @@
       "pool": "Piscina",
       "parking": "Parcare",
       "breakfast": "Mic dejun",
-      "ac": "Aer condiționat",
+      "ac": "Aer conditionat",
       "kitchen": "Bucătărie",
       "tv": "TV",
       "washer": "Saiba",
@@ -869,7 +873,7 @@
       "instantBookHint": "Rezervările se confirmă automat fără aprobarea dvs. Dezactivați pentru a examina mai întâi fiecare solicitare.",
       "amenities": "Facilități",
       "houseRules": "Regulile casei",
-      "houseRulesPlaceholder": "de ex. Fără petreceri, ore liniștite după ora 22, fumat interzis..."
+      "houseRulesPlaceholder": "de ex. Fără petreceri, ore liniștite după ora 22:00, nu se fumează în interior..."
     },
     "mediaStep": {
       "images": "Imagini",
@@ -1115,7 +1119,7 @@
       "agentListingBreakdown": "Comision platformă: <strong>0,5%</strong> din valoarea tranzacției, plătibil la vânzarea cu succes sau la încheierea contractului de închiriere.",
       "buyerAgentCommission": "Comision agent: <strong>2,5%</strong> din valoarea tranzacției.",
       "buyerPlatformFee": "Taxa platformei: <strong>0,5%</strong> din valoarea tranzacției.",
-      "acceptError": "Nu s-a putut înregistra acceptarea dvs",
+      "acceptError": "Nu s-a putut înregistra acceptarea dvs.",
       "agreeCheckbox": "Sunt de acord cu termenii comisionului",
       "decline": "Nu sunt de acord",
       "saving": "Se salvează...",
@@ -1361,7 +1365,7 @@
     "tabGuest": "Ca oaspete",
     "tabHost": "Ca gazdă",
     "checkIn": "Înregistrare",
-    "checkOut": "Verifică",
+    "checkOut": "Check-out",
     "night": "noapte",
     "nights": "nopți",
     "guests": "Oaspeți",
@@ -1568,6 +1572,56 @@
     "noAgentsFound": "Nu s-au găsit agenți",
     "tryLater": "Încercați din nou mai târziu"
   },
+  "agent": {
+    "verified": "Verificat",
+    "verifiedAgent": "Agent verificat",
+    "licensed": "Licențiat",
+    "falLicense": "Licențiat FAL",
+    "listings": "Listări",
+    "reviews": "Recenzii",
+    "rating": "Evaluare",
+    "responseTime": "Timp de răspuns",
+    "memberSince": "Membru din",
+    "contactAgent": "Contactați agentul",
+    "viewProfile": "Vezi profilul",
+    "sendMessage": "Trimite mesaj"
+  },
+  "property": {
+    "villa": "Vila",
+    "apartment": "Apartament",
+    "land": "Teren",
+    "chalet": "cabana",
+    "farm": "Ferma",
+    "restHouse": "Casa de odihnă",
+    "office": "Birou",
+    "shop": "Magazin",
+    "warehouse": "Depozit",
+    "hotel": "Cameră de hotel",
+    "entireHome": "Întreaga casă",
+    "room": "Cameră"
+  },
+  "amenities": {
+    "pool": "Piscina",
+    "gym": "Sală de sport",
+    "parking": "Parcare",
+    "security": "Securitate",
+    "elevator": "Lift",
+    "garden": "Grădină",
+    "balcony": "Balcon",
+    "maidRoom": "Cameră de serviciu",
+    "driverRoom": "Cameră șofer",
+    "storage": "Depozit",
+    "centralAC": "A/C central",
+    "internet": "Internet",
+    "satellite": "TV prin satelit",
+    "furnished": "Mobilat",
+    "kitchen": "Bucătărie",
+    "laundry": "Spălătorie"
+  },
+  "compare": {
+    "add": "Adăugați pentru a compara",
+    "remove": "Eliminați din comparație"
+  },
   "myListings": {
     "countSelected": "{{count}} selectat",
     "activateAll": "Activați toate",
@@ -1670,56 +1724,6 @@
     "dispute_resolved": "Disputa Rezolvată",
     "system": "Sistem"
   },
-  "agent": {
-    "verified": "Verificat",
-    "verifiedAgent": "Agent verificat",
-    "licensed": "Licențiat",
-    "falLicense": "Licențiat FAL",
-    "listings": "Listări",
-    "reviews": "Recenzii",
-    "rating": "Evaluare",
-    "responseTime": "Timp de răspuns",
-    "memberSince": "Membru din",
-    "contactAgent": "Contactați agentul",
-    "viewProfile": "Vezi profilul",
-    "sendMessage": "Trimite mesaj"
-  },
-  "property": {
-    "villa": "Vila",
-    "apartment": "Apartament",
-    "land": "Teren",
-    "chalet": "Cabana",
-    "farm": "Ferma",
-    "restHouse": "Casa de odihnă",
-    "office": "Birou",
-    "shop": "Magazin",
-    "warehouse": "Depozit",
-    "hotel": "Cameră de hotel",
-    "entireHome": "Întreaga casă",
-    "room": "Cameră"
-  },
-  "amenities": {
-    "pool": "Piscina",
-    "gym": "Sală de sport",
-    "parking": "Parcare",
-    "security": "Securitate",
-    "elevator": "Lift",
-    "garden": "Grădină",
-    "balcony": "Balcon",
-    "maidRoom": "Cameră de serviciu",
-    "driverRoom": "Cameră șofer",
-    "storage": "Depozit",
-    "centralAC": "A/C central",
-    "internet": "Internet",
-    "satellite": "TV prin satelit",
-    "furnished": "Mobilat",
-    "kitchen": "Bucătărie",
-    "laundry": "Spălătorie"
-  },
-  "compare": {
-    "add": "Adaugă pentru a compara",
-    "remove": "Eliminați din comparație"
-  },
   "support": {
     "title": "Suport",
     "myTickets": "Biletele mele",
@@ -1750,7 +1754,10 @@
       "in_progress": "În curs",
       "resolved": "S-a rezolvat",
       "closed": "Închis"
-    }
+    },
+    "adminSubtitle": "Triați și rezolvați biletele de asistență pentru clienți",
+    "adminEmptyHint": "Niciun bilet nu se potrivește cu filtrele actuale.",
+    "closedHint": "Acest bilet este închis — schimbați-i starea de mai sus pentru a răspunde."
   },
   "agentReview": {
     "postFailed": "Nu s-a putut posta recenzia",
@@ -1770,7 +1777,7 @@
   },
   "adminAudit": {
     "timestamp": "Marca temporală",
-    "actor": "Actor",
+    "actor": "Actorul",
     "action": "Acțiune",
     "entity": "Entitatea",
     "changed": "Câmpuri modificate"
@@ -1815,5 +1822,32 @@
     "close": "Închide",
     "previous": "Fotografia anterioară",
     "next": "Poza următoare"
+  },
+  "homeCategories": {
+    "all": "Toate",
+    "forSale": "De Vanzare",
+    "forRent": "De Inchiriere",
+    "apartments": "Apartamente",
+    "villas": "Vile",
+    "land": "Teren",
+    "chalets": "Cabana",
+    "farms": "Ferme",
+    "restHouses": "Case de odihnă",
+    "hotels": "Hoteluri",
+    "commercial": "Comercial",
+    "offices": "Birouri"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartamente de inchiriat",
+    "villasForSale": "Vile de vânzare",
+    "landForSale": "Teren de vânzare",
+    "chalets": "Cabana",
+    "restHouses": "Case de odihnă"
+  },
+  "homeFilters": {
+    "txAll": "Toate",
+    "txSale": "Vanzare",
+    "txRent": "Închiriere",
+    "bedsAny": "Orice"
   }
 }
