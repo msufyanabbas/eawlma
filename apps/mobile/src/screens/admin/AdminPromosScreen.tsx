@@ -21,18 +21,18 @@ export default function AdminPromosScreen({ navigation }: any) {
   const [type, setType] = useState<PromoType>('percentage');
   const [discount, setDiscount] = useState('');
 
-  // Promos listing is mounted at GET /promos — the controller filters by
-  // viewer role server-side, so an admin sees every code while agents/buyers
-  // only see codes they can use.
+  // Admin promo management lives under /admin/promos — the public /promos
+  // routes are validate/apply only and 403 on list/create/delete for anyone.
+  // (Previous version hit /promos and silently 404'd on admins.)
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['admin-promos'],
-    queryFn: () => api.get('/promos').then(r => r.data),
+    queryFn: () => api.get('/admin/promos').then(r => r.data),
   });
 
   const promos: any[] = data?.data?.data ?? data?.data ?? data?.items ?? [];
 
   const createPromo = useMutation({
-    mutationFn: (payload: any) => api.post('/promos', payload),
+    mutationFn: (payload: any) => api.post('/admin/promos', payload),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['admin-promos'] });
       setShowCreate(false);
@@ -44,7 +44,7 @@ export default function AdminPromosScreen({ navigation }: any) {
   });
 
   const deletePromo = useMutation({
-    mutationFn: (id: string) => api.delete(`/promos/${id}`),
+    mutationFn: (id: string) => api.delete(`/admin/promos/${id}`),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['admin-promos'] }),
     onError: () => Alert.alert(t('common.error'), t('common.errorOccurred')),
   });

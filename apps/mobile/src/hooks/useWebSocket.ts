@@ -80,6 +80,14 @@ export function useWebSocket() {
         queryClient.invalidateQueries({ queryKey: ['notifications'] });
       });
 
+      // Profile/preference changes (avatar, language, theme) made on another
+      // device land here. Invalidating ['me'] lets the ProfileScreen poll +
+      // App.tsx AppState refresh apply the new locale/theme without waiting
+      // for the 30s background tick.
+      sock.on('profile_updated', () => {
+        queryClient.invalidateQueries({ queryKey: ['me'] });
+      });
+
       if (!cancelled) socket = sock;
       else sock.disconnect();
     };

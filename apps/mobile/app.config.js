@@ -26,12 +26,21 @@ module.exports = {
       resizeMode: 'contain',
     },
     assetBundlePatterns: ['**/*'],
+    // Custom URL scheme — handles `eawlma://listings/<id>`-style links from
+    // older share targets that don't support Universal/App Links. The web
+    // domain links below are the preferred path (no app-installed prompt).
+    scheme: 'eawlma',
     ios: {
       supportsTablet: true,
       bundleIdentifier: 'sa.eawlma.app',
       config: {
         googleMapsApiKey: GOOGLE_MAPS_API_KEY,
       },
+      // Universal Links — requires apple-app-site-association hosted at
+      // https://eawlma.sa/.well-known/apple-app-site-association declaring
+      // this bundle id with the matching paths. Without that file Safari
+      // falls back to the web page (which is the desired graceful default).
+      associatedDomains: ['applinks:eawlma.sa'],
     },
     android: {
       adaptiveIcon: {
@@ -43,6 +52,28 @@ module.exports = {
           apiKey: GOOGLE_MAPS_API_KEY,
         },
       },
+      // App Links — `autoVerify: true` makes Android verify the
+      // /.well-known/assetlinks.json file on eawlma.sa and skip the chooser
+      // dialog. The custom scheme entry covers links from non-browser apps.
+      intentFilters: [
+        {
+          action: 'VIEW',
+          autoVerify: true,
+          data: [
+            { scheme: 'https', host: 'eawlma.sa', pathPrefix: '/listings' },
+            { scheme: 'https', host: 'eawlma.sa', pathPrefix: '/agents' },
+          ],
+          category: ['BROWSABLE', 'DEFAULT'],
+        },
+        {
+          action: 'VIEW',
+          data: [
+            { scheme: 'eawlma', host: 'listings' },
+            { scheme: 'eawlma', host: 'agents' },
+          ],
+          category: ['BROWSABLE', 'DEFAULT'],
+        },
+      ],
     },
     extra: {
       apiUrl: API_URL,

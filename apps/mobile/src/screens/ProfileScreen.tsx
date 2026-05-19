@@ -268,6 +268,7 @@ export default function ProfileScreen({ navigation }: any) {
             <SettingRow icon="mail-unread-outline" label={t('profile.myInquiries')} onPress={() => navigation.navigate('Inquiries')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           )}
           <SettingRow icon="calendar-outline" label={t('profile.myBookings')} onPress={() => navigation.navigate('Bookings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="search-outline" label={isAr ? 'طلبات العقارات' : 'Property Requests'} onPress={() => navigation.navigate('PropertyRequests')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <SettingRow icon="notifications-outline" label={t('profile.notifications')} onPress={() => navigation.navigate('Notifications')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <SettingRow icon="language-outline" label={t('profile.language')} value={currentLangName} onPress={() => setShowLangPicker(true)} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <DarkModeRow isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} colors={colors} darkModeLabel={t('profile.darkMode')} isRTL={isRTL} textAlign={textAlign} />

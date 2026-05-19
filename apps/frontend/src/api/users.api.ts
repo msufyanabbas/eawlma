@@ -29,12 +29,19 @@ function projectAuthUser(user: User): AuthSessionUser {
 
 /**
  * Push a freshly-loaded `User` into the React Query cache + Zustand auth store.
- * Called from every profile/preference mutation so the navbar avatar, language,
- * and theme update instantly across tabs without a re-login.
+ * Called from every profile/preference mutation AND from `MeSyncer` whenever
+ * the background poll lands a new row, so the navbar avatar, language, and
+ * theme update instantly across tabs without a re-login.
+ *
+ * NOTE: we deliberately do NOT call `invalidateQueries` here. `setQueryData`
+ * already propagates the fresh payload to every subscriber, and invalidating
+ * a query while MeSyncer is the consumer of that exact query would trigger
+ * an immediate refetch → fresh object reference → useEffect re-run → repeat.
+ * The WS `profile_updated` push and explicit mutations are the only writers
+ * that should invalidate; this helper is idempotent on receipt.
  */
 export function syncMeToClient(user: User): User {
   queryClient.setQueryData(['users', 'me'], user);
-  void queryClient.invalidateQueries({ queryKey: ['users', 'me'] });
   useAuthStore.getState().setUser(projectAuthUser(user));
   return user;
 }

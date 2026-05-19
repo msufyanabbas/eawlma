@@ -52,6 +52,7 @@ import HotelsScreen from './src/screens/HotelsScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import HelpScreen from './src/screens/HelpScreen';
 import BookingsListScreen from './src/screens/BookingsListScreen';
+import PropertyRequestsScreen from './src/screens/PropertyRequestsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 import TermsScreen from './src/screens/TermsScreen';
@@ -63,6 +64,7 @@ import AdminPayoutsScreen from './src/screens/admin/AdminPayoutsScreen';
 import AdminDisputesScreen from './src/screens/admin/AdminDisputesScreen';
 import AdminPromosScreen from './src/screens/admin/AdminPromosScreen';
 import { useWebSocket } from './src/hooks/useWebSocket';
+import { linking } from './src/navigation/linking';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -283,7 +285,7 @@ function AppContent() {
   useWebSocket();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="MainTabs" component={MainTabs} />
             <Stack.Screen name="Login" component={LoginScreen} />
@@ -307,6 +309,7 @@ function AppContent() {
             <Stack.Screen name="About" component={AboutScreen} />
             <Stack.Screen name="Help" component={HelpScreen} />
             <Stack.Screen name="Bookings" component={BookingsListScreen} />
+            <Stack.Screen name="PropertyRequests" component={PropertyRequestsScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
             <Stack.Screen name="Terms" component={TermsScreen} />
