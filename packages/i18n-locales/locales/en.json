@@ -1351,5 +1351,40 @@
       "medium": "Medium confidence",
       "low": "Low confidence"
     }
+  },
+  "support": {
+    "title": "Support",
+    "adminSubtitle": "Triage and resolve customer support tickets",
+    "myTickets": "My Tickets",
+    "newTicket": "New Ticket",
+    "subject": "Subject",
+    "description": "Detailed Description",
+    "category": "Category",
+    "status": "Status",
+    "submit": "Submit Ticket",
+    "reply": "Reply",
+    "noTickets": "No support tickets",
+    "noTicketsPrompt": "Create a new ticket to get help",
+    "adminEmptyHint": "No tickets match the current filters.",
+    "createTicket": "Create Ticket",
+    "originalDesc": "Original description:",
+    "supportTeam": "Support Team",
+    "writeReply": "Write your reply…",
+    "closedHint": "This ticket is closed — change its status above to reply.",
+    "ticketCreated": "Support ticket created successfully",
+    "categories": {
+      "general": "General",
+      "technical": "Technical",
+      "billing": "Billing",
+      "listing": "Listing",
+      "account": "Account",
+      "other": "Other"
+    },
+    "statuses": {
+      "open": "Open",
+      "in_progress": "In Progress",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    }
   }
 }

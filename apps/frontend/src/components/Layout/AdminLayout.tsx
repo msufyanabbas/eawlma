@@ -22,6 +22,7 @@ import CommissionIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PayoutsIcon from '@mui/icons-material/PaymentsOutlined';
 import RequestIcon from '@mui/icons-material/HelpOutlineOutlined';
 import LocalOfferIcon from '@mui/icons-material/LocalOfferOutlined';
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMicOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
@@ -50,6 +51,7 @@ const ITEMS: AdminNavItem[] = [
   { to: '/admin/payouts', i18nKey: 'admin.payouts', icon: <PayoutsIcon /> },
   { to: '/admin/property-requests', i18nKey: 'admin.propertyRequests', icon: <RequestIcon /> },
   { to: '/admin/promos', i18nKey: 'admin.promos', icon: <LocalOfferIcon /> },
+  { to: '/admin/support', i18nKey: 'support.title', icon: <HeadsetMicIcon /> },
   { to: '/admin/disputes', i18nKey: 'admin.disputes', icon: <ReportIcon />, badgeKey: 'disputes' },
   { to: '/admin/audit', i18nKey: 'admin.audit', icon: <HistoryIcon /> },
 ];

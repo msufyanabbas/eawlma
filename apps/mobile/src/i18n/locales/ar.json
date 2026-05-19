@@ -1719,5 +1719,37 @@
     "ownerReply": "رد المالك:",
     "empty": "لا توجد تقييمات",
     "beFirst": "كن أول من يقيّم"
+  },
+  "support": {
+    "title": "الدعم الفني",
+    "myTickets": "تذاكري",
+    "newTicket": "تذكرة جديدة",
+    "subject": "الموضوع",
+    "description": "الوصف التفصيلي",
+    "category": "الفئة",
+    "status": "الحالة",
+    "submit": "إرسال التذكرة",
+    "reply": "رد",
+    "noTickets": "لا توجد تذاكر دعم",
+    "noTicketsPrompt": "أنشئ تذكرة جديدة للحصول على المساعدة",
+    "createTicket": "إنشاء تذكرة",
+    "originalDesc": "الوصف الأصلي:",
+    "supportTeam": "فريق الدعم",
+    "writeReply": "اكتب ردك…",
+    "ticketCreated": "تم إنشاء تذكرة الدعم بنجاح",
+    "categories": {
+      "general": "عام",
+      "technical": "تقني",
+      "billing": "مدفوعات",
+      "listing": "إعلان",
+      "account": "حساب",
+      "other": "أخرى"
+    },
+    "statuses": {
+      "open": "مفتوح",
+      "in_progress": "قيد المعالجة",
+      "resolved": "محلول",
+      "closed": "مغلق"
+    }
   }
 }

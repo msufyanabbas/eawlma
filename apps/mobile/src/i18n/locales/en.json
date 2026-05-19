@@ -1723,5 +1723,37 @@
     "ownerReply": "Owner reply:",
     "empty": "No reviews yet",
     "beFirst": "Be the first to review"
+  },
+  "support": {
+    "title": "Support",
+    "myTickets": "My Tickets",
+    "newTicket": "New Ticket",
+    "subject": "Subject",
+    "description": "Detailed Description",
+    "category": "Category",
+    "status": "Status",
+    "submit": "Submit Ticket",
+    "reply": "Reply",
+    "noTickets": "No support tickets",
+    "noTicketsPrompt": "Create a new ticket to get help",
+    "createTicket": "Create Ticket",
+    "originalDesc": "Original description:",
+    "supportTeam": "Support Team",
+    "writeReply": "Write your reply…",
+    "ticketCreated": "Support ticket created successfully",
+    "categories": {
+      "general": "General",
+      "technical": "Technical",
+      "billing": "Billing",
+      "listing": "Listing",
+      "account": "Account",
+      "other": "Other"
+    },
+    "statuses": {
+      "open": "Open",
+      "in_progress": "In Progress",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    }
   }
 }

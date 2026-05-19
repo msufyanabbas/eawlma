@@ -277,6 +277,7 @@ export default function ProfileScreen({ navigation }: any) {
         <View style={styles.menuSection}>
           <SectionLabel colors={colors} textAlign={textAlign}>{t('profile.support')}</SectionLabel>
           <SettingRow icon="settings-outline" label={t('profile.settings')} onPress={() => navigation.navigate('Settings')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
+          <SettingRow icon="headset-outline" label={t('support.title')} onPress={() => navigation.navigate('Support')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <SettingRow icon="help-circle-outline" label={t('profile.help')} onPress={() => navigation.navigate('Help')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
           <SettingRow icon="information-circle-outline" label={t('profile.about')} onPress={() => navigation.navigate('About')} colors={colors} isRTL={isRTL} textAlign={textAlign} />
         </View>

@@ -62,6 +62,7 @@ import { AdminPropertyRequestsPage } from './pages/admin/AdminPropertyRequestsPa
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { ModerationPage } from './pages/admin/ModerationPage';
 import { AdminUsersPage } from './pages/admin/AdminUsersPage';
+import { AdminSupportPage } from './pages/admin/AdminSupportPage';
 import { AuditLogPage } from './pages/admin/AuditLogPage';
 import { useAuthStore } from './store/auth.store';
 
@@ -267,6 +268,7 @@ const adminPayoutsRoute = createRoute({ getParentRoute: () => adminShellRoute, p
 const adminPropertyRequestsRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/property-requests', component: AdminPropertyRequestsPage });
 const adminDisputesRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/disputes', component: AdminDisputesPage });
 const adminPromosRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/promos', component: AdminPromosPage });
+const adminSupportRoute = createRoute({ getParentRoute: () => adminShellRoute, path: '/admin/support', component: AdminSupportPage });
 
 // ----- Tree -----------------------------------------------------------
 
@@ -331,6 +333,7 @@ const routeTree = rootRoute.addChildren([
     adminPropertyRequestsRoute,
     adminDisputesRoute,
     adminPromosRoute,
+    adminSupportRoute,
   ]),
 ]);
 

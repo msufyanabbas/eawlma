@@ -50,6 +50,7 @@ import { BookingsModule } from './modules/bookings/bookings.module';
 import { PriceTrendsModule } from './modules/price-trends/price-trends.module';
 import { PromosModule } from './modules/promos/promos.module';
 import { SeoModule } from './modules/seo/seo.module';
+import { SupportModule } from './modules/support/support.module';
 
 @Module({
   imports: [
@@ -125,6 +126,7 @@ import { SeoModule } from './modules/seo/seo.module';
     PriceTrendsModule,
     PromosModule,
     SeoModule,
+    SupportModule,
   ],
   controllers: [HealthController],
   providers: [

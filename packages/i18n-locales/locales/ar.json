@@ -1348,5 +1348,40 @@
       "medium": "ثقة متوسطة",
       "low": "ثقة منخفضة"
     }
+  },
+  "support": {
+    "title": "الدعم الفني",
+    "adminSubtitle": "تصنيف وحل تذاكر الدعم الفني للعملاء",
+    "myTickets": "تذاكري",
+    "newTicket": "تذكرة جديدة",
+    "subject": "الموضوع",
+    "description": "الوصف التفصيلي",
+    "category": "الفئة",
+    "status": "الحالة",
+    "submit": "إرسال التذكرة",
+    "reply": "رد",
+    "noTickets": "لا توجد تذاكر دعم",
+    "noTicketsPrompt": "أنشئ تذكرة جديدة للحصول على المساعدة",
+    "adminEmptyHint": "لا توجد تذاكر تطابق المرشحات الحالية.",
+    "createTicket": "إنشاء تذكرة",
+    "originalDesc": "الوصف الأصلي:",
+    "supportTeam": "فريق الدعم",
+    "writeReply": "اكتب ردك…",
+    "closedHint": "هذه التذكرة مغلقة — غيّر الحالة أعلاه للرد.",
+    "ticketCreated": "تم إنشاء تذكرة الدعم بنجاح",
+    "categories": {
+      "general": "عام",
+      "technical": "تقني",
+      "billing": "مدفوعات",
+      "listing": "إعلان",
+      "account": "حساب",
+      "other": "أخرى"
+    },
+    "statuses": {
+      "open": "مفتوح",
+      "in_progress": "قيد المعالجة",
+      "resolved": "محلول",
+      "closed": "مغلق"
+    }
   }
 }

@@ -54,6 +54,7 @@ import HelpScreen from './src/screens/HelpScreen';
 import BookingsListScreen from './src/screens/BookingsListScreen';
 import PropertyRequestsScreen from './src/screens/PropertyRequestsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
+import SupportScreen from './src/screens/SupportScreen';
 import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 import TermsScreen from './src/screens/TermsScreen';
 import AdminDashboardScreen from './src/screens/admin/AdminDashboardScreen';
@@ -311,6 +312,7 @@ function AppContent() {
             <Stack.Screen name="Bookings" component={BookingsListScreen} />
             <Stack.Screen name="PropertyRequests" component={PropertyRequestsScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen name="Support" component={SupportScreen} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
             <Stack.Screen name="Terms" component={TermsScreen} />
             <Stack.Screen name="AdminDashboard" component={AdminDashboardScreen} />
