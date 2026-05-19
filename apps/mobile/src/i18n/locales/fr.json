@@ -1681,7 +1681,7 @@
     "responseTime": "Temps de réponse",
     "memberSince": "Membre depuis",
     "contactAgent": "Contacter l'agent",
-    "viewProfile": "View Profile",
+    "viewProfile": "Voir le profil",
     "sendMessage": "Envoyer un message"
   },
   "property": {
@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Ajouter pour comparer",
     "remove": "Supprimer de la comparaison"
+  },
+  "support": {
+    "title": "Prise en charge",
+    "myTickets": "Mes billets",
+    "newTicket": "Nouveau billet",
+    "subject": "Sujet",
+    "description": "Description détaillée",
+    "category": "Catégorie",
+    "status": "Statut",
+    "submit": "Soumettre le ticket",
+    "reply": "Répondre",
+    "noTickets": "Aucun ticket d'assistance",
+    "noTicketsPrompt": "Créez un nouveau ticket pour obtenir de l'aide",
+    "createTicket": "Créer un ticket",
+    "originalDesc": "Description originale :",
+    "supportTeam": "Équipe d'assistance",
+    "writeReply": "Écrivez votre réponse…",
+    "ticketCreated": "Ticket de support créé avec succès",
+    "categories": {
+      "general": "Général",
+      "technical": "Technique",
+      "billing": "Facturation",
+      "listing": "Annonce",
+      "account": "Compte",
+      "other": "Autre"
+    },
+    "statuses": {
+      "open": "Ouvrir",
+      "in_progress": "En cours",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    }
   }
 }

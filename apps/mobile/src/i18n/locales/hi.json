@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "तुलना में जोड़ें",
     "remove": "तुलना से हटाएँ"
+  },
+  "support": {
+    "title": "सहायता",
+    "myTickets": "मेरे टिकट",
+    "newTicket": "नया टिकट",
+    "subject": "विषय",
+    "description": "विस्तृत विवरण",
+    "category": "वर्ग",
+    "status": "स्थिति",
+    "submit": "टिकट जमा करें",
+    "reply": "जवाब",
+    "noTickets": "कोई समर्थन टिकट नहीं",
+    "noTicketsPrompt": "सहायता प्राप्त करने के लिए एक नया टिकट बनाएं",
+    "createTicket": "टिकट बनाएं",
+    "originalDesc": "मूल विवरण:",
+    "supportTeam": "सहायता दल",
+    "writeReply": "अपना उत्तर लिखें...",
+    "ticketCreated": "समर्थन टिकट सफलतापूर्वक बनाया गया",
+    "categories": {
+      "general": "सामान्य",
+      "technical": "तकनीकी",
+      "billing": "बिलिंग",
+      "listing": "लिस्टिंग",
+      "account": "खाता",
+      "other": "अन्य"
+    },
+    "statuses": {
+      "open": "खुला",
+      "in_progress": "प्रगति पर है",
+      "resolved": "हल किया",
+      "closed": "बंद किया हुआ"
+    }
   }
 }

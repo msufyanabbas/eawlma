@@ -865,7 +865,7 @@
       "cancelStrict": "Mahigpit — 50% refund hanggang 7 araw bago",
       "starRating": "Star rating",
       "hotelName": "Pangalan ng hotel",
-      "instantBook": "Instant book",
+      "instantBook": "Instant na libro",
       "instantBookHint": "Awtomatikong kumpirmahin ng mga booking nang wala ang iyong pag-apruba. Huwag paganahin na suriin muna ang bawat kahilingan.",
       "amenities": "Mga Pasilidad",
       "houseRules": "Mga panuntunan sa bahay",
@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Idagdag upang ihambing",
     "remove": "Alisin sa paghahambing"
+  },
+  "support": {
+    "title": "Suporta",
+    "myTickets": "Aking Mga Ticket",
+    "newTicket": "Bagong Ticket",
+    "subject": "Paksa",
+    "description": "Detalyadong Paglalarawan",
+    "category": "Kategorya",
+    "status": "Katayuan",
+    "submit": "Isumite ang Ticket",
+    "reply": "Sumagot",
+    "noTickets": "Walang support ticket",
+    "noTicketsPrompt": "Gumawa ng bagong ticket para makakuha ng tulong",
+    "createTicket": "Lumikha ng Ticket",
+    "originalDesc": "Orihinal na paglalarawan:",
+    "supportTeam": "Support Team",
+    "writeReply": "Isulat ang iyong tugon...",
+    "ticketCreated": "Matagumpay na nagawa ang ticket ng suporta",
+    "categories": {
+      "general": "Pangkalahatan",
+      "technical": "Teknikal",
+      "billing": "Pagsingil",
+      "listing": "Listahan",
+      "account": "Account",
+      "other": "Iba pa"
+    },
+    "statuses": {
+      "open": "Buksan",
+      "in_progress": "Isinasagawa",
+      "resolved": "Nalutas",
+      "closed": "sarado"
+    }
   }
 }

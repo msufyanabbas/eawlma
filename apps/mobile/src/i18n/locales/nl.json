@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Optellen om te vergelijken",
     "remove": "Verwijder uit vergelijking"
+  },
+  "support": {
+    "title": "Steun",
+    "myTickets": "Mijn kaartjes",
+    "newTicket": "Nieuw kaartje",
+    "subject": "Onderwerp",
+    "description": "Gedetailleerde beschrijving",
+    "category": "Categorie",
+    "status": "Status",
+    "submit": "Ticket indienen",
+    "reply": "Antwoord",
+    "noTickets": "Geen supporttickets",
+    "noTicketsPrompt": "Maak een nieuw ticket aan om hulp te krijgen",
+    "createTicket": "Ticket aanmaken",
+    "originalDesc": "Originele beschrijving:",
+    "supportTeam": "Ondersteuningsteam",
+    "writeReply": "Schrijf je antwoord…",
+    "ticketCreated": "Supportticket succesvol aangemaakt",
+    "categories": {
+      "general": "Algemeen",
+      "technical": "Technisch",
+      "billing": "Facturering",
+      "listing": "Lijst",
+      "account": "Rekening",
+      "other": "Overige"
+    },
+    "statuses": {
+      "open": "Open",
+      "in_progress": "In uitvoering",
+      "resolved": "Opgelost",
+      "closed": "Gesloten"
+    }
   }
 }

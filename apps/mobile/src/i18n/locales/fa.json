@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "اضافه کردن به مقایسه",
     "remove": "حذف از مقایسه"
+  },
+  "support": {
+    "title": "پشتیبانی",
+    "myTickets": "بلیط های من",
+    "newTicket": "بلیط جدید",
+    "subject": "موضوع",
+    "description": "توضیحات تفصیلی",
+    "category": "دسته",
+    "status": "وضعیت",
+    "submit": "ارسال بلیط",
+    "reply": "پاسخ",
+    "noTickets": "بدون تیکت پشتیبانی",
+    "noTicketsPrompt": "یک بلیط جدید برای دریافت کمک ایجاد کنید",
+    "createTicket": "ایجاد بلیط",
+    "originalDesc": "توضیحات اصلی:",
+    "supportTeam": "تیم پشتیبانی",
+    "writeReply": "پاسخ خود را بنویسید…",
+    "ticketCreated": "تیکت پشتیبانی با موفقیت ایجاد شد",
+    "categories": {
+      "general": "عمومی",
+      "technical": "فنی",
+      "billing": "صورتحساب",
+      "listing": "فهرست کردن",
+      "account": "حساب",
+      "other": "دیگر"
+    },
+    "statuses": {
+      "open": "باز کردن",
+      "in_progress": "در حال انجام",
+      "resolved": "حل شد",
+      "closed": "بسته شد"
+    }
   }
 }

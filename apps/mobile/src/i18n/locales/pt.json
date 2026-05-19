@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Adicionar para comparar",
     "remove": "Remover da comparação"
+  },
+  "support": {
+    "title": "Apoiar",
+    "myTickets": "Meus ingressos",
+    "newTicket": "Novo ingresso",
+    "subject": "Assunto",
+    "description": "Descrição detalhada",
+    "category": "Categoria",
+    "status": "Status",
+    "submit": "Enviar tíquete",
+    "reply": "Responder",
+    "noTickets": "Sem tickets de suporte",
+    "noTicketsPrompt": "Crie um novo ticket para obter ajuda",
+    "createTicket": "Criar ingresso",
+    "originalDesc": "Descrição original:",
+    "supportTeam": "Equipe de suporte",
+    "writeReply": "Escreva sua resposta…",
+    "ticketCreated": "Ticket de suporte criado com sucesso",
+    "categories": {
+      "general": "Em geral",
+      "technical": "Técnico",
+      "billing": "Cobrança",
+      "listing": "Listagem",
+      "account": "Conta",
+      "other": "Outro"
+    },
+    "statuses": {
+      "open": "Abrir",
+      "in_progress": "Em andamento",
+      "resolved": "Resolvido",
+      "closed": "Fechado"
+    }
   }
 }

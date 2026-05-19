@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Lisää vertailuun",
     "remove": "Poista vertailusta"
+  },
+  "support": {
+    "title": "Tukea",
+    "myTickets": "Omat liput",
+    "newTicket": "Uusi lippu",
+    "subject": "Aihe",
+    "description": "Yksityiskohtainen kuvaus",
+    "category": "Luokka",
+    "status": "Status",
+    "submit": "Lähetä lippu",
+    "reply": "Vastata",
+    "noTickets": "Ei tukilippuja",
+    "noTicketsPrompt": "Luo uusi lippu saadaksesi apua",
+    "createTicket": "Luo lippu",
+    "originalDesc": "Alkuperäinen kuvaus:",
+    "supportTeam": "Tukitiimi",
+    "writeReply": "Kirjoita vastauksesi…",
+    "ticketCreated": "Tukilipun luominen onnistui",
+    "categories": {
+      "general": "Yleistä",
+      "technical": "Tekninen",
+      "billing": "Laskutus",
+      "listing": "Listaus",
+      "account": "Tili",
+      "other": "Muut"
+    },
+    "statuses": {
+      "open": "Avaa",
+      "in_progress": "Käynnissä",
+      "resolved": "Ratkaistu",
+      "closed": "Suljettu"
+    }
   }
 }

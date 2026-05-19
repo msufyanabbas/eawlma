@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "比較に追加",
     "remove": "比較から削除"
+  },
+  "support": {
+    "title": "サポート",
+    "myTickets": "私のチケット",
+    "newTicket": "新しいチケット",
+    "subject": "主題",
+    "description": "詳細な説明",
+    "category": "カテゴリ",
+    "status": "状態",
+    "submit": "チケットを送信する",
+    "reply": "返事",
+    "noTickets": "サポートチケットなし",
+    "noTicketsPrompt": "サポートを受けるには新しいチケットを作成してください",
+    "createTicket": "チケットの作成",
+    "originalDesc": "元の説明:",
+    "supportTeam": "サポートチーム",
+    "writeReply": "返信を書いてください…",
+    "ticketCreated": "サポートチケットが正常に作成されました",
+    "categories": {
+      "general": "一般的な",
+      "technical": "テクニカル",
+      "billing": "請求する",
+      "listing": "リスト",
+      "account": "アカウント",
+      "other": "他の"
+    },
+    "statuses": {
+      "open": "開ける",
+      "in_progress": "進行中",
+      "resolved": "解決済み",
+      "closed": "閉店"
+    }
   }
 }

@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Thêm để so sánh",
     "remove": "Xóa khỏi so sánh"
+  },
+  "support": {
+    "title": "Ủng hộ",
+    "myTickets": "Vé của tôi",
+    "newTicket": "Vé mới",
+    "subject": "Chủ thể",
+    "description": "Mô tả chi tiết",
+    "category": "Loại",
+    "status": "Trạng thái",
+    "submit": "Gửi vé",
+    "reply": "Hồi đáp",
+    "noTickets": "Không có vé hỗ trợ",
+    "noTicketsPrompt": "Tạo một vé mới để nhận trợ giúp",
+    "createTicket": "Tạo vé",
+    "originalDesc": "Mô tả gốc:",
+    "supportTeam": "Nhóm hỗ trợ",
+    "writeReply": "Viết câu trả lời của bạn…",
+    "ticketCreated": "Đã tạo thành công phiếu hỗ trợ",
+    "categories": {
+      "general": "Tổng quan",
+      "technical": "Kỹ thuật",
+      "billing": "Thanh toán",
+      "listing": "Danh sách",
+      "account": "Tài khoản",
+      "other": "Khác"
+    },
+    "statuses": {
+      "open": "Mở",
+      "in_progress": "Đang tiến hành",
+      "resolved": "Đã giải quyết",
+      "closed": "Đã đóng"
+    }
   }
 }

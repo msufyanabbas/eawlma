@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Voeg by om te vergelyk",
     "remove": "Verwyder uit vergelyking"
+  },
+  "support": {
+    "title": "Ondersteun",
+    "myTickets": "My Kaartjies",
+    "newTicket": "Nuwe kaartjie",
+    "subject": "Onderwerp",
+    "description": "Gedetailleerde beskrywing",
+    "category": "Kategorie",
+    "status": "Status",
+    "submit": "Dien kaartjie in",
+    "reply": "Antwoord",
+    "noTickets": "Geen ondersteuningskaartjies",
+    "noTicketsPrompt": "Skep 'n nuwe kaartjie om hulp te kry",
+    "createTicket": "Skep kaartjie",
+    "originalDesc": "Oorspronklike beskrywing:",
+    "supportTeam": "Ondersteuningspan",
+    "writeReply": "Skryf jou antwoord…",
+    "ticketCreated": "Ondersteuningskaartjie suksesvol geskep",
+    "categories": {
+      "general": "Algemeen",
+      "technical": "Tegnies",
+      "billing": "Fakturering",
+      "listing": "Lys",
+      "account": "Rekening",
+      "other": "Ander"
+    },
+    "statuses": {
+      "open": "Maak",
+      "in_progress": "oop Aan die gang",
+      "resolved": "Opgelos",
+      "closed": "Gesluit"
+    }
   }
 }

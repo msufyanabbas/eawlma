@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Zum Vergleich hinzufügen",
     "remove": "Aus Vergleich entfernen"
+  },
+  "support": {
+    "title": "Unterstützung",
+    "myTickets": "Meine Tickets",
+    "newTicket": "Neues Ticket",
+    "subject": "Thema",
+    "description": "Detaillierte Beschreibung",
+    "category": "Kategorie",
+    "status": "Status",
+    "submit": "Ticket einreichen",
+    "reply": "Antwort",
+    "noTickets": "Keine Support-Tickets",
+    "noTicketsPrompt": "Erstellen Sie ein neues Ticket, um Hilfe zu erhalten",
+    "createTicket": "Ticket erstellen",
+    "originalDesc": "Originalbeschreibung:",
+    "supportTeam": "Support-Team",
+    "writeReply": "Schreiben Sie Ihre Antwort…",
+    "ticketCreated": "Support-Ticket erfolgreich erstellt",
+    "categories": {
+      "general": "Allgemein",
+      "technical": "Technisch",
+      "billing": "Abrechnung",
+      "listing": "Auflistung",
+      "account": "Konto",
+      "other": "Andere"
+    },
+    "statuses": {
+      "open": "Öffnen Sie",
+      "in_progress": "In Bearbeitung",
+      "resolved": "Gelöst",
+      "closed": "Geschlossen"
+    }
   }
 }

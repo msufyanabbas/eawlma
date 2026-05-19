@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Adaugă pentru a compara",
     "remove": "Eliminați din comparație"
+  },
+  "support": {
+    "title": "Suport",
+    "myTickets": "Biletele mele",
+    "newTicket": "Bilet nou",
+    "subject": "Subiect",
+    "description": "Descriere detaliată",
+    "category": "Categoria",
+    "status": "Stare",
+    "submit": "Trimiteți bilet",
+    "reply": "Răspunde",
+    "noTickets": "Fără bilete de asistență",
+    "noTicketsPrompt": "Creați un nou bilet pentru a obține ajutor",
+    "createTicket": "Creați bilet",
+    "originalDesc": "Descrierea originală:",
+    "supportTeam": "Echipa de suport",
+    "writeReply": "Scrieți răspunsul dvs....",
+    "ticketCreated": "Tichet de asistență creat cu succes",
+    "categories": {
+      "general": "General",
+      "technical": "Tehnic",
+      "billing": "Facturare",
+      "listing": "Listare",
+      "account": "Cont",
+      "other": "Altele"
+    },
+    "statuses": {
+      "open": "Deschide",
+      "in_progress": "În curs",
+      "resolved": "S-a rezolvat",
+      "closed": "Închis"
+    }
   }
 }

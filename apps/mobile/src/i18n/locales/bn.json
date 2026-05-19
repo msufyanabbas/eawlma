@@ -1302,7 +1302,7 @@
     "balance": "বর্তমান ব্যালেন্স",
     "withdraw": "পেআউট",
     "noTransactionsHint": "আপনার লেনদেন এখানে প্রদর্শিত হবে",
-    "sar": "SAR",
+    "sar": "| SAR",
     "inDevelopment": "এই বৈশিষ্ট্য উন্নয়নশীল",
     "depositTitle": "জমা",
     "payoutTitle": "পেআউট",
@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "তুলনা করতে যোগ করুন",
     "remove": "তুলনা থেকে সরান"
+  },
+  "support": {
+    "title": "| সমর্থন",
+    "myTickets": "| আমার টিকিট",
+    "newTicket": "নতুন টিকিট",
+    "subject": "| বিষয়",
+    "description": "বিস্তারিত বর্ণনা",
+    "category": "বিভাগ",
+    "status": "| স্ট্যাটাস",
+    "submit": "টিকিট জমা দিন",
+    "reply": "উত্তর",
+    "noTickets": "| কোন সমর্থন টিকিট নেই",
+    "noTicketsPrompt": "সাহায্য পেতে একটি নতুন টিকিট তৈরি করুন",
+    "createTicket": "৷ টিকিট তৈরি করুন",
+    "originalDesc": "মূল বর্ণনা:",
+    "supportTeam": "সমর্থন দল",
+    "writeReply": "আপনার উত্তর লিখুন...",
+    "ticketCreated": "| সাপোর্ট টিকেট সফলভাবে তৈরি করা হয়েছে",
+    "categories": {
+      "general": "সাধারণ",
+      "technical": "প্রযুক্তিগত",
+      "billing": "বিলিং",
+      "listing": "|৷ তালিকা",
+      "account": "অ্যাকাউন্ট",
+      "other": "| অন্যান্য"
+    },
+    "statuses": {
+      "open": "খুলুন",
+      "in_progress": "চলছে",
+      "resolved": "সমাধান করা হয়েছে",
+      "closed": "বন্ধ"
+    }
   }
 }

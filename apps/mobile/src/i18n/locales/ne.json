@@ -464,7 +464,7 @@
     "bookingDevTitle": "बुकिङ",
     "bookingDevBody": "बुकिङ प्रवाह विकासमा छ। कृपया एजेन्टलाई सम्पर्क गर्नुहोस्।",
     "removeFromSaved": "यो सम्पत्ति सेभ गरिएकोबाट हटाउने हो?",
-    "sqm": "m²",
+    "sqm": "| m²",
     "type": "टाइप गर्नुहोस्",
     "floor": "भुइँ",
     "age": "उमेर",
@@ -881,7 +881,7 @@
       "videoDropHint": "MP4 फाइल तान्नुहोस् वा छनौट गर्न क्लिक गर्नुहोस्। अधिकतम ५०० एमबी।",
       "videoUploaded": "भिडियो अपलोड गरियो — {{name}}",
       "vrTitle": "🥽 भर्चुअल रियलिटी टुर लिङ्क",
-      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "vrPlaceholder": "| https://… (Matterport, Kuula, etc.)",
       "modelTitle": "3D / AR मोडेल (.glb वा .gltf)",
       "modelDropHint": "AR सक्षम गर्न GLB/GLTF मोडेल अपलोड गर्नुहोस्। अधिकतम ५० एमबी।",
       "modelUploaded": "मोडेल अपलोड गरियो — {{name}}"
@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "| तुलना गर्न थप्नुहोस्",
     "remove": "तुलनाबाट हटाउनुहोस्"
+  },
+  "support": {
+    "title": "| समर्थन",
+    "myTickets": "| मेरो टिकटहरू",
+    "newTicket": "नयाँ टिकट",
+    "subject": "| विषय",
+    "description": "विस्तृत विवरण",
+    "category": "श्रेणी",
+    "status": "| स्थिति",
+    "submit": "टिकट पेश गर्नुहोस्",
+    "reply": "जवाफ",
+    "noTickets": "| कुनै समर्थन टिकट छैन",
+    "noTicketsPrompt": "| मद्दत प्राप्त गर्न नयाँ टिकट सिर्जना गर्नुहोस्",
+    "createTicket": "टिकट सिर्जना गर्नुहोस्",
+    "originalDesc": "| मूल विवरण:",
+    "supportTeam": "| समर्थन टोली",
+    "writeReply": "आफ्नो जवाफ लेख्नुहोस्...",
+    "ticketCreated": "| समर्थन टिकट सफलतापूर्वक सिर्जना गरियो",
+    "categories": {
+      "general": "सामान्य",
+      "technical": "प्राविधिक",
+      "billing": "बिलिङ",
+      "listing": "सूचीकरण",
+      "account": "| खाता",
+      "other": "| अन्य"
+    },
+    "statuses": {
+      "open": "| खोल्नुहोस्",
+      "in_progress": "प्रगतिमा",
+      "resolved": "समाधान गरियो",
+      "closed": "बन्द"
+    }
   }
 }

@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "비교에 추가",
     "remove": "비교에서 제거"
+  },
+  "support": {
+    "title": "지원하다",
+    "myTickets": "내 티켓",
+    "newTicket": "신규 티켓",
+    "subject": "주제",
+    "description": "자세한 설명",
+    "category": "범주",
+    "status": "상태",
+    "submit": "티켓 제출",
+    "reply": "회신하다",
+    "noTickets": "지원 티켓 없음",
+    "noTicketsPrompt": "도움을 받으려면 새 티켓을 만드세요.",
+    "createTicket": "티켓 생성",
+    "originalDesc": "원래 설명:",
+    "supportTeam": "지원팀",
+    "writeReply": "답장을 작성하세요…",
+    "ticketCreated": "지원 티켓이 성공적으로 생성되었습니다.",
+    "categories": {
+      "general": "일반적인",
+      "technical": "인위적인",
+      "billing": "청구",
+      "listing": "상장",
+      "account": "계정",
+      "other": "다른"
+    },
+    "statuses": {
+      "open": "열려 있는",
+      "in_progress": "진행 중",
+      "resolved": "해결됨",
+      "closed": "닫은"
+    }
   }
 }

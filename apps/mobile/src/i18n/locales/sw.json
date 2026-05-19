@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Ongeza ili kulinganisha",
     "remove": "Ondoa kutoka kwa kulinganisha"
+  },
+  "support": {
+    "title": "Msaada",
+    "myTickets": "Tiketi Zangu",
+    "newTicket": "Tiketi Mpya",
+    "subject": "Somo",
+    "description": "Maelezo ya Kina",
+    "category": "Kategoria",
+    "status": "Hali",
+    "submit": "Peana Tiketi",
+    "reply": "Jibu",
+    "noTickets": "Hakuna tikiti za usaidizi",
+    "noTicketsPrompt": "Unda tikiti mpya ili kupata usaidizi",
+    "createTicket": "Tengeneza Tiketi",
+    "originalDesc": "Maelezo ya asili:",
+    "supportTeam": "Timu ya Usaidizi",
+    "writeReply": "Andika jibu lako...",
+    "ticketCreated": "Tikiti ya usaidizi imeundwa",
+    "categories": {
+      "general": "Mkuu",
+      "technical": "Kiufundi",
+      "billing": "Bili",
+      "listing": "Kuorodhesha",
+      "account": "Akaunti",
+      "other": "Nyingine"
+    },
+    "statuses": {
+      "open": "Fungua",
+      "in_progress": "Inaendelea",
+      "resolved": "Imetatuliwa",
+      "closed": "Imefungwa"
+    }
   }
 }

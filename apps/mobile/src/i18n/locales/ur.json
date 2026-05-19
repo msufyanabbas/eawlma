@@ -460,9 +460,9 @@
       "expired": "ختم شدہ",
       "draft": "مسودہ",
       "archived": "آرکائیو شدہ",
-      "pending_review": "Under Review",
-      "sold": "Sold",
-      "rented": "Rented"
+      "pending_review": "زیر جائزہ",
+      "sold": "فروخت ہوا",
+      "rented": "کرایہ پر دیا گیا"
     },
     "sale": "| فروخت",
     "rent": "| کرایہ",
@@ -492,20 +492,20 @@
     "bookingDevBody": "| بکنگ کا بہاؤ ترقی میں ہے۔ براہ کرم ایجنٹ سے رابطہ کریں۔",
     "removeFromSaved": "اس پراپرٹی کو محفوظ کردہ سے ہٹائیں؟",
     "sqm": "m²",
-    "type": "Type",
-    "floor": "Floor",
-    "age": "Age",
-    "parking": "Parking",
-    "furnished": "Furnished",
-    "unfurnished": "Unfurnished",
-    "perNight": "/night",
-    "verifiedAgent": "Verified Agent",
-    "newListing": "New",
-    "sold": "Sold",
-    "rented": "Rented",
-    "available": "Available",
-    "pending": "Pending",
-    "expired": "Expired"
+    "type": "قسم",
+    "floor": "منزل",
+    "age": "| عمر",
+    "parking": "| پارکنگ",
+    "furnished": "| فرنشڈ",
+    "unfurnished": "| نامکمل",
+    "perNight": "/رات",
+    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
+    "newListing": "نیا",
+    "sold": "| فروخت ہوا",
+    "rented": "کرایہ پر دیا گیا",
+    "available": "| دستیاب",
+    "pending": "زیر التواء",
+    "expired": "میعاد ختم"
   },
   "search": {
     "filters": "فلٹرز",
@@ -1683,13 +1683,13 @@
     "system": "سسٹم"
   },
   "agent": {
-    "verified": "Verified",
-    "verifiedAgent": "Verified Agent",
-    "licensed": "Licensed",
-    "falLicense": "FAL Licensed",
-    "listings": "Listings",
-    "reviews": "Reviews",
-    "rating": "Rating",
+    "verified": "| تصدیق شدہ",
+    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
+    "licensed": "لائسنس یافتہ",
+    "falLicense": "FAL لائسنس یافتہ",
+    "listings": "فہرستیں",
+    "reviews": "جائزے",
+    "rating": "درجہ بندی",
     "responseTime": "رسپانس ٹائم",
     "memberSince": "ممبر چونکہ",
     "contactAgent": "ایجنٹ سے رابطہ کریں",
@@ -1731,5 +1731,37 @@
   "compare": {
     "add": "موازنہ کرنے کے لیے شامل کریں",
     "remove": "موازنہ سے ہٹائیں"
+  },
+  "support": {
+    "title": "| سپورٹ",
+    "myTickets": "میرے ٹکٹ",
+    "newTicket": "نیا ٹکٹ",
+    "subject": "موضوع",
+    "description": "تفصیلی تفصیل",
+    "category": "زمرہ",
+    "status": "حیثیت",
+    "submit": "ٹکٹ جمع کروائیں",
+    "reply": "جواب دیں",
+    "noTickets": "| کوئی سپورٹ ٹکٹ نہیں",
+    "noTicketsPrompt": "مدد حاصل کرنے کے لیے ایک نیا ٹکٹ بنائیں",
+    "createTicket": "ٹکٹ بنائیں",
+    "originalDesc": "اصل تفصیل:",
+    "supportTeam": "سپورٹ ٹیم",
+    "writeReply": "اپنا جواب لکھیں...",
+    "ticketCreated": "سپورٹ ٹکٹ کامیابی کے ساتھ بنا دیا گیا",
+    "categories": {
+      "general": "جنرل",
+      "technical": "تکنیکی",
+      "billing": "بلنگ",
+      "listing": "| فہرست سازی",
+      "account": "اکاؤنٹ",
+      "other": "| دیگر"
+    },
+    "statuses": {
+      "open": "| کھولیں",
+      "in_progress": "جاری ہے۔",
+      "resolved": "حل ہو گیا",
+      "closed": "بند"
+    }
   }
 }

@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "ለማነፃፀር ያክሉ",
     "remove": "ከንፅፅር አስወግድ"
+  },
+  "support": {
+    "title": "ድጋፍ",
+    "myTickets": "የእኔ ትኬቶች",
+    "newTicket": "አዲስ ቲኬት",
+    "subject": "ርዕሰ ጉዳይ",
+    "description": "ዝርዝር መግለጫ",
+    "category": "ምድብ",
+    "status": "ሁኔታ",
+    "submit": "ቲኬት አስገባ",
+    "reply": "መልስ",
+    "noTickets": "ምንም የድጋፍ ትኬቶች የሉም",
+    "noTicketsPrompt": "እርዳታ ለማግኘት አዲስ ቲኬት ይፍጠሩ",
+    "createTicket": "ቲኬት ይፍጠሩ",
+    "originalDesc": "የመጀመሪያ መግለጫ፡-",
+    "supportTeam": "የድጋፍ ቡድን",
+    "writeReply": "ምላሽህን ጻፍ…",
+    "ticketCreated": "የድጋፍ ትኬት በተሳካ ሁኔታ ተፈጥሯል።",
+    "categories": {
+      "general": "አጠቃላይ",
+      "technical": "ቴክኒካል",
+      "billing": "የሂሳብ አከፋፈል",
+      "listing": "ዝርዝር",
+      "account": "መለያ",
+      "other": "ሌላ"
+    },
+    "statuses": {
+      "open": "ክፈት",
+      "in_progress": "በሂደት ላይ",
+      "resolved": "ተፈቷል",
+      "closed": "ዝግ"
+    }
   }
 }

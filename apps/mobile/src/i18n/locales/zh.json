@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "添加比较",
     "remove": "从比较中删除"
+  },
+  "support": {
+    "title": "支持",
+    "myTickets": "我的门票",
+    "newTicket": "新票",
+    "subject": "主题",
+    "description": "详细说明",
+    "category": "类别",
+    "status": "地位",
+    "submit": "提交票据",
+    "reply": "回复",
+    "noTickets": "没有支持票",
+    "noTicketsPrompt": "创建新票证以获取帮助",
+    "createTicket": "创建票证",
+    "originalDesc": "原文描述：",
+    "supportTeam": "支持团队",
+    "writeReply": "写下你的回复...",
+    "ticketCreated": "支持票证创建成功",
+    "categories": {
+      "general": "一般的",
+      "technical": "技术的",
+      "billing": "计费",
+      "listing": "上市",
+      "account": "帐户",
+      "other": "其他"
+    },
+    "statuses": {
+      "open": "打开",
+      "in_progress": "进行中",
+      "resolved": "已解决",
+      "closed": "关闭"
+    }
   }
 }

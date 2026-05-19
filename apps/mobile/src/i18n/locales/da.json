@@ -904,7 +904,7 @@
     "land": "Land",
     "chalet": "Chalet",
     "farm": "Gård",
-    "restHouse": "Rest House",
+    "restHouse": "Hvilehus",
     "office": "Kontor",
     "shop": "Shop",
     "titleArLabel": "Arabisk titel *",
@@ -1690,7 +1690,7 @@
     "land": "Land",
     "chalet": "Chalet",
     "farm": "Gård",
-    "restHouse": "Rest House",
+    "restHouse": "Hvilehus",
     "office": "Kontor",
     "shop": "Shop",
     "warehouse": "Lager",
@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Tilføj for at sammenligne",
     "remove": "Fjern fra sammenligning"
+  },
+  "support": {
+    "title": "Support",
+    "myTickets": "Mine billetter",
+    "newTicket": "Ny billet",
+    "subject": "Emne",
+    "description": "Detaljeret beskrivelse",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Indsend billet",
+    "reply": "Svar",
+    "noTickets": "Ingen supportbilletter",
+    "noTicketsPrompt": "Opret en ny billet for at få hjælp",
+    "createTicket": "Opret billet",
+    "originalDesc": "Original beskrivelse:",
+    "supportTeam": "Support Team",
+    "writeReply": "Skriv dit svar...",
+    "ticketCreated": "Supportbillet oprettet med succes",
+    "categories": {
+      "general": "Generelt",
+      "technical": "Teknisk",
+      "billing": "Fakturering",
+      "listing": "Fortegnelse",
+      "account": "Konto",
+      "other": "Andet"
+    },
+    "statuses": {
+      "open": "Åbn",
+      "in_progress": "Igangværende",
+      "resolved": "Løst",
+      "closed": "Lukket"
+    }
   }
 }

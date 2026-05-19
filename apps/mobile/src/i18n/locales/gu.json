@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "સરખામણીમાં ઉમેરો",
     "remove": "સરખામણીમાંથી દૂર કરો"
+  },
+  "support": {
+    "title": "| આધાર",
+    "myTickets": "| મારી ટિકિટો",
+    "newTicket": "નવી ટિકિટ",
+    "subject": "| વિષય",
+    "description": "વિગતવાર વર્ણન",
+    "category": "શ્રેણી",
+    "status": "| સ્ટેટસ",
+    "submit": "ટિકિટ સબમિટ કરો",
+    "reply": "જવાબ",
+    "noTickets": "| કોઈ સપોર્ટ ટિકિટ નથી",
+    "noTicketsPrompt": "| મદદ મેળવવા માટે નવી ટિકિટ બનાવો",
+    "createTicket": "ટિકિટ બનાવો",
+    "originalDesc": "મૂળ વર્ણન:",
+    "supportTeam": "સપોર્ટ ટીમ",
+    "writeReply": "તમારો જવાબ લખો...",
+    "ticketCreated": "| સપોર્ટ ટિકિટ સફળતાપૂર્વક બનાવવામાં આવી",
+    "categories": {
+      "general": "સામાન્ય",
+      "technical": "ટેકનિકલ",
+      "billing": "બિલિંગ",
+      "listing": "| લિસ્ટિંગ",
+      "account": "| એકાઉન્ટ",
+      "other": "| અન્ય"
+    },
+    "statuses": {
+      "open": "| ખોલો",
+      "in_progress": "પ્રગતિમાં",
+      "resolved": "ઉકેલાયેલ",
+      "closed": "બંધ"
+    }
   }
 }

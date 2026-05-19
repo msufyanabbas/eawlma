@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "සංසන්දනය කිරීමට එකතු කරන්න",
     "remove": "සංසන්දනය කිරීමෙන් ඉවත් කරන්න"
+  },
+  "support": {
+    "title": "සහාය",
+    "myTickets": "මගේ ටිකට්",
+    "newTicket": "අලුත් ටිකට්",
+    "subject": "විෂය",
+    "description": "සවිස්තරාත්මක විස්තරය",
+    "category": "ප්රවර්ගය",
+    "status": "තත්ත්වය",
+    "submit": "ටිකට්පත් ඉදිරිපත් කරන්න",
+    "reply": "පිළිතුරු දෙන්න",
+    "noTickets": "සහාය ප්‍රවේශපත්‍ර නැත",
+    "noTicketsPrompt": "උදවු ලබා ගැනීමට නව ටිකට් පතක් සාදන්න",
+    "createTicket": "ටිකට් සාදන්න",
+    "originalDesc": "මුල් විස්තරය:",
+    "supportTeam": "සහාය කණ්ඩායම",
+    "writeReply": "ඔබේ පිළිතුර ලියන්න...",
+    "ticketCreated": "සහාය ප්‍රවේශ පත්‍රය සාර්ථකව සාදන ලදී",
+    "categories": {
+      "general": "ජෙනරාල්",
+      "technical": "තාක්ෂණික",
+      "billing": "බිල්පත්",
+      "listing": "ලැයිස්තුගත කිරීම",
+      "account": "ගිණුම",
+      "other": "වෙනත්"
+    },
+    "statuses": {
+      "open": "විවෘත කරන්න",
+      "in_progress": "ප්රගතියේ",
+      "resolved": "විසඳා ඇත",
+      "closed": "වසා ඇත"
+    }
   }
 }

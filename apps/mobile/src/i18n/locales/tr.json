@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Karşılaştırmak için ekle",
     "remove": "Karşılaştırmadan kaldır"
+  },
+  "support": {
+    "title": "Destek",
+    "myTickets": "Biletlerim",
+    "newTicket": "Yeni Bilet",
+    "subject": "Ders",
+    "description": "Detaylı Açıklama",
+    "category": "Kategori",
+    "status": "Durum",
+    "submit": "Bilet Gönder",
+    "reply": "Cevap vermek",
+    "noTickets": "Destek bileti yok",
+    "noTicketsPrompt": "Yardım almak için yeni bir bilet oluşturun",
+    "createTicket": "Bilet Oluştur",
+    "originalDesc": "Orijinal açıklama:",
+    "supportTeam": "Destek Ekibi",
+    "writeReply": "Cevabınızı yazın…",
+    "ticketCreated": "Destek bileti başarıyla oluşturuldu",
+    "categories": {
+      "general": "Genel",
+      "technical": "Teknik",
+      "billing": "Faturalandırma",
+      "listing": "Listeleme",
+      "account": "Hesap",
+      "other": "Diğer"
+    },
+    "statuses": {
+      "open": "Açık",
+      "in_progress": "Devam etmekte",
+      "resolved": "Çözüldü",
+      "closed": "Kapalı"
+    }
   }
 }

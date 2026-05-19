@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "เพิ่มเพื่อเปรียบเทียบ",
     "remove": "ลบออกจากการเปรียบเทียบ"
+  },
+  "support": {
+    "title": "สนับสนุน",
+    "myTickets": "ตั๋วของฉัน",
+    "newTicket": "ตั๋วใหม่",
+    "subject": "เรื่อง",
+    "description": "คำอธิบายโดยละเอียด",
+    "category": "หมวดหมู่",
+    "status": "สถานะ",
+    "submit": "ส่งตั๋ว",
+    "reply": "ตอบ",
+    "noTickets": "ไม่มีตั๋วสนับสนุน",
+    "noTicketsPrompt": "สร้างตั๋วใหม่เพื่อรับความช่วยเหลือ",
+    "createTicket": "สร้างตั๋ว",
+    "originalDesc": "คำอธิบายดั้งเดิม:",
+    "supportTeam": "ทีมสนับสนุน",
+    "writeReply": "เขียนคำตอบของคุณ...",
+    "ticketCreated": "สร้างตั๋วสนับสนุนสำเร็จแล้ว",
+    "categories": {
+      "general": "ทั่วไป",
+      "technical": "เทคนิค",
+      "billing": "การเรียกเก็บเงิน",
+      "listing": "รายการ",
+      "account": "บัญชี",
+      "other": "อื่น"
+    },
+    "statuses": {
+      "open": "เปิด",
+      "in_progress": "อยู่ระหว่างดำเนินการ",
+      "resolved": "แก้ไขแล้ว",
+      "closed": "ปิด"
+    }
   }
 }

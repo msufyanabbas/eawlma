@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "הוסף להשוואה",
     "remove": "הסר מהשוואה"
+  },
+  "support": {
+    "title": "תמיכה",
+    "myTickets": "הכרטיסים שלי",
+    "newTicket": "כרטיס חדש",
+    "subject": "נושא",
+    "description": "תיאור מפורט",
+    "category": "קטגוריה",
+    "status": "סטטוס",
+    "submit": "שלח כרטיס",
+    "reply": "השב",
+    "noTickets": "אין כרטיסי תמיכה",
+    "noTicketsPrompt": "צור כרטיס חדש כדי לקבל עזרה",
+    "createTicket": "צור כרטיס",
+    "originalDesc": "תיאור מקורי:",
+    "supportTeam": "צוות תמיכה",
+    "writeReply": "כתוב את תשובתך...",
+    "ticketCreated": "כרטיס תמיכה נוצר בהצלחה",
+    "categories": {
+      "general": "כללי",
+      "technical": "טכני",
+      "billing": "חיוב",
+      "listing": "רישום",
+      "account": "חשבון",
+      "other": "אחר"
+    },
+    "statuses": {
+      "open": "פתח",
+      "in_progress": "בתהליך",
+      "resolved": "נפתר",
+      "closed": "סָגוּר"
+    }
   }
 }

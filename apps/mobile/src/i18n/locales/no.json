@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Legg til for å sammenligne",
     "remove": "Fjern fra sammenligning"
+  },
+  "support": {
+    "title": "Støtte",
+    "myTickets": "Mine billetter",
+    "newTicket": "Ny billett",
+    "subject": "Emne",
+    "description": "Detaljert beskrivelse",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Send inn billett",
+    "reply": "Svar",
+    "noTickets": "Ingen støttebilletter",
+    "noTicketsPrompt": "Opprett en ny billett for å få hjelp",
+    "createTicket": "Opprett billett",
+    "originalDesc": "Opprinnelig beskrivelse:",
+    "supportTeam": "Support Team",
+    "writeReply": "Skriv svaret ditt...",
+    "ticketCreated": "Støttebillett opprettet",
+    "categories": {
+      "general": "Generelt",
+      "technical": "Teknisk",
+      "billing": "Fakturering",
+      "listing": "Oppføring",
+      "account": "Konto",
+      "other": "Annet"
+    },
+    "statuses": {
+      "open": "Åpne",
+      "in_progress": "Pågår",
+      "resolved": "Løst",
+      "closed": "Lukket"
+    }
   }
 }

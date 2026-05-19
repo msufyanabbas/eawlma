@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "तुलना करण्यासाठी जोडा",
     "remove": "तुलना मधून काढा"
+  },
+  "support": {
+    "title": "सपोर्ट",
+    "myTickets": "माझी तिकिटे",
+    "newTicket": "नवीन तिकीट",
+    "subject": "विषय",
+    "description": "तपशीलवार वर्णन",
+    "category": "श्रेणी",
+    "status": "स्थिती",
+    "submit": "तिकीट सबमिट करा",
+    "reply": "उत्तर द्या",
+    "noTickets": "कोणतेही समर्थन तिकीट नाही",
+    "noTicketsPrompt": "मदत मिळवण्यासाठी नवीन तिकीट तयार करा",
+    "createTicket": "तिकीट तयार करा",
+    "originalDesc": "मूळ वर्णन:",
+    "supportTeam": "सपोर्ट टीम",
+    "writeReply": "तुमचा प्रतिसाद लिहा...",
+    "ticketCreated": "समर्थन तिकीट यशस्वीरित्या तयार केले",
+    "categories": {
+      "general": "सामान्य",
+      "technical": "तांत्रिक",
+      "billing": "बिलिंग",
+      "listing": "| सूची",
+      "account": "| खाते",
+      "other": "| इतर"
+    },
+    "statuses": {
+      "open": "| उघडा",
+      "in_progress": "प्रगतीपथावर",
+      "resolved": "निराकरण",
+      "closed": "बंद"
+    }
   }
 }

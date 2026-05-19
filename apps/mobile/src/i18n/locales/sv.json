@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Lägg till för att jämföra",
     "remove": "Ta bort från jämförelse"
+  },
+  "support": {
+    "title": "Stöd",
+    "myTickets": "Mina biljetter",
+    "newTicket": "Ny biljett",
+    "subject": "Ämne",
+    "description": "Detaljerad beskrivning",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Skicka biljett",
+    "reply": "Svara",
+    "noTickets": "Inga supportbiljetter",
+    "noTicketsPrompt": "Skapa en ny biljett för att få hjälp",
+    "createTicket": "Skapa biljett",
+    "originalDesc": "Originalbeskrivning:",
+    "supportTeam": "Supportteam",
+    "writeReply": "Skriv ditt svar...",
+    "ticketCreated": "Supportbiljett skapades framgångsrikt",
+    "categories": {
+      "general": "Allmänt",
+      "technical": "Teknisk",
+      "billing": "Fakturering",
+      "listing": "Lista",
+      "account": "Konto",
+      "other": "Övrigt"
+    },
+    "statuses": {
+      "open": "Öppna",
+      "in_progress": "Pågår",
+      "resolved": "Löst",
+      "closed": "Stängd"
+    }
   }
 }

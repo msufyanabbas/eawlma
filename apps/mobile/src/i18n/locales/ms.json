@@ -1719,5 +1719,37 @@
   "compare": {
     "add": "Tambahkan untuk membandingkan",
     "remove": "Alih keluar daripada bandingkan"
+  },
+  "support": {
+    "title": "Sokongan",
+    "myTickets": "Tiket Saya",
+    "newTicket": "Tiket Baharu",
+    "subject": "Subjek",
+    "description": "Penerangan Terperinci",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Hantar Tiket",
+    "reply": "Balas",
+    "noTickets": "Tiada tiket sokongan",
+    "noTicketsPrompt": "Cipta tiket baharu untuk mendapatkan bantuan",
+    "createTicket": "Cipta Tiket",
+    "originalDesc": "Penerangan asal:",
+    "supportTeam": "Pasukan Sokongan",
+    "writeReply": "Tulis jawapan anda…",
+    "ticketCreated": "Tiket sokongan berjaya dibuat",
+    "categories": {
+      "general": "Umum",
+      "technical": "Teknikal",
+      "billing": "Pengebilan",
+      "listing": "Penyenaraian",
+      "account": "Akaun",
+      "other": "Lain-lain"
+    },
+    "statuses": {
+      "open": "Buka",
+      "in_progress": "Sedang Berlangsung",
+      "resolved": "Selesai",
+      "closed": "tertutup"
+    }
   }
 }
