@@ -33,7 +33,6 @@ import { ConfirmDialog } from '@/components/global/ConfirmDialog';
 export function SettingsPage() {
   const { t } = useTranslation();
   const qc = useQueryClient();
-  const setUser = useAuthStore((s) => s.setUser);
   const clearSession = useAuthStore((s) => s.clearSession);
   const sessionRole = useAuthStore((s) => s.user?.role);
 
@@ -88,6 +87,9 @@ export function SettingsPage() {
     }
   };
 
+  // updateMe → usersApi already invalidates ['users', 'me'] and pushes the
+  // projected session user into the auth store, so the navbar avatar / role
+  // chip update instantly. No per-callsite sync needed.
   const updateProfileMutation = useMutation({
     mutationFn: () =>
       usersApi.updateMe({
@@ -97,21 +99,6 @@ export function SettingsPage() {
         bio,
         avatarUrl: avatarUrl ?? undefined,
       }),
-    onSuccess: (data) => {
-      setUser({
-        id: data.id,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        role: data.role,
-        avatarUrl: data.avatarUrl,
-        preferredLocale: data.preferredLocale,
-        emailVerified: data.emailVerified,
-        phoneVerified: data.phoneVerified,
-        identityVerified: data.identityVerificationStatus === 'verified',
-      });
-      void qc.invalidateQueries({ queryKey: ['users', 'me'] });
-    },
   });
 
   // Agency profile save — separate mutation so the section has its own
@@ -124,9 +111,6 @@ export function SettingsPage() {
         licenseNumber,
         registrationNumber,
       }),
-    onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: ['users', 'me'] });
-    },
   });
 
   // Authentica.sa identity verification

@@ -1,5 +1,6 @@
 import { Inject, Logger, OnModuleInit, UseFilters } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { OnEvent } from '@nestjs/event-emitter';
 import { JwtService } from '@nestjs/jwt';
 import {
   ConnectedSocket,
@@ -228,6 +229,23 @@ export class MessagingGateway
         readerId,
         ts: Date.now(),
       });
+  }
+
+  // ---- Cross-module event listeners -------------------------------------
+
+  /**
+   * Fired by `UsersService` after the user saves a profile change or
+   * preference toggle. Broadcasts to every socket in the user's room — web
+   * tabs, mobile foreground sessions, anything authenticated as this user —
+   * so each client invalidates its `/users/me` cache and re-renders the new
+   * avatar / language / theme without requiring a re-login.
+   */
+  @OnEvent('user.profile_updated')
+  handleProfileUpdate(payload: { userId: string }): void {
+    if (!payload?.userId) return;
+    this.server
+      .to(userRoom(payload.userId))
+      .emit('profile_updated', { userId: payload.userId, ts: Date.now() });
   }
 
   // ---- Helpers -----------------------------------------------------------

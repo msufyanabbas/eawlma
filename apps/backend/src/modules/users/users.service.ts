@@ -4,6 +4,7 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import * as argon2 from 'argon2';
@@ -29,7 +30,15 @@ export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly users: Repository<UserEntity>,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
+
+  /** Internal: fan out a profile-updated event so the messaging gateway can
+   *  broadcast `profile_updated` to every socket in the user's room. Kept
+   *  fire-and-forget — listeners must not throw or block the save path. */
+  private emitProfileUpdated(userId: string): void {
+    this.eventEmitter.emit('user.profile_updated', { userId });
+  }
 
   // ---------------------------------------------------------------------------
   // Creation / lookup
@@ -146,14 +155,18 @@ export class UsersService {
     if (dto.licenseNumber !== undefined) user.licenseNumber = dto.licenseNumber.trim() || null;
     if (dto.registrationNumber !== undefined) user.registrationNumber = dto.registrationNumber.trim() || null;
 
-    return this.users.save(user);
+    const saved = await this.users.save(user);
+    this.emitProfileUpdated(saved.id);
+    return saved;
   }
 
   async updatePreferences(userId: string, dto: UpdatePreferencesDto): Promise<UserEntity> {
     const user = await this.findByIdOrFail(userId);
     if (dto.preferredLanguage !== undefined) user.preferredLocale = dto.preferredLanguage;
     if (dto.preferredTheme !== undefined) user.preferredTheme = dto.preferredTheme;
-    return this.users.save(user);
+    const saved = await this.users.save(user);
+    this.emitProfileUpdated(saved.id);
+    return saved;
   }
 
   async updateStatus(userId: string, status: UserStatus): Promise<UserEntity> {

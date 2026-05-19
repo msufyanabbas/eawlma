@@ -10,6 +10,7 @@ import { UserRole } from '@eawlma/shared-types';
 import { AppShell } from './components/Layout/AppShell';
 import { NotificationToaster } from './components/global/NotificationToaster';
 import { SavedListingsHydrator } from './components/global/SavedListingsHydrator';
+import { MeSyncer } from './components/global/MeSyncer';
 import { ErrorBoundary } from './components/global/ErrorBoundary';
 import { ScrollToTop } from './components/global/ScrollToTop';
 import { PageviewTracker } from './components/global/PageviewTracker';
@@ -110,6 +111,7 @@ const rootRoute = createRootRoute({
       <Outlet />
       <NotificationToaster />
       <SavedListingsHydrator />
+      <MeSyncer />
     </ErrorBoundary>
   ),
   notFoundComponent: NotFoundPage,

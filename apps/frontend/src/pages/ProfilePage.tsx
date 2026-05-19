@@ -18,7 +18,7 @@ import {
 import DashboardIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import HistoryIcon from '@mui/icons-material/HistoryOutlined';
-import { useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -39,8 +39,6 @@ export function ProfilePage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const navigate = useNavigate();
-  const qc = useQueryClient();
-  const setUser = useAuthStore((s) => s.setUser);
   const sessionUser = useAuthStore((s) => s.user);
   const savedIds = useSavedStore((s) => s.ids);
 
@@ -68,6 +66,8 @@ export function ProfilePage() {
     setBio((data as unknown as { bio?: string }).bio ?? '');
   }, [data]);
 
+  // usersApi.updateMe centralizes cache invalidation + auth store projection.
+  // We only need to show the success/error toast here.
   const updateMutation = useMutation({
     mutationFn: () =>
       usersApi.updateMe({
@@ -77,24 +77,7 @@ export function ProfilePage() {
         avatarUrl: avatarUrl || undefined,
         bio: bio || undefined,
       }),
-    onSuccess: (updated) => {
-      void qc.invalidateQueries({ queryKey: ['users', 'me'] });
-      // Refresh the auth store user copy so the navbar avatar updates instantly.
-      // The full `User` shape is wider than `AuthSessionUser`, so we project the
-      // fields the session cares about and translate `identityVerificationStatus`
-      // into the boolean the auth store consumes.
-      setUser({
-        id: updated.id,
-        email: updated.email,
-        firstName: updated.firstName,
-        lastName: updated.lastName,
-        role: updated.role,
-        avatarUrl: updated.avatarUrl,
-        preferredLocale: updated.preferredLocale,
-        emailVerified: updated.emailVerified,
-        phoneVerified: updated.phoneVerified,
-        identityVerified: updated.identityVerificationStatus === 'verified',
-      });
+    onSuccess: () => {
       setToast({ open: true, ok: true, msg: t('profilePage.profileUpdated') });
     },
     onError: (err) => {

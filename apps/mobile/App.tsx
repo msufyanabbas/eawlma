@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text as RNText } from 'react-native';
+import { AppState, Text as RNText } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,7 +21,7 @@ import { useAuthStore } from './src/store/auth.store';
 import { useUIStore } from './src/store/ui.store';
 import { useTheme } from './src/hooks/useTheme';
 import { useRTL } from './src/hooks/useRTL';
-import { messagesApi } from './src/api';
+import { messagesApi, authApi } from './src/api';
 import { SIZES } from './src/theme';
 
 import SplashScreen from './src/screens/SplashScreen';
@@ -185,23 +185,52 @@ export default function App() {
       await loadFromStorage();
       await initI18n();
 
-      // If the user is already signed in, pull their saved language/theme
-      // from the backend so a returning user sees the same prefs they set
-      // on web or another device. We apply the language afterwards so the
-      // RTL flip from changeLanguage takes effect immediately.
+      // If the user is already signed in, pull the fresh /users/me row so
+      // anything they changed on web (avatar, language, theme) is reflected
+      // immediately on app start. The pref sync runs from the same payload.
+      // A 401 here means the persisted refresh token has expired — drop the
+      // session so the next screen lands on Login instead of a stale user.
       const { isAuthenticated } = useAuthStore.getState();
       if (isAuthenticated) {
-        const before = useUIStore.getState().language;
-        await useUIStore.getState().loadFromBackend();
-        const after = useUIStore.getState().language;
-        if (after && after !== before) {
-          await changeLanguage(after);
+        try {
+          const freshUser = await authApi.getMe();
+          useAuthStore.getState().setUser(freshUser);
+
+          const before = useUIStore.getState().language;
+          await useUIStore.getState().loadFromBackend();
+          const after = useUIStore.getState().language;
+          if (after && after !== before) {
+            await changeLanguage(after);
+          }
+        } catch (e: any) {
+          if (e?.response?.status === 401) {
+            await useAuthStore.getState().logout();
+          }
         }
       }
 
       setReady(true);
     }
     bootstrap();
+  }, []);
+
+  // Refresh /users/me whenever the app comes back to the foreground so an
+  // avatar/preference change made on web/another device shows up the moment
+  // the user re-opens the app. Errors are swallowed — we don't want to log
+  // the user out just because the network blipped.
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', async (state) => {
+      if (state !== 'active') return;
+      const { isAuthenticated, setUser } = useAuthStore.getState();
+      if (!isAuthenticated) return;
+      try {
+        const freshUser = await authApi.getMe();
+        setUser(freshUser);
+      } catch {
+        /* foreground refresh failures are silent — the existing user stays */
+      }
+    });
+    return () => sub.remove();
   }, []);
 
   useEffect(() => {

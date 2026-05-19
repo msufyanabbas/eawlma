@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { apiClient } from '@/api/client';
+import { usersApi } from '@/api/users.api';
 
 export type ThemeMode = 'light' | 'dark';
 // Any locale code we ship UI translations for. The full list is centralized in
@@ -43,10 +44,10 @@ function persistLocale(language: string) {
 
 function syncToBackend(prefs: { preferredLanguage?: string; preferredTheme?: ThemeMode }) {
   // Fire-and-forget — preference sync is decorative and must not block the UI
-  // when the user is offline / the backend is down.
-  void apiClient
-    .patch('/users/me/preferences', prefs)
-    .catch(() => undefined);
+  // when the user is offline / the backend is down. Routed through usersApi
+  // so the React Query cache + auth store also pick up the new preferredLocale
+  // / preferredTheme without a re-login.
+  void usersApi.updatePreferences(prefs).catch(() => undefined);
 }
 
 export const useUiStore = create<UiState>()(

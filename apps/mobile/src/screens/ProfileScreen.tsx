@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   View, Text, StyleSheet, ScrollView,
   TouchableOpacity, Switch, Modal, FlatList, TextInput,
@@ -65,16 +65,26 @@ export default function ProfileScreen({ navigation }: any) {
   const { colors } = useTheme();
   const { isAr, isRTL, textAlign, lang } = useRTL();
   const { t } = useTranslation();
-  const { user, isAuthenticated, logout } = useAuthStore();
+  const { user, isAuthenticated, logout, setUser } = useAuthStore();
   const { isDarkMode, toggleDarkMode } = useUIStore();
   const [showLangPicker, setShowLangPicker] = useState(false);
   const [changingLang, setChangingLang] = useState(false);
 
+  // Background-refetch /users/me every 30s while the screen is open so an
+  // avatar or preference change made on web shows up without a re-login.
+  // The result is also pushed into the Zustand auth store, which the rest
+  // of the app (header, drawer, settings) reads from.
   const { data: meData } = useQuery({
     queryKey: ['me'],
     queryFn: () => authApi.getMe(),
     enabled: isAuthenticated,
+    refetchInterval: isAuthenticated ? 30_000 : false,
+    staleTime: 20_000,
   });
+
+  useEffect(() => {
+    if (meData) setUser(meData);
+  }, [meData, setUser]);
 
   const currentUser: any = meData || user;
 
