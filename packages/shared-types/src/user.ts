@@ -20,6 +20,7 @@ export interface User {
   avatarUrl: string | null;
   bio: string | null;
   preferredLocale: string;
+  preferredTheme: 'light' | 'dark';
   emailVerified: boolean;
   phoneVerified: boolean;
   identityVerificationStatus: VerificationStatus;

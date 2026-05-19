@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
@@ -82,8 +83,32 @@ export default function ProfileScreen({ navigation }: any) {
     staleTime: 20_000,
   });
 
+  // Apply locale/theme changes initiated on another device. The Zustand
+  // setters are called with no userId so they DON'T resync back to the
+  // backend (which would echo the same value we just received over WS / via
+  // polling — instant feedback loop). For the locale switch we route through
+  // the i18n changeLanguage helper so I18nManager.forceRTL flips when going
+  // to / from an RTL locale.
   useEffect(() => {
-    if (meData) setUser(meData);
+    if (!meData) return;
+    setUser(meData);
+
+    const ui = useUIStore.getState();
+    const nextLocale = (meData as any).preferredLocale;
+    if (nextLocale && nextLocale !== ui.language) {
+      void changeLanguage(nextLocale).then(() => {
+        useUIStore.setState({ language: nextLocale });
+      });
+    }
+
+    const nextTheme = (meData as any).preferredTheme;
+    if (nextTheme === 'light' || nextTheme === 'dark') {
+      const wantDark = nextTheme === 'dark';
+      if (wantDark !== ui.isDarkMode) {
+        useUIStore.setState({ isDarkMode: wantDark });
+        void AsyncStorage.setItem('eawlma.darkMode', String(wantDark)).catch(() => undefined);
+      }
+    }
   }, [meData, setUser]);
 
   const currentUser: any = meData || user;

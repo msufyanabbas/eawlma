@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppState, Text as RNText } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -157,6 +158,34 @@ function MainTabs() {
   );
 }
 
+/**
+ * Centralizes "apply preferences from a freshly-fetched /users/me row".
+ * Used by both the cold-start bootstrap and the foreground AppState listener
+ * so the two paths can't drift. Skips backend write-back (the data already
+ * came FROM the backend); just applies locally + persists to AsyncStorage.
+ */
+async function applyFreshUserPrefs(freshUser: any): Promise<void> {
+  const { language, isDarkMode } = useUIStore.getState();
+
+  if (freshUser?.preferredLocale && freshUser.preferredLocale !== language) {
+    // changeLanguage handles AsyncStorage + i18n + I18nManager.forceRTL.
+    await changeLanguage(freshUser.preferredLocale);
+    useUIStore.setState({ language: freshUser.preferredLocale });
+  }
+
+  if (freshUser?.preferredTheme === 'dark' || freshUser?.preferredTheme === 'light') {
+    const wantDark = freshUser.preferredTheme === 'dark';
+    if (wantDark !== isDarkMode) {
+      useUIStore.setState({ isDarkMode: wantDark });
+      try {
+        await AsyncStorage.setItem('eawlma.darkMode', String(wantDark));
+      } catch {
+        /* AsyncStorage failure is non-fatal — the in-memory state still flips */
+      }
+    }
+  }
+}
+
 function setDefaultFont() {
   // @ts-expect-error defaultProps is a runtime field on Text
   const existing = RNText.defaultProps || {};
@@ -187,7 +216,8 @@ export default function App() {
 
       // If the user is already signed in, pull the fresh /users/me row so
       // anything they changed on web (avatar, language, theme) is reflected
-      // immediately on app start. The pref sync runs from the same payload.
+      // immediately on app start. A single fetch feeds both the auth store
+      // (setUser) and the preferences applier (locale + theme + RTL flip).
       // A 401 here means the persisted refresh token has expired — drop the
       // session so the next screen lands on Login instead of a stale user.
       const { isAuthenticated } = useAuthStore.getState();
@@ -195,13 +225,7 @@ export default function App() {
         try {
           const freshUser = await authApi.getMe();
           useAuthStore.getState().setUser(freshUser);
-
-          const before = useUIStore.getState().language;
-          await useUIStore.getState().loadFromBackend();
-          const after = useUIStore.getState().language;
-          if (after && after !== before) {
-            await changeLanguage(after);
-          }
+          await applyFreshUserPrefs(freshUser);
         } catch (e: any) {
           if (e?.response?.status === 401) {
             await useAuthStore.getState().logout();
@@ -216,8 +240,10 @@ export default function App() {
 
   // Refresh /users/me whenever the app comes back to the foreground so an
   // avatar/preference change made on web/another device shows up the moment
-  // the user re-opens the app. Errors are swallowed — we don't want to log
-  // the user out just because the network blipped.
+  // the user re-opens the app. Re-uses the bootstrap pref applier so the
+  // foreground path picks up locale + theme too (not just user metadata).
+  // Errors are swallowed — we don't want to log the user out on a transient
+  // network blip when returning from background.
   useEffect(() => {
     const sub = AppState.addEventListener('change', async (state) => {
       if (state !== 'active') return;
@@ -226,6 +252,7 @@ export default function App() {
       try {
         const freshUser = await authApi.getMe();
         setUser(freshUser);
+        await applyFreshUserPrefs(freshUser);
       } catch {
         /* foreground refresh failures are silent — the existing user stays */
       }
