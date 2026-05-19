@@ -119,7 +119,10 @@ function sortToFields(sort: SortOption): { sortField: string; sortOrder: 'ASC' |
 // ------------------------------------------------------------------
 
 export function HomePage() {
-  const { t } = useTranslation();
+  // `i18n` is destructured even though the JSX doesn't reference it by name
+  // directly — `toLocaleString(i18n.language)` calls below use it for locale-
+  // correct number grouping. Dropping it here triggers "i18n is not defined".
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const savedIds = useSavedStore((s) => s.ids);
