@@ -15,6 +15,7 @@ import { UsersService } from '../users/users.service';
 import { UserEntity } from '../users/entities/user.entity';
 import { EmailService } from '../../common/email/email.service';
 import { RefreshTokenEntity } from './entities/refresh-token.entity';
+import { OtpService } from './otp.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
@@ -46,6 +47,7 @@ export class AuthService {
     @InjectRepository(RefreshTokenEntity)
     private readonly refreshRepo: Repository<RefreshTokenEntity>,
     private readonly emailService: EmailService,
+    private readonly otpService: OtpService,
   ) {}
 
   // ---------------------------------------------------------------------------
@@ -169,6 +171,41 @@ export class AuthService {
     const tokens = await this.issueTokens(user, ctx);
     await this.usersService.recordSuccessfulLogin(user.id, ctx.ip ?? null);
     return this.buildAuthResponse(user, tokens);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Email OTP login
+  //
+  // Passwordless flow: the client requests a code, then submits it. A valid
+  // code logs an existing user in; if no account matches the email we report
+  // `needsRegistration` so the client can route to the signup form.
+  // ---------------------------------------------------------------------------
+
+  async sendLoginOtp(email: string): Promise<void> {
+    await this.otpService.sendOtp(email);
+  }
+
+  async verifyOtpAndLogin(
+    email: string,
+    otp: string,
+    ctx: ClientContext,
+  ): Promise<AuthResponseDto | { needsRegistration: true; email: string }> {
+    const ok = await this.otpService.verifyOtp(email, otp);
+    if (!ok) {
+      throw new UnauthorizedException('Invalid or expired verification code');
+    }
+
+    const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      // Code was valid but no account exists — the client should register.
+      return { needsRegistration: true, email: email.trim().toLowerCase() };
+    }
+
+    if (user.status === UserStatus.SUSPENDED || user.status === UserStatus.DEACTIVATED) {
+      throw new ForbiddenException('Account is not active');
+    }
+
+    return this.loginExternalUser(user, ctx);
   }
 
   // ---------------------------------------------------------------------------

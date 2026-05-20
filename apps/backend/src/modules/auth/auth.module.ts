@@ -10,9 +10,11 @@ import { UsersModule } from '../users/users.module';
 import { UserEntity } from '../users/entities/user.entity';
 
 import { RefreshTokenEntity } from './entities/refresh-token.entity';
+import { EmailOtpEntity } from './entities/email-otp.entity';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 import { AuthService } from './auth.service';
+import { OtpService } from './otp.service';
 import { AuthController } from './auth.controller';
 import { AuthenticaController } from './authentica.controller';
 import { AuthenticaClient } from './authentica.client';
@@ -23,7 +25,7 @@ import { NafathController } from './nafath/nafath.controller';
   imports: [
     UsersModule,
     PassportModule,
-    TypeOrmModule.forFeature([RefreshTokenEntity, UserEntity]),
+    TypeOrmModule.forFeature([RefreshTokenEntity, EmailOtpEntity, UserEntity]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -39,6 +41,7 @@ import { NafathController } from './nafath/nafath.controller';
   ],
   providers: [
     AuthService,
+    OtpService,
     JwtStrategy,
     JwtRefreshStrategy,
     AuthenticaClient,

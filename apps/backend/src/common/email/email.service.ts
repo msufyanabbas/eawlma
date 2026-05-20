@@ -109,6 +109,18 @@ export class EmailService implements OnModuleInit {
     });
   }
 
+  async sendOtpEmail(email: string, otp: string): Promise<void> {
+    await this.send({
+      to: email,
+      subject: 'Your Eawlma verification code',
+      html: this.otpTemplate(otp),
+      text:
+        `Your verification code is: ${otp}\n` +
+        'This code expires in 10 minutes.\n' +
+        'Do not share this code with anyone.',
+    });
+  }
+
   async sendContactFormEmail(params: {
     name: string;
     email: string;
@@ -217,6 +229,19 @@ export class EmailService implements OnModuleInit {
       <p>Click below to reset your password. This link expires in 1 hour.</p>
       <a href="${params.resetUrl}" style="display:inline-block;padding:14px 28px;background:#6C63A6;color:white;text-decoration:none;border-radius:8px;font-weight:700">Reset password →</a>
       <p style="color:#999;margin-top:20px;font-size:12px">If you didn't request this, ignore this email.</p>
+    </body></html>`;
+  }
+
+  private otpTemplate(otp: string): string {
+    return `<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;margin:0">
+      ${this.brandHeader()}
+      <div style="padding:32px;text-align:center">
+        <h2 style="margin-top:0">Your verification code</h2>
+        <p style="color:#555">Use the code below to sign in to Eawlma.</p>
+        <div style="font-size:38px;font-weight:800;letter-spacing:12px;color:#6C63A6;background:#f4f3fa;border-radius:12px;padding:20px 12px;margin:24px 0">${escape(otp)}</div>
+        <p style="color:#999;font-size:13px">This code expires in 10 minutes. Do not share it with anyone.</p>
+      </div>
+      ${this.brandFooter()}
     </body></html>`;
   }
 

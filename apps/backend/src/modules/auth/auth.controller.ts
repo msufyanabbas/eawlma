@@ -34,6 +34,7 @@ import {
   RefreshTokenDto,
 } from './dto/login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
+import { SendOtpDto, VerifyOtpDto } from './dto/otp.dto';
 
 @ApiTags('auth')
 @Controller({ path: 'auth', version: '1' })
@@ -70,6 +71,46 @@ export class AuthController {
     @Req() req: Request,
   ): Promise<AuthResponseDto> {
     return this.authService.login(dto, {
+      ip,
+      userAgent: req.headers['user-agent'] ?? null,
+    });
+  }
+
+  @Public()
+  @Throttle({ default: { ttl: 60_000, limit: 3 } })
+  @Post('send-otp')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Email a 6-digit login code to the given address' })
+  @ApiOkResponse({
+    schema: {
+      properties: {
+        message: { type: 'string' },
+        expiresIn: { type: 'number', description: 'Code lifetime in seconds' },
+      },
+    },
+  })
+  async sendOtp(
+    @Body() dto: SendOtpDto,
+  ): Promise<{ message: string; expiresIn: number }> {
+    await this.authService.sendLoginOtp(dto.email);
+    return { message: 'OTP sent', expiresIn: 600 };
+  }
+
+  @Public()
+  @Throttle({ default: { ttl: 60_000, limit: 5 } })
+  @Post('verify-otp')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Verify an email code — logs the user in, or signals registration is needed',
+  })
+  @ApiOkResponse({ type: AuthResponseDto })
+  @ApiUnauthorizedResponse({ description: 'Invalid or expired code' })
+  verifyOtp(
+    @Body() dto: VerifyOtpDto,
+    @Ip() ip: string,
+    @Req() req: Request,
+  ): Promise<AuthResponseDto | { needsRegistration: true; email: string }> {
+    return this.authService.verifyOtpAndLogin(dto.email, dto.otp, {
       ip,
       userAgent: req.headers['user-agent'] ?? null,
     });

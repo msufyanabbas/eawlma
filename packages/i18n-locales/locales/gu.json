@@ -268,7 +268,37 @@
     "agreeTerms": "ખાતું બનાવીને તમે અમારી શરતો અને ગોપનીયતા નીતિ સાથે સંમત થાઓ છો",
     "loginSuccess": "સફળતાપૂર્વક સાઇન ઇન થયા",
     "registerSuccess": "ખાતું સફળતાપૂર્વક બનાવાયું",
-    "logoutSuccess": "સાઇન આઉટ થયા"
+    "logoutSuccess": "સાઇન આઉટ થયા",
+    "heroTitle": "સાઉદી અરેબિયામાં તમારી ડ્રીમ પ્રોપર્ટી શોધો",
+    "heroSubtitle": "સાઉદી અરેબિયાનું પ્રીમિયર રિયલ એસ્ટેટ પ્લેટફોર્મ",
+    "statListings": "સૂચિઓ",
+    "statAgents": "ચકાસાયેલ એજન્ટો",
+    "statUsers": "| હેપી યુઝર્સ",
+    "emailCode": "ઈમેલ કોડ",
+    "sendCode": "ચકાસણી કોડ મોકલો",
+    "otpSentTo": "ચકાસણી કોડ",
+    "enterCode": "પર મોકલવામાં આવ્યો છે 6-અંકનો કોડ દાખલ કરો",
+    "verifyCode": "ચકાસો અને સાઇન ઇન કરો",
+    "resendCode": "કોડ ફરીથી મોકલો",
+    "resendIn": "| માં ફરીથી મોકલો",
+    "emailRequired": "| કૃપા કરીને તમારું ઇમેઇલ દાખલ કરો",
+    "sendOtpError": "કોડ મોકલવામાં નિષ્ફળ, કૃપા કરીને ફરી પ્રયાસ કરો",
+    "invalidOtp": "અમાન્ય અથવા સમાપ્ત થયેલ કોડ",
+    "invalidCredentials": "અમાન્ય ઈમેલ અથવા પાસવર્ડ",
+    "fillAllFields": "કૃપા કરીને તમામ ફીલ્ડ ભરો",
+    "registerFailed": "નોંધણી નિષ્ફળ, કૃપા કરીને ફરી પ્રયાસ કરો",
+    "continueWithGoogle": "Google સાથે ચાલુ રાખો",
+    "googleComingSoon": "Google સાઇન-ઇન ટૂંક સમયમાં આવી રહ્યું છે",
+    "roleBuyer": "ખરીદનાર",
+    "roleBuyerDesc": "| મિલકત જોઈએ છીએ",
+    "roleAgentDesc": "મિલકતો વેચવી અથવા ભાડે આપવી",
+    "passwordsNoMatch": "પાસવર્ડ મેળ ખાતા નથી",
+    "agreeToTerms": "હું સેવાની શરતો અને ગોપનીયતા નીતિથી સંમત છું",
+    "mustAgreeTerms": "કૃપા કરીને શરતોથી સંમત થાઓ",
+    "strengthWeak": "| નબળા",
+    "strengthFair": "મેળો",
+    "strengthGood": "| સારું",
+    "strengthStrong": "| મજબૂત"
   },
   "validation": {
     "required": "આ ફીલ્ડ આવશ્યક છે",
@@ -313,7 +343,8 @@
     "actions": "ક્રિયાઓ",
     "active": "સક્રિય",
     "inactive": "નિષ્ક્રિય",
-    "loadMore": "| વધુ લોડ કરો"
+    "loadMore": "| વધુ લોડ કરો",
+    "or": "| અથવા"
   },
   "listing": {
     "forSale": "વેચાણ માટે",
@@ -691,7 +722,7 @@
       "cornerUnit": "કોર્નર યુનિટ"
     },
     "shortTermAmenity": {
-      "wifi": "Wi-Fi",
+      "wifi": "| Wi-Fi",
       "pool": "પૂલ",
       "parking": "પાર્કિંગ",
       "breakfast": "નાસ્તો",

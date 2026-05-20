@@ -1,175 +1,500 @@
+import { useEffect, useState } from 'react';
 import {
   Alert,
   Box,
   Button,
+  CircularProgress,
   Divider,
-  Link as MuiLink,
+  IconButton,
+  InputAdornment,
   Stack,
+  Tab,
+  Tabs,
   TextField,
   Typography,
 } from '@mui/material';
+import {
+  ArrowBack,
+  ArrowForward,
+  CheckCircle,
+  Email,
+  Lock,
+  Visibility,
+  VisibilityOff,
+} from '@mui/icons-material';
 import GoogleIcon from '@mui/icons-material/Google';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
-
 import i18n from 'i18next';
+import type { AuthResponse } from '@eawlma/shared-types';
 
 import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';
 import { GA } from '@/utils/analytics';
-import { AuthLayout } from './AuthLayout';
 
+type LoginMode = 'otp' | 'password';
+type OtpStep = 'email' | 'code';
+
+const RTL_LANGS = ['ar', 'ur', 'fa', 'he'];
+/** High-quality Riyadh skyline / property photo for the branding panel. */
+const HERO_IMAGE =
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80';
+
+/**
+ * Split-layout sign-in page: a branded property-photo panel on the left
+ * (md+ only) and the auth form on the right. Two ways in — an emailed
+ * 6-digit code (default) or the classic email + password — plus Nafath SSO.
+ */
 export function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const setSession = useAuthStore((s) => s.setSession);
   const loadPreferencesFromBackend = useUiStore((s) => s.loadFromBackend);
+  const isRTL = RTL_LANGS.includes(i18n.language);
 
-  const schema = z.object({
-    email: z.string().min(1, t('validation.required')).email(t('validation.emailInvalid')),
-    password: z.string().min(1, t('validation.required')),
-  });
-  type FormValues = z.infer<typeof schema>;
+  const [mode, setMode] = useState<LoginMode>('otp');
+  const [otpStep, setOtpStep] = useState<OtpStep>('email');
+  const [email, setEmail] = useState('');
+  const [otp, setOtp] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
+  const [countdown, setCountdown] = useState(0);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    mode: 'onTouched',
-    defaultValues: { email: '', password: '' },
-  });
+  // Self-cleaning resend timer — recreates a 1s timeout until it hits zero,
+  // and tears the pending timeout down if the page unmounts mid-count.
+  useEffect(() => {
+    if (countdown <= 0) return;
+    const id = window.setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => window.clearTimeout(id);
+  }, [countdown]);
 
-  const loginMutation = useMutation({
-    mutationFn: (values: FormValues) => authApi.login(values),
-    onSuccess: async (data) => {
-      setSession(data.user, data.tokens);
-      // Sync per-account language + theme from the backend, then apply the
-      // language change so the next render uses it (we don't reload — the
-      // RTL switch already happens on i18n.changeLanguage in App.tsx).
-      await loadPreferencesFromBackend();
-      const savedLang = localStorage.getItem('eawlma.locale');
-      if (savedLang && i18n.language !== savedLang) {
-        await i18n.changeLanguage(savedLang);
+  /** Shared post-login tail: persist the session, sync prefs, route home. */
+  const finishLogin = async (auth: AuthResponse, method: string) => {
+    setSession(auth.user, auth.tokens);
+    await loadPreferencesFromBackend();
+    const savedLang = localStorage.getItem('eawlma.locale');
+    if (savedLang && i18n.language !== savedLang) {
+      await i18n.changeLanguage(savedLang);
+    }
+    GA.login(method);
+    void navigate({ to: '/' });
+  };
+
+  const handleSendOtp = async () => {
+    if (!email.trim()) {
+      setError(t('auth.emailRequired', 'Please enter your email'));
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      await authApi.sendOtp(email.trim());
+      setOtpStep('code');
+      setCountdown(60);
+    } catch (e) {
+      setError(extractErrorMessage(e) || t('auth.sendOtpError', 'Failed to send code, please try again'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    if (otp.length !== 6) {
+      setError(t('auth.invalidOtp', 'Invalid or expired code'));
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const result = await authApi.verifyOtp(email.trim(), otp.trim());
+      if ('needsRegistration' in result) {
+        // Hand the verified email to the registration form.
+        sessionStorage.setItem('eawlma.prefillEmail', result.email);
+        void navigate({ to: '/auth/register' });
+        return;
       }
-      GA.login('password');
-      void navigate({ to: '/' });
-    },
-  });
+      await finishLogin(result, 'otp');
+    } catch (e) {
+      setError(extractErrorMessage(e) || t('auth.invalidOtp', 'Invalid or expired code'));
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const onSubmit = (values: FormValues) => loginMutation.mutate(values);
+  const handlePasswordLogin = async () => {
+    if (!email.trim() || !password) {
+      setError(t('auth.fillAllFields', 'Please fill in all fields'));
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const result = await authApi.login({ email: email.trim(), password });
+      await finishLogin(result, 'password');
+    } catch (e) {
+      setError(extractErrorMessage(e) || t('auth.invalidCredentials', 'Invalid email or password'));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleNafathLogin = () => {
     const apiUrl = import.meta.env.VITE_API_URL ?? 'http://192.168.1.125:3000/api/v1';
     window.location.href = `${apiUrl}/auth/nafath/authorize`;
   };
 
+  const handleGoogleLogin = () => {
+    // Google OAuth isn't wired to a backend endpoint yet — keep the button
+    // live but tell the user instead of bouncing them to a dead route.
+    setError('');
+    setNotice(t('auth.googleComingSoon', 'Google sign-in is coming soon'));
+  };
+
+  const switchMode = (next: LoginMode) => {
+    setMode(next);
+    setError('');
+    setNotice('');
+    setOtpStep('email');
+    setOtp('');
+  };
+
   return (
-    <AuthLayout pageTitle={`${t('auth.login')} — ${t('app.name')}`}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Typography variant="h4" sx={{ fontWeight: 800, mb: 1 }}>
-          {t('auth.loginTitle')}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {t('auth.loginSubtitle')}
-        </Typography>
-      </Box>
+    <Box sx={{ minHeight: '100vh', display: 'flex', direction: isRTL ? 'rtl' : 'ltr' }}>
+      <Helmet>
+        <title>{`${t('auth.login')} — ${t('app.name')}`}</title>
+      </Helmet>
 
-      {loginMutation.isError && (
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {extractErrorMessage(loginMutation.error)}
-        </Alert>
-      )}
-
-      <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Stack spacing={2.5}>
-          <TextField
-            label={t('auth.email')}
-            type="email"
-            autoComplete="email"
-            {...register('email')}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-          />
-          <TextField
-            label={t('auth.password')}
-            type="password"
-            autoComplete="current-password"
-            {...register('password')}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-          />
-          <Box sx={{ textAlign: 'end' }}>
-            <MuiLink
-              component={Link}
-              to="/auth/forgot-password"
-              underline="hover"
-              variant="body2"
-              color="primary"
+      {/* Left — branding / property image (md and up) */}
+      <Box
+        sx={{
+          display: { xs: 'none', md: 'flex' },
+          width: '55%',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+        }}
+      >
+        <Box
+          component="img"
+          src={HERO_IMAGE}
+          alt=""
+          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3 }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(108,99,166,0.9) 0%, rgba(20,20,40,0.95) 100%)',
+          }}
+        />
+        <Box
+          sx={{
+            position: 'relative',
+            zIndex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            p: 6,
+            color: 'white',
+            width: '100%',
+          }}
+        >
+          <Box>
+            <Typography
+              variant="h3"
+              fontWeight={900}
+              sx={{
+                background: 'linear-gradient(135deg, #fff 0%, #D4A843 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
             >
-              {t('auth.forgotPassword')}
-            </MuiLink>
-          </Box>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            size="large"
-            disabled={loginMutation.isPending}
-          >
-            {loginMutation.isPending ? t('common.loading') : t('auth.signIn')}
-          </Button>
-
-          <Divider>
-            <Typography variant="caption" color="text.secondary">
-              {t('common.more')}
+              عولمة
             </Typography>
-          </Divider>
+            <Typography variant="h6" sx={{ opacity: 0.8, mt: 0.5 }}>
+              Eawlma Real Estate
+            </Typography>
+          </Box>
 
-          {/* Google OAuth — UI only; backend integration is a follow-up. */}
-          <Button variant="outlined" color="inherit" startIcon={<GoogleIcon />} disabled>
-            Google
-          </Button>
-
-          {/* Nafath SSO — Saudi national digital identity. Hands the browser
-           *  off to the backend `/auth/nafath/authorize` endpoint, which
-           *  redirects to Absher and bounces back through `/auth/nafath-callback`.
-           */}
-          <Button
-            variant="outlined"
-            fullWidth
-            onClick={handleNafathLogin}
-            sx={{
-              py: 1.5,
-              borderWidth: 2,
-              borderColor: '#009639',
-              color: '#009639',
-              fontWeight: 700,
-              '&:hover': {
-                borderWidth: 2,
-                borderColor: '#007A2E',
-                bgcolor: 'rgba(0, 150, 57, 0.04)',
-              },
-            }}
-          >
-            {t('nafath.loginWith')}
-          </Button>
-        </Stack>
+          <Box>
+            <Typography variant="h2" fontWeight={900} sx={{ mb: 2 }}>
+              {t('auth.heroTitle', 'Find Your Dream Property')}
+            </Typography>
+            <Typography variant="h6" sx={{ opacity: 0.8, mb: 4, lineHeight: 1.6 }}>
+              {t('auth.heroSubtitle', "Saudi Arabia's premier real estate platform")}
+            </Typography>
+            <Stack direction="row" spacing={4}>
+              {[
+                { value: '10K+', label: t('auth.statListings', 'Listings') },
+                { value: '500+', label: t('auth.statAgents', 'Verified Agents') },
+                { value: '50K+', label: t('auth.statUsers', 'Happy Users') },
+              ].map((stat) => (
+                <Box key={stat.label}>
+                  <Typography variant="h4" fontWeight={900} sx={{ color: '#D4A843' }}>
+                    {stat.value}
+                  </Typography>
+                  <Typography variant="body2" sx={{ opacity: 0.7 }}>
+                    {stat.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
+        </Box>
       </Box>
 
-      <Typography variant="body2" align="center" sx={{ mt: 4 }}>
-        {t('auth.noAccount')}{' '}
-        <MuiLink component={Link} to="/auth/register" underline="hover" color="primary">
-          {t('auth.createAccount')}
-        </MuiLink>
-      </Typography>
-    </AuthLayout>
+      {/* Right — the form */}
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.default',
+          p: { xs: 3, md: 6 },
+        }}
+      >
+        <Box sx={{ width: '100%', maxWidth: 420 }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 4, textAlign: 'center' }}>
+            <Typography variant="h3" fontWeight={900} color="primary">
+              عولمة
+            </Typography>
+          </Box>
+
+          <Typography variant="h4" fontWeight={800} gutterBottom>
+            {t('auth.welcomeBack', 'Welcome back')} 👋
+          </Typography>
+          <Typography color="text.secondary" sx={{ mb: 4 }}>
+            {t('auth.loginSubtitle', 'Sign in to your account to continue')}
+          </Typography>
+
+          <Tabs
+            value={mode}
+            onChange={(_, v) => switchMode(v as LoginMode)}
+            sx={{ mb: 3, '& .MuiTabs-indicator': { height: 3, borderRadius: 2 } }}
+          >
+            <Tab
+              value="otp"
+              label={t('auth.emailCode', 'Email Code')}
+              icon={<Email fontSize="small" />}
+              iconPosition="start"
+              sx={{ minHeight: 48 }}
+            />
+            <Tab
+              value="password"
+              label={t('auth.password', 'Password')}
+              icon={<Lock fontSize="small" />}
+              iconPosition="start"
+              sx={{ minHeight: 48 }}
+            />
+          </Tabs>
+
+          {error && (
+            <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>
+              {error}
+            </Alert>
+          )}
+          {notice && (
+            <Alert severity="info" sx={{ mb: 3 }} onClose={() => setNotice('')}>
+              {notice}
+            </Alert>
+          )}
+
+          {mode === 'otp' && (
+            <Stack spacing={2}>
+              {otpStep === 'email' ? (
+                <>
+                  <TextField
+                    fullWidth
+                    label={t('auth.email', 'Email')}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && void handleSendOtp()}
+                    type="email"
+                    autoComplete="email"
+                    autoFocus
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Email color="action" />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    onClick={() => void handleSendOtp()}
+                    disabled={loading}
+                    sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
+                  >
+                    {loading ? <CircularProgress size={24} /> : t('auth.sendCode', 'Send Verification Code')}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Alert severity="success" icon={<CheckCircle />}>
+                    {t('auth.otpSentTo', 'Verification code sent to')} <strong>{email}</strong>
+                  </Alert>
+                  <TextField
+                    fullWidth
+                    label={t('auth.enterCode', 'Enter 6-digit code')}
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    onKeyDown={(e) => e.key === 'Enter' && void handleVerifyOtp()}
+                    autoFocus
+                    inputProps={{
+                      maxLength: 6,
+                      inputMode: 'numeric',
+                      style: {
+                        letterSpacing: '0.5em',
+                        fontSize: '1.5rem',
+                        textAlign: 'center',
+                        fontWeight: 700,
+                      },
+                    }}
+                  />
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    onClick={() => void handleVerifyOtp()}
+                    disabled={loading || otp.length !== 6}
+                    sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
+                  >
+                    {loading ? <CircularProgress size={24} /> : t('auth.verifyCode', 'Verify & Sign In')}
+                  </Button>
+                  <Stack direction="row" justifyContent="space-between" alignItems="center">
+                    <Button
+                      startIcon={isRTL ? <ArrowForward /> : <ArrowBack />}
+                      onClick={() => {
+                        setOtpStep('email');
+                        setOtp('');
+                        setError('');
+                      }}
+                    >
+                      {t('common.back', 'Back')}
+                    </Button>
+                    <Button disabled={countdown > 0 || loading} onClick={() => void handleSendOtp()}>
+                      {countdown > 0
+                        ? `${t('auth.resendIn', 'Resend in')} ${countdown}s`
+                        : t('auth.resendCode', 'Resend code')}
+                    </Button>
+                  </Stack>
+                </>
+              )}
+            </Stack>
+          )}
+
+          {mode === 'password' && (
+            <Stack spacing={2}>
+              <TextField
+                fullWidth
+                label={t('auth.email', 'Email')}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                autoComplete="email"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Email color="action" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                label={t('auth.password', 'Password')}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && void handlePasswordLogin()}
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock color="action" />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword((v) => !v)} edge="end">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Box sx={{ textAlign: 'end' }}>
+                <Link
+                  to="/auth/forgot-password"
+                  style={{ color: '#6C63A6', fontWeight: 600, fontSize: '0.875rem' }}
+                >
+                  {t('auth.forgotPassword', 'Forgot password?')}
+                </Link>
+              </Box>
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                onClick={() => void handlePasswordLogin()}
+                disabled={loading}
+                sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
+              >
+                {loading ? <CircularProgress size={24} /> : t('auth.signIn', 'Sign In')}
+              </Button>
+            </Stack>
+          )}
+
+          <Divider sx={{ my: 3 }}>{t('common.or', 'or')}</Divider>
+
+          <Stack spacing={1.5}>
+            <Button
+              variant="outlined"
+              fullWidth
+              startIcon={<GoogleIcon />}
+              onClick={handleGoogleLogin}
+              sx={{ py: 1.25, borderRadius: 3, fontWeight: 700, color: 'text.primary', borderColor: 'divider' }}
+            >
+              {t('auth.continueWithGoogle', 'Continue with Google')}
+            </Button>
+            {/* Nafath SSO — Saudi national digital identity. Hands off to the
+             *  backend authorize endpoint, which bounces through Absher. */}
+            <Button
+              variant="outlined"
+              fullWidth
+              onClick={handleNafathLogin}
+              sx={{
+                py: 1.25,
+                borderRadius: 3,
+                borderWidth: 2,
+                borderColor: '#009639',
+                color: '#009639',
+                fontWeight: 700,
+                '&:hover': { borderWidth: 2, borderColor: '#007A2E', bgcolor: 'rgba(0,150,57,0.04)' },
+              }}
+            >
+              {t('nafath.loginWith', 'Login with Nafath')}
+            </Button>
+          </Stack>
+
+          <Typography align="center" color="text.secondary" sx={{ mt: 3 }}>
+            {t('auth.noAccount', "Don't have an account?")}{' '}
+            <Link to="/auth/register" style={{ color: '#6C63A6', fontWeight: 700 }}>
+              {t('auth.register', 'Register')}
+            </Link>
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   );
 }
