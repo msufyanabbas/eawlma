@@ -38,10 +38,6 @@ export type UiLanguage = string;
 
 interface UiState {
   language: UiLanguage;
-  // Display locale used by the message translation service. Always mirrors
-  // the active UI language — incoming messages are auto-translated into the
-  // user's chosen UI language (the manual "translate into" picker was removed).
-  displayLocale: string;
   themeMode: ThemeMode;
   sidebarOpen: boolean;
   notificationCount: number;
@@ -79,14 +75,13 @@ export const useUiStore = create<UiState>()(
   persist(
     (set, get) => ({
       language: 'ar',
-      displayLocale: 'ar',
       themeMode: 'light',
       sidebarOpen: true,
       notificationCount: 0,
       unreadMessageCount: 0,
 
       setLanguage: (language, userId) => {
-        set({ language, displayLocale: language });
+        set({ language });
         persistLocale(language);
         // Drop cached server payloads keyed by the previous locale so the next
         // render fetches with the new Accept-Language header.
@@ -117,7 +112,7 @@ export const useUiStore = create<UiState>()(
           const user = res.data;
           if (user?.preferredLocale) {
             const lang = String(user.preferredLocale);
-            set({ language: lang, displayLocale: lang });
+            set({ language: lang });
             persistLocale(lang);
           }
           if (user?.preferredTheme === 'dark' || user?.preferredTheme === 'light') {
@@ -133,7 +128,6 @@ export const useUiStore = create<UiState>()(
       storage: createJSONStorage(() => localStorage),
       partialize: (s) => ({
         language: s.language,
-        displayLocale: s.displayLocale,
         themeMode: s.themeMode,
         sidebarOpen: s.sidebarOpen,
       }),

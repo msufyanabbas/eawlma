@@ -58,7 +58,8 @@ export function MessagesPage() {
   const qc = useQueryClient();
   const userId = useAuthStore((s) => s.user?.id);
   const setUnread = useUiStore((s) => s.setUnreadMessageCount);
-  const displayLocale = useUiStore((s) => s.displayLocale);
+  // Messages are auto-translated into the reader's active UI language.
+  const displayLocale = i18n.language;
 
   // Deep-links from agent profile / listing detail / inquiry success:
   //   ?conversationId=… selects an exact thread by id.
