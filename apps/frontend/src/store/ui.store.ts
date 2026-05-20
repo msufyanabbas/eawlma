@@ -38,17 +38,15 @@ export type UiLanguage = string;
 
 interface UiState {
   language: UiLanguage;
-  // Display locale used by the message translation service. Defaults to the
-  // active UI language, but may be set to any 2-letter code (fr, es, de, …)
-  // so users can read incoming messages in their preferred reading language
-  // without forcing a full UI swap.
+  // Display locale used by the message translation service. Always mirrors
+  // the active UI language — incoming messages are auto-translated into the
+  // user's chosen UI language (the manual "translate into" picker was removed).
   displayLocale: string;
   themeMode: ThemeMode;
   sidebarOpen: boolean;
   notificationCount: number;
   unreadMessageCount: number;
   setLanguage: (lng: UiLanguage, userId?: string | null) => void;
-  setDisplayLocale: (locale: string) => void;
   setThemeMode: (mode: ThemeMode, userId?: string | null) => void;
   toggleThemeMode: (userId?: string | null) => void;
   setSidebarOpen: (open: boolean) => void;
@@ -95,7 +93,6 @@ export const useUiStore = create<UiState>()(
         invalidateLocaleSensitiveQueries();
         if (userId) syncToBackend({ preferredLanguage: language });
       },
-      setDisplayLocale: (displayLocale) => set({ displayLocale }),
       setThemeMode: (themeMode, userId) => {
         set({ themeMode });
         if (userId) syncToBackend({ preferredTheme: themeMode });
