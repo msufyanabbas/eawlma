@@ -3,6 +3,8 @@ import {
   View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert, Linking, Platform,
 } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import * as Clipboard from 'expo-clipboard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
@@ -33,11 +35,15 @@ export default function SettingsScreen({ navigation }: any) {
   const [pushEnabled, setPushEnabled] = useState(false);
   const [pushBusy, setPushBusy] = useState(false);
   const [emailEnabled, setEmailEnabled] = useState(true);
+  const [pushToken, setPushToken] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
     void Notifications.getPermissionsAsync().then((p) => {
       if (mounted) setPushEnabled(p.status === 'granted');
+    });
+    void AsyncStorage.getItem('eawlma.fcmToken').then((tok) => {
+      if (mounted) setPushToken(tok);
     });
     return () => {
       mounted = false;
@@ -207,6 +213,72 @@ export default function SettingsScreen({ navigation }: any) {
             </Text>
           </TouchableOpacity>
         )}
+
+        {__DEV__ && (
+          <View style={[styles.debugSection, {
+            backgroundColor: colors.surfaceVariant,
+            marginTop: SIZES.lg,
+            padding: SIZES.lg,
+            borderRadius: SIZES.borderRadiusLg,
+          }]}>
+            <Text style={[styles.debugTitle, { color: colors.text }]}>
+              🔔 Push Token Debug
+            </Text>
+            {pushToken ? (
+              <>
+                <Text style={[styles.debugToken, { color: colors.textSecondary }]} numberOfLines={3}>
+                  {pushToken}
+                </Text>
+                <TouchableOpacity
+                  style={[styles.debugBtn, { backgroundColor: colors.primary }]}
+                  onPress={async () => {
+                    await Clipboard.setStringAsync(pushToken);
+                    Alert.alert('Copied!', 'Token copied to clipboard');
+                  }}
+                >
+                  <Text style={{ color: '#FFF', fontWeight: '700' }}>
+                    Copy Token
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.debugBtn, { backgroundColor: '#22C55E', marginTop: SIZES.sm }]}
+                  onPress={() => NotificationService.scheduleLocalNotification(
+                    'Test Notification',
+                    'Push notifications are working! 🎉',
+                    { type: 'test' },
+                  )}
+                >
+                  <Text style={{ color: '#FFF', fontWeight: '700' }}>
+                    Send Test Notification
+                  </Text>
+                </TouchableOpacity>
+              </>
+            ) : (
+              <>
+                <Text style={[{ color: colors.error, marginBottom: SIZES.md }]}>
+                  No push token found
+                </Text>
+                <TouchableOpacity
+                  style={[styles.debugBtn, { backgroundColor: colors.primary }]}
+                  onPress={async () => {
+                    const token = await NotificationService.registerForPushNotifications();
+                    setPushToken(token);
+                    Alert.alert(
+                      token ? 'Success!' : 'Failed',
+                      token
+                        ? `Token: ${token.substring(0, 40)}...`
+                        : 'Could not get token. Check permissions.',
+                    );
+                  }}
+                >
+                  <Text style={{ color: '#FFF', fontWeight: '700' }}>
+                    Register for Push
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -285,4 +357,8 @@ const styles = StyleSheet.create({
   row: { alignItems: 'center', padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, ...SHADOWS.sm },
   icon: { width: 36, height: 36, borderRadius: SIZES.borderRadius, justifyContent: 'center', alignItems: 'center' },
   logoutBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, marginTop: SIZES.xl, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1 },
+  debugSection: { borderWidth: 1, borderColor: '#F59E0B', borderStyle: 'dashed' },
+  debugTitle: { fontSize: SIZES.body, fontWeight: '800', marginBottom: SIZES.md },
+  debugToken: { fontSize: 11, fontFamily: 'monospace', marginBottom: SIZES.md, lineHeight: 18 },
+  debugBtn: { padding: SIZES.md, borderRadius: SIZES.borderRadius, alignItems: 'center' },
 });
