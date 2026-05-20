@@ -27,7 +27,8 @@
     "stays": "Boenden",
     "shortTermStays": "Korttidsboenden",
     "hotels": "Hotell",
-    "chalets": "Stugor och gårdar"
+    "chalets": "Stugor och gårdar",
+    "about": "Om"
   },
   "dashboard": {
     "overview": "Översikt",
@@ -1348,5 +1349,154 @@
     "duplicate": "Duplicera",
     "deleteConfirmTitle": "Vill du ta bort {{count}} listor?",
     "deleteConfirmDescription": "Den här åtgärden tar bort listningen mjukt – den kommer inte längre att visas offentligt."
+  },
+  "agentReview": {
+    "postFailed": "Det gick inte att lägga upp recensionen",
+    "posting": "Lägger upp...",
+    "postReview": "Skriv recension"
+  },
+  "adminCommissions": {
+    "listing": "Lista",
+    "buyer": "Köpare",
+    "value": "Affärsvärde",
+    "platformEarn": "Plattform Tjäna",
+    "agentEarn": "Agent tjäna",
+    "status": "Status",
+    "closedAt": "Stängd",
+    "allCommissions": "Alla provisioner",
+    "all": "Alla"
+  },
+  "adminAudit": {
+    "timestamp": "Tidsstämpel",
+    "actor": "Skådespelare",
+    "action": "Åtgärd",
+    "entity": "Entitet",
+    "changed": "Ändrade fält",
+    "noMatches": "Inga matchande revisionsposter"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafikkällor",
+    "devices": "Enheter",
+    "inquiryFunnel": "Förfrågningstratt"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Dela vad som var användbart, professionellt eller kunde förbättra..."
+  },
+  "adminCommissionsPage": {
+    "title": "Plattformskommissioner",
+    "subtitle": "Totala intäkter, agentutbetalningar och uppdelning per transaktion."
+  },
+  "comparePage": {
+    "emptyTitle": "Inget att jämföra än"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-nyckel inte konfigurerad",
+    "missingKeyHint": "Ställ in VITE_GOOGLE_MAPS_API_KEY för att aktivera kartvyn.",
+    "loadFailed": "Det gick inte att ladda kartan"
+  },
+  "photoGallery": {
+    "close": "Stäng",
+    "previous": "Föregående bild",
+    "next": "Nästa bild"
+  },
+  "homeCategories": {
+    "all": "Alla",
+    "forSale": "Till salu",
+    "forRent": "Uthyres",
+    "apartments": "Lägenheter",
+    "villas": "Villor",
+    "land": "Land",
+    "chalets": "Chalets",
+    "farms": "Gårdar",
+    "restHouses": "Resthus",
+    "hotels": "Hotell",
+    "commercial": "Kommersiell",
+    "offices": "Kontor"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Lägenheter att hyra",
+    "villasForSale": "Villor till salu",
+    "landForSale": "Tomt till salu",
+    "chalets": "Chalets",
+    "restHouses": "Rasthus"
+  },
+  "homeFilters": {
+    "txAll": "Alla",
+    "txSale": "Försäljning",
+    "txRent": "Hyr",
+    "bedsAny": "Alla"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Listan hittades inte",
+    "helmetTitle": "Jämför listor"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Provisioner",
+    "revenueByMonth": "Intäkter per månad"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Visningar över tid"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotell",
+    "starSuffix": "{{n}}-stjärna",
+    "stayDetails": "Boendedetaljer",
+    "houseRules": "Husregler",
+    "maxGuests": "Max gäster",
+    "checkIn": "Incheckning",
+    "checkInFrom": "från {{time}}",
+    "checkOut": "Utcheckning",
+    "checkOutBy": "av {{time}}",
+    "cancellation": "Avbokning",
+    "whatThisPlaceOffers": "Vad den här platsen erbjuder"
+  },
+  "support": {
+    "title": "Stöd",
+    "adminSubtitle": "Triage och lös kundsupportbiljetter",
+    "myTickets": "Mina biljetter",
+    "newTicket": "Ny biljett",
+    "subject": "Ämne",
+    "description": "Detaljerad beskrivning",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Skicka biljett",
+    "reply": "Svara",
+    "noTickets": "Inga supportbiljetter",
+    "noTicketsPrompt": "Skapa en ny biljett för att få hjälp",
+    "adminEmptyHint": "Inga biljetter matchar de aktuella filtren.",
+    "createTicket": "Skapa biljett",
+    "originalDesc": "Originalbeskrivning:",
+    "supportTeam": "Supportteam",
+    "writeReply": "Skriv ditt svar...",
+    "closedHint": "Den här biljetten är stängd – ändra dess status ovan för att svara.",
+    "ticketCreated": "Supportbiljett skapades framgångsrikt",
+    "categories": {
+      "general": "Allmänt",
+      "technical": "Teknisk",
+      "billing": "Fakturering",
+      "listing": "Lista",
+      "account": "Konto",
+      "other": "Övrigt"
+    },
+    "statuses": {
+      "open": "Öppna",
+      "in_progress": "Pågår",
+      "resolved": "Löst",
+      "closed": "Stängd"
+    }
   }
 }

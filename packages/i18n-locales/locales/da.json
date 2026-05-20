@@ -27,7 +27,8 @@
     "stays": "Ophold",
     "shortTermStays": "Kortvarige ophold",
     "hotels": "Hoteller",
-    "chalets": "Hytter og gårde"
+    "chalets": "Hytter og gårde",
+    "about": "Om"
   },
   "dashboard": {
     "overview": "Oversigt",
@@ -1307,7 +1308,7 @@
     "land": "Jord",
     "chalet": "Chalet",
     "farm": "Gård",
-    "restHouse": "Rest House",
+    "restHouse": "Hvilehus",
     "office": "Kontor",
     "shop": "Shop",
     "warehouse": "Lager",
@@ -1324,7 +1325,7 @@
     "garden": "Have",
     "balcony": "Balkon",
     "maidRoom": "Maid Room",
-    "driverRoom": "Driver Room",
+    "driverRoom": "Førerværelse",
     "storage": "Lagerrum",
     "centralAC": "Central A/C",
     "internet": "Internet",
@@ -1348,5 +1349,154 @@
     "duplicate": "Dublet",
     "deleteConfirmTitle": "Vil du slette {{count}} fortegnelser?",
     "deleteConfirmDescription": "Denne handling soft-sletter fortegnelsen - den vises ikke længere offentligt."
+  },
+  "agentReview": {
+    "postFailed": "Kunne ikke sende anmeldelse",
+    "posting": "Sender...",
+    "postReview": "Indsend anmeldelse"
+  },
+  "adminCommissions": {
+    "listing": "Fortegnelse",
+    "buyer": "Køber",
+    "value": "Deal værdi",
+    "platformEarn": "Platform Tjen",
+    "agentEarn": "Agent Tjen",
+    "status": "Status",
+    "closedAt": "Lukket",
+    "allCommissions": "Alle provisioner",
+    "all": "Alle"
+  },
+  "adminAudit": {
+    "timestamp": "Tidsstempel",
+    "actor": "Skuespiller",
+    "action": "Handling",
+    "entity": "Enhed",
+    "changed": "Ændrede felter",
+    "noMatches": "Ingen matchende revisionsposter"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafikkilder",
+    "devices": "Enheder",
+    "inquiryFunnel": "Forespørgselstragt"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Del, hvad der var nyttigt, professionelt eller kunne forbedre..."
+  },
+  "adminCommissionsPage": {
+    "title": "Platformkommissioner",
+    "subtitle": "Samlet omsætning, agentudbetalinger og opdeling pr. transaktion."
+  },
+  "comparePage": {
+    "emptyTitle": "Intet at sammenligne endnu"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-nøgle er ikke konfigureret",
+    "missingKeyHint": "Indstil VITE_GOOGLE_MAPS_API_KEY for at aktivere kortvisningen.",
+    "loadFailed": "Kunne ikke indlæse kort"
+  },
+  "photoGallery": {
+    "close": "Luk",
+    "previous": "Forrige billede",
+    "next": "Næste billede"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Til salg",
+    "forRent": "Til leje",
+    "apartments": "Lejligheder",
+    "villas": "Villaer",
+    "land": "Land",
+    "chalets": "Hytter",
+    "farms": "Gårde",
+    "restHouses": "Hvilehuse",
+    "hotels": "Hoteller",
+    "commercial": "Kommerciel",
+    "offices": "Kontorer"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Lejligheder til leje",
+    "villasForSale": "Villaer til salg",
+    "landForSale": "Grund til salg",
+    "chalets": "Hytter",
+    "restHouses": "Hvilehuse"
+  },
+  "homeFilters": {
+    "txAll": "Alle",
+    "txSale": "Udsalg",
+    "txRent": "Leje",
+    "bedsAny": "Enhver"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Fortegnelse ikke fundet",
+    "helmetTitle": "Sammenlign lister"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Kommissioner",
+    "revenueByMonth": "Omsætning pr. måned"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Visninger over tid"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-stjerne",
+    "stayDetails": "Opholdsdetaljer",
+    "houseRules": "Husregler",
+    "maxGuests": "Max gæster",
+    "checkIn": "Check-in",
+    "checkInFrom": "fra {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "af {{time}}",
+    "cancellation": "Annullering",
+    "whatThisPlaceOffers": "Hvad dette sted tilbyder"
+  },
+  "support": {
+    "title": "Support",
+    "adminSubtitle": "Triage og løs kundesupportbilletter",
+    "myTickets": "Mine billetter",
+    "newTicket": "Ny billet",
+    "subject": "Emne",
+    "description": "Detaljeret beskrivelse",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Indsend billet",
+    "reply": "Svar",
+    "noTickets": "Ingen supportbilletter",
+    "noTicketsPrompt": "Opret en ny billet for at få hjælp",
+    "adminEmptyHint": "Ingen billetter matcher de aktuelle filtre.",
+    "createTicket": "Opret billet",
+    "originalDesc": "Original beskrivelse:",
+    "supportTeam": "Support Team",
+    "writeReply": "Skriv dit svar...",
+    "closedHint": "Denne billet er lukket - skift dens status ovenfor for at svare.",
+    "ticketCreated": "Supportbillet oprettet med succes",
+    "categories": {
+      "general": "Generelt",
+      "technical": "Teknisk",
+      "billing": "Fakturering",
+      "listing": "Fortegnelse",
+      "account": "Konto",
+      "other": "Andet"
+    },
+    "statuses": {
+      "open": "Åbn",
+      "in_progress": "Igangværende",
+      "resolved": "Løst",
+      "closed": "Lukket"
+    }
   }
 }

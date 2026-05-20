@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "{{count}} liste silinsin mi?",
     "deleteConfirmDescription": "Bu işlem, girişi geçici olarak siler; liste artık herkese açık olarak görünmez."
   },
+  "agentReview": {
+    "postFailed": "İnceleme yayınlanamadı",
+    "posting": "Yayınlanıyor…",
+    "postReview": "İnceleme sonrası"
+  },
+  "adminCommissions": {
+    "listing": "İlan",
+    "buyer": "Alıcı",
+    "value": "Fırsat Değeri",
+    "platformEarn": "Platform Kazan",
+    "agentEarn": "Temsilci Kazan",
+    "status": "Durum",
+    "closedAt": "Kapalı",
+    "allCommissions": "Tüm Komisyonlar",
+    "all": "Tüm"
+  },
+  "adminAudit": {
+    "timestamp": "Zaman damgası",
+    "actor": "Aktör",
+    "action": "Aksiyon",
+    "entity": "Varlık",
+    "changed": "Değiştirilen Alanlar",
+    "noMatches": "Eşleşen denetim girişi yok"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafik Kaynakları",
+    "devices": "Cihazlar",
+    "inquiryFunnel": "Sorgulama Hunisi"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyad, Cidde, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Neyin yararlı, profesyonel olduğunu veya geliştirilebileceğini paylaşın…"
+  },
+  "adminCommissionsPage": {
+    "title": "Platform komisyonları",
+    "subtitle": "Toplam gelir, temsilci ödemeleri ve işlem başına döküm."
+  },
+  "comparePage": {
+    "emptyTitle": "Henüz karşılaştırılacak bir şey yok"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Haritalar API anahtarı yapılandırılmadı",
+    "missingKeyHint": "Harita görünümünü etkinleştirmek için VITE_GOOGLE_MAPS_API_KEY'i ayarlayın.",
+    "loadFailed": "Harita yüklenemedi"
+  },
+  "photoGallery": {
+    "close": "Kapalı",
+    "previous": "Önceki fotoğraf",
+    "next": "Sonraki fotoğraf"
+  },
+  "homeCategories": {
+    "all": "Tüm",
+    "forSale": "Satılık",
+    "forRent": "Kiralık",
+    "apartments": "Daireler",
+    "villas": "Villalar",
+    "land": "Kara",
+    "chalets": "Dağ evleri",
+    "farms": "Çiftlikler",
+    "restHouses": "Dinlenme Evleri",
+    "hotels": "Oteller",
+    "commercial": "Reklam",
+    "offices": "Ofisler"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Kiralık daireler",
+    "villasForSale": "Satılık villalar",
+    "landForSale": "Satılık Arsa",
+    "chalets": "Dağ evleri",
+    "restHouses": "Dinlenme evleri"
+  },
+  "homeFilters": {
+    "txAll": "Tüm",
+    "txSale": "Satış",
+    "txRent": "Kira",
+    "bedsAny": "Herhangi"
+  },
+  "cities": {
+    "riyadh": "Riyad",
+    "jeddah": "Cidde",
+    "dammam": "Ed-Dammam",
+    "mecca": "Mekke",
+    "medina": "Medine",
+    "khobar": "Hobar",
+    "taif": "Taif",
+    "buraidah": "Büreyde"
+  },
+  "listingDetailPage": {
+    "notFound": "İlan bulunamadı",
+    "helmetTitle": "Listeleri karşılaştır"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Komisyonlar",
+    "revenueByMonth": "Aya göre gelir"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analitik",
+    "viewsOverTime": "Zaman içindeki görüntülemeler"
+  },
+  "listingDetail": {
+    "hotelLabel": "Otel",
+    "starSuffix": "{{n}}-yıldız",
+    "stayDetails": "Konaklama ayrıntıları",
+    "houseRules": "Ev kuralları",
+    "maxGuests": "Maksimum misafir",
+    "checkIn": "Giriş",
+    "checkInFrom": "{{time}} tarihinden itibaren",
+    "checkOut": "Çıkış yapmak",
+    "checkOutBy": "{{time}} kadar",
+    "cancellation": "İptal",
+    "whatThisPlaceOffers": "Burası neler sunuyor"
+  },
+  "support": {
+    "title": "Destek",
+    "adminSubtitle": "Müşteri destek bildirimlerini önceliklendirin ve çözümleyin",
+    "myTickets": "Biletlerim",
+    "newTicket": "Yeni Bilet",
+    "subject": "Ders",
+    "description": "Detaylı Açıklama",
+    "category": "Kategori",
+    "status": "Durum",
+    "submit": "Bilet Gönder",
+    "reply": "Cevap vermek",
+    "noTickets": "Destek bileti yok",
+    "noTicketsPrompt": "Yardım almak için yeni bir bilet oluşturun",
+    "adminEmptyHint": "Mevcut filtrelerle eşleşen bilet yok.",
+    "createTicket": "Bilet Oluştur",
+    "originalDesc": "Orijinal açıklama:",
+    "supportTeam": "Destek Ekibi",
+    "writeReply": "Cevabınızı yazın…",
+    "closedHint": "Bu bildirim kapalı; yanıtlamak için yukarıdaki durumunu değiştirin.",
+    "ticketCreated": "Destek bileti başarıyla oluşturuldu",
+    "categories": {
+      "general": "Genel",
+      "technical": "Teknik",
+      "billing": "Faturalandırma",
+      "listing": "İlan",
+      "account": "Hesap",
+      "other": "Diğer"
+    },
+    "statuses": {
+      "open": "Açık",
+      "in_progress": "Devam etmekte",
+      "resolved": "Çözüldü",
+      "closed": "Kapalı"
+    }
+  },
   "saved": {
     "title": "Kaydedildi",
     "empty": "Kaydedilmiş mülk yok",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Ödeme İşleme Alındı",
     "dispute_resolved": "Anlaşmazlık Çözüldü",
     "system": "Sistem"
-  },
-  "support": {
-    "title": "Destek",
-    "myTickets": "Biletlerim",
-    "newTicket": "Yeni Bilet",
-    "subject": "Ders",
-    "description": "Detaylı Açıklama",
-    "category": "Kategori",
-    "status": "Durum",
-    "submit": "Bilet Gönder",
-    "reply": "Cevap vermek",
-    "noTickets": "Destek bileti yok",
-    "noTicketsPrompt": "Yardım almak için yeni bir bilet oluşturun",
-    "createTicket": "Bilet Oluştur",
-    "originalDesc": "Orijinal açıklama:",
-    "supportTeam": "Destek Ekibi",
-    "writeReply": "Cevabınızı yazın…",
-    "ticketCreated": "Destek bileti başarıyla oluşturuldu",
-    "categories": {
-      "general": "Genel",
-      "technical": "Teknik",
-      "billing": "Faturalandırma",
-      "listing": "Listeleme",
-      "account": "Hesap",
-      "other": "Diğer"
-    },
-    "statuses": {
-      "open": "Açık",
-      "in_progress": "Devam etmekte",
-      "resolved": "Çözüldü",
-      "closed": "Kapalı"
-    },
-    "adminSubtitle": "Müşteri destek bildirimlerini önceliklendirin ve çözümleyin",
-    "adminEmptyHint": "Mevcut filtrelerle eşleşen bilet yok.",
-    "closedHint": "Bu bildirim kapalı; yanıtlamak için yukarıdaki durumunu değiştirin."
-  },
-  "agentReview": {
-    "postFailed": "İnceleme yayınlanamadı",
-    "posting": "Yayınlanıyor…",
-    "postReview": "İnceleme sonrası"
-  },
-  "adminCommissions": {
-    "listing": "Listeleme",
-    "buyer": "Alıcı",
-    "value": "Fırsat Değeri",
-    "platformEarn": "Platform Kazan",
-    "agentEarn": "Temsilci Kazan",
-    "status": "Durum",
-    "closedAt": "Kapalı",
-    "allCommissions": "Tüm Komisyonlar",
-    "all": "Tüm"
-  },
-  "adminAudit": {
-    "timestamp": "Zaman damgası",
-    "actor": "Aktör",
-    "action": "Aksiyon",
-    "entity": "Varlık",
-    "changed": "Değiştirilen Alanlar",
-    "noMatches": "Eşleşen denetim girişi yok"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Trafik Kaynakları",
-    "devices": "Cihazlar",
-    "inquiryFunnel": "Sorgulama Hunisi"
-  },
-  "listingDetail": {
-    "hotelLabel": "Otel",
-    "starSuffix": "{{n}}-yıldız",
-    "stayDetails": "Konaklama ayrıntıları",
-    "houseRules": "Ev kuralları",
-    "maxGuests": "Maksimum misafir",
-    "checkIn": "Giriş",
-    "checkInFrom": "{{time}} tarihinden itibaren",
-    "checkOut": "Çıkış yapmak",
-    "checkOutBy": "{{time}} kadar",
-    "cancellation": "İptal",
-    "whatThisPlaceOffers": "Burası neler sunuyor"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riyad, Cidde, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Neyin yararlı, profesyonel olduğunu veya geliştirilebileceğini paylaşın…"
-  },
-  "adminCommissionsPage": {
-    "title": "Platform komisyonları",
-    "subtitle": "Toplam gelir, temsilci ödemeleri ve işlem başına döküm."
-  },
-  "comparePage": {
-    "emptyTitle": "Henüz karşılaştırılacak bir şey yok"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Google Haritalar API anahtarı yapılandırılmadı",
-    "missingKeyHint": "Harita görünümünü etkinleştirmek için VITE_GOOGLE_MAPS_API_KEY'i ayarlayın.",
-    "loadFailed": "Harita yüklenemedi"
-  },
-  "photoGallery": {
-    "close": "Kapalı",
-    "previous": "Önceki fotoğraf",
-    "next": "Sonraki fotoğraf"
-  },
-  "homeCategories": {
-    "all": "Tüm",
-    "forSale": "Satılık",
-    "forRent": "Kiralık",
-    "apartments": "Daireler",
-    "villas": "Villalar",
-    "land": "Kara",
-    "chalets": "Dağ evleri",
-    "farms": "Çiftlikler",
-    "restHouses": "Dinlenme Evleri",
-    "hotels": "Oteller",
-    "commercial": "Reklam",
-    "offices": "Ofisler"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Kiralık daireler",
-    "villasForSale": "Satılık villalar",
-    "landForSale": "Satılık Arsa",
-    "chalets": "Dağ evleri",
-    "restHouses": "Dinlenme evleri"
-  },
-  "homeFilters": {
-    "txAll": "Tüm",
-    "txSale": "Satış",
-    "txRent": "Kira",
-    "bedsAny": "Herhangi"
-  },
-  "cities": {
-    "riyadh": "Riyad",
-    "jeddah": "Cidde",
-    "dammam": "Ed-Dammam",
-    "mecca": "Mekke",
-    "medina": "Medine",
-    "khobar": "Hobar",
-    "taif": "Taif",
-    "buraidah": "Büreyde"
-  },
-  "listingDetailPage": {
-    "notFound": "İlan bulunamadı",
-    "helmetTitle": "Listeleri karşılaştır"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "Komisyonlar",
-    "revenueByMonth": "Aya göre gelir"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Analitik",
-    "viewsOverTime": "Zaman içindeki görüntülemeler"
   }
 }

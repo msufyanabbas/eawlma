@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "{{count}} జాబితా(ల)ని తొలగించాలా?",
     "deleteConfirmDescription": "ఈ చర్య జాబితాను సాఫ్ట్-తొలగిస్తుంది - ఇది ఇకపై పబ్లిక్‌గా కనిపించదు."
   },
+  "agentReview": {
+    "postFailed": "సమీక్షను పోస్ట్ చేయడం సాధ్యపడలేదు",
+    "posting": "పోస్ట్ చేస్తోంది...",
+    "postReview": "సమీక్షను పోస్ట్ చేయండి"
+  },
+  "adminCommissions": {
+    "listing": "జాబితా",
+    "buyer": "కొనుగోలుదారు",
+    "value": "డీల్ విలువ",
+    "platformEarn": "ప్లాట్‌ఫారమ్ సంపాదించండి",
+    "agentEarn": "ఏజెంట్ సంపాదిస్తారు",
+    "status": "స్థితి",
+    "closedAt": "మూసివేయబడింది",
+    "allCommissions": "అన్ని కమీషన్లు",
+    "all": "అన్నీ"
+  },
+  "adminAudit": {
+    "timestamp": "సమయముద్ర",
+    "actor": "నటుడు",
+    "action": "చర్య",
+    "entity": "ఎంటిటీ",
+    "changed": "మారిన ఫీల్డ్స్",
+    "noMatches": "సరిపోలే ఆడిట్ ఎంట్రీలు లేవు"
+  },
+  "adminAnalytics": {
+    "trafficSources": "ట్రాఫిక్ మూలాలు",
+    "devices": "పరికరాలు",
+    "inquiryFunnel": "ఎంక్వైరీ ఫన్నెల్"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "రియాద్, జెడ్డా, దమ్మామ్…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "ఉపయోగకరమైనవి, వృత్తిపరమైనవి లేదా మెరుగుపరచగలవాటిని షేర్ చేయండి..."
+  },
+  "adminCommissionsPage": {
+    "title": "వేదిక కమీషన్లు",
+    "subtitle": "మొత్తం రాబడి, ఏజెంట్ చెల్లింపులు మరియు ప్రతి లావాదేవీ విచ్ఛిన్నం."
+  },
+  "comparePage": {
+    "emptyTitle": "ఇంకా పోల్చడానికి ఏమీ లేదు"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API కీ కాన్ఫిగర్ చేయబడలేదు",
+    "missingKeyHint": "మ్యాప్ వీక్షణను ప్రారంభించడానికి VITE_GOOGLE_MAPS_API_KEYని సెట్ చేయండి.",
+    "loadFailed": "మ్యాప్‌ను లోడ్ చేయడంలో విఫలమైంది"
+  },
+  "photoGallery": {
+    "close": "మూసివేయి",
+    "previous": "మునుపటి ఫోటో",
+    "next": "తదుపరి ఫోటో"
+  },
+  "homeCategories": {
+    "all": "అన్నీ",
+    "forSale": "అమ్మకానికి",
+    "forRent": "అద్దెకు",
+    "apartments": "అపార్టుమెంట్లు",
+    "villas": "విల్లాలు",
+    "land": "భూమి",
+    "chalets": "చాలెట్లు",
+    "farms": "పొలాలు",
+    "restHouses": "విశ్రాంతి గృహాలు",
+    "hotels": "హోటల్స్",
+    "commercial": "వాణిజ్యపరమైన",
+    "offices": "కార్యాలయాలు"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "అపార్టుమెంట్లు అద్దెకు",
+    "villasForSale": "అమ్మకానికి విల్లాలు",
+    "landForSale": "భూమి అమ్మకానికి",
+    "chalets": "చాలెట్లు",
+    "restHouses": "విశ్రాంతి గృహాలు"
+  },
+  "homeFilters": {
+    "txAll": "అన్నీ",
+    "txSale": "అమ్మకం",
+    "txRent": "అద్దె",
+    "bedsAny": "ఏదైనా"
+  },
+  "cities": {
+    "riyadh": "రియాద్",
+    "jeddah": "జెడ్డా",
+    "dammam": "దమ్మామ్",
+    "mecca": "మక్కా",
+    "medina": "మదీనా",
+    "khobar": "ఖోబార్",
+    "taif": "తైఫ్",
+    "buraidah": "బురైదా"
+  },
+  "listingDetailPage": {
+    "notFound": "జాబితా కనుగొనబడలేదు",
+    "helmetTitle": "జాబితాలను సరిపోల్చండి"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "కమీషన్లు",
+    "revenueByMonth": "నెలవారీ ఆదాయం"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "విశ్లేషణలు",
+    "viewsOverTime": "కాలక్రమేణా వీక్షణలు"
+  },
+  "listingDetail": {
+    "hotelLabel": "హోటల్",
+    "starSuffix": "{{n}}-నక్షత్రం",
+    "stayDetails": "స్టే వివరాలు",
+    "houseRules": "గృహ నియమాలు",
+    "maxGuests": "గరిష్ట అతిథులు",
+    "checkIn": "చెక్-ఇన్",
+    "checkInFrom": "{{time}} నుండి",
+    "checkOut": "చెక్-అవుట్",
+    "checkOutBy": "{{time}} ద్వారా",
+    "cancellation": "రద్దు",
+    "whatThisPlaceOffers": "ఈ స్థలం ఏమి అందిస్తుంది"
+  },
+  "support": {
+    "title": "మద్దతు",
+    "adminSubtitle": "కస్టమర్ సపోర్ట్ టిక్కెట్‌లను ట్రయాజ్ చేయండి మరియు పరిష్కరించండి",
+    "myTickets": "నా టిక్కెట్లు",
+    "newTicket": "కొత్త టికెట్",
+    "subject": "విషయం",
+    "description": "వివరణాత్మక వివరణ",
+    "category": "వర్గం",
+    "status": "స్థితి",
+    "submit": "టికెట్ సమర్పించండి",
+    "reply": "ప్రత్యుత్తరం ఇవ్వండి",
+    "noTickets": "మద్దతు టిక్కెట్లు లేవు",
+    "noTicketsPrompt": "సహాయం పొందడానికి కొత్త టిక్కెట్‌ని సృష్టించండి",
+    "adminEmptyHint": "ప్రస్తుత ఫిల్టర్‌లకు టిక్కెట్లు సరిపోలలేదు.",
+    "createTicket": "టికెట్ సృష్టించండి",
+    "originalDesc": "అసలు వివరణ:",
+    "supportTeam": "మద్దతు బృందం",
+    "writeReply": "మీ సమాధానం రాయండి...",
+    "closedHint": "ఈ టిక్కెట్ మూసివేయబడింది - ప్రత్యుత్తరం ఇవ్వడానికి పైన ఉన్న దాని స్థితిని మార్చండి.",
+    "ticketCreated": "మద్దతు టిక్కెట్ విజయవంతంగా సృష్టించబడింది",
+    "categories": {
+      "general": "జనరల్",
+      "technical": "సాంకేతిక",
+      "billing": "బిల్లింగ్",
+      "listing": "జాబితా",
+      "account": "ఖాతా",
+      "other": "ఇతర"
+    },
+    "statuses": {
+      "open": "తెరవండి",
+      "in_progress": "పురోగతిలో ఉంది",
+      "resolved": "పరిష్కరించబడింది",
+      "closed": "మూసివేయబడింది"
+    }
+  },
   "saved": {
     "title": "సేవ్ చేయబడింది",
     "empty": "సేవ్ చేయబడిన ప్రాపర్టీలు లేవు",
@@ -1737,154 +1886,5 @@
     "payout_processed": "చెల్లింపు ప్రాసెస్ చేయబడింది",
     "dispute_resolved": "వివాదం పరిష్కరించబడింది",
     "system": "వ్యవస్థ"
-  },
-  "support": {
-    "title": "మద్దతు",
-    "myTickets": "నా టిక్కెట్లు",
-    "newTicket": "కొత్త టికెట్",
-    "subject": "విషయం",
-    "description": "వివరణాత్మక వివరణ",
-    "category": "వర్గం",
-    "status": "స్థితి",
-    "submit": "టికెట్ సమర్పించండి",
-    "reply": "ప్రత్యుత్తరం ఇవ్వండి",
-    "noTickets": "మద్దతు టిక్కెట్లు లేవు",
-    "noTicketsPrompt": "సహాయం పొందడానికి కొత్త టిక్కెట్‌ని సృష్టించండి",
-    "createTicket": "టికెట్ సృష్టించండి",
-    "originalDesc": "అసలు వివరణ:",
-    "supportTeam": "మద్దతు బృందం",
-    "writeReply": "మీ సమాధానం రాయండి...",
-    "ticketCreated": "మద్దతు టిక్కెట్ విజయవంతంగా సృష్టించబడింది",
-    "categories": {
-      "general": "జనరల్",
-      "technical": "సాంకేతిక",
-      "billing": "బిల్లింగ్",
-      "listing": "జాబితా",
-      "account": "ఖాతా",
-      "other": "ఇతర"
-    },
-    "statuses": {
-      "open": "తెరవండి",
-      "in_progress": "పురోగతిలో ఉంది",
-      "resolved": "పరిష్కరించబడింది",
-      "closed": "మూసివేయబడింది"
-    },
-    "adminSubtitle": "కస్టమర్ సపోర్ట్ టిక్కెట్‌లను ట్రయాజ్ చేయండి మరియు పరిష్కరించండి",
-    "adminEmptyHint": "ప్రస్తుత ఫిల్టర్‌లకు టిక్కెట్లు సరిపోలలేదు.",
-    "closedHint": "ఈ టిక్కెట్ మూసివేయబడింది - ప్రత్యుత్తరం ఇవ్వడానికి పైన ఉన్న దాని స్థితిని మార్చండి."
-  },
-  "agentReview": {
-    "postFailed": "సమీక్షను పోస్ట్ చేయడం సాధ్యపడలేదు",
-    "posting": "పోస్ట్ చేస్తోంది...",
-    "postReview": "సమీక్షను పోస్ట్ చేయండి"
-  },
-  "adminCommissions": {
-    "listing": "జాబితా",
-    "buyer": "కొనుగోలుదారు",
-    "value": "డీల్ విలువ",
-    "platformEarn": "ప్లాట్‌ఫారమ్ సంపాదించండి",
-    "agentEarn": "ఏజెంట్ సంపాదిస్తారు",
-    "status": "స్థితి",
-    "closedAt": "మూసివేయబడింది",
-    "allCommissions": "అన్ని కమీషన్లు",
-    "all": "అన్నీ"
-  },
-  "adminAudit": {
-    "timestamp": "సమయముద్ర",
-    "actor": "నటుడు",
-    "action": "చర్య",
-    "entity": "ఎంటిటీ",
-    "changed": "మారిన ఫీల్డ్స్",
-    "noMatches": "సరిపోలే ఆడిట్ ఎంట్రీలు లేవు"
-  },
-  "adminAnalytics": {
-    "trafficSources": "ట్రాఫిక్ మూలాలు",
-    "devices": "పరికరాలు",
-    "inquiryFunnel": "ఎంక్వైరీ ఫన్నెల్"
-  },
-  "listingDetail": {
-    "hotelLabel": "హోటల్",
-    "starSuffix": "{{n}}-నక్షత్రం",
-    "stayDetails": "స్టే వివరాలు",
-    "houseRules": "గృహ నియమాలు",
-    "maxGuests": "గరిష్ట అతిథులు",
-    "checkIn": "చెక్-ఇన్",
-    "checkInFrom": "{{time}} నుండి",
-    "checkOut": "చెక్-అవుట్",
-    "checkOutBy": "{{time}} ద్వారా",
-    "cancellation": "రద్దు",
-    "whatThisPlaceOffers": "ఈ స్థలం ఏమి అందిస్తుంది"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "రియాద్, జెడ్డా, దమ్మామ్…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "ఉపయోగకరమైనవి, వృత్తిపరమైనవి లేదా మెరుగుపరచగలవాటిని షేర్ చేయండి..."
-  },
-  "adminCommissionsPage": {
-    "title": "వేదిక కమీషన్లు",
-    "subtitle": "మొత్తం రాబడి, ఏజెంట్ చెల్లింపులు మరియు ప్రతి లావాదేవీ విచ్ఛిన్నం."
-  },
-  "comparePage": {
-    "emptyTitle": "ఇంకా పోల్చడానికి ఏమీ లేదు"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Google Maps API కీ కాన్ఫిగర్ చేయబడలేదు",
-    "missingKeyHint": "మ్యాప్ వీక్షణను ప్రారంభించడానికి VITE_GOOGLE_MAPS_API_KEYని సెట్ చేయండి.",
-    "loadFailed": "మ్యాప్‌ను లోడ్ చేయడంలో విఫలమైంది"
-  },
-  "photoGallery": {
-    "close": "మూసివేయి",
-    "previous": "మునుపటి ఫోటో",
-    "next": "తదుపరి ఫోటో"
-  },
-  "homeCategories": {
-    "all": "అన్నీ",
-    "forSale": "అమ్మకానికి",
-    "forRent": "అద్దెకు",
-    "apartments": "అపార్టుమెంట్లు",
-    "villas": "విల్లాలు",
-    "land": "భూమి",
-    "chalets": "చాలెట్లు",
-    "farms": "పొలాలు",
-    "restHouses": "విశ్రాంతి గృహాలు",
-    "hotels": "హోటల్స్",
-    "commercial": "వాణిజ్యపరమైన",
-    "offices": "కార్యాలయాలు"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "అపార్టుమెంట్లు అద్దెకు",
-    "villasForSale": "అమ్మకానికి విల్లాలు",
-    "landForSale": "భూమి అమ్మకానికి",
-    "chalets": "చాలెట్లు",
-    "restHouses": "విశ్రాంతి గృహాలు"
-  },
-  "homeFilters": {
-    "txAll": "అన్నీ",
-    "txSale": "అమ్మకం",
-    "txRent": "అద్దె",
-    "bedsAny": "ఏదైనా"
-  },
-  "cities": {
-    "riyadh": "రియాద్",
-    "jeddah": "జెడ్డా",
-    "dammam": "దమ్మామ్",
-    "mecca": "మక్కా",
-    "medina": "మదీనా",
-    "khobar": "ఖోబార్",
-    "taif": "తైఫ్",
-    "buraidah": "బురైదా"
-  },
-  "listingDetailPage": {
-    "notFound": "జాబితా కనుగొనబడలేదు",
-    "helmetTitle": "జాబితాలను సరిపోల్చండి"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "కమీషన్లు",
-    "revenueByMonth": "నెలవారీ ఆదాయం"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "విశ్లేషణలు",
-    "viewsOverTime": "కాలక్రమేణా వీక్షణలు"
   }
 }

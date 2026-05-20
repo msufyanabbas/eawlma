@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "Excluir {{count}} listagens?",
     "deleteConfirmDescription": "Esta ação exclui a listagem de forma reversível – ela não aparecerá mais publicamente."
   },
+  "agentReview": {
+    "postFailed": "Não foi possível postar a avaliação",
+    "posting": "Postando…",
+    "postReview": "Publicar revisão"
+  },
+  "adminCommissions": {
+    "listing": "Listagem",
+    "buyer": "Comprador",
+    "value": "Valor do negócio",
+    "platformEarn": "Ganho de plataforma",
+    "agentEarn": "Agente ganha",
+    "status": "Status",
+    "closedAt": "Fechado",
+    "allCommissions": "Todas as comissões",
+    "all": "Todos"
+  },
+  "adminAudit": {
+    "timestamp": "Carimbo de data e hora",
+    "actor": "Ator",
+    "action": "Ação",
+    "entity": "Entidade",
+    "changed": "Campos alterados",
+    "noMatches": "Nenhuma entrada de auditoria correspondente"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Fontes de tráfego",
+    "devices": "Dispositivos",
+    "inquiryFunnel": "Funil de consulta"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riade, Jidá, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Compartilhe o que foi útil, profissional ou poderia melhorar…"
+  },
+  "adminCommissionsPage": {
+    "title": "Comissões de plataforma",
+    "subtitle": "Receita total, pagamentos de agentes e detalhamento por transação."
+  },
+  "comparePage": {
+    "emptyTitle": "Nada para comparar ainda"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Chave de API do Google Maps não configurada",
+    "missingKeyHint": "Defina VITE_GOOGLE_MAPS_API_KEY para ativar a visualização do mapa.",
+    "loadFailed": "Falha ao carregar o mapa"
+  },
+  "photoGallery": {
+    "close": "Fechar",
+    "previous": "Foto anterior",
+    "next": "Próxima foto"
+  },
+  "homeCategories": {
+    "all": "Todos",
+    "forSale": "À venda",
+    "forRent": "Para alugar",
+    "apartments": "Apartamentos",
+    "villas": "Vilas",
+    "land": "Terra",
+    "chalets": "Chalés",
+    "farms": "Fazendas",
+    "restHouses": "Casas de repouso",
+    "hotels": "Hotéis",
+    "commercial": "Comercial",
+    "offices": "Escritórios"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartamentos para alugar",
+    "villasForSale": "Vilas à venda",
+    "landForSale": "Terreno à venda",
+    "chalets": "Chalés",
+    "restHouses": "Casas de repouso"
+  },
+  "homeFilters": {
+    "txAll": "Todos",
+    "txSale": "Oferta",
+    "txRent": "Aluguel",
+    "bedsAny": "Qualquer"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jidá",
+    "dammam": "Droga",
+    "mecca": "Meca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Listagem não encontrada",
+    "helmetTitle": "Comparar listagens"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Comissões",
+    "revenueByMonth": "Receita por mês"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Análise",
+    "viewsOverTime": "Visualizações ao longo do tempo"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-estrela",
+    "stayDetails": "Detalhes da estadia",
+    "houseRules": "Regras da casa",
+    "maxGuests": "Máximo de convidados",
+    "checkIn": "Check-in",
+    "checkInFrom": "de {{hora}}",
+    "checkOut": "Confira",
+    "checkOutBy": "às {{hora}}",
+    "cancellation": "Cancelamento",
+    "whatThisPlaceOffers": "O que este lugar oferece"
+  },
+  "support": {
+    "title": "Apoiar",
+    "adminSubtitle": "Triagem e resolução de tickets de suporte ao cliente",
+    "myTickets": "Meus ingressos",
+    "newTicket": "Novo ingresso",
+    "subject": "Assunto",
+    "description": "Descrição detalhada",
+    "category": "Categoria",
+    "status": "Status",
+    "submit": "Enviar tíquete",
+    "reply": "Responder",
+    "noTickets": "Sem tickets de suporte",
+    "noTicketsPrompt": "Crie um novo ticket para obter ajuda",
+    "adminEmptyHint": "Nenhum ticket corresponde aos filtros atuais.",
+    "createTicket": "Criar ingresso",
+    "originalDesc": "Descrição original:",
+    "supportTeam": "Equipe de suporte",
+    "writeReply": "Escreva sua resposta…",
+    "closedHint": "Este ticket está fechado — altere seu status acima para responder.",
+    "ticketCreated": "Ticket de suporte criado com sucesso",
+    "categories": {
+      "general": "Em geral",
+      "technical": "Técnico",
+      "billing": "Cobrança",
+      "listing": "Listagem",
+      "account": "Conta",
+      "other": "Outro"
+    },
+    "statuses": {
+      "open": "Abrir",
+      "in_progress": "Em andamento",
+      "resolved": "Resolvido",
+      "closed": "Fechado"
+    }
+  },
   "saved": {
     "title": "Salvo",
     "empty": "Nenhuma propriedade salva",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Pagamento processado",
     "dispute_resolved": "Disputa resolvida",
     "system": "Sistema"
-  },
-  "support": {
-    "title": "Apoiar",
-    "myTickets": "Meus ingressos",
-    "newTicket": "Novo ingresso",
-    "subject": "Assunto",
-    "description": "Descrição detalhada",
-    "category": "Categoria",
-    "status": "Status",
-    "submit": "Enviar tíquete",
-    "reply": "Responder",
-    "noTickets": "Sem tickets de suporte",
-    "noTicketsPrompt": "Crie um novo ticket para obter ajuda",
-    "createTicket": "Criar ingresso",
-    "originalDesc": "Descrição original:",
-    "supportTeam": "Equipe de suporte",
-    "writeReply": "Escreva sua resposta…",
-    "ticketCreated": "Ticket de suporte criado com sucesso",
-    "categories": {
-      "general": "Em geral",
-      "technical": "Técnico",
-      "billing": "Cobrança",
-      "listing": "Listagem",
-      "account": "Conta",
-      "other": "Outro"
-    },
-    "statuses": {
-      "open": "Abrir",
-      "in_progress": "Em andamento",
-      "resolved": "Resolvido",
-      "closed": "Fechado"
-    },
-    "adminSubtitle": "Triagem e resolução de tickets de suporte ao cliente",
-    "adminEmptyHint": "Nenhum ticket corresponde aos filtros atuais.",
-    "closedHint": "Este ticket está fechado — altere seu status acima para responder."
-  },
-  "agentReview": {
-    "postFailed": "Não foi possível postar a avaliação",
-    "posting": "Postando…",
-    "postReview": "Publicar revisão"
-  },
-  "adminCommissions": {
-    "listing": "Listagem",
-    "buyer": "Comprador",
-    "value": "Valor do negócio",
-    "platformEarn": "Ganho de plataforma",
-    "agentEarn": "Agente ganha",
-    "status": "Status",
-    "closedAt": "Fechado",
-    "allCommissions": "Todas as comissões",
-    "all": "Todos"
-  },
-  "adminAudit": {
-    "timestamp": "Carimbo de data e hora",
-    "actor": "Ator",
-    "action": "Ação",
-    "entity": "Entidade",
-    "changed": "Campos alterados",
-    "noMatches": "Nenhuma entrada de auditoria correspondente"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Fontes de tráfego",
-    "devices": "Dispositivos",
-    "inquiryFunnel": "Funil de consulta"
-  },
-  "listingDetail": {
-    "hotelLabel": "Hotel",
-    "starSuffix": "{{n}}-estrela",
-    "stayDetails": "Detalhes da estadia",
-    "houseRules": "Regras da casa",
-    "maxGuests": "Máximo de convidados",
-    "checkIn": "Check-in",
-    "checkInFrom": "de {{hora}}",
-    "checkOut": "Confira",
-    "checkOutBy": "às {{hora}}",
-    "cancellation": "Cancelamento",
-    "whatThisPlaceOffers": "O que este lugar oferece"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riade, Jidá, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Compartilhe o que foi útil, profissional ou poderia melhorar…"
-  },
-  "adminCommissionsPage": {
-    "title": "Comissões de plataforma",
-    "subtitle": "Receita total, pagamentos de agentes e detalhamento por transação."
-  },
-  "comparePage": {
-    "emptyTitle": "Nada para comparar ainda"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Chave de API do Google Maps não configurada",
-    "missingKeyHint": "Defina VITE_GOOGLE_MAPS_API_KEY para ativar a visualização do mapa.",
-    "loadFailed": "Falha ao carregar o mapa"
-  },
-  "photoGallery": {
-    "close": "Fechar",
-    "previous": "Foto anterior",
-    "next": "Próxima foto"
-  },
-  "homeCategories": {
-    "all": "Todos",
-    "forSale": "À venda",
-    "forRent": "Para alugar",
-    "apartments": "Apartamentos",
-    "villas": "Vilas",
-    "land": "Terra",
-    "chalets": "Chalés",
-    "farms": "Fazendas",
-    "restHouses": "Casas de repouso",
-    "hotels": "Hotéis",
-    "commercial": "Comercial",
-    "offices": "Escritórios"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Apartamentos para alugar",
-    "villasForSale": "Vilas à venda",
-    "landForSale": "Terreno à venda",
-    "chalets": "Chalés",
-    "restHouses": "Casas de repouso"
-  },
-  "homeFilters": {
-    "txAll": "Todos",
-    "txSale": "Oferta",
-    "txRent": "Aluguel",
-    "bedsAny": "Qualquer"
-  },
-  "cities": {
-    "riyadh": "Riad",
-    "jeddah": "Jidá",
-    "dammam": "Droga",
-    "mecca": "Meca",
-    "medina": "Medina",
-    "khobar": "Khobar",
-    "taif": "Taif",
-    "buraidah": "Buraidah"
-  },
-  "listingDetailPage": {
-    "notFound": "Listagem não encontrada",
-    "helmetTitle": "Comparar listagens"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "Comissões",
-    "revenueByMonth": "Receita por mês"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Análise",
-    "viewsOverTime": "Visualizações ao longo do tempo"
   }
 }

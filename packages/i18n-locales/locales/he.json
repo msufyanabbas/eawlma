@@ -27,7 +27,8 @@
     "stays": "אירוח",
     "shortTermStays": "אירוח לטווח קצר",
     "hotels": "מלונות",
-    "chalets": "צימרים וחוות"
+    "chalets": "צימרים וחוות",
+    "about": "אודות"
   },
   "dashboard": {
     "overview": "סקירה",
@@ -1348,5 +1349,154 @@
     "duplicate": "שכפול",
     "deleteConfirmTitle": "למחוק {{count}} רישומים?",
     "deleteConfirmDescription": "פעולה זו מוחקת את הרישום בצורה רכה - היא לא תופיע יותר בפומבי."
+  },
+  "agentReview": {
+    "postFailed": "לא ניתן היה לפרסם ביקורת",
+    "posting": "מפרסם...",
+    "postReview": "פוסט ביקורת"
+  },
+  "adminCommissions": {
+    "listing": "רישום",
+    "buyer": "קונה",
+    "value": "ערך עסקה",
+    "platformEarn": "פלטפורמה להרוויח",
+    "agentEarn": "סוכן הרוויח",
+    "status": "סטָטוּס",
+    "closedAt": "סגור",
+    "allCommissions": "כל העמלות",
+    "all": "הכל"
+  },
+  "adminAudit": {
+    "timestamp": "חותמת זמן",
+    "actor": "שחקן",
+    "action": "פעולה",
+    "entity": "ישות",
+    "changed": "שדות השתנו",
+    "noMatches": "אין ערכי ביקורת תואמים"
+  },
+  "adminAnalytics": {
+    "trafficSources": "מקורות תנועה",
+    "devices": "התקנים",
+    "inquiryFunnel": "משפך חקירה"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ריאד, ג'דה, דמאם..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "שתף מה היה מועיל, מקצועי או יכול לשפר..."
+  },
+  "adminCommissionsPage": {
+    "title": "עמלות פלטפורמה",
+    "subtitle": "סך ההכנסות, תשלומי סוכנים ופירוט לכל עסקה."
+  },
+  "comparePage": {
+    "emptyTitle": "אין עדיין מה להשוות"
+  },
+  "searchMap": {
+    "missingKeyTitle": "מפתח API של מפות Google לא מוגדר",
+    "missingKeyHint": "הגדר את VITE_GOOGLE_MAPS_API_KEY כדי לאפשר את תצוגת המפה.",
+    "loadFailed": "טעינת המפה נכשלה"
+  },
+  "photoGallery": {
+    "close": "סגור",
+    "previous": "תמונה קודמת",
+    "next": "התמונה הבאה"
+  },
+  "homeCategories": {
+    "all": "הכל",
+    "forSale": "לִמְכִירָה",
+    "forRent": "להשכרה",
+    "apartments": "דירות",
+    "villas": "וילות",
+    "land": "קרקע",
+    "chalets": "בקתות",
+    "farms": "חוות",
+    "restHouses": "בתי מנוחה",
+    "hotels": "מלונות",
+    "commercial": "מסחרי",
+    "offices": "משרדים"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "דירות להשכרה",
+    "villasForSale": "וילות למכירה",
+    "landForSale": "קרקע למכירה",
+    "chalets": "בקתות",
+    "restHouses": "בתי מנוחה"
+  },
+  "homeFilters": {
+    "txAll": "הכל",
+    "txSale": "מבצע",
+    "txRent": "השכרה",
+    "bedsAny": "כל"
+  },
+  "cities": {
+    "riyadh": "ריאד",
+    "jeddah": "ג'דה",
+    "dammam": "Dammam",
+    "mecca": "מכה",
+    "medina": "מדינה",
+    "khobar": "חובר",
+    "taif": "טאיף",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "הרישום לא נמצא",
+    "helmetTitle": "השווה רישומים"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "עמלות",
+    "revenueByMonth": "הכנסה לפי חודש"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "צפיות לאורך זמן"
+  },
+  "listingDetail": {
+    "hotelLabel": "מלון",
+    "starSuffix": "{{n}}-כוכב",
+    "stayDetails": "פרטי השהייה",
+    "houseRules": "חוקי בית",
+    "maxGuests": "מקסימום אורחים",
+    "checkIn": "צ'ק-אין",
+    "checkInFrom": "מ-{{זמן}}",
+    "checkOut": "צ'ק-אאוט",
+    "checkOutBy": "מאת {{time}}",
+    "cancellation": "ביטול",
+    "whatThisPlaceOffers": "מה המקום הזה מציע"
+  },
+  "support": {
+    "title": "תמיכה",
+    "adminSubtitle": "בדוק ופתור כרטיסי תמיכת לקוחות",
+    "myTickets": "הכרטיסים שלי",
+    "newTicket": "כרטיס חדש",
+    "subject": "נושא",
+    "description": "תיאור מפורט",
+    "category": "קטגוריה",
+    "status": "סטטוס",
+    "submit": "שלח כרטיס",
+    "reply": "השב",
+    "noTickets": "אין כרטיסי תמיכה",
+    "noTicketsPrompt": "צור כרטיס חדש כדי לקבל עזרה",
+    "adminEmptyHint": "אין כרטיסים תואמים למסננים הנוכחיים.",
+    "createTicket": "צור כרטיס",
+    "originalDesc": "תיאור מקורי:",
+    "supportTeam": "צוות תמיכה",
+    "writeReply": "כתוב את תשובתך...",
+    "closedHint": "כרטיס זה סגור - שנה את הסטטוס שלו למעלה כדי להשיב.",
+    "ticketCreated": "כרטיס תמיכה נוצר בהצלחה",
+    "categories": {
+      "general": "כללי",
+      "technical": "טכני",
+      "billing": "חיוב",
+      "listing": "רישום",
+      "account": "חשבון",
+      "other": "אחר"
+    },
+    "statuses": {
+      "open": "פתח",
+      "in_progress": "בתהליך",
+      "resolved": "נפתר",
+      "closed": "סָגוּר"
+    }
   }
 }

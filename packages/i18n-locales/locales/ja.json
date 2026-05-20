@@ -27,7 +27,8 @@
     "stays": "短期滞在",
     "shortTermStays": "短期滞在",
     "hotels": "ホテル",
-    "chalets": "シャレー・農場"
+    "chalets": "シャレー・農場",
+    "about": "について"
   },
   "dashboard": {
     "overview": "概要",
@@ -1348,5 +1349,154 @@
     "duplicate": "重複",
     "deleteConfirmTitle": "{{count}} 件のリストを削除しますか?",
     "deleteConfirmDescription": "この操作によりリストがソフト削除され、一般公開されなくなります。"
+  },
+  "agentReview": {
+    "postFailed": "レビューを投稿できませんでした",
+    "posting": "投稿中…",
+    "postReview": "レビューを投稿する"
+  },
+  "adminCommissions": {
+    "listing": "リスト",
+    "buyer": "買い手",
+    "value": "取引額",
+    "platformEarn": "プラットフォームで獲得",
+    "agentEarn": "エージェントの獲得",
+    "status": "状態",
+    "closedAt": "閉店",
+    "allCommissions": "すべてのコミッション",
+    "all": "全て"
+  },
+  "adminAudit": {
+    "timestamp": "タイムスタンプ",
+    "actor": "俳優",
+    "action": "アクション",
+    "entity": "実在物",
+    "changed": "変更されたフィールド",
+    "noMatches": "一致する監査エントリがありません"
+  },
+  "adminAnalytics": {
+    "trafficSources": "トラフィックソース",
+    "devices": "デバイス",
+    "inquiryFunnel": "問い合わせファネル"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "リヤド、ジェッダ、ダンマーム…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "役に立ったこと、専門的なこと、または改善できることを共有してください…"
+  },
+  "adminCommissionsPage": {
+    "title": "プラットフォーム手数料",
+    "subtitle": "総収益、エージェントの支払い、およびトランザクションごとの内訳。"
+  },
+  "comparePage": {
+    "emptyTitle": "まだ比較するものはありません"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API キーが設定されていません",
+    "missingKeyHint": "VITE_GOOGLE_MAPS_API_KEY を設定してマップ ビューを有効にします。",
+    "loadFailed": "マップのロードに失敗しました"
+  },
+  "photoGallery": {
+    "close": "近い",
+    "previous": "前の写真",
+    "next": "次の写真"
+  },
+  "homeCategories": {
+    "all": "全て",
+    "forSale": "販売用",
+    "forRent": "賃貸用",
+    "apartments": "アパート",
+    "villas": "ヴィラ",
+    "land": "土地",
+    "chalets": "シャレー",
+    "farms": "農場",
+    "restHouses": "レストハウス",
+    "hotels": "ホテル",
+    "commercial": "コマーシャル",
+    "offices": "オフィス"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "賃貸アパート",
+    "villasForSale": "販売中のヴィラ",
+    "landForSale": "販売用土地",
+    "chalets": "シャレー",
+    "restHouses": "レストハウス"
+  },
+  "homeFilters": {
+    "txAll": "全て",
+    "txSale": "販売",
+    "txRent": "家賃",
+    "bedsAny": "どれでも"
+  },
+  "cities": {
+    "riyadh": "リヤド",
+    "jeddah": "ジェッダ",
+    "dammam": "ダンマーム",
+    "mecca": "メッカ",
+    "medina": "メディナ",
+    "khobar": "コバール",
+    "taif": "タイフ",
+    "buraidah": "ブライダ"
+  },
+  "listingDetailPage": {
+    "notFound": "リストが見つかりません",
+    "helmetTitle": "リストを比較する"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "手数料",
+    "revenueByMonth": "月ごとの収益"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "分析",
+    "viewsOverTime": "経時的な視聴回数"
+  },
+  "listingDetail": {
+    "hotelLabel": "ホテル",
+    "starSuffix": "{{n}} つ星",
+    "stayDetails": "宿泊詳細",
+    "houseRules": "ハウスルール",
+    "maxGuests": "最大ゲスト数",
+    "checkIn": "チェックイン",
+    "checkInFrom": "{{時間}}から",
+    "checkOut": "チェックアウト",
+    "checkOutBy": "{{時間}}までに",
+    "cancellation": "キャンセル",
+    "whatThisPlaceOffers": "この場所が提供するもの"
+  },
+  "support": {
+    "title": "サポート",
+    "adminSubtitle": "カスタマー サポート チケットの優先順位付けと解決",
+    "myTickets": "私のチケット",
+    "newTicket": "新しいチケット",
+    "subject": "主題",
+    "description": "詳細な説明",
+    "category": "カテゴリ",
+    "status": "状態",
+    "submit": "チケットを送信する",
+    "reply": "返事",
+    "noTickets": "サポートチケットなし",
+    "noTicketsPrompt": "サポートを受けるには新しいチケットを作成してください",
+    "adminEmptyHint": "現在のフィルターに一致するチケットはありません。",
+    "createTicket": "チケットの作成",
+    "originalDesc": "元の説明:",
+    "supportTeam": "サポートチーム",
+    "writeReply": "返信を書いてください…",
+    "closedHint": "このチケットはクローズされています。返信するには上記のステータスを変更してください。",
+    "ticketCreated": "サポートチケットが正常に作成されました",
+    "categories": {
+      "general": "一般的な",
+      "technical": "テクニカル",
+      "billing": "請求する",
+      "listing": "リスト",
+      "account": "アカウント",
+      "other": "他の"
+    },
+    "statuses": {
+      "open": "開ける",
+      "in_progress": "進行中",
+      "resolved": "解決済み",
+      "closed": "閉店"
+    }
   }
 }

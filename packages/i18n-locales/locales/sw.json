@@ -27,7 +27,8 @@
     "stays": "Malazi",
     "shortTermStays": "Malazi ya muda mfupi",
     "hotels": "Hoteli",
-    "chalets": "Vibanda na mashamba"
+    "chalets": "Vibanda na mashamba",
+    "about": "Kuhusu"
   },
   "dashboard": {
     "overview": "Muhtasari",
@@ -596,10 +597,10 @@
     "basicInfo": "Maelezo ya msingi",
     "location": {
       "street": "Mtaa",
-      "buildingNumber": "Building no.",
-      "postalCode": "Postal code",
+      "buildingNumber": "Jengo nambari.",
+      "postalCode": "Msimbo wa posta",
       "pinPrompt": "Dondosha pini ili kuweka eneo halisi",
-      "pinLabel": "Pin",
+      "pinLabel": "Bandika",
       "mapUnavailable": "Kiteua kipini cha ramani hakipatikani. Viwianishi vinarudi kwa {{lat}}, {{lng}}."
     },
     "media": "Vyombo vya habari",
@@ -626,7 +627,7 @@
       "coordinates": "Kuratibu",
       "permit": "Kibali",
       "regaLicense": "Leseni ya REGA",
-      "visibility": "Visibility"
+      "visibility": "Mwonekano"
     },
     "saveDraft": "Hifadhi rasimu",
     "submit": "Wasilisha kwa mapitio",
@@ -645,7 +646,7 @@
       "parking": "Maegesho",
       "yearBuilt": "Mwaka uliojengwa",
       "furnishing": "Samani",
-      "rentPeriod": "Period"
+      "rentPeriod": "Kipindi"
     },
     "editListing": "Badilisha tangazo",
     "newListing": "Orodha mpya",
@@ -891,7 +892,7 @@
       "buyerPlatformFee": "Ada ya mfumo: <strong>0.5%</strong> ya thamani ya muamala.",
       "acceptError": "Haikuweza kurekodi kukubali kwako",
       "agreeCheckbox": "Ninakubali masharti ya tume",
-      "decline": "I do not agree",
+      "decline": "sikubaliani",
       "saving": "Inahifadhi...",
       "acceptCta": "Nakubali & Kujitolea"
     }
@@ -1348,5 +1349,154 @@
     "duplicate": "Nakala",
     "deleteConfirmTitle": "Je, ungependa kufuta tangazo {{count}}?",
     "deleteConfirmDescription": "Kitendo hiki kinafuta tangazo kwa urahisi - halitaonekana tena hadharani."
+  },
+  "agentReview": {
+    "postFailed": "Haikuweza kuchapisha ukaguzi",
+    "posting": "Inachapisha...",
+    "postReview": "Chapisha ukaguzi"
+  },
+  "adminCommissions": {
+    "listing": "Kuorodhesha",
+    "buyer": "Mnunuzi",
+    "value": "Thamani ya Mkataba",
+    "platformEarn": "Jukwaa Pata",
+    "agentEarn": "Ajenti Pata",
+    "status": "Hali",
+    "closedAt": "Imefungwa",
+    "allCommissions": "Tume zote",
+    "all": "Wote"
+  },
+  "adminAudit": {
+    "timestamp": "Muhuri wa saa",
+    "actor": "Mwigizaji",
+    "action": "Kitendo",
+    "entity": "Huluki",
+    "changed": "Sehemu Zilizobadilishwa",
+    "noMatches": "Hakuna maingizo ya ukaguzi yanayolingana"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Vyanzo vya Trafiki",
+    "devices": "Vifaa",
+    "inquiryFunnel": "Funeli ya Uchunguzi"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Shiriki kile ambacho kilikuwa muhimu, kitaalamu, au kinachoweza kuboresha..."
+  },
+  "adminCommissionsPage": {
+    "title": "Tume za jukwaa",
+    "subtitle": "Jumla ya mapato, malipo ya wakala na uchanganuzi wa kila shughuli."
+  },
+  "comparePage": {
+    "emptyTitle": "Hakuna cha kulinganisha bado"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Ufunguo wa API ya Ramani za Google haujasanidiwa",
+    "missingKeyHint": "Weka VITE_GOOGLE_MAPS_API_KEY ili kuwezesha mwonekano wa ramani.",
+    "loadFailed": "Imeshindwa kupakia ramani"
+  },
+  "photoGallery": {
+    "close": "Funga",
+    "previous": "Picha iliyotangulia",
+    "next": "Picha inayofuata"
+  },
+  "homeCategories": {
+    "all": "Wote",
+    "forSale": "Inauzwa",
+    "forRent": "Kwa Kukodisha",
+    "apartments": "Vyumba",
+    "villas": "Majumba ya kifahari",
+    "land": "Ardhi",
+    "chalets": "Chalets",
+    "farms": "Mashamba",
+    "restHouses": "Nyumba za mapumziko",
+    "hotels": "Hoteli",
+    "commercial": "Kibiashara",
+    "offices": "Ofisi"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Ghorofa za kukodisha",
+    "villasForSale": "Villas inauzwa",
+    "landForSale": "Ardhi ya kuuza",
+    "chalets": "Chalets",
+    "restHouses": "Nyumba za kupumzika"
+  },
+  "homeFilters": {
+    "txAll": "Wote",
+    "txSale": "Uuzaji",
+    "txRent": "Kodisha",
+    "bedsAny": "Yoyote"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Makka",
+    "medina": "Madina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Orodha haijapatikana",
+    "helmetTitle": "Linganisha matangazo"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Tume",
+    "revenueByMonth": "Mapato kwa mwezi"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Uchanganuzi",
+    "viewsOverTime": "Maoni baada ya muda"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hoteli",
+    "starSuffix": "Nyota {{n}}",
+    "stayDetails": "Kaa maelezo",
+    "houseRules": "Sheria za nyumba",
+    "maxGuests": "Max wageni",
+    "checkIn": "Ingia",
+    "checkInFrom": "kutoka {{time}}",
+    "checkOut": "Ondoka",
+    "checkOutBy": "kwa {{time}}",
+    "cancellation": "Kughairi",
+    "whatThisPlaceOffers": "Mahali hapa hutoa nini"
+  },
+  "support": {
+    "title": "Msaada",
+    "adminSubtitle": "Jaribu na utatue tikiti za usaidizi kwa wateja",
+    "myTickets": "Tiketi Zangu",
+    "newTicket": "Tiketi Mpya",
+    "subject": "Somo",
+    "description": "Maelezo ya Kina",
+    "category": "Kategoria",
+    "status": "Hali",
+    "submit": "Peana Tiketi",
+    "reply": "Jibu",
+    "noTickets": "Hakuna tikiti za usaidizi",
+    "noTicketsPrompt": "Unda tikiti mpya ili kupata usaidizi",
+    "adminEmptyHint": "Hakuna tikiti zinazolingana na vichujio vya sasa.",
+    "createTicket": "Tengeneza Tiketi",
+    "originalDesc": "Maelezo ya asili:",
+    "supportTeam": "Timu ya Usaidizi",
+    "writeReply": "Andika jibu lako...",
+    "closedHint": "Tikiti hii imefungwa - badilisha hali yake hapo juu ili kujibu.",
+    "ticketCreated": "Tikiti ya usaidizi imeundwa",
+    "categories": {
+      "general": "Mkuu",
+      "technical": "Kiufundi",
+      "billing": "Bili",
+      "listing": "Kuorodhesha",
+      "account": "Akaunti",
+      "other": "Nyingine"
+    },
+    "statuses": {
+      "open": "Fungua",
+      "in_progress": "Inaendelea",
+      "resolved": "Imetatuliwa",
+      "closed": "Imefungwa"
+    }
   }
 }

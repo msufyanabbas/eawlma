@@ -27,7 +27,8 @@
     "stays": "නවාතැන්",
     "shortTermStays": "කෙටි කාලීන නවාතැන්",
     "hotels": "හෝටල්",
-    "chalets": "ෂෙලේ සහ ගොවිපල්"
+    "chalets": "ෂෙලේ සහ ගොවිපල්",
+    "about": "ගැන"
   },
   "dashboard": {
     "overview": "දළ විශ්ලේෂණය",
@@ -1348,5 +1349,154 @@
     "duplicate": "අනුපිටපත් කරන්න",
     "deleteConfirmTitle": "{{count}} ලැයිස්තුගත කිරීම්(s) මකන්නද?",
     "deleteConfirmDescription": "මෙම ක්‍රියාව ලැයිස්තුගත කිරීම මෘදු ලෙස මකා දමයි - එය තවදුරටත් ප්‍රසිද්ධියේ නොපෙන්වයි."
+  },
+  "agentReview": {
+    "postFailed": "සමාලෝචනය පළ කිරීමට නොහැකි විය",
+    "posting": "පළ කරමින්...",
+    "postReview": "සමාලෝචන පළ කරන්න"
+  },
+  "adminCommissions": {
+    "listing": "ලැයිස්තුගත කිරීම",
+    "buyer": "ගැනුම්කරු",
+    "value": "ගනුදෙනු වටිනාකම",
+    "platformEarn": "වේදිකාව උපයන්න",
+    "agentEarn": "නියෝජිත උපයන්න",
+    "status": "තත්ත්වය",
+    "closedAt": "වසා ඇත",
+    "allCommissions": "සියලුම කොමිෂන් සභා",
+    "all": "සියල්ල"
+  },
+  "adminAudit": {
+    "timestamp": "වේලා මුද්රාව",
+    "actor": "නළුවා",
+    "action": "ක්‍රියාව",
+    "entity": "ආයතනය",
+    "changed": "වෙනස් කළ ක්ෂේත්ර",
+    "noMatches": "ගැළපෙන විගණන ඇතුළත් කිරීම් නොමැත"
+  },
+  "adminAnalytics": {
+    "trafficSources": "රථවාහන මූලාශ්ර",
+    "devices": "උපාංග",
+    "inquiryFunnel": "විමර්ශන පුනීල"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "රියාද්, ජෙඩා, දම්මාම්..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "ප්‍රයෝජනවත්, වෘත්තීය හෝ වැඩිදියුණු කළ හැකි දේ බෙදාගන්න..."
+  },
+  "adminCommissionsPage": {
+    "title": "වේදිකා කොමිෂන් සභා",
+    "subtitle": "මුළු ආදායම, නියෝජිත ගෙවීම්, සහ එක් ගනුදෙනුවක් බිඳ වැටීම."
+  },
+  "comparePage": {
+    "emptyTitle": "තවමත් සංසන්දනය කිරීමට කිසිවක් නැත"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API යතුර වින්‍යාස කර නැත",
+    "missingKeyHint": "සිතියම් දසුන සබල කිරීමට VITE_GOOGLE_MAPS_API_KEY සකසන්න.",
+    "loadFailed": "සිතියම පූරණය කිරීමට අසමත් විය"
+  },
+  "photoGallery": {
+    "close": "වසන්න",
+    "previous": "පෙර ඡායාරූපය",
+    "next": "ඊළඟ ඡායාරූපය"
+  },
+  "homeCategories": {
+    "all": "සියල්ල",
+    "forSale": "විකිණීමට ඇත",
+    "forRent": "කුලියට",
+    "apartments": "මහල් නිවාස",
+    "villas": "විලාස්",
+    "land": "ඉඩම",
+    "chalets": "චාලට්",
+    "farms": "ගොවිපලවල්",
+    "restHouses": "විවේකාගාර",
+    "hotels": "හෝටල්",
+    "commercial": "වාණිජමය",
+    "offices": "කාර්යාල"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "මහල් නිවාස කුලියට දීමට",
+    "villasForSale": "විලාස් විකිණීමට ඇත",
+    "landForSale": "ඉඩම විකිණීමට ඇත",
+    "chalets": "චාලට්",
+    "restHouses": "විවේකාගාර"
+  },
+  "homeFilters": {
+    "txAll": "සියල්ල",
+    "txSale": "විකිණීම",
+    "txRent": "කුලියට",
+    "bedsAny": "ඕනෑම"
+  },
+  "cities": {
+    "riyadh": "රියාද්",
+    "jeddah": "ජෙඩා",
+    "dammam": "දාමම්",
+    "mecca": "මක්කම",
+    "medina": "මදීනා",
+    "khobar": "කොබාර්",
+    "taif": "තායිෆ්",
+    "buraidah": "බුරයිදා"
+  },
+  "listingDetailPage": {
+    "notFound": "ලැයිස්තුගත කිරීම හමු නොවීය",
+    "helmetTitle": "ලැයිස්තුගත කිරීම් සසඳන්න"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "කොමිෂන් සභා",
+    "revenueByMonth": "මාසය අනුව ආදායම"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "විශ්ලේෂණ",
+    "viewsOverTime": "කාලයත් සමඟ බැලීම්"
+  },
+  "listingDetail": {
+    "hotelLabel": "හෝටලය",
+    "starSuffix": "{{n}}-තරු",
+    "stayDetails": "ඉන්න විස්තර",
+    "houseRules": "නිවසේ නීති",
+    "maxGuests": "උපරිම අමුත්තන්",
+    "checkIn": "පැමිණීම වාර්තා කරන්න",
+    "checkInFrom": "{{time}} සිට",
+    "checkOut": "පරීක්ෂාකාරී වන්න",
+    "checkOutBy": "{{time}} විසින්",
+    "cancellation": "අවලංගු කිරීම",
+    "whatThisPlaceOffers": "මෙම ස්ථානය ලබා දෙන දේ"
+  },
+  "support": {
+    "title": "සහාය",
+    "adminSubtitle": "පාරිභෝගික සහාය ප්‍රවේශපත්‍ර පරීක්ෂා කිරීම සහ විසඳීම",
+    "myTickets": "මගේ ටිකට්",
+    "newTicket": "අලුත් ටිකට්",
+    "subject": "විෂය",
+    "description": "සවිස්තරාත්මක විස්තරය",
+    "category": "ප්රවර්ගය",
+    "status": "තත්ත්වය",
+    "submit": "ටිකට්පත් ඉදිරිපත් කරන්න",
+    "reply": "පිළිතුරු දෙන්න",
+    "noTickets": "සහාය ප්‍රවේශපත්‍ර නැත",
+    "noTicketsPrompt": "උදවු ලබා ගැනීමට නව ටිකට් පතක් සාදන්න",
+    "adminEmptyHint": "වත්මන් පෙරහන්වලට ගැලපෙන ප්‍රවේශපත්‍ර නැත.",
+    "createTicket": "ටිකට් සාදන්න",
+    "originalDesc": "මුල් විස්තරය:",
+    "supportTeam": "සහාය කණ්ඩායම",
+    "writeReply": "ඔබේ පිළිතුර ලියන්න...",
+    "closedHint": "මෙම ප්‍රවේශ පත්‍රය වසා ඇත - පිළිතුරු දීමට එහි ඉහත තත්ත්වය වෙනස් කරන්න.",
+    "ticketCreated": "සහාය ප්‍රවේශ පත්‍රය සාර්ථකව සාදන ලදී",
+    "categories": {
+      "general": "ජෙනරාල්",
+      "technical": "තාක්ෂණික",
+      "billing": "බිල්පත්",
+      "listing": "ලැයිස්තුගත කිරීම",
+      "account": "ගිණුම",
+      "other": "වෙනත්"
+    },
+    "statuses": {
+      "open": "විවෘත කරන්න",
+      "in_progress": "ප්රගතියේ",
+      "resolved": "විසඳා ඇත",
+      "closed": "වසා ඇත"
+    }
   }
 }

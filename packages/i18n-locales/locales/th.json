@@ -27,7 +27,8 @@
     "stays": "ที่พัก",
     "shortTermStays": "ที่พักระยะสั้น",
     "hotels": "โรงแรม",
-    "chalets": "ชาเลต์และฟาร์ม"
+    "chalets": "ชาเลต์และฟาร์ม",
+    "about": "เกี่ยวกับ"
   },
   "dashboard": {
     "overview": "ภาพรวม",
@@ -1348,5 +1349,154 @@
     "duplicate": "ทำซ้ำ",
     "deleteConfirmTitle": "ลบรายการ {{count}} รายการหรือไม่",
     "deleteConfirmDescription": "การดำเนินการนี้จะลบรายการออกอย่างนุ่มนวล - รายการจะไม่ปรากฏต่อสาธารณะอีกต่อไป"
+  },
+  "agentReview": {
+    "postFailed": "ไม่สามารถโพสต์รีวิวได้",
+    "posting": "กำลังโพสต์...",
+    "postReview": "โพสต์รีวิว"
+  },
+  "adminCommissions": {
+    "listing": "รายการ",
+    "buyer": "ผู้ซื้อ",
+    "value": "มูลค่าการซื้อขาย",
+    "platformEarn": "แพลตฟอร์มรับ",
+    "agentEarn": "ตัวแทนรับ",
+    "status": "สถานะ",
+    "closedAt": "ปิด",
+    "allCommissions": "ค่าคอมมิชชั่นทั้งหมด",
+    "all": "ทั้งหมด"
+  },
+  "adminAudit": {
+    "timestamp": "การประทับเวลา",
+    "actor": "นักแสดงชาย",
+    "action": "การกระทำ",
+    "entity": "เอนทิตี",
+    "changed": "ฟิลด์ที่เปลี่ยนแปลง",
+    "noMatches": "ไม่มีรายการตรวจสอบที่ตรงกัน"
+  },
+  "adminAnalytics": {
+    "trafficSources": "แหล่งที่มาของการเข้าชม",
+    "devices": "อุปกรณ์",
+    "inquiryFunnel": "ช่องทางสอบถาม"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ริยาด, เจดดาห์, ดัมมัม..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "แบ่งปันสิ่งที่มีประโยชน์ เป็นมืออาชีพ หรือสามารถปรับปรุงได้..."
+  },
+  "adminCommissionsPage": {
+    "title": "ค่าคอมมิชชั่นแพลตฟอร์ม",
+    "subtitle": "รายได้ทั้งหมด การจ่ายเงินให้ตัวแทน และรายละเอียดต่อธุรกรรม"
+  },
+  "comparePage": {
+    "emptyTitle": "ยังไม่มีอะไรจะเปรียบเทียบ"
+  },
+  "searchMap": {
+    "missingKeyTitle": "ไม่ได้กำหนดค่าคีย์ Google Maps API",
+    "missingKeyHint": "ตั้งค่า VITE_GOOGLE_MAPS_API_KEY เพื่อเปิดใช้งานมุมมองแผนที่",
+    "loadFailed": "โหลดแผนที่ไม่สำเร็จ"
+  },
+  "photoGallery": {
+    "close": "ปิด",
+    "previous": "รูปภาพก่อนหน้า",
+    "next": "รูปภาพถัดไป"
+  },
+  "homeCategories": {
+    "all": "ทั้งหมด",
+    "forSale": "ขาย",
+    "forRent": "ให้เช่า",
+    "apartments": "อพาร์ตเมนต์",
+    "villas": "วิลล่า",
+    "land": "ที่ดิน",
+    "chalets": "ชาเล่ต์",
+    "farms": "ฟาร์ม",
+    "restHouses": "บ้านพัก",
+    "hotels": "โรงแรม",
+    "commercial": "ทางการค้า",
+    "offices": "สำนักงาน"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "อพาร์ทเมนต์ให้เช่า",
+    "villasForSale": "วิลล่าสำหรับขาย",
+    "landForSale": "ขายที่ดิน",
+    "chalets": "ชาเล่ต์",
+    "restHouses": "บ้านพัก"
+  },
+  "homeFilters": {
+    "txAll": "ทั้งหมด",
+    "txSale": "ขาย",
+    "txRent": "เช่า",
+    "bedsAny": "ใดๆ"
+  },
+  "cities": {
+    "riyadh": "ริยาด",
+    "jeddah": "เจดดาห์",
+    "dammam": "ดัมมัม",
+    "mecca": "เมกกะ",
+    "medina": "เมดินา",
+    "khobar": "โคบาร์",
+    "taif": "ทาอิฟ",
+    "buraidah": "บูไรดะห์"
+  },
+  "listingDetailPage": {
+    "notFound": "ไม่พบรายการ",
+    "helmetTitle": "เปรียบเทียบรายการ"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "ค่าคอมมิชชั่น",
+    "revenueByMonth": "รายได้ต่อเดือน"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "การวิเคราะห์",
+    "viewsOverTime": "การดูในช่วงเวลาหนึ่ง"
+  },
+  "listingDetail": {
+    "hotelLabel": "โรงแรม",
+    "starSuffix": "{{n}}-ดาว",
+    "stayDetails": "รายละเอียดการเข้าพัก",
+    "houseRules": "กฎของที่พัก",
+    "maxGuests": "แขกแม็กซ์",
+    "checkIn": "เช็คอิน",
+    "checkInFrom": "ตั้งแต่ {{เวลา}}",
+    "checkOut": "เช็คเอาท์",
+    "checkOutBy": "โดย {{เวลา}}",
+    "cancellation": "การยกเลิก",
+    "whatThisPlaceOffers": "สิ่งที่สถานที่แห่งนี้นำเสนอ"
+  },
+  "support": {
+    "title": "สนับสนุน",
+    "adminSubtitle": "คัดแยกและแก้ไขตั๋วสนับสนุนลูกค้า",
+    "myTickets": "ตั๋วของฉัน",
+    "newTicket": "ตั๋วใหม่",
+    "subject": "เรื่อง",
+    "description": "คำอธิบายโดยละเอียด",
+    "category": "หมวดหมู่",
+    "status": "สถานะ",
+    "submit": "ส่งตั๋ว",
+    "reply": "ตอบ",
+    "noTickets": "ไม่มีตั๋วสนับสนุน",
+    "noTicketsPrompt": "สร้างตั๋วใหม่เพื่อรับความช่วยเหลือ",
+    "adminEmptyHint": "ไม่มีตั๋วที่ตรงกับตัวกรองปัจจุบัน",
+    "createTicket": "สร้างตั๋ว",
+    "originalDesc": "คำอธิบายดั้งเดิม:",
+    "supportTeam": "ทีมสนับสนุน",
+    "writeReply": "เขียนคำตอบของคุณ...",
+    "closedHint": "ตั๋วนี้ปิดแล้ว — เปลี่ยนสถานะด้านบนเพื่อตอบกลับ",
+    "ticketCreated": "สร้างตั๋วสนับสนุนสำเร็จแล้ว",
+    "categories": {
+      "general": "ทั่วไป",
+      "technical": "เทคนิค",
+      "billing": "การเรียกเก็บเงิน",
+      "listing": "รายการ",
+      "account": "บัญชี",
+      "other": "อื่น"
+    },
+    "statuses": {
+      "open": "เปิด",
+      "in_progress": "อยู่ระหว่างดำเนินการ",
+      "resolved": "แก้ไขแล้ว",
+      "closed": "ปิด"
+    }
   }
 }

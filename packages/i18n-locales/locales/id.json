@@ -27,7 +27,8 @@
     "stays": "Penginapan",
     "shortTermStays": "Penginapan jangka pendek",
     "hotels": "Hotel",
-    "chalets": "Chalet & peternakan"
+    "chalets": "Chalet & peternakan",
+    "about": "Tentang"
   },
   "dashboard": {
     "overview": "Ringkasan",
@@ -1348,5 +1349,154 @@
     "duplicate": "Duplikat",
     "deleteConfirmTitle": "Hapus {{count}} daftar?",
     "deleteConfirmDescription": "Tindakan ini akan menghapus sementara listingan tersebut — listingan tersebut tidak akan muncul lagi secara publik."
+  },
+  "agentReview": {
+    "postFailed": "Tidak dapat memposting ulasan",
+    "posting": "Memposting…",
+    "postReview": "Posting ulasan"
+  },
+  "adminCommissions": {
+    "listing": "Daftar",
+    "buyer": "Pembeli",
+    "value": "Nilai Kesepakatan",
+    "platformEarn": "Pendapatan Platform",
+    "agentEarn": "Agen Dapatkan",
+    "status": "Status",
+    "closedAt": "Tertutup",
+    "allCommissions": "Semua Komisi",
+    "all": "Semua"
+  },
+  "adminAudit": {
+    "timestamp": "Stempel waktu",
+    "actor": "Aktor",
+    "action": "Tindakan",
+    "entity": "Kesatuan",
+    "changed": "Bidang yang Diubah",
+    "noMatches": "Tidak ada entri audit yang cocok"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Sumber Lalu Lintas",
+    "devices": "Perangkat",
+    "inquiryFunnel": "Corong Permintaan"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Sialan…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Bagikan apa yang bermanfaat, profesional, atau dapat ditingkatkan…"
+  },
+  "adminCommissionsPage": {
+    "title": "Komisi platform",
+    "subtitle": "Pendapatan total, pembayaran agen, dan perincian per transaksi."
+  },
+  "comparePage": {
+    "emptyTitle": "Belum ada yang bisa dibandingkan"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Kunci Google Maps API tidak dikonfigurasi",
+    "missingKeyHint": "Setel VITE_GOOGLE_MAPS_API_KEY untuk mengaktifkan tampilan peta.",
+    "loadFailed": "Gagal memuat peta"
+  },
+  "photoGallery": {
+    "close": "Menutup",
+    "previous": "Foto sebelumnya",
+    "next": "Foto selanjutnya"
+  },
+  "homeCategories": {
+    "all": "Semua",
+    "forSale": "Untuk dijual",
+    "forRent": "Untuk Disewakan",
+    "apartments": "Apartemen",
+    "villas": "Vila",
+    "land": "Tanah",
+    "chalets": "chalet",
+    "farms": "Peternakan",
+    "restHouses": "Rumah Peristirahatan",
+    "hotels": "Hotel",
+    "commercial": "Komersial",
+    "offices": "Kantor"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartemen untuk disewa",
+    "villasForSale": "Villa untuk dijual",
+    "landForSale": "Tanah untuk dijual",
+    "chalets": "chalet",
+    "restHouses": "Rumah peristirahatan"
+  },
+  "homeFilters": {
+    "txAll": "Semua",
+    "txSale": "Penjualan",
+    "txRent": "Menyewa",
+    "bedsAny": "Setiap"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Sial",
+    "mecca": "Mekah",
+    "medina": "Madinah",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Daftar tidak ditemukan",
+    "helmetTitle": "Bandingkan daftar"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Komisi",
+    "revenueByMonth": "Pendapatan per bulan"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analisis",
+    "viewsOverTime": "Tampilan dari waktu ke waktu"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-bintang",
+    "stayDetails": "Tinggal detailnya",
+    "houseRules": "Aturan rumah",
+    "maxGuests": "Tamu maksimal",
+    "checkIn": "Lapor masuk",
+    "checkInFrom": "dari {{waktu}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "selambat-lambatnya {{waktu}}",
+    "cancellation": "Pembatalan",
+    "whatThisPlaceOffers": "Apa yang ditawarkan tempat ini"
+  },
+  "support": {
+    "title": "Mendukung",
+    "adminSubtitle": "Triase dan selesaikan tiket dukungan pelanggan",
+    "myTickets": "Tiket Saya",
+    "newTicket": "Tiket Baru",
+    "subject": "Subjek",
+    "description": "Deskripsi Rinci",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Kirim Tiket",
+    "reply": "Membalas",
+    "noTickets": "Tidak ada tiket dukungan",
+    "noTicketsPrompt": "Buat tiket baru untuk mendapatkan bantuan",
+    "adminEmptyHint": "Tidak ada tiket yang cocok dengan filter saat ini.",
+    "createTicket": "Buat Tiket",
+    "originalDesc": "Deskripsi asli:",
+    "supportTeam": "Tim Pendukung",
+    "writeReply": "Tulis balasan Anda…",
+    "closedHint": "Tiket ini ditutup — ubah statusnya di atas untuk membalas.",
+    "ticketCreated": "Tiket dukungan berhasil dibuat",
+    "categories": {
+      "general": "Umum",
+      "technical": "Teknis",
+      "billing": "Penagihan",
+      "listing": "Daftar",
+      "account": "Akun",
+      "other": "Lainnya"
+    },
+    "statuses": {
+      "open": "Membuka",
+      "in_progress": "Sedang Berlangsung",
+      "resolved": "Terselesaikan",
+      "closed": "Tertutup"
+    }
   }
 }

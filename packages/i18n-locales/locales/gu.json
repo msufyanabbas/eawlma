@@ -27,7 +27,8 @@
     "stays": "રહેવાસ",
     "shortTermStays": "ટૂંકા ગાળાનું રહેવાસ",
     "hotels": "હોટેલ્સ",
-    "chalets": "શેલે અને ફાર્મ્સ"
+    "chalets": "શેલે અને ફાર્મ્સ",
+    "about": "વિશે"
   },
   "dashboard": {
     "overview": "વિહંગાવલોકન",
@@ -292,7 +293,7 @@
     "filter": "ફિલ્ટર",
     "submit": "સબમિટ કરો",
     "language": "ભાષા",
-    "arabic": "العربية",
+    "arabic": "| العربية",
     "english": "| અંગ્રેજી",
     "back": "પાછળ",
     "next": "આગળ",
@@ -338,7 +339,7 @@
     "save": "સાચવો",
     "share": "શેર કરો",
     "callAgent": "એજન્ટને કૉલ કરો",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "| WhatsApp",
     "scheduleTour": "ટૂર શેડ્યૂલ કરો",
     "scheduleATour": "એક ટૂર શેડ્યૂલ કરો",
     "contactAgent": "એજન્ટનો સંપર્ક કરો",
@@ -385,7 +386,7 @@
     },
     "bedrooms": "| શયનખંડ",
     "bathrooms": "બાથરૂમ",
-    "sqm": "m²",
+    "sqm": "| m²",
     "type": "પ્રકાર",
     "floor": "ફ્લોર",
     "age": "| ઉંમર",
@@ -478,7 +479,7 @@
     "priceLowSort": "કિંમત: ઓછી",
     "priceHighSort": "કિંમત: વધુ",
     "appStore": "એપ સ્ટોર",
-    "googlePlay": "Google Play",
+    "googlePlay": "| Google Play",
     "statListings": "જાહેરાતો",
     "statAgents": "એજન્ટ્સ",
     "statUsers": "વપરાશકર્તાઓ",
@@ -917,8 +918,8 @@
     "bulkApproveConfirm": "બધાને મંજૂર કરો",
     "actionFailed": "એક મધ્યસ્થી ક્રિયા નિષ્ફળ થઈ — ફરી પ્રયાસ કરો.",
     "preview": {
-      "bedroomsShort": "{{count}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bedroomsShort": "{{ગણતરી}} BR",
+      "bathroomsShort": "{{ગણતરી}} BA",
       "vrTourAvailable": "VR ટૂર ઉપલબ્ધ",
       "vrTourSection": "VR / 360° ટૂર",
       "locationSection": "સ્થાન",
@@ -1348,5 +1349,154 @@
     "duplicate": "ડુપ્લિકેટ",
     "deleteConfirmTitle": "{{count}} સૂચિઓ કાઢી નાખીએ?",
     "deleteConfirmDescription": "આ ક્રિયા સૂચિને નરમ-કાઢી નાખે છે — તે હવે સાર્વજનિક રૂપે દેખાશે નહીં."
+  },
+  "agentReview": {
+    "postFailed": "સમીક્ષા પોસ્ટ કરી શકાઈ નથી",
+    "posting": "પોસ્ટ કરી રહ્યું છે…",
+    "postReview": "સમીક્ષા પોસ્ટ કરો"
+  },
+  "adminCommissions": {
+    "listing": "| લિસ્ટિંગ",
+    "buyer": "| ખરીદનાર",
+    "value": "| ડીલ વેલ્યુ",
+    "platformEarn": "પ્લેટફોર્મ કમાઓ",
+    "agentEarn": "એજન્ટ કમાઓ",
+    "status": "સ્ટેટસ",
+    "closedAt": "બંધ",
+    "allCommissions": "બધા કમિશન",
+    "all": "| બધા"
+  },
+  "adminAudit": {
+    "timestamp": "ટાઇમસ્ટેમ્પ",
+    "actor": "| અભિનેતા",
+    "action": "| ક્રિયા",
+    "entity": "એન્ટિટી",
+    "changed": "બદલાયેલ ક્ષેત્રો",
+    "noMatches": "કોઈ મેળ ખાતી ઓડિટ એન્ટ્રીઓ નથી"
+  },
+  "adminAnalytics": {
+    "trafficSources": "ટ્રાફિક સ્ત્રોતો",
+    "devices": "ઉપકરણો",
+    "inquiryFunnel": "પૂછપરછ ફનલ"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "રિયાધ, જેદ્દાહ, દમ્મામ…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "શું મદદરૂપ, વ્યાવસાયિક અથવા સુધારી શકે તે શેર કરો..."
+  },
+  "adminCommissionsPage": {
+    "title": "પ્લેટફોર્મ કમિશન",
+    "subtitle": "કુલ આવક, એજન્ટ ચૂકવણી અને વ્યવહાર દીઠ બ્રેકડાઉન."
+  },
+  "comparePage": {
+    "emptyTitle": "હજુ સુધી સરખામણી કરવા માટે કંઈ નથી"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API કી ગોઠવેલ નથી",
+    "missingKeyHint": "નકશા દૃશ્યને સક્ષમ કરવા માટે VITE_GOOGLE_MAPS_API_KEY સેટ કરો.",
+    "loadFailed": "નકશો લોડ કરવામાં નિષ્ફળ"
+  },
+  "photoGallery": {
+    "close": "બંધ કરો",
+    "previous": "અગાઉનો ફોટો",
+    "next": "આગળનો ફોટો"
+  },
+  "homeCategories": {
+    "all": "બધા",
+    "forSale": "વેચાણ માટે",
+    "forRent": "ભાડા માટે",
+    "apartments": "એપાર્ટમેન્ટ્સ",
+    "villas": "વિલાસ",
+    "land": "જમીન",
+    "chalets": "ચેલેટ્સ",
+    "farms": "ખેતરો",
+    "restHouses": "| વિશ્રામ ગૃહો",
+    "hotels": "| હોટેલ્સ",
+    "commercial": "| વાણિજ્યિક",
+    "offices": "| ઓફિસો"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "ભાડા માટે એપાર્ટમેન્ટ્સ",
+    "villasForSale": "વિલાસ વેચાણ માટે",
+    "landForSale": "જમીન વેચાણ માટે",
+    "chalets": "| ચેલેટ્સ",
+    "restHouses": "વિશ્રામ ગૃહો"
+  },
+  "homeFilters": {
+    "txAll": "બધા",
+    "txSale": "વેચાણ",
+    "txRent": "| ભાડે",
+    "bedsAny": "| કોઈપણ"
+  },
+  "cities": {
+    "riyadh": "| રિયાધ",
+    "jeddah": "જેદ્દાહ",
+    "dammam": "| દમ્મામ",
+    "mecca": "મક્કા",
+    "medina": "| મદિના",
+    "khobar": "ખોબર",
+    "taif": "તૈફ",
+    "buraidah": "| બુરાઈદાહ"
+  },
+  "listingDetailPage": {
+    "notFound": "| લિસ્ટિંગ મળ્યું નથી",
+    "helmetTitle": "સૂચિઓની સરખામણી કરો"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "કમિશન",
+    "revenueByMonth": "મહિના દ્વારા આવક"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "એનાલિટિક્સ",
+    "viewsOverTime": "| સમય જતાં જોવાઈ"
+  },
+  "listingDetail": {
+    "hotelLabel": "હોટેલ",
+    "starSuffix": "{{n}}-સ્ટાર",
+    "stayDetails": "વિગતો રહો",
+    "houseRules": "ઘરના નિયમો",
+    "maxGuests": "| મહત્તમ મહેમાનો",
+    "checkIn": "| ચેક-ઇન",
+    "checkInFrom": "| {{સમય}} થી",
+    "checkOut": "ચેક-આઉટ",
+    "checkOutBy": "{{સમય}}",
+    "cancellation": "દ્વારા રદ",
+    "whatThisPlaceOffers": "| આ સ્થાન શું આપે છે"
+  },
+  "support": {
+    "title": "આધાર",
+    "adminSubtitle": "| ગ્રાહક સપોર્ટ ટિકિટો ટ્રાયેજ અને ઉકેલો",
+    "myTickets": "મારી ટિકિટો",
+    "newTicket": "નવી ટિકિટ",
+    "subject": "| વિષય",
+    "description": "વિગતવાર વર્ણન",
+    "category": "શ્રેણી",
+    "status": "| સ્ટેટસ",
+    "submit": "ટિકિટ સબમિટ કરો",
+    "reply": "જવાબ",
+    "noTickets": "| કોઈ સપોર્ટ ટિકિટ નથી",
+    "noTicketsPrompt": "મદદ મેળવવા માટે નવી ટિકિટ બનાવો",
+    "adminEmptyHint": "વર્તમાન ફિલ્ટર્સ સાથે કોઈ ટિકિટ મેળ ખાતી નથી.",
+    "createTicket": "ટિકિટ બનાવો",
+    "originalDesc": "મૂળ વર્ણન:",
+    "supportTeam": "સપોર્ટ ટીમ",
+    "writeReply": "તમારો જવાબ લખો...",
+    "closedHint": "આ ટિકિટ બંધ છે — જવાબ આપવા માટે ઉપર તેની સ્થિતિ બદલો.",
+    "ticketCreated": "સપોર્ટ ટિકિટ સફળતાપૂર્વક બનાવવામાં આવી",
+    "categories": {
+      "general": "જનરલ",
+      "technical": "ટેકનિકલ",
+      "billing": "બિલિંગ",
+      "listing": "લિસ્ટિંગ",
+      "account": "એકાઉન્ટ",
+      "other": "અન્ય"
+    },
+    "statuses": {
+      "open": "ખોલો",
+      "in_progress": "પ્રગતિમાં છે",
+      "resolved": "ઉકેલાઈ",
+      "closed": "બંધ"
+    }
   }
 }

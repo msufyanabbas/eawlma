@@ -14,6 +14,7 @@
     "mobile": "npm run start -w @eawlma/mobile",
     "mobile:android": "npm run android -w @eawlma/mobile",
     "mobile:ios": "npm run ios -w @eawlma/mobile",
+    "sync:locales": "node packages/i18n-locales/scripts/translate-new-keys.cjs && cd apps/mobile && node scripts/sync-from-shared.js",
     "build": "npm run build:types && npm run build:backend && npm run build:frontend",
     "dev:backend": "npm run start:dev -w @eawlma/backend",
     "dev:frontend": "npm run dev -w @eawlma/frontend",

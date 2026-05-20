@@ -27,7 +27,8 @@
     "stays": "Lưu trú",
     "shortTermStays": "Lưu trú ngắn hạn",
     "hotels": "Khách sạn",
-    "chalets": "Nhà nghỉ & trang trại"
+    "chalets": "Nhà nghỉ & trang trại",
+    "about": "Về"
   },
   "dashboard": {
     "overview": "Tổng quan",
@@ -1348,5 +1349,154 @@
     "duplicate": "Nhân bản",
     "deleteConfirmTitle": "Xóa {{count}} danh sách?",
     "deleteConfirmDescription": "Hành động này sẽ xóa nhẹ danh sách — nó sẽ không còn xuất hiện công khai nữa."
+  },
+  "agentReview": {
+    "postFailed": "Không thể đăng bài đánh giá",
+    "posting": "Đang đăng…",
+    "postReview": "Đăng bài đánh giá"
+  },
+  "adminCommissions": {
+    "listing": "Danh sách",
+    "buyer": "Người mua",
+    "value": "Giá trị giao dịch",
+    "platformEarn": "Nền tảng kiếm tiền",
+    "agentEarn": "Kiếm đại lý",
+    "status": "Trạng thái",
+    "closedAt": "Đã đóng",
+    "allCommissions": "Tất cả hoa hồng",
+    "all": "Tất cả"
+  },
+  "adminAudit": {
+    "timestamp": "Dấu thời gian",
+    "actor": "Diễn viên",
+    "action": "Hoạt động",
+    "entity": "thực thể",
+    "changed": "Trường đã thay đổi",
+    "noMatches": "Không có mục kiểm tra phù hợp"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Nguồn lưu lượng truy cập",
+    "devices": "Thiết bị",
+    "inquiryFunnel": "Kênh yêu cầu"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Chia sẻ những gì hữu ích, chuyên nghiệp hoặc có thể cải thiện…"
+  },
+  "adminCommissionsPage": {
+    "title": "Hoa hồng nền tảng",
+    "subtitle": "Tổng doanh thu, khoản thanh toán cho đại lý và phân tích trên mỗi giao dịch."
+  },
+  "comparePage": {
+    "emptyTitle": "Chưa có gì để so sánh"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Khóa API Google Maps chưa được định cấu hình",
+    "missingKeyHint": "Đặt VITE_GOOGLE_MAPS_API_KEY để bật chế độ xem bản đồ.",
+    "loadFailed": "Không tải được bản đồ"
+  },
+  "photoGallery": {
+    "close": "Đóng",
+    "previous": "Ảnh trước",
+    "next": "Ảnh tiếp theo"
+  },
+  "homeCategories": {
+    "all": "Tất cả",
+    "forSale": "Cần bán",
+    "forRent": "Cho thuê",
+    "apartments": "Căn hộ",
+    "villas": "Biệt thự",
+    "land": "Đất",
+    "chalets": "Nhà gỗ",
+    "farms": "trang trại",
+    "restHouses": "Nhà nghỉ",
+    "hotels": "Khách sạn",
+    "commercial": "Thuộc về thương mại",
+    "offices": "Văn phòng"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Căn hộ cho thuê",
+    "villasForSale": "Biệt thự để bán",
+    "landForSale": "Bán đất",
+    "chalets": "Nhà gỗ",
+    "restHouses": "Nhà nghỉ"
+  },
+  "homeFilters": {
+    "txAll": "Tất cả",
+    "txSale": "Doanh thu",
+    "txRent": "Thuê",
+    "bedsAny": "Bất kì"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Thánh địa Mecca",
+    "medina": "Medina",
+    "khobar": "khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Không tìm thấy danh sách",
+    "helmetTitle": "So sánh danh sách"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Hoa hồng",
+    "revenueByMonth": "Doanh thu theo tháng"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Phân tích",
+    "viewsOverTime": "Lượt xem theo thời gian"
+  },
+  "listingDetail": {
+    "hotelLabel": "Khách sạn",
+    "starSuffix": "{{n}}-sao",
+    "stayDetails": "Chi tiết lưu trú",
+    "houseRules": "Nội quy nhà",
+    "maxGuests": "Khách tối đa",
+    "checkIn": "Đăng ký vào",
+    "checkInFrom": "từ {{time}}",
+    "checkOut": "Trả phòng",
+    "checkOutBy": "trước {{time}}",
+    "cancellation": "Hủy bỏ",
+    "whatThisPlaceOffers": "Địa điểm này có gì"
+  },
+  "support": {
+    "title": "Ủng hộ",
+    "adminSubtitle": "Phân loại và giải quyết các yêu cầu hỗ trợ khách hàng",
+    "myTickets": "Vé của tôi",
+    "newTicket": "Vé mới",
+    "subject": "Chủ thể",
+    "description": "Mô tả chi tiết",
+    "category": "Loại",
+    "status": "Trạng thái",
+    "submit": "Gửi vé",
+    "reply": "Hồi đáp",
+    "noTickets": "Không có vé hỗ trợ",
+    "noTicketsPrompt": "Tạo một vé mới để nhận trợ giúp",
+    "adminEmptyHint": "Không có vé phù hợp với các bộ lọc hiện tại.",
+    "createTicket": "Tạo vé",
+    "originalDesc": "Mô tả gốc:",
+    "supportTeam": "Nhóm hỗ trợ",
+    "writeReply": "Viết câu trả lời của bạn…",
+    "closedHint": "Phiếu này đã bị đóng — hãy thay đổi trạng thái của nó ở trên để trả lời.",
+    "ticketCreated": "Đã tạo thành công phiếu hỗ trợ",
+    "categories": {
+      "general": "Tổng quan",
+      "technical": "Kỹ thuật",
+      "billing": "Thanh toán",
+      "listing": "Danh sách",
+      "account": "Tài khoản",
+      "other": "Khác"
+    },
+    "statuses": {
+      "open": "Mở",
+      "in_progress": "Đang tiến hành",
+      "resolved": "Đã giải quyết",
+      "closed": "Đã đóng"
+    }
   }
 }

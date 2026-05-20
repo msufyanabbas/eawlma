@@ -27,7 +27,8 @@
     "stays": "ቆይታዎች",
     "shortTermStays": "የአጭር ጊዜ ቆይታዎች",
     "hotels": "ሆቴሎች",
-    "chalets": "ቻሌቶች እና እርሻዎች"
+    "chalets": "ቻሌቶች እና እርሻዎች",
+    "about": "ስለ"
   },
   "dashboard": {
     "overview": "አጠቃላይ እይታ",
@@ -1348,5 +1349,154 @@
     "duplicate": "ማባዛት።",
     "deleteConfirmTitle": "{{count}} ዝርዝር(ዎች) ይሰረዝ?",
     "deleteConfirmDescription": "ይህ እርምጃ ዝርዝሩን ይሰርዛል - ከአሁን በኋላ በይፋ አይታይም።"
+  },
+  "agentReview": {
+    "postFailed": "ግምገማን መለጠፍ አልተቻለም",
+    "posting": "በመለጠፍ ላይ…",
+    "postReview": "ግምገማ ይለጥፉ"
+  },
+  "adminCommissions": {
+    "listing": "መዘርዘር",
+    "buyer": "ገዢ",
+    "value": "የስምምነት ዋጋ",
+    "platformEarn": "መድረክ ያግኙ",
+    "agentEarn": "ወኪል ያግኙ",
+    "status": "ሁኔታ",
+    "closedAt": "ዝግ",
+    "allCommissions": "ሁሉም ኮሚሽኖች",
+    "all": "ሁሉም"
+  },
+  "adminAudit": {
+    "timestamp": "የጊዜ ማህተም",
+    "actor": "ተዋናይ",
+    "action": "ድርጊት",
+    "entity": "አካል",
+    "changed": "የተቀየሩ መስኮች",
+    "noMatches": "ምንም ተዛማጅ የኦዲት ግቤቶች የሉም"
+  },
+  "adminAnalytics": {
+    "trafficSources": "የትራፊክ ምንጮች",
+    "devices": "መሳሪያዎች",
+    "inquiryFunnel": "የጥያቄ ፋኑኤል"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ሪያድ፣ ጅዳ፣ ድማም…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "አጋዥ፣ ባለሙያ ወይም ማሻሻል የሚችለውን ያጋሩ…"
+  },
+  "adminCommissionsPage": {
+    "title": "መድረክ ኮሚሽኖች",
+    "subtitle": "ጠቅላላ ገቢ፣ የወኪል ክፍያዎች እና የግብይት ክፍፍል።"
+  },
+  "comparePage": {
+    "emptyTitle": "እስካሁን ምንም የሚወዳደር የለም።"
+  },
+  "searchMap": {
+    "missingKeyTitle": "የጉግል ካርታዎች ኤፒአይ ቁልፍ አልተዋቀረም።",
+    "missingKeyHint": "የካርታውን እይታ ለማንቃት VITE_GOOGLE_MAPS_API_KEY ያዘጋጁ።",
+    "loadFailed": "ካርታ መጫን አልተሳካም።"
+  },
+  "photoGallery": {
+    "close": "ገጠመ",
+    "previous": "የቀድሞ ፎቶ",
+    "next": "የሚቀጥለው ፎቶ"
+  },
+  "homeCategories": {
+    "all": "ሁሉም",
+    "forSale": "የሚሸጥ ፡ ለሽያጭ የቀረበ",
+    "forRent": "ለኪራይ",
+    "apartments": "አፓርታማዎች",
+    "villas": "ቪላዎች",
+    "land": "መሬት",
+    "chalets": "ቻሌቶች",
+    "farms": "እርሻዎች",
+    "restHouses": "ማረፊያ ቤቶች",
+    "hotels": "ሆቴሎች",
+    "commercial": "ንግድ",
+    "offices": "ቢሮዎች"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "አፓርትመንቶች የሚከራዩ",
+    "villasForSale": "ቪላዎች ለሽያጭ",
+    "landForSale": "መሬት የሚሸጥ",
+    "chalets": "ቻሌቶች",
+    "restHouses": "የማረፊያ ቤቶች"
+  },
+  "homeFilters": {
+    "txAll": "ሁሉም",
+    "txSale": "ሽያጭ",
+    "txRent": "ተከራይ",
+    "bedsAny": "ማንኛውም"
+  },
+  "cities": {
+    "riyadh": "ሪያድ",
+    "jeddah": "ጅዳ",
+    "dammam": "ድማ",
+    "mecca": "መካ",
+    "medina": "መዲና",
+    "khobar": "ኾባር",
+    "taif": "ጣኢፍ",
+    "buraidah": "ቡረይዳ"
+  },
+  "listingDetailPage": {
+    "notFound": "ዝርዝር አልተገኘም",
+    "helmetTitle": "ዝርዝሮችን አወዳድር"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "ኮሚሽኖች",
+    "revenueByMonth": "ገቢ በወር"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "ትንታኔ",
+    "viewsOverTime": "እይታዎች በጊዜ ሂደት"
+  },
+  "listingDetail": {
+    "hotelLabel": "ሆቴል",
+    "starSuffix": "{{n}}-ኮከብ",
+    "stayDetails": "ዝርዝሮችን ይቆዩ",
+    "houseRules": "የቤት ደንቦች",
+    "maxGuests": "ከፍተኛ እንግዶች",
+    "checkIn": "ያረጋግጡ",
+    "checkInFrom": "ከ{{ጊዜ}}",
+    "checkOut": "ተመዝግበው ይውጡ",
+    "checkOutBy": "በ {{ጊዜ}}",
+    "cancellation": "ስረዛ",
+    "whatThisPlaceOffers": "ይህ ቦታ የሚያቀርበው"
+  },
+  "support": {
+    "title": "ድጋፍ",
+    "adminSubtitle": "የደንበኛ ድጋፍ ትኬቶችን መለየት እና መፍታት",
+    "myTickets": "የእኔ ትኬቶች",
+    "newTicket": "አዲስ ቲኬት",
+    "subject": "ርዕሰ ጉዳይ",
+    "description": "ዝርዝር መግለጫ",
+    "category": "ምድብ",
+    "status": "ሁኔታ",
+    "submit": "ቲኬት አስገባ",
+    "reply": "መልስ",
+    "noTickets": "ምንም የድጋፍ ትኬቶች የሉም",
+    "noTicketsPrompt": "እርዳታ ለማግኘት አዲስ ቲኬት ይፍጠሩ",
+    "adminEmptyHint": "ምንም ትኬቶች ከአሁኑ ማጣሪያዎች ጋር አይዛመዱም።",
+    "createTicket": "ቲኬት ይፍጠሩ",
+    "originalDesc": "የመጀመሪያ መግለጫ፡-",
+    "supportTeam": "የድጋፍ ቡድን",
+    "writeReply": "ምላሽህን ጻፍ…",
+    "closedHint": "ይህ ቲኬት ተዘግቷል - ምላሽ ለመስጠት ከላይ ያለውን ሁኔታ ይለውጡ።",
+    "ticketCreated": "የድጋፍ ትኬት በተሳካ ሁኔታ ተፈጥሯል።",
+    "categories": {
+      "general": "አጠቃላይ",
+      "technical": "ቴክኒካል",
+      "billing": "የሂሳብ አከፋፈል",
+      "listing": "መዘርዘር",
+      "account": "መለያ",
+      "other": "ሌላ"
+    },
+    "statuses": {
+      "open": "ክፈት",
+      "in_progress": "በሂደት ላይ",
+      "resolved": "ተፈቷል።",
+      "closed": "ዝግ"
+    }
   }
 }

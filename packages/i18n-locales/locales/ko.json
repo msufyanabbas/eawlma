@@ -27,7 +27,8 @@
     "stays": "단기 숙소",
     "shortTermStays": "단기 숙소",
     "hotels": "호텔",
-    "chalets": "샬레 및 농장"
+    "chalets": "샬레 및 농장",
+    "about": "에 대한"
   },
   "dashboard": {
     "overview": "개요",
@@ -1348,5 +1349,154 @@
     "duplicate": "복제하다",
     "deleteConfirmTitle": "{{count}}개의 목록을 삭제하시겠습니까?",
     "deleteConfirmDescription": "이 작업을 수행하면 목록이 일시 삭제되어 더 이상 공개적으로 표시되지 않습니다."
+  },
+  "agentReview": {
+    "postFailed": "리뷰를 게시할 수 없습니다.",
+    "posting": "전기…",
+    "postReview": "리뷰 게시"
+  },
+  "adminCommissions": {
+    "listing": "상장",
+    "buyer": "사는 사람",
+    "value": "거래 가치",
+    "platformEarn": "플랫폼 수익",
+    "agentEarn": "에이전트 적립",
+    "status": "상태",
+    "closedAt": "닫은",
+    "allCommissions": "모든 커미션",
+    "all": "모두"
+  },
+  "adminAudit": {
+    "timestamp": "타임스탬프",
+    "actor": "배우",
+    "action": "행동",
+    "entity": "실재",
+    "changed": "변경된 필드",
+    "noMatches": "일치하는 감사 항목이 없습니다."
+  },
+  "adminAnalytics": {
+    "trafficSources": "트래픽 소스",
+    "devices": "장치",
+    "inquiryFunnel": "문의 유입경로"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "리야드, 제다, 담맘…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "도움이 되었거나, 전문적이거나, 개선할 수 있는 내용을 공유하세요…"
+  },
+  "adminCommissionsPage": {
+    "title": "플랫폼 수수료",
+    "subtitle": "총 수익, 상담원 지불금 및 거래별 분석입니다."
+  },
+  "comparePage": {
+    "emptyTitle": "아직 비교할 것이 없습니다."
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API 키가 구성되지 않았습니다.",
+    "missingKeyHint": "지도 보기를 활성화하려면 VITE_GOOGLE_MAPS_API_KEY를 설정하세요.",
+    "loadFailed": "지도를 로드하지 못했습니다."
+  },
+  "photoGallery": {
+    "close": "닫다",
+    "previous": "이전 사진",
+    "next": "다음 사진"
+  },
+  "homeCategories": {
+    "all": "모두",
+    "forSale": "판매용",
+    "forRent": "임대용",
+    "apartments": "아파트",
+    "villas": "빌라",
+    "land": "땅",
+    "chalets": "샬레",
+    "farms": "전원",
+    "restHouses": "휴게소",
+    "hotels": "호텔",
+    "commercial": "광고",
+    "offices": "부엌"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "임대 아파트",
+    "villasForSale": "판매용 빌라",
+    "landForSale": "판매용 토지",
+    "chalets": "샬레",
+    "restHouses": "휴게소"
+  },
+  "homeFilters": {
+    "txAll": "모두",
+    "txSale": "판매",
+    "txRent": "임차료",
+    "bedsAny": "어느"
+  },
+  "cities": {
+    "riyadh": "리야드",
+    "jeddah": "제다",
+    "dammam": "담맘",
+    "mecca": "메카",
+    "medina": "메디나",
+    "khobar": "코바르",
+    "taif": "타이프",
+    "buraidah": "부라이다"
+  },
+  "listingDetailPage": {
+    "notFound": "목록을 찾을 수 없습니다",
+    "helmetTitle": "목록 비교"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "커미션",
+    "revenueByMonth": "월별 수익"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "해석학",
+    "viewsOverTime": "시간 경과에 따른 조회수"
+  },
+  "listingDetail": {
+    "hotelLabel": "호텔",
+    "starSuffix": "{{n}}성급",
+    "stayDetails": "숙박 세부정보",
+    "houseRules": "하우스 룰",
+    "maxGuests": "최대 손님",
+    "checkIn": "체크인",
+    "checkInFrom": "{{time}}부터",
+    "checkOut": "점검",
+    "checkOutBy": "{{time}}까지",
+    "cancellation": "해제",
+    "whatThisPlaceOffers": "이 장소가 제공하는 것"
+  },
+  "support": {
+    "title": "지원하다",
+    "adminSubtitle": "고객 지원 티켓 분류 및 해결",
+    "myTickets": "내 티켓",
+    "newTicket": "신규 티켓",
+    "subject": "주제",
+    "description": "자세한 설명",
+    "category": "범주",
+    "status": "상태",
+    "submit": "티켓 제출",
+    "reply": "회신하다",
+    "noTickets": "지원 티켓 없음",
+    "noTicketsPrompt": "도움을 받으려면 새 티켓을 만드세요.",
+    "adminEmptyHint": "현재 필터와 일치하는 티켓이 없습니다.",
+    "createTicket": "티켓 생성",
+    "originalDesc": "원래 설명:",
+    "supportTeam": "지원팀",
+    "writeReply": "답장을 작성하세요…",
+    "closedHint": "이 티켓은 종료되었습니다. 위의 상태를 응답으로 변경하세요.",
+    "ticketCreated": "지원 티켓이 성공적으로 생성되었습니다.",
+    "categories": {
+      "general": "일반적인",
+      "technical": "인위적인",
+      "billing": "청구",
+      "listing": "상장",
+      "account": "계정",
+      "other": "다른"
+    },
+    "statuses": {
+      "open": "열려 있는",
+      "in_progress": "진행 중",
+      "resolved": "해결됨",
+      "closed": "닫은"
+    }
   }
 }

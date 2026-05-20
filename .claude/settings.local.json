@@ -10,7 +10,13 @@
       "Bash(Select-Object Name)",
       "Bash(npx tsc *)",
       "Bash(npx expo *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(grep -vE \"t\\\\\\(|//|className|variant|href|to=|^\\\\s*\\\\*|@/|@mui|from '\")",
+      "Bash(npm run *)",
+      "Read(//c/c/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat/apps/backend/src/modules/**)",
+      "Read(//c/c/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat/apps/backend/src/modules/notifications/**)",
+      "Bash(node *)",
+      "Bash(git -C \"C:/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat\" show --stat --oneline 48aac36)"
     ]
   }
 }

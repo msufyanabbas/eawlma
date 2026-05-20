@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "Ștergeți {{count}} înregistrări?",
     "deleteConfirmDescription": "Această acțiune șterge ușor lista - nu va mai apărea public."
   },
+  "agentReview": {
+    "postFailed": "Nu s-a putut posta recenzia",
+    "posting": "Se postează…",
+    "postReview": "Postează recenzia"
+  },
+  "adminCommissions": {
+    "listing": "Listare",
+    "buyer": "Cumpărător",
+    "value": "Valoarea tranzacției",
+    "platformEarn": "Câștigă platformă",
+    "agentEarn": "Câștigă agent",
+    "status": "Stare",
+    "closedAt": "Închis",
+    "allCommissions": "Toate comisioanele",
+    "all": "Toate"
+  },
+  "adminAudit": {
+    "timestamp": "Marca temporală",
+    "actor": "Actorul",
+    "action": "Acțiune",
+    "entity": "Entitatea",
+    "changed": "Câmpuri modificate",
+    "noMatches": "Nu există intrări de audit care se potrivesc"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Surse de trafic",
+    "devices": "Dispozitive",
+    "inquiryFunnel": "Pâlnie de anchetă"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Jedda, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Împărtășiți ceea ce a fost util, profesional sau care s-ar putea îmbunătăți..."
+  },
+  "adminCommissionsPage": {
+    "title": "Comisioane platforme",
+    "subtitle": "Venitul total, plățile agenților și defalcarea per tranzacție."
+  },
+  "comparePage": {
+    "emptyTitle": "Nimic de comparat încă"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Cheia API Google Maps nu este configurată",
+    "missingKeyHint": "Setați VITE_GOOGLE_MAPS_API_KEY pentru a activa vizualizarea hărții.",
+    "loadFailed": "Nu s-a încărcat harta"
+  },
+  "photoGallery": {
+    "close": "Închide",
+    "previous": "Fotografia anterioară",
+    "next": "Fotografia următoare"
+  },
+  "homeCategories": {
+    "all": "Toate",
+    "forSale": "De Vanzare",
+    "forRent": "De inchiriat",
+    "apartments": "Apartamente",
+    "villas": "Vile",
+    "land": "Teren",
+    "chalets": "Cabana",
+    "farms": "Ferme",
+    "restHouses": "Case de odihnă",
+    "hotels": "Hoteluri",
+    "commercial": "Comercial",
+    "offices": "Birouri"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Apartamente de inchiriat",
+    "villasForSale": "Vile de vanzare",
+    "landForSale": "Teren de vânzare",
+    "chalets": "Cabana",
+    "restHouses": "Case de odihnă"
+  },
+  "homeFilters": {
+    "txAll": "Toate",
+    "txSale": "Vanzare",
+    "txRent": "Închiriere",
+    "bedsAny": "Orice"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Lista nu a fost găsită",
+    "helmetTitle": "Compara listele"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Comisioane",
+    "revenueByMonth": "Venituri pe lună"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Vizualizări de-a lungul timpului"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-stea",
+    "stayDetails": "Detalii sejur",
+    "houseRules": "Regulile casei",
+    "maxGuests": "Max invitați",
+    "checkIn": "Înregistrare",
+    "checkInFrom": "din {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "de {{time}}",
+    "cancellation": "Anulare",
+    "whatThisPlaceOffers": "Ce oferă acest loc"
+  },
+  "support": {
+    "title": "Suport",
+    "adminSubtitle": "Triați și rezolvați biletele de asistență pentru clienți",
+    "myTickets": "Biletele mele",
+    "newTicket": "Bilet nou",
+    "subject": "Subiect",
+    "description": "Descriere detaliată",
+    "category": "Categoria",
+    "status": "Stare",
+    "submit": "Trimiteți bilet",
+    "reply": "Răspunde",
+    "noTickets": "Fără bilete de asistență",
+    "noTicketsPrompt": "Creați un nou bilet pentru a obține ajutor",
+    "adminEmptyHint": "Niciun bilet nu se potrivește cu filtrele actuale.",
+    "createTicket": "Creați bilet",
+    "originalDesc": "Descrierea originală:",
+    "supportTeam": "Echipa de suport",
+    "writeReply": "Scrieți răspunsul dvs.…",
+    "closedHint": "Acest bilet este închis — schimbați-i starea de mai sus pentru a răspunde.",
+    "ticketCreated": "Tichet de asistență creat cu succes",
+    "categories": {
+      "general": "General",
+      "technical": "Tehnic",
+      "billing": "Facturare",
+      "listing": "Listare",
+      "account": "Cont",
+      "other": "Altele"
+    },
+    "statuses": {
+      "open": "Deschide",
+      "in_progress": "În curs",
+      "resolved": "S-a rezolvat",
+      "closed": "Închis"
+    }
+  },
   "saved": {
     "title": "Salvat",
     "empty": "Nicio proprietate salvată",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Plată procesată",
     "dispute_resolved": "Disputa Rezolvată",
     "system": "Sistem"
-  },
-  "support": {
-    "title": "Suport",
-    "myTickets": "Biletele mele",
-    "newTicket": "Bilet nou",
-    "subject": "Subiect",
-    "description": "Descriere detaliată",
-    "category": "Categoria",
-    "status": "Stare",
-    "submit": "Trimiteți bilet",
-    "reply": "Răspunde",
-    "noTickets": "Fără bilete de asistență",
-    "noTicketsPrompt": "Creați un nou bilet pentru a obține ajutor",
-    "createTicket": "Creați bilet",
-    "originalDesc": "Descrierea originală:",
-    "supportTeam": "Echipa de suport",
-    "writeReply": "Scrieți răspunsul dvs....",
-    "ticketCreated": "Tichet de asistență creat cu succes",
-    "categories": {
-      "general": "General",
-      "technical": "Tehnic",
-      "billing": "Facturare",
-      "listing": "Listare",
-      "account": "Cont",
-      "other": "Altele"
-    },
-    "statuses": {
-      "open": "Deschide",
-      "in_progress": "În curs",
-      "resolved": "S-a rezolvat",
-      "closed": "Închis"
-    },
-    "adminSubtitle": "Triați și rezolvați biletele de asistență pentru clienți",
-    "adminEmptyHint": "Niciun bilet nu se potrivește cu filtrele actuale.",
-    "closedHint": "Acest bilet este închis — schimbați-i starea de mai sus pentru a răspunde."
-  },
-  "agentReview": {
-    "postFailed": "Nu s-a putut posta recenzia",
-    "posting": "Se postează…",
-    "postReview": "Postează recenzia"
-  },
-  "adminCommissions": {
-    "listing": "Listare",
-    "buyer": "Cumpărător",
-    "value": "Valoarea tranzacției",
-    "platformEarn": "Câștigă platformă",
-    "agentEarn": "Câștigă agent",
-    "status": "Stare",
-    "closedAt": "Închis",
-    "allCommissions": "Toate comisioanele",
-    "all": "Toate"
-  },
-  "adminAudit": {
-    "timestamp": "Marca temporală",
-    "actor": "Actorul",
-    "action": "Acțiune",
-    "entity": "Entitatea",
-    "changed": "Câmpuri modificate",
-    "noMatches": "Nu există intrări de audit care se potrivesc"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Surse de trafic",
-    "devices": "Dispozitive",
-    "inquiryFunnel": "Pâlnie de anchetă"
-  },
-  "listingDetail": {
-    "hotelLabel": "Hotel",
-    "starSuffix": "{{n}}-stea",
-    "stayDetails": "Detalii sejur",
-    "houseRules": "Regulile casei",
-    "maxGuests": "Max invitați",
-    "checkIn": "Înregistrare",
-    "checkInFrom": "din {{time}}",
-    "checkOut": "Check-out",
-    "checkOutBy": "de {{time}}",
-    "cancellation": "Anulare",
-    "whatThisPlaceOffers": "Ce oferă acest loc"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riad, Jedda, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Împărtășiți ceea ce a fost util, profesional sau care s-ar putea îmbunătăți..."
-  },
-  "adminCommissionsPage": {
-    "title": "Comisioane platforme",
-    "subtitle": "Venitul total, plățile agenților și defalcarea per tranzacție."
-  },
-  "comparePage": {
-    "emptyTitle": "Nimic de comparat încă"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Cheia API Google Maps nu este configurată",
-    "missingKeyHint": "Setați VITE_GOOGLE_MAPS_API_KEY pentru a activa vizualizarea hărții.",
-    "loadFailed": "Nu s-a putut încărca harta"
-  },
-  "photoGallery": {
-    "close": "Închide",
-    "previous": "Fotografia anterioară",
-    "next": "Poza următoare"
-  },
-  "homeCategories": {
-    "all": "Toate",
-    "forSale": "De Vanzare",
-    "forRent": "De Inchiriere",
-    "apartments": "Apartamente",
-    "villas": "Vile",
-    "land": "Teren",
-    "chalets": "Cabana",
-    "farms": "Ferme",
-    "restHouses": "Case de odihnă",
-    "hotels": "Hoteluri",
-    "commercial": "Comercial",
-    "offices": "Birouri"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Apartamente de inchiriat",
-    "villasForSale": "Vile de vânzare",
-    "landForSale": "Teren de vânzare",
-    "chalets": "Cabana",
-    "restHouses": "Case de odihnă"
-  },
-  "homeFilters": {
-    "txAll": "Toate",
-    "txSale": "Vanzare",
-    "txRent": "Închiriere",
-    "bedsAny": "Orice"
-  },
-  "cities": {
-    "riyadh": "Riad",
-    "jeddah": "Jeddah",
-    "dammam": "Dammam",
-    "mecca": "Mecca",
-    "medina": "Medina",
-    "khobar": "Khobar",
-    "taif": "Taif",
-    "buraidah": "Buraidah"
-  },
-  "listingDetailPage": {
-    "notFound": "Lista nu a fost găsită",
-    "helmetTitle": "Compara listele"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "Comisioane",
-    "revenueByMonth": "Venituri pe lună"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Analytics",
-    "viewsOverTime": "Vizualizări de-a lungul timpului"
   }
 }

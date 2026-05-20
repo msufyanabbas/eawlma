@@ -15,7 +15,7 @@
     "notifications": "Benachrichtigungen",
     "profile": "Profil",
     "logout": "Abmelden",
-    "dashboard": "Dashboard",
+    "dashboard": "Armaturenbrett",
     "admin": "Admin",
     "settings": "Einstellungen",
     "searchPlaceholder": "Stadt, Stadtteil oder Referenz suchen",
@@ -27,7 +27,8 @@
     "stays": "Aufenthalte",
     "shortTermStays": "Kurzaufenthalte",
     "hotels": "Hotels",
-    "chalets": "Chalets & Bauernhöfe"
+    "chalets": "Chalets & Bauernhöfe",
+    "about": "Um"
   },
   "dashboard": {
     "overview": "Übersicht",
@@ -1088,7 +1089,7 @@
     "applyNow": "Dufaat beantragen",
     "calloutTitle": "Miete monatlich mit Dufaat zahlen",
     "calloutBody": "Verteilen Sie {{amount}} SAR Miete auf 12 erschwingliche Monatsraten — Scharia-konform, ohne Zinsen.",
-    "plan": "Plan",
+    "plan": "Planen",
     "monthlyPayment": "Monatsrate",
     "totalAnnual": "Gesamtjahresmiete",
     "platformFee": "Plattformgebühr",
@@ -1107,7 +1108,7 @@
     "myBookings": "Meine Buchungen",
     "tabGuest": "Als Gast",
     "tabHost": "Als Gastgeber",
-    "checkIn": "Check-in",
+    "checkIn": "Einchecken",
     "checkOut": "Auschecken",
     "night": "Nacht",
     "nights": "Nächte",
@@ -1348,5 +1349,154 @@
     "duplicate": "Duplizieren",
     "deleteConfirmTitle": "{{count}} Eintrag(e) löschen?",
     "deleteConfirmDescription": "Durch diese Aktion wird der Eintrag vorläufig gelöscht – er wird nicht mehr öffentlich angezeigt."
+  },
+  "agentReview": {
+    "postFailed": "Bewertung konnte nicht gepostet werden",
+    "posting": "Posten…",
+    "postReview": "Beitragsrezension"
+  },
+  "adminCommissions": {
+    "listing": "Auflistung",
+    "buyer": "Käufer",
+    "value": "Dealwert",
+    "platformEarn": "Plattformverdienen",
+    "agentEarn": "Agentenverdienst",
+    "status": "Status",
+    "closedAt": "Geschlossen",
+    "allCommissions": "Alle Provisionen",
+    "all": "Alle"
+  },
+  "adminAudit": {
+    "timestamp": "Zeitstempel",
+    "actor": "Schauspieler",
+    "action": "Aktion",
+    "entity": "Entität",
+    "changed": "Geänderte Felder",
+    "noMatches": "Keine passenden Audit-Einträge"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Verkehrsquellen",
+    "devices": "Geräte",
+    "inquiryFunnel": "Anfragetrichter"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Teilen Sie mit, was hilfreich oder professionell war oder verbessert werden könnte ..."
+  },
+  "adminCommissionsPage": {
+    "title": "Plattformprovisionen",
+    "subtitle": "Gesamtumsatz, Agentenauszahlungen und Aufschlüsselung pro Transaktion."
+  },
+  "comparePage": {
+    "emptyTitle": "Noch nichts zu vergleichen"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps-API-Schlüssel nicht konfiguriert",
+    "missingKeyHint": "Legen Sie VITE_GOOGLE_MAPS_API_KEY fest, um die Kartenansicht zu aktivieren.",
+    "loadFailed": "Die Karte konnte nicht geladen werden"
+  },
+  "photoGallery": {
+    "close": "Schließen",
+    "previous": "Vorheriges Foto",
+    "next": "Nächstes Foto"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Zu verkaufen",
+    "forRent": "Zu vermieten",
+    "apartments": "Wohnungen",
+    "villas": "Villen",
+    "land": "Land",
+    "chalets": "Chalets",
+    "farms": "Bauernhöfe",
+    "restHouses": "Rasthäuser",
+    "hotels": "Hotels",
+    "commercial": "Kommerziell",
+    "offices": "Büros"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Wohnungen zu vermieten",
+    "villasForSale": "Villen zum Verkauf",
+    "landForSale": "Grundstück zum Verkauf",
+    "chalets": "Chalets",
+    "restHouses": "Rasthäuser"
+  },
+  "homeFilters": {
+    "txAll": "Alle",
+    "txSale": "Verkauf",
+    "txRent": "Mieten",
+    "bedsAny": "Beliebig"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Dschidda",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraida"
+  },
+  "listingDetailPage": {
+    "notFound": "Eintrag nicht gefunden",
+    "helmetTitle": "Angebote vergleichen"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Provisionen",
+    "revenueByMonth": "Umsatz pro Monat"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytik",
+    "viewsOverTime": "Aufrufe im Zeitverlauf"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Details zum Aufenthalt",
+    "houseRules": "Hausordnung",
+    "maxGuests": "Max. Gäste",
+    "checkIn": "Check-in",
+    "checkInFrom": "von {{time}}",
+    "checkOut": "Auschecken",
+    "checkOutBy": "von {{time}}",
+    "cancellation": "Stornierung",
+    "whatThisPlaceOffers": "Was dieser Ort bietet"
+  },
+  "support": {
+    "title": "Unterstützung",
+    "adminSubtitle": "Sortieren und lösen Sie Kundensupport-Tickets",
+    "myTickets": "Meine Tickets",
+    "newTicket": "Neues Ticket",
+    "subject": "Betreff",
+    "description": "Detaillierte Beschreibung",
+    "category": "Kategorie",
+    "status": "Status",
+    "submit": "Ticket einreichen",
+    "reply": "Antwort",
+    "noTickets": "Keine Support-Tickets",
+    "noTicketsPrompt": "Erstellen Sie ein neues Ticket, um Hilfe zu erhalten",
+    "adminEmptyHint": "Keine Tickets entsprechen den aktuellen Filtern.",
+    "createTicket": "Ticket erstellen",
+    "originalDesc": "Originalbeschreibung:",
+    "supportTeam": "Support-Team",
+    "writeReply": "Schreiben Sie Ihre Antwort…",
+    "closedHint": "Dieses Ticket ist geschlossen – ändern Sie den Status oben in „Antworten“.",
+    "ticketCreated": "Support-Ticket erfolgreich erstellt",
+    "categories": {
+      "general": "Allgemein",
+      "technical": "Technisch",
+      "billing": "Abrechnung",
+      "listing": "Auflistung",
+      "account": "Konto",
+      "other": "Andere"
+    },
+    "statuses": {
+      "open": "Öffnen Sie",
+      "in_progress": "In Bearbeitung",
+      "resolved": "Gelöst",
+      "closed": "Geschlossen"
+    }
   }
 }

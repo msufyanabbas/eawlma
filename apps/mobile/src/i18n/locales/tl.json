@@ -442,11 +442,11 @@
     "bathrooms": "Mga Banyo",
     "sqm": "m²",
     "type": "Uri",
-    "floor": "Floor",
+    "floor": "Sahig",
     "age": "Edad",
     "parking": "Paradahan",
     "furnished": "Furnished",
-    "unfurnished": "Unfurnished",
+    "unfurnished": "Walang gamit",
     "perNight": "/night",
     "verifiedAgent": "Na-verify na Ahente",
     "newListing": "Bago",
@@ -1039,7 +1039,7 @@
     "title": "Mga tanong",
     "noResults": "Walang tanong na tumutugma sa filter na ito",
     "empty": "Walang tanong na tumutugma sa filter na ito",
-    "lead": "Lead",
+    "lead": "Nangunguna",
     "listing": "Listahan",
     "contact": "Kontak",
     "date": "Petsa",
@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "Tanggalin ang {{count}} (mga) listahan?",
     "deleteConfirmDescription": "Ang pagkilos na ito ay mahinang tinatanggal ang listahan — hindi na ito lalabas sa publiko."
   },
+  "agentReview": {
+    "postFailed": "Hindi makapag-post ng review",
+    "posting": "Nagpo-post…",
+    "postReview": "Mag-post ng pagsusuri"
+  },
+  "adminCommissions": {
+    "listing": "Listahan",
+    "buyer": "Mamimili",
+    "value": "Halaga ng Deal",
+    "platformEarn": "Platform na Kumita",
+    "agentEarn": "Kumita ng Ahente",
+    "status": "Katayuan",
+    "closedAt": "Sarado",
+    "allCommissions": "Lahat ng Komisyon",
+    "all": "Lahat"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Artista",
+    "action": "Aksyon",
+    "entity": "Entity",
+    "changed": "Mga Binagong Field",
+    "noMatches": "Walang tumutugmang mga entry sa pag-audit"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Mga Pinagmumulan ng Trapiko",
+    "devices": "Mga Device",
+    "inquiryFunnel": "Inquiry Funnel"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Ibahagi kung ano ang nakakatulong, propesyonal, o maaaring mapabuti…"
+  },
+  "adminCommissionsPage": {
+    "title": "Mga komisyon sa platform",
+    "subtitle": "Kabuuang kita, mga payout ng ahente, at breakdown sa bawat transaksyon."
+  },
+  "comparePage": {
+    "emptyTitle": "Wala pang maihahambing"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Hindi na-configure ang Google Maps API key",
+    "missingKeyHint": "Itakda ang VITE_GOOGLE_MAPS_API_KEY upang paganahin ang view ng mapa.",
+    "loadFailed": "Nabigong i-load ang mapa"
+  },
+  "photoGallery": {
+    "close": "Isara",
+    "previous": "Nakaraang larawan",
+    "next": "Susunod na larawan"
+  },
+  "homeCategories": {
+    "all": "Lahat",
+    "forSale": "Binebenta",
+    "forRent": "For Rent",
+    "apartments": "Mga apartment",
+    "villas": "Mga Villa",
+    "land": "Lupa",
+    "chalets": "Mga Chalet",
+    "farms": "Mga sakahan",
+    "restHouses": "Mga Rest House",
+    "hotels": "Mga Hotel",
+    "commercial": "Komersyal",
+    "offices": "Mga Opisina"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Mga apartment na inuupahan",
+    "villasForSale": "Mga ibinebentang villa",
+    "landForSale": "Lupang binebenta",
+    "chalets": "Mga Chalet",
+    "restHouses": "Mga rest house"
+  },
+  "homeFilters": {
+    "txAll": "Lahat",
+    "txSale": "Sale",
+    "txRent": "Rentahan",
+    "bedsAny": "Anumang"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mecca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Hindi nahanap ang listahan",
+    "helmetTitle": "Ihambing ang mga listahan"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Mga Komisyon",
+    "revenueByMonth": "Kita ayon sa buwan"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Mga view sa paglipas ng panahon"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-star",
+    "stayDetails": "Mga detalye ng stay",
+    "houseRules": "Mga panuntunan sa bahay",
+    "maxGuests": "Pinakamaraming bisita",
+    "checkIn": "Mag-check-in",
+    "checkInFrom": "mula sa {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "sa pamamagitan ng {{time}}",
+    "cancellation": "Pagkansela",
+    "whatThisPlaceOffers": "Ano ang inaalok ng lugar na ito"
+  },
+  "support": {
+    "title": "Suporta",
+    "adminSubtitle": "Triage at lutasin ang mga ticket sa suporta sa customer",
+    "myTickets": "Aking Mga Ticket",
+    "newTicket": "Bagong Ticket",
+    "subject": "Paksa",
+    "description": "Detalyadong Paglalarawan",
+    "category": "Kategorya",
+    "status": "Katayuan",
+    "submit": "Isumite ang Ticket",
+    "reply": "Sumagot",
+    "noTickets": "Walang support ticket",
+    "noTicketsPrompt": "Gumawa ng bagong ticket para makakuha ng tulong",
+    "adminEmptyHint": "Walang mga tiket na tumutugma sa kasalukuyang mga filter.",
+    "createTicket": "Lumikha ng Ticket",
+    "originalDesc": "Orihinal na paglalarawan:",
+    "supportTeam": "Support Team",
+    "writeReply": "Isulat ang iyong tugon...",
+    "closedHint": "Ang tiket na ito ay sarado — baguhin ang katayuan nito sa itaas upang tumugon.",
+    "ticketCreated": "Matagumpay na nagawa ang ticket ng suporta",
+    "categories": {
+      "general": "Pangkalahatan",
+      "technical": "Teknikal",
+      "billing": "Pagsingil",
+      "listing": "Listahan",
+      "account": "Account",
+      "other": "Iba pa"
+    },
+    "statuses": {
+      "open": "Buksan",
+      "in_progress": "Isinasagawa",
+      "resolved": "Nalutas",
+      "closed": "sarado"
+    }
+  },
   "saved": {
     "title": "Na-save",
     "empty": "Walang naka-save na property",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Naproseso ang Payout",
     "dispute_resolved": "Nalutas ang Dispute",
     "system": "System"
-  },
-  "support": {
-    "title": "Suporta",
-    "myTickets": "Aking Mga Ticket",
-    "newTicket": "Bagong Ticket",
-    "subject": "Paksa",
-    "description": "Detalyadong Paglalarawan",
-    "category": "Kategorya",
-    "status": "Katayuan",
-    "submit": "Isumite ang Ticket",
-    "reply": "Sumagot",
-    "noTickets": "Walang support ticket",
-    "noTicketsPrompt": "Gumawa ng bagong ticket para makakuha ng tulong",
-    "createTicket": "Lumikha ng Ticket",
-    "originalDesc": "Orihinal na paglalarawan:",
-    "supportTeam": "Support Team",
-    "writeReply": "Isulat ang iyong tugon...",
-    "ticketCreated": "Matagumpay na nagawa ang ticket ng suporta",
-    "categories": {
-      "general": "Pangkalahatan",
-      "technical": "Teknikal",
-      "billing": "Pagsingil",
-      "listing": "Listahan",
-      "account": "Account",
-      "other": "Iba pa"
-    },
-    "statuses": {
-      "open": "Buksan",
-      "in_progress": "Isinasagawa",
-      "resolved": "Nalutas",
-      "closed": "sarado"
-    },
-    "adminSubtitle": "Triage at lutasin ang mga ticket sa suporta sa customer",
-    "adminEmptyHint": "Walang mga tiket na tumutugma sa kasalukuyang mga filter.",
-    "closedHint": "Ang tiket na ito ay sarado — baguhin ang katayuan nito sa itaas upang tumugon."
-  },
-  "agentReview": {
-    "postFailed": "Hindi makapag-post ng review",
-    "posting": "Nagpo-post…",
-    "postReview": "Mag-post ng pagsusuri"
-  },
-  "adminCommissions": {
-    "listing": "Listahan",
-    "buyer": "Mamimili",
-    "value": "Halaga ng Deal",
-    "platformEarn": "Platform na Kumita",
-    "agentEarn": "Kumita ng Ahente",
-    "status": "Katayuan",
-    "closedAt": "Sarado",
-    "allCommissions": "Lahat ng Komisyon",
-    "all": "Lahat"
-  },
-  "adminAudit": {
-    "timestamp": "Timestamp",
-    "actor": "Artista",
-    "action": "Aksyon",
-    "entity": "Entity",
-    "changed": "Mga Binagong Field",
-    "noMatches": "Walang tumutugmang mga entry sa pag-audit"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Mga Pinagmumulan ng Trapiko",
-    "devices": "Mga Device",
-    "inquiryFunnel": "Inquiry Funnel"
-  },
-  "listingDetail": {
-    "hotelLabel": "Hotel",
-    "starSuffix": "{{n}}-star",
-    "stayDetails": "Mga detalye ng stay",
-    "houseRules": "Mga panuntunan sa bahay",
-    "maxGuests": "Pinakamaraming bisita",
-    "checkIn": "Mag-check-in",
-    "checkInFrom": "mula sa {{time}}",
-    "checkOut": "Check-out",
-    "checkOutBy": "sa pamamagitan ng {{time}}",
-    "cancellation": "Pagkansela",
-    "whatThisPlaceOffers": "Ano ang inaalok ng lugar na ito"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Ibahagi kung ano ang nakakatulong, propesyonal, o maaaring mapabuti..."
-  },
-  "adminCommissionsPage": {
-    "title": "Mga komisyon sa platform",
-    "subtitle": "Kabuuang kita, mga payout ng ahente, at breakdown sa bawat transaksyon."
-  },
-  "comparePage": {
-    "emptyTitle": "Wala pang maihahambing"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Hindi na-configure ang Google Maps API key",
-    "missingKeyHint": "Itakda ang VITE_GOOGLE_MAPS_API_KEY upang paganahin ang view ng mapa.",
-    "loadFailed": "Nabigong i-load ang mapa"
-  },
-  "photoGallery": {
-    "close": "Isara",
-    "previous": "Nakaraang larawan",
-    "next": "Susunod na larawan"
-  },
-  "homeCategories": {
-    "all": "Lahat",
-    "forSale": "Binebenta",
-    "forRent": "For Rent",
-    "apartments": "Mga apartment",
-    "villas": "Mga Villa",
-    "land": "Lupa",
-    "chalets": "Mga Chalet",
-    "farms": "Mga sakahan",
-    "restHouses": "Mga Rest House",
-    "hotels": "Mga Hotel",
-    "commercial": "Komersyal",
-    "offices": "Mga Opisina"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Mga apartment na inuupahan",
-    "villasForSale": "Mga ibinebentang villa",
-    "landForSale": "Lupang binebenta",
-    "chalets": "Mga Chalet",
-    "restHouses": "Mga rest house"
-  },
-  "homeFilters": {
-    "txAll": "Lahat",
-    "txSale": "Sale",
-    "txRent": "Rentahan",
-    "bedsAny": "Anumang"
-  },
-  "cities": {
-    "riyadh": "Riyadh",
-    "jeddah": "Jeddah",
-    "dammam": "Dammam",
-    "mecca": "Mecca",
-    "medina": "Medina",
-    "khobar": "Khobar",
-    "taif": "Taif",
-    "buraidah": "Buraidah"
-  },
-  "listingDetailPage": {
-    "notFound": "Hindi nahanap ang listahan",
-    "helmetTitle": "Ihambing ang mga listahan"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "Mga komisyon",
-    "revenueByMonth": "Kita ayon sa buwan"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Analytics",
-    "viewsOverTime": "Mga view sa paglipas ng panahon"
   }
 }

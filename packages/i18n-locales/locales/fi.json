@@ -27,7 +27,8 @@
     "stays": "Majoitukset",
     "shortTermStays": "Lyhytaikaiset majoitukset",
     "hotels": "Hotellit",
-    "chalets": "Mökit ja maatilat"
+    "chalets": "Mökit ja maatilat",
+    "about": "Noin"
   },
   "dashboard": {
     "overview": "Yleiskatsaus",
@@ -1348,5 +1349,154 @@
     "duplicate": "Kopioi",
     "deleteConfirmTitle": "Poistetaanko {{count}} yritystietoa?",
     "deleteConfirmDescription": "Tämä toiminto poistaa tiedot pehmeästi – ne eivät enää näy julkisesti."
+  },
+  "agentReview": {
+    "postFailed": "Arvostelua ei voitu lähettää",
+    "posting": "Lähetetään…",
+    "postReview": "Lähetä arvostelu"
+  },
+  "adminCommissions": {
+    "listing": "Listaus",
+    "buyer": "Ostaja",
+    "value": "Sopimuksen arvo",
+    "platformEarn": "Ansaitse alustalla",
+    "agentEarn": "Agentti Ansaitse",
+    "status": "Status",
+    "closedAt": "Suljettu",
+    "allCommissions": "Kaikki provisiot",
+    "all": "Kaikki"
+  },
+  "adminAudit": {
+    "timestamp": "Aikaleima",
+    "actor": "Näyttelijä",
+    "action": "Toiminta",
+    "entity": "Entiteetti",
+    "changed": "Vaihdettu kentät",
+    "noMatches": "Ei vastaavia tarkastusmerkintöjä"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Liikenteen lähteet",
+    "devices": "Laitteet",
+    "inquiryFunnel": "Kyselysuppilo"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riad, Jedda, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Jaa, mikä oli hyödyllistä, ammattimaista tai voisi parantaa…"
+  },
+  "adminCommissionsPage": {
+    "title": "Alustan palkkiot",
+    "subtitle": "Kokonaistulot, edustajan maksut ja tapahtumakohtainen erittely."
+  },
+  "comparePage": {
+    "emptyTitle": "Ei vielä mitään verrattavaa"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-avainta ei ole määritetty",
+    "missingKeyHint": "Ota karttanäkymä käyttöön valitsemalla VITE_GOOGLE_MAPS_API_KEY.",
+    "loadFailed": "Kartan lataaminen epäonnistui"
+  },
+  "photoGallery": {
+    "close": "Lähellä",
+    "previous": "Edellinen kuva",
+    "next": "Seuraava kuva"
+  },
+  "homeCategories": {
+    "all": "Kaikki",
+    "forSale": "Myytävänä",
+    "forRent": "Vuokrattavana",
+    "apartments": "Huoneistot",
+    "villas": "Huvilat",
+    "land": "Maa",
+    "chalets": "Lomamökit",
+    "farms": "Maatilat",
+    "restHouses": "Lepotalot",
+    "hotels": "Hotellit",
+    "commercial": "kaupallinen",
+    "offices": "Toimistot"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Asuntoja vuokralle",
+    "villasForSale": "Huviloita myytävänä",
+    "landForSale": "Maata myytävänä",
+    "chalets": "Lomamökit",
+    "restHouses": "Lepotalot"
+  },
+  "homeFilters": {
+    "txAll": "Kaikki",
+    "txSale": "Myynti",
+    "txRent": "Vuokrata",
+    "bedsAny": "Mikä tahansa"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Tietoa ei löydy",
+    "helmetTitle": "Vertaa listauksia"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "palkkiot",
+    "revenueByMonth": "Tulot kuukausittain"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Näkymät ajan mittaan"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotelli",
+    "starSuffix": "{{n}} tähteä",
+    "stayDetails": "Pysy yksityiskohdat",
+    "houseRules": "Talon säännöt",
+    "maxGuests": "Max vieraita",
+    "checkIn": "Sisäänkirjautuminen",
+    "checkInFrom": "alkaen {{time}}",
+    "checkOut": "Uloskirjautuminen",
+    "checkOutBy": "tekijä: {{time}}",
+    "cancellation": "Peruutus",
+    "whatThisPlaceOffers": "Mitä tämä paikka tarjoaa"
+  },
+  "support": {
+    "title": "Tukea",
+    "adminSubtitle": "Triage ja ratkaise asiakastuen liput",
+    "myTickets": "Omat liput",
+    "newTicket": "Uusi lippu",
+    "subject": "Aihe",
+    "description": "Yksityiskohtainen kuvaus",
+    "category": "Luokka",
+    "status": "Status",
+    "submit": "Lähetä lippu",
+    "reply": "Vastata",
+    "noTickets": "Ei tukilippuja",
+    "noTicketsPrompt": "Luo uusi lippu saadaksesi apua",
+    "adminEmptyHint": "Yksikään lippu ei vastaa nykyisiä suodattimia.",
+    "createTicket": "Luo lippu",
+    "originalDesc": "Alkuperäinen kuvaus:",
+    "supportTeam": "Tukitiimi",
+    "writeReply": "Kirjoita vastauksesi…",
+    "closedHint": "Tämä lippu on suljettu – muuta sen tilaa yllä vastataksesi.",
+    "ticketCreated": "Tukilipun luominen onnistui",
+    "categories": {
+      "general": "Kenraali",
+      "technical": "Tekninen",
+      "billing": "Laskutus",
+      "listing": "Listaus",
+      "account": "Tili",
+      "other": "Muut"
+    },
+    "statuses": {
+      "open": "Avaa",
+      "in_progress": "Käynnissä",
+      "resolved": "Ratkaistu",
+      "closed": "Suljettu"
+    }
   }
 }

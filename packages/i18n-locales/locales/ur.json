@@ -27,7 +27,8 @@
     "stays": "قیامیں",
     "shortTermStays": "مختصر مدتی قیامیں",
     "hotels": "ہوٹل",
-    "chalets": "شالے اور فارمز"
+    "chalets": "شالے اور فارمز",
+    "about": "کے بارے میں"
   },
   "dashboard": {
     "overview": "جائزہ",
@@ -308,7 +309,7 @@
     "submit": "جمع کروائیں",
     "language": "زبان",
     "arabic": "العربية",
-    "english": "English",
+    "english": "انگریزی",
     "urdu": "اردو",
     "back": "پچھلا",
     "next": "اگلا",
@@ -395,27 +396,27 @@
       "expired": "ختم شدہ",
       "draft": "مسودہ",
       "archived": "آرکائیو شدہ",
-      "pending_review": "Under Review",
-      "sold": "Sold",
-      "rented": "Rented"
+      "pending_review": "زیر جائزہ",
+      "sold": "فروخت ہوا",
+      "rented": "کرایہ پر دیا گیا"
     },
-    "bedrooms": "Bedrooms",
-    "bathrooms": "Bathrooms",
-    "sqm": "m²",
-    "type": "Type",
-    "floor": "Floor",
-    "age": "Age",
-    "parking": "Parking",
-    "furnished": "Furnished",
-    "unfurnished": "Unfurnished",
-    "perNight": "/night",
-    "verifiedAgent": "Verified Agent",
-    "newListing": "New",
-    "sold": "Sold",
-    "rented": "Rented",
-    "available": "Available",
-    "pending": "Pending",
-    "expired": "Expired"
+    "bedrooms": "| بیڈ رومز",
+    "bathrooms": "| باتھ رومز",
+    "sqm": "| m²",
+    "type": "قسم",
+    "floor": "منزل",
+    "age": "| عمر",
+    "parking": "| پارکنگ",
+    "furnished": "| فرنشڈ",
+    "unfurnished": "| نامکمل",
+    "perNight": "/رات",
+    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
+    "newListing": "نیا",
+    "sold": "| فروخت ہوا",
+    "rented": "کرایہ پر دیا گیا",
+    "available": "| دستیاب",
+    "pending": "زیر التواء",
+    "expired": "میعاد ختم"
   },
   "search": {
     "filters": "فلٹرز",
@@ -1313,9 +1314,9 @@
     }
   },
   "agent": {
-    "verified": "Verified",
-    "verifiedAgent": "Verified Agent",
-    "licensed": "Licensed",
+    "verified": "| تصدیق شدہ",
+    "verifiedAgent": "| تصدیق شدہ ایجنٹ",
+    "licensed": "لائسنس یافتہ",
     "falLicense": "FAL لائسنس یافتہ",
     "listings": "فہرستیں",
     "reviews": "جائزے",
@@ -1361,5 +1362,154 @@
   "compare": {
     "add": "موازنہ کرنے کے لیے شامل کریں",
     "remove": "موازنہ سے ہٹا دیں۔"
+  },
+  "agentReview": {
+    "postFailed": "جائزہ پوسٹ نہیں کیا جا سکا",
+    "posting": "پوسٹنگ…",
+    "postReview": "جائزہ پوسٹ کریں"
+  },
+  "adminCommissions": {
+    "listing": "| فہرست سازی",
+    "buyer": "خریدار",
+    "value": "| ڈیل ویلیو",
+    "platformEarn": "پلیٹ فارم کمائیں",
+    "agentEarn": "ایجنٹ کمائیں",
+    "status": "حیثیت",
+    "closedAt": "بند",
+    "allCommissions": "تمام کمیشنز",
+    "all": "| تمام"
+  },
+  "adminAudit": {
+    "timestamp": "ٹائم اسٹیمپ",
+    "actor": "اداکار",
+    "action": "| ایکشن",
+    "entity": "ہستی",
+    "changed": "تبدیل شدہ فیلڈز",
+    "noMatches": "کوئی مماثل آڈٹ اندراجات نہیں"
+  },
+  "adminAnalytics": {
+    "trafficSources": "ٹریفک کے ذرائع",
+    "devices": "ڈیوائسز",
+    "inquiryFunnel": "| انکوائری فنل"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ریاض، جدہ، دمام…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "شیئر کریں جو مددگار، پیشہ ورانہ، یا بہتر ہو سکتا ہے..."
+  },
+  "adminCommissionsPage": {
+    "title": "پلیٹ فارم کمیشن",
+    "subtitle": "کل آمدنی، ایجنٹ کی ادائیگی، اور فی لین دین کی خرابی۔"
+  },
+  "comparePage": {
+    "emptyTitle": "ابھی تک موازنہ کرنے کے لیے کچھ نہیں"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API کلید کنفیگر نہیں ہوئی",
+    "missingKeyHint": "نقشہ کے منظر کو فعال کرنے کے لیے VITE_GOOGLE_MAPS_API_KEY سیٹ کریں۔",
+    "loadFailed": "نقشہ لوڈ کرنے میں ناکام"
+  },
+  "photoGallery": {
+    "close": "بند کریں",
+    "previous": "پچھلی تصویر",
+    "next": "اگلی تصویر"
+  },
+  "homeCategories": {
+    "all": "تمام",
+    "forSale": "برائے فروخت",
+    "forRent": "| کرایہ کے لیے",
+    "apartments": "| اپارٹمنٹس",
+    "villas": "ولاز",
+    "land": "| زمین",
+    "chalets": "| چیلیٹس",
+    "farms": "فارمز",
+    "restHouses": "| ریسٹ ہاؤسز",
+    "hotels": "ہوٹلز",
+    "commercial": "| کمرشل",
+    "offices": "| دفاتر"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "اپارٹمنٹ کرایہ کے لیے",
+    "villasForSale": "ولاز برائے فروخت",
+    "landForSale": "زمین برائے فروخت",
+    "chalets": "| چیلیٹس",
+    "restHouses": "ریسٹ ہاؤسز"
+  },
+  "homeFilters": {
+    "txAll": "تمام",
+    "txSale": "فروخت",
+    "txRent": "| کرایہ",
+    "bedsAny": "| کوئی بھی"
+  },
+  "cities": {
+    "riyadh": "| ریاض",
+    "jeddah": "جدہ",
+    "dammam": "| دمام",
+    "mecca": "مکہ",
+    "medina": "| مدینہ",
+    "khobar": "خبر",
+    "taif": "طائف",
+    "buraidah": "| بریدہ"
+  },
+  "listingDetailPage": {
+    "notFound": "| فہرست نہیں ملی",
+    "helmetTitle": "فہرستوں کا موازنہ کریں"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "کمیشنز",
+    "revenueByMonth": "| ماہ کے لحاظ سے آمدنی"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "| تجزیات",
+    "viewsOverTime": "| وقت کے ساتھ ملاحظات"
+  },
+  "listingDetail": {
+    "hotelLabel": "ہوٹل",
+    "starSuffix": "{{n}}-ستارہ",
+    "stayDetails": "تفصیلات رہیں",
+    "houseRules": "گھر کے قوانین",
+    "maxGuests": "| زیادہ سے زیادہ مہمان",
+    "checkIn": "| چیک ان",
+    "checkInFrom": "| {{وقت}} سے",
+    "checkOut": "چیک آؤٹ",
+    "checkOutBy": "بذریعہ {{وقت}}",
+    "cancellation": "منسوخی",
+    "whatThisPlaceOffers": "| یہ جگہ کیا پیش کرتی ہے"
+  },
+  "support": {
+    "title": "سپورٹ",
+    "adminSubtitle": "کسٹمر سپورٹ ٹکٹوں کو ٹرائیج اور حل کریں",
+    "myTickets": "میرے ٹکٹ",
+    "newTicket": "نیا ٹکٹ",
+    "subject": "موضوع",
+    "description": "تفصیلی تفصیل",
+    "category": "زمرہ",
+    "status": "حیثیت",
+    "submit": "ٹکٹ جمع کروائیں",
+    "reply": "جواب دیں",
+    "noTickets": "| کوئی سپورٹ ٹکٹ نہیں",
+    "noTicketsPrompt": "مدد حاصل کرنے کے لیے ایک نیا ٹکٹ بنائیں",
+    "adminEmptyHint": "کوئی ٹکٹ موجودہ فلٹرز سے مماثل نہیں ہے۔",
+    "createTicket": "ٹکٹ بنائیں",
+    "originalDesc": "اصل تفصیل:",
+    "supportTeam": "سپورٹ ٹیم",
+    "writeReply": "اپنا جواب لکھیں...",
+    "closedHint": "یہ ٹکٹ بند ہے — جواب دینے کے لیے اوپر اس کی حیثیت تبدیل کریں۔",
+    "ticketCreated": "سپورٹ ٹکٹ کامیابی کے ساتھ بنا دیا گیا",
+    "categories": {
+      "general": "جنرل",
+      "technical": "تکنیکی",
+      "billing": "بلنگ",
+      "listing": "| فہرست سازی",
+      "account": "اکاؤنٹ",
+      "other": "| دیگر"
+    },
+    "statuses": {
+      "open": "| کھولیں",
+      "in_progress": "جاری ہے",
+      "resolved": "حل ہو گیا",
+      "closed": "بند"
+    }
   }
 }

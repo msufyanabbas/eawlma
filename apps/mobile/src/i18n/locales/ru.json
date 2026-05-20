@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "Удалить объявления ({{count}})?",
     "deleteConfirmDescription": "Это действие приведет к мягкому удалению объявления — оно больше не будет отображаться публично."
   },
+  "agentReview": {
+    "postFailed": "Не удалось опубликовать отзыв",
+    "posting": "Публикация…",
+    "postReview": "Опубликовать обзор"
+  },
+  "adminCommissions": {
+    "listing": "Листинг",
+    "buyer": "Покупатель",
+    "value": "Стоимость сделки",
+    "platformEarn": "Платформа Заработок",
+    "agentEarn": "Агент Заработок",
+    "status": "Статус",
+    "closedAt": "Закрыто",
+    "allCommissions": "Все комиссии",
+    "all": "Все"
+  },
+  "adminAudit": {
+    "timestamp": "Временная метка",
+    "actor": "Актер",
+    "action": "Действие",
+    "entity": "Сущность",
+    "changed": "Измененные поля",
+    "noMatches": "Нет соответствующих записей аудита"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Источники трафика",
+    "devices": "Устройства",
+    "inquiryFunnel": "Воронка запросов"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Эр-Рияд, Джидда, Даммам…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Поделитесь тем, что было полезно, профессионально или можно было бы улучшить…"
+  },
+  "adminCommissionsPage": {
+    "title": "Комиссии платформы",
+    "subtitle": "Общий доход, выплаты агентам и разбивка по транзакциям."
+  },
+  "comparePage": {
+    "emptyTitle": "Пока нечего сравнивать"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Ключ Google Maps API не настроен.",
+    "missingKeyHint": "Установите VITE_GOOGLE_MAPS_API_KEY, чтобы включить просмотр карты.",
+    "loadFailed": "Не удалось загрузить карту"
+  },
+  "photoGallery": {
+    "close": "Закрывать",
+    "previous": "Предыдущее фото",
+    "next": "Следующее фото"
+  },
+  "homeCategories": {
+    "all": "Все",
+    "forSale": "Для продажи",
+    "forRent": "В аренду",
+    "apartments": "Квартиры",
+    "villas": "Виллы",
+    "land": "Земля",
+    "chalets": "Шале",
+    "farms": "Фермы",
+    "restHouses": "Дома отдыха",
+    "hotels": "Отели",
+    "commercial": "Коммерческий",
+    "offices": "Офисы"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Квартиры в аренду",
+    "villasForSale": "Виллы на продажу",
+    "landForSale": "Земля на продажу",
+    "chalets": "Шале",
+    "restHouses": "Дома отдыха"
+  },
+  "homeFilters": {
+    "txAll": "Все",
+    "txSale": "Распродажа",
+    "txRent": "Арендовать",
+    "bedsAny": "Любой"
+  },
+  "cities": {
+    "riyadh": "Эр-Рияд",
+    "jeddah": "Джидда",
+    "dammam": "Даммам",
+    "mecca": "Мекка",
+    "medina": "Медина",
+    "khobar": "Хобар",
+    "taif": "Таиф",
+    "buraidah": "Бурайда"
+  },
+  "listingDetailPage": {
+    "notFound": "Объявление не найдено",
+    "helmetTitle": "Сравнить объявления"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "комиссии",
+    "revenueByMonth": "Выручка по месяцам"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Аналитика",
+    "viewsOverTime": "Просмотры с течением времени"
+  },
+  "listingDetail": {
+    "hotelLabel": "Отель",
+    "starSuffix": "{{n}}-звезда",
+    "stayDetails": "Подробности проживания",
+    "houseRules": "Правила дома",
+    "maxGuests": "Макс. гостей",
+    "checkIn": "Регистрироваться",
+    "checkInFrom": "с {{time}}",
+    "checkOut": "Проверить",
+    "checkOutBy": "к {{time}}",
+    "cancellation": "Отмена",
+    "whatThisPlaceOffers": "Что предлагает это место"
+  },
+  "support": {
+    "title": "Поддерживать",
+    "adminSubtitle": "Сортировка и решение заявок в службу поддержки клиентов",
+    "myTickets": "Мои билеты",
+    "newTicket": "Новый билет",
+    "subject": "Предмет",
+    "description": "Подробное описание",
+    "category": "Категория",
+    "status": "Статус",
+    "submit": "Отправить билет",
+    "reply": "Отвечать",
+    "noTickets": "Нет билетов в службу поддержки",
+    "noTicketsPrompt": "Создайте новый билет, чтобы получить помощь",
+    "adminEmptyHint": "Ни один билет не соответствует текущим фильтрам.",
+    "createTicket": "Создать билет",
+    "originalDesc": "Исходное описание:",
+    "supportTeam": "Команда поддержки",
+    "writeReply": "Напишите свой ответ…",
+    "closedHint": "Этот тикет закрыт — измените его статус выше, чтобы ответить.",
+    "ticketCreated": "Запрос в службу поддержки успешно создан.",
+    "categories": {
+      "general": "Общий",
+      "technical": "Технический",
+      "billing": "Биллинг",
+      "listing": "Листинг",
+      "account": "Счет",
+      "other": "Другой"
+    },
+    "statuses": {
+      "open": "Открыть",
+      "in_progress": "В ходе выполнения",
+      "resolved": "Решено",
+      "closed": "Закрыто"
+    }
+  },
   "saved": {
     "title": "Сохранено",
     "empty": "Нет сохраненных свойств",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Выплата обработана",
     "dispute_resolved": "Спор разрешен",
     "system": "Система"
-  },
-  "support": {
-    "title": "Поддерживать",
-    "myTickets": "Мои билеты",
-    "newTicket": "Новый билет",
-    "subject": "Предмет",
-    "description": "Подробное описание",
-    "category": "Категория",
-    "status": "Статус",
-    "submit": "Отправить билет",
-    "reply": "Отвечать",
-    "noTickets": "Нет билетов в службу поддержки",
-    "noTicketsPrompt": "Создайте новый билет, чтобы получить помощь",
-    "createTicket": "Создать билет",
-    "originalDesc": "Исходное описание:",
-    "supportTeam": "Команда поддержки",
-    "writeReply": "Напишите свой ответ…",
-    "ticketCreated": "Запрос в службу поддержки успешно создан.",
-    "categories": {
-      "general": "Общий",
-      "technical": "Технический",
-      "billing": "Биллинг",
-      "listing": "Листинг",
-      "account": "Счет",
-      "other": "Другой"
-    },
-    "statuses": {
-      "open": "Открыть",
-      "in_progress": "В ходе выполнения",
-      "resolved": "Решено",
-      "closed": "Закрыто"
-    },
-    "adminSubtitle": "Сортировка и решение заявок в службу поддержки клиентов",
-    "adminEmptyHint": "Ни один билет не соответствует текущим фильтрам.",
-    "closedHint": "Этот тикет закрыт — измените его статус выше, чтобы ответить."
-  },
-  "agentReview": {
-    "postFailed": "Не удалось опубликовать отзыв",
-    "posting": "Публикация…",
-    "postReview": "Опубликовать обзор"
-  },
-  "adminCommissions": {
-    "listing": "Листинг",
-    "buyer": "Покупатель",
-    "value": "Стоимость сделки",
-    "platformEarn": "Платформа Заработок",
-    "agentEarn": "Агент Заработок",
-    "status": "Статус",
-    "closedAt": "Закрыто",
-    "allCommissions": "Все комиссии",
-    "all": "Все"
-  },
-  "adminAudit": {
-    "timestamp": "Временная метка",
-    "actor": "Актер",
-    "action": "Действие",
-    "entity": "Сущность",
-    "changed": "Измененные поля",
-    "noMatches": "Нет соответствующих записей аудита"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Источники трафика",
-    "devices": "Устройства",
-    "inquiryFunnel": "Воронка запросов"
-  },
-  "listingDetail": {
-    "hotelLabel": "Отель",
-    "starSuffix": "{{n}}-звезда",
-    "stayDetails": "Подробности проживания",
-    "houseRules": "Правила дома",
-    "maxGuests": "Макс. гостей",
-    "checkIn": "Регистрироваться",
-    "checkInFrom": "с {{time}}",
-    "checkOut": "Проверить",
-    "checkOutBy": "к {{time}}",
-    "cancellation": "Отмена",
-    "whatThisPlaceOffers": "Что предлагает это место"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Эр-Рияд, Джидда, Даммам…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Поделитесь тем, что было полезно, профессионально или можно было бы улучшить…"
-  },
-  "adminCommissionsPage": {
-    "title": "Комиссии платформы",
-    "subtitle": "Общий доход, выплаты агентам и разбивка по транзакциям."
-  },
-  "comparePage": {
-    "emptyTitle": "Пока нечего сравнивать"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Ключ Google Maps API не настроен.",
-    "missingKeyHint": "Установите VITE_GOOGLE_MAPS_API_KEY, чтобы включить просмотр карты.",
-    "loadFailed": "Не удалось загрузить карту"
-  },
-  "photoGallery": {
-    "close": "Закрывать",
-    "previous": "Предыдущее фото",
-    "next": "Следующее фото"
-  },
-  "homeCategories": {
-    "all": "Все",
-    "forSale": "Для продажи",
-    "forRent": "В аренду",
-    "apartments": "Квартиры",
-    "villas": "Виллы",
-    "land": "Земля",
-    "chalets": "Шале",
-    "farms": "Фермы",
-    "restHouses": "Дома отдыха",
-    "hotels": "Отели",
-    "commercial": "Коммерческий",
-    "offices": "Офисы"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Квартиры в аренду",
-    "villasForSale": "Виллы на продажу",
-    "landForSale": "Земля на продажу",
-    "chalets": "Шале",
-    "restHouses": "Дома отдыха"
-  },
-  "homeFilters": {
-    "txAll": "Все",
-    "txSale": "Распродажа",
-    "txRent": "Арендовать",
-    "bedsAny": "Любой"
-  },
-  "cities": {
-    "riyadh": "Эр-Рияд",
-    "jeddah": "Джидда",
-    "dammam": "Даммам",
-    "mecca": "Мекка",
-    "medina": "Медина",
-    "khobar": "Хобар",
-    "taif": "Таиф",
-    "buraidah": "Бурайда"
-  },
-  "listingDetailPage": {
-    "notFound": "Объявление не найдено",
-    "helmetTitle": "Сравнить объявления"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "комиссии",
-    "revenueByMonth": "Выручка по месяцам"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Аналитика",
-    "viewsOverTime": "Просмотры с течением времени"
   }
 }

@@ -1043,7 +1043,7 @@
     "listing": "Advertensie",
     "contact": "Kontak",
     "date": "Datum",
-    "status": "oop Status",
+    "status": "Status",
     "statuses": {
       "new": "Nuut",
       "contacted": "Gekontak",
@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "Vee {{count}} lysinskrywing(s) uit?",
     "deleteConfirmDescription": "Hierdie handeling vee die lysinskrywing sag uit – dit sal nie meer publiek verskyn nie."
   },
+  "agentReview": {
+    "postFailed": "Kon nie resensie plaas nie",
+    "posting": "Plaas tans …",
+    "postReview": "Plaas resensie"
+  },
+  "adminCommissions": {
+    "listing": "Lys",
+    "buyer": "Koper",
+    "value": "Handelingswaarde",
+    "platformEarn": "Platform Verdien",
+    "agentEarn": "Agent Verdien",
+    "status": "Status",
+    "closedAt": "Gesluit",
+    "allCommissions": "Alle kommissies",
+    "all": "Alles"
+  },
+  "adminAudit": {
+    "timestamp": "Tydstempel",
+    "actor": "Akteur",
+    "action": "Aksie",
+    "entity": "Entiteit",
+    "changed": "Veranderde velde",
+    "noMatches": "Geen ooreenstemmende oudit-inskrywings"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Verkeersbronne",
+    "devices": "Toestelle",
+    "inquiryFunnel": "Navraag Tregter"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Deel wat nuttig, professioneel was of kan verbeter..."
+  },
+  "adminCommissionsPage": {
+    "title": "Platform kommissies",
+    "subtitle": "Totale inkomste, agentuitbetalings en per-transaksie-ontleding."
+  },
+  "comparePage": {
+    "emptyTitle": "Nog niks om te vergelyk nie"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-sleutel nie opgestel nie",
+    "missingKeyHint": "Stel VITE_GOOGLE_MAPS_API_KEY om die kaartaansig te aktiveer.",
+    "loadFailed": "Kon nie kaart"
+  },
+  "photoGallery": {
+    "close": "laai nie Sluit",
+    "previous": "Vorige foto",
+    "next": "Volgende foto"
+  },
+  "homeCategories": {
+    "all": "Alles",
+    "forSale": "Te Koop",
+    "forRent": "Te Huur",
+    "apartments": "Woonstelle",
+    "villas": "Villas",
+    "land": "Grond",
+    "chalets": "Chalets",
+    "farms": "Plase",
+    "restHouses": "Rushuise",
+    "hotels": "Hotelle",
+    "commercial": "Kommersieel",
+    "offices": "Kantore"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Woonstelle te huur",
+    "villasForSale": "Villa's te koop",
+    "landForSale": "Grond te koop",
+    "chalets": "Chalets",
+    "restHouses": "Rushuise"
+  },
+  "homeFilters": {
+    "txAll": "Alles",
+    "txSale": "Verkoop",
+    "txRent": "Huur",
+    "bedsAny": "Enige"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Lys nie gevind nie",
+    "helmetTitle": "Vergelyk lyste"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Kommissies",
+    "revenueByMonth": "Inkomste per maand"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Uitsigte oor tyd"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-ster",
+    "stayDetails": "Verblyfbesonderhede",
+    "houseRules": "Huisreëls",
+    "maxGuests": "Maksimum gaste",
+    "checkIn": "Aanmelding",
+    "checkInFrom": "vanaf {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "deur {{time}}",
+    "cancellation": "Kansellasie",
+    "whatThisPlaceOffers": "Wat hierdie plek bied"
+  },
+  "support": {
+    "title": "Ondersteun",
+    "adminSubtitle": "Triage en los kliëntedienskaartjies op",
+    "myTickets": "My Kaartjies",
+    "newTicket": "Nuwe kaartjie",
+    "subject": "Onderwerp",
+    "description": "Gedetailleerde beskrywing",
+    "category": "Kategorie",
+    "status": "Status",
+    "submit": "Dien kaartjie in",
+    "reply": "Antwoord",
+    "noTickets": "Geen ondersteuningskaartjies",
+    "noTicketsPrompt": "Skep 'n nuwe kaartjie om hulp te kry",
+    "adminEmptyHint": "Geen kaartjies pas by die huidige filters nie.",
+    "createTicket": "Skep kaartjie",
+    "originalDesc": "Oorspronklike beskrywing:",
+    "supportTeam": "Ondersteuningspan",
+    "writeReply": "Skryf jou antwoord…",
+    "closedHint": "Hierdie kaartjie is gesluit - verander sy status hierbo om te antwoord.",
+    "ticketCreated": "Ondersteuningskaartjie suksesvol geskep",
+    "categories": {
+      "general": "Algemeen",
+      "technical": "Tegnies",
+      "billing": "Fakturering",
+      "listing": "Lys",
+      "account": "Rekening",
+      "other": "Ander"
+    },
+    "statuses": {
+      "open": "Maak",
+      "in_progress": "oop Aan die gang",
+      "resolved": "Opgelos",
+      "closed": "Gesluit"
+    }
+  },
   "saved": {
     "title": "Gestoor",
     "empty": "Geen gestoorde eiendomme",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Uitbetaling verwerk",
     "dispute_resolved": "Dispuut opgelos",
     "system": "Stelsel"
-  },
-  "support": {
-    "title": "Ondersteun",
-    "myTickets": "My Kaartjies",
-    "newTicket": "Nuwe kaartjie",
-    "subject": "Onderwerp",
-    "description": "Gedetailleerde beskrywing",
-    "category": "Kategorie",
-    "status": "Status",
-    "submit": "Dien kaartjie in",
-    "reply": "Antwoord",
-    "noTickets": "Geen ondersteuningskaartjies",
-    "noTicketsPrompt": "Skep 'n nuwe kaartjie om hulp te kry",
-    "createTicket": "Skep kaartjie",
-    "originalDesc": "Oorspronklike beskrywing:",
-    "supportTeam": "Ondersteuningspan",
-    "writeReply": "Skryf jou antwoord…",
-    "ticketCreated": "Ondersteuningskaartjie suksesvol geskep",
-    "categories": {
-      "general": "Algemeen",
-      "technical": "Tegnies",
-      "billing": "Fakturering",
-      "listing": "Lys",
-      "account": "Rekening",
-      "other": "Ander"
-    },
-    "statuses": {
-      "open": "Maak",
-      "in_progress": "oop Aan die gang",
-      "resolved": "Opgelos",
-      "closed": "Gesluit"
-    },
-    "adminSubtitle": "Triage en los kliëntedienskaartjies op",
-    "adminEmptyHint": "Geen kaartjies pas by die huidige filters nie.",
-    "closedHint": "Hierdie kaartjie is gesluit - verander sy status hierbo om te antwoord."
-  },
-  "agentReview": {
-    "postFailed": "Kon nie resensie plaas nie",
-    "posting": "Plaas tans …",
-    "postReview": "Plaas resensie"
-  },
-  "adminCommissions": {
-    "listing": "Lys",
-    "buyer": "Koper",
-    "value": "Handelingswaarde",
-    "platformEarn": "Platform Verdien",
-    "agentEarn": "Agent Verdien",
-    "status": "Status",
-    "closedAt": "Gesluit",
-    "allCommissions": "Alle kommissies",
-    "all": "Alles"
-  },
-  "adminAudit": {
-    "timestamp": "Tydstempel",
-    "actor": "Akteur",
-    "action": "Aksie",
-    "entity": "Entiteit",
-    "changed": "Veranderde velde",
-    "noMatches": "Geen ooreenstemmende oudit-inskrywings"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Verkeersbronne",
-    "devices": "Toestelle",
-    "inquiryFunnel": "Navraag Tregter"
-  },
-  "listingDetail": {
-    "hotelLabel": "Hotel",
-    "starSuffix": "{{n}}-ster",
-    "stayDetails": "Bly besonderhede",
-    "houseRules": "Huisreëls",
-    "maxGuests": "Maksimum gaste",
-    "checkIn": "Aanmelding",
-    "checkInFrom": "vanaf {{tyd}}",
-    "checkOut": "Check-out",
-    "checkOutBy": "deur {{time}}",
-    "cancellation": "Kansellasie",
-    "whatThisPlaceOffers": "Wat hierdie plek bied"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Deel wat nuttig, professioneel was of kan verbeter..."
-  },
-  "adminCommissionsPage": {
-    "title": "Platform kommissies",
-    "subtitle": "Totale inkomste, agentuitbetalings en per-transaksie-ontleding."
-  },
-  "comparePage": {
-    "emptyTitle": "Nog niks om te vergelyk nie"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Google Maps API-sleutel nie opgestel nie",
-    "missingKeyHint": "Stel VITE_GOOGLE_MAPS_API_KEY om die kaartaansig te aktiveer.",
-    "loadFailed": "Kon nie kaart"
-  },
-  "photoGallery": {
-    "close": "laai nie Sluit",
-    "previous": "Vorige foto",
-    "next": "Volgende foto"
-  },
-  "homeCategories": {
-    "all": "Alles",
-    "forSale": "Te Koop",
-    "forRent": "Te Huur",
-    "apartments": "Woonstelle",
-    "villas": "Villas",
-    "land": "Grond",
-    "chalets": "Chalets",
-    "farms": "Plase",
-    "restHouses": "Rushuise",
-    "hotels": "Hotelle",
-    "commercial": "Kommersieel",
-    "offices": "Kantore"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Woonstelle te huur",
-    "villasForSale": "Villa's te koop",
-    "landForSale": "Grond te koop",
-    "chalets": "Chalets",
-    "restHouses": "Rushuise"
-  },
-  "homeFilters": {
-    "txAll": "Alles",
-    "txSale": "Verkoop",
-    "txRent": "Huur",
-    "bedsAny": "Enige"
-  },
-  "cities": {
-    "riyadh": "Riyadh",
-    "jeddah": "Jeddah",
-    "dammam": "Dammam",
-    "mecca": "Mekka",
-    "medina": "Medina",
-    "khobar": "Khobar",
-    "taif": "Taif",
-    "buraidah": "Buraidah"
-  },
-  "listingDetailPage": {
-    "notFound": "Lys nie gevind nie",
-    "helmetTitle": "Vergelyk lyste"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "Kommissies",
-    "revenueByMonth": "Inkomste per maand"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Analytics",
-    "viewsOverTime": "Uitsigte oor tyd"
   }
 }

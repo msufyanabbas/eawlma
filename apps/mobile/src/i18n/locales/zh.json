@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "删除 {{count}} 个列表？",
     "deleteConfirmDescription": "此操作会软删除该列表 - 它将不再公开出现。"
   },
+  "agentReview": {
+    "postFailed": "无法发表评论",
+    "posting": "发布…",
+    "postReview": "评论后"
+  },
+  "adminCommissions": {
+    "listing": "上市",
+    "buyer": "买方",
+    "value": "交易价值",
+    "platformEarn": "平台赚取",
+    "agentEarn": "代理赚",
+    "status": "地位",
+    "closedAt": "关闭",
+    "allCommissions": "所有佣金",
+    "all": "全部"
+  },
+  "adminAudit": {
+    "timestamp": "时间戳",
+    "actor": "演员",
+    "action": "行动",
+    "entity": "实体",
+    "changed": "更改字段",
+    "noMatches": "没有匹配的审核条目"
+  },
+  "adminAnalytics": {
+    "trafficSources": "流量来源",
+    "devices": "设备",
+    "inquiryFunnel": "询价漏斗"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "利雅得、吉达、达曼……"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "分享有用的、专业的或可以改进的内容……"
+  },
+  "adminCommissionsPage": {
+    "title": "平台佣金",
+    "subtitle": "总收入、代理支出和每笔交易明细。"
+  },
+  "comparePage": {
+    "emptyTitle": "还没有什么可比较的"
+  },
+  "searchMap": {
+    "missingKeyTitle": "未配置 Google 地图 API 密钥",
+    "missingKeyHint": "设置 VITE_GOOGLE_MAPS_API_KEY 以启用地图视图。",
+    "loadFailed": "加载地图失败"
+  },
+  "photoGallery": {
+    "close": "关闭",
+    "previous": "上一张照片",
+    "next": "下一张照片"
+  },
+  "homeCategories": {
+    "all": "全部",
+    "forSale": "出售",
+    "forRent": "出租",
+    "apartments": "公寓",
+    "villas": "别墅",
+    "land": "土地",
+    "chalets": "小木屋",
+    "farms": "农场",
+    "restHouses": "休息所",
+    "hotels": "酒店",
+    "commercial": "商业的",
+    "offices": "办事处"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "公寓出租",
+    "villasForSale": "出售别墅",
+    "landForSale": "土地出售",
+    "chalets": "小木屋",
+    "restHouses": "休息所"
+  },
+  "homeFilters": {
+    "txAll": "全部",
+    "txSale": "销售",
+    "txRent": "租",
+    "bedsAny": "任何"
+  },
+  "cities": {
+    "riyadh": "利雅得",
+    "jeddah": "吉达",
+    "dammam": "达曼",
+    "mecca": "麦加",
+    "medina": "麦地那",
+    "khobar": "科巴尔",
+    "taif": "塔伊夫",
+    "buraidah": "布赖代"
+  },
+  "listingDetailPage": {
+    "notFound": "未找到列表",
+    "helmetTitle": "比较列表"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "佣金",
+    "revenueByMonth": "按月收入"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "分析",
+    "viewsOverTime": "随时间推移的观看次数"
+  },
+  "listingDetail": {
+    "hotelLabel": "酒店",
+    "starSuffix": "{{n}}-星",
+    "stayDetails": "入住详情",
+    "houseRules": "入住须知",
+    "maxGuests": "最多客人数",
+    "checkIn": "报到",
+    "checkInFrom": "从{{时间}}开始",
+    "checkOut": "查看",
+    "checkOutBy": "截至{{时间}}",
+    "cancellation": "消除",
+    "whatThisPlaceOffers": "这个地方提供什么"
+  },
+  "support": {
+    "title": "支持",
+    "adminSubtitle": "分类并解决客户支持票证",
+    "myTickets": "我的门票",
+    "newTicket": "新票",
+    "subject": "主题",
+    "description": "详细说明",
+    "category": "类别",
+    "status": "地位",
+    "submit": "提交票据",
+    "reply": "回复",
+    "noTickets": "没有支持票",
+    "noTicketsPrompt": "创建新票证以获取帮助",
+    "adminEmptyHint": "没有与当前过滤器匹配的票证。",
+    "createTicket": "创建票证",
+    "originalDesc": "原文描述：",
+    "supportTeam": "支持团队",
+    "writeReply": "写下你的回复...",
+    "closedHint": "此票证已关闭 - 更改其上面的状态以进行回复。",
+    "ticketCreated": "支持票证创建成功",
+    "categories": {
+      "general": "一般的",
+      "technical": "技术的",
+      "billing": "计费",
+      "listing": "上市",
+      "account": "帐户",
+      "other": "其他"
+    },
+    "statuses": {
+      "open": "打开",
+      "in_progress": "进行中",
+      "resolved": "已解决",
+      "closed": "关闭"
+    }
+  },
   "saved": {
     "title": "已保存",
     "empty": "没有保存的属性",
@@ -1737,154 +1886,5 @@
     "payout_processed": "付款已处理",
     "dispute_resolved": "争议已解决",
     "system": "系统"
-  },
-  "support": {
-    "title": "支持",
-    "myTickets": "我的门票",
-    "newTicket": "新票",
-    "subject": "主题",
-    "description": "详细说明",
-    "category": "类别",
-    "status": "地位",
-    "submit": "提交票据",
-    "reply": "回复",
-    "noTickets": "没有支持票",
-    "noTicketsPrompt": "创建新票证以获取帮助",
-    "createTicket": "创建票证",
-    "originalDesc": "原文描述：",
-    "supportTeam": "支持团队",
-    "writeReply": "写下你的回复...",
-    "ticketCreated": "支持票证创建成功",
-    "categories": {
-      "general": "一般的",
-      "technical": "技术的",
-      "billing": "计费",
-      "listing": "上市",
-      "account": "帐户",
-      "other": "其他"
-    },
-    "statuses": {
-      "open": "打开",
-      "in_progress": "进行中",
-      "resolved": "已解决",
-      "closed": "关闭"
-    },
-    "adminSubtitle": "分类并解决客户支持票证",
-    "adminEmptyHint": "没有与当前过滤器匹配的票证。",
-    "closedHint": "此票证已关闭 - 更改其上面的状态以进行回复。"
-  },
-  "agentReview": {
-    "postFailed": "无法发表评论",
-    "posting": "发布…",
-    "postReview": "评论后"
-  },
-  "adminCommissions": {
-    "listing": "上市",
-    "buyer": "买方",
-    "value": "交易价值",
-    "platformEarn": "平台赚取",
-    "agentEarn": "代理赚",
-    "status": "地位",
-    "closedAt": "关闭",
-    "allCommissions": "所有佣金",
-    "all": "全部"
-  },
-  "adminAudit": {
-    "timestamp": "时间戳",
-    "actor": "演员",
-    "action": "行动",
-    "entity": "实体",
-    "changed": "更改字段",
-    "noMatches": "没有匹配的审核条目"
-  },
-  "adminAnalytics": {
-    "trafficSources": "流量来源",
-    "devices": "设备",
-    "inquiryFunnel": "询价漏斗"
-  },
-  "listingDetail": {
-    "hotelLabel": "酒店",
-    "starSuffix": "{{n}}-星",
-    "stayDetails": "入住详情",
-    "houseRules": "入住须知",
-    "maxGuests": "最多客人数",
-    "checkIn": "报到",
-    "checkInFrom": "从{{时间}}开始",
-    "checkOut": "查看",
-    "checkOutBy": "截至{{时间}}",
-    "cancellation": "消除",
-    "whatThisPlaceOffers": "这个地方提供什么"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "利雅得、吉达、达曼……"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "分享有用的、专业的或可以改进的内容……"
-  },
-  "adminCommissionsPage": {
-    "title": "平台佣金",
-    "subtitle": "总收入、代理支出和每笔交易明细。"
-  },
-  "comparePage": {
-    "emptyTitle": "还没有什么可比较的"
-  },
-  "searchMap": {
-    "missingKeyTitle": "未配置 Google 地图 API 密钥",
-    "missingKeyHint": "设置 VITE_GOOGLE_MAPS_API_KEY 以启用地图视图。",
-    "loadFailed": "加载地图失败"
-  },
-  "photoGallery": {
-    "close": "关闭",
-    "previous": "上一张照片",
-    "next": "下一张照片"
-  },
-  "homeCategories": {
-    "all": "全部",
-    "forSale": "出售",
-    "forRent": "出租",
-    "apartments": "公寓",
-    "villas": "别墅",
-    "land": "土地",
-    "chalets": "小木屋",
-    "farms": "农场",
-    "restHouses": "休息所",
-    "hotels": "酒店",
-    "commercial": "商业的",
-    "offices": "办事处"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "公寓出租",
-    "villasForSale": "出售别墅",
-    "landForSale": "土地出售",
-    "chalets": "小木屋",
-    "restHouses": "休息所"
-  },
-  "homeFilters": {
-    "txAll": "全部",
-    "txSale": "销售",
-    "txRent": "租",
-    "bedsAny": "任何"
-  },
-  "cities": {
-    "riyadh": "利雅得",
-    "jeddah": "吉达",
-    "dammam": "达曼",
-    "mecca": "麦加",
-    "medina": "麦地那",
-    "khobar": "科巴尔",
-    "taif": "塔伊夫",
-    "buraidah": "布赖代"
-  },
-  "listingDetailPage": {
-    "notFound": "未找到列表",
-    "helmetTitle": "比较列表"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "佣金",
-    "revenueByMonth": "按月收入"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "分析",
-    "viewsOverTime": "随时间推移的观看次数"
   }
 }

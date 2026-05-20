@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "{{count}} فهرست(های) حذف شود؟",
     "deleteConfirmDescription": "این عمل فهرست را به صورت نرم حذف می کند - دیگر به صورت عمومی ظاهر نمی شود."
   },
+  "agentReview": {
+    "postFailed": "امکان ارسال نظر وجود ندارد",
+    "posting": "ارسال…",
+    "postReview": "ارسال بررسی"
+  },
+  "adminCommissions": {
+    "listing": "فهرست کردن",
+    "buyer": "خریدار",
+    "value": "ارزش معامله",
+    "platformEarn": "پلتفرم کسب درآمد",
+    "agentEarn": "عامل کسب درآمد",
+    "status": "وضعیت",
+    "closedAt": "بسته شد",
+    "allCommissions": "همه کمیسیون ها",
+    "all": "همه"
+  },
+  "adminAudit": {
+    "timestamp": "مهر زمان",
+    "actor": "بازیگر",
+    "action": "اقدام",
+    "entity": "موجودیت",
+    "changed": "فیلدهای تغییر یافته",
+    "noMatches": "هیچ ورودی حسابرسی منطبقی وجود ندارد"
+  },
+  "adminAnalytics": {
+    "trafficSources": "منابع ترافیک",
+    "devices": "دستگاه ها",
+    "inquiryFunnel": "قیف استعلام"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "ریاض، جده، دمام…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "آنچه مفید، حرفه ای یا می تواند بهبود یابد را به اشتراک بگذارید…"
+  },
+  "adminCommissionsPage": {
+    "title": "کمیسیون های پلت فرم",
+    "subtitle": "مجموع درآمد، پرداخت های نماینده، و تفکیک هر تراکنش."
+  },
+  "comparePage": {
+    "emptyTitle": "هنوز چیزی برای مقایسه وجود ندارد"
+  },
+  "searchMap": {
+    "missingKeyTitle": "کلید Google Maps API پیکربندی نشده است",
+    "missingKeyHint": "VITE_GOOGLE_MAPS_API_KEY را برای فعال کردن نمای نقشه تنظیم کنید.",
+    "loadFailed": "نقشه بارگیری نشد"
+  },
+  "photoGallery": {
+    "close": "بستن",
+    "previous": "عکس قبلی",
+    "next": "عکس بعدی"
+  },
+  "homeCategories": {
+    "all": "همه",
+    "forSale": "برای فروش",
+    "forRent": "برای اجاره",
+    "apartments": "آپارتمان ها",
+    "villas": "ویلاها",
+    "land": "زمین",
+    "chalets": "کلبه های کلبه",
+    "farms": "مزارع",
+    "restHouses": "خانه های استراحت",
+    "hotels": "هتل ها",
+    "commercial": "تجاری",
+    "offices": "دفاتر"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "آپارتمان برای اجاره",
+    "villasForSale": "ویلا برای فروش",
+    "landForSale": "زمین برای فروش",
+    "chalets": "کلبه های کلبه",
+    "restHouses": "خانه های استراحت"
+  },
+  "homeFilters": {
+    "txAll": "همه",
+    "txSale": "فروش",
+    "txRent": "اجاره",
+    "bedsAny": "هر"
+  },
+  "cities": {
+    "riyadh": "ریاض",
+    "jeddah": "جده",
+    "dammam": "دمام",
+    "mecca": "مکه",
+    "medina": "مدینه",
+    "khobar": "خبر",
+    "taif": "طائف",
+    "buraidah": "بریده"
+  },
+  "listingDetailPage": {
+    "notFound": "فهرست یافت نشد",
+    "helmetTitle": "مقایسه لیست ها"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "کمیسیون ها",
+    "revenueByMonth": "درآمد ماهانه"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "تجزیه و تحلیل",
+    "viewsOverTime": "بازدیدها در طول زمان"
+  },
+  "listingDetail": {
+    "hotelLabel": "هتل",
+    "starSuffix": "{{n}}-ستاره",
+    "stayDetails": "جزئیات بماند",
+    "houseRules": "قوانین خانه",
+    "maxGuests": "حداکثر مهمان",
+    "checkIn": "ثبت نام",
+    "checkInFrom": "از {{time}}",
+    "checkOut": "چک کردن",
+    "checkOutBy": "توسط {{time}}",
+    "cancellation": "لغو",
+    "whatThisPlaceOffers": "آنچه این مکان ارائه می دهد"
+  },
+  "support": {
+    "title": "پشتیبانی کنید",
+    "adminSubtitle": "تریاژ و حل و فصل بلیط های پشتیبانی مشتری",
+    "myTickets": "بلیط های من",
+    "newTicket": "بلیط جدید",
+    "subject": "موضوع",
+    "description": "توضیحات مفصل",
+    "category": "دسته بندی",
+    "status": "وضعیت",
+    "submit": "ارسال بلیط",
+    "reply": "پاسخ دهید",
+    "noTickets": "بدون بلیط پشتیبانی",
+    "noTicketsPrompt": "یک بلیط جدید برای دریافت کمک ایجاد کنید",
+    "adminEmptyHint": "هیچ بلیطی با فیلترهای فعلی مطابقت ندارد.",
+    "createTicket": "ایجاد بلیط",
+    "originalDesc": "توضیحات اصلی:",
+    "supportTeam": "تیم پشتیبانی",
+    "writeReply": "پاسخ خود را بنویسید…",
+    "closedHint": "این بلیط بسته است - وضعیت آن را در بالا تغییر دهید تا پاسخ دهید.",
+    "ticketCreated": "تیکت پشتیبانی با موفقیت ایجاد شد",
+    "categories": {
+      "general": "عمومی",
+      "technical": "فنی",
+      "billing": "صورتحساب",
+      "listing": "فهرست",
+      "account": "حساب",
+      "other": "دیگر"
+    },
+    "statuses": {
+      "open": "باز کردن",
+      "in_progress": "در حال انجام",
+      "resolved": "حل شد",
+      "closed": "بسته شد"
+    }
+  },
   "saved": {
     "title": "ذخیره شد",
     "empty": "هیچ ویژگی ذخیره شده ای وجود ندارد",
@@ -1737,154 +1886,5 @@
     "payout_processed": "پرداخت پردازش شد",
     "dispute_resolved": "اختلاف حل شد",
     "system": "سیستم"
-  },
-  "support": {
-    "title": "پشتیبانی",
-    "myTickets": "بلیط های من",
-    "newTicket": "بلیط جدید",
-    "subject": "موضوع",
-    "description": "توضیحات تفصیلی",
-    "category": "دسته",
-    "status": "وضعیت",
-    "submit": "ارسال بلیط",
-    "reply": "پاسخ",
-    "noTickets": "بدون تیکت پشتیبانی",
-    "noTicketsPrompt": "یک بلیط جدید برای دریافت کمک ایجاد کنید",
-    "createTicket": "ایجاد بلیط",
-    "originalDesc": "توضیحات اصلی:",
-    "supportTeam": "تیم پشتیبانی",
-    "writeReply": "پاسخ خود را بنویسید…",
-    "ticketCreated": "تیکت پشتیبانی با موفقیت ایجاد شد",
-    "categories": {
-      "general": "عمومی",
-      "technical": "فنی",
-      "billing": "صورتحساب",
-      "listing": "فهرست کردن",
-      "account": "حساب",
-      "other": "دیگر"
-    },
-    "statuses": {
-      "open": "باز کردن",
-      "in_progress": "در حال انجام",
-      "resolved": "حل شد",
-      "closed": "بسته شد"
-    },
-    "adminSubtitle": "تریاژ و حل و فصل بلیط های پشتیبانی مشتری",
-    "adminEmptyHint": "هیچ بلیطی با فیلترهای فعلی مطابقت ندارد.",
-    "closedHint": "این بلیط بسته است - وضعیت آن را در بالا تغییر دهید تا پاسخ دهید."
-  },
-  "agentReview": {
-    "postFailed": "امکان ارسال نظر وجود ندارد",
-    "posting": "ارسال…",
-    "postReview": "ارسال بررسی"
-  },
-  "adminCommissions": {
-    "listing": "فهرست کردن",
-    "buyer": "خریدار",
-    "value": "ارزش معامله",
-    "platformEarn": "پلتفرم کسب درآمد",
-    "agentEarn": "عامل کسب درآمد",
-    "status": "وضعیت",
-    "closedAt": "بسته شد",
-    "allCommissions": "همه کمیسیون ها",
-    "all": "همه"
-  },
-  "adminAudit": {
-    "timestamp": "مهر زمان",
-    "actor": "بازیگر",
-    "action": "اقدام",
-    "entity": "موجودیت",
-    "changed": "فیلدهای تغییر یافته",
-    "noMatches": "هیچ ورودی حسابرسی منطبقی وجود ندارد"
-  },
-  "adminAnalytics": {
-    "trafficSources": "منابع ترافیک",
-    "devices": "دستگاه ها",
-    "inquiryFunnel": "قیف استعلام"
-  },
-  "listingDetail": {
-    "hotelLabel": "هتل",
-    "starSuffix": "{{n}}-ستاره",
-    "stayDetails": "جزئیات بماند",
-    "houseRules": "قوانین خانه",
-    "maxGuests": "حداکثر مهمان",
-    "checkIn": "ثبت نام",
-    "checkInFrom": "از {{time}}",
-    "checkOut": "چک کردن",
-    "checkOutBy": "توسط {{time}}",
-    "cancellation": "لغو",
-    "whatThisPlaceOffers": "آنچه این مکان ارائه می دهد"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "ریاض، جده، دمام…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "آنچه مفید، حرفه ای یا می تواند بهبود یابد را به اشتراک بگذارید…"
-  },
-  "adminCommissionsPage": {
-    "title": "کمیسیون های پلت فرم",
-    "subtitle": "مجموع درآمد، پرداخت های نماینده، و تفکیک هر تراکنش."
-  },
-  "comparePage": {
-    "emptyTitle": "هنوز چیزی برای مقایسه وجود ندارد"
-  },
-  "searchMap": {
-    "missingKeyTitle": "کلید Google Maps API پیکربندی نشده است",
-    "missingKeyHint": "VITE_GOOGLE_MAPS_API_KEY را برای فعال کردن نمای نقشه تنظیم کنید.",
-    "loadFailed": "نقشه بارگیری نشد"
-  },
-  "photoGallery": {
-    "close": "بستن",
-    "previous": "عکس قبلی",
-    "next": "عکس بعدی"
-  },
-  "homeCategories": {
-    "all": "همه",
-    "forSale": "برای فروش",
-    "forRent": "برای اجاره",
-    "apartments": "آپارتمان ها",
-    "villas": "ویلاها",
-    "land": "زمین",
-    "chalets": "کلبه های کلبه",
-    "farms": "مزارع",
-    "restHouses": "خانه های استراحت",
-    "hotels": "هتل ها",
-    "commercial": "تجاری",
-    "offices": "دفاتر"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "آپارتمان برای اجاره",
-    "villasForSale": "ویلا برای فروش",
-    "landForSale": "زمین برای فروش",
-    "chalets": "کلبه های کلبه",
-    "restHouses": "خانه های استراحت"
-  },
-  "homeFilters": {
-    "txAll": "همه",
-    "txSale": "فروش",
-    "txRent": "اجاره",
-    "bedsAny": "هر"
-  },
-  "cities": {
-    "riyadh": "ریاض",
-    "jeddah": "جده",
-    "dammam": "دمام",
-    "mecca": "مکه",
-    "medina": "مدینه",
-    "khobar": "خبر",
-    "taif": "طائف",
-    "buraidah": "بریده"
-  },
-  "listingDetailPage": {
-    "notFound": "فهرست یافت نشد",
-    "helmetTitle": "مقایسه لیست ها"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "کمیسیون ها",
-    "revenueByMonth": "درآمد ماهانه"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "تجزیه و تحلیل",
-    "viewsOverTime": "بازدیدها در طول زمان"
   }
 }

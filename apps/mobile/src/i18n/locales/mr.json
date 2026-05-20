@@ -1636,6 +1636,155 @@
     "deleteConfirmTitle": "{{count}} सूची हटवायची?",
     "deleteConfirmDescription": "ही क्रिया सूची मऊ-हटवते — ती यापुढे सार्वजनिकपणे दिसणार नाही."
   },
+  "agentReview": {
+    "postFailed": "पुनरावलोकन पोस्ट करू शकलो नाही",
+    "posting": "पोस्ट करत आहे...",
+    "postReview": "पुनरावलोकन पोस्ट करा"
+  },
+  "adminCommissions": {
+    "listing": "सूचीकरण",
+    "buyer": "खरेदीदार",
+    "value": "डील व्हॅल्यू",
+    "platformEarn": "प्लॅटफॉर्म कमवा",
+    "agentEarn": "एजंट कमवा",
+    "status": "स्थिती",
+    "closedAt": "बंद",
+    "allCommissions": "सर्व कमिशन",
+    "all": "सर्व"
+  },
+  "adminAudit": {
+    "timestamp": "टाईमस्टॅम्प",
+    "actor": "अभिनेता",
+    "action": "कृती",
+    "entity": "अस्तित्व",
+    "changed": "फील्ड बदलले",
+    "noMatches": "जुळणाऱ्या ऑडिट नोंदी नाहीत"
+  },
+  "adminAnalytics": {
+    "trafficSources": "रहदारी स्रोत",
+    "devices": "उपकरणे",
+    "inquiryFunnel": "चौकशी फनेल"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "रियाध, जेद्दाह, दम्माम…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "काय उपयुक्त, व्यावसायिक किंवा सुधारू शकते ते शेअर करा..."
+  },
+  "adminCommissionsPage": {
+    "title": "प्लॅटफॉर्म कमिशन",
+    "subtitle": "एकूण महसूल, एजंट पेआउट आणि प्रति-व्यवहार ब्रेकडाउन."
+  },
+  "comparePage": {
+    "emptyTitle": "अद्याप तुलना करण्यासाठी काहीही नाही"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API की कॉन्फिगर केलेली नाही",
+    "missingKeyHint": "नकाशा दृश्य सक्षम करण्यासाठी VITE_GOOGLE_MAPS_API_KEY सेट करा.",
+    "loadFailed": "नकाशा लोड करण्यात अयशस्वी"
+  },
+  "photoGallery": {
+    "close": "बंद करा",
+    "previous": "मागील फोटो",
+    "next": "पुढचा फोटो"
+  },
+  "homeCategories": {
+    "all": "सर्व",
+    "forSale": "विक्रीसाठी",
+    "forRent": "भाड्याने",
+    "apartments": "अपार्टमेंट",
+    "villas": "व्हिला",
+    "land": "जमीन",
+    "chalets": "चाले",
+    "farms": "शेततळे",
+    "restHouses": "विश्रामगृहे",
+    "hotels": "हॉटेल्स",
+    "commercial": "व्यावसायिक",
+    "offices": "कार्यालये"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "भाड्याने अपार्टमेंट",
+    "villasForSale": "व्हिला विक्रीसाठी",
+    "landForSale": "जमीन विक्रीसाठी",
+    "chalets": "चाले",
+    "restHouses": "विश्रामगृहे"
+  },
+  "homeFilters": {
+    "txAll": "सर्व",
+    "txSale": "विक्री",
+    "txRent": "भाड्याने",
+    "bedsAny": "कोणतीही"
+  },
+  "cities": {
+    "riyadh": "रियाध",
+    "jeddah": "जेद्दा",
+    "dammam": "दम्मम",
+    "mecca": "मक्का",
+    "medina": "मदिना",
+    "khobar": "खोबर",
+    "taif": "तैफ",
+    "buraidah": "बुराईदाह"
+  },
+  "listingDetailPage": {
+    "notFound": "सूची सापडली नाही",
+    "helmetTitle": "सूचीची तुलना करा"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "कमिशन",
+    "revenueByMonth": "महिन्यानुसार महसूल"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "विश्लेषण",
+    "viewsOverTime": "कालांतराने दृश्ये"
+  },
+  "listingDetail": {
+    "hotelLabel": "हॉटेल",
+    "starSuffix": "{{n}}-तारा",
+    "stayDetails": "राहा तपशील",
+    "houseRules": "घराचे नियम",
+    "maxGuests": "कमाल अतिथी",
+    "checkIn": "चेक-इन",
+    "checkInFrom": "{{वेळ}} पासून",
+    "checkOut": "चेक-आउट",
+    "checkOutBy": "{{time}} द्वारे",
+    "cancellation": "रद्द करणे",
+    "whatThisPlaceOffers": "हे ठिकाण काय देते"
+  },
+  "support": {
+    "title": "सपोर्ट",
+    "adminSubtitle": "ट्रायज आणि ग्राहक समर्थन तिकीट निराकरण",
+    "myTickets": "माझी तिकिटे",
+    "newTicket": "नवीन तिकीट",
+    "subject": "विषय",
+    "description": "तपशीलवार वर्णन",
+    "category": "श्रेणी",
+    "status": "स्थिती",
+    "submit": "तिकीट सबमिट करा",
+    "reply": "उत्तर द्या",
+    "noTickets": "कोणतेही समर्थन तिकीट नाही",
+    "noTicketsPrompt": "मदत मिळवण्यासाठी नवीन तिकीट तयार करा",
+    "adminEmptyHint": "कोणतीही तिकिटे सध्याच्या फिल्टरशी जुळत नाहीत.",
+    "createTicket": "तिकीट तयार करा",
+    "originalDesc": "मूळ वर्णन:",
+    "supportTeam": "सपोर्ट टीम",
+    "writeReply": "तुमचा प्रतिसाद लिहा...",
+    "closedHint": "हे तिकीट बंद आहे — उत्तर देण्यासाठी वरील स्थिती बदला.",
+    "ticketCreated": "समर्थन तिकीट यशस्वीरित्या तयार केले",
+    "categories": {
+      "general": "सामान्य",
+      "technical": "तांत्रिक",
+      "billing": "बिलिंग",
+      "listing": "सूचीकरण",
+      "account": "खाते",
+      "other": "इतर"
+    },
+    "statuses": {
+      "open": "उघडा",
+      "in_progress": "प्रगतीपथावर आहे",
+      "resolved": "निराकरण केले",
+      "closed": "बंद"
+    }
+  },
   "saved": {
     "title": "जतन केले",
     "empty": "कोणतेही जतन केलेले गुणधर्म नाहीत",
@@ -1737,154 +1886,5 @@
     "payout_processed": "पेआउट प्रक्रिया केली",
     "dispute_resolved": "वाद मिटला",
     "system": "प्रणाली"
-  },
-  "support": {
-    "title": "सपोर्ट",
-    "myTickets": "माझी तिकिटे",
-    "newTicket": "नवीन तिकीट",
-    "subject": "विषय",
-    "description": "तपशीलवार वर्णन",
-    "category": "श्रेणी",
-    "status": "स्थिती",
-    "submit": "तिकीट सबमिट करा",
-    "reply": "उत्तर द्या",
-    "noTickets": "कोणतेही समर्थन तिकीट नाही",
-    "noTicketsPrompt": "मदत मिळवण्यासाठी नवीन तिकीट तयार करा",
-    "createTicket": "तिकीट तयार करा",
-    "originalDesc": "मूळ वर्णन:",
-    "supportTeam": "सपोर्ट टीम",
-    "writeReply": "तुमचा प्रतिसाद लिहा...",
-    "ticketCreated": "समर्थन तिकीट यशस्वीरित्या तयार केले",
-    "categories": {
-      "general": "सामान्य",
-      "technical": "तांत्रिक",
-      "billing": "बिलिंग",
-      "listing": "| सूची",
-      "account": "| खाते",
-      "other": "| इतर"
-    },
-    "statuses": {
-      "open": "| उघडा",
-      "in_progress": "प्रगतीपथावर",
-      "resolved": "निराकरण",
-      "closed": "बंद"
-    },
-    "adminSubtitle": "ट्रायज आणि ग्राहक समर्थन तिकीट निराकरण",
-    "adminEmptyHint": "कोणतीही तिकिटे सध्याच्या फिल्टरशी जुळत नाहीत.",
-    "closedHint": "हे तिकीट बंद आहे — उत्तर देण्यासाठी वरील स्थिती बदला."
-  },
-  "agentReview": {
-    "postFailed": "पुनरावलोकन पोस्ट करू शकलो नाही",
-    "posting": "पोस्ट करत आहे...",
-    "postReview": "पुनरावलोकन पोस्ट करा"
-  },
-  "adminCommissions": {
-    "listing": "सूची",
-    "buyer": "खरेदीदार",
-    "value": "डील व्हॅल्यू",
-    "platformEarn": "प्लॅटफॉर्म कमवा",
-    "agentEarn": "एजंट कमवा",
-    "status": "स्थिती",
-    "closedAt": "बंद",
-    "allCommissions": "सर्व कमिशन",
-    "all": "सर्व"
-  },
-  "adminAudit": {
-    "timestamp": "टाईमस्टॅम्प",
-    "actor": "अभिनेता",
-    "action": "कृती",
-    "entity": "अस्तित्व",
-    "changed": "फील्ड बदलले",
-    "noMatches": "जुळणाऱ्या ऑडिट नोंदी नाहीत"
-  },
-  "adminAnalytics": {
-    "trafficSources": "रहदारी स्रोत",
-    "devices": "उपकरणे",
-    "inquiryFunnel": "चौकशी फनेल"
-  },
-  "listingDetail": {
-    "hotelLabel": "हॉटेल",
-    "starSuffix": "{{n}}-तारा",
-    "stayDetails": "राहा तपशील",
-    "houseRules": "घराचे नियम",
-    "maxGuests": "कमाल अतिथी",
-    "checkIn": "चेक-इन",
-    "checkInFrom": "{{वेळ}} पासून",
-    "checkOut": "चेक-आउट",
-    "checkOutBy": "{{time}} द्वारे",
-    "cancellation": "रद्द करणे",
-    "whatThisPlaceOffers": "हे ठिकाण काय देते"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "रियाध, जेद्दाह, दम्माम…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "काय उपयुक्त, व्यावसायिक किंवा सुधारू शकते ते शेअर करा..."
-  },
-  "adminCommissionsPage": {
-    "title": "प्लॅटफॉर्म कमिशन",
-    "subtitle": "एकूण महसूल, एजंट पेआउट आणि प्रति-व्यवहार ब्रेकडाउन."
-  },
-  "comparePage": {
-    "emptyTitle": "अद्याप तुलना करण्यासाठी काहीही नाही"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Google Maps API की कॉन्फिगर केलेली नाही",
-    "missingKeyHint": "नकाशा दृश्य सक्षम करण्यासाठी VITE_GOOGLE_MAPS_API_KEY सेट करा.",
-    "loadFailed": "नकाशा लोड करण्यात अयशस्वी"
-  },
-  "photoGallery": {
-    "close": "बंद करा",
-    "previous": "मागील फोटो",
-    "next": "पुढचा फोटो"
-  },
-  "homeCategories": {
-    "all": "सर्व",
-    "forSale": "विक्रीसाठी",
-    "forRent": "भाड्याने",
-    "apartments": "अपार्टमेंट",
-    "villas": "व्हिला",
-    "land": "जमीन",
-    "chalets": "चाले",
-    "farms": "शेततळे",
-    "restHouses": "विश्रामगृहे",
-    "hotels": "हॉटेल्स",
-    "commercial": "व्यावसायिक",
-    "offices": "कार्यालये"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "भाड्याने अपार्टमेंट",
-    "villasForSale": "व्हिला विक्रीसाठी",
-    "landForSale": "जमीन विक्रीसाठी",
-    "chalets": "चाले",
-    "restHouses": "विश्रामगृहे"
-  },
-  "homeFilters": {
-    "txAll": "सर्व",
-    "txSale": "विक्री",
-    "txRent": "भाड्याने",
-    "bedsAny": "कोणतीही"
-  },
-  "cities": {
-    "riyadh": "रियाध",
-    "jeddah": "जेद्दा",
-    "dammam": "दम्मम",
-    "mecca": "मक्का",
-    "medina": "मदिना",
-    "khobar": "खोबर",
-    "taif": "तैफ",
-    "buraidah": "बुराईदाह"
-  },
-  "listingDetailPage": {
-    "notFound": "सूची सापडली नाही",
-    "helmetTitle": "सूचीची तुलना करा"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "कमिशन",
-    "revenueByMonth": "महिन्यानुसार महसूल"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "विश्लेषण",
-    "viewsOverTime": "कालांतराने दृश्ये"
   }
 }

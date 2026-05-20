@@ -27,7 +27,8 @@
     "stays": "Opphold",
     "shortTermStays": "Korttidsopphold",
     "hotels": "Hoteller",
-    "chalets": "Hytter og gårder"
+    "chalets": "Hytter og gårder",
+    "about": "Om"
   },
   "dashboard": {
     "overview": "Oversikt",
@@ -1348,5 +1349,154 @@
     "duplicate": "Duplikat",
     "deleteConfirmTitle": "Vil du slette {{count}} oppføring(er)?",
     "deleteConfirmDescription": "Denne handlingen myker sletter oppføringen – den vil ikke lenger vises offentlig."
+  },
+  "agentReview": {
+    "postFailed": "Kunne ikke legge inn anmeldelse",
+    "posting": "Legger ut...",
+    "postReview": "Legg inn anmeldelse"
+  },
+  "adminCommissions": {
+    "listing": "Oppføring",
+    "buyer": "Kjøper",
+    "value": "Deal verdi",
+    "platformEarn": "Plattform Tjen",
+    "agentEarn": "Agent Tjen",
+    "status": "Status",
+    "closedAt": "Lukket",
+    "allCommissions": "Alle provisjoner",
+    "all": "Alle"
+  },
+  "adminAudit": {
+    "timestamp": "Tidsstempel",
+    "actor": "Skuespiller",
+    "action": "Handling",
+    "entity": "Entitet",
+    "changed": "Endrede felt",
+    "noMatches": "Ingen samsvarende revisjonsoppføringer"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Trafikkkilder",
+    "devices": "Enheter",
+    "inquiryFunnel": "Forespørselstrakt"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Del hva som var nyttig, profesjonelt eller kunne forbedre..."
+  },
+  "adminCommissionsPage": {
+    "title": "Plattformprovisjoner",
+    "subtitle": "Totale inntekter, agentutbetalinger og oversikt per transaksjon."
+  },
+  "comparePage": {
+    "emptyTitle": "Ingenting å sammenligne ennå"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-nøkkel er ikke konfigurert",
+    "missingKeyHint": "Sett VITE_GOOGLE_MAPS_API_KEY for å aktivere kartvisningen.",
+    "loadFailed": "Kunne ikke laste kart"
+  },
+  "photoGallery": {
+    "close": "Lukk",
+    "previous": "Forrige bilde",
+    "next": "Neste bilde"
+  },
+  "homeCategories": {
+    "all": "Alle",
+    "forSale": "Til salgs",
+    "forRent": "Til leie",
+    "apartments": "Leiligheter",
+    "villas": "Villaer",
+    "land": "Land",
+    "chalets": "Hytter",
+    "farms": "Gårder",
+    "restHouses": "Hvilehus",
+    "hotels": "Hoteller",
+    "commercial": "Kommersiell",
+    "offices": "Kontorer"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Leiligheter til leie",
+    "villasForSale": "Villaer til salgs",
+    "landForSale": "Tomt til salgs",
+    "chalets": "Hytter",
+    "restHouses": "Hvilehus"
+  },
+  "homeFilters": {
+    "txAll": "Alle",
+    "txSale": "Salg",
+    "txRent": "Lei",
+    "bedsAny": "Alle"
+  },
+  "cities": {
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Oppføring ikke funnet",
+    "helmetTitle": "Sammenlign oppføringer"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Provisjoner",
+    "revenueByMonth": "Inntekt etter måned"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analytics",
+    "viewsOverTime": "Visninger over tid"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotell",
+    "starSuffix": "{{n}}-stjerne",
+    "stayDetails": "Oppholdsdetaljer",
+    "houseRules": "Husregler",
+    "maxGuests": "Maks gjester",
+    "checkIn": "Innsjekking",
+    "checkInFrom": "fra {{time}}",
+    "checkOut": "Utsjekking",
+    "checkOutBy": "av {{time}}",
+    "cancellation": "Kansellering",
+    "whatThisPlaceOffers": "Hva dette stedet tilbyr"
+  },
+  "support": {
+    "title": "Støtte",
+    "adminSubtitle": "Triage og løs kundestøttebilletter",
+    "myTickets": "Mine billetter",
+    "newTicket": "Ny billett",
+    "subject": "Emne",
+    "description": "Detaljert beskrivelse",
+    "category": "Kategori",
+    "status": "Status",
+    "submit": "Send inn billett",
+    "reply": "Svar",
+    "noTickets": "Ingen støttebilletter",
+    "noTicketsPrompt": "Opprett en ny billett for å få hjelp",
+    "adminEmptyHint": "Ingen billetter samsvarer med gjeldende filtre.",
+    "createTicket": "Opprett billett",
+    "originalDesc": "Opprinnelig beskrivelse:",
+    "supportTeam": "Support Team",
+    "writeReply": "Skriv svaret ditt...",
+    "closedHint": "Denne billetten er stengt – endre statusen ovenfor for å svare.",
+    "ticketCreated": "Støttebillett opprettet",
+    "categories": {
+      "general": "Generelt",
+      "technical": "Teknisk",
+      "billing": "Fakturering",
+      "listing": "Oppføring",
+      "account": "Konto",
+      "other": "Annet"
+    },
+    "statuses": {
+      "open": "Åpne",
+      "in_progress": "Pågår",
+      "resolved": "Løst",
+      "closed": "Lukket"
+    }
   }
 }

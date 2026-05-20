@@ -27,7 +27,8 @@
     "stays": "Soggiorni",
     "shortTermStays": "Soggiorni a breve termine",
     "hotels": "Hotel",
-    "chalets": "Chalet e fattorie"
+    "chalets": "Chalet e fattorie",
+    "about": "Informazioni su"
   },
   "dashboard": {
     "overview": "Panoramica",
@@ -730,7 +731,7 @@
       "photoAlt": "Foto dell'elenco",
       "setCover": "Imposta come copertina",
       "cover": "Copertina",
-      "videoTour": "Video tour",
+      "videoTour": "Videotour",
       "videoDropHint": "Trascina un file MP4 o fai clic per scegliere. Massimo 500MB.",
       "videoUploaded": "Video caricato — {{name}}",
       "vrTitle": "🥽 Link al tour in realtà virtuale",
@@ -1348,5 +1349,154 @@
     "duplicate": "Duplica",
     "deleteConfirmTitle": "Eliminare {{count}} inserzioni?",
     "deleteConfirmDescription": "Questa azione elimina temporaneamente l'elenco: non verrà più visualizzato pubblicamente."
+  },
+  "agentReview": {
+    "postFailed": "Impossibile pubblicare la recensione",
+    "posting": "Pubblicazione…",
+    "postReview": "Pubblica recensione"
+  },
+  "adminCommissions": {
+    "listing": "Elenco",
+    "buyer": "Acquirente",
+    "value": "Valore offerta",
+    "platformEarn": "Guadagna dalla piattaforma",
+    "agentEarn": "Guadagna agente",
+    "status": "Stato",
+    "closedAt": "Chiuso",
+    "allCommissions": "Tutte le commissioni",
+    "all": "Tutti"
+  },
+  "adminAudit": {
+    "timestamp": "Timestamp",
+    "actor": "Attore",
+    "action": "Azione",
+    "entity": "Entità",
+    "changed": "Campi modificati",
+    "noMatches": "Nessuna voce di controllo corrispondente"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Sorgenti di traffico",
+    "devices": "Dispositivi",
+    "inquiryFunnel": "Imbuto di richiesta"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Condividi ciò che è stato utile, professionale o che potrebbe migliorare..."
+  },
+  "adminCommissionsPage": {
+    "title": "Commissioni della piattaforma",
+    "subtitle": "Entrate totali, pagamenti agli agenti e suddivisione per transazione."
+  },
+  "comparePage": {
+    "emptyTitle": "Ancora niente da confrontare"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Chiave API di Google Maps non configurata",
+    "missingKeyHint": "Imposta VITE_GOOGLE_MAPS_API_KEY per abilitare la visualizzazione della mappa.",
+    "loadFailed": "Impossibile caricare la mappa"
+  },
+  "photoGallery": {
+    "close": "Chiudi",
+    "previous": "Foto precedente",
+    "next": "Foto successiva"
+  },
+  "homeCategories": {
+    "all": "Tutti",
+    "forSale": "In vendita",
+    "forRent": "In Affitto",
+    "apartments": "Appartamenti",
+    "villas": "Ville",
+    "land": "Terreno",
+    "chalets": "Chalet",
+    "farms": "Fattorie",
+    "restHouses": "Case di riposo",
+    "hotels": "Alberghi",
+    "commercial": "Commerciale",
+    "offices": "Uffici"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Appartamenti in affitto",
+    "villasForSale": "Ville in vendita",
+    "landForSale": "Terreno in vendita",
+    "chalets": "Chalet",
+    "restHouses": "Case di riposo"
+  },
+  "homeFilters": {
+    "txAll": "Tutti",
+    "txSale": "Vendita",
+    "txRent": "Affitta",
+    "bedsAny": "Qualsiasi"
+  },
+  "cities": {
+    "riyadh": "Riad",
+    "jeddah": "Gedda",
+    "dammam": "Dammam",
+    "mecca": "La Mecca",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Annuncio non trovato",
+    "helmetTitle": "Confronta annunci"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Commissioni",
+    "revenueByMonth": "Entrate per mese"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analisi",
+    "viewsOverTime": "Visualizzazioni nel tempo"
+  },
+  "listingDetail": {
+    "hotelLabel": "Albergo",
+    "starSuffix": "{{n}}-stella",
+    "stayDetails": "Dettagli soggiorno",
+    "houseRules": "Regole della casa",
+    "maxGuests": "Ospiti massimi",
+    "checkIn": "Check-in",
+    "checkInFrom": "dalle {{time}}",
+    "checkOut": "Check-out",
+    "checkOutBy": "di {{time}}",
+    "cancellation": "Cancellazione",
+    "whatThisPlaceOffers": "Cosa offre questo posto"
+  },
+  "support": {
+    "title": "Supporto",
+    "adminSubtitle": "Valutazione e risoluzione dei ticket di assistenza clienti",
+    "myTickets": "I miei biglietti",
+    "newTicket": "Nuovo biglietto",
+    "subject": "Oggetto",
+    "description": "Descrizione dettagliata",
+    "category": "Categoria",
+    "status": "Stato",
+    "submit": "Invia ticket",
+    "reply": "Rispondi",
+    "noTickets": "Nessun ticket di supporto",
+    "noTicketsPrompt": "Crea un nuovo ticket per ricevere aiuto",
+    "adminEmptyHint": "Nessun biglietto corrisponde ai filtri attuali.",
+    "createTicket": "Crea biglietto",
+    "originalDesc": "Descrizione originale:",
+    "supportTeam": "Team di supporto",
+    "writeReply": "Scrivi la tua risposta…",
+    "closedHint": "Questo ticket è chiuso: modifica il suo stato sopra per rispondere.",
+    "ticketCreated": "Ticket di supporto creato con successo",
+    "categories": {
+      "general": "Generale",
+      "technical": "Tecnico",
+      "billing": "Fatturazione",
+      "listing": "Elenco",
+      "account": "Conto",
+      "other": "Altro"
+    },
+    "statuses": {
+      "open": "Apri",
+      "in_progress": "In corso",
+      "resolved": "Risolto",
+      "closed": "Chiuso"
+    }
   }
 }

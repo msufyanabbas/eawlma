@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Eawma",
+    "name": "Eawlma",
     "tagline": "Ontdek uw perfecte woning in Saoedi-Arabië"
   },
   "nav": {
@@ -253,7 +253,7 @@
     "resolutionHint": "Beide partijen worden op de hoogte gebracht met deze notities.",
     "other": "Overige",
     "buyerLower": "koper",
-    "agentLower": "tussenpersoon",
+    "agentLower": "agent",
     "otherLower": "andere",
     "anonymous": "Anoniem",
     "resolveTitle": "Geschil oplossen",
@@ -393,7 +393,7 @@
     "save": "Opslaan",
     "share": "Delen",
     "callAgent": "Makelaar bellen",
-    "whatsapp": "WhatsAppen",
+    "whatsapp": "WhatsApp",
     "scheduleTour": "Bezichtiging plannen",
     "scheduleATour": "Een bezichtiging plannen",
     "contactAgent": "Contact opnemen met makelaar",
@@ -842,7 +842,7 @@
     },
     "shortTermAmenity": {
       "wifi": "Wi-Fi",
-      "pool": "Zwembad",
+      "pool": "Pool",
       "parking": "Parkeren",
       "breakfast": "Ontbijt",
       "ac": "Airconditioning",
@@ -1553,7 +1553,7 @@
     "searchPlaceholder": "Zoek op naam of specialiteit",
     "allCities": "Alle steden",
     "cityRiyadh": "Riyad",
-    "cityJeddah": "Djedda",
+    "cityJeddah": "Jeddah",
     "cityDammam": "Dammam",
     "emptyTitle": "Er zijn geen agenten die overeenkomen met uw zoekopdracht",
     "emptyBody": "Probeer een andere naam of stad.",
@@ -1635,6 +1635,155 @@
     "duplicate": "Dupliceer",
     "deleteConfirmTitle": "{{count}} vermelding(en) verwijderen?",
     "deleteConfirmDescription": "Met deze actie wordt de vermelding voorlopig verwijderd. Deze wordt niet langer openbaar weergegeven."
+  },
+  "agentReview": {
+    "postFailed": "Kan recensie niet plaatsen",
+    "posting": "Posten…",
+    "postReview": "Beoordeling plaatsen"
+  },
+  "adminCommissions": {
+    "listing": "Lijst",
+    "buyer": "Koper",
+    "value": "Dealwaarde",
+    "platformEarn": "Platformverdien",
+    "agentEarn": "Agent verdient",
+    "status": "Status",
+    "closedAt": "Gesloten",
+    "allCommissions": "Alle commissies",
+    "all": "Alles"
+  },
+  "adminAudit": {
+    "timestamp": "Tijdstempel",
+    "actor": "Acteur",
+    "action": "Actie",
+    "entity": "Entiteit",
+    "changed": "Gewijzigde velden",
+    "noMatches": "Geen overeenkomende auditgegevens"
+  },
+  "adminAnalytics": {
+    "trafficSources": "Verkeersbronnen",
+    "devices": "Apparaten",
+    "inquiryFunnel": "Onderzoekstrechter"
+  },
+  "welcomeModal": {
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+  },
+  "agentReviewForm": {
+    "commentPlaceholder": "Deel wat nuttig, professioneel of beter was..."
+  },
+  "adminCommissionsPage": {
+    "title": "Platformcommissies",
+    "subtitle": "Totale omzet, uitbetalingen aan agenten en uitsplitsing per transactie."
+  },
+  "comparePage": {
+    "emptyTitle": "Nog niets te vergelijken"
+  },
+  "searchMap": {
+    "missingKeyTitle": "Google Maps API-sleutel niet geconfigureerd",
+    "missingKeyHint": "Stel VITE_GOOGLE_MAPS_API_KEY in om de kaartweergave in te schakelen.",
+    "loadFailed": "Kan kaart"
+  },
+  "photoGallery": {
+    "close": "niet laden Sluit",
+    "previous": "Vorige foto",
+    "next": "Volgende foto"
+  },
+  "homeCategories": {
+    "all": "Alles",
+    "forSale": "Te koop",
+    "forRent": "Te huur",
+    "apartments": "Appartementen",
+    "villas": "Villa's",
+    "land": "Landen",
+    "chalets": "Chalets",
+    "farms": "Boerderijen",
+    "restHouses": "Rusthuizen",
+    "hotels": "Hotels",
+    "commercial": "Commercieel",
+    "offices": "Kantoren"
+  },
+  "homeQuickBrowse": {
+    "apartmentsForRent": "Appartementen te huur",
+    "villasForSale": "Villa's te koop",
+    "landForSale": "Grond te koop",
+    "chalets": "Chalets",
+    "restHouses": "Rusthuizen"
+  },
+  "homeFilters": {
+    "txAll": "Alles",
+    "txSale": "Verkoop",
+    "txRent": "Huur",
+    "bedsAny": "Elke"
+  },
+  "cities": {
+    "riyadh": "Riyad",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam",
+    "mecca": "Mekka",
+    "medina": "Medina",
+    "khobar": "Khobar",
+    "taif": "Taif",
+    "buraidah": "Buraidah"
+  },
+  "listingDetailPage": {
+    "notFound": "Lijst niet gevonden",
+    "helmetTitle": "Vergelijk aanbiedingen"
+  },
+  "adminCommissionsPage2": {
+    "helmetTitle": "Commissies",
+    "revenueByMonth": "Omzet per maand"
+  },
+  "listingAnalytics": {
+    "helmetTitle": "Analyse",
+    "viewsOverTime": "Weergaven in de loop van de tijd"
+  },
+  "listingDetail": {
+    "hotelLabel": "Hotel",
+    "starSuffix": "{{n}}-ster",
+    "stayDetails": "Verblijfsgegevens",
+    "houseRules": "Huisregels",
+    "maxGuests": "Max gasten",
+    "checkIn": "Inchecken",
+    "checkInFrom": "van {{time}}",
+    "checkOut": "Afrekenen",
+    "checkOutBy": "tegen {{time}}",
+    "cancellation": "Annulering",
+    "whatThisPlaceOffers": "Wat deze plek te bieden heeft"
+  },
+  "support": {
+    "title": "Ondersteuning",
+    "adminSubtitle": "Triage en oplossing van klantondersteuningstickets",
+    "myTickets": "Mijn tickets",
+    "newTicket": "Nieuw ticket",
+    "subject": "Onderwerp",
+    "description": "Gedetailleerde beschrijving",
+    "category": "Categorie",
+    "status": "Status",
+    "submit": "Ticket indienen",
+    "reply": "Antwoord",
+    "noTickets": "Geen supporttickets",
+    "noTicketsPrompt": "Maak een nieuw ticket aan om hulp te krijgen",
+    "adminEmptyHint": "Er zijn geen tickets die overeenkomen met de huidige filters.",
+    "createTicket": "Ticket aanmaken",
+    "originalDesc": "Oorspronkelijke omschrijving:",
+    "supportTeam": "Ondersteuningsteam",
+    "writeReply": "Schrijf je antwoord…",
+    "closedHint": "Dit ticket is gesloten. Wijzig de status hierboven om te reageren.",
+    "ticketCreated": "Supportticket succesvol aangemaakt",
+    "categories": {
+      "general": "Algemeen",
+      "technical": "Technisch",
+      "billing": "Facturering",
+      "listing": "Lijst",
+      "account": "Rekening",
+      "other": "Overige"
+    },
+    "statuses": {
+      "open": "Open",
+      "in_progress": "In uitvoering",
+      "resolved": "Opgelost",
+      "closed": "Gesloten"
+    }
   },
   "saved": {
     "title": "Opgeslagen",
@@ -1737,154 +1886,5 @@
     "payout_processed": "Uitbetaling verwerkt",
     "dispute_resolved": "Geschil opgelost",
     "system": "Systeem"
-  },
-  "support": {
-    "title": "Steun",
-    "myTickets": "Mijn kaartjes",
-    "newTicket": "Nieuw kaartje",
-    "subject": "Onderwerp",
-    "description": "Gedetailleerde beschrijving",
-    "category": "Categorie",
-    "status": "Status",
-    "submit": "Ticket indienen",
-    "reply": "Antwoord",
-    "noTickets": "Geen supporttickets",
-    "noTicketsPrompt": "Maak een nieuw ticket aan om hulp te krijgen",
-    "createTicket": "Ticket aanmaken",
-    "originalDesc": "Originele beschrijving:",
-    "supportTeam": "Ondersteuningsteam",
-    "writeReply": "Schrijf je antwoord…",
-    "ticketCreated": "Supportticket succesvol aangemaakt",
-    "categories": {
-      "general": "Algemeen",
-      "technical": "Technisch",
-      "billing": "Facturering",
-      "listing": "Lijst",
-      "account": "Rekening",
-      "other": "Overige"
-    },
-    "statuses": {
-      "open": "Open",
-      "in_progress": "In uitvoering",
-      "resolved": "Opgelost",
-      "closed": "Gesloten"
-    },
-    "adminSubtitle": "Triage en oplossing van klantondersteuningstickets",
-    "adminEmptyHint": "Er zijn geen tickets die overeenkomen met de huidige filters.",
-    "closedHint": "Dit ticket is gesloten. Wijzig de status hierboven om te reageren."
-  },
-  "agentReview": {
-    "postFailed": "Kan recensie niet plaatsen",
-    "posting": "Posten...",
-    "postReview": "Beoordeling plaatsen"
-  },
-  "adminCommissions": {
-    "listing": "Lijst",
-    "buyer": "Koper",
-    "value": "Dealwaarde",
-    "platformEarn": "Platformverdien",
-    "agentEarn": "Agent Verdien",
-    "status": "Status",
-    "closedAt": "Gesloten",
-    "allCommissions": "Alle commissies",
-    "all": "Alles"
-  },
-  "adminAudit": {
-    "timestamp": "Tijdstempel",
-    "actor": "Acteur",
-    "action": "Actie",
-    "entity": "Entiteit",
-    "changed": "Gewijzigde velden",
-    "noMatches": "Geen overeenkomende auditgegevens"
-  },
-  "adminAnalytics": {
-    "trafficSources": "Verkeersbronnen",
-    "devices": "Apparaten",
-    "inquiryFunnel": "Onderzoekstrechter"
-  },
-  "listingDetail": {
-    "hotelLabel": "Hotel",
-    "starSuffix": "{{n}}-ster",
-    "stayDetails": "Verblijfsgegevens",
-    "houseRules": "Huisregels",
-    "maxGuests": "Max gasten",
-    "checkIn": "Inchecken",
-    "checkInFrom": "van {{time}}",
-    "checkOut": "Afrekenen",
-    "checkOutBy": "door {{time}}",
-    "cancellation": "Annulering",
-    "whatThisPlaceOffers": "Wat deze plek te bieden heeft"
-  },
-  "welcomeModal": {
-    "cityPlaceholder": "Riyad, Jeddah, Dammam…"
-  },
-  "agentReviewForm": {
-    "commentPlaceholder": "Deel wat nuttig, professioneel of beter was..."
-  },
-  "adminCommissionsPage": {
-    "title": "Platformcommissies",
-    "subtitle": "Totale omzet, uitbetalingen aan agenten en uitsplitsing per transactie."
-  },
-  "comparePage": {
-    "emptyTitle": "Nog niets te vergelijken"
-  },
-  "searchMap": {
-    "missingKeyTitle": "Google Maps API-sleutel niet geconfigureerd",
-    "missingKeyHint": "Stel VITE_GOOGLE_MAPS_API_KEY in om de kaartweergave in te schakelen.",
-    "loadFailed": "Kan kaart"
-  },
-  "photoGallery": {
-    "close": "niet laden Sluit",
-    "previous": "Vorige foto",
-    "next": "Volgende foto"
-  },
-  "homeCategories": {
-    "all": "Alle",
-    "forSale": "Te koop",
-    "forRent": "Te huur",
-    "apartments": "Appartementen",
-    "villas": "Villa's",
-    "land": "Landen",
-    "chalets": "Chalets",
-    "farms": "Boerderijen",
-    "restHouses": "Rusthuizen",
-    "hotels": "Hotels",
-    "commercial": "Commercieel",
-    "offices": "Kantoren"
-  },
-  "homeQuickBrowse": {
-    "apartmentsForRent": "Appartementen te huur",
-    "villasForSale": "Villa's te koop",
-    "landForSale": "Grond te koop",
-    "chalets": "Chalets",
-    "restHouses": "Rusthuizen"
-  },
-  "homeFilters": {
-    "txAll": "Alles",
-    "txSale": "Uitverkoop",
-    "txRent": "Huur",
-    "bedsAny": "Elke"
-  },
-  "cities": {
-    "riyadh": "Riyad",
-    "jeddah": "Djedda",
-    "dammam": "Dammam",
-    "mecca": "Mekka",
-    "medina": "Medina",
-    "khobar": "Khobar",
-    "taif": "Taif",
-    "buraidah": "Buraidah"
-  },
-  "listingDetailPage": {
-    "notFound": "Lijst niet gevonden",
-    "helmetTitle": "Vergelijk aanbiedingen"
-  },
-  "adminCommissionsPage2": {
-    "helmetTitle": "Commissies",
-    "revenueByMonth": "Omzet per maand"
-  },
-  "listingAnalytics": {
-    "helmetTitle": "Analyse",
-    "viewsOverTime": "Weergaven in de loop van de tijd"
   }
 }
