@@ -14,20 +14,8 @@ import { SIZES, TYPOGRAPHY } from '../theme';
 import ListingCard from '../components/ListingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
+import LocationPicker from '../components/LocationPicker';
 import { formatNumber } from '../utils/formatters';
-
-const CITIES = [
-  { ar: 'الرياض',         en: 'Riyadh',  value: 'Riyadh' },
-  { ar: 'جدة',             en: 'Jeddah',  value: 'Jeddah' },
-  { ar: 'الدمام',          en: 'Dammam',  value: 'Dammam' },
-  { ar: 'مكة المكرمة',     en: 'Makkah',  value: 'Makkah' },
-  { ar: 'المدينة المنورة', en: 'Madinah', value: 'Madinah' },
-  { ar: 'الطائف',          en: 'Taif',    value: 'Taif' },
-  { ar: 'تبوك',            en: 'Tabuk',   value: 'Tabuk' },
-  { ar: 'أبها',            en: 'Abha',    value: 'Abha' },
-  { ar: 'القصيم',          en: 'Qassim',  value: 'Qassim' },
-  { ar: 'حائل',            en: 'Hail',    value: 'Hail' },
-];
 
 const TRANSACTION_TYPES = [
   { key: 'all',  value: '' },
@@ -66,6 +54,8 @@ export default function SearchScreen({ navigation, route }: any) {
   const [txType, setTxType] = useState('');
   const [propType, setPropType] = useState('');
   const [city, setCity] = useState('');
+  const [region, setRegion] = useState('');
+  const [district, setDistrict] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [bedrooms, setBedrooms] = useState('');
@@ -73,13 +63,14 @@ export default function SearchScreen({ navigation, route }: any) {
   const [showFilters, setShowFilters] = useState(false);
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ['search', query, txType, propType, city, minPrice, maxPrice, bedrooms, sort],
+    queryKey: ['search', query, txType, propType, city, district, minPrice, maxPrice, bedrooms, sort],
     queryFn: async () => {
       const params: Record<string, any> = { limit: 30 };
       if (query) params.q = query;
       if (txType) params.type = txType;
       if (propType) params.propertyTypes = propType;
       if (city) params.city = city;
+      if (district) params.district = district;
       if (minPrice) params.minPrice = Number(minPrice);
       if (maxPrice) params.maxPrice = Number(maxPrice);
       if (bedrooms && bedrooms !== 'any') params.minBedrooms = Number(bedrooms);
@@ -145,45 +136,14 @@ export default function SearchScreen({ navigation, route }: any) {
             <Chips items={PROPERTY_TYPES} ns="search" value={propType} onChange={setPropType} t={t} colors={colors} isRTL={isRTL} />
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.city')}</FilterLabel>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View style={{
-                flexDirection: isRTL ? 'row-reverse' : 'row',
-                gap: SIZES.sm,
-                paddingVertical: SIZES.sm,
-                paddingHorizontal: 2,
-              }}>
-                <TouchableOpacity
-                  style={[
-                    styles.chip,
-                    { backgroundColor: colors.surface, borderColor: colors.border },
-                    !city && { backgroundColor: colors.primary, borderColor: colors.primary },
-                  ]}
-                  onPress={() => setCity('')}
-                >
-                  <Text style={[TYPOGRAPHY.small, { color: !city ? '#FFF' : colors.text, fontWeight: '600' }]}>
-                    {t('search.all')}
-                  </Text>
-                </TouchableOpacity>
-                {CITIES.map(c => {
-                  const active = city === c.value;
-                  return (
-                    <TouchableOpacity
-                      key={c.value}
-                      style={[
-                        styles.chip,
-                        { backgroundColor: colors.surface, borderColor: colors.border },
-                        active && { backgroundColor: colors.primary, borderColor: colors.primary },
-                      ]}
-                      onPress={() => setCity(c.value)}
-                    >
-                      <Text style={[TYPOGRAPHY.small, { color: active ? '#FFF' : colors.text, fontWeight: '600' }]}>
-                        {isAr ? c.ar : c.en}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            </ScrollView>
+            <LocationPicker
+              city={city}
+              region={region}
+              district={district}
+              onCityChange={setCity}
+              onRegionChange={setRegion}
+              onDistrictChange={setDistrict}
+            />
 
             <FilterLabel colors={colors} textAlign={textAlign}>{t('search.priceRange')}</FilterLabel>
             <View style={{ flexDirection: 'row', gap: SIZES.sm }}>

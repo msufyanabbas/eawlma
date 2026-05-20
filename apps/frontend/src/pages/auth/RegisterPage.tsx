@@ -6,6 +6,7 @@ import {
   Checkbox,
   CircularProgress,
   FormControlLabel,
+  Grid,
   IconButton,
   InputAdornment,
   LinearProgress,
@@ -24,11 +25,12 @@ import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
 import { GA } from '@/utils/analytics';
+import { AuthLanguageSwitcher } from '@/components/auth/AuthLanguageSwitcher';
 
 const RTL_LANGS = ['ar', 'ur', 'fa', 'he'];
-/** Property exterior for the registration branding panel (distinct from login). */
+/** Bright luxury-property exterior for the registration branding panel. */
 const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80';
+  'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80';
 
 /** 0–4 password-strength score: length, lowercase, uppercase, digit/symbol. */
 function scorePassword(pw: string): number {
@@ -159,50 +161,102 @@ export function RegisterPage() {
           component="img"
           src={HERO_IMAGE}
           alt=""
-          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3 }}
+          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
+        {/* Lighter overlay — the property still reads through clearly. */}
         <Box
           sx={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(108,99,166,0.9) 0%, rgba(20,20,40,0.95) 100%)',
+            background:
+              'linear-gradient(135deg, rgba(108,99,166,0.75) 0%, rgba(15,52,96,0.85) 100%)',
           }}
         />
         <Box
           sx={{
             position: 'relative',
             zIndex: 1,
+            height: '100%',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
             p: 6,
-            color: 'white',
             width: '100%',
           }}
         >
+          {/* Top — Logo */}
           <Box>
             <Typography
               variant="h3"
               fontWeight={900}
               sx={{
-                background: 'linear-gradient(135deg, #fff 0%, #D4A843 100%)',
+                background: 'linear-gradient(135deg, #ffffff 0%, #D4A843 100%)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                mb: 1,
               }}
             >
               عولمة
             </Typography>
-            <Typography variant="h6" sx={{ opacity: 0.8, mt: 0.5 }}>
+            <Typography sx={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.1rem' }}>
               Eawlma Real Estate
             </Typography>
           </Box>
+
+          {/* Middle — Hero text + stats */}
           <Box>
-            <Typography variant="h2" fontWeight={900} sx={{ mb: 2 }}>
+            <Typography
+              variant="h2"
+              fontWeight={900}
+              color="white"
+              sx={{ mb: 2, lineHeight: 1.2, textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
+            >
               {t('auth.heroTitle', 'Find Your Dream Property')}
             </Typography>
-            <Typography variant="h6" sx={{ opacity: 0.8, lineHeight: 1.6 }}>
+            <Typography
+              sx={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.1rem', mb: 4, lineHeight: 1.7 }}
+            >
               {t('auth.registerSubtitle', 'Join thousands of users on Eawlma')}
+            </Typography>
+
+            <Stack direction="row" spacing={4}>
+              {[
+                { value: '10K+', label: t('auth.statListings', 'Listings') },
+                { value: '500+', label: t('auth.statAgents', 'Verified Agents') },
+                { value: '50K+', label: t('auth.statUsers', 'Happy Users') },
+              ].map((stat) => (
+                <Box key={stat.label} sx={{ textAlign: 'center' }}>
+                  <Typography
+                    variant="h4"
+                    fontWeight={900}
+                    sx={{ color: '#D4A843', textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}
+                  >
+                    {stat.value}
+                  </Typography>
+                  <Typography sx={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem' }}>
+                    {stat.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
+
+          {/* Bottom — Trust badge */}
+          <Box
+            sx={{
+              bgcolor: 'rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(10px)',
+              borderRadius: 3,
+              p: 2.5,
+              border: '1px solid rgba(255,255,255,0.2)',
+            }}
+          >
+            <Typography sx={{ color: 'white', fontWeight: 700, mb: 0.5 }}>
+              ⭐ {t('auth.trustedPlatform', 'Trusted by thousands across Saudi Arabia')}
+            </Typography>
+            <Typography sx={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem' }}>
+              {t('auth.platformDesc', 'Secure • Verified Agents • Best Properties')}
             </Typography>
           </Box>
         </Box>
@@ -220,6 +274,7 @@ export function RegisterPage() {
         }}
       >
         <Box sx={{ width: '100%', maxWidth: 460 }}>
+          <AuthLanguageSwitcher />
           <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3, textAlign: 'center' }}>
             <Typography variant="h3" fontWeight={900} color="primary">
               عولمة
@@ -246,22 +301,28 @@ export function RegisterPage() {
           )}
 
           <Stack spacing={2}>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-              <TextField
-                fullWidth
-                label={t('auth.firstName', 'First Name')}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                autoComplete="given-name"
-              />
-              <TextField
-                fullWidth
-                label={t('auth.lastName', 'Last Name')}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                autoComplete="family-name"
-              />
-            </Stack>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label={t('auth.firstName', 'First Name')}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  autoComplete="given-name"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label={t('auth.lastName', 'Last Name')}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  autoComplete="family-name"
+                  required
+                />
+              </Grid>
+            </Grid>
 
             <TextField
               fullWidth

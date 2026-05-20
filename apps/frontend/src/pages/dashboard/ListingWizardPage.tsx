@@ -55,6 +55,7 @@ import { storageApi } from '@/api/storage.api';
 import { aiApi, type PriceSuggestion } from '@/api/ai.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
+import LocationPicker from '@/components/location/LocationPicker';
 
 // ------------------------------------------------------------------
 // Form state
@@ -89,6 +90,7 @@ interface WizardState {
   yearBuilt: string;
 
   city: string;
+  region: string;
   district: string;
   street: string;
   buildingNumber: string;
@@ -167,6 +169,7 @@ const initialState: WizardState = {
   yearBuilt: '',
 
   city: '',
+  region: '',
   district: '',
   street: '',
   buildingNumber: '',
@@ -244,6 +247,7 @@ export function ListingWizardPage() {
         furnishing: l.furnishing ?? '',
         yearBuilt: l.yearBuilt !== null ? String(l.yearBuilt) : '',
         city: l.city,
+        region: l.region ?? '',
         district: l.district ?? '',
         lat: Number(l.lat),
         lng: Number(l.lng),
@@ -311,7 +315,7 @@ export function ListingWizardPage() {
     },
     address: {
       country: 'SA',
-      region: state.city,
+      region: state.region || state.city,
       city: state.city,
       district: state.district || undefined,
       street: state.street || undefined,
@@ -962,11 +966,15 @@ function LocationStep({ state, update }: StepProps) {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
-        <TextField fullWidth label={t('search.city')} value={state.city} onChange={(e) => update({ city: e.target.value })} />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField fullWidth label={t('search.district')} value={state.district} onChange={(e) => update({ district: e.target.value })} />
+      <Grid item xs={12}>
+        <LocationPicker
+          city={state.city}
+          region={state.region}
+          district={state.district}
+          onCityChange={(city) => update({ city })}
+          onRegionChange={(region) => update({ region })}
+          onDistrictChange={(district) => update({ district })}
+        />
       </Grid>
       <Grid item xs={12} sm={4}>
         <TextField fullWidth label={t('wizard.location.street')} value={state.street} onChange={(e) => update({ street: e.target.value })} />

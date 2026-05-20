@@ -280,7 +280,7 @@
     "enterCode": "adresine gönderildi 6 haneli kodu girin",
     "verifyCode": "Doğrula ve Oturum Aç",
     "resendCode": "Kodu yeniden gönder",
-    "resendIn": "Resend in",
+    "resendIn": "Yeniden gönder",
     "emailRequired": "şeklinde yeniden gönder Lütfen e-posta adresinizi girin",
     "sendOtpError": "Kod gönderilemedi, lütfen tekrar deneyin",
     "invalidOtp": "Geçersiz veya süresi dolmuş kod",

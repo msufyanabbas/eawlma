@@ -12,19 +12,7 @@ import { useRTL } from '../hooks/useRTL';
 import { listingsApi } from '../api';
 import { SIZES, SHADOWS } from '../theme';
 import { formatPrice } from '../utils/formatters';
-
-// Saudi cities — bilingual labels keyed by canonical English value so the
-// backend receives a stable string regardless of UI language.
-const CITIES = [
-  { ar: 'الرياض',         en: 'Riyadh',  value: 'Riyadh' },
-  { ar: 'جدة',             en: 'Jeddah',  value: 'Jeddah' },
-  { ar: 'الدمام',          en: 'Dammam',  value: 'Dammam' },
-  { ar: 'مكة المكرمة',     en: 'Makkah',  value: 'Makkah' },
-  { ar: 'المدينة المنورة', en: 'Madinah', value: 'Madinah' },
-  { ar: 'الطائف',          en: 'Taif',    value: 'Taif' },
-  { ar: 'تبوك',            en: 'Tabuk',   value: 'Tabuk' },
-  { ar: 'أبها',            en: 'Abha',    value: 'Abha' },
-];
+import LocationPicker from '../components/LocationPicker';
 
 export default function AddListingScreen({ navigation }: any) {
   const { colors } = useTheme();
@@ -65,6 +53,7 @@ export default function AddListingScreen({ navigation }: any) {
     price: '',
     area: '',
     city: '',
+    region: '',
     district: '',
     bedrooms: '',
     bathrooms: '',
@@ -272,43 +261,13 @@ export default function AddListingScreen({ navigation }: any) {
             <Text style={[styles.stepTitle, { color: colors.text, textAlign }]}>
               {t('wizard.city')}
             </Text>
-            <View style={[
-              styles.citiesGrid,
-              { flexDirection: isRTL ? 'row-reverse' : 'row' },
-            ]}>
-              {CITIES.map(city => {
-                const active = form.city === city.value;
-                return (
-                  <TouchableOpacity
-                    key={city.value}
-                    style={[
-                      styles.cityBtn,
-                      { borderColor: colors.border, backgroundColor: colors.surface },
-                      active && {
-                        borderColor: colors.primary,
-                        backgroundColor: colors.primary + '15',
-                      },
-                    ]}
-                    onPress={() => update('city', city.value)}
-                  >
-                    <Text style={[
-                      styles.cityBtnText,
-                      { color: colors.text, textAlign },
-                      active && { color: colors.primary, fontWeight: '700' },
-                    ]}>
-                      {isAr ? city.ar : city.en}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-            <FormField
-              label={t('wizard.district')}
-              value={form.district}
-              onChangeText={(v: string) => update('district', v)}
-              placeholder={t('wizard.districtPlaceholder')}
-              colors={colors}
-              textAlign={textAlign}
+            <LocationPicker
+              city={form.city}
+              region={form.region}
+              district={form.district}
+              onCityChange={(v) => setForm(f => ({ ...f, city: v, region: '', district: '' }))}
+              onRegionChange={(v) => setForm(f => ({ ...f, region: v, district: '' }))}
+              onDistrictChange={(v) => update('district', v)}
             />
           </View>
         )}

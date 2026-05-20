@@ -57,6 +57,7 @@ import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
 import { Reveal } from '@/components/global/Reveal';
 import { PropertyRequestDialog } from '@/components/global/PropertyRequestDialog';
+import LocationPicker from '@/components/location/LocationPicker';
 import { useSavedStore } from '@/store/saved.store';
 import { listingCoverUrl } from '@/utils/listingImages';
 import { getListingTitle, getListingLocation } from '@/utils/listingText';
@@ -149,6 +150,9 @@ export function SearchPage() {
   const [q, setQ] = useState(initial.q ?? '');
   const [type, setType] = useState<ListingType | ''>(initial.type ?? '');
   const [city, setCity] = useState(initial.city ?? '');
+  // `region` drives the cascading LocationPicker only — it is not sent to the
+  // search API (which filters by city + district).
+  const [region, setRegion] = useState('');
   const [district, setDistrict] = useState(initial.district ?? '');
   const [priceRange, setPriceRange] = useState<[number, number]>([
     Number(initial.minPrice ?? PRICE_BOUNDS[0]),
@@ -297,7 +301,7 @@ export function SearchPage() {
   };
 
   const clearFilters = () => {
-    setQ(''); setType(''); setCity(''); setDistrict('');
+    setQ(''); setType(''); setCity(''); setRegion(''); setDistrict('');
     setPriceRange(PRICE_BOUNDS); setAreaRange(AREA_BOUNDS);
     setMinBedrooms(''); setMinBathrooms('');
     setPropertyTypes([]); setAmenities([]); setVerifiedOnly(false);
@@ -320,6 +324,7 @@ export function SearchPage() {
     amenities, setAmenities,
     verifiedOnly, setVerifiedOnly,
     city, setCity,
+    region, setRegion,
     district, setDistrict,
     rentalType, setRentalType,
     flexibleDates, setFlexibleDates,
@@ -683,6 +688,8 @@ interface FilterPanelProps {
   setVerifiedOnly: (v: boolean) => void;
   city: string;
   setCity: (v: string) => void;
+  region: string;
+  setRegion: (v: string) => void;
   district: string;
   setDistrict: (v: string) => void;
   rentalType: RentalType | '';
@@ -984,21 +991,18 @@ function FilterPanel(props: FilterPanelProps) {
         </Stack>
       </FilterSection>
 
-      <FilterSection title={t('search.city')}>
-        <Stack spacing={1}>
-          <TextField
+      <FilterSection title={t('search.city')} defaultExpanded>
+        <Box sx={{ px: 0.5 }}>
+          <LocationPicker
             size="small"
-            placeholder={t('search.city')}
-            value={props.city}
-            onChange={(e) => props.setCity(e.target.value)}
+            city={props.city}
+            region={props.region}
+            district={props.district}
+            onCityChange={props.setCity}
+            onRegionChange={props.setRegion}
+            onDistrictChange={props.setDistrict}
           />
-          <TextField
-            size="small"
-            placeholder={t('search.district')}
-            value={props.district}
-            onChange={(e) => props.setDistrict(e.target.value)}
-          />
-        </Stack>
+        </Box>
       </FilterSection>
 
     </Box>

@@ -1,35 +1,77 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import {
+  BedrockRuntimeClient,
+  InvokeModelCommand,
+} from '@aws-sdk/client-bedrock-runtime';
 import axios from 'axios';
 
 const GTX_URL = 'https://translate.googleapis.com/translate_a/single';
 const REQUEST_TIMEOUT_MS = 3000;
 const CACHE_MAX = 1000;
 const MAX_TEXT_BYTES = 5000; // Google's per-request soft limit on the gtx endpoint
+const BEDROCK_MODEL_ID = 'anthropic.claude-3-haiku-20240307-v1:0';
 
 interface CacheEntry {
   value: string;
   hits: number;
 }
 
+/** Human-readable language names for the Bedrock translation prompt. */
+const LANG_NAMES: Record<string, string> = {
+  ar: 'Arabic', en: 'English', fr: 'French', zh: 'Chinese',
+  hi: 'Hindi', ur: 'Urdu', es: 'Spanish', de: 'German',
+  tr: 'Turkish', ru: 'Russian', fa: 'Persian', he: 'Hebrew',
+};
+
 /**
- * Light wrapper around the unofficial Google Translate `gtx` client. Used by
- * messaging to (a) detect the source language at send time and (b) translate
- * a message into a viewer's preferred display locale on demand.
+ * Dynamic-content translation. The primary backend is **Amazon Bedrock**
+ * (Claude 3 Haiku) — it produces noticeably better real-estate copy than the
+ * old unofficial Google `gtx` endpoint, especially Arabic ⇄ English.
  *
- * No API key is required — this is the same endpoint the public Google
- * Translate widget uses. We keep an in-memory LRU on top so repeat reads of
- * the same conversation don't hammer the endpoint and Google doesn't start
- * 429-ing the box.
+ * Google Translate is kept purely as a fallback: if Bedrock is unconfigured
+ * or errors, `translate()` quietly degrades to the `gtx` client so a missing
+ * AWS key never breaks a message thread. Language *detection* still uses
+ * `gtx` — it's cheap, fast, and good enough for the auto-detect use case.
+ *
+ * An in-memory LRU (keyed by target + text) sits on top so repeat reads of
+ * the same conversation don't re-hit either backend.
  */
 @Injectable()
 export class TranslationService {
   private readonly logger = new Logger(TranslationService.name);
   private readonly cache = new Map<string, CacheEntry>();
+  private readonly bedrock: BedrockRuntimeClient | null;
+
+  constructor(private readonly config: ConfigService) {
+    const region =
+      this.config.get<string>('AWS_BEDROCK_REGION') ??
+      this.config.get<string>('AWS_REGION') ??
+      'us-east-1';
+    const accessKeyId = this.config.get<string>('AWS_ACCESS_KEY_ID') ?? '';
+    const secretAccessKey = this.config.get<string>('AWS_SECRET_ACCESS_KEY') ?? '';
+
+    // Only stand up the client when credentials exist — otherwise we'd pay a
+    // guaranteed SDK error on every call before falling through to Google.
+    this.bedrock =
+      accessKeyId && secretAccessKey
+        ? new BedrockRuntimeClient({
+            region,
+            credentials: { accessKeyId, secretAccessKey },
+          })
+        : null;
+
+    if (!this.bedrock) {
+      this.logger.warn(
+        'Bedrock credentials not configured — translation falls back to Google.',
+      );
+    }
+  }
 
   /**
-   * Translate `text` into `targetLang`. Returns the original text on any
-   * failure — translation is decorative; we never want it to break a message
-   * thread.
+   * Translate `text` into `targetLang`. Tries Bedrock first, then Google.
+   * Returns the original text on any failure — translation is decorative; we
+   * never want it to break a message thread.
    */
   async translate(text: string, targetLang: string): Promise<string> {
     if (!text || !targetLang) return text;
@@ -37,29 +79,31 @@ export class TranslationService {
     if (!trimmed) return text;
     if (Buffer.byteLength(trimmed, 'utf8') > MAX_TEXT_BYTES) return text;
 
-    const key = this.cacheKey('t', targetLang, trimmed);
+    const target = targetLang.split('-')[0].toLowerCase();
+    const key = this.cacheKey('t', target, trimmed);
     const cached = this.cache.get(key);
     if (cached) {
       cached.hits += 1;
       return cached.value;
     }
 
-    try {
-      const url =
-        `${GTX_URL}?client=gtx&sl=auto&tl=${encodeURIComponent(targetLang)}&dt=t` +
-        `&q=${encodeURIComponent(trimmed)}`;
-      const { data } = await axios.get(url, {
-        timeout: REQUEST_TIMEOUT_MS,
-        headers: { 'User-Agent': 'Mozilla/5.0' },
-        validateStatus: (s) => s >= 200 && s < 500,
-      });
-      const translated = this.parseTranslation(data) ?? text;
-      this.put(key, translated);
-      return translated;
-    } catch (err) {
-      this.logger.warn(`translate(${targetLang}) failed: ${(err as Error).message}`);
-      return text;
+    let translated: string | null = null;
+    if (this.bedrock) {
+      try {
+        translated = await this.translateWithBedrock(trimmed, target);
+      } catch (err) {
+        this.logger.warn(
+          `Bedrock translate(${target}) failed, falling back to Google: ${(err as Error).message}`,
+        );
+      }
     }
+    if (!translated) {
+      translated = await this.translateWithGoogle(trimmed, target);
+    }
+
+    const value = translated || text;
+    this.put(key, value);
+    return value;
   }
 
   /**
@@ -95,6 +139,64 @@ export class TranslationService {
     } catch (err) {
       this.logger.warn(`detect failed: ${(err as Error).message}`);
       return null;
+    }
+  }
+
+  // ---------- backends ----------
+
+  /** Translate via Amazon Bedrock (Claude 3 Haiku). */
+  private async translateWithBedrock(text: string, toLang: string): Promise<string> {
+    if (!this.bedrock) throw new Error('Bedrock not configured');
+
+    const prompt = `Translate the following text to ${LANG_NAMES[toLang] || toLang}.
+
+Rules:
+- Return ONLY the translated text, nothing else
+- Preserve the meaning and context accurately
+- Keep proper nouns (names, places) as appropriate
+- Maintain the same tone and formality level
+- For real estate content, use appropriate property terminology
+
+Text to translate:
+${text}
+
+Translation:`;
+
+    const command = new InvokeModelCommand({
+      modelId: BEDROCK_MODEL_ID,
+      contentType: 'application/json',
+      accept: 'application/json',
+      body: JSON.stringify({
+        anthropic_version: 'bedrock-2023-05-31',
+        max_tokens: 1024,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    const response = await this.bedrock.send(command);
+    const responseBody = JSON.parse(new TextDecoder().decode(response.body));
+    const out = responseBody?.content?.[0]?.text;
+    if (typeof out !== 'string' || !out.trim()) {
+      throw new Error('empty Bedrock response');
+    }
+    return out.trim();
+  }
+
+  /** Legacy Google `gtx` translation — fallback only. */
+  private async translateWithGoogle(text: string, toLang: string): Promise<string> {
+    try {
+      const url =
+        `${GTX_URL}?client=gtx&sl=auto&tl=${encodeURIComponent(toLang)}&dt=t` +
+        `&q=${encodeURIComponent(text)}`;
+      const { data } = await axios.get(url, {
+        timeout: REQUEST_TIMEOUT_MS,
+        headers: { 'User-Agent': 'Mozilla/5.0' },
+        validateStatus: (s) => s >= 200 && s < 500,
+      });
+      return this.parseTranslation(data) ?? text;
+    } catch (err) {
+      this.logger.warn(`Google translate(${toLang}) failed: ${(err as Error).message}`);
+      return text;
     }
   }
 

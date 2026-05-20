@@ -39,6 +39,42 @@ import { ConfirmDialog } from '@/components/global/ConfirmDialog';
 const PAGE_SIZE = 20;
 const MAP_LIBS: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
+/**
+ * Map an AI moderation score (0-100) to a colour band + label:
+ * 0-20 green (clean), 21-50 yellow (minor), 51-80 orange (review),
+ * 81-100 red (high risk).
+ */
+function scoreTone(score: number): {
+  color: string;
+  bg: string;
+  labelKey: string;
+  fallback: string;
+} {
+  if (score <= 20) {
+    return { color: '#15803d', bg: 'rgba(34,197,94,0.15)', labelKey: 'moderation.aiClean', fallback: 'Clean' };
+  }
+  if (score <= 50) {
+    return { color: '#a16207', bg: 'rgba(234,179,8,0.18)', labelKey: 'moderation.aiMinor', fallback: 'Minor' };
+  }
+  if (score <= 80) {
+    return { color: '#c2410c', bg: 'rgba(249,115,22,0.18)', labelKey: 'moderation.aiReview', fallback: 'Review' };
+  }
+  return { color: '#b91c1c', bg: 'rgba(239,68,68,0.18)', labelKey: 'moderation.aiHighRisk', fallback: 'High Risk' };
+}
+
+/** Compact coloured pill showing a listing's AI moderation score. */
+function ModerationScoreBadge({ score }: { score: number }) {
+  const { t } = useTranslation();
+  const tone = scoreTone(score);
+  return (
+    <Chip
+      size="small"
+      label={`${score} · ${t(tone.labelKey, tone.fallback)}`}
+      sx={{ bgcolor: tone.bg, color: tone.color, fontWeight: 700, border: 'none' }}
+    />
+  );
+}
+
 export function ModerationPage() {
   const { t, i18n } = useTranslation();
   const qc = useQueryClient();
@@ -138,6 +174,7 @@ export function ModerationPage() {
                 <TableCell>{t('moderation.colTitle')}</TableCell>
                 <TableCell>{t('moderation.colReference')}</TableCell>
                 <TableCell>{t('moderation.colType')}</TableCell>
+                <TableCell>{t('moderation.colAiScore', 'AI Score')}</TableCell>
                 <TableCell>{t('moderation.colCity')}</TableCell>
                 <TableCell align="right">{t('moderation.colPrice')}</TableCell>
                 <TableCell>{t('moderation.colSubmitted')}</TableCell>
@@ -180,6 +217,7 @@ export function ModerationPage() {
                   </TableCell>
                   <TableCell><Typography variant="caption" sx={{ fontFamily: 'monospace' }}>{l.referenceCode}</Typography></TableCell>
                   <TableCell sx={{ textTransform: 'capitalize' }}>{l.propertyType}</TableCell>
+                  <TableCell><ModerationScoreBadge score={l.moderationScore ?? 0} /></TableCell>
                   <TableCell>{l.city}{l.district ? ` · ${l.district}` : ''}</TableCell>
                   <TableCell align="right">{Number(l.price).toLocaleString(i18n.language)} {t('listing.currency')}</TableCell>
                   <TableCell>{new Date(l.createdAt).toLocaleDateString(i18n.language)}</TableCell>
@@ -374,6 +412,48 @@ function ListingPreview({
             </GoogleMap>
           </Box>
         )}
+      </Box>
+
+      {/* AI moderation verdict */}
+      <Box sx={{ mb: 3 }}>
+        <Typography variant="overline" color="text.secondary">
+          {t('moderation.preview.aiSection', 'AI Moderation')}
+        </Typography>
+        <Box
+          sx={{
+            mt: 0.5,
+            p: 2,
+            borderRadius: 2,
+            bgcolor: scoreTone(listing.moderationScore ?? 0).bg,
+          }}
+        >
+          <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1, flexWrap: 'wrap', rowGap: 0.5 }}>
+            <ModerationScoreBadge score={listing.moderationScore ?? 0} />
+            {listing.moderationCategory && (
+              <Chip
+                size="small"
+                label={listing.moderationCategory}
+                sx={{ textTransform: 'capitalize' }}
+              />
+            )}
+            {listing.requiresReview && (
+              <Chip size="small" color="warning" label={t('moderation.preview.flaggedForReview', 'Flagged for review')} />
+            )}
+          </Stack>
+          {listing.moderationReasons && listing.moderationReasons.length > 0 ? (
+            <Stack component="ul" sx={{ m: 0, pl: 2.5 }} spacing={0.25}>
+              {listing.moderationReasons.map((r, i) => (
+                <Typography key={i} component="li" variant="body2" color="text.secondary">
+                  {r}
+                </Typography>
+              ))}
+            </Stack>
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              {t('moderation.preview.noFlags', 'No issues flagged by AI moderation.')}
+            </Typography>
+          )}
+        </Box>
       </Box>
 
       <Stack direction="row" spacing={1}>

@@ -264,6 +264,23 @@ export class ListingEntity extends BaseEntity {
   @Column({ type: 'text', name: 'rejection_reason', nullable: true })
   rejectionReason: string | null;
 
+  // ----- AI moderation -------------------------------------------------------
+  // Populated by ModerationService on create. `moderationScore` is 0-100
+  // (higher = more problematic); `requiresReview` flags the listing for the
+  // admin moderation queue even when the score is otherwise acceptable.
+
+  @Column({ type: 'integer', name: 'moderation_score', default: 0 })
+  moderationScore: number;
+
+  @Column({ type: 'varchar', length: 32, name: 'moderation_category', nullable: true })
+  moderationCategory: string | null;
+
+  @Column({ type: 'jsonb', name: 'moderation_reasons', default: () => "'[]'" })
+  moderationReasons: string[];
+
+  @Column({ type: 'boolean', name: 'requires_review', default: false })
+  requiresReview: boolean;
+
   // ----- Relations -----------------------------------------------------------
 
   @OneToMany(() => ListingMediaEntity, (m) => m.listing, { cascade: ['insert', 'update'] })

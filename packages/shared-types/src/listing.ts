@@ -140,6 +140,11 @@ export interface Listing {
   publishedAt: string | null;
   expiresAt: string | null;
   rejectionReason: string | null;
+  /** AI moderation verdict, populated on create. Score is 0-100 (higher = worse). */
+  moderationScore?: number;
+  moderationCategory?: string | null;
+  moderationReasons?: string[];
+  requiresReview?: boolean;
   createdAt: string;
   updatedAt: string;
   media: ListingMedia[];

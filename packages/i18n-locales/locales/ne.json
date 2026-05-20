@@ -417,7 +417,7 @@
     },
     "bedrooms": "सुत्ने कोठाहरू",
     "bathrooms": "बाथरुमहरू",
-    "sqm": "m²",
+    "sqm": "| m²",
     "type": "टाइप गर्नुहोस्",
     "floor": "भुइँ",
     "age": "उमेर",
@@ -766,7 +766,7 @@
       "videoDropHint": "MP4 फाइल तान्नुहोस् वा छनौट गर्न क्लिक गर्नुहोस्। अधिकतम ५०० एमबी।",
       "videoUploaded": "भिडियो अपलोड गरियो — {{name}}",
       "vrTitle": "🥽 भर्चुअल रियलिटी टुर लिङ्क",
-      "vrPlaceholder": "https://… (Matterport, Kuula, etc.)",
+      "vrPlaceholder": "| https://… (Matterport, Kuula, etc.)",
       "modelTitle": "3D / AR मोडेल (.glb वा .gltf)",
       "modelDropHint": "AR सक्षम गर्न GLB/GLTF मोडेल अपलोड गर्नुहोस्। अधिकतम ५० एमबी।",
       "modelUploaded": "मोडेल अपलोड गरियो — {{name}}"

@@ -35,9 +35,11 @@ yarn-error.log*
 # Testing
 coverage/
 .nyc_output/
+playwright-report/
+test-results/
 
-# Docker volumes
-data/
+# Docker volumes (anchored to repo root so app source `data/` dirs aren't ignored)
+/data/
 postgres-data/
 redis-data/
 

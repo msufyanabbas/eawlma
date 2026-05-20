@@ -27,6 +27,7 @@ import { KafkaService } from '../../common/kafka/kafka.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { TranslationService } from '../translation/translation.service';
+import { ModerationService } from '../moderation/moderation.service';
 
 import { ListingEntity } from './entities/listing.entity';
 import { ListingMediaEntity } from './entities/listing-media.entity';
@@ -75,6 +76,7 @@ export class ListingsService {
     private readonly subscriptionsService: SubscriptionsService,
     private readonly notificationsService: NotificationsService,
     private readonly translationService: TranslationService,
+    private readonly moderationService: ModerationService,
   ) {}
 
   // ---------------------------------------------------------------------------
@@ -158,6 +160,27 @@ export class ListingsService {
       throw new BadRequestException('rentPeriod is not allowed on sale listings');
     }
 
+    // AI content moderation — runs on the source title + description. High-risk
+    // content (score >= 80 or explicitly rejected) is blocked outright; the
+    // rest is stored with its score so the admin queue can triage it.
+    const isEnglishSource = String(dto.locale).toLowerCase() === 'en';
+    const moderation = await this.moderationService.moderateListing({
+      titleAr: isEnglishSource ? undefined : dto.title,
+      titleEn: isEnglishSource ? dto.title : undefined,
+      descriptionAr: isEnglishSource ? undefined : dto.description,
+      descriptionEn: isEnglishSource ? dto.description : undefined,
+      price: dto.price,
+      propertyType: dto.propertyType,
+      city: dto.address.city,
+    });
+    if (!moderation.approved || moderation.score >= 80) {
+      throw new BadRequestException({
+        message: 'Listing content violates platform guidelines',
+        reasons: moderation.reasons,
+        category: moderation.category,
+      });
+    }
+
     const amenityEntities = await this.resolveAmenities(dto.amenityIds);
     const tagEntities = await this.resolveTags(dto.tagIds);
 
@@ -208,6 +231,11 @@ export class ListingsService {
       agencyId: dto.agencyId ?? null,
       amenities: amenityEntities,
       tags: tagEntities,
+
+      moderationScore: moderation.score,
+      moderationCategory: moderation.category,
+      moderationReasons: moderation.reasons,
+      requiresReview: moderation.requiresReview,
     });
 
     if (dto.shortTerm) applyShortTermFields(listing, dto.shortTerm);
