@@ -91,6 +91,9 @@ module.exports = {
     extra: {
       apiUrl: API_URL,
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+      eas: {
+        projectId: '7ac3856f-7773-472e-bb55-cc9da63af9d4',
+      },
     },
   },
 };
