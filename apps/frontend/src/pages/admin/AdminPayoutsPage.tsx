@@ -152,7 +152,7 @@ export function AdminPayoutsPage() {
           >
             <MenuItem value="all">{t('common.viewAll')}</MenuItem>
             {STATUS_OPTIONS.map((s) => (
-              <MenuItem key={s} value={s}>{STATUS_COLORS[s].label}</MenuItem>
+              <MenuItem key={s} value={s}>{t(STATUS_COLORS[s].labelKey)}</MenuItem>
             ))}
           </TextField>
         </Stack>
@@ -206,7 +206,7 @@ export function AdminPayoutsPage() {
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      <Chip label={palette.label} size="small" sx={{ bgcolor: palette.bg, color: palette.text, fontWeight: 700 }} />
+                      <Chip label={t(palette.labelKey)} size="small" sx={{ bgcolor: palette.bg, color: palette.text, fontWeight: 700 }} />
                       {p.failureReason && (
                         <Typography variant="caption" color="error" sx={{ display: 'block', mt: 0.25, maxWidth: 240 }}>
                           {p.failureReason}
