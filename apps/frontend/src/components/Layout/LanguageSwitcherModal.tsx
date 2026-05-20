@@ -15,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useUiStore, type UiLanguage } from '@/store/ui.store';
+import { type UiLanguage } from '@/store/ui.store';
 
 export interface LanguageOption {
   code: string;
@@ -67,19 +67,6 @@ export const INTERFACE_LANGUAGES: ReadonlyArray<LanguageOption & { code: UiLangu
   { code: 'he', flag: '🇮🇱', nativeName: 'עברית', englishName: 'Hebrew' },
 ];
 
-// Additional Google-Translate-only targets for translating *incoming messages*
-// without changing the chrome. Kept for languages we don't ship full UI for.
-export const TRANSLATION_LANGUAGES: ReadonlyArray<LanguageOption> = [
-  { code: 'pa', flag: '🇮🇳', nativeName: 'ਪੰਜਾਬੀ', englishName: 'Punjabi' },
-  { code: 'ml', flag: '🇮🇳', nativeName: 'മലയാളം', englishName: 'Malayalam' },
-  { code: 'zh-TW', flag: '🇹🇼', nativeName: '繁體中文', englishName: 'Chinese (Traditional)' },
-  { code: 'el', flag: '🇬🇷', nativeName: 'Ελληνικά', englishName: 'Greek' },
-  { code: 'so', flag: '🇸🇴', nativeName: 'Soomaali', englishName: 'Somali' },
-  { code: 'uk', flag: '🇺🇦', nativeName: 'Українська', englishName: 'Ukrainian' },
-  { code: 'cs', flag: '🇨🇿', nativeName: 'Čeština', englishName: 'Czech' },
-  { code: 'hu', flag: '🇭🇺', nativeName: 'Magyar', englishName: 'Hungarian' },
-];
-
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -87,19 +74,13 @@ interface Props {
 }
 
 /**
- * Two-section language picker:
- *  - "Interface" → switches the i18n locale (full UI swap, drives RTL).
- *    Only ar/en/ur are supported because those are the locales we ship
- *    translations for.
- *  - "Translate messages into" → sets `displayLocale` in the UI store,
- *    which the messaging service uses as the target for Google Translate.
- *    Picking one of these does NOT change the chrome — only chat content
- *    is translated on the fly.
+ * Language picker for the app interface. Selecting a language switches the
+ * i18n locale (full UI swap, drives RTL/LTR direction). Incoming chat messages
+ * are auto-translated into the reader's language by the backend — there is no
+ * manual "translate messages into" setting.
  */
 export function LanguageSwitcherModal({ open, onClose, onLanguageChange }: Props) {
   const { t, i18n } = useTranslation();
-  const displayLocale = useUiStore((s) => s.displayLocale);
-  const setDisplayLocale = useUiStore((s) => s.setDisplayLocale);
 
   const [search, setSearch] = useState('');
 
@@ -114,15 +95,9 @@ export function LanguageSwitcherModal({ open, onClose, onLanguageChange }: Props
   };
 
   const interfaceFiltered = useMemo(() => INTERFACE_LANGUAGES.filter(filterFn), [search]);
-  const translationFiltered = useMemo(() => TRANSLATION_LANGUAGES.filter(filterFn), [search]);
 
   const handlePickInterface = (code: UiLanguage) => {
     onLanguageChange(code);
-    onClose();
-  };
-
-  const handlePickTranslation = (code: string) => {
-    setDisplayLocale(code);
     onClose();
   };
 
@@ -147,10 +122,7 @@ export function LanguageSwitcherModal({ open, onClose, onLanguageChange }: Props
             {t('language.title', 'Choose your language')}
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            {t(
-              'language.subtitle',
-              'Pick an interface language, or translate incoming messages.',
-            )}
+            {t('language.subtitle', 'Switch the language used across the app.')}
           </Typography>
         </Box>
         <IconButton onClick={onClose} aria-label="close" size="small">
@@ -202,35 +174,7 @@ export function LanguageSwitcherModal({ open, onClose, onLanguageChange }: Props
           </Box>
         )}
 
-        {translationFiltered.length > 0 && (
-          <Box>
-            <Typography
-              variant="overline"
-              color="text.secondary"
-              sx={{ display: 'block', mb: 0.5, fontWeight: 700 }}
-            >
-              {t('language.translate', 'Translate messages into')}
-            </Typography>
-            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
-              {t(
-                'language.translateHint',
-                "Messages from other users will be auto-translated. The interface stays in your chosen UI language.",
-              )}
-            </Typography>
-            <Stack spacing={0.5}>
-              {translationFiltered.map((l) => (
-                <LanguageRow
-                  key={l.code}
-                  option={l}
-                  selected={displayLocale === l.code}
-                  onClick={() => handlePickTranslation(l.code)}
-                />
-              ))}
-            </Stack>
-          </Box>
-        )}
-
-        {interfaceFiltered.length === 0 && translationFiltered.length === 0 && (
+        {interfaceFiltered.length === 0 && (
           <Typography color="text.secondary" sx={{ py: 4, textAlign: 'center' }}>
             {t('language.noMatches', 'No languages match your search.')}
           </Typography>
