@@ -39,7 +39,8 @@
     "test:open:report": "start apps/frontend/playwright-report/eawlma-full-report.html",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "docker:logs": "docker-compose logs -f"
+    "docker:logs": "docker-compose logs -f",
+    "deploy": "bash scripts/deploy.sh"
   },
   "devDependencies": {
     "typescript": "^5.4.5",
