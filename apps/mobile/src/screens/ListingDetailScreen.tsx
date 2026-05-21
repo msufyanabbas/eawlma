@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, StyleSheet, ScrollView,
+  View, Text, StyleSheet, ScrollView, FlatList,
   TouchableOpacity, Linking, Dimensions, Platform, Image,
   Modal, TextInput, Alert, ActivityIndicator, Share,
 } from 'react-native';
@@ -19,7 +19,7 @@ import PriceText from '../components/PriceText';
 import ListingCard from '../components/ListingCard';
 import SmartImage from '../components/SmartImage';
 import UserAvatar from '../components/UserAvatar';
-import { listingCoverUrl } from '../utils/listingImages';
+import { listingImageUrls } from '../utils/listingImages';
 import { formatNumber, formatPrice } from '../utils/formatters';
 
 // Google Maps Static API key — wired through Expo extra so a single value in
@@ -52,6 +52,8 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   const [showInquiry, setShowInquiry] = useState(false);
   const [saving, setSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  // Active slide in the hero photo carousel (multi-image listings only).
+  const [heroIndex, setHeroIndex] = useState(0);
 
   const { data, isLoading } = useQuery({
     queryKey: ['listing', id],
@@ -60,6 +62,9 @@ export default function ListingDetailScreen({ navigation, route }: any) {
 
   const listing: any = data?.data || {};
   const agent: any = listing.agent || listing.user || {};
+  // All photos for the hero — single image renders as a static hero, multiple
+  // become a swipeable paging carousel with dot indicators.
+  const galleryImages = listingImageUrls(listing);
 
   // Prefer the server-side translation (Accept-Language driven) over the
   // raw AR/EN fields. The backend populates titleTranslated /
@@ -237,7 +242,37 @@ export default function ListingDetailScreen({ navigation, route }: any) {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={styles.heroBox}>
-          <SmartImage uri={listingCoverUrl(listing)} style={styles.heroImage} fallbackIconSize={64} />
+          {galleryImages.length === 1 ? (
+            <SmartImage uri={galleryImages[0]} style={styles.heroImage} fallbackIconSize={64} />
+          ) : (
+            <>
+              <FlatList
+                data={galleryImages}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(_, i) => String(i)}
+                onMomentumScrollEnd={(e) =>
+                  setHeroIndex(Math.round(e.nativeEvent.contentOffset.x / W))
+                }
+                renderItem={({ item }) => (
+                  <SmartImage uri={item} style={styles.heroSlide} fallbackIconSize={64} />
+                )}
+              />
+              {/* Dot indicators — one per photo, current slide highlighted. */}
+              <View style={styles.heroDots} pointerEvents="none">
+                {galleryImages.map((_, i) => (
+                  <View
+                    key={i}
+                    style={[
+                      styles.heroDot,
+                      { backgroundColor: i === heroIndex ? '#FFF' : 'rgba(255,255,255,0.45)' },
+                    ]}
+                  />
+                ))}
+              </View>
+            </>
+          )}
           <SafeAreaView
             style={[
               styles.heroNav,
@@ -706,6 +741,9 @@ function SectionTitle({ children, colors, textAlign }: any) {
 const styles = StyleSheet.create({
   heroBox: { width: W, height: 300, position: 'relative' },
   heroImage: { width: '100%', height: '100%' },
+  heroSlide: { width: W, height: 300 },
+  heroDots: { position: 'absolute', bottom: SIZES.sm, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', gap: 6 },
+  heroDot: { width: 7, height: 7, borderRadius: 4 },
   heroNav: { position: 'absolute', top: 0, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: SIZES.lg, paddingVertical: SIZES.sm },
   heroActions: { flexDirection: 'row', gap: SIZES.sm },
   iconBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', alignItems: 'center' },

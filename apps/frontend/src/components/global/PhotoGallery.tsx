@@ -18,6 +18,15 @@ interface Props {
   /** Ordered list of photo URLs; the first one is used as the hero. */
   photos: string[];
   alt?: string;
+  /** Controlled "modal only" mode — renders just the fullscreen lightbox and
+   *  no preview grid. The host page supplies its own gallery trigger. */
+  modalOnly?: boolean;
+  /** Controlled open state (only honoured when `modalOnly`). */
+  open?: boolean;
+  /** Photo index to show when the lightbox opens (only honoured when `modalOnly`). */
+  initialIndex?: number;
+  /** Called when the lightbox requests to close (only honoured when `modalOnly`). */
+  onClose?: () => void;
 }
 
 /**
@@ -33,7 +42,7 @@ interface Props {
  *   - 1/N counter pill at the top
  *   - Click-to-jump thumbnail strip at the bottom
  */
-export function PhotoGallery({ photos, alt }: Props) {
+export function PhotoGallery({ photos, alt, modalOnly, open: openProp, initialIndex, onClose }: Props) {
   const { t } = useTranslation();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
@@ -41,12 +50,26 @@ export function PhotoGallery({ photos, alt }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const total = photos?.length ?? 0;
+  // In `modalOnly` mode the host page owns the open/close state; otherwise the
+  // component manages it internally and renders its own preview grid.
+  const controlled = modalOnly === true;
+  const isOpen = controlled ? Boolean(openProp) : galleryOpen;
 
-  const open = useCallback((index: number) => {
+  const openAt = useCallback((index: number) => {
     setCurrentIndex(Math.max(0, Math.min(index, total - 1)));
     setGalleryOpen(true);
   }, [total]);
-  const close = useCallback(() => setGalleryOpen(false), []);
+  const close = useCallback(() => {
+    if (controlled) onClose?.();
+    else setGalleryOpen(false);
+  }, [controlled, onClose]);
+
+  // Controlled mode: jump to the requested photo each time the host opens us.
+  useEffect(() => {
+    if (controlled && openProp) {
+      setCurrentIndex(Math.max(0, Math.min(initialIndex ?? 0, total - 1)));
+    }
+  }, [controlled, openProp, initialIndex, total]);
   const goNext = useCallback(
     () => setCurrentIndex((i) => Math.min(i + 1, total - 1)),
     [total],
@@ -58,7 +81,7 @@ export function PhotoGallery({ photos, alt }: Props) {
 
   // Keyboard navigation — only when the modal is open.
   useEffect(() => {
-    if (!galleryOpen) return;
+    if (!isOpen) return;
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') goNext();
       else if (e.key === 'ArrowLeft') goPrev();
@@ -66,7 +89,7 @@ export function PhotoGallery({ photos, alt }: Props) {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [galleryOpen, goNext, goPrev, close]);
+  }, [isOpen, goNext, goPrev, close]);
 
   if (!photos || total === 0) return null;
   const hero = photos[0];
@@ -74,6 +97,7 @@ export function PhotoGallery({ photos, alt }: Props) {
 
   return (
     <>
+      {!controlled && (
       <Box sx={{ position: 'relative', width: '100%', mb: 3 }}>
         <Box
           sx={{
@@ -94,7 +118,7 @@ export function PhotoGallery({ photos, alt }: Props) {
               overflow: 'hidden',
               cursor: 'pointer',
             }}
-            onClick={() => open(0)}
+            onClick={() => openAt(0)}
           >
             <Box
               component="img"
@@ -122,7 +146,7 @@ export function PhotoGallery({ photos, alt }: Props) {
                   minHeight: 0,
                   cursor: 'pointer',
                 }}
-                onClick={() => open(i + 1)}
+                onClick={() => openAt(i + 1)}
               >
                 <Box
                   component="img"
@@ -146,7 +170,7 @@ export function PhotoGallery({ photos, alt }: Props) {
           startIcon={<PhotoCameraIcon />}
           onClick={(e) => {
             e.stopPropagation();
-            open(0);
+            openAt(0);
           }}
           sx={{
             position: 'absolute',
@@ -163,10 +187,11 @@ export function PhotoGallery({ photos, alt }: Props) {
           {t('booking.showAllPhotos', { defaultValue: 'Show all photos' })} ({total})
         </Button>
       </Box>
+      )}
 
       <Dialog
         fullScreen
-        open={galleryOpen}
+        open={isOpen}
         onClose={close}
         PaperProps={{ sx: { bgcolor: 'rgba(0,0,0,0.95)' } }}
       >

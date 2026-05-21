@@ -146,6 +146,13 @@ export function ListingDetailPage() {
 
   const navigate = useNavigate();
   const [ejarOpen, setEjarOpen] = useState(false);
+  // Fullscreen photo lightbox — opened from the SmartGallery preview tiles.
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const openGallery = (index = 0) => {
+    setGalleryIndex(index);
+    setGalleryOpen(true);
+  };
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'info' | 'warning' }>({
     open: false,
     message: '',
@@ -438,10 +445,19 @@ export function ListingDetailPage() {
         </Box>
       </Box>
 
-      {/* ---------------- Image gallery — Airbnb 60/40 split ---------------- */}
+      {/* ---------------- Image gallery — smart layout by photo count ---------------- */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 3 }}>
-        <PhotoGallery photos={images.map((m) => m.url)} alt={localized.title} />
+        <SmartGallery images={images} onOpen={openGallery} />
       </Container>
+      {/* Shared fullscreen lightbox — driven by the SmartGallery tiles above. */}
+      <PhotoGallery
+        photos={images.map((m) => m.url)}
+        alt={localized.title}
+        modalOnly
+        open={galleryOpen}
+        initialIndex={galleryIndex}
+        onClose={() => setGalleryOpen(false)}
+      />
 
       {/* ---------------- Title + actions ---------------- */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, mt: 3 }}>
@@ -1186,6 +1202,144 @@ export function ListingDetailPage() {
 // ------------------------------------------------------------------
 // Helper components
 // ------------------------------------------------------------------
+
+/**
+ * Photo preview that adapts its layout to how many images the listing has:
+ *   - 1 image  → full-width hero
+ *   - 2 images → equal side-by-side halves
+ *   - 3+       → large image on the inline-start half + 2 stacked on the other,
+ *                with a "+N" overlay on the last tile when more remain.
+ * Clicking any tile calls `onOpen` with that tile's index so the host page can
+ * open its fullscreen lightbox there.
+ */
+function SmartGallery({
+  images,
+  onOpen,
+}: {
+  images: { url: string }[];
+  onOpen: (index?: number) => void;
+}) {
+  const count = images.length;
+  if (count === 0) return null;
+
+  const imgStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
+  };
+
+  // 1 image - full width
+  if (count === 1) {
+    return (
+      <Box
+        onClick={() => onOpen(0)}
+        sx={{
+          width: '100%',
+          height: { xs: 280, md: 480 },
+          borderRadius: 3,
+          overflow: 'hidden',
+          cursor: 'pointer',
+          '&:hover img': { transform: 'scale(1.02)', transition: 'transform 0.3s' },
+        }}
+      >
+        <img src={images[0].url} alt="" style={imgStyle} />
+      </Box>
+    );
+  }
+
+  // 2 images - side by side
+  if (count === 2) {
+    return (
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 1,
+          height: { xs: 240, md: 440 },
+          borderRadius: 3,
+          overflow: 'hidden',
+        }}
+      >
+        {images.map((img, i) => (
+          <Box
+            key={i}
+            onClick={() => onOpen(i)}
+            sx={{ overflow: 'hidden', cursor: 'pointer', '&:hover img': { transform: 'scale(1.03)', transition: 'transform 0.3s' } }}
+          >
+            <img src={img.url} alt="" style={imgStyle} />
+          </Box>
+        ))}
+      </Box>
+    );
+  }
+
+  // 3+ images - left large + right 2 stacked
+  return (
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '1fr 1fr',
+        gap: 1,
+        height: { xs: 300, md: 500 },
+        borderRadius: 3,
+        overflow: 'hidden',
+      }}
+    >
+      {/* Left - spans full height */}
+      <Box
+        onClick={() => onOpen(0)}
+        sx={{
+          gridRow: '1 / 3',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          '&:hover img': { transform: 'scale(1.02)', transition: 'transform 0.3s' },
+        }}
+      >
+        <img src={images[0].url} alt="" style={imgStyle} />
+      </Box>
+
+      {/* Top right */}
+      <Box
+        onClick={() => onOpen(1)}
+        sx={{ overflow: 'hidden', cursor: 'pointer', '&:hover img': { transform: 'scale(1.03)', transition: 'transform 0.3s' } }}
+      >
+        <img src={images[1].url} alt="" style={imgStyle} />
+      </Box>
+
+      {/* Bottom right - show remaining count overlay */}
+      <Box
+        onClick={() => onOpen(2)}
+        sx={{ overflow: 'hidden', cursor: 'pointer', position: 'relative' }}
+      >
+        <img src={images[2].url} alt="" style={imgStyle} />
+        {count > 3 && (
+          <Box
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              bgcolor: 'rgba(0,0,0,0.55)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              '&:hover': { bgcolor: 'rgba(0,0,0,0.65)' },
+            }}
+          >
+            <Typography
+              color="white"
+              variant="h4"
+              fontWeight={900}
+              sx={{ textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}
+            >
+              +{count - 3}
+            </Typography>
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
+}
 
 function FeatureStat({ icon, label, value }: { icon?: React.ReactNode; label: string; value: number | string }) {
   return (

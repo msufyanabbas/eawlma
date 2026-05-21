@@ -33,3 +33,21 @@ export function listingCoverUrl(listing: any): string | null {
   if (listing.coverImageUrl) return listing.coverImageUrl; // legacy shape
   return fallbackImageForPropertyType(listing.propertyType);
 }
+
+/**
+ * Every image URL the listing owns, in order. Falls back to a single
+ * property-type Unsplash image when the listing has no uploaded media — so
+ * callers can always render at least one photo.
+ */
+export function listingImageUrls(listing: any): string[] {
+  const media: any[] = Array.isArray(listing?.media) ? listing.media : [];
+  const urls = media
+    // Keep image media only — videos / 360 tours are handled elsewhere. Rows
+    // with no `type` are treated as images (legacy shape).
+    .filter((m) => !m?.type || String(m.type).toLowerCase() === 'image')
+    .map((m) => m?.url || m?.thumbnailUrl)
+    .filter((u: unknown): u is string => typeof u === 'string' && u.length > 0);
+  if (urls.length > 0) return urls;
+  if (listing?.coverImageUrl) return [listing.coverImageUrl];
+  return [fallbackImageForPropertyType(listing?.propertyType)];
+}
