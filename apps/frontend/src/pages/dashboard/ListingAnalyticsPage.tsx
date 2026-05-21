@@ -46,7 +46,7 @@ type RangeDays = (typeof RANGE_OPTIONS)[number];
 export function ListingAnalyticsPage() {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { translateLabel, formatTooltipValue, formatNumber, rtlXAxisProps, rtlYAxisProps } =
+  const { translateLabel, formatTooltipValue, formatNumber, isRTL, rtlXAxisProps, rtlYAxisProps } =
     useChartTranslations();
   const params = useParams({ strict: false }) as { id?: string };
   const id = params.id ?? '';
@@ -255,7 +255,7 @@ export function ListingAnalyticsPage() {
                     <XAxis type="number" tickFormatter={formatNumber} stroke={theme.palette.text.secondary} fontSize={12} {...rtlXAxisProps} />
                     <YAxis type="category" dataKey="stage" tickFormatter={translateLabel} stroke={theme.palette.text.secondary} fontSize={12} width={120} {...rtlYAxisProps} />
                     <RechartsTooltip formatter={formatTooltipValue} />
-                    <Bar dataKey="value" radius={[0, 6, 6, 0]}>
+                    <Bar dataKey="value" radius={isRTL ? [6, 0, 0, 6] : [0, 6, 6, 0]}>
                       {funnelData.map((_, i) => <Cell key={i} fill={palette[i % palette.length]} />)}
                     </Bar>
                   </BarChart>

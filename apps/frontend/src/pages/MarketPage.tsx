@@ -258,7 +258,7 @@ export function MarketPage() {
                     <RechartsTooltip
                       formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}
                     />
-                    <Bar dataKey="avgPricePerSqm" fill="#6C63A6" radius={[0, 6, 6, 0]} />
+                    <Bar dataKey="avgPricePerSqm" fill="#6C63A6" radius={isRTL ? [6, 0, 0, 6] : [0, 6, 6, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </RTLChart>
