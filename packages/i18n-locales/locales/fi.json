@@ -55,7 +55,21 @@
     "attention": "Huomiota vaativat ilmoitukset",
     "lowEngagement": "Matala sitoutuminen (< 2 tiedustelua)",
     "noListings": "Ei vielä ilmoituksia",
-    "createFirst": "Luo ensimmäinen ilmoituksesi"
+    "createFirst": "Luo ensimmäinen ilmoituksesi",
+    "views": "Näkymät",
+    "revenue": "Tulot",
+    "users": "Käyttäjät",
+    "bookings": "Varaukset",
+    "thisMonth": "Tässä kuussa",
+    "lastMonth": "Viimeinen kuukausi",
+    "thisWeek": "Tällä viikolla",
+    "lastWeek": "Viime viikko",
+    "today": "Tänään",
+    "yesterday": "Eilen",
+    "total": "Kokonais",
+    "average": "Keskimäärin",
+    "growth": "Kasvu",
+    "trend": "Trendi"
   },
   "admin": {
     "moderationQueue": "Moderointijono",
@@ -1543,5 +1557,19 @@
       "resolved": "Ratkaistu",
       "closed": "Suljettu"
     }
+  },
+  "months": {
+    "jan": "tammikuu",
+    "feb": "helmikuuta",
+    "mar": "maaliskuu",
+    "apr": "huhtikuu",
+    "may": "toukokuuta",
+    "jun": "kesäkuuta",
+    "jul": "heinäkuuta",
+    "aug": "elokuu",
+    "sep": "syyskuu",
+    "oct": "lokakuu",
+    "nov": "marraskuu",
+    "dec": "joulukuuta"
   }
 }

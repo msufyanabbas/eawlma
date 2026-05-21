@@ -55,7 +55,21 @@
     "attention": "Tin đăng cần chú ý",
     "lowEngagement": "Tương tác thấp (< 2 yêu cầu)",
     "noListings": "Chưa có tin đăng nào",
-    "createFirst": "Tạo tin đăng đầu tiên của bạn"
+    "createFirst": "Tạo tin đăng đầu tiên của bạn",
+    "views": "Lượt xem",
+    "revenue": "Doanh thu",
+    "users": "Người dùng",
+    "bookings": "Đặt chỗ",
+    "thisMonth": "Tháng này",
+    "lastMonth": "Tháng trước",
+    "thisWeek": "Tuần này",
+    "lastWeek": "Tuần trước",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "total": "Tổng cộng",
+    "average": "Trung bình",
+    "growth": "Sự phát triển",
+    "trend": "Xu hướng"
   },
   "admin": {
     "moderationQueue": "Hàng đợi kiểm duyệt",
@@ -1826,6 +1840,20 @@
       "resolved": "Đã giải quyết",
       "closed": "Đã đóng"
     }
+  },
+  "months": {
+    "jan": "Tháng một",
+    "feb": "Tháng Hai",
+    "mar": "tháng 3",
+    "apr": "tháng tư",
+    "may": "Có thể",
+    "jun": "tháng sáu",
+    "jul": "tháng 7",
+    "aug": "tháng 8",
+    "sep": "tháng 9",
+    "oct": "Tháng 10",
+    "nov": "tháng 11",
+    "dec": "Tháng mười hai"
   },
   "saved": {
     "title": "Đã lưu",

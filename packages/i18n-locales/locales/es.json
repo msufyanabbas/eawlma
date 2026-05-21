@@ -55,7 +55,21 @@
     "attention": "Anuncios que requieren atención",
     "lowEngagement": "Bajo interés (< 2 consultas)",
     "noListings": "Aún no hay anuncios",
-    "createFirst": "Crea tu primer anuncio"
+    "createFirst": "Crea tu primer anuncio",
+    "views": "Vistas",
+    "revenue": "Ganancia",
+    "users": "Usuarios",
+    "bookings": "Reservas",
+    "thisMonth": "este mes",
+    "lastMonth": "Mes pasado",
+    "thisWeek": "Esta semana",
+    "lastWeek": "La semana pasada",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "total": "Total",
+    "average": "Promedio",
+    "growth": "Crecimiento",
+    "trend": "Tendencia"
   },
   "admin": {
     "moderationQueue": "Cola de moderación",
@@ -1543,5 +1557,19 @@
       "resolved": "Resuelto",
       "closed": "Cerrado"
     }
+  },
+  "months": {
+    "jan": "Ene",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Abr",
+    "may": "Puede",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Ago",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dic"
   }
 }

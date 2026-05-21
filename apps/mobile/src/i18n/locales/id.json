@@ -55,7 +55,21 @@
     "attention": "Iklan yang perlu perhatian",
     "lowEngagement": "Keterlibatan rendah (< 2 pertanyaan)",
     "noListings": "Belum ada iklan",
-    "createFirst": "Buat iklan pertama Anda"
+    "createFirst": "Buat iklan pertama Anda",
+    "views": "Tampilan",
+    "revenue": "Pendapatan",
+    "users": "Pengguna",
+    "bookings": "Pemesanan",
+    "thisMonth": "Bulan ini",
+    "lastMonth": "Bulan Lalu",
+    "thisWeek": "Minggu ini",
+    "lastWeek": "Minggu lalu",
+    "today": "Hari ini",
+    "yesterday": "Kemarin",
+    "total": "Total",
+    "average": "Rata-rata",
+    "growth": "Pertumbuhan",
+    "trend": "Kecenderungan"
   },
   "admin": {
     "moderationQueue": "Antrean moderasi",
@@ -1826,6 +1840,20 @@
       "resolved": "Terselesaikan",
       "closed": "Tertutup"
     }
+  },
+  "months": {
+    "jan": "Januari",
+    "feb": "Februari",
+    "mar": "Merusak",
+    "apr": "April",
+    "may": "Mungkin",
+    "jun": "Juni",
+    "jul": "Juli",
+    "aug": "Agustus",
+    "sep": "September",
+    "oct": "Oktober",
+    "nov": "November",
+    "dec": "Desember"
   },
   "saved": {
     "title": "Disimpan",

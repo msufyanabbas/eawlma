@@ -55,7 +55,21 @@
     "attention": "Annonser som trenger oppmerksomhet",
     "lowEngagement": "Lavt engasjement (< 2 forespørsler)",
     "noListings": "Ingen annonser ennå",
-    "createFirst": "Opprett din første annonse"
+    "createFirst": "Opprett din første annonse",
+    "views": "Visninger",
+    "revenue": "Inntekt",
+    "users": "Brukere",
+    "bookings": "Bestillinger",
+    "thisMonth": "Denne måneden",
+    "lastMonth": "Forrige måned",
+    "thisWeek": "Denne uken",
+    "lastWeek": "Forrige uke",
+    "today": "I dag",
+    "yesterday": "I går",
+    "total": "Totalt",
+    "average": "Gjennomsnittlig",
+    "growth": "Vekst",
+    "trend": "Trend"
   },
   "admin": {
     "moderationQueue": "Modereringskø",
@@ -1826,6 +1840,20 @@
       "resolved": "Løst",
       "closed": "Lukket"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "februar",
+    "mar": "Mar",
+    "apr": "april",
+    "may": "mai",
+    "jun": "juni",
+    "jul": "jul",
+    "aug": "aug",
+    "sep": "Sep",
+    "oct": "okt",
+    "nov": "november",
+    "dec": "desember"
   },
   "saved": {
     "title": "Lagret",

@@ -55,7 +55,21 @@
     "attention": "需要关注的房源",
     "lowEngagement": "互动较少 (< 2 询盘)",
     "noListings": "暂无房源",
-    "createFirst": "创建您的第一个房源"
+    "createFirst": "创建您的第一个房源",
+    "views": "意见",
+    "revenue": "收入",
+    "users": "用户",
+    "bookings": "预订",
+    "thisMonth": "本月",
+    "lastMonth": "上个月",
+    "thisWeek": "本星期",
+    "lastWeek": "上星期",
+    "today": "今天",
+    "yesterday": "昨天",
+    "total": "全部的",
+    "average": "平均的",
+    "growth": "生长",
+    "trend": "趋势"
   },
   "admin": {
     "moderationQueue": "审核队列",
@@ -1543,5 +1557,19 @@
       "resolved": "已解决",
       "closed": "关闭"
     }
+  },
+  "months": {
+    "jan": "扬",
+    "feb": "二月",
+    "mar": "三月",
+    "apr": "四月",
+    "may": "可能",
+    "jun": "君",
+    "jul": "七月",
+    "aug": "八月",
+    "sep": "九月",
+    "oct": "十月",
+    "nov": "十一月",
+    "dec": "十二月"
   }
 }

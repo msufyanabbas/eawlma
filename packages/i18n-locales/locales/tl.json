@@ -55,7 +55,21 @@
     "attention": "Mga listing na nangangailangan ng atensyon",
     "lowEngagement": "Mababang engagement (< 2 tanong)",
     "noListings": "Wala pang mga listing",
-    "createFirst": "Lumikha ng iyong unang listing"
+    "createFirst": "Lumikha ng iyong unang listing",
+    "views": "Mga View",
+    "revenue": "Kita",
+    "users": "Mga user",
+    "bookings": "Mga Booking",
+    "thisMonth": "Ngayong Buwan",
+    "lastMonth": "Nakaraang Buwan",
+    "thisWeek": "Ngayong Linggo",
+    "lastWeek": "Noong nakaraang Linggo",
+    "today": "Ngayong araw",
+    "yesterday": "Kahapon",
+    "total": "Kabuuan",
+    "average": "Karaniwan",
+    "growth": "Paglago",
+    "trend": "Uso"
   },
   "admin": {
     "moderationQueue": "Pila sa moderasyon",
@@ -704,7 +718,7 @@
       "yearly": "Taun-taon"
     },
     "furnishing": {
-      "unfurnished": "Unfurnished",
+      "unfurnished": "Walang gamit",
       "semi_furnished": "Semi-furnished",
       "furnished": "Furnished"
     },
@@ -1543,5 +1557,19 @@
       "resolved": "Nalutas",
       "closed": "sarado"
     }
+  },
+  "months": {
+    "jan": "Ene",
+    "feb": "Peb",
+    "mar": "Mar",
+    "apr": "Abr",
+    "may": "Mayo",
+    "jun": "Hun",
+    "jul": "Hul",
+    "aug": "Ago",
+    "sep": "Set",
+    "oct": "Okt",
+    "nov": "Nob",
+    "dec": "Dis"
   }
 }

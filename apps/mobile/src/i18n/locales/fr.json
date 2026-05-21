@@ -55,7 +55,21 @@
     "attention": "Annonces à surveiller",
     "lowEngagement": "Faible engagement (< 2 demandes)",
     "noListings": "Aucune annonce pour le moment",
-    "createFirst": "Créez votre première annonce"
+    "createFirst": "Créez votre première annonce",
+    "views": "Vues",
+    "revenue": "Revenus",
+    "users": "Utilisateurs",
+    "bookings": "Réservations",
+    "thisMonth": "Ce mois-ci",
+    "lastMonth": "Le mois dernier",
+    "thisWeek": "Cette semaine",
+    "lastWeek": "La semaine dernière",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "total": "Total",
+    "average": "Moyenne",
+    "growth": "Croissance",
+    "trend": "Tendance"
   },
   "admin": {
     "moderationQueue": "File de modération",
@@ -1826,6 +1840,20 @@
       "resolved": "Résolu",
       "closed": "Fermé"
     }
+  },
+  "months": {
+    "jan": "janvier",
+    "feb": "Février",
+    "mar": "mars",
+    "apr": "avril",
+    "may": "Mai",
+    "jun": "Juin",
+    "jul": "juillet",
+    "aug": "Août",
+    "sep": "septembre",
+    "oct": "octobre",
+    "nov": "novembre",
+    "dec": "Déc"
   },
   "saved": {
     "title": "Enregistré",

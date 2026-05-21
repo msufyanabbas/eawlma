@@ -55,7 +55,21 @@
     "attention": "ધ્યાનની જરૂર હોય તેવી જાહેરાતો",
     "lowEngagement": "ઓછી જોડાણ (< 2 પૂછપરછ)",
     "noListings": "હજુ સુધી કોઈ જાહેરાત નથી",
-    "createFirst": "તમારી પ્રથમ જાહેરાત બનાવો"
+    "createFirst": "તમારી પ્રથમ જાહેરાત બનાવો",
+    "views": "દૃશ્યો",
+    "revenue": "| આવક",
+    "users": "| વપરાશકર્તાઓ",
+    "bookings": "| બુકિંગ",
+    "thisMonth": "આ મહિને",
+    "lastMonth": "ગયા મહિને",
+    "thisWeek": "આ અઠવાડિયે",
+    "lastWeek": "છેલ્લા અઠવાડિયે",
+    "today": "આજે",
+    "yesterday": "| ગઈકાલે",
+    "total": "કુલ",
+    "average": "સરેરાશ",
+    "growth": "| વૃદ્ધિ",
+    "trend": "ટ્રેન્ડ"
   },
   "admin": {
     "moderationQueue": "મધ્યસ્થી કતાર",
@@ -410,7 +424,7 @@
     "areaUnit": "| m²",
     "price": "કિંમત",
     "pricePerSqm": "પ્રતિ m² કિંમત",
-    "currency": "SAR",
+    "currency": "| SAR",
     "perMonth": "/મહિનો",
     "perYear": "/વર્ષ",
     "perDay": "/દિવસ",
@@ -1826,6 +1840,20 @@
       "resolved": "ઉકેલાઈ",
       "closed": "બંધ"
     }
+  },
+  "months": {
+    "jan": "જાન",
+    "feb": "ફેબ્રુઆરી",
+    "mar": "| માર",
+    "apr": "| એપ્રિલ",
+    "may": "| મે",
+    "jun": "જૂન",
+    "jul": "| જુલાઇ",
+    "aug": "| ઑગસ્ટ",
+    "sep": "| સપ્ટે",
+    "oct": "ઑક્ટો",
+    "nov": "| નવેમ્બર",
+    "dec": "ડિસેમ્બર"
   },
   "saved": {
     "title": "સાચવેલ",

@@ -55,7 +55,21 @@
     "attention": "Anzeigen, die Aufmerksamkeit benötigen",
     "lowEngagement": "Geringe Resonanz (< 2 Anfragen)",
     "noListings": "Noch keine Anzeigen",
-    "createFirst": "Erstellen Sie Ihre erste Anzeige"
+    "createFirst": "Erstellen Sie Ihre erste Anzeige",
+    "views": "Ansichten",
+    "revenue": "Umsatz",
+    "users": "Benutzer",
+    "bookings": "Buchungen",
+    "thisMonth": "Diesen Monat",
+    "lastMonth": "Letzter Monat",
+    "thisWeek": "Diese Woche",
+    "lastWeek": "Letzte Woche",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "total": "Gesamt",
+    "average": "Durchschnitt",
+    "growth": "Wachstum",
+    "trend": "Trend"
   },
   "admin": {
     "moderationQueue": "Moderationswarteschlange",
@@ -1543,5 +1557,19 @@
       "resolved": "Gelöst",
       "closed": "Geschlossen"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Februar",
+    "mar": "Mar",
+    "apr": "April",
+    "may": "Mai",
+    "jun": "Jun",
+    "jul": "Juli",
+    "aug": "Aug.",
+    "sep": "Sep",
+    "oct": "Okt.",
+    "nov": "Nov.",
+    "dec": "Dez."
   }
 }

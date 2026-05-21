@@ -47,6 +47,8 @@ import { messagingApi } from '@/api/messaging.api';
 import { subscriptionsApi } from '@/api/subscriptions.api';
 import { DashboardLayout } from '@/components/Layout/DashboardLayout';
 import { PageHeader } from '@/components/global/PageHeader';
+import RTLChart from '@/components/charts/RTLChart';
+import { useChartTranslations } from '@/hooks/useChartTranslations';
 import { useAuthStore } from '@/store/auth.store';
 
 import { KpiCard } from './components/KpiCard';
@@ -56,6 +58,8 @@ export function DashboardHomePage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const user = useAuthStore((s) => s.user);
+  const { translateLabel, formatTooltipValue, reverseForRTL, formatNumber } =
+    useChartTranslations();
 
   // ---- data sources --------------------------------------------------
   const dashboardSummary = useQuery({
@@ -239,28 +243,41 @@ export function DashboardHomePage() {
             <Typography variant="caption" color="text.secondary">
               {t('dashboard.last30Days')} · {lineSourceListing ? lineSourceListing.referenceCode : t('dashboardHome.noActiveListings')}
             </Typography>
-            <Box sx={{ height: 280, mt: 2 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={lineData}>
-                  <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
-                  <XAxis dataKey="date" stroke={theme.palette.text.secondary} fontSize={12} />
-                  <YAxis stroke={theme.palette.text.secondary} fontSize={12} />
-                  <RechartsTooltip
-                    contentStyle={{
-                      backgroundColor: theme.palette.background.paper,
-                      border: `1px solid ${theme.palette.divider}`,
-                      borderRadius: 8,
-                    }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="views"
-                    stroke={theme.palette.primary.main}
-                    strokeWidth={2.5}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+            <Box sx={{ mt: 2 }}>
+              <RTLChart height={280}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={reverseForRTL(lineData)}>
+                    <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tickFormatter={translateLabel}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                    />
+                    <YAxis
+                      tickFormatter={formatNumber}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                    />
+                    <RechartsTooltip
+                      formatter={formatTooltipValue}
+                      contentStyle={{
+                        backgroundColor: theme.palette.background.paper,
+                        border: `1px solid ${theme.palette.divider}`,
+                        borderRadius: 8,
+                      }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="views"
+                      name={t('dashboard.views')}
+                      stroke={theme.palette.primary.main}
+                      strokeWidth={2.5}
+                      dot={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </RTLChart>
             </Box>
           </Paper>
         </Grid>
@@ -272,30 +289,44 @@ export function DashboardHomePage() {
             <Typography variant="caption" color="text.secondary">
               {t('dashboard.lifetimeTotals')}
             </Typography>
-            <Box sx={{ height: 280, mt: 2 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={topListings}>
-                  <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
-                  <XAxis dataKey="name" stroke={theme.palette.text.secondary} fontSize={11} />
-                  <YAxis stroke={theme.palette.text.secondary} fontSize={12} allowDecimals={false} />
-                  <RechartsTooltip
-                    contentStyle={{
-                      backgroundColor: theme.palette.background.paper,
-                      border: `1px solid ${theme.palette.divider}`,
-                      borderRadius: 8,
-                    }}
-                    labelFormatter={(label, payload) => {
-                      const t = payload?.[0]?.payload as { title?: string } | undefined;
-                      return t?.title ?? label;
-                    }}
-                  />
-                  <Bar
-                    dataKey="inquiries"
-                    fill={theme.palette.success.main}
-                    radius={[6, 6, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+            <Box sx={{ mt: 2 }}>
+              <RTLChart height={280}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={reverseForRTL(topListings)}>
+                    <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="name"
+                      tickFormatter={translateLabel}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={11}
+                    />
+                    <YAxis
+                      tickFormatter={formatNumber}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                      allowDecimals={false}
+                    />
+                    <RechartsTooltip
+                      formatter={formatTooltipValue}
+                      contentStyle={{
+                        backgroundColor: theme.palette.background.paper,
+                        border: `1px solid ${theme.palette.divider}`,
+                        borderRadius: 8,
+                      }}
+                      labelFormatter={(label, payload) => {
+                        const row = payload?.[0]?.payload as { title?: string } | undefined;
+                        return row?.title ?? label;
+                      }}
+                    />
+                    <Bar
+                      dataKey="inquiries"
+                      name={t('dashboard.inquiries')}
+                      fill={theme.palette.success.main}
+                      radius={[6, 6, 0, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </RTLChart>
             </Box>
           </Paper>
         </Grid>

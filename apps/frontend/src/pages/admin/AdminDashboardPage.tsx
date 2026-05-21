@@ -33,6 +33,8 @@ import {
 import { adminApi } from '@/api/admin.api';
 import { AdminLayout } from '@/components/Layout/AdminLayout';
 import { PageHeader } from '@/components/global/PageHeader';
+import RTLChart from '@/components/charts/RTLChart';
+import { useChartTranslations } from '@/hooks/useChartTranslations';
 import { KpiCard } from '@/pages/dashboard/components/KpiCard';
 
 interface AuditEntry {
@@ -53,6 +55,8 @@ interface AuditPage {
 export function AdminDashboardPage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
+  const { translateLabel, formatTooltipValue, reverseForRTL, formatNumber } =
+    useChartTranslations();
 
   // Live KPIs from the dedicated /admin/stats endpoint.
   const statsQuery = useQuery({
@@ -169,22 +173,42 @@ export function AdminDashboardPage() {
             <Typography variant="caption" color="text.secondary">
               {t('adminDashboard.chartListingsHint')}
             </Typography>
-            <Box sx={{ height: 280, mt: 2 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={dailyListingCreates}>
-                  <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
-                  <XAxis dataKey="date" stroke={theme.palette.text.secondary} fontSize={12} />
-                  <YAxis stroke={theme.palette.text.secondary} fontSize={12} allowDecimals={false} />
-                  <RechartsTooltip
-                    contentStyle={{
-                      backgroundColor: theme.palette.background.paper,
-                      border: `1px solid ${theme.palette.divider}`,
-                      borderRadius: 8,
-                    }}
-                  />
-                  <Line type="monotone" dataKey="count" stroke={theme.palette.primary.main} strokeWidth={2.5} dot={false} />
-                </LineChart>
-              </ResponsiveContainer>
+            <Box sx={{ mt: 2 }}>
+              <RTLChart height={280}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={reverseForRTL(dailyListingCreates)}>
+                    <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tickFormatter={translateLabel}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                    />
+                    <YAxis
+                      tickFormatter={formatNumber}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                      allowDecimals={false}
+                    />
+                    <RechartsTooltip
+                      formatter={formatTooltipValue}
+                      contentStyle={{
+                        backgroundColor: theme.palette.background.paper,
+                        border: `1px solid ${theme.palette.divider}`,
+                        borderRadius: 8,
+                      }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="count"
+                      name={t('dashboard.listings')}
+                      stroke={theme.palette.primary.main}
+                      strokeWidth={2.5}
+                      dot={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </RTLChart>
             </Box>
           </Paper>
         </Grid>
@@ -192,22 +216,40 @@ export function AdminDashboardPage() {
           <Paper sx={{ p: 3, height: '100%' }}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>{t('adminDashboard.chartInquiryEvents')}</Typography>
             <Typography variant="caption" color="text.secondary">{t('adminDashboard.chartFromAudit')}</Typography>
-            <Box sx={{ height: 280, mt: 2 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={dailyInquiryCreates}>
-                  <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
-                  <XAxis dataKey="date" stroke={theme.palette.text.secondary} fontSize={12} />
-                  <YAxis stroke={theme.palette.text.secondary} fontSize={12} allowDecimals={false} />
-                  <RechartsTooltip
-                    contentStyle={{
-                      backgroundColor: theme.palette.background.paper,
-                      border: `1px solid ${theme.palette.divider}`,
-                      borderRadius: 8,
-                    }}
-                  />
-                  <Bar dataKey="count" fill={theme.palette.success.main} radius={[6, 6, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+            <Box sx={{ mt: 2 }}>
+              <RTLChart height={280}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={reverseForRTL(dailyInquiryCreates)}>
+                    <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tickFormatter={translateLabel}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                    />
+                    <YAxis
+                      tickFormatter={formatNumber}
+                      stroke={theme.palette.text.secondary}
+                      fontSize={12}
+                      allowDecimals={false}
+                    />
+                    <RechartsTooltip
+                      formatter={formatTooltipValue}
+                      contentStyle={{
+                        backgroundColor: theme.palette.background.paper,
+                        border: `1px solid ${theme.palette.divider}`,
+                        borderRadius: 8,
+                      }}
+                    />
+                    <Bar
+                      dataKey="count"
+                      name={t('dashboard.inquiries')}
+                      fill={theme.palette.success.main}
+                      radius={[6, 6, 0, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </RTLChart>
             </Box>
           </Paper>
         </Grid>

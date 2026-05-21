@@ -55,7 +55,21 @@
     "attention": "Advertenties die aandacht nodig hebben",
     "lowEngagement": "Lage betrokkenheid (< 2 aanvragen)",
     "noListings": "Nog geen advertenties",
-    "createFirst": "Maak uw eerste advertentie"
+    "createFirst": "Maak uw eerste advertentie",
+    "views": "Weergaven",
+    "revenue": "Inkomsten",
+    "users": "Gebruikers",
+    "bookings": "Boekingen",
+    "thisMonth": "Deze maand",
+    "lastMonth": "Vorige maand",
+    "thisWeek": "Deze week",
+    "lastWeek": "Vorige week",
+    "today": "Vandaag",
+    "yesterday": "Gisteren",
+    "total": "Totaal",
+    "average": "Gemiddeld",
+    "growth": "Groei",
+    "trend": "Trend"
   },
   "admin": {
     "moderationQueue": "Moderatiewachtrij",
@@ -1543,5 +1557,19 @@
       "resolved": "Opgelost",
       "closed": "Gesloten"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "februari",
+    "mar": "Mrt",
+    "apr": "april",
+    "may": "Mei",
+    "jun": "Jun",
+    "jul": "Juli",
+    "aug": "Augustus",
+    "sep": "Sep",
+    "oct": "Okt",
+    "nov": "Nov",
+    "dec": "december"
   }
 }

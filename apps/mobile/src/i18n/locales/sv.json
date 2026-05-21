@@ -55,7 +55,21 @@
     "attention": "Annonser som behöver uppmärksamhet",
     "lowEngagement": "Lågt engagemang (< 2 förfrågningar)",
     "noListings": "Inga annonser ännu",
-    "createFirst": "Skapa din första annons"
+    "createFirst": "Skapa din första annons",
+    "views": "Visningar",
+    "revenue": "Intäkter",
+    "users": "Användare",
+    "bookings": "Bokningar",
+    "thisMonth": "Denna månad",
+    "lastMonth": "Förra månaden",
+    "thisWeek": "Denna vecka",
+    "lastWeek": "Förra veckan",
+    "today": "Idag",
+    "yesterday": "Igår",
+    "total": "Totalt",
+    "average": "Genomsnitt",
+    "growth": "Tillväxt",
+    "trend": "Trend"
   },
   "admin": {
     "moderationQueue": "Modereringskö",
@@ -1826,6 +1840,20 @@
       "resolved": "Löst",
       "closed": "Stängd"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "feb",
+    "mar": "Mar",
+    "apr": "apr",
+    "may": "Maj",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "okt",
+    "nov": "Nov",
+    "dec": "Dec"
   },
   "saved": {
     "title": "Sparad",

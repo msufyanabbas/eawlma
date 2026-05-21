@@ -55,7 +55,21 @@
     "attention": "ትኩረት የሚያስፈልጋቸው ማስታወቂያዎች",
     "lowEngagement": "ዝቅተኛ ተሳትፎ (< 2 ጥያቄዎች)",
     "noListings": "ገና ማስታወቂያዎች የሉም",
-    "createFirst": "የመጀመሪያ ማስታወቂያዎን ይፍጠሩ"
+    "createFirst": "የመጀመሪያ ማስታወቂያዎን ይፍጠሩ",
+    "views": "እይታዎች",
+    "revenue": "ገቢ",
+    "users": "ተጠቃሚዎች",
+    "bookings": "ቦታ ማስያዝ",
+    "thisMonth": "በዚህ ወር",
+    "lastMonth": "ያለፈው ወር",
+    "thisWeek": "በዚህ ሳምንት",
+    "lastWeek": "ያለፈው ሳምንት",
+    "today": "ዛሬ",
+    "yesterday": "ትላንት",
+    "total": "ድምር",
+    "average": "አማካኝ",
+    "growth": "እድገት",
+    "trend": "አዝማሚያ"
   },
   "admin": {
     "moderationQueue": "የቁጥጥር ወረፋ",
@@ -1543,5 +1557,19 @@
       "resolved": "ተፈቷል።",
       "closed": "ዝግ"
     }
+  },
+  "months": {
+    "jan": "ጃን",
+    "feb": "Feb",
+    "mar": "ማር",
+    "apr": "ኣብ",
+    "may": "ግንቦት",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "ነሀሴ",
+    "sep": "ሴፕቴፕ",
+    "oct": "ኦክቶ",
+    "nov": "ህዳር",
+    "dec": "ዲሴ"
   }
 }

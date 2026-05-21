@@ -55,7 +55,21 @@
     "attention": "Anunțuri care necesită atenție",
     "lowEngagement": "Implicare scăzută (< 2 cereri)",
     "noListings": "Niciun anunț încă",
-    "createFirst": "Creează primul tău anunț"
+    "createFirst": "Creează primul tău anunț",
+    "views": "Vizualizări",
+    "revenue": "Venituri",
+    "users": "Utilizatori",
+    "bookings": "Rezervări",
+    "thisMonth": "Luna aceasta",
+    "lastMonth": "Luna trecută",
+    "thisWeek": "Săptămâna aceasta",
+    "lastWeek": "Săptămâna trecută",
+    "today": "Astăzi",
+    "yesterday": "Ieri",
+    "total": "Total",
+    "average": "Medie",
+    "growth": "Creștere",
+    "trend": "Tendință"
   },
   "admin": {
     "moderationQueue": "Coadă de moderare",
@@ -1787,7 +1801,7 @@
     "maxGuests": "Max invitați",
     "checkIn": "Înregistrare",
     "checkInFrom": "din {{time}}",
-    "checkOut": "Check-out",
+    "checkOut": "Verifică",
     "checkOutBy": "de {{time}}",
     "cancellation": "Anulare",
     "whatThisPlaceOffers": "Ce oferă acest loc"
@@ -1826,6 +1840,20 @@
       "resolved": "S-a rezolvat",
       "closed": "Închis"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "Mai",
+    "jun": "iunie",
+    "jul": "Iul",
+    "aug": "Aug",
+    "sep": "Sept",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec"
   },
   "saved": {
     "title": "Salvat",

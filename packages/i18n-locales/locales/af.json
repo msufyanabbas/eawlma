@@ -55,7 +55,21 @@
     "attention": "Advertensies wat aandag benodig",
     "lowEngagement": "Lae betrokkenheid (< 2 navrae)",
     "noListings": "Nog geen advertensies nie",
-    "createFirst": "Skep jou eerste advertensie"
+    "createFirst": "Skep jou eerste advertensie",
+    "views": "Views",
+    "revenue": "Inkomste",
+    "users": "Gebruikers",
+    "bookings": "Besprekings",
+    "thisMonth": "Hierdie maand",
+    "lastMonth": "Verlede maand",
+    "thisWeek": "Hierdie week",
+    "lastWeek": "Verlede week",
+    "today": "Vandag",
+    "yesterday": "Gister",
+    "total": "Totaal",
+    "average": "Gemiddeld",
+    "growth": "Groei",
+    "trend": "Tendens"
   },
   "admin": {
     "moderationQueue": "Moderasietou",
@@ -1543,5 +1557,19 @@
       "resolved": "Opgelos",
       "closed": "Gesluit"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mrt",
+    "apr": "Apr",
+    "may": "Mei",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Okt",
+    "nov": "Nov",
+    "dec": "Des"
   }
 }

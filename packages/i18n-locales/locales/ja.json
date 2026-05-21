@@ -55,7 +55,21 @@
     "attention": "注意が必要な物件",
     "lowEngagement": "エンゲージメント低 (問い合わせ2件未満)",
     "noListings": "まだ物件がありません",
-    "createFirst": "最初の物件を作成"
+    "createFirst": "最初の物件を作成",
+    "views": "ビュー",
+    "revenue": "収益",
+    "users": "ユーザー",
+    "bookings": "予約",
+    "thisMonth": "今月",
+    "lastMonth": "先月",
+    "thisWeek": "今週",
+    "lastWeek": "先週",
+    "today": "今日",
+    "yesterday": "昨日",
+    "total": "合計",
+    "average": "平均",
+    "growth": "成長",
+    "trend": "傾向"
   },
   "admin": {
     "moderationQueue": "審査キュー",
@@ -1543,5 +1557,19 @@
       "resolved": "解決済み",
       "closed": "閉店"
     }
+  },
+  "months": {
+    "jan": "1月",
+    "feb": "2月",
+    "mar": "3月",
+    "apr": "4月",
+    "may": "5月",
+    "jun": "ジュン",
+    "jul": "7月",
+    "aug": "8月",
+    "sep": "9月",
+    "oct": "10月",
+    "nov": "11月",
+    "dec": "12月"
   }
 }

@@ -55,7 +55,21 @@
     "attention": "Matangazo yanayohitaji uangalifu",
     "lowEngagement": "Ushiriki wa chini (< maswali 2)",
     "noListings": "Hakuna matangazo bado",
-    "createFirst": "Unda tangazo lako la kwanza"
+    "createFirst": "Unda tangazo lako la kwanza",
+    "views": "Maoni",
+    "revenue": "Mapato",
+    "users": "Watumiaji",
+    "bookings": "Uhifadhi",
+    "thisMonth": "Mwezi Huu",
+    "lastMonth": "Mwezi uliopita",
+    "thisWeek": "Wiki Hii",
+    "lastWeek": "Wiki Iliyopita",
+    "today": "Leo",
+    "yesterday": "Jana",
+    "total": "Jumla",
+    "average": "Wastani",
+    "growth": "Ukuaji",
+    "trend": "Mwenendo"
   },
   "admin": {
     "moderationQueue": "Foleni ya usimamizi",
@@ -1543,5 +1557,19 @@
       "resolved": "Imetatuliwa",
       "closed": "Imefungwa"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Machi",
+    "apr": "Apr",
+    "may": "Mei",
+    "jun": "Juni",
+    "jul": "Julai",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Okt",
+    "nov": "Nov",
+    "dec": "Des"
   }
 }

@@ -55,7 +55,21 @@
     "attention": "Dikkat gerektiren ilanlar",
     "lowEngagement": "Düşük etkileşim (< 2 soru)",
     "noListings": "Henüz ilan yok",
-    "createFirst": "İlk ilanınızı oluşturun"
+    "createFirst": "İlk ilanınızı oluşturun",
+    "views": "Görünümler",
+    "revenue": "Hasılat",
+    "users": "Kullanıcılar",
+    "bookings": "Rezervasyonlar",
+    "thisMonth": "Bu Ay",
+    "lastMonth": "Geçen ay",
+    "thisWeek": "Bu hafta",
+    "lastWeek": "Geçen hafta",
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "total": "Toplam",
+    "average": "Ortalama",
+    "growth": "Büyüme",
+    "trend": "Eğilim"
   },
   "admin": {
     "moderationQueue": "Moderasyon kuyruğu",
@@ -1826,6 +1840,20 @@
       "resolved": "Çözüldü",
       "closed": "Kapalı"
     }
+  },
+  "months": {
+    "jan": "Ocak",
+    "feb": "Şubat",
+    "mar": "Mart",
+    "apr": "Nisan",
+    "may": "Mayıs",
+    "jun": "Haziran",
+    "jul": "Temmuz",
+    "aug": "Ağustos",
+    "sep": "Eylül",
+    "oct": "Ekim",
+    "nov": "Kasım",
+    "dec": "Aralık"
   },
   "saved": {
     "title": "Kaydedildi",

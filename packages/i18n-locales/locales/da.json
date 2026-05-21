@@ -55,7 +55,21 @@
     "attention": "Annoncer der kræver opmærksomhed",
     "lowEngagement": "Lavt engagement (< 2 forespørgsler)",
     "noListings": "Ingen annoncer endnu",
-    "createFirst": "Opret din første annonce"
+    "createFirst": "Opret din første annonce",
+    "views": "Visninger",
+    "revenue": "Omsætning",
+    "users": "Brugere",
+    "bookings": "Bookinger",
+    "thisMonth": "Denne måned",
+    "lastMonth": "Sidste måned",
+    "thisWeek": "Denne uge",
+    "lastWeek": "Sidste uge",
+    "today": "I dag",
+    "yesterday": "I går",
+    "total": "Total",
+    "average": "Gennemsnitlig",
+    "growth": "Vækst",
+    "trend": "Trend"
   },
   "admin": {
     "moderationQueue": "Modereringskø",
@@ -1543,5 +1557,19 @@
       "resolved": "Løst",
       "closed": "Lukket"
     }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "feb",
+    "mar": "Mar",
+    "apr": "apr",
+    "may": "maj",
+    "jun": "juni",
+    "jul": "jul",
+    "aug": "aug",
+    "sep": "Sep",
+    "oct": "okt",
+    "nov": "nov",
+    "dec": "dec"
   }
 }
