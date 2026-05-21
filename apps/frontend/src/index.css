@@ -52,24 +52,32 @@ html[data-theme='dark'] body {
   letter-spacing: 0;
 }
 
-/* Urdu font fix - Nastaliq style. Scoped strictly to lang="ur"; Arabic,
- * English and every other language are untouched. */
-:lang(ur),
+/* Urdu - Noto Sans Arabic (compact, no stretching) */
 [lang="ur"],
 [lang="ur"] * {
-  font-family: "Noto Nastaliq Urdu", serif !important;
-  line-height: 2.2 !important;
+  font-family: "Noto Sans Arabic", sans-serif !important;
+  line-height: 1.6 !important;
 }
 
-/* Fix button overflow for Urdu — Nastaliq's tall line-box needs more room. */
-[lang="ur"] button,
-[lang="ur"] .MuiButton-root,
+/* Prevent button stretching */
+[lang="ur"] .MuiButton-root {
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 48px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  padding: 6px 16px !important;
+}
+
+/* Prevent chip stretching */
 [lang="ur"] .MuiChip-root {
-  min-height: 44px !important;
-  height: auto !important;
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
-  white-space: normal !important;
+  height: 32px !important;
+  line-height: 1 !important;
+}
+
+/* Prevent input stretching */
+[lang="ur"] .MuiInputBase-root {
+  line-height: 1.5 !important;
 }
 
 /* Consistent heading sizing */
