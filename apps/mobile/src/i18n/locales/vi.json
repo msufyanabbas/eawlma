@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Bản xem trước bản đồ không khả dụng",
       "approve": "Phê duyệt",
       "reject": "Từ chối"
-    }
+    },
+    "spam": "Đã phát hiện nội dung spam hoặc giả mạo",
+    "fake": "Danh sách giả mạo hoặc gây hiểu lầm",
+    "contactInfo": "Thông tin liên hệ cá nhân trong phần mô tả (thay vào đó hãy sử dụng tin nhắn)",
+    "inappropriate": "Nội dung không phù hợp hoặc gây khó chịu",
+    "offensive": "Đã phát hiện ngôn ngữ xúc phạm",
+    "discriminatory": "Nội dung phân biệt đối xử",
+    "misleading": "Thông tin sai lệch hoặc lừa đảo",
+    "promotional": "Nội dung quảng cáo không liên quan đến bất động sản",
+    "illegal": "Nội dung hoặc hoạt động bất hợp pháp",
+    "islamicValues": "Nội dung vi phạm các giá trị Hồi giáo",
+    "saudiRegulations": "Nội dung vi phạm quy định của Saudi"
   },
   "profilePage": {
     "profileUpdated": "Hồ sơ đã được cập nhật",

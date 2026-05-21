@@ -1192,7 +1192,18 @@
       "mapUnavailable": "የካርታ ቅድመ እይታ አይገኝም",
       "approve": "አጽድቅ",
       "reject": "ውድቅ አድርግ"
-    }
+    },
+    "spam": "አይፈለጌ መልዕክት ወይም የውሸት ይዘት ተገኝቷል",
+    "fake": "የውሸት ወይም አሳሳች ዝርዝር",
+    "contactInfo": "በመግለጫ ውስጥ የግል የእውቂያ መረጃ (በምትኩ መልእክት መጠቀም)",
+    "inappropriate": "ተገቢ ያልሆነ ወይም አጸያፊ ይዘት",
+    "offensive": "አፀያፊ ቋንቋ ተገኝቷል",
+    "discriminatory": "አድሎአዊ ይዘት",
+    "misleading": "አሳሳች ወይም አጭበርባሪ መረጃ",
+    "promotional": "ከሪል እስቴት ጋር ያልተገናኘ የማስተዋወቂያ ይዘት",
+    "illegal": "ህገወጥ ይዘት ወይም ተግባራት",
+    "islamicValues": "ይዘቱ ኢስላማዊ እሴቶችን ይጥሳል",
+    "saudiRegulations": "ይዘቱ የሳውዲ ህግጋትን ይጥሳል"
   },
   "profilePage": {
     "profileUpdated": "መገለጫ ተዘምኗል",

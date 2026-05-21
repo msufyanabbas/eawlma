@@ -960,7 +960,18 @@
       "mapUnavailable": "Harita önizlemesi mevcut değil",
       "approve": "Onayla",
       "reject": "Reddet"
-    }
+    },
+    "spam": "Spam veya sahte içerik algılandı",
+    "fake": "Sahte veya yanıltıcı listeleme",
+    "contactInfo": "Açıklamada kişisel iletişim bilgileri (bunun yerine mesajlaşmayı kullanın)",
+    "inappropriate": "Uygunsuz veya rahatsız edici içerik",
+    "offensive": "Saldırgan dil algılandı",
+    "discriminatory": "Ayrımcı içerik",
+    "misleading": "Yanıltıcı veya sahte bilgi",
+    "promotional": "Gayrimenkulle ilgili olmayan tanıtım içeriği",
+    "illegal": "Yasadışı içerik veya faaliyetler",
+    "islamicValues": "İçerik İslami değerleri ihlal ediyor",
+    "saudiRegulations": "İçerik Suudi yönetmeliklerini ihlal ediyor"
   },
   "profilePage": {
     "profileUpdated": "Profil güncellendi",

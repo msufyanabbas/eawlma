@@ -960,7 +960,18 @@
       "mapUnavailable": "Kartforhåndsvisning ikke tilgjengelig",
       "approve": "Godkjenn",
       "reject": "Avvis"
-    }
+    },
+    "spam": "Spam eller falskt innhold oppdaget",
+    "fake": "Falsk eller villedende oppføring",
+    "contactInfo": "Personlig kontaktinformasjon i beskrivelsen (bruk meldinger i stedet)",
+    "inappropriate": "Upassende eller støtende innhold",
+    "offensive": "Støtende språk oppdaget",
+    "discriminatory": "Diskriminerende innhold",
+    "misleading": "Villedende eller uredelig informasjon",
+    "promotional": "Markedsføringsinnhold som ikke er relatert til eiendom",
+    "illegal": "Ulovlig innhold eller aktiviteter",
+    "islamicValues": "Innhold bryter med islamske verdier",
+    "saudiRegulations": "Innhold bryter saudiarabiske regler"
   },
   "profilePage": {
     "profileUpdated": "Profil oppdatert",

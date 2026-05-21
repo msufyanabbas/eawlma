@@ -182,4 +182,35 @@ Score guide: 0-20=clean, 21-50=minor issues, 51-80=review needed, 81-100=reject`
       requiresReview: parsed.requiresReview === true || score > 50,
     };
   }
+
+  /**
+   * Maps free-text AI moderation reasons to stable i18n keys (`moderation.*`)
+   * so clients can render them in the user's language. Reasons that match no
+   * keyword fall back to the original English text. Public so the listings
+   * service can attach the keys to its rejection response.
+   */
+  mapReasonsToKeys(reasons: string[]): string[] {
+    const reasonMap: Record<string, string> = {
+      spam: 'moderation.spam',
+      fake: 'moderation.fake',
+      'contact information': 'moderation.contactInfo',
+      phone: 'moderation.contactInfo',
+      email: 'moderation.contactInfo',
+      inappropriate: 'moderation.inappropriate',
+      offensive: 'moderation.offensive',
+      discriminatory: 'moderation.discriminatory',
+      misleading: 'moderation.misleading',
+      promotional: 'moderation.promotional',
+      illegal: 'moderation.illegal',
+      islamic: 'moderation.islamicValues',
+      saudi: 'moderation.saudiRegulations',
+    };
+    return reasons.map((reason) => {
+      const lower = reason.toLowerCase();
+      for (const [keyword, i18nKey] of Object.entries(reasonMap)) {
+        if (lower.includes(keyword)) return i18nKey;
+      }
+      return reason;
+    });
+  }
 }

@@ -960,7 +960,18 @@
       "mapUnavailable": "Aperçu de carte indisponible",
       "approve": "Approuver",
       "reject": "Rejeter"
-    }
+    },
+    "spam": "Spam ou faux contenu détecté",
+    "fake": "Annonce fausse ou trompeuse",
+    "contactInfo": "Coordonnées personnelles dans la description (utilisez plutôt la messagerie)",
+    "inappropriate": "Contenu inapproprié ou offensant",
+    "offensive": "Langage offensant détecté",
+    "discriminatory": "Contenu discriminatoire",
+    "misleading": "Informations trompeuses ou frauduleuses",
+    "promotional": "Contenu promotionnel non lié à l'immobilier",
+    "illegal": "Contenu ou activités illégaux",
+    "islamicValues": "Le contenu viole les valeurs islamiques",
+    "saudiRegulations": "Le contenu viole la réglementation saoudienne"
   },
   "profilePage": {
     "profileUpdated": "Profil mis à jour",

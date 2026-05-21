@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Podgląd mapy niedostępny",
       "approve": "Zatwierdź",
       "reject": "Odrzuć"
-    }
+    },
+    "spam": "Wykryto spam lub fałszywą treść",
+    "fake": "Fałszywy lub wprowadzający w błąd wpis",
+    "contactInfo": "Osobiste dane kontaktowe w opisie (zamiast tego użyj wiadomości)",
+    "inappropriate": "Nieodpowiednie lub obraźliwe treści",
+    "offensive": "Wykryto obraźliwy język",
+    "discriminatory": "Treści dyskryminujące",
+    "misleading": "Informacje wprowadzające w błąd lub fałszywe",
+    "promotional": "Treści promocyjne niezwiązane z nieruchomościami",
+    "illegal": "Nielegalne treści lub działania",
+    "islamicValues": "Treści naruszają wartości islamskie",
+    "saudiRegulations": "Treść narusza przepisy saudyjskie"
   },
   "profilePage": {
     "profileUpdated": "Profil zaktualizowany",

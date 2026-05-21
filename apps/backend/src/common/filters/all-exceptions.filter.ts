@@ -18,8 +18,11 @@ interface ErrorBody {
   path: string;
   requestId?: string;
   /** Structured detail attached by some exceptions (e.g. AI moderation
-   *  rejection lists the specific content reasons). Forwarded to the client. */
+   *  rejection lists the specific content reasons). Forwarded to the client.
+   *  `reasons` is the raw English text; `reasonKeys` are `moderation.*` i18n
+   *  keys the client can translate into the user's language. */
   reasons?: string[];
+  reasonKeys?: string[];
 }
 
 @Catch()
@@ -63,9 +66,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
         typeof res === 'object' && Array.isArray((res as { reasons?: unknown }).reasons)
           ? (res as { reasons: string[] }).reasons
           : undefined;
+      const reasonKeys =
+        typeof res === 'object' && Array.isArray((res as { reasonKeys?: unknown }).reasonKeys)
+          ? (res as { reasonKeys: string[] }).reasonKeys
+          : undefined;
       return {
         statusCode,
-        body: { statusCode, message, error, timestamp, path, requestId, reasons },
+        body: { statusCode, message, error, timestamp, path, requestId, reasons, reasonKeys },
       };
     }
 

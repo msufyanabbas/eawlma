@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Pratinjau peta tidak tersedia",
       "approve": "Setujui",
       "reject": "Tolak"
-    }
+    },
+    "spam": "Spam atau konten palsu terdeteksi",
+    "fake": "Daftar palsu atau menyesatkan",
+    "contactInfo": "Info kontak pribadi dalam deskripsi (gunakan pesan sebagai gantinya)",
+    "inappropriate": "Konten yang tidak pantas atau menyinggung",
+    "offensive": "Bahasa yang menyinggung terdeteksi",
+    "discriminatory": "Konten yang diskriminatif",
+    "misleading": "Informasi yang menyesatkan atau menipu",
+    "promotional": "Konten promosi yang tidak berhubungan dengan real estate",
+    "illegal": "Konten atau aktivitas ilegal",
+    "islamicValues": "Konten melanggar nilai-nilai Islam",
+    "saudiRegulations": "Konten melanggar peraturan Saudi"
   },
   "profilePage": {
     "profileUpdated": "Profil diperbarui",

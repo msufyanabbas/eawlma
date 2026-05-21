@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Kartan esikatselu ei käytettävissä",
       "approve": "Hyväksy",
       "reject": "Hylkää"
-    }
+    },
+    "spam": "Roskapostia tai väärennettyä sisältöä havaittu",
+    "fake": "Väärennetty tai harhaanjohtava listaus",
+    "contactInfo": "Henkilökohtaiset yhteystiedot kuvauksessa (käytä sen sijaan viestiä)",
+    "inappropriate": "Sopimaton tai loukkaava sisältö",
+    "offensive": "Loukkaava kielenkäyttö havaittu",
+    "discriminatory": "Syrjivä sisältö",
+    "misleading": "Harhaanjohtavaa tai vilpillistä tietoa",
+    "promotional": "Mainossisältö, joka ei liity kiinteistöihin",
+    "illegal": "Laiton sisältö tai toiminta",
+    "islamicValues": "Sisältö loukkaa islamilaisia ​​arvoja",
+    "saudiRegulations": "Sisältö rikkoo Saudi-Arabian sääntöjä"
   },
   "profilePage": {
     "profileUpdated": "Profiili päivitetty",

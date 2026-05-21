@@ -359,10 +359,23 @@ export function ListingWizardPage() {
   // dedicated moderation Alert along with the specific reasons the API returned.
   const handleMutationError = (err: unknown) => {
     const res = (
-      err as { response?: { status?: number; data?: { message?: unknown; reasons?: unknown } } }
+      err as {
+        response?: {
+          status?: number;
+          data?: { message?: unknown; reasons?: unknown; reasonKeys?: unknown };
+        };
+      }
     )?.response;
     const message = typeof res?.data?.message === 'string' ? res.data.message : undefined;
-    const reasons = Array.isArray(res?.data?.reasons) ? (res!.data!.reasons as string[]) : [];
+    // Prefer the backend's i18n `reasonKeys` and translate them into the
+    // user's language; fall back to the raw English `reasons` otherwise.
+    const reasons = Array.isArray(res?.data?.reasonKeys)
+      ? (res!.data!.reasonKeys as string[]).map((k) =>
+          k.startsWith('moderation.') ? t(k) : k,
+        )
+      : Array.isArray(res?.data?.reasons)
+        ? (res!.data!.reasons as string[])
+        : [];
 
     if (res?.status === 400 && message?.includes('guidelines')) {
       setError(null);

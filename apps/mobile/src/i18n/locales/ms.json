@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Pratonton peta tidak tersedia",
       "approve": "Lulus",
       "reject": "Tolak"
-    }
+    },
+    "spam": "Spam atau kandungan palsu dikesan",
+    "fake": "Penyenaraian palsu atau mengelirukan",
+    "contactInfo": "Maklumat hubungan peribadi dalam perihalan (gunakan pemesejan sebaliknya)",
+    "inappropriate": "Kandungan yang tidak sesuai atau menyinggung",
+    "offensive": "Bahasa yang menyinggung dikesan",
+    "discriminatory": "Kandungan diskriminasi",
+    "misleading": "Maklumat yang mengelirukan atau menipu",
+    "promotional": "Kandungan promosi tidak berkaitan dengan hartanah",
+    "illegal": "Kandungan atau aktiviti yang tidak sah",
+    "islamicValues": "Kandungan melanggar nilai Islam",
+    "saudiRegulations": "Kandungan melanggar peraturan Saudi"
   },
   "profilePage": {
     "profileUpdated": "Profil dikemas kini",

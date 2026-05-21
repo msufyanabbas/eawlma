@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Kartenvorschau nicht verfügbar",
       "approve": "Genehmigen",
       "reject": "Ablehnen"
-    }
+    },
+    "spam": "Spam oder gefälschter Inhalt erkannt",
+    "fake": "Gefälschter oder irreführender Eintrag",
+    "contactInfo": "Persönliche Kontaktinformationen in der Beschreibung (verwenden Sie stattdessen Nachrichten)",
+    "inappropriate": "Unangemessener oder anstößiger Inhalt",
+    "offensive": "Beleidigende Sprache erkannt",
+    "discriminatory": "Diskriminierender Inhalt",
+    "misleading": "Irreführende oder betrügerische Informationen",
+    "promotional": "Werbeinhalte, die nichts mit Immobilien zu tun haben",
+    "illegal": "Illegale Inhalte oder Aktivitäten",
+    "islamicValues": "Inhalte verstoßen gegen islamische Werte",
+    "saudiRegulations": "Inhalte verstoßen gegen saudische Vorschriften"
   },
   "profilePage": {
     "profileUpdated": "Profil aktualisiert",

@@ -176,7 +176,8 @@ export class ListingsService {
     if (!moderation.approved || moderation.score >= 80) {
       throw new BadRequestException({
         message: 'Listing content violates platform guidelines',
-        reasons: moderation.reasons,
+        reasons: moderation.reasons, // original English — kept for logging
+        reasonKeys: this.moderationService.mapReasonsToKeys(moderation.reasons),
         category: moderation.category,
       });
     }

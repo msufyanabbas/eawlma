@@ -1192,7 +1192,18 @@
       "mapUnavailable": "지도 미리보기 사용 불가",
       "approve": "승인",
       "reject": "거절"
-    }
+    },
+    "spam": "스팸 또는 가짜 콘텐츠가 감지되었습니다.",
+    "fake": "허위 또는 오해의 소지가 있는 목록",
+    "contactInfo": "설명의 개인 연락처 정보(대신 메시지 사용)",
+    "inappropriate": "부적절하거나 불쾌한 콘텐츠",
+    "offensive": "불쾌한 언어가 감지되었습니다.",
+    "discriminatory": "차별적인 콘텐츠",
+    "misleading": "오해의 소지가 있거나 사기성 정보",
+    "promotional": "부동산과 관련 없는 홍보 콘텐츠",
+    "illegal": "불법 콘텐츠 또는 활동",
+    "islamicValues": "콘텐츠가 이슬람 가치를 위반합니다.",
+    "saudiRegulations": "콘텐츠가 사우디 규정을 위반합니다."
   },
   "profilePage": {
     "profileUpdated": "프로필이 업데이트됨",

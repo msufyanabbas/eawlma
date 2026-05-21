@@ -960,7 +960,18 @@
       "mapUnavailable": "Previzualizare hartă indisponibilă",
       "approve": "Aprobă",
       "reject": "Respinge"
-    }
+    },
+    "spam": "S-a detectat spam sau conținut fals",
+    "fake": "Listare falsă sau înșelătoare",
+    "contactInfo": "Informații personale de contact în descriere (utilizați mesajele în schimb)",
+    "inappropriate": "Conținut inadecvat sau ofensator",
+    "offensive": "S-a detectat un limbaj ofensator",
+    "discriminatory": "Conținut discriminatoriu",
+    "misleading": "Informații înșelătoare sau frauduloase",
+    "promotional": "Conținut promoțional care nu are legătură cu imobiliare",
+    "illegal": "Conținut sau activități ilegale",
+    "islamicValues": "Conținutul încalcă valorile islamice",
+    "saudiRegulations": "Conținutul încalcă reglementările saudite"
   },
   "profilePage": {
     "profileUpdated": "Profil actualizat",

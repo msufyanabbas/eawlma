@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Kartförhandsvisning inte tillgänglig",
       "approve": "Godkänn",
       "reject": "Avvisa"
-    }
+    },
+    "spam": "Spam eller falskt innehåll upptäckt",
+    "fake": "Falsk eller vilseledande notering",
+    "contactInfo": "Personlig kontaktinformation i beskrivningen (använd meddelanden istället)",
+    "inappropriate": "Olämpligt eller stötande innehåll",
+    "offensive": "Stötande språk upptäckt",
+    "discriminatory": "Diskriminerande innehåll",
+    "misleading": "Vilseledande eller bedräglig information",
+    "promotional": "Marknadsföringsinnehåll som inte är relaterat till fastigheter",
+    "illegal": "Olagligt innehåll eller olagliga aktiviteter",
+    "islamicValues": "Innehåll bryter mot islamiska värderingar",
+    "saudiRegulations": "Innehåll bryter mot saudiska regler"
   },
   "profilePage": {
     "profileUpdated": "Profil uppdaterad",

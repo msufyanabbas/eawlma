@@ -1239,6 +1239,17 @@
     "earningsHint": "Earnings will appear after closing deals"
   },
   "moderation": {
+    "spam": "Spam or fake content detected",
+    "fake": "Fake or misleading listing",
+    "contactInfo": "Personal contact info in description (use messaging instead)",
+    "inappropriate": "Inappropriate or offensive content",
+    "offensive": "Offensive language detected",
+    "discriminatory": "Discriminatory content",
+    "misleading": "Misleading or fraudulent information",
+    "promotional": "Promotional content not related to real estate",
+    "illegal": "Illegal content or activities",
+    "islamicValues": "Content violates Islamic values",
+    "saudiRegulations": "Content violates Saudi regulations",
     "pendingCountSubtitle": "{{count}} pending",
     "bulkApprove": "Bulk approve ({{count}})",
     "allCaughtUp": "All caught up! 🎉",

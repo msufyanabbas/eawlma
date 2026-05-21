@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Kortforhåndsvisning ikke tilgængelig",
       "approve": "Godkend",
       "reject": "Afvis"
-    }
+    },
+    "spam": "Spam eller falsk indhold opdaget",
+    "fake": "Falsk eller vildledende liste",
+    "contactInfo": "Personlige kontaktoplysninger i beskrivelsen (brug beskeder i stedet)",
+    "inappropriate": "Upassende eller stødende indhold",
+    "offensive": "Stødende sprog opdaget",
+    "discriminatory": "Diskriminerende indhold",
+    "misleading": "Vildledende eller svigagtige oplysninger",
+    "promotional": "Salgsfremmende indhold, der ikke er relateret til fast ejendom",
+    "illegal": "Ulovligt indhold eller aktiviteter",
+    "islamicValues": "Indhold krænker islamiske værdier",
+    "saudiRegulations": "Indhold overtræder saudiske regler"
   },
   "profilePage": {
     "profileUpdated": "Profil opdateret",

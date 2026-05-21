@@ -960,7 +960,18 @@
       "mapUnavailable": "Vista previa del mapa no disponible",
       "approve": "Aprobar",
       "reject": "Rechazar"
-    }
+    },
+    "spam": "Se ha detectado spam o contenido falso",
+    "fake": "Listado falso o engañoso",
+    "contactInfo": "Información de contacto personal en la descripción (use mensajes en su lugar)",
+    "inappropriate": "Contenido inapropiado u ofensivo.",
+    "offensive": "Lenguaje ofensivo detectado",
+    "discriminatory": "Contenido discriminatorio",
+    "misleading": "Información engañosa o fraudulenta",
+    "promotional": "Contenido promocional no relacionado con bienes raíces.",
+    "illegal": "Contenido o actividades ilegales.",
+    "islamicValues": "El contenido viola los valores islámicos.",
+    "saudiRegulations": "El contenido viola las regulaciones sauditas."
   },
   "profilePage": {
     "profileUpdated": "Perfil actualizado",

@@ -483,7 +483,7 @@
     "available": "利用可能",
     "pending": "保留中",
     "expired": "期限切れ",
-    "moderationRejected": "Listing rejected - content violates platform guidelines",
+    "moderationRejected": "リスティングが拒否されました - コンテンツがプラットフォームのガイドラインに違反しています",
     "contentViolation": "コンテンツポリシー違反",
     "moderationHint": "リスティングにスパム、説明内の電話番号、不適切なコンテンツ、誤解を招く情報が含まれていないことを確認してください。",
     "sale": "販売",
@@ -1192,7 +1192,18 @@
       "mapUnavailable": "地図プレビューを利用できません",
       "approve": "承認",
       "reject": "却下"
-    }
+    },
+    "spam": "スパムまたは偽のコンテンツが検出されました",
+    "fake": "虚偽または誤解を招くリスト",
+    "contactInfo": "説明内の個人の連絡先情報 (代わりにメッセージを使用してください)",
+    "inappropriate": "不適切または攻撃的なコンテンツ",
+    "offensive": "攻撃的な言語が検出されました",
+    "discriminatory": "差別的な内容",
+    "misleading": "誤解を招くまたは詐欺的な情報",
+    "promotional": "不動産に関係のないプロモーションコンテンツ",
+    "illegal": "違法なコンテンツまたは行為",
+    "islamicValues": "イスラムの価値観に違反するコンテンツ",
+    "saudiRegulations": "コンテンツがサウジアラビアの規制に違反している"
   },
   "profilePage": {
     "profileUpdated": "プロフィールを更新しました",

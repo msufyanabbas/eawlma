@@ -20,6 +20,7 @@ export default function AddListingScreen({ navigation }: any) {
   const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [moderationError, setModerationError] = useState<string | null>(null);
 
   const STEPS = [
     { title: t('wizard.stepProperty') },
@@ -78,6 +79,7 @@ export default function AddListingScreen({ navigation }: any) {
       Alert.alert(t('wizard.errorTitle'), t('wizard.fillRequired'));
       return;
     }
+    setModerationError(null);
     setLoading(true);
     try {
       await listingsApi.create({
@@ -94,16 +96,27 @@ export default function AddListingScreen({ navigation }: any) {
         t('wizard.addedSuccess'),
         [{ text: t('wizard.ok'), onPress: () => navigation.goBack() }]
       );
-    } catch (e: any) {
-      const message = e?.response?.data?.message;
-      if (typeof message === 'string' && message.includes('guidelines')) {
-        // AI content-moderation rejection — show a clear, actionable message.
+    } catch (error: any) {
+      const status = error?.response?.status;
+      const message = error?.response?.data?.message;
+      const reasonKeys = (error?.response?.data?.reasonKeys as string[]) || [];
+      const reasons = (error?.response?.data?.reasons as string[]) || [];
+
+      if (status === 400 && typeof message === 'string' && message.includes('guidelines')) {
+        // AI content-moderation rejection. Translate the backend's i18n
+        // reason keys; fall back to the raw English reasons.
+        const translatedReasons =
+          reasonKeys.length > 0
+            ? reasonKeys.map((k) => (k.startsWith('moderation.') ? t(k) : k))
+            : reasons;
+        const detail = translatedReasons.length
+          ? `• ${translatedReasons.join('\n• ')}`
+          : t('listing.moderationRejected');
+        setModerationError(detail);
         Alert.alert(
-          isAr ? 'تم رفض الإعلان' : 'Listing Rejected',
-          isAr
-            ? 'محتوى الإعلان يخالف سياسة المنصة. يرجى مراجعة المحتوى وإعادة المحاولة.'
-            : 'Your listing content violates our platform guidelines. Please review and try again.',
-          [{ text: isAr ? 'حسناً' : 'OK' }]
+          t('listing.contentViolation'),
+          `${t('listing.moderationRejected')}\n\n${detail}`,
+          [{ text: t('common.ok', 'OK') }]
         );
       } else {
         Alert.alert(
@@ -343,6 +356,23 @@ export default function AddListingScreen({ navigation }: any) {
             ))}
           </View>
         )}
+
+        {moderationError && (
+          <View style={[styles.errorBanner, { backgroundColor: colors.error + '15', borderColor: colors.error }]}>
+            <Ionicons name="warning-outline" size={20} color={colors.error} />
+            <View style={{ flex: 1, marginLeft: SIZES.sm }}>
+              <Text style={[styles.errorTitle, { color: colors.error, textAlign }]}>
+                {t('listing.contentViolation')}
+              </Text>
+              <Text style={[styles.errorText, { color: colors.error, textAlign }]}>
+                {moderationError}
+              </Text>
+              <Text style={[styles.errorHint, { color: colors.textSecondary, textAlign }]}>
+                {t('listing.moderationHint')}
+              </Text>
+            </View>
+          </View>
+        )}
       </ScrollView>
 
       <View style={[styles.bottomBar, {
@@ -446,4 +476,15 @@ const styles = StyleSheet.create({
   nextBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
   fieldLabel: { fontSize: SIZES.body, fontWeight: '700', marginBottom: SIZES.sm },
   fieldInput: { borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body },
+  errorBanner: {
+    borderWidth: 1,
+    borderRadius: SIZES.borderRadiusLg,
+    padding: SIZES.md,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: SIZES.lg,
+  },
+  errorTitle: { fontWeight: '800', fontSize: SIZES.body, marginBottom: 4 },
+  errorText: { fontSize: SIZES.body, lineHeight: 20 },
+  errorHint: { fontSize: SIZES.small, marginTop: 4 },
 });

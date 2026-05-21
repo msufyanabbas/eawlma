@@ -663,7 +663,7 @@
     "support": "Ondersteuning",
     "help": "Helpcentrum",
     "helpCenter": "Helpcentrum",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "WhatsAppen",
     "callUs": "Bel ons",
     "needHelp": "Hulp nodig? Praat met ons op WhatsApp.",
     "cr": "Handelsregister",
@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Kaartvoorbeeld niet beschikbaar",
       "approve": "Goedkeuren",
       "reject": "Afwijzen"
-    }
+    },
+    "spam": "Spam of valse inhoud gedetecteerd",
+    "fake": "Valse of misleidende vermelding",
+    "contactInfo": "Persoonlijke contactgegevens in de beschrijving (gebruik in plaats daarvan berichten)",
+    "inappropriate": "Ongepaste of aanstootgevende inhoud",
+    "offensive": "Aanstootgevende taal gedetecteerd",
+    "discriminatory": "Discriminerende inhoud",
+    "misleading": "Misleidende of frauduleuze informatie",
+    "promotional": "Promotionele inhoud die geen verband houdt met onroerend goed",
+    "illegal": "Illegale inhoud of activiteiten",
+    "islamicValues": "Inhoud schendt islamitische waarden",
+    "saudiRegulations": "Inhoud is in strijd met de Saoedische regelgeving"
   },
   "profilePage": {
     "profileUpdated": "Profiel bijgewerkt",

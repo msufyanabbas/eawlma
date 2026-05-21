@@ -960,7 +960,18 @@
       "mapUnavailable": "Kaart-voorskou nie beskikbaar nie",
       "approve": "Keur goed",
       "reject": "Verwerp"
-    }
+    },
+    "spam": "Strooipos of vals inhoud bespeur",
+    "fake": "Vals of misleidende lys",
+    "contactInfo": "Persoonlike kontakinligting in beskrywing (gebruik eerder boodskappe)",
+    "inappropriate": "Onvanpaste of aanstootlike inhoud",
+    "offensive": "Aanstootlike taal bespeur",
+    "discriminatory": "Diskriminerende inhoud",
+    "misleading": "Misleidende of bedrieglike inligting",
+    "promotional": "Promosie-inhoud wat nie met vaste eiendom verband hou nie",
+    "illegal": "Onwettige inhoud of aktiwiteite",
+    "islamicValues": "Inhoud skend Islamitiese waardes",
+    "saudiRegulations": "Inhoud oortree Saoedi-regulasies"
   },
   "profilePage": {
     "profileUpdated": "Profiel opgedateer",

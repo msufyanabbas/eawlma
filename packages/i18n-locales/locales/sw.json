@@ -960,7 +960,18 @@
       "mapUnavailable": "Mwonekano wa ramani haupatikani",
       "approve": "Idhinisha",
       "reject": "Kataa"
-    }
+    },
+    "spam": "Barua taka au maudhui bandia yamegunduliwa",
+    "fake": "Uorodheshaji ghushi au unaopotosha",
+    "contactInfo": "Maelezo ya mawasiliano ya kibinafsi katika maelezo (tumia ujumbe badala yake)",
+    "inappropriate": "Maudhui yasiyofaa au ya kukera",
+    "offensive": "Lugha ya kuudhi imegunduliwa",
+    "discriminatory": "Maudhui ya kibaguzi",
+    "misleading": "Taarifa za kupotosha au za ulaghai",
+    "promotional": "Maudhui ya utangazaji hayahusiani na mali isiyohamishika",
+    "illegal": "Maudhui au shughuli zisizo halali",
+    "islamicValues": "Maudhui yanakiuka maadili ya Kiislamu",
+    "saudiRegulations": "Maudhui yanakiuka kanuni za Saudia"
   },
   "profilePage": {
     "profileUpdated": "Wasifu umesasishwa",

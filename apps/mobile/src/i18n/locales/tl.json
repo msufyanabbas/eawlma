@@ -1192,7 +1192,18 @@
       "mapUnavailable": "Hindi magagamit ang preview ng mapa",
       "approve": "Aprubahan",
       "reject": "Tanggihan"
-    }
+    },
+    "spam": "May nakitang spam o pekeng content",
+    "fake": "Peke o mapanlinlang na listahan",
+    "contactInfo": "Personal na impormasyon sa pakikipag-ugnayan sa paglalarawan (gamitin na lang ang pagmemensahe)",
+    "inappropriate": "Hindi naaangkop o nakakasakit na nilalaman",
+    "offensive": "Nakakita ng nakakasakit na wika",
+    "discriminatory": "May diskriminasyong nilalaman",
+    "misleading": "Mapanlinlang o mapanlinlang na impormasyon",
+    "promotional": "Ang nilalamang pang-promosyon ay hindi nauugnay sa real estate",
+    "illegal": "Ilegal na nilalaman o aktibidad",
+    "islamicValues": "Ang nilalaman ay lumalabag sa mga halaga ng Islam",
+    "saudiRegulations": "Ang nilalaman ay lumalabag sa mga regulasyon ng Saudi"
   },
   "profilePage": {
     "profileUpdated": "Na-update ang profile",

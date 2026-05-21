@@ -960,7 +960,18 @@
       "mapUnavailable": "地图预览不可用",
       "approve": "批准",
       "reject": "拒绝"
-    }
+    },
+    "spam": "检测到垃圾邮件或虚假内容",
+    "fake": "虚假或误导性列表",
+    "contactInfo": "描述中的个人联系信息（改为使用消息传递）",
+    "inappropriate": "不适当或令人反感的内容",
+    "offensive": "检测到攻击性语言",
+    "discriminatory": "歧视性内容",
+    "misleading": "误导性或欺诈性信息",
+    "promotional": "与房地产无关的促销内容",
+    "illegal": "非法内容或活动",
+    "islamicValues": "内容违反伊斯兰价值观",
+    "saudiRegulations": "内容违反沙特法规"
   },
   "profilePage": {
     "profileUpdated": "个人资料已更新",
