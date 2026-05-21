@@ -344,6 +344,9 @@
     "strengthFair": "Fair",
     "strengthGood": "Bra",
     "strengthStrong": "Sterk",
+    "trustedPlatform": "Stolt på av tusenvis over hele Saudi-Arabia",
+    "platformDesc": "Sikker • Verifiserte agenter • Beste egenskaper",
+    "signInWithGoogle": "Fortsett med Google",
     "role": "Kontotype",
     "buyer": "Kjøper",
     "agent": "Agent",
@@ -500,6 +503,17 @@
     "moderationRejected": "Oppføring avvist – innhold bryter plattformens retningslinjer",
     "contentViolation": "Brudd på retningslinjene for innhold",
     "moderationHint": "Sørg for at oppføringen din ikke inneholder: spam, telefonnumre i beskrivelsen, upassende innhold eller villedende informasjon",
+    "vrExperience": "VR & AR-opplevelse",
+    "vrTitle": "Oppslukende VR- og AR-eiendomsopplevelse",
+    "vrDesc": "Gå inn i denne eiendommen fra hvor som helst i verden. Ta en 360° virtuell omvisning eller plasser en sann-til-skala 3D-modell rett i stua.",
+    "vrNoTour": "Agenten har ikke lastet opp en 360°/3D-tur for denne oppføringen ennå.",
+    "premium": "Premium",
+    "enterVrTour": "Gå inn i VR Tour",
+    "viewInAr": "Vis i AR",
+    "videoTour": "Videotur",
+    "guestReviews": "Gjesteanmeldelser",
+    "reviewsCount": "{{count}} anmeldelser",
+    "builtYear": "Bygget",
     "sale": "Salg",
     "rent": "Lei",
     "propertyTypeLabel": "Skriv",
@@ -738,7 +752,17 @@
     "commercial": "Næringseiendom",
     "studio": "Ettrom",
     "penthouse": "Takleilighet",
-    "townhouse": "Rekkehus"
+    "townhouse": "Rekkehus",
+    "duplex": "Tosidig",
+    "warehouse": "Lager",
+    "farm": "Gård",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotellleilighet",
+    "building": "Bygning",
+    "room": "Privat rom",
+    "entire_home": "Hele hjemmet",
+    "hotel_room": "Hotellrom",
+    "rest_house": "Rest House"
   },
   "profile": {
     "personalInformation": "Personlig informasjon",
@@ -887,7 +911,7 @@
     },
     "shortTermAmenity": {
       "wifi": "Wi-Fi",
-      "pool": "Pool",
+      "pool": "Basseng",
       "parking": "Parkering",
       "breakfast": "Frokost",
       "ac": "Air condition",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Trykk på fasilitetene denne eiendommen tilbyr. Vi viser dem som filtre på Søk."
+    },
+    "steps": {
+      "basicInfo": "Grunnleggende info",
+      "location": "Plassering",
+      "media": "Media",
+      "amenities": "Fasiliteter",
+      "compliance": "Samsvar",
+      "review": "Gjennomgå"
     },
     "stepProperty": "Eiendomstype",
     "stepDetails": "Detaljer",
@@ -1642,7 +1674,9 @@
     "memberSince": "Medlem siden",
     "contactAgent": "Kontakt agent",
     "viewProfile": "Vis profil",
-    "sendMessage": "Send melding"
+    "sendMessage": "Send melding",
+    "respondsWithin": "Svarer innen {{timer}} timer",
+    "respondsWithinDay": "Svarer innen en dag"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Legg til for å sammenligne",
-    "remove": "Fjern fra sammenligning"
+    "remove": "Fjern fra sammenligning",
+    "title": "Sammenlign",
+    "compareProperties": "Sammenlign egenskaper",
+    "clearAll": "Fjern alle",
+    "empty": "Ingen eiendommer å sammenligne ennå",
+    "viewComparison": "Se sammenligning",
+    "compareNow": "Sammenlign nå"
   },
   "myListings": {
     "countSelected": "{{count}} valgt",
@@ -1750,7 +1790,7 @@
     "forRent": "Til leie",
     "apartments": "Leiligheter",
     "villas": "Villaer",
-    "land": "Land",
+    "land": "Jord",
     "chalets": "Hytter",
     "farms": "Gårder",
     "restHouses": "Hvilehus",
@@ -1855,19 +1895,24 @@
     "nov": "november",
     "dec": "desember"
   },
-  "saved": {
-    "title": "Lagret",
-    "empty": "Ingen lagrede eiendommer",
-    "emptyPrompt": "Lagre egenskaper du liker ved å trykke ❤️",
-    "signInPrompt": "Logg på for å lagre eiendommer",
-    "removeTitle": "Fjern",
-    "removePrompt": "Vil du fjerne denne egenskapen fra lagret?"
+  "mortgage": {
+    "title": "Boliglånskalkulator",
+    "propertyPrice": "Eiendomspris (SAR)",
+    "downPayment": "Forskuddsbetaling",
+    "loanTerm": "Lånetid (år)",
+    "interestRate": "Årlig rente (%)",
+    "monthlyPayment": "Estimert månedlig betaling",
+    "loanAmount": "Lånebeløp",
+    "totalPayment": "Total betaling",
+    "totalInterest": "Total interesse",
+    "disclaimer": "Dette er et anslag. Rådfør deg med banken din for et faktisk lånetilbud.",
+    "perMonth": "SAR/mo"
   },
   "notifications": {
+    "markAllRead": "Merk alle som lest",
     "title": "Varsler",
     "empty": "Ingen varsler",
     "emptyHint": "Dine varsler vil vises her",
-    "markAllRead": "Merk alle som lest",
     "notification": "Melding",
     "pushEnabled": "Push-varsler aktivert",
     "pushDisabled": "Push-varsler deaktivert",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Bookingoppdatering",
     "paymentUpdate": "Betalingsoppdatering",
     "supportReply": "Støttesvar"
+  },
+  "saved": {
+    "title": "Lagret",
+    "empty": "Ingen lagrede eiendommer",
+    "emptyPrompt": "Lagre egenskaper du liker ved å trykke ❤️",
+    "signInPrompt": "Logg på for å lagre eiendommer",
+    "removeTitle": "Fjern",
+    "removePrompt": "Vil du fjerne denne egenskapen fra lagret?"
   },
   "bookings": {
     "title": "Mine bestillinger",

@@ -344,6 +344,9 @@
     "strengthFair": "Gerecht",
     "strengthGood": "Gut",
     "strengthStrong": "Stark",
+    "trustedPlatform": "Tausende in ganz Saudi-Arabien vertrauen",
+    "platformDesc": "Sicher • Verifizierte Agenten • Beste Eigenschaften",
+    "signInWithGoogle": "Fahren Sie mit Google",
     "role": "Kontotyp",
     "buyer": "Käufer",
     "agent": "Agent",
@@ -378,7 +381,7 @@
     "delete": "Löschen",
     "edit": "Bearbeiten",
     "search": "Suchen",
-    "filter": "Filter",
+    "filter": "fort Filter",
     "submit": "Senden",
     "language": "Sprache",
     "arabic": "Zurück",
@@ -500,6 +503,17 @@
     "moderationRejected": "Eintrag abgelehnt – Inhalte verstoßen gegen die Plattformrichtlinien",
     "contentViolation": "Verstoß gegen die Inhaltsrichtlinien",
     "moderationHint": "Bitte stellen Sie sicher, dass Ihr Eintrag Folgendes nicht enthält: Spam, Telefonnummern in der Beschreibung, unangemessene Inhalte oder irreführende Informationen",
+    "vrExperience": "VR- und AR-Erlebnis",
+    "vrTitle": "Immersives VR- und AR-Immobilienerlebnis",
+    "vrDesc": "Betreten Sie dieses Anwesen von überall auf der Welt. Machen Sie einen virtuellen 360°-Rundgang oder platzieren Sie ein maßstabsgetreues 3D-Modell direkt in Ihrem Wohnzimmer.",
+    "vrNoTour": "Der Makler hat für dieses Inserat noch keine 360°-/3D-Tour hochgeladen.",
+    "premium": "Prämie",
+    "enterVrTour": "Betreten Sie die VR-Tour",
+    "viewInAr": "In AR anzeigen",
+    "videoTour": "Videotour",
+    "guestReviews": "Gästebewertungen",
+    "reviewsCount": "{{count}} Rezensionen",
+    "builtYear": "Gebaut",
     "sale": "Verkauf",
     "rent": "Mieten",
     "propertyTypeLabel": "Typ",
@@ -738,7 +752,17 @@
     "commercial": "Gewerbe",
     "studio": "Studio",
     "penthouse": "Penthouse",
-    "townhouse": "Reihenhaus"
+    "townhouse": "Reihenhaus",
+    "duplex": "Duplex",
+    "warehouse": "Lager",
+    "farm": "Bauernhof",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotelwohnung",
+    "building": "Gebäude",
+    "room": "Privatzimmer",
+    "entire_home": "Ganzes Haus",
+    "hotel_room": "Hotelzimmer",
+    "rest_house": "Rasthaus"
   },
   "profile": {
     "personalInformation": "Persönliche Informationen",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Nutzen Sie die Annehmlichkeiten, die diese Unterkunft bietet. Wir werden sie als Filter in der Suche anzeigen."
+    },
+    "steps": {
+      "basicInfo": "Grundlegende Informationen",
+      "location": "Standort",
+      "media": "Medien",
+      "amenities": "Ausstattung",
+      "compliance": "Einhaltung",
+      "review": "Rezension"
     },
     "stepProperty": "Immobilientyp",
     "stepDetails": "Einzelheiten",
@@ -1642,7 +1674,9 @@
     "memberSince": "Mitglied seit",
     "contactAgent": "Kontaktieren Sie den Agenten",
     "viewProfile": "Profil anzeigen",
-    "sendMessage": "Nachricht senden"
+    "sendMessage": "Nachricht senden",
+    "respondsWithin": "Antwortet innerhalb von {{hours}} Stunden",
+    "respondsWithinDay": "Antwortet innerhalb eines Tages"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Zum Vergleich hinzufügen",
-    "remove": "Aus Vergleich entfernen"
+    "remove": "Aus Vergleich entfernen",
+    "title": "Vergleichen",
+    "compareProperties": "Eigenschaften vergleichen",
+    "clearAll": "Alles löschen",
+    "empty": "Noch keine Eigenschaften zum Vergleichen",
+    "viewComparison": "Vergleich ansehen",
+    "compareNow": "Jetzt vergleichen"
   },
   "myListings": {
     "countSelected": "{{count}} ausgewählt",
@@ -1855,19 +1895,24 @@
     "nov": "Nov.",
     "dec": "Dez."
   },
-  "saved": {
-    "title": "Gespeichert",
-    "empty": "Keine gespeicherten Eigenschaften",
-    "emptyPrompt": "Speichern Sie Eigenschaften, die Ihnen gefallen, indem Sie auf ❤️",
-    "signInPrompt": "tippen Melden Sie sich an, um Eigenschaften",
-    "removeTitle": "zu speichern Entfernen Sie",
-    "removePrompt": "Diese Eigenschaft aus der Liste „Gespeichert“ entfernen?"
+  "mortgage": {
+    "title": "Hypothekenrechner",
+    "propertyPrice": "Immobilienpreis (SAR)",
+    "downPayment": "Anzahlung",
+    "loanTerm": "Kreditlaufzeit (Jahre)",
+    "interestRate": "Jährlicher Zinssatz (%)",
+    "monthlyPayment": "Geschätzte monatliche Zahlung",
+    "loanAmount": "Darlehensbetrag",
+    "totalPayment": "Gesamtzahlung",
+    "totalInterest": "Gesamtzins",
+    "disclaimer": "Dies ist eine Schätzung. Fragen Sie Ihre Bank nach einem konkreten Kreditangebot.",
+    "perMonth": "SAR/Monat"
   },
   "notifications": {
+    "markAllRead": "Alle als gelesen markieren",
     "title": "Benachrichtigungen",
     "empty": "Keine Benachrichtigungen",
     "emptyHint": "Ihre Benachrichtigungen werden hier angezeigt",
-    "markAllRead": "Alle als gelesen markieren",
     "notification": "Benachrichtigung",
     "pushEnabled": "Push-Benachrichtigungen aktiviert",
     "pushDisabled": "Push-Benachrichtigungen deaktiviert",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Buchungsaktualisierung",
     "paymentUpdate": "Zahlungsaktualisierung",
     "supportReply": "Support-Antwort"
+  },
+  "saved": {
+    "title": "Gespeichert",
+    "empty": "Keine gespeicherten Eigenschaften",
+    "emptyPrompt": "Speichern Sie Eigenschaften, die Ihnen gefallen, indem Sie auf ❤️",
+    "signInPrompt": "tippen Melden Sie sich an, um Eigenschaften",
+    "removeTitle": "zu speichern Entfernen Sie",
+    "removePrompt": "Diese Eigenschaft aus der Liste „Gespeichert“ entfernen?"
   },
   "bookings": {
     "title": "Meine Buchungen",

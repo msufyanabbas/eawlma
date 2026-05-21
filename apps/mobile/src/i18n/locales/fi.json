@@ -344,6 +344,9 @@
     "strengthFair": "Reilu",
     "strengthGood": "Hyvä",
     "strengthStrong": "Vahva",
+    "trustedPlatform": "Tuhannet luottavat Saudi-Arabiassa",
+    "platformDesc": "Turvalliset • Varmennetut edustajat • Parhaat ominaisuudet",
+    "signInWithGoogle": "Jatka Googlella",
     "role": "Tilin tyyppi",
     "buyer": "Ostaja",
     "agent": "Agentti",
@@ -500,6 +503,17 @@
     "moderationRejected": "Tieto hylätty – sisältö rikkoo alustan sääntöjä",
     "contentViolation": "Sisältökäytännön rikkominen",
     "moderationHint": "Varmista, että tietosi eivät sisällä roskapostia, puhelinnumeroita kuvauksessa, sopimatonta sisältöä tai harhaanjohtavia tietoja",
+    "vrExperience": "VR- ja AR-kokemus",
+    "vrTitle": "Mukaansatempaava VR- ja AR-kiinteistökokemus",
+    "vrDesc": "Astu sisään tähän kiinteistöön mistä päin maailmaa tahansa. Lähde 360 ​​asteen virtuaalikierrokselle tai aseta mittakaavassa todellinen 3D-malli suoraan olohuoneeseesi.",
+    "vrNoTour": "Agentti ei ole vielä ladannut 360°/3D-kiertomatkaa tälle tiedolle.",
+    "premium": "Premium",
+    "enterVrTour": "Osallistu VR Touriin",
+    "viewInAr": "Näytä AR:ssa",
+    "videoTour": "Videokierros",
+    "guestReviews": "Asiakkaiden arviot",
+    "reviewsCount": "{{count}} arvostelua",
+    "builtYear": "Rakennettu",
     "sale": "Myynti",
     "rent": "Vuokrata",
     "propertyTypeLabel": "Tyyppi",
@@ -738,7 +752,17 @@
     "commercial": "Kaupallinen",
     "studio": "Yksiö",
     "penthouse": "Kattohuoneisto",
-    "townhouse": "Rivitalo"
+    "townhouse": "Rivitalo",
+    "duplex": "Duplex",
+    "warehouse": "Varasto",
+    "farm": "Maatila",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotellihuoneisto",
+    "building": "Rakentaminen",
+    "room": "Yksityinen huone",
+    "entire_home": "Koko Koti",
+    "hotel_room": "Hotellihuone",
+    "rest_house": "Lepotalo"
   },
   "profile": {
     "personalInformation": "Henkilötiedot",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Napauta tämän kiinteistön tarjoamia mukavuuksia. Näytämme ne suodattimina Haussa."
+    },
+    "steps": {
+      "basicInfo": "Perustiedot",
+      "location": "Sijainti",
+      "media": "Media",
+      "amenities": "Palvelut",
+      "compliance": "Vaatimustenmukaisuus",
+      "review": "Arvostelu"
     },
     "stepProperty": "Kiinteistön tyyppi",
     "stepDetails": "Yksityiskohdat",
@@ -1642,7 +1674,9 @@
     "memberSince": "Jäsen vuodesta",
     "contactAgent": "Ota yhteyttä edustajaan",
     "viewProfile": "Näytä profiili",
-    "sendMessage": "Lähetä Viesti"
+    "sendMessage": "Lähetä Viesti",
+    "respondsWithin": "Vastaa {{hours}} tunnin kuluessa",
+    "respondsWithinDay": "Vastaa päivän sisällä"
   },
   "property": {
     "villa": "Huvila",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Lisää vertailuun",
-    "remove": "Poista vertailusta"
+    "remove": "Poista vertailusta",
+    "title": "Vertaa",
+    "compareProperties": "Vertaa ominaisuuksia",
+    "clearAll": "Tyhjennä kaikki",
+    "empty": "Ei vielä vertailtavia kiinteistöjä",
+    "viewComparison": "Katso vertailu",
+    "compareNow": "Vertaa nyt"
   },
   "myListings": {
     "countSelected": "{{count}} valittu",
@@ -1855,19 +1895,24 @@
     "nov": "marraskuu",
     "dec": "joulukuuta"
   },
-  "saved": {
-    "title": "Tallennettu",
-    "empty": "Ei tallennettuja ominaisuuksia",
-    "emptyPrompt": "Tallenna kiinteistöjä, joista pidät napauttamalla ❤️",
-    "signInPrompt": "Kirjaudu sisään tallentaaksesi ominaisuuksia",
-    "removeTitle": "Poistaa",
-    "removePrompt": "Poistetaanko tämä omaisuus tallennetuista?"
+  "mortgage": {
+    "title": "Asuntolaina-laskuri",
+    "propertyPrice": "Kiinteistön hinta (SAR)",
+    "downPayment": "Käsiraha",
+    "loanTerm": "Laina-aika (vuosia)",
+    "interestRate": "vuosikorko (%)",
+    "monthlyPayment": "Arvioitu kuukausimaksu",
+    "loanAmount": "Lainan määrä",
+    "totalPayment": "Maksu yhteensä",
+    "totalInterest": "Kokonaiskorko",
+    "disclaimer": "Tämä on arvio. Pyydä oikea lainatarjous pankistasi.",
+    "perMonth": "SAR/kk"
   },
   "notifications": {
+    "markAllRead": "Merkitse kaikki luetuiksi",
     "title": "Ilmoitukset",
     "empty": "Ei ilmoituksia",
     "emptyHint": "Ilmoituksesi näkyvät täällä",
-    "markAllRead": "Merkitse kaikki luetuiksi",
     "notification": "Ilmoitus",
     "pushEnabled": "Push-ilmoitukset käytössä",
     "pushDisabled": "Push-ilmoitukset pois käytöstä",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Varauspäivitys",
     "paymentUpdate": "Maksun päivitys",
     "supportReply": "Tukivastaus"
+  },
+  "saved": {
+    "title": "Tallennettu",
+    "empty": "Ei tallennettuja ominaisuuksia",
+    "emptyPrompt": "Tallenna kiinteistöjä, joista pidät napauttamalla ❤️",
+    "signInPrompt": "Kirjaudu sisään tallentaaksesi ominaisuuksia",
+    "removeTitle": "Poistaa",
+    "removePrompt": "Poistetaanko tämä omaisuus tallennetuista?"
   },
   "bookings": {
     "title": "Omat varaukset",

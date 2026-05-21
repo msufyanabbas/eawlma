@@ -344,6 +344,9 @@
     "strengthFair": "મેળો",
     "strengthGood": "| સારું",
     "strengthStrong": "| મજબૂત",
+    "trustedPlatform": "સમગ્ર સાઉદી અરેબિયામાં હજારો લોકો દ્વારા વિશ્વાસ",
+    "platformDesc": "સુરક્ષિત • ચકાસાયેલ એજન્ટો • શ્રેષ્ઠ ગુણધર્મો",
+    "signInWithGoogle": "Google સાથે ચાલુ રાખો",
     "role": "એકાઉન્ટનો પ્રકાર",
     "buyer": "| ખરીદનાર",
     "agent": "| એજન્ટ",
@@ -500,6 +503,17 @@
     "moderationRejected": "| લિસ્ટિંગ નકારવામાં આવ્યું - સામગ્રી પ્લેટફોર્મ માર્ગદર્શિકાનું ઉલ્લંઘન કરે છે",
     "contentViolation": "સામગ્રી નીતિ ઉલ્લંઘન",
     "moderationHint": "કૃપા કરીને ખાતરી કરો કે તમારી સૂચિમાં આ શામેલ નથી: સ્પામ, વર્ણનમાં ફોન નંબર, અયોગ્ય સામગ્રી અથવા ભ્રામક માહિતી",
+    "vrExperience": "VR અને AR અનુભવ",
+    "vrTitle": "ઇમર્સિવ VR અને AR પ્રોપર્ટીનો અનુભવ",
+    "vrDesc": "વિશ્વમાં ગમે ત્યાંથી આ પ્રોપર્ટીમાં પ્રવેશ કરો. 360° વર્ચ્યુઅલ ટૂર લો અથવા તમારા લિવિંગ રૂમમાં જ ટ્રુ-ટુ-સ્કેલ 3D મોડલ મૂકો.",
+    "vrNoTour": "એજન્ટે હજુ સુધી આ સૂચિ માટે 360°/3D ટૂર અપલોડ કરી નથી.",
+    "premium": "પ્રીમિયમ",
+    "enterVrTour": "VR ટૂર દાખલ કરો",
+    "viewInAr": "AR માં જુઓ",
+    "videoTour": "વિડિઓ પ્રવાસ",
+    "guestReviews": "મહેમાન સમીક્ષાઓ",
+    "reviewsCount": "{{count}} સમીક્ષાઓ",
+    "builtYear": "બિલ્ટ",
     "sale": "વેચાણ",
     "rent": "ભાડે",
     "propertyTypeLabel": "પ્રકાર",
@@ -738,7 +752,17 @@
     "commercial": "વાણિજ્યિક",
     "studio": "સ્ટુડિયો",
     "penthouse": "પેન્ટહાઉસ",
-    "townhouse": "ટાઉનહાઉસ"
+    "townhouse": "ટાઉનહાઉસ",
+    "duplex": "ડુપ્લેક્સ",
+    "warehouse": "વેરહાઉસ",
+    "farm": "ફાર્મ",
+    "chalet": "ચેલેટ",
+    "hotel_apartment": "હોટેલ એપાર્ટમેન્ટ",
+    "building": "બિલ્ડીંગ",
+    "room": "ખાનગી રૂમ",
+    "entire_home": "આખું ઘર",
+    "hotel_room": "હોટેલ રૂમ",
+    "rest_house": "રેસ્ટ હાઉસ"
   },
   "profile": {
     "personalInformation": "વ્યક્તિગત માહિતી",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "આ મિલકત ઓફર કરે છે તે સુવિધાઓ પર ટૅપ કરો. અમે તેમને શોધ પર ફિલ્ટર તરીકે સપાટી પર લાવીશું."
+    },
+    "steps": {
+      "basicInfo": "મૂળભૂત માહિતી",
+      "location": "સ્થાન",
+      "media": "મીડિયા",
+      "amenities": "સુવિધાઓ",
+      "compliance": "અનુપાલન",
+      "review": "સમીક્ષા"
     },
     "stepProperty": "મિલકતનો પ્રકાર",
     "stepDetails": "વિગતો",
@@ -1642,7 +1674,9 @@
     "memberSince": "ત્યારથી સભ્ય",
     "contactAgent": "સંપર્ક એજન્ટ",
     "viewProfile": "| પ્રોફાઇલ જુઓ",
-    "sendMessage": "સંદેશ મોકલો"
+    "sendMessage": "સંદેશ મોકલો",
+    "respondsWithin": "{{hours}} કલાકમાં જવાબ આપે છે",
+    "respondsWithinDay": "એક દિવસમાં જવાબ આપે છે"
   },
   "property": {
     "villa": "વિલા",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "સરખામણીમાં ઉમેરો",
-    "remove": "સરખામણીમાંથી દૂર કરો"
+    "remove": "સરખામણીમાંથી દૂર કરો",
+    "title": "સરખામણી કરો",
+    "compareProperties": "ગુણધર્મોની તુલના કરો",
+    "clearAll": "બધું સાફ કરો",
+    "empty": "હજુ સુધી સરખામણી કરવા માટે કોઈ ગુણધર્મો નથી",
+    "viewComparison": "સરખામણી જુઓ",
+    "compareNow": "હવે સરખામણી કરો"
   },
   "myListings": {
     "countSelected": "{{count}} પસંદ કર્યા",
@@ -1855,19 +1895,24 @@
     "nov": "| નવેમ્બર",
     "dec": "ડિસેમ્બર"
   },
-  "saved": {
-    "title": "સાચવેલ",
-    "empty": "કોઈ સાચવેલ ગુણધર્મો નથી",
-    "emptyPrompt": "❤️ ટૅપ કરીને તમને ગમતી પ્રોપર્ટીઝ સાચવો",
-    "signInPrompt": "ગુણધર્મો સાચવવા માટે સાઇન ઇન કરો",
-    "removeTitle": "દૂર કરો",
-    "removePrompt": "સાચવેલમાંથી આ મિલકત દૂર કરીએ?"
+  "mortgage": {
+    "title": "મોર્ટગેજ કેલ્ક્યુલેટર",
+    "propertyPrice": "મિલકતની કિંમત (SAR)",
+    "downPayment": "ડાઉન પેમેન્ટ",
+    "loanTerm": "લોનની મુદત (વર્ષ)",
+    "interestRate": "વાર્ષિક વ્યાજ દર (%)",
+    "monthlyPayment": "અંદાજિત માસિક ચુકવણી",
+    "loanAmount": "લોનની રકમ",
+    "totalPayment": "કુલ ચુકવણી",
+    "totalInterest": "કુલ વ્યાજ",
+    "disclaimer": "આ એક અંદાજ છે. વાસ્તવિક લોન ઓફર માટે તમારી બેંકનો સંપર્ક કરો.",
+    "perMonth": "SAR/mo"
   },
   "notifications": {
+    "markAllRead": "બધાને વાંચેલા તરીકે ચિહ્નિત કરો",
     "title": "સૂચનાઓ",
     "empty": "કોઈ સૂચનાઓ નથી",
     "emptyHint": "તમારી ચેતવણીઓ અહીં દેખાશે",
-    "markAllRead": "બધાને વાંચેલા તરીકે ચિહ્નિત કરો",
     "notification": "સૂચના",
     "pushEnabled": "પુશ સૂચનાઓ સક્ષમ",
     "pushDisabled": "પુશ સૂચનાઓ અક્ષમ છે",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "બુકિંગ અપડેટ",
     "paymentUpdate": "ચુકવણી અપડેટ",
     "supportReply": "આધાર જવાબ"
+  },
+  "saved": {
+    "title": "સાચવેલ",
+    "empty": "કોઈ સાચવેલ ગુણધર્મો નથી",
+    "emptyPrompt": "❤️ ટૅપ કરીને તમને ગમતી પ્રોપર્ટીઝ સાચવો",
+    "signInPrompt": "ગુણધર્મો સાચવવા માટે સાઇન ઇન કરો",
+    "removeTitle": "દૂર કરો",
+    "removePrompt": "સાચવેલમાંથી આ મિલકત દૂર કરીએ?"
   },
   "bookings": {
     "title": "મારી બુકિંગ",

@@ -383,6 +383,9 @@
     "strengthFair": "متوسطة",
     "strengthGood": "جيدة",
     "strengthStrong": "قوية",
+    "trustedPlatform": "موثوق به من قبل آلاف العملاء في المملكة العربية السعودية",
+    "platformDesc": "آمن • وكلاء موثقون • أفضل العقارات",
+    "signInWithGoogle": "المتابعة باستخدام Google",
     "role": "نوع الحساب",
     "buyer": "مشتري",
     "agent": "وكيل",
@@ -517,6 +520,17 @@
     "loanTerm": "مدة القرض",
     "interestRate": "معدل الفائدة",
     "message": "الرسالة",
+    "vrExperience": "تجربة الواقع الافتراضي والمعزز",
+    "vrTitle": "تجربة عقارية غامرة بالواقع الافتراضي",
+    "vrDesc": "ادخل إلى هذا العقار من أي مكان في العالم. قم بجولة افتراضية بزاوية 360° أو ضع نموذجاً ثلاثي الأبعاد في غرفة معيشتك.",
+    "vrNoTour": "لم يقم الوكيل بتحميل جولة 360°/ثلاثية الأبعاد لهذا الإعلان بعد.",
+    "premium": "مميز",
+    "enterVrTour": "ابدأ الجولة الافتراضية",
+    "viewInAr": "عرض بالواقع المعزز",
+    "videoTour": "جولة بالفيديو",
+    "guestReviews": "تقييمات الضيوف",
+    "reviewsCount": "{{count}} تقييم",
+    "builtYear": "سنة البناء",
     "fairPrice": {
       "great": "💚 سعر ممتاز",
       "fair": "✓ سعر مناسب",
@@ -565,9 +579,7 @@
     "bookingDevBody": "صفحة الحجز قيد التطوير. حتى ذلك الحين تواصل مع الوكيل مباشرة.",
     "removeFromSaved": "هل تريد إزالة هذا العقار من المحفوظات؟",
     "viewProfile": "عرض الملف الشخصي",
-    "verifiedAgent": "وكيل موثق",
     "respondsWithin": "يرد خلال ساعات قليلة",
-    "guestReviews": "تقييمات الضيوف",
     "noReviewsYet": "لا توجد تقييمات بعد",
     "vrTour": "جولة افتراضية / 360°",
     "vrTourUnavailable": "الجولة الافتراضية / 360° لهذا العقار غير متوفرة على الجوال حتى الآن. افتح الإعلان على الويب لاستكشافه بتقنية الواقع الافتراضي."
@@ -584,7 +596,9 @@
     "memberSince": "عضو منذ",
     "contactAgent": "تواصل مع الوكيل",
     "viewProfile": "عرض الملف",
-    "sendMessage": "إرسال رسالة"
+    "sendMessage": "إرسال رسالة",
+    "respondsWithin": "يرد خلال {{hours}} ساعات",
+    "respondsWithinDay": "يرد خلال يوم"
   },
   "property": {
     "villa": "فيلا",
@@ -620,7 +634,13 @@
   },
   "compare": {
     "add": "إضافة للمقارنة",
-    "remove": "إزالة من المقارنة"
+    "remove": "إزالة من المقارنة",
+    "title": "مقارنة",
+    "compareProperties": "مقارنة العقارات",
+    "clearAll": "مسح الكل",
+    "empty": "لا توجد عقارات للمقارنة بعد",
+    "viewComparison": "عرض المقارنة",
+    "compareNow": "قارن الآن"
   },
   "search": {
     "filters": "الفلاتر",
@@ -834,7 +854,17 @@
     "commercial": "تجاري",
     "studio": "استوديو",
     "penthouse": "بنتهاوس",
-    "townhouse": "تاون هاوس"
+    "townhouse": "تاون هاوس",
+    "duplex": "دوبلكس",
+    "warehouse": "مستودع",
+    "farm": "مزرعة",
+    "chalet": "شاليه",
+    "hotel_apartment": "شقة فندقية",
+    "building": "عمارة",
+    "room": "غرفة خاصة",
+    "entire_home": "منزل كامل",
+    "hotel_room": "غرفة فندقية",
+    "rest_house": "استراحة"
   },
   "profile": {
     "personalInformation": "المعلومات الشخصية",
@@ -886,6 +916,14 @@
   },
   "wizard": {
     "basicInfo": "المعلومات الأساسية",
+    "steps": {
+      "basicInfo": "المعلومات الأساسية",
+      "location": "الموقع",
+      "media": "الصور والوسائط",
+      "amenities": "المرافق",
+      "compliance": "الامتثال",
+      "review": "مراجعة"
+    },
     "location": {
       "street": "الشارع",
       "buildingNumber": "رقم المبنى",
@@ -1616,12 +1654,44 @@
     "avgByDistrict": "متوسط السعر/م² حسب الحي",
     "cityPlaceholder": "الرياض، جدة..."
   },
+  "mortgage": {
+    "title": "حاسبة التمويل العقاري",
+    "propertyPrice": "سعر العقار (ر.س)",
+    "downPayment": "الدفعة الأولى",
+    "loanTerm": "مدة القرض (سنوات)",
+    "interestRate": "نسبة الفائدة السنوية (%)",
+    "monthlyPayment": "القسط الشهري التقديري",
+    "loanAmount": "مبلغ القرض",
+    "totalPayment": "إجمالي المدفوعات",
+    "totalInterest": "إجمالي الفائدة",
+    "disclaimer": "هذا تقدير. استشر مصرفك للحصول على عرض قرض فعلي.",
+    "perMonth": "ر.س/شهر"
+  },
   "errors": {
     "generic": "حدث خطأ غير متوقع",
     "network": "خطأ في الاتصال — يرجى المحاولة مرة أخرى",
     "unauthorized": "يجب تسجيل الدخول للمتابعة",
     "forbidden": "ليس لديك صلاحية للوصول",
     "notFound": "العنصر المطلوب غير موجود"
+  },
+  "notifications": {
+    "markAllRead": "تعيين الكل كمقروء",
+    "title": "الإشعارات",
+    "empty": "لا توجد إشعارات",
+    "emptyHint": "ستظهر إشعاراتك هنا",
+    "notification": "إشعار",
+    "pushEnabled": "تم تمكين دفع الإخطارات",
+    "pushDisabled": "تم تعطيل إشعارات الدفع",
+    "permissionRequired": "مطلوب إذن الإخطارات",
+    "permissionDeniedTitle": "تم إيقاف الإشعارات",
+    "permissionDeniedBody": "قم بتمكين الإشعارات في إعدادات جهازك لتلقي تنبيهات للرسائل والاستفسارات وتحديثات القائمة.",
+    "newMessage": "رسالة جديدة",
+    "newInquiry": "استفسار جديد",
+    "listingApproved": "تمت الموافقة على الإدراج",
+    "listingRejected": "تم رفض الإدراج",
+    "bookingUpdate": "تحديث الحجز",
+    "paymentUpdate": "تحديث الدفع",
+    "supportReply": "رد الدعم"
   },
   "wishlist": {
     "saveTo": "حفظ في قائمة المفضلة",
@@ -1912,25 +1982,6 @@
     "signInPrompt": "سجل دخولك لحفظ العقارات",
     "removeTitle": "إزالة",
     "removePrompt": "هل تريد إزالة هذا العقار من المحفوظات؟"
-  },
-  "notifications": {
-    "title": "الإشعارات",
-    "empty": "لا توجد إشعارات",
-    "emptyHint": "ستظهر إشعاراتك هنا",
-    "markAllRead": "تحديد الكل كمقروء",
-    "notification": "إشعار",
-    "pushEnabled": "تم تمكين دفع الإخطارات",
-    "pushDisabled": "تم تعطيل إشعارات الدفع",
-    "permissionRequired": "مطلوب إذن الإخطارات",
-    "permissionDeniedTitle": "تم إيقاف الإشعارات",
-    "permissionDeniedBody": "قم بتمكين الإشعارات في إعدادات جهازك لتلقي تنبيهات للرسائل والاستفسارات وتحديثات القائمة.",
-    "newMessage": "رسالة جديدة",
-    "newInquiry": "استفسار جديد",
-    "listingApproved": "تمت الموافقة على الإدراج",
-    "listingRejected": "تم رفض الإدراج",
-    "bookingUpdate": "تحديث الحجز",
-    "paymentUpdate": "تحديث الدفع",
-    "supportReply": "رد الدعم"
   },
   "bookings": {
     "title": "حجوزاتي",

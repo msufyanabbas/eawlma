@@ -344,6 +344,9 @@
     "strengthFair": "Adil",
     "strengthGood": "Baik",
     "strengthStrong": "Kuat",
+    "trustedPlatform": "Dipercayai oleh beribu-ribu di seluruh Arab Saudi",
+    "platformDesc": "Selamat • Ejen Disahkan • Hartanah Terbaik",
+    "signInWithGoogle": "Teruskan dengan Google",
     "role": "Jenis Akaun",
     "buyer": "Pembeli",
     "agent": "Ejen",
@@ -500,6 +503,17 @@
     "moderationRejected": "Penyenaraian ditolak - kandungan melanggar garis panduan platform",
     "contentViolation": "Pelanggaran Dasar Kandungan",
     "moderationHint": "Sila pastikan penyenaraian anda tidak mengandungi: spam, nombor telefon dalam keterangan, kandungan yang tidak sesuai atau maklumat yang mengelirukan",
+    "vrExperience": "Pengalaman VR & AR",
+    "vrTitle": "Pengalaman Harta VR & AR yang Mengasyikkan",
+    "vrDesc": "Masuk ke dalam hartanah ini dari mana-mana sahaja di dunia. Lakukan lawatan maya 360° atau letakkan model 3D berskala benar di ruang tamu anda.",
+    "vrNoTour": "Ejen belum memuat naik lawatan 360°/3D untuk penyenaraian ini.",
+    "premium": "Premium",
+    "enterVrTour": "Masuk VR Tour",
+    "viewInAr": "Lihat dalam AR",
+    "videoTour": "Lawatan video",
+    "guestReviews": "Ulasan Tetamu",
+    "reviewsCount": "{{count}} ulasan",
+    "builtYear": "dibina",
     "sale": "Jualan",
     "rent": "Sewa",
     "propertyTypeLabel": "taip",
@@ -738,7 +752,17 @@
     "commercial": "Komersial",
     "studio": "Studio",
     "penthouse": "Penthouse",
-    "townhouse": "Rumah bandar"
+    "townhouse": "Rumah bandar",
+    "duplex": "Dupleks",
+    "warehouse": "Gudang",
+    "farm": "Ladang",
+    "chalet": "Chalet",
+    "hotel_apartment": "Pangsapuri Hotel",
+    "building": "Bangunan",
+    "room": "Bilik Persendirian",
+    "entire_home": "Seluruh Rumah",
+    "hotel_room": "Bilik Hotel",
+    "rest_house": "Rumah Rehat"
   },
   "profile": {
     "personalInformation": "Maklumat peribadi",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Ketik kemudahan yang ditawarkan oleh hartanah ini. Kami akan memaparkannya sebagai penapis pada Carian."
+    },
+    "steps": {
+      "basicInfo": "Maklumat asas",
+      "location": "Lokasi",
+      "media": "Media",
+      "amenities": "Kemudahan",
+      "compliance": "Pematuhan",
+      "review": "Semakan"
     },
     "stepProperty": "Jenis Harta",
     "stepDetails": "Butiran",
@@ -1642,7 +1674,9 @@
     "memberSince": "Ahli Sejak",
     "contactAgent": "Hubungi Ejen",
     "viewProfile": "Lihat Profil",
-    "sendMessage": "Hantar Mesej"
+    "sendMessage": "Hantar Mesej",
+    "respondsWithin": "Membalas dalam {{jam}} jam",
+    "respondsWithinDay": "Bertindak balas dalam masa sehari"
   },
   "property": {
     "villa": "Vila",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Tambah untuk membandingkan",
-    "remove": "Alih keluar daripada bandingkan"
+    "remove": "Alih keluar daripada bandingkan",
+    "title": "Bandingkan",
+    "compareProperties": "Bandingkan Hartanah",
+    "clearAll": "Kosongkan semua",
+    "empty": "Tiada hartanah untuk dibandingkan lagi",
+    "viewComparison": "Lihat perbandingan",
+    "compareNow": "Bandingkan sekarang"
   },
   "myListings": {
     "countSelected": "{{count}} dipilih",
@@ -1855,19 +1895,24 @@
     "nov": "Nov",
     "dec": "Dis"
   },
-  "saved": {
-    "title": "Disimpan",
-    "empty": "Tiada harta yang disimpan",
-    "emptyPrompt": "Simpan hartanah yang anda suka dengan mengetik ❤️",
-    "signInPrompt": "Log masuk untuk menyimpan harta benda",
-    "removeTitle": "Alih keluar",
-    "removePrompt": "Alih keluar harta ini daripada disimpan?"
+  "mortgage": {
+    "title": "Kalkulator Gadai Janji",
+    "propertyPrice": "Harga Hartanah (SAR)",
+    "downPayment": "Bayaran Pendahuluan",
+    "loanTerm": "Tempoh Pinjaman (Tahun)",
+    "interestRate": "Kadar Faedah Tahunan (%)",
+    "monthlyPayment": "Anggaran Bayaran Bulanan",
+    "loanAmount": "Jumlah Pinjaman",
+    "totalPayment": "Jumlah Bayaran",
+    "totalInterest": "Jumlah Faedah",
+    "disclaimer": "Ini adalah anggaran. Rujuk bank anda untuk tawaran pinjaman sebenar.",
+    "perMonth": "SAR/bln"
   },
   "notifications": {
+    "markAllRead": "Tandai semua sebagai dibaca",
     "title": "Pemberitahuan",
     "empty": "Tiada pemberitahuan",
     "emptyHint": "Makluman anda akan dipaparkan di sini",
-    "markAllRead": "Tandai semua sebagai dibaca",
     "notification": "Pemberitahuan",
     "pushEnabled": "Pemberitahuan tolak didayakan",
     "pushDisabled": "Pemberitahuan tolak dilumpuhkan",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Kemas kini tempahan",
     "paymentUpdate": "Kemas kini pembayaran",
     "supportReply": "Balasan sokongan"
+  },
+  "saved": {
+    "title": "Disimpan",
+    "empty": "Tiada harta yang disimpan",
+    "emptyPrompt": "Simpan hartanah yang anda suka dengan mengetik ❤️",
+    "signInPrompt": "Log masuk untuk menyimpan harta benda",
+    "removeTitle": "Alih keluar",
+    "removePrompt": "Alih keluar harta ini daripada disimpan?"
   },
   "bookings": {
     "title": "Tempahan Saya",

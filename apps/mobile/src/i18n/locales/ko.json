@@ -344,6 +344,9 @@
     "strengthFair": "공정한",
     "strengthGood": "좋은",
     "strengthStrong": "강한",
+    "trustedPlatform": "사우디아라비아 전역에서 수천 명이 신뢰함",
+    "platformDesc": "보안 • 검증된 에이전트 • 최고의 속성",
+    "signInWithGoogle": "Google로 계속하기",
     "role": "계정 유형",
     "buyer": "사는 사람",
     "agent": "대리인",
@@ -500,6 +503,17 @@
     "moderationRejected": "목록이 거부됨 - 콘텐츠가 플랫폼 지침을 위반함",
     "contentViolation": "콘텐츠 정책 위반",
     "moderationHint": "목록에 스팸, 설명의 전화번호, 부적절한 콘텐츠 또는 오해의 소지가 있는 정보가 포함되어 있지 않은지 확인하세요.",
+    "vrExperience": "VR & AR 체험",
+    "vrTitle": "몰입형 VR 및 AR 부동산 경험",
+    "vrDesc": "전 세계 어디에서나 이 숙소 안으로 들어가 보세요. 360° 가상 둘러보기를 이용하거나 실제 크기의 3D 모델을 거실에 바로 배치해 보세요.",
+    "vrNoTour": "에이전트가 아직 이 목록에 대한 360°/3D 투어를 업로드하지 않았습니다.",
+    "premium": "프리미엄",
+    "enterVrTour": "VR 투어 입장",
+    "viewInAr": "AR로 보기",
+    "videoTour": "비디오 투어",
+    "guestReviews": "고객 리뷰",
+    "reviewsCount": "{{count}}개의 리뷰",
+    "builtYear": "세워짐",
     "sale": "판매",
     "rent": "임차료",
     "propertyTypeLabel": "유형",
@@ -738,7 +752,17 @@
     "commercial": "상업용",
     "studio": "스튜디오",
     "penthouse": "펜트하우스",
-    "townhouse": "타운하우스"
+    "townhouse": "타운하우스",
+    "duplex": "듀플렉스",
+    "warehouse": "창고",
+    "farm": "농장",
+    "chalet": "샬레",
+    "hotel_apartment": "호텔 아파트먼트",
+    "building": "건물",
+    "room": "프라이빗 룸",
+    "entire_home": "집 전체",
+    "hotel_room": "호텔 룸",
+    "rest_house": "레스트하우스"
   },
   "profile": {
     "personalInformation": "개인 정보",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "이 숙박 시설이 제공하는 편의 시설을 탭하세요. 검색에 필터로 표시됩니다."
+    },
+    "steps": {
+      "basicInfo": "기본 정보",
+      "location": "위치",
+      "media": "메디아",
+      "amenities": "예의",
+      "compliance": "규정 준수",
+      "review": "검토"
     },
     "stepProperty": "부동산 유형",
     "stepDetails": "세부",
@@ -1642,7 +1674,9 @@
     "memberSince": "회원가입 이후",
     "contactAgent": "상담원에게 연락하기",
     "viewProfile": "프로필 보기",
-    "sendMessage": "메시지 보내기"
+    "sendMessage": "메시지 보내기",
+    "respondsWithin": "{{hours}}시간 이내에 응답합니다.",
+    "respondsWithinDay": "하루 안에 응답"
   },
   "property": {
     "villa": "별장",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "비교에 추가",
-    "remove": "비교에서 제거"
+    "remove": "비교에서 제거",
+    "title": "비교하다",
+    "compareProperties": "속성 비교",
+    "clearAll": "모두 지우기",
+    "empty": "아직 비교할 속성이 없습니다.",
+    "viewComparison": "비교 보기",
+    "compareNow": "지금 비교해보세요"
   },
   "myListings": {
     "countSelected": "{{count}}개 선택됨",
@@ -1855,19 +1895,24 @@
     "nov": "11월",
     "dec": "12월"
   },
-  "saved": {
-    "title": "저장됨",
-    "empty": "저장된 속성이 없습니다.",
-    "emptyPrompt": "❤️을 눌러 마음에 드는 숙소를 저장하세요.",
-    "signInPrompt": "속성을 저장하려면 로그인하세요.",
-    "removeTitle": "제거하다",
-    "removePrompt": "저장된 속성에서 이 속성을 삭제하시겠습니까?"
+  "mortgage": {
+    "title": "모기지 계산기",
+    "propertyPrice": "부동산 가격(SAR)",
+    "downPayment": "계약금",
+    "loanTerm": "대출기간(년)",
+    "interestRate": "연이자율(%)",
+    "monthlyPayment": "예상 월별 지불액",
+    "loanAmount": "대출금액",
+    "totalPayment": "총 결제금액",
+    "totalInterest": "총 이자",
+    "disclaimer": "이것은 추정치입니다. 실제 대출 제안에 대해서는 은행에 문의하세요.",
+    "perMonth": "SAR/월"
   },
   "notifications": {
+    "markAllRead": "모두 읽음으로 표시",
     "title": "알림",
     "empty": "알림 없음",
     "emptyHint": "알림이 여기에 표시됩니다",
-    "markAllRead": "모두 읽음으로 표시",
     "notification": "공고",
     "pushEnabled": "푸시 알림이 활성화되었습니다.",
     "pushDisabled": "푸시 알림이 비활성화되었습니다.",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "예약 업데이트",
     "paymentUpdate": "결제 업데이트",
     "supportReply": "지원 답변"
+  },
+  "saved": {
+    "title": "저장됨",
+    "empty": "저장된 속성이 없습니다.",
+    "emptyPrompt": "❤️을 눌러 마음에 드는 숙소를 저장하세요.",
+    "signInPrompt": "속성을 저장하려면 로그인하세요.",
+    "removeTitle": "제거하다",
+    "removePrompt": "저장된 속성에서 이 속성을 삭제하시겠습니까?"
   },
   "bookings": {
     "title": "내 예약",

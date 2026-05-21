@@ -383,6 +383,9 @@
     "strengthFair": "Fair",
     "strengthGood": "Good",
     "strengthStrong": "Strong",
+    "trustedPlatform": "Trusted by thousands across Saudi Arabia",
+    "platformDesc": "Secure • Verified Agents • Best Properties",
+    "signInWithGoogle": "Continue with Google",
     "role": "Account Type",
     "buyer": "Buyer",
     "agent": "Agent",
@@ -517,6 +520,17 @@
     "loanTerm": "Loan term",
     "interestRate": "Interest rate",
     "message": "Message",
+    "vrExperience": "VR & AR Experience",
+    "vrTitle": "Immersive VR & AR Property Experience",
+    "vrDesc": "Step inside this property from anywhere in the world. Take a 360° virtual tour or place a true-to-scale 3D model right in your living room.",
+    "vrNoTour": "The agent hasn't uploaded a 360°/3D tour for this listing yet.",
+    "premium": "Premium",
+    "enterVrTour": "Enter VR Tour",
+    "viewInAr": "View in AR",
+    "videoTour": "Video tour",
+    "guestReviews": "Guest Reviews",
+    "reviewsCount": "{{count}} reviews",
+    "builtYear": "Built",
     "fairPrice": {
       "great": "💚 Great price",
       "fair": "✓ Fair price",
@@ -565,9 +579,7 @@
     "bookingDevBody": "Booking flow is in development. Please contact the agent.",
     "removeFromSaved": "Remove this property from saved?",
     "viewProfile": "View Profile",
-    "verifiedAgent": "Verified Agent",
     "respondsWithin": "Responds within a few hours",
-    "guestReviews": "Guest reviews",
     "noReviewsYet": "No reviews yet",
     "vrTour": "VR / 360° Tour",
     "vrTourUnavailable": "An immersive VR / 360° tour for this property is not available on mobile yet. Open the listing on the web to explore it in virtual reality."
@@ -584,7 +596,9 @@
     "memberSince": "Member Since",
     "contactAgent": "Contact Agent",
     "viewProfile": "View Profile",
-    "sendMessage": "Send Message"
+    "sendMessage": "Send Message",
+    "respondsWithin": "Responds within {{hours}} hours",
+    "respondsWithinDay": "Responds within a day"
   },
   "property": {
     "villa": "Villa",
@@ -620,7 +634,13 @@
   },
   "compare": {
     "add": "Add to compare",
-    "remove": "Remove from compare"
+    "remove": "Remove from compare",
+    "title": "Compare",
+    "compareProperties": "Compare Properties",
+    "clearAll": "Clear all",
+    "empty": "No properties to compare yet",
+    "viewComparison": "View comparison",
+    "compareNow": "Compare now"
   },
   "search": {
     "filters": "Filters",
@@ -834,7 +854,17 @@
     "commercial": "Commercial",
     "studio": "Studio",
     "penthouse": "Penthouse",
-    "townhouse": "Townhouse"
+    "townhouse": "Townhouse",
+    "duplex": "Duplex",
+    "warehouse": "Warehouse",
+    "farm": "Farm",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotel Apartment",
+    "building": "Building",
+    "room": "Private Room",
+    "entire_home": "Entire Home",
+    "hotel_room": "Hotel Room",
+    "rest_house": "Rest House"
   },
   "profile": {
     "personalInformation": "Personal information",
@@ -919,6 +949,14 @@
       "permit": "Permit",
       "regaLicense": "REGA license",
       "visibility": "Visibility"
+    },
+    "steps": {
+      "basicInfo": "Basic info",
+      "location": "Location",
+      "media": "Media",
+      "amenities": "Amenities",
+      "compliance": "Compliance",
+      "review": "Review"
     },
     "saveDraft": "Save draft",
     "submit": "Submit for review",
@@ -1616,12 +1654,44 @@
     "avgByDistrict": "Avg ﷼/m² by district",
     "cityPlaceholder": "Riyadh, Jeddah..."
   },
+  "mortgage": {
+    "title": "Mortgage Calculator",
+    "propertyPrice": "Property Price (SAR)",
+    "downPayment": "Down Payment",
+    "loanTerm": "Loan Term (Years)",
+    "interestRate": "Annual Interest Rate (%)",
+    "monthlyPayment": "Estimated Monthly Payment",
+    "loanAmount": "Loan Amount",
+    "totalPayment": "Total Payment",
+    "totalInterest": "Total Interest",
+    "disclaimer": "This is an estimate. Consult your bank for an actual loan offer.",
+    "perMonth": "SAR/mo"
+  },
   "errors": {
     "generic": "An unexpected error occurred",
     "network": "Network error — please try again",
     "unauthorized": "You must be signed in to continue",
     "forbidden": "You don't have permission to access this",
     "notFound": "The requested resource was not found"
+  },
+  "notifications": {
+    "markAllRead": "Mark all as read",
+    "title": "Notifications",
+    "empty": "No notifications",
+    "emptyHint": "Your alerts will appear here",
+    "notification": "Notification",
+    "pushEnabled": "Push notifications enabled",
+    "pushDisabled": "Push notifications disabled",
+    "permissionRequired": "Notifications permission is required",
+    "permissionDeniedTitle": "Notifications turned off",
+    "permissionDeniedBody": "Enable notifications in your device settings to receive alerts for messages, inquiries, and listing updates.",
+    "newMessage": "New message",
+    "newInquiry": "New inquiry",
+    "listingApproved": "Listing approved",
+    "listingRejected": "Listing rejected",
+    "bookingUpdate": "Booking update",
+    "paymentUpdate": "Payment update",
+    "supportReply": "Support reply"
   },
   "wishlist": {
     "saveTo": "Save to wishlist",
@@ -1912,25 +1982,6 @@
     "signInPrompt": "Sign in to save properties",
     "removeTitle": "Remove",
     "removePrompt": "Remove this property from saved?"
-  },
-  "notifications": {
-    "title": "Notifications",
-    "empty": "No notifications",
-    "emptyHint": "Your alerts will appear here",
-    "markAllRead": "Mark all as read",
-    "notification": "Notification",
-    "pushEnabled": "Push notifications enabled",
-    "pushDisabled": "Push notifications disabled",
-    "permissionRequired": "Notifications permission is required",
-    "permissionDeniedTitle": "Notifications turned off",
-    "permissionDeniedBody": "Enable notifications in your device settings to receive alerts for messages, inquiries, and listing updates.",
-    "newMessage": "New message",
-    "newInquiry": "New inquiry",
-    "listingApproved": "Listing approved",
-    "listingRejected": "Listing rejected",
-    "bookingUpdate": "Booking update",
-    "paymentUpdate": "Payment update",
-    "supportReply": "Support reply"
   },
   "bookings": {
     "title": "My Bookings",

@@ -344,6 +344,9 @@
     "strengthFair": "הוגן",
     "strengthGood": "טוב",
     "strengthStrong": "חזק",
+    "trustedPlatform": "מהימן על ידי אלפים ברחבי ערב הסעודית",
+    "platformDesc": "מאובטח • סוכנים מאומתים • הנכסים הטובים ביותר",
+    "signInWithGoogle": "המשך עם Google",
     "role": "סוג חשבון",
     "buyer": "קונה",
     "agent": "סוכן",
@@ -500,6 +503,17 @@
     "moderationRejected": "רישום נדחה - תוכן מפר את הנחיות הפלטפורמה",
     "contentViolation": "הפרת מדיניות תוכן",
     "moderationHint": "אנא ודא שהרישום שלך אינו מכיל: דואר זבל, מספרי טלפון בתיאור, תוכן בלתי הולם או מידע מטעה",
+    "vrExperience": "חווית VR ו-AR",
+    "vrTitle": "חווית נכס VR ו-AR מרתקת",
+    "vrDesc": "היכנסו לנכס הזה מכל מקום בעולם. צא לסיור וירטואלי של 360° או הצב מודל תלת מימד בקנה מידה נכון לקנה מידה ממש בסלון שלך.",
+    "vrNoTour": "הסוכן עדיין לא העלה סיור 360°/3D עבור הרישום הזה.",
+    "premium": "פרימיום",
+    "enterVrTour": "היכנס לסיור VR",
+    "viewInAr": "הצג ב-AR",
+    "videoTour": "סיור וידאו",
+    "guestReviews": "חוות דעת אורחים",
+    "reviewsCount": "{{count}} ביקורות",
+    "builtYear": "בנוי",
     "sale": "מבצע",
     "rent": "השכרה",
     "propertyTypeLabel": "הקלד",
@@ -738,7 +752,17 @@
     "commercial": "מסחרי",
     "studio": "סטודיו",
     "penthouse": "פנטהאוז",
-    "townhouse": "בית עירוני"
+    "townhouse": "בית עירוני",
+    "duplex": "דופלקס",
+    "warehouse": "מחסן",
+    "farm": "חווה",
+    "chalet": "בקתה",
+    "hotel_apartment": "דירת מלון",
+    "building": "בניין",
+    "room": "חדר פרטי",
+    "entire_home": "כל הבית",
+    "hotel_room": "חדר מלון",
+    "rest_house": "בית מנוחה"
   },
   "profile": {
     "personalInformation": "פרטים אישיים",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "הקש על השירותים שהנכס הזה מציע. אנו נציג אותם כמסננים בחיפוש."
+    },
+    "steps": {
+      "basicInfo": "מידע בסיסי",
+      "location": "מיקום",
+      "media": "מדיה",
+      "amenities": "שירותים",
+      "compliance": "הַתאָמָה",
+      "review": "סקירה"
     },
     "stepProperty": "סוג נכס",
     "stepDetails": "פרטים",
@@ -1642,7 +1674,9 @@
     "memberSince": "חבר מאז",
     "contactAgent": "צור קשר עם הסוכן",
     "viewProfile": "צפה בפרופיל",
-    "sendMessage": "שלח הודעה"
+    "sendMessage": "שלח הודעה",
+    "respondsWithin": "מגיב תוך {{שעות}} שעות",
+    "respondsWithinDay": "מגיב תוך יום"
   },
   "property": {
     "villa": "וילה",
@@ -1651,7 +1685,7 @@
     "chalet": "בקתה",
     "farm": "חווה",
     "restHouse": "בית מנוחה",
-    "office": "Office",
+    "office": "מִשׂרָד",
     "shop": "חנות",
     "warehouse": "מחסן",
     "hotel": "חדר מלון",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "הוסף להשוואה",
-    "remove": "הסר מהשוואה"
+    "remove": "הסר מהשוואה",
+    "title": "השווה",
+    "compareProperties": "השווה מאפיינים",
+    "clearAll": "נקה הכל",
+    "empty": "אין עדיין נכסים להשוואה",
+    "viewComparison": "צפה בהשוואה",
+    "compareNow": "השווה עכשיו"
   },
   "myListings": {
     "countSelected": "{{count}} נבחרו",
@@ -1855,19 +1895,24 @@
     "nov": "נובמבר",
     "dec": "דצמבר"
   },
-  "saved": {
-    "title": "נשמר",
-    "empty": "אין נכסים שמורים",
-    "emptyPrompt": "שמור נכסים שאתה אוהב על ידי הקשה על ❤️",
-    "signInPrompt": "היכנס כדי לשמור נכסים",
-    "removeTitle": "הסר",
-    "removePrompt": "להסיר את הנכס הזה מהשמור?"
+  "mortgage": {
+    "title": "מחשבון משכנתא",
+    "propertyPrice": "מחיר הנכס (SAR)",
+    "downPayment": "מקדמה",
+    "loanTerm": "תקופת ההלוואה (שנים)",
+    "interestRate": "שיעור ריבית שנתי (%)",
+    "monthlyPayment": "תשלום חודשי משוער",
+    "loanAmount": "סכום ההלוואה",
+    "totalPayment": "סך התשלום",
+    "totalInterest": "סך ריבית",
+    "disclaimer": "זוהי הערכה. התייעץ עם הבנק שלך לקבלת הצעת הלוואה בפועל.",
+    "perMonth": "SAR/mo"
   },
   "notifications": {
+    "markAllRead": "סמן הכל כנקראו",
     "title": "הודעות",
     "empty": "אין הודעות",
     "emptyHint": "ההתראות שלך יופיעו כאן",
-    "markAllRead": "סמן הכל כנקראו",
     "notification": "הודעה",
     "pushEnabled": "התראות דחיפה מופעלות",
     "pushDisabled": "הודעות דחיפה מושבתות",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "עדכון הזמנה",
     "paymentUpdate": "עדכון תשלום",
     "supportReply": "תשובת תמיכה"
+  },
+  "saved": {
+    "title": "נשמר",
+    "empty": "אין נכסים שמורים",
+    "emptyPrompt": "שמור נכסים שאתה אוהב על ידי הקשה על ❤️",
+    "signInPrompt": "היכנס כדי לשמור נכסים",
+    "removeTitle": "הסר",
+    "removePrompt": "להסיר את הנכס הזה מהשמור?"
   },
   "bookings": {
     "title": "ההזמנות שלי",

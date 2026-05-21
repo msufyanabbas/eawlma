@@ -344,6 +344,9 @@
     "strengthFair": "Adil",
     "strengthGood": "İyi",
     "strengthStrong": "Güçlü",
+    "trustedPlatform": "Suudi Arabistan'da binlerce kişinin güvendiği",
+    "platformDesc": "Güvenli • Doğrulanmış Acenteler • En İyi Özellikler",
+    "signInWithGoogle": "Google ile devam et",
     "role": "Hesap Türü",
     "buyer": "Alıcı",
     "agent": "Ajan",
@@ -500,6 +503,17 @@
     "moderationRejected": "Listeleme reddedildi - içerik platform kurallarını ihlal ediyor",
     "contentViolation": "İçerik Politikası İhlali",
     "moderationHint": "Lütfen girişinizin şunları içermediğinden emin olun: spam, açıklamadaki telefon numaraları, uygunsuz içerik veya yanıltıcı bilgi",
+    "vrExperience": "VR ve AR Deneyimi",
+    "vrTitle": "Sürükleyici VR ve AR Mülk Deneyimi",
+    "vrDesc": "Dünyanın her yerinden bu mülkün içine adım atın. 360° sanal tur yapın veya gerçek ölçekli bir 3D modeli doğrudan oturma odanıza yerleştirin.",
+    "vrNoTour": "Temsilci bu liste için henüz 360°/3D tur yüklemedi.",
+    "premium": "prim",
+    "enterVrTour": "VR Turuna Girin",
+    "viewInAr": "AR'de görüntüle",
+    "videoTour": "Video turu",
+    "guestReviews": "Misafir Yorumları",
+    "reviewsCount": "{{count}} yorum",
+    "builtYear": "inşa edilmiş",
     "sale": "Satış",
     "rent": "Kira",
     "propertyTypeLabel": "Tip",
@@ -738,7 +752,17 @@
     "commercial": "Ticari",
     "studio": "Stüdyo",
     "penthouse": "Çatı dairesi",
-    "townhouse": "Müstakil ev"
+    "townhouse": "Müstakil ev",
+    "duplex": "Dubleks",
+    "warehouse": "Depo",
+    "farm": "Çiftlik",
+    "chalet": "Dağ evi",
+    "hotel_apartment": "Otel Apartmanı",
+    "building": "Bina",
+    "room": "Özel Oda",
+    "entire_home": "Tüm Ev",
+    "hotel_room": "Otel Odası",
+    "rest_house": "Dinlenme Evi"
   },
   "profile": {
     "personalInformation": "Kişisel bilgiler",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Bu tesisin sunduğu olanaklara dokunun. Bunları Arama'da filtreler olarak göstereceğiz."
+    },
+    "steps": {
+      "basicInfo": "Temel bilgiler",
+      "location": "Konum",
+      "media": "Medya",
+      "amenities": "Olanaklar",
+      "compliance": "Uyumluluk",
+      "review": "Gözden geçirmek"
     },
     "stepProperty": "Emlak Tipi",
     "stepDetails": "Detaylar",
@@ -1642,7 +1674,9 @@
     "memberSince": "Üyelik Tarihi",
     "contactAgent": "Temsilciyle iletişime geçin",
     "viewProfile": "Profili Görüntüle",
-    "sendMessage": "Mesaj Gönder"
+    "sendMessage": "Mesaj Gönder",
+    "respondsWithin": "{{hours}} saat içinde yanıt verir",
+    "respondsWithinDay": "Bir gün içinde yanıt verir"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Karşılaştırmak için ekle",
-    "remove": "Karşılaştırmadan kaldır"
+    "remove": "Karşılaştırmadan kaldır",
+    "title": "Karşılaştırmak",
+    "compareProperties": "Özellikleri Karşılaştır",
+    "clearAll": "Tümünü temizle",
+    "empty": "Henüz karşılaştırılacak mülk yok",
+    "viewComparison": "Karşılaştırmayı görüntüle",
+    "compareNow": "Şimdi karşılaştır"
   },
   "myListings": {
     "countSelected": "{{count}} seçildi",
@@ -1855,19 +1895,24 @@
     "nov": "Kasım",
     "dec": "Aralık"
   },
-  "saved": {
-    "title": "Kaydedildi",
-    "empty": "Kaydedilmiş mülk yok",
-    "emptyPrompt": "❤️'e dokunarak beğendiğiniz mülkleri kaydedin",
-    "signInPrompt": "Özellikleri kaydetmek için oturum açın",
-    "removeTitle": "Kaldırmak",
-    "removePrompt": "Bu mülk kaydedilenlerden kaldırılsın mı?"
+  "mortgage": {
+    "title": "İpotek Hesaplayıcı",
+    "propertyPrice": "Emlak Fiyatı (SAR)",
+    "downPayment": "Peşinat",
+    "loanTerm": "Kredi Vadesi (Yıl)",
+    "interestRate": "Yıllık Faiz Oranı (%)",
+    "monthlyPayment": "Tahmini Aylık Ödeme",
+    "loanAmount": "Kredi Tutarı",
+    "totalPayment": "Toplam Ödeme",
+    "totalInterest": "Toplam Faiz",
+    "disclaimer": "Bu bir tahmindir. Gerçek bir kredi teklifi için bankanıza danışın.",
+    "perMonth": "SAR/ay"
   },
   "notifications": {
+    "markAllRead": "Tümünü okundu olarak işaretle",
     "title": "Bildirimler",
     "empty": "Bildirim yok",
     "emptyHint": "Uyarılarınız burada görünecek",
-    "markAllRead": "Tümünü okundu olarak işaretle",
     "notification": "Bildiri",
     "pushEnabled": "Anında bildirimler etkinleştirildi",
     "pushDisabled": "Anında bildirimler devre dışı bırakıldı",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Rezervasyon güncellemesi",
     "paymentUpdate": "Ödeme güncellemesi",
     "supportReply": "Destek yanıtı"
+  },
+  "saved": {
+    "title": "Kaydedildi",
+    "empty": "Kaydedilmiş mülk yok",
+    "emptyPrompt": "❤️'e dokunarak beğendiğiniz mülkleri kaydedin",
+    "signInPrompt": "Özellikleri kaydetmek için oturum açın",
+    "removeTitle": "Kaldırmak",
+    "removePrompt": "Bu mülk kaydedilenlerden kaldırılsın mı?"
   },
   "bookings": {
     "title": "Rezervasyonlarım",

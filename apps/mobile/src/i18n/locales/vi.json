@@ -344,6 +344,9 @@
     "strengthFair": "Hội chợ",
     "strengthGood": "Tốt",
     "strengthStrong": "Mạnh",
+    "trustedPlatform": "Được hàng ngàn người trên khắp Ả Rập Saudi tin cậy",
+    "platformDesc": "Bảo mật • Đại lý đã được xác minh • Thuộc tính tốt nhất",
+    "signInWithGoogle": "Tiếp tục với Google",
     "role": "Loại tài khoản",
     "buyer": "Người mua",
     "agent": "Đại lý",
@@ -500,6 +503,17 @@
     "moderationRejected": "Danh sách bị từ chối - nội dung vi phạm nguyên tắc nền tảng",
     "contentViolation": "Vi phạm chính sách nội dung",
     "moderationHint": "Hãy đảm bảo danh sách của bạn không chứa: thư rác, số điện thoại trong mô tả, nội dung không phù hợp hoặc thông tin sai lệch",
+    "vrExperience": "Trải nghiệm VR & AR",
+    "vrTitle": "Trải nghiệm thuộc tính VR & AR phong phú",
+    "vrDesc": "Bước vào bên trong khách sạn này từ bất cứ nơi nào trên thế giới. Thực hiện chuyến tham quan ảo 360° hoặc đặt mô hình 3D có tỷ lệ thật ngay trong phòng khách của bạn.",
+    "vrNoTour": "Đại lý chưa tải lên chuyến tham quan 360°/3D cho danh sách này.",
+    "premium": "Phần thưởng",
+    "enterVrTour": "Tham gia chuyến tham quan VR",
+    "viewInAr": "Xem trong AR",
+    "videoTour": "Chuyến tham quan bằng video",
+    "guestReviews": "Đánh giá của khách",
+    "reviewsCount": "{{count}} bài đánh giá",
+    "builtYear": "Được xây dựng",
     "sale": "Doanh thu",
     "rent": "Thuê",
     "propertyTypeLabel": "Kiểu",
@@ -738,7 +752,17 @@
     "commercial": "Thương mại",
     "studio": "Phòng thu",
     "penthouse": "căn hộ áp mái",
-    "townhouse": "Nhà phố"
+    "townhouse": "Nhà phố",
+    "duplex": "song công",
+    "warehouse": "Kho",
+    "farm": "Nông trại",
+    "chalet": "Nhà gỗ",
+    "hotel_apartment": "Căn hộ khách sạn",
+    "building": "Xây dựng",
+    "room": "Phòng riêng",
+    "entire_home": "Toàn bộ ngôi nhà",
+    "hotel_room": "Phòng khách sạn",
+    "rest_house": "Nhà nghỉ"
   },
   "profile": {
     "personalInformation": "Thông tin cá nhân",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Nhấn vào các tiện nghi nơi lưu trú này cung cấp. Chúng tôi sẽ hiển thị chúng dưới dạng bộ lọc trên Tìm kiếm."
+    },
+    "steps": {
+      "basicInfo": "Thông tin cơ bản",
+      "location": "Vị trí",
+      "media": "Phương tiện truyền thông",
+      "amenities": "Tiện nghi",
+      "compliance": "Sự tuân thủ",
+      "review": "Ôn tập"
     },
     "stepProperty": "Loại tài sản",
     "stepDetails": "Chi tiết",
@@ -1642,7 +1674,9 @@
     "memberSince": "Thành viên kể từ",
     "contactAgent": "Liên hệ đại lý",
     "viewProfile": "Xem hồ sơ",
-    "sendMessage": "Gửi tin nhắn"
+    "sendMessage": "Gửi tin nhắn",
+    "respondsWithin": "Trả lời trong vòng {{hours}} giờ",
+    "respondsWithinDay": "Trả lời trong vòng một ngày"
   },
   "property": {
     "villa": "biệt thự",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Thêm để so sánh",
-    "remove": "Xóa khỏi so sánh"
+    "remove": "Xóa khỏi so sánh",
+    "title": "So sánh",
+    "compareProperties": "So sánh thuộc tính",
+    "clearAll": "Xóa tất cả",
+    "empty": "Chưa có bất động sản nào để so sánh",
+    "viewComparison": "Xem so sánh",
+    "compareNow": "So sánh ngay bây giờ"
   },
   "myListings": {
     "countSelected": "{{đếm}} đã được chọn",
@@ -1855,19 +1895,24 @@
     "nov": "tháng 11",
     "dec": "Tháng mười hai"
   },
-  "saved": {
-    "title": "Đã lưu",
-    "empty": "Không có thuộc tính nào được lưu",
-    "emptyPrompt": "Lưu thuộc tính bạn thích bằng cách nhấn vào ❤️",
-    "signInPrompt": "Đăng nhập để lưu tài sản",
-    "removeTitle": "Di dời",
-    "removePrompt": "Xóa thuộc tính này khỏi đã lưu?"
+  "mortgage": {
+    "title": "Máy tính thế chấp",
+    "propertyPrice": "Giá bất động sản (SAR)",
+    "downPayment": "Trả trước",
+    "loanTerm": "Thời hạn cho vay (Năm)",
+    "interestRate": "Lãi suất hàng năm (%)",
+    "monthlyPayment": "Thanh toán hàng tháng ước tính",
+    "loanAmount": "Số tiền cho vay",
+    "totalPayment": "Tổng số tiền thanh toán",
+    "totalInterest": "Tổng lãi",
+    "disclaimer": "Đây là một ước tính. Hãy tham khảo ý kiến ​​ngân hàng của bạn để biết một đề nghị cho vay thực tế.",
+    "perMonth": "SAR/tháng"
   },
   "notifications": {
+    "markAllRead": "Đánh dấu tất cả là đã đọc",
     "title": "Thông báo",
     "empty": "Không có thông báo",
     "emptyHint": "Thông báo của bạn sẽ xuất hiện ở đây",
-    "markAllRead": "Đánh dấu tất cả là đã đọc",
     "notification": "Thông báo",
     "pushEnabled": "Đã bật thông báo đẩy",
     "pushDisabled": "Đã tắt thông báo đẩy",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Cập nhật đặt chỗ",
     "paymentUpdate": "Cập nhật thanh toán",
     "supportReply": "Hỗ trợ trả lời"
+  },
+  "saved": {
+    "title": "Đã lưu",
+    "empty": "Không có thuộc tính nào được lưu",
+    "emptyPrompt": "Lưu thuộc tính bạn thích bằng cách nhấn vào ❤️",
+    "signInPrompt": "Đăng nhập để lưu tài sản",
+    "removeTitle": "Di dời",
+    "removePrompt": "Xóa thuộc tính này khỏi đã lưu?"
   },
   "bookings": {
     "title": "Đặt chỗ của tôi",

@@ -66,7 +66,7 @@
     "lastWeek": "Sidste uge",
     "today": "I dag",
     "yesterday": "I går",
-    "total": "Total",
+    "total": "I alt",
     "average": "Gennemsnitlig",
     "growth": "Vækst",
     "trend": "Trend"
@@ -344,6 +344,9 @@
     "strengthFair": "Fair",
     "strengthGood": "Godt",
     "strengthStrong": "Stærk",
+    "trustedPlatform": "Betroet af tusinder i hele Saudi-Arabien",
+    "platformDesc": "Sikker • Verificerede agenter • Bedste egenskaber",
+    "signInWithGoogle": "Fortsæt med Google",
     "role": "Kontotype",
     "buyer": "Køber",
     "agent": "Agent",
@@ -500,6 +503,17 @@
     "moderationRejected": "Fortegnelse afvist - indhold overtræder platformens retningslinjer",
     "contentViolation": "Overtrædelse af indholdspolitik",
     "moderationHint": "Sørg for, at din fortegnelse ikke indeholder: spam, telefonnumre i beskrivelsen, upassende indhold eller vildledende oplysninger",
+    "vrExperience": "VR & AR oplevelse",
+    "vrTitle": "Immersive VR & AR Ejendomsoplevelse",
+    "vrDesc": "Træd ind i denne ejendom fra hvor som helst i verden. Tag en 360° virtuel rundvisning eller placer en skala-til-skala 3D-model lige i din stue.",
+    "vrNoTour": "Agenten har endnu ikke uploadet en 360°/3D-tur til denne fortegnelse.",
+    "premium": "Premium",
+    "enterVrTour": "Indtast VR Tour",
+    "viewInAr": "Se i AR",
+    "videoTour": "Videotur",
+    "guestReviews": "Gæsteanmeldelser",
+    "reviewsCount": "{{count}} anmeldelser",
+    "builtYear": "Bygget",
     "sale": "Udsalg",
     "rent": "Leje",
     "propertyTypeLabel": "Indtast",
@@ -738,7 +752,17 @@
     "commercial": "Erhverv",
     "studio": "Etværelses",
     "penthouse": "Penthouse",
-    "townhouse": "Rækkehus"
+    "townhouse": "Rækkehus",
+    "duplex": "Duplex",
+    "warehouse": "Lager",
+    "farm": "Gård",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotellejlighed",
+    "building": "Bygning",
+    "room": "Privat værelse",
+    "entire_home": "Hele hjemmet",
+    "hotel_room": "Hotelværelse",
+    "rest_house": "Hvilehus"
   },
   "profile": {
     "personalInformation": "Personlige oplysninger",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Tryk på de faciliteter, som denne ejendom tilbyder. Vi viser dem som filtre på Søgning."
+    },
+    "steps": {
+      "basicInfo": "Grundlæggende info",
+      "location": "Beliggenhed",
+      "media": "Medier",
+      "amenities": "Faciliteter",
+      "compliance": "Overholdelse",
+      "review": "Gennemgå"
     },
     "stepProperty": "Ejendomstype",
     "stepDetails": "Detaljer",
@@ -1642,7 +1674,9 @@
     "memberSince": "Medlem siden",
     "contactAgent": "Kontakt agent",
     "viewProfile": "Se profil",
-    "sendMessage": "Send besked"
+    "sendMessage": "Send besked",
+    "respondsWithin": "Svarer inden for {{timer}} timer",
+    "respondsWithinDay": "Svarer inden for en dag"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Tilføj for at sammenligne",
-    "remove": "Fjern fra sammenligning"
+    "remove": "Fjern fra sammenligning",
+    "title": "Sammenlign",
+    "compareProperties": "Sammenlign ejendomme",
+    "clearAll": "Ryd alle",
+    "empty": "Ingen ejendomme at sammenligne endnu",
+    "viewComparison": "Se sammenligning",
+    "compareNow": "Sammenlign nu"
   },
   "myListings": {
     "countSelected": "{{count}} valgt",
@@ -1855,19 +1895,24 @@
     "nov": "nov",
     "dec": "dec"
   },
-  "saved": {
-    "title": "Gemt",
-    "empty": "Ingen gemte ejendomme",
-    "emptyPrompt": "Gem egenskaber, du kan lide, ved at trykke på ❤️",
-    "signInPrompt": "Log ind for at gemme ejendomme",
-    "removeTitle": "Fjerne",
-    "removePrompt": "Vil du fjerne denne ejendom fra gemt?"
+  "mortgage": {
+    "title": "Pantberegner",
+    "propertyPrice": "Ejendomspris (SAR)",
+    "downPayment": "Udbetaling",
+    "loanTerm": "Lånetid (år)",
+    "interestRate": "Årlig rente (%)",
+    "monthlyPayment": "Estimeret månedlig betaling",
+    "loanAmount": "Lånebeløb",
+    "totalPayment": "Samlet betaling",
+    "totalInterest": "Samlet rente",
+    "disclaimer": "Dette er et skøn. Kontakt din bank for et egentligt lånetilbud.",
+    "perMonth": "SAR/mo"
   },
   "notifications": {
+    "markAllRead": "Marker alle som læst",
     "title": "Meddelelser",
     "empty": "Ingen meddelelser",
     "emptyHint": "Dine advarsler vises her",
-    "markAllRead": "Marker alle som læst",
     "notification": "Meddelelse",
     "pushEnabled": "Push-meddelelser aktiveret",
     "pushDisabled": "Push-meddelelser deaktiveret",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Bookingopdatering",
     "paymentUpdate": "Betalingsopdatering",
     "supportReply": "Supportsvar"
+  },
+  "saved": {
+    "title": "Gemt",
+    "empty": "Ingen gemte ejendomme",
+    "emptyPrompt": "Gem egenskaber, du kan lide, ved at trykke på ❤️",
+    "signInPrompt": "Log ind for at gemme ejendomme",
+    "removeTitle": "Fjerne",
+    "removePrompt": "Vil du fjerne denne ejendom fra gemt?"
   },
   "bookings": {
     "title": "Mine reservationer",

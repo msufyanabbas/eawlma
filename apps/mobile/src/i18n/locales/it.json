@@ -344,6 +344,9 @@
     "strengthFair": "Fiera",
     "strengthGood": "Buono",
     "strengthStrong": "Forte",
+    "trustedPlatform": "Scelto da migliaia di persone in tutta l'Arabia Saudita",
+    "platformDesc": "Sicuro • Agenti verificati • Migliori proprietà",
+    "signInWithGoogle": "Continua con Google",
     "role": "Tipo di conto",
     "buyer": "Acquirente",
     "agent": "Agente",
@@ -500,6 +503,17 @@
     "moderationRejected": "Annuncio rifiutato - il contenuto viola le linee guida della piattaforma",
     "contentViolation": "Violazione delle norme sui contenuti",
     "moderationHint": "Assicurati che la tua inserzione non contenga: spam, numeri di telefono nella descrizione, contenuti inappropriati o informazioni fuorvianti",
+    "vrExperience": "Esperienza VR e AR",
+    "vrTitle": "Esperienza immersiva in realtà virtuale e realtà aumentata",
+    "vrDesc": "Entra in questa proprietà da qualsiasi parte del mondo. Fai un tour virtuale a 360° o posiziona un modello 3D in scala reale direttamente nel tuo salotto.",
+    "vrNoTour": "L'agente non ha ancora caricato un tour a 360°/3D per questo annuncio.",
+    "premium": "Premium",
+    "enterVrTour": "Partecipa al tour VR",
+    "viewInAr": "Visualizza in AR",
+    "videoTour": "Video tour",
+    "guestReviews": "Recensioni degli ospiti",
+    "reviewsCount": "{{count}} recensioni",
+    "builtYear": "Costruito",
     "sale": "Vendita",
     "rent": "Affitta",
     "propertyTypeLabel": "Digitare",
@@ -738,7 +752,17 @@
     "commercial": "Commerciale",
     "studio": "Monolocale",
     "penthouse": "Attico",
-    "townhouse": "Casa a schiera"
+    "townhouse": "Casa a schiera",
+    "duplex": "Duplex",
+    "warehouse": "Magazzino",
+    "farm": "Fattoria",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotel Appartamento",
+    "building": "Edificio",
+    "room": "Stanza privata",
+    "entire_home": "Intera casa",
+    "hotel_room": "Camera d'albergo",
+    "rest_house": "Casa di Riposo"
   },
   "profile": {
     "personalInformation": "Informazioni personali",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Tocca i servizi offerti da questa struttura. Li mostreremo come filtri nella Ricerca."
+    },
+    "steps": {
+      "basicInfo": "Informazioni di base",
+      "location": "Posizione",
+      "media": "Multimedia",
+      "amenities": "Servizi",
+      "compliance": "Conformità",
+      "review": "Recensione"
     },
     "stepProperty": "Tipo di proprietà",
     "stepDetails": "Dettagli",
@@ -1642,7 +1674,9 @@
     "memberSince": "Membro dal",
     "contactAgent": "Contatta l'agente",
     "viewProfile": "Visualizza profilo",
-    "sendMessage": "Invia messaggio"
+    "sendMessage": "Invia messaggio",
+    "respondsWithin": "Risponde entro {{hours}} ore",
+    "respondsWithinDay": "Risponde entro un giorno"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Aggiungi per confrontare",
-    "remove": "Rimuovi dal confronto"
+    "remove": "Rimuovi dal confronto",
+    "title": "Confronta",
+    "compareProperties": "Confronta proprietà",
+    "clearAll": "Cancella tutto",
+    "empty": "Nessuna proprietà da confrontare ancora",
+    "viewComparison": "Visualizza confronto",
+    "compareNow": "Confronta ora"
   },
   "myListings": {
     "countSelected": "{{count}} selezionato",
@@ -1855,19 +1895,24 @@
     "nov": "Nov",
     "dec": "Dic"
   },
-  "saved": {
-    "title": "Salvato",
-    "empty": "Nessuna proprietà salvata",
-    "emptyPrompt": "Salva le proprietà che ti piacciono toccando ❤️",
-    "signInPrompt": "Accedi per salvare le proprietà",
-    "removeTitle": "Rimuovi",
-    "removePrompt": "Rimuovere questa proprietà da quella salvata?"
+  "mortgage": {
+    "title": "Calcolatore mutuo",
+    "propertyPrice": "Prezzo dell'immobile (SAR)",
+    "downPayment": "Acconto",
+    "loanTerm": "Durata del prestito (anni)",
+    "interestRate": "Tasso di interesse annuo (%)",
+    "monthlyPayment": "Pagamento mensile stimato",
+    "loanAmount": "Importo del prestito",
+    "totalPayment": "Pagamento totale",
+    "totalInterest": "Interesse totale",
+    "disclaimer": "Questa è una stima. Consulta la tua banca per un'offerta di prestito effettiva.",
+    "perMonth": "SAR/mese"
   },
   "notifications": {
+    "markAllRead": "Segna tutto come letto",
     "title": "Notifiche",
     "empty": "Nessuna notifica",
     "emptyHint": "I tuoi avvisi verranno visualizzati qui",
-    "markAllRead": "Segna tutto come letto",
     "notification": "Notifica",
     "pushEnabled": "Notifiche push abilitate",
     "pushDisabled": "Notifiche push disabilitate",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Aggiornamento prenotazione",
     "paymentUpdate": "Aggiornamento pagamenti",
     "supportReply": "Risposta del supporto"
+  },
+  "saved": {
+    "title": "Salvato",
+    "empty": "Nessuna proprietà salvata",
+    "emptyPrompt": "Salva le proprietà che ti piacciono toccando ❤️",
+    "signInPrompt": "Accedi per salvare le proprietà",
+    "removeTitle": "Rimuovi",
+    "removePrompt": "Rimuovere questa proprietà da quella salvata?"
   },
   "bookings": {
     "title": "Le mie prenotazioni",

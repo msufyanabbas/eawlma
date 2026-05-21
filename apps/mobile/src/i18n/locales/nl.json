@@ -344,6 +344,9 @@
     "strengthFair": "Eerlijk",
     "strengthGood": "Goed",
     "strengthStrong": "Sterk",
+    "trustedPlatform": "Vertrouwd door duizenden in heel Saoedi-Arabië",
+    "platformDesc": "Veilig • Geverifieerde agenten • Beste eigenschappen",
+    "signInWithGoogle": "Ga verder met Google",
     "role": "niet oplossen Accounttype",
     "buyer": "Koper",
     "agent": "Tussenpersoon",
@@ -500,6 +503,17 @@
     "moderationRejected": "Vermelding afgewezen - inhoud is in strijd met de platformrichtlijnen",
     "contentViolation": "Schending van het inhoudsbeleid",
     "moderationHint": "Zorg ervoor dat uw vermelding geen spam, telefoonnummers in de beschrijving, ongepaste inhoud of misleidende informatie bevat",
+    "vrExperience": "VR & AR-ervaring",
+    "vrTitle": "Meeslepende VR- en AR-eigendomservaring",
+    "vrDesc": "Stap overal ter wereld dit pand binnen. Volg een virtuele 360°-rondleiding of plaats een 3D-model op ware schaal in uw woonkamer.",
+    "vrNoTour": "De agent heeft nog geen 360°/3D-tour voor deze advertentie geüpload.",
+    "premium": "Premie",
+    "enterVrTour": "Doe mee aan VR-tour",
+    "viewInAr": "Bekijk in AR",
+    "videoTour": "Videotour",
+    "guestReviews": "Gastbeoordelingen",
+    "reviewsCount": "{{count}} beoordelingen",
+    "builtYear": "Gebouwd",
     "sale": "Uitverkoop",
     "rent": "Huur",
     "propertyTypeLabel": "Typ",
@@ -738,7 +752,17 @@
     "commercial": "Commercieel",
     "studio": "Studio",
     "penthouse": "Penthouse",
-    "townhouse": "Rijtjeshuis"
+    "townhouse": "Rijtjeshuis",
+    "duplex": "Dubbelzijdig",
+    "warehouse": "Magazijn",
+    "farm": "Boerderij",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotelappartement",
+    "building": "Gebouw",
+    "room": "Privékamer",
+    "entire_home": "Gehele woning",
+    "hotel_room": "Hotelkamer",
+    "rest_house": "Rusthuis"
   },
   "profile": {
     "personalInformation": "Persoonlijke informatie",
@@ -886,7 +910,7 @@
       "cornerUnit": "Hoekelement"
     },
     "shortTermAmenity": {
-      "wifi": "Wi-Fi",
+      "wifi": "Wifi",
       "pool": "Pool",
       "parking": "Parkeren",
       "breakfast": "Ontbijt",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Maak gebruik van de voorzieningen die deze accommodatie biedt. We laten ze zien als filters op Zoeken."
+    },
+    "steps": {
+      "basicInfo": "Basisinformatie",
+      "location": "Locatie",
+      "media": "Media",
+      "amenities": "Voorzieningen",
+      "compliance": "Naleving",
+      "review": "Bekijk"
     },
     "stepProperty": "Eigendomstype",
     "stepDetails": "Details",
@@ -1642,7 +1674,9 @@
     "memberSince": "Lid sinds",
     "contactAgent": "Neem contact op met agent",
     "viewProfile": "Bekijk profiel",
-    "sendMessage": "Bericht verzenden"
+    "sendMessage": "Bericht verzenden",
+    "respondsWithin": "Reageert binnen {{hours}} uur",
+    "respondsWithinDay": "Reageert binnen een dag"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Optellen om te vergelijken",
-    "remove": "Verwijder uit vergelijking"
+    "remove": "Verwijder uit vergelijking",
+    "title": "Vergelijk",
+    "compareProperties": "Vergelijk eigenschappen",
+    "clearAll": "Alles wissen",
+    "empty": "Nog geen eigendommen om te vergelijken",
+    "viewComparison": "Bekijk vergelijking",
+    "compareNow": "Vergelijk nu"
   },
   "myListings": {
     "countSelected": "{{count}} geselecteerd",
@@ -1855,19 +1895,24 @@
     "nov": "Nov",
     "dec": "december"
   },
-  "saved": {
-    "title": "Opgeslagen",
-    "empty": "Geen opgeslagen eigenschappen",
-    "emptyPrompt": "Bewaar eigenschappen die u leuk vindt door op ❤️",
-    "signInPrompt": "te tikken Meld u aan om eigenschappen op te slaan",
-    "removeTitle": "Verwijder",
-    "removePrompt": "Deze eigenschap verwijderen uit opgeslagen?"
+  "mortgage": {
+    "title": "Hypotheekcalculator",
+    "propertyPrice": "Vastgoedprijs (SAR)",
+    "downPayment": "Aanbetaling",
+    "loanTerm": "Leningtermijn (jaren)",
+    "interestRate": "Jaarlijks rentepercentage (%)",
+    "monthlyPayment": "Geschatte maandelijkse betaling",
+    "loanAmount": "Leningbedrag",
+    "totalPayment": "Totale betaling",
+    "totalInterest": "Totale rente",
+    "disclaimer": "Dit is een schatting. Raadpleeg uw bank voor een actueel leningaanbod.",
+    "perMonth": "SAR/maand"
   },
   "notifications": {
+    "markAllRead": "Markeer alles als gelezen",
     "title": "Meldingen",
     "empty": "Geen meldingen",
     "emptyHint": "Uw waarschuwingen verschijnen hier",
-    "markAllRead": "Markeer alles als gelezen",
     "notification": "Melding",
     "pushEnabled": "Pushmeldingen ingeschakeld",
     "pushDisabled": "Pushmeldingen uitgeschakeld",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Boekingsupdate",
     "paymentUpdate": "Betalingsupdate",
     "supportReply": "Ondersteuning antwoord"
+  },
+  "saved": {
+    "title": "Opgeslagen",
+    "empty": "Geen opgeslagen eigenschappen",
+    "emptyPrompt": "Bewaar eigenschappen die u leuk vindt door op ❤️",
+    "signInPrompt": "te tikken Meld u aan om eigenschappen op te slaan",
+    "removeTitle": "Verwijder",
+    "removePrompt": "Deze eigenschap verwijderen uit opgeslagen?"
   },
   "bookings": {
     "title": "Mijn boekingen",

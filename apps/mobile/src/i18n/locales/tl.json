@@ -344,6 +344,9 @@
     "strengthFair": "Patas",
     "strengthGood": "Maganda",
     "strengthStrong": "Malakas",
+    "trustedPlatform": "Pinagkakatiwalaan ng libu-libo sa buong Saudi Arabia",
+    "platformDesc": "Secure • Mga Na-verify na Ahente • Pinakamahusay na Property",
+    "signInWithGoogle": "Magpatuloy sa Google",
     "role": "Uri ng Account",
     "buyer": "Mamimili",
     "agent": "Ahente",
@@ -500,6 +503,17 @@
     "moderationRejected": "Tinanggihan ang listahan - lumalabag ang nilalaman sa mga alituntunin ng platform",
     "contentViolation": "Paglabag sa Patakaran sa Nilalaman",
     "moderationHint": "Pakitiyak na ang iyong listahan ay hindi naglalaman ng: spam, mga numero ng telepono sa paglalarawan, hindi naaangkop na nilalaman, o mapanlinlang na impormasyon",
+    "vrExperience": "Karanasan sa VR at AR",
+    "vrTitle": "Immersive VR at AR Property Experience",
+    "vrDesc": "Pumasok sa property na ito mula saanman sa mundo. Magsagawa ng 360° virtual tour o maglagay ng true-to-scale 3D model sa mismong sala mo.",
+    "vrNoTour": "Ang ahente ay hindi pa nag-upload ng 360°/3D tour para sa listahang ito.",
+    "premium": "Premium",
+    "enterVrTour": "Ipasok ang VR Tour",
+    "viewInAr": "Tingnan sa AR",
+    "videoTour": "Video tour",
+    "guestReviews": "Mga Review ng Bisita",
+    "reviewsCount": "{{count}} review",
+    "builtYear": "Binuo",
     "sale": "Sale",
     "rent": "Rentahan",
     "propertyTypeLabel": "Uri",
@@ -738,7 +752,17 @@
     "commercial": "Komersyal",
     "studio": "Studio",
     "penthouse": "Penthouse",
-    "townhouse": "Townhouse"
+    "townhouse": "Townhouse",
+    "duplex": "Duplex",
+    "warehouse": "Warehouse",
+    "farm": "Bukid",
+    "chalet": "Chalet",
+    "hotel_apartment": "Apartment ng Hotel",
+    "building": "Gusali",
+    "room": "Pribadong Kwarto",
+    "entire_home": "Buong Bahay",
+    "hotel_room": "Kwarto ng Hotel",
+    "rest_house": "Rest House"
   },
   "profile": {
     "personalInformation": "Personal na impormasyon",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "I-tap ang mga amenity na inaalok ng property na ito. Ipapakita namin ang mga ito bilang mga filter sa Paghahanap."
+    },
+    "steps": {
+      "basicInfo": "Pangunahing impormasyon",
+      "location": "Lokasyon",
+      "media": "Media",
+      "amenities": "Mga Pasilidad",
+      "compliance": "Pagsunod",
+      "review": "Suriin"
     },
     "stepProperty": "Uri ng Ari-arian",
     "stepDetails": "Mga Detalye",
@@ -1642,7 +1674,9 @@
     "memberSince": "Miyembro Simula",
     "contactAgent": "Makipag-ugnayan sa Ahente",
     "viewProfile": "Tingnan ang Profile",
-    "sendMessage": "Magpadala ng Mensahe"
+    "sendMessage": "Magpadala ng Mensahe",
+    "respondsWithin": "Tumutugon sa loob ng {{hours}} na oras",
+    "respondsWithinDay": "Tumutugon sa loob ng isang araw"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Idagdag upang ihambing",
-    "remove": "Alisin sa paghahambing"
+    "remove": "Alisin sa paghahambing",
+    "title": "Ikumpara",
+    "compareProperties": "Paghambingin ang Mga Katangian",
+    "clearAll": "I-clear lahat",
+    "empty": "Wala pang property na maihahambing",
+    "viewComparison": "Tingnan ang paghahambing",
+    "compareNow": "Ikumpara ngayon"
   },
   "myListings": {
     "countSelected": "{{count}} ang napili",
@@ -1855,19 +1895,24 @@
     "nov": "Nob",
     "dec": "Dis"
   },
-  "saved": {
-    "title": "Na-save",
-    "empty": "Walang naka-save na property",
-    "emptyPrompt": "I-save ang mga property na gusto mo sa pamamagitan ng pag-tap sa ❤️",
-    "signInPrompt": "Mag-sign in para i-save ang mga property",
-    "removeTitle": "Alisin",
-    "removePrompt": "Alisin ang property na ito mula sa naka-save?"
+  "mortgage": {
+    "title": "Mortgage Calculator",
+    "propertyPrice": "Presyo ng Ari-arian (SAR)",
+    "downPayment": "Paunang Bayad",
+    "loanTerm": "Term ng Loan (Taon)",
+    "interestRate": "Taunang Rate ng Interes (%)",
+    "monthlyPayment": "Tinantyang Buwanang Pagbabayad",
+    "loanAmount": "Halaga ng Pautang",
+    "totalPayment": "Kabuuang Bayad",
+    "totalInterest": "Kabuuang Interes",
+    "disclaimer": "Ito ay isang pagtatantya. Kumonsulta sa iyong bangko para sa isang aktwal na alok ng pautang.",
+    "perMonth": "SAR/mo"
   },
   "notifications": {
+    "markAllRead": "Markahan ang lahat bilang nabasa na",
     "title": "Mga Notification",
     "empty": "Walang mga notification",
     "emptyHint": "Lalabas dito ang iyong mga alerto",
-    "markAllRead": "Markahan ang lahat bilang nabasa na",
     "notification": "Notification",
     "pushEnabled": "Pinagana ang mga push notification",
     "pushDisabled": "Na-disable ang mga push notification",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Update sa booking",
     "paymentUpdate": "Update sa pagbabayad",
     "supportReply": "Tugon sa suporta"
+  },
+  "saved": {
+    "title": "Na-save",
+    "empty": "Walang naka-save na property",
+    "emptyPrompt": "I-save ang mga property na gusto mo sa pamamagitan ng pag-tap sa ❤️",
+    "signInPrompt": "Mag-sign in para i-save ang mga property",
+    "removeTitle": "Alisin",
+    "removePrompt": "Alisin ang property na ito mula sa naka-save?"
   },
   "bookings": {
     "title": "Aking Mga Booking",

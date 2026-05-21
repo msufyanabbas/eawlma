@@ -344,6 +344,9 @@
     "strengthFair": "ፍትሃዊ",
     "strengthGood": "ጥሩ",
     "strengthStrong": "ጠንካራ",
+    "trustedPlatform": "በመላው ሳውዲ አረቢያ በሺዎች የታመነ",
+    "platformDesc": "ደህንነቱ የተጠበቀ • የተረጋገጡ ወኪሎች • ምርጥ ንብረቶች",
+    "signInWithGoogle": "በGoogle ይቀጥሉ",
     "role": "የመለያ አይነት",
     "buyer": "ገዢ",
     "agent": "ወኪል",
@@ -500,6 +503,17 @@
     "moderationRejected": "ዝርዝር ተቀባይነት አላገኘም - ይዘቱ የመሣሪያ ስርዓት መመሪያዎችን ይጥሳል",
     "contentViolation": "የይዘት ፖሊሲ መጣስ",
     "moderationHint": "እባክዎ ዝርዝርዎ፡ አይፈለጌ መልዕክት፣ ስልክ ቁጥሮች በመግለጫው፣ አግባብ ያልሆነ ይዘት ወይም አሳሳች መረጃ እንዳልያዘ ያረጋግጡ።",
+    "vrExperience": "ቪአር እና የኤአር ልምድ",
+    "vrTitle": "መሳጭ ቪአር እና ኤአር ንብረት ልምድ",
+    "vrDesc": "በዓለም ላይ ከየትኛውም ቦታ ሆነው ወደዚህ ንብረት ይግቡ። የ360° ምናባዊ ጉብኝት ያድርጉ ወይም እውነተኛ-ወደ-ልኬት 3D ሞዴል በትክክል በእርስዎ ሳሎን ውስጥ ያስቀምጡ።",
+    "vrNoTour": "ወኪሉ እስካሁን ለዚህ ዝርዝር የ360°/3D ጉብኝት አልሰቀለም።",
+    "premium": "ፕሪሚየም",
+    "enterVrTour": "ቪአር ጉብኝት አስገባ",
+    "viewInAr": "በ AR ውስጥ ይመልከቱ",
+    "videoTour": "የቪዲዮ ጉብኝት",
+    "guestReviews": "የእንግዳ ግምገማዎች",
+    "reviewsCount": "{{count}} ግምገማዎች",
+    "builtYear": "ተገንብቷል።",
     "sale": "ሽያጭ",
     "rent": "ይከራዩ",
     "propertyTypeLabel": "ዓይነት",
@@ -738,7 +752,17 @@
     "commercial": "ንግድ",
     "studio": "ስቱዲዮ",
     "penthouse": "ፔንትሃውስ",
-    "townhouse": "ታውንሃውስ"
+    "townhouse": "ታውንሃውስ",
+    "duplex": "Duplex",
+    "warehouse": "መጋዘን",
+    "farm": "እርሻ",
+    "chalet": "ቻሌት",
+    "hotel_apartment": "የሆቴል አፓርታማ",
+    "building": "ግንባታ",
+    "room": "የግል ክፍል",
+    "entire_home": "ሙሉ ቤት",
+    "hotel_room": "የሆቴል ክፍል",
+    "rest_house": "ማረፊያ ቤት"
   },
   "profile": {
     "personalInformation": "የግል መረጃ",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "ይህ ንብረት የሚያቀርባቸውን መገልገያዎች ይንኩ። በፍለጋ ላይ እንደ ማጣሪያ እናደርጋቸዋለን።"
+    },
+    "steps": {
+      "basicInfo": "መሰረታዊ መረጃ",
+      "location": "አካባቢ",
+      "media": "ሚዲያ",
+      "amenities": "መገልገያዎች",
+      "compliance": "ተገዢነት",
+      "review": "ግምገማ"
     },
     "stepProperty": "የንብረት አይነት",
     "stepDetails": "ዝርዝሮች",
@@ -1642,7 +1674,9 @@
     "memberSince": "አባል ጀምሮ",
     "contactAgent": "የእውቂያ ወኪል",
     "viewProfile": "መገለጫ ይመልከቱ",
-    "sendMessage": "መልእክት ላክ"
+    "sendMessage": "መልእክት ላክ",
+    "respondsWithin": "በ{{ሰዓታት}} ሰዓቶች ውስጥ ምላሽ ይሰጣል",
+    "respondsWithinDay": "በአንድ ቀን ውስጥ ምላሽ ይሰጣል"
   },
   "property": {
     "villa": "ቪላ",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "ለማነፃፀር ያክሉ",
-    "remove": "ከንፅፅር አስወግድ"
+    "remove": "ከንፅፅር አስወግድ",
+    "title": "አወዳድር",
+    "compareProperties": "ንብረቶችን አወዳድር",
+    "clearAll": "ሁሉንም አጽዳ",
+    "empty": "እስካሁን ምንም የሚነጻጸሩ ንብረቶች የሉም",
+    "viewComparison": "ንጽጽርን ይመልከቱ",
+    "compareNow": "አሁን አወዳድር"
   },
   "myListings": {
     "countSelected": "{{count}} ተመርጧል",
@@ -1843,31 +1883,36 @@
   },
   "months": {
     "jan": "ጃን",
-    "feb": "Feb",
+    "feb": "የካቲት",
     "mar": "ማር",
     "apr": "ኣብ",
     "may": "ግንቦት",
-    "jun": "Jun",
-    "jul": "Jul",
+    "jun": "ሰኔ",
+    "jul": "ጁል",
     "aug": "ነሀሴ",
     "sep": "ሴፕቴፕ",
     "oct": "ኦክቶ",
     "nov": "ህዳር",
     "dec": "ዲሴ"
   },
-  "saved": {
-    "title": "ተቀምጧል",
-    "empty": "ምንም የተቀመጡ ንብረቶች የሉም",
-    "emptyPrompt": "❤️ ን መታ በማድረግ የወደዷቸውን ንብረቶች ያስቀምጡ",
-    "signInPrompt": "ንብረቶችን ለማስቀመጥ ይግቡ",
-    "removeTitle": "አስወግድ",
-    "removePrompt": "ይህ ንብረት ከተቀመጠው ይወገድ?"
+  "mortgage": {
+    "title": "የሞርጌጅ ማስያ",
+    "propertyPrice": "የንብረት ዋጋ (SAR)",
+    "downPayment": "ዝቅተኛ ክፍያ",
+    "loanTerm": "የብድር ጊዜ (ዓመታት)",
+    "interestRate": "ዓመታዊ የወለድ መጠን (%)",
+    "monthlyPayment": "የሚገመተው ወርሃዊ ክፍያ",
+    "loanAmount": "የብድር መጠን",
+    "totalPayment": "ጠቅላላ ክፍያ",
+    "totalInterest": "ጠቅላላ ፍላጎት",
+    "disclaimer": "ይህ ግምት ነው። ለትክክለኛ የብድር አቅርቦት ባንክዎን ያማክሩ።",
+    "perMonth": "SAR/ወር"
   },
   "notifications": {
+    "markAllRead": "ሁሉንም እንደተነበቡ ምልክት ያድርጉበት",
     "title": "ማሳወቂያዎች",
     "empty": "ምንም ማሳወቂያዎች የሉም",
     "emptyHint": "ማንቂያዎችዎ እዚህ ይታያሉ",
-    "markAllRead": "ሁሉንም እንደተነበቡ ምልክት ያድርጉበት",
     "notification": "ማስታወቂያ",
     "pushEnabled": "የግፋ ማሳወቂያዎች ነቅተዋል።",
     "pushDisabled": "የግፋ ማሳወቂያዎች ተሰናክለዋል።",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "የቦታ ማስያዝ ዝማኔ",
     "paymentUpdate": "የክፍያ ዝማኔ",
     "supportReply": "ምላሽ ይደግፉ"
+  },
+  "saved": {
+    "title": "ተቀምጧል",
+    "empty": "ምንም የተቀመጡ ንብረቶች የሉም",
+    "emptyPrompt": "❤️ ን መታ በማድረግ የወደዷቸውን ንብረቶች ያስቀምጡ",
+    "signInPrompt": "ንብረቶችን ለማስቀመጥ ይግቡ",
+    "removeTitle": "አስወግድ",
+    "removePrompt": "ይህ ንብረት ከተቀመጠው ይወገድ?"
   },
   "bookings": {
     "title": "የእኔ ምዝገባዎች",

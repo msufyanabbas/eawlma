@@ -312,7 +312,10 @@
     "strengthWeak": "Svag",
     "strengthFair": "Rättvis",
     "strengthGood": "Bra",
-    "strengthStrong": "Stark"
+    "strengthStrong": "Stark",
+    "trustedPlatform": "Betrodd av tusentals i Saudiarabien",
+    "platformDesc": "Säker • Verifierade agenter • Bästa egenskaper",
+    "signInWithGoogle": "Fortsätt med Google"
   },
   "validation": {
     "required": "Detta fält är obligatoriskt",
@@ -448,7 +451,18 @@
     "expired": "Utgått",
     "moderationRejected": "Listning avvisad - innehåll bryter mot plattformens riktlinjer",
     "contentViolation": "Innehållspolicyöverträdelse",
-    "moderationHint": "Se till att dina uppgifter inte innehåller: spam, telefonnummer i beskrivningen, olämpligt innehåll eller vilseledande information"
+    "moderationHint": "Se till att dina uppgifter inte innehåller: spam, telefonnummer i beskrivningen, olämpligt innehåll eller vilseledande information",
+    "vrExperience": "VR & AR-upplevelse",
+    "vrTitle": "Uppslukande VR- och AR-egendomsupplevelse",
+    "vrDesc": "Gå in i denna fastighet från var som helst i världen. Ta en 360° virtuell rundtur eller placera en skalenlig 3D-modell direkt i ditt vardagsrum.",
+    "vrNoTour": "Agenten har inte laddat upp en 360°/3D-tur för den här annonsen än.",
+    "premium": "Premium",
+    "enterVrTour": "Gå in i VR Tour",
+    "viewInAr": "Visa i AR",
+    "videoTour": "Videoturné",
+    "guestReviews": "Gästrecensioner",
+    "reviewsCount": "{{count}} recensioner",
+    "builtYear": "Byggd"
   },
   "search": {
     "filters": "Filter",
@@ -622,7 +636,17 @@
     "commercial": "Kommersiellt",
     "studio": "Etta",
     "penthouse": "Takvåning",
-    "townhouse": "Radhus"
+    "townhouse": "Radhus",
+    "duplex": "Duplex",
+    "warehouse": "Lager",
+    "farm": "Gård",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotelllägenhet",
+    "building": "Byggnad",
+    "room": "Privat rum",
+    "entire_home": "Hela hemmet",
+    "hotel_room": "Hotellrum",
+    "rest_house": "Rest House"
   },
   "profile": {
     "personalInformation": "Personlig information",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "Tryck på bekvämligheterna som den här fastigheten erbjuder. Vi visar dem som filter på Sök."
+    },
+    "steps": {
+      "basicInfo": "Grundläggande information",
+      "location": "Plats",
+      "media": "Media",
+      "amenities": "Bekvämligheter",
+      "compliance": "Efterlevnad",
+      "review": "Recension"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "Medlem sedan",
     "contactAgent": "Kontakta agent",
     "viewProfile": "Visa profil",
-    "sendMessage": "Skicka meddelande"
+    "sendMessage": "Skicka meddelande",
+    "respondsWithin": "Svarar inom {{timmar}} timmar",
+    "respondsWithinDay": "Svarar inom en dag"
   },
   "property": {
     "villa": "Villa",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "Lägg till för att jämföra",
-    "remove": "Ta bort från jämförelse"
+    "remove": "Ta bort från jämförelse",
+    "title": "Jämför",
+    "compareProperties": "Jämför egenskaper",
+    "clearAll": "Rensa alla",
+    "empty": "Inga egenskaper att jämföra ännu",
+    "viewComparison": "Visa jämförelse",
+    "compareNow": "Jämför nu"
   },
   "myListings": {
     "countSelected": "{{count}} markerade",
@@ -1571,5 +1611,21 @@
     "oct": "okt",
     "nov": "Nov",
     "dec": "Dec"
+  },
+  "mortgage": {
+    "title": "Bolånekalkylator",
+    "propertyPrice": "Fastighetspris (SAR)",
+    "downPayment": "Förskottsbetalning",
+    "loanTerm": "Lånetid (år)",
+    "interestRate": "Årlig räntesats (%)",
+    "monthlyPayment": "Beräknad månatlig betalning",
+    "loanAmount": "Lånebelopp",
+    "totalPayment": "Total betalning",
+    "totalInterest": "Totalt intresse",
+    "disclaimer": "Detta är en uppskattning. Konsultera din bank för ett faktiskt låneerbjudande.",
+    "perMonth": "SAR/mån"
+  },
+  "notifications": {
+    "markAllRead": "Markera alla som lästa"
   }
 }

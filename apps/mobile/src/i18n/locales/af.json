@@ -344,6 +344,9 @@
     "strengthFair": "Regverdig",
     "strengthGood": "Goeie",
     "strengthStrong": "Sterk",
+    "trustedPlatform": "Vertrou deur duisende regoor Saoedi-Arabië",
+    "platformDesc": "Veilig • Geverifieerde Agente • Beste Eiendomme",
+    "signInWithGoogle": "Gaan voort met Google",
     "role": "Rekeningtipe",
     "buyer": "Koper",
     "agent": "Agent",
@@ -500,6 +503,17 @@
     "moderationRejected": "Lys verwerp - inhoud oortree platformriglyne",
     "contentViolation": "Inhoudbeleidskending",
     "moderationHint": "Maak asseblief seker dat jou lysinskrywing nie: strooipos, telefoonnommers in beskrywing, onvanpaste inhoud of misleidende inligting bevat nie",
+    "vrExperience": "VR & AR-ervaring",
+    "vrTitle": "Meeslepende VR- en AR-eiendomservaring",
+    "vrDesc": "Stap binne hierdie eiendom van enige plek in die wêreld. Neem 'n 360° virtuele toer of plaas 'n eg-tot-skaal 3D-model direk in jou sitkamer.",
+    "vrNoTour": "Die agent het nog nie 'n 360°/3D-toer vir hierdie lys opgelaai nie.",
+    "premium": "Premium",
+    "enterVrTour": "Voer VR-toer in",
+    "viewInAr": "Bekyk in AR",
+    "videoTour": "Videotoer",
+    "guestReviews": "Gasresensies",
+    "reviewsCount": "{{count}} resensies",
+    "builtYear": "Gebou",
     "sale": "Verkoop",
     "rent": "Huur",
     "propertyTypeLabel": "Tik",
@@ -738,7 +752,17 @@
     "commercial": "Kommersieel",
     "studio": "Ateljee",
     "penthouse": "Dakwoonstel",
-    "townhouse": "Meenthuis"
+    "townhouse": "Meenthuis",
+    "duplex": "Dupleks",
+    "warehouse": "Pakhuis",
+    "farm": "Plaas",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotelwoonstel",
+    "building": "Gebou",
+    "room": "Privaat Kamer",
+    "entire_home": "Hele huis",
+    "hotel_room": "Hotelkamer",
+    "rest_house": "Rushuis"
   },
   "profile": {
     "personalInformation": "Persoonlike inligting",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Tik op die geriewe wat hierdie eiendom bied. Ons sal hulle as filters op Search na vore bring."
+    },
+    "steps": {
+      "basicInfo": "Basiese inligting",
+      "location": "Ligging",
+      "media": "Media",
+      "amenities": "Geriewe",
+      "compliance": "Voldoening",
+      "review": "Hersien"
     },
     "stepProperty": "Eiendom Tipe",
     "stepDetails": "Besonderhede",
@@ -1642,7 +1674,9 @@
     "memberSince": "Lid sedert",
     "contactAgent": "Kontak Agent",
     "viewProfile": "Bekyk profiel",
-    "sendMessage": "Stuur Boodskap"
+    "sendMessage": "Stuur Boodskap",
+    "respondsWithin": "Reageer binne {{ure}} uur",
+    "respondsWithinDay": "Reageer binne 'n dag"
   },
   "property": {
     "villa": "Villa",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Voeg by om te vergelyk",
-    "remove": "Verwyder uit vergelyking"
+    "remove": "Verwyder uit vergelyking",
+    "title": "Vergelyk",
+    "compareProperties": "Vergelyk Eienskappe",
+    "clearAll": "Vee alles uit",
+    "empty": "Nog geen eiendomme om te vergelyk nie",
+    "viewComparison": "Bekyk vergelyking",
+    "compareNow": "Vergelyk nou"
   },
   "myListings": {
     "countSelected": "{{count}} gekies",
@@ -1855,19 +1895,24 @@
     "nov": "Nov",
     "dec": "Des"
   },
-  "saved": {
-    "title": "Gestoor",
-    "empty": "Geen gestoorde eiendomme",
-    "emptyPrompt": "Stoor eiendomme waarvan jy hou deur op ❤️",
-    "signInPrompt": "te tik Meld aan om eiendomme te stoor",
-    "removeTitle": "Verwyder",
-    "removePrompt": "Verwyder hierdie eiendom van gestoor?"
+  "mortgage": {
+    "title": "Verbandsakrekenaar",
+    "propertyPrice": "Eiendomsprys (SAR)",
+    "downPayment": "Afbetaling",
+    "loanTerm": "Leningstermyn (Jare)",
+    "interestRate": "Jaarlikse rentekoers (%)",
+    "monthlyPayment": "Geskatte maandelikse betaling",
+    "loanAmount": "Leningsbedrag",
+    "totalPayment": "Totale betaling",
+    "totalInterest": "Totale rente",
+    "disclaimer": "Dit is 'n skatting. Raadpleeg jou bank vir 'n werklike leningaanbod.",
+    "perMonth": "SAR/ma"
   },
   "notifications": {
+    "markAllRead": "Merk alles as gelees",
     "title": "Kennisgewings",
     "empty": "Geen kennisgewings",
     "emptyHint": "Jou waarskuwings sal hier verskyn",
-    "markAllRead": "Merk alles as gelees",
     "notification": "Kennisgewing",
     "pushEnabled": "Stootkennisgewings geaktiveer",
     "pushDisabled": "Stootkennisgewings gedeaktiveer",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Besprekingsopdatering",
     "paymentUpdate": "Betalingopdatering",
     "supportReply": "Ondersteuningsantwoord"
+  },
+  "saved": {
+    "title": "Gestoor",
+    "empty": "Geen gestoorde eiendomme",
+    "emptyPrompt": "Stoor eiendomme waarvan jy hou deur op ❤️",
+    "signInPrompt": "te tik Meld aan om eiendomme te stoor",
+    "removeTitle": "Verwyder",
+    "removePrompt": "Verwyder hierdie eiendom van gestoor?"
   },
   "bookings": {
     "title": "My besprekings",

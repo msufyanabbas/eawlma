@@ -344,6 +344,9 @@
     "strengthFair": "Târg",
     "strengthGood": "Bun",
     "strengthStrong": "Puternic",
+    "trustedPlatform": "Mii de oameni au încredere în toată Arabia Saudită",
+    "platformDesc": "Securizat • Agenți verificați • Cele mai bune proprietăți",
+    "signInWithGoogle": "Continuați cu Google",
     "role": "Tip de cont",
     "buyer": "Cumpărător",
     "agent": "Agent",
@@ -500,6 +503,17 @@
     "moderationRejected": "Listare respinsă - conținutul încalcă regulile platformei",
     "contentViolation": "Încălcarea politicii de conținut",
     "moderationHint": "Asigurați-vă că înregistrarea dvs. nu conține: spam, numere de telefon în descriere, conținut neadecvat sau informații înșelătoare",
+    "vrExperience": "Experiență VR și AR",
+    "vrTitle": "Experiență imersivă de proprietate VR și AR",
+    "vrDesc": "Intră în această proprietate de oriunde din lume. Faceți un tur virtual la 360° sau plasați un model 3D la scară reală chiar în camera dvs. de zi.",
+    "vrNoTour": "Agentul nu a încărcat încă un tur 360°/3D pentru această înregistrare.",
+    "premium": "Premium",
+    "enterVrTour": "Intră în Turul VR",
+    "viewInAr": "Vizualizare în AR",
+    "videoTour": "Tur video",
+    "guestReviews": "Comentarii oaspeți",
+    "reviewsCount": "{{count}} recenzii",
+    "builtYear": "Construit",
     "sale": "Vanzare",
     "rent": "Închiriere",
     "propertyTypeLabel": "Tip",
@@ -738,7 +752,17 @@
     "commercial": "Comercial",
     "studio": "Garsonieră",
     "penthouse": "Penthouse",
-    "townhouse": "Casă cuplată"
+    "townhouse": "Casă cuplată",
+    "duplex": "Duplex",
+    "warehouse": "Depozit",
+    "farm": "Ferma",
+    "chalet": "Cabana",
+    "hotel_apartment": "Apartament hotel",
+    "building": "Clădire",
+    "room": "Cameră privată",
+    "entire_home": "Întreaga casă",
+    "hotel_room": "Cameră de hotel",
+    "rest_house": "Casa de odihnă"
   },
   "profile": {
     "personalInformation": "Informații personale",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Atingeți facilitățile oferite de această proprietate. Le vom prezenta ca filtre în Căutare."
+    },
+    "steps": {
+      "basicInfo": "Informații de bază",
+      "location": "Locație",
+      "media": "Media",
+      "amenities": "Facilități",
+      "compliance": "Conformitate",
+      "review": "Recenzie"
     },
     "stepProperty": "Tip de proprietate",
     "stepDetails": "Detalii",
@@ -1642,7 +1674,9 @@
     "memberSince": "Membru din",
     "contactAgent": "Contactați agentul",
     "viewProfile": "Vezi profilul",
-    "sendMessage": "Trimite mesaj"
+    "sendMessage": "Trimite mesaj",
+    "respondsWithin": "Răspunde în {{hours}} ore",
+    "respondsWithinDay": "Răspunde într-o zi"
   },
   "property": {
     "villa": "Vila",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Adăugați pentru a compara",
-    "remove": "Eliminați din comparație"
+    "remove": "Eliminați din comparație",
+    "title": "Compara",
+    "compareProperties": "Comparați proprietăți",
+    "clearAll": "Ștergeți tot",
+    "empty": "Nicio proprietate de comparat încă",
+    "viewComparison": "Vezi comparația",
+    "compareNow": "Compara acum"
   },
   "myListings": {
     "countSelected": "{{count}} selectat",
@@ -1855,19 +1895,24 @@
     "nov": "Nov",
     "dec": "Dec"
   },
-  "saved": {
-    "title": "Salvat",
-    "empty": "Nicio proprietate salvată",
-    "emptyPrompt": "Salvați proprietățile care vă plac atingând ❤️",
-    "signInPrompt": "Conectați-vă pentru a salva proprietăți",
-    "removeTitle": "Eliminați",
-    "removePrompt": "Eliminați această proprietate din salvate?"
+  "mortgage": {
+    "title": "Calculator ipotecar",
+    "propertyPrice": "Prețul proprietății (SAR)",
+    "downPayment": "Avans",
+    "loanTerm": "Termenul împrumutului (ani)",
+    "interestRate": "Rata anuală a dobânzii (%)",
+    "monthlyPayment": "Plată lunară estimată",
+    "loanAmount": "Suma împrumutului",
+    "totalPayment": "Plată totală",
+    "totalInterest": "Dobândă totală",
+    "disclaimer": "Aceasta este o estimare. Consultați-vă banca pentru o ofertă reală de împrumut.",
+    "perMonth": "SAR/lună"
   },
   "notifications": {
+    "markAllRead": "Marcați toate ca citite",
     "title": "Notificări",
     "empty": "Fără notificări",
     "emptyHint": "Alertele dvs. vor apărea aici",
-    "markAllRead": "Marcați totul ca citit",
     "notification": "Notificare",
     "pushEnabled": "Notificări push activate",
     "pushDisabled": "Notificările push au fost dezactivate",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Actualizare rezervare",
     "paymentUpdate": "Actualizare de plată",
     "supportReply": "Răspuns de asistență"
+  },
+  "saved": {
+    "title": "Salvat",
+    "empty": "Nicio proprietate salvată",
+    "emptyPrompt": "Salvați proprietățile care vă plac atingând ❤️",
+    "signInPrompt": "Conectați-vă pentru a salva proprietăți",
+    "removeTitle": "Eliminați",
+    "removePrompt": "Eliminați această proprietate din salvate?"
   },
   "bookings": {
     "title": "Rezervările mele",

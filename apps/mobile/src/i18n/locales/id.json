@@ -344,6 +344,9 @@
     "strengthFair": "Adil",
     "strengthGood": "Bagus",
     "strengthStrong": "Kuat",
+    "trustedPlatform": "Dipercaya oleh ribuan orang di Arab Saudi",
+    "platformDesc": "Aman • Agen Terverifikasi • Properti Terbaik",
+    "signInWithGoogle": "Lanjutkan dengan Google",
     "role": "Jenis Akun",
     "buyer": "Pembeli",
     "agent": "Agen",
@@ -500,6 +503,17 @@
     "moderationRejected": "Daftar ditolak - konten melanggar pedoman platform",
     "contentViolation": "Pelanggaran Kebijakan Konten",
     "moderationHint": "Harap pastikan listing Anda tidak berisi: spam, nomor telepon dalam deskripsi, konten tidak pantas, atau informasi menyesatkan",
+    "vrExperience": "Pengalaman VR & AR",
+    "vrTitle": "Pengalaman Properti VR & AR yang Imersif",
+    "vrDesc": "Masuklah ke dalam properti ini dari mana saja di dunia. Ikuti tur virtual 360° atau tempatkan model 3D berskala nyata tepat di ruang tamu Anda.",
+    "vrNoTour": "Agen belum mengunggah tur 360°/3D untuk listingan ini.",
+    "premium": "Premi",
+    "enterVrTour": "Masuki Tur VR",
+    "viewInAr": "Lihat di AR",
+    "videoTour": "Tur video",
+    "guestReviews": "Ulasan Tamu",
+    "reviewsCount": "{{hitungan}} ulasan",
+    "builtYear": "Dibuat",
     "sale": "Penjualan",
     "rent": "Menyewa",
     "propertyTypeLabel": "Jenis",
@@ -738,7 +752,17 @@
     "commercial": "Komersial",
     "studio": "Studio",
     "penthouse": "penthouse",
-    "townhouse": "rumah kota"
+    "townhouse": "rumah kota",
+    "duplex": "Rangkap",
+    "warehouse": "Gudang",
+    "farm": "Peternakan",
+    "chalet": "pondok",
+    "hotel_apartment": "Apartemen Hotel",
+    "building": "Bangunan",
+    "room": "Kamar Pribadi",
+    "entire_home": "Seluruh Rumah",
+    "hotel_room": "Kamar Hotel",
+    "rest_house": "Rumah Peristirahatan"
   },
   "profile": {
     "personalInformation": "Informasi pribadi",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "Ketuk fasilitas yang ditawarkan properti ini. Kami akan menampilkannya sebagai filter di Penelusuran."
+    },
+    "steps": {
+      "basicInfo": "Informasi dasar",
+      "location": "Lokasi",
+      "media": "Media",
+      "amenities": "Fasilitas",
+      "compliance": "Kepatuhan",
+      "review": "Tinjauan"
     },
     "stepProperty": "Tipe Properti",
     "stepDetails": "Detail",
@@ -1642,7 +1674,9 @@
     "memberSince": "Anggota Sejak",
     "contactAgent": "Hubungi Agen",
     "viewProfile": "Lihat Profil",
-    "sendMessage": "Kirim Pesan"
+    "sendMessage": "Kirim Pesan",
+    "respondsWithin": "Merespon dalam waktu {{hours}} jam",
+    "respondsWithinDay": "Merespon dalam satu hari"
   },
   "property": {
     "villa": "Vila",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "Tambahkan untuk membandingkan",
-    "remove": "Hapus dari perbandingan"
+    "remove": "Hapus dari perbandingan",
+    "title": "Membandingkan",
+    "compareProperties": "Bandingkan Properti",
+    "clearAll": "Hapus semuanya",
+    "empty": "Belum ada properti untuk dibandingkan",
+    "viewComparison": "Lihat perbandingan",
+    "compareNow": "Bandingkan sekarang"
   },
   "myListings": {
     "countSelected": "{{hitungan}} dipilih",
@@ -1855,19 +1895,24 @@
     "nov": "November",
     "dec": "Desember"
   },
-  "saved": {
-    "title": "Disimpan",
-    "empty": "Tidak ada properti yang disimpan",
-    "emptyPrompt": "Simpan properti yang Anda suka dengan mengetuk ❤️",
-    "signInPrompt": "Masuk untuk menyimpan properti",
-    "removeTitle": "Menghapus",
-    "removePrompt": "Hapus properti ini dari penyimpanan?"
+  "mortgage": {
+    "title": "Kalkulator Hipotek",
+    "propertyPrice": "Harga Properti (SAR)",
+    "downPayment": "Uang Muka",
+    "loanTerm": "Jangka Waktu Pinjaman (Tahun)",
+    "interestRate": "Suku Bunga Tahunan (%)",
+    "monthlyPayment": "Perkiraan Pembayaran Bulanan",
+    "loanAmount": "Jumlah Pinjaman",
+    "totalPayment": "Jumlah Pembayaran",
+    "totalInterest": "Jumlah Bunga",
+    "disclaimer": "Ini adalah perkiraan. Konsultasikan dengan bank Anda untuk tawaran pinjaman yang sebenarnya.",
+    "perMonth": "SAR/bln"
   },
   "notifications": {
+    "markAllRead": "Tandai semua sebagai telah dibaca",
     "title": "Pemberitahuan",
     "empty": "Tidak ada pemberitahuan",
     "emptyHint": "Peringatan Anda akan muncul di sini",
-    "markAllRead": "Tandai semua sebagai telah dibaca",
     "notification": "Pemberitahuan",
     "pushEnabled": "Pemberitahuan push diaktifkan",
     "pushDisabled": "Notifikasi push dinonaktifkan",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "Pembaruan pemesanan",
     "paymentUpdate": "Pembaruan pembayaran",
     "supportReply": "Balasan dukungan"
+  },
+  "saved": {
+    "title": "Disimpan",
+    "empty": "Tidak ada properti yang disimpan",
+    "emptyPrompt": "Simpan properti yang Anda suka dengan mengetuk ❤️",
+    "signInPrompt": "Masuk untuk menyimpan properti",
+    "removeTitle": "Menghapus",
+    "removePrompt": "Hapus properti ini dari penyimpanan?"
   },
   "bookings": {
     "title": "Pemesanan Saya",

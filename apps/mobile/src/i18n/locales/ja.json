@@ -344,6 +344,9 @@
     "strengthFair": "公平",
     "strengthGood": "良い",
     "strengthStrong": "強い",
+    "trustedPlatform": "サウジアラビア全土で何千もの人々から信頼されています",
+    "platformDesc": "安全 • 検証済みエージェント • 最良のプロパティ",
+    "signInWithGoogle": "Google を続ける",
     "role": "アカウントの種類",
     "buyer": "買い手",
     "agent": "エージェント",
@@ -500,6 +503,17 @@
     "moderationRejected": "リスティングが拒否されました - コンテンツがプラットフォームのガイドラインに違反しています",
     "contentViolation": "コンテンツポリシー違反",
     "moderationHint": "リスティングにスパム、説明内の電話番号、不適切なコンテンツ、誤解を招く情報が含まれていないことを確認してください。",
+    "vrExperience": "VR＆AR体験",
+    "vrTitle": "没入型 VR & AR 不動産体験",
+    "vrDesc": "世界中のどこからでもこの施設に足を踏み入れることができます。 360° バーチャル ツアーに参加したり、実際のスケールの 3D モデルをリビング ルームに配置したりできます。",
+    "vrNoTour": "エージェントはこのリスティングの 360°/3D ツアーをまだアップロードしていません。",
+    "premium": "プレミアム",
+    "enterVrTour": "VR ツアーに参加する",
+    "viewInAr": "ARで見る",
+    "videoTour": "ビデオツアー",
+    "guestReviews": "ゲストレビュー",
+    "reviewsCount": "{{count}} 件のレビュー",
+    "builtYear": "建てられた",
     "sale": "販売",
     "rent": "家賃",
     "propertyTypeLabel": "タイプ",
@@ -738,7 +752,17 @@
     "commercial": "商業用",
     "studio": "ワンルーム",
     "penthouse": "ペントハウス",
-    "townhouse": "タウンハウス"
+    "townhouse": "タウンハウス",
+    "duplex": "デュプレックス",
+    "warehouse": "倉庫",
+    "farm": "農場",
+    "chalet": "シャレー",
+    "hotel_apartment": "ホテルアパートメント",
+    "building": "建物",
+    "room": "個室",
+    "entire_home": "家全体",
+    "hotel_room": "ホテルの部屋",
+    "rest_house": "レストハウス"
   },
   "profile": {
     "personalInformation": "個人情報",
@@ -937,6 +961,14 @@
     },
     "amenitiesStep": {
       "hint": "この施設が提供するアメニティをタップします。それらは検索上のフィルターとして表示されます。"
+    },
+    "steps": {
+      "basicInfo": "基本情報",
+      "location": "位置",
+      "media": "メディア",
+      "amenities": "アメニティ",
+      "compliance": "コンプライアンス",
+      "review": "レビュー"
     },
     "stepProperty": "プロパティの種類",
     "stepDetails": "詳細",
@@ -1642,7 +1674,9 @@
     "memberSince": "メンバー歴",
     "contactAgent": "エージェントに連絡する",
     "viewProfile": "プロフィールを見る",
-    "sendMessage": "メッセージを送信する"
+    "sendMessage": "メッセージを送信する",
+    "respondsWithin": "{{hour}} 時間以内に応答します",
+    "respondsWithinDay": "1日以内に返信します"
   },
   "property": {
     "villa": "ヴィラ",
@@ -1678,7 +1712,13 @@
   },
   "compare": {
     "add": "比較に追加",
-    "remove": "比較から削除"
+    "remove": "比較から削除",
+    "title": "比較する",
+    "compareProperties": "プロパティの比較",
+    "clearAll": "すべてクリア",
+    "empty": "比較するプロパティはまだありません",
+    "viewComparison": "比較を見る",
+    "compareNow": "今すぐ比較してください"
   },
   "myListings": {
     "countSelected": "{{count}} 個が選択されました",
@@ -1855,19 +1895,24 @@
     "nov": "11月",
     "dec": "12月"
   },
-  "saved": {
-    "title": "保存されました",
-    "empty": "保存されたプロパティはありません",
-    "emptyPrompt": "気に入った物件をタップして保存してください❤️",
-    "signInPrompt": "サインインしてプロパティを保存する",
-    "removeTitle": "取り除く",
-    "removePrompt": "このプロパティを保存済みから削除しますか?"
+  "mortgage": {
+    "title": "住宅ローン計算機",
+    "propertyPrice": "不動産価格 (SAR)",
+    "downPayment": "頭金",
+    "loanTerm": "融資期間 (年)",
+    "interestRate": "年利(%)",
+    "monthlyPayment": "月々のお支払い額の目安",
+    "loanAmount": "融資額",
+    "totalPayment": "お支払い総額",
+    "totalInterest": "総利息",
+    "disclaimer": "これは見積もりです。実際のローンの提案については、銀行にお問い合わせください。",
+    "perMonth": "SAR/月"
   },
   "notifications": {
+    "markAllRead": "すべて既読としてマークする",
     "title": "通知",
     "empty": "通知はありません",
     "emptyHint": "アラートがここに表示されます",
-    "markAllRead": "すべて既読としてマークする",
     "notification": "通知",
     "pushEnabled": "プッシュ通知が有効になっています",
     "pushDisabled": "プッシュ通知が無効になっています",
@@ -1881,6 +1926,14 @@
     "bookingUpdate": "予約の更新",
     "paymentUpdate": "支払いの更新",
     "supportReply": "サポート返信"
+  },
+  "saved": {
+    "title": "保存されました",
+    "empty": "保存されたプロパティはありません",
+    "emptyPrompt": "気に入った物件をタップして保存してください❤️",
+    "signInPrompt": "サインインしてプロパティを保存する",
+    "removeTitle": "取り除く",
+    "removePrompt": "このプロパティを保存済みから削除しますか?"
   },
   "bookings": {
     "title": "私の予約",
