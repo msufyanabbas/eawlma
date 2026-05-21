@@ -10,7 +10,7 @@ const GTX_URL = 'https://translate.googleapis.com/translate_a/single';
 const REQUEST_TIMEOUT_MS = 3000;
 const CACHE_MAX = 1000;
 const MAX_TEXT_BYTES = 5000; // Google's per-request soft limit on the gtx endpoint
-const BEDROCK_MODEL_ID = 'anthropic.claude-3-haiku-20240307-v1:0';
+const BEDROCK_MODEL_ID = 'anthropic.claude-3-5-haiku-20241022-v1:0';
 
 interface CacheEntry {
   value: string;

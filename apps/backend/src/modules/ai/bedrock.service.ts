@@ -38,7 +38,7 @@ export interface ChatResult {
 export class BedrockService implements OnModuleInit {
   private readonly logger = new Logger(BedrockService.name);
   private client: BedrockRuntimeClient | null = null;
-  private model = 'anthropic.claude-3-haiku-20240307-v1:0';
+  private model = 'anthropic.claude-3-5-haiku-20241022-v1:0';
   private maxTokensDefault = 2000;
 
   constructor(private readonly config: ConfigService) {}
