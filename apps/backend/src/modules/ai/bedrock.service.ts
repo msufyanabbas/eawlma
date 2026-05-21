@@ -26,7 +26,7 @@ export interface ChatResult {
 }
 
 /**
- * Wraps Amazon Bedrock (Anthropic Claude) with:
+ * Wraps Amazon Bedrock (Amazon Nova) with:
  *   - exponential backoff retry on transient errors (429, 5xx, throttling)
  *   - a deterministic dev-stub mode when AWS credentials are empty so the
  *     translation pipeline + endpoints can be smoke-tested without burning
@@ -38,7 +38,7 @@ export interface ChatResult {
 export class BedrockService implements OnModuleInit {
   private readonly logger = new Logger(BedrockService.name);
   private client: BedrockRuntimeClient | null = null;
-  private model = 'anthropic.claude-3-5-haiku-20241022-v1:0';
+  private model = 'us.amazon.nova-lite-v1:0';
   private maxTokensDefault = 2000;
 
   constructor(private readonly config: ConfigService) {}
@@ -76,8 +76,8 @@ export class BedrockService implements OnModuleInit {
   async chat(req: ChatRequest): Promise<ChatResult> {
     if (!this.client) return { text: this.stub(req), live: false };
 
-    // Bedrock's Anthropic models have no native JSON-response mode, so we
-    // append the constraint to the system prompt instead.
+    // Amazon Nova has no native JSON-response mode, so we append the
+    // constraint to the system prompt instead.
     const systemPrompt = req.jsonMode
       ? `${req.systemPrompt}\n\nRespond with ONLY a single valid JSON object — no markdown fences, no preamble, no commentary.`
       : req.systemPrompt;
@@ -92,25 +92,28 @@ export class BedrockService implements OnModuleInit {
           contentType: 'application/json',
           accept: 'application/json',
           body: JSON.stringify({
-            anthropic_version: 'bedrock-2023-05-31',
-            max_tokens: req.maxTokens ?? this.maxTokensDefault,
-            temperature: req.temperature ?? 0.4,
-            system: systemPrompt,
-            messages: [{ role: 'user', content: req.userPrompt }],
+            system: [{ text: systemPrompt }],
+            messages: [
+              { role: 'user', content: [{ text: req.userPrompt }] },
+            ],
+            inferenceConfig: {
+              max_new_tokens: req.maxTokens ?? this.maxTokensDefault,
+              temperature: req.temperature ?? 0.7,
+            },
           }),
         });
         const response = await this.client.send(command);
         const body = JSON.parse(new TextDecoder().decode(response.body)) as {
-          content?: Array<{ text?: string }>;
-          usage?: { input_tokens?: number; output_tokens?: number };
+          output?: { message?: { content?: Array<{ text?: string }> } };
+          usage?: { inputTokens?: number; outputTokens?: number };
         };
-        const text = body.content?.[0]?.text?.trim() ?? '';
+        const text = body.output?.message?.content?.[0]?.text?.trim() ?? '';
         const usage = body.usage;
         return {
           text,
           live: true,
           tokensUsed: usage
-            ? (usage.input_tokens ?? 0) + (usage.output_tokens ?? 0)
+            ? (usage.inputTokens ?? 0) + (usage.outputTokens ?? 0)
             : undefined,
         };
       } catch (err: unknown) {

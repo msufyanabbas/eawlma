@@ -10,7 +10,7 @@ const GTX_URL = 'https://translate.googleapis.com/translate_a/single';
 const REQUEST_TIMEOUT_MS = 3000;
 const CACHE_MAX = 1000;
 const MAX_TEXT_BYTES = 5000; // Google's per-request soft limit on the gtx endpoint
-const BEDROCK_MODEL_ID = 'anthropic.claude-3-5-haiku-20241022-v1:0';
+const BEDROCK_MODEL_ID = 'us.amazon.nova-micro-v1:0';
 
 interface CacheEntry {
   value: string;
@@ -26,8 +26,8 @@ const LANG_NAMES: Record<string, string> = {
 
 /**
  * Dynamic-content translation. The primary backend is **Amazon Bedrock**
- * (Claude 3 Haiku) — it produces noticeably better real-estate copy than the
- * old unofficial Google `gtx` endpoint, especially Arabic ⇄ English.
+ * (Amazon Nova Micro) — it produces noticeably better real-estate copy than
+ * the old unofficial Google `gtx` endpoint, especially Arabic ⇄ English.
  *
  * Google Translate is kept purely as a fallback: if Bedrock is unconfigured
  * or errors, `translate()` quietly degrades to the `gtx` client so a missing
@@ -144,7 +144,7 @@ export class TranslationService {
 
   // ---------- backends ----------
 
-  /** Translate via Amazon Bedrock (Claude 3 Haiku). */
+  /** Translate via Amazon Bedrock (Amazon Nova Micro). */
   private async translateWithBedrock(text: string, toLang: string): Promise<string> {
     if (!this.bedrock) throw new Error('Bedrock not configured');
 
@@ -167,15 +167,14 @@ Translation:`;
       contentType: 'application/json',
       accept: 'application/json',
       body: JSON.stringify({
-        anthropic_version: 'bedrock-2023-05-31',
-        max_tokens: 1024,
-        messages: [{ role: 'user', content: prompt }],
+        messages: [{ role: 'user', content: [{ text: prompt }] }],
+        inferenceConfig: { max_new_tokens: 1024, temperature: 0.7 },
       }),
     });
 
     const response = await this.bedrock.send(command);
     const responseBody = JSON.parse(new TextDecoder().decode(response.body));
-    const out = responseBody?.content?.[0]?.text;
+    const out = responseBody?.output?.message?.content?.[0]?.text;
     if (typeof out !== 'string' || !out.trim()) {
       throw new Error('empty Bedrock response');
     }

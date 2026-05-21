@@ -18,7 +18,7 @@ export const servicesConfig = registerAs('services', () => ({
   },
   bedrock: {
     region: process.env.AWS_BEDROCK_REGION ?? process.env.AWS_REGION ?? 'us-east-1',
-    model: process.env.BEDROCK_MODEL ?? 'anthropic.claude-3-5-haiku-20241022-v1:0',
+    model: process.env.BEDROCK_MODEL ?? 'us.amazon.nova-lite-v1:0',
     maxTokens: parseInt(process.env.BEDROCK_MAX_TOKENS ?? '2000', 10),
   },
   authentica: {

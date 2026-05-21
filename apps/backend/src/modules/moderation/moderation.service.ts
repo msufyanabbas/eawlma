@@ -5,7 +5,7 @@ import {
   InvokeModelCommand,
 } from '@aws-sdk/client-bedrock-runtime';
 
-const BEDROCK_MODEL_ID = 'anthropic.claude-3-5-haiku-20241022-v1:0';
+const BEDROCK_MODEL_ID = 'us.amazon.nova-lite-v1:0';
 
 export type ModerationCategory =
   | 'clean'
@@ -26,7 +26,7 @@ export interface ModerationResult {
 
 /**
  * AI content moderation for user-generated content (listings, messages,
- * reviews). Sends the content to Amazon Bedrock (Claude 3 Haiku) with a
+ * reviews). Sends the content to Amazon Bedrock (Amazon Nova Lite) with a
  * Saudi-real-estate-specific rubric and parses back a structured verdict.
  *
  * Fail-open by design: if Bedrock is unconfigured or errors, content is
@@ -140,15 +140,15 @@ Score guide: 0-20=clean, 21-50=minor issues, 51-80=review needed, 81-100=reject`
         contentType: 'application/json',
         accept: 'application/json',
         body: JSON.stringify({
-          anthropic_version: 'bedrock-2023-05-31',
-          max_tokens: 512,
-          messages: [{ role: 'user', content: prompt }],
+          messages: [{ role: 'user', content: [{ text: prompt }] }],
+          inferenceConfig: { max_new_tokens: 512, temperature: 0.7 },
         }),
       });
 
       const response = await this.bedrock.send(command);
       const responseBody = JSON.parse(new TextDecoder().decode(response.body));
-      const resultText: string = responseBody?.content?.[0]?.text?.trim() ?? '';
+      const resultText: string =
+        responseBody?.output?.message?.content?.[0]?.text?.trim() ?? '';
 
       const result = this.parseResult(resultText);
       this.logger.debug(
