@@ -16,10 +16,10 @@ export const servicesConfig = registerAs('services', () => ({
     presignExpiresSeconds: parseInt(process.env.S3_PRESIGN_EXPIRES_SECONDS ?? '900', 10),
     cloudfrontUrl: process.env.CLOUDFRONT_URL ?? '',
   },
-  openai: {
-    apiKey: process.env.OPENAI_API_KEY ?? '',
-    model: process.env.OPENAI_MODEL ?? 'gpt-4o',
-    maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS ?? '2000', 10),
+  bedrock: {
+    region: process.env.AWS_BEDROCK_REGION ?? process.env.AWS_REGION ?? 'us-east-1',
+    model: process.env.BEDROCK_MODEL ?? 'anthropic.claude-3-haiku-20240307-v1:0',
+    maxTokens: parseInt(process.env.BEDROCK_MAX_TOKENS ?? '2000', 10),
   },
   authentica: {
     apiKey: process.env.AUTHENTICA_API_KEY ?? '',

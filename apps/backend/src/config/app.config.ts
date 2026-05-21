@@ -57,8 +57,8 @@ export const configValidationSchema = Joi.object({
   SES_FROM_EMAIL: Joi.string().email().optional(),
   SES_REPLY_TO: Joi.string().email().optional(),
 
-  OPENAI_API_KEY: Joi.string().allow('').optional(),
-  OPENAI_MODEL: Joi.string().default('gpt-4o'),
+  AWS_BEDROCK_REGION: Joi.string().optional(),
+  BEDROCK_MODEL: Joi.string().optional(),
 
   AUTHENTICA_API_KEY: Joi.string().allow('').optional(),
   AUTHENTICA_BASE_URL: Joi.string().uri().optional(),

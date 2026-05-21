@@ -69,6 +69,6 @@ export class TranslateListingDto {
 
 export class EnhanceDescriptionResponseDto {
   @ApiProperty() enhanced: string;
-  @ApiProperty({ description: 'True when produced by live OpenAI API; false for stub' })
+  @ApiProperty({ description: 'True when produced by live AI (Amazon Bedrock); false for stub' })
   live: boolean;
 }
