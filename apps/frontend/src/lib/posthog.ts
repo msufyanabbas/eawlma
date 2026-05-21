@@ -14,11 +14,11 @@ export function initPostHog() {
   if (!key) return;
 
   posthog.init(key, {
-    api_host: import.meta.env.VITE_POSTHOG_HOST || 'https://app.posthog.com',
-    capture_pageview: false,
-    loaded: (ph) => {
-      // Don't pollute the production project with local-dev traffic.
-      if (import.meta.env.DEV) ph.opt_out_capturing();
+    api_host: import.meta.env.VITE_POSTHOG_HOST || 'https://eu.i.posthog.com',
+    capture_pageview: true,
+    loaded: (_ph) => {
+      // Opted in for all environments (including local dev).
+      console.log('[PostHog] Loaded and capturing');
     },
   });
 }
