@@ -1,11 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import axios from 'axios';
 import { ListingStatus } from '@eawlma/shared-types';
 
 import { ListingEntity } from '../listings/entities/listing.entity';
+import { BedrockService } from './bedrock.service';
 
 export type Confidence = 'high' | 'medium' | 'low';
 
@@ -32,7 +31,7 @@ export interface PriceSuggestionResult {
 }
 
 /** Fallback SAR-per-m² grid keyed by city, then property type. Used when the
- *  DB has < 3 comparable rows or the Anthropic key isn't configured. Values
+ *  DB has < 3 comparable rows or Bedrock isn't configured. Values
  *  are coarse mid-2026 reference points sourced from public REGA-style averages. */
 const FALLBACK_PER_SQM: Record<string, Record<string, number>> = {
   Riyadh: { villa: 8000, apartment: 5500, townhouse: 6500, land: 3000 },
@@ -43,21 +42,15 @@ const FALLBACK_PER_SQM: Record<string, Record<string, number>> = {
 @Injectable()
 export class AIPricingService {
   private readonly logger = new Logger(AIPricingService.name);
-  private readonly anthropicKey: string;
 
   constructor(
-    private readonly config: ConfigService,
+    private readonly bedrockService: BedrockService,
     @InjectRepository(ListingEntity)
     private readonly listings: Repository<ListingEntity>,
-  ) {
-    this.anthropicKey =
-      this.config.get<string>('services.anthropic.apiKey') ??
-      process.env.ANTHROPIC_API_KEY ??
-      '';
-  }
+  ) {}
 
   private isConfigured(): boolean {
-    return Boolean(this.anthropicKey);
+    return this.bedrockService.isConfigured();
   }
 
   async suggestPrice(params: SuggestPriceInput): Promise<PriceSuggestionResult> {
@@ -118,10 +111,9 @@ export class AIPricingService {
       };
     }
 
-    // AI-enhanced suggestion via Anthropic Messages API.
+    // AI-enhanced suggestion via Bedrock (Anthropic Claude).
     try {
-      const prompt =
-        `You are a Saudi real estate pricing expert.\n\n` +
+      const userPrompt =
         `Property to price:\n` +
         `- City: ${params.city}\n` +
         `- Type: ${params.propertyType}\n` +
@@ -143,27 +135,19 @@ export class AIPricingService {
         `  "reasoning": "<2-3 sentences in English explaining the price>"\n` +
         `}`;
 
-      const response = await axios.post<{
-        content: Array<{ type: string; text: string }>;
-      }>(
-        'https://api.anthropic.com/v1/messages',
-        {
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 400,
-          messages: [{ role: 'user', content: prompt }],
-        },
-        {
-          headers: {
-            'x-api-key': this.anthropicKey,
-            'anthropic-version': '2023-06-01',
-            'content-type': 'application/json',
-          },
-          timeout: 20_000,
-        },
-      );
+      const result = await this.bedrockService.chat({
+        purpose: 'suggest-price',
+        systemPrompt: 'You are a Saudi real estate pricing expert.',
+        userPrompt,
+        jsonMode: true,
+        maxTokens: 400,
+      });
 
-      const text = response.data.content[0]?.text?.trim() ?? '';
-      const ai = JSON.parse(text) as Partial<PriceSuggestionResult>;
+      // chat() returns a non-JSON stub (live: false) when Bedrock is
+      // unreachable — drop to the market-math fallback in that case.
+      if (!result.live) throw new Error('Bedrock unavailable — stub response');
+
+      const ai = JSON.parse(result.text) as Partial<PriceSuggestionResult>;
       return {
         suggestedMin: Number(ai.suggestedMin ?? Math.round(basePrice * 0.9)),
         suggestedMax: Number(ai.suggestedMax ?? Math.round(basePrice * 1.1)),
