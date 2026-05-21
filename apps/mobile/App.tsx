@@ -16,6 +16,7 @@ import {
   Tajawal_700Bold,
   Tajawal_800ExtraBold,
 } from '@expo-google-fonts/tajawal';
+import { NotoNastaliqUrdu_400Regular } from '@expo-google-fonts/noto-nastaliq-urdu';
 import { QueryClientProvider, useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryClient } from './src/api/queryClient';
 import { StatusBar } from 'expo-status-bar';
@@ -184,13 +185,24 @@ async function applyFreshUserPrefs(freshUser: any): Promise<void> {
   }
 }
 
+/**
+ * Picks the default text face for a language. Urdu reads best in a Nastaliq
+ * script face; every other language (Arabic, English, …) keeps the existing
+ * Tajawal default untouched.
+ */
+function getFontFamily(lang: string): string {
+  if (lang === 'ur') return 'NotoNastaliqUrdu_400Regular';
+  return 'Tajawal_400Regular';
+}
+
 function setDefaultFont() {
+  const lang = useUIStore.getState().language;
   // @ts-expect-error defaultProps is a runtime field on Text
   const existing = RNText.defaultProps || {};
   // @ts-expect-error see above
   RNText.defaultProps = {
     ...existing,
-    style: [{ fontFamily: 'Tajawal_400Regular' }, existing.style],
+    style: [{ fontFamily: getFontFamily(lang) }, existing.style],
   };
 }
 
@@ -204,6 +216,7 @@ export default function App() {
     Tajawal_500Medium,
     Tajawal_700Bold,
     Tajawal_800ExtraBold,
+    NotoNastaliqUrdu_400Regular,
   });
 
   useEffect(() => {

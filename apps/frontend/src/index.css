@@ -52,16 +52,24 @@ html[data-theme='dark'] body {
   letter-spacing: 0;
 }
 
-/* Urdu — only the typeface differs from Arabic; sizing and rhythm match.
- * Noto Nastaliq Urdu has a larger ink area per em than Tajawal/Inter, so
- * it visually appears bigger at the same CSS font-size. Scale it down ~12%
- * relative to the parent (em, not rem) so it sits at the same optical size
- * everywhere it's used without shifting the layout. */
-[lang='ur'],
-.lang-ur,
-html[lang='ur'] body {
-  font-family: 'Gulzar', 'Noto Nastaliq Urdu', serif;
-  font-size: 0.95em;
+/* Urdu font fix - Nastaliq style. Scoped strictly to lang="ur"; Arabic,
+ * English and every other language are untouched. */
+:lang(ur),
+[lang="ur"],
+[lang="ur"] * {
+  font-family: "Noto Nastaliq Urdu", serif !important;
+  line-height: 2.2 !important;
+}
+
+/* Fix button overflow for Urdu — Nastaliq's tall line-box needs more room. */
+[lang="ur"] button,
+[lang="ur"] .MuiButton-root,
+[lang="ur"] .MuiChip-root {
+  min-height: 44px !important;
+  height: auto !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  white-space: normal !important;
 }
 
 /* Consistent heading sizing */
