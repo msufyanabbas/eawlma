@@ -55,7 +55,7 @@ interface AuditPage {
 export function AdminDashboardPage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
-  const { translateLabel, formatTooltipValue, reverseForRTL, formatNumber } =
+  const { translateLabel, formatTooltipValue, formatNumber } =
     useChartTranslations();
 
   // Live KPIs from the dedicated /admin/stats endpoint.
@@ -176,7 +176,7 @@ export function AdminDashboardPage() {
             <Box sx={{ mt: 2 }}>
               <RTLChart height={280}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={reverseForRTL(dailyListingCreates)}>
+                  <LineChart data={dailyListingCreates}>
                     <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"
@@ -219,7 +219,7 @@ export function AdminDashboardPage() {
             <Box sx={{ mt: 2 }}>
               <RTLChart height={280}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={reverseForRTL(dailyInquiryCreates)}>
+                  <BarChart data={dailyInquiryCreates}>
                     <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"

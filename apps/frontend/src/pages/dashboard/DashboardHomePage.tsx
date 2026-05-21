@@ -246,7 +246,7 @@ export function DashboardHomePage() {
             <Box sx={{ mt: 2 }}>
               <RTLChart height={280}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={reverseForRTL(lineData)}>
+                  <LineChart data={lineData}>
                     <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
                     <XAxis
                       dataKey="date"
