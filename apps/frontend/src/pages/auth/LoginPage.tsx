@@ -34,6 +34,7 @@ import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
 import { useUiStore } from '@/store/ui.store';
 import { GA } from '@/utils/analytics';
+import { posthog } from '@/lib/posthog';
 import { AuthLanguageSwitcher } from '@/components/auth/AuthLanguageSwitcher';
 
 type LoginMode = 'otp' | 'password';
@@ -84,6 +85,7 @@ export function LoginPage() {
       await i18n.changeLanguage(savedLang);
     }
     GA.login(method);
+    posthog.capture('user_logged_in', { method });
     void navigate({ to: '/' });
   };
 

@@ -62,6 +62,7 @@ import { getListingTitle, getListingDescription, getListingLocation } from '@/ut
 import { trackListingView } from '@/utils/recentlyViewed';
 import { whatsappListingUrl } from '@/utils/whatsapp';
 import { GA } from '@/utils/analytics';
+import { posthog } from '@/lib/posthog';
 import { formatHijriAndGregorian } from '@/utils/hijri';
 import { EjarContractDialog } from '@/components/global/EjarContractDialog';
 import { BookingCalendar } from '@/components/global/BookingCalendar';
@@ -171,6 +172,18 @@ export function ListingDetailPage() {
     if (listing) GA.viewListing(listing.id, listing.title, Number(listing.price ?? 0));
   }, [listing]);
 
+  // PostHog: fire `listing_viewed` once per listing load.
+  useEffect(() => {
+    if (!listing) return;
+    posthog.capture('listing_viewed', {
+      listingId: listing.id,
+      propertyType: listing.propertyType,
+      city: listing.city,
+      price: Number(listing.price ?? 0),
+      transactionType: listing.type,
+    });
+  }, [listing]);
+
   const similarQuery = useQuery({
     queryKey: ['search', 'similar', listing?.city, listing?.propertyType],
     queryFn: () =>
@@ -229,6 +242,7 @@ export function ListingDetailPage() {
     onSuccess: () => {
       setInqSuccess(true);
       setInqMessage('');
+      posthog.capture('inquiry_sent', { listingId: id, agentId: listing?.ownerId });
       // Celebrate the lead 🎉 — fires a brief confetti burst from both edges
       // of the viewport, then a centered burst, then resolves itself.
       const fire = (originX: number) =>

@@ -25,6 +25,7 @@ import { authApi } from '@/api/auth.api';
 import { extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
 import { GA } from '@/utils/analytics';
+import { posthog } from '@/lib/posthog';
 import { AuthLanguageSwitcher } from '@/components/auth/AuthLanguageSwitcher';
 
 const RTL_LANGS = ['ar', 'ur', 'fa', 'he'];
@@ -118,6 +119,7 @@ export function RegisterPage() {
       sessionStorage.removeItem('eawlma.prefillEmail');
       setSession(data.user, data.tokens);
       GA.register(role);
+      posthog.capture('user_registered', { role });
       void navigate({ to: '/' });
     } catch (e) {
       setError(extractErrorMessage(e) || t('auth.registerFailed', 'Registration failed'));

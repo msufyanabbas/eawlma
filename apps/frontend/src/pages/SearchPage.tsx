@@ -52,6 +52,7 @@ import {
 } from '@eawlma/shared-types';
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
 import { GA } from '@/utils/analytics';
+import { posthog } from '@/lib/posthog';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
@@ -284,6 +285,13 @@ export function SearchPage() {
     if (lastSearchKeyRef.current === key) return;
     lastSearchKeyRef.current = key;
     GA.search(key, total);
+    posthog.capture('search_performed', {
+      city: debouncedFilters.city || undefined,
+      propertyType: debouncedFilters.propertyTypes.length > 0 ? debouncedFilters.propertyTypes : undefined,
+      priceMin: debouncedFilters.priceRange[0] > PRICE_BOUNDS[0] ? debouncedFilters.priceRange[0] : undefined,
+      priceMax: debouncedFilters.priceRange[1] < PRICE_BOUNDS[1] ? debouncedFilters.priceRange[1] : undefined,
+      resultCount: total,
+    });
   }, [queryKey, total, infiniteQuery.data]);
 
   // Infinite scroll: when the sentinel intersects the viewport, fetch next.

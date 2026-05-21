@@ -11,8 +11,10 @@ import { EawlmaThemeProvider } from './theme/ThemeProvider';
 import { queryClient } from './api/queryClient';
 import { router } from './router';
 import { initGA } from './utils/analytics';
+import { initPostHog } from './lib/posthog';
 
 initGA();
+initPostHog();
 
 const rootEl = document.getElementById('root');
 if (!rootEl) {

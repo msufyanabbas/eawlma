@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from '@tanstack/react-router';
 
 import { trackPageView } from '@/utils/analytics';
+import { posthog } from '@/lib/posthog';
 
 /** Fires a GA4 `page_view` on every route change. Mounted once at the router
  *  root so we don't need to remember to add it per-page. */
@@ -37,6 +38,7 @@ export function PageviewTracker(): null {
       try {
         const path = location?.pathname ?? '/';
         trackPageView(path + searchToString(location?.search), document.title);
+        posthog.capture('$pageview');
       } catch {
         // analytics failures are never fatal
       }
