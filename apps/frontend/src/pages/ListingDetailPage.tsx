@@ -68,6 +68,7 @@ import { EjarContractDialog } from '@/components/global/EjarContractDialog';
 import { BookingCalendar } from '@/components/global/BookingCalendar';
 import { priceTrendsApi } from '@/api/priceTrends.api';
 import { Line, LineChart, ResponsiveContainer, Tooltip as RechartsTooltip } from 'recharts';
+import ReactPannellum from 'react-pannellum';
 
 // ------------------------------------------------------------------
 // Price-fairness helper
@@ -648,26 +649,23 @@ export function ListingDetailPage() {
                 </Button>
               </Stack>
 
-              {/* model-viewer or fallback message */}
+              {/* Pannellum 360° panorama viewer — driven by the listing's
+               *  TOUR_360 media row. Falls back to a message when absent. */}
               <Box sx={{ mt: 3, position: 'relative' }}>
                 {tour360?.url ? (
-                  <Box
-                    sx={{
-                      borderRadius: 3,
-                      overflow: 'hidden',
-                      bgcolor: 'common.black',
-                      aspectRatio: '16 / 9',
-                    }}
-                  >
-                    <model-viewer
-                      src={tour360.url}
-                      alt={localized.title}
-                      ar
-                      ar-modes="webxr scene-viewer quick-look"
-                      auto-rotate
-                      camera-controls
-                      shadow-intensity="1"
-                      style={{ width: '100%', height: '100%', backgroundColor: '#000' }}
+                  <Box sx={{ width: '100%', height: 400, borderRadius: 2, overflow: 'hidden' }}>
+                    <ReactPannellum
+                      key={tour360.url}
+                      id="vr-tour"
+                      sceneId="firstScene"
+                      imageSource={tour360.url}
+                      config={{
+                        autoRotate: -2,
+                        compass: true,
+                        showFullscreenCtrl: true,
+                        showZoomCtrl: true,
+                      }}
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </Box>
                 ) : (
