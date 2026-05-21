@@ -142,7 +142,15 @@ export function RegisterPage() {
   ];
 
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', direction: isRTL ? 'rtl' : 'ltr' }}>
+    <Box
+      sx={{
+        height: '100vh',
+        maxHeight: '100vh',
+        overflow: 'hidden',
+        display: 'flex',
+        direction: isRTL ? 'rtl' : 'ltr',
+      }}
+    >
       <Helmet>
         <title>{`${t('auth.register')} — ${t('app.name')}`}</title>
       </Helmet>
@@ -269,13 +277,14 @@ export function RegisterPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'hidden',
           bgcolor: 'background.default',
-          p: { xs: 3, md: 6 },
+          p: { xs: 1.5, md: 3 },
         }}
       >
         <Box sx={{ width: '100%', maxWidth: 460 }}>
           <AuthLanguageSwitcher />
-          <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3, textAlign: 'center' }}>
+          <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 1.5, textAlign: 'center' }}>
             <Typography variant="h3" fontWeight={900} color="primary">
               عولمة
             </Typography>
@@ -284,27 +293,28 @@ export function RegisterPage() {
           <Typography variant="h4" fontWeight={800} gutterBottom>
             {t('auth.createAccount', 'Create your account')} ✨
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 2 }}>
+          <Typography color="text.secondary" sx={{ mb: 1 }}>
             {t('auth.registerSubtitle', 'Join thousands of users on Eawlma')}
           </Typography>
 
           <LinearProgress
             variant="determinate"
             value={progress}
-            sx={{ mb: 3, height: 6, borderRadius: 3 }}
+            sx={{ mb: 1.5, height: 6, borderRadius: 3 }}
           />
 
           {error && (
-            <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>
+            <Alert severity="error" sx={{ mb: 1.5 }} onClose={() => setError('')}>
               {error}
             </Alert>
           )}
 
-          <Stack spacing={2}>
-            <Grid container spacing={2}>
+          <Stack spacing={1.5}>
+            <Grid container spacing={1.5}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
+                  size="small"
                   label={t('auth.firstName', 'First Name')}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
@@ -315,6 +325,7 @@ export function RegisterPage() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
+                  size="small"
                   label={t('auth.lastName', 'Last Name')}
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
@@ -326,6 +337,7 @@ export function RegisterPage() {
 
             <TextField
               fullWidth
+              size="small"
               label={t('auth.email', 'Email')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -342,6 +354,7 @@ export function RegisterPage() {
 
             <TextField
               fullWidth
+              size="small"
               label={t('auth.phone', 'Phone Number')}
               value={phone}
               onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 9))}
@@ -356,6 +369,7 @@ export function RegisterPage() {
             <Box>
               <TextField
                 fullWidth
+                size="small"
                 label={t('auth.password', 'Password')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -393,6 +407,7 @@ export function RegisterPage() {
 
             <TextField
               fullWidth
+              size="small"
               label={t('auth.confirmPassword', 'Confirm Password')}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -415,10 +430,10 @@ export function RegisterPage() {
             />
 
             <Box>
-              <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 1 }}>
+              <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 0.5 }}>
                 {t('auth.iAmA', 'I am a')}
               </Typography>
-              <Stack direction="row" spacing={2}>
+              <Stack direction="row" spacing={1.5}>
                 {roles.map((r) => {
                   const selected = role === r.value;
                   return (
@@ -430,7 +445,7 @@ export function RegisterPage() {
                       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setRole(r.value)}
                       sx={{
                         flex: 1,
-                        p: 2,
+                        p: 1,
                         border: 2,
                         borderRadius: 3,
                         cursor: 'pointer',
@@ -441,7 +456,7 @@ export function RegisterPage() {
                         '&:hover': { borderColor: 'primary.main', transform: 'translateY(-2px)' },
                       }}
                     >
-                      <Typography fontSize={32}>{r.icon}</Typography>
+                      <Typography fontSize={24}>{r.icon}</Typography>
                       <Typography fontWeight={700}>{r.label}</Typography>
                       <Typography variant="caption" color="text.secondary">
                         {r.desc}
@@ -467,13 +482,13 @@ export function RegisterPage() {
               size="large"
               onClick={() => void handleRegister()}
               disabled={loading}
-              sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
+              sx={{ py: 1, borderRadius: 3, fontWeight: 800 }}
             >
               {loading ? <CircularProgress size={24} /> : t('auth.signUp', 'Create Account')}
             </Button>
           </Stack>
 
-          <Typography align="center" color="text.secondary" sx={{ mt: 3 }}>
+          <Typography align="center" color="text.secondary" sx={{ mt: 1.5 }}>
             {t('auth.hasAccount', 'Already have an account?')}{' '}
             <Link to="/auth/login" style={{ color: '#6C63A6', fontWeight: 700 }}>
               {t('auth.signIn', 'Sign In')}

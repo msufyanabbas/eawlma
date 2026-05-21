@@ -312,7 +312,10 @@
     "strengthWeak": "Slab",
     "strengthFair": "Târg",
     "strengthGood": "Bun",
-    "strengthStrong": "Puternic"
+    "strengthStrong": "Puternic",
+    "trustedPlatform": "Mii de oameni au încredere în toată Arabia Saudită",
+    "platformDesc": "Securizat • Agenți verificați • Cele mai bune proprietăți",
+    "signInWithGoogle": "Continuați cu Google"
   },
   "validation": {
     "required": "Acest câmp este obligatoriu",

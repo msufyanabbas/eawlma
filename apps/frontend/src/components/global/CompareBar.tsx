@@ -3,6 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import { useQueries } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { listingsApi } from '@/api/listings.api';
 import { useCompareStore } from '@/store/compare.store';
 import { listingCoverUrl } from '@/utils/listingImages';
@@ -10,6 +11,7 @@ import { listingCoverUrl } from '@/utils/listingImages';
 /** Sticky bottom bar surfaced once 2+ listings are in the compare set.
  *  Renders thumbnails + a CTA into the dedicated /compare page. */
 export function CompareBar() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const navigate = useNavigate();
   const ids = useCompareStore((s) => s.ids);
@@ -50,7 +52,7 @@ export function CompareBar() {
         sx={{ maxWidth: 1440, mx: 'auto' }}
       >
         <Typography sx={{ fontWeight: 700, color: 'primary.dark', whiteSpace: 'nowrap' }}>
-          Comparing {ids.length} listings
+          {t('compare.compareProperties')} ({ids.length})
         </Typography>
 
         <Stack direction="row" spacing={1} sx={{ flex: 1, overflowX: 'auto', minWidth: 0 }}>
@@ -97,7 +99,7 @@ export function CompareBar() {
 
         <Stack direction="row" spacing={1.25}>
           <Button onClick={clear} size="small" color="inherit">
-            Clear
+            {t('compare.clearAll')}
           </Button>
           <Button
             onClick={() => void navigate({ to: '/compare' as never })}
@@ -105,7 +107,7 @@ export function CompareBar() {
             variant="contained"
             sx={{ background: theme.eawlma.gradient, fontWeight: 700, whiteSpace: 'nowrap' }}
           >
-            Compare now
+            {t('compare.compareNow')}
           </Button>
         </Stack>
       </Stack>

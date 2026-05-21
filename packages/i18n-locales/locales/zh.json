@@ -312,7 +312,10 @@
     "strengthWeak": "虚弱的",
     "strengthFair": "公平的",
     "strengthGood": "好的",
-    "strengthStrong": "强的"
+    "strengthStrong": "强的",
+    "trustedPlatform": "受到沙特阿拉伯各地数千人的信赖",
+    "platformDesc": "安全 • 经过验证的代理 • 最佳属性",
+    "signInWithGoogle": "继续使用谷歌"
   },
   "validation": {
     "required": "此字段为必填",
@@ -448,7 +451,18 @@
     "expired": "已到期",
     "moderationRejected": "列表被拒绝 - 内容违反平台准则",
     "contentViolation": "违反内容政策",
-    "moderationHint": "请确保您的列表不包含：垃圾邮件、描述中的电话号码、不当内容或误导性信息"
+    "moderationHint": "请确保您的列表不包含：垃圾邮件、描述中的电话号码、不当内容或误导性信息",
+    "vrExperience": "VR&AR体验",
+    "vrTitle": "沉浸式 VR & AR 房产体验",
+    "vrDesc": "从世界任何地方步入这处房产。进行 360° 虚拟游览或将真实比例的 3D 模型放置在您的客厅中。",
+    "vrNoTour": "代理商尚未为此列表上传 360°/3D 游览。",
+    "premium": "优质的",
+    "enterVrTour": "进入VR之旅",
+    "viewInAr": "在 AR 中查看",
+    "videoTour": "视频导览",
+    "guestReviews": "宾客评论",
+    "reviewsCount": "{{count}} 条评论",
+    "builtYear": "建成"
   },
   "search": {
     "filters": "筛选",
@@ -622,7 +636,17 @@
     "commercial": "商铺",
     "studio": "单间公寓",
     "penthouse": "顶层公寓",
-    "townhouse": "联排别墅"
+    "townhouse": "联排别墅",
+    "duplex": "复式",
+    "warehouse": "仓库",
+    "farm": "农场",
+    "chalet": "小木屋",
+    "hotel_apartment": "酒店公寓",
+    "building": "建筑",
+    "room": "私人房间",
+    "entire_home": "整套房子",
+    "hotel_room": "酒店房间",
+    "rest_house": "休息所"
   },
   "profile": {
     "personalInformation": "个人信息",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "点击该酒店提供的设施。我们会将它们作为搜索过滤器显示。"
+    },
+    "steps": {
+      "basicInfo": "基本信息",
+      "location": "地点",
+      "media": "媒体",
+      "amenities": "便利设施",
+      "compliance": "遵守",
+      "review": "审查"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "会员自",
     "contactAgent": "联系代理",
     "viewProfile": "查看资料",
-    "sendMessage": "发送消息"
+    "sendMessage": "发送消息",
+    "respondsWithin": "在 {{hours}} 小时内回复",
+    "respondsWithinDay": "一天内回复"
   },
   "property": {
     "villa": "别墅",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "添加比较",
-    "remove": "从比较中删除"
+    "remove": "从比较中删除",
+    "title": "比较",
+    "compareProperties": "比较属性",
+    "clearAll": "全部清除",
+    "empty": "尚无可比较的属性",
+    "viewComparison": "查看比较",
+    "compareNow": "立即比较"
   },
   "myListings": {
     "countSelected": "已选择 {{count}} 个",
@@ -1571,5 +1611,21 @@
     "oct": "十月",
     "nov": "十一月",
     "dec": "十二月"
+  },
+  "mortgage": {
+    "title": "抵押计算器",
+    "propertyPrice": "物业价格（SAR）",
+    "downPayment": "首付",
+    "loanTerm": "贷款期限（年）",
+    "interestRate": "年利率（%）",
+    "monthlyPayment": "预计每月付款",
+    "loanAmount": "贷款金额",
+    "totalPayment": "付款总额",
+    "totalInterest": "总利息",
+    "disclaimer": "这是一个估计。请咨询您的银行以获取实际的贷款报价。",
+    "perMonth": "SAR/月"
+  },
+  "notifications": {
+    "markAllRead": "全部标记为已读"
   }
 }

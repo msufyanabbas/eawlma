@@ -312,7 +312,10 @@
     "strengthWeak": "Słaby",
     "strengthFair": "Sprawiedliwy",
     "strengthGood": "Dobry",
-    "strengthStrong": "Mocny"
+    "strengthStrong": "Mocny",
+    "trustedPlatform": "Zaufały nam tysiące w całej Arabii Saudyjskiej",
+    "platformDesc": "Bezpieczne • Sprawdzeni agenci • Najlepsze właściwości",
+    "signInWithGoogle": "Kontynuuj z Google"
   },
   "validation": {
     "required": "To pole jest wymagane",
@@ -448,7 +451,18 @@
     "expired": "Wygasły",
     "moderationRejected": "Ogłoszenie odrzucone – treść narusza wytyczne platformy",
     "contentViolation": "Naruszenie zasad treści",
-    "moderationHint": "Upewnij się, że Twój wpis nie zawiera: spamu, numerów telefonów w opisie, nieodpowiednich treści lub wprowadzających w błąd informacji"
+    "moderationHint": "Upewnij się, że Twój wpis nie zawiera: spamu, numerów telefonów w opisie, nieodpowiednich treści lub wprowadzających w błąd informacji",
+    "vrExperience": "Doświadczenie VR i AR",
+    "vrTitle": "Wciągające doświadczenie związane z nieruchomościami VR i AR",
+    "vrDesc": "Wejdź do tej nieruchomości z dowolnego miejsca na świecie. Wybierz się na wirtualny spacer 360° lub umieść model 3D w rzeczywistej skali bezpośrednio w swoim salonie.",
+    "vrNoTour": "Agent nie przesłał jeszcze wycieczki 360°/3D dla tej oferty.",
+    "premium": "Premia",
+    "enterVrTour": "Wejdź na wycieczkę VR",
+    "viewInAr": "Zobacz w AR",
+    "videoTour": "Wycieczka wideo",
+    "guestReviews": "Recenzje gości",
+    "reviewsCount": "{{count}} recenzji",
+    "builtYear": "Wybudowany"
   },
   "search": {
     "filters": "Filtry",
@@ -622,7 +636,17 @@
     "commercial": "Komercyjna",
     "studio": "Kawalerka",
     "penthouse": "Daszek",
-    "townhouse": "Dom szeregowy"
+    "townhouse": "Dom szeregowy",
+    "duplex": "Dupleks",
+    "warehouse": "Magazyn",
+    "farm": "Gospodarstwo",
+    "chalet": "Szalet",
+    "hotel_apartment": "Apartament Hotelowy",
+    "building": "Budynek",
+    "room": "Prywatny pokój",
+    "entire_home": "Cały dom",
+    "hotel_room": "Pokój hotelowy",
+    "rest_house": "Dom Wypoczynkowy"
   },
   "profile": {
     "personalInformation": "Dane osobowe",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "Kliknij udogodnienia, jakie oferuje ten obiekt. Wyświetlimy je jako filtry w wyszukiwarce."
+    },
+    "steps": {
+      "basicInfo": "Podstawowe informacje",
+      "location": "Lokalizacja",
+      "media": "Głoska bezdźwięczna",
+      "amenities": "Udogodnienia",
+      "compliance": "Zgodność",
+      "review": "Recenzja"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "Członek od",
     "contactAgent": "Skontaktuj się z agentem",
     "viewProfile": "Zobacz profil",
-    "sendMessage": "Wyślij wiadomość"
+    "sendMessage": "Wyślij wiadomość",
+    "respondsWithin": "Odpowiada w ciągu {{hours}} godzin",
+    "respondsWithinDay": "Odpowiedź w ciągu jednego dnia"
   },
   "property": {
     "villa": "Willa",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "Dodaj do porównania",
-    "remove": "Usuń z porównania"
+    "remove": "Usuń z porównania",
+    "title": "Porównywać",
+    "compareProperties": "Porównaj właściwości",
+    "clearAll": "Wyczyść wszystko",
+    "empty": "Nie ma jeszcze żadnych nieruchomości do porównania",
+    "viewComparison": "Zobacz porównanie",
+    "compareNow": "Porównaj teraz"
   },
   "myListings": {
     "countSelected": "Wybrano {{count}}",
@@ -1571,5 +1611,21 @@
     "oct": "paź",
     "nov": "listopad",
     "dec": "grudzień"
+  },
+  "mortgage": {
+    "title": "Kalkulator kredytu hipotecznego",
+    "propertyPrice": "Cena nieruchomości (SAR)",
+    "downPayment": "Zadatek",
+    "loanTerm": "Okres pożyczki (lata)",
+    "interestRate": "Roczna stopa procentowa (%)",
+    "monthlyPayment": "Szacowana miesięczna płatność",
+    "loanAmount": "Kwota pożyczki",
+    "totalPayment": "Całkowita płatność",
+    "totalInterest": "Całkowite odsetki",
+    "disclaimer": "To jest szacunek. Aby uzyskać aktualną ofertę kredytu, skonsultuj się ze swoim bankiem.",
+    "perMonth": "SAR/mies"
+  },
+  "notifications": {
+    "markAllRead": "Oznacz wszystkie jako przeczytane"
   }
 }

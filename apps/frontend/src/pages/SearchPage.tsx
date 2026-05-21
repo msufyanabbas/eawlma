@@ -1069,11 +1069,15 @@ const MAP_LIBRARIES: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing
 const MAP_DEFAULT_CENTER = { lat: 24.7136, lng: 46.6753 }; // Riyadh
 
 function MapView({ listings }: { listings: Listing[] }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: apiKey,
     libraries: MAP_LIBRARIES,
+    // Localise Maps UI labels to the active app language and bias
+    // geocoding/results to Saudi Arabia.
+    language: i18n.language,
+    region: 'SA',
   });
   const [activeId, setActiveId] = useState<string | null>(null);
   const [drawnPolygon, setDrawnPolygon] = useState<google.maps.Polygon | null>(null);
@@ -1400,7 +1404,7 @@ function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
   const navigate = useNavigate();
   const coverUrl = listingCoverUrl(listing);
   const title = getListingTitle(listing, i18n.language);
-  const location = getListingLocation(listing);
+  const location = getListingLocation(listing, i18n.language);
   const isSale = listing.type === ListingType.SALE;
   const goToDetail = () => {
     void navigate({ to: `/listings/${listing.id}` as never });
@@ -1491,7 +1495,9 @@ function ListingRow({ listing, saved, onToggleSave }: ListingRowProps) {
                 }}
               />
               <Typography variant="caption" sx={{ color: 'primary.dark', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.4 }}>
-                {t(`listing.${listing.propertyType}`, { defaultValue: listing.propertyType })}
+                {t(`propertyTypes.${String(listing.propertyType).toLowerCase()}`, {
+                  defaultValue: String(listing.propertyType),
+                })}
               </Typography>
               <Typography variant="caption" color="text.secondary">
                 · {listing.referenceCode}

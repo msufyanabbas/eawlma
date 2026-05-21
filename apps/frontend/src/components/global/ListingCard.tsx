@@ -72,7 +72,9 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   };
   const activeLocale = locale ?? i18n.language;
   const title = getListingTitle(listing, activeLocale);
-  const location = getListingLocation(listing);
+  // Route the address line through the active locale so the city (and any
+  // region) reads in the same language as the rest of the card.
+  const location = getListingLocation(listing, activeLocale);
   const coverUrl = listingCoverUrl(listing);
   // The wire-shape Listing carries only `ownerId`. Until the backend bundles
   // a denormalised `agent.fullName`, fall back to a clean "Verified Agent"
@@ -334,7 +336,9 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
                 letterSpacing: 0.4,
               }}
             >
-              {t(`listing.${listing.propertyType}`, { defaultValue: listing.propertyType })}
+              {t(`propertyTypes.${String(listing.propertyType).toLowerCase()}`, {
+                defaultValue: String(listing.propertyType),
+              })}
             </Typography>
             <Typography variant="caption" color="text.secondary">
               · {listing.referenceCode}

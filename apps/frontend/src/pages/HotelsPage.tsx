@@ -17,6 +17,7 @@ import { Link } from '@tanstack/react-router';
 import type { Listing } from '@eawlma/shared-types';
 
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
+import { SAUDI_CITIES } from '@/data/saudi-locations';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { EmptyState } from '@/components/global/EmptyState';
@@ -36,6 +37,7 @@ const PRICE_OPTION_I18N: Record<(typeof PRICE_OPTION_VALUES)[number], { key: str
 
 export function HotelsPage() {
   const { t, i18n } = useTranslation();
+  const isAr = i18n.language === 'ar';
   const savedIds = useSavedStore((s) => s.ids);
   const toggleSaved = useSavedStore((s) => s.toggle);
 
@@ -86,12 +88,21 @@ export function HotelsPage() {
             sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center' }}
           >
             <TextField
+              select
               size="small"
-              placeholder={t('hotels.city')}
+              label={t('hotels.city')}
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              InputLabelProps={{ shrink: true }}
               sx={{ bgcolor: 'background.paper', borderRadius: 1, minWidth: 160 }}
-            />
+            >
+              <MenuItem value="">{t('hotels.allCities', { defaultValue: 'All cities' })}</MenuItem>
+              {SAUDI_CITIES.map((c) => (
+                <MenuItem key={c.id} value={c.nameEn}>
+                  {isAr ? c.nameAr : c.nameEn}
+                </MenuItem>
+              ))}
+            </TextField>
             <TextField
               select
               size="small"

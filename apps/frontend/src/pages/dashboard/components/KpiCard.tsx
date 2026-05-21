@@ -5,6 +5,8 @@ import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { useEffect, useState, type ReactNode } from 'react';
 
+import { formatNumber } from '@/utils/formatters';
+
 export type KpiTone = 'listings' | 'views' | 'inquiries' | 'messages' | 'plan' | 'conversion';
 
 export interface KpiCardProps {
@@ -32,7 +34,8 @@ const TONE_COLORS: Record<KpiTone, string> = {
 };
 
 /** Smoothly counts from 0 to `value` over 1.2s. Falls back to the raw string
- *  if the prop isn't numeric (e.g. "—" for the loading row). */
+ *  if the prop isn't numeric (e.g. "—" for the loading row). Digits are
+ *  rewritten for the active locale (e.g. Eastern-Arabic ٠–٩). */
 function Counter({ value }: { value: number }) {
   const motionValue = useMotionValue(0);
   const rounded = useTransform(motionValue, (v) => Math.round(v));
@@ -45,7 +48,17 @@ function Counter({ value }: { value: number }) {
       unsub();
     };
   }, [motionValue, rounded, value]);
-  return <motion.span>{display.toLocaleString()}</motion.span>;
+  return <motion.span>{formatNumber(display.toLocaleString())}</motion.span>;
+}
+
+/**
+ * Renders a non-numeric KPI value. If the string is purely digits/commas/
+ * percent/whitespace (e.g. "75%"), its digits are localized; otherwise (plan
+ * names, "—") it is rendered verbatim.
+ */
+function renderValue(value: string | number): ReactNode {
+  if (typeof value === 'number') return formatNumber(String(value));
+  return /^[\d.,%\s]+$/.test(value) ? formatNumber(value) : value;
 }
 
 /**
@@ -143,7 +156,7 @@ export function KpiCard({
         ) : isNumeric ? (
           <Counter value={numericValue} />
         ) : (
-          value
+          renderValue(value)
         )}
       </Typography>
       {trend && (

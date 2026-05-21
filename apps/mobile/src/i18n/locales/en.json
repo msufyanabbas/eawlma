@@ -563,7 +563,14 @@
     "actionFailed": "Action failed",
     "bookingDevTitle": "Booking",
     "bookingDevBody": "Booking flow is in development. Please contact the agent.",
-    "removeFromSaved": "Remove this property from saved?"
+    "removeFromSaved": "Remove this property from saved?",
+    "viewProfile": "View Profile",
+    "verifiedAgent": "Verified Agent",
+    "respondsWithin": "Responds within a few hours",
+    "guestReviews": "Guest reviews",
+    "noReviewsYet": "No reviews yet",
+    "vrTour": "VR / 360° Tour",
+    "vrTourUnavailable": "An immersive VR / 360° tour for this property is not available on mobile yet. Open the listing on the web to explore it in virtual reality."
   },
   "agent": {
     "verified": "Verified",

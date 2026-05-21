@@ -312,7 +312,10 @@
     "strengthWeak": "Dhaifu",
     "strengthFair": "Haki",
     "strengthGood": "Nzuri",
-    "strengthStrong": "Nguvu"
+    "strengthStrong": "Nguvu",
+    "trustedPlatform": "Inaaminiwa na maelfu kote Saudi Arabia",
+    "platformDesc": "Salama • Mawakala Waliothibitishwa • Sifa Bora",
+    "signInWithGoogle": "Endelea na Google"
   },
   "validation": {
     "required": "Sehemu hii inahitajika",
@@ -448,7 +451,18 @@
     "expired": "Muda wake umeisha",
     "moderationRejected": "Uorodheshaji umekataliwa - maudhui yanakiuka miongozo ya jukwaa",
     "contentViolation": "Ukiukaji wa Sera ya Maudhui",
-    "moderationHint": "Tafadhali hakikisha kuwa tangazo lako halina: barua taka, nambari za simu katika maelezo, maudhui yasiyofaa, au taarifa zinazopotosha."
+    "moderationHint": "Tafadhali hakikisha kuwa tangazo lako halina: barua taka, nambari za simu katika maelezo, maudhui yasiyofaa, au taarifa zinazopotosha.",
+    "vrExperience": "Uhalisia Pepe na Uhalisia Pepe",
+    "vrTitle": "Uzoefu wa Kuvutia wa Uhalisia Pepe na Uhalisia Ulioboreshwa",
+    "vrDesc": "Ingia ndani ya mali hii kutoka mahali popote ulimwenguni. Tembelea mtandaoni wa 360° au weka kielelezo cha kweli kwa kiwango cha 3D kwenye sebule yako.",
+    "vrNoTour": "Wakala bado hajapakia ziara ya 360°/3D kwa tangazo hili.",
+    "premium": "Premium",
+    "enterVrTour": "Ingiza Ziara ya Uhalisia Pepe",
+    "viewInAr": "Tazama katika AR",
+    "videoTour": "Ziara ya video",
+    "guestReviews": "Maoni ya Wageni",
+    "reviewsCount": "{{count}} ukaguzi",
+    "builtYear": "Imejengwa"
   },
   "search": {
     "filters": "Vichujio",
@@ -622,7 +636,17 @@
     "commercial": "Biashara",
     "studio": "Studio",
     "penthouse": "Upenu",
-    "townhouse": "Nyumba ya mjini"
+    "townhouse": "Nyumba ya mjini",
+    "duplex": "Duplex",
+    "warehouse": "Ghala",
+    "farm": "Shamba",
+    "chalet": "Chalet",
+    "hotel_apartment": "Ghorofa ya Hoteli",
+    "building": "Jengo",
+    "room": "Chumba cha Kibinafsi",
+    "entire_home": "Nyumbani Mzima",
+    "hotel_room": "Chumba cha Hoteli",
+    "rest_house": "Nyumba ya mapumziko"
   },
   "profile": {
     "personalInformation": "Maelezo ya kibinafsi",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "Gusa huduma ambazo mali hii inatoa. Tutazionyesha kama vichujio kwenye Utafutaji."
+    },
+    "steps": {
+      "basicInfo": "Maelezo ya msingi",
+      "location": "Mahali",
+      "media": "Vyombo vya habari",
+      "amenities": "Vistawishi",
+      "compliance": "Kuzingatia",
+      "review": "Kagua"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "Mwanachama Tangu",
     "contactAgent": "Wasiliana na Wakala",
     "viewProfile": "Tazama Wasifu",
-    "sendMessage": "Tuma Ujumbe"
+    "sendMessage": "Tuma Ujumbe",
+    "respondsWithin": "Hujibu ndani ya saa {{hours}}",
+    "respondsWithinDay": "Hujibu ndani ya siku moja"
   },
   "property": {
     "villa": "Villa",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "Ongeza ili kulinganisha",
-    "remove": "Ondoa kutoka kwa kulinganisha"
+    "remove": "Ondoa kutoka kwa kulinganisha",
+    "title": "Linganisha",
+    "compareProperties": "Linganisha Mali",
+    "clearAll": "Futa zote",
+    "empty": "Bado hakuna sifa za kulinganisha",
+    "viewComparison": "Tazama kulinganisha",
+    "compareNow": "Linganisha sasa"
   },
   "myListings": {
     "countSelected": "{{count}} zimechaguliwa",
@@ -1571,5 +1611,21 @@
     "oct": "Okt",
     "nov": "Nov",
     "dec": "Des"
+  },
+  "mortgage": {
+    "title": "Kikokotoo cha Rehani",
+    "propertyPrice": "Bei ya Mali (SAR)",
+    "downPayment": "Malipo ya Chini",
+    "loanTerm": "Muda wa Mkopo (Miaka)",
+    "interestRate": "Kiwango cha Riba cha Mwaka (%)",
+    "monthlyPayment": "Kadirio la Malipo ya Kila Mwezi",
+    "loanAmount": "Kiasi cha Mkopo",
+    "totalPayment": "Jumla ya Malipo",
+    "totalInterest": "Jumla ya Riba",
+    "disclaimer": "Haya ni makadirio. Wasiliana na benki yako kwa ofa halisi ya mkopo.",
+    "perMonth": "SAR/mwezi"
+  },
+  "notifications": {
+    "markAllRead": "Weka alama zote kama zimesomwa"
   }
 }

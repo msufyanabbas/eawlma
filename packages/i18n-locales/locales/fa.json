@@ -312,7 +312,10 @@
     "strengthWeak": "ضعیف",
     "strengthFair": "نمایشگاه",
     "strengthGood": "خوب",
-    "strengthStrong": "قوی"
+    "strengthStrong": "قوی",
+    "trustedPlatform": "مورد اعتماد هزاران نفر در سراسر عربستان سعودی",
+    "platformDesc": "ایمن • نمایندگان تایید شده • بهترین خواص",
+    "signInWithGoogle": "با گوگل ادامه دهید"
   },
   "validation": {
     "required": "این فیلد الزامی است",
@@ -448,7 +451,18 @@
     "expired": "منقضی شده",
     "moderationRejected": "فهرست رد شد - محتوا دستورالعمل‌های پلتفرم را نقض می‌کند",
     "contentViolation": "نقض خط مشی محتوا",
-    "moderationHint": "لطفاً مطمئن شوید فهرست شما حاوی موارد زیر نباشد: هرزنامه، شماره تلفن در توضیحات، محتوای نامناسب یا اطلاعات گمراه‌کننده"
+    "moderationHint": "لطفاً مطمئن شوید فهرست شما حاوی موارد زیر نباشد: هرزنامه، شماره تلفن در توضیحات، محتوای نامناسب یا اطلاعات گمراه‌کننده",
+    "vrExperience": "تجربه واقعیت مجازی و واقعیت مجازی",
+    "vrTitle": "تجربه همهجانبه VR & AR Property",
+    "vrDesc": "از هر کجای دنیا وارد این ملک شوید. یک تور مجازی 360 درجه داشته باشید یا یک مدل سه بعدی واقعی را در اتاق نشیمن خود قرار دهید.",
+    "vrNoTour": "نماینده هنوز یک تور 360 درجه/3 بعدی برای این فهرست آپلود نکرده است.",
+    "premium": "حق بیمه",
+    "enterVrTour": "وارد تور VR شوید",
+    "viewInAr": "مشاهده در AR",
+    "videoTour": "تور ویدیویی",
+    "guestReviews": "نظرات مهمان",
+    "reviewsCount": "{{count}} نظر",
+    "builtYear": "ساخته شده است"
   },
   "search": {
     "filters": "فیلترها",
@@ -622,7 +636,17 @@
     "commercial": "تجاری",
     "studio": "استودیو",
     "penthouse": "پنت‌هاوس",
-    "townhouse": "تاون‌هاوس"
+    "townhouse": "تاون‌هاوس",
+    "duplex": "دوبلکس",
+    "warehouse": "انبار",
+    "farm": "مزرعه",
+    "chalet": "کلبه",
+    "hotel_apartment": "هتل آپارتمان",
+    "building": "ساختمان",
+    "room": "اتاق خصوصی",
+    "entire_home": "کل صفحه اصلی",
+    "hotel_room": "اتاق هتل",
+    "rest_house": "استراحتگاه"
   },
   "profile": {
     "personalInformation": "اطلاعات شخصی",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "روی امکاناتی که این ملک ارائه می دهد ضربه بزنید. ما آنها را به عنوان فیلتر در جستجو نشان خواهیم داد."
+    },
+    "steps": {
+      "basicInfo": "اطلاعات پایه",
+      "location": "مکان",
+      "media": "رسانه",
+      "amenities": "امکانات رفاهی",
+      "compliance": "مطابقت",
+      "review": "بررسی"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "عضو از",
     "contactAgent": "با نماینده تماس بگیرید",
     "viewProfile": "مشاهده نمایه",
-    "sendMessage": "ارسال پیام"
+    "sendMessage": "ارسال پیام",
+    "respondsWithin": "ظرف {{ساعت}} ساعت پاسخ می‌دهد",
+    "respondsWithinDay": "در عرض یک روز پاسخ می دهد"
   },
   "property": {
     "villa": "ویلا",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "اضافه کردن به مقایسه",
-    "remove": "حذف از مقایسه"
+    "remove": "حذف از مقایسه",
+    "title": "مقایسه کنید",
+    "compareProperties": "مقایسه خواص",
+    "clearAll": "پاک کردن همه",
+    "empty": "هنوز خواصی برای مقایسه وجود ندارد",
+    "viewComparison": "مشاهده مقایسه",
+    "compareNow": "الان مقایسه کن"
   },
   "myListings": {
     "countSelected": "{{count}} انتخاب شد",
@@ -1571,5 +1611,21 @@
     "oct": "اکتبر",
     "nov": "نوامبر",
     "dec": "دسامبر"
+  },
+  "mortgage": {
+    "title": "ماشین حساب وام مسکن",
+    "propertyPrice": "قیمت ملک (SAR)",
+    "downPayment": "پیش پرداخت",
+    "loanTerm": "مدت وام (سال)",
+    "interestRate": "نرخ بهره سالانه (%)",
+    "monthlyPayment": "پرداخت ماهانه تخمینی",
+    "loanAmount": "مبلغ وام",
+    "totalPayment": "کل پرداخت",
+    "totalInterest": "کل سود",
+    "disclaimer": "این یک تخمین است. برای پیشنهاد واقعی وام با بانک خود مشورت کنید.",
+    "perMonth": "SAR/ماه"
+  },
+  "notifications": {
+    "markAllRead": "همه را به عنوان خوانده شده علامت بزنید"
   }
 }

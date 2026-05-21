@@ -16,7 +16,10 @@
       "Read(//c/c/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat/apps/backend/src/modules/**)",
       "Read(//c/c/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat/apps/backend/src/modules/notifications/**)",
       "Bash(node *)",
-      "Bash(git -C \"C:/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat\" show --stat --oneline 48aac36)"
+      "Bash(git -C \"C:/Nasser Qahtani Projects/Nasser Qahtani Projects/Aqarat\" show --stat --oneline 48aac36)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }

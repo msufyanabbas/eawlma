@@ -258,6 +258,7 @@ export function DashboardHomePage() {
                       tickFormatter={formatNumber}
                       stroke={theme.palette.text.secondary}
                       fontSize={12}
+                      {...rtlYAxisProps}
                     />
                     <RechartsTooltip
                       formatter={formatTooltipValue}

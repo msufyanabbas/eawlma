@@ -2,6 +2,8 @@ import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
+import { formatNumber } from '@/utils/formatters';
+
 const STATS_KEYS: Array<{ value: string; key: string }> = [
   { value: '10,000+', key: 'about.stats.properties' },
   { value: '500+',    key: 'about.stats.agents' },
@@ -70,7 +72,7 @@ export function AboutPage() {
                   }}
                 >
                   <Typography sx={{ fontSize: { xs: '1.75rem', md: '2.25rem' }, fontWeight: 800, color: 'primary.dark', mb: 0.5 }}>
-                    {s.value}
+                    {formatNumber(s.value)}
                   </Typography>
                   <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', textTransform: 'uppercase', letterSpacing: 0.6 }}>
                     {t(s.key)}

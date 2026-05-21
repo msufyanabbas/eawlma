@@ -414,7 +414,8 @@ export function MessagesPage() {
             flexDirection: 'column',
             // Logical property — RTL flex order moves the list to the right
             // side, so the divider should follow it (inline-end of the list).
-            borderInlineEnd: { md: 1 },
+            // `borderInlineEnd` auto-flips to the correct edge in RTL.
+            borderInlineEnd: { xs: 'none', md: '1px solid' },
             borderColor: 'divider',
             minWidth: 0,
             height: '100%',

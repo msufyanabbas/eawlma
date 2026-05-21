@@ -74,7 +74,10 @@ export function ComparePage() {
     {
       key: 'propertyType',
       label: 'Property',
-      pick: (l) => t(`listing.${l.propertyType}`, { defaultValue: l.propertyType }),
+      pick: (l) =>
+        t(`propertyTypes.${String(l.propertyType).toLowerCase()}`, {
+          defaultValue: String(l.propertyType),
+        }),
     },
     {
       key: 'area',
@@ -155,11 +158,11 @@ export function ComparePage() {
 
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 3 }}>
         <Typography variant="h4" sx={{ fontWeight: 800 }}>
-          Compare listings
+          {t('compare.compareProperties')}
         </Typography>
         {listings.length > 0 && (
           <Button onClick={clear} variant="outlined">
-            Clear all
+            {t('compare.clearAll')}
           </Button>
         )}
       </Stack>
@@ -242,7 +245,7 @@ export function ComparePage() {
                   to={'/listings/$id' as never}
                   params={{ id: l.id } as never}
                 >
-                  Inquire
+                  {t('listing.sendInquiry')}
                 </Button>
               </Box>
             ))}

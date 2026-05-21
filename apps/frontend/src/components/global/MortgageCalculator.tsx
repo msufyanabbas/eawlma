@@ -12,6 +12,9 @@ import {
 } from '@mui/material';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalanceOutlined';
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { formatNumber } from '@/utils/formatters';
 
 interface MortgageCalculatorProps {
   /** Initial property price in SAR (defaults to 0). */
@@ -37,6 +40,7 @@ function monthlyPayment(principal: number, annualRatePct: number, years: number)
 
 export function MortgageCalculator({ price, currency }: MortgageCalculatorProps) {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [propertyPrice, setPropertyPrice] = useState<number>(price);
   const [downPaymentPct, setDownPaymentPct] = useState<number>(20);
   const [loanTerm, setLoanTerm] = useState<number>(25);
@@ -52,7 +56,7 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
   }, [propertyPrice, downPaymentPct, loanTerm, interestRate]);
 
   const fmt = (n: number) =>
-    Math.round(n).toLocaleString(undefined, { maximumFractionDigits: 0 });
+    formatNumber(Math.round(n).toLocaleString('en-US'));
 
   return (
     <Box
@@ -79,7 +83,7 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
       >
         <AccountBalanceIcon />
         <Typography sx={{ fontWeight: 800, fontSize: '1.1rem' }}>
-          🏦 Mortgage Calculator
+          🏦 {t('mortgage.title')}
         </Typography>
       </Box>
 
@@ -90,7 +94,7 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
             <Stack spacing={3}>
               <Box>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                  Property price ({currency})
+                  {t('mortgage.propertyPrice')}
                 </Typography>
                 <TextField
                   fullWidth
@@ -105,7 +109,7 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
               <Box>
                 <Stack direction="row" justifyContent="space-between" alignItems="baseline">
                   <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                    Down payment
+                    {t('mortgage.downPayment')}
                   </Typography>
                   <Typography variant="caption" sx={{ fontWeight: 700, color: 'primary.dark' }}>
                     {downPaymentPct}% · {fmt(calc.downPaymentAmount)} {currency}
@@ -124,7 +128,7 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
 
               <Box>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, mb: 1, display: 'block' }}>
-                  Loan term (years)
+                  {t('mortgage.loanTerm')}
                 </Typography>
                 <ToggleButtonGroup
                   value={loanTerm}
@@ -151,7 +155,7 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
 
               <Box>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                  Annual interest rate (%)
+                  {t('mortgage.interestRate')}
                 </Typography>
                 <TextField
                   fullWidth
@@ -183,25 +187,25 @@ export function MortgageCalculator({ price, currency }: MortgageCalculatorProps)
             >
               <Box>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                  Estimated monthly payment
+                  {t('mortgage.monthlyPayment')}
                 </Typography>
                 <Typography sx={{ fontSize: '2.5rem', fontWeight: 800, color: 'primary.dark', lineHeight: 1.1, mt: 0.5 }}>
                   {fmt(calc.monthly)}
                   <Typography component="span" sx={{ fontSize: '1rem', ml: 1, color: 'text.secondary', fontWeight: 600 }}>
-                    {currency}/mo
+                    {currency}{t('mortgage.perMonth')}
                   </Typography>
                 </Typography>
               </Box>
 
               <Stack spacing={1.25} sx={{ mt: 3 }}>
-                <ResultRow label="Loan amount" value={`${fmt(calc.loanAmount)} ${currency}`} />
-                <ResultRow label="Total payment" value={`${fmt(calc.totalPayment)} ${currency}`} />
-                <ResultRow label="Total interest" value={`${fmt(calc.totalInterest)} ${currency}`} />
-                <ResultRow label="Down payment" value={`${fmt(calc.downPaymentAmount)} ${currency}`} />
+                <ResultRow label={t('mortgage.loanAmount')} value={`${fmt(calc.loanAmount)} ${currency}`} />
+                <ResultRow label={t('mortgage.totalPayment')} value={`${fmt(calc.totalPayment)} ${currency}`} />
+                <ResultRow label={t('mortgage.totalInterest')} value={`${fmt(calc.totalInterest)} ${currency}`} />
+                <ResultRow label={t('mortgage.downPayment')} value={`${fmt(calc.downPaymentAmount)} ${currency}`} />
               </Stack>
 
               <Typography variant="caption" color="text.secondary" sx={{ mt: 2, fontStyle: 'italic' }}>
-                This is an estimate. Consult your bank for an actual loan offer.
+                {t('mortgage.disclaimer')}
               </Typography>
             </Box>
           </Grid>

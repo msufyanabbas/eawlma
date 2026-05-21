@@ -29,13 +29,23 @@ import { priceTrendsApi } from '@/api/priceTrends.api';
 import RTLChart from '@/components/charts/RTLChart';
 import { useChartTranslations } from '@/hooks/useChartTranslations';
 
-const CITIES = ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam', 'Khobar'];
+// `value` is the canonical English city that flows into the API query;
+// `i18nKey` is the localized label shown to the user (mirrors HomePage).
+const CITIES: Array<{ value: string; i18nKey: string }> = [
+  { value: 'Riyadh', i18nKey: 'cities.riyadh' },
+  { value: 'Jeddah', i18nKey: 'cities.jeddah' },
+  { value: 'Mecca', i18nKey: 'cities.mecca' },
+  { value: 'Medina', i18nKey: 'cities.medina' },
+  { value: 'Dammam', i18nKey: 'cities.dammam' },
+  { value: 'Khobar', i18nKey: 'cities.khobar' },
+];
 // Keys must mirror entries under the `propertyTypes` i18n namespace.
 const PROPERTY_TYPES = ['apartment', 'villa', 'office', 'land', 'studio'] as const;
 
 export function MarketPage() {
   const { t, i18n } = useTranslation();
-  const { translateLabel, isRTL, rtlXAxisProps, rtlYAxisProps } = useChartTranslations();
+  const { translateLabel, formatNumber, isRTL, rtlXAxisProps, rtlYAxisProps } =
+    useChartTranslations();
   const [city, setCity] = useState('Riyadh');
   const [type, setType] = useState<(typeof PROPERTY_TYPES)[number]>('apartment');
 
@@ -129,7 +139,7 @@ export function MarketPage() {
               sx={{ minWidth: 200, flex: { sm: 1 } }}
             >
               {CITIES.map((c) => (
-                <MenuItem key={c} value={c}>{c}</MenuItem>
+                <MenuItem key={c.value} value={c.value}>{t(c.i18nKey)}</MenuItem>
               ))}
             </TextField>
             <TextField
@@ -212,7 +222,7 @@ export function MarketPage() {
                   <LineChart data={trendsQuery.data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" tickFormatter={translateLabel} />
-                    <YAxis tickFormatter={(v) => fmt(Number(v))} />
+                    <YAxis tickFormatter={formatNumber} {...rtlYAxisProps} />
                     <RechartsTooltip
                       formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}
                     />
@@ -253,7 +263,7 @@ export function MarketPage() {
                     margin={isRTL ? { right: 80 } : { left: 80 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" tickFormatter={(v) => fmt(Number(v))} {...rtlXAxisProps} />
+                    <XAxis type="number" tickFormatter={formatNumber} {...rtlXAxisProps} />
                     <YAxis type="category" dataKey="district" width={140} {...rtlYAxisProps} />
                     <RechartsTooltip
                       formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}

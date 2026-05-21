@@ -312,7 +312,10 @@
     "strengthWeak": "Yếu đuối",
     "strengthFair": "Hội chợ",
     "strengthGood": "Tốt",
-    "strengthStrong": "Mạnh"
+    "strengthStrong": "Mạnh",
+    "trustedPlatform": "Được hàng ngàn người trên khắp Ả Rập Saudi tin cậy",
+    "platformDesc": "Bảo mật • Đại lý đã được xác minh • Thuộc tính tốt nhất",
+    "signInWithGoogle": "Tiếp tục với Google"
   },
   "validation": {
     "required": "Trường này là bắt buộc",
@@ -448,7 +451,18 @@
     "expired": "Hết hạn",
     "moderationRejected": "Danh sách bị từ chối - nội dung vi phạm nguyên tắc nền tảng",
     "contentViolation": "Vi phạm chính sách nội dung",
-    "moderationHint": "Hãy đảm bảo danh sách của bạn không chứa: thư rác, số điện thoại trong mô tả, nội dung không phù hợp hoặc thông tin sai lệch"
+    "moderationHint": "Hãy đảm bảo danh sách của bạn không chứa: thư rác, số điện thoại trong mô tả, nội dung không phù hợp hoặc thông tin sai lệch",
+    "vrExperience": "Trải nghiệm VR & AR",
+    "vrTitle": "Trải nghiệm thuộc tính VR & AR phong phú",
+    "vrDesc": "Bước vào bên trong khách sạn này từ bất cứ nơi nào trên thế giới. Thực hiện chuyến tham quan ảo 360° hoặc đặt mô hình 3D có tỷ lệ thật ngay trong phòng khách của bạn.",
+    "vrNoTour": "Đại lý chưa tải lên chuyến tham quan 360°/3D cho danh sách này.",
+    "premium": "Phần thưởng",
+    "enterVrTour": "Tham gia chuyến tham quan VR",
+    "viewInAr": "Xem trong AR",
+    "videoTour": "Chuyến tham quan bằng video",
+    "guestReviews": "Đánh giá của khách",
+    "reviewsCount": "{{count}} bài đánh giá",
+    "builtYear": "Được xây dựng"
   },
   "search": {
     "filters": "Bộ lọc",
@@ -622,7 +636,17 @@
     "commercial": "Thương mại",
     "studio": "Phòng thu",
     "penthouse": "căn hộ áp mái",
-    "townhouse": "Nhà phố"
+    "townhouse": "Nhà phố",
+    "duplex": "song công",
+    "warehouse": "Kho",
+    "farm": "Nông trại",
+    "chalet": "Nhà gỗ",
+    "hotel_apartment": "Căn hộ khách sạn",
+    "building": "Xây dựng",
+    "room": "Phòng riêng",
+    "entire_home": "Toàn bộ ngôi nhà",
+    "hotel_room": "Phòng khách sạn",
+    "rest_house": "Nhà nghỉ"
   },
   "profile": {
     "personalInformation": "Thông tin cá nhân",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "Nhấn vào các tiện nghi nơi lưu trú này cung cấp. Chúng tôi sẽ hiển thị chúng dưới dạng bộ lọc trên Tìm kiếm."
+    },
+    "steps": {
+      "basicInfo": "Thông tin cơ bản",
+      "location": "Vị trí",
+      "media": "Phương tiện truyền thông",
+      "amenities": "Tiện nghi",
+      "compliance": "Sự tuân thủ",
+      "review": "Ôn tập"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "Thành viên kể từ",
     "contactAgent": "Liên hệ đại lý",
     "viewProfile": "Xem hồ sơ",
-    "sendMessage": "Gửi tin nhắn"
+    "sendMessage": "Gửi tin nhắn",
+    "respondsWithin": "Trả lời trong vòng {{hours}} giờ",
+    "respondsWithinDay": "Trả lời trong vòng một ngày"
   },
   "property": {
     "villa": "biệt thự",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "Thêm để so sánh",
-    "remove": "Xóa khỏi so sánh"
+    "remove": "Xóa khỏi so sánh",
+    "title": "So sánh",
+    "compareProperties": "So sánh thuộc tính",
+    "clearAll": "Xóa tất cả",
+    "empty": "Chưa có bất động sản nào để so sánh",
+    "viewComparison": "Xem so sánh",
+    "compareNow": "So sánh ngay bây giờ"
   },
   "myListings": {
     "countSelected": "{{đếm}} đã được chọn",
@@ -1571,5 +1611,21 @@
     "oct": "Tháng 10",
     "nov": "tháng 11",
     "dec": "Tháng mười hai"
+  },
+  "mortgage": {
+    "title": "Máy tính thế chấp",
+    "propertyPrice": "Giá bất động sản (SAR)",
+    "downPayment": "Trả trước",
+    "loanTerm": "Thời hạn cho vay (Năm)",
+    "interestRate": "Lãi suất hàng năm (%)",
+    "monthlyPayment": "Thanh toán hàng tháng ước tính",
+    "loanAmount": "Số tiền cho vay",
+    "totalPayment": "Tổng số tiền thanh toán",
+    "totalInterest": "Tổng lãi",
+    "disclaimer": "Đây là một ước tính. Hãy tham khảo ý kiến ​​ngân hàng của bạn để biết một đề nghị cho vay thực tế.",
+    "perMonth": "SAR/tháng"
+  },
+  "notifications": {
+    "markAllRead": "Đánh dấu tất cả là đã đọc"
   }
 }

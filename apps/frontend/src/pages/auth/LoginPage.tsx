@@ -502,7 +502,7 @@ export function LoginPage() {
               onClick={handleGoogleLogin}
               sx={{ py: 1.25, borderRadius: 3, fontWeight: 700, color: 'text.primary', borderColor: 'divider' }}
             >
-              {t('auth.continueWithGoogle', 'Continue with Google')}
+              {t('auth.signInWithGoogle')}
             </Button>
             {/* Nafath SSO — Saudi national digital identity. Hands off to the
              *  backend authorize endpoint, which bounces through Absher. */}

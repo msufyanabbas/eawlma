@@ -312,7 +312,10 @@
     "strengthWeak": "कमकुवत",
     "strengthFair": "गोरा",
     "strengthGood": "चांगले",
-    "strengthStrong": "मजबूत"
+    "strengthStrong": "मजबूत",
+    "trustedPlatform": "सौदी अरेबियामध्ये हजारो लोकांचा विश्वास आहे",
+    "platformDesc": "सुरक्षित • सत्यापित एजंट • सर्वोत्तम गुणधर्म",
+    "signInWithGoogle": "Google सह सुरू ठेवा"
   },
   "validation": {
     "required": "हे फील्ड आवश्यक आहे",
@@ -448,7 +451,18 @@
     "expired": "कालबाह्य",
     "moderationRejected": "सूची नाकारली - सामग्री प्लॅटफॉर्म मार्गदर्शक तत्त्वांचे उल्लंघन करते",
     "contentViolation": "सामग्री धोरण उल्लंघन",
-    "moderationHint": "कृपया तुमच्या सूचीमध्ये हे समाविष्ट नाही याची खात्री करा: स्पॅम, वर्णनातील फोन नंबर, अयोग्य सामग्री किंवा दिशाभूल करणारी माहिती"
+    "moderationHint": "कृपया तुमच्या सूचीमध्ये हे समाविष्ट नाही याची खात्री करा: स्पॅम, वर्णनातील फोन नंबर, अयोग्य सामग्री किंवा दिशाभूल करणारी माहिती",
+    "vrExperience": "VR आणि AR अनुभव",
+    "vrTitle": "इमर्सिव्ह VR आणि AR मालमत्ता अनुभव",
+    "vrDesc": "जगातील कोठूनही या मालमत्तेत पाऊल टाका. 360° व्हर्च्युअल फेरफटका मारा किंवा तुमच्या लिव्हिंग रूममध्येच ट्रू-टू-स्केल 3D मॉडेल ठेवा.",
+    "vrNoTour": "एजंटने अद्याप या सूचीसाठी 360°/3D टूर अपलोड केलेला नाही.",
+    "premium": "प्रीमियम",
+    "enterVrTour": "VR टूर प्रविष्ट करा",
+    "viewInAr": "AR मध्ये पहा",
+    "videoTour": "व्हिडिओ टूर",
+    "guestReviews": "अतिथी पुनरावलोकने",
+    "reviewsCount": "{{count}} पुनरावलोकने",
+    "builtYear": "बांधले"
   },
   "search": {
     "filters": "फिल्टर्स",
@@ -622,7 +636,17 @@
     "commercial": "व्यावसायिक",
     "studio": "स्टुडिओ",
     "penthouse": "पेंटहाउस",
-    "townhouse": "टाउनहाउस"
+    "townhouse": "टाउनहाउस",
+    "duplex": "डुप्लेक्स",
+    "warehouse": "कोठार",
+    "farm": "शेत",
+    "chalet": "चाळे",
+    "hotel_apartment": "हॉटेल अपार्टमेंट",
+    "building": "इमारत",
+    "room": "खाजगी खोली",
+    "entire_home": "संपूर्ण घर",
+    "hotel_room": "हॉटेल रूम",
+    "rest_house": "विश्रामगृह"
   },
   "profile": {
     "personalInformation": "वैयक्तिक माहिती",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "ही मालमत्ता देत असलेल्या सुविधांवर टॅप करा. आम्ही त्यांना शोध वर फिल्टर म्हणून दाखवू."
+    },
+    "steps": {
+      "basicInfo": "मूलभूत माहिती",
+      "location": "स्थान",
+      "media": "मीडिया",
+      "amenities": "सुविधा",
+      "compliance": "अनुपालन",
+      "review": "पुनरावलोकन करा"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "पासून सदस्य",
     "contactAgent": "संपर्क एजंट",
     "viewProfile": "प्रोफाइल पहा",
-    "sendMessage": "संदेश पाठवा"
+    "sendMessage": "संदेश पाठवा",
+    "respondsWithin": "{{hours}} तासांत प्रतिसाद देतो",
+    "respondsWithinDay": "एका दिवसात प्रतिसाद देतो"
   },
   "property": {
     "villa": "व्हिला",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "तुलना करण्यासाठी जोडा",
-    "remove": "तुलना मधून काढा"
+    "remove": "तुलना मधून काढा",
+    "title": "तुलना करा",
+    "compareProperties": "गुणधर्मांची तुलना करा",
+    "clearAll": "सर्व साफ करा",
+    "empty": "अद्याप तुलना करण्यासाठी कोणतेही गुणधर्म नाहीत",
+    "viewComparison": "तुलना पहा",
+    "compareNow": "आता तुलना करा"
   },
   "myListings": {
     "countSelected": "{{count}} निवडले",
@@ -1571,5 +1611,21 @@
     "oct": "ऑक्टो",
     "nov": "नोव्हें",
     "dec": "डिसें"
+  },
+  "mortgage": {
+    "title": "गहाण कॅल्क्युलेटर",
+    "propertyPrice": "मालमत्तेची किंमत (SAR)",
+    "downPayment": "डाउन पेमेंट",
+    "loanTerm": "कर्जाची मुदत (वर्षे)",
+    "interestRate": "वार्षिक व्याज दर (%)",
+    "monthlyPayment": "अंदाजे मासिक पेमेंट",
+    "loanAmount": "कर्जाची रक्कम",
+    "totalPayment": "एकूण पेमेंट",
+    "totalInterest": "एकूण व्याज",
+    "disclaimer": "हा एक अंदाज आहे. वास्तविक कर्ज ऑफरसाठी तुमच्या बँकेचा सल्ला घ्या.",
+    "perMonth": "SAR/महिना"
+  },
+  "notifications": {
+    "markAllRead": "सर्व वाचलेले म्हणून चिन्हांकित करा"
   }
 }

@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
-import { inquiriesApi, listingsApi, savedApi } from '../api';
+import { inquiriesApi, listingsApi, reviewsApi, savedApi } from '../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import LoadingSpinner from '../components/LoadingSpinner';
 import PriceText from '../components/PriceText';
@@ -126,6 +126,15 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   )
     .filter((l: any) => l.id !== id)
     .slice(0, 4);
+
+  const { data: reviewsData } = useQuery({
+    queryKey: ['listing-reviews', id],
+    queryFn: () => reviewsApi.listForListing(id),
+    enabled: !!id,
+  });
+  const reviews: any[] = Array.isArray(reviewsData)
+    ? reviewsData
+    : (reviewsData?.data || reviewsData?.items || []);
 
   const propertyType = String(listing.propertyType || '').toLowerCase();
   const isStay = STAY_PROPERTY_TYPES.has(propertyType);
@@ -352,8 +361,16 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                   )}
                 </View>
                 <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign }]}>
-                  {t('listing.agent')}
+                  {agent.isVerified ? t('listing.verifiedAgent') : t('listing.agent')}
                 </Text>
+                <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary, textAlign }]}>
+                  {t('listing.respondsWithin')}
+                </Text>
+                {agent.id && (
+                  <Text style={[TYPOGRAPHY.caption, { color: colors.primary, textAlign }]}>
+                    {t('listing.viewProfile')}
+                  </Text>
+                )}
               </View>
               {agent.phone && (
                 <>
@@ -435,6 +452,56 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                 </TouchableOpacity>
               )}
             </>
+          )}
+
+          <SectionTitle colors={colors} textAlign={textAlign}>
+            {t('listing.vrTour')}
+          </SectionTitle>
+          <View style={[
+            styles.vrCard,
+            {
+              backgroundColor: colors.surface,
+              borderColor: colors.primary + '30',
+              flexDirection: isRTL ? 'row-reverse' : 'row',
+            },
+          ]}>
+            <Ionicons name="cube-outline" size={28} color={colors.primary} />
+            <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, flex: 1, textAlign }]}>
+              {t('listing.vrTourUnavailable')}
+            </Text>
+          </View>
+
+          <SectionTitle colors={colors} textAlign={textAlign}>
+            {t('listing.guestReviews')}
+          </SectionTitle>
+          {reviews.length > 0 ? (
+            reviews.slice(0, 5).map((rv: any) => (
+              <View
+                key={rv.id}
+                style={[styles.reviewCard, { backgroundColor: colors.surface }]}
+              >
+                <View style={{ flexDirection: isRTL ? 'row-reverse' : 'row', alignItems: 'center', gap: 6 }}>
+                  <Ionicons name="star" size={14} color={colors.secondary} />
+                  <Text style={[TYPOGRAPHY.small, { color: colors.text, fontWeight: '700' }]}>
+                    {formatNumber(rv.rating ?? 0)}
+                  </Text>
+                  <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign }]}>
+                    {rv.reviewer?.firstName
+                      || rv.user?.firstName
+                      || t('reviews.user')}
+                  </Text>
+                </View>
+                {!!(rv.comment || rv.text) && (
+                  <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, marginTop: 4, textAlign }]}>
+                    {rv.comment || rv.text}
+                  </Text>
+                )}
+              </View>
+            ))
+          ) : (
+            <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign }]}>
+              {t('listing.noReviewsYet')}
+            </Text>
           )}
 
           {similar.length > 0 && (
@@ -657,6 +724,8 @@ const styles = StyleSheet.create({
   mapContainer: { height: 200, borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', marginTop: SIZES.sm, position: 'relative' },
   mapImage: { width: '100%', height: '100%' },
   openMapsBtn: { position: 'absolute', bottom: 12, right: 12, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20 },
+  vrCard: { alignItems: 'center', gap: SIZES.sm, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1, borderStyle: 'dashed', marginTop: SIZES.sm },
+  reviewCard: { padding: SIZES.md, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, ...SHADOWS.sm },
   footer: { position: 'absolute', bottom: 0, left: 0, right: 0, borderTopWidth: 1, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
   contactBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
 });

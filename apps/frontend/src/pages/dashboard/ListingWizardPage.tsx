@@ -468,7 +468,7 @@ export function ListingWizardPage() {
       <Paper sx={{ p: 3 }}>
         <Stepper activeStep={step} alternativeLabel sx={{ mb: 4 }}>
           {STEP_KEYS.map((key) => (
-            <Step key={key}><StepLabel>{t(`wizard.${key}`)}</StepLabel></Step>
+            <Step key={key}><StepLabel>{t(`wizard.steps.${key}`)}</StepLabel></Step>
           ))}
         </Stepper>
 

@@ -327,7 +327,10 @@
     "strengthWeak": "| کمزور",
     "strengthFair": "میلہ",
     "strengthGood": "| اچھا",
-    "strengthStrong": "| مضبوط"
+    "strengthStrong": "| مضبوط",
+    "trustedPlatform": "سعودی عرب بھر میں ہزاروں لوگوں کا بھروسہ",
+    "platformDesc": "محفوظ • تصدیق شدہ ایجنٹس • بہترین پراپرٹیز",
+    "signInWithGoogle": "گوگل کے ساتھ جاری رکھیں"
   },
   "validation": {
     "required": "یہ خانہ ضروری ہے",
@@ -464,7 +467,18 @@
     "expired": "میعاد ختم",
     "moderationRejected": "فہرست کو مسترد کر دیا گیا - مواد پلیٹ فارم کے رہنما خطوط کی خلاف ورزی کرتا ہے",
     "contentViolation": "مواد کی پالیسی کی خلاف ورزی",
-    "moderationHint": "براہ کرم یقینی بنائیں کہ آپ کی فہرست میں شامل نہیں ہے: فضول، تفصیل میں فون نمبر، نامناسب مواد، یا گمراہ کن معلومات"
+    "moderationHint": "براہ کرم یقینی بنائیں کہ آپ کی فہرست میں شامل نہیں ہے: فضول، تفصیل میں فون نمبر، نامناسب مواد، یا گمراہ کن معلومات",
+    "vrExperience": "VR اور AR کا تجربہ",
+    "vrTitle": "عمیق VR اور AR پراپرٹی کا تجربہ",
+    "vrDesc": "دنیا میں کہیں سے بھی اس پراپرٹی کے اندر قدم رکھیں۔ ایک 360° ورچوئل ٹور لیں یا اپنے کمرے میں صحیح سے پیمانے پر 3D ماڈل رکھیں۔",
+    "vrNoTour": "ایجنٹ نے ابھی تک اس فہرست کے لیے 360°/3D ٹور اپ لوڈ نہیں کیا ہے۔",
+    "premium": "پریمیم",
+    "enterVrTour": "VR ٹور داخل کریں",
+    "viewInAr": "AR میں دیکھیں",
+    "videoTour": "ویڈیو ٹور",
+    "guestReviews": "| مہمانوں کے جائزے",
+    "reviewsCount": "{{count}} جائزے",
+    "builtYear": "بنایا ہوا"
   },
   "search": {
     "filters": "فلٹرز",
@@ -648,7 +662,17 @@
     "studio": "اسٹوڈیو",
     "penthouse": "پینٹ ہاؤس",
     "townhouse": "ٹاؤن ہاؤس",
-    "other": "دیگر"
+    "other": "دیگر",
+    "duplex": "| ڈوپلیکس",
+    "warehouse": "| گودام",
+    "farm": "کھیت",
+    "chalet": "چیلیٹ",
+    "hotel_apartment": "| ہوٹل اپارٹمنٹ",
+    "building": "عمارت",
+    "room": "| نجی کمرہ",
+    "entire_home": "پورا گھر",
+    "hotel_room": "ہوٹل کا کمرہ",
+    "rest_house": "| ریسٹ ہاؤس"
   },
   "profile": {
     "personalInformation": "ذاتی معلومات",
@@ -816,6 +840,14 @@
     },
     "amenitiesStep": {
       "hint": "اس جائیداد میں موجود سہولیات پر ٹیپ کریں۔ یہ تلاش میں فلٹرز کے طور پر ظاہر ہوں گی۔"
+    },
+    "steps": {
+      "basicInfo": "بنیادی معلومات",
+      "location": "مقام",
+      "media": "میڈیا",
+      "amenities": "سہولیات",
+      "compliance": "| تعمیل",
+      "review": "جائزہ لیں"
     }
   },
   "subscription": {
@@ -1384,7 +1416,9 @@
     "memberSince": "ممبر چونکہ",
     "contactAgent": "ایجنٹ سے رابطہ کریں",
     "viewProfile": "| پروفائل دیکھیں",
-    "sendMessage": "پیغام بھیجیں"
+    "sendMessage": "پیغام بھیجیں",
+    "respondsWithin": "| {{hours}} گھنٹے کے اندر جواب دیتا ہے",
+    "respondsWithinDay": "ایک دن میں جواب دیتا ہے"
   },
   "property": {
     "villa": "ولا",
@@ -1420,7 +1454,13 @@
   },
   "compare": {
     "add": "موازنہ کرنے کے لیے شامل کریں",
-    "remove": "موازنہ سے ہٹا دیں۔"
+    "remove": "موازنہ سے ہٹا دیں۔",
+    "title": "موازنہ کریں",
+    "compareProperties": "| پراپرٹیز کا موازنہ کریں",
+    "clearAll": "سب کو صاف کریں",
+    "empty": "ابھی تک موازنہ کرنے کے لیے کوئی خاصیت نہیں",
+    "viewComparison": "موازنہ دیکھیں",
+    "compareNow": "اب موازنہ کریں"
   },
   "agentReview": {
     "postFailed": "جائزہ پوسٹ نہیں کیا جا سکا",
@@ -1584,5 +1624,21 @@
     "oct": "اکتوبر",
     "nov": "| نومبر",
     "dec": "دسمبر"
+  },
+  "mortgage": {
+    "title": "رہن کیلکولیٹر",
+    "propertyPrice": "پراپرٹی کی قیمت (SAR)",
+    "downPayment": "ڈاون پیمنٹ",
+    "loanTerm": "قرض کی مدت (سال)",
+    "interestRate": "سالانہ شرح سود (%)",
+    "monthlyPayment": "تخمینہ شدہ ماہانہ ادائیگی",
+    "loanAmount": "قرض کی رقم",
+    "totalPayment": "کل ادائیگی",
+    "totalInterest": "کل دلچسپی",
+    "disclaimer": "یہ ایک اندازہ ہے۔ حقیقی قرض کی پیشکش کے لیے اپنے بینک سے مشورہ کریں۔",
+    "perMonth": "SAR/mo"
+  },
+  "notifications": {
+    "markAllRead": "سبھی کو پڑھا ہوا نشان زد کریں۔"
   }
 }

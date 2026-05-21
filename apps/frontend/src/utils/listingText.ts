@@ -1,4 +1,5 @@
 import type { Listing } from '@eawlma/shared-types';
+import { SAUDI_CITIES } from '@/data/saudi-locations';
 
 // Backend ships machine-translation stubs that prepend "[xx] " to the source
 // string when no real translation exists yet. Treat them as missing.
@@ -74,10 +75,44 @@ export function getListingDescription(
   return usable?.description ?? '';
 }
 
-/** Build the address line, dropping any field that contains mojibake. */
-export function getListingLocation(listing: Pick<Listing, 'district' | 'city'>): string {
+/** Resolve a city value (English name, Arabic name, or id) to the active locale. */
+export function getCityName(cityValue: string | null | undefined, locale: string): string {
+  if (!cityValue) return '';
+  const isAr = locale === 'ar';
+  const city = SAUDI_CITIES.find(
+    (c) => c.nameEn === cityValue || c.nameAr === cityValue || c.id === String(cityValue).toLowerCase(),
+  );
+  if (!city) return cityValue;
+  return isAr ? city.nameAr : city.nameEn;
+}
+
+/** Resolve a region/province value to the active locale. */
+export function getRegionName(regionValue: string | null | undefined, locale: string): string {
+  if (!regionValue) return '';
+  const isAr = locale === 'ar';
+  for (const c of SAUDI_CITIES) {
+    const r = c.regions.find(
+      (r) => r.nameEn === regionValue || r.nameAr === regionValue || r.id === String(regionValue).toLowerCase(),
+    );
+    if (r) return isAr ? r.nameAr : r.nameEn;
+  }
+  return regionValue;
+}
+
+/**
+ * Build the address line, dropping any field that contains mojibake.
+ *
+ * When a `locale` is supplied the city is routed through `getCityName` so the
+ * card reads fully in the active language instead of bleeding the raw English
+ * (or Arabic) source value.
+ */
+export function getListingLocation(
+  listing: Pick<Listing, 'district' | 'city'>,
+  locale?: string,
+): string {
   const district = isUsable(listing.district) ? listing.district : undefined;
-  const city = isUsable(listing.city) ? listing.city : undefined;
+  const rawCity = isUsable(listing.city) ? listing.city : undefined;
+  const city = rawCity && locale ? getCityName(rawCity, locale) : rawCity;
   if (district && city) return `${district}, ${city}`;
   return city ?? district ?? '';
 }

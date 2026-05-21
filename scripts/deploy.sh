@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-SERVER_IP="3.139.74.95"
+SERVER_IP="3.142.74.95"
 SERVER_USER="ubuntu"
-PEM_FILE="$HOME/.ssh/eawlma-key.pem"
+PEM_FILE="~/Downloads/eawlma-key.pem"
 DEPLOY_DIR="~/eawlma-package"
 
 echo "🚀 Starting deployment..."

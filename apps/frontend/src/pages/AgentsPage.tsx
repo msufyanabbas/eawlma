@@ -26,6 +26,7 @@ import { useTranslation } from 'react-i18next';
 import { agentsApi, type PublicAgent } from '@/api/agents.api';
 import { searchApi } from '@/api/search.api';
 import { EmptyState } from '@/components/global/EmptyState';
+import { formatNumber } from '@/utils/formatters';
 
 // Avatars come from each agent's own profile (`agent.avatarUrl`). When that
 // is null we render initials on the brand gradient — never a stock photo of
@@ -251,7 +252,7 @@ export function AgentsPage() {
                           <StarIcon key={n} sx={{ color: theme.eawlma.gold, fontSize: '1.1rem' }} />
                         ))}
                         <Typography variant="caption" color="text.secondary" sx={{ ml: 0.5 }}>
-                          4.8
+                          {formatNumber('4.8')}
                         </Typography>
                       </Stack>
 
@@ -273,7 +274,7 @@ export function AgentsPage() {
 
                       <Typography variant="caption" color="text.secondary" sx={{ mb: 2 }}>
                         {t('agents.activeListingsCount', {
-                          count: listingCount,
+                          count: formatNumber(listingCount) as unknown as number,
                           defaultValue: '{{count}} active listings',
                         })}
                       </Typography>

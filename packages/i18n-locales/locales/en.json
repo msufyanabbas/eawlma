@@ -340,7 +340,10 @@
     "strengthWeak": "Weak",
     "strengthFair": "Fair",
     "strengthGood": "Good",
-    "strengthStrong": "Strong"
+    "strengthStrong": "Strong",
+    "trustedPlatform": "Trusted by thousands across Saudi Arabia",
+    "platformDesc": "Secure • Verified Agents • Best Properties",
+    "signInWithGoogle": "Continue with Google"
   },
   "validation": {
     "required": "This field is required",
@@ -455,6 +458,17 @@
     "loanTerm": "Loan term",
     "interestRate": "Interest rate",
     "message": "Message",
+    "vrExperience": "VR & AR Experience",
+    "vrTitle": "Immersive VR & AR Property Experience",
+    "vrDesc": "Step inside this property from anywhere in the world. Take a 360° virtual tour or place a true-to-scale 3D model right in your living room.",
+    "vrNoTour": "The agent hasn't uploaded a 360°/3D tour for this listing yet.",
+    "premium": "Premium",
+    "enterVrTour": "Enter VR Tour",
+    "viewInAr": "View in AR",
+    "videoTour": "Video tour",
+    "guestReviews": "Guest Reviews",
+    "reviewsCount": "{{count}} reviews",
+    "builtYear": "Built",
     "fairPrice": {
       "great": "💚 Great price",
       "fair": "✓ Fair price",
@@ -490,7 +504,9 @@
     "memberSince": "Member Since",
     "contactAgent": "Contact Agent",
     "viewProfile": "View Profile",
-    "sendMessage": "Send Message"
+    "sendMessage": "Send Message",
+    "respondsWithin": "Responds within {{hours}} hours",
+    "respondsWithinDay": "Responds within a day"
   },
   "property": {
     "villa": "Villa",
@@ -526,7 +542,13 @@
   },
   "compare": {
     "add": "Add to compare",
-    "remove": "Remove from compare"
+    "remove": "Remove from compare",
+    "title": "Compare",
+    "compareProperties": "Compare Properties",
+    "clearAll": "Clear all",
+    "empty": "No properties to compare yet",
+    "viewComparison": "View comparison",
+    "compareNow": "Compare now"
   },
   "search": {
     "filters": "Filters",
@@ -700,7 +722,17 @@
     "commercial": "Commercial",
     "studio": "Studio",
     "penthouse": "Penthouse",
-    "townhouse": "Townhouse"
+    "townhouse": "Townhouse",
+    "duplex": "Duplex",
+    "warehouse": "Warehouse",
+    "farm": "Farm",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hotel Apartment",
+    "building": "Building",
+    "room": "Private Room",
+    "entire_home": "Entire Home",
+    "hotel_room": "Hotel Room",
+    "rest_house": "Rest House"
   },
   "profile": {
     "personalInformation": "Personal information",
@@ -726,6 +758,14 @@
     "amenities": "Amenities",
     "compliance": "Compliance",
     "review": "Review",
+    "steps": {
+      "basicInfo": "Basic info",
+      "location": "Location",
+      "media": "Media",
+      "amenities": "Amenities",
+      "compliance": "Compliance",
+      "review": "Review"
+    },
     "saveDraft": "Save draft",
     "submit": "Submit for review",
     "submitForReview": "Submit for review",
@@ -1329,12 +1369,28 @@
     "viewMarket": "View market",
     "miniTrend": "Local market trend"
   },
+  "mortgage": {
+    "title": "Mortgage Calculator",
+    "propertyPrice": "Property Price (SAR)",
+    "downPayment": "Down Payment",
+    "loanTerm": "Loan Term (Years)",
+    "interestRate": "Annual Interest Rate (%)",
+    "monthlyPayment": "Estimated Monthly Payment",
+    "loanAmount": "Loan Amount",
+    "totalPayment": "Total Payment",
+    "totalInterest": "Total Interest",
+    "disclaimer": "This is an estimate. Consult your bank for an actual loan offer.",
+    "perMonth": "SAR/mo"
+  },
   "errors": {
     "generic": "An unexpected error occurred",
     "network": "Network error — please try again",
     "unauthorized": "You must be signed in to continue",
     "forbidden": "You don't have permission to access this",
     "notFound": "The requested resource was not found"
+  },
+  "notifications": {
+    "markAllRead": "Mark all as read"
   },
   "wishlist": {
     "saveTo": "Save to wishlist",

@@ -312,7 +312,10 @@
     "strengthWeak": "Faible",
     "strengthFair": "Foire",
     "strengthGood": "Bon",
-    "strengthStrong": "Fort"
+    "strengthStrong": "Fort",
+    "trustedPlatform": "Approuvé par des milliers de personnes à travers l'Arabie Saoudite",
+    "platformDesc": "Sécurisé • Agents vérifiés • Meilleures propriétés",
+    "signInWithGoogle": "Continuer avec Google"
   },
   "validation": {
     "required": "Ce champ est obligatoire",
@@ -448,7 +451,18 @@
     "expired": "Expiré",
     "moderationRejected": "Annonce rejetée – le contenu enfreint les directives de la plateforme",
     "contentViolation": "Violation de la politique de contenu",
-    "moderationHint": "Veuillez vous assurer que votre annonce ne contient pas : de spam, de numéros de téléphone dans la description, de contenu inapproprié ou d'informations trompeuses"
+    "moderationHint": "Veuillez vous assurer que votre annonce ne contient pas : de spam, de numéros de téléphone dans la description, de contenu inapproprié ou d'informations trompeuses",
+    "vrExperience": "Expérience VR et AR",
+    "vrTitle": "Expérience immersive de propriété VR et AR",
+    "vrDesc": "Entrez dans cette propriété depuis n’importe où dans le monde. Faites une visite virtuelle à 360° ou placez un modèle 3D à l'échelle directement dans votre salon.",
+    "vrNoTour": "L'agent n'a pas encore mis en ligne de visite 360°/3D pour cette annonce.",
+    "premium": "Premium",
+    "enterVrTour": "Entrez dans la visite VR",
+    "viewInAr": "Afficher en AR",
+    "videoTour": "Visite vidéo",
+    "guestReviews": "Commentaires des clients",
+    "reviewsCount": "{{count}} avis",
+    "builtYear": "Construit"
   },
   "search": {
     "filters": "Filtres",
@@ -622,7 +636,17 @@
     "commercial": "Commercial",
     "studio": "Studio",
     "penthouse": "Attique",
-    "townhouse": "Maison de ville"
+    "townhouse": "Maison de ville",
+    "duplex": "Duplex",
+    "warehouse": "Entrepôt",
+    "farm": "Ferme",
+    "chalet": "Chalet",
+    "hotel_apartment": "Hôtel Appartement",
+    "building": "Bâtiment",
+    "room": "Chambre privée",
+    "entire_home": "Maison entière",
+    "hotel_room": "Chambre d'hôtel",
+    "rest_house": "Maison de repos"
   },
   "profile": {
     "personalInformation": "Informations personnelles",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "Appuyez sur les commodités offertes par cette propriété. Nous les afficherons sous forme de filtres dans la recherche."
+    },
+    "steps": {
+      "basicInfo": "Informations de base",
+      "location": "Localisation",
+      "media": "Médias",
+      "amenities": "Commodités",
+      "compliance": "Conformité",
+      "review": "Critique"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "Membre depuis",
     "contactAgent": "Contacter l'agent",
     "viewProfile": "Voir le profil",
-    "sendMessage": "Envoyer un message"
+    "sendMessage": "Envoyer un message",
+    "respondsWithin": "Répond dans les {{hours}} heures",
+    "respondsWithinDay": "Répond dans la journée"
   },
   "property": {
     "villa": "Villa",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "Ajouter pour comparer",
-    "remove": "Supprimer de la comparaison"
+    "remove": "Supprimer de la comparaison",
+    "title": "Comparer",
+    "compareProperties": "Comparer les propriétés",
+    "clearAll": "Tout effacer",
+    "empty": "Aucune propriété à comparer pour l'instant",
+    "viewComparison": "Voir la comparaison",
+    "compareNow": "Comparez maintenant"
   },
   "myListings": {
     "countSelected": "{{count}} sélectionnés",
@@ -1571,5 +1611,21 @@
     "oct": "octobre",
     "nov": "novembre",
     "dec": "Déc"
+  },
+  "mortgage": {
+    "title": "Calculateur hypothécaire",
+    "propertyPrice": "Prix ​​de l'immobilier (SAR)",
+    "downPayment": "Acompte",
+    "loanTerm": "Durée du prêt (années)",
+    "interestRate": "Taux d'intérêt annuel (%)",
+    "monthlyPayment": "Paiement mensuel estimé",
+    "loanAmount": "Montant du prêt",
+    "totalPayment": "Paiement total",
+    "totalInterest": "Intérêt total",
+    "disclaimer": "Ceci est une estimation. Consultez votre banque pour une véritable offre de prêt.",
+    "perMonth": "SAR/mois"
+  },
+  "notifications": {
+    "markAllRead": "Marquer tout comme lu"
   }
 }

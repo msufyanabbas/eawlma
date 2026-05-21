@@ -10,7 +10,6 @@ import {
   Grid,
   IconButton,
   Link as MuiLink,
-  MenuItem,
   Paper,
   Skeleton,
   Snackbar,
@@ -58,7 +57,7 @@ import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { MortgageCalculator } from '@/components/global/MortgageCalculator';
 import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
-import { fallbackImageForPropertyType, listingGalleryUrls } from '@/utils/listingImages';
+import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
 import { whatsappListingUrl } from '@/utils/whatsapp';
@@ -68,28 +67,6 @@ import { EjarContractDialog } from '@/components/global/EjarContractDialog';
 import { BookingCalendar } from '@/components/global/BookingCalendar';
 import { priceTrendsApi } from '@/api/priceTrends.api';
 import { Line, LineChart, ResponsiveContainer, Tooltip as RechartsTooltip } from 'recharts';
-
-// ------------------------------------------------------------------
-// 30 supported translation locales (mirrors backend's TRANSLATION_TARGET_LOCALES)
-// ------------------------------------------------------------------
-
-const SUPPORTED_LOCALES: Array<{ code: string; label: string }> = [
-  { code: 'ar', label: 'العربية' },   { code: 'en', label: 'English' },
-  { code: 'fr', label: 'Français' },  { code: 'es', label: 'Español' },
-  { code: 'de', label: 'Deutsch' },   { code: 'it', label: 'Italiano' },
-  { code: 'pt', label: 'Português' }, { code: 'ru', label: 'Русский' },
-  { code: 'tr', label: 'Türkçe' },    { code: 'fa', label: 'فارسی' },
-  { code: 'ur', label: 'اردو' },      { code: 'ja', label: '日本語' },
-  { code: 'zh-Hans', label: '简体中文' }, { code: 'zh-Hant', label: '繁體中文' },
-  { code: 'ko', label: '한국어' },    { code: 'hi', label: 'हिन्दी' },
-  { code: 'bn', label: 'বাংলা' },     { code: 'id', label: 'Bahasa Indonesia' },
-  { code: 'ms', label: 'Bahasa Melayu' }, { code: 'vi', label: 'Tiếng Việt' },
-  { code: 'th', label: 'ไทย' },       { code: 'tl', label: 'Filipino' },
-  { code: 'nl', label: 'Nederlands' }, { code: 'pl', label: 'Polski' },
-  { code: 'sv', label: 'Svenska' },   { code: 'no', label: 'Norsk' },
-  { code: 'da', label: 'Dansk' },     { code: 'fi', label: 'Suomi' },
-  { code: 'el', label: 'Ελληνικά' },  { code: 'he', label: 'עברית' },
-];
 
 // ------------------------------------------------------------------
 // Price-fairness helper
@@ -167,7 +144,6 @@ export function ListingDetailPage() {
   const toggleSaved = useSavedStore((s) => s.toggle);
 
   const navigate = useNavigate();
-  const [displayLocale, setDisplayLocale] = useState<string>(i18n.language);
   const [ejarOpen, setEjarOpen] = useState(false);
   const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: 'info' | 'warning' }>({
     open: false,
@@ -222,10 +198,10 @@ export function ListingDetailPage() {
   const localized = useMemo(() => {
     if (!listing) return { title: '', description: '' };
     return {
-      title: getListingTitle(listing, displayLocale),
-      description: getListingDescription(listing, displayLocale),
+      title: getListingTitle(listing, i18n.language),
+      description: getListingDescription(listing, i18n.language),
     };
-  }, [listing, displayLocale]);
+  }, [listing, i18n.language]);
 
   // Inquiry form state (shared between sticky sidebar + mobile sheet) — for
   // authenticated users we pre-fill from the auth store so the only required
@@ -314,21 +290,14 @@ export function ListingDetailPage() {
   // Guard every nested array — media can come back undefined for legacy rows.
   const allMedia = listing.media ?? [];
   const realImages = allMedia.filter((m) => m?.type === MediaType.IMAGE);
-  // Pad the gallery with curated Unsplash fallbacks so the Airbnb-style 1+4
-  // grid + "Show all 10 photos" CTA always have material to render — even on
-  // seed listings that only ship one uploaded photo.
+  // Show ONLY the listing's own uploaded images. When none exist, fall back to
+  // a single property-type cover image — never pad with shared stock photos,
+  // which made every listing look like it owned the same gallery.
   const fallbackUrl = fallbackImageForPropertyType(listing.propertyType);
-  const galleryUrls = listingGalleryUrls(listing, 10);
   const images: Array<{ id: string; url: string; thumbnailUrl?: string | null }> =
-    realImages.length >= 5
-      ? realImages
-      : galleryUrls.map((url, i) => {
-          // Prefer the real ListingMedia object when we have one — keeps its
-          // id stable for downstream `key`s — otherwise synthesize a stable id.
-          const real = realImages[i];
-          if (real) return real as { id: string; url: string; thumbnailUrl?: string | null };
-          return { id: `fallback-${i}`, url, thumbnailUrl: url };
-        });
+    realImages.length > 0
+      ? (realImages as Array<{ id: string; url: string; thumbnailUrl?: string | null }>)
+      : [{ id: 'fallback-0', url: fallbackUrl, thumbnailUrl: fallbackUrl }];
   const video = allMedia.find((m) => m?.type === MediaType.VIDEO);
   const tour360 = allMedia.find((m) => m?.type === MediaType.TOUR_360);
   const cover = images[0]?.url;
@@ -351,21 +320,18 @@ export function ListingDetailPage() {
   // current device cannot honour the action, so users aren't left wondering.
   const handleEnterVR = () => {
     if (!tour360?.url) {
-      showSnackbar(
-        'No virtual tour available for this listing yet. Ask the agent to add one.',
-        'info',
-      );
+      showSnackbar(t('listing.vrNoTour'), 'info');
       return;
     }
     window.open(tour360.url, '_blank', 'noopener');
   };
   const handleViewAR = () => {
     if (!tour360?.url) {
-      showSnackbar('No AR model available for this listing yet.', 'info');
+      showSnackbar(t('listing.vrNoTour'), 'info');
       return;
     }
     if (typeof navigator !== 'undefined' && !('xr' in navigator)) {
-      showSnackbar('AR is not supported on this device/browser.', 'warning');
+      showSnackbar(t('listing.vrNoTour'), 'warning');
       return;
     }
     window.open(tour360.url, '_blank', 'noopener');
@@ -607,18 +573,17 @@ export function ListingDetailPage() {
                     textTransform: 'uppercase',
                   }}
                 >
-                  ✨ Premium
+                  ✨ {t('listing.premium')}
                 </Box>
                 <Typography variant="overline" sx={{ letterSpacing: 0.8 }}>
-                  AR / VR Experience
+                  {t('listing.vrExperience')}
                 </Typography>
               </Stack>
               <Typography variant="h4" sx={{ fontWeight: 800, mb: 1, position: 'relative' }}>
-                🥽 Immersive VR & AR Property Experience
+                🥽 {t('listing.vrTitle')}
               </Typography>
               <Typography variant="body1" sx={{ opacity: 0.85, mb: 3, maxWidth: 560, position: 'relative' }}>
-                Step inside this property from anywhere in the world. Take a 360° virtual tour or
-                place a true-to-scale 3D model right in your living room.
+                {t('listing.vrDesc')}
               </Typography>
 
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ position: 'relative' }}>
@@ -635,7 +600,7 @@ export function ListingDetailPage() {
                     '&:hover': { bgcolor: 'rgba(255,255,255,0.32)' },
                   }}
                 >
-                  Enter VR Tour
+                  {t('listing.enterVrTour')}
                 </Button>
                 <Button
                   size="large"
@@ -649,7 +614,7 @@ export function ListingDetailPage() {
                     '&:hover': { bgcolor: 'rgba(255,255,255,0.18)', borderColor: '#FFFFFF' },
                   }}
                 >
-                  View in AR
+                  {t('listing.viewInAr')}
                 </Button>
               </Stack>
 
@@ -677,7 +642,7 @@ export function ListingDetailPage() {
                   </Box>
                 ) : (
                   <Typography variant="caption" sx={{ opacity: 0.6 }}>
-                    The agent hasn't uploaded a 360°/3D tour for this listing yet.
+                    {t('listing.vrNoTour')}
                   </Typography>
                 )}
               </Box>
@@ -687,7 +652,7 @@ export function ListingDetailPage() {
             {video && (
               <Box sx={{ mb: 4 }}>
                 <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
-                  Video tour
+                  {t('listing.videoTour')}
                 </Typography>
                 <Box sx={{ borderRadius: 3, overflow: 'hidden', bgcolor: 'common.black', aspectRatio: '16 / 9' }}>
                   <video src={video.url} controls style={{ width: '100%', height: '100%' }} />
@@ -695,26 +660,11 @@ export function ListingDetailPage() {
               </Box>
             )}
 
-            {/* Description + AI translation switch */}
+            {/* Description */}
             <Box sx={{ mb: 4 }}>
-              <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
-                <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                  {t('listing.description')}
-                </Typography>
-                <TextField
-                  select
-                  size="small"
-                  value={displayLocale}
-                  onChange={(e) => setDisplayLocale(e.target.value)}
-                  sx={{ minWidth: 180 }}
-                >
-                  {SUPPORTED_LOCALES.map((l) => (
-                    <MenuItem key={l.code} value={l.code}>
-                      {l.label} {l.code === listing.sourceLocale ? '(source)' : ''}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Stack>
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+                {t('listing.description')}
+              </Typography>
               <Typography variant="body1" sx={{ whiteSpace: 'pre-line', lineHeight: 1.7 }}>
                 {localized.description}
               </Typography>
@@ -933,7 +883,7 @@ export function ListingDetailPage() {
                       ? `${agent.responseRate}% ${t('booking.responseRate', { defaultValue: 'response rate' })}${
                           agent.responseTime ? ` · ${agent.responseTime}` : ''
                         }`
-                      : 'Responds within 2 hours'
+                      : t('agent.respondsWithin', { hours: 2 })
                   }
                   size="small"
                   sx={{
@@ -953,7 +903,7 @@ export function ListingDetailPage() {
                     variant="outlined"
                     size="small"
                   >
-                    View profile
+                    {t('agent.viewProfile')}
                   </Button>
                   {!isOwnListing && (
                     <Button
@@ -1133,7 +1083,7 @@ export function ListingDetailPage() {
         {/* Similar listings */}
         <Box sx={{ mt: 6 }}>
           <Typography variant="h5" sx={{ fontWeight: 800, mb: 3 }}>
-            Similar listings
+            {t('listing.similarListings')}
           </Typography>
           <Grid container spacing={3}>
             {similarQuery.isLoading
@@ -1465,6 +1415,7 @@ function InfoChip({ label, value }: { label: string; value: string }) {
 // ------------------------------------------------------------------
 
 function ListingReviewsSection({ listingId }: { listingId: string }) {
+  const { t } = useTranslation();
   const reviewsQuery = useQuery({
     queryKey: ['reviews', 'listing', listingId],
     queryFn: () => reviewsApi.forListing(listingId, 1, 6),
@@ -1478,7 +1429,7 @@ function ListingReviewsSection({ listingId }: { listingId: string }) {
   return (
     <Box sx={{ mb: 4 }}>
       <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
-        ⭐ {data.averageRating.toFixed(1)} · {data.totalReviews} reviews
+        ⭐ {data.averageRating.toFixed(1)} · {t('listing.reviewsCount', { count: data.totalReviews })}
       </Typography>
 
       {sub && (

@@ -312,7 +312,10 @@
     "strengthWeak": "Fraco",
     "strengthFair": "Justo",
     "strengthGood": "Bom",
-    "strengthStrong": "Forte"
+    "strengthStrong": "Forte",
+    "trustedPlatform": "Confiado por milhares de pessoas em toda a Arábia Saudita",
+    "platformDesc": "Seguro • Agentes Verificados • Melhores Propriedades",
+    "signInWithGoogle": "Continuar com o Google"
   },
   "validation": {
     "required": "Este campo é obrigatório",
@@ -448,7 +451,18 @@
     "expired": "Expirado",
     "moderationRejected": "Listagem rejeitada – o conteúdo viola as diretrizes da plataforma",
     "contentViolation": "Violação da política de conteúdo",
-    "moderationHint": "Certifique-se de que sua listagem não contenha: spam, números de telefone na descrição, conteúdo impróprio ou informações enganosas"
+    "moderationHint": "Certifique-se de que sua listagem não contenha: spam, números de telefone na descrição, conteúdo impróprio ou informações enganosas",
+    "vrExperience": "Experiência VR e AR",
+    "vrTitle": "Experiência imersiva de propriedade em VR e AR",
+    "vrDesc": "Entre nesta propriedade de qualquer lugar do mundo. Faça um tour virtual 360° ou coloque um modelo 3D em escala real na sua sala de estar.",
+    "vrNoTour": "O agente ainda não carregou um tour 360°/3D para este anúncio.",
+    "premium": "Prêmio",
+    "enterVrTour": "Entre no tour VR",
+    "viewInAr": "Ver em RA",
+    "videoTour": "Vídeo tour",
+    "guestReviews": "Avaliações de hóspedes",
+    "reviewsCount": "{{contar}} comentários",
+    "builtYear": "Construído"
   },
   "search": {
     "filters": "Filtros",
@@ -622,7 +636,17 @@
     "commercial": "Comercial",
     "studio": "Estúdio",
     "penthouse": "Cobertura",
-    "townhouse": "Casa geminada"
+    "townhouse": "Casa geminada",
+    "duplex": "Dúplex",
+    "warehouse": "Armazém",
+    "farm": "Fazenda",
+    "chalet": "Chalé",
+    "hotel_apartment": "Apartamento",
+    "building": "Prédio",
+    "room": "Quarto Privado",
+    "entire_home": "Casa inteira",
+    "hotel_room": "Quarto de hotel",
+    "rest_house": "Casa de repouso"
   },
   "profile": {
     "personalInformation": "Informações pessoais",
@@ -790,6 +814,14 @@
     },
     "amenitiesStep": {
       "hint": "Toque nas comodidades que esta propriedade oferece. Iremos exibi-los como filtros na Pesquisa."
+    },
+    "steps": {
+      "basicInfo": "Informações básicas",
+      "location": "Localização",
+      "media": "Mídia",
+      "amenities": "Comodidades",
+      "compliance": "Conformidade",
+      "review": "Análise"
     }
   },
   "subscription": {
@@ -1359,7 +1391,9 @@
     "memberSince": "Membro desde",
     "contactAgent": "Agente de contato",
     "viewProfile": "Ver perfil",
-    "sendMessage": "Enviar mensagem"
+    "sendMessage": "Enviar mensagem",
+    "respondsWithin": "Responde dentro de {{hours}} horas",
+    "respondsWithinDay": "Responde em um dia"
   },
   "property": {
     "villa": "Vila",
@@ -1395,7 +1429,13 @@
   },
   "compare": {
     "add": "Adicionar para comparar",
-    "remove": "Remover da comparação"
+    "remove": "Remover da comparação",
+    "title": "Comparar",
+    "compareProperties": "Comparar propriedades",
+    "clearAll": "Limpar tudo",
+    "empty": "Ainda não há imóveis para comparar",
+    "viewComparison": "Ver comparação",
+    "compareNow": "Compare agora"
   },
   "myListings": {
     "countSelected": "{{count}} selecionados",
@@ -1571,5 +1611,21 @@
     "oct": "Outubro",
     "nov": "Novembro",
     "dec": "dezembro"
+  },
+  "mortgage": {
+    "title": "Calculadora de hipoteca",
+    "propertyPrice": "Preço do Imóvel (SAR)",
+    "downPayment": "Pagamento inicial",
+    "loanTerm": "Prazo do empréstimo (anos)",
+    "interestRate": "Taxa de juros anual (%)",
+    "monthlyPayment": "Pagamento Mensal Estimado",
+    "loanAmount": "Valor do empréstimo",
+    "totalPayment": "Pagamento total",
+    "totalInterest": "Juros totais",
+    "disclaimer": "Esta é uma estimativa. Consulte seu banco para obter uma oferta de empréstimo real.",
+    "perMonth": "SAR/mês"
+  },
+  "notifications": {
+    "markAllRead": "Marcar tudo como lido"
   }
 }
