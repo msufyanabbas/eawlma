@@ -46,7 +46,8 @@ type RangeDays = (typeof RANGE_OPTIONS)[number];
 export function ListingAnalyticsPage() {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { translateLabel, formatTooltipValue, formatNumber } = useChartTranslations();
+  const { translateLabel, formatTooltipValue, formatNumber, rtlXAxisProps, rtlYAxisProps } =
+    useChartTranslations();
   const params = useParams({ strict: false }) as { id?: string };
   const id = params.id ?? '';
   const [rangeDays, setRangeDays] = useState<RangeDays>(30);
@@ -251,8 +252,8 @@ export function ListingAnalyticsPage() {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={funnelData} layout="vertical" margin={{ left: 16, right: 16 }}>
                     <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
-                    <XAxis type="number" tickFormatter={formatNumber} stroke={theme.palette.text.secondary} fontSize={12} />
-                    <YAxis type="category" dataKey="stage" tickFormatter={translateLabel} stroke={theme.palette.text.secondary} fontSize={12} width={120} />
+                    <XAxis type="number" tickFormatter={formatNumber} stroke={theme.palette.text.secondary} fontSize={12} {...rtlXAxisProps} />
+                    <YAxis type="category" dataKey="stage" tickFormatter={translateLabel} stroke={theme.palette.text.secondary} fontSize={12} width={120} {...rtlYAxisProps} />
                     <RechartsTooltip formatter={formatTooltipValue} />
                     <Bar dataKey="value" radius={[0, 6, 6, 0]}>
                       {funnelData.map((_, i) => <Cell key={i} fill={palette[i % palette.length]} />)}

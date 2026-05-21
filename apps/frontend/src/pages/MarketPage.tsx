@@ -35,7 +35,7 @@ const PROPERTY_TYPES = ['apartment', 'villa', 'office', 'land', 'studio'] as con
 
 export function MarketPage() {
   const { t, i18n } = useTranslation();
-  const { translateLabel } = useChartTranslations();
+  const { translateLabel, isRTL, rtlXAxisProps, rtlYAxisProps } = useChartTranslations();
   const [city, setCity] = useState('Riyadh');
   const [type, setType] = useState<(typeof PROPERTY_TYPES)[number]>('apartment');
 
@@ -247,10 +247,14 @@ export function MarketPage() {
             ) : (
               <RTLChart height={360}>
                 <ResponsiveContainer>
-                  <BarChart data={areaQuery.data} layout="vertical" margin={{ left: 80 }}>
+                  <BarChart
+                    data={areaQuery.data}
+                    layout="vertical"
+                    margin={isRTL ? { right: 80 } : { left: 80 }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" tickFormatter={(v) => fmt(Number(v))} />
-                    <YAxis type="category" dataKey="district" width={140} />
+                    <XAxis type="number" tickFormatter={(v) => fmt(Number(v))} {...rtlXAxisProps} />
+                    <YAxis type="category" dataKey="district" width={140} {...rtlYAxisProps} />
                     <RechartsTooltip
                       formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}
                     />

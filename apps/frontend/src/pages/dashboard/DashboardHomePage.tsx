@@ -58,7 +58,7 @@ export function DashboardHomePage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
   const user = useAuthStore((s) => s.user);
-  const { translateLabel, formatTooltipValue, reverseForRTL, formatNumber } =
+  const { translateLabel, formatTooltipValue, formatNumber, rtlXAxisProps, rtlYAxisProps } =
     useChartTranslations();
 
   // ---- data sources --------------------------------------------------
@@ -292,19 +292,21 @@ export function DashboardHomePage() {
             <Box sx={{ mt: 2 }}>
               <RTLChart height={280}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={reverseForRTL(topListings)}>
+                  <BarChart data={topListings}>
                     <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
                     <XAxis
                       dataKey="name"
                       tickFormatter={translateLabel}
                       stroke={theme.palette.text.secondary}
                       fontSize={11}
+                      {...rtlXAxisProps}
                     />
                     <YAxis
                       tickFormatter={formatNumber}
                       stroke={theme.palette.text.secondary}
                       fontSize={12}
                       allowDecimals={false}
+                      {...rtlYAxisProps}
                     />
                     <RechartsTooltip
                       formatter={formatTooltipValue}

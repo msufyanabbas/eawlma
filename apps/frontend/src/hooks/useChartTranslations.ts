@@ -75,6 +75,20 @@ export function useChartTranslations() {
    */
   const formatAxisNumber = (value: unknown): string => formatNumber(Number(value));
 
+  /**
+   * Recharts axis props for right-to-left **categorical** charts. Spread these
+   * onto the axes of non-time-series bar charts:
+   *   - `reversed` on the category/value axis flips the order so bars grow
+   *     right→left;
+   *   - `orientation: 'right'` moves the value axis to the right edge.
+   *
+   * Do NOT apply them to time-series charts — a time axis always reads
+   * left→right. `mirror` is intentionally omitted: it renders ticks inside the
+   * plot area (overlapping the data) and has nothing to do with RTL.
+   */
+  const rtlXAxisProps = isRTL ? { reversed: true } : {};
+  const rtlYAxisProps = isRTL ? { orientation: 'right' as const } : {};
+
   return {
     isRTL,
     translateLabel,
@@ -82,5 +96,7 @@ export function useChartTranslations() {
     formatLegend,
     reverseForRTL,
     formatNumber: formatAxisNumber,
+    rtlXAxisProps,
+    rtlYAxisProps,
   };
 }
