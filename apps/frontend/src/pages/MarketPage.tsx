@@ -26,6 +26,8 @@ import {
 } from 'recharts';
 
 import { priceTrendsApi } from '@/api/priceTrends.api';
+import RTLChart from '@/components/charts/RTLChart';
+import { useChartTranslations } from '@/hooks/useChartTranslations';
 
 const CITIES = ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam', 'Khobar'];
 // Keys must mirror entries under the `propertyTypes` i18n namespace.
@@ -33,6 +35,7 @@ const PROPERTY_TYPES = ['apartment', 'villa', 'office', 'land', 'studio'] as con
 
 export function MarketPage() {
   const { t, i18n } = useTranslation();
+  const { translateLabel } = useChartTranslations();
   const [city, setCity] = useState('Riyadh');
   const [type, setType] = useState<(typeof PROPERTY_TYPES)[number]>('apartment');
 
@@ -204,11 +207,11 @@ export function MarketPage() {
             {trendsLoading ? (
               <Skeleton variant="rectangular" height={320} />
             ) : (
-              <Box sx={{ width: '100%', height: 320 }}>
+              <RTLChart height={320}>
                 <ResponsiveContainer>
                   <LineChart data={trendsQuery.data}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
+                    <XAxis dataKey="month" tickFormatter={translateLabel} />
                     <YAxis tickFormatter={(v) => fmt(Number(v))} />
                     <RechartsTooltip
                       formatter={(v: number) => [`${fmt(v)} ${t('listing.currency')}/${t('listing.areaUnit')}`, t('market.avgPricePerSqm')]}
@@ -222,7 +225,7 @@ export function MarketPage() {
                     />
                   </LineChart>
                 </ResponsiveContainer>
-              </Box>
+              </RTLChart>
             )}
           </Paper>
         )}
@@ -242,7 +245,7 @@ export function MarketPage() {
             {areaLoading ? (
               <Skeleton variant="rectangular" height={320} />
             ) : (
-              <Box sx={{ width: '100%', height: 360 }}>
+              <RTLChart height={360}>
                 <ResponsiveContainer>
                   <BarChart data={areaQuery.data} layout="vertical" margin={{ left: 80 }}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -254,7 +257,7 @@ export function MarketPage() {
                     <Bar dataKey="avgPricePerSqm" fill="#6C63A6" radius={[0, 6, 6, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
-              </Box>
+              </RTLChart>
             )}
           </Paper>
         )}

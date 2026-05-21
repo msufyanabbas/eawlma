@@ -36,6 +36,8 @@ import { commissionsApi, type Commission, type CommissionStatus } from '@/api/co
 import { AdminLayout } from '@/components/Layout/AdminLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 import { EmptyState } from '@/components/global/EmptyState';
+import RTLChart from '@/components/charts/RTLChart';
+import { useChartTranslations } from '@/hooks/useChartTranslations';
 
 const STATUS_COLORS: Record<CommissionStatus, { bg: string; text: string; label: string }> = {
   pending: { bg: '#FFF3CD', text: '#856404', label: 'Pending' },
@@ -49,6 +51,7 @@ const STATUS_OPTIONS: CommissionStatus[] = ['pending', 'confirmed', 'paid', 'dis
 export function AdminCommissionsPage() {
   const { t, i18n } = useTranslation();
   const theme = useTheme();
+  const { translateLabel, formatTooltipValue, formatNumber } = useChartTranslations();
   const qc = useQueryClient();
   const [statusFilter, setStatusFilter] = useState<CommissionStatus | 'all'>('all');
 
@@ -159,13 +162,14 @@ export function AdminCommissionsPage() {
       {/* Monthly chart */}
       <Paper sx={{ p: 3 }}>
         <Typography sx={{ fontWeight: 800, mb: 2 }}>{t('adminCommissionsPage2.revenueByMonth')}</Typography>
-        <Box sx={{ height: 280 }}>
+        <RTLChart height={280}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={summaryQuery.data?.byMonth ?? []}>
               <CartesianGrid stroke={theme.palette.divider} strokeDasharray="3 3" />
-              <XAxis dataKey="month" stroke={theme.palette.text.secondary} fontSize={12} />
-              <YAxis stroke={theme.palette.text.secondary} fontSize={12} />
+              <XAxis dataKey="month" tickFormatter={translateLabel} stroke={theme.palette.text.secondary} fontSize={12} />
+              <YAxis tickFormatter={formatNumber} stroke={theme.palette.text.secondary} fontSize={12} />
               <RechartsTooltip
+                formatter={formatTooltipValue}
                 contentStyle={{
                   backgroundColor: theme.palette.background.paper,
                   border: `1px solid ${theme.palette.divider}`,
@@ -176,7 +180,7 @@ export function AdminCommissionsPage() {
               <Bar dataKey="agent" fill={theme.palette.success.main} radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
-        </Box>
+        </RTLChart>
       </Paper>
 
       {/* Table */}
