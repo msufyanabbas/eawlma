@@ -1,5 +1,6 @@
 import {
   Alert,
+  AlertTitle,
   Box,
   Button,
   Chip,
@@ -218,6 +219,7 @@ export function ListingWizardPage() {
   const [step, setStep] = useState(0);
   const [state, setState] = useState<WizardState>(initialState);
   const [error, setError] = useState<string | null>(null);
+  const [moderationError, setModerationError] = useState<string | null>(null);
   const [savedListingId, setSavedListingId] = useState<string | undefined>(editingId);
   const [oathOpen, setOathOpen] = useState(false);
 
@@ -346,6 +348,35 @@ export function ListingWizardPage() {
       : undefined,
   });
 
+  // ---- Error handling ----------------------------------------------
+  const clearSubmitErrors = () => {
+    setError(null);
+    setModerationError(null);
+  };
+
+  // Distinguishes an AI content-moderation rejection (HTTP 400 whose message
+  // mentions "guidelines") from any other failure, and routes it to the
+  // dedicated moderation Alert along with the specific reasons the API returned.
+  const handleMutationError = (err: unknown) => {
+    const res = (
+      err as { response?: { status?: number; data?: { message?: unknown; reasons?: unknown } } }
+    )?.response;
+    const message = typeof res?.data?.message === 'string' ? res.data.message : undefined;
+    const reasons = Array.isArray(res?.data?.reasons) ? (res!.data!.reasons as string[]) : [];
+
+    if (res?.status === 400 && message?.includes('guidelines')) {
+      setError(null);
+      setModerationError(
+        reasons.length
+          ? `${t('listing.moderationRejected')} (${reasons.join(', ')})`
+          : t('listing.moderationRejected'),
+      );
+      return;
+    }
+    setModerationError(null);
+    setError(message ?? t('common.error'));
+  };
+
   // ---- Save / Submit -----------------------------------------------
   const saveDraftMutation = useMutation({
     mutationFn: async () => {
@@ -365,7 +396,9 @@ export function ListingWizardPage() {
       }
       return created;
     },
+    onMutate: clearSubmitErrors,
     onSuccess: () => qc.invalidateQueries({ queryKey: ['listings', 'mine'] }),
+    onError: handleMutationError,
   });
 
   const submitMutation = useMutation({
@@ -383,10 +416,12 @@ export function ListingWizardPage() {
       }
       return listingsApi.submit(id);
     },
+    onMutate: clearSubmitErrors,
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ['listings', 'mine'] });
       void navigate({ to: '/dashboard/listings' });
     },
+    onError: handleMutationError,
   });
 
   // ---- Step nav ----------------------------------------------------
@@ -440,6 +475,16 @@ export function ListingWizardPage() {
             {step === 4 && <ComplianceStep state={state} update={update} />}
             {step === 5 && <ReviewStep state={state} update={update} />}
           </>
+        )}
+
+        {moderationError && (
+          <Alert severity="error" sx={{ mt: 3 }}>
+            <AlertTitle>{t('listing.contentViolation')}</AlertTitle>
+            {moderationError}
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              {t('listing.moderationHint')}
+            </Typography>
+          </Alert>
         )}
 
         <Divider sx={{ my: 3 }} />

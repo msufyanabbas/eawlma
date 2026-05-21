@@ -431,7 +431,10 @@
     "rented": "Kiralandı",
     "available": "Mevcut",
     "pending": "Askıda olması",
-    "expired": "Günü geçmiş"
+    "expired": "Günü geçmiş",
+    "moderationRejected": "Listeleme reddedildi - içerik platform kurallarını ihlal ediyor",
+    "contentViolation": "İçerik Politikası İhlali",
+    "moderationHint": "Lütfen girişinizin şunları içermediğinden emin olun: spam, açıklamadaki telefon numaraları, uygunsuz içerik veya yanıltıcı bilgi"
   },
   "search": {
     "filters": "Filtreler",

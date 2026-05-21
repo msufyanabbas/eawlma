@@ -431,7 +431,10 @@
     "rented": "Đã thuê",
     "available": "Có sẵn",
     "pending": "Chưa giải quyết",
-    "expired": "Hết hạn"
+    "expired": "Hết hạn",
+    "moderationRejected": "Danh sách bị từ chối - nội dung vi phạm nguyên tắc nền tảng",
+    "contentViolation": "Vi phạm chính sách nội dung",
+    "moderationHint": "Hãy đảm bảo danh sách của bạn không chứa: thư rác, số điện thoại trong mô tả, nội dung không phù hợp hoặc thông tin sai lệch"
   },
   "search": {
     "filters": "Bộ lọc",

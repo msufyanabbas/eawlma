@@ -431,7 +431,10 @@
     "rented": "Închiriat",
     "available": "Disponibil",
     "pending": "În așteptare",
-    "expired": "A expirat"
+    "expired": "A expirat",
+    "moderationRejected": "Listare respinsă - conținutul încalcă regulile platformei",
+    "contentViolation": "Încălcarea politicii de conținut",
+    "moderationHint": "Asigurați-vă că înregistrarea dvs. nu conține: spam, numere de telefon în descriere, conținut neadecvat sau informații înșelătoare"
   },
   "search": {
     "filters": "Filtre",

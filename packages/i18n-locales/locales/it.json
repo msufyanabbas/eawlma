@@ -431,7 +431,10 @@
     "rented": "Affittato",
     "available": "Disponibile",
     "pending": "In attesa",
-    "expired": "Scaduto"
+    "expired": "Scaduto",
+    "moderationRejected": "Annuncio rifiutato - il contenuto viola le linee guida della piattaforma",
+    "contentViolation": "Violazione delle norme sui contenuti",
+    "moderationHint": "Assicurati che la tua inserzione non contenga: spam, numeri di telefono nella descrizione, contenuti inappropriati o informazioni fuorvianti"
   },
   "search": {
     "filters": "Filtri",
@@ -743,7 +746,7 @@
       "minimumStay": "Soggiorno minimo (notti)",
       "maxGuests": "Ospiti massimi",
       "checkIn": "Arrivo",
-      "checkOut": "Check-out",
+      "checkOut": "Guardare",
       "cancellationPolicy": "Politica di cancellazione",
       "cancelFlexible": "Flessibile: rimborso completo fino a 24 ore prima",
       "cancelModerate": "Moderato: rimborso completo fino a 5 giorni prima",

@@ -435,6 +435,9 @@
     },
     "regaLicensed": "REGA Licensed Listing",
     "regaLicense": "License",
+    "moderationRejected": "Listing rejected - content violates platform guidelines",
+    "contentViolation": "Content Policy Violation",
+    "moderationHint": "Please ensure your listing doesn't contain: spam, phone numbers in description, inappropriate content, or misleading information",
     "status": {
       "active": "Active",
       "pending": "Pending review",

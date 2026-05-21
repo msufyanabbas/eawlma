@@ -483,6 +483,9 @@
     "available": "Beschikbaar",
     "pending": "In behandeling",
     "expired": "Verlopen",
+    "moderationRejected": "Vermelding afgewezen - inhoud is in strijd met de platformrichtlijnen",
+    "contentViolation": "Schending van het inhoudsbeleid",
+    "moderationHint": "Zorg ervoor dat uw vermelding geen spam, telefoonnummers in de beschrijving, ongepaste inhoud of misleidende informatie bevat",
     "sale": "Uitverkoop",
     "rent": "Huur",
     "propertyTypeLabel": "Typ",
@@ -1694,7 +1697,7 @@
     "inquiryFunnel": "Onderzoekstrechter"
   },
   "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+    "cityPlaceholder": "Riyad, Jeddah, Dammam..."
   },
   "agentReviewForm": {
     "commentPlaceholder": "Deel wat nuttig, professioneel of beter was..."

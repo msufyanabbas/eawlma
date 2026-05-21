@@ -431,7 +431,10 @@
     "rented": "Sewaan",
     "available": "Tersedia",
     "pending": "Tertunda",
-    "expired": "Kedaluwarsa"
+    "expired": "Kedaluwarsa",
+    "moderationRejected": "Daftar ditolak - konten melanggar pedoman platform",
+    "contentViolation": "Pelanggaran Kebijakan Konten",
+    "moderationHint": "Harap pastikan listing Anda tidak berisi: spam, nomor telepon dalam deskripsi, konten tidak pantas, atau informasi menyesatkan"
   },
   "search": {
     "filters": "Filter",

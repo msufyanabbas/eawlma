@@ -431,7 +431,10 @@
     "rented": "Gehuur",
     "available": "Beskikbaar",
     "pending": "Hangende",
-    "expired": "Verval"
+    "expired": "Verval",
+    "moderationRejected": "Lys verwerp - inhoud oortree platformriglyne",
+    "contentViolation": "Inhoudbeleidskending",
+    "moderationHint": "Maak asseblief seker dat jou lysinskrywing nie: strooipos, telefoonnommers in beskrywing, onvanpaste inhoud of misleidende inligting bevat nie"
   },
   "search": {
     "filters": "Filters",

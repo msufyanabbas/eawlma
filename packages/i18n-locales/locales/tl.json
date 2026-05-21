@@ -431,7 +431,10 @@
     "rented": "Nirentahan",
     "available": "Available",
     "pending": "Nakabinbin",
-    "expired": "Nag-expire"
+    "expired": "Nag-expire",
+    "moderationRejected": "Tinanggihan ang listahan - lumalabag ang nilalaman sa mga alituntunin ng platform",
+    "contentViolation": "Paglabag sa Patakaran sa Nilalaman",
+    "moderationHint": "Pakitiyak na ang iyong listahan ay hindi naglalaman ng: spam, mga numero ng telepono sa paglalarawan, hindi naaangkop na nilalaman, o mapanlinlang na impormasyon"
   },
   "search": {
     "filters": "Mga filter",

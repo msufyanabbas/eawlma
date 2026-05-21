@@ -431,7 +431,10 @@
     "rented": "Loué",
     "available": "Disponible",
     "pending": "En attente",
-    "expired": "Expiré"
+    "expired": "Expiré",
+    "moderationRejected": "Annonce rejetée – le contenu enfreint les directives de la plateforme",
+    "contentViolation": "Violation de la politique de contenu",
+    "moderationHint": "Veuillez vous assurer que votre annonce ne contient pas : de spam, de numéros de téléphone dans la description, de contenu inapproprié ou d'informations trompeuses"
   },
   "search": {
     "filters": "Filtres",
@@ -604,7 +607,7 @@
     "land": "Terrain",
     "commercial": "Commercial",
     "studio": "Studio",
-    "penthouse": "Penthouse",
+    "penthouse": "Attique",
     "townhouse": "Maison de ville"
   },
   "profile": {

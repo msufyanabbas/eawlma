@@ -431,7 +431,10 @@
     "rented": "Vuokrattu",
     "available": "Saatavilla",
     "pending": "Odottaa",
-    "expired": "Vanhentunut"
+    "expired": "Vanhentunut",
+    "moderationRejected": "Tieto hylätty – sisältö rikkoo alustan sääntöjä",
+    "contentViolation": "Sisältökäytännön rikkominen",
+    "moderationHint": "Varmista, että tietosi eivät sisällä roskapostia, puhelinnumeroita kuvauksessa, sopimatonta sisältöä tai harhaanjohtavia tietoja"
   },
   "search": {
     "filters": "Suodattimet",

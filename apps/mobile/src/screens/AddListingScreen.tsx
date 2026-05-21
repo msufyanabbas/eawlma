@@ -95,10 +95,22 @@ export default function AddListingScreen({ navigation }: any) {
         [{ text: t('wizard.ok'), onPress: () => navigation.goBack() }]
       );
     } catch (e: any) {
-      Alert.alert(
-        t('wizard.errorTitle'),
-        e.response?.data?.message || t('wizard.somethingWrong')
-      );
+      const message = e?.response?.data?.message;
+      if (typeof message === 'string' && message.includes('guidelines')) {
+        // AI content-moderation rejection — show a clear, actionable message.
+        Alert.alert(
+          isAr ? 'تم رفض الإعلان' : 'Listing Rejected',
+          isAr
+            ? 'محتوى الإعلان يخالف سياسة المنصة. يرجى مراجعة المحتوى وإعادة المحاولة.'
+            : 'Your listing content violates our platform guidelines. Please review and try again.',
+          [{ text: isAr ? 'حسناً' : 'OK' }]
+        );
+      } else {
+        Alert.alert(
+          t('wizard.errorTitle'),
+          message || t('wizard.somethingWrong')
+        );
+      }
     } finally {
       setLoading(false);
     }

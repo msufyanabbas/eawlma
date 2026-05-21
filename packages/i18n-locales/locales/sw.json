@@ -431,7 +431,10 @@
     "rented": "Imekodishwa",
     "available": "Inapatikana",
     "pending": "Inasubiri",
-    "expired": "Muda wake umeisha"
+    "expired": "Muda wake umeisha",
+    "moderationRejected": "Uorodheshaji umekataliwa - maudhui yanakiuka miongozo ya jukwaa",
+    "contentViolation": "Ukiukaji wa Sera ya Maudhui",
+    "moderationHint": "Tafadhali hakikisha kuwa tangazo lako halina: barua taka, nambari za simu katika maelezo, maudhui yasiyofaa, au taarifa zinazopotosha."
   },
   "search": {
     "filters": "Vichujio",

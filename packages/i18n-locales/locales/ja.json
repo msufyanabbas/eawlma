@@ -431,7 +431,10 @@
     "rented": "レンタル済み",
     "available": "利用可能",
     "pending": "保留中",
-    "expired": "期限切れ"
+    "expired": "期限切れ",
+    "moderationRejected": "Listing rejected - content violates platform guidelines",
+    "contentViolation": "コンテンツポリシー違反",
+    "moderationHint": "リスティングにスパム、説明内の電話番号、不適切なコンテンツ、誤解を招く情報が含まれていないことを確認してください。"
   },
   "search": {
     "filters": "フィルター",

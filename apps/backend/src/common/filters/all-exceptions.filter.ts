@@ -17,6 +17,9 @@ interface ErrorBody {
   timestamp: string;
   path: string;
   requestId?: string;
+  /** Structured detail attached by some exceptions (e.g. AI moderation
+   *  rejection lists the specific content reasons). Forwarded to the client. */
+  reasons?: string[];
 }
 
 @Catch()
@@ -53,9 +56,16 @@ export class AllExceptionsFilter implements ExceptionFilter {
       let message: string | string[] =
         typeof res === 'string' ? res : ((res as { message?: string | string[] }).message ?? exception.message);
       const error = typeof res === 'object' ? ((res as { error?: string }).error ?? exception.name) : exception.name;
+      // Preserve a `reasons` array when the exception carries one (AI content
+      // moderation attaches the specific guideline violations here) so the
+      // client can show the user exactly what was flagged.
+      const reasons =
+        typeof res === 'object' && Array.isArray((res as { reasons?: unknown }).reasons)
+          ? (res as { reasons: string[] }).reasons
+          : undefined;
       return {
         statusCode,
-        body: { statusCode, message, error, timestamp, path, requestId },
+        body: { statusCode, message, error, timestamp, path, requestId, reasons },
       };
     }
 

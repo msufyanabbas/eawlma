@@ -431,7 +431,10 @@
     "rented": "Wynajęty",
     "available": "Dostępny",
     "pending": "Aż do",
-    "expired": "Wygasły"
+    "expired": "Wygasły",
+    "moderationRejected": "Ogłoszenie odrzucone – treść narusza wytyczne platformy",
+    "contentViolation": "Naruszenie zasad treści",
+    "moderationHint": "Upewnij się, że Twój wpis nie zawiera: spamu, numerów telefonów w opisie, nieodpowiednich treści lub wprowadzających w błąd informacji"
   },
   "search": {
     "filters": "Filtry",

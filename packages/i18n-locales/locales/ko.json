@@ -431,7 +431,10 @@
     "rented": "임대",
     "available": "사용 가능",
     "pending": "보류 중",
-    "expired": "만료됨"
+    "expired": "만료됨",
+    "moderationRejected": "목록이 거부됨 - 콘텐츠가 플랫폼 지침을 위반함",
+    "contentViolation": "콘텐츠 정책 위반",
+    "moderationHint": "목록에 스팸, 설명의 전화번호, 부적절한 콘텐츠 또는 오해의 소지가 있는 정보가 포함되어 있지 않은지 확인하세요."
   },
   "search": {
     "filters": "필터",

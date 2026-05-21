@@ -483,6 +483,9 @@
     "available": "זמין",
     "pending": "בהמתנה",
     "expired": "פג תוקף",
+    "moderationRejected": "רישום נדחה - תוכן מפר את הנחיות הפלטפורמה",
+    "contentViolation": "הפרת מדיניות תוכן",
+    "moderationHint": "אנא ודא שהרישום שלך אינו מכיל: דואר זבל, מספרי טלפון בתיאור, תוכן בלתי הולם או מידע מטעה",
     "sale": "מבצע",
     "rent": "השכרה",
     "propertyTypeLabel": "הקלד",
@@ -1746,7 +1749,7 @@
   "cities": {
     "riyadh": "ריאד",
     "jeddah": "ג'דה",
-    "dammam": "Dammam",
+    "dammam": "דאמאם",
     "mecca": "מכה",
     "medina": "מדינה",
     "khobar": "חובר",

@@ -431,7 +431,10 @@
     "rented": "Vermietet",
     "available": "Verfügbar",
     "pending": "Ausstehend",
-    "expired": "Abgelaufen"
+    "expired": "Abgelaufen",
+    "moderationRejected": "Eintrag abgelehnt – Inhalte verstoßen gegen die Plattformrichtlinien",
+    "contentViolation": "Verstoß gegen die Inhaltsrichtlinien",
+    "moderationHint": "Bitte stellen Sie sicher, dass Ihr Eintrag Folgendes nicht enthält: Spam, Telefonnummern in der Beschreibung, unangemessene Inhalte oder irreführende Informationen"
   },
   "search": {
     "filters": "Filter",

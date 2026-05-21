@@ -431,7 +431,10 @@
     "rented": "已租",
     "available": "可用的",
     "pending": "待办的",
-    "expired": "已到期"
+    "expired": "已到期",
+    "moderationRejected": "列表被拒绝 - 内容违反平台准则",
+    "contentViolation": "违反内容政策",
+    "moderationHint": "请确保您的列表不包含：垃圾邮件、描述中的电话号码、不当内容或误导性信息"
   },
   "search": {
     "filters": "筛选",

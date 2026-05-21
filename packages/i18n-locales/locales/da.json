@@ -431,7 +431,10 @@
     "rented": "Lejet",
     "available": "Tilgængelig",
     "pending": "Afventer",
-    "expired": "Udløbet"
+    "expired": "Udløbet",
+    "moderationRejected": "Fortegnelse afvist - indhold overtræder platformens retningslinjer",
+    "contentViolation": "Overtrædelse af indholdspolitik",
+    "moderationHint": "Sørg for, at din fortegnelse ikke indeholder: spam, telefonnumre i beskrivelsen, upassende indhold eller vildledende oplysninger"
   },
   "search": {
     "filters": "Filtre",
@@ -761,7 +764,7 @@
       "imageDropHint": "Træk og slip billeder her, eller klik for at vælge. JPEG / PNG / WebP op til 10 MB.",
       "photoAlt": "Listebillede",
       "setCover": "Sæt som cover",
-      "cover": "Cover",
+      "cover": "Dække",
       "videoTour": "Videotur",
       "videoDropHint": "Træk en MP4-fil, eller klik for at vælge. Max 500 MB.",
       "videoUploaded": "Video uploadet — {{navn}}",
@@ -1341,7 +1344,7 @@
     "farm": "Gård",
     "restHouse": "Hvilehus",
     "office": "Kontor",
-    "shop": "Shop",
+    "shop": "Butik",
     "warehouse": "Lager",
     "hotel": "Hotelværelse",
     "entireHome": "Hele hjemmet",
