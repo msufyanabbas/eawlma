@@ -35,8 +35,8 @@ export interface ChatResult {
  *     an exception, so listing publication never blocks on AI.
  */
 @Injectable()
-export class OpenAiService implements OnModuleInit {
-  private readonly logger = new Logger(OpenAiService.name);
+export class BedrockService implements OnModuleInit {
+  private readonly logger = new Logger(BedrockService.name);
   private client: BedrockRuntimeClient | null = null;
   private model = 'anthropic.claude-3-haiku-20240307-v1:0';
   private maxTokensDefault = 2000;
@@ -64,7 +64,7 @@ export class OpenAiService implements OnModuleInit {
       );
     } else {
       this.logger.warn(
-        'AWS credentials not set — OpenAiService will return deterministic stubs',
+        'AWS credentials not set — BedrockService will return deterministic stubs',
       );
     }
   }

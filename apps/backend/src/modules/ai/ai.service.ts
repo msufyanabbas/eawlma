@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ListingEntity } from '../listings/entities/listing.entity';
 import { ListingTranslationEntity } from '../listings/entities/listing-translation.entity';
-import { OpenAiService } from './openai.service';
+import { BedrockService } from './bedrock.service';
 
 /**
  * The 30 BCP-47 locales we translate listings into. Edit this list to
@@ -46,7 +46,7 @@ export class AiService {
   private readonly logger = new Logger(AiService.name);
 
   constructor(
-    private readonly openaiService: OpenAiService,
+    private readonly bedrockService: BedrockService,
     @InjectRepository(ListingEntity)
     private readonly listings: Repository<ListingEntity>,
     @InjectRepository(ListingTranslationEntity)
@@ -76,7 +76,7 @@ export class AiService {
       outputSchema: '{ "translations": [ { "locale": "<bcp47>", "title": "<string>", "description": "<string>" } ] }',
     });
 
-    const response = await this.openaiService.chat({
+    const response = await this.bedrockService.chat({
       purpose: 'translate-listing',
       systemPrompt,
       userPrompt,
@@ -154,7 +154,7 @@ export class AiService {
       instruction:
         'Return ONLY the rewritten description text — no preamble, no quotes, no commentary.',
     });
-    const result = await this.openaiService.chat({
+    const result = await this.bedrockService.chat({
       purpose: 'enhance-description',
       systemPrompt,
       userPrompt,
@@ -204,7 +204,7 @@ export class AiService {
       })),
     });
 
-    const response = await this.openaiService.chat({
+    const response = await this.bedrockService.chat({
       purpose: 'recommend-listings',
       systemPrompt,
       userPrompt,
