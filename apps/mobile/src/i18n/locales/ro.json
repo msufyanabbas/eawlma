@@ -514,6 +514,8 @@
     "guestReviews": "Comentarii oaspeți",
     "reviewsCount": "{{count}} recenzii",
     "builtYear": "Construit",
+    "vrFullscreen": "Intrați în modul VR",
+    "vrHint": "🖱️ Faceți clic și trageți pentru a privi în jur · Derulați pentru a mări",
     "sale": "Vanzare",
     "rent": "Închiriere",
     "propertyTypeLabel": "Tip",

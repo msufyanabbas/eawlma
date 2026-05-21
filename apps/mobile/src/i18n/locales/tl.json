@@ -514,6 +514,8 @@
     "guestReviews": "Mga Review ng Bisita",
     "reviewsCount": "{{count}} review",
     "builtYear": "Binuo",
+    "vrFullscreen": "Ipasok ang VR Mode",
+    "vrHint": "🖱️ I-click at i-drag upang tumingin sa paligid · Mag-scroll para mag-zoom",
     "sale": "Sale",
     "rent": "Rentahan",
     "propertyTypeLabel": "Uri",

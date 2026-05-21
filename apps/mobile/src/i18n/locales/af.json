@@ -514,6 +514,8 @@
     "guestReviews": "Gasresensies",
     "reviewsCount": "{{count}} resensies",
     "builtYear": "Gebou",
+    "vrFullscreen": "Voer VR-modus in",
+    "vrHint": "🖱️ Klik en sleep om rond te kyk · Scroll om te zoem",
     "sale": "Verkoop",
     "rent": "Huur",
     "propertyTypeLabel": "Tik",

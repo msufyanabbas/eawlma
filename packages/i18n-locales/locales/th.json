@@ -462,7 +462,9 @@
     "videoTour": "ทัวร์ชมวิดีโอ",
     "guestReviews": "รีวิวแขก",
     "reviewsCount": "{{count}} บทวิจารณ์",
-    "builtYear": "สร้าง"
+    "builtYear": "สร้าง",
+    "vrFullscreen": "เข้าสู่โหมด VR",
+    "vrHint": "🖱️ คลิกแล้วลากเพื่อดูรอบๆ · เลื่อนเพื่อซูม"
   },
   "search": {
     "filters": "ตัวกรอง",

@@ -541,6 +541,8 @@
     "guestReviews": "| مہمانوں کے جائزے",
     "reviewsCount": "{{count}} جائزے",
     "builtYear": "بنایا ہوا",
+    "vrFullscreen": "VR موڈ میں داخل ہوں",
+    "vrHint": "🖱️ ارد گرد دیکھنے کے لیے کلک کریں اور گھسیٹیں · زوم کرنے کے لیے اسکرول کریں",
     "sale": "| فروخت",
     "rent": "| کرایہ",
     "propertyTypeLabel": "قسم",
@@ -1918,7 +1920,7 @@
     "totalPayment": "کل ادائیگی",
     "totalInterest": "کل دلچسپی",
     "disclaimer": "یہ ایک اندازہ ہے۔ حقیقی قرض کی پیشکش کے لیے اپنے بینک سے مشورہ کریں۔",
-    "perMonth": "SAR/mo"
+    "perMonth": "SAR/ماہ"
   },
   "notifications": {
     "markAllRead": "سبھی کو پڑھا ہوا نشان زد کریں۔",

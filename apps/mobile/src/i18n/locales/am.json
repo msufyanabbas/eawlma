@@ -514,6 +514,8 @@
     "guestReviews": "የእንግዳ ግምገማዎች",
     "reviewsCount": "{{count}} ግምገማዎች",
     "builtYear": "ተገንብቷል።",
+    "vrFullscreen": "ቪአር ሁነታን አስገባ",
+    "vrHint": "🖱️ ዙሪያውን ለመመልከት ጠቅ ያድርጉ እና ይጎትቱ · ለማጉላት ያሸብልሉ።",
     "sale": "ሽያጭ",
     "rent": "ይከራዩ",
     "propertyTypeLabel": "ዓይነት",

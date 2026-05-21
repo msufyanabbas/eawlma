@@ -462,7 +462,9 @@
     "videoTour": "Videotour",
     "guestReviews": "Gästebewertungen",
     "reviewsCount": "{{count}} Rezensionen",
-    "builtYear": "Gebaut"
+    "builtYear": "Gebaut",
+    "vrFullscreen": "Wechseln Sie in den VR-Modus",
+    "vrHint": "🖱️ Klicken und ziehen Sie, um sich umzusehen · Scrollen Sie zum Zoomen"
   },
   "search": {
     "filters": "Filter",
@@ -1601,13 +1603,13 @@
   "months": {
     "jan": "Jan",
     "feb": "Februar",
-    "mar": "Mar",
+    "mar": "Beschädigen",
     "apr": "April",
     "may": "Mai",
     "jun": "Jun",
     "jul": "Juli",
     "aug": "Aug.",
-    "sep": "Sep",
+    "sep": "Sept",
     "oct": "Okt.",
     "nov": "Nov.",
     "dec": "Dez."

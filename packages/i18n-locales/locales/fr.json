@@ -462,7 +462,9 @@
     "videoTour": "Visite vidéo",
     "guestReviews": "Commentaires des clients",
     "reviewsCount": "{{count}} avis",
-    "builtYear": "Construit"
+    "builtYear": "Construit",
+    "vrFullscreen": "Entrez en mode VR",
+    "vrHint": "🖱️ Cliquez et faites glisser pour regarder autour de vous · Faites défiler pour zoomer"
   },
   "search": {
     "filters": "Filtres",

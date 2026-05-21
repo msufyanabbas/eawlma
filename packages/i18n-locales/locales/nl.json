@@ -462,7 +462,9 @@
     "videoTour": "Videotour",
     "guestReviews": "Gastbeoordelingen",
     "reviewsCount": "{{count}} beoordelingen",
-    "builtYear": "Gebouwd"
+    "builtYear": "Gebouwd",
+    "vrFullscreen": "Ga naar de VR-modus",
+    "vrHint": "🖱️ Klik en sleep om rond te kijken · Scroll om in te zoomen"
   },
   "search": {
     "filters": "Filters",

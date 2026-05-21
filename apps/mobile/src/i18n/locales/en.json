@@ -524,6 +524,8 @@
     "vrTitle": "Immersive VR & AR Property Experience",
     "vrDesc": "Step inside this property from anywhere in the world. Take a 360° virtual tour or place a true-to-scale 3D model right in your living room.",
     "vrNoTour": "The agent hasn't uploaded a 360°/3D tour for this listing yet.",
+    "vrFullscreen": "Enter VR Mode",
+    "vrHint": "🖱️ Click and drag to look around · Scroll to zoom",
     "premium": "Premium",
     "enterVrTour": "Enter VR Tour",
     "viewInAr": "View in AR",

@@ -462,7 +462,9 @@
     "videoTour": "የቪዲዮ ጉብኝት",
     "guestReviews": "የእንግዳ ግምገማዎች",
     "reviewsCount": "{{count}} ግምገማዎች",
-    "builtYear": "ተገንብቷል።"
+    "builtYear": "ተገንብቷል።",
+    "vrFullscreen": "ቪአር ሁነታን አስገባ",
+    "vrHint": "🖱️ ዙሪያውን ለመመልከት ጠቅ ያድርጉ እና ይጎትቱ · ለማጉላት ያሸብልሉ።"
   },
   "search": {
     "filters": "ማጣሪያዎች",

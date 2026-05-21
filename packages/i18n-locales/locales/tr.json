@@ -462,7 +462,9 @@
     "videoTour": "Video turu",
     "guestReviews": "Misafir Yorumları",
     "reviewsCount": "{{count}} yorum",
-    "builtYear": "inşa edilmiş"
+    "builtYear": "inşa edilmiş",
+    "vrFullscreen": "VR Moduna Girin",
+    "vrHint": "🖱️ Etrafa bakmak için tıklayın ve sürükleyin · Yakınlaştırmak için kaydırın"
   },
   "search": {
     "filters": "Filtreler",

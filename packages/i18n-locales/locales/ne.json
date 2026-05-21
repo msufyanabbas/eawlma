@@ -462,7 +462,9 @@
     "videoTour": "भिडियो भ्रमण",
     "guestReviews": "अतिथि समीक्षा",
     "reviewsCount": "{{count}} समीक्षाहरू",
-    "builtYear": "निर्मित"
+    "builtYear": "निर्मित",
+    "vrFullscreen": "| VR मोड प्रविष्ट गर्नुहोस्",
+    "vrHint": "| 🖱️ वरिपरि हेर्न क्लिक गर्नुहोस् र तान्नुहोस् · जुम गर्न स्क्रोल गर्नुहोस्"
   },
   "search": {
     "filters": "फिल्टरहरू",
@@ -999,7 +1001,7 @@
     "actionFailed": "एक मध्यस्थता कार्य असफल भयो — फेरि प्रयास गर्नुहोस्।",
     "preview": {
       "bedroomsShort": "{{गणना}} BR",
-      "bathroomsShort": "{{count}} BA",
+      "bathroomsShort": "{{गणना}} BA",
       "vrTourAvailable": "VR टुर उपलब्ध",
       "vrTourSection": "VR / ३६०° टुर",
       "locationSection": "स्थान",

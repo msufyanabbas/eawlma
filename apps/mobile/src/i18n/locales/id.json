@@ -514,6 +514,8 @@
     "guestReviews": "Ulasan Tamu",
     "reviewsCount": "{{hitungan}} ulasan",
     "builtYear": "Dibuat",
+    "vrFullscreen": "Masuk ke Mode VR",
+    "vrHint": "🖱️ Klik dan tarik untuk melihat sekeliling · Gulir untuk memperbesar",
     "sale": "Penjualan",
     "rent": "Menyewa",
     "propertyTypeLabel": "Jenis",

@@ -462,7 +462,9 @@
     "videoTour": "تور ویدیویی",
     "guestReviews": "نظرات مهمان",
     "reviewsCount": "{{count}} نظر",
-    "builtYear": "ساخته شده است"
+    "builtYear": "ساخته شده است",
+    "vrFullscreen": "وارد حالت VR شوید",
+    "vrHint": "🖱️ برای نگاه کردن به اطراف کلیک کنید و بکشید · برای بزرگنمایی اسکرول کنید"
   },
   "search": {
     "filters": "فیلترها",

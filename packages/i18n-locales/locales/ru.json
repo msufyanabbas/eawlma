@@ -462,7 +462,9 @@
     "videoTour": "Видео тур",
     "guestReviews": "Отзывы гостей",
     "reviewsCount": "{{count}} отзывов",
-    "builtYear": "Построен"
+    "builtYear": "Построен",
+    "vrFullscreen": "Войдите в режим VR",
+    "vrHint": "🖱️ Нажмите и перетащите, чтобы осмотреться · Прокрутите, чтобы увеличить"
   },
   "search": {
     "filters": "Фильтры",

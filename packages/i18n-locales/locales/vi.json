@@ -462,7 +462,9 @@
     "videoTour": "Chuyến tham quan bằng video",
     "guestReviews": "Đánh giá của khách",
     "reviewsCount": "{{count}} bài đánh giá",
-    "builtYear": "Được xây dựng"
+    "builtYear": "Được xây dựng",
+    "vrFullscreen": "Vào Chế độ VR",
+    "vrHint": "🖱️ Nhấp và kéo để xem xung quanh · Cuộn để thu phóng"
   },
   "search": {
     "filters": "Bộ lọc",

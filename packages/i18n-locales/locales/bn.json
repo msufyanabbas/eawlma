@@ -462,7 +462,9 @@
     "videoTour": "ভিডিও ট্যুর",
     "guestReviews": "গেস্ট রিভিউ",
     "reviewsCount": "{{count}}টি পর্যালোচনা",
-    "builtYear": "নির্মিত"
+    "builtYear": "নির্মিত",
+    "vrFullscreen": "| VR মোডে প্রবেশ করুন",
+    "vrHint": "🖱️ চারপাশে দেখতে ক্লিক করুন এবং টেনে আনুন · জুম করতে স্ক্রোল করুন"
   },
   "search": {
     "filters": "ফিল্টার",
@@ -1623,7 +1625,7 @@
     "totalPayment": "মোট পেমেন্ট",
     "totalInterest": "মোট সুদ",
     "disclaimer": "এটি একটি অনুমান। একটি প্রকৃত ঋণ অফার জন্য আপনার ব্যাঙ্কের সাথে পরামর্শ করুন.",
-    "perMonth": "SAR/mo"
+    "perMonth": "৷ SAR/মাস"
   },
   "notifications": {
     "markAllRead": "সমস্ত পঠিত হিসাবে চিহ্নিত করুন"

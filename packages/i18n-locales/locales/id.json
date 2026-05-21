@@ -462,7 +462,9 @@
     "videoTour": "Tur video",
     "guestReviews": "Ulasan Tamu",
     "reviewsCount": "{{hitungan}} ulasan",
-    "builtYear": "Dibuat"
+    "builtYear": "Dibuat",
+    "vrFullscreen": "Masuk ke Mode VR",
+    "vrHint": "🖱️ Klik dan tarik untuk melihat sekeliling · Gulir untuk memperbesar"
   },
   "search": {
     "filters": "Filter",

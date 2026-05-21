@@ -514,6 +514,8 @@
     "guestReviews": "חוות דעת אורחים",
     "reviewsCount": "{{count}} ביקורות",
     "builtYear": "בנוי",
+    "vrFullscreen": "היכנס למצב VR",
+    "vrHint": "🖱️ לחץ וגרור כדי להסתכל מסביב · גלול להגדלה",
     "sale": "מבצע",
     "rent": "השכרה",
     "propertyTypeLabel": "הקלד",
@@ -1906,7 +1908,7 @@
     "totalPayment": "סך התשלום",
     "totalInterest": "סך ריבית",
     "disclaimer": "זוהי הערכה. התייעץ עם הבנק שלך לקבלת הצעת הלוואה בפועל.",
-    "perMonth": "SAR/mo"
+    "perMonth": "SAR/חודש"
   },
   "notifications": {
     "markAllRead": "סמן הכל כנקראו",

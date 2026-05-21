@@ -462,7 +462,9 @@
     "videoTour": "Video tour",
     "guestReviews": "Mga Review ng Bisita",
     "reviewsCount": "{{count}} review",
-    "builtYear": "Binuo"
+    "builtYear": "Binuo",
+    "vrFullscreen": "Ipasok ang VR Mode",
+    "vrHint": "🖱️ I-click at i-drag upang tumingin sa paligid · Mag-scroll para mag-zoom"
   },
   "search": {
     "filters": "Mga filter",

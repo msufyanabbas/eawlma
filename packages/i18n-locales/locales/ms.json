@@ -462,7 +462,9 @@
     "videoTour": "Lawatan video",
     "guestReviews": "Ulasan Tetamu",
     "reviewsCount": "{{count}} ulasan",
-    "builtYear": "dibina"
+    "builtYear": "dibina",
+    "vrFullscreen": "Masukkan Mod VR",
+    "vrHint": "🖱️ Klik dan seret untuk melihat sekeliling · Tatal untuk zum"
   },
   "search": {
     "filters": "Penapis",

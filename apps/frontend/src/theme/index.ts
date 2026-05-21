@@ -30,7 +30,7 @@ declare module '@mui/material/styles' {
 // primary font for both. Inter is kept as a Latin-only fallback. Urdu gets
 // Nastaliq because Tajawal is Naskh-only.
 const STACK_DEFAULT = '"Tajawal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-const STACK_URDU = '"Gulzar", "Noto Nastaliq Urdu", serif';
+const STACK_URDU = '"Gulzar", "Noto Sans Arabic", serif';
 
 const pickStack = (script: LangScript) => (script === 'urdu' ? STACK_URDU : STACK_DEFAULT);
 

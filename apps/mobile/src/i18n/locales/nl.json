@@ -514,6 +514,8 @@
     "guestReviews": "Gastbeoordelingen",
     "reviewsCount": "{{count}} beoordelingen",
     "builtYear": "Gebouwd",
+    "vrFullscreen": "Ga naar de VR-modus",
+    "vrHint": "🖱️ Klik en sleep om rond te kijken · Scroll om in te zoomen",
     "sale": "Uitverkoop",
     "rent": "Huur",
     "propertyTypeLabel": "Typ",

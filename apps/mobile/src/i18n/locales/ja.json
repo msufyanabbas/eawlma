@@ -514,6 +514,8 @@
     "guestReviews": "ゲストレビュー",
     "reviewsCount": "{{count}} 件のレビュー",
     "builtYear": "建てられた",
+    "vrFullscreen": "VRモードに入る",
+    "vrHint": "🖱️ クリックしてドラッグして周囲を見回します · スクロールしてズームします",
     "sale": "販売",
     "rent": "家賃",
     "propertyTypeLabel": "タイプ",

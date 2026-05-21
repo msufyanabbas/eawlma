@@ -462,7 +462,9 @@
     "videoTour": "ビデオツアー",
     "guestReviews": "ゲストレビュー",
     "reviewsCount": "{{count}} 件のレビュー",
-    "builtYear": "建てられた"
+    "builtYear": "建てられた",
+    "vrFullscreen": "VRモードに入る",
+    "vrHint": "🖱️ クリックしてドラッグして周囲を見回します · スクロールしてズームします"
   },
   "search": {
     "filters": "フィルター",

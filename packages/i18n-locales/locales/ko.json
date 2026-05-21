@@ -462,7 +462,9 @@
     "videoTour": "비디오 투어",
     "guestReviews": "고객 리뷰",
     "reviewsCount": "{{count}}개의 리뷰",
-    "builtYear": "세워짐"
+    "builtYear": "세워짐",
+    "vrFullscreen": "VR 모드 진입",
+    "vrHint": "🖱️ 클릭하고 드래그하여 둘러보세요 · 스크롤하여 확대/축소"
   },
   "search": {
     "filters": "필터",

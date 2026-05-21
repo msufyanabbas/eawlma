@@ -21,6 +21,7 @@ import {
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import VrIcon from '@mui/icons-material/ViewInAr';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import VerifiedIcon from '@mui/icons-material/VerifiedRounded';
 import AccessTimeIcon from '@mui/icons-material/AccessTimeOutlined';
 import StarIcon from '@mui/icons-material/Star';
@@ -653,21 +654,43 @@ export function ListingDetailPage() {
                *  TOUR_360 media row. Falls back to a message when absent. */}
               <Box sx={{ mt: 3, position: 'relative' }}>
                 {tour360?.url ? (
-                  <Box sx={{ width: '100%', height: 400, borderRadius: 2, overflow: 'hidden' }}>
-                    <ReactPannellum
-                      key={tour360.url}
-                      id="vr-tour"
-                      sceneId="firstScene"
-                      imageSource={tour360.url}
-                      config={{
-                        autoRotate: -2,
-                        compass: true,
-                        showFullscreenCtrl: true,
-                        showZoomCtrl: true,
-                      }}
-                      style={{ width: '100%', height: '100%' }}
-                    />
-                  </Box>
+                  <>
+                    <Box sx={{ width: '100%', height: 400, borderRadius: 2, overflow: 'hidden' }}>
+                      <ReactPannellum
+                        key={tour360.url}
+                        id="vr-tour"
+                        sceneId="firstScene"
+                        imageSource={tour360.url}
+                        config={{
+                          autoRotate: -2,
+                          compass: true,
+                          showFullscreenCtrl: true,
+                          showZoomCtrl: true,
+                        }}
+                        style={{ width: '100%', height: '100%' }}
+                      />
+                    </Box>
+                    <Box sx={{ textAlign: 'center' }}>
+                      <Button
+                        variant="contained"
+                        startIcon={<FullscreenIcon />}
+                        onClick={() => {
+                          const viewer = document.getElementById('vr-tour');
+                          if (viewer?.requestFullscreen) viewer.requestFullscreen();
+                        }}
+                        sx={{ mt: 1 }}
+                      >
+                        {t('listing.vrFullscreen', 'Enter VR Mode')}
+                      </Button>
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ mt: 1, display: 'block', textAlign: 'center' }}
+                      >
+                        {t('listing.vrHint', '🖱️ Click and drag to look around · Scroll to zoom')}
+                      </Typography>
+                    </Box>
+                  </>
                 ) : (
                   <Typography variant="caption" sx={{ opacity: 0.6 }}>
                     {t('listing.vrNoTour')}

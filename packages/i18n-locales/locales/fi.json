@@ -462,7 +462,9 @@
     "videoTour": "Videokierros",
     "guestReviews": "Asiakkaiden arviot",
     "reviewsCount": "{{count}} arvostelua",
-    "builtYear": "Rakennettu"
+    "builtYear": "Rakennettu",
+    "vrFullscreen": "Siirry VR-tilaan",
+    "vrHint": "🖱️ Katso ympärillesi napsauttamalla ja vetämällä · Zoomaa vierittämällä"
   },
   "search": {
     "filters": "Suodattimet",

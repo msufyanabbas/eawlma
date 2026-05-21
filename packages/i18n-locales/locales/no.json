@@ -462,7 +462,9 @@
     "videoTour": "Videotur",
     "guestReviews": "Gjesteanmeldelser",
     "reviewsCount": "{{count}} anmeldelser",
-    "builtYear": "Bygget"
+    "builtYear": "Bygget",
+    "vrFullscreen": "Gå inn i VR-modus",
+    "vrHint": "🖱️ Klikk og dra for å se deg rundt · Rull for å zoome"
   },
   "search": {
     "filters": "Filtre",

@@ -514,6 +514,8 @@
     "guestReviews": "Recenzje gości",
     "reviewsCount": "{{count}} recenzji",
     "builtYear": "Wybudowany",
+    "vrFullscreen": "Wejdź w tryb VR",
+    "vrHint": "🖱️ Kliknij i przeciągnij, aby się rozejrzeć · Przewiń, aby powiększyć",
     "sale": "Sprzedaż",
     "rent": "Wynajem",
     "propertyTypeLabel": "Typ",

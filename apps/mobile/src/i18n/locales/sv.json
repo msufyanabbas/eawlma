@@ -514,6 +514,8 @@
     "guestReviews": "Gästrecensioner",
     "reviewsCount": "{{count}} recensioner",
     "builtYear": "Byggd",
+    "vrFullscreen": "Gå in i VR-läge",
+    "vrHint": "🖱️ Klicka och dra för att se dig omkring · Scrolla för att zooma",
     "sale": "Försäljning",
     "rent": "Hyr",
     "propertyTypeLabel": "Skriv",

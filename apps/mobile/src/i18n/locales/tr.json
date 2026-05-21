@@ -514,6 +514,8 @@
     "guestReviews": "Misafir Yorumları",
     "reviewsCount": "{{count}} yorum",
     "builtYear": "inşa edilmiş",
+    "vrFullscreen": "VR Moduna Girin",
+    "vrHint": "🖱️ Etrafa bakmak için tıklayın ve sürükleyin · Yakınlaştırmak için kaydırın",
     "sale": "Satış",
     "rent": "Kira",
     "propertyTypeLabel": "Tip",

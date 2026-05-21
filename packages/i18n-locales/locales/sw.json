@@ -462,7 +462,9 @@
     "videoTour": "Ziara ya video",
     "guestReviews": "Maoni ya Wageni",
     "reviewsCount": "{{count}} ukaguzi",
-    "builtYear": "Imejengwa"
+    "builtYear": "Imejengwa",
+    "vrFullscreen": "Weka Hali ya Uhalisia Pepe",
+    "vrHint": "🖱️ Bofya na uburute ili kutazama kote · Sogeza ili kukuza"
   },
   "search": {
     "filters": "Vichujio",

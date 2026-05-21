@@ -462,7 +462,9 @@
     "videoTour": "වීඩියෝ චාරිකාව",
     "guestReviews": "අමුත්තන්ගේ සමාලෝචන",
     "reviewsCount": "සමාලෝචන {{count}}",
-    "builtYear": "ඉදිකරන ලදී"
+    "builtYear": "ඉදිකරන ලදී",
+    "vrFullscreen": "VR මාදිලිය ඇතුළු කරන්න",
+    "vrHint": "🖱️ අවට බැලීමට ක්ලික් කර අදින්න · විශාලනය කිරීමට අනුචලනය කරන්න"
   },
   "search": {
     "filters": "පෙරහන්",

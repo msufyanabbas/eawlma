@@ -462,7 +462,9 @@
     "videoTour": "Tur video",
     "guestReviews": "Comentarii oaspeți",
     "reviewsCount": "{{count}} recenzii",
-    "builtYear": "Construit"
+    "builtYear": "Construit",
+    "vrFullscreen": "Intrați în modul VR",
+    "vrHint": "🖱️ Faceți clic și trageți pentru a privi în jur · Derulați pentru a mări"
   },
   "search": {
     "filters": "Filtre",

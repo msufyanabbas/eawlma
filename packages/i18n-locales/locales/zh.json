@@ -462,7 +462,9 @@
     "videoTour": "视频导览",
     "guestReviews": "宾客评论",
     "reviewsCount": "{{count}} 条评论",
-    "builtYear": "建成"
+    "builtYear": "建成",
+    "vrFullscreen": "进入VR模式",
+    "vrHint": "🖱️ 点击并拖动环顾四周 · 滚动缩放"
   },
   "search": {
     "filters": "筛选",

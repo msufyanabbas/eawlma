@@ -514,6 +514,8 @@
     "guestReviews": "Commentaires des clients",
     "reviewsCount": "{{count}} avis",
     "builtYear": "Construit",
+    "vrFullscreen": "Entrez en mode VR",
+    "vrHint": "🖱️ Cliquez et faites glisser pour regarder autour de vous · Faites défiler pour zoomer",
     "sale": "Vente",
     "rent": "Louer",
     "propertyTypeLabel": "Tapez",

@@ -462,7 +462,9 @@
     "videoTour": "Video tour",
     "guestReviews": "Recensioni degli ospiti",
     "reviewsCount": "{{count}} recensioni",
-    "builtYear": "Costruito"
+    "builtYear": "Costruito",
+    "vrFullscreen": "Entra in modalità VR",
+    "vrHint": "🖱️ Fai clic e trascina per guardarti intorno · Scorri per ingrandire"
   },
   "search": {
     "filters": "Filtri",
@@ -578,7 +580,7 @@
     "support": "Supporto",
     "help": "Centro assistenza",
     "helpCenter": "Centro assistenza",
-    "whatsapp": "WhatsApp",
+    "whatsapp": "Whatsapp",
     "callUs": "Chiamaci",
     "needHelp": "Hai bisogno di aiuto? Parlaci su WhatsApp.",
     "cr": "Registro commerciale",

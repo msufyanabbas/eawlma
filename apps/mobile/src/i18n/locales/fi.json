@@ -514,6 +514,8 @@
     "guestReviews": "Asiakkaiden arviot",
     "reviewsCount": "{{count}} arvostelua",
     "builtYear": "Rakennettu",
+    "vrFullscreen": "Siirry VR-tilaan",
+    "vrHint": "🖱️ Katso ympärillesi napsauttamalla ja vetämällä · Zoomaa vierittämällä",
     "sale": "Myynti",
     "rent": "Vuokrata",
     "propertyTypeLabel": "Tyyppi",

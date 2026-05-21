@@ -514,6 +514,8 @@
     "guestReviews": "宾客评论",
     "reviewsCount": "{{count}} 条评论",
     "builtYear": "建成",
+    "vrFullscreen": "进入VR模式",
+    "vrHint": "🖱️ 点击并拖动环顾四周 · 滚动缩放",
     "sale": "销售",
     "rent": "租",
     "propertyTypeLabel": "类型",
