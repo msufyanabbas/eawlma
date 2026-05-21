@@ -5,6 +5,7 @@ import {
   Modal, TextInput, Alert, ActivityIndicator, Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { WebView } from 'react-native-webview';
 import { Ionicons } from '@expo/vector-icons';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Constants from 'expo-constants';
@@ -65,6 +66,11 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   // All photos for the hero — single image renders as a static hero, multiple
   // become a swipeable paging carousel with dot indicators.
   const galleryImages = listingImageUrls(listing);
+  // 360° tour is a media row with type `tour_360` (matches the web schema).
+  const mediaList: any[] = Array.isArray(listing.media) ? listing.media : [];
+  const tour360 = mediaList.find((m: any) => m?.type === 'tour_360');
+  // Sale listings show the mortgage calculator (rent has no loan to amortise).
+  const isSaleListing = (listing.type ?? listing.transactionType) === 'sale';
 
   // Prefer the server-side translation (Accept-Language driven) over the
   // raw AR/EN fields. The backend populates titleTranslated /
@@ -492,19 +498,45 @@ export default function ListingDetailScreen({ navigation, route }: any) {
           <SectionTitle colors={colors} textAlign={textAlign}>
             {t('listing.vrTour')}
           </SectionTitle>
-          <View style={[
-            styles.vrCard,
-            {
-              backgroundColor: colors.surface,
-              borderColor: colors.primary + '30',
-              flexDirection: isRTL ? 'row-reverse' : 'row',
-            },
-          ]}>
-            <Ionicons name="cube-outline" size={28} color={colors.primary} />
-            <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, flex: 1, textAlign }]}>
-              {t('listing.vrTourUnavailable')}
-            </Text>
-          </View>
+          {tour360?.url ? (
+            <>
+              <View style={{ borderRadius: SIZES.borderRadiusLg, overflow: 'hidden', marginTop: SIZES.sm }}>
+                <VRViewer url={tour360.url} />
+              </View>
+              <Text style={[styles.vrHint, { color: colors.textSecondary }]}>
+                {t('listing.vrHint')}
+              </Text>
+            </>
+          ) : (
+            <View style={[
+              styles.vrCard,
+              {
+                backgroundColor: colors.surface,
+                borderColor: colors.primary + '30',
+                flexDirection: isRTL ? 'row-reverse' : 'row',
+              },
+            ]}>
+              <Ionicons name="cube-outline" size={28} color={colors.primary} />
+              <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, flex: 1, textAlign }]}>
+                {t('listing.vrNoTour')}
+              </Text>
+            </View>
+          )}
+
+          {isSaleListing && (
+            <>
+              <SectionTitle colors={colors} textAlign={textAlign}>
+                {t('mortgage.title')}
+              </SectionTitle>
+              <MortgageCalc
+                price={Number(listing.price) || 0}
+                currency={t('listing.currency')}
+                colors={colors}
+                t={t}
+                textAlign={textAlign}
+              />
+            </>
+          )}
 
           <SectionTitle colors={colors} textAlign={textAlign}>
             {t('listing.guestReviews')}
@@ -738,6 +770,130 @@ function SectionTitle({ children, colors, textAlign }: any) {
   );
 }
 
+/**
+ * Interactive 360° panorama viewer. Pannellum is loaded from a CDN inside an
+ * inline-HTML WebView — equirectangular images are rendered with drag-to-look
+ * and pinch/scroll zoom, mirroring the web Pannellum viewer.
+ */
+function VRViewer({ url }: { url: string }) {
+  const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+  <style>body{margin:0;padding:0;background:#000;}#panorama{width:100vw;height:100vh;}</style>
+</head>
+<body>
+  <div id="panorama"></div>
+  <script>
+    pannellum.viewer('panorama', {
+      type: 'equirectangular',
+      panorama: ${JSON.stringify(url)},
+      autoLoad: true,
+      autoRotate: -2,
+      compass: true,
+      showFullscreenCtrl: false,
+      showZoomCtrl: true,
+    });
+  </script>
+</body>
+</html>`;
+
+  return (
+    <WebView
+      source={{ html }}
+      originWhitelist={['*']}
+      style={{ width: '100%', height: 280, backgroundColor: '#000' }}
+      scrollEnabled={false}
+      javaScriptEnabled
+      domStorageEnabled
+      allowsInlineMediaPlayback
+    />
+  );
+}
+
+/** Standard amortising-loan monthly payment: M = P·r(1+r)^n / ((1+r)^n − 1). */
+function mortgageMonthly(principal: number, annualRatePct: number, years: number): number {
+  if (principal <= 0 || years <= 0) return 0;
+  const r = annualRatePct / 100 / 12;
+  const n = years * 12;
+  if (r === 0) return principal / n;
+  const f = Math.pow(1 + r, n);
+  return (principal * r * f) / (f - 1);
+}
+
+function MortRow({ label, value, colors }: any) {
+  return (
+    <View style={mortStyles.resultRow}>
+      <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary }]}>{label}</Text>
+      <Text style={[TYPOGRAPHY.small, { color: colors.text, fontWeight: '700' }]}>{value}</Text>
+    </View>
+  );
+}
+
+/** Compact mortgage calculator — mirrors the web `MortgageCalculator`. */
+function MortgageCalc({ price, currency, colors, t, textAlign }: any) {
+  const [propertyPrice, setPropertyPrice] = useState(String(Math.round(price) || 0));
+  const [downPct, setDownPct] = useState('20');
+  const [term, setTerm] = useState('25');
+  const [rate, setRate] = useState('4.5');
+
+  const p = Number(propertyPrice) || 0;
+  const loan = Math.max(0, p - (p * (Number(downPct) || 0)) / 100);
+  const monthly = mortgageMonthly(loan, Number(rate) || 0, Number(term) || 0);
+  const totalPay = monthly * (Number(term) || 0) * 12;
+  const totalInterest = Math.max(0, totalPay - loan);
+
+  const renderField = (label: string, value: string, onChange: (v: string) => void) => (
+    <View style={{ flex: 1 }}>
+      <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary, marginBottom: 4, textAlign }]}>
+        {label}
+      </Text>
+      <TextInput
+        value={value}
+        onChangeText={onChange}
+        keyboardType="numeric"
+        placeholderTextColor={colors.textSecondary}
+        style={[
+          mortStyles.input,
+          { color: colors.text, borderColor: colors.border, backgroundColor: colors.background, textAlign },
+        ]}
+      />
+    </View>
+  );
+
+  return (
+    <View style={[mortStyles.card, { backgroundColor: colors.surface }]}>
+      <View style={mortStyles.row}>
+        {renderField(t('mortgage.propertyPrice'), propertyPrice, setPropertyPrice)}
+        {renderField(`${t('mortgage.downPayment')} (%)`, downPct, setDownPct)}
+      </View>
+      <View style={[mortStyles.row, { marginTop: SIZES.sm }]}>
+        {renderField(t('mortgage.loanTerm'), term, setTerm)}
+        {renderField(t('mortgage.interestRate'), rate, setRate)}
+      </View>
+
+      <View style={[mortStyles.resultBox, { backgroundColor: colors.primary + '14' }]}>
+        <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>
+          {t('mortgage.monthlyPayment')}
+        </Text>
+        <Text style={[TYPOGRAPHY.h3, { color: colors.primary }]}>
+          {formatPrice(Math.round(monthly))} {t('mortgage.perMonth')}
+        </Text>
+      </View>
+
+      <MortRow label={t('mortgage.loanAmount')} value={`${formatPrice(Math.round(loan))} ${currency}`} colors={colors} />
+      <MortRow label={t('mortgage.totalPayment')} value={`${formatPrice(Math.round(totalPay))} ${currency}`} colors={colors} />
+      <MortRow label={t('mortgage.totalInterest')} value={`${formatPrice(Math.round(totalInterest))} ${currency}`} colors={colors} />
+
+      <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary, marginTop: SIZES.sm, fontStyle: 'italic', textAlign }]}>
+        {t('mortgage.disclaimer')}
+      </Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   heroBox: { width: W, height: 300, position: 'relative' },
   heroImage: { width: '100%', height: '100%' },
@@ -763,6 +919,7 @@ const styles = StyleSheet.create({
   mapImage: { width: '100%', height: '100%' },
   openMapsBtn: { position: 'absolute', bottom: 12, right: 12, flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 20 },
   vrCard: { alignItems: 'center', gap: SIZES.sm, padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, borderWidth: 1, borderStyle: 'dashed', marginTop: SIZES.sm },
+  vrHint: { textAlign: 'center', marginTop: SIZES.xs, fontSize: SIZES.caption },
   reviewCard: { padding: SIZES.md, borderRadius: SIZES.borderRadiusLg, marginBottom: SIZES.sm, ...SHADOWS.sm },
   footer: { position: 'absolute', bottom: 0, left: 0, right: 0, borderTopWidth: 1, paddingHorizontal: SIZES.lg, paddingTop: SIZES.md },
   contactBtn: { alignItems: 'center', justifyContent: 'center', gap: SIZES.sm, height: 50, borderRadius: SIZES.borderRadiusLg, ...SHADOWS.md },
@@ -775,4 +932,12 @@ const modalStyles = StyleSheet.create({
   chipsRow: { gap: SIZES.sm, flexWrap: 'wrap' },
   chip: { paddingHorizontal: SIZES.md, paddingVertical: SIZES.xs + 2, borderRadius: SIZES.borderRadiusFull, borderWidth: 1 },
   submitBtn: { marginTop: SIZES.xl, height: 50, borderRadius: SIZES.borderRadiusLg, alignItems: 'center', justifyContent: 'center', ...SHADOWS.md },
+});
+
+const mortStyles = StyleSheet.create({
+  card: { padding: SIZES.lg, borderRadius: SIZES.borderRadiusLg, marginTop: SIZES.sm, ...SHADOWS.sm },
+  row: { flexDirection: 'row', gap: SIZES.sm },
+  input: { borderWidth: 1, borderRadius: SIZES.borderRadius, paddingHorizontal: SIZES.sm, paddingVertical: SIZES.xs + 2, fontSize: SIZES.body },
+  resultBox: { marginTop: SIZES.md, padding: SIZES.md, borderRadius: SIZES.borderRadiusLg, alignItems: 'center', gap: 2 },
+  resultRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: SIZES.sm },
 });
