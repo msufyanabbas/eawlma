@@ -1098,24 +1098,10 @@ function MapView({ listings }: { listings: Listing[] }) {
   // toggle drawing mode on/off.
   const drawingManagerRef = useRef<google.maps.drawing.DrawingManager | null>(null);
 
-  if (!apiKey) {
-    return <EmptyState title={t('searchMap.missingKeyTitle')} description={t('searchMap.missingKeyHint')} />;
-  }
-  if (loadError) {
-    return <EmptyState title={t('searchMap.loadFailed')} description={(loadError as Error).message} />;
-  }
-  if (!isLoaded) {
-    return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 2 }} />;
-  }
-
-  const visibleListings = filteredIds
-    ? listings.filter((l) => filteredIds.has(l.id))
-    : listings;
-
-  const active = visibleListings.find((l) => l.id === activeId);
-  const center = visibleListings[0]
-    ? { lat: Number(visibleListings[0].lat), lng: Number(visibleListings[0].lng) }
-    : MAP_DEFAULT_CENTER;
+  // --- All hooks must run before any conditional return below. The early
+  // returns for missing key / load error / not-yet-loaded come AFTER these
+  // useCallback hooks; otherwise the hook count changes when `isLoaded`
+  // flips, triggering "Rendered more hooks than during the previous render".
 
   // Filter listings whose coordinates fall inside the drawn polygon. Uses
   // `google.maps.geometry.poly.containsLocation`, which is part of the
@@ -1160,6 +1146,26 @@ function MapView({ listings }: { listings: Listing[] }) {
     setIsDrawing(false);
     drawingManagerRef.current?.setDrawingMode(null);
   }, [drawnPolygon]);
+
+  // ----- conditional returns — safe now that every hook above has run -----
+  if (!apiKey) {
+    return <EmptyState title={t('searchMap.missingKeyTitle')} description={t('searchMap.missingKeyHint')} />;
+  }
+  if (loadError) {
+    return <EmptyState title={t('searchMap.loadFailed')} description={(loadError as Error).message} />;
+  }
+  if (!isLoaded) {
+    return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 2 }} />;
+  }
+
+  const visibleListings = filteredIds
+    ? listings.filter((l) => filteredIds.has(l.id))
+    : listings;
+
+  const active = visibleListings.find((l) => l.id === activeId);
+  const center = visibleListings[0]
+    ? { lat: Number(visibleListings[0].lat), lng: Number(visibleListings[0].lng) }
+    : MAP_DEFAULT_CENTER;
 
   return (
     <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
