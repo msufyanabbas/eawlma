@@ -1639,6 +1639,10 @@
     "cancelDraw": "描画のキャンセル",
     "clearArea": "クリアエリア",
     "drawHint": "地図上をクリックして検索エリアを描画します。ダブルクリックして終了します。",
-    "noResults": "描画領域にプロパティが見つかりません"
+    "noResults": "描画領域にプロパティが見つかりません",
+    "areaResults_one": "このエリアで {{count}} 件の物件が見つかりました",
+    "areaResults_other": "このエリアで {{count}} 件の物件が見つかりました",
+    "clickToView": "タップしてリストを表示",
+    "propertiesInArea": "選択したエリアのプロパティ"
   }
 }

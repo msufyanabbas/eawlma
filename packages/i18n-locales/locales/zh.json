@@ -1639,6 +1639,10 @@
     "cancelDraw": "取消绘图",
     "clearArea": "清除区域",
     "drawHint": "单击地图以绘制您的搜索区域。双击完成。",
-    "noResults": "在绘制区域中找不到属性"
+    "noResults": "在绘制区域中找不到属性",
+    "areaResults_one": "在此区域找到 {{count}} 个财产",
+    "areaResults_other": "在此区域找到 {{count}} 个属性",
+    "clickToView": "点击查看列表",
+    "propertiesInArea": "选定区域的属性"
   }
 }

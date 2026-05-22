@@ -1639,6 +1639,10 @@
     "cancelDraw": "Cancelar desenho",
     "clearArea": "Limpar área",
     "drawHint": "Clique no mapa para desenhar sua área de pesquisa. Clique duas vezes para finalizar.",
-    "noResults": "Nenhuma propriedade encontrada na área desenhada"
+    "noResults": "Nenhuma propriedade encontrada na área desenhada",
+    "areaResults_one": "{{count}} propriedade encontrada nesta área",
+    "areaResults_other": "{{count}} propriedades encontradas nesta área",
+    "clickToView": "toque para ver a lista",
+    "propertiesInArea": "Propriedades na área selecionada"
   }
 }

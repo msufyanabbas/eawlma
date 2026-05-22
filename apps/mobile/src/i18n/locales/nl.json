@@ -1938,7 +1938,11 @@
     "cancelDraw": "Tekening annuleren",
     "clearArea": "Duidelijk gebied",
     "drawHint": "Klik op de kaart om uw zoekgebied te tekenen. Dubbelklik om te voltooien.",
-    "noResults": "Geen eigenschappen gevonden in het getekende gebied"
+    "noResults": "Geen eigenschappen gevonden in het getekende gebied",
+    "areaResults_one": "{{count}} woning gevonden in dit gebied",
+    "areaResults_other": "{{count}} eigendommen gevonden in dit gebied",
+    "clickToView": "tik om de lijst te bekijken",
+    "propertiesInArea": "Eigenschappen in geselecteerd gebied"
   },
   "saved": {
     "title": "Opgeslagen",

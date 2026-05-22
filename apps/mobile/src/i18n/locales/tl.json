@@ -951,7 +951,7 @@
       "imageDropHint": "I-drag at i-drop ang mga larawan dito, o i-click upang pumili. JPEG / PNG / WebP hanggang 10 MB.",
       "photoAlt": "Listahan ng larawan",
       "setCover": "Itakda bilang pabalat",
-      "cover": "Cover",
+      "cover": "Takpan",
       "videoTour": "Video tour",
       "videoDropHint": "Mag-drag ng MP4 file o i-click para pumili. Max 500 MB.",
       "videoUploaded": "Na-upload ang video — {{name}}",
@@ -1938,7 +1938,11 @@
     "cancelDraw": "Kanselahin ang Pagguhit",
     "clearArea": "Maaliwalas na Lugar",
     "drawHint": "Mag-click sa mapa upang iguhit ang iyong lugar sa paghahanap. I-double click para matapos.",
-    "noResults": "Walang nakitang property sa iginuhit na lugar"
+    "noResults": "Walang nakitang property sa iginuhit na lugar",
+    "areaResults_one": "{{count}} property na natagpuan sa lugar na ito",
+    "areaResults_other": "{{count}} mga katangian na natagpuan sa lugar na ito",
+    "clickToView": "i-tap para tingnan ang listahan",
+    "propertiesInArea": "Mga Property sa Napiling Lugar"
   },
   "saved": {
     "title": "Na-save",

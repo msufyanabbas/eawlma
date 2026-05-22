@@ -1639,6 +1639,10 @@
     "cancelDraw": "그리기 취소",
     "clearArea": "영역 지우기",
     "drawHint": "검색할 지역을 그리려면 지도를 클릭하세요. 완료하려면 두 번 클릭하세요.",
-    "noResults": "그려진 영역에서 속성을 찾을 수 없습니다."
+    "noResults": "그려진 영역에서 속성을 찾을 수 없습니다.",
+    "areaResults_one": "이 지역에서 {{count}}개의 부동산이 발견되었습니다",
+    "areaResults_other": "이 지역에서 {{count}}개의 부동산을 찾았습니다",
+    "clickToView": "탭하여 목록 보기",
+    "propertiesInArea": "선택 영역의 속성"
   }
 }

@@ -1639,6 +1639,10 @@
     "cancelDraw": "Anulează desenul",
     "clearArea": "Zona liberă",
     "drawHint": "Faceți clic pe hartă pentru a desena zona de căutare. Faceți dublu clic pentru a finaliza.",
-    "noResults": "Nu au fost găsite proprietăți în zona desenată"
+    "noResults": "Nu au fost găsite proprietăți în zona desenată",
+    "areaResults_one": "{{count}} proprietate găsită în această zonă",
+    "areaResults_other": "{{count}} proprietăți găsite în această zonă",
+    "clickToView": "atingeți pentru a vizualiza lista",
+    "propertiesInArea": "Proprietăți în zona selectată"
   }
 }

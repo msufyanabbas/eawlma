@@ -1938,7 +1938,11 @@
     "cancelDraw": "Kanselleer Tekening",
     "clearArea": "Maak area skoon",
     "drawHint": "Klik op die kaart om jou soekgebied te teken. Dubbelklik om te voltooi.",
-    "noResults": "Geen eiendomme gevind in die getekende area nie"
+    "noResults": "Geen eiendomme gevind in die getekende area nie",
+    "areaResults_one": "{{count}} eiendom gevind in hierdie area",
+    "areaResults_other": "{{count}} eiendomme in hierdie area gevind",
+    "clickToView": "tik om lys te sien",
+    "propertiesInArea": "Eiendomme in geselekteerde area"
   },
   "saved": {
     "title": "Gestoor",

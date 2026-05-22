@@ -1938,7 +1938,11 @@
     "cancelDraw": "Annulla disegno",
     "clearArea": "Cancella area",
     "drawHint": "Clicca sulla mappa per disegnare la tua area di ricerca. Fare doppio clic per terminare.",
-    "noResults": "Nessun immobile trovato nell'area disegnata"
+    "noResults": "Nessun immobile trovato nell'area disegnata",
+    "areaResults_one": "{{count}} proprietà trovate in quest'area",
+    "areaResults_other": "{{count}} proprietà trovate in quest'area",
+    "clickToView": "toccare per visualizzare l'elenco",
+    "propertiesInArea": "Proprietà nell'area selezionata"
   },
   "saved": {
     "title": "Salvato",

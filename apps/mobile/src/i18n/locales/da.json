@@ -1938,7 +1938,11 @@
     "cancelDraw": "Annuller tegning",
     "clearArea": "Ryd område",
     "drawHint": "Klik på kortet for at tegne dit søgeområde. Dobbeltklik for at afslutte.",
-    "noResults": "Ingen ejendomme fundet i det tegnede område"
+    "noResults": "Ingen ejendomme fundet i det tegnede område",
+    "areaResults_one": "{{count}} ejendom fundet i dette område",
+    "areaResults_other": "{{count}} ejendomme fundet i dette område",
+    "clickToView": "tryk for at se listen",
+    "propertiesInArea": "Ejendomme i udvalgt område"
   },
   "saved": {
     "title": "Gemt",

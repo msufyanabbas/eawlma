@@ -6,6 +6,7 @@ import {
   Button,
   Checkbox,
   Chip,
+  Divider,
   Drawer,
   FormControlLabel,
   Grid,
@@ -31,6 +32,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -1088,6 +1091,9 @@ function MapView({ listings }: { listings: Listing[] }) {
     region: 'SA',
   });
   const [activeId, setActiveId] = useState<string | null>(null);
+  // When true, a bottom slide-up drawer lists every property inside the
+  // drawn area. Opened by tapping the result banner.
+  const [showFilteredPanel, setShowFilteredPanel] = useState(false);
   // ID set of listings that fall inside the drawn polygon. `null` means
   // "no polygon drawn", so the full list is displayed.
   const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
@@ -1107,6 +1113,9 @@ function MapView({ listings }: { listings: Listing[] }) {
   // against the freshest data instead of a value captured when the
   // `polygoncomplete` listener was registered.
   const listingsRef = useRef(listings);
+  // Wishlist state for the listing cards rendered inside the results drawer.
+  const savedIds = useSavedStore((s) => s.ids);
+  const toggleSaved = useSavedStore((s) => s.toggle);
 
   // --- All hooks must run before any conditional return below. The early
   // returns for missing key / load error / not-yet-loaded come AFTER every
@@ -1160,6 +1169,7 @@ function MapView({ listings }: { listings: Listing[] }) {
     drawnPolygonRef.current?.setMap(null);
     drawnPolygonRef.current = null;
     setFilteredIds(null);
+    setShowFilteredPanel(false);
     setIsDrawing(true);
     drawingManagerRef.current?.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
   }, []);
@@ -1168,6 +1178,7 @@ function MapView({ listings }: { listings: Listing[] }) {
     drawnPolygonRef.current?.setMap(null);
     drawnPolygonRef.current = null;
     setFilteredIds(null);
+    setShowFilteredPanel(false);
     setIsDrawing(false);
     setDrawVersion((v) => v + 1);
     drawingManagerRef.current?.setDrawingMode(null);
@@ -1307,9 +1318,19 @@ function MapView({ listings }: { listings: Listing[] }) {
       </Box>
 
       {/* Polygon-filter result banner — bottom-center so the outcome of
-       *  drawing an area is unmistakable (the markers alone are easy to miss). */}
+       *  drawing an area is unmistakable. When matches exist it is clickable
+       *  and opens the slide-up results drawer. */}
       {!isDrawing && filteredIds && (
         <Box
+          onClick={filteredIds.size > 0 ? () => setShowFilteredPanel(true) : undefined}
+          role={filteredIds.size > 0 ? 'button' : undefined}
+          tabIndex={filteredIds.size > 0 ? 0 : undefined}
+          onKeyDown={(e) => {
+            if (filteredIds.size > 0 && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              setShowFilteredPanel(true);
+            }
+          }}
           sx={{
             position: 'absolute',
             bottom: 16,
@@ -1325,14 +1346,32 @@ function MapView({ listings }: { listings: Listing[] }) {
             fontWeight: 700,
             boxShadow: 3,
             whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 0.75,
+            outline: 'none',
+            cursor: filteredIds.size > 0 ? 'pointer' : 'default',
+            transition: 'background-color 0.2s ease',
+            '&:hover': filteredIds.size > 0 ? { bgcolor: 'primary.dark' } : undefined,
           }}
         >
-          {filteredIds.size > 0
-            ? t('map.areaResults', {
-                count: filteredIds.size,
-                defaultValue: '{{count}} properties found in this area',
-              })
-            : t('map.noResults')}
+          {filteredIds.size > 0 ? (
+            <>
+              <FormatListBulletedIcon fontSize="small" />
+              <Box component="span">
+                {t('map.areaResults', {
+                  count: filteredIds.size,
+                  defaultValue: '{{count}} properties found in this area',
+                })}
+              </Box>
+              <Box component="span" sx={{ opacity: 0.85, fontWeight: 600 }}>
+                · {t('map.clickToView', { defaultValue: 'tap to view list' })}
+              </Box>
+              <KeyboardArrowUpIcon fontSize="small" />
+            </>
+          ) : (
+            t('map.noResults')
+          )}
         </Box>
       )}
 
@@ -1430,6 +1469,61 @@ function MapView({ listings }: { listings: Listing[] }) {
           </InfoWindowF>
         )}
       </GoogleMap>
+
+      {/* Slide-up results panel — lists every property inside the drawn area
+       *  without leaving map view. Opened by tapping the result banner. */}
+      <Drawer
+        anchor="bottom"
+        open={showFilteredPanel}
+        onClose={() => setShowFilteredPanel(false)}
+        PaperProps={{
+          sx: { borderTopLeftRadius: 16, borderTopRightRadius: 16, maxHeight: '70vh' },
+        }}
+      >
+        {/* Drag handle */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', pt: 1.5, pb: 1 }}>
+          <Box sx={{ width: 40, height: 4, bgcolor: 'grey.300', borderRadius: 2 }} />
+        </Box>
+
+        {/* Header */}
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ px: 3, pb: 1.5 }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+            {t('map.propertiesInArea', { defaultValue: 'Properties in Selected Area' })}
+            {filteredIds && filteredIds.size > 0 ? ` (${filteredIds.size})` : ''}
+          </Typography>
+          <IconButton size="small" onClick={() => setShowFilteredPanel(false)} aria-label="close">
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Stack>
+
+        <Divider />
+
+        {/* Filtered listings */}
+        <Box sx={{ overflowY: 'auto', p: 2 }}>
+          {visibleListings.length > 0 ? (
+            <Grid container spacing={2}>
+              {visibleListings.map((l) => (
+                <Grid key={l.id} item xs={12} sm={6}>
+                  <ListingCard
+                    listing={l}
+                    saved={savedIds.includes(l.id)}
+                    onToggleSave={toggleSaved}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Box sx={{ textAlign: 'center', py: 6, color: 'text.secondary' }}>
+              <Typography>{t('map.noResults')}</Typography>
+            </Box>
+          )}
+        </Box>
+      </Drawer>
     </Box>
   );
 }

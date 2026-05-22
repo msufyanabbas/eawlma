@@ -1639,6 +1639,10 @@
     "cancelDraw": "Batalkan Lukisan",
     "clearArea": "Kawasan Jelas",
     "drawHint": "Klik pada peta untuk melukis kawasan carian anda. Klik dua kali untuk menyelesaikan.",
-    "noResults": "Tiada hartanah ditemui di kawasan yang dilukis"
+    "noResults": "Tiada hartanah ditemui di kawasan yang dilukis",
+    "areaResults_one": "{{count}} harta yang ditemui di kawasan ini",
+    "areaResults_other": "{{count}} hartanah ditemui di kawasan ini",
+    "clickToView": "ketik untuk melihat senarai",
+    "propertiesInArea": "Sifat dalam Kawasan Terpilih"
   }
 }

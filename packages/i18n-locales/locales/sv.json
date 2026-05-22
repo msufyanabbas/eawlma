@@ -1639,6 +1639,10 @@
     "cancelDraw": "Avbryt ritning",
     "clearArea": "Rensa område",
     "drawHint": "Klicka på kartan för att rita ditt sökområde. Dubbelklicka för att avsluta.",
-    "noResults": "Inga fastigheter hittades i det ritade området"
+    "noResults": "Inga fastigheter hittades i det ritade området",
+    "areaResults_one": "{{count}} egendom hittades i detta område",
+    "areaResults_other": "{{count}} egenskaper hittades i detta område",
+    "clickToView": "tryck för att visa listan",
+    "propertiesInArea": "Fastigheter i valt område"
   }
 }

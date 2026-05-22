@@ -1639,6 +1639,10 @@
     "cancelDraw": "Peruuta piirtäminen",
     "clearArea": "Tyhjä alue",
     "drawHint": "Piirrä hakualue napsauttamalla karttaa. Viimeistele kaksoisnapsauttamalla.",
-    "noResults": "Piirretyltä alueelta ei löytynyt kiinteistöjä"
+    "noResults": "Piirretyltä alueelta ei löytynyt kiinteistöjä",
+    "areaResults_one": "Tältä alueelta löytyi {{count}} omaisuutta",
+    "areaResults_other": "Tältä alueelta löytyi {{count}} kiinteistöä",
+    "clickToView": "napauta nähdäksesi luettelon",
+    "propertiesInArea": "Kiinteistöt valitulla alueella"
   }
 }

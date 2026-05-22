@@ -1378,7 +1378,9 @@
     "drawHint": "Click on the map to draw your search area. Double-click to finish.",
     "noResults": "No properties found in the drawn area",
     "areaResults_one": "{{count}} property found in this area",
-    "areaResults_other": "{{count}} properties found in this area"
+    "areaResults_other": "{{count}} properties found in this area",
+    "clickToView": "tap to view list",
+    "propertiesInArea": "Properties in Selected Area"
   },
   "mortgage": {
     "title": "Mortgage Calculator",

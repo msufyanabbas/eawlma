@@ -1639,6 +1639,10 @@
     "cancelDraw": "ስዕልን ሰርዝ",
     "clearArea": "አካባቢን አጽዳ",
     "drawHint": "የፍለጋ ቦታዎን ለመሳል ካርታው ላይ ጠቅ ያድርጉ። ለመጨረስ ሁለቴ ጠቅ ያድርጉ።",
-    "noResults": "በተሳለው ቦታ ላይ ምንም ንብረቶች አልተገኙም።"
+    "noResults": "በተሳለው ቦታ ላይ ምንም ንብረቶች አልተገኙም።",
+    "areaResults_one": "{{count}} ንብረት በዚህ አካባቢ ተገኝቷል",
+    "areaResults_other": "{{count}} ንብረቶች በዚህ አካባቢ ተገኝተዋል",
+    "clickToView": "ዝርዝር ለማየት መታ ያድርጉ",
+    "propertiesInArea": "በተመረጠው አካባቢ ውስጥ ያሉ ንብረቶች"
   }
 }

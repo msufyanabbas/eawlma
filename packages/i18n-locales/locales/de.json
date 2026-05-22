@@ -1639,6 +1639,10 @@
     "cancelDraw": "Zeichnung abbrechen",
     "clearArea": "Freier Bereich",
     "drawHint": "Klicken Sie auf die Karte, um Ihr Suchgebiet einzuzeichnen. Doppelklicken Sie, um den Vorgang abzuschließen.",
-    "noResults": "Im gezeichneten Bereich wurden keine Eigenschaften gefunden"
+    "noResults": "Im gezeichneten Bereich wurden keine Eigenschaften gefunden",
+    "areaResults_one": "{{count}} Immobilie in dieser Gegend gefunden",
+    "areaResults_other": "{{count}} Immobilien in dieser Gegend gefunden",
+    "clickToView": "Tippen Sie, um die Liste anzuzeigen",
+    "propertiesInArea": "Eigenschaften im ausgewählten Bereich"
   }
 }

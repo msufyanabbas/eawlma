@@ -1938,7 +1938,11 @@
     "cancelDraw": "Çizimi İptal Et",
     "clearArea": "Alanı Temizle",
     "drawHint": "Arama alanınızı çizmek için haritaya tıklayın. Bitirmek için çift tıklayın.",
-    "noResults": "Çizilen alanda hiçbir özellik bulunamadı"
+    "noResults": "Çizilen alanda hiçbir özellik bulunamadı",
+    "areaResults_one": "Bu bölgede {{count}} mülk bulundu",
+    "areaResults_other": "Bu bölgede {{count}} mülk bulundu",
+    "clickToView": "listeyi görüntülemek için dokunun",
+    "propertiesInArea": "Seçilen Bölgedeki Gayrimenkuller"
   },
   "saved": {
     "title": "Kaydedildi",

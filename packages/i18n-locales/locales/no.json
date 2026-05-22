@@ -1639,6 +1639,10 @@
     "cancelDraw": "Avbryt tegning",
     "clearArea": "Fjern område",
     "drawHint": "Klikk på kartet for å tegne søkeområdet ditt. Dobbeltklikk for å fullføre.",
-    "noResults": "Ingen eiendommer funnet i det tegnede området"
+    "noResults": "Ingen eiendommer funnet i det tegnede området",
+    "areaResults_one": "{{count}} eiendom funnet i dette området",
+    "areaResults_other": "{{count}} eiendommer funnet i dette området",
+    "clickToView": "trykk for å se listen",
+    "propertiesInArea": "Eiendommer i valgt område"
   }
 }

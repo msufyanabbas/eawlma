@@ -1639,6 +1639,10 @@
     "cancelDraw": "Hủy bản vẽ",
     "clearArea": "Khu vực trống",
     "drawHint": "Bấm vào bản đồ để vẽ khu vực tìm kiếm của bạn. Nhấp đúp chuột để hoàn tất.",
-    "noResults": "Không tìm thấy bất động sản nào trong khu vực được vẽ"
+    "noResults": "Không tìm thấy bất động sản nào trong khu vực được vẽ",
+    "areaResults_one": "Đã tìm thấy {{count}} sản phẩm ở khu vực này",
+    "areaResults_other": "Đã tìm thấy {{count}} bất động sản ở khu vực này",
+    "clickToView": "nhấn để xem danh sách",
+    "propertiesInArea": "Thuộc tính trong khu vực đã chọn"
   }
 }

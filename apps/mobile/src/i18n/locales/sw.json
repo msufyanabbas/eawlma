@@ -1938,7 +1938,11 @@
     "cancelDraw": "Ghairi Mchoro",
     "clearArea": "Eneo la Wazi",
     "drawHint": "Bofya kwenye ramani ili kuchora eneo lako la utafutaji. Bofya mara mbili ili kumaliza.",
-    "noResults": "Hakuna mali iliyopatikana katika eneo linalochorwa"
+    "noResults": "Hakuna mali iliyopatikana katika eneo linalochorwa",
+    "areaResults_one": "Mali {{count}} yamepatikana katika eneo hili",
+    "areaResults_other": "{{count}} sifa zinazopatikana katika eneo hili",
+    "clickToView": "gusa ili kutazama orodha",
+    "propertiesInArea": "Mali katika eneo lililochaguliwa"
   },
   "saved": {
     "title": "Imehifadhiwa",

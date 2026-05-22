@@ -1938,7 +1938,11 @@
     "cancelDraw": "Batalkan Gambar",
     "clearArea": "Area Bersih",
     "drawHint": "Klik pada peta untuk menggambar area pencarian Anda. Klik dua kali untuk menyelesaikan.",
-    "noResults": "Tidak ada properti yang ditemukan di area yang digambar"
+    "noResults": "Tidak ada properti yang ditemukan di area yang digambar",
+    "areaResults_one": "{{count}} properti ditemukan di area ini",
+    "areaResults_other": "{{count}} properti ditemukan di area ini",
+    "clickToView": "ketuk untuk melihat daftar",
+    "propertiesInArea": "Properti di Area Terpilih"
   },
   "saved": {
     "title": "Disimpan",

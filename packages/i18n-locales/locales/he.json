@@ -1368,7 +1368,7 @@
     },
     "suggestedRange": "טווח מוצע",
     "confidenceLabel": "ביטחון",
-    "suggestPrice": "AI Suggest Price",
+    "suggestPrice": "AI מציע מחיר",
     "suggestionFailed": "לא ניתן היה לקבל הצעת מחיר"
   },
   "agents": {
@@ -1639,6 +1639,10 @@
     "cancelDraw": "בטל ציור",
     "clearArea": "נקה אזור",
     "drawHint": "לחץ על המפה כדי לצייר את אזור החיפוש שלך. לחץ פעמיים כדי לסיים.",
-    "noResults": "לא נמצאו נכסים באזור המצויר"
+    "noResults": "לא נמצאו נכסים באזור המצויר",
+    "areaResults_one": "נכס {{count}} נמצא באזור זה",
+    "areaResults_other": "{{count}} נכסים נמצאו באזור זה",
+    "clickToView": "הקש כדי להציג רשימה",
+    "propertiesInArea": "נכסים באזור נבחר"
   }
 }
