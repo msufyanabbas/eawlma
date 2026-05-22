@@ -28,7 +28,8 @@
     "shortTermStays": "Sejururi pe termen scurt",
     "hotels": "Hoteluri",
     "chalets": "Cabane și ferme",
-    "about": "Despre"
+    "about": "Despre",
+    "marketReports": "Rapoarte de piață"
   },
   "dashboard": {
     "overview": "Prezentare generală",
@@ -361,7 +362,9 @@
     "active": "Activ",
     "inactive": "Inactiv",
     "loadMore": "Încărcați mai multe",
-    "or": "sau"
+    "or": "sau",
+    "city": "Oraș",
+    "allCities": "Toate orașele"
   },
   "listing": {
     "forSale": "De vânzare",
@@ -1661,5 +1664,37 @@
     "priceUp": "Prețul este în creștere",
     "priceDown": "Prețul este în scădere",
     "priceStable": "Preț stabil"
+  },
+  "reports": {
+    "title": "Rapoartele pieței imobiliare din Arabia Saudită",
+    "subtitle": "Informații lunare, tendințe ale prețurilor și oportunități de investiții",
+    "download": "Descărcați PDF",
+    "priceTrends": "Tendințe de preț",
+    "supplyDemand": "Oferta și cererea",
+    "propertyMix": "Mix de proprietăți",
+    "investment": "Oportunități de investiții",
+    "avgPricePerSqm": "Prețul mediu pe m² în funcție de oraș (SAR)",
+    "supplyDemandTitle": "Oferta vs cerere vs oferte închise",
+    "supply": "Aprovizionare",
+    "demand": "Cerere",
+    "dealsClosed": "Oferte închise",
+    "propertyTypeMix": "Distribuția tipului de proprietate",
+    "marketSummary": "Rezumatul pieței",
+    "totalValue": "Valoarea totală de piață",
+    "yoyGrowth": "Creștere anual",
+    "avgDaysOnMarket": "Zile medii pe piață",
+    "foreignOwnership": "Proprietate străină",
+    "offPlanShare": "Cotă în afara planului",
+    "vision2030Impact": "Impactul Vision 2030",
+    "topInvestment": "Top Oportunități de investiții",
+    "investmentDesc": "Pe baza tendințelor prețurilor, a proiectelor Vision 2030 și a cererii pieței",
+    "roi": "ROI",
+    "growth": "Creștere",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Date bazate pe listele platformei și estimările pieței imobiliare din Arabia Saudită. Pentru decizii de investiții, consultați un consilier imobiliar autorizat.",
+    "totalListings": "Total înregistrări active",
+    "monthlySearches": "Căutări lunare",
+    "avgPrice": "Preț mediu/m² Riyadh",
+    "deals": "Oferte luna aceasta"
   }
 }

@@ -28,7 +28,8 @@
     "shortTermStays": "Kurzaufenthalte",
     "hotels": "Hotels",
     "chalets": "Chalets & Bauernhöfe",
-    "about": "Um"
+    "about": "Um",
+    "marketReports": "Marktberichte"
   },
   "dashboard": {
     "overview": "Übersicht",
@@ -361,7 +362,9 @@
     "active": "Aktiv",
     "inactive": "Inaktiv",
     "loadMore": "Mehr laden",
-    "or": "oder"
+    "or": "oder",
+    "city": "Stadt",
+    "allCities": "Alle Städte"
   },
   "listing": {
     "forSale": "Zu verkaufen",
@@ -1661,5 +1664,37 @@
     "priceUp": "Preis tendiert nach oben",
     "priceDown": "Der Preis tendiert nach unten",
     "priceStable": "Preis stabil"
+  },
+  "reports": {
+    "title": "Saudische Immobilienmarktberichte",
+    "subtitle": "Monatliche Einblicke, Preistrends und Investitionsmöglichkeiten",
+    "download": "PDF herunterladen",
+    "priceTrends": "Preistrends",
+    "supplyDemand": "Angebot und Nachfrage",
+    "propertyMix": "Immobilienmix",
+    "investment": "Investitionsmöglichkeiten",
+    "avgPricePerSqm": "Durchschnittlicher Preis pro m² nach Stadt (SAR)",
+    "supplyDemandTitle": "Angebot vs. Nachfrage vs. abgeschlossene Geschäfte",
+    "supply": "Liefern",
+    "demand": "Nachfrage",
+    "dealsClosed": "Angebote geschlossen",
+    "propertyTypeMix": "Verteilung der Immobilientypen",
+    "marketSummary": "Marktübersicht",
+    "totalValue": "Gesamtmarktwert",
+    "yoyGrowth": "Wachstum im Jahresvergleich",
+    "avgDaysOnMarket": "Durchschnittliche Tage auf dem Markt",
+    "foreignOwnership": "Ausländisches Eigentum",
+    "offPlanShare": "Off-Plan-Freigabe",
+    "vision2030Impact": "Auswirkungen der Vision 2030",
+    "topInvestment": "Top-Investitionsmöglichkeiten",
+    "investmentDesc": "Basierend auf Preistrends, Vision 2030-Projekten und Marktnachfrage",
+    "roi": "ROI",
+    "growth": "Wachstum",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Daten basieren auf Plattformeinträgen und Schätzungen des saudischen Immobilienmarktes. Wenden Sie sich bei Anlageentscheidungen an einen lizenzierten Immobilienberater.",
+    "totalListings": "Gesamtzahl der aktiven Einträge",
+    "monthlySearches": "Monatliche Suchanfragen",
+    "avgPrice": "Durchschnittlicher Preis/m² Riad",
+    "deals": "Angebote diesen Monat"
   }
 }

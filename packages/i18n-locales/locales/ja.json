@@ -28,7 +28,8 @@
     "shortTermStays": "短期滞在",
     "hotels": "ホテル",
     "chalets": "シャレー・農場",
-    "about": "について"
+    "about": "について",
+    "marketReports": "マーケットレポート"
   },
   "dashboard": {
     "overview": "概要",
@@ -361,7 +362,9 @@
     "active": "有効",
     "inactive": "無効",
     "loadMore": "さらにロードする",
-    "or": "または"
+    "or": "または",
+    "city": "市",
+    "allCities": "すべての都市"
   },
   "listing": {
     "forSale": "売買",
@@ -1661,5 +1664,37 @@
     "priceUp": "価格は上昇傾向にある",
     "priceDown": "価格は下落傾向にある",
     "priceStable": "価格が安定している"
+  },
+  "reports": {
+    "title": "サウジ不動産市場レポート",
+    "subtitle": "毎月の分析情報、価格傾向、投資機会",
+    "download": "PDFをダウンロード",
+    "priceTrends": "価格動向",
+    "supplyDemand": "需要と供給",
+    "propertyMix": "プロパティミックス",
+    "investment": "投資機会",
+    "avgPricePerSqm": "都市別の 1 平方メートルあたりの平均価格 (SAR)",
+    "supplyDemandTitle": "供給と需要と成約取引",
+    "supply": "供給",
+    "demand": "要求",
+    "dealsClosed": "取引が終了しました",
+    "propertyTypeMix": "プロパティタイプの分布",
+    "marketSummary": "市場概要",
+    "totalValue": "市場価値合計",
+    "yoyGrowth": "前年比成長率",
+    "avgDaysOnMarket": "市場に出回る平均日数",
+    "foreignOwnership": "外国人の所有権",
+    "offPlanShare": "計画外シェア",
+    "vision2030Impact": "ビジョン 2030 への影響",
+    "topInvestment": "上位の投資機会",
+    "investmentDesc": "価格動向、ビジョン 2030 プロジェクト、市場需要に基づく",
+    "roi": "ROI",
+    "growth": "成長",
+    "pricePerSqm": "SAR/㎡",
+    "disclaimer": "* データはプラットフォームのリストとサウジの不動産市場の推定に基づいています。投資に関する決定については、認可を受けた不動産アドバイザーにご相談ください。",
+    "totalListings": "アクティブなリストの合計数",
+    "monthlySearches": "月次検索",
+    "avgPrice": "リヤドの平均価格/㎡",
+    "deals": "今月のセール"
   }
 }

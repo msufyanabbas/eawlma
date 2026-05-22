@@ -28,7 +28,8 @@
     "shortTermStays": "Kortvarige ophold",
     "hotels": "Hoteller",
     "chalets": "Hytter og gårde",
-    "about": "Om"
+    "about": "Om",
+    "marketReports": "Markedsrapporter"
   },
   "dashboard": {
     "overview": "Oversigt",
@@ -361,7 +362,9 @@
     "active": "Aktiv",
     "inactive": "Inaktiv",
     "loadMore": "Indlæs mere",
-    "or": "eller"
+    "or": "eller",
+    "city": "By",
+    "allCities": "Alle byer"
   },
   "listing": {
     "forSale": "Til salg",
@@ -1485,7 +1488,7 @@
     "inquiryFunnel": "Forespørgselstragt"
   },
   "welcomeModal": {
-    "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
+    "cityPlaceholder": "Riyadh, Jeddah, Dammam..."
   },
   "agentReviewForm": {
     "commentPlaceholder": "Del, hvad der var nyttigt, professionelt eller kunne forbedre..."
@@ -1661,5 +1664,37 @@
     "priceUp": "Prisstigninger",
     "priceDown": "Prisen falder",
     "priceStable": "Pris stabil"
+  },
+  "reports": {
+    "title": "Saudi Ejendomsmarkedsrapporter",
+    "subtitle": "Månedlig indsigt, pristendenser og investeringsmuligheder",
+    "download": "Download PDF",
+    "priceTrends": "Pristendenser",
+    "supplyDemand": "Udbud og efterspørgsel",
+    "propertyMix": "Ejendomsmix",
+    "investment": "Investeringsmuligheder",
+    "avgPricePerSqm": "Gennemsnitlig pris pr. m² efter by (SAR)",
+    "supplyDemandTitle": "Udbud vs efterspørgsel vs lukkede tilbud",
+    "supply": "Forsyning",
+    "demand": "Efterspørgsel",
+    "dealsClosed": "Tilbud lukket",
+    "propertyTypeMix": "Ejendomstypefordeling",
+    "marketSummary": "Markedsoversigt",
+    "totalValue": "Samlet markedsværdi",
+    "yoyGrowth": "Årlig vækst",
+    "avgDaysOnMarket": "Gns. dage på markedet",
+    "foreignOwnership": "Udenlandsk ejerskab",
+    "offPlanShare": "Off-Plan Share",
+    "vision2030Impact": "Vision 2030 Impact",
+    "topInvestment": "Top investeringsmuligheder",
+    "investmentDesc": "Baseret på pristendenser, Vision 2030-projekter og markedsefterspørgsel",
+    "roi": "ROI",
+    "growth": "Vækst",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Data baseret på platformsfortegnelser og skøn over saudiarabiske ejendomsmarkeder. For investeringsbeslutninger, kontakt en autoriseret ejendomsrådgiver.",
+    "totalListings": "Samlet antal aktive fortegnelser",
+    "monthlySearches": "Månedlige søgninger",
+    "avgPrice": "Gns. pris/m² Riyadh",
+    "deals": "Tilbud denne måned"
   }
 }

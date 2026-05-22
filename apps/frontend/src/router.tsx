@@ -27,6 +27,7 @@ import { AgentsPage } from './pages/AgentsPage';
 import { SavedPropertiesPage } from './pages/SavedPropertiesPage';
 import { ComparePage } from './pages/ComparePage';
 import { MarketPage } from './pages/MarketPage';
+import { MarketReportsPage } from './pages/MarketReportsPage';
 import { StaysPage } from './pages/StaysPage';
 import { HotelsPage } from './pages/HotelsPage';
 import { HostingPage } from './pages/dashboard/HostingPage';
@@ -171,6 +172,7 @@ const agentProfileRoute = createRoute({ getParentRoute: () => marketingShellRout
 const savedRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/saved', component: SavedPropertiesPage });
 const compareRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/compare', component: ComparePage });
 const marketRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/market', component: MarketPage });
+const marketReportsRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/market-reports', component: MarketReportsPage });
 const staysRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/stays', component: StaysPage });
 const hotelsRoute = createRoute({ getParentRoute: () => marketingShellRoute, path: '/hotels', component: HotelsPage });
 const profileRoute = createRoute({
@@ -285,6 +287,7 @@ const routeTree = rootRoute.addChildren([
     savedRoute,
     compareRoute,
     marketRoute,
+    marketReportsRoute,
     staysRoute,
     hotelsRoute,
     profileRoute,

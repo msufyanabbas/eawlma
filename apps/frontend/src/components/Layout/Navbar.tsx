@@ -503,6 +503,7 @@ const CATEGORY_LINKS: Array<{ i18nKey: string; to: string }> = [
   { i18nKey: 'nav.hotels', to: '/hotels' },
   { i18nKey: 'nav.agents', to: '/agents' },
   { i18nKey: 'nav.market', to: '/market' },
+  { i18nKey: 'nav.marketReports', to: '/market-reports' },
   { i18nKey: 'nav.about',  to: '/about' },
 ];
 

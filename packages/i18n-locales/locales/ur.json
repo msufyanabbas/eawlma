@@ -28,7 +28,8 @@
     "shortTermStays": "مختصر مدتی قیامیں",
     "hotels": "ہوٹل",
     "chalets": "شالے اور فارمز",
-    "about": "کے بارے میں"
+    "about": "کے بارے میں",
+    "marketReports": "مارکیٹ رپورٹس"
   },
   "dashboard": {
     "overview": "جائزہ",
@@ -377,7 +378,9 @@
     "active": "فعال",
     "inactive": "غیر فعال",
     "loadMore": "مزید لوڈ کریں",
-    "or": "| یا"
+    "or": "| یا",
+    "city": "شہر",
+    "allCities": "| تمام شہر"
   },
   "listing": {
     "forSale": "برائے فروخت",
@@ -1674,5 +1677,37 @@
     "priceUp": "| قیمت بڑھ رہی ہے",
     "priceDown": "قیمت گر رہی ہے",
     "priceStable": "قیمت مستحکم"
+  },
+  "reports": {
+    "title": "سعودی ریئل اسٹیٹ مارکیٹ کی رپورٹیں",
+    "subtitle": "ماہانہ بصیرت، قیمت کے رجحانات، اور سرمایہ کاری کے مواقع",
+    "download": "PDF ڈاؤن لوڈ کریں",
+    "priceTrends": "| قیمت کے رجحانات",
+    "supplyDemand": "سپلائی اور ڈیمانڈ",
+    "propertyMix": "پراپرٹی مکس",
+    "investment": "سرمایہ کاری کے مواقع",
+    "avgPricePerSqm": "سٹی (SAR) کے لحاظ سے اوسط قیمت فی m²",
+    "supplyDemandTitle": "سپلائی بمقابلہ ڈیمانڈ بمقابلہ ڈیلز بند",
+    "supply": "سپلائی",
+    "demand": "| مطالبہ",
+    "dealsClosed": "ڈیلز بند",
+    "propertyTypeMix": "پراپرٹی کی قسم کی تقسیم",
+    "marketSummary": "مارکیٹ کا خلاصہ",
+    "totalValue": "کل مارکیٹ ویلیو",
+    "yoyGrowth": "YoY ترقی",
+    "avgDaysOnMarket": "مارکیٹ میں اوسط دن",
+    "foreignOwnership": "غیر ملکی ملکیت",
+    "offPlanShare": "آف پلان شیئر",
+    "vision2030Impact": "وژن 2030 کا اثر",
+    "topInvestment": "سرمایہ کاری کے بہترین مواقع",
+    "investmentDesc": "قیمت کے رجحانات، وژن 2030 پروجیکٹس، اور مارکیٹ کی طلب کی بنیاد پر",
+    "roi": "ROI",
+    "growth": "ترقی",
+    "pricePerSqm": "| SAR/m²",
+    "disclaimer": "* پلیٹ فارم کی فہرستوں اور سعودی ریئل اسٹیٹ مارکیٹ کے تخمینے پر مبنی ڈیٹا۔ سرمایہ کاری کے فیصلوں کے لیے، لائسنس یافتہ رئیل اسٹیٹ ایڈوائزر سے مشورہ کریں۔",
+    "totalListings": "کل فعال فہرستیں",
+    "monthlySearches": "ماہانہ تلاشیں",
+    "avgPrice": "اوسط قیمت/m² ریاض",
+    "deals": "اس مہینے ڈیلز"
   }
 }

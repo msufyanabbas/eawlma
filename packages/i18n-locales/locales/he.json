@@ -28,7 +28,8 @@
     "shortTermStays": "אירוח לטווח קצר",
     "hotels": "מלונות",
     "chalets": "צימרים וחוות",
-    "about": "אודות"
+    "about": "אודות",
+    "marketReports": "דוחות שוק"
   },
   "dashboard": {
     "overview": "סקירה",
@@ -361,7 +362,9 @@
     "active": "פעיל",
     "inactive": "לא פעיל",
     "loadMore": "טען עוד",
-    "or": "או"
+    "or": "או",
+    "city": "עיר",
+    "allCities": "כל הערים"
   },
   "listing": {
     "forSale": "למכירה",
@@ -1661,5 +1664,37 @@
     "priceUp": "מחיר עולה",
     "priceDown": "מחיר יורד",
     "priceStable": "מחיר יציב"
+  },
+  "reports": {
+    "title": "דוחות שוק הנדל\"ן הסעודי",
+    "subtitle": "תובנות חודשיות, מגמות מחירים והזדמנויות השקעה",
+    "download": "הורד PDF",
+    "priceTrends": "מגמות מחיר",
+    "supplyDemand": "היצע וביקוש",
+    "propertyMix": "תמהיל נכסים",
+    "investment": "הזדמנויות השקעה",
+    "avgPricePerSqm": "מחיר ממוצע למ\"ר לפי עיר (SAR)",
+    "supplyDemandTitle": "היצע מול ביקוש מול עסקאות סגורות",
+    "supply": "אספקה ​​",
+    "demand": "דרישה",
+    "dealsClosed": "עסקאות סגורות",
+    "propertyTypeMix": "חלוקת סוג נכס",
+    "marketSummary": "סיכום שוק",
+    "totalValue": "שווי שוק כולל",
+    "yoyGrowth": "YoY Growth",
+    "avgDaysOnMarket": "ממוצע ימים בשוק",
+    "foreignOwnership": "בעלות זרה",
+    "offPlanShare": "Share Off-Plan",
+    "vision2030Impact": "Vision 2030 Impact",
+    "topInvestment": "הזדמנויות השקעה מובילות",
+    "investmentDesc": "בהתבסס על מגמות מחירים, פרויקטים של Vision 2030 וביקוש בשוק",
+    "roi": "החזר ROI",
+    "growth": "צמיחה",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* נתונים המבוססים על רישומי פלטפורמות והערכות בשוק הנדל\"ן הסעודי. לקבלת החלטות השקעה יש לפנות ליועץ נדל\"ן מורשה.",
+    "totalListings": "סה\"כ רישומים פעילים",
+    "monthlySearches": "חיפושים חודשיים",
+    "avgPrice": "מחיר ממוצע/מ\"ר ריאד",
+    "deals": "מבצעים החודש"
   }
 }

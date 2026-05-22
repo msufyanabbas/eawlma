@@ -28,7 +28,8 @@
     "shortTermStays": "Korttidsopphold",
     "hotels": "Hoteller",
     "chalets": "Hytter og gårder",
-    "about": "Om"
+    "about": "Om",
+    "marketReports": "Markedsrapporter"
   },
   "dashboard": {
     "overview": "Oversikt",
@@ -361,7 +362,9 @@
     "active": "Aktiv",
     "inactive": "Inaktiv",
     "loadMore": "Last inn mer",
-    "or": "eller"
+    "or": "eller",
+    "city": "By",
+    "allCities": "Alle byer"
   },
   "listing": {
     "forSale": "Til salgs",
@@ -1404,7 +1407,7 @@
   "property": {
     "villa": "Villa",
     "apartment": "Leilighet",
-    "land": "Land",
+    "land": "Jord",
     "chalet": "Chalet",
     "farm": "Gård",
     "restHouse": "Rest House",
@@ -1661,5 +1664,37 @@
     "priceUp": "Prisutvikling",
     "priceDown": "Pristrender ned",
     "priceStable": "Prisstabil"
+  },
+  "reports": {
+    "title": "Saudi Eiendomsmarkedsrapporter",
+    "subtitle": "Månedlig innsikt, pristrender og investeringsmuligheter",
+    "download": "Last ned PDF",
+    "priceTrends": "Pristrender",
+    "supplyDemand": "Tilbud og etterspørsel",
+    "propertyMix": "Eiendomsmiks",
+    "investment": "Investeringsmuligheter",
+    "avgPricePerSqm": "Gjennomsnittlig pris per m² etter by (SAR)",
+    "supplyDemandTitle": "Tilbud vs etterspørsel vs avtaler lukket",
+    "supply": "Forsyning",
+    "demand": "Etterspørsel",
+    "dealsClosed": "Tilbud stengt",
+    "propertyTypeMix": "Eiendomstypefordeling",
+    "marketSummary": "Markedssammendrag",
+    "totalValue": "Total markedsverdi",
+    "yoyGrowth": "Årlig vekst",
+    "avgDaysOnMarket": "Gj.sn. dager på markedet",
+    "foreignOwnership": "Utenlandsk eierskap",
+    "offPlanShare": "Del uten plan",
+    "vision2030Impact": "Visjon 2030 Effekt",
+    "topInvestment": "Topp investeringsmuligheter",
+    "investmentDesc": "Basert på pristrender, Vision 2030-prosjekter og markedsetterspørsel",
+    "roi": "ROI",
+    "growth": "Vekst",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Data basert på plattformoppføringer og saudiarabiske eiendomsmarkedsestimater. For investeringsbeslutninger, kontakt en lisensiert eiendomsrådgiver.",
+    "totalListings": "Totalt antall aktive oppføringer",
+    "monthlySearches": "Månedlige søk",
+    "avgPrice": "Gj.sn. pris/m² Riyadh",
+    "deals": "Tilbud denne måneden"
   }
 }

@@ -28,7 +28,8 @@
     "shortTermStays": "短期住宿",
     "hotels": "酒店",
     "chalets": "小屋与农场",
-    "about": "关于"
+    "about": "关于",
+    "marketReports": "市场报告"
   },
   "dashboard": {
     "overview": "概览",
@@ -361,7 +362,9 @@
     "active": "已激活",
     "inactive": "未激活",
     "loadMore": "加载更多",
-    "or": "或者"
+    "or": "或者",
+    "city": "城市",
+    "allCities": "所有城市"
   },
   "listing": {
     "forSale": "出售",
@@ -1661,5 +1664,37 @@
     "priceUp": "价格呈上涨趋势",
     "priceDown": "价格呈下降趋势",
     "priceStable": "价格稳定"
+  },
+  "reports": {
+    "title": "沙特房地产市场报告",
+    "subtitle": "每月见解、价格趋势和投资机会",
+    "download": "下载PDF",
+    "priceTrends": "价格趋势",
+    "supplyDemand": "供应与需求",
+    "propertyMix": "物业组合",
+    "investment": "投资机会",
+    "avgPricePerSqm": "按城市（SAR）划分的每平方米平均价格",
+    "supplyDemandTitle": "供应 vs 需求 vs 交易结束",
+    "supply": "供应",
+    "demand": "要求",
+    "dealsClosed": "交易已结束",
+    "propertyTypeMix": "物业类型分布",
+    "marketSummary": "市场总结",
+    "totalValue": "总市值",
+    "yoyGrowth": "同比增长",
+    "avgDaysOnMarket": "平均上市天数",
+    "foreignOwnership": "外资所有权",
+    "offPlanShare": "期房份额",
+    "vision2030Impact": "2030 年愿景影响",
+    "topInvestment": "顶级投资机会",
+    "investmentDesc": "基于价格趋势、2030 年愿景项目和市场需求",
+    "roi": "投资回报率",
+    "growth": "生长",
+    "pricePerSqm": "SAR/平方米",
+    "disclaimer": "* 数据基于平台列表和沙特房地产市场预测。对于投资决策，请咨询有执照的房地产顾问。",
+    "totalListings": "活跃列表总数",
+    "monthlySearches": "每月搜索量",
+    "avgPrice": "平均价格/平方米 利雅得",
+    "deals": "本月优惠"
   }
 }

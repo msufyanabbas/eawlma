@@ -28,7 +28,8 @@
     "shortTermStays": "Korttermyn verblywe",
     "hotels": "Hotelle",
     "chalets": "Chalets en plase",
-    "about": "Oor"
+    "about": "Oor",
+    "marketReports": "Markverslae"
   },
   "dashboard": {
     "overview": "Oorsig",
@@ -406,6 +407,8 @@
     "inactive": "Onaktief",
     "loadMore": "Laai meer",
     "or": "of",
+    "city": "Stad",
+    "allCities": "Alle stede",
     "errorOccurred": "'n Fout het voorgekom",
     "yes": "Ja",
     "no": "Nee",
@@ -900,7 +903,7 @@
       "unlisted": "Ongenoteerde"
     },
     "amenity": {
-      "pool": "Pool",
+      "pool": "Swembad",
       "garden": "Tuin",
       "gym": "Gimnasium",
       "elevator": "Hysbak",
@@ -1960,6 +1963,38 @@
     "priceUp": "Pryse neiging",
     "priceDown": "Prys neiging af",
     "priceStable": "Prys stabiel"
+  },
+  "reports": {
+    "title": "Saoedi-eiendomsmarkverslae",
+    "subtitle": "Maandelikse insigte, prysneigings en beleggingsgeleenthede",
+    "download": "Laai PDF af",
+    "priceTrends": "Prystendense",
+    "supplyDemand": "Vraag en aanbod",
+    "propertyMix": "Eiendomsmengsel",
+    "investment": "Beleggingsgeleenthede",
+    "avgPricePerSqm": "Gemiddelde prys per m² volgens Stad (SAR)",
+    "supplyDemandTitle": "Aanbod vs vraag vs transaksies gesluit",
+    "supply": "Verskaf",
+    "demand": "Vraag",
+    "dealsClosed": "Handelinge gesluit",
+    "propertyTypeMix": "Eiendom Tipe Verspreiding",
+    "marketSummary": "Markopsomming",
+    "totalValue": "Totale markwaarde",
+    "yoyGrowth": "YoY Groei",
+    "avgDaysOnMarket": "Gem. dae op mark",
+    "foreignOwnership": "Buitelandse Eienaarskap",
+    "offPlanShare": "Off-Plan Deel",
+    "vision2030Impact": "Visie 2030 Impak",
+    "topInvestment": "Top Beleggingsgeleenthede",
+    "investmentDesc": "Gebaseer op prysneigings, Visie 2030-projekte en markaanvraag",
+    "roi": "ROI",
+    "growth": "Groei",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Data gebaseer op platformnoterings en Saoedi-eiendomsmarkskattings. Raadpleeg 'n gelisensieerde eiendomsadviseur vir beleggingsbesluite.",
+    "totalListings": "Totale aktiewe inskrywings",
+    "monthlySearches": "Maandelikse soektogte",
+    "avgPrice": "Gemiddelde prys/m² Riyadh",
+    "deals": "Aanbiedings hierdie maand"
   },
   "saved": {
     "title": "Gestoor",

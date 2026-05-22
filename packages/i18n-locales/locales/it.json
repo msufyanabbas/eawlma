@@ -28,7 +28,8 @@
     "shortTermStays": "Soggiorni a breve termine",
     "hotels": "Hotel",
     "chalets": "Chalet e fattorie",
-    "about": "Informazioni su"
+    "about": "Informazioni su",
+    "marketReports": "Rapporti di mercato"
   },
   "dashboard": {
     "overview": "Panoramica",
@@ -361,7 +362,9 @@
     "active": "Attivo",
     "inactive": "Inattivo",
     "loadMore": "Carica altro",
-    "or": "o"
+    "or": "o",
+    "city": "Città",
+    "allCities": "Tutte le città"
   },
   "listing": {
     "forSale": "In vendita",
@@ -1661,5 +1664,37 @@
     "priceUp": "Prezzo in rialzo",
     "priceDown": "Prezzo in calo",
     "priceStable": "Prezzo stabile"
+  },
+  "reports": {
+    "title": "Rapporti sul mercato immobiliare saudita",
+    "subtitle": "Approfondimenti mensili, andamento dei prezzi e opportunità di investimento",
+    "download": "Scarica PDF",
+    "priceTrends": "Andamento dei prezzi",
+    "supplyDemand": "Domanda e offerta",
+    "propertyMix": "Mix di proprietà",
+    "investment": "Opportunità di investimento",
+    "avgPricePerSqm": "Prezzo medio al m² per città (SAR)",
+    "supplyDemandTitle": "Offerta vs Domanda vs Offerte Chiuse",
+    "supply": "Fornitura",
+    "demand": "Domanda",
+    "dealsClosed": "Offerte chiuse",
+    "propertyTypeMix": "Distribuzione del tipo di proprietà",
+    "marketSummary": "Riepilogo del mercato",
+    "totalValue": "Valore di mercato totale",
+    "yoyGrowth": "Crescita su base annua",
+    "avgDaysOnMarket": "Media giorni sul mercato",
+    "foreignOwnership": "Proprietà straniera",
+    "offPlanShare": "Condivisione fuori piano",
+    "vision2030Impact": "Impatto della Visione 2030",
+    "topInvestment": "Le migliori opportunità di investimento",
+    "investmentDesc": "In base all'andamento dei prezzi, ai progetti Vision 2030 e alla domanda del mercato",
+    "roi": "ROI",
+    "growth": "Crescita",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "*Dati basati sugli elenchi delle piattaforme e sulle stime del mercato immobiliare saudita. Per le decisioni di investimento, consultare un consulente immobiliare autorizzato.",
+    "totalListings": "Totale elenchi attivi",
+    "monthlySearches": "Ricerche mensili",
+    "avgPrice": "Prezzo medio/m² Riad",
+    "deals": "Offerte questo mese"
   }
 }

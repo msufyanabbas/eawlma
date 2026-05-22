@@ -28,7 +28,8 @@
     "shortTermStays": "अल्पकालीन मुक्काम",
     "hotels": "हॉटेल्स",
     "chalets": "शॅले आणि शेते",
-    "about": "बद्दल"
+    "about": "बद्दल",
+    "marketReports": "बाजार अहवाल"
   },
   "dashboard": {
     "overview": "विहंगावलोकन",
@@ -361,7 +362,9 @@
     "active": "सक्रिय",
     "inactive": "निष्क्रिय",
     "loadMore": "अधिक लोड करा",
-    "or": "किंवा"
+    "or": "किंवा",
+    "city": "शहर",
+    "allCities": "सर्व शहरे"
   },
   "listing": {
     "forSale": "विक्रीसाठी",
@@ -1661,5 +1664,37 @@
     "priceUp": "किंमत वाढत आहे",
     "priceDown": "किंमत कमी होत आहे",
     "priceStable": "किंमत स्थिर"
+  },
+  "reports": {
+    "title": "सौदी रिअल इस्टेट बाजार अहवाल",
+    "subtitle": "मासिक अंतर्दृष्टी, किंमत ट्रेंड आणि गुंतवणूक संधी",
+    "download": "PDF डाउनलोड करा",
+    "priceTrends": "किंमत ट्रेंड",
+    "supplyDemand": "पुरवठा आणि मागणी",
+    "propertyMix": "मालमत्ता मिक्स",
+    "investment": "गुंतवणुकीच्या संधी",
+    "avgPricePerSqm": "शहरानुसार (SAR) प्रति मी² सरासरी किंमत",
+    "supplyDemandTitle": "पुरवठा विरुद्ध मागणी विरुद्ध सौदे बंद",
+    "supply": "पुरवठा",
+    "demand": "मागणी",
+    "dealsClosed": "सौदे बंद",
+    "propertyTypeMix": "मालमत्ता प्रकार वितरण",
+    "marketSummary": "बाजार सारांश",
+    "totalValue": "एकूण बाजार मूल्य",
+    "yoyGrowth": "YoY वाढ",
+    "avgDaysOnMarket": "बाजारातील सरासरी दिवस",
+    "foreignOwnership": "परदेशी मालकी",
+    "offPlanShare": "ऑफ-प्लॅन शेअर",
+    "vision2030Impact": "व्हिजन 2030 प्रभाव",
+    "topInvestment": "शीर्ष गुंतवणूक संधी",
+    "investmentDesc": "किंमत ट्रेंड, व्हिजन 2030 प्रकल्प आणि बाजारातील मागणी यावर आधारित",
+    "roi": "ROI",
+    "growth": "वाढ",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* प्लॅटफॉर्म सूची आणि सौदी रिअल इस्टेट बाजार अंदाजांवर आधारित डेटा. गुंतवणुकीच्या निर्णयांसाठी, परवानाधारक रिअल इस्टेट सल्लागाराचा सल्ला घ्या.",
+    "totalListings": "एकूण सक्रिय सूची",
+    "monthlySearches": "मासिक शोध",
+    "avgPrice": "सरासरी किंमत/m² रियाध",
+    "deals": "या महिन्यात सौदे"
   }
 }

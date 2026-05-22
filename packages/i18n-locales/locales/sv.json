@@ -28,7 +28,8 @@
     "shortTermStays": "Korttidsboenden",
     "hotels": "Hotell",
     "chalets": "Stugor och gårdar",
-    "about": "Om"
+    "about": "Om",
+    "marketReports": "Marknadsrapporter"
   },
   "dashboard": {
     "overview": "Översikt",
@@ -361,7 +362,9 @@
     "active": "Aktiv",
     "inactive": "Inaktiv",
     "loadMore": "Ladda mer",
-    "or": "eller"
+    "or": "eller",
+    "city": "Stad",
+    "allCities": "Alla städer"
   },
   "listing": {
     "forSale": "Till salu",
@@ -1513,7 +1516,7 @@
     "forRent": "Uthyres",
     "apartments": "Lägenheter",
     "villas": "Villor",
-    "land": "Land",
+    "land": "Landa",
     "chalets": "Chalets",
     "farms": "Gårdar",
     "restHouses": "Resthus",
@@ -1661,5 +1664,37 @@
     "priceUp": "Pristrend uppåt",
     "priceDown": "Pristrend nedåt",
     "priceStable": "Prisstabilt"
+  },
+  "reports": {
+    "title": "Saudiarabiska fastighetsmarknadsrapporter",
+    "subtitle": "Månatliga insikter, pristrender och investeringsmöjligheter",
+    "download": "Ladda ner PDF",
+    "priceTrends": "Pristrender",
+    "supplyDemand": "Tillgång och efterfrågan",
+    "propertyMix": "Egendomsmix",
+    "investment": "Investeringsmöjligheter",
+    "avgPricePerSqm": "Genomsnittligt pris per m² per stad (SAR)",
+    "supplyDemandTitle": "Utbud vs efterfrågan vs stängda affärer",
+    "supply": "Supply",
+    "demand": "Begär",
+    "dealsClosed": "Stängda erbjudanden",
+    "propertyTypeMix": "Fastighetstyp Fördelning",
+    "marketSummary": "Marknadssammanfattning",
+    "totalValue": "Totalt marknadsvärde",
+    "yoyGrowth": "År till år Tillväxt",
+    "avgDaysOnMarket": "Genomsnittliga dagar på marknaden",
+    "foreignOwnership": "Utländskt ägande",
+    "offPlanShare": "Off-Plan Share",
+    "vision2030Impact": "Vision 2030 Impact",
+    "topInvestment": "Bästa investeringsmöjligheterna",
+    "investmentDesc": "Baserat på pristrender, Vision 2030-projekt och efterfrågan på marknaden",
+    "roi": "ROI",
+    "growth": "Tillväxt",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Data baserad på plattformslistor och saudiska fastighetsmarknadsuppskattningar. För investeringsbeslut, konsultera en licensierad fastighetsrådgivare.",
+    "totalListings": "Totalt antal aktiva annonser",
+    "monthlySearches": "Månatliga sökningar",
+    "avgPrice": "Genomsnittligt pris/m² Riyadh",
+    "deals": "Erbjudanden denna månad"
   }
 }

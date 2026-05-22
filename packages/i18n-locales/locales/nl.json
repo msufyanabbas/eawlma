@@ -28,7 +28,8 @@
     "shortTermStays": "Kortdurende verblijven",
     "hotels": "Hotels",
     "chalets": "Chalets & boerderijen",
-    "about": "Over"
+    "about": "Over",
+    "marketReports": "Marktrapporten"
   },
   "dashboard": {
     "overview": "Overzicht",
@@ -361,7 +362,9 @@
     "active": "Actief",
     "inactive": "Inactief",
     "loadMore": "Meer laden",
-    "or": "of"
+    "or": "of",
+    "city": "Stad",
+    "allCities": "Alle steden"
   },
   "listing": {
     "forSale": "Te koop",
@@ -1661,5 +1664,37 @@
     "priceUp": "Prijs stijgt",
     "priceDown": "Prijs daalt",
     "priceStable": "Prijs stabiel"
+  },
+  "reports": {
+    "title": "Saoedische vastgoedmarktrapporten",
+    "subtitle": "Maandelijkse inzichten, prijstrends en investeringsmogelijkheden",
+    "download": "Download PDF",
+    "priceTrends": "Prijstrends",
+    "supplyDemand": "Vraag en aanbod",
+    "propertyMix": "Vastgoedmix",
+    "investment": "Investeringsmogelijkheden",
+    "avgPricePerSqm": "Gemiddelde prijs per m² per stad (SAR)",
+    "supplyDemandTitle": "Aanbod versus vraag versus gesloten deals",
+    "supply": "Aanbod",
+    "demand": "Vraag",
+    "dealsClosed": "Aanbiedingen gesloten",
+    "propertyTypeMix": "Eigendomstypeverdeling",
+    "marketSummary": "Marktoverzicht",
+    "totalValue": "Totale marktwaarde",
+    "yoyGrowth": "Groei op jaarbasis",
+    "avgDaysOnMarket": "Gem. dagen op markt",
+    "foreignOwnership": "Buitenlands eigendom",
+    "offPlanShare": "Delen buiten plan",
+    "vision2030Impact": "Visie 2030 Impact",
+    "topInvestment": "Beste investeringsmogelijkheden",
+    "investmentDesc": "Gebaseerd op prijsontwikkelingen, Vision 2030-projecten en marktvraag",
+    "roi": "ROI",
+    "growth": "Groei",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* Gegevens gebaseerd op platformvermeldingen en schattingen van de Saoedische vastgoedmarkt. Raadpleeg voor investeringsbeslissingen een erkende vastgoedadviseur.",
+    "totalListings": "Totaal aantal actieve vermeldingen",
+    "monthlySearches": "Maandelijkse zoekopdrachten",
+    "avgPrice": "Gem. prijs/m² Riyad",
+    "deals": "Aanbiedingen deze maand"
   }
 }

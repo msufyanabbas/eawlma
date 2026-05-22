@@ -28,7 +28,8 @@
     "shortTermStays": "اقامتگاه‌های کوتاه‌مدت",
     "hotels": "هتل‌ها",
     "chalets": "ویلا و مزرعه",
-    "about": "درباره"
+    "about": "درباره",
+    "marketReports": "گزارش های بازار"
   },
   "dashboard": {
     "overview": "نمای کلی",
@@ -361,7 +362,9 @@
     "active": "فعال",
     "inactive": "غیرفعال",
     "loadMore": "بارگیری بیشتر",
-    "or": "یا"
+    "or": "یا",
+    "city": "شهر",
+    "allCities": "همه شهرها"
   },
   "listing": {
     "forSale": "برای فروش",
@@ -1661,5 +1664,37 @@
     "priceUp": "روند صعودی قیمت",
     "priceDown": "روند کاهشی قیمت",
     "priceStable": "قیمت ثابت"
+  },
+  "reports": {
+    "title": "گزارش بازار املاک و مستغلات عربستان",
+    "subtitle": "بینش ماهانه، روند قیمت، و فرصت های سرمایه گذاری",
+    "download": "PDF را دانلود کنید",
+    "priceTrends": "روند قیمت",
+    "supplyDemand": "عرضه و تقاضا",
+    "propertyMix": "میکس خواص",
+    "investment": "فرصت های سرمایه گذاری",
+    "avgPricePerSqm": "میانگین قیمت هر متر مربع بر اساس شهر (SAR)",
+    "supplyDemandTitle": "عرضه در مقابل تقاضا در مقابل معاملات بسته شده است",
+    "supply": "عرضه کنید",
+    "demand": "تقاضا",
+    "dealsClosed": "معاملات بسته شد",
+    "propertyTypeMix": "نوع املاک توزیع",
+    "marketSummary": "خلاصه بازار",
+    "totalValue": "ارزش کل بازار",
+    "yoyGrowth": "سالانه رشد",
+    "avgDaysOnMarket": "میانگین روزهای در بازار",
+    "foreignOwnership": "مالکیت خارجی",
+    "offPlanShare": "اشتراک خارج از برنامه",
+    "vision2030Impact": "Vision 2030 Impact",
+    "topInvestment": "برترین فرصت های سرمایه گذاری",
+    "investmentDesc": "بر اساس روند قیمت، پروژه های Vision 2030 و تقاضای بازار",
+    "roi": "بازگشت سرمایه",
+    "growth": "رشد",
+    "pricePerSqm": "SAR/m²",
+    "disclaimer": "* داده ها بر اساس فهرست های پلت فرم و تخمین های بازار املاک و مستغلات عربستان سعودی. برای تصمیمات سرمایه گذاری، با یک مشاور املاک دارای مجوز مشورت کنید.",
+    "totalListings": "کل لیست های فعال",
+    "monthlySearches": "جستجوهای ماهانه",
+    "avgPrice": "میانگین قیمت / متر مربع ریاض",
+    "deals": "معاملات این ماه"
   }
 }
