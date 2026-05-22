@@ -1088,64 +1088,115 @@ function MapView({ listings }: { listings: Listing[] }) {
     region: 'SA',
   });
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [drawnPolygon, setDrawnPolygon] = useState<google.maps.Polygon | null>(null);
   // ID set of listings that fall inside the drawn polygon. `null` means
   // "no polygon drawn", so the full list is displayed.
   const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
   // True while the user is actively in polygon-drawing mode.
   const [isDrawing, setIsDrawing] = useState(false);
+  // Bumped on every draw/clear. Used as the MarkerClusterer's `key` so it is
+  // force-remounted when the filter changes — the clusterer otherwise keeps
+  // stale markers on screen when the visible set shrinks.
+  const [drawVersion, setDrawVersion] = useState(0);
   // Imperative handle to the Maps DrawingManager so our own buttons can
   // toggle drawing mode on/off.
   const drawingManagerRef = useRef<google.maps.drawing.DrawingManager | null>(null);
+  // The polygon overlay currently on the map. Kept in a ref (not state) since
+  // it is only ever read imperatively to clear the previous overlay.
+  const drawnPolygonRef = useRef<google.maps.Polygon | null>(null);
+  // Live mirror of `listings` so the (stable) polygon callback always filters
+  // against the freshest data instead of a value captured when the
+  // `polygoncomplete` listener was registered.
+  const listingsRef = useRef(listings);
 
   // --- All hooks must run before any conditional return below. The early
-  // returns for missing key / load error / not-yet-loaded come AFTER these
-  // useCallback hooks; otherwise the hook count changes when `isLoaded`
-  // flips, triggering "Rendered more hooks than during the previous render".
+  // returns for missing key / load error / not-yet-loaded come AFTER every
+  // hook; otherwise the hook count changes when `isLoaded` flips, triggering
+  // "Rendered more hooks than during the previous render".
 
-  // Filter listings whose coordinates fall inside the drawn polygon. Uses
-  // `google.maps.geometry.poly.containsLocation`, which is part of the
-  // `geometry` library (auto-loaded with `drawing`).
-  const handlePolygonComplete = useCallback(
-    (polygon: google.maps.Polygon) => {
-      // Drawing is done — exit drawing mode immediately.
-      drawingManagerRef.current?.setDrawingMode(null);
-      setIsDrawing(false);
-      if (drawnPolygon) drawnPolygon.setMap(null);
-      setDrawnPolygon(polygon);
-      const ids = new Set<string>();
-      for (const l of listings) {
-        const lat = Number(l.lat);
-        const lng = Number(l.lng);
-        if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
-        const point = new google.maps.LatLng(lat, lng);
-        if (google.maps.geometry?.poly?.containsLocation(point, polygon)) {
-          ids.add(l.id);
-        }
+  useEffect(() => {
+    listingsRef.current = listings;
+  }, [listings]);
+
+  // Filter listings whose coordinates fall inside the drawn polygon, using
+  // `google.maps.geometry.poly.containsLocation` from the `geometry` library.
+  // Stable identity (`[]` deps + refs) so DrawingManagerF registers the
+  // `polygoncomplete` listener once instead of re-binding on every data
+  // change — a stale/missing binding was why filtering appeared to do nothing.
+  const handlePolygonComplete = useCallback((polygon: google.maps.Polygon) => {
+    // Drawing is done — exit drawing mode immediately.
+    drawingManagerRef.current?.setDrawingMode(null);
+    setIsDrawing(false);
+
+    // Replace any previous polygon overlay with the new one.
+    drawnPolygonRef.current?.setMap(null);
+    drawnPolygonRef.current = polygon;
+
+    const geometry = window.google?.maps?.geometry;
+    if (!geometry?.poly) {
+      // `geometry` library not loaded — cannot test point-in-polygon. Keep
+      // every listing visible rather than silently hiding them all.
+      console.error('[MapView] google.maps.geometry not loaded — polygon filter unavailable');
+      setFilteredIds(new Set(listingsRef.current.map((l) => l.id)));
+      setDrawVersion((v) => v + 1);
+      return;
+    }
+
+    const ids = new Set<string>();
+    for (const l of listingsRef.current) {
+      const lat = Number(l.lat);
+      const lng = Number(l.lng);
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+      if (geometry.poly.containsLocation(new google.maps.LatLng(lat, lng), polygon)) {
+        ids.add(l.id);
       }
-      setFilteredIds(ids);
-      drawingManagerRef.current?.setDrawingMode(null);
-    },
-    [drawnPolygon, listings],
-  );
+    }
+    setFilteredIds(ids);
+    setDrawVersion((v) => v + 1);
+  }, []);
 
   // Start a fresh polygon: discard any prior polygon/filter, then switch the
   // DrawingManager into POLYGON mode.
   const startDrawing = useCallback(() => {
-    drawnPolygon?.setMap(null);
-    setDrawnPolygon(null);
+    drawnPolygonRef.current?.setMap(null);
+    drawnPolygonRef.current = null;
     setFilteredIds(null);
     setIsDrawing(true);
     drawingManagerRef.current?.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
-  }, [drawnPolygon]);
+  }, []);
 
   const clearDrawing = useCallback(() => {
-    if (drawnPolygon) drawnPolygon.setMap(null);
-    setDrawnPolygon(null);
+    drawnPolygonRef.current?.setMap(null);
+    drawnPolygonRef.current = null;
     setFilteredIds(null);
     setIsDrawing(false);
+    setDrawVersion((v) => v + 1);
     drawingManagerRef.current?.setDrawingMode(null);
-  }, [drawnPolygon]);
+  }, []);
+
+  // Stable props for DrawingManagerF — inline objects/handlers would defeat
+  // its `memo` wrapper and make it re-apply options on every render.
+  const handleDrawingManagerLoad = useCallback(
+    (dm: google.maps.drawing.DrawingManager) => {
+      drawingManagerRef.current = dm;
+    },
+    [],
+  );
+  const drawingManagerOptions = useMemo<google.maps.drawing.DrawingManagerOptions>(
+    () => ({
+      // Native toolbar disabled — we drive drawing from our own button.
+      drawingControl: false,
+      polygonOptions: {
+        fillColor: '#6C63A6',
+        fillOpacity: 0.2,
+        strokeColor: '#6C63A6',
+        strokeWeight: 2,
+        clickable: false,
+        editable: false,
+        zIndex: 1,
+      },
+    }),
+    [],
+  );
 
   // ----- conditional returns — safe now that every hook above has run -----
   if (!apiKey) {
@@ -1255,6 +1306,36 @@ function MapView({ listings }: { listings: Listing[] }) {
         )}
       </Box>
 
+      {/* Polygon-filter result banner — bottom-center so the outcome of
+       *  drawing an area is unmistakable (the markers alone are easy to miss). */}
+      {!isDrawing && filteredIds && (
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 16,
+            insetInlineStart: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 11,
+            px: 2.5,
+            py: 1,
+            borderRadius: 999,
+            bgcolor: filteredIds.size > 0 ? 'primary.main' : 'rgba(26,26,46,0.85)',
+            color: '#fff',
+            fontSize: 13,
+            fontWeight: 700,
+            boxShadow: 3,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {filteredIds.size > 0
+            ? t('map.areaResults', {
+                count: filteredIds.size,
+                defaultValue: '{{count}} properties found in this area',
+              })
+            : t('map.noResults')}
+        </Box>
+      )}
+
       {/* Drawing hint — centered overlay near the top while drawing. */}
       {isDrawing && (
         <Box
@@ -1286,25 +1367,11 @@ function MapView({ listings }: { listings: Listing[] }) {
         options={{ streetViewControl: false, mapTypeControl: false, fullscreenControl: false }}
       >
         <DrawingManagerF
-          onLoad={(dm) => {
-            drawingManagerRef.current = dm;
-          }}
+          onLoad={handleDrawingManagerLoad}
           onPolygonComplete={handlePolygonComplete}
-          options={{
-            // Native toolbar disabled — we drive drawing from our own button.
-            drawingControl: false,
-            polygonOptions: {
-              fillColor: '#6C63A6',
-              fillOpacity: 0.2,
-              strokeColor: '#6C63A6',
-              strokeWeight: 2,
-              clickable: false,
-              editable: false,
-              zIndex: 1,
-            },
-          }}
+          options={drawingManagerOptions}
         />
-        <MarkerClustererF>
+        <MarkerClustererF key={`clusterer-${drawVersion}`}>
           {(clusterer) => (
             <>
               {visibleListings.map((l) => (
