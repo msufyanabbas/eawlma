@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} ንብረቶች በዚህ አካባቢ ተገኝተዋል",
     "clickToView": "ዝርዝር ለማየት መታ ያድርጉ",
     "propertiesInArea": "በተመረጠው አካባቢ ውስጥ ያሉ ንብረቶች",
-    "loading": "ካርታ በመጫን ላይ…"
+    "loading": "ካርታ በመጫን ላይ…",
+    "neighborhoodInsights": "የጎረቤት ግንዛቤዎች"
+  },
+  "neighborhood": {
+    "insights": "የጎረቤት ግንዛቤዎች",
+    "avgPrice": "አማካይ ዋጋ/m²",
+    "avgRent": "አማካኝ ኪራይ/ወር",
+    "schools": "ትምህርት ቤቶች",
+    "hospitals": "ሆስፒታሎች",
+    "malls": "የገበያ ማዕከሎች",
+    "mosques": "መስጊዶች",
+    "transport": "መጓጓዣ",
+    "safety": "ደህንነት",
+    "amenities": "መገልገያዎች",
+    "priceUp": "የዋጋ ጭማሪ",
+    "priceDown": "የዋጋ ቅነሳ",
+    "priceStable": "ዋጋ የተረጋጋ"
   },
   "saved": {
     "title": "ተቀምጧል",

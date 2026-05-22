@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} properti ditemukan di area ini",
     "clickToView": "ketuk untuk melihat daftar",
     "propertiesInArea": "Properti di Area Terpilih",
-    "loading": "Memuat peta…"
+    "loading": "Memuat peta…",
+    "neighborhoodInsights": "Wawasan Lingkungan"
+  },
+  "neighborhood": {
+    "insights": "Wawasan Lingkungan",
+    "avgPrice": "Harga Rata-rata/m²",
+    "avgRent": "Rata-rata Sewa/bln",
+    "schools": "Sekolah",
+    "hospitals": "Rumah Sakit",
+    "malls": "Mal",
+    "mosques": "Masjid",
+    "transport": "Mengangkut",
+    "safety": "Keamanan",
+    "amenities": "Fasilitas",
+    "priceUp": "Tren harga naik",
+    "priceDown": "Tren harga turun",
+    "priceStable": "Harga stabil"
   },
   "saved": {
     "title": "Disimpan",

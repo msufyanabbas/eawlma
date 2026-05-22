@@ -1912,7 +1912,7 @@
     "totalPayment": "કુલ ચુકવણી",
     "totalInterest": "કુલ વ્યાજ",
     "disclaimer": "આ એક અંદાજ છે. વાસ્તવિક લોન ઓફર માટે તમારી બેંકનો સંપર્ક કરો.",
-    "perMonth": "SAR/mo"
+    "perMonth": "| SAR/mo"
   },
   "notifications": {
     "markAllRead": "બધાને વાંચેલા તરીકે ચિહ્નિત કરો",
@@ -1943,7 +1943,23 @@
     "areaResults_other": "આ વિસ્તારમાં {{count}} પ્રોપર્ટીઝ મળી",
     "clickToView": "યાદી જોવા માટે ટેપ કરો",
     "propertiesInArea": "પસંદ કરેલ વિસ્તારમાં મિલકતો",
-    "loading": "નકશો લોડ કરી રહ્યું છે…"
+    "loading": "નકશો લોડ કરી રહ્યું છે…",
+    "neighborhoodInsights": "નેબરહુડ ઇન્સાઇટ્સ"
+  },
+  "neighborhood": {
+    "insights": "નેબરહુડ ઇન્સાઇટ્સ",
+    "avgPrice": "સરેરાશ કિંમત/m²",
+    "avgRent": "સરેરાશ ભાડું/મહિને",
+    "schools": "શાળાઓ",
+    "hospitals": "| હોસ્પિટલો",
+    "malls": "મોલ્સ",
+    "mosques": "મસ્જિદો",
+    "transport": "પરિવહન",
+    "safety": "| સલામતી",
+    "amenities": "સુવિધાઓ",
+    "priceUp": "| ભાવ વધી રહ્યો છે",
+    "priceDown": "ભાવ ડાઉન થઈ રહ્યો છે",
+    "priceStable": "કિંમત સ્થિર"
   },
   "saved": {
     "title": "સાચવેલ",

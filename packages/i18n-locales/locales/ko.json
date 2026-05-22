@@ -1644,6 +1644,22 @@
     "areaResults_other": "이 지역에서 {{count}}개의 부동산을 찾았습니다",
     "clickToView": "탭하여 목록 보기",
     "propertiesInArea": "선택 영역의 속성",
-    "loading": "지도 로드 중…"
+    "loading": "지도 로드 중…",
+    "neighborhoodInsights": "동네 통찰"
+  },
+  "neighborhood": {
+    "insights": "동네 통찰",
+    "avgPrice": "평균 가격/m²",
+    "avgRent": "평균 임대료/월",
+    "schools": "학교",
+    "hospitals": "병원",
+    "malls": "쇼핑몰",
+    "mosques": "모스크",
+    "transport": "수송",
+    "safety": "안전",
+    "amenities": "예의",
+    "priceUp": "가격 상승 추세",
+    "priceDown": "가격 하락 추세",
+    "priceStable": "가격 안정"
   }
 }

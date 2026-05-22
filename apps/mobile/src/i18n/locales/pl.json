@@ -1943,7 +1943,23 @@
     "areaResults_other": "Znaleziono nieruchomości w tym obszarze: {{count}}",
     "clickToView": "dotknij, aby wyświetlić listę",
     "propertiesInArea": "Właściwości w wybranym obszarze",
-    "loading": "Ładowanie mapy…"
+    "loading": "Ładowanie mapy…",
+    "neighborhoodInsights": "Spostrzeżenia z sąsiedztwa"
+  },
+  "neighborhood": {
+    "insights": "Spostrzeżenia z sąsiedztwa",
+    "avgPrice": "Średnia cena/m²",
+    "avgRent": "Średni czynsz/mies",
+    "schools": "Szkoły",
+    "hospitals": "Szpitale",
+    "malls": "Centra handlowe",
+    "mosques": "Meczety",
+    "transport": "Transport",
+    "safety": "Bezpieczeństwo",
+    "amenities": "Udogodnienia",
+    "priceUp": "Cena w trendzie wzrostowym",
+    "priceDown": "Cena w trendzie spadkowym",
+    "priceStable": "Cena stabilna"
   },
   "saved": {
     "title": "Zapisano",

@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} propriétés trouvées dans cette zone",
     "clickToView": "appuyez pour voir la liste",
     "propertiesInArea": "Propriétés dans la zone sélectionnée",
-    "loading": "Chargement de la carte…"
+    "loading": "Chargement de la carte…",
+    "neighborhoodInsights": "Aperçu du quartier"
+  },
+  "neighborhood": {
+    "insights": "Aperçu du quartier",
+    "avgPrice": "Prix ​​moy/m²",
+    "avgRent": "Loyer moyen/mois",
+    "schools": "Écoles",
+    "hospitals": "Hôpitaux",
+    "malls": "Centres commerciaux",
+    "mosques": "Mosquées",
+    "transport": "Transports",
+    "safety": "Sécurité",
+    "amenities": "Équipements",
+    "priceUp": "Prix ​​en hausse",
+    "priceDown": "Prix ​​en baisse",
+    "priceStable": "Prix ​​stable"
   },
   "saved": {
     "title": "Enregistré",

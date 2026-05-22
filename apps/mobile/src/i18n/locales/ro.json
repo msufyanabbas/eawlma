@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} proprietăți găsite în această zonă",
     "clickToView": "atingeți pentru a vizualiza lista",
     "propertiesInArea": "Proprietăți în zona selectată",
-    "loading": "Se încarcă harta…"
+    "loading": "Se încarcă harta…",
+    "neighborhoodInsights": "Neighbourhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighbourhood Insights",
+    "avgPrice": "Preț mediu/m²",
+    "avgRent": "Chirie medie/lună",
+    "schools": "Școli",
+    "hospitals": "Spitale",
+    "malls": "Mall-uri",
+    "mosques": "Moschei",
+    "transport": "Transport",
+    "safety": "Siguranță",
+    "amenities": "Facilități",
+    "priceUp": "Prețul este în creștere",
+    "priceDown": "Prețul este în scădere",
+    "priceStable": "Preț stabil"
   },
   "saved": {
     "title": "Salvat",

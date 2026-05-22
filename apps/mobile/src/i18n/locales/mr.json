@@ -1943,7 +1943,23 @@
     "areaResults_other": "या भागात {{count}} गुणधर्म आढळले",
     "clickToView": "सूची पाहण्यासाठी टॅप करा",
     "propertiesInArea": "निवडलेल्या क्षेत्रातील गुणधर्म",
-    "loading": "नकाशा लोड करत आहे..."
+    "loading": "नकाशा लोड करत आहे...",
+    "neighborhoodInsights": "अतिपरिचित अंतर्दृष्टी"
+  },
+  "neighborhood": {
+    "insights": "अतिपरिचित अंतर्दृष्टी",
+    "avgPrice": "सरासरी किंमत/m²",
+    "avgRent": "सरासरी भाडे/महिना",
+    "schools": "शाळा",
+    "hospitals": "रुग्णालये",
+    "malls": "मॉल",
+    "mosques": "मशिदी",
+    "transport": "वाहतूक",
+    "safety": "सुरक्षितता",
+    "amenities": "सुविधा",
+    "priceUp": "किंमत वाढत आहे",
+    "priceDown": "किंमत कमी होत आहे",
+    "priceStable": "किंमत स्थिर"
   },
   "saved": {
     "title": "जतन केले",

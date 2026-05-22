@@ -33,6 +33,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InsightsIcon from '@mui/icons-material/Insights';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -55,6 +56,12 @@ import {
 } from '@eawlma/shared-types';
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps';
+import { formatNumber } from '@/utils/formatters';
+import {
+  NEIGHBORHOOD_INSIGHTS,
+  type NeighborhoodInsight,
+} from '@/data/neighborhood-insights';
+import { NeighborhoodInsightCard } from '@/components/map/NeighborhoodInsightCard';
 import { GA } from '@/utils/analytics';
 import { posthog } from '@/lib/posthog';
 import { ListingCard } from '@/components/global/ListingCard';
@@ -1099,6 +1106,11 @@ function MapView({ listings }: { listings: Listing[] }) {
   // When true, a bottom slide-up drawer lists every property inside the
   // drawn area. Opened by tapping the result banner.
   const [showFilteredPanel, setShowFilteredPanel] = useState(false);
+  // Neighborhood-insights layer: a toggle overlays price/amenity markers,
+  // and clicking one opens its insight card in an InfoWindow.
+  const [showNeighborhoods, setShowNeighborhoods] = useState(false);
+  const [selectedNeighborhood, setSelectedNeighborhood] =
+    useState<NeighborhoodInsight | null>(null);
   // ID set of listings that fall inside the drawn polygon. `null` means
   // "no polygon drawn", so the full list is displayed.
   const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
@@ -1337,6 +1349,24 @@ function MapView({ listings }: { listings: Listing[] }) {
             {t('map.drawArea')}
           </Button>
         )}
+        {!isDrawing && (
+          <Button
+            size="small"
+            variant="contained"
+            startIcon={<InsightsIcon />}
+            onClick={() => {
+              setShowNeighborhoods((p) => !p);
+              setSelectedNeighborhood(null);
+            }}
+            sx={
+              showNeighborhoods
+                ? { bgcolor: 'primary.main', color: 'common.white', boxShadow: 2 }
+                : { bgcolor: 'background.paper', color: 'text.primary', boxShadow: 2 }
+            }
+          >
+            {t('map.neighborhoodInsights', { defaultValue: 'Neighborhood Insights' })}
+          </Button>
+        )}
       </Box>
 
       {/* Polygon-filter result banner — bottom-center so the outcome of
@@ -1440,7 +1470,10 @@ function MapView({ listings }: { listings: Listing[] }) {
                   key={l.id}
                   position={{ lat: Number(l.lat), lng: Number(l.lng) }}
                   clusterer={clusterer}
-                  onClick={() => setActiveId(l.id)}
+                  onClick={() => {
+                    setActiveId(l.id);
+                    setSelectedNeighborhood(null);
+                  }}
                   // Custom SVG: rounded pill, lavender bg, white text. Active
                   // marker switches to gold to surface the selection.
                   icon={makeMarkerIcon(priceLabel(l), l.id === activeId)}
@@ -1449,6 +1482,34 @@ function MapView({ listings }: { listings: Listing[] }) {
             </>
           )}
         </MarkerClustererF>
+
+        {/* Neighborhood-insight markers — standalone (not clustered) avg-price
+         *  pills, shown only while the insights layer is toggled on. */}
+        {showNeighborhoods &&
+          NEIGHBORHOOD_INSIGHTS.map((n) => (
+            <MarkerF
+              key={`nb-${n.nameEn}`}
+              position={{ lat: n.lat, lng: n.lng }}
+              onClick={() => {
+                setSelectedNeighborhood(n);
+                setActiveId(null);
+              }}
+              icon={makeNeighborhoodIcon(n.avgPricePerSqm)}
+              zIndex={2}
+            />
+          ))}
+
+        {/* Neighborhood insight popup */}
+        {showNeighborhoods && selectedNeighborhood && (
+          <InfoWindowF
+            position={{ lat: selectedNeighborhood.lat, lng: selectedNeighborhood.lng }}
+            onCloseClick={() => setSelectedNeighborhood(null)}
+            options={{ pixelOffset: new google.maps.Size(0, -20) }}
+          >
+            <NeighborhoodInsightCard insight={selectedNeighborhood} />
+          </InfoWindowF>
+        )}
+
         {active && (
           <InfoWindowF
             position={{ lat: Number(active.lat), lng: Number(active.lng) }}
@@ -1585,6 +1646,23 @@ function makeMarkerIcon(label: string, active: boolean): google.maps.Icon {
     url: `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
     scaledSize: new google.maps.Size(width, 32),
     anchor: new google.maps.Point(width / 2, 16),
+  };
+}
+
+// Neighborhood marker — a darker pill carrying the avg price/m² so the
+// insights layer reads as distinct from the lavender listing pills.
+function makeNeighborhoodIcon(avgPricePerSqm: number): google.maps.Icon {
+  const label = `${formatNumber(avgPricePerSqm)} SAR`;
+  const width = Math.max(72, label.length * 8 + 22);
+  const svg = `
+    <svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='30' viewBox='0 0 ${width} 30'>
+      <rect x='1' y='1' width='${width - 2}' height='26' rx='13' fill='#1A1A2E' opacity='0.95' stroke='#6C63A6' stroke-width='1.5'/>
+      <text x='${width / 2}' y='18' font-family='Inter, system-ui, sans-serif' font-size='11' font-weight='700' fill='#FFFFFF' text-anchor='middle'>${label}</text>
+    </svg>`;
+  return {
+    url: `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`,
+    scaledSize: new google.maps.Size(width, 30),
+    anchor: new google.maps.Point(width / 2, 15),
   };
 }
 

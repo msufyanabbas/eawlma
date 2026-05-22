@@ -1943,7 +1943,23 @@
     "areaResults_other": "Bu bölgede {{count}} mülk bulundu",
     "clickToView": "listeyi görüntülemek için dokunun",
     "propertiesInArea": "Seçilen Bölgedeki Gayrimenkuller",
-    "loading": "Harita yükleniyor…"
+    "loading": "Harita yükleniyor…",
+    "neighborhoodInsights": "Mahalle Analizleri"
+  },
+  "neighborhood": {
+    "insights": "Mahalle Analizleri",
+    "avgPrice": "Ortalama Fiyat/m²",
+    "avgRent": "Ortalama Kira/ay",
+    "schools": "Okullar",
+    "hospitals": "Hastaneler",
+    "malls": "Alışveriş Merkezleri",
+    "mosques": "Camiler",
+    "transport": "Taşıma",
+    "safety": "Emniyet",
+    "amenities": "Olanaklar",
+    "priceUp": "Fiyat yükseliş eğiliminde",
+    "priceDown": "Fiyat düşüş eğiliminde",
+    "priceStable": "Fiyat istikrarlı"
   },
   "saved": {
     "title": "Kaydedildi",

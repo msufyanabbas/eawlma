@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} propriedades encontradas nesta área",
     "clickToView": "toque para ver a lista",
     "propertiesInArea": "Propriedades na área selecionada",
-    "loading": "Carregando mapa…"
+    "loading": "Carregando mapa…",
+    "neighborhoodInsights": "Informações do bairro"
+  },
+  "neighborhood": {
+    "insights": "Informações do bairro",
+    "avgPrice": "Preço médio/m²",
+    "avgRent": "Aluguel médio/mês",
+    "schools": "Escolas",
+    "hospitals": "Hospitais",
+    "malls": "Shoppings",
+    "mosques": "Mesquitas",
+    "transport": "Transporte",
+    "safety": "Segurança",
+    "amenities": "Comodidades",
+    "priceUp": "Tendência de preço em alta",
+    "priceDown": "Tendência de queda de preço",
+    "priceStable": "Preço estável"
   },
   "saved": {
     "title": "Salvo",

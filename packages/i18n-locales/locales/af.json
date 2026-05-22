@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} eiendomme in hierdie area gevind",
     "clickToView": "tik om lys te sien",
     "propertiesInArea": "Eiendomme in geselekteerde area",
-    "loading": "Laai kaart …"
+    "loading": "Laai kaart …",
+    "neighborhoodInsights": "Buurt-insigte"
+  },
+  "neighborhood": {
+    "insights": "Buurt-insigte",
+    "avgPrice": "Gem. prys/m²",
+    "avgRent": "Gem. huur/maand",
+    "schools": "Skole",
+    "hospitals": "Hospitale",
+    "malls": "Winkelsentrums",
+    "mosques": "Moskees",
+    "transport": "Vervoer",
+    "safety": "Veiligheid",
+    "amenities": "Geriewe",
+    "priceUp": "Pryse neiging",
+    "priceDown": "Prys neiging af",
+    "priceStable": "Prys stabiel"
   }
 }

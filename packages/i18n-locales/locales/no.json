@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} eiendommer funnet i dette området",
     "clickToView": "trykk for å se listen",
     "propertiesInArea": "Eiendommer i valgt område",
-    "loading": "Laster inn kart …"
+    "loading": "Laster inn kart …",
+    "neighborhoodInsights": "Neighborhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighborhood Insights",
+    "avgPrice": "Gj.sn. pris/m²",
+    "avgRent": "Gj.sn. leie/md",
+    "schools": "Skoler",
+    "hospitals": "Sykehus",
+    "malls": "Kjøpesentre",
+    "mosques": "Moskeer",
+    "transport": "Transport",
+    "safety": "Sikkerhet",
+    "amenities": "Fasiliteter",
+    "priceUp": "Prisutvikling",
+    "priceDown": "Pristrender ned",
+    "priceStable": "Prisstabil"
   }
 }

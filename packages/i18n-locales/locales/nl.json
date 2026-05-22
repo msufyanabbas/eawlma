@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} eigendommen gevonden in dit gebied",
     "clickToView": "tik om de lijst te bekijken",
     "propertiesInArea": "Eigenschappen in geselecteerd gebied",
-    "loading": "Kaart laden…"
+    "loading": "Kaart laden…",
+    "neighborhoodInsights": "Buurtinzichten"
+  },
+  "neighborhood": {
+    "insights": "Buurtinzichten",
+    "avgPrice": "Gem. prijs/m²",
+    "avgRent": "Gem. huur/maand",
+    "schools": "Scholen",
+    "hospitals": "Ziekenhuizen",
+    "malls": "Winkelcentra",
+    "mosques": "Moskeeën",
+    "transport": "Transport",
+    "safety": "Veiligheid",
+    "amenities": "Voorzieningen",
+    "priceUp": "Prijs stijgt",
+    "priceDown": "Prijs daalt",
+    "priceStable": "Prijs stabiel"
   }
 }

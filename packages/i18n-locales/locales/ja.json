@@ -1644,6 +1644,22 @@
     "areaResults_other": "このエリアで {{count}} 件の物件が見つかりました",
     "clickToView": "タップしてリストを表示",
     "propertiesInArea": "選択したエリアのプロパティ",
-    "loading": "マップを読み込み中…"
+    "loading": "マップを読み込み中…",
+    "neighborhoodInsights": "近隣の情報"
+  },
+  "neighborhood": {
+    "insights": "近隣の情報",
+    "avgPrice": "平均価格/㎡",
+    "avgRent": "平均家賃/月",
+    "schools": "学校",
+    "hospitals": "病院",
+    "malls": "モール",
+    "mosques": "モスク",
+    "transport": "輸送",
+    "safety": "安全性",
+    "amenities": "アメニティ",
+    "priceUp": "価格は上昇傾向にある",
+    "priceDown": "価格は下落傾向にある",
+    "priceStable": "価格が安定している"
   }
 }

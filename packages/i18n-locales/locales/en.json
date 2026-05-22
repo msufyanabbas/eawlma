@@ -1381,7 +1381,23 @@
     "areaResults_other": "{{count}} properties found in this area",
     "clickToView": "tap to view list",
     "propertiesInArea": "Properties in Selected Area",
-    "loading": "Loading map…"
+    "loading": "Loading map…",
+    "neighborhoodInsights": "Neighborhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighborhood Insights",
+    "avgPrice": "Avg Price/m²",
+    "avgRent": "Avg Rent/mo",
+    "schools": "Schools",
+    "hospitals": "Hospitals",
+    "malls": "Malls",
+    "mosques": "Mosques",
+    "transport": "Transport",
+    "safety": "Safety",
+    "amenities": "Amenities",
+    "priceUp": "Price trending up",
+    "priceDown": "Price trending down",
+    "priceStable": "Price stable"
   },
   "mortgage": {
     "title": "Mortgage Calculator",

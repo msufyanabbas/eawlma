@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} egenskaper hittades i detta område",
     "clickToView": "tryck för att visa listan",
     "propertiesInArea": "Fastigheter i valt område",
-    "loading": "Laddar kartan..."
+    "loading": "Laddar kartan...",
+    "neighborhoodInsights": "Neighborhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighborhood Insights",
+    "avgPrice": "Genomsnittligt pris/m²",
+    "avgRent": "Genomsnittlig hyra/mån",
+    "schools": "Skolor",
+    "hospitals": "Sjukhus",
+    "malls": "Gallerior",
+    "mosques": "Moskéer",
+    "transport": "Transport",
+    "safety": "Säkerhet",
+    "amenities": "Bekvämligheter",
+    "priceUp": "Pristrend uppåt",
+    "priceDown": "Pristrend nedåt",
+    "priceStable": "Prisstabilt"
   },
   "saved": {
     "title": "Sparad",

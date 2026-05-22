@@ -1644,6 +1644,22 @@
     "areaResults_other": "এই এলাকায় {{count}} বৈশিষ্ট্য পাওয়া গেছে",
     "clickToView": "তালিকা দেখতে ট্যাপ করুন",
     "propertiesInArea": "| নির্বাচিত এলাকায় সম্পত্তি",
-    "loading": "মানচিত্র লোড হচ্ছে..."
+    "loading": "মানচিত্র লোড হচ্ছে...",
+    "neighborhoodInsights": "| প্রতিবেশী অন্তর্দৃষ্টি"
+  },
+  "neighborhood": {
+    "insights": "প্রতিবেশী অন্তর্দৃষ্টি",
+    "avgPrice": "গড় মূল্য/m²",
+    "avgRent": "গড় ভাড়া/মাস",
+    "schools": "স্কুল",
+    "hospitals": "| হাসপাতাল",
+    "malls": "মল",
+    "mosques": "মসজিদ",
+    "transport": "পরিবহন",
+    "safety": "| নিরাপত্তা",
+    "amenities": "সুযোগ-সুবিধা",
+    "priceUp": "| দাম বাড়ছে",
+    "priceDown": "দাম কমছে",
+    "priceStable": "দাম স্থিতিশীল"
   }
 }

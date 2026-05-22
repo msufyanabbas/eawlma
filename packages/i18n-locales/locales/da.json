@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} ejendomme fundet i dette område",
     "clickToView": "tryk for at se listen",
     "propertiesInArea": "Ejendomme i udvalgt område",
-    "loading": "Loading map…"
+    "loading": "Indlæser kort…",
+    "neighborhoodInsights": "Neighborhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighborhood Insights",
+    "avgPrice": "Gns. pris/m²",
+    "avgRent": "Gns. leje/md.",
+    "schools": "Skoler",
+    "hospitals": "Hospitaler",
+    "malls": "Indkøbscentre",
+    "mosques": "Moskeer",
+    "transport": "Transport",
+    "safety": "Sikkerhed",
+    "amenities": "Faciliteter",
+    "priceUp": "Prisstigninger",
+    "priceDown": "Prisen falder",
+    "priceStable": "Pris stabil"
   }
 }

@@ -1943,7 +1943,23 @@
     "areaResults_other": "මෙම ප්‍රදේශයෙන් {{count}} ගුණ සොයා ගන්නා ලදී",
     "clickToView": "ලැයිස්තුව බැලීමට තට්ටු කරන්න",
     "propertiesInArea": "තෝරාගත් ප්රදේශයේ දේපල",
-    "loading": "සිතියම පූරණය වෙමින්..."
+    "loading": "සිතියම පූරණය වෙමින්...",
+    "neighborhoodInsights": "අසල්වැසි තීක්ෂ්ණ බුද්ධිය"
+  },
+  "neighborhood": {
+    "insights": "අසල්වැසි තීක්ෂ්ණ බුද්ධිය",
+    "avgPrice": "සාමාන්‍ය මිල/m²",
+    "avgRent": "සාමාන්‍ය කුලිය/මස",
+    "schools": "පාසල්",
+    "hospitals": "රෝහල්",
+    "malls": "සාප්පු සංකීර්ණ",
+    "mosques": "මුස්ලිම් පල්ලි",
+    "transport": "ප්රවාහන",
+    "safety": "ආරක්ෂාව",
+    "amenities": "පහසුකම්",
+    "priceUp": "මිල ඉහළ යාම",
+    "priceDown": "මිල පහත වැටීම",
+    "priceStable": "මිල ස්ථාවරයි"
   },
   "saved": {
     "title": "සුරකින ලදී",

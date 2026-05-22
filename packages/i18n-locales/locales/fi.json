@@ -1644,6 +1644,22 @@
     "areaResults_other": "Tältä alueelta löytyi {{count}} kiinteistöä",
     "clickToView": "napauta nähdäksesi luettelon",
     "propertiesInArea": "Kiinteistöt valitulla alueella",
-    "loading": "Ladataan karttaa…"
+    "loading": "Ladataan karttaa…",
+    "neighborhoodInsights": "Neighborhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighborhood Insights",
+    "avgPrice": "Keskihinta/m²",
+    "avgRent": "Keskim. vuokra/kk",
+    "schools": "Koulut",
+    "hospitals": "Sairaalat",
+    "malls": "Ostoskeskukset",
+    "mosques": "Moskeijat",
+    "transport": "Kuljetus",
+    "safety": "Turvallisuus",
+    "amenities": "Palvelut",
+    "priceUp": "Hinta nousussa",
+    "priceDown": "Hinta alaspäin",
+    "priceStable": "Hinta vakaa"
   }
 }

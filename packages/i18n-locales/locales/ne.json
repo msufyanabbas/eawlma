@@ -1629,7 +1629,7 @@
     "totalPayment": "कुल भुक्तानी",
     "totalInterest": "कुल ब्याज",
     "disclaimer": "यो एक अनुमान हो। वास्तविक ऋण प्रस्तावको लागि आफ्नो बैंकसँग परामर्श गर्नुहोस्।",
-    "perMonth": "SAR/mo"
+    "perMonth": "| SAR/mo"
   },
   "notifications": {
     "markAllRead": "सबै पढेको रूपमा चिन्ह लगाउनुहोस्"
@@ -1644,6 +1644,22 @@
     "areaResults_other": "यस क्षेत्रमा {{count}} गुणहरू भेटिए",
     "clickToView": "सूची हेर्न ट्याप गर्नुहोस्",
     "propertiesInArea": "चयन गरिएको क्षेत्रमा गुणहरू",
-    "loading": "| नक्सा लोड गर्दै..."
+    "loading": "| नक्सा लोड गर्दै...",
+    "neighborhoodInsights": "| छिमेकी अन्तर्दृष्टि"
+  },
+  "neighborhood": {
+    "insights": "छिमेकी अन्तर्दृष्टि",
+    "avgPrice": "औसत मूल्य/m²",
+    "avgRent": "औसत भाडा/महिना",
+    "schools": "| विद्यालयहरू",
+    "hospitals": "| अस्पतालहरु",
+    "malls": "मल्स",
+    "mosques": "मस्जिदहरू",
+    "transport": "यातायात",
+    "safety": "| सुरक्षा",
+    "amenities": "सुविधाहरु",
+    "priceUp": "| मूल्य बढ्दै",
+    "priceDown": "मूल्य घट्दै",
+    "priceStable": "मूल्य स्थिर"
   }
 }

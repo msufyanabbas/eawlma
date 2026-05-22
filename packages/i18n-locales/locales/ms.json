@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} hartanah ditemui di kawasan ini",
     "clickToView": "ketik untuk melihat senarai",
     "propertiesInArea": "Sifat dalam Kawasan Terpilih",
-    "loading": "Memuatkan peta…"
+    "loading": "Memuatkan peta…",
+    "neighborhoodInsights": "Cerapan Kejiranan"
+  },
+  "neighborhood": {
+    "insights": "Cerapan Kejiranan",
+    "avgPrice": "Harga Purata/m²",
+    "avgRent": "Purata Sewa/bln",
+    "schools": "Sekolah",
+    "hospitals": "Hospital",
+    "malls": "Pusat beli-belah",
+    "mosques": "Masjid",
+    "transport": "Pengangkutan",
+    "safety": "Keselamatan",
+    "amenities": "Kemudahan",
+    "priceUp": "Harga semakin meningkat",
+    "priceDown": "Harga sedang menurun",
+    "priceStable": "Harga stabil"
   }
 }

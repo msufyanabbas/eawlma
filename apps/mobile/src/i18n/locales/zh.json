@@ -1943,7 +1943,23 @@
     "areaResults_other": "在此区域找到 {{count}} 个属性",
     "clickToView": "点击查看列表",
     "propertiesInArea": "选定区域的属性",
-    "loading": "正在加载地图..."
+    "loading": "正在加载地图...",
+    "neighborhoodInsights": "邻里洞察"
+  },
+  "neighborhood": {
+    "insights": "邻里洞察",
+    "avgPrice": "平均价格/平方米",
+    "avgRent": "平均租金/月",
+    "schools": "学校",
+    "hospitals": "医院",
+    "malls": "商场",
+    "mosques": "清真寺",
+    "transport": "运输",
+    "safety": "安全",
+    "amenities": "便利设施",
+    "priceUp": "价格呈上涨趋势",
+    "priceDown": "价格呈下降趋势",
+    "priceStable": "价格稳定"
   },
   "saved": {
     "title": "已保存",

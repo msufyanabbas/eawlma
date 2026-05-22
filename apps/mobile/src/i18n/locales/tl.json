@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} mga katangian na natagpuan sa lugar na ito",
     "clickToView": "i-tap para tingnan ang listahan",
     "propertiesInArea": "Mga Property sa Napiling Lugar",
-    "loading": "Nilo-load ang mapa…"
+    "loading": "Nilo-load ang mapa…",
+    "neighborhoodInsights": "Neighborhood Insights"
+  },
+  "neighborhood": {
+    "insights": "Neighborhood Insights",
+    "avgPrice": "Avg na Presyo/m²",
+    "avgRent": "Avg Rent/mo",
+    "schools": "Mga Paaralan",
+    "hospitals": "Mga Ospital",
+    "malls": "Mga Mall",
+    "mosques": "Mga Mosque",
+    "transport": "Transportasyon",
+    "safety": "Kaligtasan",
+    "amenities": "Mga Pasilidad",
+    "priceUp": "Nagte-trend ang presyo",
+    "priceDown": "Bumababa ang presyo",
+    "priceStable": "Matatag ang presyo"
   },
   "saved": {
     "title": "Na-save",

@@ -1943,7 +1943,23 @@
     "areaResults_other": "Đã tìm thấy {{count}} bất động sản ở khu vực này",
     "clickToView": "nhấn để xem danh sách",
     "propertiesInArea": "Thuộc tính trong khu vực đã chọn",
-    "loading": "Đang tải bản đồ…"
+    "loading": "Đang tải bản đồ…",
+    "neighborhoodInsights": "Thông tin chi tiết về khu phố"
+  },
+  "neighborhood": {
+    "insights": "Thông tin chi tiết về khu phố",
+    "avgPrice": "Giá trung bình/m2",
+    "avgRent": "Giá thuê trung bình/tháng",
+    "schools": "Trường học",
+    "hospitals": "Bệnh viện",
+    "malls": "Trung tâm thương mại",
+    "mosques": "Nhà thờ Hồi giáo",
+    "transport": "Chuyên chở",
+    "safety": "Sự an toàn",
+    "amenities": "Tiện nghi",
+    "priceUp": "Giá có xu hướng tăng",
+    "priceDown": "Giá có xu hướng giảm",
+    "priceStable": "Giá ổn định"
   },
   "saved": {
     "title": "Đã lưu",

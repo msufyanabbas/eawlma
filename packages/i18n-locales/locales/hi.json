@@ -1644,6 +1644,22 @@
     "areaResults_other": "इस क्षेत्र में पाई गई संपत्तियों की {{गिनती}} करें",
     "clickToView": "सूची देखने के लिए टैप करें",
     "propertiesInArea": "चयनित क्षेत्र में संपत्तियाँ",
-    "loading": "मानचित्र लोड हो रहा है..."
+    "loading": "मानचित्र लोड हो रहा है...",
+    "neighborhoodInsights": "पड़ोस अंतर्दृष्टि"
+  },
+  "neighborhood": {
+    "insights": "पड़ोस अंतर्दृष्टि",
+    "avgPrice": "औसत मूल्य/वर्ग मीटर",
+    "avgRent": "औसत किराया/माह",
+    "schools": "स्कूलों",
+    "hospitals": "अस्पताल",
+    "malls": "मॉल",
+    "mosques": "मस्जिदों",
+    "transport": "परिवहन",
+    "safety": "सुरक्षा",
+    "amenities": "सुविधाएं",
+    "priceUp": "कीमत बढ़ रही है",
+    "priceDown": "कीमत नीचे की ओर चल रही है",
+    "priceStable": "कीमत स्थिर"
   }
 }

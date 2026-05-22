@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} ویژگی در این منطقه یافت شد",
     "clickToView": "برای مشاهده لیست ضربه بزنید",
     "propertiesInArea": "خواص در منطقه انتخاب شده",
-    "loading": "در حال بارگیری نقشه…"
+    "loading": "در حال بارگیری نقشه…",
+    "neighborhoodInsights": "بینش محله"
+  },
+  "neighborhood": {
+    "insights": "بینش محله",
+    "avgPrice": "میانگین قیمت در متر مربع",
+    "avgRent": "میانگین اجاره در ماه",
+    "schools": "مدارس",
+    "hospitals": "بیمارستان ها",
+    "malls": "مراکز خرید",
+    "mosques": "مساجد",
+    "transport": "حمل و نقل",
+    "safety": "ایمنی",
+    "amenities": "امکانات رفاهی",
+    "priceUp": "روند صعودی قیمت",
+    "priceDown": "روند کاهشی قیمت",
+    "priceStable": "قیمت ثابت"
   }
 }

@@ -1943,7 +1943,23 @@
     "areaResults_other": "{{count}} sifa zinazopatikana katika eneo hili",
     "clickToView": "gusa ili kutazama orodha",
     "propertiesInArea": "Mali katika eneo lililochaguliwa",
-    "loading": "Inapakia ramani..."
+    "loading": "Inapakia ramani...",
+    "neighborhoodInsights": "Maarifa ya Ujirani"
+  },
+  "neighborhood": {
+    "insights": "Maarifa ya Ujirani",
+    "avgPrice": "Wastani wa Bei/m²",
+    "avgRent": "Wastani wa Kukodishwa kwa mwezi",
+    "schools": "Shule",
+    "hospitals": "Hospitali",
+    "malls": "Mall",
+    "mosques": "Misikiti",
+    "transport": "Usafiri",
+    "safety": "Usalama",
+    "amenities": "Vistawishi",
+    "priceUp": "Bei inazidi kupanda",
+    "priceDown": "Bei inayovuma kushuka",
+    "priceStable": "Bei imara"
   },
   "saved": {
     "title": "Imehifadhiwa",

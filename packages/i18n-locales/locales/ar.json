@@ -1378,7 +1378,8 @@
     "areaResults_other": "تم العثور على {{count}} من العقارات في هذه المنطقة",
     "clickToView": "انقر لعرض القائمة",
     "propertiesInArea": "العقارات في المنطقة المختارة",
-    "loading": "جارٍ تحميل الخريطة…"
+    "loading": "جارٍ تحميل الخريطة…",
+    "neighborhoodInsights": "رؤى الحي"
   },
   "mortgage": {
     "title": "حاسبة التمويل العقاري",
@@ -1645,5 +1646,20 @@
       "resolved": "محلول",
       "closed": "مغلق"
     }
+  },
+  "neighborhood": {
+    "insights": "رؤى الحي",
+    "avgPrice": "متوسط ​​السعر/م²",
+    "avgRent": "متوسط ​​الإيجار/الشهر",
+    "schools": "المدارس",
+    "hospitals": "المستشفيات",
+    "malls": "مراكز التسوق",
+    "mosques": "المساجد",
+    "transport": "ينقل",
+    "safety": "أمان",
+    "amenities": "وسائل الراحة",
+    "priceUp": "السعر يتجه للأعلى",
+    "priceDown": "السعر يتجه للأسفل",
+    "priceStable": "السعر مستقر"
   }
 }

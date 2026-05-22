@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} נכסים נמצאו באזור זה",
     "clickToView": "הקש כדי להציג רשימה",
     "propertiesInArea": "נכסים באזור נבחר",
-    "loading": "טוען מפה..."
+    "loading": "טוען מפה...",
+    "neighborhoodInsights": "תובנות שכונה"
+  },
+  "neighborhood": {
+    "insights": "תובנות שכונה",
+    "avgPrice": "מחיר ממוצע/מ\"ר",
+    "avgRent": "השכרה ממוצעת/חודש",
+    "schools": "בתי ספר",
+    "hospitals": "בתי חולים",
+    "malls": "קניונים",
+    "mosques": "מסגדים",
+    "transport": "תחבורה",
+    "safety": "בטיחות",
+    "amenities": "שירותים",
+    "priceUp": "מחיר עולה",
+    "priceDown": "מחיר יורד",
+    "priceStable": "מחיר יציב"
   }
 }

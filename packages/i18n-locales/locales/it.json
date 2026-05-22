@@ -1644,6 +1644,22 @@
     "areaResults_other": "{{count}} proprietà trovate in quest'area",
     "clickToView": "toccare per visualizzare l'elenco",
     "propertiesInArea": "Proprietà nell'area selezionata",
-    "loading": "Caricamento mappa…"
+    "loading": "Caricamento mappa…",
+    "neighborhoodInsights": "Approfondimenti sul quartiere"
+  },
+  "neighborhood": {
+    "insights": "Approfondimenti sul quartiere",
+    "avgPrice": "Prezzo medio/m²",
+    "avgRent": "Affitto medio/mese",
+    "schools": "Scuole",
+    "hospitals": "Ospedali",
+    "malls": "Centri commerciali",
+    "mosques": "Moschee",
+    "transport": "Trasporti",
+    "safety": "Sicurezza",
+    "amenities": "Servizi",
+    "priceUp": "Prezzo in rialzo",
+    "priceDown": "Prezzo in calo",
+    "priceStable": "Prezzo stabile"
   }
 }
