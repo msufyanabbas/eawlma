@@ -1637,7 +1637,11 @@
       "high": "Încredere ridicată",
       "medium": "Încredere medie",
       "low": "Încredere scăzută"
-    }
+    },
+    "suggestedRange": "Interval sugerat",
+    "confidenceLabel": "Încredere",
+    "suggestPrice": "AI sugerează preț",
+    "suggestionFailed": "Nu s-a putut obține sugestia de preț"
   },
   "agents": {
     "searchPlaceholder": "Căutați după nume sau specialitate",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Actualizare rezervare",
     "paymentUpdate": "Actualizare de plată",
     "supportReply": "Răspuns de asistență"
+  },
+  "map": {
+    "drawArea": "Desenați o zonă",
+    "cancelDraw": "Anulează desenul",
+    "clearArea": "Zona liberă",
+    "drawHint": "Faceți clic pe hartă pentru a desena zona de căutare. Faceți dublu clic pentru a finaliza.",
+    "noResults": "Nu au fost găsite proprietăți în zona desenată"
   },
   "saved": {
     "title": "Salvat",

@@ -1371,6 +1371,13 @@
     "viewMarket": "View market",
     "miniTrend": "Local market trend"
   },
+  "map": {
+    "drawArea": "Draw an Area",
+    "cancelDraw": "Cancel Drawing",
+    "clearArea": "Clear Area",
+    "drawHint": "Click on the map to draw your search area. Double-click to finish.",
+    "noResults": "No properties found in the drawn area"
+  },
   "mortgage": {
     "title": "Mortgage Calculator",
     "propertyPrice": "Property Price (SAR)",
@@ -1478,6 +1485,10 @@
     "marketAvg": "Market average",
     "comparables": "Comparable listings",
     "usePrice": "Use suggested price",
+    "suggestedRange": "Suggested range",
+    "confidenceLabel": "Confidence",
+    "suggestPrice": "AI Suggest Price",
+    "suggestionFailed": "Could not get price suggestion",
     "confidence": {
       "high": "High confidence",
       "medium": "Medium confidence",

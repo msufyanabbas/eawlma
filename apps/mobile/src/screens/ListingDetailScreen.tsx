@@ -22,6 +22,7 @@ import SmartImage from '../components/SmartImage';
 import UserAvatar from '../components/UserAvatar';
 import { listingImageUrls } from '../utils/listingImages';
 import { formatNumber, formatPrice } from '../utils/formatters';
+import { capture, screen } from '../lib/posthog';
 
 // Google Maps Static API key — wired through Expo extra so a single value in
 // app.json (and the matching .env entry) drives Android/iOS native config and
@@ -119,6 +120,20 @@ export default function ListingDetailScreen({ navigation, route }: any) {
         console.error('[maps] fetch failed:', err?.message);
       });
   }, [listing?.lat, listing?.lng]);
+
+  // Analytics — record the screen view, and emit `listing_viewed` once the
+  // listing has actually loaded so the captured properties are populated.
+  useEffect(() => {
+    screen('ListingDetail');
+    if (listing?.id) {
+      capture('listing_viewed', {
+        listingId: listing.id,
+        propertyType: listing.propertyType,
+        city: listing.city,
+        price: listing.price,
+      });
+    }
+  }, [listing?.id]);
 
   const { data: similarData } = useQuery({
     queryKey: ['similar', listing.city, listing.type],

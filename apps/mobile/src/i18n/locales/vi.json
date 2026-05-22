@@ -1637,7 +1637,11 @@
       "high": "Độ tin cậy cao",
       "medium": "Độ tin cậy trung bình",
       "low": "Độ tin cậy thấp"
-    }
+    },
+    "suggestedRange": "Phạm vi đề xuất",
+    "confidenceLabel": "Sự tự tin",
+    "suggestPrice": "Giá đề xuất AI",
+    "suggestionFailed": "Không thể nhận được đề xuất giá"
   },
   "agents": {
     "searchPlaceholder": "Tìm kiếm theo tên hoặc chuyên ngành",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Cập nhật đặt chỗ",
     "paymentUpdate": "Cập nhật thanh toán",
     "supportReply": "Hỗ trợ trả lời"
+  },
+  "map": {
+    "drawArea": "Vẽ một khu vực",
+    "cancelDraw": "Hủy bản vẽ",
+    "clearArea": "Khu vực trống",
+    "drawHint": "Bấm vào bản đồ để vẽ khu vực tìm kiếm của bạn. Nhấp đúp chuột để hoàn tất.",
+    "noResults": "Không tìm thấy bất động sản nào trong khu vực được vẽ"
   },
   "saved": {
     "title": "Đã lưu",

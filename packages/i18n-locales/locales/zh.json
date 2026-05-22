@@ -1365,7 +1365,11 @@
       "high": "高置信度",
       "medium": "中等置信度",
       "low": "低置信度"
-    }
+    },
+    "suggestedRange": "建议范围",
+    "confidenceLabel": "信心",
+    "suggestPrice": "人工智能建议价格",
+    "suggestionFailed": "无法获得价格建议"
   },
   "agents": {
     "searchPlaceholder": "按名称或专业搜索",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "全部标记为已读"
+  },
+  "map": {
+    "drawArea": "绘制一个区域",
+    "cancelDraw": "取消绘图",
+    "clearArea": "清除区域",
+    "drawHint": "单击地图以绘制您的搜索区域。双击完成。",
+    "noResults": "在绘制区域中找不到属性"
   }
 }

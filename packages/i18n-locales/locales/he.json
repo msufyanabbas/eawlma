@@ -1365,7 +1365,11 @@
       "high": "ביטחון גבוה",
       "medium": "ביטחון בינוני",
       "low": "ביטחון נמוך"
-    }
+    },
+    "suggestedRange": "טווח מוצע",
+    "confidenceLabel": "ביטחון",
+    "suggestPrice": "AI Suggest Price",
+    "suggestionFailed": "לא ניתן היה לקבל הצעת מחיר"
   },
   "agents": {
     "searchPlaceholder": "חפש לפי שם או התמחות",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "סמן הכל כנקראו"
+  },
+  "map": {
+    "drawArea": "צייר שטח",
+    "cancelDraw": "בטל ציור",
+    "clearArea": "נקה אזור",
+    "drawHint": "לחץ על המפה כדי לצייר את אזור החיפוש שלך. לחץ פעמיים כדי לסיים.",
+    "noResults": "לא נמצאו נכסים באזור המצויר"
   }
 }

@@ -1637,7 +1637,11 @@
       "high": "Alta confiança",
       "medium": "Confiança média",
       "low": "Baixa confiança"
-    }
+    },
+    "suggestedRange": "Intervalo sugerido",
+    "confidenceLabel": "Confiança",
+    "suggestPrice": "Preço sugerido pela IA",
+    "suggestionFailed": "Não foi possível obter sugestão de preço"
   },
   "agents": {
     "searchPlaceholder": "Pesquise por nome ou especialidade",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Atualização de reserva",
     "paymentUpdate": "Atualização de pagamento",
     "supportReply": "Resposta de suporte"
+  },
+  "map": {
+    "drawArea": "Desenhe uma área",
+    "cancelDraw": "Cancelar desenho",
+    "clearArea": "Limpar área",
+    "drawHint": "Clique no mapa para desenhar sua área de pesquisa. Clique duas vezes para finalizar.",
+    "noResults": "Nenhuma propriedade encontrada na área desenhada"
   },
   "saved": {
     "title": "Salvo",

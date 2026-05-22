@@ -9,9 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
-import { listingsApi } from '../api';
+import { listingsApi, aiApi } from '../api';
 import { SIZES, SHADOWS } from '../theme';
-import { formatPrice } from '../utils/formatters';
+import { formatNumber, formatPrice } from '../utils/formatters';
 import LocationPicker from '../components/LocationPicker';
 
 export default function AddListingScreen({ navigation }: any) {
@@ -21,6 +21,7 @@ export default function AddListingScreen({ navigation }: any) {
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [moderationError, setModerationError] = useState<string | null>(null);
+  const [suggestingPrice, setSuggestingPrice] = useState(false);
 
   const STEPS = [
     { title: t('wizard.stepProperty') },
@@ -64,6 +65,50 @@ export default function AddListingScreen({ navigation }: any) {
 
   const update = (key: string, value: string) =>
     setForm(f => ({ ...f, [key]: value }));
+
+  // Ask the AI pricing endpoint for a market-based price range from the
+  // form's current property attributes, then offer to drop the rounded
+  // midpoint straight into the price field.
+  const suggestPrice = async () => {
+    if (!form.city || !form.area) {
+      Alert.alert(t('wizard.errorTitle'), t('wizard.fillRequired'));
+      return;
+    }
+    setSuggestingPrice(true);
+    try {
+      const result = await aiApi.suggestPrice({
+        propertyType: form.propertyType,
+        city: form.city,
+        areaSqm: Number(form.area) || 1,
+        bedrooms: Number(form.bedrooms) || 0,
+        bathrooms: Number(form.bathrooms) || 0,
+        district: form.district || undefined,
+        transactionType: form.transactionType === 'rent' ? 'rent' : 'sale',
+      });
+      const min = Number(result.suggestedMin) || 0;
+      const max = Number(result.suggestedMax) || 0;
+      const midpoint = Math.round((min + max) / 2);
+      Alert.alert(
+        t('ai.priceSuggestion'),
+        `${t('ai.range')}: ${formatNumber(min)} - ${formatNumber(max)} ${t('common.sar')}\n` +
+          `${t('ai.confidenceLabel', 'Confidence')}: ${result.confidence}`,
+        [
+          {
+            text: t('ai.usePrice'),
+            onPress: () => update('price', String(midpoint)),
+          },
+          { text: t('common.cancel'), style: 'cancel' },
+        ],
+      );
+    } catch {
+      Alert.alert(
+        t('common.error'),
+        t('ai.suggestionFailed', 'Could not get a price suggestion'),
+      );
+    } finally {
+      setSuggestingPrice(false);
+    }
+  };
 
   const goNext = () => {
     if (step < STEPS.length - 1) setStep(s => s + 1);
@@ -260,6 +305,23 @@ export default function AddListingScreen({ navigation }: any) {
               colors={colors}
               textAlign={textAlign}
             />
+            <TouchableOpacity
+              style={[
+                styles.aiPriceBtn,
+                { borderColor: colors.primary, backgroundColor: colors.primary + '10' },
+              ]}
+              onPress={suggestPrice}
+              disabled={suggestingPrice}
+            >
+              {suggestingPrice ? (
+                <ActivityIndicator color={colors.primary} size="small" />
+              ) : (
+                <Ionicons name="sparkles-outline" size={18} color={colors.primary} />
+              )}
+              <Text style={[styles.aiPriceBtnText, { color: colors.primary }]}>
+                {t('ai.suggestPrice', 'AI Suggest Price')}
+              </Text>
+            </TouchableOpacity>
             <FormField
               label={t('wizard.areaLabel')}
               value={form.area}
@@ -476,6 +538,17 @@ const styles = StyleSheet.create({
   nextBtnText: { fontSize: SIZES.bodyLg, fontWeight: '800', color: '#FFF' },
   fieldLabel: { fontSize: SIZES.body, fontWeight: '700', marginBottom: SIZES.sm },
   fieldInput: { borderWidth: 1.5, borderRadius: SIZES.borderRadiusLg, padding: SIZES.md, fontSize: SIZES.body },
+  aiPriceBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: SIZES.sm,
+    borderWidth: 1.5,
+    borderRadius: SIZES.borderRadiusLg,
+    paddingVertical: SIZES.md,
+    marginTop: -SIZES.sm,
+  },
+  aiPriceBtnText: { fontSize: SIZES.body, fontWeight: '700' },
   errorBanner: {
     borderWidth: 1,
     borderRadius: SIZES.borderRadiusLg,

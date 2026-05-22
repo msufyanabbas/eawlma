@@ -1637,7 +1637,11 @@
       "high": "Hoë vertroue",
       "medium": "Medium vertroue",
       "low": "Lae vertroue"
-    }
+    },
+    "suggestedRange": "Voorgestelde reeks",
+    "confidenceLabel": "Vertroue",
+    "suggestPrice": "AI Stel prys",
+    "suggestionFailed": "Kon nie prysvoorstel kry nie"
   },
   "agents": {
     "searchPlaceholder": "Soek volgens naam of spesialiteit",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Besprekingsopdatering",
     "paymentUpdate": "Betalingopdatering",
     "supportReply": "Ondersteuningsantwoord"
+  },
+  "map": {
+    "drawArea": "Teken 'n area",
+    "cancelDraw": "Kanselleer Tekening",
+    "clearArea": "Maak area skoon",
+    "drawHint": "Klik op die kaart om jou soekgebied te teken. Dubbelklik om te voltooi.",
+    "noResults": "Geen eiendomme gevind in die getekende area nie"
   },
   "saved": {
     "title": "Gestoor",

@@ -1637,7 +1637,11 @@
       "high": "Korkea luottamus",
       "medium": "Keskitason luottamus",
       "low": "Matala luottamus"
-    }
+    },
+    "suggestedRange": "Suositeltu alue",
+    "confidenceLabel": "Luottamus",
+    "suggestPrice": "AI ehdotushinta",
+    "suggestionFailed": "Hintaehdotusta ei saatu"
   },
   "agents": {
     "searchPlaceholder": "Hae nimen tai erikoisalan mukaan",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Varauspäivitys",
     "paymentUpdate": "Maksun päivitys",
     "supportReply": "Tukivastaus"
+  },
+  "map": {
+    "drawArea": "Piirrä alue",
+    "cancelDraw": "Peruuta piirtäminen",
+    "clearArea": "Tyhjä alue",
+    "drawHint": "Piirrä hakualue napsauttamalla karttaa. Viimeistele kaksoisnapsauttamalla.",
+    "noResults": "Piirretyltä alueelta ei löytynyt kiinteistöjä"
   },
   "saved": {
     "title": "Tallennettu",

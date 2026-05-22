@@ -33,7 +33,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import {
@@ -1092,6 +1092,11 @@ function MapView({ listings }: { listings: Listing[] }) {
   // ID set of listings that fall inside the drawn polygon. `null` means
   // "no polygon drawn", so the full list is displayed.
   const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
+  // True while the user is actively in polygon-drawing mode.
+  const [isDrawing, setIsDrawing] = useState(false);
+  // Imperative handle to the Maps DrawingManager so our own buttons can
+  // toggle drawing mode on/off.
+  const drawingManagerRef = useRef<google.maps.drawing.DrawingManager | null>(null);
 
   if (!apiKey) {
     return <EmptyState title={t('searchMap.missingKeyTitle')} description={t('searchMap.missingKeyHint')} />;
@@ -1115,27 +1120,46 @@ function MapView({ listings }: { listings: Listing[] }) {
   // Filter listings whose coordinates fall inside the drawn polygon. Uses
   // `google.maps.geometry.poly.containsLocation`, which is part of the
   // `geometry` library (auto-loaded with `drawing`).
-  const handlePolygonComplete = (polygon: google.maps.Polygon) => {
-    if (drawnPolygon) drawnPolygon.setMap(null);
-    setDrawnPolygon(polygon);
-    const ids = new Set<string>();
-    for (const l of listings) {
-      const lat = Number(l.lat);
-      const lng = Number(l.lng);
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
-      const point = new google.maps.LatLng(lat, lng);
-      if (google.maps.geometry?.poly?.containsLocation(point, polygon)) {
-        ids.add(l.id);
+  const handlePolygonComplete = useCallback(
+    (polygon: google.maps.Polygon) => {
+      // Drawing is done — exit drawing mode immediately.
+      drawingManagerRef.current?.setDrawingMode(null);
+      setIsDrawing(false);
+      if (drawnPolygon) drawnPolygon.setMap(null);
+      setDrawnPolygon(polygon);
+      const ids = new Set<string>();
+      for (const l of listings) {
+        const lat = Number(l.lat);
+        const lng = Number(l.lng);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+        const point = new google.maps.LatLng(lat, lng);
+        if (google.maps.geometry?.poly?.containsLocation(point, polygon)) {
+          ids.add(l.id);
+        }
       }
-    }
-    setFilteredIds(ids);
-  };
+      setFilteredIds(ids);
+      drawingManagerRef.current?.setDrawingMode(null);
+    },
+    [drawnPolygon, listings],
+  );
 
-  const clearDrawing = () => {
+  // Start a fresh polygon: discard any prior polygon/filter, then switch the
+  // DrawingManager into POLYGON mode.
+  const startDrawing = useCallback(() => {
+    drawnPolygon?.setMap(null);
+    setDrawnPolygon(null);
+    setFilteredIds(null);
+    setIsDrawing(true);
+    drawingManagerRef.current?.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+  }, [drawnPolygon]);
+
+  const clearDrawing = useCallback(() => {
     if (drawnPolygon) drawnPolygon.setMap(null);
     setDrawnPolygon(null);
     setFilteredIds(null);
-  };
+    setIsDrawing(false);
+    drawingManagerRef.current?.setDrawingMode(null);
+  }, [drawnPolygon]);
 
   return (
     <Box sx={{ position: 'relative', borderRadius: 2, overflow: 'hidden', border: 1, borderColor: 'divider' }}>
@@ -1179,7 +1203,8 @@ function MapView({ listings }: { listings: Listing[] }) {
         </Stack>
       </Box>
 
-      {/* Draw / clear-drawing toolbar — overlay top-right. */}
+      {/* Draw / clear-drawing toolbar — overlay top-right. Real buttons that
+       *  drive the DrawingManager imperatively. */}
       <Box
         sx={{
           position: 'absolute',
@@ -1190,7 +1215,18 @@ function MapView({ listings }: { listings: Listing[] }) {
           gap: 1,
         }}
       >
-        {filteredIds && (
+        {isDrawing && (
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={clearDrawing}
+            sx={{ boxShadow: 2 }}
+          >
+            {t('map.cancelDraw')}
+          </Button>
+        )}
+        {!isDrawing && filteredIds && (
           <Button
             size="small"
             variant="contained"
@@ -1198,26 +1234,44 @@ function MapView({ listings }: { listings: Listing[] }) {
             onClick={clearDrawing}
             sx={{ bgcolor: 'background.paper', color: 'text.primary', boxShadow: 2 }}
           >
-            {t('search.clearDrawing')} ({filteredIds.size})
+            {`${t('map.clearArea')} (${filteredIds.size})`}
           </Button>
         )}
-        {!filteredIds && (
-          <Box
-            sx={{
-              px: 1.5,
-              py: 0.75,
-              bgcolor: 'background.paper',
-              borderRadius: 999,
-              boxShadow: 2,
-              fontSize: 13,
-              fontWeight: 600,
-              color: 'text.secondary',
-            }}
+        {!isDrawing && !filteredIds && (
+          <Button
+            size="small"
+            variant="contained"
+            onClick={startDrawing}
+            sx={{ bgcolor: 'background.paper', color: 'text.primary', boxShadow: 2 }}
           >
-            ✏️ {t('search.drawArea')}
-          </Box>
+            {t('map.drawArea')}
+          </Button>
         )}
       </Box>
+
+      {/* Drawing hint — centered overlay near the top while drawing. */}
+      {isDrawing && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 16,
+            insetInlineStart: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 11,
+            px: 2,
+            py: 1,
+            borderRadius: 999,
+            bgcolor: 'rgba(26,26,46,0.85)',
+            color: '#fff',
+            fontSize: 13,
+            fontWeight: 600,
+            pointerEvents: 'none',
+            boxShadow: 2,
+          }}
+        >
+          {t('map.drawHint')}
+        </Box>
+      )}
 
       <GoogleMap
         center={center}
@@ -1226,13 +1280,13 @@ function MapView({ listings }: { listings: Listing[] }) {
         options={{ streetViewControl: false, mapTypeControl: false, fullscreenControl: false }}
       >
         <DrawingManagerF
+          onLoad={(dm) => {
+            drawingManagerRef.current = dm;
+          }}
           onPolygonComplete={handlePolygonComplete}
           options={{
-            drawingControl: true,
-            drawingControlOptions: {
-              position: google.maps.ControlPosition.TOP_CENTER,
-              drawingModes: [google.maps.drawing.OverlayType.POLYGON],
-            },
+            // Native toolbar disabled — we drive drawing from our own button.
+            drawingControl: false,
             polygonOptions: {
               fillColor: '#6C63A6',
               fillOpacity: 0.2,

@@ -1637,7 +1637,11 @@
       "high": "Imani ya juu",
       "medium": "Imani ya wastani",
       "low": "Imani ya chini"
-    }
+    },
+    "suggestedRange": "Masafa yaliyopendekezwa",
+    "confidenceLabel": "Kujiamini",
+    "suggestPrice": "AI Pendekeza Bei",
+    "suggestionFailed": "Haikuweza kupata pendekezo la bei"
   },
   "agents": {
     "searchPlaceholder": "Tafuta kwa jina au utaalamu",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Sasisho la kuhifadhi",
     "paymentUpdate": "Sasisho la malipo",
     "supportReply": "Jibu la usaidizi"
+  },
+  "map": {
+    "drawArea": "Chora Eneo",
+    "cancelDraw": "Ghairi Mchoro",
+    "clearArea": "Eneo la Wazi",
+    "drawHint": "Bofya kwenye ramani ili kuchora eneo lako la utafutaji. Bofya mara mbili ili kumaliza.",
+    "noResults": "Hakuna mali iliyopatikana katika eneo linalochorwa"
   },
   "saved": {
     "title": "Imehifadhiwa",

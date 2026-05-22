@@ -11,3 +11,4 @@ export { savedApi } from './saved.api';
 export { marketApi } from './market.api';
 export { reviewsApi } from './reviews.api';
 export { bookingsApi } from './bookings.api';
+export { aiApi } from './ai.api';

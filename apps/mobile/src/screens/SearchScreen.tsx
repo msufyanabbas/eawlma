@@ -16,6 +16,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import LocationPicker from '../components/LocationPicker';
 import { formatNumber } from '../utils/formatters';
+import { capture } from '../lib/posthog';
 
 const TRANSACTION_TYPES = [
   { key: 'all',  value: '' },
@@ -78,6 +79,7 @@ export default function SearchScreen({ navigation, route }: any) {
       if (sort === 'price_desc') { params.sortField = 'price'; params.sortOrder = 'DESC'; }
       const res = await listingsApi.search(params);
       if (__DEV__) console.log('Search API response:', JSON.stringify(res).slice(0, 500));
+      capture('search_performed', { city, propertyType: propType, platform: 'mobile' });
       return res;
     },
     staleTime: 0,

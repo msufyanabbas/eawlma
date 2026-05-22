@@ -71,6 +71,7 @@ import AdminDisputesScreen from './src/screens/admin/AdminDisputesScreen';
 import AdminPromosScreen from './src/screens/admin/AdminPromosScreen';
 import { useWebSocket } from './src/hooks/useWebSocket';
 import { linking } from './src/navigation/linking';
+import { initPostHog } from './src/lib/posthog';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -221,6 +222,7 @@ export default function App() {
 
   useEffect(() => {
     async function bootstrap() {
+      initPostHog();
       await loadPreferences();
       await loadFromStorage();
       await initI18n();

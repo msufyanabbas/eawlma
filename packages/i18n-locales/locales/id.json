@@ -1365,7 +1365,11 @@
       "high": "Kepercayaan tinggi",
       "medium": "Kepercayaan sedang",
       "low": "Kepercayaan rendah"
-    }
+    },
+    "suggestedRange": "Kisaran yang disarankan",
+    "confidenceLabel": "Kepercayaan diri",
+    "suggestPrice": "AI Sarankan Harga",
+    "suggestionFailed": "Tidak bisa mendapatkan saran harga"
   },
   "agents": {
     "searchPlaceholder": "Cari berdasarkan nama atau spesialisasi",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Tandai semua sebagai telah dibaca"
+  },
+  "map": {
+    "drawArea": "Gambarlah suatu Area",
+    "cancelDraw": "Batalkan Gambar",
+    "clearArea": "Area Bersih",
+    "drawHint": "Klik pada peta untuk menggambar area pencarian Anda. Klik dua kali untuk menyelesaikan.",
+    "noResults": "Tidak ada properti yang ditemukan di area yang digambar"
   }
 }

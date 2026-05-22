@@ -13,6 +13,7 @@ import { useRTL } from '../../hooks/useRTL';
 import { useAuthStore } from '../../store/auth.store';
 import { authApi } from '../../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../../theme';
+import { capture } from '../../lib/posthog';
 
 export default function RegisterScreen({ navigation, route }: any) {
   const { colors } = useTheme();
@@ -79,6 +80,7 @@ export default function RegisterScreen({ navigation, route }: any) {
       });
       setToken(tokens.accessToken);
       setUser(user);
+      capture('user_registered', { role, platform: 'mobile' });
       navigation.reset({ index: 0, routes: [{ name: 'MainTabs' }] });
     } catch (e: any) {
       setError(e.response?.data?.message || t('auth.registerFailed'));

@@ -1365,7 +1365,11 @@
       "high": "Wysoka pewność",
       "medium": "Średnia pewność",
       "low": "Niska pewność"
-    }
+    },
+    "suggestedRange": "Sugerowany zakres",
+    "confidenceLabel": "Zaufanie",
+    "suggestPrice": "Sugerowana cena AI",
+    "suggestionFailed": "Nie udało się uzyskać sugestii cenowej"
   },
   "agents": {
     "searchPlaceholder": "Szukaj według nazwy lub specjalności",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Oznacz wszystkie jako przeczytane"
+  },
+  "map": {
+    "drawArea": "Narysuj obszar",
+    "cancelDraw": "Anuluj rysowanie",
+    "clearArea": "Wyczyść obszar",
+    "drawHint": "Kliknij mapę, aby narysować obszar poszukiwań. Kliknij dwukrotnie, aby zakończyć.",
+    "noResults": "Na narysowanym obszarze nie znaleziono żadnych właściwości"
   }
 }

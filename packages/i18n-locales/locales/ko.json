@@ -1365,7 +1365,11 @@
       "high": "높은 신뢰도",
       "medium": "중간 신뢰도",
       "low": "낮은 신뢰도"
-    }
+    },
+    "suggestedRange": "권장 범위",
+    "confidenceLabel": "신뢰",
+    "suggestPrice": "AI 제안 가격",
+    "suggestionFailed": "가격 제안을 받을 수 없습니다."
   },
   "agents": {
     "searchPlaceholder": "이름이나 전문 분야로 검색",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "모두 읽음으로 표시"
+  },
+  "map": {
+    "drawArea": "영역 그리기",
+    "cancelDraw": "그리기 취소",
+    "clearArea": "영역 지우기",
+    "drawHint": "검색할 지역을 그리려면 지도를 클릭하세요. 완료하려면 두 번 클릭하세요.",
+    "noResults": "그려진 영역에서 속성을 찾을 수 없습니다."
   }
 }

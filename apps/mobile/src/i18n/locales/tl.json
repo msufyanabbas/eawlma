@@ -940,7 +940,7 @@
       "cancelStrict": "Mahigpit — 50% refund hanggang 7 araw bago",
       "starRating": "Star rating",
       "hotelName": "Pangalan ng hotel",
-      "instantBook": "Instant book",
+      "instantBook": "Instant na libro",
       "instantBookHint": "Awtomatikong kumpirmahin ng mga booking nang wala ang iyong pag-apruba. Huwag paganahin na suriin muna ang bawat kahilingan.",
       "amenities": "Mga Pasilidad",
       "houseRules": "Mga panuntunan sa bahay",
@@ -1637,7 +1637,11 @@
       "high": "Mataas na kumpiyansa",
       "medium": "Katamtamang kumpiyansa",
       "low": "Mababang kumpiyansa"
-    }
+    },
+    "suggestedRange": "Iminungkahing hanay",
+    "confidenceLabel": "Kumpiyansa",
+    "suggestPrice": "AI Suggest Price",
+    "suggestionFailed": "Hindi makakuha ng suhestyon sa presyo"
   },
   "agents": {
     "searchPlaceholder": "Maghanap ayon sa pangalan o espesyalidad",
@@ -1908,7 +1912,7 @@
     "totalPayment": "Kabuuang Bayad",
     "totalInterest": "Kabuuang Interes",
     "disclaimer": "Ito ay isang pagtatantya. Kumonsulta sa iyong bangko para sa isang aktwal na alok ng pautang.",
-    "perMonth": "SAR/mo"
+    "perMonth": "SAR/buwan"
   },
   "notifications": {
     "markAllRead": "Markahan ang lahat bilang nabasa na",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Update sa booking",
     "paymentUpdate": "Update sa pagbabayad",
     "supportReply": "Tugon sa suporta"
+  },
+  "map": {
+    "drawArea": "Gumuhit ng Lugar",
+    "cancelDraw": "Kanselahin ang Pagguhit",
+    "clearArea": "Maaliwalas na Lugar",
+    "drawHint": "Mag-click sa mapa upang iguhit ang iyong lugar sa paghahanap. I-double click para matapos.",
+    "noResults": "Walang nakitang property sa iginuhit na lugar"
   },
   "saved": {
     "title": "Na-save",

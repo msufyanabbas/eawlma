@@ -1365,7 +1365,11 @@
       "high": "高信頼度",
       "medium": "中信頼度",
       "low": "低信頼度"
-    }
+    },
+    "suggestedRange": "推奨範囲",
+    "confidenceLabel": "自信",
+    "suggestPrice": "AI 推奨価格",
+    "suggestionFailed": "価格の提案を取得できませんでした"
   },
   "agents": {
     "searchPlaceholder": "名前や専門分野で検索する",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "すべて既読としてマークする"
+  },
+  "map": {
+    "drawArea": "領域を描く",
+    "cancelDraw": "描画のキャンセル",
+    "clearArea": "クリアエリア",
+    "drawHint": "地図上をクリックして検索エリアを描画します。ダブルクリックして終了します。",
+    "noResults": "描画領域にプロパティが見つかりません"
   }
 }

@@ -1637,7 +1637,11 @@
       "high": "Høj tillid",
       "medium": "Medium tillid",
       "low": "Lav tillid"
-    }
+    },
+    "suggestedRange": "Foreslået område",
+    "confidenceLabel": "Tillid",
+    "suggestPrice": "AI Foreslå pris",
+    "suggestionFailed": "Kunne ikke få prisforslag"
   },
   "agents": {
     "searchPlaceholder": "Søg efter navn eller speciale",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Bookingopdatering",
     "paymentUpdate": "Betalingsopdatering",
     "supportReply": "Supportsvar"
+  },
+  "map": {
+    "drawArea": "Tegn et område",
+    "cancelDraw": "Annuller tegning",
+    "clearArea": "Ryd område",
+    "drawHint": "Klik på kortet for at tegne dit søgeområde. Dobbeltklik for at afslutte.",
+    "noResults": "Ingen ejendomme fundet i det tegnede område"
   },
   "saved": {
     "title": "Gemt",

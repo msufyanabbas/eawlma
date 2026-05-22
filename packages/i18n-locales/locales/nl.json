@@ -1365,7 +1365,11 @@
       "high": "Hoge betrouwbaarheid",
       "medium": "Gemiddelde betrouwbaarheid",
       "low": "Lage betrouwbaarheid"
-    }
+    },
+    "suggestedRange": "Voorgesteld bereik",
+    "confidenceLabel": "Vertrouwen",
+    "suggestPrice": "AI-suggestieprijs",
+    "suggestionFailed": "Kan prijssuggestie"
   },
   "agents": {
     "searchPlaceholder": "Zoek op naam of specialiteit",
@@ -1462,7 +1466,7 @@
     "value": "Dealwaarde",
     "platformEarn": "Platformverdien",
     "agentEarn": "Agent verdient",
-    "status": "Status",
+    "status": "niet ontvangen Status",
     "closedAt": "Gesloten",
     "allCommissions": "Alle commissies",
     "all": "Alles"
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Markeer alles als gelezen"
+  },
+  "map": {
+    "drawArea": "Teken een gebied",
+    "cancelDraw": "Tekening annuleren",
+    "clearArea": "Duidelijk gebied",
+    "drawHint": "Klik op de kaart om uw zoekgebied te tekenen. Dubbelklik om te voltooien.",
+    "noResults": "Geen eigenschappen gevonden in het getekende gebied"
   }
 }

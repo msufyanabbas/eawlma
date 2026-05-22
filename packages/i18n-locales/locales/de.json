@@ -1365,7 +1365,11 @@
       "high": "Hohe Konfidenz",
       "medium": "Mittlere Konfidenz",
       "low": "Niedrige Konfidenz"
-    }
+    },
+    "suggestedRange": "Empfohlener Bereich",
+    "confidenceLabel": "Vertrauen",
+    "suggestPrice": "AI schlägt Preis vor",
+    "suggestionFailed": "Preisvorschlag konnte nicht abgerufen werden"
   },
   "agents": {
     "searchPlaceholder": "Suche nach Name oder Fachgebiet",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Alle als gelesen markieren"
+  },
+  "map": {
+    "drawArea": "Zeichnen Sie eine Fläche",
+    "cancelDraw": "Zeichnung abbrechen",
+    "clearArea": "Freier Bereich",
+    "drawHint": "Klicken Sie auf die Karte, um Ihr Suchgebiet einzuzeichnen. Doppelklicken Sie, um den Vorgang abzuschließen.",
+    "noResults": "Im gezeichneten Bereich wurden keine Eigenschaften gefunden"
   }
 }

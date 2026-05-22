@@ -1365,7 +1365,11 @@
       "high": "Haute confiance",
       "medium": "Confiance moyenne",
       "low": "Faible confiance"
-    }
+    },
+    "suggestedRange": "Plage suggérée",
+    "confidenceLabel": "Confiance",
+    "suggestPrice": "Prix ​​suggéré par l'IA",
+    "suggestionFailed": "Impossible d'obtenir une suggestion de prix"
   },
   "agents": {
     "searchPlaceholder": "Recherche par nom ou spécialité",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Marquer tout comme lu"
+  },
+  "map": {
+    "drawArea": "Dessiner une zone",
+    "cancelDraw": "Annuler le dessin",
+    "clearArea": "Effacer la zone",
+    "drawHint": "Cliquez sur la carte pour dessiner votre zone de recherche. Double-cliquez pour terminer.",
+    "noResults": "Aucune propriété trouvée dans la zone dessinée"
   }
 }

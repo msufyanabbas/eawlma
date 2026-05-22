@@ -1637,7 +1637,11 @@
       "high": "Høy konfidens",
       "medium": "Middels konfidens",
       "low": "Lav konfidens"
-    }
+    },
+    "suggestedRange": "Foreslått område",
+    "confidenceLabel": "Tillit",
+    "suggestPrice": "AI Foreslå pris",
+    "suggestionFailed": "Kunne ikke få prisforslag"
   },
   "agents": {
     "searchPlaceholder": "Søk etter navn eller spesialitet",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "Bookingoppdatering",
     "paymentUpdate": "Betalingsoppdatering",
     "supportReply": "Støttesvar"
+  },
+  "map": {
+    "drawArea": "Tegn et område",
+    "cancelDraw": "Avbryt tegning",
+    "clearArea": "Fjern område",
+    "drawHint": "Klikk på kartet for å tegne søkeområdet ditt. Dobbeltklikk for å fullføre.",
+    "noResults": "Ingen eiendommer funnet i det tegnede området"
   },
   "saved": {
     "title": "Lagret",

@@ -1365,7 +1365,11 @@
       "high": "Keyakinan tinggi",
       "medium": "Keyakinan sederhana",
       "low": "Keyakinan rendah"
-    }
+    },
+    "suggestedRange": "Julat yang dicadangkan",
+    "confidenceLabel": "Keyakinan",
+    "suggestPrice": "Harga Cadangan AI",
+    "suggestionFailed": "Tidak boleh mendapatkan cadangan harga"
   },
   "agents": {
     "searchPlaceholder": "Cari mengikut nama atau kepakaran",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Tandai semua sebagai dibaca"
+  },
+  "map": {
+    "drawArea": "Lukis Kawasan",
+    "cancelDraw": "Batalkan Lukisan",
+    "clearArea": "Kawasan Jelas",
+    "drawHint": "Klik pada peta untuk melukis kawasan carian anda. Klik dua kali untuk menyelesaikan.",
+    "noResults": "Tiada hartanah ditemui di kawasan yang dilukis"
   }
 }

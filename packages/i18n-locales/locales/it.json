@@ -1365,7 +1365,11 @@
       "high": "Alta affidabilità",
       "medium": "Affidabilità media",
       "low": "Bassa affidabilità"
-    }
+    },
+    "suggestedRange": "Intervallo suggerito",
+    "confidenceLabel": "Fiducia",
+    "suggestPrice": "AI Suggerisci prezzo",
+    "suggestionFailed": "Impossibile ottenere il suggerimento sul prezzo"
   },
   "agents": {
     "searchPlaceholder": "Cerca per nome o specialità",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Segna tutto come letto"
+  },
+  "map": {
+    "drawArea": "Disegna un'area",
+    "cancelDraw": "Annulla disegno",
+    "clearArea": "Cancella area",
+    "drawHint": "Clicca sulla mappa per disegnare la tua area di ricerca. Fare doppio clic per terminare.",
+    "noResults": "Nessun immobile trovato nell'area disegnata"
   }
 }

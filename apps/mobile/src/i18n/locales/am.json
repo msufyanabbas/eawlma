@@ -1637,7 +1637,11 @@
       "high": "ከፍተኛ መተማመን",
       "medium": "መካከለኛ መተማመን",
       "low": "ዝቅተኛ መተማመን"
-    }
+    },
+    "suggestedRange": "የሚመከር ክልል",
+    "confidenceLabel": "በራስ መተማመን",
+    "suggestPrice": "AI አስተያየት ዋጋ",
+    "suggestionFailed": "የዋጋ አስተያየት ማግኘት አልተቻለም"
   },
   "agents": {
     "searchPlaceholder": "በስም ወይም በልዩ ሁኔታ ይፈልጉ",
@@ -1928,6 +1932,13 @@
     "bookingUpdate": "የቦታ ማስያዝ ዝማኔ",
     "paymentUpdate": "የክፍያ ዝማኔ",
     "supportReply": "ምላሽ ይደግፉ"
+  },
+  "map": {
+    "drawArea": "አካባቢ ይሳሉ",
+    "cancelDraw": "ስዕልን ሰርዝ",
+    "clearArea": "አካባቢን አጽዳ",
+    "drawHint": "የፍለጋ ቦታዎን ለመሳል ካርታው ላይ ጠቅ ያድርጉ። ለመጨረስ ሁለቴ ጠቅ ያድርጉ።",
+    "noResults": "በተሳለው ቦታ ላይ ምንም ንብረቶች አልተገኙም።"
   },
   "saved": {
     "title": "ተቀምጧል",

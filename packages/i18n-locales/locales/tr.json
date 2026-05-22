@@ -1365,7 +1365,11 @@
       "high": "Yüksek güven",
       "medium": "Orta güven",
       "low": "Düşük güven"
-    }
+    },
+    "suggestedRange": "Önerilen aralık",
+    "confidenceLabel": "Kendinden emin",
+    "suggestPrice": "AI Öneri Fiyatı",
+    "suggestionFailed": "Fiyat önerisi alınamadı"
   },
   "agents": {
     "searchPlaceholder": "İsme veya uzmanlığa göre arayın",
@@ -1629,5 +1633,12 @@
   },
   "notifications": {
     "markAllRead": "Tümünü okundu olarak işaretle"
+  },
+  "map": {
+    "drawArea": "Bir Alan Çiz",
+    "cancelDraw": "Çizimi İptal Et",
+    "clearArea": "Alanı Temizle",
+    "drawHint": "Arama alanınızı çizmek için haritaya tıklayın. Bitirmek için çift tıklayın.",
+    "noResults": "Çizilen alanda hiçbir özellik bulunamadı"
   }
 }
