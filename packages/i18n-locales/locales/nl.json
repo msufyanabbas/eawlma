@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} woning gevonden in dit gebied",
     "areaResults_other": "{{count}} eigendommen gevonden in dit gebied",
     "clickToView": "tik om de lijst te bekijken",
-    "propertiesInArea": "Eigenschappen in geselecteerd gebied"
+    "propertiesInArea": "Eigenschappen in geselecteerd gebied",
+    "loading": "Kaart laden…"
   }
 }

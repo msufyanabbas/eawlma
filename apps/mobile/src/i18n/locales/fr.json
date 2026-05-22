@@ -1942,7 +1942,8 @@
     "areaResults_one": "{{count}} propriété trouvée dans cette zone",
     "areaResults_other": "{{count}} propriétés trouvées dans cette zone",
     "clickToView": "appuyez pour voir la liste",
-    "propertiesInArea": "Propriétés dans la zone sélectionnée"
+    "propertiesInArea": "Propriétés dans la zone sélectionnée",
+    "loading": "Chargement de la carte…"
   },
   "saved": {
     "title": "Enregistré",

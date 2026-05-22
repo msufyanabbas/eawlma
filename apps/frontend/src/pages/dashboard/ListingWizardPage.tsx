@@ -35,7 +35,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF } from '@react-google-maps/api';
+import { useGoogleMaps } from '@/hooks/useGoogleMaps';
 import {
   ListingFurnishing,
   ListingType,
@@ -1001,9 +1002,16 @@ function ShortTermSection({ state, update }: StepProps) {
 const MAP_LIBS: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
 function LocationStep({ state, update }: StepProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
-  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey, libraries: MAP_LIBS });
+  // Language-aware loader so the pin-picker map re-localises on a language
+  // switch. The hook defers its script teardown so the `<GoogleMap>` below
+  // (unmounted while `isLoaded` is false) tears down before the reload.
+  const { isLoaded } = useGoogleMaps({
+    apiKey,
+    libraries: MAP_LIBS,
+    language: i18n.language,
+  });
 
   const reverseGeocode = (lat: number, lng: number) => {
     if (!isLoaded || !window.google?.maps) return;

@@ -1765,7 +1765,7 @@
   "adminAnalytics": {
     "trafficSources": "Mga Pinagmumulan ng Trapiko",
     "devices": "Mga Device",
-    "inquiryFunnel": "Inquiry Funnel"
+    "inquiryFunnel": "Funnel ng Pagtatanong"
   },
   "welcomeModal": {
     "cityPlaceholder": "Riyadh, Jeddah, Dammam…"
@@ -1942,7 +1942,8 @@
     "areaResults_one": "{{count}} property na natagpuan sa lugar na ito",
     "areaResults_other": "{{count}} mga katangian na natagpuan sa lugar na ito",
     "clickToView": "i-tap para tingnan ang listahan",
-    "propertiesInArea": "Mga Property sa Napiling Lugar"
+    "propertiesInArea": "Mga Property sa Napiling Lugar",
+    "loading": "Nilo-load ang mapa…"
   },
   "saved": {
     "title": "Na-save",

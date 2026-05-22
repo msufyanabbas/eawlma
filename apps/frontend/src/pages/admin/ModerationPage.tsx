@@ -27,7 +27,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF } from '@react-google-maps/api';
+import { useGoogleMaps } from '@/hooks/useGoogleMaps';
 import { type Listing, MediaType } from '@eawlma/shared-types';
 
 import { adminApi } from '@/api/admin.api';
@@ -322,7 +323,8 @@ function ListingPreview({
 }) {
   const { t, i18n } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
-  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey, libraries: MAP_LIBS });
+  // Language-aware loader so the map UI matches the active app language.
+  const { isLoaded } = useGoogleMaps({ apiKey, libraries: MAP_LIBS, language: i18n.language });
   const tour = listing.media.find((m) => m.type === MediaType.TOUR_360);
   const images = listing.media.filter((m) => m.type === MediaType.IMAGE);
 

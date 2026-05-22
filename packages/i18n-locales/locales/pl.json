@@ -1643,6 +1643,7 @@
     "areaResults_one": "W tej okolicy znaleziono {{count}} nieruchomości",
     "areaResults_other": "Znaleziono nieruchomości w tym obszarze: {{count}}",
     "clickToView": "dotknij, aby wyświetlić listę",
-    "propertiesInArea": "Właściwości w wybranym obszarze"
+    "propertiesInArea": "Właściwości w wybranym obszarze",
+    "loading": "Ładowanie mapy…"
   }
 }

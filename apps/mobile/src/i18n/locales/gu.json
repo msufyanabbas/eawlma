@@ -1942,7 +1942,8 @@
     "areaResults_one": "આ વિસ્તારમાં {{count}} મિલકત મળી",
     "areaResults_other": "આ વિસ્તારમાં {{count}} પ્રોપર્ટીઝ મળી",
     "clickToView": "યાદી જોવા માટે ટેપ કરો",
-    "propertiesInArea": "પસંદ કરેલ વિસ્તારમાં મિલકતો"
+    "propertiesInArea": "પસંદ કરેલ વિસ્તારમાં મિલકતો",
+    "loading": "નકશો લોડ કરી રહ્યું છે…"
   },
   "saved": {
     "title": "સાચવેલ",

@@ -1942,7 +1942,8 @@
     "areaResults_one": "{{count}} propiedad encontrada en esta área",
     "areaResults_other": "{{count}} propiedades encontradas en esta área",
     "clickToView": "toque para ver la lista",
-    "propertiesInArea": "Propiedades en el área seleccionada"
+    "propertiesInArea": "Propiedades en el área seleccionada",
+    "loading": "Cargando mapa…"
   },
   "saved": {
     "title": "Guardado",

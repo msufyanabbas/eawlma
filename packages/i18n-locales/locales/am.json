@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} ንብረት በዚህ አካባቢ ተገኝቷል",
     "areaResults_other": "{{count}} ንብረቶች በዚህ አካባቢ ተገኝተዋል",
     "clickToView": "ዝርዝር ለማየት መታ ያድርጉ",
-    "propertiesInArea": "በተመረጠው አካባቢ ውስጥ ያሉ ንብረቶች"
+    "propertiesInArea": "በተመረጠው አካባቢ ውስጥ ያሉ ንብረቶች",
+    "loading": "ካርታ በመጫን ላይ…"
   }
 }

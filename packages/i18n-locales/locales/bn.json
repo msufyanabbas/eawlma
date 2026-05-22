@@ -1643,6 +1643,7 @@
     "areaResults_one": "| এই এলাকায় {{count}} সম্পত্তি পাওয়া গেছে",
     "areaResults_other": "এই এলাকায় {{count}} বৈশিষ্ট্য পাওয়া গেছে",
     "clickToView": "তালিকা দেখতে ট্যাপ করুন",
-    "propertiesInArea": "Properties in Selected Area"
+    "propertiesInArea": "| নির্বাচিত এলাকায় সম্পত্তি",
+    "loading": "মানচিত্র লোড হচ্ছে..."
   }
 }

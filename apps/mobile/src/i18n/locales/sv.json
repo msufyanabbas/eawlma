@@ -1942,7 +1942,8 @@
     "areaResults_one": "{{count}} egendom hittades i detta område",
     "areaResults_other": "{{count}} egenskaper hittades i detta område",
     "clickToView": "tryck för att visa listan",
-    "propertiesInArea": "Fastigheter i valt område"
+    "propertiesInArea": "Fastigheter i valt område",
+    "loading": "Laddar kartan..."
   },
   "saved": {
     "title": "Sparad",

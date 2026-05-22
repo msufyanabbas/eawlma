@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} eiendom funnet i dette området",
     "areaResults_other": "{{count}} eiendommer funnet i dette området",
     "clickToView": "trykk for å se listen",
-    "propertiesInArea": "Eiendommer i valgt område"
+    "propertiesInArea": "Eiendommer i valgt område",
+    "loading": "Laster inn kart …"
   }
 }

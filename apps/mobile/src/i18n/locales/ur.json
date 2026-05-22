@@ -1954,7 +1954,8 @@
     "areaResults_one": "اس علاقے میں {{count}} پراپرٹی ملی",
     "areaResults_other": "اس علاقے میں {{count}} پراپرٹیز ملیں",
     "clickToView": "فہرست دیکھنے کے لیے تھپتھپائیں",
-    "propertiesInArea": "منتخب علاقے میں پراپرٹیز"
+    "propertiesInArea": "منتخب علاقے میں پراپرٹیز",
+    "loading": "نقشہ لوڈ ہو رہا ہے…"
   },
   "saved": {
     "title": "| محفوظ کیا گیا",

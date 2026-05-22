@@ -1643,6 +1643,7 @@
     "areaResults_one": "Bu bölgede {{count}} mülk bulundu",
     "areaResults_other": "Bu bölgede {{count}} mülk bulundu",
     "clickToView": "listeyi görüntülemek için dokunun",
-    "propertiesInArea": "Seçilen Bölgedeki Gayrimenkuller"
+    "propertiesInArea": "Seçilen Bölgedeki Gayrimenkuller",
+    "loading": "Harita yükleniyor…"
   }
 }

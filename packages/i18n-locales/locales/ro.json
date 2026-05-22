@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} proprietate găsită în această zonă",
     "areaResults_other": "{{count}} proprietăți găsite în această zonă",
     "clickToView": "atingeți pentru a vizualiza lista",
-    "propertiesInArea": "Proprietăți în zona selectată"
+    "propertiesInArea": "Proprietăți în zona selectată",
+    "loading": "Se încarcă harta…"
   }
 }

@@ -1643,6 +1643,7 @@
     "areaResults_one": "Mali {{count}} yamepatikana katika eneo hili",
     "areaResults_other": "{{count}} sifa zinazopatikana katika eneo hili",
     "clickToView": "gusa ili kutazama orodha",
-    "propertiesInArea": "Mali katika eneo lililochaguliwa"
+    "propertiesInArea": "Mali katika eneo lililochaguliwa",
+    "loading": "Inapakia ramani..."
   }
 }

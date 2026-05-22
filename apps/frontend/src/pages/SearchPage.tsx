@@ -6,6 +6,7 @@ import {
   Button,
   Checkbox,
   Chip,
+  CircularProgress,
   Divider,
   Drawer,
   FormControlLabel,
@@ -45,7 +46,6 @@ import {
   InfoWindowF,
   MarkerClustererF,
   MarkerF,
-  useJsApiLoader,
 } from '@react-google-maps/api';
 import {
   ListingType,
@@ -54,6 +54,7 @@ import {
   type RentalType,
 } from '@eawlma/shared-types';
 import { searchApi, type FlatSearchParams } from '@/api/search.api';
+import { useGoogleMaps } from '@/hooks/useGoogleMaps';
 import { GA } from '@/utils/analytics';
 import { posthog } from '@/lib/posthog';
 import { ListingCard } from '@/components/global/ListingCard';
@@ -527,7 +528,9 @@ export function SearchPage() {
 
             {/* Results */}
             {view === 'map' ? (
-              <MapView listings={listings} />
+              // Keyed by language: a switch remounts the whole map subtree so
+              // Google Maps reloads its script in the new locale.
+              <MapView key={i18n.language} listings={listings} />
             ) : infiniteQuery.isLoading ? (
               <Grid container spacing={view === 'grid' ? 2.5 : 2}>
                 {Array.from({ length: 6 }).map((_, i) => (
@@ -1082,11 +1085,13 @@ const MAP_DEFAULT_CENTER = { lat: 24.7136, lng: 46.6753 }; // Riyadh
 function MapView({ listings }: { listings: Listing[] }) {
   const { t, i18n } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
-  const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: apiKey,
+  // `useGoogleMaps` (not `@react-google-maps/api`'s singleton loader) so the
+  // map UI re-localises when the user switches language — see the hook for
+  // why the singleton can't. The parent keys <MapView> by language too, so
+  // this component remounts cleanly on a switch.
+  const { isLoaded, loadError } = useGoogleMaps({
+    apiKey,
     libraries: MAP_LIBRARIES,
-    // Localise Maps UI labels to the active app language and bias
-    // geocoding/results to Saudi Arabia.
     language: i18n.language,
     region: 'SA',
   });
@@ -1217,7 +1222,24 @@ function MapView({ listings }: { listings: Listing[] }) {
     return <EmptyState title={t('searchMap.loadFailed')} description={(loadError as Error).message} />;
   }
   if (!isLoaded) {
-    return <Box sx={{ height: 600, bgcolor: 'grey.100', borderRadius: 2 }} />;
+    return (
+      <Box
+        sx={{
+          height: 600,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 1.5,
+          bgcolor: 'grey.100',
+          borderRadius: 2,
+        }}
+      >
+        <CircularProgress size={28} />
+        <Typography color="text.secondary">
+          {t('map.loading', { defaultValue: 'Loading map…' })}
+        </Typography>
+      </Box>
+    );
   }
 
   const visibleListings = filteredIds

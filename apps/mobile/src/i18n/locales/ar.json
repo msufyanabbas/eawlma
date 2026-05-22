@@ -1665,7 +1665,8 @@
     "areaResults_one": "تم العثور على عقار {{count}} في هذه المنطقة",
     "areaResults_other": "تم العثور على {{count}} من العقارات في هذه المنطقة",
     "clickToView": "انقر لعرض القائمة",
-    "propertiesInArea": "العقارات في المنطقة المختارة"
+    "propertiesInArea": "العقارات في المنطقة المختارة",
+    "loading": "جارٍ تحميل الخريطة…"
   },
   "mortgage": {
     "title": "حاسبة التمويل العقاري",

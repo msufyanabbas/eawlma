@@ -1942,7 +1942,8 @@
     "areaResults_one": "{{count}} properti ditemukan di area ini",
     "areaResults_other": "{{count}} properti ditemukan di area ini",
     "clickToView": "ketuk untuk melihat daftar",
-    "propertiesInArea": "Properti di Area Terpilih"
+    "propertiesInArea": "Properti di Area Terpilih",
+    "loading": "Memuat peta…"
   },
   "saved": {
     "title": "Disimpan",

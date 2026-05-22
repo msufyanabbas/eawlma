@@ -1665,7 +1665,8 @@
     "areaResults_one": "{{count}} property found in this area",
     "areaResults_other": "{{count}} properties found in this area",
     "clickToView": "tap to view list",
-    "propertiesInArea": "Properties in Selected Area"
+    "propertiesInArea": "Properties in Selected Area",
+    "loading": "Loading map…"
   },
   "mortgage": {
     "title": "Mortgage Calculator",

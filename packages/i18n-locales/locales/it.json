@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} proprietà trovate in quest'area",
     "areaResults_other": "{{count}} proprietà trovate in quest'area",
     "clickToView": "toccare per visualizzare l'elenco",
-    "propertiesInArea": "Proprietà nell'area selezionata"
+    "propertiesInArea": "Proprietà nell'area selezionata",
+    "loading": "Caricamento mappa…"
   }
 }

@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} ejendom fundet i dette område",
     "areaResults_other": "{{count}} ejendomme fundet i dette område",
     "clickToView": "tryk for at se listen",
-    "propertiesInArea": "Ejendomme i udvalgt område"
+    "propertiesInArea": "Ejendomme i udvalgt område",
+    "loading": "Loading map…"
   }
 }

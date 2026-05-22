@@ -1643,6 +1643,7 @@
     "areaResults_one": "在此区域找到 {{count}} 个财产",
     "areaResults_other": "在此区域找到 {{count}} 个属性",
     "clickToView": "点击查看列表",
-    "propertiesInArea": "选定区域的属性"
+    "propertiesInArea": "选定区域的属性",
+    "loading": "正在加载地图..."
   }
 }

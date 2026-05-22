@@ -35,7 +35,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import PhoneIcon from '@mui/icons-material/PhoneOutlined';
 import ChatIcon from '@mui/icons-material/ChatBubbleOutline';
-import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF } from '@react-google-maps/api';
+import { useGoogleMaps } from '@/hooks/useGoogleMaps';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams, Link, useNavigate } from '@tanstack/react-router';
 import { Helmet } from 'react-helmet-async';
@@ -866,7 +867,7 @@ export function ListingDetailPage() {
               <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
                 {t('listing.location')}
               </Typography>
-              <ListingMap lat={Number(listing.lat)} lng={Number(listing.lng)} />
+              <ListingMap key={i18n.language} lat={Number(listing.lat)} lng={Number(listing.lng)} />
             </Box>
           </Reveal>
           </Grid>
@@ -1440,8 +1441,15 @@ function PriceTrendSparkline({ city, type }: { city: string; type: string }) {
 const MAP_LIBRARIES: ('places' | 'drawing' | 'geometry')[] = ['places', 'drawing', 'geometry'];
 
 function ListingMap({ lat, lng }: { lat: number; lng: number }) {
+  const { i18n } = useTranslation();
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY ?? '';
-  const { isLoaded } = useJsApiLoader({ googleMapsApiKey: apiKey, libraries: MAP_LIBRARIES });
+  // Language-aware loader so the map UI re-localises on a language switch;
+  // the parent also keys this component by language for a clean remount.
+  const { isLoaded } = useGoogleMaps({
+    apiKey,
+    libraries: MAP_LIBRARIES,
+    language: i18n.language,
+  });
   if (!apiKey) {
     return (
       <Paper sx={{ height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

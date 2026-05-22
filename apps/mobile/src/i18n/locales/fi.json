@@ -1942,7 +1942,8 @@
     "areaResults_one": "Tältä alueelta löytyi {{count}} omaisuutta",
     "areaResults_other": "Tältä alueelta löytyi {{count}} kiinteistöä",
     "clickToView": "napauta nähdäksesi luettelon",
-    "propertiesInArea": "Kiinteistöt valitulla alueella"
+    "propertiesInArea": "Kiinteistöt valitulla alueella",
+    "loading": "Ladataan karttaa…"
   },
   "saved": {
     "title": "Tallennettu",

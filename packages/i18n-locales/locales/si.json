@@ -1643,6 +1643,7 @@
     "areaResults_one": "මෙම ප්‍රදේශයෙන් දේපල {{count}}ක් හමු විය",
     "areaResults_other": "මෙම ප්‍රදේශයෙන් {{count}} ගුණ සොයා ගන්නා ලදී",
     "clickToView": "ලැයිස්තුව බැලීමට තට්ටු කරන්න",
-    "propertiesInArea": "තෝරාගත් ප්රදේශයේ දේපල"
+    "propertiesInArea": "තෝරාගත් ප්රදේශයේ දේපල",
+    "loading": "සිතියම පූරණය වෙමින්..."
   }
 }

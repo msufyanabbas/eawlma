@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} دارایی در این منطقه یافت شد",
     "areaResults_other": "{{count}} ویژگی در این منطقه یافت شد",
     "clickToView": "برای مشاهده لیست ضربه بزنید",
-    "propertiesInArea": "خواص در منطقه انتخاب شده"
+    "propertiesInArea": "خواص در منطقه انتخاب شده",
+    "loading": "در حال بارگیری نقشه…"
   }
 }

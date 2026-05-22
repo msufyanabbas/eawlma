@@ -1643,6 +1643,7 @@
     "areaResults_one": "Đã tìm thấy {{count}} sản phẩm ở khu vực này",
     "areaResults_other": "Đã tìm thấy {{count}} bất động sản ở khu vực này",
     "clickToView": "nhấn để xem danh sách",
-    "propertiesInArea": "Thuộc tính trong khu vực đã chọn"
+    "propertiesInArea": "Thuộc tính trong khu vực đã chọn",
+    "loading": "Đang tải bản đồ…"
   }
 }

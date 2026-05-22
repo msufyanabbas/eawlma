@@ -1942,7 +1942,8 @@
     "areaResults_one": "נכס {{count}} נמצא באזור זה",
     "areaResults_other": "{{count}} נכסים נמצאו באזור זה",
     "clickToView": "הקש כדי להציג רשימה",
-    "propertiesInArea": "נכסים באזור נבחר"
+    "propertiesInArea": "נכסים באזור נבחר",
+    "loading": "טוען מפה..."
   },
   "saved": {
     "title": "נשמר",

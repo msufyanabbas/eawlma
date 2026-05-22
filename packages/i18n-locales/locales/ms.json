@@ -1643,6 +1643,7 @@
     "areaResults_one": "{{count}} harta yang ditemui di kawasan ini",
     "areaResults_other": "{{count}} hartanah ditemui di kawasan ini",
     "clickToView": "ketik untuk melihat senarai",
-    "propertiesInArea": "Sifat dalam Kawasan Terpilih"
+    "propertiesInArea": "Sifat dalam Kawasan Terpilih",
+    "loading": "Memuatkan peta…"
   }
 }

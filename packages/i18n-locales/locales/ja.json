@@ -1643,6 +1643,7 @@
     "areaResults_one": "このエリアで {{count}} 件の物件が見つかりました",
     "areaResults_other": "このエリアで {{count}} 件の物件が見つかりました",
     "clickToView": "タップしてリストを表示",
-    "propertiesInArea": "選択したエリアのプロパティ"
+    "propertiesInArea": "選択したエリアのプロパティ",
+    "loading": "マップを読み込み中…"
   }
 }

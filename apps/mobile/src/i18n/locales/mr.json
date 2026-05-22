@@ -1942,7 +1942,8 @@
     "areaResults_one": "या भागात {{count}} मालमत्ता आढळली",
     "areaResults_other": "या भागात {{count}} गुणधर्म आढळले",
     "clickToView": "सूची पाहण्यासाठी टॅप करा",
-    "propertiesInArea": "निवडलेल्या क्षेत्रातील गुणधर्म"
+    "propertiesInArea": "निवडलेल्या क्षेत्रातील गुणधर्म",
+    "loading": "नकाशा लोड करत आहे..."
   },
   "saved": {
     "title": "जतन केले",
