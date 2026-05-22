@@ -25,10 +25,11 @@ import { UserEntity } from '../../modules/users/entities/user.entity';
  */
 
 // Real, publicly available equirectangular 360° panoramas — free to use.
-// Sourced from the Pannellum and Marzipano project demo assets.
+// Pannellum demo assets + a Wikimedia Commons panorama; the previous
+// marzipano.net URL 404'd, so the VR section showed a broken tour.
 const REAL_360_URLS = [
   'https://pannellum.org/images/cerro-toco-0.jpg',
-  'https://www.marzipano.net/media/equirectangular.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Interior_de_la_Capilla_Sixtina%2C_Roma%2C_Italia%2C_2022-09-17%2C_DD_03-06_HDR.jpg/2560px-Interior_de_la_Capilla_Sixtina%2C_Roma%2C_Italia%2C_2022-09-17%2C_DD_03-06_HDR.jpg',
   'https://pannellum.org/images/alma.jpg',
 ];
 
