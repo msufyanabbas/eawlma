@@ -1,65 +1,110 @@
 #!/bin/bash
 set -e
 
-SERVER_IP="3.142.74.95"
-SERVER_USER="ubuntu"
-PEM_FILE="~/Downloads/eawlma-key.pem"
-DEPLOY_DIR="~/eawlma-package"
+SERVER="ubuntu@3.142.74.95"
+KEY="$HOME/Downloads/eawlma-key.pem"
+REMOTE_DIR="~/eawlma-package"
+PACKAGE_DIR="$(dirname "$0")/../eawlma-package"
 
-echo "🚀 Starting deployment..."
+echo "🔨 Step 1: Building Docker images..."
+cd "$(dirname "$0")/.."
 
-# Step 1: Build backend
-echo "📦 Building backend..."
-npm run build:backend
+docker build -t eawlma-backend:latest \
+  -f apps/backend/Dockerfile . \
+  --platform linux/amd64
 
-# Step 2: Build frontend
-echo "🎨 Building frontend..."
-npm run build:frontend
+docker build -t eawlma-frontend:latest \
+  -f apps/frontend/Dockerfile . \
+  --platform linux/amd64
 
-# Step 3: Build Docker images
-echo "🐳 Building Docker images..."
-docker build -f apps/backend/Dockerfile -t eawlma-backend:latest .
-docker build -f apps/frontend/Dockerfile -t eawlma-frontend:latest .
+echo "💾 Step 2: Saving images..."
+docker save eawlma-backend:latest eawlma-frontend:latest \
+  -o "$PACKAGE_DIR/images.tar"
 
-# Step 4: Export images
-echo "💾 Exporting images..."
-docker save eawlma-backend:latest eawlma-frontend:latest -o /tmp/images.tar
+echo "🗜️  Step 3: Compressing..."
+gzip -f "$PACKAGE_DIR/images.tar"
 
-# Step 5: Split and upload
-echo "📤 Uploading to server..."
-split -b 50m /tmp/images.tar /tmp/img_part_
+# Get file size
+SIZE=$(du -sh "$PACKAGE_DIR/images.tar.gz" | cut -f1)
+echo "📦 Package size: $SIZE"
 
-for part in /tmp/img_part_*; do
-  filename=$(basename $part)
-  echo "Uploading $filename..."
-  scp -i $PEM_FILE -o ServerAliveInterval=30 \
-    $part $SERVER_USER@$SERVER_IP:$DEPLOY_DIR/
+echo "📤 Step 4: Uploading (this may take a while)..."
+
+# Split into 200MB chunks for reliable transfer
+echo "   Splitting into chunks..."
+split -b 200m \
+  "$PACKAGE_DIR/images.tar.gz" \
+  "$PACKAGE_DIR/chunk_"
+
+# Count chunks
+CHUNKS=$(ls "$PACKAGE_DIR"/chunk_* | wc -l)
+echo "   $CHUNKS chunks to upload"
+
+# Upload each chunk with keep-alive
+CURRENT=0
+for chunk in "$PACKAGE_DIR"/chunk_*; do
+  CURRENT=$((CURRENT + 1))
+  CHUNK_NAME=$(basename "$chunk")
+  echo "   Uploading chunk $CURRENT/$CHUNKS: $CHUNK_NAME"
+
+  scp \
+    -i "$KEY" \
+    -o "ServerAliveInterval=30" \
+    -o "ServerAliveCountMax=20" \
+    -o "TCPKeepAlive=yes" \
+    -o "ConnectTimeout=60" \
+    -o "StrictHostKeyChecking=no" \
+    "$chunk" \
+    "$SERVER:$REMOTE_DIR/$CHUNK_NAME"
+
+  echo "   ✅ Chunk $CURRENT/$CHUNKS uploaded"
 done
 
-# Step 6: Deploy on server
-echo "🔄 Deploying on server..."
-ssh -i $PEM_FILE $SERVER_USER@$SERVER_IP << 'ENDSSH'
+echo "📤 Uploading docker-compose.yml..."
+scp \
+  -i "$KEY" \
+  -o "ServerAliveInterval=30" \
+  -o "ServerAliveCountMax=20" \
+  "$PACKAGE_DIR/docker-compose.yml" \
+  "$SERVER:$REMOTE_DIR/docker-compose.yml"
+
+echo "🚀 Step 5: Deploying on server..."
+ssh \
+  -i "$KEY" \
+  -o "ServerAliveInterval=30" \
+  -o "ServerAliveCountMax=20" \
+  -o "TCPKeepAlive=yes" \
+  "$SERVER" << 'ENDSSH'
+
+  set -e
   cd ~/eawlma-package
 
-  # Reassemble images
-  cat img_part_* > images.tar
-  rm -f img_part_*
+  echo "🔧 Reassembling image..."
+  cat chunk_* > images.tar.gz
+  rm -f chunk_*
 
-  # Load new images
-  docker load -i images.tar
+  echo "📦 Loading Docker images (this takes a few minutes)..."
+  gunzip -c images.tar.gz | docker load
+  rm -f images.tar.gz
 
-  # Restart containers
+  echo "🛑 Stopping old containers..."
   docker compose down
+
+  echo "▶️  Starting new containers..."
   docker compose up -d
 
-  # Check status
-  docker compose ps
+  echo "⏳ Waiting for services..."
+  sleep 10
 
   echo "✅ Deployment complete!"
+  docker compose ps
+
 ENDSSH
 
-# Cleanup
-rm -f /tmp/images.tar /tmp/img_part_*
+# Cleanup local chunks
+echo "🧹 Cleaning up local chunks..."
+rm -f "$PACKAGE_DIR"/chunk_*
 
-echo "✅ Deployment successful!"
-echo "🌐 App running at http://$SERVER_IP"
+echo ""
+echo "🎉 Deployment successful!"
+echo "🌐 Visit: https://eawlma.com"
