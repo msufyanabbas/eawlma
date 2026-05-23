@@ -72,27 +72,16 @@ split -b $CHUNK_SIZE \
 CHUNKS=$(ls "$PACKAGE_DIR"/chunk_* | wc -l)
 echo "   $CHUNKS chunks to upload"
 
+echo "🧹 Cleaning old chunks from server..."
+ssh $SSH_OPTS "$SERVER" \
+  "rm -f $REMOTE_DIR/chunk_* $REMOTE_DIR/images.tar.gz" 2>/dev/null || true
+echo "   ✅ Server cleaned"
+
 echo "📤 Step 5: Uploading chunks with auto-retry..."
-
-# Check which chunks already uploaded (resume support)
-UPLOADED=$(ssh $SSH_OPTS "$SERVER" \
-  "ls $REMOTE_DIR/chunk_* 2>/dev/null | wc -l" || echo "0")
-echo "   $UPLOADED chunks already on server (resuming)"
-
 CURRENT=0
 for chunk in "$PACKAGE_DIR"/chunk_*; do
   CURRENT=$((CURRENT + 1))
   CHUNK_NAME=$(basename "$chunk")
-
-  # Skip if already uploaded
-  ALREADY=$(ssh $SSH_OPTS "$SERVER" \
-    "test -f $REMOTE_DIR/$CHUNK_NAME && echo yes || echo no" 2>/dev/null || echo "no")
-
-  if [ "$ALREADY" = "yes" ]; then
-    echo "   ⏭️  Skipping $CHUNK_NAME (already uploaded)"
-    continue
-  fi
-
   echo "   📦 Uploading $CURRENT/$CHUNKS: $CHUNK_NAME"
   upload_with_retry "$chunk" "$REMOTE_DIR/$CHUNK_NAME"
 done
