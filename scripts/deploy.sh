@@ -21,16 +21,22 @@ upload_with_retry() {
   local file=$1
   local remote_path=$2
   local attempt=1
+  local local_size=$(wc -c < "$file")
 
   while [ $attempt -le $MAX_RETRIES ]; do
     echo "   Attempt $attempt/$MAX_RETRIES: $(basename $file)"
 
-    if scp $SSH_OPTS \
-      -o "IPQoS=throughput" \
-      "$file" \
-      "$SERVER:$remote_path"; then
-      echo "   ✅ Success!"
-      return 0
+    if scp $SSH_OPTS "$file" "$SERVER:$remote_path"; then
+      remote_size=$(ssh $SSH_OPTS "$SERVER" \
+        "wc -c < $remote_path" 2>/dev/null || echo "0")
+
+      if [ "$remote_size" = "$local_size" ]; then
+        echo "   ✅ Verified! ($local_size bytes)"
+        return 0
+      else
+        echo "   ⚠️  Size mismatch! Removing corrupt file..."
+        ssh $SSH_OPTS "$SERVER" "rm -f $remote_path" 2>/dev/null
+      fi
     fi
 
     echo "   ❌ Failed, waiting 5s before retry..."
@@ -110,7 +116,7 @@ ssh $SSH_OPTS "$SERVER" << 'ENDSSH'
   echo "▶️  Starting containers..."
   docker compose up -d
 
-  sleep 10
+  sleep 15
   echo "✅ Done!"
   docker compose ps
 ENDSSH
