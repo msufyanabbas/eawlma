@@ -17,6 +17,11 @@ export interface PublicAgent {
   responseTime?: string | null;
   isSuperhost?: boolean;
   totalCompletedBookings?: number;
+  regaVerified?: boolean;
+  isNafathVerified?: boolean;
+  phoneVerified?: boolean;
+  licenseNumber?: string | null;
+  agencyName?: string | null;
 }
 
 export const agentsApi = {

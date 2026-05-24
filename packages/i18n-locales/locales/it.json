@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} recensioni",
     "builtYear": "Costruito",
     "vrFullscreen": "Entra in modalità VR",
-    "vrHint": "🖱️ Fai clic e trascina per guardarti intorno · Scorri per ingrandire"
+    "vrHint": "🖱️ Fai clic e trascina per guardarti intorno · Scorri per ingrandire",
+    "priceHistory": "Storico prezzi",
+    "priceReduced": "Prezzo ridotto",
+    "priceIncreased": "Prezzo aumentato"
   },
   "search": {
     "filters": "Filtri",
@@ -768,7 +771,7 @@
       "cornerUnit": "Elemento angolare"
     },
     "shortTermAmenity": {
-      "wifi": "Wi-Fi",
+      "wifi": "Wifi",
       "pool": "Piscina",
       "parking": "Parcheggio",
       "breakfast": "Colazione",
@@ -1402,7 +1405,28 @@
     "viewProfile": "Visualizza profilo",
     "sendMessage": "Invia messaggio",
     "respondsWithin": "Risponde entro {{hours}} ore",
-    "respondsWithinDay": "Risponde entro un giorno"
+    "respondsWithinDay": "Risponde entro un giorno",
+    "regaSection": "Licenza REGA",
+    "regaVerified": "Licenza REGA",
+    "regaVerifiedTitle": "Licenza REGA verificata",
+    "regaVerifiedDesc": "Concesso in licenza dalla REGA - Autorità Generale per il Patrimonio Immobiliare",
+    "regaPending": "Licenza inviata - in attesa di verifica",
+    "regaDesc": "Inserisci il tuo numero di licenza REGA per ottenere il badge verificato",
+    "regaLicenseNumber": "Numero di licenza REGA",
+    "regaExpiryDate": "Data di scadenza della licenza",
+    "submitRega": "Invia per la verifica",
+    "identityVerification": "Verifica dell'identità",
+    "nafathTitle": "Verifica con Nafath",
+    "nafathDesc": "Verifica la tua carta d'identità saudita tramite Nafath",
+    "nafathNote": "Verrai reindirizzato a Nafath",
+    "nafathVerifiedTitle": "Identità verificata tramite Nafath",
+    "nafathVerifiedDesc": "La tua carta d'identità saudita è stata verificata",
+    "nafathBadge": "Verificato",
+    "nafathError": "Impossibile connettersi a Nafath",
+    "verifyWithNafath": "Verifica con Nafath",
+    "phoneVerified": "Telefono",
+    "phoneVerifiedDesc": "Numero di telefono verificato",
+    "nafathVerifiedLong": "ID verificato"
   },
   "property": {
     "villa": "Villa",

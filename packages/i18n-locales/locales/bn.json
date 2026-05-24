@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}}টি পর্যালোচনা",
     "builtYear": "নির্মিত",
     "vrFullscreen": "| VR মোডে প্রবেশ করুন",
-    "vrHint": "🖱️ চারপাশে দেখতে ক্লিক করুন এবং টেনে আনুন · জুম করতে স্ক্রোল করুন"
+    "vrHint": "🖱️ চারপাশে দেখতে ক্লিক করুন এবং টেনে আনুন · জুম করতে স্ক্রোল করুন",
+    "priceHistory": "| মূল্য ইতিহাস",
+    "priceReduced": "| দাম কমেছে",
+    "priceIncreased": "দাম বেড়েছে"
   },
   "search": {
     "filters": "ফিল্টার",
@@ -1402,7 +1405,28 @@
     "viewProfile": "| প্রোফাইল দেখুন",
     "sendMessage": "বার্তা পাঠান",
     "respondsWithin": "{{hours}} ঘণ্টার মধ্যে উত্তর দেয়৷",
-    "respondsWithinDay": "একদিনের মধ্যে সাড়া দেয়"
+    "respondsWithinDay": "একদিনের মধ্যে সাড়া দেয়",
+    "regaSection": "REGA লাইসেন্স",
+    "regaVerified": "REGA লাইসেন্সপ্রাপ্ত",
+    "regaVerifiedTitle": "REGA লাইসেন্স যাচাই করা হয়েছে",
+    "regaVerifiedDesc": "REGA দ্বারা লাইসেন্সপ্রাপ্ত - রিয়েল এস্টেটের জন্য সাধারণ কর্তৃপক্ষ",
+    "regaPending": "লাইসেন্স জমা দেওয়া হয়েছে - মুলতুবি যাচাই",
+    "regaDesc": "যাচাইকৃত ব্যাজ পেতে আপনার REGA লাইসেন্স নম্বর লিখুন",
+    "regaLicenseNumber": "৷ REGA লাইসেন্স নম্বর",
+    "regaExpiryDate": "লাইসেন্সের মেয়াদ শেষ হওয়ার তারিখ",
+    "submitRega": "যাচাইকরণের জন্য জমা দিন",
+    "identityVerification": "পরিচয় যাচাই",
+    "nafathTitle": "নাফাথ দিয়ে যাচাই করুন",
+    "nafathDesc": "| নাফাথ",
+    "nafathNote": "এর মাধ্যমে আপনার সৌদি জাতীয় পরিচয়পত্র যাচাই করুন আপনাকে নাফাথে পুনঃনির্দেশিত করা হবে",
+    "nafathVerifiedTitle": "Nafath",
+    "nafathVerifiedDesc": "এর মাধ্যমে পরিচয় যাচাই করা হয়েছে৷ আপনার সৌদি জাতীয় পরিচয়পত্র যাচাই করা হয়েছে",
+    "nafathBadge": "যাচাইকৃত",
+    "nafathError": "|৷ নাফাথের সাথে সংযোগ করা যায়নি",
+    "verifyWithNafath": "নাফাথ দিয়ে যাচাই করুন",
+    "phoneVerified": "| ফোন",
+    "phoneVerifiedDesc": "| ফোন নম্বর যাচাই করা হয়েছে",
+    "nafathVerifiedLong": "আইডি যাচাইকৃত"
   },
   "property": {
     "villa": "ভিলা",

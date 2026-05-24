@@ -18,11 +18,17 @@ export class UserResponseDto {
   @Expose() @ApiProperty({ enum: ['light', 'dark'] }) preferredTheme: 'light' | 'dark';
   @Expose() @ApiProperty() emailVerified: boolean;
   @Expose() @ApiProperty() phoneVerified: boolean;
+  @Expose() @ApiProperty({ type: String, nullable: true }) phoneVerifiedAt: Date | null;
   @Expose() @ApiProperty({ enum: VerificationStatus }) identityVerificationStatus: VerificationStatus;
+  @Expose() @ApiProperty() isNafathVerified: boolean;
+  @Expose() @ApiProperty({ type: String, nullable: true }) nafathVerifiedAt: Date | null;
   @Expose() @ApiProperty({ nullable: true }) agencyId: string | null;
   @Expose() @ApiProperty({ nullable: true }) agencyName: string | null;
   @Expose() @ApiProperty({ nullable: true }) licenseNumber: string | null;
   @Expose() @ApiProperty({ nullable: true }) registrationNumber: string | null;
+  @Expose() @ApiProperty({ type: String, nullable: true }) regaLicenseExpiry: Date | null;
+  @Expose() @ApiProperty() regaVerified: boolean;
+  @Expose() @ApiProperty({ type: String, nullable: true }) regaVerifiedAt: Date | null;
   @Expose() @ApiProperty({
     type: 'object',
     additionalProperties: { type: 'boolean' },
@@ -49,11 +55,17 @@ export class UserResponseDto {
     dto.preferredTheme = user.preferredTheme ?? 'light';
     dto.emailVerified = user.emailVerified;
     dto.phoneVerified = user.phoneVerified;
+    dto.phoneVerifiedAt = user.phoneVerifiedAt ?? null;
     dto.identityVerificationStatus = user.identityVerificationStatus;
+    dto.isNafathVerified = user.isNafathVerified;
+    dto.nafathVerifiedAt = user.nafathVerifiedAt ?? null;
     dto.agencyId = user.agencyId;
     dto.agencyName = user.agencyName;
     dto.licenseNumber = user.licenseNumber;
     dto.registrationNumber = user.registrationNumber;
+    dto.regaLicenseExpiry = user.regaLicenseExpiry ?? null;
+    dto.regaVerified = user.regaVerified;
+    dto.regaVerifiedAt = user.regaVerifiedAt ?? null;
     dto.notificationPreferences = user.notificationPreferences;
     dto.createdAt = user.createdAt;
     dto.updatedAt = user.updatedAt;

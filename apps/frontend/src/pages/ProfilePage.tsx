@@ -1,5 +1,6 @@
 import {
   Alert,
+  AlertTitle,
   Avatar,
   Box,
   Button,
@@ -18,6 +19,8 @@ import {
 import DashboardIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorder';
 import HistoryIcon from '@mui/icons-material/HistoryOutlined';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import BadgeIcon from '@mui/icons-material/Badge';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
@@ -27,7 +30,7 @@ import { UserRole } from '@eawlma/shared-types';
 
 import { usersApi } from '@/api/users.api';
 import { listingsApi } from '@/api/listings.api';
-import { extractErrorMessage } from '@/api/client';
+import { apiClient, extractErrorMessage } from '@/api/client';
 import { useAuthStore } from '@/store/auth.store';
 import { useSavedStore } from '@/store/saved.store';
 import { ListingCard } from '@/components/global/ListingCard';
@@ -53,6 +56,9 @@ export function ProfilePage() {
   const [phone, setPhone] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
   const [bio, setBio] = useState('');
+  const [regaNumber, setRegaNumber] = useState('');
+  const [regaExpiry, setRegaExpiry] = useState('');
+  const [nafathLoading, setNafathLoading] = useState(false);
   const [toast, setToast] = useState<{ open: boolean; ok: boolean; msg: string }>({
     open: false, ok: true, msg: '',
   });
@@ -64,6 +70,12 @@ export function ProfilePage() {
     setPhone(data.phone ?? '');
     setAvatarUrl(data.avatarUrl ?? '');
     setBio((data as unknown as { bio?: string }).bio ?? '');
+    setRegaNumber(data.licenseNumber ?? '');
+    setRegaExpiry(
+      data.regaLicenseExpiry
+        ? String(data.regaLicenseExpiry).slice(0, 10)
+        : '',
+    );
   }, [data]);
 
   // usersApi.updateMe centralizes cache invalidation + auth store projection.
@@ -84,6 +96,41 @@ export function ProfilePage() {
       setToast({ open: true, ok: false, msg: extractErrorMessage(err) });
     },
   });
+
+  const regaMutation = useMutation({
+    mutationFn: () =>
+      usersApi.submitRegaLicense({
+        licenseNumber: regaNumber.trim(),
+        expiryDate: regaExpiry,
+      }),
+    onSuccess: () => {
+      setToast({
+        open: true,
+        ok: true,
+        msg: t('agent.regaPending', 'License submitted - pending verification'),
+      });
+    },
+    onError: (err) => {
+      setToast({ open: true, ok: false, msg: extractErrorMessage(err) });
+    },
+  });
+
+  const handleNafathVerify = async () => {
+    setNafathLoading(true);
+    try {
+      // The nafath authorize endpoint 302-redirects, so we just bounce the
+      // browser directly. No JSON to parse on the way out.
+      const baseURL = apiClient.defaults.baseURL ?? '';
+      window.location.href = `${baseURL.replace(/\/$/, '')}/auth/nafath/authorize`;
+    } catch (err) {
+      setNafathLoading(false);
+      setToast({
+        open: true,
+        ok: false,
+        msg: t('agent.nafathError', 'Could not connect to Nafath'),
+      });
+    }
+  };
 
   // Recently viewed — last 3 from localStorage
   const recentIds = getRecentlyViewed().slice(0, 3);
@@ -232,6 +279,130 @@ export function ProfilePage() {
             </Button>
           </Stack>
         </Paper>
+
+        {/* ---- REGA broker licence + Nafath identity (agents only) ---- */}
+        {isAgent && data && (
+          <Paper sx={{ p: { xs: 3, md: 4 }, borderRadius: 3, mt: 3 }}>
+            <Typography variant="h6" sx={{ fontWeight: 800, mb: 2 }}>
+              {t('agent.regaSection', 'REGA License')}
+            </Typography>
+
+            {data.regaVerified ? (
+              <Alert severity="success" icon={<VerifiedIcon />}>
+                <AlertTitle>
+                  {t('agent.regaVerifiedTitle', 'REGA License Verified')}
+                </AlertTitle>
+                {t('agent.regaLicenseNumber', 'REGA License Number')}:{' '}
+                <strong>{data.licenseNumber}</strong>
+              </Alert>
+            ) : data.licenseNumber ? (
+              <Alert severity="warning">
+                {t(
+                  'agent.regaPending',
+                  'License submitted - pending verification',
+                )}
+              </Alert>
+            ) : (
+              <>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  {t(
+                    'agent.regaDesc',
+                    'Enter your REGA license number to get verified badge',
+                  )}
+                </Typography>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <TextField
+                      fullWidth
+                      label={t('agent.regaLicenseNumber', 'REGA License Number')}
+                      value={regaNumber}
+                      onChange={(e) => setRegaNumber(e.target.value)}
+                      placeholder="e.g. FA-12345678"
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <TextField
+                      fullWidth
+                      type="date"
+                      label={t('agent.regaExpiryDate', 'License Expiry Date')}
+                      value={regaExpiry}
+                      onChange={(e) => setRegaExpiry(e.target.value)}
+                      InputLabelProps={{ shrink: true }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      variant="contained"
+                      startIcon={<VerifiedIcon />}
+                      onClick={() => regaMutation.mutate()}
+                      disabled={
+                        regaMutation.isPending || !regaNumber.trim() || !regaExpiry
+                      }
+                      sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
+                    >
+                      {regaMutation.isPending
+                        ? t('common.loading')
+                        : t('agent.submitRega', 'Submit for Verification')}
+                    </Button>
+                  </Grid>
+                </Grid>
+              </>
+            )}
+
+            <Typography variant="h6" sx={{ fontWeight: 800, mt: 4, mb: 2 }}>
+              {t('agent.identityVerification', 'Identity Verification')}
+            </Typography>
+
+            {data.isNafathVerified ? (
+              <Alert severity="success" icon={<BadgeIcon />}>
+                <AlertTitle>
+                  {t(
+                    'agent.nafathVerifiedTitle',
+                    'Identity Verified via Nafath',
+                  )}
+                </AlertTitle>
+                {t(
+                  'agent.nafathVerifiedDesc',
+                  'Your Saudi national ID has been verified',
+                )}
+              </Alert>
+            ) : (
+              <Box>
+                <Alert severity="info" sx={{ mb: 2 }}>
+                  <AlertTitle>
+                    {t('agent.nafathTitle', 'Verify with Nafath')}
+                  </AlertTitle>
+                  {t(
+                    'agent.nafathDesc',
+                    'Verify your Saudi national ID through Nafath',
+                  )}
+                </Alert>
+                <Button
+                  variant="contained"
+                  size="large"
+                  startIcon={<BadgeIcon />}
+                  onClick={handleNafathVerify}
+                  disabled={nafathLoading}
+                  sx={{ background: theme.eawlma.gradient, fontWeight: 700 }}
+                >
+                  {nafathLoading
+                    ? t('common.loading')
+                    : t('agent.verifyWithNafath', 'Verify with Nafath')}
+                </Button>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ display: 'block', mt: 1 }}
+                >
+                  {t(
+                    'agent.nafathNote',
+                    'You will be redirected to Nafath',
+                  )}
+                </Typography>
+              </Box>
+            )}
+          </Paper>
+        )}
 
         {/* ---- Saved + recent activity ---- */}
         <Grid container spacing={3} sx={{ mt: 0 }}>

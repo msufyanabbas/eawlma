@@ -63,6 +63,9 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'boolean', name: 'phone_verified', default: false })
   phoneVerified: boolean;
 
+  @Column({ type: 'timestamptz', name: 'phone_verified_at', nullable: true })
+  phoneVerifiedAt: Date | null;
+
   @Column({
     type: 'enum',
     enum: VerificationStatus,
@@ -83,6 +86,9 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'boolean', name: 'is_nafath_verified', default: false })
   isNafathVerified: boolean;
 
+  @Column({ type: 'timestamptz', name: 'nafath_verified_at', nullable: true })
+  nafathVerifiedAt: Date | null;
+
   @Column({ type: 'uuid', name: 'agency_id', nullable: true })
   agencyId: string | null;
 
@@ -95,6 +101,19 @@ export class UserEntity extends BaseEntity {
    *  themselves; admin verification of the licence is a separate workflow. */
   @Column({ type: 'varchar', length: 64, name: 'license_number', nullable: true })
   licenseNumber: string | null;
+
+  /** Expiry date submitted alongside the REGA license. Renewals reset
+   *  `regaVerified` so admins re-check before the badge re-appears. */
+  @Column({ type: 'date', name: 'rega_license_expiry', nullable: true })
+  regaLicenseExpiry: Date | null;
+
+  /** Set true only when an admin (or in future, the REGA API) has confirmed
+   *  the broker license. Drives the public "REGA Licensed" trust badge. */
+  @Column({ type: 'boolean', name: 'rega_verified', default: false })
+  regaVerified: boolean;
+
+  @Column({ type: 'timestamptz', name: 'rega_verified_at', nullable: true })
+  regaVerifiedAt: Date | null;
 
   /** Saudi commercial registration number (CR / السجل التجاري). */
   @Column({ type: 'varchar', length: 64, name: 'registration_number', nullable: true })

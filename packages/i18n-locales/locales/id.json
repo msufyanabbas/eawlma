@@ -467,7 +467,10 @@
     "reviewsCount": "{{hitungan}} ulasan",
     "builtYear": "Dibuat",
     "vrFullscreen": "Masuk ke Mode VR",
-    "vrHint": "🖱️ Klik dan tarik untuk melihat sekeliling · Gulir untuk memperbesar"
+    "vrHint": "🖱️ Klik dan tarik untuk melihat sekeliling · Gulir untuk memperbesar",
+    "priceHistory": "Sejarah Harga",
+    "priceReduced": "Harga Dikurangi",
+    "priceIncreased": "Harga Meningkat"
   },
   "search": {
     "filters": "Filter",
@@ -1402,7 +1405,28 @@
     "viewProfile": "Lihat Profil",
     "sendMessage": "Kirim Pesan",
     "respondsWithin": "Merespon dalam waktu {{hours}} jam",
-    "respondsWithinDay": "Merespon dalam satu hari"
+    "respondsWithinDay": "Merespon dalam satu hari",
+    "regaSection": "Lisensi REGA",
+    "regaVerified": "Berlisensi REGA",
+    "regaVerifiedTitle": "Lisensi REGA Terverifikasi",
+    "regaVerifiedDesc": "Dilisensikan oleh REGA - Otoritas Umum untuk Real Estat",
+    "regaPending": "Lisensi dikirimkan - menunggu verifikasi",
+    "regaDesc": "Masukkan nomor lisensi REGA Anda untuk mendapatkan lencana terverifikasi",
+    "regaLicenseNumber": "Nomor Lisensi REGA",
+    "regaExpiryDate": "Tanggal Kedaluwarsa Lisensi",
+    "submitRega": "Kirim untuk Verifikasi",
+    "identityVerification": "Verifikasi Identitas",
+    "nafathTitle": "Verifikasi dengan Nafath",
+    "nafathDesc": "Verifikasi ID nasional Saudi Anda melalui Nafath",
+    "nafathNote": "Anda akan diarahkan ke Nafath",
+    "nafathVerifiedTitle": "Identitas Diverifikasi melalui Nafath",
+    "nafathVerifiedDesc": "Kartu identitas nasional Saudi Anda telah diverifikasi",
+    "nafathBadge": "Terverifikasi",
+    "nafathError": "Tidak dapat terhubung ke Nafath",
+    "verifyWithNafath": "Verifikasi dengan Nafath",
+    "phoneVerified": "Telepon",
+    "phoneVerifiedDesc": "Nomor telepon terverifikasi",
+    "nafathVerifiedLong": "ID Terverifikasi"
   },
   "property": {
     "villa": "Vila",

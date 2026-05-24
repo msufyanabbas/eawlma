@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} beoordelingen",
     "builtYear": "Gebouwd",
     "vrFullscreen": "Ga naar de VR-modus",
-    "vrHint": "🖱️ Klik en sleep om rond te kijken · Scroll om in te zoomen"
+    "vrHint": "🖱️ Klik en sleep om rond te kijken · Scroll om in te zoomen",
+    "priceHistory": "Prijsgeschiedenis",
+    "priceReduced": "Prijs verlaagd",
+    "priceIncreased": "Prijs verhoogd"
   },
   "search": {
     "filters": "Filters",
@@ -1402,7 +1405,28 @@
     "viewProfile": "Bekijk profiel",
     "sendMessage": "Bericht verzenden",
     "respondsWithin": "Reageert binnen {{hours}} uur",
-    "respondsWithinDay": "Reageert binnen een dag"
+    "respondsWithinDay": "Reageert binnen een dag",
+    "regaSection": "REGA-licentie",
+    "regaVerified": "REGA-licentie",
+    "regaVerifiedTitle": "REGA-licentie geverifieerd",
+    "regaVerifiedDesc": "Gelicentieerd door REGA - Algemene autoriteit voor onroerend goed",
+    "regaPending": "Licentie ingediend - in afwachting van verificatie",
+    "regaDesc": "Voer uw REGA-licentienummer in om de geverifieerde badge",
+    "regaLicenseNumber": "te krijgen REGA-licentienummer",
+    "regaExpiryDate": "Vervaldatum licentie",
+    "submitRega": "Indienen voor verificatie",
+    "identityVerification": "Identiteitsverificatie",
+    "nafathTitle": "Verifieer met Nafath",
+    "nafathDesc": "Verifieer uw Saoedische nationale identiteitsbewijs via Nafath",
+    "nafathNote": "U wordt doorgestuurd naar Nafath",
+    "nafathVerifiedTitle": "Identiteit geverifieerd via Nafath",
+    "nafathVerifiedDesc": "Uw Saoedische nationale identiteitsbewijs is geverifieerd",
+    "nafathBadge": "Geverifieerd",
+    "nafathError": "Kan geen verbinding maken met Nafath",
+    "verifyWithNafath": "Verifieer met Nafath",
+    "phoneVerified": "Telefoon",
+    "phoneVerifiedDesc": "Telefoonnummer geverifieerd",
+    "nafathVerifiedLong": "ID geverifieerd"
   },
   "property": {
     "villa": "Villa",

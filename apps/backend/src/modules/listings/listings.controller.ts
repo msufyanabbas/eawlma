@@ -127,6 +127,16 @@ export class ListingsController {
   }
 
   @Public()
+  @Get(':id/price-history')
+  @ApiOperation({
+    summary: 'Public price-change ledger for a listing (newest first, max 50).',
+  })
+  async priceHistory(@Param('id', ParseUUIDPipe) id: string) {
+    const data = await this.listingsService.getPriceHistory(id);
+    return { data };
+  }
+
+  @Public()
   @Get(':id')
   @ApiOperation({ summary: 'Get a listing by ID. Public visibility limited to ACTIVE.' })
   @ApiOkResponse({ type: ListingResponseDto })

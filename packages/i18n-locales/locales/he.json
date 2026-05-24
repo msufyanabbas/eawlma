@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} ביקורות",
     "builtYear": "בנוי",
     "vrFullscreen": "היכנס למצב VR",
-    "vrHint": "🖱️ לחץ וגרור כדי להסתכל מסביב · גלול להגדלה"
+    "vrHint": "🖱️ לחץ וגרור כדי להסתכל מסביב · גלול להגדלה",
+    "priceHistory": "היסטוריית מחירים",
+    "priceReduced": "מחיר מופחת",
+    "priceIncreased": "המחיר עלה"
   },
   "search": {
     "filters": "מסננים",
@@ -1402,7 +1405,28 @@
     "viewProfile": "צפה בפרופיל",
     "sendMessage": "שלח הודעה",
     "respondsWithin": "מגיב תוך {{שעות}} שעות",
-    "respondsWithinDay": "מגיב תוך יום"
+    "respondsWithinDay": "מגיב תוך יום",
+    "regaSection": "רישיון REGA",
+    "regaVerified": "REGA מורשה",
+    "regaVerifiedTitle": "רישיון REGA מאומת",
+    "regaVerifiedDesc": "ברישיון REGA - הרשות הכללית לנדל\"ן",
+    "regaPending": "רישיון הוגש - ממתין לאימות",
+    "regaDesc": "הזן את מספר רישיון REGA שלך כדי לקבל תג מאומת",
+    "regaLicenseNumber": "מספר רישיון REGA",
+    "regaExpiryDate": "תאריך תפוגה של הרישיון",
+    "submitRega": "שלח לאימות",
+    "identityVerification": "אימות זהות",
+    "nafathTitle": "אמת עם נפת",
+    "nafathDesc": "אמת את תעודת הזהות הלאומית הסעודית שלך דרך Nafath",
+    "nafathNote": "אתה תופנה אל נפת",
+    "nafathVerifiedTitle": "זהות מאומתת באמצעות נפת",
+    "nafathVerifiedDesc": "תעודת הזהות הלאומית הסעודית שלך אומתה",
+    "nafathBadge": "מאומת",
+    "nafathError": "לא ניתן להתחבר אל נפת",
+    "verifyWithNafath": "אמת עם נפת",
+    "phoneVerified": "טלפון",
+    "phoneVerifiedDesc": "מספר טלפון מאומת",
+    "nafathVerifiedLong": "מזהה מאומת"
   },
   "property": {
     "villa": "וילה",

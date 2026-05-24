@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}}개의 리뷰",
     "builtYear": "세워짐",
     "vrFullscreen": "VR 모드 진입",
-    "vrHint": "🖱️ 클릭하고 드래그하여 둘러보세요 · 스크롤하여 확대/축소"
+    "vrHint": "🖱️ 클릭하고 드래그하여 둘러보세요 · 스크롤하여 확대/축소",
+    "priceHistory": "가격 내역",
+    "priceReduced": "가격 인하",
+    "priceIncreased": "가격 인상"
   },
   "search": {
     "filters": "필터",
@@ -1402,7 +1405,28 @@
     "viewProfile": "프로필 보기",
     "sendMessage": "메시지 보내기",
     "respondsWithin": "{{hours}}시간 이내에 응답합니다.",
-    "respondsWithinDay": "하루 안에 응답"
+    "respondsWithinDay": "하루 안에 응답",
+    "regaSection": "REGA 라이센스",
+    "regaVerified": "REGA 라이센스",
+    "regaVerifiedTitle": "REGA 라이센스 확인됨",
+    "regaVerifiedDesc": "REGA(부동산 총괄 기관)의 라이센스를 받았습니다.",
+    "regaPending": "라이선스 제출됨 - 확인 대기 중",
+    "regaDesc": "인증된 배지를 받으려면 REGA 라이센스 번호를 입력하세요.",
+    "regaLicenseNumber": "REGA 라이센스 번호",
+    "regaExpiryDate": "라이센스 만료일",
+    "submitRega": "확인을 위해 제출",
+    "identityVerification": "신원 확인",
+    "nafathTitle": "Nafath로 확인",
+    "nafathDesc": "Nafath를 통해 사우디 주민등록증을 인증하세요",
+    "nafathNote": "Nafath(으)로 리디렉션됩니다.",
+    "nafathVerifiedTitle": "Nafath를 통해 신원 확인",
+    "nafathVerifiedDesc": "귀하의 사우디 주민등록증이 확인되었습니다",
+    "nafathBadge": "확인됨",
+    "nafathError": "나패스에 연결할 수 없습니다",
+    "verifyWithNafath": "Nafath로 확인",
+    "phoneVerified": "핸드폰",
+    "phoneVerifiedDesc": "전화번호가 확인되었습니다.",
+    "nafathVerifiedLong": "신분증 확인됨"
   },
   "property": {
     "villa": "별장",

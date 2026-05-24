@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} ukaguzi",
     "builtYear": "Imejengwa",
     "vrFullscreen": "Weka Hali ya Uhalisia Pepe",
-    "vrHint": "🖱️ Bofya na uburute ili kutazama kote · Sogeza ili kukuza"
+    "vrHint": "🖱️ Bofya na uburute ili kutazama kote · Sogeza ili kukuza",
+    "priceHistory": "Historia ya Bei",
+    "priceReduced": "Bei Imepunguzwa",
+    "priceIncreased": "Bei Imeongezeka"
   },
   "search": {
     "filters": "Vichujio",
@@ -1402,7 +1405,28 @@
     "viewProfile": "Tazama Wasifu",
     "sendMessage": "Tuma Ujumbe",
     "respondsWithin": "Hujibu ndani ya saa {{hours}}",
-    "respondsWithinDay": "Hujibu ndani ya siku moja"
+    "respondsWithinDay": "Hujibu ndani ya siku moja",
+    "regaSection": "Leseni ya REGA",
+    "regaVerified": "REGA Inayo Leseni",
+    "regaVerifiedTitle": "Leseni ya REGA Imethibitishwa",
+    "regaVerifiedDesc": "Imepewa leseni na REGA - Mamlaka kuu ya Mali isiyohamishika",
+    "regaPending": "Leseni imewasilishwa - inasubiri uthibitishaji",
+    "regaDesc": "Weka nambari yako ya leseni ya REGA ili kupata beji iliyothibitishwa",
+    "regaLicenseNumber": "Nambari ya Leseni ya REGA",
+    "regaExpiryDate": "Tarehe ya Kuisha kwa Leseni",
+    "submitRega": "Wasilisha kwa Uthibitisho",
+    "identityVerification": "Uthibitishaji wa Utambulisho",
+    "nafathTitle": "Thibitisha na Nafath",
+    "nafathDesc": "Thibitisha kitambulisho chako cha kitaifa cha Saudi kupitia Nafath",
+    "nafathNote": "Utaelekezwa kwenye Nafathi",
+    "nafathVerifiedTitle": "Utambulisho Umethibitishwa kupitia Nafath",
+    "nafathVerifiedDesc": "Kitambulisho chako cha kitaifa cha Saudi kimethibitishwa",
+    "nafathBadge": "Imethibitishwa",
+    "nafathError": "Haikuweza kuunganisha kwa Nafath",
+    "verifyWithNafath": "Thibitisha na Nafath",
+    "phoneVerified": "Simu",
+    "phoneVerifiedDesc": "Nambari ya simu imethibitishwa",
+    "nafathVerifiedLong": "Kitambulisho Kimethibitishwa"
   },
   "property": {
     "villa": "Villa",

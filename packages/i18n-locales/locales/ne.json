@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} समीक्षाहरू",
     "builtYear": "निर्मित",
     "vrFullscreen": "| VR मोड प्रविष्ट गर्नुहोस्",
-    "vrHint": "| 🖱️ वरिपरि हेर्न क्लिक गर्नुहोस् र तान्नुहोस् · जुम गर्न स्क्रोल गर्नुहोस्"
+    "vrHint": "| 🖱️ वरिपरि हेर्न क्लिक गर्नुहोस् र तान्नुहोस् · जुम गर्न स्क्रोल गर्नुहोस्",
+    "priceHistory": "मूल्य इतिहास",
+    "priceReduced": "मूल्य घट्यो",
+    "priceIncreased": "मूल्य बढ्यो"
   },
   "search": {
     "filters": "फिल्टरहरू",
@@ -1402,7 +1405,28 @@
     "viewProfile": "प्रोफाइल हेर्नुहोस्",
     "sendMessage": "सन्देश पठाउनुहोस्",
     "respondsWithin": "{{hours}} घण्टा भित्र जवाफ दिन्छ",
-    "respondsWithinDay": "एक दिन भित्र जवाफ दिन्छ"
+    "respondsWithinDay": "एक दिन भित्र जवाफ दिन्छ",
+    "regaSection": "REGA लाइसेन्स",
+    "regaVerified": "REGA लाइसेन्स",
+    "regaVerifiedTitle": "REGA लाइसेन्स प्रमाणित",
+    "regaVerifiedDesc": "REGA द्वारा इजाजतपत्र - घर जग्गा लागि सामान्य प्राधिकरण",
+    "regaPending": "इजाजतपत्र पेश गरियो - प्रमाणीकरण बाँकी छ",
+    "regaDesc": "प्रमाणित ब्याज प्राप्त गर्न आफ्नो REGA लाइसेन्स नम्बर प्रविष्ट गर्नुहोस्",
+    "regaLicenseNumber": "REGA लाइसेन्स नम्बर",
+    "regaExpiryDate": "इजाजतपत्र समाप्ति मिति",
+    "submitRega": "प्रमाणीकरणको लागि पेश गर्नुहोस्",
+    "identityVerification": "पहिचान प्रमाणीकरण",
+    "nafathTitle": "Nafath सँग प्रमाणित गर्नुहोस्",
+    "nafathDesc": "Nafath मार्फत आफ्नो साउदी राष्ट्रिय आईडी प्रमाणित गर्नुहोस्",
+    "nafathNote": "तपाईंलाई नाफाथमा रिडिरेक्ट गरिनेछ",
+    "nafathVerifiedTitle": "Nafath मार्फत पहिचान प्रमाणित",
+    "nafathVerifiedDesc": "तपाईंको साउदी राष्ट्रिय आईडी प्रमाणित गरिएको छ",
+    "nafathBadge": "प्रमाणित",
+    "nafathError": "Nafath मा जडान गर्न सकिएन",
+    "verifyWithNafath": "Nafath सँग प्रमाणित गर्नुहोस्",
+    "phoneVerified": "फोन",
+    "phoneVerifiedDesc": "फोन नम्बर प्रमाणित गरियो",
+    "nafathVerifiedLong": "आईडी प्रमाणित"
   },
   "property": {
     "villa": "भिल्ला",

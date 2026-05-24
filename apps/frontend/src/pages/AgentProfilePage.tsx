@@ -30,6 +30,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { searchApi } from '@/api/search.api';
 import { agentsApi } from '@/api/agents.api';
+import { VerificationBadges } from '@/components/agents/VerificationBadges';
 import { reviewsApi } from '@/api/reviews.api';
 import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
@@ -214,9 +215,16 @@ export function AgentProfilePage() {
                   );
                 })()}
               </Stack>
+              <VerificationBadges
+                regaVerified={agent?.regaVerified}
+                nafathVerified={agent?.isNafathVerified}
+                phoneVerified={agent?.phoneVerified}
+                size="medium"
+                sx={{ mb: 1.5 }}
+              />
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                 <BusinessIcon sx={{ fontSize: 16, mr: 0.5, verticalAlign: 'text-bottom' }} />
-                Eawlma Real Estate
+                {agent?.agencyName || 'Eawlma Real Estate'}
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 720 }}>
                 Bilingual real-estate professional helping buyers and renters find the right home

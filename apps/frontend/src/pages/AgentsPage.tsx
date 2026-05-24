@@ -26,6 +26,7 @@ import { useTranslation } from 'react-i18next';
 import { agentsApi, type PublicAgent } from '@/api/agents.api';
 import { searchApi } from '@/api/search.api';
 import { EmptyState } from '@/components/global/EmptyState';
+import { VerificationBadges } from '@/components/agents/VerificationBadges';
 import { formatNumber } from '@/utils/formatters';
 
 // Avatars come from each agent's own profile (`agent.avatarUrl`). When that
@@ -271,6 +272,15 @@ export function AgentsPage() {
                           sx={{ bgcolor: 'success.light', color: 'success.dark', fontWeight: 700 }}
                         />
                       </Stack>
+
+                      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1.5 }}>
+                        <VerificationBadges
+                          regaVerified={agent.regaVerified}
+                          nafathVerified={agent.isNafathVerified}
+                          phoneVerified={agent.phoneVerified}
+                          sx={{ mt: 0, justifyContent: 'center' }}
+                        />
+                      </Box>
 
                       <Typography variant="caption" color="text.secondary" sx={{ mb: 2 }}>
                         {t('agents.activeListingsCount', {

@@ -7,6 +7,7 @@ import {
   Param,
   ParseUUIDPipe,
   Patch,
+  Post,
   Query,
   UseGuards,
 } from '@nestjs/common';
@@ -36,6 +37,7 @@ import type { HostStats } from '@eawlma/shared-types';
 import { NotFoundException } from '@nestjs/common';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UpdatePreferencesDto } from './dto/update-preferences.dto';
+import { SubmitRegaLicenseDto } from './dto/submit-rega-license.dto';
 import {
   UpdateUserRoleDto,
   UpdateUserStatusDto,
@@ -133,6 +135,33 @@ export class UsersController {
     @Body() dto: UpdatePreferencesDto,
   ): Promise<UserResponseDto> {
     const updated = await this.usersService.updatePreferences(userId, dto);
+    return UserResponseDto.fromEntity(updated);
+  }
+
+  @Post('me/rega-license')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Submit REGA broker license for admin verification (agent self-service).',
+  })
+  async submitRegaLicense(
+    @CurrentUser('id') userId: string,
+    @Body() dto: SubmitRegaLicenseDto,
+  ): Promise<{ message: string; status: 'pending' }> {
+    return this.usersService.submitRegaLicense(userId, dto);
+  }
+
+  @Post(':id/verify-rega')
+  @Roles(UserRole.ADMIN)
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary:
+      'Admin: mark a user as REGA-verified after cross-checking the license number.',
+  })
+  @ApiOkResponse({ type: UserResponseDto })
+  async verifyRegaLicense(
+    @Param('id', ParseUUIDPipe) id: string,
+  ): Promise<UserResponseDto> {
+    const updated = await this.usersService.verifyRegaLicense(id);
     return UserResponseDto.fromEntity(updated);
   }
 

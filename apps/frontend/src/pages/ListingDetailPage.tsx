@@ -58,7 +58,11 @@ import { ListingCard } from '@/components/global/ListingCard';
 import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { MortgageCalculator } from '@/components/global/MortgageCalculator';
+import { VerificationBadges } from '@/components/agents/VerificationBadges';
 import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import { apiClient } from '@/api/client';
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
@@ -215,6 +219,28 @@ export function ListingDetailPage() {
     retry: false,
   });
   const agent = agentQuery.data;
+
+  // Price-history ledger. Backend returns newest-first; we keep that order
+  // for the list but reverse for the chart so time flows left → right.
+  const priceHistoryQuery = useQuery({
+    queryKey: ['listing-price-history', listing?.id],
+    queryFn: async () => {
+      const { data } = await apiClient.get<{
+        data: Array<{
+          id: string;
+          price: string;
+          previousPrice: string | null;
+          changePercent: string | null;
+          recordedAt: string;
+          note: string | null;
+        }>;
+      }>(`/listings/${listing!.id}/price-history`);
+      return data.data;
+    },
+    enabled: Boolean(listing?.id),
+    staleTime: 60_000,
+  });
+  const priceHistory = priceHistoryQuery.data ?? [];
 
   // Pick title/description in the chosen translation locale via the shared
   // util — handles stub-prefixed translations + mojibake-corrupted seeds.
@@ -726,6 +752,79 @@ export function ListingDetailPage() {
 
             <ListingReviewsSection listingId={listing.id} />
 
+            {/* Price history ledger — render only when at least one change exists */}
+            {priceHistory.length > 0 && (
+              <Paper sx={{ p: 3, borderRadius: 3, mb: 4 }}>
+                <Typography variant="h6" fontWeight={700} sx={{ mb: 2 }}>
+                  {t('listing.priceHistory', 'Price History')}
+                </Typography>
+                {priceHistory.map((record, i) => {
+                  const change =
+                    record.changePercent === null
+                      ? null
+                      : Number(record.changePercent);
+                  const up = change !== null && change > 0;
+                  return (
+                    <Box
+                      key={record.id}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        py: 1.5,
+                        borderBottom:
+                          i < priceHistory.length - 1 ? '1px solid' : 'none',
+                        borderColor: 'divider',
+                      }}
+                    >
+                      <Box>
+                        <Typography variant="body2" fontWeight={700}>
+                          {Number(record.price).toLocaleString()} {String(listing.currency || 'SAR')}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {new Date(record.recordedAt).toLocaleDateString(i18n.language)}
+                        </Typography>
+                      </Box>
+                      {change !== null && (
+                        <Chip
+                          label={`${up ? '+' : ''}${change}%`}
+                          size="small"
+                          color={up ? 'error' : 'success'}
+                          icon={up ? <TrendingUpIcon /> : <TrendingDownIcon />}
+                        />
+                      )}
+                    </Box>
+                  );
+                })}
+                {priceHistory.length > 1 && (
+                  <Box sx={{ height: 120, mt: 2 }}>
+                    <ResponsiveContainer>
+                      <LineChart
+                        data={[...priceHistory].reverse().map((r) => ({
+                          recordedAt: r.recordedAt,
+                          price: Number(r.price),
+                        }))}
+                      >
+                        <Line
+                          type="monotone"
+                          dataKey="price"
+                          stroke="#6C63A6"
+                          strokeWidth={2}
+                          dot={{ r: 4, fill: '#6C63A6' }}
+                        />
+                        <RechartsTooltip
+                          formatter={(v: number) => [
+                            `${v.toLocaleString()} SAR`,
+                            t('listing.price', { defaultValue: 'Price' }) as string,
+                          ]}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </Box>
+                )}
+              </Paper>
+            )}
+
             {/* Mortgage calculator — sale listings only (rent has no loan to amortise) */}
             {isSale && (
               <Box sx={{ mb: 4 }}>
@@ -928,6 +1027,12 @@ export function ListingDetailPage() {
                     }}
                   />
                 )}
+                <VerificationBadges
+                  regaVerified={agent?.regaVerified}
+                  nafathVerified={agent?.isNafathVerified}
+                  phoneVerified={agent?.phoneVerified}
+                  sx={{ mb: 1 }}
+                />
                 <Chip
                   icon={<AccessTimeIcon sx={{ fontSize: 14 }} />}
                   label={

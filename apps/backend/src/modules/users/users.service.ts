@@ -186,7 +186,52 @@ export class UsersService {
   }
 
   async setPhoneVerified(userId: string, verified = true): Promise<void> {
-    await this.users.update({ id: userId }, { phoneVerified: verified });
+    await this.users.update(
+      { id: userId },
+      {
+        phoneVerified: verified,
+        phoneVerifiedAt: verified ? new Date() : null,
+      },
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // REGA broker license verification
+  // ---------------------------------------------------------------------------
+
+  /** Agent self-service: submit the REGA license number + expiry. Sets
+   *  `regaVerified` back to false so renewals/changes always re-enter the
+   *  admin review queue, even if the license had been verified previously. */
+  async submitRegaLicense(
+    userId: string,
+    data: { licenseNumber: string; expiryDate: string },
+  ): Promise<{ message: string; status: 'pending' }> {
+    const licenseNumber = data.licenseNumber.trim();
+    if (!licenseNumber) {
+      throw new ConflictException('License number is required');
+    }
+    await this.users.update(
+      { id: userId },
+      {
+        licenseNumber,
+        regaLicenseExpiry: new Date(data.expiryDate),
+        regaVerified: false,
+        regaVerifiedAt: null,
+      },
+    );
+    this.emitProfileUpdated(userId);
+    return { message: 'License submitted for verification', status: 'pending' };
+  }
+
+  /** Admin action — flips the REGA badge on. Called after the admin has
+   *  cross-checked the number against the REGA portal manually. */
+  async verifyRegaLicense(userId: string): Promise<UserEntity> {
+    const user = await this.findByIdOrFail(userId);
+    user.regaVerified = true;
+    user.regaVerifiedAt = new Date();
+    const saved = await this.users.save(user);
+    this.emitProfileUpdated(saved.id);
+    return saved;
   }
 
   async recordSuccessfulLogin(userId: string, ip: string | null): Promise<void> {
@@ -262,6 +307,7 @@ export class UsersService {
       ARGON_OPTIONS,
     );
 
+    const now = new Date();
     const user = this.users.create({
       email: synthetic,
       phone: input.phone,
@@ -273,15 +319,24 @@ export class UsersService {
       preferredLocale: 'ar',
       nafathNationalId: input.nationalId,
       isNafathVerified: true,
+      nafathVerifiedAt: now,
       phoneVerified: true,
+      phoneVerifiedAt: now,
     });
     return this.users.save(user);
   }
 
   async markNafathVerified(userId: string, nationalId: string): Promise<void> {
+    const now = new Date();
     await this.users.update(
       { id: userId },
-      { nafathNationalId: nationalId, isNafathVerified: true, phoneVerified: true },
+      {
+        nafathNationalId: nationalId,
+        isNafathVerified: true,
+        nafathVerifiedAt: now,
+        phoneVerified: true,
+        phoneVerifiedAt: now,
+      },
     );
   }
 

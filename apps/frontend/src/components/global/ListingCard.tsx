@@ -31,6 +31,7 @@ import { getListingTitle, getListingLocation } from '@/utils/listingText';
 import { whatsappListingUrl } from '@/utils/whatsapp';
 import { formatNumber, formatPrice } from '@/utils/formatters';
 import { SaveToWishlistButton } from '@/components/global/SaveToWishlistButton';
+import { VerificationBadges } from '@/components/agents/VerificationBadges';
 
 interface ListingCardProps {
   listing: Listing;
@@ -79,7 +80,17 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
   // The wire-shape Listing carries only `ownerId`. Until the backend bundles
   // a denormalised `agent.fullName`, fall back to a clean "Verified Agent"
   // label rather than rendering UUID-character noise like "7" or "F".
-  const agentName = (listing as unknown as { agent?: { fullName?: string } }).agent?.fullName;
+  const agent = (
+    listing as unknown as {
+      agent?: {
+        fullName?: string;
+        regaVerified?: boolean;
+        isNafathVerified?: boolean;
+        phoneVerified?: boolean;
+      };
+    }
+  ).agent;
+  const agentName = agent?.fullName;
   const agentDisplay = agentName?.trim() || t('listing.verifiedAgent');
   const agentInitials = (agentName?.trim()?.[0] ?? 'A').toUpperCase();
   const isSale = listing.type === ListingType.SALE;
@@ -462,6 +473,12 @@ export function ListingCard({ listing, locale, saved, onToggleSave, agentVerifie
               </IconButton>
             </Tooltip>
           </Stack>
+          <VerificationBadges
+            regaVerified={agent?.regaVerified}
+            nafathVerified={agent?.isNafathVerified}
+            phoneVerified={agent?.phoneVerified}
+            sx={{ mt: 0.75 }}
+          />
         </Box>
       )}
     </Card>

@@ -34,6 +34,7 @@ import { ListingMediaEntity } from './entities/listing-media.entity';
 import { ListingTranslationEntity } from './entities/listing-translation.entity';
 import { AmenityEntity } from './entities/amenity.entity';
 import { TagEntity } from './entities/tag.entity';
+import { ListingPriceHistoryEntity } from './entities/listing-price-history.entity';
 
 import { CreateListingDto } from './dto/create-listing.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
@@ -69,6 +70,8 @@ export class ListingsService {
     private readonly amenities: Repository<AmenityEntity>,
     @InjectRepository(TagEntity)
     private readonly tags: Repository<TagEntity>,
+    @InjectRepository(ListingPriceHistoryEntity)
+    private readonly priceHistory: Repository<ListingPriceHistoryEntity>,
     private readonly dataSource: DataSource,
     private readonly kafkaService: KafkaService,
     private readonly config: ConfigService,
@@ -303,6 +306,17 @@ export class ListingsService {
    * `listing.viewed` Kafka event so downstream analytics consumers can fold
    * it into per-day aggregates.
    */
+  async getPriceHistory(id: string): Promise<ListingPriceHistoryEntity[]> {
+    // Bound at 50 entries — the chart can't usefully render more, and a
+    // pathological owner toggling price would otherwise let the panel grow
+    // without bound.
+    return this.priceHistory.find({
+      where: { listingId: id },
+      order: { recordedAt: 'DESC' },
+      take: 50,
+    });
+  }
+
   async recordView(
     id: string,
     ctx: { source?: string | null; device?: string | null; viewerId?: string | null },
@@ -359,6 +373,10 @@ export class ListingsService {
     if (dto.title !== undefined) listing.title = dto.title.trim();
     if (dto.description !== undefined) listing.description = dto.description.trim();
     if (dto.locale !== undefined) listing.sourceLocale = dto.locale;
+    const previousPrice =
+      listing.price === null || listing.price === undefined
+        ? null
+        : Number(listing.price);
     if (dto.price !== undefined) listing.price = dto.price;
     if (dto.currency !== undefined) listing.currency = dto.currency;
     if (dto.rentPeriod !== undefined) listing.rentPeriod = dto.rentPeriod ?? null;
@@ -408,6 +426,34 @@ export class ListingsService {
     if (dto.agencyId !== undefined) listing.agencyId = dto.agencyId ?? null;
 
     await this.listings.save(listing);
+
+    // Record a price-history entry when the price actually moved. Done
+    // after save so we never log a phantom change for failed updates.
+    const newPrice = Number(listing.price);
+    if (
+      dto.price !== undefined &&
+      previousPrice !== null &&
+      Number.isFinite(newPrice) &&
+      Math.abs(newPrice - previousPrice) > 0.001
+    ) {
+      const changePercent =
+        previousPrice > 0
+          ? Math.round(((newPrice - previousPrice) / previousPrice) * 10000) / 100
+          : null;
+      void this.priceHistory
+        .save({
+          listingId: listing.id,
+          price: newPrice.toFixed(2),
+          previousPrice: previousPrice.toFixed(2),
+          changePercent: changePercent === null ? null : changePercent.toFixed(2),
+          note: newPrice > previousPrice ? 'Price increased' : 'Price reduced',
+        })
+        .catch((err) =>
+          this.logger.warn(
+            `Failed to record price history for ${listing.id}: ${(err as Error).message}`,
+          ),
+        );
+    }
 
     // Emit lifecycle events for downstream consumers (analytics, AI translation).
     const changedFields: string[] = [];

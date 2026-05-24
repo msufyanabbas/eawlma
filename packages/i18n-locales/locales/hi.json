@@ -467,7 +467,10 @@
     "reviewsCount": "{{गिनती}} समीक्षाएँ",
     "builtYear": "बनाना",
     "vrFullscreen": "वीआर मोड दर्ज करें",
-    "vrHint": "🖱️ चारों ओर देखने के लिए क्लिक करें और खींचें · ज़ूम करने के लिए स्क्रॉल करें"
+    "vrHint": "🖱️ चारों ओर देखने के लिए क्लिक करें और खींचें · ज़ूम करने के लिए स्क्रॉल करें",
+    "priceHistory": "मूल्य इतिहास",
+    "priceReduced": "कीमत कम हुई",
+    "priceIncreased": "कीमत बढ़ी"
   },
   "search": {
     "filters": "फ़िल्टर",
@@ -1402,7 +1405,28 @@
     "viewProfile": "प्रोफ़ाइल देखें",
     "sendMessage": "मेसेज भेजें",
     "respondsWithin": "{{घंटे}} घंटों के भीतर जवाब देता है",
-    "respondsWithinDay": "एक दिन के अंदर जवाब देता है"
+    "respondsWithinDay": "एक दिन के अंदर जवाब देता है",
+    "regaSection": "रेगा लाइसेंस",
+    "regaVerified": "REGA लाइसेंस प्राप्त",
+    "regaVerifiedTitle": "REGA लाइसेंस सत्यापित",
+    "regaVerifiedDesc": "REGA द्वारा लाइसेंस - रियल एस्टेट के लिए सामान्य प्राधिकरण",
+    "regaPending": "लाइसेंस जमा किया गया - सत्यापन लंबित है",
+    "regaDesc": "सत्यापित बैज प्राप्त करने के लिए अपना REGA लाइसेंस नंबर दर्ज करें",
+    "regaLicenseNumber": "रेगा लाइसेंस संख्या",
+    "regaExpiryDate": "लाइसेंस समाप्ति तिथि",
+    "submitRega": "सत्यापन के लिए सबमिट करें",
+    "identityVerification": "पहचान सत्यापन",
+    "nafathTitle": "नेफ़थ से सत्यापित करें",
+    "nafathDesc": "नेफथ के माध्यम से अपनी सऊदी राष्ट्रीय आईडी सत्यापित करें",
+    "nafathNote": "आपको नफथ पर पुनः निर्देशित किया जाएगा",
+    "nafathVerifiedTitle": "नेफथ के माध्यम से पहचान की पुष्टि की गई",
+    "nafathVerifiedDesc": "आपकी सऊदी राष्ट्रीय आईडी सत्यापित हो गई है",
+    "nafathBadge": "सत्यापित",
+    "nafathError": "नफ़त से संपर्क नहीं हो सका",
+    "verifyWithNafath": "नेफ़थ से सत्यापित करें",
+    "phoneVerified": "फ़ोन",
+    "phoneVerifiedDesc": "फ़ोन नंबर सत्यापित",
+    "nafathVerifiedLong": "आईडी सत्यापित"
   },
   "property": {
     "villa": "विला",

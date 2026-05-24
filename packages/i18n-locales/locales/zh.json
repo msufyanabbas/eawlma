@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} 条评论",
     "builtYear": "建成",
     "vrFullscreen": "进入VR模式",
-    "vrHint": "🖱️ 点击并拖动环顾四周 · 滚动缩放"
+    "vrHint": "🖱️ 点击并拖动环顾四周 · 滚动缩放",
+    "priceHistory": "价格历史",
+    "priceReduced": "降价",
+    "priceIncreased": "价格上涨"
   },
   "search": {
     "filters": "筛选",
@@ -1402,7 +1405,28 @@
     "viewProfile": "查看资料",
     "sendMessage": "发送消息",
     "respondsWithin": "在 {{hours}} 小时内回复",
-    "respondsWithinDay": "一天内回复"
+    "respondsWithinDay": "一天内回复",
+    "regaSection": "REGA许可证",
+    "regaVerified": "REGA 授权",
+    "regaVerifiedTitle": "REGA 许可证已验证",
+    "regaVerifiedDesc": "获得 REGA（房地产总局）许可",
+    "regaPending": "许可证已提交 - 等待验证",
+    "regaDesc": "输入您的 REGA 许可证号码以获得经过验证的徽章",
+    "regaLicenseNumber": "REGA 许可证号",
+    "regaExpiryDate": "许可证到期日期",
+    "submitRega": "提交验证",
+    "identityVerification": "身份验证",
+    "nafathTitle": "与 Nafath 验证",
+    "nafathDesc": "通过 Nafath 验证您的沙特国民身份证",
+    "nafathNote": "您将被重定向到纳法斯",
+    "nafathVerifiedTitle": "通过 Nafath 验证身份",
+    "nafathVerifiedDesc": "您的沙特国民身份证已经过验证",
+    "nafathBadge": "已验证",
+    "nafathError": "无法连接到 Nafath",
+    "verifyWithNafath": "与 Nafath 验证",
+    "phoneVerified": "电话",
+    "phoneVerifiedDesc": "电话号码已验证",
+    "nafathVerifiedLong": "身份验证"
   },
   "property": {
     "villa": "别墅",

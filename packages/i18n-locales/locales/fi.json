@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} arvostelua",
     "builtYear": "Rakennettu",
     "vrFullscreen": "Siirry VR-tilaan",
-    "vrHint": "🖱️ Katso ympärillesi napsauttamalla ja vetämällä · Zoomaa vierittämällä"
+    "vrHint": "🖱️ Katso ympärillesi napsauttamalla ja vetämällä · Zoomaa vierittämällä",
+    "priceHistory": "Hintahistoria",
+    "priceReduced": "Hintaa alennettu",
+    "priceIncreased": "Hintaa korotettu"
   },
   "search": {
     "filters": "Suodattimet",
@@ -1402,7 +1405,28 @@
     "viewProfile": "Näytä profiili",
     "sendMessage": "Lähetä Viesti",
     "respondsWithin": "Vastaa {{hours}} tunnin kuluessa",
-    "respondsWithinDay": "Vastaa päivän sisällä"
+    "respondsWithinDay": "Vastaa päivän sisällä",
+    "regaSection": "REGA lisenssi",
+    "regaVerified": "REGA lisensoitu",
+    "regaVerifiedTitle": "REGA-lisenssi vahvistettu",
+    "regaVerifiedDesc": "Lisensoitu REGA - General Authority for Real Estate",
+    "regaPending": "Lisenssi lähetetty – odottaa vahvistusta",
+    "regaDesc": "Anna REGA-lisenssinumerosi saadaksesi vahvistetun tunnuksen",
+    "regaLicenseNumber": "REGA-lisenssinumero",
+    "regaExpiryDate": "Lisenssin viimeinen voimassaolopäivä",
+    "submitRega": "Lähetä tarkistettavaksi",
+    "identityVerification": "Henkilöllisyyden vahvistaminen",
+    "nafathTitle": "Tarkista Nafathilla",
+    "nafathDesc": "Vahvista Saudi-Arabian kansallinen henkilöllisyystodistus Nafathin kautta",
+    "nafathNote": "Sinut uudelleenohjataan Nafathiin",
+    "nafathVerifiedTitle": "Henkilöllisyys vahvistettu Nafathin kautta",
+    "nafathVerifiedDesc": "Saudi-Arabian kansallinen henkilöllisyystodistus on vahvistettu",
+    "nafathBadge": "Vahvistettu",
+    "nafathError": "Ei saatu yhteyttä Nafathiin",
+    "verifyWithNafath": "Tarkista Nafathilla",
+    "phoneVerified": "Puhelin",
+    "phoneVerifiedDesc": "Puhelinnumero vahvistettu",
+    "nafathVerifiedLong": "ID vahvistettu"
   },
   "property": {
     "villa": "Huvila",

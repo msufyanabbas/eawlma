@@ -28,6 +28,7 @@ import { useTranslation } from 'react-i18next';
 import { UserRole, UserStatus, type User } from '@eawlma/shared-types';
 
 import { adminApi } from '@/api/admin.api';
+import { usersApi } from '@/api/users.api';
 import { AdminLayout } from '@/components/Layout/AdminLayout';
 import { PageHeader } from '@/components/global/PageHeader';
 import { ConfirmDialog } from '@/components/global/ConfirmDialog';
@@ -96,6 +97,12 @@ export function AdminUsersPage() {
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: ['admin', 'users'] });
       setConfirm(null);
+    },
+  });
+  const verifyRegaMutation = useMutation({
+    mutationFn: (id: string) => usersApi.verifyRega(id),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: ['admin', 'users'] });
     },
   });
 
@@ -178,7 +185,7 @@ export function AdminUsersPage() {
                   <TableCell>{u.email}</TableCell>
                   <TableCell><Chip size="small" label={t(`adminUsers.roles.${u.role}`, { defaultValue: u.role })} color={ROLE_COLORS[u.role]} variant="filled" /></TableCell>
                   <TableCell>
-                    <Stack direction="row" spacing={0.5}>
+                    <Stack direction="row" spacing={0.5} alignItems="center">
                       {u.emailVerified && <VerifiedIcon sx={{ fontSize: 16, color: 'success.main' }} />}
                       {u.identityVerificationStatus === 'verified' && (
                         <VerifiedIcon sx={{ fontSize: 16, color: 'primary.main' }} />
@@ -186,6 +193,28 @@ export function AdminUsersPage() {
                       {!u.emailVerified && u.identityVerificationStatus !== 'verified' && (
                         <Typography variant="caption" color="text.secondary">—</Typography>
                       )}
+                      {(u.role === UserRole.AGENT || u.role === UserRole.AGENCY_ADMIN) &&
+                        u.licenseNumber && (
+                          <Chip
+                            size="small"
+                            label={
+                              u.regaVerified
+                                ? t('adminUsers.regaVerified', 'REGA ✓')
+                                : t('adminUsers.verifyRega', 'Verify REGA')
+                            }
+                            color={u.regaVerified ? 'success' : 'warning'}
+                            variant={u.regaVerified ? 'filled' : 'outlined'}
+                            onClick={
+                              u.regaVerified
+                                ? undefined
+                                : () => verifyRegaMutation.mutate(u.id)
+                            }
+                            sx={{
+                              fontWeight: 700,
+                              cursor: u.regaVerified ? 'default' : 'pointer',
+                            }}
+                          />
+                        )}
                     </Stack>
                   </TableCell>
                   <TableCell>{new Date(u.createdAt).toLocaleDateString(i18n.language)}</TableCell>

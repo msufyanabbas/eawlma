@@ -61,4 +61,22 @@ export const usersApi = {
     const { data } = await apiClient.patch<{ data: User }>('/users/me/preferences', payload);
     return syncMeToClient(unwrap<User>(data));
   },
+
+  submitRegaLicense: async (payload: {
+    licenseNumber: string;
+    expiryDate: string;
+  }): Promise<{ message: string; status: 'pending' }> => {
+    const { data } = await apiClient.post<{
+      message: string;
+      status: 'pending';
+    }>('/users/me/rega-license', payload);
+    // Refresh /users/me — the agent's regaLicenseExpiry/licenseNumber moved.
+    void queryClient.invalidateQueries({ queryKey: ['users', 'me'] });
+    return data;
+  },
+
+  verifyRega: async (userId: string): Promise<User> => {
+    const { data } = await apiClient.post<{ data: User }>(`/users/${userId}/verify-rega`);
+    return unwrap<User>(data);
+  },
 };

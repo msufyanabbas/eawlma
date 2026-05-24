@@ -467,7 +467,10 @@
     "reviewsCount": "{{count}} reseñas",
     "builtYear": "Construido",
     "vrFullscreen": "Ingrese al modo de realidad virtual",
-    "vrHint": "🖱️ Haz clic y arrastra para mirar a tu alrededor · Desplázate para hacer zoom"
+    "vrHint": "🖱️ Haz clic y arrastra para mirar a tu alrededor · Desplázate para hacer zoom",
+    "priceHistory": "Historial de precios",
+    "priceReduced": "Precio Reducido",
+    "priceIncreased": "Precio aumentado"
   },
   "search": {
     "filters": "Filtros",
@@ -1402,7 +1405,28 @@
     "viewProfile": "Ver perfil",
     "sendMessage": "Enviar mensaje",
     "respondsWithin": "Responde dentro de {{hours}} horas",
-    "respondsWithinDay": "Responde en un día"
+    "respondsWithinDay": "Responde en un día",
+    "regaSection": "Licencia REGA",
+    "regaVerified": "Licencia REGA",
+    "regaVerifiedTitle": "Licencia REGA verificada",
+    "regaVerifiedDesc": "Licenciado por REGA - Autoridad General de Bienes Raíces",
+    "regaPending": "Licencia enviada - pendiente de verificación",
+    "regaDesc": "Ingrese su número de licencia REGA para obtener una insignia verificada",
+    "regaLicenseNumber": "Número de licencia REGA",
+    "regaExpiryDate": "Fecha de vencimiento de la licencia",
+    "submitRega": "Enviar para verificación",
+    "identityVerification": "Verificación de identidad",
+    "nafathTitle": "Verificar con Nafath",
+    "nafathDesc": "Verifique su identificación nacional saudita a través de Nafath",
+    "nafathNote": "Serás redirigido a Nafath.",
+    "nafathVerifiedTitle": "Identidad verificada a través de Nafath",
+    "nafathVerifiedDesc": "Su identificación nacional saudita ha sido verificada",
+    "nafathBadge": "Verificado",
+    "nafathError": "No se pudo conectar con Nafath",
+    "verifyWithNafath": "Verificar con Nafath",
+    "phoneVerified": "Teléfono",
+    "phoneVerifiedDesc": "Número de teléfono verificado",
+    "nafathVerifiedLong": "Identificación verificada"
   },
   "property": {
     "villa": "Villa",

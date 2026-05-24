@@ -7,6 +7,7 @@ import { ListingTranslationEntity } from './entities/listing-translation.entity'
 import { AmenityEntity } from './entities/amenity.entity';
 import { TagEntity } from './entities/tag.entity';
 import { ListingPriceOverrideEntity } from './entities/listing-price-override.entity';
+import { ListingPriceHistoryEntity } from './entities/listing-price-history.entity';
 
 import { ListingsService } from './listings.service';
 import { ListingsController } from './listings.controller';
@@ -26,6 +27,7 @@ import { ModerationModule } from '../moderation/moderation.module';
       AmenityEntity,
       TagEntity,
       ListingPriceOverrideEntity,
+      ListingPriceHistoryEntity,
     ]),
     forwardRef(() => SubscriptionsModule),
     NotificationsModule,

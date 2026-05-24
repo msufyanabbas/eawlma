@@ -25,6 +25,13 @@ export class PublicAgentDto {
   @ApiProperty() isSuperhost: boolean;
   @ApiProperty() totalCompletedBookings: number;
 
+  // Trust badges — drive the public VerificationBadges component.
+  @ApiProperty() regaVerified: boolean;
+  @ApiProperty() isNafathVerified: boolean;
+  @ApiProperty() phoneVerified: boolean;
+  @ApiPropertyOptional({ nullable: true }) licenseNumber: string | null;
+  @ApiPropertyOptional({ nullable: true }) agencyName: string | null;
+
   static fromEntity(u: UserEntity): PublicAgentDto {
     const dto = new PublicAgentDto();
     dto.id = u.id;
@@ -43,6 +50,11 @@ export class PublicAgentDto {
     dto.responseTime = u.responseTime ?? null;
     dto.isSuperhost = !!u.isSuperhost;
     dto.totalCompletedBookings = u.totalCompletedBookings ?? 0;
+    dto.regaVerified = !!u.regaVerified;
+    dto.isNafathVerified = !!u.isNafathVerified;
+    dto.phoneVerified = !!u.phoneVerified;
+    dto.licenseNumber = u.licenseNumber;
+    dto.agencyName = u.agencyName;
     return dto;
   }
 }
