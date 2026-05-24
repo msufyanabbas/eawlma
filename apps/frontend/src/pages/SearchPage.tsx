@@ -1488,7 +1488,7 @@ function MapView({ listings }: { listings: Listing[] }) {
         {showNeighborhoods &&
           NEIGHBORHOOD_INSIGHTS.map((n) => (
             <MarkerF
-              key={`nb-${n.nameEn}`}
+              key={`nb-${n.nameEn}-${n.city}`}
               position={{ lat: n.lat, lng: n.lng }}
               onClick={() => {
                 setSelectedNeighborhood(n);

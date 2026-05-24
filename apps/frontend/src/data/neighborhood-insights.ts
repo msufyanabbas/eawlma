@@ -70,6 +70,15 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     lat: 24.6700, lng: 46.7200,
   },
   {
+    nameEn: 'Al Murabba', nameAr: 'المربع',
+    city: 'Riyadh',
+    avgPricePerSqm: 10000, avgRentPerMonth: 7000,
+    schools: 4, hospitals: 6, malls: 3, mosques: 8,
+    transport: 9, safety: 8, amenities: 9,
+    trend: 'up', trendPercent: 4.5,
+    lat: 24.6800, lng: 46.7100,
+  },
+  {
     nameEn: 'NEOM Area', nameAr: 'منطقة نيوم',
     city: 'Tabuk',
     avgPricePerSqm: 15000, avgRentPerMonth: 12000,
@@ -106,6 +115,15 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     trend: 'up', trendPercent: 3.2,
     lat: 21.6100, lng: 39.1200,
   },
+  {
+    nameEn: 'Al Shati', nameAr: 'الشاطئ',
+    city: 'Jeddah',
+    avgPricePerSqm: 11000, avgRentPerMonth: 7800,
+    schools: 3, hospitals: 2, malls: 4, mosques: 5,
+    transport: 7, safety: 8, amenities: 9,
+    trend: 'up', trendPercent: 5.8,
+    lat: 21.5200, lng: 39.1900,
+  },
   // Dammam
   {
     nameEn: 'Al Faisaliyah', nameAr: 'الفيصلية',
@@ -124,5 +142,25 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     transport: 6, safety: 8, amenities: 8,
     trend: 'stable', trendPercent: 0.8,
     lat: 26.4500, lng: 50.1100,
+  },
+  // Mecca
+  {
+    nameEn: 'Al Aziziyah', nameAr: 'العزيزية',
+    city: 'Mecca',
+    avgPricePerSqm: 16000, avgRentPerMonth: 11000,
+    schools: 6, hospitals: 4, malls: 3, mosques: 20,
+    transport: 8, safety: 9, amenities: 8,
+    trend: 'up', trendPercent: 8.5,
+    lat: 21.3891, lng: 39.8579,
+  },
+  // Medina
+  {
+    nameEn: 'Al Madinah Center', nameAr: 'وسط المدينة',
+    city: 'Medina',
+    avgPricePerSqm: 12000, avgRentPerMonth: 8000,
+    schools: 5, hospitals: 4, malls: 2, mosques: 15,
+    transport: 7, safety: 9, amenities: 7,
+    trend: 'up', trendPercent: 6.2,
+    lat: 24.4672, lng: 39.6024,
   },
 ];

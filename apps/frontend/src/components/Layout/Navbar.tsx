@@ -528,8 +528,12 @@ function CategoryNavRow({ currentPath }: { currentPath: string }) {
         }}
       >
         {CATEGORY_LINKS.map((link) => {
+          // Match exact path, or a strict child segment (`/market` should match
+          // `/market/foo` but NOT `/market-reports`). Without the trailing-slash
+          // check, sibling routes that share a prefix get falsely highlighted.
           const isActive =
-            currentPath === link.to || (link.to !== '/' && currentPath.startsWith(link.to));
+            currentPath === link.to ||
+            (link.to !== '/' && currentPath.startsWith(`${link.to}/`));
           return (
             <Box
               key={link.to}
