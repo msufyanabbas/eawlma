@@ -522,6 +522,11 @@
     "priceHistory": "Sejarah Harga",
     "priceReduced": "Harga Dikurangi",
     "priceIncreased": "Harga Meningkat",
+    "floorPlan": "Denah Lantai",
+    "floorPlanOptional": "(Opsional)",
+    "floorPlanDesc": "Unggah gambar denah untuk membantu pembeli memahami tata letaknya",
+    "uploadFloorPlan": "Unggah Denah Lantai",
+    "clickToZoom": "Klik untuk memperbesar dan menggeser",
     "sale": "Penjualan",
     "rent": "Menyewa",
     "propertyTypeLabel": "Jenis",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Kisaran yang disarankan",
     "confidenceLabel": "Kepercayaan diri",
     "suggestPrice": "AI Sarankan Harga",
-    "suggestionFailed": "Tidak bisa mendapatkan saran harga"
+    "suggestionFailed": "Tidak bisa mendapatkan saran harga",
+    "predictPrice": "Prediksi Harga AI",
+    "pricePrediction": "Prediksi Harga AI",
+    "year1": "1 Tahun",
+    "year2": "2 Tahun",
+    "year5": "5 Tahun",
+    "predictionFailed": "Tidak bisa mendapatkan prediksi harga",
+    "predictionDisclaimer": "* Prediksi AI hanya untuk tujuan informasi"
   },
   "agents": {
     "searchPlaceholder": "Cari berdasarkan nama atau spesialisasi",
@@ -1971,7 +1983,11 @@
     "clickToView": "ketuk untuk melihat daftar",
     "propertiesInArea": "Properti di Area Terpilih",
     "loading": "Memuat peta…",
-    "neighborhoodInsights": "Wawasan Lingkungan"
+    "neighborhoodInsights": "Wawasan Lingkungan",
+    "transport": "Mengangkut",
+    "away": "jauh",
+    "metroStation": "Stasiun Metro",
+    "busStation": "Stasiun Bus"
   },
   "neighborhood": {
     "insights": "Wawasan Lingkungan",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Pencarian Bulanan",
     "avgPrice": "Harga Rata-rata/m² Riyadh",
     "deals": "Penawaran Bulan Ini"
+  },
+  "nearby": {
+    "title": "Yang Terdekat",
+    "schools": "Sekolah",
+    "hospitals": "Rumah Sakit",
+    "malls": "Pusat Perbelanjaan",
+    "mosques": "Masjid",
+    "restaurants": "Restoran",
+    "noPlaces": "Tidak ada tempat ditemukan di sekitar"
   },
   "saved": {
     "title": "Disimpan",

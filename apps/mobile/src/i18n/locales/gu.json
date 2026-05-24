@@ -522,6 +522,11 @@
     "priceHistory": "કિંમત ઇતિહાસ",
     "priceReduced": "| ભાવ ઘટાડો",
     "priceIncreased": "ભાવ વધારો",
+    "floorPlan": "ફ્લોર પ્લાન",
+    "floorPlanOptional": "| (વૈકલ્પિક)",
+    "floorPlanDesc": "ખરીદદારોને લેઆઉટ સમજવામાં મદદ કરવા માટે ફ્લોર પ્લાનની છબી અપલોડ કરો",
+    "uploadFloorPlan": "ફ્લોર પ્લાન અપલોડ કરો",
+    "clickToZoom": "ઝૂમ અને પેન કરવા માટે ક્લિક કરો",
     "sale": "વેચાણ",
     "rent": "ભાડે",
     "propertyTypeLabel": "પ્રકાર",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "સૂચિત શ્રેણી",
     "confidenceLabel": "આત્મવિશ્વાસ",
     "suggestPrice": "AI સૂચવેલી કિંમત",
-    "suggestionFailed": "કિંમત સૂચન મેળવી શકાયું નથી"
+    "suggestionFailed": "કિંમત સૂચન મેળવી શકાયું નથી",
+    "predictPrice": "AI કિંમત અનુમાન",
+    "pricePrediction": "AI કિંમત અનુમાન",
+    "year1": "1 વર્ષ",
+    "year2": "2 વર્ષ",
+    "year5": "5 વર્ષ",
+    "predictionFailed": "કિંમતની આગાહી મેળવી શકાઈ નથી",
+    "predictionDisclaimer": "* માત્ર માહિતીના હેતુઓ માટે AI આગાહી"
   },
   "agents": {
     "searchPlaceholder": "નામ અથવા વિશેષતા દ્વારા શોધો",
@@ -1971,7 +1983,11 @@
     "clickToView": "યાદી જોવા માટે ટેપ કરો",
     "propertiesInArea": "પસંદ કરેલ વિસ્તારમાં મિલકતો",
     "loading": "નકશો લોડ કરી રહ્યું છે…",
-    "neighborhoodInsights": "નેબરહુડ ઇન્સાઇટ્સ"
+    "neighborhoodInsights": "નેબરહુડ ઇન્સાઇટ્સ",
+    "transport": "| પરિવહન",
+    "away": "| દૂર",
+    "metroStation": "મેટ્રો સ્ટેશન",
+    "busStation": "| બસ સ્ટેશન"
   },
   "neighborhood": {
     "insights": "નેબરહુડ ઇન્સાઇટ્સ",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "માસિક શોધ",
     "avgPrice": "સરેરાશ કિંમત/m² રિયાધ",
     "deals": "આ મહિને ડીલ્સ"
+  },
+  "nearby": {
+    "title": "નજીકમાં શું છે",
+    "schools": "શાળાઓ",
+    "hospitals": "| હોસ્પિટલો",
+    "malls": "શોપિંગ મોલ્સ",
+    "mosques": "મસ્જિદો",
+    "restaurants": "રેસ્ટોરન્ટ્સ",
+    "noPlaces": "નજીકમાં કોઈ સ્થાન મળ્યું નથી"
   },
   "saved": {
     "title": "સાચવેલ",

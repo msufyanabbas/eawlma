@@ -522,6 +522,11 @@
     "priceHistory": "Prysgeskiedenis",
     "priceReduced": "Prys verlaag",
     "priceIncreased": "Prys verhoog",
+    "floorPlan": "Vloerplan",
+    "floorPlanOptional": "(Opsioneel)",
+    "floorPlanDesc": "Laai 'n vloerplanprent op om kopers te help om die uitleg te verstaan ​​",
+    "uploadFloorPlan": "Laai vloerplan op",
+    "clickToZoom": "Klik om te zoem en pan",
     "sale": "Verkoop",
     "rent": "Huur",
     "propertyTypeLabel": "Tik",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Voorgestelde reeks",
     "confidenceLabel": "Vertroue",
     "suggestPrice": "AI Stel prys",
-    "suggestionFailed": "Kon nie prysvoorstel kry nie"
+    "suggestionFailed": "Kon nie prysvoorstel kry nie",
+    "predictPrice": "AI Prys Voorspelling",
+    "pricePrediction": "AI Prys Voorspelling",
+    "year1": "1 jaar",
+    "year2": "2 jaar",
+    "year5": "5 jaar",
+    "predictionFailed": "Kon nie prysvoorspelling kry nie",
+    "predictionDisclaimer": "* KI-voorspelling slegs vir inligtingsdoeleindes"
   },
   "agents": {
     "searchPlaceholder": "Soek volgens naam of spesialiteit",
@@ -1874,7 +1886,7 @@
     "maxGuests": "Maksimum gaste",
     "checkIn": "Aanmelding",
     "checkInFrom": "vanaf {{time}}",
-    "checkOut": "Check-out",
+    "checkOut": "Uitklok",
     "checkOutBy": "deur {{time}}",
     "cancellation": "Kansellasie",
     "whatThisPlaceOffers": "Wat hierdie plek bied"
@@ -1971,7 +1983,11 @@
     "clickToView": "tik om lys te sien",
     "propertiesInArea": "Eiendomme in geselekteerde area",
     "loading": "Laai kaart …",
-    "neighborhoodInsights": "Buurt-insigte"
+    "neighborhoodInsights": "Buurt-insigte",
+    "transport": "Vervoer",
+    "away": "weg",
+    "metroStation": "Metrostasie",
+    "busStation": "Busstasie"
   },
   "neighborhood": {
     "insights": "Buurt-insigte",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Maandelikse soektogte",
     "avgPrice": "Gemiddelde prys/m² Riyadh",
     "deals": "Aanbiedings hierdie maand"
+  },
+  "nearby": {
+    "title": "Wat is naby",
+    "schools": "Skole",
+    "hospitals": "Hospitale",
+    "malls": "Winkelsentrums",
+    "mosques": "Moskees",
+    "restaurants": "Restaurante",
+    "noPlaces": "Geen plekke naby gevind nie"
   },
   "saved": {
     "title": "Gestoor",

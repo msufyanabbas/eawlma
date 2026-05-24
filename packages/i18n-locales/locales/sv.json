@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Klicka och dra för att se dig omkring · Scrolla för att zooma",
     "priceHistory": "Prishistorik",
     "priceReduced": "Prissänkt",
-    "priceIncreased": "Prishöjt"
+    "priceIncreased": "Prishöjt",
+    "floorPlan": "Planlösning",
+    "floorPlanOptional": "(Valfritt)",
+    "floorPlanDesc": "Ladda upp en planlösningsbild för att hjälpa köpare att förstå layouten",
+    "uploadFloorPlan": "Ladda upp planlösning",
+    "clickToZoom": "Klicka för att zooma och panorera"
   },
   "search": {
     "filters": "Filter",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Föreslaget intervall",
     "confidenceLabel": "Förtroende",
     "suggestPrice": "AI förslag på pris",
-    "suggestionFailed": "Kunde inte få prisförslag"
+    "suggestionFailed": "Kunde inte få prisförslag",
+    "predictPrice": "AI Prisprediktion",
+    "pricePrediction": "AI Prisprediktion",
+    "year1": "1 år",
+    "year2": "2 år",
+    "year5": "5 år",
+    "predictionFailed": "Kunde inte få prisförutsägelse",
+    "predictionDisclaimer": "* AI-förutsägelse endast i informationssyfte"
   },
   "agents": {
     "searchPlaceholder": "Sök på namn eller specialitet",
@@ -1672,7 +1684,11 @@
     "clickToView": "tryck för att visa listan",
     "propertiesInArea": "Fastigheter i valt område",
     "loading": "Laddar kartan...",
-    "neighborhoodInsights": "Neighborhood Insights"
+    "neighborhoodInsights": "Neighborhood Insights",
+    "transport": "Transport",
+    "away": "borta",
+    "metroStation": "Tunnelbanestation",
+    "busStation": "Busstation"
   },
   "neighborhood": {
     "insights": "Neighborhood Insights",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Månatliga sökningar",
     "avgPrice": "Genomsnittligt pris/m² Riyadh",
     "deals": "Erbjudanden denna månad"
+  },
+  "nearby": {
+    "title": "Vad finns i närheten",
+    "schools": "Skolor",
+    "hospitals": "Sjukhus",
+    "malls": "Köpcentrum",
+    "mosques": "Moskéer",
+    "restaurants": "Restauranger",
+    "noPlaces": "Inga platser hittades i närheten"
   }
 }

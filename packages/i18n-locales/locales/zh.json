@@ -470,7 +470,12 @@
     "vrHint": "🖱️ 点击并拖动环顾四周 · 滚动缩放",
     "priceHistory": "价格历史",
     "priceReduced": "降价",
-    "priceIncreased": "价格上涨"
+    "priceIncreased": "价格上涨",
+    "floorPlan": "平面图",
+    "floorPlanOptional": "（选修的）",
+    "floorPlanDesc": "上传平面图图片以帮助买家了解布局",
+    "uploadFloorPlan": "上传平面图",
+    "clickToZoom": "单击可缩放和平移"
   },
   "search": {
     "filters": "筛选",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "建议范围",
     "confidenceLabel": "信心",
     "suggestPrice": "人工智能建议价格",
-    "suggestionFailed": "无法获得价格建议"
+    "suggestionFailed": "无法获得价格建议",
+    "predictPrice": "人工智能价格预测",
+    "pricePrediction": "人工智能价格预测",
+    "year1": "1年",
+    "year2": "2年",
+    "year5": "5年",
+    "predictionFailed": "无法获得价格预测",
+    "predictionDisclaimer": "* AI预测仅供参考"
   },
   "agents": {
     "searchPlaceholder": "按名称或专业搜索",
@@ -1672,7 +1684,11 @@
     "clickToView": "点击查看列表",
     "propertiesInArea": "选定区域的属性",
     "loading": "正在加载地图...",
-    "neighborhoodInsights": "邻里洞察"
+    "neighborhoodInsights": "邻里洞察",
+    "transport": "运输",
+    "away": "离开",
+    "metroStation": "地铁站",
+    "busStation": "公车站"
   },
   "neighborhood": {
     "insights": "邻里洞察",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "每月搜索量",
     "avgPrice": "平均价格/平方米 利雅得",
     "deals": "本月优惠"
+  },
+  "nearby": {
+    "title": "附近有什么",
+    "schools": "学校",
+    "hospitals": "医院",
+    "malls": "购物中心",
+    "mosques": "清真寺",
+    "restaurants": "餐厅",
+    "noPlaces": "附近未找到地点"
   }
 }

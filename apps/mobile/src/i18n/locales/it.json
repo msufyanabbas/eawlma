@@ -522,6 +522,11 @@
     "priceHistory": "Storico prezzi",
     "priceReduced": "Prezzo ridotto",
     "priceIncreased": "Prezzo aumentato",
+    "floorPlan": "Pianta",
+    "floorPlanOptional": "(Facoltativo)",
+    "floorPlanDesc": "Carica un'immagine della planimetria per aiutare gli acquirenti a comprendere il layout",
+    "uploadFloorPlan": "Carica planimetria",
+    "clickToZoom": "Fare clic per eseguire lo zoom e la panoramica",
     "sale": "Vendita",
     "rent": "Affitta",
     "propertyTypeLabel": "Digitare",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Intervallo suggerito",
     "confidenceLabel": "Fiducia",
     "suggestPrice": "AI Suggerisci prezzo",
-    "suggestionFailed": "Impossibile ottenere il suggerimento sul prezzo"
+    "suggestionFailed": "Impossibile ottenere il suggerimento sul prezzo",
+    "predictPrice": "Previsione del prezzo AI",
+    "pricePrediction": "Previsione del prezzo AI",
+    "year1": "1 anno",
+    "year2": "2 anni",
+    "year5": "5 anni",
+    "predictionFailed": "Impossibile ottenere la previsione del prezzo",
+    "predictionDisclaimer": "*Previsione AI solo a scopo informativo"
   },
   "agents": {
     "searchPlaceholder": "Cerca per nome o specialità",
@@ -1971,7 +1983,11 @@
     "clickToView": "toccare per visualizzare l'elenco",
     "propertiesInArea": "Proprietà nell'area selezionata",
     "loading": "Caricamento mappa…",
-    "neighborhoodInsights": "Approfondimenti sul quartiere"
+    "neighborhoodInsights": "Approfondimenti sul quartiere",
+    "transport": "Trasporti",
+    "away": "via",
+    "metroStation": "Stazione della metropolitana",
+    "busStation": "Stazione degli autobus"
   },
   "neighborhood": {
     "insights": "Approfondimenti sul quartiere",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Ricerche mensili",
     "avgPrice": "Prezzo medio/m² Riad",
     "deals": "Offerte questo mese"
+  },
+  "nearby": {
+    "title": "Nei dintorni",
+    "schools": "Scuole",
+    "hospitals": "Ospedali",
+    "malls": "Centri commerciali",
+    "mosques": "Moschee",
+    "restaurants": "Ristoranti",
+    "noPlaces": "Nessun luogo trovato nelle vicinanze"
   },
   "saved": {
     "title": "Salvato",

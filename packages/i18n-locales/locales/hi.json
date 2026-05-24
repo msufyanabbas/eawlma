@@ -470,7 +470,12 @@
     "vrHint": "🖱️ चारों ओर देखने के लिए क्लिक करें और खींचें · ज़ूम करने के लिए स्क्रॉल करें",
     "priceHistory": "मूल्य इतिहास",
     "priceReduced": "कीमत कम हुई",
-    "priceIncreased": "कीमत बढ़ी"
+    "priceIncreased": "कीमत बढ़ी",
+    "floorPlan": "मंजिल की योजना",
+    "floorPlanOptional": "(वैकल्पिक)",
+    "floorPlanDesc": "खरीदारों को लेआउट समझने में मदद करने के लिए एक फ़्लोर प्लान छवि अपलोड करें",
+    "uploadFloorPlan": "फ़्लोर प्लान अपलोड करें",
+    "clickToZoom": "ज़ूम और पैन करने के लिए क्लिक करें"
   },
   "search": {
     "filters": "फ़िल्टर",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "सुझाई गई सीमा",
     "confidenceLabel": "आत्मविश्वास",
     "suggestPrice": "एआई सुझाव मूल्य",
-    "suggestionFailed": "कीमत का सुझाव नहीं मिल सका"
+    "suggestionFailed": "कीमत का सुझाव नहीं मिल सका",
+    "predictPrice": "एआई मूल्य भविष्यवाणी",
+    "pricePrediction": "एआई मूल्य भविष्यवाणी",
+    "year1": "1 वर्ष",
+    "year2": "2 साल",
+    "year5": "5 साल",
+    "predictionFailed": "कीमत का पूर्वानुमान नहीं मिल सका",
+    "predictionDisclaimer": "* एआई भविष्यवाणी केवल सूचनात्मक उद्देश्यों के लिए"
   },
   "agents": {
     "searchPlaceholder": "नाम या विशेषता के आधार पर खोजें",
@@ -1672,7 +1684,11 @@
     "clickToView": "सूची देखने के लिए टैप करें",
     "propertiesInArea": "चयनित क्षेत्र में संपत्तियाँ",
     "loading": "मानचित्र लोड हो रहा है...",
-    "neighborhoodInsights": "पड़ोस अंतर्दृष्टि"
+    "neighborhoodInsights": "पड़ोस अंतर्दृष्टि",
+    "transport": "परिवहन",
+    "away": "दूर",
+    "metroStation": "भूमिगत रेल अवस्थान",
+    "busStation": "बस स्टेशन"
   },
   "neighborhood": {
     "insights": "पड़ोस अंतर्दृष्टि",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "मासिक खोजें",
     "avgPrice": "औसत मूल्य/वर्ग मीटर रियाद",
     "deals": "इस महीने डील"
+  },
+  "nearby": {
+    "title": "आस-पास क्या है",
+    "schools": "स्कूलों",
+    "hospitals": "अस्पताल",
+    "malls": "शॉपिंग मॉल",
+    "mosques": "मस्जिदों",
+    "restaurants": "रेस्टोरेंट",
+    "noPlaces": "आस-पास कोई स्थान नहीं मिला"
   }
 }

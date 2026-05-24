@@ -522,6 +522,11 @@
     "priceHistory": "मूल्य इतिहास",
     "priceReduced": "मूल्य घट्यो",
     "priceIncreased": "मूल्य बढ्यो",
+    "floorPlan": "फ्लोर योजना",
+    "floorPlanOptional": "(वैकल्पिक)",
+    "floorPlanDesc": "खरिदकर्ताहरूलाई लेआउट बुझ्न मद्दत गर्न फ्लोर प्लान छवि अपलोड गर्नुहोस्",
+    "uploadFloorPlan": "फ्लोर योजना अपलोड गर्नुहोस्",
+    "clickToZoom": "जुम र प्यान गर्न क्लिक गर्नुहोस्",
     "sale": "बिक्री",
     "rent": "भाडा",
     "propertyTypeLabel": "टाइप गर्नुहोस्",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "सिफारिस गरिएको दायरा",
     "confidenceLabel": "आत्मविश्वास",
     "suggestPrice": "AI सुझाव मूल्य",
-    "suggestionFailed": "मूल्य सुझाव प्राप्त गर्न सकेन"
+    "suggestionFailed": "मूल्य सुझाव प्राप्त गर्न सकेन",
+    "predictPrice": "AI मूल्य भविष्यवाणी",
+    "pricePrediction": "AI मूल्य भविष्यवाणी",
+    "year1": "१ वर्ष",
+    "year2": "२ वर्ष",
+    "year5": "५ वर्ष",
+    "predictionFailed": "मूल्य भविष्यवाणी प्राप्त गर्न सकेन",
+    "predictionDisclaimer": "* केवल सूचना उद्देश्यका लागि एआई भविष्यवाणी"
   },
   "agents": {
     "searchPlaceholder": "नाम वा विशेषता द्वारा खोज्नुहोस्",
@@ -1971,7 +1983,11 @@
     "clickToView": "सूची हेर्न ट्याप गर्नुहोस्",
     "propertiesInArea": "चयन गरिएको क्षेत्रमा गुणहरू",
     "loading": "| नक्सा लोड गर्दै...",
-    "neighborhoodInsights": "| छिमेकी अन्तर्दृष्टि"
+    "neighborhoodInsights": "| छिमेकी अन्तर्दृष्टि",
+    "transport": "यातायात",
+    "away": "टाढा",
+    "metroStation": "मेट्रो स्टेशन",
+    "busStation": "बस स्टेशन"
   },
   "neighborhood": {
     "insights": "छिमेकी अन्तर्दृष्टि",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "मासिक खोजहरू",
     "avgPrice": "औसत मूल्य/m² रियाद",
     "deals": "यो महिना डिल"
+  },
+  "nearby": {
+    "title": "नजिकै के छ",
+    "schools": "विद्यालयहरू",
+    "hospitals": "अस्पतालहरू",
+    "malls": "शपिङ मल",
+    "mosques": "मस्जिदहरू",
+    "restaurants": "रेस्टुरेन्टहरू",
+    "noPlaces": "वरपर कुनै ठाउँहरू फेला परेनन्"
   },
   "saved": {
     "title": "सुरक्षित गरियो",

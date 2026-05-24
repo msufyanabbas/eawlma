@@ -1177,6 +1177,44 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
     },
   });
 
+  // Floor plan dropzone — single image (PNG/JPG/PDF-as-image) shown on the
+  // detail page as a click-to-zoom interactive viewer.
+  const floorPlanDz = useDropzone({
+    accept: { 'image/jpeg': [], 'image/png': [], 'image/webp': [] },
+    multiple: false,
+    onDrop: async (files) => {
+      const file = files[0];
+      if (!file) return;
+      setUploadError(null);
+      try {
+        const uploaded = await storageApi.uploadFile(file, 'image', 'listings');
+        const newItem: MediaItem = {
+          type: MediaType.FLOORPLAN,
+          url: uploaded.publicUrl,
+          objectKey: uploaded.objectKey,
+          position: state.media.length,
+        };
+        if (listingId) {
+          const persisted = await listingsApi.addMedia(listingId, {
+            type: MediaType.FLOORPLAN,
+            url: uploaded.publicUrl,
+            position: newItem.position,
+          });
+          newItem.id = persisted.id;
+        }
+        // Only one floor plan per listing — replace any existing entry.
+        update({
+          media: [
+            ...state.media.filter((m) => m.type !== MediaType.FLOORPLAN),
+            newItem,
+          ],
+        });
+      } catch (err) {
+        setUploadError((err as Error).message);
+      }
+    },
+  });
+
   // 3D model dropzone (GLB/GLTF)
   const modelDz = useDropzone({
     accept: { 'model/gltf-binary': ['.glb'], 'model/gltf+json': ['.gltf'], 'application/octet-stream': ['.glb'] },
@@ -1304,6 +1342,71 @@ function MediaStep({ state, update, listingId }: StepProps & { listingId?: strin
             ))}
           </Grid>
         )}
+      </Box>
+
+      {/* Floor plan */}
+      <Box>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+          {t('listing.floorPlan', { defaultValue: 'Floor Plan' })}{' '}
+          <Typography component="span" variant="caption" color="text.secondary">
+            {t('listing.floorPlanOptional', { defaultValue: '(Optional)' })}
+          </Typography>
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          {t('listing.floorPlanDesc', {
+            defaultValue:
+              'Upload a floor plan image to help buyers understand the layout',
+          })}
+        </Typography>
+        {(() => {
+          const floorPlan = state.media.find(
+            (m) => m.type === MediaType.FLOORPLAN,
+          );
+          if (floorPlan) {
+            return (
+              <Box sx={{ position: 'relative', display: 'inline-block' }}>
+                <img
+                  src={floorPlan.url}
+                  alt="Floor Plan"
+                  style={{
+                    maxWidth: 300,
+                    borderRadius: 8,
+                    border: '1px solid #e0e0e0',
+                  }}
+                />
+                <Button
+                  size="small"
+                  variant="text"
+                  color="error"
+                  onClick={() => removeMedia(floorPlan)}
+                  sx={{ ml: 2 }}
+                >
+                  {t('common.remove', { defaultValue: 'Remove' })}
+                </Button>
+              </Box>
+            );
+          }
+          return (
+            <Box
+              {...floorPlanDz.getRootProps()}
+              sx={{
+                p: 3,
+                border: '2px dashed',
+                borderColor: 'divider',
+                borderRadius: 2,
+                textAlign: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              <input {...floorPlanDz.getInputProps()} />
+              <Typography variant="body2" color="text.secondary">
+                {t('listing.uploadFloorPlan', {
+                  defaultValue: 'Upload Floor Plan',
+                })}
+              </Typography>
+            </Box>
+          );
+        })()}
       </Box>
 
       {/* Video */}

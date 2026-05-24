@@ -522,6 +522,11 @@
     "priceHistory": "Histórico de preços",
     "priceReduced": "Preço reduzido",
     "priceIncreased": "Preço aumentado",
+    "floorPlan": "Planta Baixa",
+    "floorPlanOptional": "(Opcional)",
+    "floorPlanDesc": "Faça upload de uma imagem da planta baixa para ajudar os compradores a entender o layout",
+    "uploadFloorPlan": "Carregar planta baixa",
+    "clickToZoom": "Clique para ampliar e deslocar",
     "sale": "Oferta",
     "rent": "Aluguel",
     "propertyTypeLabel": "Tipo",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Intervalo sugerido",
     "confidenceLabel": "Confiança",
     "suggestPrice": "Preço sugerido pela IA",
-    "suggestionFailed": "Não foi possível obter sugestão de preço"
+    "suggestionFailed": "Não foi possível obter sugestão de preço",
+    "predictPrice": "Previsão de preços de IA",
+    "pricePrediction": "Previsão de preços de IA",
+    "year1": "1 ano",
+    "year2": "2 anos",
+    "year5": "5 anos",
+    "predictionFailed": "Não foi possível obter previsão de preço",
+    "predictionDisclaimer": "* Previsão de IA apenas para fins informativos"
   },
   "agents": {
     "searchPlaceholder": "Pesquise por nome ou especialidade",
@@ -1971,7 +1983,11 @@
     "clickToView": "toque para ver a lista",
     "propertiesInArea": "Propriedades na área selecionada",
     "loading": "Carregando mapa…",
-    "neighborhoodInsights": "Informações do bairro"
+    "neighborhoodInsights": "Informações do bairro",
+    "transport": "Transporte",
+    "away": "ausente",
+    "metroStation": "Estação de metrô",
+    "busStation": "Rodoviária"
   },
   "neighborhood": {
     "insights": "Informações do bairro",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Pesquisas mensais",
     "avgPrice": "Preço médio/m² Riad",
     "deals": "Ofertas deste mês"
+  },
+  "nearby": {
+    "title": "O que há por perto",
+    "schools": "Escolas",
+    "hospitals": "Hospitais",
+    "malls": "Shoppings",
+    "mosques": "Mesquitas",
+    "restaurants": "Restaurantes",
+    "noPlaces": "Nenhum lugar encontrado nas proximidades"
   },
   "saved": {
     "title": "Salvo",

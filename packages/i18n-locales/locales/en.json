@@ -457,6 +457,11 @@
     "priceHistory": "Price History",
     "priceReduced": "Price Reduced",
     "priceIncreased": "Price Increased",
+    "floorPlan": "Floor Plan",
+    "floorPlanOptional": "(Optional)",
+    "floorPlanDesc": "Upload a floor plan image to help buyers understand the layout",
+    "uploadFloorPlan": "Upload Floor Plan",
+    "clickToZoom": "Click to zoom and pan",
     "monthlyPayment": "Monthly payment",
     "totalPayment": "Total payment",
     "totalInterest": "Total interest",
@@ -1409,7 +1414,20 @@
     "clickToView": "tap to view list",
     "propertiesInArea": "Properties in Selected Area",
     "loading": "Loading map…",
-    "neighborhoodInsights": "Neighborhood Insights"
+    "neighborhoodInsights": "Neighborhood Insights",
+    "transport": "Transport",
+    "away": "away",
+    "metroStation": "Metro Station",
+    "busStation": "Bus Station"
+  },
+  "nearby": {
+    "title": "What's Nearby",
+    "schools": "Schools",
+    "hospitals": "Hospitals",
+    "malls": "Shopping Malls",
+    "mosques": "Mosques",
+    "restaurants": "Restaurants",
+    "noPlaces": "No places found nearby"
   },
   "neighborhood": {
     "insights": "Neighborhood Insights",
@@ -1569,6 +1587,13 @@
     "confidenceLabel": "Confidence",
     "suggestPrice": "AI Suggest Price",
     "suggestionFailed": "Could not get price suggestion",
+    "predictPrice": "AI Price Prediction",
+    "pricePrediction": "AI Price Prediction",
+    "year1": "1 Year",
+    "year2": "2 Years",
+    "year5": "5 Years",
+    "predictionFailed": "Could not get price prediction",
+    "predictionDisclaimer": "* AI prediction for informational purposes only",
     "confidence": {
       "high": "High confidence",
       "medium": "Medium confidence",

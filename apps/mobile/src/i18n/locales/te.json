@@ -522,6 +522,11 @@
     "priceHistory": "ధర చరిత్ర",
     "priceReduced": "ధర తగ్గింది",
     "priceIncreased": "ధర పెరిగింది",
+    "floorPlan": "అంతస్తు ప్రణాళిక",
+    "floorPlanOptional": "(ఐచ్ఛికం)",
+    "floorPlanDesc": "కొనుగోలుదారులు లేఅవుట్‌ను అర్థం చేసుకోవడంలో సహాయపడటానికి ఫ్లోర్ ప్లాన్ చిత్రాన్ని అప్‌లోడ్ చేయండి",
+    "uploadFloorPlan": "ఫ్లోర్ ప్లాన్‌ని అప్‌లోడ్ చేయండి",
+    "clickToZoom": "జూమ్ చేయడానికి మరియు పాన్ చేయడానికి క్లిక్ చేయండి",
     "sale": "అమ్మకం",
     "rent": "అద్దె",
     "propertyTypeLabel": "టైప్ చేయండి",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "సూచించబడిన పరిధి",
     "confidenceLabel": "విశ్వాసం",
     "suggestPrice": "AI సూచన ధర",
-    "suggestionFailed": "ధర సూచనను పొందడం సాధ్యపడలేదు"
+    "suggestionFailed": "ధర సూచనను పొందడం సాధ్యపడలేదు",
+    "predictPrice": "AI ధర అంచనా",
+    "pricePrediction": "AI ధర అంచనా",
+    "year1": "1 సంవత్సరం",
+    "year2": "2 సంవత్సరాలు",
+    "year5": "5 సంవత్సరాలు",
+    "predictionFailed": "ధర అంచనాను పొందడం సాధ్యపడలేదు",
+    "predictionDisclaimer": "* సమాచార ప్రయోజనాల కోసం మాత్రమే AI అంచనా"
   },
   "agents": {
     "searchPlaceholder": "పేరు లేదా ప్రత్యేకత ద్వారా శోధించండి",
@@ -1971,7 +1983,11 @@
     "clickToView": "జాబితాను వీక్షించడానికి నొక్కండి",
     "propertiesInArea": "ఎంచుకున్న ప్రాంతంలోని లక్షణాలు",
     "loading": "మ్యాప్ లోడ్ అవుతోంది…",
-    "neighborhoodInsights": "పరిసర అంతర్దృష్టులు"
+    "neighborhoodInsights": "పరిసర అంతర్దృష్టులు",
+    "transport": "రవాణా",
+    "away": "దూరంగా",
+    "metroStation": "మెట్రో స్టేషన్",
+    "busStation": "బస్ స్టేషన్"
   },
   "neighborhood": {
     "insights": "పరిసర అంతర్దృష్టులు",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "నెలవారీ శోధనలు",
     "avgPrice": "సగటు ధర/మీ² రియాద్",
     "deals": "ఈ నెల డీల్‌లు"
+  },
+  "nearby": {
+    "title": "సమీపంలో ఏమి ఉంది",
+    "schools": "పాఠశాలలు",
+    "hospitals": "ఆసుపత్రులు",
+    "malls": "షాపింగ్ మాల్స్",
+    "mosques": "మసీదులు",
+    "restaurants": "రెస్టారెంట్లు",
+    "noPlaces": "సమీపంలో స్థలాలు ఏవీ కనుగొనబడలేదు"
   },
   "saved": {
     "title": "సేవ్ చేయబడింది",

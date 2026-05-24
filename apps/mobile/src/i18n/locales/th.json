@@ -522,6 +522,11 @@
     "priceHistory": "ประวัติราคา",
     "priceReduced": "ราคาลดลง",
     "priceIncreased": "ราคาเพิ่มขึ้น",
+    "floorPlan": "แผนผังชั้น",
+    "floorPlanOptional": "(ไม่จำเป็น)",
+    "floorPlanDesc": "อัปโหลดรูปภาพแผนผังชั้นเพื่อช่วยให้ผู้ซื้อเข้าใจเค้าโครง",
+    "uploadFloorPlan": "อัปโหลดแผนผังชั้น",
+    "clickToZoom": "คลิกเพื่อซูมและเลื่อน",
     "sale": "ขาย",
     "rent": "เช่า",
     "propertyTypeLabel": "พิมพ์",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "ช่วงที่แนะนำ",
     "confidenceLabel": "ความมั่นใจ",
     "suggestPrice": "AI แนะนำราคา",
-    "suggestionFailed": "ไม่สามารถรับคำแนะนำราคาได้"
+    "suggestionFailed": "ไม่สามารถรับคำแนะนำราคาได้",
+    "predictPrice": "การคาดการณ์ราคา AI",
+    "pricePrediction": "การคาดการณ์ราคา AI",
+    "year1": "1 ปี",
+    "year2": "2 ปี",
+    "year5": "5 ปี",
+    "predictionFailed": "ไม่สามารถรับการคาดการณ์ราคาได้",
+    "predictionDisclaimer": "* การคาดการณ์ AI เพื่อวัตถุประสงค์ในการให้ข้อมูลเท่านั้น"
   },
   "agents": {
     "searchPlaceholder": "ค้นหาตามชื่อหรือความเชี่ยวชาญ",
@@ -1971,7 +1983,11 @@
     "clickToView": "แตะเพื่อดูรายการ",
     "propertiesInArea": "คุณสมบัติในพื้นที่ที่เลือก",
     "loading": "กำลังโหลดแผนที่...",
-    "neighborhoodInsights": "ข้อมูลเชิงลึกของพื้นที่ใกล้เคียง"
+    "neighborhoodInsights": "ข้อมูลเชิงลึกของพื้นที่ใกล้เคียง",
+    "transport": "ขนส่ง",
+    "away": "ห่างออกไป",
+    "metroStation": "สถานีรถไฟใต้ดิน",
+    "busStation": "สถานีขนส่ง"
   },
   "neighborhood": {
     "insights": "ข้อมูลเชิงลึกของพื้นที่ใกล้เคียง",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "การค้นหารายเดือน",
     "avgPrice": "ราคาเฉลี่ย/m² ริยาด",
     "deals": "ข้อเสนอเดือนนี้"
+  },
+  "nearby": {
+    "title": "สิ่งที่อยู่ใกล้เคียง",
+    "schools": "โรงเรียน",
+    "hospitals": "โรงพยาบาล",
+    "malls": "ห้างสรรพสินค้า",
+    "mosques": "มัสยิด",
+    "restaurants": "ร้านอาหาร",
+    "noPlaces": "ไม่พบสถานที่ใกล้เคียง"
   },
   "saved": {
     "title": "บันทึกแล้ว",

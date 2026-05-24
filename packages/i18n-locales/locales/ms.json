@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Klik dan seret untuk melihat sekeliling · Tatal untuk zum",
     "priceHistory": "Sejarah Harga",
     "priceReduced": "Harga Dikurangkan",
-    "priceIncreased": "Harga Naik"
+    "priceIncreased": "Harga Naik",
+    "floorPlan": "Pelan Lantai",
+    "floorPlanOptional": "(Pilihan)",
+    "floorPlanDesc": "Muat naik imej pelan lantai untuk membantu pembeli memahami reka letak",
+    "uploadFloorPlan": "Muat Naik Pelan Lantai",
+    "clickToZoom": "Klik untuk zum dan sorot"
   },
   "search": {
     "filters": "Penapis",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Julat yang dicadangkan",
     "confidenceLabel": "Keyakinan",
     "suggestPrice": "Harga Cadangan AI",
-    "suggestionFailed": "Tidak boleh mendapatkan cadangan harga"
+    "suggestionFailed": "Tidak boleh mendapatkan cadangan harga",
+    "predictPrice": "Ramalan Harga AI",
+    "pricePrediction": "Ramalan Harga AI",
+    "year1": "1 Tahun",
+    "year2": "2 Tahun",
+    "year5": "5 Tahun",
+    "predictionFailed": "Tidak boleh mendapatkan ramalan harga",
+    "predictionDisclaimer": "* Ramalan AI untuk tujuan maklumat sahaja"
   },
   "agents": {
     "searchPlaceholder": "Cari mengikut nama atau kepakaran",
@@ -1672,7 +1684,11 @@
     "clickToView": "ketik untuk melihat senarai",
     "propertiesInArea": "Sifat dalam Kawasan Terpilih",
     "loading": "Memuatkan peta…",
-    "neighborhoodInsights": "Cerapan Kejiranan"
+    "neighborhoodInsights": "Cerapan Kejiranan",
+    "transport": "Pengangkutan",
+    "away": "jauh",
+    "metroStation": "Stesen Metro",
+    "busStation": "Stesen Bas"
   },
   "neighborhood": {
     "insights": "Cerapan Kejiranan",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Carian Bulanan",
     "avgPrice": "Harga Purata/m² Riyadh",
     "deals": "Tawaran Bulan Ini"
+  },
+  "nearby": {
+    "title": "Apa yang Berdekatan",
+    "schools": "Sekolah",
+    "hospitals": "Hospital",
+    "malls": "Pusat Beli-belah",
+    "mosques": "Masjid",
+    "restaurants": "Restoran",
+    "noPlaces": "Tiada tempat ditemui berdekatan"
   }
 }

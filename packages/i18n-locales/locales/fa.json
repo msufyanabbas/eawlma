@@ -470,7 +470,12 @@
     "vrHint": "🖱️ برای نگاه کردن به اطراف کلیک کنید و بکشید · برای بزرگنمایی اسکرول کنید",
     "priceHistory": "تاریخچه قیمت",
     "priceReduced": "قیمت کاهش یافته",
-    "priceIncreased": "قیمت افزایش یافت"
+    "priceIncreased": "قیمت افزایش یافت",
+    "floorPlan": "پلان طبقه",
+    "floorPlanOptional": "(اختیاری)",
+    "floorPlanDesc": "برای کمک به خریداران در درک چیدمان، یک تصویر پلان طبقه را آپلود کنید",
+    "uploadFloorPlan": "بارگذاری پلان طبقه",
+    "clickToZoom": "برای بزرگنمایی و جابجایی کلیک کنید"
   },
   "search": {
     "filters": "فیلترها",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "محدوده پیشنهادی",
     "confidenceLabel": "اعتماد به نفس",
     "suggestPrice": "AI پیشنهاد قیمت",
-    "suggestionFailed": "پیشنهاد قیمت دریافت نشد"
+    "suggestionFailed": "پیشنهاد قیمت دریافت نشد",
+    "predictPrice": "پیش بینی قیمت با هوش مصنوعی",
+    "pricePrediction": "پیش بینی قیمت با هوش مصنوعی",
+    "year1": "1 سال",
+    "year2": "2 سال",
+    "year5": "5 سال",
+    "predictionFailed": "نمی توان پیش بینی قیمت را دریافت کرد",
+    "predictionDisclaimer": "* پیش بینی هوش مصنوعی فقط برای اهداف اطلاعاتی"
   },
   "agents": {
     "searchPlaceholder": "جستجو بر اساس نام یا تخصص",
@@ -1672,7 +1684,11 @@
     "clickToView": "برای مشاهده لیست ضربه بزنید",
     "propertiesInArea": "خواص در منطقه انتخاب شده",
     "loading": "در حال بارگیری نقشه…",
-    "neighborhoodInsights": "بینش محله"
+    "neighborhoodInsights": "بینش محله",
+    "transport": "حمل و نقل",
+    "away": "دور",
+    "metroStation": "ایستگاه مترو",
+    "busStation": "ایستگاه اتوبوس"
   },
   "neighborhood": {
     "insights": "بینش محله",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "جستجوهای ماهانه",
     "avgPrice": "میانگین قیمت / متر مربع ریاض",
     "deals": "معاملات این ماه"
+  },
+  "nearby": {
+    "title": "چه چیزی در این نزدیکی است",
+    "schools": "مدارس",
+    "hospitals": "بیمارستان ها",
+    "malls": "مراکز خرید",
+    "mosques": "مساجد",
+    "restaurants": "رستوران ها",
+    "noPlaces": "هیچ مکانی در این نزدیکی یافت نشد"
   }
 }

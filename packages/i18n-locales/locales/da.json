@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Klik og træk for at se dig omkring · Rul for at zoome",
     "priceHistory": "Prishistorik",
     "priceReduced": "Pris nedsat",
-    "priceIncreased": "Prisforhøjet"
+    "priceIncreased": "Prisforhøjet",
+    "floorPlan": "Plantegning",
+    "floorPlanOptional": "(Valgfri)",
+    "floorPlanDesc": "Upload et plantegningsbillede for at hjælpe købere med at forstå layoutet",
+    "uploadFloorPlan": "Upload plantegning",
+    "clickToZoom": "Klik for at zoome og panorere"
   },
   "search": {
     "filters": "Filtre",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Foreslået område",
     "confidenceLabel": "Tillid",
     "suggestPrice": "AI Foreslå pris",
-    "suggestionFailed": "Kunne ikke få prisforslag"
+    "suggestionFailed": "Kunne ikke få prisforslag",
+    "predictPrice": "AI Pris Forudsigelse",
+    "pricePrediction": "AI Pris Forudsigelse",
+    "year1": "1 år",
+    "year2": "2 år",
+    "year5": "5 år",
+    "predictionFailed": "Kunne ikke få prisforudsigelse",
+    "predictionDisclaimer": "* AI-forudsigelse kun til informationsformål"
   },
   "agents": {
     "searchPlaceholder": "Søg efter navn eller speciale",
@@ -1672,7 +1684,11 @@
     "clickToView": "tryk for at se listen",
     "propertiesInArea": "Ejendomme i udvalgt område",
     "loading": "Indlæser kort…",
-    "neighborhoodInsights": "Neighborhood Insights"
+    "neighborhoodInsights": "Neighborhood Insights",
+    "transport": "Transport",
+    "away": "væk",
+    "metroStation": "Metrostation",
+    "busStation": "Busstation"
   },
   "neighborhood": {
     "insights": "Neighborhood Insights",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Månedlige søgninger",
     "avgPrice": "Gns. pris/m² Riyadh",
     "deals": "Tilbud denne måned"
+  },
+  "nearby": {
+    "title": "Hvad er der i nærheden",
+    "schools": "Skoler",
+    "hospitals": "Hospitaler",
+    "malls": "Indkøbscentre",
+    "mosques": "Moskeer",
+    "restaurants": "Restauranter",
+    "noPlaces": "Ingen steder fundet i nærheden"
   }
 }

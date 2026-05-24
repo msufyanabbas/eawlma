@@ -549,6 +549,11 @@
     "priceHistory": "قیمت کی تاریخ",
     "priceReduced": "| قیمت میں کمی",
     "priceIncreased": "قیمت میں اضافہ",
+    "floorPlan": "فلور پلان",
+    "floorPlanOptional": "(اختیاری)",
+    "floorPlanDesc": "خریداروں کو ترتیب کو سمجھنے میں مدد کرنے کے لیے فلور پلان کی تصویر اپ لوڈ کریں",
+    "uploadFloorPlan": "فلور پلان اپ لوڈ کریں",
+    "clickToZoom": "زوم اور پین کرنے کے لیے کلک کریں",
     "sale": "| فروخت",
     "rent": "| کرایہ",
     "propertyTypeLabel": "قسم",
@@ -1696,7 +1701,14 @@
     "suggestedRange": "تجویز کردہ رینج",
     "confidenceLabel": "اعتماد",
     "suggestPrice": "AI تجویز کردہ قیمت",
-    "suggestionFailed": "قیمت کی تجویز نہیں مل سکی"
+    "suggestionFailed": "قیمت کی تجویز نہیں مل سکی",
+    "predictPrice": "AI قیمت کی پیشن گوئی",
+    "pricePrediction": "AI قیمت کی پیشن گوئی",
+    "year1": "1 سال",
+    "year2": "2 سال",
+    "year5": "5 سال",
+    "predictionFailed": "قیمت کی پیشن گوئی نہیں مل سکی",
+    "predictionDisclaimer": "* AI کی پیشن گوئی صرف معلوماتی مقاصد کے لیے"
   },
   "agent": {
     "verified": "| تصدیق شدہ",
@@ -1983,7 +1995,11 @@
     "clickToView": "فہرست دیکھنے کے لیے تھپتھپائیں",
     "propertiesInArea": "منتخب علاقے میں پراپرٹیز",
     "loading": "نقشہ لوڈ ہو رہا ہے…",
-    "neighborhoodInsights": "پڑوس کی بصیرتیں"
+    "neighborhoodInsights": "پڑوس کی بصیرتیں",
+    "transport": "| ٹرانسپورٹ",
+    "away": "| دور",
+    "metroStation": "میٹرو اسٹیشن",
+    "busStation": "بس اسٹیشن"
   },
   "neighborhood": {
     "insights": "پڑوس کی بصیرتیں",
@@ -2031,6 +2047,15 @@
     "monthlySearches": "ماہانہ تلاشیں",
     "avgPrice": "اوسط قیمت/m² ریاض",
     "deals": "اس مہینے ڈیلز"
+  },
+  "nearby": {
+    "title": "آس پاس کیا ہے",
+    "schools": "سکولز",
+    "hospitals": "| ہسپتال",
+    "malls": "شاپنگ مالز",
+    "mosques": "مساجد",
+    "restaurants": "ریستوراں",
+    "noPlaces": "آس پاس کوئی جگہ نہیں ملی"
   },
   "saved": {
     "title": "| محفوظ کیا گیا",

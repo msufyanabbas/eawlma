@@ -20,7 +20,20 @@ export interface NeighborhoodInsight {
   trendPercent: number;
   lat: number;
   lng: number;
+  /** Curated quarterly review — explicit duplicate of `safety` kept so callers
+   *  can swap to a different source later without rewriting consumers. */
+  safetyScore: number; // 1-10
+  /** Derived from amenity density; correlates with `amenities` today but is
+   *  conceptually distinct ("can I walk to coffee?") so we track it apart. */
+  walkability: number; // 1-10
+  crimeLevel: 'low' | 'medium' | 'high';
+  /** YYYY-MM tag for when these numbers were last curated. Surface in tooltips
+   *  so users know the data isn't real-time. */
+  lastUpdated: string;
 }
+
+/** Curation timestamp shared by every record in this batch. Bump quarterly. */
+const LAST_REVIEWED = '2026-01';
 
 export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
   // Riyadh
@@ -30,6 +43,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 12000, avgRentPerMonth: 8500,
     schools: 8, hospitals: 5, malls: 4, mosques: 12,
     transport: 8, safety: 9, amenities: 10,
+    safetyScore: 9, walkability: 9, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 5.2,
     lat: 24.6877, lng: 46.6860,
   },
@@ -39,6 +53,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 9500, avgRentPerMonth: 6500,
     schools: 6, hospitals: 3, malls: 2, mosques: 8,
     transport: 7, safety: 9, amenities: 8,
+    safetyScore: 9, walkability: 7, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 3.8,
     lat: 24.7500, lng: 46.6800,
   },
@@ -48,6 +63,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 8500, avgRentPerMonth: 5500,
     schools: 7, hospitals: 2, malls: 3, mosques: 9,
     transport: 6, safety: 9, amenities: 7,
+    safetyScore: 9, walkability: 7, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'stable', trendPercent: 0.5,
     lat: 24.7800, lng: 46.6300,
   },
@@ -57,6 +73,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 7500, avgRentPerMonth: 4800,
     schools: 9, hospitals: 2, malls: 2, mosques: 11,
     transport: 6, safety: 9, amenities: 7,
+    safetyScore: 9, walkability: 6, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 4.1,
     lat: 24.8100, lng: 46.6500,
   },
@@ -66,6 +83,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 11000, avgRentPerMonth: 7500,
     schools: 5, hospitals: 4, malls: 3, mosques: 7,
     transport: 8, safety: 8, amenities: 9,
+    safetyScore: 8, walkability: 8, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 6.0,
     lat: 24.6700, lng: 46.7200,
   },
@@ -75,6 +93,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 10000, avgRentPerMonth: 7000,
     schools: 4, hospitals: 6, malls: 3, mosques: 8,
     transport: 9, safety: 8, amenities: 9,
+    safetyScore: 8, walkability: 9, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 4.5,
     lat: 24.6800, lng: 46.7100,
   },
@@ -84,6 +103,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 15000, avgRentPerMonth: 12000,
     schools: 2, hospitals: 1, malls: 1, mosques: 3,
     transport: 4, safety: 9, amenities: 5,
+    safetyScore: 9, walkability: 4, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 25.0,
     lat: 27.5219, lng: 36.7060,
   },
@@ -94,6 +114,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 13000, avgRentPerMonth: 9000,
     schools: 4, hospitals: 3, malls: 5, mosques: 6,
     transport: 7, safety: 8, amenities: 10,
+    safetyScore: 8, walkability: 9, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 7.5,
     lat: 21.5433, lng: 39.1728,
   },
@@ -103,6 +124,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 10000, avgRentPerMonth: 7000,
     schools: 6, hospitals: 4, malls: 3, mosques: 8,
     transport: 7, safety: 8, amenities: 8,
+    safetyScore: 8, walkability: 7, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'stable', trendPercent: 1.2,
     lat: 21.5700, lng: 39.1500,
   },
@@ -112,6 +134,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 8000, avgRentPerMonth: 5500,
     schools: 8, hospitals: 2, malls: 2, mosques: 10,
     transport: 6, safety: 8, amenities: 7,
+    safetyScore: 8, walkability: 6, crimeLevel: 'medium', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 3.2,
     lat: 21.6100, lng: 39.1200,
   },
@@ -121,6 +144,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 11000, avgRentPerMonth: 7800,
     schools: 3, hospitals: 2, malls: 4, mosques: 5,
     transport: 7, safety: 8, amenities: 9,
+    safetyScore: 8, walkability: 8, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 5.8,
     lat: 21.5200, lng: 39.1900,
   },
@@ -131,6 +155,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 7000, avgRentPerMonth: 4500,
     schools: 5, hospitals: 3, malls: 2, mosques: 7,
     transport: 7, safety: 8, amenities: 7,
+    safetyScore: 8, walkability: 6, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 2.8,
     lat: 26.4207, lng: 50.0888,
   },
@@ -140,6 +165,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 9000, avgRentPerMonth: 6000,
     schools: 4, hospitals: 2, malls: 3, mosques: 5,
     transport: 6, safety: 8, amenities: 8,
+    safetyScore: 8, walkability: 7, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'stable', trendPercent: 0.8,
     lat: 26.4500, lng: 50.1100,
   },
@@ -150,6 +176,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 16000, avgRentPerMonth: 11000,
     schools: 6, hospitals: 4, malls: 3, mosques: 20,
     transport: 8, safety: 9, amenities: 8,
+    safetyScore: 9, walkability: 8, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 8.5,
     lat: 21.3891, lng: 39.8579,
   },
@@ -160,6 +187,7 @@ export const NEIGHBORHOOD_INSIGHTS: NeighborhoodInsight[] = [
     avgPricePerSqm: 12000, avgRentPerMonth: 8000,
     schools: 5, hospitals: 4, malls: 2, mosques: 15,
     transport: 7, safety: 9, amenities: 7,
+    safetyScore: 9, walkability: 7, crimeLevel: 'low', lastUpdated: LAST_REVIEWED,
     trend: 'up', trendPercent: 6.2,
     lat: 24.4672, lng: 39.6024,
   },

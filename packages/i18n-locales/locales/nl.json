@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Klik en sleep om rond te kijken · Scroll om in te zoomen",
     "priceHistory": "Prijsgeschiedenis",
     "priceReduced": "Prijs verlaagd",
-    "priceIncreased": "Prijs verhoogd"
+    "priceIncreased": "Prijs verhoogd",
+    "floorPlan": "Plattegrond",
+    "floorPlanOptional": "(Optioneel)",
+    "floorPlanDesc": "Upload een plattegrondafbeelding zodat kopers de indeling kunnen begrijpen",
+    "uploadFloorPlan": "Plattegrond uploaden",
+    "clickToZoom": "Klik om te zoomen en te pannen"
   },
   "search": {
     "filters": "Filters",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Voorgesteld bereik",
     "confidenceLabel": "Vertrouwen",
     "suggestPrice": "AI-suggestieprijs",
-    "suggestionFailed": "Kan prijssuggestie"
+    "suggestionFailed": "Kan prijssuggestie",
+    "predictPrice": "AI-prijsvoorspelling",
+    "pricePrediction": "AI-prijsvoorspelling",
+    "year1": "1 jaar",
+    "year2": "2 jaar",
+    "year5": "5 jaar",
+    "predictionFailed": "Kan prijsvoorspelling",
+    "predictionDisclaimer": "niet ophalen * AI-voorspelling alleen voor informatieve doeleinden"
   },
   "agents": {
     "searchPlaceholder": "Zoek op naam of specialiteit",
@@ -1672,7 +1684,11 @@
     "clickToView": "tik om de lijst te bekijken",
     "propertiesInArea": "Eigenschappen in geselecteerd gebied",
     "loading": "Kaart laden…",
-    "neighborhoodInsights": "Buurtinzichten"
+    "neighborhoodInsights": "Buurtinzichten",
+    "transport": "Transport",
+    "away": "weg",
+    "metroStation": "Metrostation",
+    "busStation": "Busstation"
   },
   "neighborhood": {
     "insights": "Buurtinzichten",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Maandelijkse zoekopdrachten",
     "avgPrice": "Gem. prijs/m² Riyad",
     "deals": "Aanbiedingen deze maand"
+  },
+  "nearby": {
+    "title": "Wat is er in de buurt",
+    "schools": "Scholen",
+    "hospitals": "Ziekenhuizen",
+    "malls": "Winkelcentra",
+    "mosques": "Moskeeën",
+    "restaurants": "Restaurants",
+    "noPlaces": "Geen plaatsen gevonden in de buurt"
   }
 }

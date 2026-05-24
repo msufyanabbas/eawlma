@@ -522,6 +522,11 @@
     "priceHistory": "היסטוריית מחירים",
     "priceReduced": "מחיר מופחת",
     "priceIncreased": "המחיר עלה",
+    "floorPlan": "תכנית קומה",
+    "floorPlanOptional": "(אופציונלי)",
+    "floorPlanDesc": "העלה תמונת תכנית קומה כדי לעזור לקונים להבין את הפריסה",
+    "uploadFloorPlan": "העלה תוכנית קומה",
+    "clickToZoom": "לחץ כדי להגדיל ולזוז",
     "sale": "מבצע",
     "rent": "השכרה",
     "propertyTypeLabel": "הקלד",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "טווח מוצע",
     "confidenceLabel": "ביטחון",
     "suggestPrice": "AI מציע מחיר",
-    "suggestionFailed": "לא ניתן היה לקבל הצעת מחיר"
+    "suggestionFailed": "לא ניתן היה לקבל הצעת מחיר",
+    "predictPrice": "חיזוי מחיר AI",
+    "pricePrediction": "חיזוי מחיר AI",
+    "year1": "שנה",
+    "year2": "שנתיים",
+    "year5": "5 שנים",
+    "predictionFailed": "לא ניתן היה לקבל חיזוי מחיר",
+    "predictionDisclaimer": "* חיזוי AI למטרות מידע בלבד"
   },
   "agents": {
     "searchPlaceholder": "חפש לפי שם או התמחות",
@@ -1971,7 +1983,11 @@
     "clickToView": "הקש כדי להציג רשימה",
     "propertiesInArea": "נכסים באזור נבחר",
     "loading": "טוען מפה...",
-    "neighborhoodInsights": "תובנות שכונה"
+    "neighborhoodInsights": "תובנות שכונה",
+    "transport": "תחבורה",
+    "away": "משם",
+    "metroStation": "תחנת מטרו",
+    "busStation": "תחנת אוטובוס"
   },
   "neighborhood": {
     "insights": "תובנות שכונה",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "חיפושים חודשיים",
     "avgPrice": "מחיר ממוצע/מ\"ר ריאד",
     "deals": "מבצעים החודש"
+  },
+  "nearby": {
+    "title": "מה יש בקרבת מקום",
+    "schools": "בתי ספר",
+    "hospitals": "בתי חולים",
+    "malls": "קניונים",
+    "mosques": "מסגדים",
+    "restaurants": "מסעדות",
+    "noPlaces": "לא נמצאו מקומות בקרבת מקום"
   },
   "saved": {
     "title": "נשמר",

@@ -522,6 +522,11 @@
     "priceHistory": "Prishistorikk",
     "priceReduced": "Pris redusert",
     "priceIncreased": "Pris økt",
+    "floorPlan": "Planløsning",
+    "floorPlanOptional": "(Valgfritt)",
+    "floorPlanDesc": "Last opp et plantegningsbilde for å hjelpe kjøpere med å forstå oppsettet",
+    "uploadFloorPlan": "Last opp plantegning",
+    "clickToZoom": "Klikk for å zoome og panorere",
     "sale": "Salg",
     "rent": "Lei",
     "propertyTypeLabel": "Skriv",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Foreslått område",
     "confidenceLabel": "Tillit",
     "suggestPrice": "AI Foreslå pris",
-    "suggestionFailed": "Kunne ikke få prisforslag"
+    "suggestionFailed": "Kunne ikke få prisforslag",
+    "predictPrice": "AI Prisprediksjon",
+    "pricePrediction": "AI Prisprediksjon",
+    "year1": "1 år",
+    "year2": "2 år",
+    "year5": "5 år",
+    "predictionFailed": "Kunne ikke få prisprediksjon",
+    "predictionDisclaimer": "* AI-prediksjon kun for informasjonsformål"
   },
   "agents": {
     "searchPlaceholder": "Søk etter navn eller spesialitet",
@@ -1971,7 +1983,11 @@
     "clickToView": "trykk for å se listen",
     "propertiesInArea": "Eiendommer i valgt område",
     "loading": "Laster inn kart …",
-    "neighborhoodInsights": "Neighborhood Insights"
+    "neighborhoodInsights": "Neighborhood Insights",
+    "transport": "Transport",
+    "away": "borte",
+    "metroStation": "T-banestasjon",
+    "busStation": "Busstasjon"
   },
   "neighborhood": {
     "insights": "Neighborhood Insights",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Månedlige søk",
     "avgPrice": "Gj.sn. pris/m² Riyadh",
     "deals": "Tilbud denne måneden"
+  },
+  "nearby": {
+    "title": "Hva finnes i nærheten",
+    "schools": "Skoler",
+    "hospitals": "Sykehus",
+    "malls": "Kjøpesentre",
+    "mosques": "Moskeer",
+    "restaurants": "Restauranter",
+    "noPlaces": "Ingen steder funnet i nærheten"
   },
   "saved": {
     "title": "Lagret",

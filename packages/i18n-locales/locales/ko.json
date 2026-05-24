@@ -470,7 +470,12 @@
     "vrHint": "🖱️ 클릭하고 드래그하여 둘러보세요 · 스크롤하여 확대/축소",
     "priceHistory": "가격 내역",
     "priceReduced": "가격 인하",
-    "priceIncreased": "가격 인상"
+    "priceIncreased": "가격 인상",
+    "floorPlan": "평면도",
+    "floorPlanOptional": "(선택 과목)",
+    "floorPlanDesc": "구매자가 레이아웃을 이해할 수 있도록 평면도 이미지를 업로드하세요.",
+    "uploadFloorPlan": "평면도 업로드",
+    "clickToZoom": "확대/축소 및 이동하려면 클릭하세요."
   },
   "search": {
     "filters": "필터",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "권장 범위",
     "confidenceLabel": "신뢰",
     "suggestPrice": "AI 제안 가격",
-    "suggestionFailed": "가격 제안을 받을 수 없습니다."
+    "suggestionFailed": "가격 제안을 받을 수 없습니다.",
+    "predictPrice": "AI 가격 예측",
+    "pricePrediction": "AI 가격 예측",
+    "year1": "1년",
+    "year2": "2년",
+    "year5": "5년",
+    "predictionFailed": "가격 예측을 가져올 수 없습니다.",
+    "predictionDisclaimer": "* 정보 제공 목적으로만 사용되는 AI 예측"
   },
   "agents": {
     "searchPlaceholder": "이름이나 전문 분야로 검색",
@@ -1672,7 +1684,11 @@
     "clickToView": "탭하여 목록 보기",
     "propertiesInArea": "선택 영역의 속성",
     "loading": "지도 로드 중…",
-    "neighborhoodInsights": "동네 통찰"
+    "neighborhoodInsights": "동네 통찰",
+    "transport": "수송",
+    "away": "떨어져 있는",
+    "metroStation": "지하철역",
+    "busStation": "버스 정류장"
   },
   "neighborhood": {
     "insights": "동네 통찰",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "월간 검색",
     "avgPrice": "평균 가격/m² 리야드",
     "deals": "이번 달 특가"
+  },
+  "nearby": {
+    "title": "근처에 무엇이 있습니까?",
+    "schools": "학교",
+    "hospitals": "병원",
+    "malls": "쇼핑몰",
+    "mosques": "모스크",
+    "restaurants": "레스토랑",
+    "noPlaces": "주변 장소를 찾을 수 없습니다."
   }
 }

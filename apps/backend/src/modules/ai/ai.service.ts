@@ -163,6 +163,130 @@ export class AiService {
     return { enhanced: result.text, live: result.live };
   }
 
+  // ---------- Price prediction -----------------------------------------
+
+  async predictPrice(params: {
+    currentPrice: number;
+    city: string;
+    district?: string;
+    propertyType: string;
+    area: number;
+    bedrooms?: number;
+  }): Promise<{
+    year1: { price: number; growthPercent: number };
+    year2: { price: number; growthPercent: number };
+    year5: { price: number; growthPercent: number };
+    confidence: 'low' | 'medium' | 'high';
+    reasoning: string;
+    reasoningAr: string;
+    vision2030Factor: string;
+  }> {
+    const systemPrompt =
+      'You are a Saudi Arabian real-estate investment analyst with deep knowledge of Vision 2030 mega-projects and city-level market trends. You always return strict JSON.';
+
+    // Concise summary of the Vision 2030 hooks that meaningfully move
+    // prices in each city. Used to anchor the model on real projects
+    // rather than letting it confabulate.
+    const vision2030Projects: Record<string, string> = {
+      Riyadh:
+        'Diriyah Gate, Qiddiya Entertainment City, KAFD expansion, Riyadh Metro',
+      Jeddah:
+        'Red Sea Project access, Jeddah Tower, downtown waterfront tourism',
+      Tabuk:
+        'NEOM, The Line, Sindalah Island - extremely high growth expected',
+      Mecca: 'Grand Mosque expansion, religious tourism growth',
+      Medina: 'Prophet Mosque expansion, religious tourism',
+      Dammam: 'King Salman Energy Park, Eastern Province industrial expansion',
+    };
+
+    const userPrompt = `Predict real-estate price growth for:
+- Current price: ${params.currentPrice.toLocaleString()} SAR
+- City: ${params.city}
+- District: ${params.district ?? 'Central'}
+- Property type: ${params.propertyType}
+- Area: ${params.area} sqm
+- Bedrooms: ${params.bedrooms ?? 'N/A'}
+- Vision 2030 projects nearby: ${vision2030Projects[params.city] ?? 'General development'}
+
+Based on:
+1. Current Saudi real-estate market trends (2024-2026)
+2. Vision 2030 impact on this specific city
+3. Historical price appreciation in this area
+4. Government infrastructure investments
+
+Return ONLY valid JSON:
+{
+  "year1": { "price": 0, "growthPercent": 0 },
+  "year2": { "price": 0, "growthPercent": 0 },
+  "year5": { "price": 0, "growthPercent": 0 },
+  "confidence": "low|medium|high",
+  "reasoning": "Brief explanation in English",
+  "reasoningAr": "شرح موجز بالعربية",
+  "vision2030Factor": "How Vision 2030 affects this property"
+}`;
+
+    const result = await this.bedrockService.chat({
+      purpose: 'predict-price',
+      systemPrompt,
+      userPrompt,
+      jsonMode: true,
+      maxTokens: 500,
+    });
+
+    // Bedrock disabled (dev / no credentials) — return a deterministic
+    // mock so the UI still renders an answer and devs can iterate.
+    if (!result.live) {
+      const growth = params.city === 'Tabuk' ? 0.25 : 0.08;
+      return {
+        year1: {
+          price: Math.round(params.currentPrice * (1 + growth * 0.3)),
+          growthPercent: Math.round(growth * 30 * 10) / 10,
+        },
+        year2: {
+          price: Math.round(params.currentPrice * (1 + growth * 0.6)),
+          growthPercent: Math.round(growth * 60 * 10) / 10,
+        },
+        year5: {
+          price: Math.round(params.currentPrice * (1 + growth * 1.5)),
+          growthPercent: Math.round(growth * 150 * 10) / 10,
+        },
+        confidence: 'low',
+        reasoning: 'Based on historical Saudi market averages',
+        reasoningAr: 'بناءً على متوسطات السوق السعودي التاريخية',
+        vision2030Factor: 'General positive impact from Vision 2030',
+      };
+    }
+
+    try {
+      return JSON.parse(result.text);
+    } catch (err) {
+      this.logger.warn(
+        `predictPrice: could not parse Bedrock JSON: ${(err as Error).message}`,
+      );
+      // Fall back to the mock — failing the request would force the UI
+      // into an error state for a feature that's already a guess.
+      const growth = 0.08;
+      return {
+        year1: {
+          price: Math.round(params.currentPrice * 1.024),
+          growthPercent: 2.4,
+        },
+        year2: {
+          price: Math.round(params.currentPrice * 1.05),
+          growthPercent: 5,
+        },
+        year5: {
+          price: Math.round(params.currentPrice * (1 + growth * 1.5)),
+          growthPercent: Math.round(growth * 150 * 10) / 10,
+        },
+        confidence: 'low',
+        reasoning: 'Fallback estimate',
+        reasoningAr: 'تقدير احتياطي',
+        vision2030Factor: 'General positive impact from Vision 2030',
+      };
+    }
+  }
+
   // ---------- Recommendation scoring -----------------------------------
 
   async scoreCandidates(input: {

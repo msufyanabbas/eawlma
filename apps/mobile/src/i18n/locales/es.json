@@ -522,6 +522,11 @@
     "priceHistory": "Historial de precios",
     "priceReduced": "Precio Reducido",
     "priceIncreased": "Precio aumentado",
+    "floorPlan": "Plano de planta",
+    "floorPlanOptional": "(Opcional)",
+    "floorPlanDesc": "Cargue una imagen del plano de planta para ayudar a los compradores a comprender el diseño.",
+    "uploadFloorPlan": "Cargar plano de planta",
+    "clickToZoom": "Haga clic para ampliar y desplazarse",
     "sale": "Venta",
     "rent": "Alquilar",
     "propertyTypeLabel": "Tipo",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Rango sugerido",
     "confidenceLabel": "Confianza",
     "suggestPrice": "Precio sugerido por IA",
-    "suggestionFailed": "No se pudo obtener sugerencia de precio"
+    "suggestionFailed": "No se pudo obtener sugerencia de precio",
+    "predictPrice": "Predicción de precios de IA",
+    "pricePrediction": "Predicción de precios de IA",
+    "year1": "1 año",
+    "year2": "2 años",
+    "year5": "5 años",
+    "predictionFailed": "No se pudo obtener la predicción del precio",
+    "predictionDisclaimer": "* Predicción de IA solo con fines informativos"
   },
   "agents": {
     "searchPlaceholder": "Buscar por nombre o especialidad",
@@ -1971,7 +1983,11 @@
     "clickToView": "toque para ver la lista",
     "propertiesInArea": "Propiedades en el área seleccionada",
     "loading": "Cargando mapa…",
-    "neighborhoodInsights": "Perspectivas del vecindario"
+    "neighborhoodInsights": "Perspectivas del vecindario",
+    "transport": "Transporte",
+    "away": "lejos",
+    "metroStation": "Estación de Metro",
+    "busStation": "Estación de autobuses"
   },
   "neighborhood": {
     "insights": "Perspectivas del vecindario",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Búsquedas mensuales",
     "avgPrice": "Precio medio/m² Riad",
     "deals": "Ofertas este mes"
+  },
+  "nearby": {
+    "title": "¿Qué hay cerca?",
+    "schools": "Escuelas",
+    "hospitals": "hospitales",
+    "malls": "Centros comerciales",
+    "mosques": "Mezquitas",
+    "restaurants": "Restaurantes",
+    "noPlaces": "No se encontraron lugares cercanos"
   },
   "saved": {
     "title": "Guardado",

@@ -522,6 +522,11 @@
     "priceHistory": "የዋጋ ታሪክ",
     "priceReduced": "ዋጋ ቀንሷል",
     "priceIncreased": "ዋጋ ጨምሯል።",
+    "floorPlan": "የወለል እቅድ",
+    "floorPlanOptional": "(አማራጭ)",
+    "floorPlanDesc": "ገዢዎች አቀማመጡን እንዲረዱ ለመርዳት የወለል ፕላን ምስል ይስቀሉ።",
+    "uploadFloorPlan": "የወለል ፕላን ይስቀሉ",
+    "clickToZoom": "ለማጉላት እና ለማንኳኳት ጠቅ ያድርጉ",
     "sale": "ሽያጭ",
     "rent": "ይከራዩ",
     "propertyTypeLabel": "ዓይነት",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "የሚመከር ክልል",
     "confidenceLabel": "በራስ መተማመን",
     "suggestPrice": "AI አስተያየት ዋጋ",
-    "suggestionFailed": "የዋጋ አስተያየት ማግኘት አልተቻለም"
+    "suggestionFailed": "የዋጋ አስተያየት ማግኘት አልተቻለም",
+    "predictPrice": "AI የዋጋ ትንበያ",
+    "pricePrediction": "AI የዋጋ ትንበያ",
+    "year1": "1 አመት",
+    "year2": "2 ዓመታት",
+    "year5": "5 ዓመታት",
+    "predictionFailed": "የዋጋ ትንበያ ማግኘት አልተቻለም",
+    "predictionDisclaimer": "* AI ትንበያ ለመረጃ ዓላማዎች ብቻ"
   },
   "agents": {
     "searchPlaceholder": "በስም ወይም በልዩ ሁኔታ ይፈልጉ",
@@ -1971,7 +1983,11 @@
     "clickToView": "ዝርዝር ለማየት መታ ያድርጉ",
     "propertiesInArea": "በተመረጠው አካባቢ ውስጥ ያሉ ንብረቶች",
     "loading": "ካርታ በመጫን ላይ…",
-    "neighborhoodInsights": "የጎረቤት ግንዛቤዎች"
+    "neighborhoodInsights": "የጎረቤት ግንዛቤዎች",
+    "transport": "መጓጓዣ",
+    "away": "ሩቅ",
+    "metroStation": "ሜትሮ ጣቢያ",
+    "busStation": "የአውቶቡስ ጣቢያ"
   },
   "neighborhood": {
     "insights": "የጎረቤት ግንዛቤዎች",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "ወርሃዊ ፍለጋዎች",
     "avgPrice": "አማካኝ ዋጋ/m² ሪያድ",
     "deals": "በዚህ ወር ቅናሾች"
+  },
+  "nearby": {
+    "title": "በአቅራቢያ ያለው",
+    "schools": "ትምህርት ቤቶች",
+    "hospitals": "ሆስፒታሎች",
+    "malls": "የገበያ ማዕከሎች",
+    "mosques": "መስጊዶች",
+    "restaurants": "ምግብ ቤቶች",
+    "noPlaces": "በአቅራቢያ ምንም ቦታዎች አልተገኙም።"
   },
   "saved": {
     "title": "ተቀምጧል",

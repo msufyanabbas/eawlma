@@ -522,6 +522,11 @@
     "priceHistory": "Historique des prix",
     "priceReduced": "Prix ​​réduit",
     "priceIncreased": "Prix ​​augmenté",
+    "floorPlan": "Plan d'étage",
+    "floorPlanOptional": "(Facultatif)",
+    "floorPlanDesc": "Téléchargez une image de plan d'étage pour aider les acheteurs à comprendre la disposition",
+    "uploadFloorPlan": "Télécharger le plan d'étage",
+    "clickToZoom": "Cliquez pour zoomer et effectuer un panoramique",
     "sale": "Vente",
     "rent": "Louer",
     "propertyTypeLabel": "Tapez",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Plage suggérée",
     "confidenceLabel": "Confiance",
     "suggestPrice": "Prix ​​suggéré par l'IA",
-    "suggestionFailed": "Impossible d'obtenir une suggestion de prix"
+    "suggestionFailed": "Impossible d'obtenir une suggestion de prix",
+    "predictPrice": "Prévision de prix IA",
+    "pricePrediction": "Prévision de prix IA",
+    "year1": "1 an",
+    "year2": "2 ans",
+    "year5": "5 ans",
+    "predictionFailed": "Impossible d'obtenir la prévision des prix",
+    "predictionDisclaimer": "* Prédiction IA à titre informatif uniquement"
   },
   "agents": {
     "searchPlaceholder": "Recherche par nom ou spécialité",
@@ -1971,7 +1983,11 @@
     "clickToView": "appuyez pour voir la liste",
     "propertiesInArea": "Propriétés dans la zone sélectionnée",
     "loading": "Chargement de la carte…",
-    "neighborhoodInsights": "Aperçu du quartier"
+    "neighborhoodInsights": "Aperçu du quartier",
+    "transport": "Transports",
+    "away": "loin",
+    "metroStation": "Station de métro",
+    "busStation": "Gare routière"
   },
   "neighborhood": {
     "insights": "Aperçu du quartier",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Recherches mensuelles",
     "avgPrice": "Prix ​​moy/m² Riyad",
     "deals": "Offres ce mois-ci"
+  },
+  "nearby": {
+    "title": "À proximité",
+    "schools": "Écoles",
+    "hospitals": "Hôpitaux",
+    "malls": "Centres commerciaux",
+    "mosques": "Mosquées",
+    "restaurants": "Restaurants",
+    "noPlaces": "Aucun lieu trouvé à proximité"
   },
   "saved": {
     "title": "Enregistré",

@@ -470,7 +470,12 @@
     "vrHint": "🖱️ අවට බැලීමට ක්ලික් කර අදින්න · විශාලනය කිරීමට අනුචලනය කරන්න",
     "priceHistory": "මිල ඉතිහාසය",
     "priceReduced": "මිල අඩු කළා",
-    "priceIncreased": "මිල වැඩි කළා"
+    "priceIncreased": "මිල වැඩි කළා",
+    "floorPlan": "බිම් සැලැස්ම",
+    "floorPlanOptional": "(විකල්ප)",
+    "floorPlanDesc": "ගැනුම්කරුවන්ට පිරිසැලසුම තේරුම් ගැනීමට උපකාර කිරීම සඳහා බිම් සැලැස්මේ රූපයක් උඩුගත කරන්න",
+    "uploadFloorPlan": "උඩුගත බිම් සැලැස්ම",
+    "clickToZoom": "විශාලනය කිරීමට සහ පෑන් කිරීමට ක්ලික් කරන්න"
   },
   "search": {
     "filters": "පෙරහන්",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "යෝජිත පරාසය",
     "confidenceLabel": "විශ්වාසය",
     "suggestPrice": "AI යෝජනා මිල",
-    "suggestionFailed": "මිල යෝජනාව ලබා ගැනීමට නොහැකි විය"
+    "suggestionFailed": "මිල යෝජනාව ලබා ගැනීමට නොහැකි විය",
+    "predictPrice": "AI මිල අනාවැකිය",
+    "pricePrediction": "AI මිල අනාවැකිය",
+    "year1": "1 වසර",
+    "year2": "අවුරුදු 2 ක්",
+    "year5": "අවුරුදු 5 යි",
+    "predictionFailed": "මිල අනාවැකි ලබා ගැනීමට නොහැකි විය",
+    "predictionDisclaimer": "* AI පුරෝකථනය තොරතුරු අරමුණු සඳහා පමණි"
   },
   "agents": {
     "searchPlaceholder": "නම හෝ විශේෂත්වය අනුව සොයන්න",
@@ -1672,7 +1684,11 @@
     "clickToView": "ලැයිස්තුව බැලීමට තට්ටු කරන්න",
     "propertiesInArea": "තෝරාගත් ප්රදේශයේ දේපල",
     "loading": "සිතියම පූරණය වෙමින්...",
-    "neighborhoodInsights": "අසල්වැසි තීක්ෂ්ණ බුද්ධිය"
+    "neighborhoodInsights": "අසල්වැසි තීක්ෂ්ණ බුද්ධිය",
+    "transport": "ප්රවාහන",
+    "away": "දුරින්",
+    "metroStation": "මෙට්රෝ ස්ටේෂන්",
+    "busStation": "බස් ස්ටේසම"
   },
   "neighborhood": {
     "insights": "අසල්වැසි තීක්ෂ්ණ බුද්ධිය",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "මාසික සෙවුම්",
     "avgPrice": "සාමාන්‍ය මිල/m² රියාද්",
     "deals": "මෙම මාසයේ ගනුදෙනු"
+  },
+  "nearby": {
+    "title": "ආසන්නයේ ඇති දේ",
+    "schools": "පාසල්",
+    "hospitals": "රෝහල්",
+    "malls": "සාප්පු සංකීර්ණ",
+    "mosques": "මුස්ලිම් පල්ලි",
+    "restaurants": "ආපන ශාලා",
+    "noPlaces": "අවට ස්ථාන කිසිවක් හමු නොවීය"
   }
 }

@@ -522,6 +522,11 @@
     "priceHistory": "Kasaysayan ng Presyo",
     "priceReduced": "Binawasan ang Presyo",
     "priceIncreased": "Tumaas ang Presyo",
+    "floorPlan": "Floor Plan",
+    "floorPlanOptional": "(Opsyonal)",
+    "floorPlanDesc": "Mag-upload ng larawan ng floor plan upang matulungan ang mga mamimili na maunawaan ang layout",
+    "uploadFloorPlan": "Mag-upload ng Floor Plan",
+    "clickToZoom": "I-click upang mag-zoom at mag-pan",
     "sale": "Sale",
     "rent": "Rentahan",
     "propertyTypeLabel": "Uri",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Iminungkahing hanay",
     "confidenceLabel": "Kumpiyansa",
     "suggestPrice": "AI Suggest Price",
-    "suggestionFailed": "Hindi makakuha ng suhestyon sa presyo"
+    "suggestionFailed": "Hindi makakuha ng suhestyon sa presyo",
+    "predictPrice": "Hula ng Presyo ng AI",
+    "pricePrediction": "Hula ng Presyo ng AI",
+    "year1": "1 Taon",
+    "year2": "2 Taon",
+    "year5": "5 Taon",
+    "predictionFailed": "Hindi makakuha ng hula sa presyo",
+    "predictionDisclaimer": "* Ang hula ng AI para sa mga layuning pang-impormasyon lamang"
   },
   "agents": {
     "searchPlaceholder": "Maghanap ayon sa pangalan o espesyalidad",
@@ -1971,7 +1983,11 @@
     "clickToView": "i-tap para tingnan ang listahan",
     "propertiesInArea": "Mga Property sa Napiling Lugar",
     "loading": "Nilo-load ang mapa…",
-    "neighborhoodInsights": "Neighborhood Insights"
+    "neighborhoodInsights": "Neighborhood Insights",
+    "transport": "Transport",
+    "away": "malayo",
+    "metroStation": "Istasyon ng Metro",
+    "busStation": "Istasyon ng Bus"
   },
   "neighborhood": {
     "insights": "Neighborhood Insights",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Mga Buwanang Paghahanap",
     "avgPrice": "Avg na Presyo/m² Riyadh",
     "deals": "Mga Deal Ngayong Buwan"
+  },
+  "nearby": {
+    "title": "What's Nearby",
+    "schools": "Mga Paaralan",
+    "hospitals": "Mga Ospital",
+    "malls": "Mga Shopping Mall",
+    "mosques": "Mga Mosque",
+    "restaurants": "Mga Restaurant",
+    "noPlaces": "Walang nakitang mga lugar sa malapit"
   },
   "saved": {
     "title": "Na-save",

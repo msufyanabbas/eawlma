@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Klicken und ziehen Sie, um sich umzusehen · Scrollen Sie zum Zoomen",
     "priceHistory": "Preisverlauf",
     "priceReduced": "Preisreduziert",
-    "priceIncreased": "Preis erhöht"
+    "priceIncreased": "Preis erhöht",
+    "floorPlan": "Grundriss",
+    "floorPlanOptional": "(Optional)",
+    "floorPlanDesc": "Laden Sie ein Grundrissbild hoch, um Käufern das Verständnis des Grundrisses zu erleichtern",
+    "uploadFloorPlan": "Grundriss hochladen",
+    "clickToZoom": "Zum Zoomen und Schwenken klicken"
   },
   "search": {
     "filters": "Filter",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Empfohlener Bereich",
     "confidenceLabel": "Vertrauen",
     "suggestPrice": "AI schlägt Preis vor",
-    "suggestionFailed": "Preisvorschlag konnte nicht abgerufen werden"
+    "suggestionFailed": "Preisvorschlag konnte nicht abgerufen werden",
+    "predictPrice": "KI-Preisvorhersage",
+    "pricePrediction": "KI-Preisvorhersage",
+    "year1": "1 Jahr",
+    "year2": "2 Jahre",
+    "year5": "5 Jahre",
+    "predictionFailed": "Preisprognose konnte nicht abgerufen werden",
+    "predictionDisclaimer": "* KI-Vorhersage dient nur zu Informationszwecken"
   },
   "agents": {
     "searchPlaceholder": "Suche nach Name oder Fachgebiet",
@@ -1672,7 +1684,11 @@
     "clickToView": "Tippen Sie, um die Liste anzuzeigen",
     "propertiesInArea": "Eigenschaften im ausgewählten Bereich",
     "loading": "Karte wird geladen…",
-    "neighborhoodInsights": "Einblicke in die Nachbarschaft"
+    "neighborhoodInsights": "Einblicke in die Nachbarschaft",
+    "transport": "Transport",
+    "away": "weg",
+    "metroStation": "U-Bahn-Station",
+    "busStation": "Busbahnhof"
   },
   "neighborhood": {
     "insights": "Einblicke in die Nachbarschaft",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Monatliche Suchanfragen",
     "avgPrice": "Durchschnittlicher Preis/m² Riad",
     "deals": "Angebote diesen Monat"
+  },
+  "nearby": {
+    "title": "Was ist in der Nähe?",
+    "schools": "Schulen",
+    "hospitals": "Krankenhäuser",
+    "malls": "Einkaufszentren",
+    "mosques": "Moscheen",
+    "restaurants": "Restaurants",
+    "noPlaces": "Keine Orte in der Nähe gefunden"
   }
 }

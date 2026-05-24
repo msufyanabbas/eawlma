@@ -522,6 +522,11 @@
     "priceHistory": "Lịch sử giá",
     "priceReduced": "Giảm giá",
     "priceIncreased": "Giá tăng",
+    "floorPlan": "Sơ đồ mặt bằng",
+    "floorPlanOptional": "(Không bắt buộc)",
+    "floorPlanDesc": "Tải lên hình ảnh sơ đồ tầng để giúp người mua hiểu được cách bố trí",
+    "uploadFloorPlan": "Tải lên sơ đồ tầng",
+    "clickToZoom": "Nhấp để phóng to và xoay",
     "sale": "Doanh thu",
     "rent": "Thuê",
     "propertyTypeLabel": "Kiểu",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Phạm vi đề xuất",
     "confidenceLabel": "Sự tự tin",
     "suggestPrice": "Giá đề xuất AI",
-    "suggestionFailed": "Không thể nhận được đề xuất giá"
+    "suggestionFailed": "Không thể nhận được đề xuất giá",
+    "predictPrice": "Dự đoán giá AI",
+    "pricePrediction": "Dự đoán giá AI",
+    "year1": "1 năm",
+    "year2": "2 năm",
+    "year5": "5 năm",
+    "predictionFailed": "Không thể nhận được dự đoán giá",
+    "predictionDisclaimer": "* Dự đoán AI chỉ nhằm mục đích cung cấp thông tin"
   },
   "agents": {
     "searchPlaceholder": "Tìm kiếm theo tên hoặc chuyên ngành",
@@ -1971,7 +1983,11 @@
     "clickToView": "nhấn để xem danh sách",
     "propertiesInArea": "Thuộc tính trong khu vực đã chọn",
     "loading": "Đang tải bản đồ…",
-    "neighborhoodInsights": "Thông tin chi tiết về khu phố"
+    "neighborhoodInsights": "Thông tin chi tiết về khu phố",
+    "transport": "Chuyên chở",
+    "away": "xa",
+    "metroStation": "Ga tàu điện ngầm",
+    "busStation": "Trạm xe buýt"
   },
   "neighborhood": {
     "insights": "Thông tin chi tiết về khu phố",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Tìm kiếm hàng tháng",
     "avgPrice": "Giá trung bình/m2 Riyadh",
     "deals": "Ưu đãi tháng này"
+  },
+  "nearby": {
+    "title": "Có gì gần đó",
+    "schools": "Trường học",
+    "hospitals": "Bệnh viện",
+    "malls": "Trung tâm mua sắm",
+    "mosques": "Nhà thờ Hồi giáo",
+    "restaurants": "Nhà hàng",
+    "noPlaces": "Không tìm thấy địa điểm nào gần đó"
   },
   "saved": {
     "title": "Đã lưu",

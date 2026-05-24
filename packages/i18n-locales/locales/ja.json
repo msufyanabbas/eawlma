@@ -470,7 +470,12 @@
     "vrHint": "🖱️ クリックしてドラッグして周囲を見回します · スクロールしてズームします",
     "priceHistory": "価格履歴",
     "priceReduced": "値下げしました",
-    "priceIncreased": "価格の値上げ"
+    "priceIncreased": "価格の値上げ",
+    "floorPlan": "フロアプラン",
+    "floorPlanOptional": "(オプション)",
+    "floorPlanDesc": "間取り図の画像をアップロードして、購入者がレイアウトを理解しやすくする",
+    "uploadFloorPlan": "フロアプランをアップロードする",
+    "clickToZoom": "クリックしてズームおよびパンします"
   },
   "search": {
     "filters": "フィルター",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "推奨範囲",
     "confidenceLabel": "自信",
     "suggestPrice": "AI 推奨価格",
-    "suggestionFailed": "価格の提案を取得できませんでした"
+    "suggestionFailed": "価格の提案を取得できませんでした",
+    "predictPrice": "AI価格予測",
+    "pricePrediction": "AI価格予測",
+    "year1": "1年",
+    "year2": "2年",
+    "year5": "5年",
+    "predictionFailed": "価格予測を取得できませんでした",
+    "predictionDisclaimer": "* AI 予測は情報提供のみを目的としています"
   },
   "agents": {
     "searchPlaceholder": "名前や専門分野で検索する",
@@ -1672,7 +1684,11 @@
     "clickToView": "タップしてリストを表示",
     "propertiesInArea": "選択したエリアのプロパティ",
     "loading": "マップを読み込み中…",
-    "neighborhoodInsights": "近隣の情報"
+    "neighborhoodInsights": "近隣の情報",
+    "transport": "輸送",
+    "away": "離れて",
+    "metroStation": "地下鉄駅",
+    "busStation": "バス停"
   },
   "neighborhood": {
     "insights": "近隣の情報",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "月次検索",
     "avgPrice": "リヤドの平均価格/㎡",
     "deals": "今月のセール"
+  },
+  "nearby": {
+    "title": "近くにあるもの",
+    "schools": "学校",
+    "hospitals": "病院",
+    "malls": "ショッピングモール",
+    "mosques": "モスク",
+    "restaurants": "レストラン",
+    "noPlaces": "近くに場所が見つかりません"
   }
 }

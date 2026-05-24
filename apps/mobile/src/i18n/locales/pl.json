@@ -522,6 +522,11 @@
     "priceHistory": "Historia cen",
     "priceReduced": "Cena obniżona",
     "priceIncreased": "Cena wzrosła",
+    "floorPlan": "Plan piętra",
+    "floorPlanOptional": "(Fakultatywny)",
+    "floorPlanDesc": "Prześlij obraz planu piętra, aby pomóc kupującym zrozumieć układ",
+    "uploadFloorPlan": "Prześlij plan piętra",
+    "clickToZoom": "Kliknij, aby powiększyć i przesunąć",
     "sale": "Sprzedaż",
     "rent": "Wynajem",
     "propertyTypeLabel": "Typ",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Sugerowany zakres",
     "confidenceLabel": "Zaufanie",
     "suggestPrice": "Sugerowana cena AI",
-    "suggestionFailed": "Nie udało się uzyskać sugestii cenowej"
+    "suggestionFailed": "Nie udało się uzyskać sugestii cenowej",
+    "predictPrice": "Przewidywanie cen AI",
+    "pricePrediction": "Przewidywanie cen AI",
+    "year1": "1 rok",
+    "year2": "2 lata",
+    "year5": "5 lat",
+    "predictionFailed": "Nie udało się uzyskać prognozy ceny",
+    "predictionDisclaimer": "* Przewidywania AI wyłącznie w celach informacyjnych"
   },
   "agents": {
     "searchPlaceholder": "Szukaj według nazwy lub specjalności",
@@ -1971,7 +1983,11 @@
     "clickToView": "dotknij, aby wyświetlić listę",
     "propertiesInArea": "Właściwości w wybranym obszarze",
     "loading": "Ładowanie mapy…",
-    "neighborhoodInsights": "Spostrzeżenia z sąsiedztwa"
+    "neighborhoodInsights": "Spostrzeżenia z sąsiedztwa",
+    "transport": "Transport",
+    "away": "z dala",
+    "metroStation": "Stacja metra",
+    "busStation": "Dworzec autobusowy"
   },
   "neighborhood": {
     "insights": "Spostrzeżenia z sąsiedztwa",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Miesięczne wyszukiwania",
     "avgPrice": "Średnia cena/m² Rijad",
     "deals": "Oferty w tym miesiącu"
+  },
+  "nearby": {
+    "title": "Co jest w pobliżu",
+    "schools": "Szkoły",
+    "hospitals": "Szpitale",
+    "malls": "Centra handlowe",
+    "mosques": "Meczety",
+    "restaurants": "Restauracje",
+    "noPlaces": "Nie znaleziono żadnych miejsc w pobliżu"
   },
   "saved": {
     "title": "Zapisano",

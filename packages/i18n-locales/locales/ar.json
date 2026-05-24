@@ -457,6 +457,11 @@
     "priceHistory": "سجل الأسعار",
     "priceReduced": "تخفيض السعر",
     "priceIncreased": "رفع السعر",
+    "floorPlan": "مخطط الطابق",
+    "floorPlanOptional": "(اختياري)",
+    "floorPlanDesc": "ارفع صورة مخطط الطابق لمساعدة المشترين على فهم التخطيط",
+    "uploadFloorPlan": "رفع مخطط الطابق",
+    "clickToZoom": "انقر للتكبير والتنقل",
     "monthlyPayment": "القسط الشهري",
     "totalPayment": "إجمالي المدفوعات",
     "totalInterest": "إجمالي الفوائد",
@@ -1406,7 +1411,20 @@
     "clickToView": "انقر لعرض القائمة",
     "propertiesInArea": "العقارات في المنطقة المختارة",
     "loading": "جارٍ تحميل الخريطة…",
-    "neighborhoodInsights": "رؤى الحي"
+    "neighborhoodInsights": "رؤى الحي",
+    "transport": "المواصلات",
+    "away": "بعيد",
+    "metroStation": "محطة مترو",
+    "busStation": "محطة حافلات"
+  },
+  "nearby": {
+    "title": "ما الذي بالقرب؟",
+    "schools": "المدارس",
+    "hospitals": "المستشفيات",
+    "malls": "مراكز التسوق",
+    "mosques": "المساجد",
+    "restaurants": "المطاعم",
+    "noPlaces": "لا توجد أماكن قريبة"
   },
   "mortgage": {
     "title": "حاسبة التمويل العقاري",
@@ -1519,6 +1537,13 @@
     "confidenceLabel": "مستوى الثقة",
     "suggestPrice": "اقتراح السعر بالذكاء الاصطناعي",
     "suggestionFailed": "تعذر الحصول على اقتراح السعر",
+    "predictPrice": "توقع السعر بالذكاء الاصطناعي",
+    "pricePrediction": "توقع السعر بالذكاء الاصطناعي",
+    "year1": "سنة واحدة",
+    "year2": "سنتان",
+    "year5": "5 سنوات",
+    "predictionFailed": "تعذر الحصول على توقع السعر",
+    "predictionDisclaimer": "* توقع الذكاء الاصطناعي لأغراض إعلامية فقط",
     "confidence": {
       "high": "ثقة عالية",
       "medium": "ثقة متوسطة",

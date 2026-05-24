@@ -6,7 +6,9 @@ import {
   Breadcrumbs,
   Button,
   Chip,
+  CircularProgress,
   Container,
+  Divider,
   Grid,
   IconButton,
   Link as MuiLink,
@@ -44,6 +46,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ListingType, MediaType } from '@eawlma/shared-types';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 import confetti from 'canvas-confetti';
 import { listingsApi } from '@/api/listings.api';
@@ -59,10 +63,14 @@ import { SkeletonCard } from '@/components/global/SkeletonCard';
 import { Reveal } from '@/components/global/Reveal';
 import { MortgageCalculator } from '@/components/global/MortgageCalculator';
 import { VerificationBadges } from '@/components/agents/VerificationBadges';
+import { NearbyPlaces } from '@/components/listings/NearbyPlaces';
 import { CommissionOathModal, hasLocallyAcceptedOath } from '@/components/global/CommissionOathModal';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 import { apiClient } from '@/api/client';
+import { TRANSPORT_STATIONS, distanceMeters } from '@/data/transport-stations';
+import { formatNumber } from '@/utils/formatters';
 import { fallbackImageForPropertyType } from '@/utils/listingImages';
 import { getListingTitle, getListingDescription, getListingLocation } from '@/utils/listingText';
 import { trackListingView } from '@/utils/recentlyViewed';
@@ -241,6 +249,64 @@ export function ListingDetailPage() {
     staleTime: 60_000,
   });
   const priceHistory = priceHistoryQuery.data ?? [];
+
+  // AI price prediction — populated lazily when the user clicks the button.
+  // `null` ⇒ never requested, otherwise the parsed Bedrock response.
+  const [prediction, setPrediction] = useState<{
+    year1: { price: number; growthPercent: number };
+    year2: { price: number; growthPercent: number };
+    year5: { price: number; growthPercent: number };
+    confidence: 'low' | 'medium' | 'high';
+    reasoning: string;
+    reasoningAr: string;
+    vision2030Factor: string;
+  } | null>(null);
+  const predictMutation = useMutation({
+    mutationFn: async () => {
+      if (!listing) throw new Error('listing missing');
+      const { data } = await apiClient.post<{
+        year1: { price: number; growthPercent: number };
+        year2: { price: number; growthPercent: number };
+        year5: { price: number; growthPercent: number };
+        confidence: 'low' | 'medium' | 'high';
+        reasoning: string;
+        reasoningAr: string;
+        vision2030Factor: string;
+      }>('/ai/predict-price', {
+        currentPrice: Number(listing.price),
+        city: listing.city,
+        district: listing.district,
+        propertyType: listing.propertyType,
+        area: listing.area ? Number(listing.area) : 0,
+        bedrooms: listing.bedrooms,
+      });
+      return data;
+    },
+    onSuccess: (data) => setPrediction(data),
+  });
+
+  // Nearest public-transport station — filtered to listings in the same city
+  // so a Riyadh metro stop doesn't show up as the "nearest" to a Jeddah
+  // listing just because it's the only data we have.
+  const nearestStation = useMemo(() => {
+    if (!listing?.lat || !listing?.lng) return null;
+    const candidates = TRANSPORT_STATIONS.filter(
+      (s) => s.city === listing.city,
+    );
+    if (candidates.length === 0) return null;
+    const ranked = candidates
+      .map((station) => ({
+        ...station,
+        distance: distanceMeters(
+          Number(listing.lat),
+          Number(listing.lng),
+          station.lat,
+          station.lng,
+        ),
+      }))
+      .sort((a, b) => a.distance - b.distance);
+    return ranked[0];
+  }, [listing]);
 
   // Pick title/description in the chosen translation locale via the shared
   // util — handles stub-prefixed translations + mojibake-corrupted seeds.
@@ -825,6 +891,159 @@ export function ListingDetailPage() {
               </Paper>
             )}
 
+            {/* Floor plan — interactive click-to-zoom viewer */}
+            {(() => {
+              const floorPlan = listing.media?.find(
+                (m) => m.type === MediaType.FLOORPLAN,
+              );
+              if (!floorPlan) return null;
+              return (
+                <Paper sx={{ p: 3, borderRadius: 3, mb: 4 }}>
+                  <Typography variant="h6" fontWeight={700} sx={{ mb: 2 }}>
+                    {t('listing.floorPlan', 'Floor Plan')}
+                  </Typography>
+                  <PhotoProvider>
+                    <PhotoView src={floorPlan.url}>
+                      <Box
+                        sx={{
+                          cursor: 'zoom-in',
+                          borderRadius: 2,
+                          overflow: 'hidden',
+                          border: '1px solid',
+                          borderColor: 'divider',
+                          '&:hover': { opacity: 0.9 },
+                        }}
+                      >
+                        <img
+                          src={floorPlan.url}
+                          alt={t('listing.floorPlan', 'Floor Plan') as string}
+                          style={{
+                            width: '100%',
+                            maxHeight: 400,
+                            objectFit: 'contain',
+                            display: 'block',
+                          }}
+                        />
+                      </Box>
+                    </PhotoView>
+                  </PhotoProvider>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ mt: 1, display: 'block' }}
+                  >
+                    {t('listing.clickToZoom', 'Click to zoom and pan')}
+                  </Typography>
+                </Paper>
+              );
+            })()}
+
+            {/* AI price prediction — gated behind a button so we only burn
+             *  Bedrock tokens when the user explicitly opts in. */}
+            {isSale && (
+              <Box sx={{ mb: 4 }}>
+                <Button
+                  variant="outlined"
+                  startIcon={
+                    predictMutation.isPending ? (
+                      <CircularProgress size={16} />
+                    ) : (
+                      <TrendingUpIcon />
+                    )
+                  }
+                  onClick={() => predictMutation.mutate()}
+                  disabled={predictMutation.isPending}
+                >
+                  {t('ai.predictPrice', 'AI Price Prediction')}
+                </Button>
+                {prediction && (
+                  <Paper
+                    sx={{
+                      p: 3,
+                      borderRadius: 3,
+                      mt: 2,
+                      background:
+                        'linear-gradient(135deg, #6C63A615, #10B98115)',
+                      border: '1px solid',
+                      borderColor: 'primary.light',
+                    }}
+                  >
+                    <Typography variant="h6" fontWeight={700} sx={{ mb: 2 }}>
+                      {t('ai.pricePrediction', 'AI Price Prediction')}
+                    </Typography>
+                    <Grid container spacing={2} sx={{ mb: 2 }}>
+                      {[
+                        { label: t('ai.year1', '1 Year'), data: prediction.year1 },
+                        { label: t('ai.year2', '2 Years'), data: prediction.year2 },
+                        { label: t('ai.year5', '5 Years'), data: prediction.year5 },
+                      ].map(({ label, data }) => (
+                        <Grid item xs={4} key={String(label)}>
+                          <Box
+                            sx={{
+                              textAlign: 'center',
+                              p: 2,
+                              bgcolor: 'background.paper',
+                              borderRadius: 2,
+                            }}
+                          >
+                            <Typography
+                              variant="caption"
+                              color="text.secondary"
+                              display="block"
+                            >
+                              {label}
+                            </Typography>
+                            <Typography
+                              variant="h6"
+                              fontWeight={900}
+                              color="primary.main"
+                              fontSize={14}
+                            >
+                              {formatNumber(data.price)}
+                            </Typography>
+                            <Typography variant="caption" color="text.secondary">
+                              SAR
+                            </Typography>
+                            <Chip
+                              label={`+${data.growthPercent.toFixed(1)}%`}
+                              size="small"
+                              color="success"
+                              sx={{ mt: 0.5, display: 'flex' }}
+                            />
+                          </Box>
+                        </Grid>
+                      ))}
+                    </Grid>
+                    <Divider sx={{ my: 1.5 }} />
+                    <Typography variant="body2" color="text.secondary">
+                      {i18n.language === 'ar'
+                        ? prediction.reasoningAr
+                        : prediction.reasoning}
+                    </Typography>
+                    {prediction.vision2030Factor && (
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ display: 'block', mt: 1 }}
+                      >
+                        {prediction.vision2030Factor}
+                      </Typography>
+                    )}
+                    <Typography
+                      variant="caption"
+                      color="text.disabled"
+                      sx={{ display: 'block', mt: 1 }}
+                    >
+                      {t(
+                        'ai.predictionDisclaimer',
+                        '* AI prediction for informational purposes only',
+                      )}
+                    </Typography>
+                  </Paper>
+                )}
+              </Box>
+            )}
+
             {/* Mortgage calculator — sale listings only (rent has no loan to amortise) */}
             {isSale && (
               <Box sx={{ mb: 4 }}>
@@ -967,6 +1186,35 @@ export function ListingDetailPage() {
                 {t('listing.location')}
               </Typography>
               <ListingMap key={i18n.language} lat={Number(listing.lat)} lng={Number(listing.lng)} />
+              {nearestStation && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    mt: 1.5,
+                    p: 1.5,
+                    bgcolor: `${nearestStation.lineColor ?? '#0066CC'}15`,
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: `${nearestStation.lineColor ?? '#0066CC'}40`,
+                  }}
+                >
+                  <DirectionsSubwayIcon sx={{ color: nearestStation.lineColor ?? '#0066CC' }} />
+                  <Box>
+                    <Typography variant="body2" fontWeight={700}>
+                      {i18n.language === 'ar' ? nearestStation.nameAr : nearestStation.nameEn}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {nearestStation.line ? `${nearestStation.line} · ` : ''}
+                      {Math.round(nearestStation.distance)}m {t('map.away', 'away')}
+                    </Typography>
+                  </Box>
+                </Box>
+              )}
+              {listing.lat !== null && listing.lng !== null && (
+                <NearbyPlaces lat={Number(listing.lat)} lng={Number(listing.lng)} />
+              )}
             </Box>
           </Reveal>
           </Grid>

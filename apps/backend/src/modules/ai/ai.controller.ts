@@ -42,6 +42,25 @@ export class AiController {
     private readonly listings: Repository<ListingEntity>,
   ) {}
 
+  @Post('predict-price')
+  @ApiOperation({
+    summary:
+      'AI-driven price projection (1/2/5 yr) anchored on Vision 2030 city-level factors.',
+  })
+  async predictPrice(
+    @Body()
+    body: {
+      currentPrice: number;
+      city: string;
+      district?: string;
+      propertyType: string;
+      area: number;
+      bedrooms?: number;
+    },
+  ) {
+    return this.aiService.predictPrice(body);
+  }
+
   @Post('enhance-description')
   @Roles(UserRole.AGENT, UserRole.AGENCY_ADMIN, UserRole.ADMIN, UserRole.MODERATOR)
   @ApiOperation({ summary: 'Rewrite a listing description into an SEO-optimised version (preserves all facts)' })

@@ -34,6 +34,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InsightsIcon from '@mui/icons-material/Insights';
+import DirectionsSubwayIcon from '@mui/icons-material/DirectionsSubway';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -62,6 +63,7 @@ import {
   type NeighborhoodInsight,
 } from '@/data/neighborhood-insights';
 import { NeighborhoodInsightCard } from '@/components/map/NeighborhoodInsightCard';
+import { TRANSPORT_STATIONS } from '@/data/transport-stations';
 import { GA } from '@/utils/analytics';
 import { posthog } from '@/lib/posthog';
 import { ListingCard } from '@/components/global/ListingCard';
@@ -1111,6 +1113,8 @@ function MapView({ listings }: { listings: Listing[] }) {
   const [showNeighborhoods, setShowNeighborhoods] = useState(false);
   const [selectedNeighborhood, setSelectedNeighborhood] =
     useState<NeighborhoodInsight | null>(null);
+  // Transport layer: shows metro / bus / train stations as coloured circles.
+  const [showTransport, setShowTransport] = useState(false);
   // ID set of listings that fall inside the drawn polygon. `null` means
   // "no polygon drawn", so the full list is displayed.
   const [filteredIds, setFilteredIds] = useState<Set<string> | null>(null);
@@ -1367,6 +1371,21 @@ function MapView({ listings }: { listings: Listing[] }) {
             {t('map.neighborhoodInsights', { defaultValue: 'Neighborhood Insights' })}
           </Button>
         )}
+        {!isDrawing && (
+          <Button
+            size="small"
+            variant="contained"
+            startIcon={<DirectionsSubwayIcon />}
+            onClick={() => setShowTransport((p) => !p)}
+            sx={
+              showTransport
+                ? { bgcolor: '#0066CC', color: 'common.white', boxShadow: 2 }
+                : { bgcolor: 'background.paper', color: 'text.primary', boxShadow: 2 }
+            }
+          >
+            {t('map.transport', { defaultValue: 'Transport' })}
+          </Button>
+        )}
       </Box>
 
       {/* Polygon-filter result banner — bottom-center so the outcome of
@@ -1509,6 +1528,39 @@ function MapView({ listings }: { listings: Listing[] }) {
             <NeighborhoodInsightCard insight={selectedNeighborhood} />
           </InfoWindowF>
         )}
+
+        {/* Transport stations — coloured circle pins with M/T/B letter inside.
+         *  Standalone (not clustered) so each line's colour stays legible. */}
+        {showTransport &&
+          TRANSPORT_STATIONS.map((station) => {
+            const letter =
+              station.type === 'metro'
+                ? 'M'
+                : station.type === 'train'
+                  ? 'T'
+                  : 'B';
+            const color = station.lineColor ?? '#0066CC';
+            const svg = `
+              <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="13" fill="${color}" stroke="white" stroke-width="2"/>
+                <text x="14" y="19" font-family="Arial" font-size="14"
+                      font-weight="bold" fill="white" text-anchor="middle">${letter}</text>
+              </svg>
+            `;
+            return (
+              <MarkerF
+                key={`tr-${station.nameEn}-${station.city}`}
+                position={{ lat: station.lat, lng: station.lng }}
+                title={`${station.nameEn}${station.line ? ` · ${station.line}` : ''}`}
+                icon={{
+                  url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+                  scaledSize: new google.maps.Size(28, 28),
+                  anchor: new google.maps.Point(14, 14),
+                }}
+                zIndex={3}
+              />
+            );
+          })}
 
         {active && (
           <InfoWindowF

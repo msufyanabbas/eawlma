@@ -470,7 +470,12 @@
     "vrHint": "🖱️ आजूबाजूला पाहण्यासाठी क्लिक करा आणि ड्रॅग करा · झूम करण्यासाठी स्क्रोल करा",
     "priceHistory": "किंमत इतिहास",
     "priceReduced": "किंमत कमी केली",
-    "priceIncreased": "किंमत वाढली"
+    "priceIncreased": "किंमत वाढली",
+    "floorPlan": "मजला योजना",
+    "floorPlanOptional": "(पर्यायी)",
+    "floorPlanDesc": "खरेदीदारांना लेआउट समजण्यात मदत करण्यासाठी मजला योजना प्रतिमा अपलोड करा",
+    "uploadFloorPlan": "मजला योजना अपलोड करा",
+    "clickToZoom": "झूम आणि पॅन करण्यासाठी क्लिक करा"
   },
   "search": {
     "filters": "फिल्टर्स",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "सुचवलेली श्रेणी",
     "confidenceLabel": "आत्मविश्वास",
     "suggestPrice": "AI सुचविते किंमत",
-    "suggestionFailed": "किमतीची सूचना मिळू शकली नाही"
+    "suggestionFailed": "किमतीची सूचना मिळू शकली नाही",
+    "predictPrice": "AI किंमत अंदाज",
+    "pricePrediction": "AI किंमत अंदाज",
+    "year1": "1 वर्ष",
+    "year2": "2 वर्षे",
+    "year5": "5 वर्षे",
+    "predictionFailed": "किंमत अंदाज मिळू शकला नाही",
+    "predictionDisclaimer": "* केवळ माहितीच्या उद्देशाने एआय अंदाज"
   },
   "agents": {
     "searchPlaceholder": "नाव किंवा विशिष्टतेनुसार शोधा",
@@ -1672,7 +1684,11 @@
     "clickToView": "सूची पाहण्यासाठी टॅप करा",
     "propertiesInArea": "निवडलेल्या क्षेत्रातील गुणधर्म",
     "loading": "नकाशा लोड करत आहे...",
-    "neighborhoodInsights": "अतिपरिचित अंतर्दृष्टी"
+    "neighborhoodInsights": "अतिपरिचित अंतर्दृष्टी",
+    "transport": "वाहतूक",
+    "away": "दूर",
+    "metroStation": "मेट्रो स्टेशन",
+    "busStation": "बस स्थानक"
   },
   "neighborhood": {
     "insights": "अतिपरिचित अंतर्दृष्टी",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "मासिक शोध",
     "avgPrice": "सरासरी किंमत/m² रियाध",
     "deals": "या महिन्यात सौदे"
+  },
+  "nearby": {
+    "title": "जवळपास काय आहे",
+    "schools": "शाळा",
+    "hospitals": "रुग्णालये",
+    "malls": "शॉपिंग मॉल्स",
+    "mosques": "मशिदी",
+    "restaurants": "रेस्टॉरंट्स",
+    "noPlaces": "जवळपास कोणतीही ठिकाणे आढळली नाहीत"
   }
 }

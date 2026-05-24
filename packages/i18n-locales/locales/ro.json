@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Faceți clic și trageți pentru a privi în jur · Derulați pentru a mări",
     "priceHistory": "Istoricul prețurilor",
     "priceReduced": "Pret redus",
-    "priceIncreased": "Preț crescut"
+    "priceIncreased": "Preț crescut",
+    "floorPlan": "Plan de etaj",
+    "floorPlanOptional": "(Opțional)",
+    "floorPlanDesc": "Încărcați o imagine a planului de etaj pentru a ajuta cumpărătorii să înțeleagă aspectul",
+    "uploadFloorPlan": "Încărcați planul de etaj",
+    "clickToZoom": "Faceți clic pentru a mări și a deplasa"
   },
   "search": {
     "filters": "Filtre",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Interval sugerat",
     "confidenceLabel": "Încredere",
     "suggestPrice": "AI sugerează preț",
-    "suggestionFailed": "Nu s-a putut obține sugestia de preț"
+    "suggestionFailed": "Nu s-a putut obține sugestia de preț",
+    "predictPrice": "Predicție de preț AI",
+    "pricePrediction": "Predicție de preț AI",
+    "year1": "1 an",
+    "year2": "2 ani",
+    "year5": "5 ani",
+    "predictionFailed": "Nu s-a putut obține estimarea prețului",
+    "predictionDisclaimer": "* Predicția AI numai în scop informativ"
   },
   "agents": {
     "searchPlaceholder": "Căutați după nume sau specialitate",
@@ -1672,7 +1684,11 @@
     "clickToView": "atingeți pentru a vizualiza lista",
     "propertiesInArea": "Proprietăți în zona selectată",
     "loading": "Se încarcă harta…",
-    "neighborhoodInsights": "Neighbourhood Insights"
+    "neighborhoodInsights": "Neighbourhood Insights",
+    "transport": "Transport",
+    "away": "departe",
+    "metroStation": "Stația de metrou",
+    "busStation": "Autogara"
   },
   "neighborhood": {
     "insights": "Neighbourhood Insights",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Căutări lunare",
     "avgPrice": "Preț mediu/m² Riyadh",
     "deals": "Oferte luna aceasta"
+  },
+  "nearby": {
+    "title": "Ce este în apropiere",
+    "schools": "Școli",
+    "hospitals": "Spitale",
+    "malls": "Centre comerciale",
+    "mosques": "Moschei",
+    "restaurants": "Restaurante",
+    "noPlaces": "Nu s-au găsit locuri în apropiere"
   }
 }

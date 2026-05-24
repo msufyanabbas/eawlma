@@ -470,7 +470,12 @@
     "vrHint": "🖱️ Bofya na uburute ili kutazama kote · Sogeza ili kukuza",
     "priceHistory": "Historia ya Bei",
     "priceReduced": "Bei Imepunguzwa",
-    "priceIncreased": "Bei Imeongezeka"
+    "priceIncreased": "Bei Imeongezeka",
+    "floorPlan": "Mpango wa sakafu",
+    "floorPlanOptional": "(Si lazima)",
+    "floorPlanDesc": "Pakia picha ya mpango wa sakafu ili kuwasaidia wanunuzi kuelewa mpangilio",
+    "uploadFloorPlan": "Pakia Mpango wa Sakafu",
+    "clickToZoom": "Bofya ili kukuza na kugeuza"
   },
   "search": {
     "filters": "Vichujio",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "Masafa yaliyopendekezwa",
     "confidenceLabel": "Kujiamini",
     "suggestPrice": "AI Pendekeza Bei",
-    "suggestionFailed": "Haikuweza kupata pendekezo la bei"
+    "suggestionFailed": "Haikuweza kupata pendekezo la bei",
+    "predictPrice": "Utabiri wa Bei ya AI",
+    "pricePrediction": "Utabiri wa Bei ya AI",
+    "year1": "1 Mwaka",
+    "year2": "Miaka 2",
+    "year5": "Miaka 5",
+    "predictionFailed": "Haikuweza kupata utabiri wa bei",
+    "predictionDisclaimer": "* Utabiri wa AI kwa madhumuni ya habari tu"
   },
   "agents": {
     "searchPlaceholder": "Tafuta kwa jina au utaalamu",
@@ -1672,7 +1684,11 @@
     "clickToView": "gusa ili kutazama orodha",
     "propertiesInArea": "Mali katika eneo lililochaguliwa",
     "loading": "Inapakia ramani...",
-    "neighborhoodInsights": "Maarifa ya Ujirani"
+    "neighborhoodInsights": "Maarifa ya Ujirani",
+    "transport": "Usafiri",
+    "away": "mbali",
+    "metroStation": "Kituo cha Metro",
+    "busStation": "Kituo cha Mabasi"
   },
   "neighborhood": {
     "insights": "Maarifa ya Ujirani",
@@ -1720,5 +1736,14 @@
     "monthlySearches": "Utafutaji wa Kila Mwezi",
     "avgPrice": "Wastani wa Bei/m² Riyadh",
     "deals": "Ofa Mwezi Huu"
+  },
+  "nearby": {
+    "title": "Nini Karibu",
+    "schools": "Shule",
+    "hospitals": "Hospitali",
+    "malls": "Maduka makubwa",
+    "mosques": "Misikiti",
+    "restaurants": "Mikahawa",
+    "noPlaces": "Hakuna maeneo yaliyopatikana karibu"
   }
 }

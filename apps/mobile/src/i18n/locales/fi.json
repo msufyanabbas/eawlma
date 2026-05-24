@@ -522,6 +522,11 @@
     "priceHistory": "Hintahistoria",
     "priceReduced": "Hintaa alennettu",
     "priceIncreased": "Hintaa korotettu",
+    "floorPlan": "Pohjapiirros",
+    "floorPlanOptional": "(Valinnainen)",
+    "floorPlanDesc": "Lataa pohjapiirroskuva, jotta ostajat ymmärtävät asettelun",
+    "uploadFloorPlan": "Lataa pohjapiirros",
+    "clickToZoom": "Zoomaa ja panoroi napsauttamalla",
     "sale": "Myynti",
     "rent": "Vuokrata",
     "propertyTypeLabel": "Tyyppi",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Suositeltu alue",
     "confidenceLabel": "Luottamus",
     "suggestPrice": "AI ehdotushinta",
-    "suggestionFailed": "Hintaehdotusta ei saatu"
+    "suggestionFailed": "Hintaehdotusta ei saatu",
+    "predictPrice": "AI hintaennuste",
+    "pricePrediction": "AI hintaennuste",
+    "year1": "1 vuosi",
+    "year2": "2 vuotta",
+    "year5": "5 vuotta",
+    "predictionFailed": "Hintaennustetta ei saatu",
+    "predictionDisclaimer": "* AI-ennustus vain tiedoksi"
   },
   "agents": {
     "searchPlaceholder": "Hae nimen tai erikoisalan mukaan",
@@ -1971,7 +1983,11 @@
     "clickToView": "napauta nähdäksesi luettelon",
     "propertiesInArea": "Kiinteistöt valitulla alueella",
     "loading": "Ladataan karttaa…",
-    "neighborhoodInsights": "Neighborhood Insights"
+    "neighborhoodInsights": "Neighborhood Insights",
+    "transport": "Kuljetus",
+    "away": "pois",
+    "metroStation": "Metroasema",
+    "busStation": "Linja-autoasema"
   },
   "neighborhood": {
     "insights": "Neighborhood Insights",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Kuukausittaiset haut",
     "avgPrice": "Keskihinta/m² Riad",
     "deals": "Tarjoukset tässä kuussa"
+  },
+  "nearby": {
+    "title": "What's Nearby",
+    "schools": "Koulut",
+    "hospitals": "Sairaalat",
+    "malls": "Ostoskeskukset",
+    "mosques": "Moskeijat",
+    "restaurants": "Ravintolat",
+    "noPlaces": "Lähistöltä ei löytynyt paikkoja"
   },
   "saved": {
     "title": "Tallennettu",

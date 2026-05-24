@@ -522,6 +522,11 @@
     "priceHistory": "Fiyat Geçmişi",
     "priceReduced": "Fiyat İndirimli",
     "priceIncreased": "Fiyat Arttı",
+    "floorPlan": "Kat Planı",
+    "floorPlanOptional": "(İsteğe bağlı)",
+    "floorPlanDesc": "Alıcıların düzeni anlamasına yardımcı olmak için bir kat planı resmi yükleyin",
+    "uploadFloorPlan": "Kat Planını Yükle",
+    "clickToZoom": "Yakınlaştırmak ve kaydırmak için tıklayın",
     "sale": "Satış",
     "rent": "Kira",
     "propertyTypeLabel": "Tip",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Önerilen aralık",
     "confidenceLabel": "Kendinden emin",
     "suggestPrice": "AI Öneri Fiyatı",
-    "suggestionFailed": "Fiyat önerisi alınamadı"
+    "suggestionFailed": "Fiyat önerisi alınamadı",
+    "predictPrice": "Yapay Zeka Fiyat Tahmini",
+    "pricePrediction": "Yapay Zeka Fiyat Tahmini",
+    "year1": "1 Yıl",
+    "year2": "2 Yıl",
+    "year5": "5 Yıl",
+    "predictionFailed": "Fiyat tahmini alınamadı",
+    "predictionDisclaimer": "* Yapay zeka tahmini yalnızca bilgilendirme amaçlıdır"
   },
   "agents": {
     "searchPlaceholder": "İsme veya uzmanlığa göre arayın",
@@ -1971,7 +1983,11 @@
     "clickToView": "listeyi görüntülemek için dokunun",
     "propertiesInArea": "Seçilen Bölgedeki Gayrimenkuller",
     "loading": "Harita yükleniyor…",
-    "neighborhoodInsights": "Mahalle Analizleri"
+    "neighborhoodInsights": "Mahalle Analizleri",
+    "transport": "Taşıma",
+    "away": "uzak",
+    "metroStation": "Metro İstasyonu",
+    "busStation": "Otobüs Terminali"
   },
   "neighborhood": {
     "insights": "Mahalle Analizleri",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Aylık Aramalar",
     "avgPrice": "Ortalama Fiyat/m² Riyad",
     "deals": "Bu Ayın Fırsatları"
+  },
+  "nearby": {
+    "title": "Yakınlarda Neler Var?",
+    "schools": "Okullar",
+    "hospitals": "Hastaneler",
+    "malls": "Alışveriş Merkezleri",
+    "mosques": "Camiler",
+    "restaurants": "Restoranlar",
+    "noPlaces": "Yakınlarda yer bulunamadı"
   },
   "saved": {
     "title": "Kaydedildi",

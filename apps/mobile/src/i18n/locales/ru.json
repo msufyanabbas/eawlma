@@ -522,6 +522,11 @@
     "priceHistory": "История цен",
     "priceReduced": "Цена снижена",
     "priceIncreased": "Цена увеличена",
+    "floorPlan": "План этажа",
+    "floorPlanOptional": "(Необязательный)",
+    "floorPlanDesc": "Загрузите изображение плана этажа, чтобы помочь покупателям понять планировку.",
+    "uploadFloorPlan": "Загрузить план этажа",
+    "clickToZoom": "Нажмите, чтобы увеличить и панорамировать",
     "sale": "Распродажа",
     "rent": "Арендовать",
     "propertyTypeLabel": "Тип",
@@ -1647,7 +1652,14 @@
     "suggestedRange": "Рекомендуемый диапазон",
     "confidenceLabel": "Уверенность",
     "suggestPrice": "ИИ предложит цену",
-    "suggestionFailed": "Не удалось получить ценовое предложение"
+    "suggestionFailed": "Не удалось получить ценовое предложение",
+    "predictPrice": "Прогноз цен с помощью ИИ",
+    "pricePrediction": "Прогноз цен с помощью ИИ",
+    "year1": "1 год",
+    "year2": "2 года",
+    "year5": "5 лет",
+    "predictionFailed": "Не удалось получить прогноз цены",
+    "predictionDisclaimer": "* Прогноз AI предназначен только для информационных целей."
   },
   "agents": {
     "searchPlaceholder": "Поиск по имени или специальности",
@@ -1971,7 +1983,11 @@
     "clickToView": "нажмите, чтобы просмотреть список",
     "propertiesInArea": "Недвижимость в выбранном районе",
     "loading": "Загрузка карты…",
-    "neighborhoodInsights": "Информация о районе"
+    "neighborhoodInsights": "Информация о районе",
+    "transport": "Транспорт",
+    "away": "прочь",
+    "metroStation": "Станция метро",
+    "busStation": "Автовокзал"
   },
   "neighborhood": {
     "insights": "Информация о районе",
@@ -2019,6 +2035,15 @@
     "monthlySearches": "Ежемесячные поиски",
     "avgPrice": "Средняя цена/м² Эр-Рияд",
     "deals": "Скидки в этом месяце"
+  },
+  "nearby": {
+    "title": "Что рядом",
+    "schools": "Школы",
+    "hospitals": "Больницы",
+    "malls": "Торговые центры",
+    "mosques": "Мечети",
+    "restaurants": "Рестораны",
+    "noPlaces": "Мест поблизости не найдено"
   },
   "saved": {
     "title": "Сохранено",

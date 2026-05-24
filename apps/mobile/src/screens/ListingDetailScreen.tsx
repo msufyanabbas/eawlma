@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../hooks/useTheme';
 import { useRTL } from '../hooks/useRTL';
 import { useAuthStore } from '../store/auth.store';
-import { inquiriesApi, listingsApi, reviewsApi, savedApi } from '../api';
+import { aiApi, inquiriesApi, listingsApi, reviewsApi, savedApi } from '../api';
 import { SIZES, SHADOWS, TYPOGRAPHY } from '../theme';
 import LoadingSpinner from '../components/LoadingSpinner';
 import PriceText from '../components/PriceText';
@@ -56,6 +56,10 @@ export default function ListingDetailScreen({ navigation, route }: any) {
   const [isSaved, setIsSaved] = useState(false);
   // Active slide in the hero photo carousel (multi-image listings only).
   const [heroIndex, setHeroIndex] = useState(0);
+  // Lazy AI price prediction — populated on button tap so we don't burn
+  // Bedrock tokens for every detail-screen open.
+  const [prediction, setPrediction] = useState<import('../api/ai.api').PricePrediction | null>(null);
+  const [predicting, setPredicting] = useState(false);
 
   const { data, isLoading } = useQuery({
     queryKey: ['listing', id],
@@ -396,6 +400,139 @@ export default function ListingDetailScreen({ navigation, route }: any) {
                 ))}
               </View>
             </>
+          )}
+
+          {/* What's nearby — uses the static counts the backend already
+              returns on the listing payload (no Google Places SDK on RN). */}
+          {(listing?.nearby || amenities.length > 0) && (
+            <>
+              <SectionTitle colors={colors} textAlign={textAlign}>
+                {t('nearby.title', "What's Nearby")}
+              </SectionTitle>
+              <View
+                style={{
+                  flexDirection: isRTL ? 'row-reverse' : 'row',
+                  flexWrap: 'wrap',
+                  gap: 8,
+                  marginBottom: SIZES.md,
+                }}
+              >
+                {(
+                  [
+                    { icon: 'school' as const, key: 'schools', count: listing?.nearby?.schools ?? 0 },
+                    { icon: 'medkit' as const, key: 'hospitals', count: listing?.nearby?.hospitals ?? 0 },
+                    { icon: 'cart' as const, key: 'malls', count: listing?.nearby?.malls ?? 0 },
+                    { icon: 'business' as const, key: 'mosques', count: listing?.nearby?.mosques ?? 0 },
+                  ] as const
+                )
+                  .filter((row) => row.count > 0)
+                  .map((row) => (
+                    <View
+                      key={row.key}
+                      style={[
+                        styles.amenityChip,
+                        {
+                          backgroundColor: colors.primary + '10',
+                          borderColor: colors.primary + '30',
+                          flexDirection: isRTL ? 'row-reverse' : 'row',
+                        },
+                      ]}
+                    >
+                      <Ionicons name={row.icon} size={14} color={colors.primary} />
+                      <Text style={[TYPOGRAPHY.small, { color: colors.text }]}>
+                        {row.count} {t(`nearby.${row.key}`)}
+                      </Text>
+                    </View>
+                  ))}
+              </View>
+            </>
+          )}
+
+          {/* AI price prediction — gated behind a button so Bedrock isn't
+              called on every screen open. */}
+          {listing?.price ? (
+            <TouchableOpacity
+              style={[
+                styles.amenityChip,
+                {
+                  alignSelf: 'flex-start',
+                  marginBottom: SIZES.md,
+                  borderColor: colors.primary,
+                  backgroundColor: colors.primary + '15',
+                  flexDirection: isRTL ? 'row-reverse' : 'row',
+                  paddingHorizontal: SIZES.md,
+                  paddingVertical: SIZES.sm,
+                },
+              ]}
+              disabled={predicting}
+              onPress={async () => {
+                setPredicting(true);
+                try {
+                  const res = await aiApi.predictPrice({
+                    currentPrice: Number(listing.price),
+                    city: listing.city,
+                    district: listing.district,
+                    propertyType: listing.propertyType,
+                    area: Number(listing.area ?? 0),
+                    bedrooms: listing.bedrooms,
+                  });
+                  setPrediction(res);
+                } catch {
+                  Alert.alert(t('common.error', 'Error'), t('ai.predictionFailed', 'Could not get price prediction'));
+                } finally {
+                  setPredicting(false);
+                }
+              }}
+            >
+              {predicting ? (
+                <ActivityIndicator size="small" color={colors.primary} />
+              ) : (
+                <Ionicons name="trending-up" size={16} color={colors.primary} />
+              )}
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary }]}>
+                {t('ai.predictPrice', 'AI Price Prediction')}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
+
+          {prediction && (
+            <View
+              style={{
+                padding: SIZES.md,
+                borderRadius: SIZES.borderRadius,
+                backgroundColor: colors.surface,
+                marginBottom: SIZES.md,
+                borderWidth: 1,
+                borderColor: colors.primary + '40',
+              }}
+            >
+              <Text style={[TYPOGRAPHY.bodyBold, { color: colors.text, marginBottom: SIZES.sm, textAlign }]}>
+                {t('ai.pricePrediction', 'AI Price Prediction')}
+              </Text>
+              <View style={{ flexDirection: 'row', gap: SIZES.sm, marginBottom: SIZES.sm }}>
+                {[
+                  { label: t('ai.year1', '1 Year'), data: prediction.year1 },
+                  { label: t('ai.year2', '2 Years'), data: prediction.year2 },
+                  { label: t('ai.year5', '5 Years'), data: prediction.year5 },
+                ].map(({ label, data }) => (
+                  <View key={String(label)} style={{ flex: 1, alignItems: 'center' }}>
+                    <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary }]}>{label}</Text>
+                    <Text style={[TYPOGRAPHY.bodyBold, { color: colors.primary }]}>
+                      {formatNumber(data.price)}
+                    </Text>
+                    <Text style={[TYPOGRAPHY.caption, { color: colors.success }]}>
+                      +{data.growthPercent.toFixed(1)}%
+                    </Text>
+                  </View>
+                ))}
+              </View>
+              <Text style={[TYPOGRAPHY.small, { color: colors.textSecondary, textAlign }]}>
+                {isRTL ? prediction.reasoningAr : prediction.reasoning}
+              </Text>
+              <Text style={[TYPOGRAPHY.caption, { color: colors.textSecondary, marginTop: 4, textAlign }]}>
+                {t('ai.predictionDisclaimer', '* AI prediction for informational purposes only')}
+              </Text>
+            </View>
           )}
 
           {agent?.firstName && (

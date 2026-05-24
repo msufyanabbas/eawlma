@@ -470,7 +470,12 @@
     "vrHint": "🖱️ চারপাশে দেখতে ক্লিক করুন এবং টেনে আনুন · জুম করতে স্ক্রোল করুন",
     "priceHistory": "| মূল্য ইতিহাস",
     "priceReduced": "| দাম কমেছে",
-    "priceIncreased": "দাম বেড়েছে"
+    "priceIncreased": "দাম বেড়েছে",
+    "floorPlan": "| ফ্লোর প্ল্যান",
+    "floorPlanOptional": "| (ঐচ্ছিক)",
+    "floorPlanDesc": "ক্রেতাদের লেআউট বুঝতে সাহায্য করতে একটি ফ্লোর প্ল্যান ছবি আপলোড করুন",
+    "uploadFloorPlan": "৷ আপলোড ফ্লোর প্ল্যান",
+    "clickToZoom": "জুম এবং প্যান করতে ক্লিক করুন"
   },
   "search": {
     "filters": "ফিল্টার",
@@ -1375,7 +1380,14 @@
     "suggestedRange": "প্রস্তাবিত পরিসীমা",
     "confidenceLabel": "আত্মবিশ্বাস",
     "suggestPrice": "AI সাজেস্ট দাম",
-    "suggestionFailed": "দামের পরামর্শ পাওয়া যায়নি"
+    "suggestionFailed": "দামের পরামর্শ পাওয়া যায়নি",
+    "predictPrice": "AI দামের পূর্বাভাস",
+    "pricePrediction": "AI দামের পূর্বাভাস",
+    "year1": "1 বছর",
+    "year2": "2 বছর",
+    "year5": "5 বছর",
+    "predictionFailed": "দামের পূর্বাভাস পাওয়া যায়নি",
+    "predictionDisclaimer": "* শুধুমাত্র তথ্যগত উদ্দেশ্যে AI পূর্বাভাস"
   },
   "agents": {
     "searchPlaceholder": "নাম বা বিশেষত্ব দ্বারা অনুসন্ধান করুন",
@@ -1672,7 +1684,11 @@
     "clickToView": "তালিকা দেখতে ট্যাপ করুন",
     "propertiesInArea": "| নির্বাচিত এলাকায় সম্পত্তি",
     "loading": "মানচিত্র লোড হচ্ছে...",
-    "neighborhoodInsights": "| প্রতিবেশী অন্তর্দৃষ্টি"
+    "neighborhoodInsights": "| প্রতিবেশী অন্তর্দৃষ্টি",
+    "transport": "৷ পরিবহন",
+    "away": "| দূরে",
+    "metroStation": "মেট্রো স্টেশন",
+    "busStation": "বাস স্টেশন"
   },
   "neighborhood": {
     "insights": "প্রতিবেশী অন্তর্দৃষ্টি",
@@ -1714,11 +1730,20 @@
     "investmentDesc": "মূল্য প্রবণতা, ভিশন 2030 প্রকল্প এবং বাজারের চাহিদার উপর ভিত্তি করে",
     "roi": "| ROI",
     "growth": "বৃদ্ধি",
-    "pricePerSqm": "SAR/m²",
+    "pricePerSqm": "৷ SAR/m²",
     "disclaimer": "* প্ল্যাটফর্ম তালিকা এবং সৌদি রিয়েল এস্টেট বাজারের অনুমানের উপর ভিত্তি করে ডেটা। বিনিয়োগের সিদ্ধান্তের জন্য, লাইসেন্সপ্রাপ্ত রিয়েল এস্টেট উপদেষ্টার সাথে পরামর্শ করুন।",
     "totalListings": "মোট সক্রিয় তালিকা",
     "monthlySearches": "মাসিক অনুসন্ধান",
     "avgPrice": "গড় মূল্য/m² রিয়াদ",
     "deals": "এই মাসে ডিল"
+  },
+  "nearby": {
+    "title": "কাছাকাছি কি আছে",
+    "schools": "স্কুল",
+    "hospitals": "| হাসপাতাল",
+    "malls": "শপিং মল",
+    "mosques": "মসজিদ",
+    "restaurants": "রেস্তোরাঁ",
+    "noPlaces": "আশেপাশে কোনো জায়গা পাওয়া যায়নি"
   }
 }
