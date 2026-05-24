@@ -5,6 +5,8 @@ import {
   Outlet,
   redirect,
 } from '@tanstack/react-router';
+import { lazy, Suspense, type ComponentType, type FunctionComponent } from 'react';
+import { Box, CircularProgress } from '@mui/material';
 import { UserRole } from '@eawlma/shared-types';
 
 import { AppShell } from './components/Layout/AppShell';
@@ -14,58 +16,107 @@ import { MeSyncer } from './components/global/MeSyncer';
 import { ErrorBoundary } from './components/global/ErrorBoundary';
 import { ScrollToTop } from './components/global/ScrollToTop';
 import { PageviewTracker } from './components/global/PageviewTracker';
+// HomePage stays eager — it's the landing page and rendering it from a
+// Suspense fallback would cost an extra paint above-the-fold. Auth pages
+// stay eager too because the login funnel is on the hot path. Everything
+// else is lazy-loaded behind a CircularProgress fallback.
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { HelpPage } from './pages/HelpPage';
-import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
-import { TermsPage } from './pages/TermsPage';
-import { SearchPage } from './pages/SearchPage';
-import { ListingDetailPage } from './pages/ListingDetailPage';
-import { AgentProfilePage } from './pages/AgentProfilePage';
-import { AgentsPage } from './pages/AgentsPage';
-import { SavedPropertiesPage } from './pages/SavedPropertiesPage';
-import { ComparePage } from './pages/ComparePage';
-import { MarketPage } from './pages/MarketPage';
-import { MarketReportsPage } from './pages/MarketReportsPage';
-import { StaysPage } from './pages/StaysPage';
-import { HotelsPage } from './pages/HotelsPage';
-import { HostingPage } from './pages/dashboard/HostingPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { VerifyOtpPage } from './pages/auth/VerifyOtpPage';
 import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage';
 import { NafathCallbackPage } from './pages/auth/NafathCallbackPage';
 import { MockNafathPage } from './pages/auth/MockNafathPage';
-import { ProfilePage } from './pages/ProfilePage';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
-import { MyListingsPage } from './pages/dashboard/MyListingsPage';
-import { ListingWizardPage } from './pages/dashboard/ListingWizardPage';
-import { ListingAnalyticsPage } from './pages/dashboard/ListingAnalyticsPage';
-import { InquiriesPage } from './pages/dashboard/InquiriesPage';
-import { SubscriptionPage } from './pages/dashboard/SubscriptionPage';
-import { SettingsPage } from './pages/dashboard/SettingsPage';
-import { MessagesPage } from './pages/dashboard/MessagesPage';
-import { NotificationsPage } from './pages/dashboard/NotificationsPage';
-import { CommissionsPage } from './pages/dashboard/CommissionsPage';
-import { WalletPage } from './pages/dashboard/WalletPage';
-import { RentalContractsPage } from './pages/dashboard/RentalContractsPage';
-import { DufaatPage } from './pages/dashboard/DufaatPage';
-import { BookingsPage } from './pages/dashboard/BookingsPage';
-import { BuyerDealsPage } from './pages/dashboard/BuyerDealsPage';
-import { AdminDisputesPage } from './pages/admin/AdminDisputesPage';
-import { AdminPromosPage } from './pages/admin/AdminPromosPage';
-import { BookingPaymentCallbackPage } from './pages/BookingPaymentCallbackPage';
-import { AdminCommissionsPage } from './pages/admin/AdminCommissionsPage';
-import { AdminPayoutsPage } from './pages/admin/AdminPayoutsPage';
-import { AdminPropertyRequestsPage } from './pages/admin/AdminPropertyRequestsPage';
-import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
-import { ModerationPage } from './pages/admin/ModerationPage';
-import { AdminUsersPage } from './pages/admin/AdminUsersPage';
-import { AdminSupportPage } from './pages/admin/AdminSupportPage';
-import { AuditLogPage } from './pages/admin/AuditLogPage';
 import { useAuthStore } from './store/auth.store';
+
+// ----- Lazy page imports ---------------------------------------------------
+//
+// All non-critical pages are loaded on demand so the initial bundle ships
+// only what the marketing landing actually needs. Each `lazy(...)` call
+// returns a chunk that's fetched on first navigation.
+
+const PageLoader = () => (
+  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '60vh',
+    }}
+  >
+    <CircularProgress />
+  </Box>
+);
+
+/** Wraps a lazy component in Suspense so TanStack Router can mount it
+ *  directly as a route `component`. Returned as a plain `FunctionComponent`
+ *  so it's assignable to TanStack's `RouteComponent`, which excludes class
+ *  components. */
+function withSuspense<P extends object>(
+  Component: ComponentType<P>,
+): FunctionComponent<P> {
+  const Wrapped: FunctionComponent<P> = (props) => (
+    <Suspense fallback={<PageLoader />}>
+      <Component {...props} />
+    </Suspense>
+  );
+  return Wrapped;
+}
+
+const lazyNamed = <K extends string>(
+  loader: () => Promise<Record<string, unknown>>,
+  exportName: K,
+): FunctionComponent =>
+  withSuspense(
+    lazy(() =>
+      loader().then((m) => ({ default: m[exportName] as ComponentType<unknown> })),
+    ) as ComponentType<unknown>,
+  );
+
+const AboutPage = lazyNamed(() => import('./pages/AboutPage'), 'AboutPage');
+const ContactPage = lazyNamed(() => import('./pages/ContactPage'), 'ContactPage');
+const HelpPage = lazyNamed(() => import('./pages/HelpPage'), 'HelpPage');
+const PrivacyPolicyPage = lazyNamed(() => import('./pages/PrivacyPolicyPage'), 'PrivacyPolicyPage');
+const TermsPage = lazyNamed(() => import('./pages/TermsPage'), 'TermsPage');
+const SearchPage = lazyNamed(() => import('./pages/SearchPage'), 'SearchPage');
+const ListingDetailPage = lazyNamed(() => import('./pages/ListingDetailPage'), 'ListingDetailPage');
+const AgentProfilePage = lazyNamed(() => import('./pages/AgentProfilePage'), 'AgentProfilePage');
+const AgentsPage = lazyNamed(() => import('./pages/AgentsPage'), 'AgentsPage');
+const SavedPropertiesPage = lazyNamed(() => import('./pages/SavedPropertiesPage'), 'SavedPropertiesPage');
+const ComparePage = lazyNamed(() => import('./pages/ComparePage'), 'ComparePage');
+const MarketPage = lazyNamed(() => import('./pages/MarketPage'), 'MarketPage');
+const MarketReportsPage = lazyNamed(() => import('./pages/MarketReportsPage'), 'MarketReportsPage');
+const StaysPage = lazyNamed(() => import('./pages/StaysPage'), 'StaysPage');
+const HotelsPage = lazyNamed(() => import('./pages/HotelsPage'), 'HotelsPage');
+const HostingPage = lazyNamed(() => import('./pages/dashboard/HostingPage'), 'HostingPage');
+const ProfilePage = lazyNamed(() => import('./pages/ProfilePage'), 'ProfilePage');
+const DashboardHomePage = lazyNamed(() => import('./pages/dashboard/DashboardHomePage'), 'DashboardHomePage');
+const MyListingsPage = lazyNamed(() => import('./pages/dashboard/MyListingsPage'), 'MyListingsPage');
+const ListingWizardPage = lazyNamed(() => import('./pages/dashboard/ListingWizardPage'), 'ListingWizardPage');
+const ListingAnalyticsPage = lazyNamed(() => import('./pages/dashboard/ListingAnalyticsPage'), 'ListingAnalyticsPage');
+const InquiriesPage = lazyNamed(() => import('./pages/dashboard/InquiriesPage'), 'InquiriesPage');
+const SubscriptionPage = lazyNamed(() => import('./pages/dashboard/SubscriptionPage'), 'SubscriptionPage');
+const SettingsPage = lazyNamed(() => import('./pages/dashboard/SettingsPage'), 'SettingsPage');
+const MessagesPage = lazyNamed(() => import('./pages/dashboard/MessagesPage'), 'MessagesPage');
+const NotificationsPage = lazyNamed(() => import('./pages/dashboard/NotificationsPage'), 'NotificationsPage');
+const CommissionsPage = lazyNamed(() => import('./pages/dashboard/CommissionsPage'), 'CommissionsPage');
+const WalletPage = lazyNamed(() => import('./pages/dashboard/WalletPage'), 'WalletPage');
+const RentalContractsPage = lazyNamed(() => import('./pages/dashboard/RentalContractsPage'), 'RentalContractsPage');
+const DufaatPage = lazyNamed(() => import('./pages/dashboard/DufaatPage'), 'DufaatPage');
+const BookingsPage = lazyNamed(() => import('./pages/dashboard/BookingsPage'), 'BookingsPage');
+const BuyerDealsPage = lazyNamed(() => import('./pages/dashboard/BuyerDealsPage'), 'BuyerDealsPage');
+const BookingPaymentCallbackPage = lazyNamed(() => import('./pages/BookingPaymentCallbackPage'), 'BookingPaymentCallbackPage');
+const AdminDashboardPage = lazyNamed(() => import('./pages/admin/AdminDashboardPage'), 'AdminDashboardPage');
+const AdminDisputesPage = lazyNamed(() => import('./pages/admin/AdminDisputesPage'), 'AdminDisputesPage');
+const AdminPromosPage = lazyNamed(() => import('./pages/admin/AdminPromosPage'), 'AdminPromosPage');
+const AdminCommissionsPage = lazyNamed(() => import('./pages/admin/AdminCommissionsPage'), 'AdminCommissionsPage');
+const AdminPayoutsPage = lazyNamed(() => import('./pages/admin/AdminPayoutsPage'), 'AdminPayoutsPage');
+const AdminPropertyRequestsPage = lazyNamed(() => import('./pages/admin/AdminPropertyRequestsPage'), 'AdminPropertyRequestsPage');
+const ModerationPage = lazyNamed(() => import('./pages/admin/ModerationPage'), 'ModerationPage');
+const AdminUsersPage = lazyNamed(() => import('./pages/admin/AdminUsersPage'), 'AdminUsersPage');
+const AdminSupportPage = lazyNamed(() => import('./pages/admin/AdminSupportPage'), 'AdminSupportPage');
+const AuditLogPage = lazyNamed(() => import('./pages/admin/AuditLogPage'), 'AuditLogPage');
 
 // ----- Helpers ---------------------------------------------------------
 

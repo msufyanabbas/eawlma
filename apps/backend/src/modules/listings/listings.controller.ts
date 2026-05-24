@@ -32,6 +32,7 @@ import { RolesGuard } from '../../common/guards/roles.guard';
 import { PaginationQueryDto } from '../../common/dto/pagination.dto';
 
 import { ListingsService } from './listings.service';
+import { NearbyService } from './nearby.service';
 import { CreateListingDto } from './dto/create-listing.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
 import {
@@ -75,7 +76,10 @@ function classifyDevice(ua: string): string {
 @Controller({ path: 'listings', version: '1' })
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class ListingsController {
-  constructor(private readonly listingsService: ListingsService) {}
+  constructor(
+    private readonly listingsService: ListingsService,
+    private readonly nearbyService: NearbyService,
+  ) {}
 
   // ---------- Reference data (public) ------------------------------------
 
@@ -168,6 +172,10 @@ export class ListingsController {
     if (viewer && viewer.id === listing.ownerId) {
       dto.checkInInstructions = listing.checkInInstructions;
     }
+    // Attach city-level nearby-amenity counts so mobile (which has no Google
+    // Places SDK) can render the "What's Nearby" section without an extra
+    // round-trip.
+    dto.nearbyCounts = this.nearbyService.getNearbyCountsForCity(listing.city);
     // Translate title/description for non-source viewers.
     return this.listingsService.attachTranslatedCopy(dto, acceptLanguage);
   }

@@ -162,6 +162,22 @@ export class ListingResponseDto {
   @ApiProperty({ type: [String] })
   tagIds: string[];
 
+  /** City-level amenity counts (curated averages — see NearbyService).
+   *  Attached by the listing-detail controller; absent on list endpoints. */
+  @ApiPropertyOptional({
+    type: 'object',
+    additionalProperties: { type: 'number' },
+    nullable: true,
+    example: { schools: 8, hospitals: 4, malls: 3, mosques: 12, restaurants: 25 },
+  })
+  nearbyCounts?: {
+    schools: number;
+    hospitals: number;
+    malls: number;
+    mosques: number;
+    restaurants: number;
+  };
+
   static fromEntity(l: ListingEntity): ListingResponseDto {
     const dto = new ListingResponseDto();
     dto.id = l.id;

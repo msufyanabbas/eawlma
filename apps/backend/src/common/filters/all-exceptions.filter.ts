@@ -9,6 +9,7 @@ import {
 import { HttpAdapterHost } from '@nestjs/core';
 import { QueryFailedError } from 'typeorm';
 import type { Request } from 'express';
+import { Sentry } from '../../lib/sentry';
 
 interface ErrorBody {
   statusCode: number;
@@ -40,6 +41,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const { statusCode, body } = this.toResponseBody(exception, request);
 
     this.logException(exception, statusCode, request);
+
+    // Only ship 5xx + non-HTTP throws to Sentry. 4xx are client-side
+    // expected errors (validation, auth) and would otherwise swamp the
+    // quota with noise.
+    if (statusCode >= 500) {
+      Sentry.captureException(exception);
+    }
 
     httpAdapter.reply(response, body, statusCode);
   }

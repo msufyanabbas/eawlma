@@ -402,48 +402,58 @@ export default function ListingDetailScreen({ navigation, route }: any) {
             </>
           )}
 
-          {/* What's nearby — uses the static counts the backend already
-              returns on the listing payload (no Google Places SDK on RN). */}
-          {(listing?.nearby || amenities.length > 0) && (
+          {/* What's nearby — city-level amenity counts from the backend's
+              NearbyService. Mobile can't run the Google Places JS SDK so we
+              fall back to curated city averages. */}
+          {listing?.nearbyCounts && (
             <>
               <SectionTitle colors={colors} textAlign={textAlign}>
                 {t('nearby.title', "What's Nearby")}
               </SectionTitle>
               <View
                 style={{
-                  flexDirection: isRTL ? 'row-reverse' : 'row',
+                  flexDirection: 'row',
                   flexWrap: 'wrap',
-                  gap: 8,
+                  gap: SIZES.sm,
                   marginBottom: SIZES.md,
                 }}
               >
                 {(
                   [
-                    { icon: 'school' as const, key: 'schools', count: listing?.nearby?.schools ?? 0 },
-                    { icon: 'medkit' as const, key: 'hospitals', count: listing?.nearby?.hospitals ?? 0 },
-                    { icon: 'cart' as const, key: 'malls', count: listing?.nearby?.malls ?? 0 },
-                    { icon: 'business' as const, key: 'mosques', count: listing?.nearby?.mosques ?? 0 },
+                    { icon: '🏫', key: 'schools', count: listing.nearbyCounts.schools, color: '#3B82F6' },
+                    { icon: '🏥', key: 'hospitals', count: listing.nearbyCounts.hospitals, color: '#EF4444' },
+                    { icon: '🛍️', key: 'malls', count: listing.nearbyCounts.malls, color: '#F59E0B' },
+                    { icon: '🕌', key: 'mosques', count: listing.nearbyCounts.mosques, color: '#10B981' },
+                    { icon: '🍽️', key: 'restaurants', count: listing.nearbyCounts.restaurants, color: '#8B5CF6' },
                   ] as const
-                )
-                  .filter((row) => row.count > 0)
-                  .map((row) => (
-                    <View
-                      key={row.key}
+                ).map((item) => (
+                  <View
+                    key={item.key}
+                    style={{
+                      width: '18%',
+                      alignItems: 'center',
+                      padding: SIZES.sm,
+                      borderRadius: SIZES.borderRadius,
+                      borderWidth: 1,
+                      backgroundColor: item.color + '15',
+                      borderColor: item.color + '30',
+                      gap: 2,
+                    }}
+                  >
+                    <Text style={{ fontSize: 20 }}>{item.icon}</Text>
+                    <Text style={[TYPOGRAPHY.bodyBold, { color: item.color }]}>
+                      {item.count}
+                    </Text>
+                    <Text
                       style={[
-                        styles.amenityChip,
-                        {
-                          backgroundColor: colors.primary + '10',
-                          borderColor: colors.primary + '30',
-                          flexDirection: isRTL ? 'row-reverse' : 'row',
-                        },
+                        TYPOGRAPHY.caption,
+                        { color: colors.textSecondary, textAlign: 'center' },
                       ]}
                     >
-                      <Ionicons name={row.icon} size={14} color={colors.primary} />
-                      <Text style={[TYPOGRAPHY.small, { color: colors.text }]}>
-                        {row.count} {t(`nearby.${row.key}`)}
-                      </Text>
-                    </View>
-                  ))}
+                      {t(`nearby.${item.key}`)}
+                    </Text>
+                  </View>
+                ))}
               </View>
             </>
           )}

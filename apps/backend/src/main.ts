@@ -1,4 +1,10 @@
 import 'reflect-metadata';
+import { initSentry } from './lib/sentry';
+
+// Sentry must wire before Nest spins up so its HTTP/DB integrations can
+// patch the relevant modules before they're required.
+initSentry();
+
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { ValidationPipe, VersioningType, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';

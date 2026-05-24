@@ -13,6 +13,7 @@ import { ListingsService } from './listings.service';
 import { ListingsController } from './listings.controller';
 import { ListingPricingService } from './listing-pricing.service';
 import { ListingPricingController } from './listing-pricing.controller';
+import { NearbyService } from './nearby.service';
 import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
 import { NotificationsModule } from '../notifications/notifications.module';
 import { TranslationModule } from '../translation/translation.module';
@@ -34,8 +35,8 @@ import { ModerationModule } from '../moderation/moderation.module';
     TranslationModule,
     ModerationModule,
   ],
-  providers: [ListingsService, ListingPricingService],
+  providers: [ListingsService, ListingPricingService, NearbyService],
   controllers: [ListingsController, ListingPricingController],
-  exports: [ListingsService, ListingPricingService, TypeOrmModule],
+  exports: [ListingsService, ListingPricingService, NearbyService, TypeOrmModule],
 })
 export class ListingsModule {}
