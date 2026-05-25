@@ -4,11 +4,10 @@ set -e
 SERVER="ubuntu@3.142.74.95"
 KEY="$HOME/Downloads/eawlma-key.pem"
 REMOTE_DIR="~/eawlma-package"
-PACKAGE_DIR="$(dirname "$0")/../eawlma-package"
-CHUNK_SIZE="100m"  # Smaller chunks = less to re-upload on failure
+PACKAGE_DIR="$(cd "$(dirname "$0")/.." && pwd)/eawlma-package"
+CHUNK_SIZE="100m"
 MAX_RETRIES=5
 
-# SSH options for stability
 SSH_OPTS="-i $KEY \
   -o ServerAliveInterval=10 \
   -o ServerAliveCountMax=30 \
@@ -16,30 +15,30 @@ SSH_OPTS="-i $KEY \
   -o ConnectTimeout=30 \
   -o StrictHostKeyChecking=no"
 
-# Upload with retry function
 upload_with_retry() {
   local file=$1
-  local remote_path=$2
+  local remote_name=$2
   local attempt=1
-  local local_size=$(wc -c < "$file")
+  local local_size
+  local_size=$(wc -c < "$file")
 
   while [ $attempt -le $MAX_RETRIES ]; do
-    echo "   Attempt $attempt/$MAX_RETRIES: $(basename $file)"
+    echo "   Attempt $attempt/$MAX_RETRIES: $remote_name"
 
-    if scp $SSH_OPTS "$file" "$SERVER:$remote_path"; then
+    if scp $SSH_OPTS "$file" "$SERVER:$REMOTE_DIR/$remote_name"; then
       remote_size=$(ssh $SSH_OPTS "$SERVER" \
-        "wc -c < $remote_path" 2>/dev/null || echo "0")
+        "wc -c < $REMOTE_DIR/$remote_name" 2>/dev/null || echo "0")
 
       if [ "$remote_size" = "$local_size" ]; then
-        echo "   ✅ Verified! ($local_size bytes)"
+        echo "   ✅ Verified ($local_size bytes)"
         return 0
       else
-        echo "   ⚠️  Size mismatch! Removing corrupt file..."
-        ssh $SSH_OPTS "$SERVER" "rm -f $remote_path" 2>/dev/null
+        echo "   ⚠️  Size mismatch, removing..."
+        ssh $SSH_OPTS "$SERVER" "rm -f $REMOTE_DIR/$remote_name" 2>/dev/null || true
       fi
     fi
 
-    echo "   ❌ Failed, waiting 5s before retry..."
+    echo "   ❌ Failed, retrying in 5s..."
     sleep 5
     attempt=$((attempt + 1))
   done
@@ -48,7 +47,9 @@ upload_with_retry() {
   return 1
 }
 
-echo "🔨 Step 1: Building Docker images..."
+echo "🚀 Starting deployment..."
+
+echo "🐳 Building Docker images..."
 cd "$(dirname "$0")/.."
 
 docker build -t eawlma-backend:latest \
@@ -59,17 +60,17 @@ docker build -t eawlma-frontend:latest \
   -f apps/frontend/Dockerfile . \
   --platform linux/amd64
 
-echo "💾 Step 2: Saving images..."
+echo "💾 Saving images..."
 docker save eawlma-backend:latest eawlma-frontend:latest \
   -o "$PACKAGE_DIR/images.tar"
 
-echo "🗜️  Step 3: Compressing..."
+echo "🗜️  Compressing..."
 gzip -f "$PACKAGE_DIR/images.tar"
 
 SIZE=$(du -sh "$PACKAGE_DIR/images.tar.gz" | cut -f1)
 echo "📦 Package size: $SIZE"
 
-echo "✂️  Step 4: Splitting into ${CHUNK_SIZE} chunks..."
+echo "✂️  Splitting into ${CHUNK_SIZE} chunks..."
 rm -f "$PACKAGE_DIR"/chunk_*
 split -b $CHUNK_SIZE \
   "$PACKAGE_DIR/images.tar.gz" \
@@ -78,26 +79,25 @@ split -b $CHUNK_SIZE \
 CHUNKS=$(ls "$PACKAGE_DIR"/chunk_* | wc -l)
 echo "   $CHUNKS chunks to upload"
 
-echo "🧹 Cleaning old chunks from server..."
+echo "🧹 Cleaning server..."
 ssh $SSH_OPTS "$SERVER" \
-  "rm -f $REMOTE_DIR/chunk_* $REMOTE_DIR/images.tar.gz" 2>/dev/null || true
-echo "   ✅ Server cleaned"
+  "mkdir -p $REMOTE_DIR && rm -f $REMOTE_DIR/chunk_* $REMOTE_DIR/images.tar.gz" \
+  2>/dev/null || true
+echo "   ✅ Server ready"
 
-echo "📤 Step 5: Uploading chunks with auto-retry..."
+echo "📤 Uploading chunks..."
 CURRENT=0
 for chunk in "$PACKAGE_DIR"/chunk_*; do
   CURRENT=$((CURRENT + 1))
   CHUNK_NAME=$(basename "$chunk")
-  echo "   📦 Uploading $CURRENT/$CHUNKS: $CHUNK_NAME"
-  upload_with_retry "$chunk" "$REMOTE_DIR/$CHUNK_NAME"
+  echo "   📦 Chunk $CURRENT/$CHUNKS: $CHUNK_NAME"
+  upload_with_retry "$chunk" "$CHUNK_NAME"
 done
 
 echo "📤 Uploading docker-compose.yml..."
-upload_with_retry \
-  "$PACKAGE_DIR/docker-compose.yml" \
-  "$REMOTE_DIR/docker-compose.yml"
+upload_with_retry "$PACKAGE_DIR/docker-compose.yml" "docker-compose.yml"
 
-echo "🚀 Step 6: Deploying on server..."
+echo "🚀 Deploying on server..."
 ssh $SSH_OPTS "$SERVER" << 'ENDSSH'
   set -e
   cd ~/eawlma-package
@@ -110,7 +110,7 @@ ssh $SSH_OPTS "$SERVER" << 'ENDSSH'
   gunzip -c images.tar.gz | docker load
   rm -f images.tar.gz
 
-  echo "🛑 Stopping old containers..."
+  echo "🛑 Stopping containers..."
   docker compose down
 
   echo "▶️  Starting containers..."
@@ -121,7 +121,6 @@ ssh $SSH_OPTS "$SERVER" << 'ENDSSH'
   docker compose ps
 ENDSSH
 
-# Cleanup local chunks
 rm -f "$PACKAGE_DIR"/chunk_*
 
 echo ""
