@@ -17,7 +17,7 @@ echo "🚀 Deploying eawlma to production..."
 echo "📡 Connecting to $SERVER..."
 
 echo ""
-echo "📤 Step 0: Uploading production .env to server..."
+echo "📤 Step 0: Uploading production .env + docker-compose.yml to server..."
 if [ -f "$ROOT_DIR/apps/backend/.env.prod" ]; then
   echo "   Using apps/backend/.env.prod..."
   scp $SSH_OPTS \
@@ -32,7 +32,10 @@ else
     "$SERVER:~/eawlma-package/.env"
   rm -f /tmp/eawlma-prod.env
 fi
-echo "   ✅ Production .env uploaded"
+scp $SSH_OPTS \
+  "$ROOT_DIR/eawlma-package/docker-compose.yml" \
+  "$SERVER:~/eawlma-package/docker-compose.yml"
+echo "   ✅ Production .env + docker-compose.yml uploaded"
 
 ssh $SSH_OPTS "$SERVER" bash << REMOTE
 set -e

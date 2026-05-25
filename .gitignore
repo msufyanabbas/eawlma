@@ -53,5 +53,8 @@ apps/backend/uploads/
 
 # Docker export packages
 eawlma-package*/
+!eawlma-package/
+eawlma-package/*
+!eawlma-package/docker-compose.yml
 *.tar
 *.tar.gz

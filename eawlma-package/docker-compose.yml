@@ -1,0 +1,78 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - eawlma_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - eawlma_net
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    # Use sh -c so $$REDIS_PASSWORD is expanded inside the container at
+    # startup, not by docker-compose at parse time. This keeps the password
+    # out of `docker inspect` argv.
+    command: ["sh", "-c", "redis-server --requirepass \"$$REDIS_PASSWORD\""]
+    volumes:
+      - eawlma_redis:/data
+    networks:
+      - eawlma_net
+
+  backend:
+    image: eawlma-backend:latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    env_file:
+      - .env
+    environment:
+      # In-cluster service discovery: override any localhost values that .env
+      # might carry over from dev. Everything else comes from .env.
+      POSTGRES_HOST: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RUN_MIGRATIONS: "true"
+    ports:
+      - "3000:3000"
+    networks:
+      - eawlma_net
+
+  frontend:
+    image: eawlma-frontend:latest
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        VITE_API_URL: /api/v1
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - eawlma_net
+
+volumes:
+  eawlma_postgres:
+  eawlma_redis:
+
+networks:
+  eawlma_net:
+    driver: bridge
