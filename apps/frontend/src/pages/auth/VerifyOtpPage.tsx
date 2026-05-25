@@ -10,20 +10,27 @@ import { useEffect, useRef, useState, type ChangeEvent, type ClipboardEvent, typ
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { AuthLayout } from './AuthLayout';
+import { authApi } from '@/api/auth.api';
+import { extractErrorMessage } from '@/api/client';
+import { useAuthStore } from '@/store/auth.store';
 
 const OTP_LENGTH = 6;
 const RESEND_SECONDS = 30;
 
 /**
  * 6-digit OTP entry with auto-advance, paste handling, and resend countdown.
- *
- * The backend `/auth/verify-otp` endpoint is not yet wired (planned alongside
- * the Authentica.sa integration); this UI calls a stub that resolves after a
- * short delay so the flow is testable end-to-end on the frontend.
+ * Verifies against `/auth/verify-otp`; on success the user is logged in. The
+ * email is picked up from sessionStorage (`eawlma.prefillEmail`), which the
+ * register and login flows populate before redirecting here.
  */
 export function VerifyOtpPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const setSession = useAuthStore((s) => s.setSession);
+  // RegisterPage stashes the address in sessionStorage before redirecting here.
+  const [email] = useState<string>(
+    () => sessionStorage.getItem('eawlma.prefillEmail') ?? '',
+  );
   const [digits, setDigits] = useState<string[]>(Array(OTP_LENGTH).fill(''));
   const [secondsLeft, setSecondsLeft] = useState(RESEND_SECONDS);
   const [submitting, setSubmitting] = useState(false);
@@ -75,22 +82,39 @@ export function VerifyOtpPage() {
   const ready = code.length === OTP_LENGTH;
 
   const handleSubmit = async () => {
-    setError(null);
-    setSubmitting(true);
-    // Stub: simulate a verification round-trip. Replace with a real
-    // /auth/verify-otp call once the backend endpoint exists.
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    setSubmitting(false);
-    if (code === '000000') {
-      setError('Invalid code. Please try again.');
+    if (!email) {
+      setError(t('auth.emailRequired', 'Please enter your email'));
       return;
     }
-    setSuccess(t('auth.loginSuccess'));
-    setTimeout(() => navigate({ to: '/' }), 800);
+    setError(null);
+    setSubmitting(true);
+    try {
+      const result = await authApi.verifyOtp(email, code);
+      if ('needsRegistration' in result) {
+        // OTP was valid but no account exists — kick the user back to register.
+        sessionStorage.setItem('eawlma.prefillEmail', result.email);
+        void navigate({ to: '/auth/register' });
+        return;
+      }
+      setSession(result.user, result.tokens);
+      sessionStorage.removeItem('eawlma.prefillEmail');
+      setSuccess(t('auth.loginSuccess'));
+      setTimeout(() => navigate({ to: '/' }), 600);
+    } catch (e) {
+      setError(extractErrorMessage(e) || t('auth.invalidOtp', 'Invalid or expired code'));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const handleResend = () => {
-    setSecondsLeft(RESEND_SECONDS);
+  const handleResend = async () => {
+    if (!email) return;
+    try {
+      await authApi.sendOtp(email);
+      setSecondsLeft(RESEND_SECONDS);
+    } catch (e) {
+      setError(extractErrorMessage(e) || t('auth.sendOtpError', 'Failed to send code, please try again'));
+    }
   };
 
   return (
@@ -100,7 +124,9 @@ export function VerifyOtpPage() {
           Verify your account
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          We sent a 6-digit code to your phone. Enter it below to continue.
+          {email
+            ? t('auth.otpSentTo', 'Verification code sent to') + ` ${email}`
+            : t('auth.enterCode', 'Enter 6-digit code')}
         </Typography>
       </Box>
 

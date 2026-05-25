@@ -2,6 +2,7 @@ import type {
   AuthResponse,
   LoginRequest,
   RegisterRequest,
+  RegisterResponse,
 } from '@eawlma/shared-types';
 import { apiClient, unwrap } from './client';
 
@@ -14,9 +15,12 @@ export type VerifyOtpResult =
   | { needsRegistration: true; email: string };
 
 export const authApi = {
-  register: async (payload: RegisterRequest): Promise<AuthResponse> => {
-    const { data } = await apiClient.post<{ data: AuthResponse }>('/auth/register', payload);
-    return unwrap<AuthResponse>(data);
+  register: async (payload: RegisterRequest): Promise<RegisterResponse> => {
+    const { data } = await apiClient.post<{ data: RegisterResponse }>(
+      '/auth/register',
+      payload,
+    );
+    return unwrap<RegisterResponse>(data);
   },
 
   login: async (payload: LoginRequest): Promise<AuthResponse> => {

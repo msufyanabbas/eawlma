@@ -68,9 +68,17 @@ export function RegisterPage() {
         preferredLocale: i18n.language,
       });
       sessionStorage.removeItem('eawlma.prefillEmail');
-      setSession(data.user, data.tokens);
       GA.register(role);
       posthog.capture('user_registered', { role });
+
+      // Email-only signups can't be logged in until the OTP is verified.
+      if ('requiresVerification' in data) {
+        sessionStorage.setItem('eawlma.prefillEmail', data.email);
+        void navigate({ to: '/auth/verify' });
+        return;
+      }
+
+      setSession(data.user, data.tokens);
       void navigate({ to: '/' });
     } catch (e) {
       setError(extractErrorMessage(e) || t('auth.registerFailed', 'Registration failed'));

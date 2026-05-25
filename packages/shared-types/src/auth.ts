@@ -46,6 +46,19 @@ export interface AuthResponse {
   tokens: AuthTokens;
 }
 
+/**
+ * Email-only signups create an unverified user and a pending OTP instead of
+ * issuing tokens; the client must redirect to OTP entry. Signups that include
+ * a password skip this and return the standard {@link AuthResponse}.
+ */
+export interface RegisterRequiresVerification {
+  requiresVerification: true;
+  email: string;
+  message?: string;
+}
+
+export type RegisterResponse = AuthResponse | RegisterRequiresVerification;
+
 export interface RequestOtpRequest {
   phone: string;
 }

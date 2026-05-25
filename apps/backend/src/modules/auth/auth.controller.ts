@@ -45,13 +45,19 @@ export class AuthController {
   @Throttle({ default: { ttl: 3_600_000, limit: 5 } })
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Register a new user account' })
+  @ApiOperation({
+    summary: 'Register a new user account',
+    description:
+      'When a password is supplied the response is the standard auth payload (user + tokens). ' +
+      'Email-only signups instead return `{ requiresVerification: true, email }` — the client ' +
+      'should prompt for the OTP that was just emailed.',
+  })
   @ApiCreatedResponse({ type: AuthResponseDto })
   register(
     @Body() dto: RegisterDto,
     @Ip() ip: string,
     @Req() req: Request,
-  ): Promise<AuthResponseDto> {
+  ): Promise<AuthResponseDto | { requiresVerification: true; email: string; message: string }> {
     return this.authService.register(dto, {
       ip,
       userAgent: req.headers['user-agent'] ?? null,

@@ -54,8 +54,23 @@ export class AuthService {
   // Registration
   // ---------------------------------------------------------------------------
 
-  async register(dto: RegisterDto, ctx: ClientContext): Promise<AuthResponseDto> {
+  async register(
+    dto: RegisterDto,
+    ctx: ClientContext,
+  ): Promise<AuthResponseDto | { requiresVerification: true; email: string; message: string }> {
     const user = await this.usersService.create(dto);
+
+    // Email-only signups can't be logged in (no password to verify against);
+    // issue an OTP and bounce the client to the verification screen instead.
+    if (!dto.password) {
+      await this.otpService.sendOtp(user.email);
+      return {
+        requiresVerification: true,
+        email: user.email,
+        message: 'Verification code sent — please check your email.',
+      };
+    }
+
     const tokens = await this.issueTokens(user, ctx);
     await this.usersService.recordSuccessfulLogin(user.id, ctx.ip ?? null);
 
@@ -203,6 +218,13 @@ export class AuthService {
 
     if (user.status === UserStatus.SUSPENDED || user.status === UserStatus.DEACTIVATED) {
       throw new ForbiddenException('Account is not active');
+    }
+
+    // A successful OTP also confirms ownership of the address — flip the
+    // verified flag if this is the first time we've seen it work.
+    if (!user.emailVerified) {
+      await this.usersService.setEmailVerified(user.id, true);
+      user.emailVerified = true;
     }
 
     return this.loginExternalUser(user, ctx);
