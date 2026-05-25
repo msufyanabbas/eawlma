@@ -316,7 +316,8 @@
     "strengthStrong": "Sterk",
     "trustedPlatform": "Vertrouwd door duizenden in heel Saoedi-Arabië",
     "platformDesc": "Veilig • Geverifieerde agenten • Beste eigenschappen",
-    "signInWithGoogle": "Ga verder met Google"
+    "signInWithGoogle": "Ga verder met Google",
+    "setPassword": "Stel een wachtwoord in (optioneel)"
   },
   "validation": {
     "required": "Dit veld is verplicht",

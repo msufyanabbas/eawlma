@@ -316,7 +316,8 @@
     "strengthStrong": "Vahva",
     "trustedPlatform": "Tuhannet luottavat Saudi-Arabiassa",
     "platformDesc": "Turvalliset • Varmennetut edustajat • Parhaat ominaisuudet",
-    "signInWithGoogle": "Jatka Googlella"
+    "signInWithGoogle": "Jatka Googlella",
+    "setPassword": "Aseta salasana (valinnainen)"
   },
   "validation": {
     "required": "Tämä kenttä on pakollinen",
@@ -1738,7 +1739,7 @@
     "deals": "Tarjoukset tässä kuussa"
   },
   "nearby": {
-    "title": "What's Nearby",
+    "title": "Mikä on lähellä",
     "schools": "Koulut",
     "hospitals": "Sairaalat",
     "malls": "Ostoskeskukset",

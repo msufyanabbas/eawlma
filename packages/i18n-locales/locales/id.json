@@ -316,7 +316,8 @@
     "strengthStrong": "Kuat",
     "trustedPlatform": "Dipercaya oleh ribuan orang di Arab Saudi",
     "platformDesc": "Aman • Agen Terverifikasi • Properti Terbaik",
-    "signInWithGoogle": "Lanjutkan dengan Google"
+    "signInWithGoogle": "Lanjutkan dengan Google",
+    "setPassword": "Tetapkan kata sandi (opsional)"
   },
   "validation": {
     "required": "Bidang ini wajib diisi",

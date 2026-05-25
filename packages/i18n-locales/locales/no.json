@@ -316,7 +316,8 @@
     "strengthStrong": "Sterk",
     "trustedPlatform": "Stolt på av tusenvis over hele Saudi-Arabia",
     "platformDesc": "Sikker • Verifiserte agenter • Beste egenskaper",
-    "signInWithGoogle": "Fortsett med Google"
+    "signInWithGoogle": "Fortsett med Google",
+    "setPassword": "Angi et passord (valgfritt)"
   },
   "validation": {
     "required": "Dette feltet er obligatorisk",

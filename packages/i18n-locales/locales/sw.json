@@ -316,7 +316,8 @@
     "strengthStrong": "Nguvu",
     "trustedPlatform": "Inaaminiwa na maelfu kote Saudi Arabia",
     "platformDesc": "Salama • Mawakala Waliothibitishwa • Sifa Bora",
-    "signInWithGoogle": "Endelea na Google"
+    "signInWithGoogle": "Endelea na Google",
+    "setPassword": "Weka nenosiri (si lazima)"
   },
   "validation": {
     "required": "Sehemu hii inahitajika",

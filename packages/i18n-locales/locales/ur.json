@@ -331,7 +331,8 @@
     "strengthStrong": "| مضبوط",
     "trustedPlatform": "سعودی عرب بھر میں ہزاروں لوگوں کا بھروسہ",
     "platformDesc": "محفوظ • تصدیق شدہ ایجنٹس • بہترین پراپرٹیز",
-    "signInWithGoogle": "گوگل کے ساتھ جاری رکھیں"
+    "signInWithGoogle": "گوگل کے ساتھ جاری رکھیں",
+    "setPassword": "پاس ورڈ سیٹ کریں (اختیاری)"
   },
   "validation": {
     "required": "یہ خانہ ضروری ہے",

@@ -316,7 +316,8 @@
     "strengthStrong": "Сильный",
     "trustedPlatform": "Нам доверяют тысячи людей по всей Саудовской Аравии",
     "platformDesc": "Безопасность • Проверенные агенты • Лучшие объекты недвижимости",
-    "signInWithGoogle": "Продолжить с Google"
+    "signInWithGoogle": "Продолжить с Google",
+    "setPassword": "Установите пароль (необязательно)"
   },
   "validation": {
     "required": "Это поле обязательно",

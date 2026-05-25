@@ -378,6 +378,7 @@
     "roleBuyerDesc": "Looking for a property",
     "roleAgentDesc": "Selling or renting properties",
     "passwordsNoMatch": "Passwords do not match",
+    "setPassword": "Set a password (optional)",
     "agreeToTerms": "I agree to the Terms of Service and Privacy Policy",
     "mustAgreeTerms": "Please agree to the terms",
     "strengthWeak": "Weak",

@@ -316,7 +316,8 @@
     "strengthStrong": "強い",
     "trustedPlatform": "サウジアラビア全土で何千もの人々から信頼されています",
     "platformDesc": "安全 • 検証済みエージェント • 最良のプロパティ",
-    "signInWithGoogle": "Google を続ける"
+    "signInWithGoogle": "Google を続ける",
+    "setPassword": "パスワードを設定します (オプション)"
   },
   "validation": {
     "required": "この項目は必須です",

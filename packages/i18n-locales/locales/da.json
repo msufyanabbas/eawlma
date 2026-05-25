@@ -316,7 +316,8 @@
     "strengthStrong": "Stærk",
     "trustedPlatform": "Betroet af tusinder i hele Saudi-Arabien",
     "platformDesc": "Sikker • Verificerede agenter • Bedste egenskaber",
-    "signInWithGoogle": "Fortsæt med Google"
+    "signInWithGoogle": "Fortsæt med Google",
+    "setPassword": "Indstil en adgangskode (valgfrit)"
   },
   "validation": {
     "required": "Dette felt er påkrævet",
@@ -459,7 +460,7 @@
     "vrTitle": "Immersive VR & AR Ejendomsoplevelse",
     "vrDesc": "Træd ind i denne ejendom fra hvor som helst i verden. Tag en 360° virtuel rundvisning eller placer en skala-til-skala 3D-model lige i din stue.",
     "vrNoTour": "Agenten har endnu ikke uploadet en 360°/3D-tur til denne fortegnelse.",
-    "premium": "Premium",
+    "premium": "Præmie",
     "enterVrTour": "Indtast VR Tour",
     "viewInAr": "Se i AR",
     "videoTour": "Videotur",

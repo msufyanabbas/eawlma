@@ -316,7 +316,8 @@
     "strengthStrong": "Malakas",
     "trustedPlatform": "Pinagkakatiwalaan ng libu-libo sa buong Saudi Arabia",
     "platformDesc": "Secure • Mga Na-verify na Ahente • Pinakamahusay na Property",
-    "signInWithGoogle": "Magpatuloy sa Google"
+    "signInWithGoogle": "Magpatuloy sa Google",
+    "setPassword": "Magtakda ng password (opsyonal)"
   },
   "validation": {
     "required": "Kinakailangan ang field na ito",
@@ -1711,7 +1712,7 @@
     "download": "Mag-download ng PDF",
     "priceTrends": "Mga Trend ng Presyo",
     "supplyDemand": "Supply at Demand",
-    "propertyMix": "Property Mix",
+    "propertyMix": "Mix ng Ari-arian",
     "investment": "Mga Oportunidad sa Pamumuhunan",
     "avgPricePerSqm": "Average na Presyo bawat m² ng Lungsod (SAR)",
     "supplyDemandTitle": "Supply vs Demand vs Deal Closed",

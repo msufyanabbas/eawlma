@@ -316,7 +316,8 @@
     "strengthStrong": "Sterk",
     "trustedPlatform": "Vertrou deur duisende regoor Saoedi-Arabië",
     "platformDesc": "Veilig • Geverifieerde Agente • Beste Eiendomme",
-    "signInWithGoogle": "Gaan voort met Google"
+    "signInWithGoogle": "Gaan voort met Google",
+    "setPassword": "Stel 'n wagwoord (opsioneel)"
   },
   "validation": {
     "required": "Hierdie veld is verpligtend",

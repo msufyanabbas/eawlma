@@ -316,7 +316,8 @@
     "strengthStrong": "חזק",
     "trustedPlatform": "מהימן על ידי אלפים ברחבי ערב הסעודית",
     "platformDesc": "מאובטח • סוכנים מאומתים • הנכסים הטובים ביותר",
-    "signInWithGoogle": "המשך עם Google"
+    "signInWithGoogle": "המשך עם Google",
+    "setPassword": "הגדר סיסמה (אופציונלי)"
   },
   "validation": {
     "required": "שדה זה הוא חובה",

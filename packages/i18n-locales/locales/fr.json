@@ -316,7 +316,8 @@
     "strengthStrong": "Fort",
     "trustedPlatform": "Approuvé par des milliers de personnes à travers l'Arabie Saoudite",
     "platformDesc": "Sécurisé • Agents vérifiés • Meilleures propriétés",
-    "signInWithGoogle": "Continuer avec Google"
+    "signInWithGoogle": "Continuer avec Google",
+    "setPassword": "Définir un mot de passe (facultatif)"
   },
   "validation": {
     "required": "Ce champ est obligatoire",
@@ -358,7 +359,7 @@
     "invoice": "Facture",
     "create": "Créer",
     "remove": "Retirer",
-    "actions": "Actions",
+    "actions": "Actes",
     "active": "Actif",
     "inactive": "Inactif",
     "loadMore": "Charger plus",

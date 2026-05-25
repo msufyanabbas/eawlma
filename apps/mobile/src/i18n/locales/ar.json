@@ -378,6 +378,7 @@
     "roleBuyerDesc": "أبحث عن عقار",
     "roleAgentDesc": "أبيع أو أؤجر عقارات",
     "passwordsNoMatch": "كلمتا المرور غير متطابقتين",
+    "setPassword": "تعيين كلمة مرور (اختياري)",
     "agreeToTerms": "أوافق على شروط الخدمة وسياسة الخصوصية",
     "mustAgreeTerms": "يرجى الموافقة على الشروط",
     "strengthWeak": "ضعيفة",

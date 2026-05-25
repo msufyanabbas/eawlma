@@ -316,7 +316,8 @@
     "strengthStrong": "Mạnh",
     "trustedPlatform": "Được hàng ngàn người trên khắp Ả Rập Saudi tin cậy",
     "platformDesc": "Bảo mật • Đại lý đã được xác minh • Thuộc tính tốt nhất",
-    "signInWithGoogle": "Tiếp tục với Google"
+    "signInWithGoogle": "Tiếp tục với Google",
+    "setPassword": "Đặt mật khẩu (tùy chọn)"
   },
   "validation": {
     "required": "Trường này là bắt buộc",

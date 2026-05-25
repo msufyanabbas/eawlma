@@ -316,7 +316,8 @@
     "strengthStrong": "Stark",
     "trustedPlatform": "Betrodd av tusentals i Saudiarabien",
     "platformDesc": "Säker • Verifierade agenter • Bästa egenskaper",
-    "signInWithGoogle": "Fortsätt med Google"
+    "signInWithGoogle": "Fortsätt med Google",
+    "setPassword": "Ange ett lösenord (valfritt)"
   },
   "validation": {
     "required": "Detta fält är obligatoriskt",

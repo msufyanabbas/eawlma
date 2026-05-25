@@ -316,7 +316,8 @@
     "strengthStrong": "Forte",
     "trustedPlatform": "Scelto da migliaia di persone in tutta l'Arabia Saudita",
     "platformDesc": "Sicuro • Agenti verificati • Migliori proprietà",
-    "signInWithGoogle": "Continua con Google"
+    "signInWithGoogle": "Continua con Google",
+    "setPassword": "Imposta una password (facoltativo)"
   },
   "validation": {
     "required": "Questo campo è obbligatorio",

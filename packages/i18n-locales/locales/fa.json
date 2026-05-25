@@ -316,7 +316,8 @@
     "strengthStrong": "قوی",
     "trustedPlatform": "مورد اعتماد هزاران نفر در سراسر عربستان سعودی",
     "platformDesc": "ایمن • نمایندگان تایید شده • بهترین خواص",
-    "signInWithGoogle": "با گوگل ادامه دهید"
+    "signInWithGoogle": "با گوگل ادامه دهید",
+    "setPassword": "یک رمز عبور (اختیاری) تنظیم کنید"
   },
   "validation": {
     "required": "این فیلد الزامی است",

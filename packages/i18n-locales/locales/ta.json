@@ -316,7 +316,8 @@
     "strengthStrong": "வலுவான",
     "trustedPlatform": "சவுதி அரேபியா முழுவதும் ஆயிரக்கணக்கானோரின் நம்பிக்கை",
     "platformDesc": "பாதுகாப்பான • சரிபார்க்கப்பட்ட முகவர்கள் • சிறந்த பண்புகள்",
-    "signInWithGoogle": "Google உடன் தொடரவும்"
+    "signInWithGoogle": "Google உடன் தொடரவும்",
+    "setPassword": "கடவுச்சொல்லை அமைக்கவும் (விரும்பினால்)"
   },
   "validation": {
     "required": "இந்த புலம் தேவை",

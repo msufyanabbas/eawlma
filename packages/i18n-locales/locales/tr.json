@@ -316,7 +316,8 @@
     "strengthStrong": "Güçlü",
     "trustedPlatform": "Suudi Arabistan'da binlerce kişinin güvendiği",
     "platformDesc": "Güvenli • Doğrulanmış Acenteler • En İyi Özellikler",
-    "signInWithGoogle": "Google ile devam et"
+    "signInWithGoogle": "Google ile devam et",
+    "setPassword": "Bir şifre belirleyin (isteğe bağlı)"
   },
   "validation": {
     "required": "Bu alan zorunludur",

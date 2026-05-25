@@ -1,8 +1,7 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsEmail,
   IsEnum,
-  IsNotEmpty,
   IsOptional,
   IsString,
   Length,
@@ -13,36 +12,38 @@ import {
 import { UserRole } from '@eawlma/shared-types';
 
 export class CreateUserDto {
-  @ApiProperty({ example: 'fatima@example.com' })
+  @ApiPropertyOptional({ example: 'fatima@example.com' })
   @IsEmail()
   @MaxLength(320)
   email: string;
 
-  @ApiProperty({ example: '+966501234567', description: 'E.164 phone number' })
+  @ApiPropertyOptional({ example: '+966501234567', description: 'E.164 phone number' })
+  @IsOptional()
   @IsString()
   @Matches(/^\+?[1-9]\d{7,14}$/, { message: 'Phone must be a valid E.164 number' })
-  phone: string;
+  phone?: string;
 
-  @ApiProperty({ example: 'StrongPassw0rd!' })
+  @ApiPropertyOptional({ example: 'StrongPassw0rd!' })
+  @IsOptional()
   @IsString()
   @MinLength(8)
   @MaxLength(72) // bcrypt/argon practical upper bound
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, {
     message: 'Password must contain at least one lowercase letter, one uppercase letter, and one digit',
   })
-  password: string;
+  password?: string;
 
-  @ApiProperty({ example: 'Fatima' })
+  @ApiPropertyOptional({ example: 'Fatima' })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   @Length(1, 100)
-  firstName: string;
+  firstName?: string;
 
-  @ApiProperty({ example: 'Al-Saud' })
+  @ApiPropertyOptional({ example: 'Al-Saud' })
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   @Length(1, 100)
-  lastName: string;
+  lastName?: string;
 
   @ApiPropertyOptional({ enum: UserRole, default: UserRole.USER })
   @IsOptional()

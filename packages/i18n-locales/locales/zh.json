@@ -316,7 +316,8 @@
     "strengthStrong": "强的",
     "trustedPlatform": "受到沙特阿拉伯各地数千人的信赖",
     "platformDesc": "安全 • 经过验证的代理 • 最佳属性",
-    "signInWithGoogle": "继续使用谷歌"
+    "signInWithGoogle": "继续使用谷歌",
+    "setPassword": "设置密码（可选）"
   },
   "validation": {
     "required": "此字段为必填",

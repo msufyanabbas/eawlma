@@ -8,6 +8,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import * as argon2 from 'argon2';
+import { randomUUID } from 'crypto';
 import { UserRole, UserStatus } from '@eawlma/shared-types';
 
 import { PaginatedResultDto } from '../../common/dto/pagination.dto';
@@ -46,10 +47,14 @@ export class UsersService {
 
   async create(dto: CreateUserDto): Promise<UserEntity> {
     const email = dto.email.trim().toLowerCase();
-    const phone = dto.phone.trim();
+    const phone = dto.phone?.trim();
 
+    // When the simplified signup flow omits phone/name/password we generate
+    // placeholders so the columns stay populated; the user can fill them in
+    // from Settings later. A random password also means OTP-only accounts
+    // can't be logged into via password until the user sets one.
     const existing = await this.users.findOne({
-      where: [{ email }, { phone }],
+      where: phone ? [{ email }, { phone }] : [{ email }],
     });
     if (existing) {
       if (existing.email === email) {
@@ -58,13 +63,20 @@ export class UsersService {
       throw new ConflictException('An account with this phone number already exists');
     }
 
-    const passwordHash = await argon2.hash(dto.password, ARGON_OPTIONS);
+    const passwordHash = await argon2.hash(
+      dto.password ?? `otp-only:${randomUUID()}`,
+      ARGON_OPTIONS,
+    );
+
+    const emailLocal = email.split('@')[0] ?? 'user';
+    const firstName = dto.firstName?.trim() || emailLocal;
+    const lastName = dto.lastName?.trim() || '';
 
     const user = this.users.create({
       email,
-      phone,
-      firstName: dto.firstName.trim(),
-      lastName: dto.lastName.trim(),
+      phone: phone ?? null,
+      firstName,
+      lastName,
       passwordHash,
       role: dto.role ?? UserRole.USER,
       status: UserStatus.ACTIVE,

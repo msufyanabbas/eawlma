@@ -316,7 +316,8 @@
     "strengthStrong": "Mocny",
     "trustedPlatform": "Zaufały nam tysiące w całej Arabii Saudyjskiej",
     "platformDesc": "Bezpieczne • Sprawdzeni agenci • Najlepsze właściwości",
-    "signInWithGoogle": "Kontynuuj z Google"
+    "signInWithGoogle": "Kontynuuj z Google",
+    "setPassword": "Ustaw hasło (opcjonalnie)"
   },
   "validation": {
     "required": "To pole jest wymagane",

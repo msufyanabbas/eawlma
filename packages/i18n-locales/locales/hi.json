@@ -316,7 +316,8 @@
     "strengthStrong": "मज़बूत",
     "trustedPlatform": "पूरे सऊदी अरब में हज़ारों लोग इस पर भरोसा करते हैं",
     "platformDesc": "सुरक्षित • सत्यापित एजेंट • सर्वोत्तम गुण",
-    "signInWithGoogle": "Google के साथ जारी रखें"
+    "signInWithGoogle": "Google के साथ जारी रखें",
+    "setPassword": "पासवर्ड सेट करें (वैकल्पिक)"
   },
   "validation": {
     "required": "यह फ़ील्ड आवश्यक है",

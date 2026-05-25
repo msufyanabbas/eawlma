@@ -316,7 +316,8 @@
     "strengthStrong": "| बलियो",
     "trustedPlatform": "साउदी अरब भर हजारौं द्वारा विश्वास",
     "platformDesc": "सुरक्षित • प्रमाणित एजेन्टहरू • उत्तम गुणहरू",
-    "signInWithGoogle": "Google को साथ जारी राख्नुहोस्"
+    "signInWithGoogle": "Google को साथ जारी राख्नुहोस्",
+    "setPassword": "पासवर्ड सेट गर्नुहोस् (वैकल्पिक)"
   },
   "validation": {
     "required": "यो फिल्ड आवश्यक छ",

@@ -316,7 +316,8 @@
     "strengthStrong": "Puternic",
     "trustedPlatform": "Mii de oameni au încredere în toată Arabia Saudită",
     "platformDesc": "Securizat • Agenți verificați • Cele mai bune proprietăți",
-    "signInWithGoogle": "Continuați cu Google"
+    "signInWithGoogle": "Continuați cu Google",
+    "setPassword": "Setați o parolă (opțional)"
   },
   "validation": {
     "required": "Acest câmp este obligatoriu",
@@ -1213,7 +1214,7 @@
     "tabGuest": "Ca oaspete",
     "tabHost": "Ca gazdă",
     "checkIn": "Înregistrare",
-    "checkOut": "Check-out",
+    "checkOut": "Verifică",
     "night": "noapte",
     "nights": "nopți",
     "guests": "Oaspeți",

@@ -2,10 +2,12 @@ import { UserRole } from './enums';
 
 export interface RegisterRequest {
   email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  phone: string;
+  // Password is optional: users can sign up email-only and verify via OTP.
+  password?: string;
+  // Name + phone became optional when the form was simplified to email + role.
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
   role?: UserRole;
   preferredLocale?: string;
 }

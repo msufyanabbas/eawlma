@@ -316,7 +316,8 @@
     "strengthStrong": "| শক্তিশালী",
     "trustedPlatform": "সৌদি আরব জুড়ে হাজার হাজার বিশ্বাসী",
     "platformDesc": "সুরক্ষিত • যাচাইকৃত এজেন্ট • সেরা বৈশিষ্ট্য",
-    "signInWithGoogle": "Google এর সাথে চালিয়ে যান"
+    "signInWithGoogle": "Google এর সাথে চালিয়ে যান",
+    "setPassword": "একটি পাসওয়ার্ড সেট করুন (ঐচ্ছিক)"
   },
   "validation": {
     "required": "এই ক্ষেত্রটি প্রয়োজনীয়",
@@ -437,7 +438,7 @@
     },
     "bedrooms": "| বেডরুম",
     "bathrooms": "বাথরুম",
-    "sqm": "m²",
+    "sqm": "৷ m²",
     "type": "প্রকার",
     "floor": "মেঝে",
     "age": "| বয়স",

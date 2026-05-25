@@ -316,7 +316,8 @@
     "strengthStrong": "แข็งแกร่ง",
     "trustedPlatform": "ได้รับความไว้วางใจจากคนหลายพันคนทั่วซาอุดีอาระเบีย",
     "platformDesc": "ปลอดภัย • ตัวแทนที่ได้รับการยืนยัน • คุณสมบัติที่ดีที่สุด",
-    "signInWithGoogle": "ดำเนินการต่อด้วย Google"
+    "signInWithGoogle": "ดำเนินการต่อด้วย Google",
+    "setPassword": "ตั้งรหัสผ่าน (ไม่จำเป็น)"
   },
   "validation": {
     "required": "ต้องกรอกข้อมูลนี้",

@@ -7,7 +7,7 @@ import { UserEntity } from '../entities/user.entity';
 export class UserResponseDto {
   @Expose() @ApiProperty() id: string;
   @Expose() @ApiProperty() email: string;
-  @Expose() @ApiProperty() phone: string;
+  @Expose() @ApiProperty({ nullable: true }) phone: string | null;
   @Expose() @ApiProperty() firstName: string;
   @Expose() @ApiProperty() lastName: string;
   @Expose() @ApiProperty({ enum: UserRole }) role: UserRole;
