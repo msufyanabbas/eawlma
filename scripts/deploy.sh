@@ -4,6 +4,7 @@ set -e
 SERVER="ubuntu@3.142.74.95"
 KEY="$HOME/Downloads/eawlma-key.pem"
 GITHUB_REPO="https://github.com/msufyanabbas/eawlma.git"
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 SSH_OPTS="-i $KEY \
   -o ServerAliveInterval=30 \
@@ -14,6 +15,24 @@ SSH_OPTS="-i $KEY \
 
 echo "🚀 Deploying eawlma to production..."
 echo "📡 Connecting to $SERVER..."
+
+echo ""
+echo "📤 Step 0: Uploading production .env to server..."
+if [ -f "$ROOT_DIR/apps/backend/.env.prod" ]; then
+  echo "   Using apps/backend/.env.prod..."
+  scp $SSH_OPTS \
+    "$ROOT_DIR/apps/backend/.env.prod" \
+    "$SERVER:~/eawlma-package/.env"
+else
+  echo "   ⚠️  .env.prod not found, falling back to .env with NODE_ENV=production override..."
+  sed 's/^NODE_ENV=.*/NODE_ENV=production/' \
+    "$ROOT_DIR/apps/backend/.env" > /tmp/eawlma-prod.env
+  scp $SSH_OPTS \
+    /tmp/eawlma-prod.env \
+    "$SERVER:~/eawlma-package/.env"
+  rm -f /tmp/eawlma-prod.env
+fi
+echo "   ✅ Production .env uploaded"
 
 ssh $SSH_OPTS "$SERVER" bash << REMOTE
 set -e
