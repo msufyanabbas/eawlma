@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { formatNumber } from '@/utils/formatters';
 import RTLChart from '@/components/charts/RTLChart';
 import { useChartTranslations } from '@/hooks/useChartTranslations';
@@ -136,15 +136,44 @@ export function MarketReportsPage() {
   const [city, setCity] = useState('all');
   const { translateLabel, formatTooltipValue, formatNumber: fmtNum, rtlYAxisProps } =
     useChartTranslations();
+  const reportRef = useRef<HTMLDivElement>(null);
+
+  const handleDownloadPDF = () => {
+    document.title = 'Eawlma Market Report - ' + new Date().toLocaleDateString();
+
+    // Temporarily reveal all hidden tab panels so the print includes every section
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+    const hiddenPanels: HTMLElement[] = [];
+
+    tabPanels.forEach((panel) => {
+      const el = panel as HTMLElement;
+      if (el.style.display === 'none' || el.hidden) {
+        hiddenPanels.push(el);
+        el.style.display = 'block';
+      }
+    });
+
+    window.print();
+
+    setTimeout(() => {
+      hiddenPanels.forEach((el) => {
+        el.style.display = '';
+      });
+      document.title = 'Eawlma';
+    }, 1000);
+  };
 
   return (
-    <Box sx={{ bgcolor: 'background.default' }}>
+    <Box ref={reportRef} sx={{ bgcolor: 'background.default' }}>
       <Helmet>
         <title>{t('reports.title', 'Saudi Real Estate Market Reports')}</title>
       </Helmet>
 
       {/* Full-bleed purple header — matches AboutPage convention */}
-      <Box sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}>
+      <Box
+        className="market-report-header"
+        sx={{ bgcolor: 'primary.main', color: 'common.white', py: 3, px: { xs: 2, md: 3 } }}
+      >
         <Box
           sx={{
             maxWidth: 1200,
@@ -193,7 +222,7 @@ export function MarketReportsPage() {
             <Button
               variant="outlined"
               startIcon={<DownloadIcon />}
-              onClick={() => window.print()}
+              onClick={handleDownloadPDF}
               sx={{
                 color: 'common.white',
                 borderColor: 'rgba(255,255,255,0.5)',
@@ -208,6 +237,27 @@ export function MarketReportsPage() {
 
       {/* Body content */}
       <Container maxWidth={false} sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 3, sm: 4, md: 6, lg: 8 }, py: { xs: 8, md: 12 } }}>
+
+        {/* Print-only header */}
+        <Box
+          sx={{
+            display: 'none',
+            '@media print': { display: 'block' },
+            mb: 3,
+            pb: 2,
+            borderBottom: '2px solid #6C63A6',
+          }}
+        >
+          <Typography variant="h4" fontWeight={800}>
+            📊 {t('reports.title', 'Saudi Real Estate Market Reports')}
+          </Typography>
+          <Typography color="text.secondary">
+            {t('reports.subtitle', 'Monthly insights, price trends, and investment opportunities')}
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            Generated: {new Date().toLocaleDateString()}
+          </Typography>
+        </Box>
 
         {/* KPI cards */}
         <Grid container spacing={3} sx={{ mb: 4 }}>
@@ -250,7 +300,11 @@ export function MarketReportsPage() {
         </Tabs>
 
         {/* Tab 1: Price trends */}
-        {tab === 0 && (
+        <Box
+          role="tabpanel"
+          sx={{ display: tab === 0 ? 'block' : 'none' }}
+          className={tab !== 0 ? 'print-show' : ''}
+        >
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper sx={{ p: 3, borderRadius: 3 }}>
@@ -274,10 +328,14 @@ export function MarketReportsPage() {
               </Paper>
             </Grid>
           </Grid>
-        )}
+        </Box>
 
         {/* Tab 2: Supply & demand */}
-        {tab === 1 && (
+        <Box
+          role="tabpanel"
+          sx={{ display: tab === 1 ? 'block' : 'none' }}
+          className={tab !== 1 ? 'print-show' : ''}
+        >
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper sx={{ p: 3, borderRadius: 3 }}>
@@ -301,10 +359,14 @@ export function MarketReportsPage() {
               </Paper>
             </Grid>
           </Grid>
-        )}
+        </Box>
 
         {/* Tab 3: Property mix */}
-        {tab === 2 && (
+        <Box
+          role="tabpanel"
+          sx={{ display: tab === 2 ? 'block' : 'none' }}
+          className={tab !== 2 ? 'print-show' : ''}
+        >
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Paper sx={{ p: 3, borderRadius: 3 }}>
@@ -368,10 +430,14 @@ export function MarketReportsPage() {
               </Paper>
             </Grid>
           </Grid>
-        )}
+        </Box>
 
         {/* Tab 4: Investment opportunities */}
-        {tab === 3 && (
+        <Box
+          role="tabpanel"
+          sx={{ display: tab === 3 ? 'block' : 'none' }}
+          className={tab !== 3 ? 'print-show' : ''}
+        >
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper sx={{ p: 3, borderRadius: 3 }}>
@@ -433,7 +499,7 @@ export function MarketReportsPage() {
               </Paper>
             </Grid>
           </Grid>
-        )}
+        </Box>
 
         {/* Disclaimer */}
         <Box sx={{ mt: 4, p: 2, bgcolor: 'grey.50', borderRadius: 2 }}>

@@ -142,3 +142,57 @@ h6 {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
 }
+
+/* ── Print / PDF styles for Market Reports ── */
+@media print {
+  /* Hide everything except the report */
+  header,
+  nav,
+  footer,
+  .no-print,
+  button,
+  .MuiDrawer-root,
+  .MuiAppBar-root {
+    display: none !important;
+  }
+
+  /* Show all tabs content when printing */
+  .print-show {
+    display: block !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Make charts print properly */
+  .recharts-wrapper {
+    break-inside: avoid;
+  }
+
+  /* Cards don't break across pages */
+  .MuiCard-root,
+  .MuiPaper-root {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  /* Hide tabs, show all content */
+  .MuiTabs-root {
+    display: none !important;
+  }
+
+  /* Purple header prints well */
+  .market-report-header {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
