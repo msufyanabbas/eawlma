@@ -251,7 +251,16 @@ const termsRoute = createRoute({ getParentRoute: () => marketingShellRoute, path
 
 const authLoginRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/login', component: LoginPage });
 const authRegisterRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/register', component: RegisterPage });
-const authVerifyRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/verify', component: VerifyOtpPage });
+const authVerifyRoute = createRoute({
+  getParentRoute: () => authShellRoute,
+  path: '/auth/verify',
+  component: VerifyOtpPage,
+  // Accept ?email=<addr> so the OTP page can prefer the URL over sessionStorage
+  // (useful when the user opens the link in a fresh tab).
+  validateSearch: (search: Record<string, unknown>) => ({
+    email: typeof search.email === 'string' ? search.email : undefined,
+  }),
+});
 const authForgotRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/forgot-password', component: ForgotPasswordPage });
 const authNafathCallbackRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/nafath-callback', component: NafathCallbackPage });
 const authNafathMockRoute = createRoute({ getParentRoute: () => authShellRoute, path: '/auth/nafath-mock', component: MockNafathPage });

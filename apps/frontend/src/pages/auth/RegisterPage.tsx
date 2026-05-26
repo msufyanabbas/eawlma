@@ -74,7 +74,7 @@ export function RegisterPage() {
       // Email-only signups can't be logged in until the OTP is verified.
       if ('requiresVerification' in data) {
         sessionStorage.setItem('eawlma.prefillEmail', data.email);
-        void navigate({ to: '/auth/verify' });
+        void navigate({ to: '/auth/verify', search: { email: data.email } });
         return;
       }
 

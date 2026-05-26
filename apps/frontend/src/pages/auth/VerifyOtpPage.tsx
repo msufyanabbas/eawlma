@@ -19,18 +19,20 @@ const RESEND_SECONDS = 30;
 
 /**
  * 6-digit OTP entry with auto-advance, paste handling, and resend countdown.
- * Verifies against `/auth/verify-otp`; on success the user is logged in. The
- * email is picked up from sessionStorage (`eawlma.prefillEmail`), which the
- * register and login flows populate before redirecting here.
+ * Verifies against `/auth/verify-otp`; on success the user is logged in.
+ *
+ * The email is sourced in order: (1) `?email=` URL param — preferred so the
+ * page works in a fresh tab, (2) sessionStorage `eawlma.prefillEmail` — the
+ * register/login flows stash it there before redirecting.
  */
 export function VerifyOtpPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const setSession = useAuthStore((s) => s.setSession);
-  // RegisterPage stashes the address in sessionStorage before redirecting here.
-  const [email] = useState<string>(
-    () => sessionStorage.getItem('eawlma.prefillEmail') ?? '',
-  );
+  const [email] = useState<string>(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('email');
+    return fromUrl?.trim() || sessionStorage.getItem('eawlma.prefillEmail') || '';
+  });
   const [digits, setDigits] = useState<string[]>(Array(OTP_LENGTH).fill(''));
   const [secondsLeft, setSecondsLeft] = useState(RESEND_SECONDS);
   const [submitting, setSubmitting] = useState(false);
@@ -95,6 +97,11 @@ export function VerifyOtpPage() {
         sessionStorage.setItem('eawlma.prefillEmail', result.email);
         void navigate({ to: '/auth/register' });
         return;
+      }
+      // Defensive: guard against an unexpected response shape so a missing
+      // `tokens` doesn't surface as a cryptic minified `n.accessToken` crash.
+      if (!result?.tokens?.accessToken || !result?.user) {
+        throw new Error('Unexpected verify response — missing tokens or user');
       }
       setSession(result.user, result.tokens);
       sessionStorage.removeItem('eawlma.prefillEmail');
